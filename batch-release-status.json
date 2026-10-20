@@ -849,6 +849,47 @@
         }
       ],
       "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39384749486"
+    },
+    "provenance_weight_training/workspace.tar.gz": {
+      "status": "uploaded",
+      "source": {
+        "bytes": 340157760,
+        "etag": "\"f3a8b2f2944cb3967127f32445771283-41\"",
+        "modified": "2026-05-31T17:32:58+00:00"
+      },
+      "archive_sha256": "861fd78d296280429bd1ea4f17b97851401046b5ee8a5a0500beaf8d257401a5",
+      "projects": [
+        "pgpf-collapse-filter",
+        "solver-trace-ablation",
+        "provenance_weight_training"
+      ],
+      "counts": [
+        {
+          "project": "pgpf-collapse-filter",
+          "title": "pgpf collapse filter",
+          "paper_pdf": null,
+          "code_count": 26,
+          "data_count": 24,
+          "trace_count": 29
+        },
+        {
+          "project": "solver-trace-ablation",
+          "title": "solver trace ablation",
+          "paper_pdf": null,
+          "code_count": 26,
+          "data_count": 27,
+          "trace_count": 31
+        },
+        {
+          "project": "provenance_weight_training",
+          "title": "When Does Detect-and-Reweight Work for Synthetic Contamination?",
+          "paper_pdf": "paper.pdf",
+          "code_count": 559,
+          "data_count": 2002,
+          "trace_count": 3029
+        }
+      ],
+      "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39384749486"
     }
   }
 }
