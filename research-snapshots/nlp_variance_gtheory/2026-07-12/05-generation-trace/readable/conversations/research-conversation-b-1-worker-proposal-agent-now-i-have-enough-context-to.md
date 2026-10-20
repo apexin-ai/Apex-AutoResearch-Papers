@@ -1,0 +1,2325 @@
+# Research conversation: 【任务】: 以「角色 B：迭代中」整合第 1 轮 worker 输出，按指定格式输出决策、概率估计、以及（若继续）下一轮 proposal 纯净版。 【发掘 agent 本轮输出】: Now I have enough context to
+
+**Reproducibility Budgets for Open-Weight LLM Evaluation: A Generalizability Theory Study of 7–9B Instruction-Tuned Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 37
+- **Recorded user turns:** 2
+- **Tool calls:** 6
+- **Original source:** `logs/chats/exported-trajectories/account-2/cd37f554-fbc5-4c14-abf2-18a21aa8796d.jsonl`
+- **Structured JSON:** [`c90bae1f3fff979f815f.json`](../../sessions/c9/c90bae1f3fff979f815f.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-19T18:48:22.025Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-19T18:48:22.025Z",
+  "sessionId": "cd37f554-fbc5-4c14-abf2-18a21aa8796d",
+  "content": "【任务】: 以「角色 B：迭代中」整合第 1 轮 worker 输出，按指定格式输出决策、概率估计、以及（若继续）下一轮 proposal 纯净版。\n\n【发掘 agent 本轮输出】:\nNow I have enough context to provide my analysis. Let me compile my findings.\n\n---\n\n【状态】: 有发掘空间\n\n【前置调研发现】\n- [Kaufmann, Lindner, Zimmermann & Shah, arXiv:2603.30036](https://arxiv.org/abs/2603.30036) (2026): 提出 aligned/orthogonal/in-conflict 分类框架，实验仅限 Qwen-3-14B 和 Gemma-3 在简单合成环境上，未测试任何 faithfulness training 方法。Proposal 对该框架的应用是合理的延伸，但 Kaufmann 等人已经 *暗示* 了 in-conflict 奖励会降低可监控性——这削弱了 \"预测验证\" 的惊喜感。\n- [Anwar et al., arXiv:2602.18297](https://arxiv.org/abs/2602.18297) (2026): 提出 oracle 和 label-free conditional MI maximization 两种方法，已展示在对抗 monitor 训练时能显著提升 monitor accuracy 并防止 CoT 退化。这意味着 MI-preservation loss 并非 CAAFT 的原创组件——Anwar 等人已在对抗场景中验证其有效性。\n- [Baker et al., arXiv:2503.11926](https://arxiv.org/abs/2503.11926) (2025): 建立了 adversarial CoT obfuscation 的基础 protocol。Proposal 的 Part I 本质上是 \"用 Baker et al. 的 protocol 测试 faithfulness-trained models\"。\n- [Ye et al., arXiv:2602.11201](https://arxiv.org/abs/2602.11201) (2026, ACL 2026): 发现 reasoning horizon (k*) 在链长 70-85%，提出 NLDD metric。Proposal 将其用于 CAAFT 的 horizon-weighted loss，是合理的整合。\n- [CoRL 2026 Call for Papers](https://www.corl.org/contributions/call-for-papers): CoRL 是 Conference on **Robot Learning**，接收论文聚焦于 robot perception, manipulation, locomotion, imitation learning, sim-to-real 等。[CoRL 2025 接收论文](https://github.com/smallfryy/corl-2025-papers)全部是机器人学习相关。\n- [Akter et al., arXiv:2509.01544](https://arxiv.org/abs/2509.01544) (2025): Causal Consistency Regularization 已达 70pp improvement，思路与 CAAFT 的 causal anchor loss 高度重叠，差异仅在 intervention 粒度和 horizon weighting。\n- 调研总结: 这个领域当前的核心张力是 \"faithfulness/monitorability 在 benign 条件下可以提升，但对抗性优化会摧毁这些收益\"——研究者们正从 information-theoretic (Anwar)、causal (FRIT, Akter)、mechanistic (Ye, Boppana) 三个角度切入，但尚无人做系统的 cross-method adversarial stress-test。\n\n---\n\n【发掘点 1】\n- 维度: 前提假设质疑（致命问题）\n- 内容: **Proposal 投稿 CoRL 2026 存在根本性的 venue mismatch。** CoRL (Conference on Robot Learning) 的 scope 是机器人学习：manipulation, locomotion, perception, sim-to-real, imitation learning 等。[CoRL 2025 接收的 200+ 篇论文](https://github.com/smallfryy/corl-2025-papers)全部是机器人相关。本 proposal 关于 LLM CoT faithfulness 训练的对抗鲁棒性，属于 AI safety / LLM alignment / NLP 领域，与机器人学习零交集。即使 idea 本身质量极高，投 CoRL 大概率 desk-reject 或被全部审稿人判为 out-of-scope。**合适的 venue 应该是 ICML 2026 (已截止?)、NeurIPS 2026、ICLR 2027，或 AI safety workshops (如 NeurIPS SafeAI)。** 如果必须赶近期 deadline，建议确认 NeurIPS 2026 的 submission timeline。\n- 价值: 这不是 idea 层面的问题，但它直接决定中稿概率为 ~0%。无论后续怎么优化 idea，venue 不对，一切无效。这是最高优先级的止损点。\n- 调研依据: CoRL 2026 官方 Call for Papers + CoRL 2025 全部接收论文列表\n\n【发掘点 2】\n- 维度: novelty 锐化\n- 内容: **CAAFT 的 novelty claim 存在 \"sum-of-parts\" 风险。** CAAFT = FRIT 的 causal intervention（已有） + Anwar et al. 的 MI preservation（已有，且已在对抗场景验证） + Ye et al. 的 reasoning horizon weighting（已有）。审稿人很自然会问：\"这三个已有组件的组合，产生了什么超越各自单独效果的 emergent property？\" 当前 proposal 的回答是 \"L_CA 防止 causally-disconnected CoT，L_MI 防止 internally-opaque CoT，两者互补\"——但这是 *希望* 它们互补，不是 *论证* 它们为什么必须联合。建议：(a) 明确构造一个 failure case，展示 L_CA alone 无法防御的攻击模式（如 latent encoding），以及 L_MI alone 无法防御的攻击模式（如 causally-disconnected but MI-preserving CoT），从而证明两者的不可替代性；(b) 在理论层面，用 Kaufmann et al. 的 reward decomposition 严格论证 CAAFT 的联合 loss 为何将 reward structure 从 in-conflict 推回 aligned——当前仅是 verbal argument，应尝试形式化。\n- 价值: 从 \"combination paper\" 提升到 \"principled defense framework\"，命中 Novelty 维度。如果能展示必要性而非仅仅充分性，novelty claim 会显著锐利化。\n- 调研依据: Anwar et al. (2026) 已在 adversarial 场景验证 MI preservation 有效性；Akter et al. (2025) 的 CSR 与 causal anchor loss 高度重叠——需要明确与 CSR 的差异化\n\n【发掘点 3】\n- 维度: significance 提升\n- 内容: **\"Potemkin robustness\" 是整篇论文中最具 surprise value 的预测，但当前 framing 把它埋在了一堆方法细节里。** Proposal 的核心叙事目前是 \"stress-test → defense\"，但最有冲击力的 claim 是：**faithfulness training 可能 *paradoxically* 降低 adversarial robustness——因为它教会了模型 \"什么样的 CoT 看起来 faithful\"，从而赋予模型更丰富的 obfuscation representations。** 如果 CST 在对抗压力下表现 *worse than untrained baselines*，这是一个 genuinely surprising、counterintuitive 的发现，会让审稿人说 \"I would not have guessed this\"。建议将这个 \"Potemkin robustness\" 假说提升为论文的 **central thesis**，而非 predictions 中的一条。叙事重构为：\"Does faithfulness training create false security?\" → 这比 \"we stress-test and propose a defense\" 有力得多。\n- 价值: 命中 Significance 和 Novelty 两个维度。一个 counterintuitive central claim 远比一个 thorough empirical study 更容易在 top venue 中稿。当前 proposal 读起来像 \"comprehensive evaluation + new method\"，应该读起来像 \"we reveal a dangerous paradox in current safety practice, explain why it happens, and show how to fix it\"。\n- 调研依据: Baker et al. (2025) 展示 obfuscation under monitoring pressure 但未讨论 faithfulness training 是否会 *加剧* 这个问题；Kaufmann et al. (2026) 的 in-conflict 预测暗示了这个可能性但未明确连接到 faithfulness training 的 \"representation enrichment\" 效应\n\n【发掘点 4】\n- 维度: related work 差异化\n- 内容: **与 Anwar et al. (2026) 的差异化不够锋利。** Anwar et al. 已经 (1) 从 information-theoretic 角度分析 monitorability，(2) 提出 MI maximization 作为 defense，(3) 在 adversarial training 场景中验证其有效性。CAAFT 的 L_MI 直接来自 Anwar et al.。审稿人会问：\"CAAFT 相对于 Anwar et al. 的增量贡献到底是什么？是 causal anchor loss？但 FRIT/CSR 已经做了类似的事。\" 当前 proposal 的定位似乎是 \"我们把所有好东西组合起来\"——但这不是 novelty。建议明确论证：Anwar et al. 的 MI preservation 在没有 causal anchoring 的情况下，会在 *某种特定攻击模式* 下失败（反之亦然），从而建立 CAAFT 的不可替代性。不能仅靠 \"互补\" 的叙述——需要展示 failure mode。\n- 价值: 命中 Related Work 差异化维度。如果不解决这个问题，最可能收到的 reject 理由就是 \"incremental over Anwar et al. + FRIT\"。\n- 调研依据: Anwar et al. (2602.18297) 的实验已包含 adversarial training 场景下的 MI maximization 验证\n\n【发掘点 5】\n- 维度: trivial alternative 威胁\n- 内容: **Part I（stress-test）的贡献面临 \"straightforward experiment\" 质疑。** Part I 本质上是：取 Baker et al. 的 adversarial protocol → 应用于 faithfulness-trained checkpoints → 用 Kaufmann et al. 的 framework 做事后解释。每一步都是已有方法/框架的直接应用，没有方法论上的新贡献。Kaufmann et al. 的预测（aligned 好于 in-conflict）已经被他们自己的实验支持——在 faithfulness methods 上再验证一遍，确认了他们的理论，但 surprise value 有限。**唯一能救 Part I 的就是 Potemkin robustness 的验证**（见发掘点 3）——如果 CST 真的比 baseline 更差，这就不是 \"straightforward confirmation\" 而是 \"surprising discovery\"。如果只是确认 \"FRIT > CST > baseline\"，审稿人可能认为这是 \"confirmatory study\" 而非 \"discovery\"。建议：Part I 的叙事不能是 \"we apply X to Y\"，而必须是 \"we test a *surprising and dangerous* hypothesis that current practice may backfire\"。\n- 价值: 命中 Novelty 维度。将 Part I 从 \"engineering contribution\" 提升为 \"scientific discovery\"。\n- 调研依据: Kaufmann et al. (2603.30036) 已在其自己的实验中验证了 aligned vs. in-conflict 的预测方向；Baker et al. (2503.11926) 提供了现成的 adversarial protocol\n\n【发掘点 6】\n- 维度: 核心 claim 强化\n- 内容: **论文试图同时做太多事情，dilutes 每个贡献的深度。** 当前 proposal 包含：(1) 4 个 faithfulness methods × 2 models × 3 adversarial levels 的 stress-test，(2) 一个新 defense method (CAAFT) with ablations，(3) 5-axis evaluation framework，(4) framework-driven falsifiable predictions，(5) cross-task generalization。这 5 个方向中的任何 2-3 个都足以写一篇 strong paper。全部塞进一篇论文的风险是：每个方向的深度都不够，审稿人会说 \"ambitious but shallow\"。**建议考虑两种收敛策略：** (A) 主打 \"stress-test + Potemkin robustness discovery\"，CAAFT 降级为 \"preliminary defense exploration\"；或 (B) 主打 \"CAAFT defense\"，stress-test 降级为 \"motivation experiments\"。策略 (A) 的 novelty 更依赖于实验发现的 surprise value，策略 (B) 需要更强的 CAAFT novelty claim（见发掘点 2、4）。鉴于 CAAFT 的 combination-paper 风险较高，**策略 (A) 可能是更安全的选择**。\n- 价值: 命中 Significance 和 Novelty 维度。聚焦的 claim 比散射的 claim 更容易在审稿人心中留下深刻印象。\n- 调研依据: 基于领域整体趋势判断——top venue 的 empirical papers 通常选择 depth over breadth\n\nSources:\n- [Kaufmann et al. - Aligned, Orthogonal or In-conflict](https://arxiv.org/abs/2603.30036)\n- [Anwar et al. - Analyzing and Improving Chain-of-Thought Monitorability Through Information Theory](https://arxiv.org/abs/2602.18297)\n- [Baker et al. - Monitoring Reasoning Models for Misbehavior](https://arxiv.org/abs/2503.11926)\n- [Ye et al. - Mechanistic Evidence for Faithfulness Decay](https://arxiv.org/abs/2602.11201)\n- [FRIT - Swaroop et al.](https://arxiv.org/abs/2509.13334)\n- [Akter et al. - Causal Consistency Regularization](https://arxiv.org/abs/2509.01544)\n- [CoRL 2026 Call for Papers](https://www.corl.org/contributions/call-for-papers)\n- [CoRL 2025 Paper List](https://github.com/smallfryy/corl-2025-papers)\n- [Hase & Potts - Counterfactual Simulation Training](https://arxiv.org/abs/2602.20710)\n- [Meinke et al. - Chain-of-thought obfuscation generalises to unseen tasks](https://arxiv.org/html/2601.23086v1)\n\n【补救 agent 本轮输出】:\nNow I have a thorough understanding of the experimental landscape. Let me compile my assessment.\n\n---\n\n【状态】: 发现致命缺陷\n\n【前置调研发现】\n- [Kaufmann et al., arXiv:2603.30036](https://arxiv.org/abs/2603.30036) (2026): Tested aligned/orthogonal/in-conflict framework on Qwen-3-14B and Gemma-3 using CAPO and ICRL across 2 synthetic environments (Heads-And-Tails, Backdoor-Easy) with 9 reward pairs. Evaluated monitorability via CoT monitor accuracy. Key: used only synthetic tasks, no faithfulness-trained baselines.\n- [Baker et al., arXiv:2503.11926](https://arxiv.org/abs/2503.11926) (2025): Adversarial RL on agentic coding tasks with GPT-4o monitors. Protocol: RL-fine-tune against monitor detection with escalating optimization budgets. Measured obfuscation via monitor evasion rates. Key: protocol designed for agentic (tool-use) settings, not general reasoning faithfulness.\n- [FRIT, arXiv:2509.13334](https://arxiv.org/abs/2509.13334) (FoRLM Workshop 2025): DPO on causal intervention pairs, tested on Qwen3-8B and Mistral-7B-v0.1 (NOT Llama). Evaluated on GSM8K with faithfulness and accuracy metrics. Code available.\n- [FaithRL-Gui, arXiv:2602.03507](https://arxiv.org/abs/2602.03507) (2026): Geometric reward + advantage modulation on Llama-3.1-8B and Qwen-2.5-7B (NOT Qwen3-8B). Evaluated faithfulness via step-level hallucination rates and accuracy across diverse benchmarks.\n- [REMUL, arXiv:2602.16154](https://arxiv.org/abs/2602.16154) (2026): Multi-listener GRPO on Qwen3-14B and Phi4 (NOT 8B-scale). Evaluated on BIG-Bench Extra Hard, ZebraLogicBench, MuSR, FOLIO. Measures: hint attribution, early answering AOC, mistake injection AOC.\n- [CST, arXiv:2602.20710](https://arxiv.org/abs/2602.20710) (2026): RL with counterfactual simulation reward on models up to Qwen3-235B. Tested on cue-based counterfactuals. Key admitted limitation: \"faithfulness improvements do not generalize to dissuading cues.\"\n- [Anwar et al., arXiv:2602.18297](https://arxiv.org/abs/2602.18297) (2026): Oracle-based and label-free conditional MI maximization methods. Evaluated monitor accuracy improvement and CoT degeneration prevention. Submitted to ICLR 2026.\n- [RL-Obfuscation, arXiv:2506.14261](https://arxiv.org/abs/2506.14261) (NeurIPS 2025 Workshop): Tested 7B–14B models. Found token-level probes vulnerable, holistic (max-pooling, attention-based) probes robust. Evaluated generalization across monitors.\n- [MonitorBench, arXiv:2603.28590](https://arxiv.org/abs/2603.28590) (2026): 1,514 instances across 19 tasks, 7 categories. Stress-test settings: Direct Concealment + Monitor-Aware Evasion. Found more capable models less monitorable (r = −0.83 to −0.53).\n- [FaithCoT-Bench, arXiv:2510.04040](https://arxiv.org/abs/2510.04040) (ICLR 2026): 1,000+ expert-annotated trajectories, 4 LLMs, 4 domains. Evaluates 11 detection methods across 4 paradigms. Primary metric: F1 score.\n- [Meinke et al., arXiv:2601.23086](https://arxiv.org/abs/2601.23086) (2026): Shows CoT obfuscation generalizes to unseen tasks even when penalizing only final actions. Tested generalization to unseen medical settings.\n- [CoRL 2026 Call for Papers](https://www.corl.org/contributions/call-for-papers): \"Submissions should focus on a core robotics problem and demonstrate the relevance of proposed models, algorithms, datasets, and benchmarks to robotics. **Submissions without a robotics focus will be returned without review.**\"\n\n- **调研总结**: This field's experimental standard requires: (a) multiple faithfulness metrics (counterfactual, causal, probe-based), (b) cross-model and cross-task evaluation, (c) ablation of each training component, (d) comparison against recent baselines on standardized benchmarks (FaithCoT-Bench, MonitorBench). The proposal's multi-axis evaluation is broadly aligned with community expectations. However, CoRL 2026 is the Conference on Robot Learning and will desk-reject papers without robotics content — this is the most critical feasibility issue.\n\n---\n\n【缺陷 1】\n- 类别: 可行性问题\n- 问题: **CoRL 2026 将会直接桌面拒稿**。根据 CoRL 2026 的 Call for Papers，会议明确要求 \"Submissions should focus on a core robotics problem and demonstrate the relevance of proposed models, algorithms, datasets, and benchmarks to robotics. Submissions without a robotics focus will be returned without review.\" 本 proposal 是关于 LLM CoT 推理忠实性在对抗优化下的鲁棒性——完全没有任何机器人学内容。这不是边缘案例（如用 LLM 做机器人规划），而是零交集。无论实验设计多么完美，提交到 CoRL 等于浪费一个 submission cycle。\n- 严重度: 不可补救（方向性致命）\n- 补救方案: 这个问题本身不涉及实验设计修改，而是投稿目标错误。合适的目标会议是 **NeurIPS 2026**（DDL 通常在5月中旬）、**ICML 2026**、**ICLR 2027**，或者 AI safety 专题 workshop（如 NeurIPS SafeGenAI、SoLaR）。如果坚持要投 CoRL，则需要根本性重构整个 proposal 以围绕机器人应用（如自主导航中的 CoT 监控安全性），但这完全改变了 proposal 的核心——已超出实验设计层面的补救范围。\n- 调研依据: [CoRL 2026 Call for Papers](https://www.corl.org/contributions/call-for-papers) 的明确要求\n\n---\n\n【缺陷 2】\n- 类别: 可行性问题\n- 问题: **忠实性训练方法的复现存在模型不匹配**。Proposal 称将在 Qwen3-8B 和 Llama-3.1-8B-Instruct 上复现全部 4 种方法，但原始论文使用的模型不匹配：(1) FRIT 在 Qwen3-8B 和 **Mistral-7B-v0.1** 上测试（非 Llama）；(2) FaithRL-Gui 在 Llama-3.1-8B 和 **Qwen-2.5-7B** 上测试（非 Qwen3-8B）；(3) REMUL 在 **Qwen3-14B** 和 Phi4 上测试（14B 规模，非 8B）；(4) CST 在最大至 Qwen3-235B 上测试。将所有方法统一到 Qwen3-8B + Llama-3.1-8B-Instruct 上需要大量适配工程，且无法保证 \"matching original training specifications\" 这一 claim。尤其 REMUL 从 14B 降到 8B 可能根本无法复现其多 listener 效果（原文 listener 模型包括 Ministral-3-14B, Phi-4-reasoning-plus, Qwen3-14B）。\n- 严重度: 可补救\n- 补救方案: (1) 明确区分 \"faithful reproduction\"（在原始模型上复现）和 \"standardized reproduction\"（在统一模型上重新训练），对前者 claim 降级为 \"re-implementation on standardized models\"，审稿人对此区别非常敏感。(2) 对于 REMUL，建议保留 Qwen3-14B 作为额外实验或替换为 Qwen3-8B + 说明性能差异预期。(3) 增加一个 \"reproduction fidelity\" 验证步骤：在复现后先在原始 benchmark 上验证性能是否接近原始报告值，再进入对抗实验。\n- 调研依据: FRIT (arXiv:2509.13334) 原文使用 Qwen3-8B + Mistral-7B-v0.1; FaithRL-Gui (arXiv:2602.03507) 使用 Llama-3.1-8B + Qwen-2.5-7B; REMUL (arXiv:2602.16154) 使用 Qwen3-14B + Phi4\n\n---\n\n【缺陷 3】\n- 类别: 实验设计不足\n- 问题: **Baker et al. 的对抗 RL 协议是为 agentic coding 任务设计的，直接迁移到推理忠实性场景缺乏方法论论证**。Baker et al. 的实验是在 agentic coding 环境中进行的（模型需要使用工具、编写代码等），其 \"obfuscated reward hacking\" 涉及的是工具使用层面的欺骗。将此协议应用于 general reasoning faithfulness（如 GSM8K, BIG-Bench）需要详细说明：(a) adversarial RL 的具体 task reward 是什么（对 reasoning task 而言），(b) monitor 如何检测 reasoning task 中的 obfuscation（vs. agentic task 中的 reward hacking），(c) 优化压力的梯度如何从 GPT-4o monitor 反传（monitor 是黑盒 API，不可微分）。proposal 说 \"following Baker et al.'s protocol\" 但未说明任何适配细节。\n- 严重度: 可补救\n- 补救方案: (1) 详细描述 adversarial RL 的具体实施：task reward（如 reasoning accuracy on GSM8K/BIG-Bench）+ adversarial reward（如 1 − monitor_detection_accuracy 作为 RLHF reward signal），monitor 的具体 prompt template 和判断标准。(2) 说明如何处理 GPT-4o monitor 的不可微性——是通过 REINFORCE/PPO 将 monitor 输出作为 reward signal，还是使用可微分的 proxy monitor。(3) 增加 pilot study：先在 1-2 个 checkpoint 上验证 adversarial RL 确实能产生可度量的 faithfulness degradation，再扩展到全部 36 条件。\n- 调研依据: Baker et al. (arXiv:2503.11926) 的原始实验设置针对 agentic coding，非 general reasoning; Kaufmann et al. (arXiv:2603.30036) 在 synthetic environments 中使用了不同的对抗训练协议\n\n---\n\n【缺陷 4】\n- 类别: baseline 不足或过时\n- 问题: **缺少几个领域内相关的 baseline 和 defense 方法对照**。(1) **Anwar et al. 的 standalone MI-maximization 方法**：proposal 将其作为 CAAFT 的组件使用，但未将 Anwar et al. 的完整方法（oracle 版本和 label-free 版本）作为独立 baseline 对照。审稿人很可能会质疑 CAAFT 相对于 \"直接使用 Anwar et al.\" 的增益来自哪里。(2) **Akter et al. 的 Causal Consistency Regularization (CSR)**：被引用为灵感但未纳入 baseline，其 \"penalizing models when corrupted reasoning still yields correct answers\" 与 CAAFT 的 L_CA 有直接可比性。(3) **AtManRL** (arXiv:2604.16158): 被提及但未测试，虽然只在 3B 上验证过，但它使用了 differentiable attention saliency，作为 faithfulness training baseline 有对照价值。\n- 严重度: 可补救\n- 补救方案: (1) 将 Anwar et al. 的 label-free MI-maximization 作为独立 defense baseline（CAAFT 的消融实验中 \"L_MI alone\" 已部分涵盖，但需要明确是完整复现 Anwar et al. 还是简化版本）。(2) 将 Akter et al. 的 CSR 加入 faithfulness training baseline 列表（Part I 压力测试），或至少在 Part II 中作为 CAAFT 的对照 defense（尤其与 L_CA 对比）。(3) AtManRL 可以作为 discussion 中的 limitation 提及（因其 3B 规模限制），而非必须复现。\n- 调研依据: Anwar et al. (arXiv:2602.18297) 提出了完整的可部署 defense method; Akter et al. (arXiv:2509.01544) 的 CSR 与 L_CA 在理念上直接重叠\n\n---\n\n【缺陷 5】\n- 类别: 实验设计不足 / 统计严谨性\n- 问题: **36 个对抗条件 + CAAFT 消融的统计可靠性和 seed 数未说明**。proposal 描述了 12 checkpoints × 3 optimization budgets = 36 adversarial conditions，加上 CAAFT 的多组消融实验（L_CA alone, L_MI alone, L_CA + L_MI, varying horizon weighting, varying amortization frequency）。但未说明：(a) 每个条件运行多少 random seeds（最少需 3 seeds 才有初步统计意义，5 seeds 为社区标准），(b) 如何报告结果的 variance / confidence intervals，(c) 对抗 RL 本身的不稳定性如何处理（RL training 在不同 seed 下波动极大）。如果只跑 1 seed，36 个条件的任何 \"robustness ordering\" 都不具统计显著性。\n- 严重度: 可补救\n- 补救方案: (1) 明确声明每个条件至少使用 3 random seeds（理想为 5），报告 mean ± std。(2) 如果资源不足以支持全部 36 × 3 seeds = 108 runs，可以在 full matrix 上用 1 seed 做筛选，然后对关键比较（如 FRIT vs CST, CAAFT vs baselines）加 3-5 seeds 做统计验证。(3) 对 adversarial RL 的训练不稳定性，考虑报告 best-of-3 和 mean-of-3 两种指标。(4) 资源预算需要相应调整：如果 36 conditions × 3 seeds × 60 hrs/run = 6,480 H100-hrs（仅对抗 RL 部分就超预算），需重新评估。\n- 调研依据: 基于领域实验规范判断——Kaufmann et al. 在较小规模实验中也使用了多 seed 验证; RL training 的高方差是公认问题\n\n---\n\n【缺陷 6】\n- 类别: compute 公平性问题\n- 问题: **不同 faithfulness 方法的训练成本差异巨大，robustness 比较缺乏 compute-normalized 控制**。FRIT 使用 DPO（相对廉价），CST 使用 RL with counterfactual simulation（中等成本），FaithRL-Gui 使用 geometric reward + advantage modulation（RL 成本），REMUL 使用 multi-listener GRPO（最昂贵，需要多个 listener model forward pass）。如果 FRIT 的 faithfulness training 只花了 X GPU-hours 而 REMUL 花了 5X GPU-hours，在随后的对抗压力下比较它们的 robustness 不一定公平——更贵的方法可能因为更多训练产生了更强的 representation，而非方法本身更好。\n- 严重度: 可补救\n- 补救方案: (1) 记录并报告每种方法的实际 faithfulness training compute（GPU-hours 和 FLOPs），(2) 在分析中增加 compute-normalized 对照：按实际 training FLOPs 归一化后重新排序，看 robustness ordering 是否改变。(3) 或者更直接地，增加一个 \"extended training\" baseline——对最便宜的方法（FRIT）增加训练量到与最贵方法匹配的 compute，观察 robustness 是否提升，以排除 \"more compute → more robust\" 的混淆因素。\n- 调研依据: 基于领域实验规范判断——compute fairness 是近年 RL/alignment 论文审稿中的常见质疑点\n\n---\n\n【缺陷 7】\n- 类别: 评估方案缺陷\n- 问题: **GPT-4o 作为 adversarial RL 中唯一 CoT monitor 的脆弱性未被讨论**。adversarial RL 的核心是 \"penalizing a GPT-4o CoT monitor's detection accuracy\"。但：(a) GPT-4o 本身可能有特定的检测盲区，adversarial RL 可能只学会了 exploit GPT-4o 的特定弱点而非学会了通用 obfuscation。(b) RL-Obfuscation (arXiv:2506.14261) 明确发现 adversarial policies trained against one monitor can generalize to unseen monitors of same type，但跨 monitor type（如从 LLM judge 到 latent probe）的迁移性有限。(c) 如果 adversarial RL 仅对 GPT-4o 有效但对其他 monitor 无效，Part I 的 \"stress test\" 和 robustness ordering 可能不具有普遍意义。\n- 严重度: 可补救\n- 补救方案: (1) 在 adversarial RL loop 中增加至少一个非 GPT-4o 的 monitor（如 Claude Sonnet 或开源 LLM judge），或者在 training 后测试对 unseen monitors 的迁移性。(2) 利用 Part III 中已有的 latent-space probe evaluation（axis c）来验证：如果模型能 evade GPT-4o 但 latent probe 仍能检测，说明 obfuscation 是 surface-level 的。(3) 在讨论中明确承认 \"adversarial pressure is calibrated against a specific monitor\" 这一局限性。实际上 proposal 的 5-axis evaluation 已经部分缓解了这个问题（axis c 和 d），但应在实验设计动机中明确这一点。\n- 调研依据: RL-Obfuscation (arXiv:2506.14261) 发现跨 monitor type 的对抗迁移性有限\n\n---\n\n【缺陷 8】\n- 类别: ablation 不完整\n- 问题: **CAAFT 的消融设计缺少对 \"adversarial curriculum\" 本身的消融**。proposal 计划消融 L_CA alone, L_MI alone, L_CA + L_MI combined，但这些都是在 adversarial curriculum 框架内的消融（即仍有 L_adversarial）。缺少的关键对照是：(a) L_CA + L_MI **without** L_adversarial（即直接在 faithfulness training 之上加 causal anchor + MI preservation，不加 adversarial pressure）——用来验证 CAAFT 的防御效果确实来自在对抗中保持忠实性，而非单纯因为增加了更多 faithfulness regularization。(b) 仅 L_adversarial（无 L_CA, 无 L_MI）——用来量化 \"裸 adversarial training\" 的 baseline degradation，作为 CAAFT 防御效果的对照基准。\n- 严重度: 可补救\n- 补救方案: 在 ablation matrix 中增加：(1) \"Faithfulness training + L_CA + L_MI (no adversarial)\"——测试 defense components 在非对抗条件下是否也有 faithfulness gain。(2) \"Faithfulness training + L_adversarial only (no defense)\"——量化 pure adversarial degradation baseline。这两个条件各需约 60 H100-hrs，在资源预算内可承受。\n- 调研依据: 基于领域实验规范判断——defense 方法的 ablation 需要区分 \"在对抗中有效\" 和 \"本身就是更好的 regularizer\" 两种解释\n\n---\n\n【缺陷 9】\n- 类别: 可行性问题\n- 问题: **资源预算在多 seed 情况下可能不足**。按 proposal 估算：adversarial RL 为 2,160 H100-hrs（36 conditions × 60 hrs avg），但这隐含了每个条件只跑 1 seed。如果按缺陷 5 的建议加 3 seeds：仅 adversarial RL 就需要 ~6,480 hrs，加上 faithfulness training reproduction (800), CAAFT + ablations (800+), evaluation (400), buffer (340)，总计可能达到 8,500-9,000 H100-hrs。这超出了 manual 模式下 4,500 hrs 的预算约 2 倍。此外，GPT-4o API 成本在 36 × 3 seeds 下也会线性增长至 ~$10,500-15,000。\n- 严重度: 可补救\n- 补救方案: (1) 采用两阶段策略：Phase A 用 1 seed 做 full 36-condition sweep 以建立 robustness ordering hypothesis，Phase B 对排序中的关键 pair-wise 比较（如 FRIT vs CST, top method vs CAAFT）加 3-5 seeds 验证统计显著性。(2) 考虑将 adversarial RL 步数从 {100, 500, 2000} 减少到 {200, 1000}（2 级而非 3 级），36 条件变为 24 条件。(3) 利用 Batch API pricing 降低 GPT-4o 成本（proposal 已提及可降至 ~$2,000/36 conditions）。(4) 相应更新资源估算为更现实的数字（manual 模式约 6,000-7,000 H100-hrs, API ~$6,000-8,000）。\n- 调研依据: 基于领域实验规范判断——资源预算需要与统计严谨性要求匹配\n\n---\n\n【缺陷 10】\n- 类别: 实验设计不足\n- 问题: **跨任务泛化测试的具体设计不够明确**。proposal 称 \"Cross-task generalization tested on held-out domains (strategic planning, code generation)\"，但：(a) 未说明 \"strategic planning\" 和 \"code generation\" 的具体 benchmark/dataset（是 HumanEval? APPS? BigCodeBench? 是 specific strategic planning dataset?），(b) 未说明泛化测试是对 Part I 的所有 12 checkpoints 还是只对 selected checkpoints，(c) 未说明这些 held-out domains 的 faithfulness ground truth 如何获取（code generation 的 CoT faithfulness 如何衡量——执行一致性 vs. 语义忠实性是不同的概念）。\n- 严重度: 可补救\n- 补救方案: (1) 明确指定 held-out benchmark：对于 code generation，可以使用 HumanEval/MBPP + 自定义 CoT faithfulness 标注或 execution-based faithfulness proxy; 对于 strategic planning，可以使用 ARC、Colosseum 等。(2) 说明泛化测试是对 Part I 中表现最好和最差的 methods（如 FRIT + CST）进行针对性测试，而非对全部 12 checkpoints 做完整测试。(3) 定义每个 held-out domain 的 faithfulness metric（可能与 FaithCoT-Bench metric 不同）。\n- 调研依据: MonitorBench (arXiv:2603.28590) 跨 19 tasks 做了全面评测; REMUL (arXiv:2602.16154) 使用了明确定义的 held-out benchmarks (BIG-Bench Extra Hard 等)\n\n---\n\n**总结**：本 proposal 的实验设计在宏观层面（5 轴评估、理论驱动预测、CAAFT 消融框架）是有雄心的，但存在一个致命可行性问题（CoRL 2026 将直接桌面拒稿）和多个可补救缺陷（模型不匹配、对抗协议适配、baseline 缺失、统计严谨性、compute fairness、资源预算紧张）。如果更换投稿目标到合适的会议（NeurIPS / ICML / ICLR），其余缺陷均可通过具体实验设计修改补救。\n\nSources:\n- [Kaufmann et al. 2026 - Aligned, Orthogonal or In-conflict](https://arxiv.org/abs/2603.30036)\n- [Baker et al. 2025 - Monitoring Reasoning Models](https://arxiv.org/abs/2503.11926)\n- [FRIT - Swaroop et al. 2025](https://arxiv.org/abs/2509.13334)\n- [FaithRL - Gui et al. 2026](https://arxiv.org/abs/2602.03507)\n- [REMUL - Sivakumaran et al. 2026](https://arxiv.org/abs/2602.16154)\n- [CST - Hase & Potts 2026](https://arxiv.org/abs/2602.20710)\n- [Anwar et al. 2026 - Information Theory Monitorability](https://arxiv.org/abs/2602.18297)\n- [RL-Obfuscation 2025](https://arxiv.org/abs/2506.14261)\n- [MonitorBench - Wang et al. 2026](https://arxiv.org/abs/2603.28590)\n- [FaithCoT-Bench - ICLR 2026](https://arxiv.org/abs/2510.04040)\n- [Meinke et al. 2026 - CoT Obfuscation Generalization](https://arxiv.org/abs/2601.23086)\n- [CoRL 2026 Call for Papers](https://www.corl.org/contributions/call-for-papers)"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-19T18:48:22.028Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-19T18:48:22.028Z",
+  "sessionId": "cd37f554-fbc5-4c14-abf2-18a21aa8796d"
+}
+```
+
+---
+
+## Round 1
+
+30 recorded events
+
+### User
+
+_source line 3 · 2026-05-19T18:48:22.040Z_
+
+【任务】: 以「角色 B：迭代中」整合第 1 轮 worker 输出，按指定格式输出决策、概率估计、以及（若继续）下一轮 proposal 纯净版。
+
+【发掘 agent 本轮输出】:
+Now I have enough context to provide my analysis. Let me compile my findings.
+
+---
+
+【状态】: 有发掘空间
+
+【前置调研发现】
+- [Kaufmann, Lindner, Zimmermann & Shah, arXiv:2603.30036](https://arxiv.org/abs/2603.30036) (2026): 提出 aligned/orthogonal/in-conflict 分类框架，实验仅限 Qwen-3-14B 和 Gemma-3 在简单合成环境上，未测试任何 faithfulness training 方法。Proposal 对该框架的应用是合理的延伸，但 Kaufmann 等人已经 *暗示* 了 in-conflict 奖励会降低可监控性——这削弱了 "预测验证" 的惊喜感。
+- [Anwar et al., arXiv:2602.18297](https://arxiv.org/abs/2602.18297) (2026): 提出 oracle 和 label-free conditional MI maximization 两种方法，已展示在对抗 monitor 训练时能显著提升 monitor accuracy 并防止 CoT 退化。这意味着 MI-preservation loss 并非 CAAFT 的原创组件——Anwar 等人已在对抗场景中验证其有效性。
+- [Baker et al., arXiv:2503.11926](https://arxiv.org/abs/2503.11926) (2025): 建立了 adversarial CoT obfuscation 的基础 protocol。Proposal 的 Part I 本质上是 "用 Baker et al. 的 protocol 测试 faithfulness-trained models"。
+- [Ye et al., arXiv:2602.11201](https://arxiv.org/abs/2602.11201) (2026, ACL 2026): 发现 reasoning horizon (k*) 在链长 70-85%，提出 NLDD metric。Proposal 将其用于 CAAFT 的 horizon-weighted loss，是合理的整合。
+- [CoRL 2026 Call for Papers](https://www.corl.org/contributions/call-for-papers): CoRL 是 Conference on **Robot Learning**，接收论文聚焦于 robot perception, manipulation, locomotion, imitation learning, sim-to-real 等。[CoRL 2025 接收论文](https://github.com/smallfryy/corl-2025-papers)全部是机器人学习相关。
+- [Akter et al., arXiv:2509.01544](https://arxiv.org/abs/2509.01544) (2025): Causal Consistency Regularization 已达 70pp improvement，思路与 CAAFT 的 causal anchor loss 高度重叠，差异仅在 intervention 粒度和 horizon weighting。
+- 调研总结: 这个领域当前的核心张力是 "faithfulness/monitorability 在 benign 条件下可以提升，但对抗性优化会摧毁这些收益"——研究者们正从 information-theoretic (Anwar)、causal (FRIT, Akter)、mechanistic (Ye, Boppana) 三个角度切入，但尚无人做系统的 cross-method adversarial stress-test。
+
+---
+
+【发掘点 1】
+- 维度: 前提假设质疑（致命问题）
+- 内容: **Proposal 投稿 CoRL 2026 存在根本性的 venue mismatch。** CoRL (Conference on Robot Learning) 的 scope 是机器人学习：manipulation, locomotion, perception, sim-to-real, imitation learning 等。[CoRL 2025 接收的 200+ 篇论文](https://github.com/smallfryy/corl-2025-papers)全部是机器人相关。本 proposal 关于 LLM CoT faithfulness 训练的对抗鲁棒性，属于 AI safety / LLM alignment / NLP 领域，与机器人学习零交集。即使 idea 本身质量极高，投 CoRL 大概率 desk-reject 或被全部审稿人判为 out-of-scope。**合适的 venue 应该是 ICML 2026 (已截止?)、NeurIPS 2026、ICLR 2027，或 AI safety workshops (如 NeurIPS SafeAI)。** 如果必须赶近期 deadline，建议确认 NeurIPS 2026 的 submission timeline。
+- 价值: 这不是 idea 层面的问题，但它直接决定中稿概率为 ~0%。无论后续怎么优化 idea，venue 不对，一切无效。这是最高优先级的止损点。
+- 调研依据: CoRL 2026 官方 Call for Papers + CoRL 2025 全部接收论文列表
+
+【发掘点 2】
+- 维度: novelty 锐化
+- 内容: **CAAFT 的 novelty claim 存在 "sum-of-parts" 风险。** CAAFT = FRIT 的 causal intervention（已有） + Anwar et al. 的 MI preservation（已有，且已在对抗场景验证） + Ye et al. 的 reasoning horizon weighting（已有）。审稿人很自然会问："这三个已有组件的组合，产生了什么超越各自单独效果的 emergent property？" 当前 proposal 的回答是 "L_CA 防止 causally-disconnected CoT，L_MI 防止 internally-opaque CoT，两者互补"——但这是 *希望* 它们互补，不是 *论证* 它们为什么必须联合。建议：(a) 明确构造一个 failure case，展示 L_CA alone 无法防御的攻击模式（如 latent encoding），以及 L_MI alone 无法防御的攻击模式（如 causally-disconnected but MI-preserving CoT），从而证明两者的不可替代性；(b) 在理论层面，用 Kaufmann et al. 的 reward decomposition 严格论证 CAAFT 的联合 loss 为何将 reward structure 从 in-conflict 推回 aligned——当前仅是 verbal argument，应尝试形式化。
+- 价值: 从 "combination paper" 提升到 "principled defense framework"，命中 Novelty 维度。如果能展示必要性而非仅仅充分性，novelty claim 会显著锐利化。
+- 调研依据: Anwar et al. (2026) 已在 adversarial 场景验证 MI preservation 有效性；Akter et al. (2025) 的 CSR 与 causal anchor loss 高度重叠——需要明确与 CSR 的差异化
+
+【发掘点 3】
+- 维度: significance 提升
+- 内容: **"Potemkin robustness" 是整篇论文中最具 surprise value 的预测，但当前 framing 把它埋在了一堆方法细节里。** Proposal 的核心叙事目前是 "stress-test → defense"，但最有冲击力的 claim 是：**faithfulness training 可能 *paradoxically* 降低 adversarial robustness——因为它教会了模型 "什么样的 CoT 看起来 faithful"，从而赋予模型更丰富的 obfuscation representations。** 如果 CST 在对抗压力下表现 *worse than untrained baselines*，这是一个 genuinely surprising、counterintuitive 的发现，会让审稿人说 "I would not have guessed this"。建议将这个 "Potemkin robustness" 假说提升为论文的 **central thesis**，而非 predictions 中的一条。叙事重构为："Does faithfulness training create false security?" → 这比 "we stress-test and propose a defense" 有力得多。
+- 价值: 命中 Significance 和 Novelty 两个维度。一个 counterintuitive central claim 远比一个 thorough empirical study 更容易在 top venue 中稿。当前 proposal 读起来像 "comprehensive evaluation + new method"，应该读起来像 "we reveal a dangerous paradox in current safety practice, explain why it happens, and show how to fix it"。
+- 调研依据: Baker et al. (2025) 展示 obfuscation under monitoring pressure 但未讨论 faithfulness training 是否会 *加剧* 这个问题；Kaufmann et al. (2026) 的 in-conflict 预测暗示了这个可能性但未明确连接到 faithfulness training 的 "representation enrichment" 效应
+
+【发掘点 4】
+- 维度: related work 差异化
+- 内容: **与 Anwar et al. (2026) 的差异化不够锋利。** Anwar et al. 已经 (1) 从 information-theoretic 角度分析 monitorability，(2) 提出 MI maximization 作为 defense，(3) 在 adversarial training 场景中验证其有效性。CAAFT 的 L_MI 直接来自 Anwar et al.。审稿人会问："CAAFT 相对于 Anwar et al. 的增量贡献到底是什么？是 causal anchor loss？但 FRIT/CSR 已经做了类似的事。" 当前 proposal 的定位似乎是 "我们把所有好东西组合起来"——但这不是 novelty。建议明确论证：Anwar et al. 的 MI preservation 在没有 causal anchoring 的情况下，会在 *某种特定攻击模式* 下失败（反之亦然），从而建立 CAAFT 的不可替代性。不能仅靠 "互补" 的叙述——需要展示 failure mode。
+- 价值: 命中 Related Work 差异化维度。如果不解决这个问题，最可能收到的 reject 理由就是 "incremental over Anwar et al. + FRIT"。
+- 调研依据: Anwar et al. (2602.18297) 的实验已包含 adversarial training 场景下的 MI maximization 验证
+
+【发掘点 5】
+- 维度: trivial alternative 威胁
+- 内容: **Part I（stress-test）的贡献面临 "straightforward experiment" 质疑。** Part I 本质上是：取 Baker et al. 的 adversarial protocol → 应用于 faithfulness-trained checkpoints → 用 Kaufmann et al. 的 framework 做事后解释。每一步都是已有方法/框架的直接应用，没有方法论上的新贡献。Kaufmann et al. 的预测（aligned 好于 in-conflict）已经被他们自己的实验支持——在 faithfulness methods 上再验证一遍，确认了他们的理论，但 surprise value 有限。**唯一能救 Part I 的就是 Potemkin robustness 的验证**（见发掘点 3）——如果 CST 真的比 baseline 更差，这就不是 "straightforward confirmation" 而是 "surprising discovery"。如果只是确认 "FRIT > CST > baseline"，审稿人可能认为这是 "confirmatory study" 而非 "discovery"。建议：Part I 的叙事不能是 "we apply X to Y"，而必须是 "we test a *surprising and dangerous* hypothesis that current practice may backfire"。
+- 价值: 命中 Novelty 维度。将 Part I 从 "engineering contribution" 提升为 "scientific discovery"。
+- 调研依据: Kaufmann et al. (2603.30036) 已在其自己的实验中验证了 aligned vs. in-conflict 的预测方向；Baker et al. (2503.11926) 提供了现成的 adversarial protocol
+
+【发掘点 6】
+- 维度: 核心 claim 强化
+- 内容: **论文试图同时做太多事情，dilutes 每个贡献的深度。** 当前 proposal 包含：(1) 4 个 faithfulness methods × 2 models × 3 adversarial levels 的 stress-test，(2) 一个新 defense method (CAAFT) with ablations，(3) 5-axis evaluation framework，(4) framework-driven falsifiable predictions，(5) cross-task generalization。这 5 个方向中的任何 2-3 个都足以写一篇 strong paper。全部塞进一篇论文的风险是：每个方向的深度都不够，审稿人会说 "ambitious but shallow"。**建议考虑两种收敛策略：** (A) 主打 "stress-test + Potemkin robustness discovery"，CAAFT 降级为 "preliminary defense exploration"；或 (B) 主打 "CAAFT defense"，stress-test 降级为 "motivation experiments"。策略 (A) 的 novelty 更依赖于实验发现的 surprise value，策略 (B) 需要更强的 CAAFT novelty claim（见发掘点 2、4）。鉴于 CAAFT 的 combination-paper 风险较高，**策略 (A) 可能是更安全的选择**。
+- 价值: 命中 Significance 和 Novelty 维度。聚焦的 claim 比散射的 claim 更容易在审稿人心中留下深刻印象。
+- 调研依据: 基于领域整体趋势判断——top venue 的 empirical papers 通常选择 depth over breadth
+
+Sources:
+- [Kaufmann et al. - Aligned, Orthogonal or In-conflict](https://arxiv.org/abs/2603.30036)
+- [Anwar et al. - Analyzing and Improving Chain-of-Thought Monitorability Through Information Theory](https://arxiv.org/abs/2602.18297)
+- [Baker et al. - Monitoring Reasoning Models for Misbehavior](https://arxiv.org/abs/2503.11926)
+- [Ye et al. - Mechanistic Evidence for Faithfulness Decay](https://arxiv.org/abs/2602.11201)
+- [FRIT - Swaroop et al.](https://arxiv.org/abs/2509.13334)
+- [Akter et al. - Causal Consistency Regularization](https://arxiv.org/abs/2509.01544)
+- [CoRL 2026 Call for Papers](https://www.corl.org/contributions/call-for-papers)
+- [CoRL 2025 Paper List](https://github.com/smallfryy/corl-2025-papers)
+- [Hase & Potts - Counterfactual Simulation Training](https://arxiv.org/abs/2602.20710)
+- [Meinke et al. - Chain-of-thought obfuscation generalises to unseen tasks](https://arxiv.org/html/2601.23086v1)
+
+【补救 agent 本轮输出】:
+Now I have a thorough understanding of the experimental landscape. Let me compile my assessment.
+
+---
+
+【状态】: 发现致命缺陷
+
+【前置调研发现】
+- [Kaufmann et al., arXiv:2603.30036](https://arxiv.org/abs/2603.30036) (2026): Tested aligned/orthogonal/in-conflict framework on Qwen-3-14B and Gemma-3 using CAPO and ICRL across 2 synthetic environments (Heads-And-Tails, Backdoor-Easy) with 9 reward pairs. Evaluated monitorability via CoT monitor accuracy. Key: used only synthetic tasks, no faithfulness-trained baselines.
+- [Baker et al., arXiv:2503.11926](https://arxiv.org/abs/2503.11926) (2025): Adversarial RL on agentic coding tasks with GPT-4o monitors. Protocol: RL-fine-tune against monitor detection with escalating optimization budgets. Measured obfuscation via monitor evasion rates. Key: protocol designed for agentic (tool-use) settings, not general reasoning faithfulness.
+- [FRIT, arXiv:2509.13334](https://arxiv.org/abs/2509.13334) (FoRLM Workshop 2025): DPO on causal intervention pairs, tested on Qwen3-8B and Mistral-7B-v0.1 (NOT Llama). Evaluated on GSM8K with faithfulness and accuracy metrics. Code available.
+- [FaithRL-Gui, arXiv:2602.03507](https://arxiv.org/abs/2602.03507) (2026): Geometric reward + advantage modulation on Llama-3.1-8B and Qwen-2.5-7B (NOT Qwen3-8B). Evaluated faithfulness via step-level hallucination rates and accuracy across diverse benchmarks.
+- [REMUL, arXiv:2602.16154](https://arxiv.org/abs/2602.16154) (2026): Multi-listener GRPO on Qwen3-14B and Phi4 (NOT 8B-scale). Evaluated on BIG-Bench Extra Hard, ZebraLogicBench, MuSR, FOLIO. Measures: hint attribution, early answering AOC, mistake injection AOC.
+- [CST, arXiv:2602.20710](https://arxiv.org/abs/2602.20710) (2026): RL with counterfactual simulation reward on models up to Qwen3-235B. Tested on cue-based counterfactuals. Key admitted limitation: "faithfulness improvements do not generalize to dissuading cues."
+- [Anwar et al., arXiv:2602.18297](https://arxiv.org/abs/2602.18297) (2026): Oracle-based and label-free conditional MI maximization methods. Evaluated monitor accuracy improvement and CoT degeneration prevention. Submitted to ICLR 2026.
+- [RL-Obfuscation, arXiv:2506.14261](https://arxiv.org/abs/2506.14261) (NeurIPS 2025 Workshop): Tested 7B–14B models. Found token-level probes vulnerable, holistic (max-pooling, attention-based) probes robust. Evaluated generalization across monitors.
+- [MonitorBench, arXiv:2603.28590](https://arxiv.org/abs/2603.28590) (2026): 1,514 instances across 19 tasks, 7 categories. Stress-test settings: Direct Concealment + Monitor-Aware Evasion. Found more capable models less monitorable (r = −0.83 to −0.53).
+- [FaithCoT-Bench, arXiv:2510.04040](https://arxiv.org/abs/2510.04040) (ICLR 2026): 1,000+ expert-annotated trajectories, 4 LLMs, 4 domains. Evaluates 11 detection methods across 4 paradigms. Primary metric: F1 score.
+- [Meinke et al., arXiv:2601.23086](https://arxiv.org/abs/2601.23086) (2026): Shows CoT obfuscation generalizes to unseen tasks even when penalizing only final actions. Tested generalization to unseen medical settings.
+- [CoRL 2026 Call for Papers](https://www.corl.org/contributions/call-for-papers): "Submissions should focus on a core robotics problem and demonstrate the relevance of proposed models, algorithms, datasets, and benchmarks to robotics. **Submissions without a robotics focus will be returned without review.**"
+
+- **调研总结**: This field's experimental standard requires: (a) multiple faithfulness metrics (counterfactual, causal, probe-based), (b) cross-model and cross-task evaluation, (c) ablation of each training component, (d) comparison against recent baselines on standardized benchmarks (FaithCoT-Bench, MonitorBench). The proposal's multi-axis evaluation is broadly aligned with community expectations. However, CoRL 2026 is the Conference on Robot Learning and will desk-reject papers without robotics content — this is the most critical feasibility issue.
+
+---
+
+【缺陷 1】
+- 类别: 可行性问题
+- 问题: **CoRL 2026 将会直接桌面拒稿**。根据 CoRL 2026 的 Call for Papers，会议明确要求 "Submissions should focus on a core robotics problem and demonstrate the relevance of proposed models, algorithms, datasets, and benchmarks to robotics. Submissions without a robotics focus will be returned without review." 本 proposal 是关于 LLM CoT 推理忠实性在对抗优化下的鲁棒性——完全没有任何机器人学内容。这不是边缘案例（如用 LLM 做机器人规划），而是零交集。无论实验设计多么完美，提交到 CoRL 等于浪费一个 submission cycle。
+- 严重度: 不可补救（方向性致命）
+- 补救方案: 这个问题本身不涉及实验设计修改，而是投稿目标错误。合适的目标会议是 **NeurIPS 2026**（DDL 通常在5月中旬）、**ICML 2026**、**ICLR 2027**，或者 AI safety 专题 workshop（如 NeurIPS SafeGenAI、SoLaR）。如果坚持要投 CoRL，则需要根本性重构整个 proposal 以围绕机器人应用（如自主导航中的 CoT 监控安全性），但这完全改变了 proposal 的核心——已超出实验设计层面的补救范围。
+- 调研依据: [CoRL 2026 Call for Papers](https://www.corl.org/contributions/call-for-papers) 的明确要求
+
+---
+
+【缺陷 2】
+- 类别: 可行性问题
+- 问题: **忠实性训练方法的复现存在模型不匹配**。Proposal 称将在 Qwen3-8B 和 Llama-3.1-8B-Instruct 上复现全部 4 种方法，但原始论文使用的模型不匹配：(1) FRIT 在 Qwen3-8B 和 **Mistral-7B-v0.1** 上测试（非 Llama）；(2) FaithRL-Gui 在 Llama-3.1-8B 和 **Qwen-2.5-7B** 上测试（非 Qwen3-8B）；(3) REMUL 在 **Qwen3-14B** 和 Phi4 上测试（14B 规模，非 8B）；(4) CST 在最大至 Qwen3-235B 上测试。将所有方法统一到 Qwen3-8B + Llama-3.1-8B-Instruct 上需要大量适配工程，且无法保证 "matching original training specifications" 这一 claim。尤其 REMUL 从 14B 降到 8B 可能根本无法复现其多 listener 效果（原文 listener 模型包括 Ministral-3-14B, Phi-4-reasoning-plus, Qwen3-14B）。
+- 严重度: 可补救
+- 补救方案: (1) 明确区分 "faithful reproduction"（在原始模型上复现）和 "standardized reproduction"（在统一模型上重新训练），对前者 claim 降级为 "re-implementation on standardized models"，审稿人对此区别非常敏感。(2) 对于 REMUL，建议保留 Qwen3-14B 作为额外实验或替换为 Qwen3-8B + 说明性能差异预期。(3) 增加一个 "reproduction fidelity" 验证步骤：在复现后先在原始 benchmark 上验证性能是否接近原始报告值，再进入对抗实验。
+- 调研依据: FRIT (arXiv:2509.13334) 原文使用 Qwen3-8B + Mistral-7B-v0.1; FaithRL-Gui (arXiv:2602.03507) 使用 Llama-3.1-8B + Qwen-2.5-7B; REMUL (arXiv:2602.16154) 使用 Qwen3-14B + Phi4
+
+---
+
+【缺陷 3】
+- 类别: 实验设计不足
+- 问题: **Baker et al. 的对抗 RL 协议是为 agentic coding 任务设计的，直接迁移到推理忠实性场景缺乏方法论论证**。Baker et al. 的实验是在 agentic coding 环境中进行的（模型需要使用工具、编写代码等），其 "obfuscated reward hacking" 涉及的是工具使用层面的欺骗。将此协议应用于 general reasoning faithfulness（如 GSM8K, BIG-Bench）需要详细说明：(a) adversarial RL 的具体 task reward 是什么（对 reasoning task 而言），(b) monitor 如何检测 reasoning task 中的 obfuscation（vs. agentic task 中的 reward hacking），(c) 优化压力的梯度如何从 GPT-4o monitor 反传（monitor 是黑盒 API，不可微分）。proposal 说 "following Baker et al.'s protocol" 但未说明任何适配细节。
+- 严重度: 可补救
+- 补救方案: (1) 详细描述 adversarial RL 的具体实施：task reward（如 reasoning accuracy on GSM8K/BIG-Bench）+ adversarial reward（如 1 − monitor_detection_accuracy 作为 RLHF reward signal），monitor 的具体 prompt template 和判断标准。(2) 说明如何处理 GPT-4o monitor 的不可微性——是通过 REINFORCE/PPO 将 monitor 输出作为 reward signal，还是使用可微分的 proxy monitor。(3) 增加 pilot study：先在 1-2 个 checkpoint 上验证 adversarial RL 确实能产生可度量的 faithfulness degradation，再扩展到全部 36 条件。
+- 调研依据: Baker et al. (arXiv:2503.11926) 的原始实验设置针对 agentic coding，非 general reasoning; Kaufmann et al. (arXiv:2603.30036) 在 synthetic environments 中使用了不同的对抗训练协议
+
+---
+
+【缺陷 4】
+- 类别: baseline 不足或过时
+- 问题: **缺少几个领域内相关的 baseline 和 defense 方法对照**。(1) **Anwar et al. 的 standalone MI-maximization 方法**：proposal 将其作为 CAAFT 的组件使用，但未将 Anwar et al. 的完整方法（oracle 版本和 label-free 版本）作为独立 baseline 对照。审稿人很可能会质疑 CAAFT 相对于 "直接使用 Anwar et al." 的增益来自哪里。(2) **Akter et al. 的 Causal Consistency Regularization (CSR)**：被引用为灵感但未纳入 baseline，其 "penalizing models when corrupted reasoning still yields correct answers" 与 CAAFT 的 L_CA 有直接可比性。(3) **AtManRL** (arXiv:2604.16158): 被提及但未测试，虽然只在 3B 上验证过，但它使用了 differentiable attention saliency，作为 faithfulness training baseline 有对照价值。
+- 严重度: 可补救
+- 补救方案: (1) 将 Anwar et al. 的 label-free MI-maximization 作为独立 defense baseline（CAAFT 的消融实验中 "L_MI alone" 已部分涵盖，但需要明确是完整复现 Anwar et al. 还是简化版本）。(2) 将 Akter et al. 的 CSR 加入 faithfulness training baseline 列表（Part I 压力测试），或至少在 Part II 中作为 CAAFT 的对照 defense（尤其与 L_CA 对比）。(3) AtManRL 可以作为 discussion 中的 limitation 提及（因其 3B 规模限制），而非必须复现。
+- 调研依据: Anwar et al. (arXiv:2602.18297) 提出了完整的可部署 defense method; Akter et al. (arXiv:2509.01544) 的 CSR 与 L_CA 在理念上直接重叠
+
+---
+
+【缺陷 5】
+- 类别: 实验设计不足 / 统计严谨性
+- 问题: **36 个对抗条件 + CAAFT 消融的统计可靠性和 seed 数未说明**。proposal 描述了 12 checkpoints × 3 optimization budgets = 36 adversarial conditions，加上 CAAFT 的多组消融实验（L_CA alone, L_MI alone, L_CA + L_MI, varying horizon weighting, varying amortization frequency）。但未说明：(a) 每个条件运行多少 random seeds（最少需 3 seeds 才有初步统计意义，5 seeds 为社区标准），(b) 如何报告结果的 variance / confidence intervals，(c) 对抗 RL 本身的不稳定性如何处理（RL training 在不同 seed 下波动极大）。如果只跑 1 seed，36 个条件的任何 "robustness ordering" 都不具统计显著性。
+- 严重度: 可补救
+- 补救方案: (1) 明确声明每个条件至少使用 3 random seeds（理想为 5），报告 mean ± std。(2) 如果资源不足以支持全部 36 × 3 seeds = 108 runs，可以在 full matrix 上用 1 seed 做筛选，然后对关键比较（如 FRIT vs CST, CAAFT vs baselines）加 3-5 seeds 做统计验证。(3) 对 adversarial RL 的训练不稳定性，考虑报告 best-of-3 和 mean-of-3 两种指标。(4) 资源预算需要相应调整：如果 36 conditions × 3 seeds × 60 hrs/run = 6,480 H100-hrs（仅对抗 RL 部分就超预算），需重新评估。
+- 调研依据: 基于领域实验规范判断——Kaufmann et al. 在较小规模实验中也使用了多 seed 验证; RL training 的高方差是公认问题
+
+---
+
+【缺陷 6】
+- 类别: compute 公平性问题
+- 问题: **不同 faithfulness 方法的训练成本差异巨大，robustness 比较缺乏 compute-normalized 控制**。FRIT 使用 DPO（相对廉价），CST 使用 RL with counterfactual simulation（中等成本），FaithRL-Gui 使用 geometric reward + advantage modulation（RL 成本），REMUL 使用 multi-listener GRPO（最昂贵，需要多个 listener model forward pass）。如果 FRIT 的 faithfulness training 只花了 X GPU-hours 而 REMUL 花了 5X GPU-hours，在随后的对抗压力下比较它们的 robustness 不一定公平——更贵的方法可能因为更多训练产生了更强的 representation，而非方法本身更好。
+- 严重度: 可补救
+- 补救方案: (1) 记录并报告每种方法的实际 faithfulness training compute（GPU-hours 和 FLOPs），(2) 在分析中增加 compute-normalized 对照：按实际 training FLOPs 归一化后重新排序，看 robustness ordering 是否改变。(3) 或者更直接地，增加一个 "extended training" baseline——对最便宜的方法（FRIT）增加训练量到与最贵方法匹配的 compute，观察 robustness 是否提升，以排除 "more compute → more robust" 的混淆因素。
+- 调研依据: 基于领域实验规范判断——compute fairness 是近年 RL/alignment 论文审稿中的常见质疑点
+
+---
+
+【缺陷 7】
+- 类别: 评估方案缺陷
+- 问题: **GPT-4o 作为 adversarial RL 中唯一 CoT monitor 的脆弱性未被讨论**。adversarial RL 的核心是 "penalizing a GPT-4o CoT monitor's detection accuracy"。但：(a) GPT-4o 本身可能有特定的检测盲区，adversarial RL 可能只学会了 exploit GPT-4o 的特定弱点而非学会了通用 obfuscation。(b) RL-Obfuscation (arXiv:2506.14261) 明确发现 adversarial policies trained against one monitor can generalize to unseen monitors of same type，但跨 monitor type（如从 LLM judge 到 latent probe）的迁移性有限。(c) 如果 adversarial RL 仅对 GPT-4o 有效但对其他 monitor 无效，Part I 的 "stress test" 和 robustness ordering 可能不具有普遍意义。
+- 严重度: 可补救
+- 补救方案: (1) 在 adversarial RL loop 中增加至少一个非 GPT-4o 的 monitor（如 Claude Sonnet 或开源 LLM judge），或者在 training 后测试对 unseen monitors 的迁移性。(2) 利用 Part III 中已有的 latent-space probe evaluation（axis c）来验证：如果模型能 evade GPT-4o 但 latent probe 仍能检测，说明 obfuscation 是 surface-level 的。(3) 在讨论中明确承认 "adversarial pressure is calibrated against a specific monitor" 这一局限性。实际上 proposal 的 5-axis evaluation 已经部分缓解了这个问题（axis c 和 d），但应在实验设计动机中明确这一点。
+- 调研依据: RL-Obfuscation (arXiv:2506.14261) 发现跨 monitor type 的对抗迁移性有限
+
+---
+
+【缺陷 8】
+- 类别: ablation 不完整
+- 问题: **CAAFT 的消融设计缺少对 "adversarial curriculum" 本身的消融**。proposal 计划消融 L_CA alone, L_MI alone, L_CA + L_MI combined，但这些都是在 adversarial curriculum 框架内的消融（即仍有 L_adversarial）。缺少的关键对照是：(a) L_CA + L_MI **without** L_adversarial（即直接在 faithfulness training 之上加 causal anchor + MI preservation，不加 adversarial pressure）——用来验证 CAAFT 的防御效果确实来自在对抗中保持忠实性，而非单纯因为增加了更多 faithfulness regularization。(b) 仅 L_adversarial（无 L_CA, 无 L_MI）——用来量化 "裸 adversarial training" 的 baseline degradation，作为 CAAFT 防御效果的对照基准。
+- 严重度: 可补救
+- 补救方案: 在 ablation matrix 中增加：(1) "Faithfulness training + L_CA + L_MI (no adversarial)"——测试 defense components 在非对抗条件下是否也有 faithfulness gain。(2) "Faithfulness training + L_adversarial only (no defense)"——量化 pure adversarial degradation baseline。这两个条件各需约 60 H100-hrs，在资源预算内可承受。
+- 调研依据: 基于领域实验规范判断——defense 方法的 ablation 需要区分 "在对抗中有效" 和 "本身就是更好的 regularizer" 两种解释
+
+---
+
+【缺陷 9】
+- 类别: 可行性问题
+- 问题: **资源预算在多 seed 情况下可能不足**。按 proposal 估算：adversarial RL 为 2,160 H100-hrs（36 conditions × 60 hrs avg），但这隐含了每个条件只跑 1 seed。如果按缺陷 5 的建议加 3 seeds：仅 adversarial RL 就需要 ~6,480 hrs，加上 faithfulness training reproduction (800), CAAFT + ablations (800+), evaluation (400), buffer (340)，总计可能达到 8,500-9,000 H100-hrs。这超出了 manual 模式下 4,500 hrs 的预算约 2 倍。此外，GPT-4o API 成本在 36 × 3 seeds 下也会线性增长至 ~$10,500-15,000。
+- 严重度: 可补救
+- 补救方案: (1) 采用两阶段策略：Phase A 用 1 seed 做 full 36-condition sweep 以建立 robustness ordering hypothesis，Phase B 对排序中的关键 pair-wise 比较（如 FRIT vs CST, top method vs CAAFT）加 3-5 seeds 验证统计显著性。(2) 考虑将 adversarial RL 步数从 {100, 500, 2000} 减少到 {200, 1000}（2 级而非 3 级），36 条件变为 24 条件。(3) 利用 Batch API pricing 降低 GPT-4o 成本（proposal 已提及可降至 ~$2,000/36 conditions）。(4) 相应更新资源估算为更现实的数字（manual 模式约 6,000-7,000 H100-hrs, API ~$6,000-8,000）。
+- 调研依据: 基于领域实验规范判断——资源预算需要与统计严谨性要求匹配
+
+---
+
+【缺陷 10】
+- 类别: 实验设计不足
+- 问题: **跨任务泛化测试的具体设计不够明确**。proposal 称 "Cross-task generalization tested on held-out domains (strategic planning, code generation)"，但：(a) 未说明 "strategic planning" 和 "code generation" 的具体 benchmark/dataset（是 HumanEval? APPS? BigCodeBench? 是 specific strategic planning dataset?），(b) 未说明泛化测试是对 Part I 的所有 12 checkpoints 还是只对 selected checkpoints，(c) 未说明这些 held-out domains 的 faithfulness ground truth 如何获取（code generation 的 CoT faithfulness 如何衡量——执行一致性 vs. 语义忠实性是不同的概念）。
+- 严重度: 可补救
+- 补救方案: (1) 明确指定 held-out benchmark：对于 code generation，可以使用 HumanEval/MBPP + 自定义 CoT faithfulness 标注或 execution-based faithfulness proxy; 对于 strategic planning，可以使用 ARC、Colosseum 等。(2) 说明泛化测试是对 Part I 中表现最好和最差的 methods（如 FRIT + CST）进行针对性测试，而非对全部 12 checkpoints 做完整测试。(3) 定义每个 held-out domain 的 faithfulness metric（可能与 FaithCoT-Bench metric 不同）。
+- 调研依据: MonitorBench (arXiv:2603.28590) 跨 19 tasks 做了全面评测; REMUL (arXiv:2602.16154) 使用了明确定义的 held-out benchmarks (BIG-Bench Extra Hard 等)
+
+---
+
+**总结**：本 proposal 的实验设计在宏观层面（5 轴评估、理论驱动预测、CAAFT 消融框架）是有雄心的，但存在一个致命可行性问题（CoRL 2026 将直接桌面拒稿）和多个可补救缺陷（模型不匹配、对抗协议适配、baseline 缺失、统计严谨性、compute fairness、资源预算紧张）。如果更换投稿目标到合适的会议（NeurIPS / ICML / ICLR），其余缺陷均可通过具体实验设计修改补救。
+
+Sources:
+- [Kaufmann et al. 2026 - Aligned, Orthogonal or In-conflict](https://arxiv.org/abs/2603.30036)
+- [Baker et al. 2025 - Monitoring Reasoning Models](https://arxiv.org/abs/2503.11926)
+- [FRIT - Swaroop et al. 2025](https://arxiv.org/abs/2509.13334)
+- [FaithRL - Gui et al. 2026](https://arxiv.org/abs/2602.03507)
+- [REMUL - Sivakumaran et al. 2026](https://arxiv.org/abs/2602.16154)
+- [CST - Hase & Potts 2026](https://arxiv.org/abs/2602.20710)
+- [Anwar et al. 2026 - Information Theory Monitorability](https://arxiv.org/abs/2602.18297)
+- [RL-Obfuscation 2025](https://arxiv.org/abs/2506.14261)
+- [MonitorBench - Wang et al. 2026](https://arxiv.org/abs/2603.28590)
+- [FaithCoT-Bench - ICLR 2026](https://arxiv.org/abs/2510.04040)
+- [Meinke et al. 2026 - CoT Obfuscation Generalization](https://arxiv.org/abs/2601.23086)
+- [CoRL 2026 Call for Papers](https://www.corl.org/contributions/call-for-papers)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "a8e8834c-24c6-44f7-8fd5-2a2a0d0abae9",
+  "type": "user",
+  "uuid": "2904a3c1-292c-48c4-9e70-f1d4ddff2e7d",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cd37f554-fbc5-4c14-abf2-18a21aa8796d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-19T18:48:22.038Z_
+
+```json
+{
+  "parentUuid": "2904a3c1-292c-48c4-9e70-f1d4ddff2e7d",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "d8f2a769-a92d-4878-82bf-fb38e3e10941",
+  "timestamp": "2026-05-19T18:48:22.038Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cd37f554-fbc5-4c14-abf2-18a21aa8796d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-19T18:48:22.038Z_
+
+```json
+{
+  "parentUuid": "d8f2a769-a92d-4878-82bf-fb38e3e10941",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "6784f17b-6194-40e2-9b0f-0c9f36790aa0",
+  "timestamp": "2026-05-19T18:48:22.038Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cd37f554-fbc5-4c14-abf2-18a21aa8796d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 以「角色 B：迭代中」整合第 1 轮 worker 输出，按指定格式输出决策、概率估计、以及（若继续）下一轮 proposal 纯净版。  【发掘 agent 本轮输出】: Now I have enough context to provide my analysis. Let me compile my findings.  ---  【状态】: 有发掘空间  【前置调研发现】 -…",
+  "leafUuid": "6784f17b-6194-40e2-9b0f-0c9f36790aa0",
+  "sessionId": "cd37f554-fbc5-4c14-abf2-18a21aa8796d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Stress-test faithfulness training under adversarial optimization",
+  "sessionId": "cd37f554-fbc5-4c14-abf2-18a21aa8796d"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-19T18:48:46.631Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the situation carefully. Both the 发掘 agent and 补救 agent have independently identified the same critical issue: **CoRL 2026 is a robotics conference, and this proposal about LLM CoT faithfulness has zero relevance to robotics**. This is a venue mismatch that would result in desk rejection.
+
+Let me assess:
+
+1. **发掘 agent**: Status "有发掘空间" but flagged venue mismatch as the #1 issue (致命问题). Also identified several idea-level concerns: sum-of-parts novelty risk, Potemkin robustness as the strongest narrative angle, insufficient differentiation from Anwar et al., Part I being "straightforward experiment", and the paper trying to do too much.
+
+
+2. **补救 agent**: Status "发现致命缺陷" - the fatal flaw being CoRL venue mismatch. Also surfaced multiple fixable experimental issues: model mismatch in reproduction, adversarial protocol adaptation, missing baselines, statistical rigor, compute fairness, resource budget, cross-task generalization specifics.
+
+Both agents converge on the same verdict: CoRL 2026 will desk-reject this paper. This is the most critical finding. Now as the 终审 agent in iteration 1, I need to validate the key worker suggestions and decide whether to continue with revisions or pivot the venue strategy entirely.
+
+The venue mismatch triggers a stop-loss condition—this paper has no path forward at CoRL 2026. But the core idea might actually work elsewhere, like NeurIPS or ICLR. The question is whether the task scope allows me to recommend a venue change rather than abandoning the work entirely.
+
+Since the user explicitly asked for CoRL 2026 evaluation, and both agents confirmed it's robotics-only, I should verify this with a quick search before issuing the stop-loss recommendation.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6784f17b-6194-40e2-9b0f-0c9f36790aa0",
+  "isSidechain": false,
+  "requestId": "req_011CbCRj8JXzrNR8pzzDU5uP",
+  "type": "assistant",
+  "uuid": "82fd4ee9-14cb-4512-a753-ffec12f5edb3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cd37f554-fbc5-4c14-abf2-18a21aa8796d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TpuSudJVDGBiNHSRwEzD2d",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13166,
+      "cache_read_input_tokens": 16560,
+      "output_tokens": 948,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13166,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 948,
+          "cache_read_input_tokens": 16560,
+          "cache_creation_input_tokens": 13166,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13166
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-19T18:48:47.050Z_
+
+我需要先交叉验证两个 worker 共同提出的最关键发现——CoRL 2026 的 venue mismatch 问题。让我做针对性调研。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "82fd4ee9-14cb-4512-a753-ffec12f5edb3",
+  "isSidechain": false,
+  "requestId": "req_011CbCRj8JXzrNR8pzzDU5uP",
+  "type": "assistant",
+  "uuid": "cd1e2629-8844-46e9-a98a-ac4995ccf456",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cd37f554-fbc5-4c14-abf2-18a21aa8796d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TpuSudJVDGBiNHSRwEzD2d",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13166,
+      "cache_read_input_tokens": 16560,
+      "output_tokens": 948,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13166,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 948,
+          "cache_read_input_tokens": 16560,
+          "cache_creation_input_tokens": 13166,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13166
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-19T18:48:47.379Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01RxQVtZ16Ct2RcYvgUSfK3f`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cd1e2629-8844-46e9-a98a-ac4995ccf456",
+  "isSidechain": false,
+  "requestId": "req_011CbCRj8JXzrNR8pzzDU5uP",
+  "type": "assistant",
+  "uuid": "97bdcfeb-82ec-4d48-9fa6-522fe56732df",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cd37f554-fbc5-4c14-abf2-18a21aa8796d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TpuSudJVDGBiNHSRwEzD2d",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13166,
+      "cache_read_input_tokens": 16560,
+      "output_tokens": 948,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13166,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 948,
+          "cache_read_input_tokens": 16560,
+          "cache_creation_input_tokens": 13166,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13166
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-19T18:48:47.386Z_
+
+<details><summary>↩ Tool result · `toolu_01RxQVtZ16Ct2RcYvgUSfK3f`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "97bdcfeb-82ec-4d48-9fa6-522fe56732df",
+  "isSidechain": false,
+  "promptId": "a8e8834c-24c6-44f7-8fd5-2a2a0d0abae9",
+  "type": "user",
+  "uuid": "14c7eb3d-e57c-4e0a-afcc-864013a22678",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "97bdcfeb-82ec-4d48-9fa6-522fe56732df",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cd37f554-fbc5-4c14-abf2-18a21aa8796d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-19T18:48:50.674Z_
+
+好，WebSearch 工具已加载。让我并行验证关键问题。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "14c7eb3d-e57c-4e0a-afcc-864013a22678",
+  "isSidechain": false,
+  "requestId": "req_011CbCRkzwLTuSSHskXyvQTA",
+  "type": "assistant",
+  "uuid": "889e545d-9d6c-4027-8344-6bc45828d47d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cd37f554-fbc5-4c14-abf2-18a21aa8796d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NWEJNSMiKmUTCE4AztrXnu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1473,
+      "cache_read_input_tokens": 29726,
+      "output_tokens": 88,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1473,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 88,
+          "cache_read_input_tokens": 29726,
+          "cache_creation_input_tokens": 1473,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1473
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-19T18:48:50.859Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CRqHjyV6SFZ234rQF7Ri5g`</summary>
+
+```json
+{
+  "query": "CoRL 2026 call for papers scope topics robotics"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "889e545d-9d6c-4027-8344-6bc45828d47d",
+  "isSidechain": false,
+  "requestId": "req_011CbCRkzwLTuSSHskXyvQTA",
+  "type": "assistant",
+  "uuid": "4a6cdcdb-6574-434e-bb7c-380a64a979bb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cd37f554-fbc5-4c14-abf2-18a21aa8796d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NWEJNSMiKmUTCE4AztrXnu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1473,
+      "cache_read_input_tokens": 29726,
+      "output_tokens": 88,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1473,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 88,
+          "cache_read_input_tokens": 29726,
+          "cache_creation_input_tokens": 1473,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1473
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-19T18:48:57.870Z_
+
+<details><summary>↩ Tool result · `toolu_01CRqHjyV6SFZ234rQF7Ri5g`</summary>
+
+```text
+Web search results for query: "CoRL 2026 call for papers scope topics robotics"
+
+Links: [{"title":"CoRL 2026 - Call for Papers","url":"https://www.corl.org/contributions/call-for-papers"},{"title":"Conference on Robot Learning (CoRL) 2026: Everything You Need to Know - AI Expert Magazine - premier publication dedicated to AI","url":"https://www.aiexpertmagazine.com/conference-on-robot-learning-corl-2026-everything-you-need-to-know/"},{"title":"CoRL LaTeX Template | Robot Learning Conference Format | Underleaf","url":"https://www.underleaf.ai/templates/corl"},{"title":"CoRL 2026 - Call for Workshops","url":"https://www.corl.org/contributions/call-for-workshops"},{"title":"CoRL 2026 - Instruction for Authors","url":"https://www.corl.org/contributions/instruction-for-authors"},{"title":"CoRL 2026","url":"https://www.corl.org/"},{"title":"CoRL 2026 - Contributions","url":"https://www.corl.org/contributions"}]
+
+Based on the search results, here's information about the CoRL 2026 call for papers scope and topics:
+
+## Conference Overview
+
+The Conference on Robot Learning (CoRL) is an annual international conference aiming to bring together the robotics and machine learning research communities, focusing on the increasingly important role of learning in robotics and its interaction with other areas of robotics. The aim of CoRL 2026 is to publish significant original research at the intersection of robotics and machine learning.
+
+## Scope and Topics
+
+CoRL welcomes papers in areas such as: Learning representations for robotic perception and control, Learning robot foundation models or general-purpose knowledge systems for robotics, Imitation learning for robotics, and Reinforcement learning for control of physical robots.
+
+Additionally, CoRL covers topics including imitation learning, reinforcement learning for robots, sim-to-real transfer, robot perception through learning, learned manipulation and locomotion, and learning-based planning.
+
+## Submission Requirements
+
+Submissions should focus on a core robotics problem and demonstrate the relevance of proposed models, algorithms, datasets, and benchmarks to robotics. Authors are encouraged to report real-robot experiments or provide convincing evidence that simulation experiments are transferable to real robots.
+
+## Key Deadlines
+
+The paper submission deadline is May 29, 2026. CoRL 2026 will be held at the JW Marriott Austin in Austin, TX (November 9–12, 2026), with a workshop day on November 9 and the main conference on November 10–12.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4a6cdcdb-6574-434e-bb7c-380a64a979bb",
+  "isSidechain": false,
+  "promptId": "a8e8834c-24c6-44f7-8fd5-2a2a0d0abae9",
+  "type": "user",
+  "uuid": "1e37dbe8-45f4-4311-a721-44fb99bb77ef",
+  "toolUseResult": {
+    "query": "CoRL 2026 call for papers scope topics robotics",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014jGYvWpekJPbJXAhefHvqU",
+        "content": [
+          {
+            "title": "CoRL 2026 - Call for Papers",
+            "url": "https://www.corl.org/contributions/call-for-papers"
+          },
+          {
+            "title": "Conference on Robot Learning (CoRL) 2026: Everything You Need to Know - AI Expert Magazine - premier publication dedicated to AI",
+            "url": "https://www.aiexpertmagazine.com/conference-on-robot-learning-corl-2026-everything-you-need-to-know/"
+          },
+          {
+            "title": "CoRL LaTeX Template | Robot Learning Conference Format | Underleaf",
+            "url": "https://www.underleaf.ai/templates/corl"
+          },
+          {
+            "title": "CoRL 2026 - Call for Workshops",
+            "url": "https://www.corl.org/contributions/call-for-workshops"
+          },
+          {
+            "title": "CoRL 2026 - Instruction for Authors",
+            "url": "https://www.corl.org/contributions/instruction-for-authors"
+          },
+          {
+            "title": "CoRL 2026",
+            "url": "https://www.corl.org/"
+          },
+          {
+            "title": "CoRL 2026 - Contributions",
+            "url": "https://www.corl.org/contributions"
+          }
+        ]
+      },
+      "Based on the search results, here's information about the CoRL 2026 call for papers scope and topics:\n\n## Conference Overview\n\nThe Conference on Robot Learning (CoRL) is an annual international conference aiming to bring together the robotics and machine learning research communities, focusing on the increasingly important role of learning in robotics and its interaction with other areas of robotics. The aim of CoRL 2026 is to publish significant original research at the intersection of robotics and machine learning.\n\n## Scope and Topics\n\nCoRL welcomes papers in areas such as: Learning representations for robotic perception and control, Learning robot foundation models or general-purpose knowledge systems for robotics, Imitation learning for robotics, and Reinforcement learning for control of physical robots.\n\nAdditionally, CoRL covers topics including imitation learning, reinforcement learning for robots, sim-to-real transfer, robot perception through learning, learned manipulation and locomotion, and learning-based planning.\n\n## Submission Requirements\n\nSubmissions should focus on a core robotics problem and demonstrate the relevance of proposed models, algorithms, datasets, and benchmarks to robotics. Authors are encouraged to report real-robot experiments or provide convincing evidence that simulation experiments are transferable to real robots.\n\n## Key Deadlines\n\nThe paper submission deadline is May 29, 2026. CoRL 2026 will be held at the JW Marriott Austin in Austin, TX (November 9–12, 2026), with a workshop day on November 9 and the main conference on November 10–12."
+    ],
+    "durationSeconds": 7.004712377,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "4a6cdcdb-6574-434e-bb7c-380a64a979bb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cd37f554-fbc5-4c14-abf2-18a21aa8796d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-19T18:49:00.949Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01B7RrkHJMuPeD4d9wDeT3jd`</summary>
+
+```json
+{
+  "query": "NeurIPS 2026 submission deadline call for papers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1e37dbe8-45f4-4311-a721-44fb99bb77ef",
+  "isSidechain": false,
+  "requestId": "req_011CbCRmmVUxJurzG4bqEFzu",
+  "type": "assistant",
+  "uuid": "9333a964-6f6d-43f1-83af-2f9d47144ea5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cd37f554-fbc5-4c14-abf2-18a21aa8796d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PP7s5s4G9iwP2AukpmtE6j",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 741,
+      "cache_read_input_tokens": 31199,
+      "output_tokens": 122,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 741,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 122,
+          "cache_read_input_tokens": 31199,
+          "cache_creation_input_tokens": 741,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 741
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-19T18:49:01.466Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VFL685dfXAgNy8o3UyZ8jy`</summary>
+
+```json
+{
+  "query": "CoRL 2025 2024 accepted papers LLM reasoning faithfulness chain-of-thought safety alignment"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9333a964-6f6d-43f1-83af-2f9d47144ea5",
+  "isSidechain": false,
+  "requestId": "req_011CbCRmmVUxJurzG4bqEFzu",
+  "type": "assistant",
+  "uuid": "63f46626-d661-4f73-8efe-d86665dfabf8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cd37f554-fbc5-4c14-abf2-18a21aa8796d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PP7s5s4G9iwP2AukpmtE6j",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 741,
+      "cache_read_input_tokens": 31199,
+      "output_tokens": 122,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 741,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 122,
+          "cache_read_input_tokens": 31199,
+          "cache_creation_input_tokens": 741,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 741
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-19T18:49:06.576Z_
+
+<details><summary>↩ Tool result · `toolu_01VFL685dfXAgNy8o3UyZ8jy`</summary>
+
+```text
+Web search results for query: "CoRL 2025 2024 accepted papers LLM reasoning faithfulness chain-of-thought safety alignment"
+
+Links: [{"title":"Verify Before You Commit: Towards Faithful Reasoning in LLM Agents via Self-Auditing","url":"https://arxiv.org/pdf/2604.08401"},{"title":"Making Reasoning Matter: Measuring and Improving Faithfulness of   Chain-of-Thought Reasoning","url":"https://arxiv.org/pdf/2402.13950"},{"title":"Question Decomposition Improves the Faithfulness of Model-Generated   Reasoning","url":"https://arxiv.org/pdf/2307.11768"},{"title":"Accepted Main Conference Papers - ACL 2025","url":"https://2025.aclweb.org/program/main_papers/"},{"title":"Faithful or Just Plausible? Evaluating the Faithfulness of Closed-Source LLMs in Medical Reasoning","url":"https://arxiv.org/pdf/2603.13988"},{"title":"GitHub - shu1ong/CORL2025-Paper-List","url":"https://github.com/shu1ong/CORL2025-Paper-List"}]
+
+I found a list of accepted papers for CoRL 2025. The search results show that CoRL (Conference on Robot Learning) 2025 has published accepted papers. However, the results retrieved focus primarily on robotics and vision-language action models rather than the specific topics you mentioned (LLM reasoning, faithfulness, chain-of-thought, safety, and alignment).
+
+The search did return some relevant papers on LLM reasoning faithfulness in general, such as papers on faithful reasoning in LLM agents via self-auditing and measuring reasoning faithfulness through causal mediation analysis. However, these don't appear to be specifically from CoRL 2025.
+
+If you're looking for papers specifically about LLM reasoning, faithfulness, chain-of-thought, safety, and alignment at CoRL 2025, could you clarify if CoRL is the right conference, or would you like me to search for these topics at other AI/ML conferences like NeurIPS, ICLR, or ICCV?
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "63f46626-d661-4f73-8efe-d86665dfabf8",
+  "isSidechain": false,
+  "promptId": "a8e8834c-24c6-44f7-8fd5-2a2a0d0abae9",
+  "type": "user",
+  "uuid": "42e4f3e0-77e2-4441-9345-7e8e8da95319",
+  "toolUseResult": {
+    "query": "CoRL 2025 2024 accepted papers LLM reasoning faithfulness chain-of-thought safety alignment",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01GtNbktviFw27mVyUYc4pL7",
+        "content": [
+          {
+            "title": "Verify Before You Commit: Towards Faithful Reasoning in LLM Agents via Self-Auditing",
+            "url": "https://arxiv.org/pdf/2604.08401"
+          },
+          {
+            "title": "Making Reasoning Matter: Measuring and Improving Faithfulness of   Chain-of-Thought Reasoning",
+            "url": "https://arxiv.org/pdf/2402.13950"
+          },
+          {
+            "title": "Question Decomposition Improves the Faithfulness of Model-Generated   Reasoning",
+            "url": "https://arxiv.org/pdf/2307.11768"
+          },
+          {
+            "title": "Accepted Main Conference Papers - ACL 2025",
+            "url": "https://2025.aclweb.org/program/main_papers/"
+          },
+          {
+            "title": "Faithful or Just Plausible? Evaluating the Faithfulness of Closed-Source LLMs in Medical Reasoning",
+            "url": "https://arxiv.org/pdf/2603.13988"
+          },
+          {
+            "title": "GitHub - shu1ong/CORL2025-Paper-List",
+            "url": "https://github.com/shu1ong/CORL2025-Paper-List"
+          }
+        ]
+      },
+      "I found a list of accepted papers for CoRL 2025. The search results show that CoRL (Conference on Robot Learning) 2025 has published accepted papers. However, the results retrieved focus primarily on robotics and vision-language action models rather than the specific topics you mentioned (LLM reasoning, faithfulness, chain-of-thought, safety, and alignment).\n\nThe search did return some relevant papers on LLM reasoning faithfulness in general, such as papers on faithful reasoning in LLM agents via self-auditing and measuring reasoning faithfulness through causal mediation analysis. However, these don't appear to be specifically from CoRL 2025.\n\nIf you're looking for papers specifically about LLM reasoning, faithfulness, chain-of-thought, safety, and alignment at CoRL 2025, could you clarify if CoRL is the right conference, or would you like me to search for these topics at other AI/ML conferences like NeurIPS, ICLR, or ICCV?"
+    ],
+    "durationSeconds": 5.107606440000003,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "63f46626-d661-4f73-8efe-d86665dfabf8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cd37f554-fbc5-4c14-abf2-18a21aa8796d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-19T18:49:11.755Z_
+
+<details><summary>↩ Tool result · `toolu_01B7RrkHJMuPeD4d9wDeT3jd`</summary>
+
+```text
+Web search results for query: "NeurIPS 2026 submission deadline call for papers"
+
+Links: [{"title":"Call for Papers 2026","url":"https://neurips.cc/Conferences/2026/CallForPapers"},{"title":"2026 Dates and Deadlines","url":"https://neurips.cc/Conferences/2026/Dates"},{"title":"Call For Evaluations & Datasets 2026","url":"https://neurips.cc/Conferences/2026/CallForEvaluationsDatasets"},{"title":"NeurIPS Newsletter – April 2026 – NeurIPS Blog","url":"https://blog.neurips.cc/2026/04/22/neurips-newsletter-april-2026/"},{"title":"NeurIPS 2026 Call For Competitions","url":"https://neurips.cc/Conferences/2026/CallForCompetitions"},{"title":"NeurIPS 2026","url":"https://neurips.cc/"},{"title":"NeurIPS 2026 Call for Papers — Official Deadlines & Important Dates | PaperPilot","url":"https://www.getpaperpilot.com/deadlines/neurips-2026.html"},{"title":"2026 Conference – NeurIPS Blog","url":"https://blog.neurips.cc/category/2026-conference/"},{"title":"NeurIPS 2026 Call for Workshops","url":"https://neurips.cc/Conferences/2026/CallForWorkshops"},{"title":"NeurIPS/ICLR/ICML Journal-to-Conference Track","url":"https://neurips.cc/public/JournalToConference"}]
+
+Based on the search results, here's the information about NeurIPS 2026 submission deadlines and call for papers:
+
+## Main Submission Deadlines
+
+NeurIPS 2026 is now accepting submissions as of April 15, 2026, with abstracts due by May 4th, 2026, and full papers due on May 6th, 2026, Anywhere On Earth (AOE).
+
+## Multiple Tracks Available
+
+The different tracks (main, evaluations and datasets, position papers) have different calls for papers, different submission portals, and possibly different timelines. However, the deadlines are the same for the Evaluations and Datasets track and Position Paper track, with abstracts due by May 4th, 2026 (AOE), and full papers due on May 6th, 2026 (AOE).
+
+## Additional Requirements
+
+All authors must have an OpenReview profile when submitting, and exceptions cannot be made for submissions from accounts initiated less than two weeks prior to the deadline.
+
+## Conference Details
+
+The Fortieth annual conference is held from Sunday, December 6th through Saturday the 12th, 2026 at the International Convention Centre.
+
+## Other Submission Types
+
+Workshop applications are due by June 06, 2026 (AOE), and competition proposal submission deadline is May 15, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9333a964-6f6d-43f1-83af-2f9d47144ea5",
+  "isSidechain": false,
+  "promptId": "a8e8834c-24c6-44f7-8fd5-2a2a0d0abae9",
+  "type": "user",
+  "uuid": "826012fb-7ac8-40a7-8b9a-e9b1855773d5",
+  "toolUseResult": {
+    "query": "NeurIPS 2026 submission deadline call for papers",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01SsXCeFrCVxt9BxdGqcXVs4",
+        "content": [
+          {
+            "title": "Call for Papers 2026",
+            "url": "https://neurips.cc/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://neurips.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "Call For Evaluations & Datasets 2026",
+            "url": "https://neurips.cc/Conferences/2026/CallForEvaluationsDatasets"
+          },
+          {
+            "title": "NeurIPS Newsletter – April 2026 – NeurIPS Blog",
+            "url": "https://blog.neurips.cc/2026/04/22/neurips-newsletter-april-2026/"
+          },
+          {
+            "title": "NeurIPS 2026 Call For Competitions",
+            "url": "https://neurips.cc/Conferences/2026/CallForCompetitions"
+          },
+          {
+            "title": "NeurIPS 2026",
+            "url": "https://neurips.cc/"
+          },
+          {
+            "title": "NeurIPS 2026 Call for Papers — Official Deadlines & Important Dates | PaperPilot",
+            "url": "https://www.getpaperpilot.com/deadlines/neurips-2026.html"
+          },
+          {
+            "title": "2026 Conference – NeurIPS Blog",
+            "url": "https://blog.neurips.cc/category/2026-conference/"
+          },
+          {
+            "title": "NeurIPS 2026 Call for Workshops",
+            "url": "https://neurips.cc/Conferences/2026/CallForWorkshops"
+          },
+          {
+            "title": "NeurIPS/ICLR/ICML Journal-to-Conference Track",
+            "url": "https://neurips.cc/public/JournalToConference"
+          }
+        ]
+      },
+      "Based on the search results, here's the information about NeurIPS 2026 submission deadlines and call for papers:\n\n## Main Submission Deadlines\n\nNeurIPS 2026 is now accepting submissions as of April 15, 2026, with abstracts due by May 4th, 2026, and full papers due on May 6th, 2026, Anywhere On Earth (AOE).\n\n## Multiple Tracks Available\n\nThe different tracks (main, evaluations and datasets, position papers) have different calls for papers, different submission portals, and possibly different timelines. However, the deadlines are the same for the Evaluations and Datasets track and Position Paper track, with abstracts due by May 4th, 2026 (AOE), and full papers due on May 6th, 2026 (AOE).\n\n## Additional Requirements\n\nAll authors must have an OpenReview profile when submitting, and exceptions cannot be made for submissions from accounts initiated less than two weeks prior to the deadline.\n\n## Conference Details\n\nThe Fortieth annual conference is held from Sunday, December 6th through Saturday the 12th, 2026 at the International Convention Centre.\n\n## Other Submission Types\n\nWorkshop applications are due by June 06, 2026 (AOE), and competition proposal submission deadline is May 15, 2026."
+    ],
+    "durationSeconds": 10.802010275,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "9333a964-6f6d-43f1-83af-2f9d47144ea5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cd37f554-fbc5-4c14-abf2-18a21aa8796d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19 · 2026-05-19T18:49:23.026Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The research confirms:
+
+1. **CoRL 2026** is definitively a robotics conference. The scope is: "Learning representations for robotic perception and control, Learning robot foundation models or general-purpose knowledge systems for robotics, Imitation learning for robotics, and Reinforcement learning for control of physical robots." The submission requirement states: "Submissions should focus on a core robotics problem and demonstrate the relevance of proposed models, algorithms, datasets, and benchmarks to robotics." This is a clear desk-reject scenario for an LLM CoT faithfulness paper.
+
+2. **NeurIPS 2026** deadline has already passed: abstracts due May 4, full papers due May 6, 2026. Today is May 19, 2026. So NeurIPS 2026 is no longer an option.
+   
+3. Looking at CoRL 2025's accepted papers, there's nothing on LLM reasoning or chain-of-thought faithfulness—it's all robotics work, which confirms this venue won't work. The other major conferences are either already closed (ICML 2026 likely had a January deadline) or still months away (ICLR 2027 probably around October). This is a clear loss-cutting moment—CoRL 2026 has essentially zero chance of acceptance given the venue mismatch.
+
+Both agents flagged this same critical issue independently, so I should verify ICML's deadline and start mapping out which venues might actually be suitable for this work.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "826012fb-7ac8-40a7-8b9a-e9b1855773d5",
+  "isSidechain": false,
+  "requestId": "req_011CbCRnnrNAicmgnaUAkDhY",
+  "type": "assistant",
+  "uuid": "d2b9cf93-3fae-4a73-b197-8103b2dcfa03",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cd37f554-fbc5-4c14-abf2-18a21aa8796d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DM8zqVKoswbRXvuta7F1Md",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 569,
+      "cache_creation_input_tokens": 880,
+      "cache_read_input_tokens": 31940,
+      "output_tokens": 496,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 880,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 569,
+          "output_tokens": 496,
+          "cache_read_input_tokens": 31940,
+          "cache_creation_input_tokens": 880,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 880
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-19T18:49:23.028Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016c3gNM789muWhEhCKZgQyS`</summary>
+
+```json
+{
+  "query": "ICML 2026 submission deadline paper"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d2b9cf93-3fae-4a73-b197-8103b2dcfa03",
+  "isSidechain": false,
+  "requestId": "req_011CbCRnnrNAicmgnaUAkDhY",
+  "type": "assistant",
+  "uuid": "316fa507-b185-457f-a5fd-1f4cddeab1d5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cd37f554-fbc5-4c14-abf2-18a21aa8796d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DM8zqVKoswbRXvuta7F1Md",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 569,
+      "cache_creation_input_tokens": 880,
+      "cache_read_input_tokens": 31940,
+      "output_tokens": 496,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 880,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 569,
+          "output_tokens": 496,
+          "cache_read_input_tokens": 31940,
+          "cache_creation_input_tokens": 880,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 880
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-19T18:49:23.037Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012iYP3XaszqEAQHezLdMjha`</summary>
+
+```json
+{
+  "query": "ICLR 2027 submission deadline call for papers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "316fa507-b185-457f-a5fd-1f4cddeab1d5",
+  "isSidechain": false,
+  "requestId": "req_011CbCRnnrNAicmgnaUAkDhY",
+  "type": "assistant",
+  "uuid": "fa39edad-a0f5-4697-a577-9ee5c4b4b322",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cd37f554-fbc5-4c14-abf2-18a21aa8796d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DM8zqVKoswbRXvuta7F1Md",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 569,
+      "cache_creation_input_tokens": 880,
+      "cache_read_input_tokens": 31940,
+      "output_tokens": 496,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 880,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 569,
+          "output_tokens": 496,
+          "cache_read_input_tokens": 31940,
+          "cache_creation_input_tokens": 880,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 880
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 以「角色 B：迭代中」整合第 1 轮 worker 输出，按指定格式输出决策、概率估计、以及（若继续）下一轮 proposal 纯净版。  【发掘 agent 本轮输出】: Now I have enough context to provide my analysis. Let me compile my findings.  ---  【状态】: 有发掘空间  【前置调研发现】 -…",
+  "leafUuid": "fa39edad-a0f5-4697-a577-9ee5c4b4b322",
+  "sessionId": "cd37f554-fbc5-4c14-abf2-18a21aa8796d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Stress-test faithfulness training under adversarial optimization",
+  "sessionId": "cd37f554-fbc5-4c14-abf2-18a21aa8796d"
+}
+```
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-19T18:49:28.065Z_
+
+<details><summary>↩ Tool result · `toolu_012iYP3XaszqEAQHezLdMjha`</summary>
+
+```text
+Web search results for query: "ICLR 2027 submission deadline call for papers"
+
+Links: [{"title":"2026 Dates and Deadlines","url":"https://iclr.cc/Conferences/2026/Dates"},{"title":"International Conference on Learning Representations ICLR in August 2027 in Sydney","url":"https://waset.org/learning-representations-conference-in-august-2027-in-sydney"},{"title":"Key deadlines in AI and ML conferences | Yutori","url":"https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"Year-Round Deadlines - Imranur Rahman","url":"https://imranur-rahman.github.io/deadlines/"},{"title":"ICLR 2026 Call for Papers","url":"https://iclr.cc/Conferences/2026/CallForPapers"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"ICLR 2026","url":"https://iclr.cc/"},{"title":"ICLR | OpenReview","url":"https://openreview.net/group?id=ICLR.cc"}]
+
+Based on the search results, I found information about ICLR conferences, but the results primarily show details for ICLR 2026 rather than ICLR 2027. Here's what I found:
+
+**ICLR 2026:** The 14th International Conference on Learning Representations invites submissions from all areas of machine learning. The main conference is scheduled for Thursday April 23 through Saturday April 25, with workshops on Sunday April 26 through Monday April 27.
+
+**ICLR 2027:** ICLR 2027 is predicted to be held April 24-28, 2027 (TBA location), with the note that this is predicted based on previous year schedule and should be verified on the official conference website.
+
+Unfortunately, the official ICLR 2027 call for papers with specific submission deadlines does not appear to have been published yet. The search results indicate that some 2026/2027 CFPs are not yet posted as of February 1, 2026. 
+
+For the most up-to-date information on ICLR 2027 submission deadlines and call for papers, I recommend visiting the official ICLR website at iclr.cc, which typically releases this information several months before the conference date.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fa39edad-a0f5-4697-a577-9ee5c4b4b322",
+  "isSidechain": false,
+  "promptId": "a8e8834c-24c6-44f7-8fd5-2a2a0d0abae9",
+  "type": "user",
+  "uuid": "2f9c897f-b231-497e-9af1-9d75edf977d4",
+  "toolUseResult": {
+    "query": "ICLR 2027 submission deadline call for papers",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01KuEkeZDbb5U5Wgdmc95VMe",
+        "content": [
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://iclr.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "International Conference on Learning Representations ICLR in August 2027 in Sydney",
+            "url": "https://waset.org/learning-representations-conference-in-august-2027-in-sydney"
+          },
+          {
+            "title": "Key deadlines in AI and ML conferences | Yutori",
+            "url": "https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "Year-Round Deadlines - Imranur Rahman",
+            "url": "https://imranur-rahman.github.io/deadlines/"
+          },
+          {
+            "title": "ICLR 2026 Call for Papers",
+            "url": "https://iclr.cc/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "ICLR 2026",
+            "url": "https://iclr.cc/"
+          },
+          {
+            "title": "ICLR | OpenReview",
+            "url": "https://openreview.net/group?id=ICLR.cc"
+          }
+        ]
+      },
+      "Based on the search results, I found information about ICLR conferences, but the results primarily show details for ICLR 2026 rather than ICLR 2027. Here's what I found:\n\n**ICLR 2026:** The 14th International Conference on Learning Representations invites submissions from all areas of machine learning. The main conference is scheduled for Thursday April 23 through Saturday April 25, with workshops on Sunday April 26 through Monday April 27.\n\n**ICLR 2027:** ICLR 2027 is predicted to be held April 24-28, 2027 (TBA location), with the note that this is predicted based on previous year schedule and should be verified on the official conference website.\n\nUnfortunately, the official ICLR 2027 call for papers with specific submission deadlines does not appear to have been published yet. The search results indicate that some 2026/2027 CFPs are not yet posted as of February 1, 2026. \n\nFor the most up-to-date information on ICLR 2027 submission deadlines and call for papers, I recommend visiting the official ICLR website at iclr.cc, which typically releases this information several months before the conference date."
+    ],
+    "durationSeconds": 5.025236128999997,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "fa39edad-a0f5-4697-a577-9ee5c4b4b322",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cd37f554-fbc5-4c14-abf2-18a21aa8796d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-19T18:49:30.005Z_
+
+<details><summary>↩ Tool result · `toolu_016c3gNM789muWhEhCKZgQyS`</summary>
+
+```text
+Web search results for query: "ICML 2026 submission deadline paper"
+
+Links: [{"title":"2026 Dates and Deadlines","url":"https://icml.cc/Conferences/2026/Dates"},{"title":"ICML 2026 Call for Papers","url":"https://icml.cc/Conferences/2026/CallForPapers"},{"title":"ICML 2026 Author Instructions","url":"https://icml.cc/Conferences/2026/AuthorInstructions"},{"title":"ICML 2026 Conference | OpenReview","url":"https://openreview.net/group?id=ICML.cc%2F2026%2FConference"},{"title":"ICML 2026: Strictest New Rules Ever - LLMs Banned as Authors, Papers with AI Abuse Rejected","url":"https://eu.36kr.com/en/p/3540848514510723"},{"title":"ICML 2026 Peer Review FAQ","url":"https://icml.cc/Conferences/2026/PeerReviewFAQ"},{"title":"ICML 2026","url":"https://conferences-basecamp.informatik.uni-hamburg.de/conference/?id=icml26"},{"title":"ICML 2026 Call for Post-Conference Workshops","url":"https://icml.cc/Conferences/2026/CallForWorkshops"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"Update ICML 2025 and 2026 conference data · huggingface/ai-deadlines at 55d2124","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/55d21240bacc3ac62397280592b3dd5ded9e5683"}]
+
+Based on the search results, here's the key information about ICML 2026 paper submission deadlines:
+
+## ICML 2026 Paper Submission Deadlines
+
+The paper submission deadline for ICML 2026 is January 28, 2026. However, there is a two-step submission process:
+
+1. **Abstract Submission Deadline**: An abstract must first be submitted by the Abstract submission deadline on OpenReview.
+
+2. **Full Paper Submission Deadline**: After submitting the abstract, it will be possible to modify the submission to also upload the full paper PDF, which must be uploaded by the Full paper submission deadline (January 28, 2026).
+
+## Additional Submission Requirements
+
+- Papers must be prepared and submitted as a single file: 8 pages for the main paper, with unlimited pages for references, the impact statement, and appendices.
+- Abstract and paper submission deadlines are strict. In no circumstances will extensions be given.
+
+## Conference Details
+
+The Forty-Third annual conference is held Mon. Jul 6th through Sat the 11th, 2026 at the Coex Convention & Exhibition Center (in Seoul, South Korea).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "316fa507-b185-457f-a5fd-1f4cddeab1d5",
+  "isSidechain": false,
+  "promptId": "a8e8834c-24c6-44f7-8fd5-2a2a0d0abae9",
+  "type": "user",
+  "uuid": "111eb6aa-fc42-4522-94d3-5c1d6b4e15bd",
+  "toolUseResult": {
+    "query": "ICML 2026 submission deadline paper",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QWYCJqnhQJcF2RT4jE9qUX",
+        "content": [
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://icml.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "ICML 2026 Call for Papers",
+            "url": "https://icml.cc/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "ICML 2026 Author Instructions",
+            "url": "https://icml.cc/Conferences/2026/AuthorInstructions"
+          },
+          {
+            "title": "ICML 2026 Conference | OpenReview",
+            "url": "https://openreview.net/group?id=ICML.cc%2F2026%2FConference"
+          },
+          {
+            "title": "ICML 2026: Strictest New Rules Ever - LLMs Banned as Authors, Papers with AI Abuse Rejected",
+            "url": "https://eu.36kr.com/en/p/3540848514510723"
+          },
+          {
+            "title": "ICML 2026 Peer Review FAQ",
+            "url": "https://icml.cc/Conferences/2026/PeerReviewFAQ"
+          },
+          {
+            "title": "ICML 2026",
+            "url": "https://conferences-basecamp.informatik.uni-hamburg.de/conference/?id=icml26"
+          },
+          {
+            "title": "ICML 2026 Call for Post-Conference Workshops",
+            "url": "https://icml.cc/Conferences/2026/CallForWorkshops"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "Update ICML 2025 and 2026 conference data · huggingface/ai-deadlines at 55d2124",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/55d21240bacc3ac62397280592b3dd5ded9e5683"
+          }
+        ]
+      },
+      "Based on the search results, here's the key information about ICML 2026 paper submission deadlines:\n\n## ICML 2026 Paper Submission Deadlines\n\nThe paper submission deadline for ICML 2026 is January 28, 2026. However, there is a two-step submission process:\n\n1. **Abstract Submission Deadline**: An abstract must first be submitted by the Abstract submission deadline on OpenReview.\n\n2. **Full Paper Submission Deadline**: After submitting the abstract, it will be possible to modify the submission to also upload the full paper PDF, which must be uploaded by the Full paper submission deadline (January 28, 2026).\n\n## Additional Submission Requirements\n\n- Papers must be prepared and submitted as a single file: 8 pages for the main paper, with unlimited pages for references, the impact statement, and appendices.\n- Abstract and paper submission deadlines are strict. In no circumstances will extensions be given.\n\n## Conference Details\n\nThe Forty-Third annual conference is held Mon. Jul 6th through Sat the 11th, 2026 at the Coex Convention & Exhibition Center (in Seoul, South Korea)."
+    ],
+    "durationSeconds": 6.9738491120000035,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "316fa507-b185-457f-a5fd-1f4cddeab1d5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cd37f554-fbc5-4c14-abf2-18a21aa8796d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26 · 2026-05-19T18:49:55.699Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the information I need to make a definitive decision:
+
+**Venue verification results:**
+1. **CoRL 2026**: Robotics-only. "Submissions should focus on a core robotics problem." Deadline May 29, 2026. LLM CoT faithfulness paper = guaranteed desk reject.
+2. **NeurIPS 2026**: Deadline was May 6, 2026. **Already passed** (today is May 19).
+
+
+3. **ICML 2026**: Deadline was January 28, 2026. **Already passed**.
+4. **ICLR 2027**: Predicted April 2027, deadline likely October 2026. **Not yet announced** but this would be the next realistic venue.
+
+Both agents independently flagged the fatal venue mismatch—CoRL explicitly rejects non-robotics submissions, and no LLM reasoning papers have ever made it through there. The next viable top-tier option is ICLR 2027, which hasn't opened yet.
+
+This is a clear stop-loss. The proposal has essentially zero probability at CoRL 2026 regardless of how much I refine the ideas or experiments. I need to declare this decision and move to the final rejection output. I'm debating whether to provide both the 角色 B decision with the stop-loss marker and the 角色 C final output together, since the evidence is so clear that continuing would be redundant. The instructions suggest separate invocations, but given that I'm orchestrating this and the outcome is unambiguous, it makes sense to be efficient and provide both outputs now. For the probability assessment at CoRL 2026, it's essentially zero since the paper would face desk rejection for being submitted to the wrong venue—the rubric becomes irrelevant. Looking at the idea's merit independent of venue choice, the agents identified some potential but significant obstacles around novelty and execution challenges.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "111eb6aa-fc42-4522-94d3-5c1d6b4e15bd",
+  "isSidechain": false,
+  "requestId": "req_011CbCRp8qBDG9H8bJjN5LsH",
+  "type": "assistant",
+  "uuid": "5faaf4d7-42c2-4e33-a2dd-2b774f4bfb74",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cd37f554-fbc5-4c14-abf2-18a21aa8796d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KwTZm7xJ4i3E585rKVNqB5",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 685,
+      "cache_creation_input_tokens": 1821,
+      "cache_read_input_tokens": 32820,
+      "output_tokens": 4021,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1821,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 685,
+          "output_tokens": 4021,
+          "cache_read_input_tokens": 32820,
+          "cache_creation_input_tokens": 1821,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1821
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27 · 2026-05-19T18:51:00.324Z_
+
+交叉验证完成。结果非常明确。让我整合两个 worker 的输出并做出决策。
+
+---
+
+【阶段】: 迭代第 1 轮
+
+【交叉验证调研】:
+1. **CoRL 2026 scope 验证**（验证两位 worker 共同提出的 venue mismatch）：CoRL 2026 官方 Call for Papers 明确要求 "Submissions should focus on a core robotics problem and demonstrate the relevance of proposed models, algorithms, datasets, and benchmarks to robotics"，scope 包括 "Learning representations for robotic perception and control, Learning robot foundation models or general-purpose knowledge systems for robotics, Imitation learning for robotics, Reinforcement learning for control of physical robots" 等。搜索 CoRL 2025 接收论文中是否有 LLM reasoning/faithfulness/chain-of-thought/safety/alignment 相关工作——**未找到任何一篇**。两位 worker 的判断完全正确：这是 100% 的 venue mismatch，将被直接 desk-reject。
+2. **替代 venue deadline 验证**（验证发掘 agent 建议的 NeurIPS 2026）：NeurIPS 2026 full paper deadline 为 2026 年 5 月 6 日——**已过期**（今天是 5 月 19 日）。ICML 2026 deadline 为 2026 年 1 月 28 日——**已过期**。ICLR 2027 尚未发布 CFP，预计会议在 2027 年 4 月，deadline 大约在 2026 年 10 月。**下一个可行的 top venue 是 ICLR 2027（约 5 个月后截稿）。**
+3. **CoRL 2026 workshop 可能性**：CoRL 2026 有 Call for Workshops，但 workshop 论文仍需与机器人学习相关（如 "LLMs for robot planning" 类的 workshop），纯 LLM CoT faithfulness 仍不匹配。
+
+【发掘 agent 有效建议采纳】:
+- 发掘点 1（venue mismatch）：**已验证，完全采纳**。CoRL 2026 官方文件和历史接收论文均确认 100% mismatch。这是止损的核心依据。
+- 发掘点 2-6（novelty 锐化、Potemkin robustness 叙事重构、Anwar 差异化、Part I 贡献提升、聚焦策略）：idea 层面建议质量较高，但因 venue 致命问题，**本轮不采纳执行**。若转投 ICLR 2027，这些建议（尤其发掘点 3 的 Potemkin robustness 中心论题重构和发掘点 6 的聚焦策略 A）值得在新一轮迭代中采纳。
+
+【补救 agent 有效建议采纳】:
+- 缺陷 1（CoRL desk-reject）：**已验证，完全采纳**。与发掘 agent 形成共识。
+- 缺陷 2-10（模型不匹配、协议适配、baseline 缺失、统计严谨性、compute fairness、monitor 脆弱性、ablation 不完整、资源预算、跨任务泛化）：实验层面建议专业且具体，但因 venue 致命问题，**本轮不采纳执行**。若转投，缺陷 2（模型不匹配需降级 claim）、缺陷 4（加入 Anwar standalone 和 CSR 作为 baseline）、缺陷 5（统计 seed 规范）为最高优先级补救项。
+
+【本轮 proposal 主要变更】: 无（止损，不更新 proposal）
+
+【idea 质量评估】: Novelty=[中] Significance=[中偏强，若 Potemkin 假说成立] → idea 天花板约 35-40%（在合适 venue）
+【实验完备性评估】: Technical Soundness=[中偏弱，多个可补救缺陷] → 在合适 venue、修复后约 25-30%
+【当前概率估计】: [0% - 2%] 中位 0%
+（注：概率针对 CoRL 2026 主会。Venue mismatch 导致 desk-reject 概率 >98%，即使逃过 desk-reject 也会被全部审稿人判 out-of-scope。）
+
+【决策】: 止损
+
+【决策理由】:
+两位 worker 独立发现同一致命问题（共识强度最高），经交叉验证确认无误：**CoRL 2026 是 Conference on Robot Learning，明确要求 robotics focus，明确声明 "Submissions without a robotics focus will be returned without review"。本 proposal 关于 LLM CoT 推理忠实性的对抗鲁棒性，与机器人学习零交集，将被 desk-reject。** 这不是 idea 质量问题，不是实验设计问题，而是方向性致命错误——继续迭代优化 proposal 内容无法改变 venue mismatch 的事实。满足止损条件："发掘 agent 发现致命问题 + 补救 agent 明确标注不可补救的致命缺陷"。
+
+---
+
+以下是止损后的最终交付：
+
+---
+
+【拒绝阶段】: 循环第 1 轮（止损）
+
+【击穿维度 / 致命缺陷】:
+**Venue Mismatch（方向性致命）**：CoRL 2026（Conference on Robot Learning）的投稿范围严格限定在机器人学习领域（manipulation, locomotion, perception, sim-to-real, imitation learning, RL for physical robots 等）。官方 CFP 明确声明："Submissions without a robotics focus will be returned without review." 本 proposal 研究 LLM Chain-of-Thought 推理忠实性在对抗优化下的鲁棒性，属于 AI safety / LLM alignment / NLP 范畴，与机器人学习无任何交集。搜索 CoRL 2025 全部接收论文（200+ 篇），未发现任何 LLM reasoning faithfulness 相关工作。投稿 CoRL 2026 = 确定性 desk-reject。
+
+【已尝试优化方向】: 未进入实质优化（第 1 轮即因 venue 致命问题止损）。两位 worker 在 venue 问题之外识别了以下可优化方向（供转投时参考）：
+- **Idea 层面**（发掘 agent）：(1) "Potemkin robustness" 假说应提升为 central thesis 以锐化 novelty；(2) CAAFT 面临 "sum-of-parts" 质疑，需构造 failure cases 证明组件联合的不可替代性；(3) 与 Anwar et al. (arXiv:2602.18297) 差异化不够锋利；(4) 论文尝试同时做太多事情（stress-test + defense + framework + predictions + generalization），建议聚焦为策略 A（stress-test + Potemkin discovery 为主，CAAFT 降级为 preliminary）
+- **实验层面**（补救 agent）：(1) 4 种 faithfulness 方法在 Qwen3-8B + Llama-3.1-8B 上的复现存在模型不匹配（FRIT 原用 Mistral, REMUL 原用 14B 规模），需降级 claim 为 "re-implementation on standardized models"；(2) Baker et al. 对抗协议从 agentic coding 迁移到 reasoning faithfulness 需要详细适配说明；(3) 缺少 Anwar et al. standalone 和 Akter et al. CSR 作为 baseline；(4) 36 条件需至少 3 seeds，资源预算需相应上调至 ~6,000-7,000 H100-hrs；(5) CAAFT 消融缺少 "无对抗压力" 和 "纯对抗无防御" 两个关键对照
+
+【可否抢救】: **换 venue 可行，idea 本身有中稿潜力。** 具体建议：
+
+1. **首选目标：ICLR 2027**（预计 2026 年 10 月截稿，距今约 5 个月）
+   - 时间充裕，可系统性修复上述所有 idea 和实验层面问题
+   - ICLR 对 AI safety / alignment / interpretability 有专门 track，audience 完全匹配
+   - 建议采纳发掘 agent 的"策略 A"聚焦方案 + 补救 agent 的全部实验修复建议
+
+2. **备选目标：NeurIPS 2026 Workshop**（如 SafeGenAI / SoLaR / Socially Responsible AI，deadline 通常在 2026 年 8-9 月）
+   - 适合作为 ICLR 2027 full paper 前的 preliminary version
+   - 可只含 Part I（stress-test + Potemkin robustness 发现），不含 CAAFT
+
+3. **如坚持 CoRL 2026（不推荐）**：需根本性重构 proposal 为机器人场景应用——例如 "自主机器人中 LLM 规划模块的 CoT 忠实性监控"，但这完全改变了核心贡献和实验设计，实质上是另一篇论文
+
+**转投 ICLR 2027 后的预估中稿概率**：经系统性修复（Potemkin 叙事重构 + 聚焦 + 补全 baseline + 多 seed 统计验证），估计 [25% - 40%] 中位 30%。主要风险仍是 CAAFT 的 "sum-of-parts" novelty 质疑和与 Anwar et al. 的差异化论证。
+
+Sources:
+- [CoRL 2026 - Call for Papers](https://www.corl.org/contributions/call-for-papers)
+- [NeurIPS 2026 Dates and Deadlines](https://neurips.cc/Conferences/2026/Dates)
+- [ICML 2026 Dates and Deadlines](https://icml.cc/Conferences/2026/Dates)
+- [ICLR 2026 Dates and Deadlines](https://iclr.cc/Conferences/2026/Dates)
+- [CoRL 2025 Paper List](https://github.com/shu1ong/CORL2025-Paper-List)
+- [AI Conference Deadlines](https://mlciv.com/ai-deadlines/)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5faaf4d7-42c2-4e33-a2dd-2b774f4bfb74",
+  "isSidechain": false,
+  "requestId": "req_011CbCRp8qBDG9H8bJjN5LsH",
+  "type": "assistant",
+  "uuid": "321a4183-077c-4af9-a6f4-ac5923b0f0e9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cd37f554-fbc5-4c14-abf2-18a21aa8796d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KwTZm7xJ4i3E585rKVNqB5",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 685,
+      "cache_creation_input_tokens": 1821,
+      "cache_read_input_tokens": 32820,
+      "output_tokens": 4021,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1821,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 685,
+          "output_tokens": 4021,
+          "cache_read_input_tokens": 32820,
+          "cache_creation_input_tokens": 1821,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1821
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 28_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 以「角色 B：迭代中」整合第 1 轮 worker 输出，按指定格式输出决策、概率估计、以及（若继续）下一轮 proposal 纯净版。  【发掘 agent 本轮输出】: Now I have enough context to provide my analysis. Let me compile my findings.  ---  【状态】: 有发掘空间  【前置调研发现】 -…",
+  "leafUuid": "321a4183-077c-4af9-a6f4-ac5923b0f0e9",
+  "sessionId": "cd37f554-fbc5-4c14-abf2-18a21aa8796d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 29_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Stress-test faithfulness training under adversarial optimization",
+  "sessionId": "cd37f554-fbc5-4c14-abf2-18a21aa8796d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 30_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Stress-test faithfulness training under adversarial optimization",
+  "sessionId": "cd37f554-fbc5-4c14-abf2-18a21aa8796d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 31 · 2026-05-19T18:51:01.721Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-19T18:51:01.721Z",
+  "sessionId": "cd37f554-fbc5-4c14-abf2-18a21aa8796d",
+  "content": "【任务】: 流程已结束（循环第 1 轮止损：补救 agent 标注致命缺陷（不可补救）），请按「角色 C：最终输出」的拒绝格式，输出拒绝详情文本。"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 32 · 2026-05-19T18:51:01.722Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-19T18:51:01.722Z",
+  "sessionId": "cd37f554-fbc5-4c14-abf2-18a21aa8796d"
+}
+```
+
+---
+
+## Round 2
+
+5 recorded events
+
+### User
+
+_source line 33 · 2026-05-19T18:51:01.740Z_
+
+【任务】: 流程已结束（循环第 1 轮止损：补救 agent 标注致命缺陷（不可补救）），请按「角色 C：最终输出」的拒绝格式，输出拒绝详情文本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "321a4183-077c-4af9-a6f4-ac5923b0f0e9",
+  "isSidechain": false,
+  "promptId": "dac86964-b5bd-40a7-afcf-35ab9044b1d0",
+  "type": "user",
+  "uuid": "dcf9ccc8-041e-4fb6-8867-a8caf00d47eb",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cd37f554-fbc5-4c14-abf2-18a21aa8796d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34 · 2026-05-19T18:51:05.982Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The system is asking me to output the final rejection details in 角色 C format. I already provided most of this in my previous output, but now I need to give a clean, formal 角色 C output following the exact rejection format specified.
+
+Let me compile the final rejection output based on all the analysis from both workers and my cross-validation research.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dcf9ccc8-041e-4fb6-8867-a8caf00d47eb",
+  "isSidechain": false,
+  "requestId": "req_011CbCRvu6dVBi9agrmEymAT",
+  "type": "assistant",
+  "uuid": "c68bc041-bd8b-4462-b7f1-34e5cd721bbb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cd37f554-fbc5-4c14-abf2-18a21aa8796d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012YPPvUC3Zn4zKHnNBH4Har",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4779,
+      "cache_read_input_tokens": 34641,
+      "output_tokens": 2733,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4779,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2733,
+          "cache_read_input_tokens": 34641,
+          "cache_creation_input_tokens": 4779,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4779
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35 · 2026-05-19T18:51:59.430Z_
+
+【拒绝阶段】: 循环第 1 轮（止损）
+
+【击穿维度 / 致命缺陷】:
+**Venue Mismatch — 方向性致命，不可补救。**
+
+CoRL 2026（Conference on Robot Learning）的投稿范围严格限定在机器人学习领域。官方 Call for Papers 原文明确声明：
+
+> "Submissions should focus on a core robotics problem and demonstrate the relevance of proposed models, algorithms, datasets, and benchmarks to robotics. **Submissions without a robotics focus will be returned without review.**"
+
+接收话题包括：robotic perception and control, robot foundation models, imitation learning for robotics, reinforcement learning for physical robots, sim-to-real transfer, learned manipulation and locomotion 等。经检索 CoRL 2025 全部 200+ 篇接收论文，未发现任何一篇涉及 LLM reasoning faithfulness / chain-of-thought safety / alignment 主题。
+
+本 proposal 研究 LLM Chain-of-Thought 推理忠实性训练在对抗优化下的鲁棒性，核心贡献为 stress-test protocol + CAAFT defense method，属于 AI safety / LLM alignment / NLP interpretability 范畴，与机器人学习**零交集**。这不是边缘案例（如 "LLM for robot task planning" 尚可论证 robotics relevance），而是完全不同的研究领域。投稿 CoRL 2026 将以接近 100% 的概率被 desk-reject，不进入同行评审。
+
+两位独立审稿 agent（发掘 agent + 补救 agent）在互不知情的情况下同时将此识别为最高优先级致命问题，交叉验证（CoRL 2026 官方 CFP + CoRL 2025 论文列表 + CoRL scope 描述）完全确认。
+
+**补充致命因素**：距今最近的合适 top venue（NeurIPS 2026，full paper deadline 2026-05-06）已于 13 天前截稿，ICML 2026（deadline 2026-01-28）更早已过。即使立即换 venue，当前无可投的 A 类主会。
+
+【已尝试优化方向】:
+未进入实质性 proposal 优化（第 1 轮即因 venue 致命问题止损）。但两位 worker 在 venue 问题之外完成了完整的 idea 质量和实验完备性评估，识别出以下可优化方向，供转投时使用：
+
+**Idea 层面（发掘 agent 识别）**：
+1. **"Potemkin robustness" 叙事重构**：当前最具冲击力的假说——faithfulness training 可能 paradoxically 降低对抗鲁棒性（教会模型 "什么样的 CoT 看起来 faithful"，赋予更丰富的 obfuscation representations）——被埋在方法细节中。应提升为 central thesis，叙事从 "stress-test + defense" 重构为 "Does faithfulness training create false security?"
+2. **CAAFT "sum-of-parts" novelty 风险**：CAAFT = FRIT 的 causal intervention + Anwar et al. 的 MI preservation + Ye et al. 的 horizon weighting，三个已有组件的组合。需构造 failure cases 证明联合的不可替代性（L_CA alone 被哪种攻击击穿、L_MI alone 被哪种攻击击穿），而非仅声称"互补"。
+3. **与 Anwar et al. (arXiv:2602.18297) 差异化不足**：Anwar 已提出 MI maximization 作为 defense 并在 adversarial 场景验证。CAAFT 的 L_MI 直接来自 Anwar。需明确展示 Anwar 单独在某种攻击模式下失败。
+4. **论文贪多嚼不烂**：同时做 stress-test + defense + framework + predictions + generalization，每个方向深度不够。建议聚焦策略 A：主打 stress-test + Potemkin robustness discovery，CAAFT 降级为 preliminary defense exploration。
+5. **Part I "straightforward experiment" 质疑**：Baker et al. protocol → faithfulness checkpoints → Kaufmann et al. framework 解释，每步都是已有方法直接应用。唯一救 Part I 的是 Potemkin robustness 的验证——若 CST 真的比 untrained baseline 更差，这才是 discovery 而非 confirmation。
+
+**实验层面（补救 agent 识别）**：
+1. **模型不匹配**：FRIT 原用 Mistral-7B（非 Llama），FaithRL-Gui 原用 Qwen-2.5-7B（非 Qwen3-8B），REMUL 原用 Qwen3-14B（非 8B）。统一到 Qwen3-8B + Llama-3.1-8B 需降级 claim 为 "re-implementation on standardized models" 并增加 reproduction fidelity 验证步骤。
+2. **对抗协议适配缺失**：Baker et al. protocol 为 agentic coding 设计，迁移到 reasoning faithfulness 需详述 task reward 定义、monitor prompt template、不可微 monitor 的梯度处理方式（REINFORCE/PPO）。
+3. **关键 baseline 缺失**：(a) Anwar et al. standalone MI-maximization 应作为独立 defense baseline；(b) Akter et al. CSR (arXiv:2509.01544) 与 L_CA 直接可比，应纳入 Part I 或 Part II 对照。
+4. **统计严谨性未说明**：36 条件 × 1 seed 不具统计显著性。建议两阶段策略：Phase A 1 seed 全覆盖建立 hypothesis，Phase B 对关键比较加 3-5 seeds 验证。
+5. **Compute fairness**：不同方法训练成本差异巨大（FRIT DPO 廉价 vs. REMUL multi-listener GRPO 昂贵），需报告实际 training FLOPs 并做 compute-normalized 对照。
+6. **GPT-4o 单一 monitor 脆弱性**：adversarial RL 可能只学会 exploit GPT-4o 特定弱点。需增加至少一个 unseen monitor 或利用 latent probe (axis c) 验证 obfuscation 层次。
+7. **CAAFT 消融缺关键对照**：缺少 "L_CA + L_MI without L_adversarial"（排除"更好的 regularizer"解释）和 "L_adversarial only"（纯对抗 degradation baseline）。
+8. **资源预算紧张**：加 3 seeds 后仅 adversarial RL 就需 ~6,480 H100-hrs，总计可能达 8,500-9,000 hrs，超出原估算 ~2 倍。需采用分层实验策略控制预算。
+9. **跨任务泛化不具体**：需明确 held-out benchmark（code: HumanEval/MBPP; planning: ARC 等）、测试范围（选 best/worst methods 而非全覆盖）、各 domain 的 faithfulness metric 定义。
+
+【可否抢救】: **换 venue 可行。Idea 本身有学术价值，经系统性修复后在合适 venue 具备中稿潜力。**
+
+**推荐路径**：
+
+| 目标 | Deadline（预估） | 适配度 | 建议策略 |
+|---|---|---|---|
+| **ICLR 2027**（首选） | ~2026 年 10 月 | 完全匹配（AI safety / alignment track） | 5 个月窗口，足够系统性修复全部 idea + 实验问题。采纳"策略 A"聚焦 + 全部实验补救。预估修复后中位概率 **30%** [25%-40%] |
+| **NeurIPS 2026 Workshop**（过渡） | ~2026 年 8-9 月 | 高（SafeGenAI / SoLaR） | 仅含 Part I（stress-test + Potemkin discovery），作为 ICLR full paper 前的 preliminary version |
+| **AAAI 2027** | ~2026 年 8 月 | 中高 | AI safety 相关投稿可行，但 AAAI 对 alignment 方向的审稿专业度不如 ICLR |
+| **CoRL 2026（不推荐）** | 2026-05-29 | 零 | 需根本性重构为机器人场景应用，实质上是完全不同的论文 |
+
+**转投后的主要风险**（reviewer 最可能攻击的点）：
+1. **CAAFT 的 novelty 被判为 incremental over Anwar et al. + FRIT**——这是最大的单点风险，需要通过 failure case 构造和必要性论证来防御
+2. **Part I stress-test 被判为 "confirmatory study"**——需要 Potemkin robustness 假说得到实验验证（CST worse than untrained baseline）才能将 Part I 从 engineering 提升为 scientific discovery
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c68bc041-bd8b-4462-b7f1-34e5cd721bbb",
+  "isSidechain": false,
+  "requestId": "req_011CbCRvu6dVBi9agrmEymAT",
+  "type": "assistant",
+  "uuid": "a9232fb3-728b-41d5-90df-fa34d2be34b5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cd37f554-fbc5-4c14-abf2-18a21aa8796d",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012YPPvUC3Zn4zKHnNBH4Har",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4779,
+      "cache_read_input_tokens": 34641,
+      "output_tokens": 2733,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4779,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2733,
+          "cache_read_input_tokens": 34641,
+          "cache_creation_input_tokens": 4779,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4779
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 36_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 流程已结束（循环第 1 轮止损：补救 agent 标注致命缺陷（不可补救）），请按「角色 C：最终输出」的拒绝格式，输出拒绝详情文本。",
+  "leafUuid": "a9232fb3-728b-41d5-90df-fa34d2be34b5",
+  "sessionId": "cd37f554-fbc5-4c14-abf2-18a21aa8796d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 37_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Stress-test faithfulness training under adversarial optimization",
+  "sessionId": "cd37f554-fbc5-4c14-abf2-18a21aa8796d"
+}
+```
+
+---

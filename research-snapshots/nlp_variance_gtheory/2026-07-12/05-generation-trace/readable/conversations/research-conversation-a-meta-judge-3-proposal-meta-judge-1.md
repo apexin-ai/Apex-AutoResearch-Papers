@@ -1,0 +1,972 @@
+# Research conversation: 【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。 【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1
+
+**Reproducibility Budgets for Open-Weight LLM Evaluation: A Generalizability Theory Study of 7–9B Instruction-Tuned Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 11
+- **Recorded user turns:** 1
+- **Tool calls:** 0
+- **Original source:** `logs/chats/exported-trajectories/account-2/f5ed49c8-85e3-4175-a1e2-05bca689fb76.jsonl`
+- **Structured JSON:** [`bd0029fc428336e49664.json`](../../sessions/bd/bd0029fc428336e49664.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-20T04:35:15.682Z_
+
+````json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-20T04:35:15.682Z",
+  "sessionId": "f5ed49c8-85e3-4175-a1e2-05bca689fb76",
+  "content": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。\n\n【三位审稿人评估】:\n━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━\nNow I have sufficient research to provide a thorough evaluation. Let me compile my assessment.\n\n---\n\n```\n【阶段】: Triage\n\n【领域调研】:\n- [Aligned, Orthogonal or In-conflict (arXiv:2603.30036)](https://arxiv.org/abs/2603.30036) (2026): 本 proposal 的核心理论框架。将 RL reward 分解为 output-dependent 与 CoT-dependent 两项，预测 in-conflict 设定下 CoT 可监控性下降。Proposal 定位为该框架的\"首个纵向实证检验\"。\n- [The Obfuscation Atlas (arXiv:2602.15515)](https://arxiv.org/abs/2602.15515) (2026, FAR AI): **最直接的竞争者。** 已经在 Llama-3 (8B-70B) 上跨 RLVR checkpoint 做了 deception probe 的纵向追踪，建立了 cross-checkpoint probing 方法论。差异在于：Obfuscation Atlas 关注 deception detection 而非 surface-latent faithfulness gap，未做 difficulty conditioning，未做 SFT 对照，未框架化为 in-conflict theory test。但方法论重叠度高。\n- [Reasoning Theater (arXiv:2603.05488)](https://www.goodfire.ai/research/reasoning-theater) (2026, Goodfire): 发现模型在 CoT 早期即锁定答案，probe-guided early exit 可减少 30-80% token。提供了 \"reasoning theater\" 概念和 pre-commitment 证据，但仅做 snapshot 分析，未追踪训练过程。\n- [RFEval (arXiv:2602.17053)](https://arxiv.org/abs/2602.17053) (2026): 跨 12 个开源 LRM 发现 49.7% 输出不忠实，且不忠实与 post-training regime 相关性强于模型规模。直接支持 proposal 的动机：需要在训练动态层面而非 snapshot 层面研究 faithfulness。\n- [Decoding Answers Before CoT (Cox et al., arXiv:2603.01437)](https://arxiv.org/abs/2603.01437) (2026): 从 pre-CoT residual stream 解码最终答案，AUC 高，activation steering flip rate >50%。proposal 的 L1 指标直接基于此方法。\n- [NLDD / Faithfulness Decay (arXiv:2602.11201)](https://arxiv.org/abs/2602.11201) (2026): 提出 NLDD 度量 step-level faithfulness，发现 reasoning horizon 在 70-85% chain length。proposal 的 L2 指标基于此。该工作分析固定模型，未做训练纵向追踪。\n- [Monitoring the Internal Monologue (arXiv:2605.18549)](https://arxiv.org/abs/2605.18549) (2026): 构建推理过程中的 probe trajectory，用信号处理特征（volatility、trend、steady-state）达到 95% AUROC。是 within-inference token-level 分析，与 proposal 的 across-training step-level 分析互补。\n- [Predictive Scaling Laws for GRPO (arXiv:2507.18014)](https://arxiv.org/abs/2507.18014) (NeurIPS 2026): 发现 GRPO reward 曲线遵循三阶段指数饱和。proposal 假设 faithfulness divergence 的 phase structure 与此关联。\n- [On the Learning Dynamics of RLVR (arXiv:2602.14872)](https://arxiv.org/abs/2602.14872) (2026): 揭示 RLVR 中 grokking-type phase transitions。支持 proposal 的 phase-dependent 假设。\n- [FaithCoT-Bench (arXiv:2510.04040)](https://arxiv.org/abs/2510.04040) (ICLR 2026): 统一的 CoT faithfulness 评测框架。proposal 的 LLM-as-judge 方法论参考此工作。\n- [Why Does RL Generalize? (arXiv:2604.25011)](https://arxiv.org/abs/2604.25011) (2026): RL 的 restrained、持续演化的特征变化 vs SFT 的快速稳定化。proposal 用此解释为何 RL 特别会产生 progressive reasoning theater。\n- [Chen et al. (arXiv:2505.05410)](https://arxiv.org/abs/2505.05410) (2025): 跨 RL steps 测量 hint-injection rate（先升后 plateau ~25%），但仅 surface-level。proposal 在此基础上加入 latent probing。\n\n- **调研总结**: CoT faithfulness 领域在 2025-2026 年爆发式增长，但现有工作几乎全部是 snapshot 分析（固定模型上测量 faithfulness）。唯一做纵向追踪的 Obfuscation Atlas 关注 deception 而非 surface-latent divergence，且缺乏理论框架化和 difficulty conditioning。Proposal 填补的空白——将 surface 与 latent faithfulness 指标在 GRPO 训练过程中密集追踪、以 in-conflict theory 框架化、按难度分层——在现有文献中确实无人做过，positioning 合理。\n\n【整体印象】:\n如果我是审稿人，第一反应会倾向 **weak accept**。这是一篇设计非常精心的实证分析论文：理论框架清晰（in-conflict theory 的可检验预测）、实验设计极为全面（多层次指标、confound 控制、理论对照实验）、研究问题高度 timely。它不是一篇提出新方法的论文，而是一篇 hypothesis-driven 的测量/表征研究——类似于 NLP 领域越来越受重视的 \"analysis paper\" 传统。\n\n主要的 accept 理由：(1) 填补了一个真实的研究空白（no one has done dense longitudinal surface+latent faithfulness tracking across GRPO training），(2) 实验设计的完备度在 proposal 阶段已经远超多数投稿，(3) 理论框架化提供了 testable predictions，使结果无论 confirm 还是 falsify 都有价值。\n\n主要的 reject 风险：(1) 纯测量论文，无新方法/无 intervention，(2) 仅 7-8B 规模，(3) 与 Obfuscation Atlas 的差异化需精心论证，(4) 假设可能过于直觉化（GRPO 产生不忠实推理、SFT 不会）——如果实验结果完全符合预期，reviewers 可能认为 contribution 有限。\n\n【核心贡献】:\n核心贡献是**首次在 GRPO 训练过程中密集追踪 surface-latent faithfulness divergence 的纵向实证研究**，框架化为 in-conflict reward theory 的实证检验，并引入 difficulty-conditioned 分析以区分 CoT-as-computation 与 CoT-as-rationalization。\n\n这个贡献的价值取决于结果的 informativeness：\n- 如果发现**非平凡的 phase structure**（如 early alignment → sharp divergence onset，且与 GRPO reward curve phases 对应），这将非常有价值，为 faithfulness-aware intervention 提供 timing guidance。\n- 如果发现**difficulty-dependent dynamics**确实存在（easy tasks 先 diverge，hard tasks 抗 diverge），这将首次实证验证 CoT-as-computation vs rationalization 假说在训练动态层面的预测。\n- 如果结果只是\"GRPO 训练后 faithfulness 下降\"，那 contribution 会被认为是 incremental。\n\n总体而言，对领域的潜在价值为**中到高**——取决于实验结果的颗粒度和意外程度。\n\n【方法合理性】:\n方法论整体**高度合理**，是将领域内已验证的多个测量工具（pre-CoT probes, NLDD, hint-injection, LLM-as-judge）组合成一个纵向追踪框架，并加入了多项控制设计：\n\n**合理之处：**\n- Dual probe strategy（per-checkpoint retrained + fixed probe transfer）设计精巧：前者测真实 separability，后者作为 representation drift proxy，对接 RL vs SFT feature dynamics 文献。\n- 对 output-supervision confound（arXiv:2511.11584）的显式控制（S1-S2 divergence as diagnostic）展示了方法论成熟度。\n- SFT baseline 不仅是 ablation，更是 in-conflict theory 的 contrasting prediction——如果 SFT 也产生类似 divergence，则 falsify 核心框架。\n- Accuracy-controlled analysis（partial correlation, accuracy-bin comparison）避免了将 performance gain 误判为 faithfulness change。\n\n**潜在问题：**\n- Composite divergence metric（z-score average of surface minus latent）是 ad hoc 的，不同指标的 z-score 可加性缺乏理论保证。不过 proposal 在 appendix 中规划了 sensitivity analysis（rank-based, PCA），部分缓解。\n- 更简单的替代方案：可以仅用 pre-CoT probe AUC 作为核心指标（不需要 composite），但 proposal 的多指标设计提供了更 robust 的证据——这是 overdesign 但方向正确。\n- Activation patching 在 10+ checkpoints 上做，密度是否足够取决于 transition 的 sharpness，但在 compute budget 内已是合理折衷。\n\n【5 维度打分】:\n\n1. 研究问题: **强** — \n   研究问题（surface-latent faithfulness gap 在 GRPO 训练中如何演化）填补了一个真实的文献空白。RFEval (2602.17053) 发现 unfaithfulness 与 post-training regime 相关但未追踪训练过程；Obfuscation Atlas (2602.15515) 做了 checkpoint 追踪但关注 deception 而非 faithfulness divergence。问题的 importance 在 reasoning model safety 语境下不言而喻。三个 sub-questions（phase dynamics, difficulty dependence, SFT contrast）都有清晰的 testable predictions，无论结果是 confirm 还是 falsify 都能产出 findings。\n\n2. 方法与创新: **中偏强** — \n   创新不在于提出新的测量方法（所有指标都来自现有工作：Cox et al. 的 pre-CoT probes, NLDD, hint-injection, LLM-as-judge），而在于将这些工具组合成一个 hypothesis-driven 纵向框架。与 Obfuscation Atlas (2602.15515) 相比，核心差异化在于：(a) surface + latent 双维度追踪，(b) difficulty conditioning，(c) in-conflict theory framing with SFT contrast。这些差异化是真实的但需要精心论证。与 Chen et al. (2505.05410) 相比，加入了 latent probing 是实质性提升。composite divergence metric 的构建偏 ad hoc，是方法论上的弱点。\n\n3. 实验设计: **强** — \n   这是 proposal 最大的亮点。Dual probe strategy（retrained + fixed + random-label baseline）超越了 Obfuscation Atlas 的单一 probe 方案。S1-S2 cross-validation 对 output-supervision confound (2511.11584) 的控制在同类工作中未见过。SFT baseline 作为理论对照而非简单 ablation 的定位提升了实验的 interpretability。Difficulty-conditioned analysis 直接检验 CoT-as-computation vs rationalization (2507.05246)。多 seed + variance reporting、early checkpoint instability 处理、GPQA 的 bootstrap CI 都展示了方法论细致度。主要不足：GPQA evaluation set 仅 198 items，phase detection 在 ~40 data points 上偏弱，但 proposal 诚实标注为 exploratory。\n\n4. 可行性: **强** — \n   ~220 A100-hours 在 8×A100 node 上 4 周内可完成，对学术实验室完全可行。所用工具（linear probes, NLDD, hint-injection, activation patching）都有先例实现和开源代码。不需要训练大模型，不需要构建新 benchmark（利用现有 MATH/GPQA/GSM8K/ARC-Challenge）。API 成本 ~$300 合理。唯一潜在瓶颈是 40+ checkpoint 的密集 probe 训练和评估的工程量，但 proposal 对此有合理规划。\n\n5. 写作与呈现: **强** — \n   Proposal 结构清晰、逻辑链条完整。从 motivation（RFEval 的统计发现 → 需要训练动态研究）→ 理论框架（in-conflict theory）→ 可检验假设（phase-dependent divergence, difficulty conditioning, SFT contrast）→ 实验设计（多层指标 + confound 控制）的论证路线流畅。对 limitations 的坦诚讨论（scale, KL sensitivity, single algorithm, GPQA sample size）增加了可信度。Related work 覆盖全面，positioning 清晰。\n\n【概率估计】: [33% - 48%] 中位 40%\n\n【估计理由】:\n\n**向上因素：**\n- 研究问题 timely 且有真实空白（longitudinal surface+latent faithfulness tracking 无人做过）\n- 实验设计在 proposal 阶段已达到极高完备度，超越了大多数同类分析论文\n- 理论框架化（in-conflict theory test）使结果无论 confirm/falsify 都有价值\n- Topic 高度契合 2025-2026 AI safety/alignment 热点，reviewer pool 关注度高\n- Difficulty-conditioned analysis 是独特角度，直接检验重要理论假说\n- 计算需求适中，feasibility 高\n\n**向下因素：**\n- 纯测量/表征论文，无新方法、无新 benchmark、无 intervention proposal。部分 reviewer 可能期望 \"so what — what do we do about it?\"\n- 仅 7-8B 规模，scalability 未知。在 reasoning model 普遍 >30B 的时代，7-8B 上的 dynamics 是否能推广存疑\n- 与 Obfuscation Atlas (2602.15515) 的差异化需要非常精确的论证，如果 reviewer 认为两者重叠度太高，novelty 会被显著压低\n- 核心假设（GRPO 产生 divergence，SFT 不会）可能被认为过于 predictable——若实验结果完全符合预期，\"surprise value\" 有限\n- Phase detection 在 ~40 data points 上做 changepoint detection，统计说服力有限\n- Composite metric 构建方式（z-score average）缺乏理论基础\n\n**中位 40% 的推理：** 这是一篇扎实的分析论文，研究问题重要、实验设计完备、理论框架清晰。在 EMNLP 的 analysis track 中有竞争力。但它面临 \"纯测量论文 + 小模型 + 可预测假设\" 的三重压力。如果 difficulty-dependent dynamics 的结果呈现非平凡的 pattern，概率可推至 45-48%；如果结果仅确认 \"GRPO 不忠实，SFT 忠实\" 的直觉预期，概率会降至 33-35%。\n\n【主要风险】:\n1. **Novelty 不足风险**：与 Obfuscation Atlas 的方法论重叠（cross-checkpoint probing），加上假设过于 predictable（GRPO → unfaithful, SFT → faithful），reviewer 可能判定 contribution 为 incremental。若 difficulty-conditioned analysis 未产出非平凡发现，这一风险将被放大。\n2. **Scale 与 generalizability 风险**：仅 7-8B 模型，在 reasoning model 普遍走向大规模（70B+）的趋势下，reviewer 可能质疑结论的普适性。特别是如果 faithfulness dynamics 存在 scale-dependent transition（类似 emergence），7-8B 的结论可能不适用于更大模型。\n\n【实施评估】:\n  - 计算资源: ~220 A100-hours，8×A100 node 约 4 周。对有 GPU 集群的学术实验室完全可行。\n  - 数据需求: MATH（公开）、GPQA-Extended（公开，546 items）、GPQA-Diamond（公开，198 items）、GSM8K（公开）、ARC-Challenge（公开）。无需构建新数据集。\n  - 人工介入: 50 samples 的 judge-vs-human agreement 评估需少量人工标注（~2-3 人天）；50 items 的 hint-injection pilot validation 需人工审核。总体人工需求很低。\n  - 训练需求: 需要 GRPO 训练（2 模型 × ~40 checkpoints）和 SFT 训练（1 模型 × ~40 checkpoints）。不需要从头预训练。训练流程有 Open-R1 等开源框架可参考。\n  - 新 Benchmark: 不需要。完全利用现有 benchmark。\n  - 预估周期: 约 6-8 周（含超参 sweep 1-2 周、GRPO/SFT 训练 2-3 周、probe 训练/评估 1-2 周、分析与写作 2 周）。如果并行化良好，4-6 周可完成实验部分。\n```\n\nSources:\n- [Aligned, Orthogonal or In-conflict (arXiv:2603.30036)](https://arxiv.org/abs/2603.30036)\n- [The Obfuscation Atlas (arXiv:2602.15515)](https://arxiv.org/abs/2602.15515)\n- [Reasoning Theater](https://www.goodfire.ai/research/reasoning-theater)\n- [RFEval (arXiv:2602.17053)](https://arxiv.org/abs/2602.17053)\n- [Decoding Answers Before CoT (arXiv:2603.01437)](https://arxiv.org/abs/2603.01437)\n- [NLDD / Faithfulness Decay (arXiv:2602.11201)](https://arxiv.org/abs/2602.11201)\n- [Monitoring the Internal Monologue (arXiv:2605.18549)](https://arxiv.org/abs/2605.18549)\n- [Predictive Scaling Laws for GRPO (arXiv:2507.18014)](https://arxiv.org/abs/2507.18014)\n- [On the Learning Dynamics of RLVR (arXiv:2602.14872)](https://arxiv.org/abs/2602.14872)\n- [FaithCoT-Bench (arXiv:2510.04040)](https://arxiv.org/abs/2510.04040)\n- [Why Does RL Generalize? (arXiv:2604.25011)](https://arxiv.org/abs/2604.25011)\n- [Evaluating GRPO and DPO for Faithful CoT (arXiv:2512.22631)](https://arxiv.org/abs/2512.22631)\n- [Catching Rationalization in the Act (arXiv:2603.17199)](https://arxiv.org/abs/2603.17199)\n- [Why Models Know But Don't Say (arXiv:2603.26410)](https://arxiv.org/abs/2603.26410)\n\n━━━━━━━━━━ 审稿人 2（独立评审）━━━━━━━━━━\nNow I have sufficient research to make a well-informed assessment. Let me compile my evaluation.\n\n---\n\n```\n【阶段】: Triage\n\n【领域调研】:\n\n- [Aligned, Orthogonal or In-conflict (arXiv:2603.30036)](https://arxiv.org/abs/2603.30036) (2026): \n  本 proposal 的核心理论框架。将 RL 后训练奖励分解为 output-dependent 和 CoT-dependent 项，预测 in-conflict 奖励结构会降低 monitorability。论文提供了理论和实验验证。Proposal 是对该框架的第一个纵向经验检验——定位清晰且有价值。\n\n- [Reasoning Theater (arXiv:2603.05488)](https://arxiv.org/html/2603.05488v1) (2026): \n  发现模型在 CoT 展开之前就已锁定答案，probe-guided early exit 可减少 30-80% token。这是 proposal 所称\"latent pre-commitment\"的直接证据，但仅分析固定模型快照，不追踪训练动态。\n\n- [The Obfuscation Atlas (arXiv:2602.15515)](https://arxiv.org/abs/2602.15515) (2026): \n  **最接近的竞争性工作。** 在 Llama-3 (8B-70B) 上跨 RLVR checkpoint 追踪 deception probes，建立了 cross-checkpoint probing 方法论。但聚焦于 deception/obfuscation（代码环境中的 reward hacking），而非一般性的 CoT faithfulness divergence，且缺少 surface faithfulness 指标的联合分析和难度分层。Proposal 需要明确与此工作的差异化。\n\n- [When CoT is Necessary, Models Struggle to Evade Monitors (arXiv:2507.05246)](https://arxiv.org/abs/2507.05246) (2025): \n  提出 CoT-as-computation vs CoT-as-rationalization 的概念框架，认为需要多步推理的难题会迫使模型暴露真实推理。Proposal 的 difficulty-dependent 预测直接源于此框架——这是 proposal 最有辨识度的角度之一。\n\n- [Pre-CoT Probes (arXiv:2603.01437)](https://arxiv.org/pdf/2603.01437) (2026): \n  线性探针在 CoT 生成前即可以 >0.9 AUC 预测答案。Proposal 的 L1 指标直接采用此方法。\n\n- [NLDD / Mechanistic Evidence for Faithfulness Decay (arXiv:2602.11201)](https://arxiv.org/pdf/2602.11201) (2026): \n  发现推理链在 70-85% 长度处存在 \"reasoning horizon\"。Proposal 的 L2 指标基于此。\n\n- [Monitorability as a Free Gift (arXiv:2602.03978)](https://arxiv.org/pdf/2602.03978) (2026): \n  发现 RLVR 训练早期 monitorability 随能力提升而改善（\"free gift\"），但持续训练后常出现平台期或回退。这与 proposal 的 Phase 1（early alignment）→ Phase 2（divergence onset）预测高度一致，同时也意味着 proposal 的核心预测部分已有初步经验支持。\n\n- [Evaluating GRPO and DPO for Faithful CoT (arXiv:2512.22631)](https://arxiv.org/html/2512.22631v1) (2025): \n  比较 GRPO 和 DPO 的忠实度，但仅 3 个 epoch checkpoint，缺乏密集纵向追踪和机械解释。\n\n- [Chen et al. (arXiv:2505.05410)](https://arxiv.org/abs/2505.05410) (2025): \n  跨 RL 步数追踪 hint-injection rate（先升后平，~25%），但仅有 surface 指标，缺少 latent 机制分析。\n\n- [Faithful GRPO (arXiv:2604.08476)](https://arxiv.org/html/2604.08476) (2026): \n  在 VLM 中引入约束策略优化以改善 GRPO 的 faithfulness。属于 intervention 方法而非诊断研究，与 proposal 互补。\n\n- [The Hypocrisy Gap (arXiv:2602.02496)](https://arxiv.org/pdf/2602.02496) (2026):\n  使用 sparse autoencoders 量化内部信念与 CoT 的分歧（AUROC 0.55-0.74），但为快照分析。\n\n- 调研总结: CoT faithfulness 是 2025-2026 年的研究热点，现有工作大量集中在**快照分析**（固定模型的 faithfulness 测量）和**干预方法**（faithfulness-aware RL）。**纵向训练动态**方面的工作稀少：Obfuscation Atlas 追踪了 deception probes 但在不同研究设定下；Chen et al. 追踪了 surface 指标但缺 latent 分析；GRPO vs DPO 仅 3 个 checkpoint。Proposal 所提出的\"密集纵向 + 机械+行为联合 + 难度分层 + in-conflict 理论检验\"组合确实填补了一个具体空白，但这个空白的大小和重要性需要审慎评估。\n\n【整体印象】:\n作为审稿人，我的第一反应是：这是一份**异常精心设计的实验研究 proposal**，在一个热门且重要的方向上定位了一个真实的研究空白。proposal 展现了对领域文献的深度把握，实验设计面面俱到（多指标、多模型、对照实验、confound 控制）。\n\n但我的疑虑也是明确的：（1）这本质上是一个**纯测量/分析型研究**，不提出新方法、新模型、新 benchmark，核心贡献是\"观察到 X 现象并用 Y 框架解释\"——这在 EMNLP 审稿中有时会被视为贡献不足；（2）实验设计的**复杂度与论文篇幅的矛盾**——proposal 涉及 6+ 指标、2 模型家族、3 种训练方式、5 个难度等级、~40 个 checkpoint，如何在 8 页正文中清晰呈现是巨大挑战；（3）核心预测的**可证伪性**存在灰色地带——\"phase-dependent dynamics\"和\"difficulty-dependent divergence\"的定义足够宽松，可能大部分实验结果都能被事后解释为\"一致\"。\n\n倾向：**borderline**，偏 weak accept 侧。如果实验结果干净且论述聚焦，有机会被接收；但风险点多。\n\n【核心贡献】:\n1. **首个纵向实证检验 in-conflict 理论预测**：在 GRPO 训练全程追踪 surface-latent faithfulness gap，验证或证伪 in-conflict 框架关于 monitorability 降低的核心预测。\n2. **难度依赖的分歧图谱**：按问题难度分层的 divergence curves 家族，直接检验 CoT-as-computation vs CoT-as-rationalization 假说。\n3. **SFT 对照作为理论验证**：aligned reward 设定下的对比实验。\n\n贡献的价值：中等偏上。对 AI safety / alignment 社区有直接意义，对理解 RL post-training 的机制有增量贡献。但对更广泛的 NLP 社区而言，实用性有限（不直接改进任何下游任务）。\n\n【方法合理性】:\n方法整体合理，但存在几个值得审视的点：\n\n1. **Composite divergence metric 的构造偏 ad hoc**：z-score 平均 hint-injection rate 和 LLM-as-judge consistency，再减去 probe AUC 和 NLDD 的 z-score 平均——这四个指标测量的是不同维度的东西，它们的线性组合是否有意义缺乏理论论证。sensitivity analysis（rank-based, PCA）是好的补救，但核心指标的任意性仍是弱点。\n\n2. **更简单的替代方案**？如果核心问题是\"GRPO 训练中 faithfulness 何时恶化\"，一个更简单的方案是：仅用 pre-CoT probe AUC（已被证明 >0.9 AUC 的可靠指标）跨 checkpoint 追踪，配合 task accuracy 和 CoT length。这能回答 80% 的核心问题，且更清晰、更容易复现。proposal 的 6+ 指标方案更全面但也更脆弱——任何指标间的不一致都需要大量篇幅解释。\n\n3. **Phase detection on ~40 data points**：即使标注为\"exploratory\"，PELT + Bayesian changepoint detection 在 40 个点上的统计功效很低。这可能产生不可靠的结论或非结论性结果。\n\n4. **Dual probe strategy 设计精良**：per-checkpoint retrained vs fixed probe 的对比很好地分离了 representation drift 效应，这是实验设计的亮点。\n\n5. **Confound 控制（S1 vs S2 divergence 诊断 surface inflation）** 是周到的设计。\n\n【5 维度打分】:\n\n1. 研究问题: [强] — \n   \"GRPO 训练中 surface vs latent faithfulness gap 如何演化\"是一个timely、重要且 understudied 的问题。它直接关联 AI safety 中 CoT 监控的可靠性问题，且有清晰的理论动机（in-conflict framework）。现有工作（Obfuscation Atlas、Chen et al.、GRPO vs DPO 比较）都只部分触及这个问题，没有完整的纵向 surface+latent 联合分析。难度依赖的分析角度尤其有价值，直接检验了一个重要的理论预测。\n\n2. 方法与创新: [中] — \n   **所有测量工具均借自现有工作**（pre-CoT probes from Cox et al., NLDD from 2602.11201, hint-injection from Chen et al., activation patching from existing methodology）。创新在于**组合方式和研究设计**（纵向 + 多指标 + 难度分层 + 理论框架检验），而非技术方法本身。Obfuscation Atlas (arXiv:2602.15515) 已经建立了 cross-checkpoint probing 的先例，虽然研究问题不同。Composite divergence metric 的构造缺乏严格论证。对于 EMNLP 审稿人而言，\"clever study design but no new method\" 通常被评价为 moderate novelty。\n\n3. 实验设计: [强] — \n   这是 proposal 最大的亮点。多层次指标体系（behavioral S1/S2 + mechanistic L1/L2/L3/L4），dual probe strategy，accuracy-controlled analysis，difficulty stratification，SFT 对照实验，surface-metric cross-validation for confound control，seed 重复性——这些都展现了对实验严谨性的深入思考。相比同领域工作（如 GRPO vs DPO 仅 3 checkpoints, Chen et al. 仅 surface 指标），实验设计明显更完备。但**复杂度也是风险**：在 8 页正文内清晰呈现所有分析将极具挑战。\n\n4. 可行性: [中] — \n   ~220 A100-hours 的计算预算是合理的。但实际执行风险包括：\n   - LLM-as-judge 评估（S2）的可靠性可能不足以检测 checkpoint 间的微妙变化（reliability checks 有计划但不确定是否足够灵敏）；\n   - 40 个 checkpoint × 多个指标 × 2 模型 × 多难度级别的数据量巨大，分析和可视化工作量被低估；\n   - 4 周时间表乐观——probe 训练调试、activation patching 实验的工程复杂度可能超预期；\n   - GPQA-Diamond 仅 198 items，statistical power 有限（proposal 已承认）。\n\n5. 写作与呈现: [中] — \n   Proposal 本身写作水平高，逻辑清晰，文献整合出色。但 **论文写作将面临巨大挑战**：6+ 指标 × 2 模型 × 5 难度级别 × GRPO/SFT 对比 = 大量图表和分析结果需要在有限篇幅内呈现。存在论文变成\"数据 dump\"而非清晰 narrative 的风险。建议：确定 1-2 个核心 finding 作为主线，其余放入 appendix。\n\n【概率估计】: [22% - 38%] 中位 30%\n\n【估计理由】:\n上调因素：\n- 研究问题非常 timely，2025-2026 年 CoT faithfulness 是热点话题\n- 实验设计的严谨性和完备性在同类工作中突出\n- 填补了一个真实的研究空白（纵向 surface+latent 联合分析）\n- 理论框架（in-conflict theory）提供了清晰的预测，使研究不仅是\"测量\"而是\"理论检验\"\n- SFT 对照和难度分层增加了分析深度\n\n下调因素：\n- **核心局限：纯分析型研究，无新方法/新模型/新 benchmark 贡献**。EMNLP 审稿人（尤其非 safety 方向的）可能认为贡献不足\n- **方法创新度有限**：所有工具借自现有工作，Obfuscation Atlas 已有 cross-checkpoint probing 先例\n- **实验结果不确定性高**：如果预测的 phase structure 不明显、或难度依赖效应模糊，论文的 story 会大打折扣\n- **复杂度与篇幅矛盾**：在 8 页内清晰呈现所有分析结果是极大挑战\n- **仅 7-8B 模型，泛化性存疑**\n- 对更广泛 NLP 社区的直接实用价值有限\n\n综合判断：这是一篇在 AI safety / mechanistic interpretability 子社区会受到欢迎的工作，但在 EMNLP 的广泛审稿池中，\"characterization study without new method\"的定位使它处于 borderline 区域。中位 30% 反映了\"高质量的研究设计 + 热门方向\"与\"纯分析型、无方法贡献、规模有限\"之间的权衡。如果实验结果非常干净且论述极度聚焦，有望达到上界 38%；如果结果模糊或论文过于冗杂，可能跌至下界 22%。\n\n【主要风险】:\n1. **\"贡献不足\"的审稿意见**：纯测量/分析型研究在 EMNLP 中容易被质疑\"这不是新方法也不是新资源，核心贡献是什么？\"——尤其当审稿人不在 AI safety 子领域时。Obfuscation Atlas 的存在进一步弱化了 novelty claim（\"first to do cross-checkpoint probing\" 已不完全成立）。\n2. **实验结果不支持核心预测**：如果 surface-latent divergence 没有清晰的 phase structure，或 difficulty-dependent 效应不显著，论文将失去最有力的 narrative。考虑到仅 ~40 checkpoints 和 7-8B 模型的 noisy training dynamics，这个风险不可忽视。\n\n【实施评估】:\n  - 计算资源: ~220 A100-hours（含训练、probe 评估、activation patching），需 8×A100 节点，合理可行\n  - 数据需求: MATH（公开）、GPQA-Extended（公开，546 items）、GSM8K（公开）、ARC-Challenge（公开）。无数据获取障碍\n  - 人工介入: LLM-as-judge 可靠性验证需 50 样本人工标注；hint-injection pilot validation 需 50 items 人工检查。人工需求低\n  - 训练需求: 需要完整 GRPO 训练（2 模型 × 1-2 seeds）+ SFT 训练（1 模型）。需保存 ~40 个密集 checkpoint（存储需求 ~2-3TB）\n  - 新 Benchmark: 不需要。使用已有评测集\n  - 预估周期: 4-6 周（proposal 估计 4 周略乐观，probe 调试和 activation patching 工程量可能超预期）\n```\n\n---\n\nSources:\n- [Aligned, Orthogonal or In-conflict (arXiv:2603.30036)](https://arxiv.org/abs/2603.30036)\n- [Reasoning Theater (arXiv:2603.05488)](https://arxiv.org/html/2603.05488v1)\n- [The Obfuscation Atlas (arXiv:2602.15515)](https://arxiv.org/abs/2602.15515)\n- [When CoT is Necessary, Models Struggle to Evade Monitors (arXiv:2507.05246)](https://arxiv.org/abs/2507.05246)\n- [Pre-CoT Probes (arXiv:2603.01437)](https://arxiv.org/pdf/2603.01437)\n- [NLDD / Mechanistic Evidence for Faithfulness Decay (arXiv:2602.11201)](https://arxiv.org/pdf/2602.11201)\n- [Monitorability as a Free Gift (arXiv:2602.03978)](https://arxiv.org/pdf/2602.03978)\n- [Evaluating GRPO and DPO for Faithful CoT (arXiv:2512.22631)](https://arxiv.org/html/2512.22631v1)\n- [Faithful GRPO (arXiv:2604.08476)](https://arxiv.org/html/2604.08476)\n- [The Hypocrisy Gap (arXiv:2602.02496)](https://arxiv.org/pdf/2602.02496)\n- [Why Models Know But Don't Say (arXiv:2603.26410)](https://arxiv.org/html/2603.26410v1)\n- [LLM Reasoning Is Latent, Not the Chain of Thought (arXiv:2604.15726)](https://arxiv.org/html/2604.15726)\n- [Post-Training in 2026: GRPO, DAPO, RLVR & Beyond](https://llm-stats.com/blog/research/post-training-techniques-2026)\n- [Monitoring the Internal Monologue (arXiv:2605.18549)](https://arxiv.org/abs/2605.18549)\n\n━━━━━━━━━━ 审稿人 3（独立评审）━━━━━━━━━━\nBased on my research, I now have sufficient context to provide a comprehensive evaluation. Let me compile my assessment.\n\n```\n【阶段】: Triage\n\n【领域调研】:\n- \"Aligned, Orthogonal or In-conflict\" (arXiv:2603.30036, March 2026): 本proposal的核心理论框架。该论文提出in-conflict reward降低CoT monitorability的预测，但仅做了理论分析和有限实验验证，没有纵向训练动态追踪。Proposal声称是该框架的\"first longitudinal empirical test\"基本成立。\n- \"The Obfuscation Atlas\" (arXiv:2602.15515, Feb 2026): 最直接的竞争工作。在Llama-3 8B-70B上跨RLVR checkpoint追踪deception probes，建立了cross-checkpoint probing方法论。但其关注deception/obfuscation而非faithfulness divergence，未做difficulty conditioning，未做surface-latent divergence量化。Proposal的novelty claim相对该工作仍有差异化空间，但需要明确区分。\n- \"Evaluating GRPO and DPO for Faithful CoT Reasoning\" (arXiv:2512.22631, Dec 2025): 仅比较3个epoch checkpoint的faithfulness，时间分辨率远不如本proposal的~40 checkpoints。\n- \"Decoding Answers Before Chain-of-Thought\" (arXiv:2603.01437, March 2026): 建立pre-CoT linear probe方法论（AUC>0.9），proposal的L1指标直接采用该方法。是方法论基础而非竞争者。\n- \"On the Learning Dynamics of RLVR\" (arXiv:2602.14872, Feb 2026): 证明RLVR存在grokking-type phase transitions。为proposal的phase-dependent hypothesis提供理论支撑。\n- Chen et al. (arXiv:2505.05410): 跨RL步骤测量hint-injection率（先改善后plateau ~25%），但仅surface-level，无latent probing。Proposal显著扩展了这一工作。\n- \"How Does Unfaithful Reasoning Emerge\" (arXiv:2602.01017, ICLR 2027): 合成实验显示faithful→unfaithful reasoning的phase transition。为proposal的phase结构预测提供额外理论支撑。\n- \"Monitoring the Internal Monologue\" (arXiv:2605.18549, May 2026): 构建推理过程中probe trajectory（volatility, trend, steady-state），95% AUROC。是within-inference分析，与proposal的across-training分析互补而非竞争。\n- 调研总结: CoT faithfulness是2025-2026年的研究热点，大量工作关注snapshot式测量或单维度纵向追踪，但**将mechanistic probing与surface behavioral metrics结合的dense longitudinal study，加上difficulty conditioning和in-conflict theory测试**，在现有文献中确实存在空白。Obfuscation Atlas是最近的竞争者但聚焦不同问题。\n\n【整体印象】: 作为审稿人，我的第一反应是\"这是一篇设计非常精良的empirical analysis paper，理论动机清晰、实验方案周密\"。倾向于weak accept / borderline accept。主要顾虑在于：(1) 这本质是analysis paper，不提出新方法，部分审稿人可能认为contribution不够\"constructive\"；(2) 与Obfuscation Atlas的区分需要更加sharp；(3) null result风险——如果没有清晰的phase structure，paper的impact会大幅降低。但该proposal的实验设计之完备程度本身就是一个亮点——从dual probe strategy到accuracy-controlled analysis到surface-metric cross-validation，每一个潜在confound都有对应的控制。\n\n【核心贡献】: 本工作的核心贡献是：(1) 首次将mechanistic probing与surface behavioral metrics结合，在dense temporal resolution下追踪GRPO训练中surface-latent faithfulness divergence的演化；(2) 以difficulty-conditioned analysis直接测试CoT-as-computation vs CoT-as-rationalization假说；(3) 通过SFT对比验证in-conflict reward theory的核心预测。对领域的价值中等偏高——如果结果清晰，将为faithfulness-aware intervention timing提供实证基础，并验证/证伪一个有影响力的理论框架。\n\n【方法合理性】: 方法整体合理，各指标选择都有文献依据（Cox et al.的pre-CoT probes, Chen et al.的hint-injection, NLDD等）。实验设计中的控制措施（accuracy-controlled analysis, surface-metric cross-validation for output-supervision confound, dual probe strategy）显示出对潜在confounds的深思熟虑。潜在问题：(1) composite divergence metric（surface z-score mean minus latent z-score mean）的构造有一定ad hoc性，不同归一化方式可能导致不同结论（但proposal在appendix中计划了sensitivity分析）；(2) 40个checkpoints上做changepoint detection统计力有限（但proposal明确标注为exploratory）；(3) 没有更简单的替代方案能回答同样的问题——这确实需要longitudinal probing。\n\n【5 维度打分】:\n  1. 研究问题: [强] — 问题重要且时机好。CoT faithfulness divergence的训练动态是当前AI safety和reasoning LLM研究的关键盲区。RFEval发现49.7%的unfaithful outputs，Reasoning Theater证明models在CoT之前已lock答案，但没人追踪这是何时/如何在训练中产生的。问题的framing——通过in-conflict theory lens + difficulty conditioning——比单纯\"measure faithfulness across checkpoints\"高一个层次。\n  \n  2. 方法与创新: [中] — 方法本身不新（linear probes, NLDD, hint-injection, LLM-as-judge都是现有技术），创新在于组合方式和theoretical framing。相比Obfuscation Atlas（arXiv:2602.15515）的cross-checkpoint probing，本proposal增加了：(a) surface-latent divergence量化而非仅latent probing；(b) difficulty-conditioned analysis；(c) SFT对比作为理论测试；(d) dual probe strategy区分representation drift vs faithfulness变化。这些增量有价值但非革命性。关键差异化在于theoretical motivation（in-conflict framework测试）和difficulty conditioning，两者都是genuinely novel angles。\n  \n  3. 实验设计: [强] — 这是proposal最强的维度。几乎每个潜在confound都有对应控制：accuracy-controlled partial correlation、surface-metric cross-validation（S1 vs S2 divergence诊断surface inflation）、dual probe strategy（per-checkpoint retrained vs fixed probe解耦representation drift）、random-label baseline、bootstrap CI、sensitivity analysis with alternative aggregations。Baseline充分（SFT对比）。评估方案（MATH + GPQA-Diamond + GSM8K + ARC-Challenge）覆盖in-distribution和OOD。唯一不足是GPQA样本量有限（198 items），但proposal已明确标注为supplementary evidence。\n  \n  4. 可行性: [强] — 220 A100-hours在单个8×A100 node上4周内可完成，完全realistic。模型选择合理（7-8B，可在单节点训练和inference）。评估数据均为公开数据集。LLM-as-judge成本可控（~$300）。代码层面有Open-R1等参考实现。唯一的可行性风险是training instability（Open-R1 issue #358），但proposal已计划检测和reporting。\n  \n  5. 写作与呈现: [强] — Proposal逻辑清晰，从research question到hypothesis到experimental design环环相扣。理论grounding扎实（in-conflict framework → specific predictions → experimental tests）。Related work覆盖全面且有明确的positioning statement。Limitations诚实。唯一的minor issue是proposal有些冗长，正式论文需要压缩。\n\n【概率估计】: [30% - 45%] 中位 37%\n\n【估计理由】: \n优势方面：研究问题时机好且重要、实验设计极为周密、理论framing清晰有falsifiable predictions、可行性高。这些使其成为一篇solid empirical study。\n\n压制概率的因素：\n(1) 本质是analysis paper而非method paper——不提出新方法/新模型/新benchmark，部分reviewer对此类论文有bias（\"interesting observation but what's the actionable contribution?\"）；\n(2) Obfuscation Atlas（arXiv:2602.15515）已建立cross-checkpoint probing methodology，虽然focus不同，但削弱了\"first longitudinal mechanistic study\"的novelty claim；\n(3) Null result风险显著——如果divergence curve不显示清晰phase structure，或difficulty conditioning没有predicted pattern，paper的core contribution大幅缩水；\n(4) 7-8B scale limitation可能引发generalizability质疑；\n(5) EMNLP reviewer pool可能对纯interpretability/safety-motivated analysis paper有mixed reception——有些reviewer会认为这更适合workshop或findings track。\n\n综合来看，这是一篇above-average的投稿，但不够exceptional。如果实验结果清晰confirm predictions，写作精良，中稿概率可到40-45%；如果结果mixed或null，可能降到25-30%。中位估计37%反映了结果不确定性。\n\n【主要风险】: \n1. **Null result风险**：如果surface-latent divergence没有清晰的phase structure，或difficulty conditioning没有展现predicted pattern（easy先diverge, hard后diverge），论文的核心contribution——\"map the divergence dynamics\"——将变成\"we measured but didn't find clear patterns\"，这对acceptance是致命的。\n2. **Novelty perception问题**：Reviewer可能认为\"combining existing probing techniques across checkpoints + adding difficulty stratification\"是incremental engineering而非fundamental contribution，尤其在Obfuscation Atlas已做了类似cross-checkpoint probing的背景下。\n\n【实施评估】:\n  - 计算资源: ~220 A100-hours（约4周在8×A100 node上）。中等规模，学术实验室可承受。\n  - 数据需求: 公开数据集（MATH, GPQA, GSM8K, ARC-Challenge）。无新数据收集需求。\n  - 人工介入: LLM-as-judge可靠性验证需要50 samples human annotation（~2-3人天），probe pilot validation需要50 items检查（~1人天）。总体人工介入低。\n  - 训练需求: 需要完整GRPO training（2-3 runs）+ SFT training（1 run）。训练infra需求中等。\n  - 新 Benchmark: 不需要。使用现有数据集和现有评估方法。\n  - 预估周期: 6-8周（含preliminary sweep 1周 + GRPO/SFT training 2周 + probe training & evaluation 2周 + analysis & writing 2-3周）。Timeline较紧凑但可行。\n```\n\nSources:\n- [Aligned, Orthogonal or In-conflict: When can we safely optimize Chain-of-Thought?](https://arxiv.org/html/2603.30036v1)\n- [The Obfuscation Atlas: Mapping Where Honesty Emerges in RLVR with Deception Probes](https://arxiv.org/abs/2602.15515)\n- [Evaluating GRPO and DPO for Faithful Chain-of-Thought Reasoning in LLMs](https://arxiv.org/html/2512.22631)\n- [Decoding Answers Before Chain-of-Thought: Evidence from Pre-CoT Probes and Activation Steering](https://arxiv.org/pdf/2603.01437)\n- [On the Learning Dynamics of RLVR at the Edge of Competence](https://arxiv.org/abs/2602.14872)\n- [How Does Unfaithful Reasoning Emerge from Autoregressive Training?](https://arxiv.org/pdf/2602.01017)\n- [Why Models Know But Don't Say](https://arxiv.org/html/2603.26410)\n- [Monitoring the Internal Monologue](https://arxiv.org/html/2605.18549v1)\n- [FaithCoT-Bench](https://arxiv.org/pdf/2510.04040)\n- [Chain of Thought Faithfulness Blog](https://explore.n1n.ai/blog/llm-cot-faithfulness-research-2026-03-30)\n\n\n【原始 proposal（允许参考但不是主要依据）】:\n## Title\n\nMapping the Surface-Latent Faithfulness Divergence Across GRPO Training: When Does Reasoning Theater Begin?\n\n## 1. Research Question\n\nHow does the gap between surface-level chain-of-thought (CoT) faithfulness and latent internal-state faithfulness evolve across the trajectory of GRPO reinforcement learning training in reasoning LLMs? We frame this through the lens of reward conflict theory: GRPO's outcome-based reward constitutes an \"in-conflict\" setting (arXiv:2603.30036) where the output-dependent reward term and CoT-dependent term pull in opposing directions. Specifically, we ask: (1) Does the surface-latent faithfulness gap exhibit phase-dependent dynamics consistent with in-conflict reward predictions? (2) Does the divergence onset depend on problem difficulty—earlier for easy tasks (CoT-as-rationalization) versus delayed for hard tasks (CoT-as-computation) (arXiv:2507.05246)? (3) Does SFT on the same data (an \"aligned\" reward setting) produce qualitatively different divergence dynamics, as the in-conflict framework predicts?\n\n## 2. Core Hypothesis and Theoretical Grounding\n\nThe \"Aligned, Orthogonal or In-conflict\" framework (arXiv:2603.30036) decomposes RL post-training reward into output-dependent and CoT-dependent terms, predicting that in-conflict reward structures reduce CoT monitorability. GRPO with outcome-based reward is a canonical in-conflict setting: it rewards correct final answers regardless of CoT quality, creating pressure to produce performative rather than faithful reasoning.\n\nWe hypothesize that this in-conflict pressure produces a **phase-dependent surface-latent divergence** rather than monotonic widening. Drawing on evidence that RLVR training exhibits phase transitions (arXiv:2602.14872), that GRPO reward curves follow three-phase exponential saturation (arXiv:2507.18014, NeurIPS 2026), and that RL post-training systematically increases model confidence through limited representation variability (arXiv:2601.04670), we predict:\n\n- **Phase 1 (Early alignment)**: Surface and latent faithfulness both improve as RL sharpens response distributions. Monitorability improves, consistent with RLVR monitorability findings (arXiv:2602.03978).\n- **Phase 2 (Divergence onset)**: Surface CoT quality continues improving while latent answer pre-commitment deepens. The model increasingly \"knows\" its answer before articulating reasoning—the onset of Reasoning Theater (arXiv:2603.05488).\n\nCritically, we predict this divergence is **difficulty-dependent**: easy problems (where CoT serves as post-hoc rationalization, not genuine computation) should diverge earlier and more sharply, while hard problems (where CoT is necessary computation) should diverge later or resist divergence. This prediction follows directly from the CoT-as-computation vs CoT-as-rationalization distinction (arXiv:2507.05246).\n\nAn important confound: outcome-based supervision can indirectly shape CoT surface appearance through two mechanisms—safe-looking output generalizing to safe-looking CoT, and coherent CoT being reinforced because it increases correct-output probability (arXiv:2511.11584; arXiv:2601.23086). This means surface metrics may be artificially inflated by GRPO, making the surface-latent gap partially an artifact of surface inflation rather than solely latent pre-commitment deepening. Our experimental design explicitly controls for this (§5.4).\n\n**SFT as contrasting prediction**: SFT on the same data uses solution traces as targets, making CoT and output optimization approximately \"aligned.\" The in-conflict framework predicts SFT should not produce comparable divergence. If confirmed, this is not merely an ablation but a direct validation of the framework's core prediction.\n\nSynthetic experiments on unfaithful reasoning emergence (arXiv:2602.01017, ICLR 2027) further support phase-dependent dynamics: models learn faithful reasoning only below a training-noise threshold, with a transition from faithful stepwise reasoning to unfaithful skip-step reasoning via an intermediate mixed mode. GRPO's reward variance may push models past this threshold at an identifiable training stage.\n\n## 3. Motivation and Significance\n\nRFEval (arXiv:2602.17053) finds 49.7% unfaithful outputs across 12 open-source LRMs, with unfaithfulness correlating more with post-training regime than model scale—motivating a training-dynamics-level investigation. Reasoning Theater (arXiv:2603.05488) demonstrates that models lock onto answers far before CoT reveals them, with probe-guided early exit reducing tokens by 30-80%. \"Why Models Know But Don't Say\" (arXiv:2603.26410, AAAI 2027) documents thinking-answer divergence in 55.4% of hint-following cases across 12 open-weight reasoning models.\n\nHowever, no existing work traces this gap's emergence across training with mechanistic tools. This blind spot prevents timing of faithfulness-aware interventions (FaithRL (arXiv:2602.03507), step-level faithfulness RL (arXiv:2602.05897), AtManRL (arXiv:2604.16158)). Our study provides:\n\n1. **First longitudinal empirical test of in-conflict theory predictions**: validating or falsifying the framework's claim that in-conflict reward structures reduce monitorability over training.\n2. **Difficulty-dependent temporal map**: not one divergence curve but a family of curves stratified by problem difficulty, revealing whether CoT-as-computation tasks resist the divergence that afflicts CoT-as-rationalization tasks.\n3. **Actionable timing guidance**: identifying training phases where faithfulness-aware intervention would be most effective.\n4. **Representation-level mechanistic explanation**: connecting divergence dynamics to RL vs SFT feature evolution patterns (arXiv:2604.25011), where RL's restrained, continually evolving feature changes (vs SFT's rapid stabilization) may explain why RL specifically produces progressive reasoning theater.\n\n## 4. Related Work\n\n**Faithfulness measurement (snapshot paradigm).** Pre-CoT probes (Cox et al., arXiv:2603.01437) decode final answers from pre-CoT residual-stream activations with high AUC, confirmed causally via activation steering (flip rate >50%). Catching rationalization in the act (arXiv:2603.17199, ICLR 2027) shows pre-generation probes detect motivated reasoning as effectively as full-CoT monitors. The Hypocrisy Gap (arXiv:2602.02496) uses sparse autoencoders to quantify internal-belief/CoT divergence (AUROC 0.55-0.74). Monitoring the Internal Monologue (arXiv:2605.18549) constructs probe trajectories during reasoning (volatility, trend, steady-state features; 95% AUROC)—a within-inference token-level analysis complementary to our across-training step-level analysis. NLDD (arXiv:2602.11201) measures step-level faithfulness via next-token likelihood disruption, finding reasoning horizons at 70-85% chain length. FaithCoT-Bench (arXiv:2510.04040, ICLR 2026) unifies counterfactual, logit-based, and LLM-as-judge faithfulness evaluation across 1,000+ trajectories. All analyze fixed models; none traces evolution across training.\n\n**RL training dynamics.** DeepSeek-R1 (arXiv:2501.12948) demonstrates reasoning incentivized through pure RL with GRPO. On the Learning Dynamics of RLVR (arXiv:2602.14872) reveals grokking-type phase transitions with discontinuous difficulty spectra and relay effects with smooth spectra. Predictive Scaling Laws for GRPO (arXiv:2507.18014, NeurIPS 2026) identifies three-phase exponential saturation in reward curves. Learning Dynamics in RL Post-Training (arXiv:2601.04670) applies NTK analysis to show RL updates systematically increase model confidence. On Predictability of RL Dynamics (arXiv:2510.00553) shows RL training's Rank-1 subspace nearly determines reasoning gains. GRPO's effective loss can be rewritten as KL-regularized contrastive loss (arXiv:2503.06639), with KL coefficient directly governing optimization dynamics.\n\n**Faithfulness across RL training.** The Obfuscation Atlas (arXiv:2602.15515) tracks deception probes across RLVR checkpoints in Llama-3 (8B-70B), establishing cross-checkpoint probing methodology. RL-Obfuscation (arXiv:2506.14261) shows RL-finetuned models can evade token-level monitors but not holistic monitors—informing our probe design. VLM checkpoint analysis (arXiv:2602.12506) tracks behavioral metrics across GRPO checkpoints without latent probes. GRPO vs DPO evaluation (arXiv:2512.22631) compares faithfulness across only 3 epoch checkpoints. Chen et al. (arXiv:2505.05410) measure hint-injection rates across RL steps (improvement then plateau ~25%), surface-level only.\n\n**CoT safety theory.** The in-conflict framework (arXiv:2603.30036) predicts monitorability reduction under conflicting reward terms—our study provides the first longitudinal empirical test. CoT-as-computation vs CoT-as-rationalization (arXiv:2507.05246) predicts monitoring robustness depends on computational necessity—our difficulty-conditioned analysis directly tests this. Output supervision can indirectly obfuscate CoT (arXiv:2511.11584; arXiv:2601.23086) through two mechanisms (safe-output generalization and CoT reinforcement)—our surface-metric cross-validation controls for this confound.\n\n**Faithfulness-aware RL methods.** FaithRL (arXiv:2602.03507) and step-level faithfulness RL (arXiv:2602.05897) introduce faithfulness rewards during training. AtManRL (arXiv:2604.16158) manipulates attention for faithfulness. Why Does RL Generalize? (arXiv:2604.25011) reveals RL's restrained, continually evolving feature changes vs SFT's rapid stabilization—potentially explaining why RL progressively induces reasoning theater.\n\n**Our positioning.** First to combine mechanistic probing with surface behavioral metrics in a dense longitudinal study across GRPO training, framed as an empirical test of in-conflict reward theory, with difficulty-conditioned analysis and SFT baseline as contrasting theoretical prediction.\n\n## 5. Experimental Design\n\n### 5.1 Models and Training\n\n**Model families:**\n- **DeepSeek-R1-Distill-Qwen-7B** (arXiv:2501.12948): Pre-existing distilled reasoning. Tests GRPO reshaping an already-reasoning model.\n- **Qwen3-8B (base)**: No prior reasoning. Tests faithfulness dynamics when reasoning is learned from scratch.\n\n**GRPO training:**\n- Data: MATH (train split) + GPQA-Extended (546 items, used as training source).\n- Checkpoints every 25 steps, yielding ~40 checkpoints per run.\n- Hyperparameters (learning rate, KL penalty coefficient, group size) selected via preliminary sweep with justification reported.\n\n**SFT baseline (contrasting theoretical prediction):**\n- Same data (MATH + GPQA-Extended solution traces), same compute budget, same checkpoint schedule.\n- Applied to R1-Distill-7B. Under in-conflict theory, SFT's approximately aligned reward should not produce comparable divergence.\n\n**Reproducibility:**\n- R1-Distill-7B: minimum 2 random seeds. Seed-to-seed variance reported on all metrics.\n- Qwen3-8B: 1 seed with documentation.\n- Early checkpoint instability (Open-R1 issue #358): training curves shown; first ~6 checkpoints flagged if anomalous; sensitivity analysis with/without.\n\n### 5.2 Faithfulness Metrics\n\n**Surface faithfulness (behavioral):**\n\n(S1) **Hint-injection rate** (adapted from Chen et al., arXiv:2505.05410): Hints injected before/within `&lt;think>` block; acknowledgment defined as CoT causally referencing the hint. Pilot validation (50 items) on target models before full runs.\n\n(S2) **LLM-as-judge consistency scoring**: Primary judge: GPT-4o. Scoring: per-step binary (each CoT step logically supports final answer: yes/no), aggregated to chain-level faithfulness ratio. Prompt template provided in appendix. Reliability: self-consistency (2-3 repeated evaluations on same CoT, report agreement rate) + judge-vs-human agreement on 50 samples. Methodology follows FaithCoT-Bench (arXiv:2510.04040, ICLR 2026) and VLM checkpoint paper (arXiv:2602.12506).\n\n**Surface-metric cross-validation for output-supervision confound (arXiv:2511.11584; arXiv:2601.23086):** If GRPO indirectly inflates CoT surface appearance, S2 (LLM-as-judge) may rise while S1 (hint-injection, which tests behavioral response to planted information) does not. Divergence between S1 and S2 trends is diagnostic of surface inflation vs genuine faithfulness improvement.\n\n**Latent faithfulness (mechanistic):**\n\n(L1) **Linear probe AUC on pre-CoT activations** (Cox et al., arXiv:2603.01437):\n- **Dual probe strategy** (informed by Obfuscation Atlas (arXiv:2602.15515) and RL-Obfuscation (arXiv:2506.14261) robustness findings):\n  - *Per-checkpoint retrained probes*: Fresh logistic regression per checkpoint. 5-fold cross-validation on fixed evaluation set (MATH test, 500 items). Report AUC with 95% CI from fold variance.\n  - *Fixed probe*: Trained on checkpoint 0 activations (probe-train/probe-test: 70/30 split), transferred to all subsequent checkpoints. Transfer AUC decline rate serves as representation drift proxy (connecting to RL vs SFT feature dynamics, arXiv:2604.25011).\n  - *Random-label baseline*: Per checkpoint, probe on shuffled labels bounds chance separability.\n- **Accuracy-controlled analysis**: (a) Partial correlation of probe AUC with GRPO steps, controlling for task accuracy; (b) Probe AUC comparison within fixed accuracy bins across checkpoints.\n\n(L2) **NLDD** (arXiv:2602.11201): Per checkpoint, corrupt reasoning steps and measure confidence drop. Report reasoning horizon in both absolute position (token index) and relative position (% of chain length) to disentangle chain-length-driven shifts from genuine horizon shifts.\n\n(L3) **Activation patching** (EMNLP 2025 methodology): At 10+ checkpoints with density increased around detected transition regions.\n\n(L4) **Logit lens / tuned lens** (sanity check): At 10 key checkpoints, verify pre-commitment signals independently of linear probes.\n\n**Basic tracking metrics:** Per checkpoint: CoT token count (mean, median, std), reasoning step count, task accuracy by difficulty level.\n\n### 5.3 Evaluation Data and Splits\n\n- **GRPO training data**: MATH train split + GPQA-Extended (546 items).\n- **In-distribution evaluation**: MATH test split (500 items) for probe evaluation + hint-injection + LLM-as-judge. Full GPQA-Diamond (198 items, non-overlapping with GPQA-Extended) for all faithfulness metrics. GPQA results positioned as supplementary evidence with bootstrap CI given limited sample size.\n- **Math-domain hint-injection**: GSM8K held-out (500 items).\n- **OOD evaluation**: ARC-Challenge (500 items).\n\n### 5.4 Analysis Methods\n\n**Composite divergence metric:** Surface composite: z-score normalize S1 and S2, then average. Latent composite: z-score normalize L1 (per-checkpoint retrained AUC) and L2 (NLDD). Report inter-metric Spearman ρ (S1-S2 and L1-L2). Primary divergence curve: surface composite minus latent composite across checkpoints. Sensitivity: individual metric curves and alternative aggregations (rank-based, PCA first component) in appendix.\n\n**Difficulty-conditioned analysis:** Stratify all metrics by MATH difficulty level (1-5). Plot divergence curves per difficulty level. Test prediction: easy levels (1-2) diverge earlier/more sharply; hard levels (4-5) diverge later or not at all. This directly tests the CoT-as-computation vs rationalization hypothesis (arXiv:2507.05246).\n\n**Phase detection (exploratory):** PELT + Bayesian online changepoint detection on divergence curves. Explicitly exploratory at ~40 data points. Bootstrap CI (1000 resamples) on slope estimates. Conclusions rest on overall curve shape, not changepoint detection alone.\n\n**SFT vs GRPO comparison (theory test):** Overlay SFT divergence curves on GRPO curves (same model, same starting point). In-conflict theory predicts qualitative difference. Permutation test on curve differences.\n\n**Cross-model comparison:** Align R1-Distill-7B and Qwen3-8B by task accuracy level (not GRPO step).\n\n**Representation drift analysis:** Fixed probe transfer AUC decline rate compared across GRPO vs SFT, interpreted through RL vs SFT feature dynamics (arXiv:2604.25011): RL's restrained, continually evolving features predict gradual probe degradation; SFT's rapid stabilization predicts early sharp drop then plateau.\n\n### 5.5 Compute Budget\n\n- GRPO training: ~120 A100-hours (2 model families × 1 run + 1 extra seed for R1-Distill-7B).\n- SFT baseline: ~30 A100-hours.\n- Probe training/evaluation (~40 checkpoints × 2+ runs, 5-fold CV): ~50 A100-hours.\n- Activation patching (10+ checkpoints × 2 families): ~20 A100-hours.\n- LLM-as-judge API: ~$300 (including reliability checks).\n- Total: ~220 A100-hours + API costs. Feasible on 8×A100 node within ~4 weeks.\n\n### 5.6 Limitations\n\n- **Scale**: 7-8B models only. Divergence dynamics may differ at larger scales.\n- **KL penalty sensitivity**: GRPO's KL penalty coefficient directly affects policy drift rate (arXiv:2503.06639). Preliminary sweep data at alternative KL values provides suggestive evidence of sensitivity, but full ablation is beyond compute budget. Divergence timing may shift with KL coefficient.\n- **Single RL algorithm**: GRPO only. Other RL methods (DPO, PPO) may show different dynamics.\n- **GPQA evaluation set**: 198 items provide limited statistical power; all GPQA conclusions supplementary.\n\n## 6. Expected Contributions\n\n1. **First longitudinal empirical test of in-conflict theory**: Validates or falsifies the prediction (arXiv:2603.30036) that in-conflict reward structures progressively reduce CoT monitorability, with SFT's aligned reward as contrasting prediction.\n2. **Difficulty-dependent divergence map**: Family of divergence curves stratified by problem difficulty, testing whether CoT-as-computation tasks resist divergence that afflicts CoT-as-rationalization tasks.\n3. **Phase structure identification**: Evidence for/against two-phase divergence (early alignment → divergence onset), with temporal resolution of ~25 GRPO steps.\n4. **Actionable timing guidance**: Training phase identification for optimal faithfulness-aware intervention (FaithRL (arXiv:2602.03507), step-level faithfulness RL (arXiv:2602.05897), AtManRL (arXiv:2604.16158)).\n5. **Representation-level explanation**: Connecting divergence dynamics to RL vs SFT feature evolution (arXiv:2604.25011), explaining why RL-specific optimization progressively produces reasoning theater.\n6. **Methodological template**: Dual probe strategy + accuracy-controlled analysis + difficulty-conditioned decomposition as reusable framework for longitudinal mechanistic studies."
+}
+````
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-20T04:35:15.685Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-20T04:35:15.685Z",
+  "sessionId": "f5ed49c8-85e3-4175-a1e2-05bca689fb76"
+}
+```
+
+---
+
+## Round 1
+
+9 recorded events
+
+### User
+
+_source line 3 · 2026-05-20T04:35:15.696Z_
+
+【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。
+
+【三位审稿人评估】:
+━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━
+Now I have sufficient research to provide a thorough evaluation. Let me compile my assessment.
+
+---
+
+```
+【阶段】: Triage
+
+【领域调研】:
+- [Aligned, Orthogonal or In-conflict (arXiv:2603.30036)](https://arxiv.org/abs/2603.30036) (2026): 本 proposal 的核心理论框架。将 RL reward 分解为 output-dependent 与 CoT-dependent 两项，预测 in-conflict 设定下 CoT 可监控性下降。Proposal 定位为该框架的"首个纵向实证检验"。
+- [The Obfuscation Atlas (arXiv:2602.15515)](https://arxiv.org/abs/2602.15515) (2026, FAR AI): **最直接的竞争者。** 已经在 Llama-3 (8B-70B) 上跨 RLVR checkpoint 做了 deception probe 的纵向追踪，建立了 cross-checkpoint probing 方法论。差异在于：Obfuscation Atlas 关注 deception detection 而非 surface-latent faithfulness gap，未做 difficulty conditioning，未做 SFT 对照，未框架化为 in-conflict theory test。但方法论重叠度高。
+- [Reasoning Theater (arXiv:2603.05488)](https://www.goodfire.ai/research/reasoning-theater) (2026, Goodfire): 发现模型在 CoT 早期即锁定答案，probe-guided early exit 可减少 30-80% token。提供了 "reasoning theater" 概念和 pre-commitment 证据，但仅做 snapshot 分析，未追踪训练过程。
+- [RFEval (arXiv:2602.17053)](https://arxiv.org/abs/2602.17053) (2026): 跨 12 个开源 LRM 发现 49.7% 输出不忠实，且不忠实与 post-training regime 相关性强于模型规模。直接支持 proposal 的动机：需要在训练动态层面而非 snapshot 层面研究 faithfulness。
+- [Decoding Answers Before CoT (Cox et al., arXiv:2603.01437)](https://arxiv.org/abs/2603.01437) (2026): 从 pre-CoT residual stream 解码最终答案，AUC 高，activation steering flip rate >50%。proposal 的 L1 指标直接基于此方法。
+- [NLDD / Faithfulness Decay (arXiv:2602.11201)](https://arxiv.org/abs/2602.11201) (2026): 提出 NLDD 度量 step-level faithfulness，发现 reasoning horizon 在 70-85% chain length。proposal 的 L2 指标基于此。该工作分析固定模型，未做训练纵向追踪。
+- [Monitoring the Internal Monologue (arXiv:2605.18549)](https://arxiv.org/abs/2605.18549) (2026): 构建推理过程中的 probe trajectory，用信号处理特征（volatility、trend、steady-state）达到 95% AUROC。是 within-inference token-level 分析，与 proposal 的 across-training step-level 分析互补。
+- [Predictive Scaling Laws for GRPO (arXiv:2507.18014)](https://arxiv.org/abs/2507.18014) (NeurIPS 2026): 发现 GRPO reward 曲线遵循三阶段指数饱和。proposal 假设 faithfulness divergence 的 phase structure 与此关联。
+- [On the Learning Dynamics of RLVR (arXiv:2602.14872)](https://arxiv.org/abs/2602.14872) (2026): 揭示 RLVR 中 grokking-type phase transitions。支持 proposal 的 phase-dependent 假设。
+- [FaithCoT-Bench (arXiv:2510.04040)](https://arxiv.org/abs/2510.04040) (ICLR 2026): 统一的 CoT faithfulness 评测框架。proposal 的 LLM-as-judge 方法论参考此工作。
+- [Why Does RL Generalize? (arXiv:2604.25011)](https://arxiv.org/abs/2604.25011) (2026): RL 的 restrained、持续演化的特征变化 vs SFT 的快速稳定化。proposal 用此解释为何 RL 特别会产生 progressive reasoning theater。
+- [Chen et al. (arXiv:2505.05410)](https://arxiv.org/abs/2505.05410) (2025): 跨 RL steps 测量 hint-injection rate（先升后 plateau ~25%），但仅 surface-level。proposal 在此基础上加入 latent probing。
+
+- **调研总结**: CoT faithfulness 领域在 2025-2026 年爆发式增长，但现有工作几乎全部是 snapshot 分析（固定模型上测量 faithfulness）。唯一做纵向追踪的 Obfuscation Atlas 关注 deception 而非 surface-latent divergence，且缺乏理论框架化和 difficulty conditioning。Proposal 填补的空白——将 surface 与 latent faithfulness 指标在 GRPO 训练过程中密集追踪、以 in-conflict theory 框架化、按难度分层——在现有文献中确实无人做过，positioning 合理。
+
+【整体印象】:
+如果我是审稿人，第一反应会倾向 **weak accept**。这是一篇设计非常精心的实证分析论文：理论框架清晰（in-conflict theory 的可检验预测）、实验设计极为全面（多层次指标、confound 控制、理论对照实验）、研究问题高度 timely。它不是一篇提出新方法的论文，而是一篇 hypothesis-driven 的测量/表征研究——类似于 NLP 领域越来越受重视的 "analysis paper" 传统。
+
+主要的 accept 理由：(1) 填补了一个真实的研究空白（no one has done dense longitudinal surface+latent faithfulness tracking across GRPO training），(2) 实验设计的完备度在 proposal 阶段已经远超多数投稿，(3) 理论框架化提供了 testable predictions，使结果无论 confirm 还是 falsify 都有价值。
+
+主要的 reject 风险：(1) 纯测量论文，无新方法/无 intervention，(2) 仅 7-8B 规模，(3) 与 Obfuscation Atlas 的差异化需精心论证，(4) 假设可能过于直觉化（GRPO 产生不忠实推理、SFT 不会）——如果实验结果完全符合预期，reviewers 可能认为 contribution 有限。
+
+【核心贡献】:
+核心贡献是**首次在 GRPO 训练过程中密集追踪 surface-latent faithfulness divergence 的纵向实证研究**，框架化为 in-conflict reward theory 的实证检验，并引入 difficulty-conditioned 分析以区分 CoT-as-computation 与 CoT-as-rationalization。
+
+这个贡献的价值取决于结果的 informativeness：
+- 如果发现**非平凡的 phase structure**（如 early alignment → sharp divergence onset，且与 GRPO reward curve phases 对应），这将非常有价值，为 faithfulness-aware intervention 提供 timing guidance。
+- 如果发现**difficulty-dependent dynamics**确实存在（easy tasks 先 diverge，hard tasks 抗 diverge），这将首次实证验证 CoT-as-computation vs rationalization 假说在训练动态层面的预测。
+- 如果结果只是"GRPO 训练后 faithfulness 下降"，那 contribution 会被认为是 incremental。
+
+总体而言，对领域的潜在价值为**中到高**——取决于实验结果的颗粒度和意外程度。
+
+【方法合理性】:
+方法论整体**高度合理**，是将领域内已验证的多个测量工具（pre-CoT probes, NLDD, hint-injection, LLM-as-judge）组合成一个纵向追踪框架，并加入了多项控制设计：
+
+**合理之处：**
+- Dual probe strategy（per-checkpoint retrained + fixed probe transfer）设计精巧：前者测真实 separability，后者作为 representation drift proxy，对接 RL vs SFT feature dynamics 文献。
+- 对 output-supervision confound（arXiv:2511.11584）的显式控制（S1-S2 divergence as diagnostic）展示了方法论成熟度。
+- SFT baseline 不仅是 ablation，更是 in-conflict theory 的 contrasting prediction——如果 SFT 也产生类似 divergence，则 falsify 核心框架。
+- Accuracy-controlled analysis（partial correlation, accuracy-bin comparison）避免了将 performance gain 误判为 faithfulness change。
+
+**潜在问题：**
+- Composite divergence metric（z-score average of surface minus latent）是 ad hoc 的，不同指标的 z-score 可加性缺乏理论保证。不过 proposal 在 appendix 中规划了 sensitivity analysis（rank-based, PCA），部分缓解。
+- 更简单的替代方案：可以仅用 pre-CoT probe AUC 作为核心指标（不需要 composite），但 proposal 的多指标设计提供了更 robust 的证据——这是 overdesign 但方向正确。
+- Activation patching 在 10+ checkpoints 上做，密度是否足够取决于 transition 的 sharpness，但在 compute budget 内已是合理折衷。
+
+【5 维度打分】:
+
+1. 研究问题: **强** — 
+   研究问题（surface-latent faithfulness gap 在 GRPO 训练中如何演化）填补了一个真实的文献空白。RFEval (2602.17053) 发现 unfaithfulness 与 post-training regime 相关但未追踪训练过程；Obfuscation Atlas (2602.15515) 做了 checkpoint 追踪但关注 deception 而非 faithfulness divergence。问题的 importance 在 reasoning model safety 语境下不言而喻。三个 sub-questions（phase dynamics, difficulty dependence, SFT contrast）都有清晰的 testable predictions，无论结果是 confirm 还是 falsify 都能产出 findings。
+
+2. 方法与创新: **中偏强** — 
+   创新不在于提出新的测量方法（所有指标都来自现有工作：Cox et al. 的 pre-CoT probes, NLDD, hint-injection, LLM-as-judge），而在于将这些工具组合成一个 hypothesis-driven 纵向框架。与 Obfuscation Atlas (2602.15515) 相比，核心差异化在于：(a) surface + latent 双维度追踪，(b) difficulty conditioning，(c) in-conflict theory framing with SFT contrast。这些差异化是真实的但需要精心论证。与 Chen et al. (2505.05410) 相比，加入了 latent probing 是实质性提升。composite divergence metric 的构建偏 ad hoc，是方法论上的弱点。
+
+3. 实验设计: **强** — 
+   这是 proposal 最大的亮点。Dual probe strategy（retrained + fixed + random-label baseline）超越了 Obfuscation Atlas 的单一 probe 方案。S1-S2 cross-validation 对 output-supervision confound (2511.11584) 的控制在同类工作中未见过。SFT baseline 作为理论对照而非简单 ablation 的定位提升了实验的 interpretability。Difficulty-conditioned analysis 直接检验 CoT-as-computation vs rationalization (2507.05246)。多 seed + variance reporting、early checkpoint instability 处理、GPQA 的 bootstrap CI 都展示了方法论细致度。主要不足：GPQA evaluation set 仅 198 items，phase detection 在 ~40 data points 上偏弱，但 proposal 诚实标注为 exploratory。
+
+4. 可行性: **强** — 
+   ~220 A100-hours 在 8×A100 node 上 4 周内可完成，对学术实验室完全可行。所用工具（linear probes, NLDD, hint-injection, activation patching）都有先例实现和开源代码。不需要训练大模型，不需要构建新 benchmark（利用现有 MATH/GPQA/GSM8K/ARC-Challenge）。API 成本 ~$300 合理。唯一潜在瓶颈是 40+ checkpoint 的密集 probe 训练和评估的工程量，但 proposal 对此有合理规划。
+
+5. 写作与呈现: **强** — 
+   Proposal 结构清晰、逻辑链条完整。从 motivation（RFEval 的统计发现 → 需要训练动态研究）→ 理论框架（in-conflict theory）→ 可检验假设（phase-dependent divergence, difficulty conditioning, SFT contrast）→ 实验设计（多层指标 + confound 控制）的论证路线流畅。对 limitations 的坦诚讨论（scale, KL sensitivity, single algorithm, GPQA sample size）增加了可信度。Related work 覆盖全面，positioning 清晰。
+
+【概率估计】: [33% - 48%] 中位 40%
+
+【估计理由】:
+
+**向上因素：**
+- 研究问题 timely 且有真实空白（longitudinal surface+latent faithfulness tracking 无人做过）
+- 实验设计在 proposal 阶段已达到极高完备度，超越了大多数同类分析论文
+- 理论框架化（in-conflict theory test）使结果无论 confirm/falsify 都有价值
+- Topic 高度契合 2025-2026 AI safety/alignment 热点，reviewer pool 关注度高
+- Difficulty-conditioned analysis 是独特角度，直接检验重要理论假说
+- 计算需求适中，feasibility 高
+
+**向下因素：**
+- 纯测量/表征论文，无新方法、无新 benchmark、无 intervention proposal。部分 reviewer 可能期望 "so what — what do we do about it?"
+- 仅 7-8B 规模，scalability 未知。在 reasoning model 普遍 >30B 的时代，7-8B 上的 dynamics 是否能推广存疑
+- 与 Obfuscation Atlas (2602.15515) 的差异化需要非常精确的论证，如果 reviewer 认为两者重叠度太高，novelty 会被显著压低
+- 核心假设（GRPO 产生 divergence，SFT 不会）可能被认为过于 predictable——若实验结果完全符合预期，"surprise value" 有限
+- Phase detection 在 ~40 data points 上做 changepoint detection，统计说服力有限
+- Composite metric 构建方式（z-score average）缺乏理论基础
+
+**中位 40% 的推理：** 这是一篇扎实的分析论文，研究问题重要、实验设计完备、理论框架清晰。在 EMNLP 的 analysis track 中有竞争力。但它面临 "纯测量论文 + 小模型 + 可预测假设" 的三重压力。如果 difficulty-dependent dynamics 的结果呈现非平凡的 pattern，概率可推至 45-48%；如果结果仅确认 "GRPO 不忠实，SFT 忠实" 的直觉预期，概率会降至 33-35%。
+
+【主要风险】:
+1. **Novelty 不足风险**：与 Obfuscation Atlas 的方法论重叠（cross-checkpoint probing），加上假设过于 predictable（GRPO → unfaithful, SFT → faithful），reviewer 可能判定 contribution 为 incremental。若 difficulty-conditioned analysis 未产出非平凡发现，这一风险将被放大。
+2. **Scale 与 generalizability 风险**：仅 7-8B 模型，在 reasoning model 普遍走向大规模（70B+）的趋势下，reviewer 可能质疑结论的普适性。特别是如果 faithfulness dynamics 存在 scale-dependent transition（类似 emergence），7-8B 的结论可能不适用于更大模型。
+
+【实施评估】:
+  - 计算资源: ~220 A100-hours，8×A100 node 约 4 周。对有 GPU 集群的学术实验室完全可行。
+  - 数据需求: MATH（公开）、GPQA-Extended（公开，546 items）、GPQA-Diamond（公开，198 items）、GSM8K（公开）、ARC-Challenge（公开）。无需构建新数据集。
+  - 人工介入: 50 samples 的 judge-vs-human agreement 评估需少量人工标注（~2-3 人天）；50 items 的 hint-injection pilot validation 需人工审核。总体人工需求很低。
+  - 训练需求: 需要 GRPO 训练（2 模型 × ~40 checkpoints）和 SFT 训练（1 模型 × ~40 checkpoints）。不需要从头预训练。训练流程有 Open-R1 等开源框架可参考。
+  - 新 Benchmark: 不需要。完全利用现有 benchmark。
+  - 预估周期: 约 6-8 周（含超参 sweep 1-2 周、GRPO/SFT 训练 2-3 周、probe 训练/评估 1-2 周、分析与写作 2 周）。如果并行化良好，4-6 周可完成实验部分。
+```
+
+Sources:
+- [Aligned, Orthogonal or In-conflict (arXiv:2603.30036)](https://arxiv.org/abs/2603.30036)
+- [The Obfuscation Atlas (arXiv:2602.15515)](https://arxiv.org/abs/2602.15515)
+- [Reasoning Theater](https://www.goodfire.ai/research/reasoning-theater)
+- [RFEval (arXiv:2602.17053)](https://arxiv.org/abs/2602.17053)
+- [Decoding Answers Before CoT (arXiv:2603.01437)](https://arxiv.org/abs/2603.01437)
+- [NLDD / Faithfulness Decay (arXiv:2602.11201)](https://arxiv.org/abs/2602.11201)
+- [Monitoring the Internal Monologue (arXiv:2605.18549)](https://arxiv.org/abs/2605.18549)
+- [Predictive Scaling Laws for GRPO (arXiv:2507.18014)](https://arxiv.org/abs/2507.18014)
+- [On the Learning Dynamics of RLVR (arXiv:2602.14872)](https://arxiv.org/abs/2602.14872)
+- [FaithCoT-Bench (arXiv:2510.04040)](https://arxiv.org/abs/2510.04040)
+- [Why Does RL Generalize? (arXiv:2604.25011)](https://arxiv.org/abs/2604.25011)
+- [Evaluating GRPO and DPO for Faithful CoT (arXiv:2512.22631)](https://arxiv.org/abs/2512.22631)
+- [Catching Rationalization in the Act (arXiv:2603.17199)](https://arxiv.org/abs/2603.17199)
+- [Why Models Know But Don't Say (arXiv:2603.26410)](https://arxiv.org/abs/2603.26410)
+
+━━━━━━━━━━ 审稿人 2（独立评审）━━━━━━━━━━
+Now I have sufficient research to make a well-informed assessment. Let me compile my evaluation.
+
+---
+
+```
+【阶段】: Triage
+
+【领域调研】:
+
+- [Aligned, Orthogonal or In-conflict (arXiv:2603.30036)](https://arxiv.org/abs/2603.30036) (2026): 
+  本 proposal 的核心理论框架。将 RL 后训练奖励分解为 output-dependent 和 CoT-dependent 项，预测 in-conflict 奖励结构会降低 monitorability。论文提供了理论和实验验证。Proposal 是对该框架的第一个纵向经验检验——定位清晰且有价值。
+
+- [Reasoning Theater (arXiv:2603.05488)](https://arxiv.org/html/2603.05488v1) (2026): 
+  发现模型在 CoT 展开之前就已锁定答案，probe-guided early exit 可减少 30-80% token。这是 proposal 所称"latent pre-commitment"的直接证据，但仅分析固定模型快照，不追踪训练动态。
+
+- [The Obfuscation Atlas (arXiv:2602.15515)](https://arxiv.org/abs/2602.15515) (2026): 
+  **最接近的竞争性工作。** 在 Llama-3 (8B-70B) 上跨 RLVR checkpoint 追踪 deception probes，建立了 cross-checkpoint probing 方法论。但聚焦于 deception/obfuscation（代码环境中的 reward hacking），而非一般性的 CoT faithfulness divergence，且缺少 surface faithfulness 指标的联合分析和难度分层。Proposal 需要明确与此工作的差异化。
+
+- [When CoT is Necessary, Models Struggle to Evade Monitors (arXiv:2507.05246)](https://arxiv.org/abs/2507.05246) (2025): 
+  提出 CoT-as-computation vs CoT-as-rationalization 的概念框架，认为需要多步推理的难题会迫使模型暴露真实推理。Proposal 的 difficulty-dependent 预测直接源于此框架——这是 proposal 最有辨识度的角度之一。
+
+- [Pre-CoT Probes (arXiv:2603.01437)](https://arxiv.org/pdf/2603.01437) (2026): 
+  线性探针在 CoT 生成前即可以 >0.9 AUC 预测答案。Proposal 的 L1 指标直接采用此方法。
+
+- [NLDD / Mechanistic Evidence for Faithfulness Decay (arXiv:2602.11201)](https://arxiv.org/pdf/2602.11201) (2026): 
+  发现推理链在 70-85% 长度处存在 "reasoning horizon"。Proposal 的 L2 指标基于此。
+
+- [Monitorability as a Free Gift (arXiv:2602.03978)](https://arxiv.org/pdf/2602.03978) (2026): 
+  发现 RLVR 训练早期 monitorability 随能力提升而改善（"free gift"），但持续训练后常出现平台期或回退。这与 proposal 的 Phase 1（early alignment）→ Phase 2（divergence onset）预测高度一致，同时也意味着 proposal 的核心预测部分已有初步经验支持。
+
+- [Evaluating GRPO and DPO for Faithful CoT (arXiv:2512.22631)](https://arxiv.org/html/2512.22631v1) (2025): 
+  比较 GRPO 和 DPO 的忠实度，但仅 3 个 epoch checkpoint，缺乏密集纵向追踪和机械解释。
+
+- [Chen et al. (arXiv:2505.05410)](https://arxiv.org/abs/2505.05410) (2025): 
+  跨 RL 步数追踪 hint-injection rate（先升后平，~25%），但仅有 surface 指标，缺少 latent 机制分析。
+
+- [Faithful GRPO (arXiv:2604.08476)](https://arxiv.org/html/2604.08476) (2026): 
+  在 VLM 中引入约束策略优化以改善 GRPO 的 faithfulness。属于 intervention 方法而非诊断研究，与 proposal 互补。
+
+- [The Hypocrisy Gap (arXiv:2602.02496)](https://arxiv.org/pdf/2602.02496) (2026):
+  使用 sparse autoencoders 量化内部信念与 CoT 的分歧（AUROC 0.55-0.74），但为快照分析。
+
+- 调研总结: CoT faithfulness 是 2025-2026 年的研究热点，现有工作大量集中在**快照分析**（固定模型的 faithfulness 测量）和**干预方法**（faithfulness-aware RL）。**纵向训练动态**方面的工作稀少：Obfuscation Atlas 追踪了 deception probes 但在不同研究设定下；Chen et al. 追踪了 surface 指标但缺 latent 分析；GRPO vs DPO 仅 3 个 checkpoint。Proposal 所提出的"密集纵向 + 机械+行为联合 + 难度分层 + in-conflict 理论检验"组合确实填补了一个具体空白，但这个空白的大小和重要性需要审慎评估。
+
+【整体印象】:
+作为审稿人，我的第一反应是：这是一份**异常精心设计的实验研究 proposal**，在一个热门且重要的方向上定位了一个真实的研究空白。proposal 展现了对领域文献的深度把握，实验设计面面俱到（多指标、多模型、对照实验、confound 控制）。
+
+但我的疑虑也是明确的：（1）这本质上是一个**纯测量/分析型研究**，不提出新方法、新模型、新 benchmark，核心贡献是"观察到 X 现象并用 Y 框架解释"——这在 EMNLP 审稿中有时会被视为贡献不足；（2）实验设计的**复杂度与论文篇幅的矛盾**——proposal 涉及 6+ 指标、2 模型家族、3 种训练方式、5 个难度等级、~40 个 checkpoint，如何在 8 页正文中清晰呈现是巨大挑战；（3）核心预测的**可证伪性**存在灰色地带——"phase-dependent dynamics"和"difficulty-dependent divergence"的定义足够宽松，可能大部分实验结果都能被事后解释为"一致"。
+
+倾向：**borderline**，偏 weak accept 侧。如果实验结果干净且论述聚焦，有机会被接收；但风险点多。
+
+【核心贡献】:
+1. **首个纵向实证检验 in-conflict 理论预测**：在 GRPO 训练全程追踪 surface-latent faithfulness gap，验证或证伪 in-conflict 框架关于 monitorability 降低的核心预测。
+2. **难度依赖的分歧图谱**：按问题难度分层的 divergence curves 家族，直接检验 CoT-as-computation vs CoT-as-rationalization 假说。
+3. **SFT 对照作为理论验证**：aligned reward 设定下的对比实验。
+
+贡献的价值：中等偏上。对 AI safety / alignment 社区有直接意义，对理解 RL post-training 的机制有增量贡献。但对更广泛的 NLP 社区而言，实用性有限（不直接改进任何下游任务）。
+
+【方法合理性】:
+方法整体合理，但存在几个值得审视的点：
+
+1. **Composite divergence metric 的构造偏 ad hoc**：z-score 平均 hint-injection rate 和 LLM-as-judge consistency，再减去 probe AUC 和 NLDD 的 z-score 平均——这四个指标测量的是不同维度的东西，它们的线性组合是否有意义缺乏理论论证。sensitivity analysis（rank-based, PCA）是好的补救，但核心指标的任意性仍是弱点。
+
+2. **更简单的替代方案**？如果核心问题是"GRPO 训练中 faithfulness 何时恶化"，一个更简单的方案是：仅用 pre-CoT probe AUC（已被证明 >0.9 AUC 的可靠指标）跨 checkpoint 追踪，配合 task accuracy 和 CoT length。这能回答 80% 的核心问题，且更清晰、更容易复现。proposal 的 6+ 指标方案更全面但也更脆弱——任何指标间的不一致都需要大量篇幅解释。
+
+3. **Phase detection on ~40 data points**：即使标注为"exploratory"，PELT + Bayesian changepoint detection 在 40 个点上的统计功效很低。这可能产生不可靠的结论或非结论性结果。
+
+4. **Dual probe strategy 设计精良**：per-checkpoint retrained vs fixed probe 的对比很好地分离了 representation drift 效应，这是实验设计的亮点。
+
+5. **Confound 控制（S1 vs S2 divergence 诊断 surface inflation）** 是周到的设计。
+
+【5 维度打分】:
+
+1. 研究问题: [强] — 
+   "GRPO 训练中 surface vs latent faithfulness gap 如何演化"是一个timely、重要且 understudied 的问题。它直接关联 AI safety 中 CoT 监控的可靠性问题，且有清晰的理论动机（in-conflict framework）。现有工作（Obfuscation Atlas、Chen et al.、GRPO vs DPO 比较）都只部分触及这个问题，没有完整的纵向 surface+latent 联合分析。难度依赖的分析角度尤其有价值，直接检验了一个重要的理论预测。
+
+2. 方法与创新: [中] — 
+   **所有测量工具均借自现有工作**（pre-CoT probes from Cox et al., NLDD from 2602.11201, hint-injection from Chen et al., activation patching from existing methodology）。创新在于**组合方式和研究设计**（纵向 + 多指标 + 难度分层 + 理论框架检验），而非技术方法本身。Obfuscation Atlas (arXiv:2602.15515) 已经建立了 cross-checkpoint probing 的先例，虽然研究问题不同。Composite divergence metric 的构造缺乏严格论证。对于 EMNLP 审稿人而言，"clever study design but no new method" 通常被评价为 moderate novelty。
+
+3. 实验设计: [强] — 
+   这是 proposal 最大的亮点。多层次指标体系（behavioral S1/S2 + mechanistic L1/L2/L3/L4），dual probe strategy，accuracy-controlled analysis，difficulty stratification，SFT 对照实验，surface-metric cross-validation for confound control，seed 重复性——这些都展现了对实验严谨性的深入思考。相比同领域工作（如 GRPO vs DPO 仅 3 checkpoints, Chen et al. 仅 surface 指标），实验设计明显更完备。但**复杂度也是风险**：在 8 页正文内清晰呈现所有分析将极具挑战。
+
+4. 可行性: [中] — 
+   ~220 A100-hours 的计算预算是合理的。但实际执行风险包括：
+   - LLM-as-judge 评估（S2）的可靠性可能不足以检测 checkpoint 间的微妙变化（reliability checks 有计划但不确定是否足够灵敏）；
+   - 40 个 checkpoint × 多个指标 × 2 模型 × 多难度级别的数据量巨大，分析和可视化工作量被低估；
+   - 4 周时间表乐观——probe 训练调试、activation patching 实验的工程复杂度可能超预期；
+   - GPQA-Diamond 仅 198 items，statistical power 有限（proposal 已承认）。
+
+5. 写作与呈现: [中] — 
+   Proposal 本身写作水平高，逻辑清晰，文献整合出色。但 **论文写作将面临巨大挑战**：6+ 指标 × 2 模型 × 5 难度级别 × GRPO/SFT 对比 = 大量图表和分析结果需要在有限篇幅内呈现。存在论文变成"数据 dump"而非清晰 narrative 的风险。建议：确定 1-2 个核心 finding 作为主线，其余放入 appendix。
+
+【概率估计】: [22% - 38%] 中位 30%
+
+【估计理由】:
+上调因素：
+- 研究问题非常 timely，2025-2026 年 CoT faithfulness 是热点话题
+- 实验设计的严谨性和完备性在同类工作中突出
+- 填补了一个真实的研究空白（纵向 surface+latent 联合分析）
+- 理论框架（in-conflict theory）提供了清晰的预测，使研究不仅是"测量"而是"理论检验"
+- SFT 对照和难度分层增加了分析深度
+
+下调因素：
+- **核心局限：纯分析型研究，无新方法/新模型/新 benchmark 贡献**。EMNLP 审稿人（尤其非 safety 方向的）可能认为贡献不足
+- **方法创新度有限**：所有工具借自现有工作，Obfuscation Atlas 已有 cross-checkpoint probing 先例
+- **实验结果不确定性高**：如果预测的 phase structure 不明显、或难度依赖效应模糊，论文的 story 会大打折扣
+- **复杂度与篇幅矛盾**：在 8 页内清晰呈现所有分析结果是极大挑战
+- **仅 7-8B 模型，泛化性存疑**
+- 对更广泛 NLP 社区的直接实用价值有限
+
+综合判断：这是一篇在 AI safety / mechanistic interpretability 子社区会受到欢迎的工作，但在 EMNLP 的广泛审稿池中，"characterization study without new method"的定位使它处于 borderline 区域。中位 30% 反映了"高质量的研究设计 + 热门方向"与"纯分析型、无方法贡献、规模有限"之间的权衡。如果实验结果非常干净且论述极度聚焦，有望达到上界 38%；如果结果模糊或论文过于冗杂，可能跌至下界 22%。
+
+【主要风险】:
+1. **"贡献不足"的审稿意见**：纯测量/分析型研究在 EMNLP 中容易被质疑"这不是新方法也不是新资源，核心贡献是什么？"——尤其当审稿人不在 AI safety 子领域时。Obfuscation Atlas 的存在进一步弱化了 novelty claim（"first to do cross-checkpoint probing" 已不完全成立）。
+2. **实验结果不支持核心预测**：如果 surface-latent divergence 没有清晰的 phase structure，或 difficulty-dependent 效应不显著，论文将失去最有力的 narrative。考虑到仅 ~40 checkpoints 和 7-8B 模型的 noisy training dynamics，这个风险不可忽视。
+
+【实施评估】:
+  - 计算资源: ~220 A100-hours（含训练、probe 评估、activation patching），需 8×A100 节点，合理可行
+  - 数据需求: MATH（公开）、GPQA-Extended（公开，546 items）、GSM8K（公开）、ARC-Challenge（公开）。无数据获取障碍
+  - 人工介入: LLM-as-judge 可靠性验证需 50 样本人工标注；hint-injection pilot validation 需 50 items 人工检查。人工需求低
+  - 训练需求: 需要完整 GRPO 训练（2 模型 × 1-2 seeds）+ SFT 训练（1 模型）。需保存 ~40 个密集 checkpoint（存储需求 ~2-3TB）
+  - 新 Benchmark: 不需要。使用已有评测集
+  - 预估周期: 4-6 周（proposal 估计 4 周略乐观，probe 调试和 activation patching 工程量可能超预期）
+```
+
+---
+
+Sources:
+- [Aligned, Orthogonal or In-conflict (arXiv:2603.30036)](https://arxiv.org/abs/2603.30036)
+- [Reasoning Theater (arXiv:2603.05488)](https://arxiv.org/html/2603.05488v1)
+- [The Obfuscation Atlas (arXiv:2602.15515)](https://arxiv.org/abs/2602.15515)
+- [When CoT is Necessary, Models Struggle to Evade Monitors (arXiv:2507.05246)](https://arxiv.org/abs/2507.05246)
+- [Pre-CoT Probes (arXiv:2603.01437)](https://arxiv.org/pdf/2603.01437)
+- [NLDD / Mechanistic Evidence for Faithfulness Decay (arXiv:2602.11201)](https://arxiv.org/pdf/2602.11201)
+- [Monitorability as a Free Gift (arXiv:2602.03978)](https://arxiv.org/pdf/2602.03978)
+- [Evaluating GRPO and DPO for Faithful CoT (arXiv:2512.22631)](https://arxiv.org/html/2512.22631v1)
+- [Faithful GRPO (arXiv:2604.08476)](https://arxiv.org/html/2604.08476)
+- [The Hypocrisy Gap (arXiv:2602.02496)](https://arxiv.org/pdf/2602.02496)
+- [Why Models Know But Don't Say (arXiv:2603.26410)](https://arxiv.org/html/2603.26410v1)
+- [LLM Reasoning Is Latent, Not the Chain of Thought (arXiv:2604.15726)](https://arxiv.org/html/2604.15726)
+- [Post-Training in 2026: GRPO, DAPO, RLVR & Beyond](https://llm-stats.com/blog/research/post-training-techniques-2026)
+- [Monitoring the Internal Monologue (arXiv:2605.18549)](https://arxiv.org/abs/2605.18549)
+
+━━━━━━━━━━ 审稿人 3（独立评审）━━━━━━━━━━
+Based on my research, I now have sufficient context to provide a comprehensive evaluation. Let me compile my assessment.
+
+```
+【阶段】: Triage
+
+【领域调研】:
+- "Aligned, Orthogonal or In-conflict" (arXiv:2603.30036, March 2026): 本proposal的核心理论框架。该论文提出in-conflict reward降低CoT monitorability的预测，但仅做了理论分析和有限实验验证，没有纵向训练动态追踪。Proposal声称是该框架的"first longitudinal empirical test"基本成立。
+- "The Obfuscation Atlas" (arXiv:2602.15515, Feb 2026): 最直接的竞争工作。在Llama-3 8B-70B上跨RLVR checkpoint追踪deception probes，建立了cross-checkpoint probing方法论。但其关注deception/obfuscation而非faithfulness divergence，未做difficulty conditioning，未做surface-latent divergence量化。Proposal的novelty claim相对该工作仍有差异化空间，但需要明确区分。
+- "Evaluating GRPO and DPO for Faithful CoT Reasoning" (arXiv:2512.22631, Dec 2025): 仅比较3个epoch checkpoint的faithfulness，时间分辨率远不如本proposal的~40 checkpoints。
+- "Decoding Answers Before Chain-of-Thought" (arXiv:2603.01437, March 2026): 建立pre-CoT linear probe方法论（AUC>0.9），proposal的L1指标直接采用该方法。是方法论基础而非竞争者。
+- "On the Learning Dynamics of RLVR" (arXiv:2602.14872, Feb 2026): 证明RLVR存在grokking-type phase transitions。为proposal的phase-dependent hypothesis提供理论支撑。
+- Chen et al. (arXiv:2505.05410): 跨RL步骤测量hint-injection率（先改善后plateau ~25%），但仅surface-level，无latent probing。Proposal显著扩展了这一工作。
+- "How Does Unfaithful Reasoning Emerge" (arXiv:2602.01017, ICLR 2027): 合成实验显示faithful→unfaithful reasoning的phase transition。为proposal的phase结构预测提供额外理论支撑。
+- "Monitoring the Internal Monologue" (arXiv:2605.18549, May 2026): 构建推理过程中probe trajectory（volatility, trend, steady-state），95% AUROC。是within-inference分析，与proposal的across-training分析互补而非竞争。
+- 调研总结: CoT faithfulness是2025-2026年的研究热点，大量工作关注snapshot式测量或单维度纵向追踪，但**将mechanistic probing与surface behavioral metrics结合的dense longitudinal study，加上difficulty conditioning和in-conflict theory测试**，在现有文献中确实存在空白。Obfuscation Atlas是最近的竞争者但聚焦不同问题。
+
+【整体印象】: 作为审稿人，我的第一反应是"这是一篇设计非常精良的empirical analysis paper，理论动机清晰、实验方案周密"。倾向于weak accept / borderline accept。主要顾虑在于：(1) 这本质是analysis paper，不提出新方法，部分审稿人可能认为contribution不够"constructive"；(2) 与Obfuscation Atlas的区分需要更加sharp；(3) null result风险——如果没有清晰的phase structure，paper的impact会大幅降低。但该proposal的实验设计之完备程度本身就是一个亮点——从dual probe strategy到accuracy-controlled analysis到surface-metric cross-validation，每一个潜在confound都有对应的控制。
+
+【核心贡献】: 本工作的核心贡献是：(1) 首次将mechanistic probing与surface behavioral metrics结合，在dense temporal resolution下追踪GRPO训练中surface-latent faithfulness divergence的演化；(2) 以difficulty-conditioned analysis直接测试CoT-as-computation vs CoT-as-rationalization假说；(3) 通过SFT对比验证in-conflict reward theory的核心预测。对领域的价值中等偏高——如果结果清晰，将为faithfulness-aware intervention timing提供实证基础，并验证/证伪一个有影响力的理论框架。
+
+【方法合理性】: 方法整体合理，各指标选择都有文献依据（Cox et al.的pre-CoT probes, Chen et al.的hint-injection, NLDD等）。实验设计中的控制措施（accuracy-controlled analysis, surface-metric cross-validation for output-supervision confound, dual probe strategy）显示出对潜在confounds的深思熟虑。潜在问题：(1) composite divergence metric（surface z-score mean minus latent z-score mean）的构造有一定ad hoc性，不同归一化方式可能导致不同结论（但proposal在appendix中计划了sensitivity分析）；(2) 40个checkpoints上做changepoint detection统计力有限（但proposal明确标注为exploratory）；(3) 没有更简单的替代方案能回答同样的问题——这确实需要longitudinal probing。
+
+【5 维度打分】:
+  1. 研究问题: [强] — 问题重要且时机好。CoT faithfulness divergence的训练动态是当前AI safety和reasoning LLM研究的关键盲区。RFEval发现49.7%的unfaithful outputs，Reasoning Theater证明models在CoT之前已lock答案，但没人追踪这是何时/如何在训练中产生的。问题的framing——通过in-conflict theory lens + difficulty conditioning——比单纯"measure faithfulness across checkpoints"高一个层次。
+  
+  2. 方法与创新: [中] — 方法本身不新（linear probes, NLDD, hint-injection, LLM-as-judge都是现有技术），创新在于组合方式和theoretical framing。相比Obfuscation Atlas（arXiv:2602.15515）的cross-checkpoint probing，本proposal增加了：(a) surface-latent divergence量化而非仅latent probing；(b) difficulty-conditioned analysis；(c) SFT对比作为理论测试；(d) dual probe strategy区分representation drift vs faithfulness变化。这些增量有价值但非革命性。关键差异化在于theoretical motivation（in-conflict framework测试）和difficulty conditioning，两者都是genuinely novel angles。
+  
+  3. 实验设计: [强] — 这是proposal最强的维度。几乎每个潜在confound都有对应控制：accuracy-controlled partial correlation、surface-metric cross-validation（S1 vs S2 divergence诊断surface inflation）、dual probe strategy（per-checkpoint retrained vs fixed probe解耦representation drift）、random-label baseline、bootstrap CI、sensitivity analysis with alternative aggregations。Baseline充分（SFT对比）。评估方案（MATH + GPQA-Diamond + GSM8K + ARC-Challenge）覆盖in-distribution和OOD。唯一不足是GPQA样本量有限（198 items），但proposal已明确标注为supplementary evidence。
+  
+  4. 可行性: [强] — 220 A100-hours在单个8×A100 node上4周内可完成，完全realistic。模型选择合理（7-8B，可在单节点训练和inference）。评估数据均为公开数据集。LLM-as-judge成本可控（~$300）。代码层面有Open-R1等参考实现。唯一的可行性风险是training instability（Open-R1 issue #358），但proposal已计划检测和reporting。
+  
+  5. 写作与呈现: [强] — Proposal逻辑清晰，从research question到hypothesis到experimental design环环相扣。理论grounding扎实（in-conflict framework → specific predictions → experimental tests）。Related work覆盖全面且有明确的positioning statement。Limitations诚实。唯一的minor issue是proposal有些冗长，正式论文需要压缩。
+
+【概率估计】: [30% - 45%] 中位 37%
+
+【估计理由】: 
+优势方面：研究问题时机好且重要、实验设计极为周密、理论framing清晰有falsifiable predictions、可行性高。这些使其成为一篇solid empirical study。
+
+压制概率的因素：
+(1) 本质是analysis paper而非method paper——不提出新方法/新模型/新benchmark，部分reviewer对此类论文有bias（"interesting observation but what's the actionable contribution?"）；
+(2) Obfuscation Atlas（arXiv:2602.15515）已建立cross-checkpoint probing methodology，虽然focus不同，但削弱了"first longitudinal mechanistic study"的novelty claim；
+(3) Null result风险显著——如果divergence curve不显示清晰phase structure，或difficulty conditioning没有predicted pattern，paper的core contribution大幅缩水；
+(4) 7-8B scale limitation可能引发generalizability质疑；
+(5) EMNLP reviewer pool可能对纯interpretability/safety-motivated analysis paper有mixed reception——有些reviewer会认为这更适合workshop或findings track。
+
+综合来看，这是一篇above-average的投稿，但不够exceptional。如果实验结果清晰confirm predictions，写作精良，中稿概率可到40-45%；如果结果mixed或null，可能降到25-30%。中位估计37%反映了结果不确定性。
+
+【主要风险】: 
+1. **Null result风险**：如果surface-latent divergence没有清晰的phase structure，或difficulty conditioning没有展现predicted pattern（easy先diverge, hard后diverge），论文的核心contribution——"map the divergence dynamics"——将变成"we measured but didn't find clear patterns"，这对acceptance是致命的。
+2. **Novelty perception问题**：Reviewer可能认为"combining existing probing techniques across checkpoints + adding difficulty stratification"是incremental engineering而非fundamental contribution，尤其在Obfuscation Atlas已做了类似cross-checkpoint probing的背景下。
+
+【实施评估】:
+  - 计算资源: ~220 A100-hours（约4周在8×A100 node上）。中等规模，学术实验室可承受。
+  - 数据需求: 公开数据集（MATH, GPQA, GSM8K, ARC-Challenge）。无新数据收集需求。
+  - 人工介入: LLM-as-judge可靠性验证需要50 samples human annotation（~2-3人天），probe pilot validation需要50 items检查（~1人天）。总体人工介入低。
+  - 训练需求: 需要完整GRPO training（2-3 runs）+ SFT training（1 run）。训练infra需求中等。
+  - 新 Benchmark: 不需要。使用现有数据集和现有评估方法。
+  - 预估周期: 6-8周（含preliminary sweep 1周 + GRPO/SFT training 2周 + probe training & evaluation 2周 + analysis & writing 2-3周）。Timeline较紧凑但可行。
+```
+
+Sources:
+- [Aligned, Orthogonal or In-conflict: When can we safely optimize Chain-of-Thought?](https://arxiv.org/html/2603.30036v1)
+- [The Obfuscation Atlas: Mapping Where Honesty Emerges in RLVR with Deception Probes](https://arxiv.org/abs/2602.15515)
+- [Evaluating GRPO and DPO for Faithful Chain-of-Thought Reasoning in LLMs](https://arxiv.org/html/2512.22631)
+- [Decoding Answers Before Chain-of-Thought: Evidence from Pre-CoT Probes and Activation Steering](https://arxiv.org/pdf/2603.01437)
+- [On the Learning Dynamics of RLVR at the Edge of Competence](https://arxiv.org/abs/2602.14872)
+- [How Does Unfaithful Reasoning Emerge from Autoregressive Training?](https://arxiv.org/pdf/2602.01017)
+- [Why Models Know But Don't Say](https://arxiv.org/html/2603.26410)
+- [Monitoring the Internal Monologue](https://arxiv.org/html/2605.18549v1)
+- [FaithCoT-Bench](https://arxiv.org/pdf/2510.04040)
+- [Chain of Thought Faithfulness Blog](https://explore.n1n.ai/blog/llm-cot-faithfulness-research-2026-03-30)
+
+
+【原始 proposal（允许参考但不是主要依据）】:
+## Title
+
+Mapping the Surface-Latent Faithfulness Divergence Across GRPO Training: When Does Reasoning Theater Begin?
+
+## 1. Research Question
+
+How does the gap between surface-level chain-of-thought (CoT) faithfulness and latent internal-state faithfulness evolve across the trajectory of GRPO reinforcement learning training in reasoning LLMs? We frame this through the lens of reward conflict theory: GRPO's outcome-based reward constitutes an "in-conflict" setting (arXiv:2603.30036) where the output-dependent reward term and CoT-dependent term pull in opposing directions. Specifically, we ask: (1) Does the surface-latent faithfulness gap exhibit phase-dependent dynamics consistent with in-conflict reward predictions? (2) Does the divergence onset depend on problem difficulty—earlier for easy tasks (CoT-as-rationalization) versus delayed for hard tasks (CoT-as-computation) (arXiv:2507.05246)? (3) Does SFT on the same data (an "aligned" reward setting) produce qualitatively different divergence dynamics, as the in-conflict framework predicts?
+
+## 2. Core Hypothesis and Theoretical Grounding
+
+The "Aligned, Orthogonal or In-conflict" framework (arXiv:2603.30036) decomposes RL post-training reward into output-dependent and CoT-dependent terms, predicting that in-conflict reward structures reduce CoT monitorability. GRPO with outcome-based reward is a canonical in-conflict setting: it rewards correct final answers regardless of CoT quality, creating pressure to produce performative rather than faithful reasoning.
+
+We hypothesize that this in-conflict pressure produces a **phase-dependent surface-latent divergence** rather than monotonic widening. Drawing on evidence that RLVR training exhibits phase transitions (arXiv:2602.14872), that GRPO reward curves follow three-phase exponential saturation (arXiv:2507.18014, NeurIPS 2026), and that RL post-training systematically increases model confidence through limited representation variability (arXiv:2601.04670), we predict:
+
+- **Phase 1 (Early alignment)**: Surface and latent faithfulness both improve as RL sharpens response distributions. Monitorability improves, consistent with RLVR monitorability findings (arXiv:2602.03978).
+- **Phase 2 (Divergence onset)**: Surface CoT quality continues improving while latent answer pre-commitment deepens. The model increasingly "knows" its answer before articulating reasoning—the onset of Reasoning Theater (arXiv:2603.05488).
+
+Critically, we predict this divergence is **difficulty-dependent**: easy problems (where CoT serves as post-hoc rationalization, not genuine computation) should diverge earlier and more sharply, while hard problems (where CoT is necessary computation) should diverge later or resist divergence. This prediction follows directly from the CoT-as-computation vs CoT-as-rationalization distinction (arXiv:2507.05246).
+
+An important confound: outcome-based supervision can indirectly shape CoT surface appearance through two mechanisms—safe-looking output generalizing to safe-looking CoT, and coherent CoT being reinforced because it increases correct-output probability (arXiv:2511.11584; arXiv:2601.23086). This means surface metrics may be artificially inflated by GRPO, making the surface-latent gap partially an artifact of surface inflation rather than solely latent pre-commitment deepening. Our experimental design explicitly controls for this (§5.4).
+
+**SFT as contrasting prediction**: SFT on the same data uses solution traces as targets, making CoT and output optimization approximately "aligned." The in-conflict framework predicts SFT should not produce comparable divergence. If confirmed, this is not merely an ablation but a direct validation of the framework's core prediction.
+
+Synthetic experiments on unfaithful reasoning emergence (arXiv:2602.01017, ICLR 2027) further support phase-dependent dynamics: models learn faithful reasoning only below a training-noise threshold, with a transition from faithful stepwise reasoning to unfaithful skip-step reasoning via an intermediate mixed mode. GRPO's reward variance may push models past this threshold at an identifiable training stage.
+
+## 3. Motivation and Significance
+
+RFEval (arXiv:2602.17053) finds 49.7% unfaithful outputs across 12 open-source LRMs, with unfaithfulness correlating more with post-training regime than model scale—motivating a training-dynamics-level investigation. Reasoning Theater (arXiv:2603.05488) demonstrates that models lock onto answers far before CoT reveals them, with probe-guided early exit reducing tokens by 30-80%. "Why Models Know But Don't Say" (arXiv:2603.26410, AAAI 2027) documents thinking-answer divergence in 55.4% of hint-following cases across 12 open-weight reasoning models.
+
+However, no existing work traces this gap's emergence across training with mechanistic tools. This blind spot prevents timing of faithfulness-aware interventions (FaithRL (arXiv:2602.03507), step-level faithfulness RL (arXiv:2602.05897), AtManRL (arXiv:2604.16158)). Our study provides:
+
+1. **First longitudinal empirical test of in-conflict theory predictions**: validating or falsifying the framework's claim that in-conflict reward structures reduce monitorability over training.
+2. **Difficulty-dependent temporal map**: not one divergence curve but a family of curves stratified by problem difficulty, revealing whether CoT-as-computation tasks resist the divergence that afflicts CoT-as-rationalization tasks.
+3. **Actionable timing guidance**: identifying training phases where faithfulness-aware intervention would be most effective.
+4. **Representation-level mechanistic explanation**: connecting divergence dynamics to RL vs SFT feature evolution patterns (arXiv:2604.25011), where RL's restrained, continually evolving feature changes (vs SFT's rapid stabilization) may explain why RL specifically produces progressive reasoning theater.
+
+## 4. Related Work
+
+**Faithfulness measurement (snapshot paradigm).** Pre-CoT probes (Cox et al., arXiv:2603.01437) decode final answers from pre-CoT residual-stream activations with high AUC, confirmed causally via activation steering (flip rate >50%). Catching rationalization in the act (arXiv:2603.17199, ICLR 2027) shows pre-generation probes detect motivated reasoning as effectively as full-CoT monitors. The Hypocrisy Gap (arXiv:2602.02496) uses sparse autoencoders to quantify internal-belief/CoT divergence (AUROC 0.55-0.74). Monitoring the Internal Monologue (arXiv:2605.18549) constructs probe trajectories during reasoning (volatility, trend, steady-state features; 95% AUROC)—a within-inference token-level analysis complementary to our across-training step-level analysis. NLDD (arXiv:2602.11201) measures step-level faithfulness via next-token likelihood disruption, finding reasoning horizons at 70-85% chain length. FaithCoT-Bench (arXiv:2510.04040, ICLR 2026) unifies counterfactual, logit-based, and LLM-as-judge faithfulness evaluation across 1,000+ trajectories. All analyze fixed models; none traces evolution across training.
+
+**RL training dynamics.** DeepSeek-R1 (arXiv:2501.12948) demonstrates reasoning incentivized through pure RL with GRPO. On the Learning Dynamics of RLVR (arXiv:2602.14872) reveals grokking-type phase transitions with discontinuous difficulty spectra and relay effects with smooth spectra. Predictive Scaling Laws for GRPO (arXiv:2507.18014, NeurIPS 2026) identifies three-phase exponential saturation in reward curves. Learning Dynamics in RL Post-Training (arXiv:2601.04670) applies NTK analysis to show RL updates systematically increase model confidence. On Predictability of RL Dynamics (arXiv:2510.00553) shows RL training's Rank-1 subspace nearly determines reasoning gains. GRPO's effective loss can be rewritten as KL-regularized contrastive loss (arXiv:2503.06639), with KL coefficient directly governing optimization dynamics.
+
+**Faithfulness across RL training.** The Obfuscation Atlas (arXiv:2602.15515) tracks deception probes across RLVR checkpoints in Llama-3 (8B-70B), establishing cross-checkpoint probing methodology. RL-Obfuscation (arXiv:2506.14261) shows RL-finetuned models can evade token-level monitors but not holistic monitors—informing our probe design. VLM checkpoint analysis (arXiv:2602.12506) tracks behavioral metrics across GRPO checkpoints without latent probes. GRPO vs DPO evaluation (arXiv:2512.22631) compares faithfulness across only 3 epoch checkpoints. Chen et al. (arXiv:2505.05410) measure hint-injection rates across RL steps (improvement then plateau ~25%), surface-level only.
+
+**CoT safety theory.** The in-conflict framework (arXiv:2603.30036) predicts monitorability reduction under conflicting reward terms—our study provides the first longitudinal empirical test. CoT-as-computation vs CoT-as-rationalization (arXiv:2507.05246) predicts monitoring robustness depends on computational necessity—our difficulty-conditioned analysis directly tests this. Output supervision can indirectly obfuscate CoT (arXiv:2511.11584; arXiv:2601.23086) through two mechanisms (safe-output generalization and CoT reinforcement)—our surface-metric cross-validation controls for this confound.
+
+**Faithfulness-aware RL methods.** FaithRL (arXiv:2602.03507) and step-level faithfulness RL (arXiv:2602.05897) introduce faithfulness rewards during training. AtManRL (arXiv:2604.16158) manipulates attention for faithfulness. Why Does RL Generalize? (arXiv:2604.25011) reveals RL's restrained, continually evolving feature changes vs SFT's rapid stabilization—potentially explaining why RL progressively induces reasoning theater.
+
+**Our positioning.** First to combine mechanistic probing with surface behavioral metrics in a dense longitudinal study across GRPO training, framed as an empirical test of in-conflict reward theory, with difficulty-conditioned analysis and SFT baseline as contrasting theoretical prediction.
+
+## 5. Experimental Design
+
+### 5.1 Models and Training
+
+**Model families:**
+- **DeepSeek-R1-Distill-Qwen-7B** (arXiv:2501.12948): Pre-existing distilled reasoning. Tests GRPO reshaping an already-reasoning model.
+- **Qwen3-8B (base)**: No prior reasoning. Tests faithfulness dynamics when reasoning is learned from scratch.
+
+**GRPO training:**
+- Data: MATH (train split) + GPQA-Extended (546 items, used as training source).
+- Checkpoints every 25 steps, yielding ~40 checkpoints per run.
+- Hyperparameters (learning rate, KL penalty coefficient, group size) selected via preliminary sweep with justification reported.
+
+**SFT baseline (contrasting theoretical prediction):**
+- Same data (MATH + GPQA-Extended solution traces), same compute budget, same checkpoint schedule.
+- Applied to R1-Distill-7B. Under in-conflict theory, SFT's approximately aligned reward should not produce comparable divergence.
+
+**Reproducibility:**
+- R1-Distill-7B: minimum 2 random seeds. Seed-to-seed variance reported on all metrics.
+- Qwen3-8B: 1 seed with documentation.
+- Early checkpoint instability (Open-R1 issue #358): training curves shown; first ~6 checkpoints flagged if anomalous; sensitivity analysis with/without.
+
+### 5.2 Faithfulness Metrics
+
+**Surface faithfulness (behavioral):**
+
+(S1) **Hint-injection rate** (adapted from Chen et al., arXiv:2505.05410): Hints injected before/within `&lt;think>` block; acknowledgment defined as CoT causally referencing the hint. Pilot validation (50 items) on target models before full runs.
+
+(S2) **LLM-as-judge consistency scoring**: Primary judge: GPT-4o. Scoring: per-step binary (each CoT step logically supports final answer: yes/no), aggregated to chain-level faithfulness ratio. Prompt template provided in appendix. Reliability: self-consistency (2-3 repeated evaluations on same CoT, report agreement rate) + judge-vs-human agreement on 50 samples. Methodology follows FaithCoT-Bench (arXiv:2510.04040, ICLR 2026) and VLM checkpoint paper (arXiv:2602.12506).
+
+**Surface-metric cross-validation for output-supervision confound (arXiv:2511.11584; arXiv:2601.23086):** If GRPO indirectly inflates CoT surface appearance, S2 (LLM-as-judge) may rise while S1 (hint-injection, which tests behavioral response to planted information) does not. Divergence between S1 and S2 trends is diagnostic of surface inflation vs genuine faithfulness improvement.
+
+**Latent faithfulness (mechanistic):**
+
+(L1) **Linear probe AUC on pre-CoT activations** (Cox et al., arXiv:2603.01437):
+- **Dual probe strategy** (informed by Obfuscation Atlas (arXiv:2602.15515) and RL-Obfuscation (arXiv:2506.14261) robustness findings):
+  - *Per-checkpoint retrained probes*: Fresh logistic regression per checkpoint. 5-fold cross-validation on fixed evaluation set (MATH test, 500 items). Report AUC with 95% CI from fold variance.
+  - *Fixed probe*: Trained on checkpoint 0 activations (probe-train/probe-test: 70/30 split), transferred to all subsequent checkpoints. Transfer AUC decline rate serves as representation drift proxy (connecting to RL vs SFT feature dynamics, arXiv:2604.25011).
+  - *Random-label baseline*: Per checkpoint, probe on shuffled labels bounds chance separability.
+- **Accuracy-controlled analysis**: (a) Partial correlation of probe AUC with GRPO steps, controlling for task accuracy; (b) Probe AUC comparison within fixed accuracy bins across checkpoints.
+
+(L2) **NLDD** (arXiv:2602.11201): Per checkpoint, corrupt reasoning steps and measure confidence drop. Report reasoning horizon in both absolute position (token index) and relative position (% of chain length) to disentangle chain-length-driven shifts from genuine horizon shifts.
+
+(L3) **Activation patching** (EMNLP 2025 methodology): At 10+ checkpoints with density increased around detected transition regions.
+
+(L4) **Logit lens / tuned lens** (sanity check): At 10 key checkpoints, verify pre-commitment signals independently of linear probes.
+
+**Basic tracking metrics:** Per checkpoint: CoT token count (mean, median, std), reasoning step count, task accuracy by difficulty level.
+
+### 5.3 Evaluation Data and Splits
+
+- **GRPO training data**: MATH train split + GPQA-Extended (546 items).
+- **In-distribution evaluation**: MATH test split (500 items) for probe evaluation + hint-injection + LLM-as-judge. Full GPQA-Diamond (198 items, non-overlapping with GPQA-Extended) for all faithfulness metrics. GPQA results positioned as supplementary evidence with bootstrap CI given limited sample size.
+- **Math-domain hint-injection**: GSM8K held-out (500 items).
+- **OOD evaluation**: ARC-Challenge (500 items).
+
+### 5.4 Analysis Methods
+
+**Composite divergence metric:** Surface composite: z-score normalize S1 and S2, then average. Latent composite: z-score normalize L1 (per-checkpoint retrained AUC) and L2 (NLDD). Report inter-metric Spearman ρ (S1-S2 and L1-L2). Primary divergence curve: surface composite minus latent composite across checkpoints. Sensitivity: individual metric curves and alternative aggregations (rank-based, PCA first component) in appendix.
+
+**Difficulty-conditioned analysis:** Stratify all metrics by MATH difficulty level (1-5). Plot divergence curves per difficulty level. Test prediction: easy levels (1-2) diverge earlier/more sharply; hard levels (4-5) diverge later or not at all. This directly tests the CoT-as-computation vs rationalization hypothesis (arXiv:2507.05246).
+
+**Phase detection (exploratory):** PELT + Bayesian online changepoint detection on divergence curves. Explicitly exploratory at ~40 data points. Bootstrap CI (1000 resamples) on slope estimates. Conclusions rest on overall curve shape, not changepoint detection alone.
+
+**SFT vs GRPO comparison (theory test):** Overlay SFT divergence curves on GRPO curves (same model, same starting point). In-conflict theory predicts qualitative difference. Permutation test on curve differences.
+
+**Cross-model comparison:** Align R1-Distill-7B and Qwen3-8B by task accuracy level (not GRPO step).
+
+**Representation drift analysis:** Fixed probe transfer AUC decline rate compared across GRPO vs SFT, interpreted through RL vs SFT feature dynamics (arXiv:2604.25011): RL's restrained, continually evolving features predict gradual probe degradation; SFT's rapid stabilization predicts early sharp drop then plateau.
+
+### 5.5 Compute Budget
+
+- GRPO training: ~120 A100-hours (2 model families × 1 run + 1 extra seed for R1-Distill-7B).
+- SFT baseline: ~30 A100-hours.
+- Probe training/evaluation (~40 checkpoints × 2+ runs, 5-fold CV): ~50 A100-hours.
+- Activation patching (10+ checkpoints × 2 families): ~20 A100-hours.
+- LLM-as-judge API: ~$300 (including reliability checks).
+- Total: ~220 A100-hours + API costs. Feasible on 8×A100 node within ~4 weeks.
+
+### 5.6 Limitations
+
+- **Scale**: 7-8B models only. Divergence dynamics may differ at larger scales.
+- **KL penalty sensitivity**: GRPO's KL penalty coefficient directly affects policy drift rate (arXiv:2503.06639). Preliminary sweep data at alternative KL values provides suggestive evidence of sensitivity, but full ablation is beyond compute budget. Divergence timing may shift with KL coefficient.
+- **Single RL algorithm**: GRPO only. Other RL methods (DPO, PPO) may show different dynamics.
+- **GPQA evaluation set**: 198 items provide limited statistical power; all GPQA conclusions supplementary.
+
+## 6. Expected Contributions
+
+1. **First longitudinal empirical test of in-conflict theory**: Validates or falsifies the prediction (arXiv:2603.30036) that in-conflict reward structures progressively reduce CoT monitorability, with SFT's aligned reward as contrasting prediction.
+2. **Difficulty-dependent divergence map**: Family of divergence curves stratified by problem difficulty, testing whether CoT-as-computation tasks resist divergence that afflicts CoT-as-rationalization tasks.
+3. **Phase structure identification**: Evidence for/against two-phase divergence (early alignment → divergence onset), with temporal resolution of ~25 GRPO steps.
+4. **Actionable timing guidance**: Training phase identification for optimal faithfulness-aware intervention (FaithRL (arXiv:2602.03507), step-level faithfulness RL (arXiv:2602.05897), AtManRL (arXiv:2604.16158)).
+5. **Representation-level explanation**: Connecting divergence dynamics to RL vs SFT feature evolution (arXiv:2604.25011), explaining why RL-specific optimization progressively produces reasoning theater.
+6. **Methodological template**: Dual probe strategy + accuracy-controlled analysis + difficulty-conditioned decomposition as reusable framework for longitudinal mechanistic studies.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "74258bb0-fbf1-437e-802c-a7161d2a0d7a",
+  "type": "user",
+  "uuid": "a3850d79-b6e9-4ca1-82b4-0bc137440a17",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "f5ed49c8-85e3-4175-a1e2-05bca689fb76",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-20T04:35:15.695Z_
+
+```json
+{
+  "parentUuid": "a3850d79-b6e9-4ca1-82b4-0bc137440a17",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "33769b48-b4f3-4bb4-962e-aeab5548f7bb",
+  "timestamp": "2026-05-20T04:35:15.695Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "f5ed49c8-85e3-4175-a1e2-05bca689fb76",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-20T04:35:15.695Z_
+
+```json
+{
+  "parentUuid": "33769b48-b4f3-4bb4-962e-aeab5548f7bb",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "1af49e20-9b08-4d65-8347-835d774302af",
+  "timestamp": "2026-05-20T04:35:15.695Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "f5ed49c8-85e3-4175-a1e2-05bca689fb76",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。  【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━ Now I have sufficient research to provide a thorough evaluatio…",
+  "leafUuid": "1af49e20-9b08-4d65-8347-835d774302af",
+  "sessionId": "f5ed49c8-85e3-4175-a1e2-05bca689fb76"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Map surface-latent faithfulness divergence in GRPO training",
+  "sessionId": "f5ed49c8-85e3-4175-a1e2-05bca689fb76"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-20T04:35:54.579Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the three independent reviews and synthesize them as Meta Judge.
+
+**Review 1 (R1):**
+- Probability: [33% - 48%] 中位 40%
+- Research Question: 强
+- Method & Innovation: 中偏强
+- Experimental Design: 强
+- Feasibility: 强
+- Writing: 强
+
+**Review 2 (R2):**
+- Probability: [22% - 38%] 中位 30%
+- Research Question: 强
+- Method & Innovation: 中
+- Experimental Design: 强
+
+
+- Feasibility: 中
+- Writing: 中
+
+**Review 3 (R3):**
+- Probability: [30% - 45%] 中位 37%
+- Research Question: 强
+- Method & Innovation: 中
+- Experimental Design: 强
+- Feasibility: 强
+- Writing: 强
+
+Looking at the three median probabilities of 40%, 30%, and 37%, I'm getting a mean of about 35.7% with a median of 37% and relatively low standard deviation around 5%, suggesting reasonable consensus among reviewers despite some variation in their assessments.
+
+**Consensus points (2+ reviewers agree):**
+
+1. Research Question: 强 — ALL THREE agree
+2. Experimental Design: 强 — ALL THREE agree
+3. Method & Innovation: 中 — consensus across R2 and R3, with R1 slightly higher at 中偏强
+4. Core risk: "纯分析型研究，无新方法" — ALL THREE mention this
+5. Core risk: Obfuscation Atlas overlap — ALL THREE mention this
+6. Core risk: 7-8B scale limitation — ALL THREE mention
+7. Core risk: Null result risk — R2 and R3 explicitly flag this; R1 implies it
+8. Composite metric ad hoc — ALL THREE mention
+9. Phase detection on ~40 points has limited statistical power — ALL THREE mention
+10. Feasibility: R1 and R3 rate it 强, but R2 is more cautious at 中, particularly concerned about fitting everything clearly within 8 pages and the engineering timeline
+
+**Divergence points:**
+
+R2 stands out as notably stricter on both Feasibility and Writing quality, with particular emphasis on the presentation constraint, while R1 and R3 are more optimistic about the proposal's viability.
+
+**Anomalous points:**
+
+R2's Writing rating of 中 is unique — R1 and R3 both rate it 强. R2's concern about complexity fitting within the page limit is valid, though the other reviewers don't weight this as heavily. Similarly, R2's cautious Feasibility rating of 中 reflects skepticism about engineering complexity that R1 and R3 don't share.
+
+Looking at the probability estimates — R1 at 40%, R2 at 30%, R3 at 37% — the median sits at 37% with a standard deviation around 4.2%, suggesting moderate consensus. R2's lower estimate pulls the assessment toward caution, which seems justified given the valid concerns about presentation and implementation complexity.
+
+The core consensus points are strong: excellent research question and experimental design, but moderate method novelty as the limiting factor. The main risks center on whether a pure analysis paper will resonate at EMNLP, potential overlap with Obfuscation Atlas, and the possibility of null results. Given this moderate agreement with R2's stricter perspective, I'm settling on a final estimate around 34-35%, slightly below the median to account for the legitimate concerns about feasibility and presentation constraints.
+
+Now looking at the implementation requirements across all three reviewers: the compute needs are consistent at roughly 220 A100-hours on an 8-GPU node over 4-6 weeks, all data comes from public sources, human annotation is minimal at around 50 samples, and the training involves GRPO plus SFT without needing a new benchmark. The timeline estimates vary slightly between reviewers, with R1 suggesting 6-8 weeks and R2 more optimistic at 4-6 weeks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1af49e20-9b08-4d65-8347-835d774302af",
+  "isSidechain": false,
+  "requestId": "req_011CbDCUstxoYqeJpUBWVeVt",
+  "type": "assistant",
+  "uuid": "32981485-252f-46c6-a12a-7191a87727e8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "f5ed49c8-85e3-4175-a1e2-05bca689fb76",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NV6ismhJDF8xqrd8JS1gMs",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 21133,
+      "cache_read_input_tokens": 16908,
+      "output_tokens": 3634,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 21133,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 3634,
+          "cache_read_input_tokens": 16908,
+          "cache_creation_input_tokens": 21133,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 21133
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-20T04:36:41.988Z_
+
+【阶段】: Meta Judge
+【三次中位】: [40%, 30%, 37%]  std=4.2%
+【共识维度】:
+- **研究问题: 强**（3/3 一致）— 纵向 surface-latent faithfulness divergence 追踪填补真实空白，in-conflict theory 框架化使研究问题清晰可检验，topic 高度 timely
+- **实验设计: 强**（3/3 一致）— Dual probe strategy、accuracy-controlled analysis、surface-metric cross-validation、SFT 理论对照、difficulty conditioning 等控制措施极为周密，是 proposal 最大亮点
+- **方法与创新: 中**（2/3 评"中"，1/3 评"中偏强"）— 所有测量工具借自现有工作（pre-CoT probes, NLDD, hint-injection, LLM-as-judge），创新仅在组合方式和理论框架化。Obfuscation Atlas (arXiv:2602.15515) 已建立 cross-checkpoint probing 先例，削弱 novelty claim
+- **核心风险：纯分析型研究无新方法/无 benchmark**（3/3 一致）— 部分 reviewer 对"interesting observation but what's actionable?"有 bias
+- **核心风险：Obfuscation Atlas 方法论重叠**（3/3 一致）— 差异化（surface-latent 联合、difficulty conditioning、in-conflict framing）真实但需精确论证
+- **核心风险：7-8B 规模泛化性存疑**（3/3 一致）
+- **核心风险：Null result / 可预测假设**（3/3 一致，程度不同）— 如果 divergence 无清晰 phase structure 或 difficulty conditioning 无效，核心 contribution 大幅缩水
+- **Composite metric ad hoc 构造**（3/3 一致）— z-score 线性组合缺乏理论保证
+- **Phase detection ~40 数据点统计力有限**（3/3 一致）
+- **可行性: 整体可行**（3/3 一致计算预算合理，分歧在于执行风险评估）
+
+【异常维度】:
+- **R2 写作与呈现: 中**（仅 R2）— R2 特别强调 6+ 指标在 8 页内呈现的挑战，认为可能变成"数据 dump"。R1/R3 均评"强"。R2 的担忧有合理性（实验复杂度确实高），但 proposal 阶段的写作质量本身是强的，论文写作挑战是执行风险而非 proposal 缺陷。**降权但标注为执行风险。**
+- **R2 可行性: 中**（仅 R2）— R2 对 probe 调试、activation patching 工程量、4 周时间表持更谨慎态度。R1/R3 均评"强"。R2 的担忧合理但偏保守——220 A100-hours 对学术实验室完全可行，工程难度不构成阻断性风险。**降权。**
+- **R1 方法与创新: 中偏强**（仅 R1）— R1 对差异化空间（vs Obfuscation Atlas）的评估比 R2/R3 更乐观。考虑到 R2/R3 的一致性，**降权至"中"。**
+
+【最终概率】: [25% - 42%] 中位 35%
+【一致性】: 中（std=4.2%，在 3-7% 区间，按规则偏向更严格方）
+【综合理由】:
+
+三位审稿人在核心判断上高度一致：**研究问题强、实验设计强、方法创新中等、纯分析型定位是主要风险**。分歧主要在概率估计的幅度上（R2 明显更严，中位 30% vs R1 的 40%）。
+
+**概率向下调整的逻辑（从三人中位 37% 调至 35%）：**
+1. 中一致性规则要求偏向更严格方。R2 的 30% 估计虽是最低，但其核心论点（纯分析型论文在 EMNLP 广泛审稿池中的接受度、呈现复杂度风险）被 R1/R3 也部分认可
+2. **方法创新维度是 2/3 共识的"中"**，这是概率天花板的关键限制。Research Question 强 + Method 中 → idea 天花板约 40-42%，即使实验执行完美也难突破
+3. Null result 风险是系统性的——如果 phase structure 不清晰或 difficulty conditioning 无效，论文 narrative 会严重弱化，这个风险无法通过实验设计改善，只能在结果出来后才知道
+
+**概率不应更低的逻辑（下界 25% 而非更低）：**
+1. 研究问题 3/3 强 + 实验设计 3/3 强，这在 EMNLP analysis track 中属于上游水平
+2. 即使结果部分为 null，difficulty-conditioned curves + SFT 对照仍可产出有信息量的 findings
+3. AI safety / faithfulness 方向在 2025-2026 持续升温，reviewer pool 中关注此方向的概率在增加
+
+**最终区间 [25%-42%] 中位 35% 的含义：** 这是一篇 borderline 投稿。如果实验结果清晰且论述极度聚焦（1-2 个核心 finding 为主线），有机会触及上界；如果结果模糊、论文过于复杂、或 reviewer 恰好对纯分析型研究有 bias，会跌至下界。中位 35% 反映了"高质量研究设计 + 热门方向"与"方法创新有限 + 结果不确定性 + 规模局限"之间的权衡。
+
+【建议】: 边缘（borderline，可通过迭代优化尝试提升至更有竞争力的区间）
+
+【实施评估】:
+  - 计算资源: ~220 A100-hours，8×A100 节点约 4-6 周。对有 GPU 集群的学术实验室完全可行，不构成阻断性障碍
+  - 数据需求: MATH（公开）、GPQA-Extended（公开，546 items）、GPQA-Diamond（公开，198 items）、GSM8K（公开）、ARC-Challenge（公开）。全部公开可得，无数据获取风险
+  - 人工介入: LLM-as-judge 可靠性验证需 50 样本人工标注（~2-3 人天）；hint-injection pilot validation 需 50 items 人工检查（~1 人天）。总体人工需求极低
+  - 训练需求: 需要 GRPO 训练（2 模型家族 × ~40 checkpoints，含 1 extra seed）+ SFT 训练（1 模型 × ~40 checkpoints）。不需要从头预训练，有 Open-R1 等开源框架参考。存储需求 ~2-3TB（密集 checkpoint 保存）
+  - 新 Benchmark: 不需要。完全利用现有 benchmark
+  - 预估周期: 6-8 周（含超参 sweep 1-2 周、GRPO/SFT 训练 2-3 周、probe 训练与评估 1-2 周、分析与写作 2 周）。R2 指出 probe 调试和 activation patching 工程量可能超预期，建议预留 buffer
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "32981485-252f-46c6-a12a-7191a87727e8",
+  "isSidechain": false,
+  "requestId": "req_011CbDCUstxoYqeJpUBWVeVt",
+  "type": "assistant",
+  "uuid": "29ce52b5-f1cb-40ba-9b8c-86ca834f9c80",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "f5ed49c8-85e3-4175-a1e2-05bca689fb76",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NV6ismhJDF8xqrd8JS1gMs",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 21133,
+      "cache_read_input_tokens": 16908,
+      "output_tokens": 3634,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 21133,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 3634,
+          "cache_read_input_tokens": 16908,
+          "cache_creation_input_tokens": 21133,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 21133
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 10_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。  【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━ Now I have sufficient research to provide a thorough evaluatio…",
+  "leafUuid": "29ce52b5-f1cb-40ba-9b8c-86ca834f9c80",
+  "sessionId": "f5ed49c8-85e3-4175-a1e2-05bca689fb76"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 11_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Map surface-latent faithfulness divergence in GRPO training",
+  "sessionId": "f5ed49c8-85e3-4175-a1e2-05bca689fb76"
+}
+```
+
+---

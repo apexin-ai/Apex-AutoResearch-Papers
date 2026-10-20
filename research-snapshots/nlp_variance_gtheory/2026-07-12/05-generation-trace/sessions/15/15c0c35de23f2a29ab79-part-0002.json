@@ -1,0 +1,2723 @@
+{
+  "schema_version": "1.0",
+  "session_id": "15c0c35de23f2a29ab79",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 181,
+          "timestamp": "2026-05-22T13:01:29.641Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证文件字数和格式。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "985d1ace-7e99-479e-9e89-1a5ba5bd1d77",
+            "isSidechain": false,
+            "requestId": "req_011CbHehTcNGaNDHqfPt6oRM",
+            "type": "assistant",
+            "uuid": "71e5116f-59c2-4373-94e0-8b7dbb9b0f4a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/distiller_c08a9a6e",
+            "sessionId": "1ca4cc2e-0adc-4bb5-b9b5-aaddf44ac5b9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SLY6oHqsKKGYCnbHqe2MgU",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2964,
+                "cache_read_input_tokens": 83695,
+                "output_tokens": 325,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2964,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 325,
+                    "cache_read_input_tokens": 83695,
+                    "cache_creation_input_tokens": 2964,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2964
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000181"
+        },
+        {
+          "source_line": 182,
+          "timestamp": "2026-05-22T13:01:32.529Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013pKXDR9XUHhmsaFKdxA3FF",
+              "name": "Bash",
+              "input": {
+                "command": "echo \"=== Research skill ===\" && wc -c /home/ubuntu/.agent-ml-research-idea_gen_0519/skills/projects/nlp_variance_gtheory/distilled-research.skill.md && echo \"Body chars:\" && sed -n '/^---$/,/^---$/d; p' /home/ubuntu/.agent-ml-research-idea_gen_0519/skills/projects/nlp_variance_gtheory/distilled-research.skill.md | wc -c && echo \"=== Writing skill ===\" && wc -c /home/ubuntu/.agent-ml-research-idea_gen_0519/skills/projects/nlp_variance_gtheory/distilled-writing.skill.md && echo \"Body chars:\" && sed -n '/^---$/,/^---$/d; p' /home/ubuntu/.agent-ml-research-idea_gen_0519/skills/projects/nlp_variance_gtheory/distilled-writing.skill.md | wc -c",
+                "description": "Check skill file sizes and body character counts"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "71e5116f-59c2-4373-94e0-8b7dbb9b0f4a",
+            "isSidechain": false,
+            "requestId": "req_011CbHehTcNGaNDHqfPt6oRM",
+            "type": "assistant",
+            "uuid": "f8fcc24c-611c-464e-8ae9-e56be03724fc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/distiller_c08a9a6e",
+            "sessionId": "1ca4cc2e-0adc-4bb5-b9b5-aaddf44ac5b9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SLY6oHqsKKGYCnbHqe2MgU",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2964,
+                "cache_read_input_tokens": 83695,
+                "output_tokens": 325,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2964,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 325,
+                    "cache_read_input_tokens": 83695,
+                    "cache_creation_input_tokens": 2964,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2964
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000182"
+        },
+        {
+          "source_line": 183,
+          "timestamp": "2026-05-22T13:01:32.627Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013pKXDR9XUHhmsaFKdxA3FF",
+              "type": "tool_result",
+              "content": "=== Research skill ===\n4175 /home/ubuntu/.agent-ml-research-idea_gen_0519/skills/projects/nlp_variance_gtheory/distilled-research.skill.md\nBody chars:\n3324\n=== Writing skill ===\n4858 /home/ubuntu/.agent-ml-research-idea_gen_0519/skills/projects/nlp_variance_gtheory/distilled-writing.skill.md\nBody chars:\n4032",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f8fcc24c-611c-464e-8ae9-e56be03724fc",
+            "isSidechain": false,
+            "promptId": "55e65cbc-ed01-45bd-8840-890fca6cd9cb",
+            "type": "user",
+            "uuid": "f5821343-cefc-4587-996a-fe0989e1a665",
+            "toolUseResult": {
+              "stdout": "=== Research skill ===\n4175 /home/ubuntu/.agent-ml-research-idea_gen_0519/skills/projects/nlp_variance_gtheory/distilled-research.skill.md\nBody chars:\n3324\n=== Writing skill ===\n4858 /home/ubuntu/.agent-ml-research-idea_gen_0519/skills/projects/nlp_variance_gtheory/distilled-writing.skill.md\nBody chars:\n4032",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            },
+            "sourceToolAssistantUUID": "f8fcc24c-611c-464e-8ae9-e56be03724fc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/distiller_c08a9a6e",
+            "sessionId": "1ca4cc2e-0adc-4bb5-b9b5-aaddf44ac5b9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000183"
+        },
+        {
+          "source_line": 184,
+          "timestamp": "2026-05-22T13:01:40.052Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The body character counts are over 3000:\n- Research: 3324 (over by ~324)\n- Writing: 4032 (over by ~1032)\n\nI need to trim both. Let me figure out what to cut.\n\nFor research skill, I need to trim ~324 chars. Let me compress some descriptions.\n\nFor writing skill, I need to trim ~1032 chars. More aggressive cuts needed.\n\nLet me re-read and trim both files. Actually, looking at the sed command - it might not be extracting the body correctly. The pattern `sed -n '/^---$/,/^---$/d; p'` should delete lines between the two `---` delimiters and print the rest. \n\nWait, I think the sed pattern might be the issue here. Let me try a different approach to reliably extract just the body content without the frontmatter.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f5821343-cefc-4587-996a-fe0989e1a665",
+            "isSidechain": false,
+            "requestId": "req_011CbHehvRBAy7sx6gEU7Ayu",
+            "type": "assistant",
+            "uuid": "72999311-3dbc-4b45-bb71-1d942d153c20",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/distiller_c08a9a6e",
+            "sessionId": "1ca4cc2e-0adc-4bb5-b9b5-aaddf44ac5b9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012BFxU9BHuVybgD1wNMb8qE",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 449,
+                "cache_read_input_tokens": 86659,
+                "output_tokens": 447,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 449,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 447,
+                    "cache_read_input_tokens": 86659,
+                    "cache_creation_input_tokens": 449,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 449
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000184"
+        },
+        {
+          "source_line": 185,
+          "timestamp": "2026-05-22T13:01:40.052Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Body 超出 3000 字符限制。需要精简。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "72999311-3dbc-4b45-bb71-1d942d153c20",
+            "isSidechain": false,
+            "requestId": "req_011CbHehvRBAy7sx6gEU7Ayu",
+            "type": "assistant",
+            "uuid": "8dac97fa-96ff-4569-b9bd-d03492454a52",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/distiller_c08a9a6e",
+            "sessionId": "1ca4cc2e-0adc-4bb5-b9b5-aaddf44ac5b9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012BFxU9BHuVybgD1wNMb8qE",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 449,
+                "cache_read_input_tokens": 86659,
+                "output_tokens": 447,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 449,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 447,
+                    "cache_read_input_tokens": 86659,
+                    "cache_creation_input_tokens": 449,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 449
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000185"
+        },
+        {
+          "source_line": 186,
+          "timestamp": "2026-05-22T13:01:41.958Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KCCeDaWaTWfJN2z1ynABSF",
+              "name": "Bash",
+              "input": {
+                "command": "awk '/^---$/{n++; next} n>=2' /home/ubuntu/.agent-ml-research-idea_gen_0519/skills/projects/nlp_variance_gtheory/distilled-research.skill.md | wc -c && awk '/^---$/{n++; next} n>=2' /home/ubuntu/.agent-ml-research-idea_gen_0519/skills/projects/nlp_variance_gtheory/distilled-writing.skill.md | wc -c",
+                "description": "Accurate body character count after frontmatter"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8dac97fa-96ff-4569-b9bd-d03492454a52",
+            "isSidechain": false,
+            "requestId": "req_011CbHehvRBAy7sx6gEU7Ayu",
+            "type": "assistant",
+            "uuid": "a29bd17a-49cc-4c6f-89d3-941bfe488750",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/distiller_c08a9a6e",
+            "sessionId": "1ca4cc2e-0adc-4bb5-b9b5-aaddf44ac5b9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012BFxU9BHuVybgD1wNMb8qE",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 449,
+                "cache_read_input_tokens": 86659,
+                "output_tokens": 447,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 449,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 447,
+                    "cache_read_input_tokens": 86659,
+                    "cache_creation_input_tokens": 449,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 449
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000186"
+        },
+        {
+          "source_line": 187,
+          "timestamp": "2026-05-22T13:01:42.010Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KCCeDaWaTWfJN2z1ynABSF",
+              "type": "tool_result",
+              "content": "3324\n4032",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a29bd17a-49cc-4c6f-89d3-941bfe488750",
+            "isSidechain": false,
+            "promptId": "55e65cbc-ed01-45bd-8840-890fca6cd9cb",
+            "type": "user",
+            "uuid": "ac3222cf-19c1-4e5f-9d36-c1893b36f715",
+            "toolUseResult": {
+              "stdout": "3324\n4032",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            },
+            "sourceToolAssistantUUID": "a29bd17a-49cc-4c6f-89d3-941bfe488750",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/distiller_c08a9a6e",
+            "sessionId": "1ca4cc2e-0adc-4bb5-b9b5-aaddf44ac5b9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000187"
+        },
+        {
+          "source_line": 188,
+          "timestamp": "2026-05-22T13:01:45.337Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Research 超约 300 字符，Writing 超约 1000 字符。压缩两个文件。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ac3222cf-19c1-4e5f-9d36-c1893b36f715",
+            "isSidechain": false,
+            "requestId": "req_011CbHeicr2Rz4UEfD8KyKQg",
+            "type": "assistant",
+            "uuid": "b118c258-9565-4b31-bca9-2cea2ee523c0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/distiller_c08a9a6e",
+            "sessionId": "1ca4cc2e-0adc-4bb5-b9b5-aaddf44ac5b9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Srf4ZTb6aYmiNyr394bsbT",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 464,
+                "cache_read_input_tokens": 87108,
+                "output_tokens": 1546,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 464,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1546,
+                    "cache_read_input_tokens": 87108,
+                    "cache_creation_input_tokens": 464,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 464
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000188"
+        },
+        {
+          "source_line": 189,
+          "timestamp": "2026-05-22T13:01:47.853Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PCeB1bLP4ycoXDAXTwtMmA",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/skills/projects/nlp_variance_gtheory/distilled-research.skill.md",
+                "old_string": "**Prompt/Format Sensitivity** (8/25, HIGH): Formatting alone causes up to 76pp accuracy spread (Sclar ICLR'24); option ordering 13-85% fluctuation (Pezeshkpour NAACL'24); semantics-preserving perturbations flip rankings in 63% of cases (Brittlebench); format performance correlates weakly across models. Eval setup choices (template, few-shot selection, framework version) further compound this (Biderman'24).",
+                "new_string": "**Prompt/Format Sensitivity** (8/25, HIGH): Formatting→76pp spread (Sclar ICLR'24); option ordering→13-85% fluctuation (Pezeshkpour NAACL'24); perturbations flip rankings 63% of cases (Brittlebench); format performance correlates weakly across models. Eval setup (template, few-shot, framework version) compounds this (Biderman'24)."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b118c258-9565-4b31-bca9-2cea2ee523c0",
+            "isSidechain": false,
+            "requestId": "req_011CbHeicr2Rz4UEfD8KyKQg",
+            "type": "assistant",
+            "uuid": "b27ec1db-9bf8-4606-84ea-1834677e8e3e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/distiller_c08a9a6e",
+            "sessionId": "1ca4cc2e-0adc-4bb5-b9b5-aaddf44ac5b9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Srf4ZTb6aYmiNyr394bsbT",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 464,
+                "cache_read_input_tokens": 87108,
+                "output_tokens": 1546,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 464,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1546,
+                    "cache_read_input_tokens": 87108,
+                    "cache_creation_input_tokens": 464,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 464
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000189"
+        },
+        {
+          "source_line": 190,
+          "timestamp": "2026-05-22T13:01:47.870Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PCeB1bLP4ycoXDAXTwtMmA",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0519/skills/projects/nlp_variance_gtheory/distilled-research.skill.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b27ec1db-9bf8-4606-84ea-1834677e8e3e",
+            "isSidechain": false,
+            "promptId": "55e65cbc-ed01-45bd-8840-890fca6cd9cb",
+            "type": "user",
+            "uuid": "60408c92-5c86-4ba9-b98e-12b8c80434ee",
+            "toolUseResult": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519/skills/projects/nlp_variance_gtheory/distilled-research.skill.md",
+              "oldString": "**Prompt/Format Sensitivity** (8/25, HIGH): Formatting alone causes up to 76pp accuracy spread (Sclar ICLR'24); option ordering 13-85% fluctuation (Pezeshkpour NAACL'24); semantics-preserving perturbations flip rankings in 63% of cases (Brittlebench); format performance correlates weakly across models. Eval setup choices (template, few-shot selection, framework version) further compound this (Biderman'24).",
+              "newString": "**Prompt/Format Sensitivity** (8/25, HIGH): Formatting→76pp spread (Sclar ICLR'24); option ordering→13-85% fluctuation (Pezeshkpour NAACL'24); perturbations flip rankings 63% of cases (Brittlebench); format performance correlates weakly across models. Eval setup (template, few-shot, framework version) compounds this (Biderman'24).",
+              "originalFile": "---\nname: LLM Evaluation Variance — Research Patterns\ndescription: Experimental consensus on variance sources, decomposition methods, and gaps in LLM evaluation reproducibility (25 papers, 2018-2026)\nscope: project\nversion: 2\ntags: [distilled, auto-generated]\ndistilled_from:\n  paper_count: 25\n  paper_keys: [sclar2024formatting, zhou2026irt, saleva2025beyond, pezeshkpour2024ordering, polo2024tinybenchmarks, magnusson2023reproducibility, shanmugavelu2024floating, lalor2019irt, rodriguez2021leaderboards, henderson2018deep, madaan2024quantifying, song2025exploring, zhang2025tbik, li2025atlas, biderman2024lessons, hua2025flaw, mesting2026hidden, brittlebench2026, yuan2025layercast, kunievsky2025intent, thinkingmachines2025batch, messina2026background, generalizit2024, bui2025seeds, sameprompt2026]\n  last_distilled: \"2026-05-22T00:00:00Z\"\n---\n\n## Variance Source Taxonomy\n\n**Prompt/Format Sensitivity** (8/25, HIGH): Formatting alone causes up to 76pp accuracy spread (Sclar ICLR'24); option ordering 13-85% fluctuation (Pezeshkpour NAACL'24); semantics-preserving perturbations flip rankings in 63% of cases (Brittlebench); format performance correlates weakly across models. Eval setup choices (template, few-shot selection, framework version) further compound this (Biderman'24).\n\n**Infrastructure Nondeterminism** (5/25, HIGH): BF16→up to 9% accuracy variation, FP32→~0% (Yuan LayerCast). FP non-associativity in parallel reductions: 1000 identical training runs→1000 unique weight sets (Shanmugavelu SC'24). Batch-size kernel selection, not thread-level FP, is the primary source (ThinkingMachines). T=0 background temperature varies by provider: Claude~0, GPT~0.075 (Messina TMLR'26). TBIK guarantees bit-wise reproducibility across tensor-parallel sizes (Zhang'25).\n\n**Evaluation Method Artifacts** (4/25, HIGH): Heuristic eval (regex/log-likelihood) inflates measured sensitivity; LLM-judge raises ARC-C Spearman 0.30→0.95 (Hua EMNLP'25). Standard CIs omit 40-60% of uncertainty from judge/prompt/temp variance; naive 95% CIs→79% actual coverage (Mesting TEE). Code open-sourcing is the strongest reproducibility predictor (+8%) yet only 46% of NLP submissions share code (Magnusson ACL'23).\n\n**Data/Item Heterogeneity** (6/25, HIGH): Between-language variance (SD 8.9-12.0) dwarfs within-language (0.7-1.5) in multilingual benchmarks (Saleva IJCNLP'25). 3-6% of benchmark items have negative discrimination/annotation errors (Li ATLAS). Benchmark difficulty ceilings insufficient for top models; guessing rates 0.20-0.26 in MCQ benchmarks (Zhou AAAI'26). Seed variance in fine-tuning produces macro and micro effects across GLUE/SuperGLUE (Bui'25).\n\n## Dominant Method Families\n\n**IRT/Psychometric** (8/25, rising 2019→2026, HIGH): Trajectory: artificial crowds for IRT (Lalor'19) → IRT leaderboards (Rodriguez'21) → efficient benchmarking via 100 IRT-selected items within 2% error (Polo ICML'24) → adaptive testing with 90% item reduction (Li ATLAS) → neural IRT diagnosing benchmark deficiencies (Zhou AAAI'26). MCQ-to-completion reformulation reduces variance more than IRT item analysis for ~7B models (Madaan'24).\n\n**G-Theory** (3/25, emerging, MEDIUM): TEE framework decomposes judge/prompt/temp facets via REML + D-study (Mesting'26). GeneralizIT: first Python-native G-theory toolkit. Song'25 applies G-theory to LLM-as-judge writing assessment. Only framework that naturally models multi-facet interactions—severely underutilized.\n\n## Critical Gaps — Our Niche\n\n1. **No cross-source interaction**: Papers isolate one variance source; format × seed × precision × judge interactions unstudied (0/25). HIGH.\n2. **G-theory underutilized**: Only 3/25 despite being the natural multi-facet framework. HIGH.\n3. **Generative tasks neglected**: Most work targets MCQ/classification; open-ended generation variance under-studied (noted in 6/25 limitations). HIGH.\n4. **Training↔eval variance disconnected**: Infra papers and eval papers operate in separate communities (0/25 bridges both). MEDIUM.\n5. **No standardized variance reporting protocol**: Henderson'18 called for this in RL; 8 years later NLP still lacks one. MEDIUM.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 12,
+                  "oldLines": 7,
+                  "newStart": 12,
+                  "newLines": 7,
+                  "lines": [
+                    " ",
+                    " ## Variance Source Taxonomy",
+                    " ",
+                    "-**Prompt/Format Sensitivity** (8/25, HIGH): Formatting alone causes up to 76pp accuracy spread (Sclar ICLR'24); option ordering 13-85% fluctuation (Pezeshkpour NAACL'24); semantics-preserving perturbations flip rankings in 63% of cases (Brittlebench); format performance correlates weakly across models. Eval setup choices (template, few-shot selection, framework version) further compound this (Biderman'24).",
+                    "+**Prompt/Format Sensitivity** (8/25, HIGH): Formatting→76pp spread (Sclar ICLR'24); option ordering→13-85% fluctuation (Pezeshkpour NAACL'24); perturbations flip rankings 63% of cases (Brittlebench); format performance correlates weakly across models. Eval setup (template, few-shot, framework version) compounds this (Biderman'24).",
+                    " ",
+                    " **Infrastructure Nondeterminism** (5/25, HIGH): BF16→up to 9% accuracy variation, FP32→~0% (Yuan LayerCast). FP non-associativity in parallel reductions: 1000 identical training runs→1000 unique weight sets (Shanmugavelu SC'24). Batch-size kernel selection, not thread-level FP, is the primary source (ThinkingMachines). T=0 background temperature varies by provider: Claude~0, GPT~0.075 (Messina TMLR'26). TBIK guarantees bit-wise reproducibility across tensor-parallel sizes (Zhang'25).",
+                    " "
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            },
+            "sourceToolAssistantUUID": "b27ec1db-9bf8-4606-84ea-1834677e8e3e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/distiller_c08a9a6e",
+            "sessionId": "1ca4cc2e-0adc-4bb5-b9b5-aaddf44ac5b9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000190"
+        },
+        {
+          "source_line": 191,
+          "timestamp": "2026-05-22T13:01:57.603Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Vm7r3rjcUUK16wue8HFD4S",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0519/skills/projects/nlp_variance_gtheory/distilled-research.skill.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "20f92733-4d74-4a28-a81e-c8308969fa45",
+            "isSidechain": false,
+            "promptId": "55e65cbc-ed01-45bd-8840-890fca6cd9cb",
+            "type": "user",
+            "uuid": "0c85a5ab-ac9d-4074-a1ed-2347f70d1bc1",
+            "toolUseResult": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519/skills/projects/nlp_variance_gtheory/distilled-research.skill.md",
+              "oldString": "**Data/Item Heterogeneity** (6/25, HIGH): Between-language variance (SD 8.9-12.0) dwarfs within-language (0.7-1.5) in multilingual benchmarks (Saleva IJCNLP'25). 3-6% of benchmark items have negative discrimination/annotation errors (Li ATLAS). Benchmark difficulty ceilings insufficient for top models; guessing rates 0.20-0.26 in MCQ benchmarks (Zhou AAAI'26). Seed variance in fine-tuning produces macro and micro effects across GLUE/SuperGLUE (Bui'25).",
+              "newString": "**Data/Item Heterogeneity** (6/25, HIGH): Between-language SD 8.9-12.0 dwarfs within-language 0.7-1.5 (Saleva IJCNLP'25). 3-6% of items have negative discrimination (Li ATLAS). Difficulty ceilings insufficient for top models; guessing 0.20-0.26 in MCQ (Zhou AAAI'26). Seed variance affects both fine-tuning (Bui'25) and RL training (Henderson AAAI'18).",
+              "originalFile": "---\nname: LLM Evaluation Variance — Research Patterns\ndescription: Experimental consensus on variance sources, decomposition methods, and gaps in LLM evaluation reproducibility (25 papers, 2018-2026)\nscope: project\nversion: 2\ntags: [distilled, auto-generated]\ndistilled_from:\n  paper_count: 25\n  paper_keys: [sclar2024formatting, zhou2026irt, saleva2025beyond, pezeshkpour2024ordering, polo2024tinybenchmarks, magnusson2023reproducibility, shanmugavelu2024floating, lalor2019irt, rodriguez2021leaderboards, henderson2018deep, madaan2024quantifying, song2025exploring, zhang2025tbik, li2025atlas, biderman2024lessons, hua2025flaw, mesting2026hidden, brittlebench2026, yuan2025layercast, kunievsky2025intent, thinkingmachines2025batch, messina2026background, generalizit2024, bui2025seeds, sameprompt2026]\n  last_distilled: \"2026-05-22T00:00:00Z\"\n---\n\n## Variance Source Taxonomy\n\n**Prompt/Format Sensitivity** (8/25, HIGH): Formatting→76pp spread (Sclar ICLR'24); option ordering→13-85% fluctuation (Pezeshkpour NAACL'24); perturbations flip rankings 63% of cases (Brittlebench); format performance correlates weakly across models. Eval setup (template, few-shot, framework version) compounds this (Biderman'24).\n\n**Infrastructure Nondeterminism** (5/25, HIGH): BF16→9% accuracy variation, FP32→~0% (Yuan). FP non-associativity: 1000 identical runs→1000 unique weights (Shanmugavelu SC'24). Batch-size kernel selection is primary source, not thread-level FP (ThinkingMachines). T=0 background temp varies by provider: Claude~0, GPT~0.075 (Messina TMLR'26). TBIK guarantees bit-wise reproducibility across TP sizes (Zhang'25).\n\n**Evaluation Method Artifacts** (4/25, HIGH): Heuristic eval inflates measured sensitivity; LLM-judge raises ARC-C Spearman 0.30→0.95 (Hua EMNLP'25). Standard CIs omit 40-60% of uncertainty; naive 95% CIs→79% coverage (Mesting TEE). Code sharing strongest reproducibility predictor (+8%) yet only 46% share (Magnusson ACL'23).\n\n**Data/Item Heterogeneity** (6/25, HIGH): Between-language variance (SD 8.9-12.0) dwarfs within-language (0.7-1.5) in multilingual benchmarks (Saleva IJCNLP'25). 3-6% of benchmark items have negative discrimination/annotation errors (Li ATLAS). Benchmark difficulty ceilings insufficient for top models; guessing rates 0.20-0.26 in MCQ benchmarks (Zhou AAAI'26). Seed variance in fine-tuning produces macro and micro effects across GLUE/SuperGLUE (Bui'25).\n\n## Dominant Method Families\n\n**IRT/Psychometric** (8/25, rising 2019→2026, HIGH): Trajectory: artificial crowds for IRT (Lalor'19) → IRT leaderboards (Rodriguez'21) → efficient benchmarking via 100 IRT-selected items within 2% error (Polo ICML'24) → adaptive testing with 90% item reduction (Li ATLAS) → neural IRT diagnosing benchmark deficiencies (Zhou AAAI'26). MCQ-to-completion reformulation reduces variance more than IRT item analysis for ~7B models (Madaan'24).\n\n**G-Theory** (3/25, emerging, MEDIUM): TEE framework decomposes judge/prompt/temp facets via REML + D-study (Mesting'26). GeneralizIT: first Python-native G-theory toolkit. Song'25 applies G-theory to LLM-as-judge writing assessment. Only framework that naturally models multi-facet interactions—severely underutilized.\n\n## Critical Gaps — Our Niche\n\n1. **No cross-source interaction**: Papers isolate one variance source; format × seed × precision × judge interactions unstudied (0/25). HIGH.\n2. **G-theory underutilized**: Only 3/25 despite being the natural multi-facet framework. HIGH.\n3. **Generative tasks neglected**: Most work targets MCQ/classification; open-ended generation variance under-studied (noted in 6/25 limitations). HIGH.\n4. **Training↔eval variance disconnected**: Infra papers and eval papers operate in separate communities (0/25 bridges both). MEDIUM.\n5. **No standardized variance reporting protocol**: Henderson'18 called for this in RL; 8 years later NLP still lacks one. MEDIUM.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 18,
+                  "oldLines": 7,
+                  "newStart": 18,
+                  "newLines": 7,
+                  "lines": [
+                    " ",
+                    " **Evaluation Method Artifacts** (4/25, HIGH): Heuristic eval inflates measured sensitivity; LLM-judge raises ARC-C Spearman 0.30→0.95 (Hua EMNLP'25). Standard CIs omit 40-60% of uncertainty; naive 95% CIs→79% coverage (Mesting TEE). Code sharing strongest reproducibility predictor (+8%) yet only 46% share (Magnusson ACL'23).",
+                    " ",
+                    "-**Data/Item Heterogeneity** (6/25, HIGH): Between-language variance (SD 8.9-12.0) dwarfs within-language (0.7-1.5) in multilingual benchmarks (Saleva IJCNLP'25). 3-6% of benchmark items have negative discrimination/annotation errors (Li ATLAS). Benchmark difficulty ceilings insufficient for top models; guessing rates 0.20-0.26 in MCQ benchmarks (Zhou AAAI'26). Seed variance in fine-tuning produces macro and micro effects across GLUE/SuperGLUE (Bui'25).",
+                    "+**Data/Item Heterogeneity** (6/25, HIGH): Between-language SD 8.9-12.0 dwarfs within-language 0.7-1.5 (Saleva IJCNLP'25). 3-6% of items have negative discrimination (Li ATLAS). Difficulty ceilings insufficient for top models; guessing 0.20-0.26 in MCQ (Zhou AAAI'26). Seed variance affects both fine-tuning (Bui'25) and RL training (Henderson AAAI'18).",
+                    " ",
+                    " ## Dominant Method Families",
+                    " "
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            },
+            "sourceToolAssistantUUID": "20f92733-4d74-4a28-a81e-c8308969fa45",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/distiller_c08a9a6e",
+            "sessionId": "1ca4cc2e-0adc-4bb5-b9b5-aaddf44ac5b9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000191"
+        },
+        {
+          "source_line": 192,
+          "timestamp": "2026-05-22T13:01:51.028Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017p28cxsK7xNqd5RmriBFUz",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/skills/projects/nlp_variance_gtheory/distilled-research.skill.md",
+                "old_string": "**Infrastructure Nondeterminism** (5/25, HIGH): BF16→up to 9% accuracy variation, FP32→~0% (Yuan LayerCast). FP non-associativity in parallel reductions: 1000 identical training runs→1000 unique weight sets (Shanmugavelu SC'24). Batch-size kernel selection, not thread-level FP, is the primary source (ThinkingMachines). T=0 background temperature varies by provider: Claude~0, GPT~0.075 (Messina TMLR'26). TBIK guarantees bit-wise reproducibility across tensor-parallel sizes (Zhang'25).",
+                "new_string": "**Infrastructure Nondeterminism** (5/25, HIGH): BF16→9% accuracy variation, FP32→~0% (Yuan). FP non-associativity: 1000 identical runs→1000 unique weights (Shanmugavelu SC'24). Batch-size kernel selection is primary source, not thread-level FP (ThinkingMachines). T=0 background temp varies by provider: Claude~0, GPT~0.075 (Messina TMLR'26). TBIK guarantees bit-wise reproducibility across TP sizes (Zhang'25)."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "60408c92-5c86-4ba9-b98e-12b8c80434ee",
+            "isSidechain": false,
+            "requestId": "req_011CbHeicr2Rz4UEfD8KyKQg",
+            "type": "assistant",
+            "uuid": "e6dbf430-0547-4dfd-946e-3b5237fae78d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/distiller_c08a9a6e",
+            "sessionId": "1ca4cc2e-0adc-4bb5-b9b5-aaddf44ac5b9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Srf4ZTb6aYmiNyr394bsbT",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 464,
+                "cache_read_input_tokens": 87108,
+                "output_tokens": 1546,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 464,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1546,
+                    "cache_read_input_tokens": 87108,
+                    "cache_creation_input_tokens": 464,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 464
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000192"
+        },
+        {
+          "source_line": 193,
+          "timestamp": "2026-05-22T13:01:51.038Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017p28cxsK7xNqd5RmriBFUz",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0519/skills/projects/nlp_variance_gtheory/distilled-research.skill.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e6dbf430-0547-4dfd-946e-3b5237fae78d",
+            "isSidechain": false,
+            "promptId": "55e65cbc-ed01-45bd-8840-890fca6cd9cb",
+            "type": "user",
+            "uuid": "184c7f05-f13f-4f20-9f3e-e5aa21bc293d",
+            "toolUseResult": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519/skills/projects/nlp_variance_gtheory/distilled-research.skill.md",
+              "oldString": "**Infrastructure Nondeterminism** (5/25, HIGH): BF16→up to 9% accuracy variation, FP32→~0% (Yuan LayerCast). FP non-associativity in parallel reductions: 1000 identical training runs→1000 unique weight sets (Shanmugavelu SC'24). Batch-size kernel selection, not thread-level FP, is the primary source (ThinkingMachines). T=0 background temperature varies by provider: Claude~0, GPT~0.075 (Messina TMLR'26). TBIK guarantees bit-wise reproducibility across tensor-parallel sizes (Zhang'25).",
+              "newString": "**Infrastructure Nondeterminism** (5/25, HIGH): BF16→9% accuracy variation, FP32→~0% (Yuan). FP non-associativity: 1000 identical runs→1000 unique weights (Shanmugavelu SC'24). Batch-size kernel selection is primary source, not thread-level FP (ThinkingMachines). T=0 background temp varies by provider: Claude~0, GPT~0.075 (Messina TMLR'26). TBIK guarantees bit-wise reproducibility across TP sizes (Zhang'25).",
+              "originalFile": "---\nname: LLM Evaluation Variance — Research Patterns\ndescription: Experimental consensus on variance sources, decomposition methods, and gaps in LLM evaluation reproducibility (25 papers, 2018-2026)\nscope: project\nversion: 2\ntags: [distilled, auto-generated]\ndistilled_from:\n  paper_count: 25\n  paper_keys: [sclar2024formatting, zhou2026irt, saleva2025beyond, pezeshkpour2024ordering, polo2024tinybenchmarks, magnusson2023reproducibility, shanmugavelu2024floating, lalor2019irt, rodriguez2021leaderboards, henderson2018deep, madaan2024quantifying, song2025exploring, zhang2025tbik, li2025atlas, biderman2024lessons, hua2025flaw, mesting2026hidden, brittlebench2026, yuan2025layercast, kunievsky2025intent, thinkingmachines2025batch, messina2026background, generalizit2024, bui2025seeds, sameprompt2026]\n  last_distilled: \"2026-05-22T00:00:00Z\"\n---\n\n## Variance Source Taxonomy\n\n**Prompt/Format Sensitivity** (8/25, HIGH): Formatting→76pp spread (Sclar ICLR'24); option ordering→13-85% fluctuation (Pezeshkpour NAACL'24); perturbations flip rankings 63% of cases (Brittlebench); format performance correlates weakly across models. Eval setup (template, few-shot, framework version) compounds this (Biderman'24).\n\n**Infrastructure Nondeterminism** (5/25, HIGH): BF16→up to 9% accuracy variation, FP32→~0% (Yuan LayerCast). FP non-associativity in parallel reductions: 1000 identical training runs→1000 unique weight sets (Shanmugavelu SC'24). Batch-size kernel selection, not thread-level FP, is the primary source (ThinkingMachines). T=0 background temperature varies by provider: Claude~0, GPT~0.075 (Messina TMLR'26). TBIK guarantees bit-wise reproducibility across tensor-parallel sizes (Zhang'25).\n\n**Evaluation Method Artifacts** (4/25, HIGH): Heuristic eval (regex/log-likelihood) inflates measured sensitivity; LLM-judge raises ARC-C Spearman 0.30→0.95 (Hua EMNLP'25). Standard CIs omit 40-60% of uncertainty from judge/prompt/temp variance; naive 95% CIs→79% actual coverage (Mesting TEE). Code open-sourcing is the strongest reproducibility predictor (+8%) yet only 46% of NLP submissions share code (Magnusson ACL'23).\n\n**Data/Item Heterogeneity** (6/25, HIGH): Between-language variance (SD 8.9-12.0) dwarfs within-language (0.7-1.5) in multilingual benchmarks (Saleva IJCNLP'25). 3-6% of benchmark items have negative discrimination/annotation errors (Li ATLAS). Benchmark difficulty ceilings insufficient for top models; guessing rates 0.20-0.26 in MCQ benchmarks (Zhou AAAI'26). Seed variance in fine-tuning produces macro and micro effects across GLUE/SuperGLUE (Bui'25).\n\n## Dominant Method Families\n\n**IRT/Psychometric** (8/25, rising 2019→2026, HIGH): Trajectory: artificial crowds for IRT (Lalor'19) → IRT leaderboards (Rodriguez'21) → efficient benchmarking via 100 IRT-selected items within 2% error (Polo ICML'24) → adaptive testing with 90% item reduction (Li ATLAS) → neural IRT diagnosing benchmark deficiencies (Zhou AAAI'26). MCQ-to-completion reformulation reduces variance more than IRT item analysis for ~7B models (Madaan'24).\n\n**G-Theory** (3/25, emerging, MEDIUM): TEE framework decomposes judge/prompt/temp facets via REML + D-study (Mesting'26). GeneralizIT: first Python-native G-theory toolkit. Song'25 applies G-theory to LLM-as-judge writing assessment. Only framework that naturally models multi-facet interactions—severely underutilized.\n\n## Critical Gaps — Our Niche\n\n1. **No cross-source interaction**: Papers isolate one variance source; format × seed × precision × judge interactions unstudied (0/25). HIGH.\n2. **G-theory underutilized**: Only 3/25 despite being the natural multi-facet framework. HIGH.\n3. **Generative tasks neglected**: Most work targets MCQ/classification; open-ended generation variance under-studied (noted in 6/25 limitations). HIGH.\n4. **Training↔eval variance disconnected**: Infra papers and eval papers operate in separate communities (0/25 bridges both). MEDIUM.\n5. **No standardized variance reporting protocol**: Henderson'18 called for this in RL; 8 years later NLP still lacks one. MEDIUM.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 14,
+                  "oldLines": 7,
+                  "newStart": 14,
+                  "newLines": 7,
+                  "lines": [
+                    " ",
+                    " **Prompt/Format Sensitivity** (8/25, HIGH): Formatting→76pp spread (Sclar ICLR'24); option ordering→13-85% fluctuation (Pezeshkpour NAACL'24); perturbations flip rankings 63% of cases (Brittlebench); format performance correlates weakly across models. Eval setup (template, few-shot, framework version) compounds this (Biderman'24).",
+                    " ",
+                    "-**Infrastructure Nondeterminism** (5/25, HIGH): BF16→up to 9% accuracy variation, FP32→~0% (Yuan LayerCast). FP non-associativity in parallel reductions: 1000 identical training runs→1000 unique weight sets (Shanmugavelu SC'24). Batch-size kernel selection, not thread-level FP, is the primary source (ThinkingMachines). T=0 background temperature varies by provider: Claude~0, GPT~0.075 (Messina TMLR'26). TBIK guarantees bit-wise reproducibility across tensor-parallel sizes (Zhang'25).",
+                    "+**Infrastructure Nondeterminism** (5/25, HIGH): BF16→9% accuracy variation, FP32→~0% (Yuan). FP non-associativity: 1000 identical runs→1000 unique weights (Shanmugavelu SC'24). Batch-size kernel selection is primary source, not thread-level FP (ThinkingMachines). T=0 background temp varies by provider: Claude~0, GPT~0.075 (Messina TMLR'26). TBIK guarantees bit-wise reproducibility across TP sizes (Zhang'25).",
+                    " ",
+                    " **Evaluation Method Artifacts** (4/25, HIGH): Heuristic eval (regex/log-likelihood) inflates measured sensitivity; LLM-judge raises ARC-C Spearman 0.30→0.95 (Hua EMNLP'25). Standard CIs omit 40-60% of uncertainty from judge/prompt/temp variance; naive 95% CIs→79% actual coverage (Mesting TEE). Code open-sourcing is the strongest reproducibility predictor (+8%) yet only 46% of NLP submissions share code (Magnusson ACL'23).",
+                    " "
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            },
+            "sourceToolAssistantUUID": "e6dbf430-0547-4dfd-946e-3b5237fae78d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/distiller_c08a9a6e",
+            "sessionId": "1ca4cc2e-0adc-4bb5-b9b5-aaddf44ac5b9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000193"
+        },
+        {
+          "source_line": 194,
+          "timestamp": "2026-05-22T13:01:54.437Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EvbCPS7EbqrucRtCX7oouo",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/skills/projects/nlp_variance_gtheory/distilled-research.skill.md",
+                "old_string": "**Evaluation Method Artifacts** (4/25, HIGH): Heuristic eval (regex/log-likelihood) inflates measured sensitivity; LLM-judge raises ARC-C Spearman 0.30→0.95 (Hua EMNLP'25). Standard CIs omit 40-60% of uncertainty from judge/prompt/temp variance; naive 95% CIs→79% actual coverage (Mesting TEE). Code open-sourcing is the strongest reproducibility predictor (+8%) yet only 46% of NLP submissions share code (Magnusson ACL'23).",
+                "new_string": "**Evaluation Method Artifacts** (4/25, HIGH): Heuristic eval inflates measured sensitivity; LLM-judge raises ARC-C Spearman 0.30→0.95 (Hua EMNLP'25). Standard CIs omit 40-60% of uncertainty; naive 95% CIs→79% coverage (Mesting TEE). Code sharing strongest reproducibility predictor (+8%) yet only 46% share (Magnusson ACL'23)."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "184c7f05-f13f-4f20-9f3e-e5aa21bc293d",
+            "isSidechain": false,
+            "requestId": "req_011CbHeicr2Rz4UEfD8KyKQg",
+            "type": "assistant",
+            "uuid": "414fdaf6-d16d-4014-b919-eab9de17cbe8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/distiller_c08a9a6e",
+            "sessionId": "1ca4cc2e-0adc-4bb5-b9b5-aaddf44ac5b9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Srf4ZTb6aYmiNyr394bsbT",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 464,
+                "cache_read_input_tokens": 87108,
+                "output_tokens": 1546,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 464,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1546,
+                    "cache_read_input_tokens": 87108,
+                    "cache_creation_input_tokens": 464,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 464
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000194"
+        },
+        {
+          "source_line": 195,
+          "timestamp": "2026-05-22T13:01:54.445Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EvbCPS7EbqrucRtCX7oouo",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0519/skills/projects/nlp_variance_gtheory/distilled-research.skill.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "414fdaf6-d16d-4014-b919-eab9de17cbe8",
+            "isSidechain": false,
+            "promptId": "55e65cbc-ed01-45bd-8840-890fca6cd9cb",
+            "type": "user",
+            "uuid": "cebf398b-76c2-4714-a66a-0d22a8b9aed4",
+            "toolUseResult": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519/skills/projects/nlp_variance_gtheory/distilled-research.skill.md",
+              "oldString": "**Evaluation Method Artifacts** (4/25, HIGH): Heuristic eval (regex/log-likelihood) inflates measured sensitivity; LLM-judge raises ARC-C Spearman 0.30→0.95 (Hua EMNLP'25). Standard CIs omit 40-60% of uncertainty from judge/prompt/temp variance; naive 95% CIs→79% actual coverage (Mesting TEE). Code open-sourcing is the strongest reproducibility predictor (+8%) yet only 46% of NLP submissions share code (Magnusson ACL'23).",
+              "newString": "**Evaluation Method Artifacts** (4/25, HIGH): Heuristic eval inflates measured sensitivity; LLM-judge raises ARC-C Spearman 0.30→0.95 (Hua EMNLP'25). Standard CIs omit 40-60% of uncertainty; naive 95% CIs→79% coverage (Mesting TEE). Code sharing strongest reproducibility predictor (+8%) yet only 46% share (Magnusson ACL'23).",
+              "originalFile": "---\nname: LLM Evaluation Variance — Research Patterns\ndescription: Experimental consensus on variance sources, decomposition methods, and gaps in LLM evaluation reproducibility (25 papers, 2018-2026)\nscope: project\nversion: 2\ntags: [distilled, auto-generated]\ndistilled_from:\n  paper_count: 25\n  paper_keys: [sclar2024formatting, zhou2026irt, saleva2025beyond, pezeshkpour2024ordering, polo2024tinybenchmarks, magnusson2023reproducibility, shanmugavelu2024floating, lalor2019irt, rodriguez2021leaderboards, henderson2018deep, madaan2024quantifying, song2025exploring, zhang2025tbik, li2025atlas, biderman2024lessons, hua2025flaw, mesting2026hidden, brittlebench2026, yuan2025layercast, kunievsky2025intent, thinkingmachines2025batch, messina2026background, generalizit2024, bui2025seeds, sameprompt2026]\n  last_distilled: \"2026-05-22T00:00:00Z\"\n---\n\n## Variance Source Taxonomy\n\n**Prompt/Format Sensitivity** (8/25, HIGH): Formatting→76pp spread (Sclar ICLR'24); option ordering→13-85% fluctuation (Pezeshkpour NAACL'24); perturbations flip rankings 63% of cases (Brittlebench); format performance correlates weakly across models. Eval setup (template, few-shot, framework version) compounds this (Biderman'24).\n\n**Infrastructure Nondeterminism** (5/25, HIGH): BF16→9% accuracy variation, FP32→~0% (Yuan). FP non-associativity: 1000 identical runs→1000 unique weights (Shanmugavelu SC'24). Batch-size kernel selection is primary source, not thread-level FP (ThinkingMachines). T=0 background temp varies by provider: Claude~0, GPT~0.075 (Messina TMLR'26). TBIK guarantees bit-wise reproducibility across TP sizes (Zhang'25).\n\n**Evaluation Method Artifacts** (4/25, HIGH): Heuristic eval (regex/log-likelihood) inflates measured sensitivity; LLM-judge raises ARC-C Spearman 0.30→0.95 (Hua EMNLP'25). Standard CIs omit 40-60% of uncertainty from judge/prompt/temp variance; naive 95% CIs→79% actual coverage (Mesting TEE). Code open-sourcing is the strongest reproducibility predictor (+8%) yet only 46% of NLP submissions share code (Magnusson ACL'23).\n\n**Data/Item Heterogeneity** (6/25, HIGH): Between-language variance (SD 8.9-12.0) dwarfs within-language (0.7-1.5) in multilingual benchmarks (Saleva IJCNLP'25). 3-6% of benchmark items have negative discrimination/annotation errors (Li ATLAS). Benchmark difficulty ceilings insufficient for top models; guessing rates 0.20-0.26 in MCQ benchmarks (Zhou AAAI'26). Seed variance in fine-tuning produces macro and micro effects across GLUE/SuperGLUE (Bui'25).\n\n## Dominant Method Families\n\n**IRT/Psychometric** (8/25, rising 2019→2026, HIGH): Trajectory: artificial crowds for IRT (Lalor'19) → IRT leaderboards (Rodriguez'21) → efficient benchmarking via 100 IRT-selected items within 2% error (Polo ICML'24) → adaptive testing with 90% item reduction (Li ATLAS) → neural IRT diagnosing benchmark deficiencies (Zhou AAAI'26). MCQ-to-completion reformulation reduces variance more than IRT item analysis for ~7B models (Madaan'24).\n\n**G-Theory** (3/25, emerging, MEDIUM): TEE framework decomposes judge/prompt/temp facets via REML + D-study (Mesting'26). GeneralizIT: first Python-native G-theory toolkit. Song'25 applies G-theory to LLM-as-judge writing assessment. Only framework that naturally models multi-facet interactions—severely underutilized.\n\n## Critical Gaps — Our Niche\n\n1. **No cross-source interaction**: Papers isolate one variance source; format × seed × precision × judge interactions unstudied (0/25). HIGH.\n2. **G-theory underutilized**: Only 3/25 despite being the natural multi-facet framework. HIGH.\n3. **Generative tasks neglected**: Most work targets MCQ/classification; open-ended generation variance under-studied (noted in 6/25 limitations). HIGH.\n4. **Training↔eval variance disconnected**: Infra papers and eval papers operate in separate communities (0/25 bridges both). MEDIUM.\n5. **No standardized variance reporting protocol**: Henderson'18 called for this in RL; 8 years later NLP still lacks one. MEDIUM.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 16,
+                  "oldLines": 7,
+                  "newStart": 16,
+                  "newLines": 7,
+                  "lines": [
+                    " ",
+                    " **Infrastructure Nondeterminism** (5/25, HIGH): BF16→9% accuracy variation, FP32→~0% (Yuan). FP non-associativity: 1000 identical runs→1000 unique weights (Shanmugavelu SC'24). Batch-size kernel selection is primary source, not thread-level FP (ThinkingMachines). T=0 background temp varies by provider: Claude~0, GPT~0.075 (Messina TMLR'26). TBIK guarantees bit-wise reproducibility across TP sizes (Zhang'25).",
+                    " ",
+                    "-**Evaluation Method Artifacts** (4/25, HIGH): Heuristic eval (regex/log-likelihood) inflates measured sensitivity; LLM-judge raises ARC-C Spearman 0.30→0.95 (Hua EMNLP'25). Standard CIs omit 40-60% of uncertainty from judge/prompt/temp variance; naive 95% CIs→79% actual coverage (Mesting TEE). Code open-sourcing is the strongest reproducibility predictor (+8%) yet only 46% of NLP submissions share code (Magnusson ACL'23).",
+                    "+**Evaluation Method Artifacts** (4/25, HIGH): Heuristic eval inflates measured sensitivity; LLM-judge raises ARC-C Spearman 0.30→0.95 (Hua EMNLP'25). Standard CIs omit 40-60% of uncertainty; naive 95% CIs→79% coverage (Mesting TEE). Code sharing strongest reproducibility predictor (+8%) yet only 46% share (Magnusson ACL'23).",
+                    " ",
+                    " **Data/Item Heterogeneity** (6/25, HIGH): Between-language variance (SD 8.9-12.0) dwarfs within-language (0.7-1.5) in multilingual benchmarks (Saleva IJCNLP'25). 3-6% of benchmark items have negative discrimination/annotation errors (Li ATLAS). Benchmark difficulty ceilings insufficient for top models; guessing rates 0.20-0.26 in MCQ benchmarks (Zhou AAAI'26). Seed variance in fine-tuning produces macro and micro effects across GLUE/SuperGLUE (Bui'25).",
+                    " "
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            },
+            "sourceToolAssistantUUID": "414fdaf6-d16d-4014-b919-eab9de17cbe8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/distiller_c08a9a6e",
+            "sessionId": "1ca4cc2e-0adc-4bb5-b9b5-aaddf44ac5b9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000195"
+        },
+        {
+          "source_line": 196,
+          "timestamp": "2026-05-22T13:01:57.596Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Vm7r3rjcUUK16wue8HFD4S",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/skills/projects/nlp_variance_gtheory/distilled-research.skill.md",
+                "old_string": "**Data/Item Heterogeneity** (6/25, HIGH): Between-language variance (SD 8.9-12.0) dwarfs within-language (0.7-1.5) in multilingual benchmarks (Saleva IJCNLP'25). 3-6% of benchmark items have negative discrimination/annotation errors (Li ATLAS). Benchmark difficulty ceilings insufficient for top models; guessing rates 0.20-0.26 in MCQ benchmarks (Zhou AAAI'26). Seed variance in fine-tuning produces macro and micro effects across GLUE/SuperGLUE (Bui'25).",
+                "new_string": "**Data/Item Heterogeneity** (6/25, HIGH): Between-language SD 8.9-12.0 dwarfs within-language 0.7-1.5 (Saleva IJCNLP'25). 3-6% of items have negative discrimination (Li ATLAS). Difficulty ceilings insufficient for top models; guessing 0.20-0.26 in MCQ (Zhou AAAI'26). Seed variance affects both fine-tuning (Bui'25) and RL training (Henderson AAAI'18)."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cebf398b-76c2-4714-a66a-0d22a8b9aed4",
+            "isSidechain": false,
+            "requestId": "req_011CbHeicr2Rz4UEfD8KyKQg",
+            "type": "assistant",
+            "uuid": "20f92733-4d74-4a28-a81e-c8308969fa45",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/distiller_c08a9a6e",
+            "sessionId": "1ca4cc2e-0adc-4bb5-b9b5-aaddf44ac5b9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Srf4ZTb6aYmiNyr394bsbT",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 464,
+                "cache_read_input_tokens": 87108,
+                "output_tokens": 1546,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 464,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1546,
+                    "cache_read_input_tokens": 87108,
+                    "cache_creation_input_tokens": 464,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 464
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000196"
+        },
+        {
+          "source_line": 197,
+          "timestamp": "2026-05-22T13:01:57.650Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "0c85a5ab-ac9d-4074-a1ed-2347f70d1bc1",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [
+                    {
+                      "content": "Layer 1: Deep-read 8 papers",
+                      "status": "completed",
+                      "activeForm": "Deep-reading 8 papers for Layer 1 analysis"
+                    },
+                    {
+                      "content": "Layer 1: Abstract-only 7 papers",
+                      "status": "completed",
+                      "activeForm": "Extracting research dimensions from 7 abstract-only papers"
+                    },
+                    {
+                      "content": "Read all cached YAMLs + new YAMLs for Layer 2 synthesis",
+                      "status": "completed",
+                      "activeForm": "Reading all Layer 1 YAMLs for cross-paper synthesis"
+                    },
+                    {
+                      "content": "Layer 2: Cross-paper synthesis (research + writing)",
+                      "status": "completed",
+                      "activeForm": "Synthesizing cross-paper patterns"
+                    },
+                    {
+                      "content": "Generate distilled-research.skill.md and distilled-writing.skill.md",
+                      "status": "in_progress",
+                      "activeForm": "Generating final skill files"
+                    }
+                  ],
+                  "itemCount": 5
+                },
+                "type": "attachment",
+                "uuid": "88e90c22-614d-4d47-a3da-c309d2af8fef",
+                "timestamp": "2026-05-22T13:01:57.650Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/distiller_c08a9a6e",
+                "sessionId": "1ca4cc2e-0adc-4bb5-b9b5-aaddf44ac5b9",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000197"
+        },
+        {
+          "source_line": 198,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "你是 Distiller Agent——论文蒸馏引擎。你的任务是从一批论文中提取**领域隐性经验**，生成两个结构化 skill 文件。  ## 核心定位  你不是在\"总结论文\"。你在回答：**这个研究子领域的人默认怎么做事？**  - 总结 = \"论文 A 做了 X，论文 B 做了 Y\"（罗列） - 蒸馏 = \"这 N 篇论文共同揭示了什么同行做法和领域经验\"（归纳）  ## 执行流程  ###…",
+                "leafUuid": "88e90c22-614d-4d47-a3da-c309d2af8fef",
+                "sessionId": "1ca4cc2e-0adc-4bb5-b9b5-aaddf44ac5b9"
+              }
+            }
+          ],
+          "id": "event-000198"
+        },
+        {
+          "source_line": 199,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Distill NLP variance and generalization theory research",
+                "sessionId": "1ca4cc2e-0adc-4bb5-b9b5-aaddf44ac5b9"
+              }
+            }
+          ],
+          "id": "event-000199"
+        },
+        {
+          "source_line": 200,
+          "timestamp": "2026-05-22T13:02:01.260Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "现在压缩 writing skill。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "88e90c22-614d-4d47-a3da-c309d2af8fef",
+            "isSidechain": false,
+            "requestId": "req_011CbHejmVCzq67piVa4VEKo",
+            "type": "assistant",
+            "uuid": "23d412cb-5a05-47a2-a3d9-992f587b9cad",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/distiller_c08a9a6e",
+            "sessionId": "1ca4cc2e-0adc-4bb5-b9b5-aaddf44ac5b9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TtSpzXobVydMFtuqnykTwM",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2128,
+                "cache_read_input_tokens": 87572,
+                "output_tokens": 2519,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2128,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2519,
+                    "cache_read_input_tokens": 87572,
+                    "cache_creation_input_tokens": 2128,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2128
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000200"
+        },
+        {
+          "source_line": 201,
+          "timestamp": "2026-05-22T13:02:10.581Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Wd7ii7SHUaYDnGA3MkhxrX",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/skills/projects/nlp_variance_gtheory/distilled-writing.skill.md",
+                "old_string": "**Revealing Hidden Problem** (8/16 deep-read, HIGH): \"X assumed negligible → we show it's massive.\" Sclar (formatting→76pp), Shanmugavelu (FP→unique models), Pezeshkpour (ordering→85%), Yuan (BF16→9%), ThinkingMachines (batch kernels), Brittlebench (perturbations flip 63% rankings). Dominant narrative—the subfield's core claim IS that ignored variance is large.\n\n**Unifying Framework** (3/16, MEDIUM): Zhou (PSN-IRT for benchmark diagnostics), Saleva (multi-source variance decomposition), Mesting (TEE/G-theory). Used when contribution is a methodological framework. Structure: fragmented observations → unified formalism → multi-domain validation.\n\n**Simplification** (3/16, MEDIUM): Polo (14K→100 examples), Hua (complex sensitivity→evaluation artifact), Magnusson (first checklist analysis). \"Complex problem has simpler real answer.\"\n\n**Cross-domain Transfer** (2/16, LOW but strategic): Lalor (psychometrics→NLP), Mesting (G-theory→ML eval). Our paper fits here—study Mesting's structure carefully.",
+                "new_string": "**Revealing Hidden Problem** (8/16, HIGH): \"X assumed negligible → massive.\" Sclar (76pp), Shanmugavelu (unique models), Pezeshkpour (85%), Yuan (9%), ThinkingMachines, Brittlebench. Dominant—the subfield's claim IS that ignored variance is large.\n\n**Unifying Framework** (3/16, MEDIUM): Zhou (PSN-IRT), Saleva (variance decomposition), Mesting (TEE). Structure: fragmented observations → unified formalism → multi-domain validation.\n\n**Simplification** (3/16, MEDIUM): Polo (14K→100 examples), Hua (sensitivity is artifact), Magnusson (checklist analysis).\n\n**Cross-domain Transfer** (2/16, LOW but strategic): Lalor (psychometrics→NLP), Mesting (G-theory→ML). Our paper fits here."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "23d412cb-5a05-47a2-a3d9-992f587b9cad",
+            "isSidechain": false,
+            "requestId": "req_011CbHejmVCzq67piVa4VEKo",
+            "type": "assistant",
+            "uuid": "4e5563db-3179-40ec-9042-932640cba7c9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/distiller_c08a9a6e",
+            "sessionId": "1ca4cc2e-0adc-4bb5-b9b5-aaddf44ac5b9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TtSpzXobVydMFtuqnykTwM",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2128,
+                "cache_read_input_tokens": 87572,
+                "output_tokens": 2519,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2128,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2519,
+                    "cache_read_input_tokens": 87572,
+                    "cache_creation_input_tokens": 2128,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2128
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000201"
+        },
+        {
+          "source_line": 202,
+          "timestamp": "2026-05-22T13:02:10.598Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Wd7ii7SHUaYDnGA3MkhxrX",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0519/skills/projects/nlp_variance_gtheory/distilled-writing.skill.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4e5563db-3179-40ec-9042-932640cba7c9",
+            "isSidechain": false,
+            "promptId": "55e65cbc-ed01-45bd-8840-890fca6cd9cb",
+            "type": "user",
+            "uuid": "546666b7-fee2-4e21-977b-cd6e364a3b48",
+            "toolUseResult": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519/skills/projects/nlp_variance_gtheory/distilled-writing.skill.md",
+              "oldString": "**Revealing Hidden Problem** (8/16 deep-read, HIGH): \"X assumed negligible → we show it's massive.\" Sclar (formatting→76pp), Shanmugavelu (FP→unique models), Pezeshkpour (ordering→85%), Yuan (BF16→9%), ThinkingMachines (batch kernels), Brittlebench (perturbations flip 63% rankings). Dominant narrative—the subfield's core claim IS that ignored variance is large.\n\n**Unifying Framework** (3/16, MEDIUM): Zhou (PSN-IRT for benchmark diagnostics), Saleva (multi-source variance decomposition), Mesting (TEE/G-theory). Used when contribution is a methodological framework. Structure: fragmented observations → unified formalism → multi-domain validation.\n\n**Simplification** (3/16, MEDIUM): Polo (14K→100 examples), Hua (complex sensitivity→evaluation artifact), Magnusson (first checklist analysis). \"Complex problem has simpler real answer.\"\n\n**Cross-domain Transfer** (2/16, LOW but strategic): Lalor (psychometrics→NLP), Mesting (G-theory→ML eval). Our paper fits here—study Mesting's structure carefully.",
+              "newString": "**Revealing Hidden Problem** (8/16, HIGH): \"X assumed negligible → massive.\" Sclar (76pp), Shanmugavelu (unique models), Pezeshkpour (85%), Yuan (9%), ThinkingMachines, Brittlebench. Dominant—the subfield's claim IS that ignored variance is large.\n\n**Unifying Framework** (3/16, MEDIUM): Zhou (PSN-IRT), Saleva (variance decomposition), Mesting (TEE). Structure: fragmented observations → unified formalism → multi-domain validation.\n\n**Simplification** (3/16, MEDIUM): Polo (14K→100 examples), Hua (sensitivity is artifact), Magnusson (checklist analysis).\n\n**Cross-domain Transfer** (2/16, LOW but strategic): Lalor (psychometrics→NLP), Mesting (G-theory→ML). Our paper fits here.",
+              "originalFile": "---\nname: LLM Evaluation Variance — Writing Patterns\ndescription: Narrative strategies, figure/table conventions from LLM evaluation variance papers (16 deep-read, 2018-2026)\nscope: project\nversion: 2\ntags: [distilled, auto-generated]\ndistilled_from:\n  paper_count: 25\n  paper_keys: [sclar2024formatting, zhou2026irt, saleva2025beyond, pezeshkpour2024ordering, polo2024tinybenchmarks, magnusson2023reproducibility, shanmugavelu2024floating, lalor2019irt, rodriguez2021leaderboards, henderson2018deep, madaan2024quantifying, song2025exploring, zhang2025tbik, li2025atlas, biderman2024lessons, hua2025flaw, mesting2026hidden, brittlebench2026, yuan2025layercast, kunievsky2025intent, thinkingmachines2025batch, messina2026background, generalizit2024, bui2025seeds, sameprompt2026]\n  last_distilled: \"2026-05-22T00:00:00Z\"\n---\n\n## Story Types\n\n**Revealing Hidden Problem** (8/16 deep-read, HIGH): \"X assumed negligible → we show it's massive.\" Sclar (formatting→76pp), Shanmugavelu (FP→unique models), Pezeshkpour (ordering→85%), Yuan (BF16→9%), ThinkingMachines (batch kernels), Brittlebench (perturbations flip 63% rankings). Dominant narrative—the subfield's core claim IS that ignored variance is large.\n\n**Unifying Framework** (3/16, MEDIUM): Zhou (PSN-IRT for benchmark diagnostics), Saleva (multi-source variance decomposition), Mesting (TEE/G-theory). Used when contribution is a methodological framework. Structure: fragmented observations → unified formalism → multi-domain validation.\n\n**Simplification** (3/16, MEDIUM): Polo (14K→100 examples), Hua (complex sensitivity→evaluation artifact), Magnusson (first checklist analysis). \"Complex problem has simpler real answer.\"\n\n**Cross-domain Transfer** (2/16, LOW but strategic): Lalor (psychometrics→NLP), Mesting (G-theory→ML eval). Our paper fits here—study Mesting's structure carefully.\n\n## Hook: Shocking Number First (7/16, HIGH)\n\n\"76 accuracy points\" (Sclar), \"13% to 85%\" (Pezeshkpour), \"80/1000 unique at T=0\" (ThinkingMachines), \"95% CIs→79% coverage\" (Mesting), \"$10K+ evaluation costs\" (Polo), \"0.30→0.95 correlation\" (Hua), \"1000 unique weight sets\" (Shanmugavelu). **Pattern**: concrete number violating expectations in first paragraph. Never open with \"X is important.\"\n\n## Tension: Progressive Escalation (HIGH)\n\nBest papers use 3-4 escalation levels. Sclar: formatting noise → cross-model invalidity → methodology crisis. Shanmugavelu: basic sums → framework kernels → unique training runs → certification blocked. Zhou: inconsistent rankings → difficulty ceiling → item saturation → benchmark failure. **Template**: establish trusted assumption → contradicting evidence → escalate scope → show systemic impact.\n\n## Intro Structure: 4-5 Paragraphs + 3 Contributions (mode, 8/16)\n\nP1: Context/importance. P2: Existing approaches + limitation. P3: Gap/surprise finding. P4: Contributions (3 is standard: framework + empirical finding + practical tool/artifact). Saleva uses structured subsections within intro mirroring method structure—effective for framework papers.\n\n## Figure 1: Problem Illustration Dominates (9/16, HIGH)\n\nShow the problem exists before the solution. Sclar: format examples with accuracy numbers. Zhou: real leaderboard screenshots. Shanmugavelu: variability PDFs. Polo (exception): teaser scatter proving feasibility—works for simplification stories. **Design consensus**: minimal decoration, real data not diagrams, key numbers annotated. Avoid method architecture in Fig 1.\n\n## Result Presentation\n\n**Table-driven** (10/16, HIGH): Main results in tables. Variance papers use novel column structures—columns are variance components, not performance metrics (Saleva, Mesting). Rows = models/configs, 4-8 baselines typical. Bold best (Zhou), asterisks for non-significant (Saleva).\n\n**Figures for trends/decomposition** (6/16): Line plots for convergence/efficiency curves (Polo), heatmaps for 2D sensitivity (Shanmugavelu), stacked bars for variance decomposition (Mesting, Brittlebench—signature visual for our subfield).\n\n**Statistical reporting**: Variance components and correlation coefficients more common than mean±std. Only 3/16 report traditional mean±std; most report decomposed variances, effect sizes, or coverage probabilities. HIGH—this subfield has distinct conventions.\n\n**Figure count**: 4-6 for full papers, 2-4 for findings/workshop. **Flow**: problem visualization → method overview (optional) → main results → decomposition/ablation.\n\n## Our Paper Blueprint\n\nOpen with shocking quantified finding → \"everyone's CIs are wrong\" tension → G-theory as borrowed lens → 2-3 domain demonstrations → stacked-bar variance decomposition as signature visual → D-study projections for practical value → position against IRT alternatives (dominant competitor framework).\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 12,
+                  "oldLines": 13,
+                  "newStart": 12,
+                  "newLines": 13,
+                  "lines": [
+                    " ",
+                    " ## Story Types",
+                    " ",
+                    "-**Revealing Hidden Problem** (8/16 deep-read, HIGH): \"X assumed negligible → we show it's massive.\" Sclar (formatting→76pp), Shanmugavelu (FP→unique models), Pezeshkpour (ordering→85%), Yuan (BF16→9%), ThinkingMachines (batch kernels), Brittlebench (perturbations flip 63% rankings). Dominant narrative—the subfield's core claim IS that ignored variance is large.",
+                    "+**Revealing Hidden Problem** (8/16, HIGH): \"X assumed negligible → massive.\" Sclar (76pp), Shanmugavelu (unique models), Pezeshkpour (85%), Yuan (9%), ThinkingMachines, Brittlebench. Dominant—the subfield's claim IS that ignored variance is large.",
+                    " ",
+                    "-**Unifying Framework** (3/16, MEDIUM): Zhou (PSN-IRT for benchmark diagnostics), Saleva (multi-source variance decomposition), Mesting (TEE/G-theory). Used when contribution is a methodological framework. Structure: fragmented observations → unified formalism → multi-domain validation.",
+                    "+**Unifying Framework** (3/16, MEDIUM): Zhou (PSN-IRT), Saleva (variance decomposition), Mesting (TEE). Structure: fragmented observations → unified formalism → multi-domain validation.",
+                    " ",
+                    "-**Simplification** (3/16, MEDIUM): Polo (14K→100 examples), Hua (complex sensitivity→evaluation artifact), Magnusson (first checklist analysis). \"Complex problem has simpler real answer.\"",
+                    "+**Simplification** (3/16, MEDIUM): Polo (14K→100 examples), Hua (sensitivity is artifact), Magnusson (checklist analysis).",
+                    " ",
+                    "-**Cross-domain Transfer** (2/16, LOW but strategic): Lalor (psychometrics→NLP), Mesting (G-theory→ML eval). Our paper fits here—study Mesting's structure carefully.",
+                    "+**Cross-domain Transfer** (2/16, LOW but strategic): Lalor (psychometrics→NLP), Mesting (G-theory→ML). Our paper fits here.",
+                    " ",
+                    " ## Hook: Shocking Number First (7/16, HIGH)",
+                    " "
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            },
+            "sourceToolAssistantUUID": "4e5563db-3179-40ec-9042-932640cba7c9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/distiller_c08a9a6e",
+            "sessionId": "1ca4cc2e-0adc-4bb5-b9b5-aaddf44ac5b9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000202"
+        },
+        {
+          "source_line": 203,
+          "timestamp": "2026-05-22T13:02:27.627Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SVfeBsUoLsp54wMbVPVWEj",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0519/skills/projects/nlp_variance_gtheory/distilled-writing.skill.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b6506d2e-da8b-405d-a72d-cbed6fd8da54",
+            "isSidechain": false,
+            "promptId": "55e65cbc-ed01-45bd-8840-890fca6cd9cb",
+            "type": "user",
+            "uuid": "12b3785f-3fd7-445b-b2af-e8707019fe5f",
+            "toolUseResult": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519/skills/projects/nlp_variance_gtheory/distilled-writing.skill.md",
+              "oldString": "## Result Presentation\n\n**Table-driven** (10/16, HIGH): Main results in tables. Variance papers use novel column structures—columns are variance components, not performance metrics (Saleva, Mesting). Rows = models/configs, 4-8 baselines typical. Bold best (Zhou), asterisks for non-significant (Saleva).\n\n**Figures for trends/decomposition** (6/16): Line plots for convergence/efficiency curves (Polo), heatmaps for 2D sensitivity (Shanmugavelu), stacked bars for variance decomposition (Mesting, Brittlebench—signature visual for our subfield).\n\n**Statistical reporting**: Variance components and correlation coefficients more common than mean±std. Only 3/16 report traditional mean±std; most report decomposed variances, effect sizes, or coverage probabilities. HIGH—this subfield has distinct conventions.\n\n**Figure count**: 4-6 for full papers, 2-4 for findings/workshop. **Flow**: problem visualization → method overview (optional) → main results → decomposition/ablation.",
+              "newString": "## Result Presentation\n\n**Table-driven** (10/16, HIGH): Variance papers use columns=variance components, not metrics (Saleva, Mesting). Rows=models, 4-8 baselines. Bold best (Zhou), asterisks for non-significant (Saleva).\n\n**Figures for trends** (6/16): Line plots for efficiency (Polo), heatmaps for 2D sensitivity (Shanmugavelu), stacked bars for decomposition (Mesting, Brittlebench—subfield signature).\n\n**Stats**: Variance components and correlations over mean±std (only 3/16 use traditional reporting). Decomposed variances, effect sizes, coverage probabilities are the norm.\n\n**Flow**: 4-6 figures. Problem → method → results → decomposition/ablation.",
+              "originalFile": "---\nname: LLM Evaluation Variance — Writing Patterns\ndescription: Narrative strategies, figure/table conventions from LLM evaluation variance papers (16 deep-read, 2018-2026)\nscope: project\nversion: 2\ntags: [distilled, auto-generated]\ndistilled_from:\n  paper_count: 25\n  paper_keys: [sclar2024formatting, zhou2026irt, saleva2025beyond, pezeshkpour2024ordering, polo2024tinybenchmarks, magnusson2023reproducibility, shanmugavelu2024floating, lalor2019irt, rodriguez2021leaderboards, henderson2018deep, madaan2024quantifying, song2025exploring, zhang2025tbik, li2025atlas, biderman2024lessons, hua2025flaw, mesting2026hidden, brittlebench2026, yuan2025layercast, kunievsky2025intent, thinkingmachines2025batch, messina2026background, generalizit2024, bui2025seeds, sameprompt2026]\n  last_distilled: \"2026-05-22T00:00:00Z\"\n---\n\n## Story Types\n\n**Revealing Hidden Problem** (8/16, HIGH): \"X assumed negligible → massive.\" Sclar (76pp), Shanmugavelu (unique models), Pezeshkpour (85%), Yuan (9%), ThinkingMachines, Brittlebench. Dominant—the subfield's claim IS that ignored variance is large.\n\n**Unifying Framework** (3/16, MEDIUM): Zhou (PSN-IRT), Saleva (variance decomposition), Mesting (TEE). Structure: fragmented observations → unified formalism → multi-domain validation.\n\n**Simplification** (3/16, MEDIUM): Polo (14K→100 examples), Hua (sensitivity is artifact), Magnusson (checklist analysis).\n\n**Cross-domain Transfer** (2/16, LOW but strategic): Lalor (psychometrics→NLP), Mesting (G-theory→ML). Our paper fits here.\n\n## Hook: Shocking Number First (7/16, HIGH)\n\n\"76pp\" (Sclar), \"13-85%\" (Pezeshkpour), \"80/1000 unique at T=0\" (ThinkingMachines), \"CIs→79% coverage\" (Mesting), \"$10K+\" (Polo), \"ρ 0.30→0.95\" (Hua). **Pattern**: concrete number violating expectations in paragraph 1. Never \"X is important.\"\n\n## Tension: 3-4 Level Escalation (HIGH)\n\nSclar: formatting noise → cross-model invalidity → methodology crisis. Shanmugavelu: sums → kernels → unique runs → certification blocked. Zhou: inconsistent rankings → difficulty ceiling → saturation → failure. **Template**: assumption → contradiction → escalate scope → systemic impact.\n\n## Intro: 4-5 Para + 3 Contributions (8/16)\n\nP1: Context. P2: Existing approaches + limitation. P3: Gap/surprise. P4: 3 contributions (framework + finding + tool). Saleva's intro subsections mirror method structure—effective for framework papers.\n\n## Figure 1: Problem Illustration (9/16, HIGH)\n\nShow problem before solution. Sclar: format examples + accuracy. Zhou: real leaderboard screenshots. Shanmugavelu: variability PDFs. Exception—Polo: teaser scatter (simplification story). **Consensus**: real data not diagrams, key numbers annotated, no method architecture.\n\n## Result Presentation\n\n**Table-driven** (10/16, HIGH): Main results in tables. Variance papers use novel column structures—columns are variance components, not performance metrics (Saleva, Mesting). Rows = models/configs, 4-8 baselines typical. Bold best (Zhou), asterisks for non-significant (Saleva).\n\n**Figures for trends/decomposition** (6/16): Line plots for convergence/efficiency curves (Polo), heatmaps for 2D sensitivity (Shanmugavelu), stacked bars for variance decomposition (Mesting, Brittlebench—signature visual for our subfield).\n\n**Statistical reporting**: Variance components and correlation coefficients more common than mean±std. Only 3/16 report traditional mean±std; most report decomposed variances, effect sizes, or coverage probabilities. HIGH—this subfield has distinct conventions.\n\n**Figure count**: 4-6 for full papers, 2-4 for findings/workshop. **Flow**: problem visualization → method overview (optional) → main results → decomposition/ablation.\n\n## Our Paper Blueprint\n\nOpen with shocking quantified finding → \"everyone's CIs are wrong\" tension → G-theory as borrowed lens → 2-3 domain demonstrations → stacked-bar variance decomposition as signature visual → D-study projections for practical value → position against IRT alternatives (dominant competitor framework).\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 38,
+                  "oldLines": 13,
+                  "newStart": 38,
+                  "newLines": 13,
+                  "lines": [
+                    " ",
+                    " ## Result Presentation",
+                    " ",
+                    "-**Table-driven** (10/16, HIGH): Main results in tables. Variance papers use novel column structures—columns are variance components, not performance metrics (Saleva, Mesting). Rows = models/configs, 4-8 baselines typical. Bold best (Zhou), asterisks for non-significant (Saleva).",
+                    "+**Table-driven** (10/16, HIGH): Variance papers use columns=variance components, not metrics (Saleva, Mesting). Rows=models, 4-8 baselines. Bold best (Zhou), asterisks for non-significant (Saleva).",
+                    " ",
+                    "-**Figures for trends/decomposition** (6/16): Line plots for convergence/efficiency curves (Polo), heatmaps for 2D sensitivity (Shanmugavelu), stacked bars for variance decomposition (Mesting, Brittlebench—signature visual for our subfield).",
+                    "+**Figures for trends** (6/16): Line plots for efficiency (Polo), heatmaps for 2D sensitivity (Shanmugavelu), stacked bars for decomposition (Mesting, Brittlebench—subfield signature).",
+                    " ",
+                    "-**Statistical reporting**: Variance components and correlation coefficients more common than mean±std. Only 3/16 report traditional mean±std; most report decomposed variances, effect sizes, or coverage probabilities. HIGH—this subfield has distinct conventions.",
+                    "+**Stats**: Variance components and correlations over mean±std (only 3/16 use traditional reporting). Decomposed variances, effect sizes, coverage probabilities are the norm.",
+                    " ",
+                    "-**Figure count**: 4-6 for full papers, 2-4 for findings/workshop. **Flow**: problem visualization → method overview (optional) → main results → decomposition/ablation.",
+                    "+**Flow**: 4-6 figures. Problem → method → results → decomposition/ablation.",
+                    " ",
+                    " ## Our Paper Blueprint",
+                    " "
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            },
+            "sourceToolAssistantUUID": "b6506d2e-da8b-405d-a72d-cbed6fd8da54",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/distiller_c08a9a6e",
+            "sessionId": "1ca4cc2e-0adc-4bb5-b9b5-aaddf44ac5b9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000203"
+        },
+        {
+          "source_line": 204,
+          "timestamp": "2026-05-22T13:02:14.252Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018E5ppC2YjiARridQV25EVE",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/skills/projects/nlp_variance_gtheory/distilled-writing.skill.md",
+                "old_string": "## Hook: Shocking Number First (7/16, HIGH)\n\n\"76 accuracy points\" (Sclar), \"13% to 85%\" (Pezeshkpour), \"80/1000 unique at T=0\" (ThinkingMachines), \"95% CIs→79% coverage\" (Mesting), \"$10K+ evaluation costs\" (Polo), \"0.30→0.95 correlation\" (Hua), \"1000 unique weight sets\" (Shanmugavelu). **Pattern**: concrete number violating expectations in first paragraph. Never open with \"X is important.\"",
+                "new_string": "## Hook: Shocking Number First (7/16, HIGH)\n\n\"76pp\" (Sclar), \"13-85%\" (Pezeshkpour), \"80/1000 unique at T=0\" (ThinkingMachines), \"CIs→79% coverage\" (Mesting), \"$10K+\" (Polo), \"ρ 0.30→0.95\" (Hua). **Pattern**: concrete number violating expectations in paragraph 1. Never \"X is important.\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "546666b7-fee2-4e21-977b-cd6e364a3b48",
+            "isSidechain": false,
+            "requestId": "req_011CbHejmVCzq67piVa4VEKo",
+            "type": "assistant",
+            "uuid": "1643d52b-bb36-4acc-aef8-3ab6f8ab3696",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/distiller_c08a9a6e",
+            "sessionId": "1ca4cc2e-0adc-4bb5-b9b5-aaddf44ac5b9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TtSpzXobVydMFtuqnykTwM",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2128,
+                "cache_read_input_tokens": 87572,
+                "output_tokens": 2519,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2128,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2519,
+                    "cache_read_input_tokens": 87572,
+                    "cache_creation_input_tokens": 2128,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2128
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000204"
+        },
+        {
+          "source_line": 205,
+          "timestamp": "2026-05-22T13:02:14.274Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018E5ppC2YjiARridQV25EVE",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0519/skills/projects/nlp_variance_gtheory/distilled-writing.skill.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1643d52b-bb36-4acc-aef8-3ab6f8ab3696",
+            "isSidechain": false,
+            "promptId": "55e65cbc-ed01-45bd-8840-890fca6cd9cb",
+            "type": "user",
+            "uuid": "8f1fc34e-dd1b-4e34-8fc7-9eea48b25ca8",
+            "toolUseResult": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519/skills/projects/nlp_variance_gtheory/distilled-writing.skill.md",
+              "oldString": "## Hook: Shocking Number First (7/16, HIGH)\n\n\"76 accuracy points\" (Sclar), \"13% to 85%\" (Pezeshkpour), \"80/1000 unique at T=0\" (ThinkingMachines), \"95% CIs→79% coverage\" (Mesting), \"$10K+ evaluation costs\" (Polo), \"0.30→0.95 correlation\" (Hua), \"1000 unique weight sets\" (Shanmugavelu). **Pattern**: concrete number violating expectations in first paragraph. Never open with \"X is important.\"",
+              "newString": "## Hook: Shocking Number First (7/16, HIGH)\n\n\"76pp\" (Sclar), \"13-85%\" (Pezeshkpour), \"80/1000 unique at T=0\" (ThinkingMachines), \"CIs→79% coverage\" (Mesting), \"$10K+\" (Polo), \"ρ 0.30→0.95\" (Hua). **Pattern**: concrete number violating expectations in paragraph 1. Never \"X is important.\"",
+              "originalFile": "---\nname: LLM Evaluation Variance — Writing Patterns\ndescription: Narrative strategies, figure/table conventions from LLM evaluation variance papers (16 deep-read, 2018-2026)\nscope: project\nversion: 2\ntags: [distilled, auto-generated]\ndistilled_from:\n  paper_count: 25\n  paper_keys: [sclar2024formatting, zhou2026irt, saleva2025beyond, pezeshkpour2024ordering, polo2024tinybenchmarks, magnusson2023reproducibility, shanmugavelu2024floating, lalor2019irt, rodriguez2021leaderboards, henderson2018deep, madaan2024quantifying, song2025exploring, zhang2025tbik, li2025atlas, biderman2024lessons, hua2025flaw, mesting2026hidden, brittlebench2026, yuan2025layercast, kunievsky2025intent, thinkingmachines2025batch, messina2026background, generalizit2024, bui2025seeds, sameprompt2026]\n  last_distilled: \"2026-05-22T00:00:00Z\"\n---\n\n## Story Types\n\n**Revealing Hidden Problem** (8/16, HIGH): \"X assumed negligible → massive.\" Sclar (76pp), Shanmugavelu (unique models), Pezeshkpour (85%), Yuan (9%), ThinkingMachines, Brittlebench. Dominant—the subfield's claim IS that ignored variance is large.\n\n**Unifying Framework** (3/16, MEDIUM): Zhou (PSN-IRT), Saleva (variance decomposition), Mesting (TEE). Structure: fragmented observations → unified formalism → multi-domain validation.\n\n**Simplification** (3/16, MEDIUM): Polo (14K→100 examples), Hua (sensitivity is artifact), Magnusson (checklist analysis).\n\n**Cross-domain Transfer** (2/16, LOW but strategic): Lalor (psychometrics→NLP), Mesting (G-theory→ML). Our paper fits here.\n\n## Hook: Shocking Number First (7/16, HIGH)\n\n\"76 accuracy points\" (Sclar), \"13% to 85%\" (Pezeshkpour), \"80/1000 unique at T=0\" (ThinkingMachines), \"95% CIs→79% coverage\" (Mesting), \"$10K+ evaluation costs\" (Polo), \"0.30→0.95 correlation\" (Hua), \"1000 unique weight sets\" (Shanmugavelu). **Pattern**: concrete number violating expectations in first paragraph. Never open with \"X is important.\"\n\n## Tension: Progressive Escalation (HIGH)\n\nBest papers use 3-4 escalation levels. Sclar: formatting noise → cross-model invalidity → methodology crisis. Shanmugavelu: basic sums → framework kernels → unique training runs → certification blocked. Zhou: inconsistent rankings → difficulty ceiling → item saturation → benchmark failure. **Template**: establish trusted assumption → contradicting evidence → escalate scope → show systemic impact.\n\n## Intro Structure: 4-5 Paragraphs + 3 Contributions (mode, 8/16)\n\nP1: Context/importance. P2: Existing approaches + limitation. P3: Gap/surprise finding. P4: Contributions (3 is standard: framework + empirical finding + practical tool/artifact). Saleva uses structured subsections within intro mirroring method structure—effective for framework papers.\n\n## Figure 1: Problem Illustration Dominates (9/16, HIGH)\n\nShow the problem exists before the solution. Sclar: format examples with accuracy numbers. Zhou: real leaderboard screenshots. Shanmugavelu: variability PDFs. Polo (exception): teaser scatter proving feasibility—works for simplification stories. **Design consensus**: minimal decoration, real data not diagrams, key numbers annotated. Avoid method architecture in Fig 1.\n\n## Result Presentation\n\n**Table-driven** (10/16, HIGH): Main results in tables. Variance papers use novel column structures—columns are variance components, not performance metrics (Saleva, Mesting). Rows = models/configs, 4-8 baselines typical. Bold best (Zhou), asterisks for non-significant (Saleva).\n\n**Figures for trends/decomposition** (6/16): Line plots for convergence/efficiency curves (Polo), heatmaps for 2D sensitivity (Shanmugavelu), stacked bars for variance decomposition (Mesting, Brittlebench—signature visual for our subfield).\n\n**Statistical reporting**: Variance components and correlation coefficients more common than mean±std. Only 3/16 report traditional mean±std; most report decomposed variances, effect sizes, or coverage probabilities. HIGH—this subfield has distinct conventions.\n\n**Figure count**: 4-6 for full papers, 2-4 for findings/workshop. **Flow**: problem visualization → method overview (optional) → main results → decomposition/ablation.\n\n## Our Paper Blueprint\n\nOpen with shocking quantified finding → \"everyone's CIs are wrong\" tension → G-theory as borrowed lens → 2-3 domain demonstrations → stacked-bar variance decomposition as signature visual → D-study projections for practical value → position against IRT alternatives (dominant competitor framework).\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 22,
+                  "oldLines": 7,
+                  "newStart": 22,
+                  "newLines": 7,
+                  "lines": [
+                    " ",
+                    " ## Hook: Shocking Number First (7/16, HIGH)",
+                    " ",
+                    "-\"76 accuracy points\" (Sclar), \"13% to 85%\" (Pezeshkpour), \"80/1000 unique at T=0\" (ThinkingMachines), \"95% CIs→79% coverage\" (Mesting), \"$10K+ evaluation costs\" (Polo), \"0.30→0.95 correlation\" (Hua), \"1000 unique weight sets\" (Shanmugavelu). **Pattern**: concrete number violating expectations in first paragraph. Never open with \"X is important.\"",
+                    "+\"76pp\" (Sclar), \"13-85%\" (Pezeshkpour), \"80/1000 unique at T=0\" (ThinkingMachines), \"CIs→79% coverage\" (Mesting), \"$10K+\" (Polo), \"ρ 0.30→0.95\" (Hua). **Pattern**: concrete number violating expectations in paragraph 1. Never \"X is important.\"",
+                    " ",
+                    " ## Tension: Progressive Escalation (HIGH)",
+                    " "
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            },
+            "sourceToolAssistantUUID": "1643d52b-bb36-4acc-aef8-3ab6f8ab3696",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/distiller_c08a9a6e",
+            "sessionId": "1ca4cc2e-0adc-4bb5-b9b5-aaddf44ac5b9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000205"
+        },
+        {
+          "source_line": 206,
+          "timestamp": "2026-05-22T13:02:16.546Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BvHrxSG4xKnVWnhczp1Agj",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/skills/projects/nlp_variance_gtheory/distilled-writing.skill.md",
+                "old_string": "## Tension: Progressive Escalation (HIGH)\n\nBest papers use 3-4 escalation levels. Sclar: formatting noise → cross-model invalidity → methodology crisis. Shanmugavelu: basic sums → framework kernels → unique training runs → certification blocked. Zhou: inconsistent rankings → difficulty ceiling → item saturation → benchmark failure. **Template**: establish trusted assumption → contradicting evidence → escalate scope → show systemic impact.",
+                "new_string": "## Tension: 3-4 Level Escalation (HIGH)\n\nSclar: formatting noise → cross-model invalidity → methodology crisis. Shanmugavelu: sums → kernels → unique runs → certification blocked. Zhou: inconsistent rankings → difficulty ceiling → saturation → failure. **Template**: assumption → contradiction → escalate scope → systemic impact."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8f1fc34e-dd1b-4e34-8fc7-9eea48b25ca8",
+            "isSidechain": false,
+            "requestId": "req_011CbHejmVCzq67piVa4VEKo",
+            "type": "assistant",
+            "uuid": "7bfe05d5-0857-440f-84c2-8f25e041e7e9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/distiller_c08a9a6e",
+            "sessionId": "1ca4cc2e-0adc-4bb5-b9b5-aaddf44ac5b9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TtSpzXobVydMFtuqnykTwM",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2128,
+                "cache_read_input_tokens": 87572,
+                "output_tokens": 2519,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2128,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2519,
+                    "cache_read_input_tokens": 87572,
+                    "cache_creation_input_tokens": 2128,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2128
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000206"
+        },
+        {
+          "source_line": 207,
+          "timestamp": "2026-05-22T13:02:16.594Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BvHrxSG4xKnVWnhczp1Agj",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0519/skills/projects/nlp_variance_gtheory/distilled-writing.skill.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7bfe05d5-0857-440f-84c2-8f25e041e7e9",
+            "isSidechain": false,
+            "promptId": "55e65cbc-ed01-45bd-8840-890fca6cd9cb",
+            "type": "user",
+            "uuid": "26a90776-44b1-4bd8-80c8-ca524ebd55b3",
+            "toolUseResult": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519/skills/projects/nlp_variance_gtheory/distilled-writing.skill.md",
+              "oldString": "## Tension: Progressive Escalation (HIGH)\n\nBest papers use 3-4 escalation levels. Sclar: formatting noise → cross-model invalidity → methodology crisis. Shanmugavelu: basic sums → framework kernels → unique training runs → certification blocked. Zhou: inconsistent rankings → difficulty ceiling → item saturation → benchmark failure. **Template**: establish trusted assumption → contradicting evidence → escalate scope → show systemic impact.",
+              "newString": "## Tension: 3-4 Level Escalation (HIGH)\n\nSclar: formatting noise → cross-model invalidity → methodology crisis. Shanmugavelu: sums → kernels → unique runs → certification blocked. Zhou: inconsistent rankings → difficulty ceiling → saturation → failure. **Template**: assumption → contradiction → escalate scope → systemic impact.",
+              "originalFile": "---\nname: LLM Evaluation Variance — Writing Patterns\ndescription: Narrative strategies, figure/table conventions from LLM evaluation variance papers (16 deep-read, 2018-2026)\nscope: project\nversion: 2\ntags: [distilled, auto-generated]\ndistilled_from:\n  paper_count: 25\n  paper_keys: [sclar2024formatting, zhou2026irt, saleva2025beyond, pezeshkpour2024ordering, polo2024tinybenchmarks, magnusson2023reproducibility, shanmugavelu2024floating, lalor2019irt, rodriguez2021leaderboards, henderson2018deep, madaan2024quantifying, song2025exploring, zhang2025tbik, li2025atlas, biderman2024lessons, hua2025flaw, mesting2026hidden, brittlebench2026, yuan2025layercast, kunievsky2025intent, thinkingmachines2025batch, messina2026background, generalizit2024, bui2025seeds, sameprompt2026]\n  last_distilled: \"2026-05-22T00:00:00Z\"\n---\n\n## Story Types\n\n**Revealing Hidden Problem** (8/16, HIGH): \"X assumed negligible → massive.\" Sclar (76pp), Shanmugavelu (unique models), Pezeshkpour (85%), Yuan (9%), ThinkingMachines, Brittlebench. Dominant—the subfield's claim IS that ignored variance is large.\n\n**Unifying Framework** (3/16, MEDIUM): Zhou (PSN-IRT), Saleva (variance decomposition), Mesting (TEE). Structure: fragmented observations → unified formalism → multi-domain validation.\n\n**Simplification** (3/16, MEDIUM): Polo (14K→100 examples), Hua (sensitivity is artifact), Magnusson (checklist analysis).\n\n**Cross-domain Transfer** (2/16, LOW but strategic): Lalor (psychometrics→NLP), Mesting (G-theory→ML). Our paper fits here.\n\n## Hook: Shocking Number First (7/16, HIGH)\n\n\"76pp\" (Sclar), \"13-85%\" (Pezeshkpour), \"80/1000 unique at T=0\" (ThinkingMachines), \"CIs→79% coverage\" (Mesting), \"$10K+\" (Polo), \"ρ 0.30→0.95\" (Hua). **Pattern**: concrete number violating expectations in paragraph 1. Never \"X is important.\"\n\n## Tension: Progressive Escalation (HIGH)\n\nBest papers use 3-4 escalation levels. Sclar: formatting noise → cross-model invalidity → methodology crisis. Shanmugavelu: basic sums → framework kernels → unique training runs → certification blocked. Zhou: inconsistent rankings → difficulty ceiling → item saturation → benchmark failure. **Template**: establish trusted assumption → contradicting evidence → escalate scope → show systemic impact.\n\n## Intro Structure: 4-5 Paragraphs + 3 Contributions (mode, 8/16)\n\nP1: Context/importance. P2: Existing approaches + limitation. P3: Gap/surprise finding. P4: Contributions (3 is standard: framework + empirical finding + practical tool/artifact). Saleva uses structured subsections within intro mirroring method structure—effective for framework papers.\n\n## Figure 1: Problem Illustration Dominates (9/16, HIGH)\n\nShow the problem exists before the solution. Sclar: format examples with accuracy numbers. Zhou: real leaderboard screenshots. Shanmugavelu: variability PDFs. Polo (exception): teaser scatter proving feasibility—works for simplification stories. **Design consensus**: minimal decoration, real data not diagrams, key numbers annotated. Avoid method architecture in Fig 1.\n\n## Result Presentation\n\n**Table-driven** (10/16, HIGH): Main results in tables. Variance papers use novel column structures—columns are variance components, not performance metrics (Saleva, Mesting). Rows = models/configs, 4-8 baselines typical. Bold best (Zhou), asterisks for non-significant (Saleva).\n\n**Figures for trends/decomposition** (6/16): Line plots for convergence/efficiency curves (Polo), heatmaps for 2D sensitivity (Shanmugavelu), stacked bars for variance decomposition (Mesting, Brittlebench—signature visual for our subfield).\n\n**Statistical reporting**: Variance components and correlation coefficients more common than mean±std. Only 3/16 report traditional mean±std; most report decomposed variances, effect sizes, or coverage probabilities. HIGH—this subfield has distinct conventions.\n\n**Figure count**: 4-6 for full papers, 2-4 for findings/workshop. **Flow**: problem visualization → method overview (optional) → main results → decomposition/ablation.\n\n## Our Paper Blueprint\n\nOpen with shocking quantified finding → \"everyone's CIs are wrong\" tension → G-theory as borrowed lens → 2-3 domain demonstrations → stacked-bar variance decomposition as signature visual → D-study projections for practical value → position against IRT alternatives (dominant competitor framework).\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 24,
+                  "oldLines": 9,
+                  "newStart": 24,
+                  "newLines": 9,
+                  "lines": [
+                    " ",
+                    " \"76pp\" (Sclar), \"13-85%\" (Pezeshkpour), \"80/1000 unique at T=0\" (ThinkingMachines), \"CIs→79% coverage\" (Mesting), \"$10K+\" (Polo), \"ρ 0.30→0.95\" (Hua). **Pattern**: concrete number violating expectations in paragraph 1. Never \"X is important.\"",
+                    " ",
+                    "-## Tension: Progressive Escalation (HIGH)",
+                    "+## Tension: 3-4 Level Escalation (HIGH)",
+                    " ",
+                    "-Best papers use 3-4 escalation levels. Sclar: formatting noise → cross-model invalidity → methodology crisis. Shanmugavelu: basic sums → framework kernels → unique training runs → certification blocked. Zhou: inconsistent rankings → difficulty ceiling → item saturation → benchmark failure. **Template**: establish trusted assumption → contradicting evidence → escalate scope → show systemic impact.",
+                    "+Sclar: formatting noise → cross-model invalidity → methodology crisis. Shanmugavelu: sums → kernels → unique runs → certification blocked. Zhou: inconsistent rankings → difficulty ceiling → saturation → failure. **Template**: assumption → contradiction → escalate scope → systemic impact.",
+                    " ",
+                    " ## Intro Structure: 4-5 Paragraphs + 3 Contributions (mode, 8/16)",
+                    " "
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            },
+            "sourceToolAssistantUUID": "7bfe05d5-0857-440f-84c2-8f25e041e7e9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/distiller_c08a9a6e",
+            "sessionId": "1ca4cc2e-0adc-4bb5-b9b5-aaddf44ac5b9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000207"
+        },
+        {
+          "source_line": 208,
+          "timestamp": "2026-05-22T13:02:19.337Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FxqM3XQhdmpxSBpv6HoW1Y",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/skills/projects/nlp_variance_gtheory/distilled-writing.skill.md",
+                "old_string": "## Intro Structure: 4-5 Paragraphs + 3 Contributions (mode, 8/16)\n\nP1: Context/importance. P2: Existing approaches + limitation. P3: Gap/surprise finding. P4: Contributions (3 is standard: framework + empirical finding + practical tool/artifact). Saleva uses structured subsections within intro mirroring method structure—effective for framework papers.",
+                "new_string": "## Intro: 4-5 Para + 3 Contributions (8/16)\n\nP1: Context. P2: Existing approaches + limitation. P3: Gap/surprise. P4: 3 contributions (framework + finding + tool). Saleva's intro subsections mirror method structure—effective for framework papers."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "26a90776-44b1-4bd8-80c8-ca524ebd55b3",
+            "isSidechain": false,
+            "requestId": "req_011CbHejmVCzq67piVa4VEKo",
+            "type": "assistant",
+            "uuid": "4b604bf8-fd71-46ea-935b-1819a0921c79",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/distiller_c08a9a6e",
+            "sessionId": "1ca4cc2e-0adc-4bb5-b9b5-aaddf44ac5b9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TtSpzXobVydMFtuqnykTwM",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2128,
+                "cache_read_input_tokens": 87572,
+                "output_tokens": 2519,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2128,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2519,
+                    "cache_read_input_tokens": 87572,
+                    "cache_creation_input_tokens": 2128,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2128
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000208"
+        },
+        {
+          "source_line": 209,
+          "timestamp": "2026-05-22T13:02:19.345Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FxqM3XQhdmpxSBpv6HoW1Y",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0519/skills/projects/nlp_variance_gtheory/distilled-writing.skill.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4b604bf8-fd71-46ea-935b-1819a0921c79",
+            "isSidechain": false,
+            "promptId": "55e65cbc-ed01-45bd-8840-890fca6cd9cb",
+            "type": "user",
+            "uuid": "cd48a7d2-5f4d-4f12-b39a-dac9525e8a39",
+            "toolUseResult": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519/skills/projects/nlp_variance_gtheory/distilled-writing.skill.md",
+              "oldString": "## Intro Structure: 4-5 Paragraphs + 3 Contributions (mode, 8/16)\n\nP1: Context/importance. P2: Existing approaches + limitation. P3: Gap/surprise finding. P4: Contributions (3 is standard: framework + empirical finding + practical tool/artifact). Saleva uses structured subsections within intro mirroring method structure—effective for framework papers.",
+              "newString": "## Intro: 4-5 Para + 3 Contributions (8/16)\n\nP1: Context. P2: Existing approaches + limitation. P3: Gap/surprise. P4: 3 contributions (framework + finding + tool). Saleva's intro subsections mirror method structure—effective for framework papers.",
+              "originalFile": "---\nname: LLM Evaluation Variance — Writing Patterns\ndescription: Narrative strategies, figure/table conventions from LLM evaluation variance papers (16 deep-read, 2018-2026)\nscope: project\nversion: 2\ntags: [distilled, auto-generated]\ndistilled_from:\n  paper_count: 25\n  paper_keys: [sclar2024formatting, zhou2026irt, saleva2025beyond, pezeshkpour2024ordering, polo2024tinybenchmarks, magnusson2023reproducibility, shanmugavelu2024floating, lalor2019irt, rodriguez2021leaderboards, henderson2018deep, madaan2024quantifying, song2025exploring, zhang2025tbik, li2025atlas, biderman2024lessons, hua2025flaw, mesting2026hidden, brittlebench2026, yuan2025layercast, kunievsky2025intent, thinkingmachines2025batch, messina2026background, generalizit2024, bui2025seeds, sameprompt2026]\n  last_distilled: \"2026-05-22T00:00:00Z\"\n---\n\n## Story Types\n\n**Revealing Hidden Problem** (8/16, HIGH): \"X assumed negligible → massive.\" Sclar (76pp), Shanmugavelu (unique models), Pezeshkpour (85%), Yuan (9%), ThinkingMachines, Brittlebench. Dominant—the subfield's claim IS that ignored variance is large.\n\n**Unifying Framework** (3/16, MEDIUM): Zhou (PSN-IRT), Saleva (variance decomposition), Mesting (TEE). Structure: fragmented observations → unified formalism → multi-domain validation.\n\n**Simplification** (3/16, MEDIUM): Polo (14K→100 examples), Hua (sensitivity is artifact), Magnusson (checklist analysis).\n\n**Cross-domain Transfer** (2/16, LOW but strategic): Lalor (psychometrics→NLP), Mesting (G-theory→ML). Our paper fits here.\n\n## Hook: Shocking Number First (7/16, HIGH)\n\n\"76pp\" (Sclar), \"13-85%\" (Pezeshkpour), \"80/1000 unique at T=0\" (ThinkingMachines), \"CIs→79% coverage\" (Mesting), \"$10K+\" (Polo), \"ρ 0.30→0.95\" (Hua). **Pattern**: concrete number violating expectations in paragraph 1. Never \"X is important.\"\n\n## Tension: 3-4 Level Escalation (HIGH)\n\nSclar: formatting noise → cross-model invalidity → methodology crisis. Shanmugavelu: sums → kernels → unique runs → certification blocked. Zhou: inconsistent rankings → difficulty ceiling → saturation → failure. **Template**: assumption → contradiction → escalate scope → systemic impact.\n\n## Intro Structure: 4-5 Paragraphs + 3 Contributions (mode, 8/16)\n\nP1: Context/importance. P2: Existing approaches + limitation. P3: Gap/surprise finding. P4: Contributions (3 is standard: framework + empirical finding + practical tool/artifact). Saleva uses structured subsections within intro mirroring method structure—effective for framework papers.\n\n## Figure 1: Problem Illustration Dominates (9/16, HIGH)\n\nShow the problem exists before the solution. Sclar: format examples with accuracy numbers. Zhou: real leaderboard screenshots. Shanmugavelu: variability PDFs. Polo (exception): teaser scatter proving feasibility—works for simplification stories. **Design consensus**: minimal decoration, real data not diagrams, key numbers annotated. Avoid method architecture in Fig 1.\n\n## Result Presentation\n\n**Table-driven** (10/16, HIGH): Main results in tables. Variance papers use novel column structures—columns are variance components, not performance metrics (Saleva, Mesting). Rows = models/configs, 4-8 baselines typical. Bold best (Zhou), asterisks for non-significant (Saleva).\n\n**Figures for trends/decomposition** (6/16): Line plots for convergence/efficiency curves (Polo), heatmaps for 2D sensitivity (Shanmugavelu), stacked bars for variance decomposition (Mesting, Brittlebench—signature visual for our subfield).\n\n**Statistical reporting**: Variance components and correlation coefficients more common than mean±std. Only 3/16 report traditional mean±std; most report decomposed variances, effect sizes, or coverage probabilities. HIGH—this subfield has distinct conventions.\n\n**Figure count**: 4-6 for full papers, 2-4 for findings/workshop. **Flow**: problem visualization → method overview (optional) → main results → decomposition/ablation.\n\n## Our Paper Blueprint\n\nOpen with shocking quantified finding → \"everyone's CIs are wrong\" tension → G-theory as borrowed lens → 2-3 domain demonstrations → stacked-bar variance decomposition as signature visual → D-study projections for practical value → position against IRT alternatives (dominant competitor framework).\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 28,
+                  "oldLines": 9,
+                  "newStart": 28,
+                  "newLines": 9,
+                  "lines": [
+                    " ",
+                    " Sclar: formatting noise → cross-model invalidity → methodology crisis. Shanmugavelu: sums → kernels → unique runs → certification blocked. Zhou: inconsistent rankings → difficulty ceiling → saturation → failure. **Template**: assumption → contradiction → escalate scope → systemic impact.",
+                    " ",
+                    "-## Intro Structure: 4-5 Paragraphs + 3 Contributions (mode, 8/16)",
+                    "+## Intro: 4-5 Para + 3 Contributions (8/16)",
+                    " ",
+                    "-P1: Context/importance. P2: Existing approaches + limitation. P3: Gap/surprise finding. P4: Contributions (3 is standard: framework + empirical finding + practical tool/artifact). Saleva uses structured subsections within intro mirroring method structure—effective for framework papers.",
+                    "+P1: Context. P2: Existing approaches + limitation. P3: Gap/surprise. P4: 3 contributions (framework + finding + tool). Saleva's intro subsections mirror method structure—effective for framework papers.",
+                    " ",
+                    " ## Figure 1: Problem Illustration Dominates (9/16, HIGH)",
+                    " "
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            },
+            "sourceToolAssistantUUID": "4b604bf8-fd71-46ea-935b-1819a0921c79",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/distiller_c08a9a6e",
+            "sessionId": "1ca4cc2e-0adc-4bb5-b9b5-aaddf44ac5b9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000209"
+        },
+        {
+          "source_line": 210,
+          "timestamp": "2026-05-22T13:02:22.332Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XNrdc2jTnpBUTEMc5KMtGT",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/skills/projects/nlp_variance_gtheory/distilled-writing.skill.md",
+                "old_string": "## Figure 1: Problem Illustration Dominates (9/16, HIGH)\n\nShow the problem exists before the solution. Sclar: format examples with accuracy numbers. Zhou: real leaderboard screenshots. Shanmugavelu: variability PDFs. Polo (exception): teaser scatter proving feasibility—works for simplification stories. **Design consensus**: minimal decoration, real data not diagrams, key numbers annotated. Avoid method architecture in Fig 1.",
+                "new_string": "## Figure 1: Problem Illustration (9/16, HIGH)\n\nShow problem before solution. Sclar: format examples + accuracy. Zhou: real leaderboard screenshots. Shanmugavelu: variability PDFs. Exception—Polo: teaser scatter (simplification story). **Consensus**: real data not diagrams, key numbers annotated, no method architecture."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cd48a7d2-5f4d-4f12-b39a-dac9525e8a39",
+            "isSidechain": false,
+            "requestId": "req_011CbHejmVCzq67piVa4VEKo",
+            "type": "assistant",
+            "uuid": "ee32338e-5122-4d1f-89b7-1beb0bd13baf",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/distiller_c08a9a6e",
+            "sessionId": "1ca4cc2e-0adc-4bb5-b9b5-aaddf44ac5b9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TtSpzXobVydMFtuqnykTwM",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2128,
+                "cache_read_input_tokens": 87572,
+                "output_tokens": 2519,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2128,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2519,
+                    "cache_read_input_tokens": 87572,
+                    "cache_creation_input_tokens": 2128,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2128
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000210"
+        },
+        {
+          "source_line": 211,
+          "timestamp": "2026-05-22T13:02:22.342Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XNrdc2jTnpBUTEMc5KMtGT",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0519/skills/projects/nlp_variance_gtheory/distilled-writing.skill.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ee32338e-5122-4d1f-89b7-1beb0bd13baf",
+            "isSidechain": false,
+            "promptId": "55e65cbc-ed01-45bd-8840-890fca6cd9cb",
+            "type": "user",
+            "uuid": "27451d96-7278-4381-8798-67be3168155e",
+            "toolUseResult": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519/skills/projects/nlp_variance_gtheory/distilled-writing.skill.md",
+              "oldString": "## Figure 1: Problem Illustration Dominates (9/16, HIGH)\n\nShow the problem exists before the solution. Sclar: format examples with accuracy numbers. Zhou: real leaderboard screenshots. Shanmugavelu: variability PDFs. Polo (exception): teaser scatter proving feasibility—works for simplification stories. **Design consensus**: minimal decoration, real data not diagrams, key numbers annotated. Avoid method architecture in Fig 1.",
+              "newString": "## Figure 1: Problem Illustration (9/16, HIGH)\n\nShow problem before solution. Sclar: format examples + accuracy. Zhou: real leaderboard screenshots. Shanmugavelu: variability PDFs. Exception—Polo: teaser scatter (simplification story). **Consensus**: real data not diagrams, key numbers annotated, no method architecture.",
+              "originalFile": "---\nname: LLM Evaluation Variance — Writing Patterns\ndescription: Narrative strategies, figure/table conventions from LLM evaluation variance papers (16 deep-read, 2018-2026)\nscope: project\nversion: 2\ntags: [distilled, auto-generated]\ndistilled_from:\n  paper_count: 25\n  paper_keys: [sclar2024formatting, zhou2026irt, saleva2025beyond, pezeshkpour2024ordering, polo2024tinybenchmarks, magnusson2023reproducibility, shanmugavelu2024floating, lalor2019irt, rodriguez2021leaderboards, henderson2018deep, madaan2024quantifying, song2025exploring, zhang2025tbik, li2025atlas, biderman2024lessons, hua2025flaw, mesting2026hidden, brittlebench2026, yuan2025layercast, kunievsky2025intent, thinkingmachines2025batch, messina2026background, generalizit2024, bui2025seeds, sameprompt2026]\n  last_distilled: \"2026-05-22T00:00:00Z\"\n---\n\n## Story Types\n\n**Revealing Hidden Problem** (8/16, HIGH): \"X assumed negligible → massive.\" Sclar (76pp), Shanmugavelu (unique models), Pezeshkpour (85%), Yuan (9%), ThinkingMachines, Brittlebench. Dominant—the subfield's claim IS that ignored variance is large.\n\n**Unifying Framework** (3/16, MEDIUM): Zhou (PSN-IRT), Saleva (variance decomposition), Mesting (TEE). Structure: fragmented observations → unified formalism → multi-domain validation.\n\n**Simplification** (3/16, MEDIUM): Polo (14K→100 examples), Hua (sensitivity is artifact), Magnusson (checklist analysis).\n\n**Cross-domain Transfer** (2/16, LOW but strategic): Lalor (psychometrics→NLP), Mesting (G-theory→ML). Our paper fits here.\n\n## Hook: Shocking Number First (7/16, HIGH)\n\n\"76pp\" (Sclar), \"13-85%\" (Pezeshkpour), \"80/1000 unique at T=0\" (ThinkingMachines), \"CIs→79% coverage\" (Mesting), \"$10K+\" (Polo), \"ρ 0.30→0.95\" (Hua). **Pattern**: concrete number violating expectations in paragraph 1. Never \"X is important.\"\n\n## Tension: 3-4 Level Escalation (HIGH)\n\nSclar: formatting noise → cross-model invalidity → methodology crisis. Shanmugavelu: sums → kernels → unique runs → certification blocked. Zhou: inconsistent rankings → difficulty ceiling → saturation → failure. **Template**: assumption → contradiction → escalate scope → systemic impact.\n\n## Intro: 4-5 Para + 3 Contributions (8/16)\n\nP1: Context. P2: Existing approaches + limitation. P3: Gap/surprise. P4: 3 contributions (framework + finding + tool). Saleva's intro subsections mirror method structure—effective for framework papers.\n\n## Figure 1: Problem Illustration Dominates (9/16, HIGH)\n\nShow the problem exists before the solution. Sclar: format examples with accuracy numbers. Zhou: real leaderboard screenshots. Shanmugavelu: variability PDFs. Polo (exception): teaser scatter proving feasibility—works for simplification stories. **Design consensus**: minimal decoration, real data not diagrams, key numbers annotated. Avoid method architecture in Fig 1.\n\n## Result Presentation\n\n**Table-driven** (10/16, HIGH): Main results in tables. Variance papers use novel column structures—columns are variance components, not performance metrics (Saleva, Mesting). Rows = models/configs, 4-8 baselines typical. Bold best (Zhou), asterisks for non-significant (Saleva).\n\n**Figures for trends/decomposition** (6/16): Line plots for convergence/efficiency curves (Polo), heatmaps for 2D sensitivity (Shanmugavelu), stacked bars for variance decomposition (Mesting, Brittlebench—signature visual for our subfield).\n\n**Statistical reporting**: Variance components and correlation coefficients more common than mean±std. Only 3/16 report traditional mean±std; most report decomposed variances, effect sizes, or coverage probabilities. HIGH—this subfield has distinct conventions.\n\n**Figure count**: 4-6 for full papers, 2-4 for findings/workshop. **Flow**: problem visualization → method overview (optional) → main results → decomposition/ablation.\n\n## Our Paper Blueprint\n\nOpen with shocking quantified finding → \"everyone's CIs are wrong\" tension → G-theory as borrowed lens → 2-3 domain demonstrations → stacked-bar variance decomposition as signature visual → D-study projections for practical value → position against IRT alternatives (dominant competitor framework).\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 32,
+                  "oldLines": 9,
+                  "newStart": 32,
+                  "newLines": 9,
+                  "lines": [
+                    " ",
+                    " P1: Context. P2: Existing approaches + limitation. P3: Gap/surprise. P4: 3 contributions (framework + finding + tool). Saleva's intro subsections mirror method structure—effective for framework papers.",
+                    " ",
+                    "-## Figure 1: Problem Illustration Dominates (9/16, HIGH)",
+                    "+## Figure 1: Problem Illustration (9/16, HIGH)",
+                    " ",
+                    "-Show the problem exists before the solution. Sclar: format examples with accuracy numbers. Zhou: real leaderboard screenshots. Shanmugavelu: variability PDFs. Polo (exception): teaser scatter proving feasibility—works for simplification stories. **Design consensus**: minimal decoration, real data not diagrams, key numbers annotated. Avoid method architecture in Fig 1.",
+                    "+Show problem before solution. Sclar: format examples + accuracy. Zhou: real leaderboard screenshots. Shanmugavelu: variability PDFs. Exception—Polo: teaser scatter (simplification story). **Consensus**: real data not diagrams, key numbers annotated, no method architecture.",
+                    " ",
+                    " ## Result Presentation",
+                    " "
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            },
+            "sourceToolAssistantUUID": "ee32338e-5122-4d1f-89b7-1beb0bd13baf",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/distiller_c08a9a6e",
+            "sessionId": "1ca4cc2e-0adc-4bb5-b9b5-aaddf44ac5b9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000211"
+        },
+        {
+          "source_line": 212,
+          "timestamp": "2026-05-22T13:02:27.614Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SVfeBsUoLsp54wMbVPVWEj",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/skills/projects/nlp_variance_gtheory/distilled-writing.skill.md",
+                "old_string": "## Result Presentation\n\n**Table-driven** (10/16, HIGH): Main results in tables. Variance papers use novel column structures—columns are variance components, not performance metrics (Saleva, Mesting). Rows = models/configs, 4-8 baselines typical. Bold best (Zhou), asterisks for non-significant (Saleva).\n\n**Figures for trends/decomposition** (6/16): Line plots for convergence/efficiency curves (Polo), heatmaps for 2D sensitivity (Shanmugavelu), stacked bars for variance decomposition (Mesting, Brittlebench—signature visual for our subfield).\n\n**Statistical reporting**: Variance components and correlation coefficients more common than mean±std. Only 3/16 report traditional mean±std; most report decomposed variances, effect sizes, or coverage probabilities. HIGH—this subfield has distinct conventions.\n\n**Figure count**: 4-6 for full papers, 2-4 for findings/workshop. **Flow**: problem visualization → method overview (optional) → main results → decomposition/ablation.",
+                "new_string": "## Result Presentation\n\n**Table-driven** (10/16, HIGH): Variance papers use columns=variance components, not metrics (Saleva, Mesting). Rows=models, 4-8 baselines. Bold best (Zhou), asterisks for non-significant (Saleva).\n\n**Figures for trends** (6/16): Line plots for efficiency (Polo), heatmaps for 2D sensitivity (Shanmugavelu), stacked bars for decomposition (Mesting, Brittlebench—subfield signature).\n\n**Stats**: Variance components and correlations over mean±std (only 3/16 use traditional reporting). Decomposed variances, effect sizes, coverage probabilities are the norm.\n\n**Flow**: 4-6 figures. Problem → method → results → decomposition/ablation."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "27451d96-7278-4381-8798-67be3168155e",
+            "isSidechain": false,
+            "requestId": "req_011CbHejmVCzq67piVa4VEKo",
+            "type": "assistant",
+            "uuid": "b6506d2e-da8b-405d-a72d-cbed6fd8da54",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/distiller_c08a9a6e",
+            "sessionId": "1ca4cc2e-0adc-4bb5-b9b5-aaddf44ac5b9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TtSpzXobVydMFtuqnykTwM",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2128,
+                "cache_read_input_tokens": 87572,
+                "output_tokens": 2519,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2128,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2519,
+                    "cache_read_input_tokens": 87572,
+                    "cache_creation_input_tokens": 2128,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2128
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000212"
+        },
+        {
+          "source_line": 213,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "你是 Distiller Agent——论文蒸馏引擎。你的任务是从一批论文中提取**领域隐性经验**，生成两个结构化 skill 文件。  ## 核心定位  你不是在\"总结论文\"。你在回答：**这个研究子领域的人默认怎么做事？**  - 总结 = \"论文 A 做了 X，论文 B 做了 Y\"（罗列） - 蒸馏 = \"这 N 篇论文共同揭示了什么同行做法和领域经验\"（归纳）  ## 执行流程  ###…",
+                "leafUuid": "12b3785f-3fd7-445b-b2af-e8707019fe5f",
+                "sessionId": "1ca4cc2e-0adc-4bb5-b9b5-aaddf44ac5b9"
+              }
+            }
+          ],
+          "id": "event-000213"
+        },
+        {
+          "source_line": 214,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Distill NLP variance and generalization theory research",
+                "sessionId": "1ca4cc2e-0adc-4bb5-b9b5-aaddf44ac5b9"
+              }
+            }
+          ],
+          "id": "event-000214"
+        },
+        {
+          "source_line": 215,
+          "timestamp": "2026-05-22T13:02:32.972Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DKFzq4xdfXV1TpZHq9cevB",
+              "name": "Bash",
+              "input": {
+                "command": "awk '/^---$/{n++; next} n>=2' /home/ubuntu/.agent-ml-research-idea_gen_0519/skills/projects/nlp_variance_gtheory/distilled-research.skill.md | wc -c && awk '/^---$/{n++; next} n>=2' /home/ubuntu/.agent-ml-research-idea_gen_0519/skills/projects/nlp_variance_gtheory/distilled-writing.skill.md | wc -c",
+                "description": "Verify body character counts after trimming"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "12b3785f-3fd7-445b-b2af-e8707019fe5f",
+            "isSidechain": false,
+            "requestId": "req_011CbHemymCePq8tHSrN7AWA",
+            "type": "assistant",
+            "uuid": "02fdd6c4-c832-4303-a25f-f595d57eca91",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/distiller_c08a9a6e",
+            "sessionId": "1ca4cc2e-0adc-4bb5-b9b5-aaddf44ac5b9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012gFKidmx27EPH7vujzuRWS",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2940,
+                "cache_read_input_tokens": 89700,
+                "output_tokens": 196,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2940,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 196,
+                    "cache_read_input_tokens": 89700,
+                    "cache_creation_input_tokens": 2940,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2940
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000215"
+        },
+        {
+          "source_line": 216,
+          "timestamp": "2026-05-22T13:02:33.030Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DKFzq4xdfXV1TpZHq9cevB",
+              "type": "tool_result",
+              "content": "2971\n2941",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "02fdd6c4-c832-4303-a25f-f595d57eca91",
+            "isSidechain": false,
+            "promptId": "55e65cbc-ed01-45bd-8840-890fca6cd9cb",
+            "type": "user",
+            "uuid": "bf517fe1-eab8-4082-8de2-68b8326df637",
+            "toolUseResult": {
+              "stdout": "2971\n2941",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            },
+            "sourceToolAssistantUUID": "02fdd6c4-c832-4303-a25f-f595d57eca91",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/distiller_c08a9a6e",
+            "sessionId": "1ca4cc2e-0adc-4bb5-b9b5-aaddf44ac5b9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000216"
+        },
+        {
+          "source_line": 217,
+          "timestamp": "2026-05-22T13:02:36.196Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 skill body 均在 3000 字符以内。最终验证文件完整性。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bf517fe1-eab8-4082-8de2-68b8326df637",
+            "isSidechain": false,
+            "requestId": "req_011CbHenPGKbbHFdtwP3mkq6",
+            "type": "assistant",
+            "uuid": "bcb500c6-5ade-40d4-ad5a-0f37eb1142b0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/distiller_c08a9a6e",
+            "sessionId": "1ca4cc2e-0adc-4bb5-b9b5-aaddf44ac5b9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EmtuerMaRMTCqLcoSkz9Bs",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 213,
+                "cache_read_input_tokens": 92640,
+                "output_tokens": 193,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 213,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 193,
+                    "cache_read_input_tokens": 92640,
+                    "cache_creation_input_tokens": 213,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 213
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000217"
+        },
+        {
+          "source_line": 218,
+          "timestamp": "2026-05-22T13:02:36.805Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MU79zsJCiJfvcGEnqUkcFi",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/skills/projects/nlp_variance_gtheory/distilled-research.skill.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bcb500c6-5ade-40d4-ad5a-0f37eb1142b0",
+            "isSidechain": false,
+            "requestId": "req_011CbHenPGKbbHFdtwP3mkq6",
+            "type": "assistant",
+            "uuid": "d6e73f58-e166-431e-a6ea-eca5c83aa7bb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/distiller_c08a9a6e",
+            "sessionId": "1ca4cc2e-0adc-4bb5-b9b5-aaddf44ac5b9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EmtuerMaRMTCqLcoSkz9Bs",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 213,
+                "cache_read_input_tokens": 92640,
+                "output_tokens": 193,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 213,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 193,
+                    "cache_read_input_tokens": 92640,
+                    "cache_creation_input_tokens": 213,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 213
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000218"
+        },
+        {
+          "source_line": 219,
+          "timestamp": "2026-05-22T13:02:36.809Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MU79zsJCiJfvcGEnqUkcFi",
+              "type": "tool_result",
+              "content": "1\t---\n2\tname: LLM Evaluation Variance — Research Patterns\n3\tdescription: Experimental consensus on variance sources, decomposition methods, and gaps in LLM evaluation reproducibility (25 papers, 2018-2026)\n4\tscope: project\n5\tversion: 2\n6\ttags: [distilled, auto-generated]\n7\tdistilled_from:\n8\t  paper_count: 25\n9\t  paper_keys: [sclar2024formatting, zhou2026irt, saleva2025beyond, pezeshkpour2024ordering, polo2024tinybenchmarks, magnusson2023reproducibility, shanmugavelu2024floating, lalor2019irt, rodriguez2021leaderboards, henderson2018deep, madaan2024quantifying, song2025exploring, zhang2025tbik, li2025atlas, biderman2024lessons, hua2025flaw, mesting2026hidden, brittlebench2026, yuan2025layercast, kunievsky2025intent, thinkingmachines2025batch, messina2026background, generalizit2024, bui2025seeds, sameprompt2026]\n10\t  last_distilled: \"2026-05-22T00:00:00Z\"\n11\t---\n12\t\n13\t## Variance Source Taxonomy\n14\t\n15\t**Prompt/Format Sensitivity** (8/25, HIGH): Formatting→76pp spread (Sclar ICLR'24); option ordering→13-85% fluctuation (Pezeshkpour NAACL'24); perturbations flip rankings 63% of cases (Brittlebench); format performance correlates weakly across models. Eval setup (template, few-shot, framework version) compounds this (Biderman'24).\n16\t\n17\t**Infrastructure Nondeterminism** (5/25, HIGH): BF16→9% accuracy variation, FP32→~0% (Yuan). FP non-associativity: 1000 identical runs→1000 unique weights (Shanmugavelu SC'24). Batch-size kernel selection is primary source, not thread-level FP (ThinkingMachines). T=0 background temp varies by provider: Claude~0, GPT~0.075 (Messina TMLR'26). TBIK guarantees bit-wise reproducibility across TP sizes (Zhang'25).\n18\t\n19\t**Evaluation Method Artifacts** (4/25, HIGH): Heuristic eval inflates measured sensitivity; LLM-judge raises ARC-C Spearman 0.30→0.95 (Hua EMNLP'25). Standard CIs omit 40-60% of uncertainty; naive 95% CIs→79% coverage (Mesting TEE). Code sharing strongest reproducibility predictor (+8%) yet only 46% share (Magnusson ACL'23).\n20\t\n21\t**Data/Item Heterogeneity** (6/25, HIGH): Between-language SD 8.9-12.0 dwarfs within-language 0.7-1.5 (Saleva IJCNLP'25). 3-6% of items have negative discrimination (Li ATLAS). Difficulty ceilings insufficient for top models; guessing 0.20-0.26 in MCQ (Zhou AAAI'26). Seed variance affects both fine-tuning (Bui'25) and RL training (Henderson AAAI'18).\n22\t\n23\t## Dominant Method Families\n24\t\n25\t**IRT/Psychometric** (8/25, rising 2019→2026, HIGH): Trajectory: artificial crowds for IRT (Lalor'19) → IRT leaderboards (Rodriguez'21) → efficient benchmarking via 100 IRT-selected items within 2% error (Polo ICML'24) → adaptive testing with 90% item reduction (Li ATLAS) → neural IRT diagnosing benchmark deficiencies (Zhou AAAI'26). MCQ-to-completion reformulation reduces variance more than IRT item analysis for ~7B models (Madaan'24).\n26\t\n27\t**G-Theory** (3/25, emerging, MEDIUM): TEE framework decomposes judge/prompt/temp facets via REML + D-study (Mesting'26). GeneralizIT: first Python-native G-theory toolkit. Song'25 applies G-theory to LLM-as-judge writing assessment. Only framework that naturally models multi-facet interactions—severely underutilized.\n28\t\n29\t## Critical Gaps — Our Niche\n30\t\n31\t1. **No cross-source interaction**: Papers isolate one variance source; format × seed × precision × judge interactions unstudied (0/25). HIGH.\n32\t2. **G-theory underutilized**: Only 3/25 despite being the natural multi-facet framework. HIGH.\n33\t3. **Generative tasks neglected**: Most work targets MCQ/classification; open-ended generation variance under-studied (noted in 6/25 limitations). HIGH.\n34\t4. **Training↔eval variance disconnected**: Infra papers and eval papers operate in separate communities (0/25 bridges both). MEDIUM.\n35\t5. **No standardized variance reporting protocol**: Henderson'18 called for this in RL; 8 years later NLP still lacks one. MEDIUM.\n36\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d6e73f58-e166-431e-a6ea-eca5c83aa7bb",
+            "isSidechain": false,
+            "promptId": "55e65cbc-ed01-45bd-8840-890fca6cd9cb",
+            "type": "user",
+            "uuid": "b25b2388-541c-4929-8707-a64932bb72c0",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519/skills/projects/nlp_variance_gtheory/distilled-research.skill.md",
+                "content": "---\nname: LLM Evaluation Variance — Research Patterns\ndescription: Experimental consensus on variance sources, decomposition methods, and gaps in LLM evaluation reproducibility (25 papers, 2018-2026)\nscope: project\nversion: 2\ntags: [distilled, auto-generated]\ndistilled_from:\n  paper_count: 25\n  paper_keys: [sclar2024formatting, zhou2026irt, saleva2025beyond, pezeshkpour2024ordering, polo2024tinybenchmarks, magnusson2023reproducibility, shanmugavelu2024floating, lalor2019irt, rodriguez2021leaderboards, henderson2018deep, madaan2024quantifying, song2025exploring, zhang2025tbik, li2025atlas, biderman2024lessons, hua2025flaw, mesting2026hidden, brittlebench2026, yuan2025layercast, kunievsky2025intent, thinkingmachines2025batch, messina2026background, generalizit2024, bui2025seeds, sameprompt2026]\n  last_distilled: \"2026-05-22T00:00:00Z\"\n---\n\n## Variance Source Taxonomy\n\n**Prompt/Format Sensitivity** (8/25, HIGH): Formatting→76pp spread (Sclar ICLR'24); option ordering→13-85% fluctuation (Pezeshkpour NAACL'24); perturbations flip rankings 63% of cases (Brittlebench); format performance correlates weakly across models. Eval setup (template, few-shot, framework version) compounds this (Biderman'24).\n\n**Infrastructure Nondeterminism** (5/25, HIGH): BF16→9% accuracy variation, FP32→~0% (Yuan). FP non-associativity: 1000 identical runs→1000 unique weights (Shanmugavelu SC'24). Batch-size kernel selection is primary source, not thread-level FP (ThinkingMachines). T=0 background temp varies by provider: Claude~0, GPT~0.075 (Messina TMLR'26). TBIK guarantees bit-wise reproducibility across TP sizes (Zhang'25).\n\n**Evaluation Method Artifacts** (4/25, HIGH): Heuristic eval inflates measured sensitivity; LLM-judge raises ARC-C Spearman 0.30→0.95 (Hua EMNLP'25). Standard CIs omit 40-60% of uncertainty; naive 95% CIs→79% coverage (Mesting TEE). Code sharing strongest reproducibility predictor (+8%) yet only 46% share (Magnusson ACL'23).\n\n**Data/Item Heterogeneity** (6/25, HIGH): Between-language SD 8.9-12.0 dwarfs within-language 0.7-1.5 (Saleva IJCNLP'25). 3-6% of items have negative discrimination (Li ATLAS). Difficulty ceilings insufficient for top models; guessing 0.20-0.26 in MCQ (Zhou AAAI'26). Seed variance affects both fine-tuning (Bui'25) and RL training (Henderson AAAI'18).\n\n## Dominant Method Families\n\n**IRT/Psychometric** (8/25, rising 2019→2026, HIGH): Trajectory: artificial crowds for IRT (Lalor'19) → IRT leaderboards (Rodriguez'21) → efficient benchmarking via 100 IRT-selected items within 2% error (Polo ICML'24) → adaptive testing with 90% item reduction (Li ATLAS) → neural IRT diagnosing benchmark deficiencies (Zhou AAAI'26). MCQ-to-completion reformulation reduces variance more than IRT item analysis for ~7B models (Madaan'24).\n\n**G-Theory** (3/25, emerging, MEDIUM): TEE framework decomposes judge/prompt/temp facets via REML + D-study (Mesting'26). GeneralizIT: first Python-native G-theory toolkit. Song'25 applies G-theory to LLM-as-judge writing assessment. Only framework that naturally models multi-facet interactions—severely underutilized.\n\n## Critical Gaps — Our Niche\n\n1. **No cross-source interaction**: Papers isolate one variance source; format × seed × precision × judge interactions unstudied (0/25). HIGH.\n2. **G-theory underutilized**: Only 3/25 despite being the natural multi-facet framework. HIGH.\n3. **Generative tasks neglected**: Most work targets MCQ/classification; open-ended generation variance under-studied (noted in 6/25 limitations). HIGH.\n4. **Training↔eval variance disconnected**: Infra papers and eval papers operate in separate communities (0/25 bridges both). MEDIUM.\n5. **No standardized variance reporting protocol**: Henderson'18 called for this in RL; 8 years later NLP still lacks one. MEDIUM.\n",
+                "numLines": 36,
+                "startLine": 1,
+                "totalLines": 36
+              }
+            },
+            "sourceToolAssistantUUID": "d6e73f58-e166-431e-a6ea-eca5c83aa7bb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/distiller_c08a9a6e",
+            "sessionId": "1ca4cc2e-0adc-4bb5-b9b5-aaddf44ac5b9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000219"
+        },
+        {
+          "source_line": 220,
+          "timestamp": "2026-05-22T13:02:37.091Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0178waDajLLLYFJibFtxrx5g",
+              "type": "tool_result",
+              "content": "1\t---\n2\tname: LLM Evaluation Variance — Writing Patterns\n3\tdescription: Narrative strategies, figure/table conventions from LLM evaluation variance papers (16 deep-read, 2018-2026)\n4\tscope: project\n5\tversion: 2\n6\ttags: [distilled, auto-generated]\n7\tdistilled_from:\n8\t  paper_count: 25\n9\t  paper_keys: [sclar2024formatting, zhou2026irt, saleva2025beyond, pezeshkpour2024ordering, polo2024tinybenchmarks, magnusson2023reproducibility, shanmugavelu2024floating, lalor2019irt, rodriguez2021leaderboards, henderson2018deep, madaan2024quantifying, song2025exploring, zhang2025tbik, li2025atlas, biderman2024lessons, hua2025flaw, mesting2026hidden, brittlebench2026, yuan2025layercast, kunievsky2025intent, thinkingmachines2025batch, messina2026background, generalizit2024, bui2025seeds, sameprompt2026]\n10\t  last_distilled: \"2026-05-22T00:00:00Z\"\n11\t---\n12\t\n13\t## Story Types\n14\t\n15\t**Revealing Hidden Problem** (8/16, HIGH): \"X assumed negligible → massive.\" Sclar (76pp), Shanmugavelu (unique models), Pezeshkpour (85%), Yuan (9%), ThinkingMachines, Brittlebench. Dominant—the subfield's claim IS that ignored variance is large.\n16\t\n17\t**Unifying Framework** (3/16, MEDIUM): Zhou (PSN-IRT), Saleva (variance decomposition), Mesting (TEE). Structure: fragmented observations → unified formalism → multi-domain validation.\n18\t\n19\t**Simplification** (3/16, MEDIUM): Polo (14K→100 examples), Hua (sensitivity is artifact), Magnusson (checklist analysis).\n20\t\n21\t**Cross-domain Transfer** (2/16, LOW but strategic): Lalor (psychometrics→NLP), Mesting (G-theory→ML). Our paper fits here.\n22\t\n23\t## Hook: Shocking Number First (7/16, HIGH)\n24\t\n25\t\"76pp\" (Sclar), \"13-85%\" (Pezeshkpour), \"80/1000 unique at T=0\" (ThinkingMachines), \"CIs→79% coverage\" (Mesting), \"$10K+\" (Polo), \"ρ 0.30→0.95\" (Hua). **Pattern**: concrete number violating expectations in paragraph 1. Never \"X is important.\"\n26\t\n27\t## Tension: 3-4 Level Escalation (HIGH)\n28\t\n29\tSclar: formatting noise → cross-model invalidity → methodology crisis. Shanmugavelu: sums → kernels → unique runs → certification blocked. Zhou: inconsistent rankings → difficulty ceiling → saturation → failure. **Template**: assumption → contradiction → escalate scope → systemic impact.\n30\t\n31\t## Intro: 4-5 Para + 3 Contributions (8/16)\n32\t\n33\tP1: Context. P2: Existing approaches + limitation. P3: Gap/surprise. P4: 3 contributions (framework + finding + tool). Saleva's intro subsections mirror method structure—effective for framework papers.\n34\t\n35\t## Figure 1: Problem Illustration (9/16, HIGH)\n36\t\n37\tShow problem before solution. Sclar: format examples + accuracy. Zhou: real leaderboard screenshots. Shanmugavelu: variability PDFs. Exception—Polo: teaser scatter (simplification story). **Consensus**: real data not diagrams, key numbers annotated, no method architecture.\n38\t\n39\t## Result Presentation\n40\t\n41\t**Table-driven** (10/16, HIGH): Variance papers use columns=variance components, not metrics (Saleva, Mesting). Rows=models, 4-8 baselines. Bold best (Zhou), asterisks for non-significant (Saleva).\n42\t\n43\t**Figures for trends** (6/16): Line plots for efficiency (Polo), heatmaps for 2D sensitivity (Shanmugavelu), stacked bars for decomposition (Mesting, Brittlebench—subfield signature).\n44\t\n45\t**Stats**: Variance components and correlations over mean±std (only 3/16 use traditional reporting). Decomposed variances, effect sizes, coverage probabilities are the norm.\n46\t\n47\t**Flow**: 4-6 figures. Problem → method → results → decomposition/ablation.\n48\t\n49\t## Our Paper Blueprint\n50\t\n51\tOpen with shocking quantified finding → \"everyone's CIs are wrong\" tension → G-theory as borrowed lens → 2-3 domain demonstrations → stacked-bar variance decomposition as signature visual → D-study projections for practical value → position against IRT alternatives (dominant competitor framework).\n52\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ddf16b85-fb04-4758-9151-2ed9ae7e9221",
+            "isSidechain": false,
+            "promptId": "55e65cbc-ed01-45bd-8840-890fca6cd9cb",
+            "type": "user",
+            "uuid": "3268b0e2-6964-4d2c-823a-b4bb8d922ec2",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519/skills/projects/nlp_variance_gtheory/distilled-writing.skill.md",
+                "content": "---\nname: LLM Evaluation Variance — Writing Patterns\ndescription: Narrative strategies, figure/table conventions from LLM evaluation variance papers (16 deep-read, 2018-2026)\nscope: project\nversion: 2\ntags: [distilled, auto-generated]\ndistilled_from:\n  paper_count: 25\n  paper_keys: [sclar2024formatting, zhou2026irt, saleva2025beyond, pezeshkpour2024ordering, polo2024tinybenchmarks, magnusson2023reproducibility, shanmugavelu2024floating, lalor2019irt, rodriguez2021leaderboards, henderson2018deep, madaan2024quantifying, song2025exploring, zhang2025tbik, li2025atlas, biderman2024lessons, hua2025flaw, mesting2026hidden, brittlebench2026, yuan2025layercast, kunievsky2025intent, thinkingmachines2025batch, messina2026background, generalizit2024, bui2025seeds, sameprompt2026]\n  last_distilled: \"2026-05-22T00:00:00Z\"\n---\n\n## Story Types\n\n**Revealing Hidden Problem** (8/16, HIGH): \"X assumed negligible → massive.\" Sclar (76pp), Shanmugavelu (unique models), Pezeshkpour (85%), Yuan (9%), ThinkingMachines, Brittlebench. Dominant—the subfield's claim IS that ignored variance is large.\n\n**Unifying Framework** (3/16, MEDIUM): Zhou (PSN-IRT), Saleva (variance decomposition), Mesting (TEE). Structure: fragmented observations → unified formalism → multi-domain validation.\n\n**Simplification** (3/16, MEDIUM): Polo (14K→100 examples), Hua (sensitivity is artifact), Magnusson (checklist analysis).\n\n**Cross-domain Transfer** (2/16, LOW but strategic): Lalor (psychometrics→NLP), Mesting (G-theory→ML). Our paper fits here.\n\n## Hook: Shocking Number First (7/16, HIGH)\n\n\"76pp\" (Sclar), \"13-85%\" (Pezeshkpour), \"80/1000 unique at T=0\" (ThinkingMachines), \"CIs→79% coverage\" (Mesting), \"$10K+\" (Polo), \"ρ 0.30→0.95\" (Hua). **Pattern**: concrete number violating expectations in paragraph 1. Never \"X is important.\"\n\n## Tension: 3-4 Level Escalation (HIGH)\n\nSclar: formatting noise → cross-model invalidity → methodology crisis. Shanmugavelu: sums → kernels → unique runs → certification blocked. Zhou: inconsistent rankings → difficulty ceiling → saturation → failure. **Template**: assumption → contradiction → escalate scope → systemic impact.\n\n## Intro: 4-5 Para + 3 Contributions (8/16)\n\nP1: Context. P2: Existing approaches + limitation. P3: Gap/surprise. P4: 3 contributions (framework + finding + tool). Saleva's intro subsections mirror method structure—effective for framework papers.\n\n## Figure 1: Problem Illustration (9/16, HIGH)\n\nShow problem before solution. Sclar: format examples + accuracy. Zhou: real leaderboard screenshots. Shanmugavelu: variability PDFs. Exception—Polo: teaser scatter (simplification story). **Consensus**: real data not diagrams, key numbers annotated, no method architecture.\n\n## Result Presentation\n\n**Table-driven** (10/16, HIGH): Variance papers use columns=variance components, not metrics (Saleva, Mesting). Rows=models, 4-8 baselines. Bold best (Zhou), asterisks for non-significant (Saleva).\n\n**Figures for trends** (6/16): Line plots for efficiency (Polo), heatmaps for 2D sensitivity (Shanmugavelu), stacked bars for decomposition (Mesting, Brittlebench—subfield signature).\n\n**Stats**: Variance components and correlations over mean±std (only 3/16 use traditional reporting). Decomposed variances, effect sizes, coverage probabilities are the norm.\n\n**Flow**: 4-6 figures. Problem → method → results → decomposition/ablation.\n\n## Our Paper Blueprint\n\nOpen with shocking quantified finding → \"everyone's CIs are wrong\" tension → G-theory as borrowed lens → 2-3 domain demonstrations → stacked-bar variance decomposition as signature visual → D-study projections for practical value → position against IRT alternatives (dominant competitor framework).\n",
+                "numLines": 52,
+                "startLine": 1,
+                "totalLines": 52
+              }
+            },
+            "sourceToolAssistantUUID": "ddf16b85-fb04-4758-9151-2ed9ae7e9221",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/distiller_c08a9a6e",
+            "sessionId": "1ca4cc2e-0adc-4bb5-b9b5-aaddf44ac5b9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000220"
+        },
+        {
+          "source_line": 221,
+          "timestamp": "2026-05-22T13:02:37.078Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0178waDajLLLYFJibFtxrx5g",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/skills/projects/nlp_variance_gtheory/distilled-writing.skill.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b25b2388-541c-4929-8707-a64932bb72c0",
+            "isSidechain": false,
+            "requestId": "req_011CbHenPGKbbHFdtwP3mkq6",
+            "type": "assistant",
+            "uuid": "ddf16b85-fb04-4758-9151-2ed9ae7e9221",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/distiller_c08a9a6e",
+            "sessionId": "1ca4cc2e-0adc-4bb5-b9b5-aaddf44ac5b9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EmtuerMaRMTCqLcoSkz9Bs",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 213,
+                "cache_read_input_tokens": 92640,
+                "output_tokens": 193,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 213,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 193,
+                    "cache_read_input_tokens": 92640,
+                    "cache_creation_input_tokens": 213,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 213
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000221"
+        },
+        {
+          "source_line": 222,
+          "timestamp": "2026-05-22T13:02:37.131Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "3268b0e2-6964-4d2c-823a-b4bb8d922ec2",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [
+                    {
+                      "content": "Layer 1: Deep-read 8 papers",
+                      "status": "completed",
+                      "activeForm": "Deep-reading 8 papers for Layer 1 analysis"
+                    },
+                    {
+                      "content": "Layer 1: Abstract-only 7 papers",
+                      "status": "completed",
+                      "activeForm": "Extracting research dimensions from 7 abstract-only papers"
+                    },
+                    {
+                      "content": "Read all cached YAMLs + new YAMLs for Layer 2 synthesis",
+                      "status": "completed",
+                      "activeForm": "Reading all Layer 1 YAMLs for cross-paper synthesis"
+                    },
+                    {
+                      "content": "Layer 2: Cross-paper synthesis (research + writing)",
+                      "status": "completed",
+                      "activeForm": "Synthesizing cross-paper patterns"
+                    },
+                    {
+                      "content": "Generate distilled-research.skill.md and distilled-writing.skill.md",
+                      "status": "in_progress",
+                      "activeForm": "Generating final skill files"
+                    }
+                  ],
+                  "itemCount": 5
+                },
+                "type": "attachment",
+                "uuid": "6d061ccc-6e9b-4063-a42a-a37122a6b264",
+                "timestamp": "2026-05-22T13:02:37.131Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/distiller_c08a9a6e",
+                "sessionId": "1ca4cc2e-0adc-4bb5-b9b5-aaddf44ac5b9",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000222"
+        },
+        {
+          "source_line": 223,
+          "timestamp": "2026-05-22T13:02:42.207Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HXQ5zcXaybnadpvtXAn86B",
+              "name": "TodoWrite",
+              "input": {
+                "todos": [
+                  {
+                    "content": "Layer 1: Deep-read 8 papers",
+                    "status": "completed",
+                    "activeForm": "Deep-reading 8 papers for Layer 1 analysis"
+                  },
+                  {
+                    "content": "Layer 1: Abstract-only 7 papers",
+                    "status": "completed",
+                    "activeForm": "Extracting research dimensions from 7 abstract-only papers"
+                  },
+                  {
+                    "content": "Read all cached YAMLs + new YAMLs for Layer 2 synthesis",
+                    "status": "completed",
+                    "activeForm": "Reading all Layer 1 YAMLs for cross-paper synthesis"
+                  },
+                  {
+                    "content": "Layer 2: Cross-paper synthesis (research + writing)",
+                    "status": "completed",
+                    "activeForm": "Synthesizing cross-paper patterns"
+                  },
+                  {
+                    "content": "Generate distilled-research.skill.md and distilled-writing.skill.md",
+                    "status": "completed",
+                    "activeForm": "Generating final skill files"
+                  }
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6d061ccc-6e9b-4063-a42a-a37122a6b264",
+            "isSidechain": false,
+            "requestId": "req_011CbHengEHLVwdAu4y8F8G6",
+            "type": "assistant",
+            "uuid": "46ac10e0-5605-46d0-8aa3-dfa6705b99d8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/distiller_c08a9a6e",
+            "sessionId": "1ca4cc2e-0adc-4bb5-b9b5-aaddf44ac5b9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GfwuzJ85HqC91jxuUQcWwo",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3006,
+                "cache_read_input_tokens": 92853,
+                "output_tokens": 266,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3006,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 266,
+                    "cache_read_input_tokens": 92853,
+                    "cache_creation_input_tokens": 3006,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3006
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000223"
+        },
+        {
+          "source_line": 224,
+          "timestamp": "2026-05-22T13:02:42.209Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HXQ5zcXaybnadpvtXAn86B",
+              "type": "tool_result",
+              "content": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "46ac10e0-5605-46d0-8aa3-dfa6705b99d8",
+            "isSidechain": false,
+            "promptId": "55e65cbc-ed01-45bd-8840-890fca6cd9cb",
+            "type": "user",
+            "uuid": "30a0d48e-0409-4478-9c3d-ba5a5c509576",
+            "toolUseResult": {
+              "oldTodos": [
+                {
+                  "content": "Layer 1: Deep-read 8 papers",
+                  "status": "completed",
+                  "activeForm": "Deep-reading 8 papers for Layer 1 analysis"
+                },
+                {
+                  "content": "Layer 1: Abstract-only 7 papers",
+                  "status": "completed",
+                  "activeForm": "Extracting research dimensions from 7 abstract-only papers"
+                },
+                {
+                  "content": "Read all cached YAMLs + new YAMLs for Layer 2 synthesis",
+                  "status": "completed",
+                  "activeForm": "Reading all Layer 1 YAMLs for cross-paper synthesis"
+                },
+                {
+                  "content": "Layer 2: Cross-paper synthesis (research + writing)",
+                  "status": "completed",
+                  "activeForm": "Synthesizing cross-paper patterns"
+                },
+                {
+                  "content": "Generate distilled-research.skill.md and distilled-writing.skill.md",
+                  "status": "in_progress",
+                  "activeForm": "Generating final skill files"
+                }
+              ],
+              "newTodos": [
+                {
+                  "content": "Layer 1: Deep-read 8 papers",
+                  "status": "completed",
+                  "activeForm": "Deep-reading 8 papers for Layer 1 analysis"
+                },
+                {
+                  "content": "Layer 1: Abstract-only 7 papers",
+                  "status": "completed",
+                  "activeForm": "Extracting research dimensions from 7 abstract-only papers"
+                },
+                {
+                  "content": "Read all cached YAMLs + new YAMLs for Layer 2 synthesis",
+                  "status": "completed",
+                  "activeForm": "Reading all Layer 1 YAMLs for cross-paper synthesis"
+                },
+                {
+                  "content": "Layer 2: Cross-paper synthesis (research + writing)",
+                  "status": "completed",
+                  "activeForm": "Synthesizing cross-paper patterns"
+                },
+                {
+                  "content": "Generate distilled-research.skill.md and distilled-writing.skill.md",
+                  "status": "completed",
+                  "activeForm": "Generating final skill files"
+                }
+              ],
+              "verificationNudgeNeeded": false
+            },
+            "sourceToolAssistantUUID": "46ac10e0-5605-46d0-8aa3-dfa6705b99d8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/distiller_c08a9a6e",
+            "sessionId": "1ca4cc2e-0adc-4bb5-b9b5-aaddf44ac5b9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000224"
+        },
+        {
+          "source_line": 225,
+          "timestamp": "2026-05-22T13:02:55.063Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "蒸馏完成。\n\n**产出汇总：**\n- **Layer 1 YAML**: 15 篇新论文（8 深度精读 + 7 仅摘要）写入 `distill_tmp/`，加上已有 10 篇缓存 = 25 篇总计\n- **distilled-research.skill.md** (v2, 2971 chars body): 4 类方差来源分类 + 2 大方法论家族 (IRT 8/25 上升趋势, G-theory 3/25 新兴) + 5 个关键研究空白\n- **distilled-writing.skill.md** (v2, 2941 chars body): 4 种叙事类型 + hook/tension/intro 模式 + Figure 1 / 结果呈现 / 统计报告共识 + 论文蓝图\n\n**核心发现**：IRT/psychometric 是当前主流竞品方法（8/25 篇，上升中），G-theory 严重低估（3/25）却最适合多面交互分析。25 篇论文中 0 篇统一处理基础设施方差和方法论方差——这是本项目的核心定位。\n\n[DISTILL_DONE]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "30a0d48e-0409-4478-9c3d-ba5a5c509576",
+            "isSidechain": false,
+            "requestId": "req_011CbHeo3yjV8HFcbKJLK34w",
+            "type": "assistant",
+            "uuid": "b09d1c5e-ae69-417e-9ffb-560c07b7bdad",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/distiller_c08a9a6e",
+            "sessionId": "1ca4cc2e-0adc-4bb5-b9b5-aaddf44ac5b9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HfKvgWgVrS2hHZb38dTuZS",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 308,
+                "cache_read_input_tokens": 95859,
+                "output_tokens": 352,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 308,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 352,
+                    "cache_read_input_tokens": 95859,
+                    "cache_creation_input_tokens": 308,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 308
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000225"
+        },
+        {
+          "source_line": 226,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "你是 Distiller Agent——论文蒸馏引擎。你的任务是从一批论文中提取**领域隐性经验**，生成两个结构化 skill 文件。  ## 核心定位  你不是在\"总结论文\"。你在回答：**这个研究子领域的人默认怎么做事？**  - 总结 = \"论文 A 做了 X，论文 B 做了 Y\"（罗列） - 蒸馏 = \"这 N 篇论文共同揭示了什么同行做法和领域经验\"（归纳）  ## 执行流程  ###…",
+                "leafUuid": "b09d1c5e-ae69-417e-9ffb-560c07b7bdad",
+                "sessionId": "1ca4cc2e-0adc-4bb5-b9b5-aaddf44ac5b9"
+              }
+            }
+          ],
+          "id": "event-000226"
+        },
+        {
+          "source_line": 227,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Distill NLP variance and generalization theory research",
+                "sessionId": "1ca4cc2e-0adc-4bb5-b9b5-aaddf44ac5b9"
+              }
+            }
+          ],
+          "id": "event-000227"
+        }
+      ]
+    }
+  ]
+}

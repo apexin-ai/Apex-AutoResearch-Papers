@@ -1,0 +1,3072 @@
+# Research conversation: 【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。 【proposal】: # Entity-Anchored Contrastive Align
+
+**Reproducibility Budgets for Open-Weight LLM Evaluation: A Generalizability Theory Study of 7–9B Instruction-Tuned Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 46
+- **Recorded user turns:** 1
+- **Tool calls:** 12
+- **Original source:** `logs/chats/exported-trajectories/account-2/3c4dd84f-4c46-4453-9bd7-2594c23a26a3.jsonl`
+- **Structured JSON:** [`eadbdd718c349d794315.json`](../../sessions/ea/eadbdd718c349d794315.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-19T21:07:26.058Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-19T21:07:26.058Z",
+  "sessionId": "3c4dd84f-4c46-4453-9bd7-2594c23a26a3",
+  "content": "【任务】: 请评估以下 proposal 的客观中稿概率。\n必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。\n\n【proposal】:\n# Entity-Anchored Contrastive Alignment for Cross-Lingual Knowledge Conductivity\n\n## Description\nEACA is a continued pretraining method that introduces InfoNCE contrastive loss on entity-span hidden states alongside standard next-token prediction, targeting entity-level cross-lingual knowledge conductivity — a capability that CLiKA (NAACL 2024) established is not substantially improved by existing multilingual pretraining or instruction tuning (XRR < 0.01). Unlike CCL-XCoT (sentence/paragraph-level contrastive CPT) and Liu & Niehues (ACL 2025, sentence-level middle-layer contrastive fine-tuning), EACA anchors contrastive pairs to Wikidata QIDs using FactNet's 1.7B entity-grounded atomic facts, operating at the entity level — the granularity empirically shown to be the bottleneck for cross-lingual consistency (entity alignment correlates at r > 0.7 with consistency, arXiv:2510.10280). This extends KBioXLM's (EMNLP Findings 2023) precedent of multi-granularity entity alignment in multilingual pretraining from encoder-based masking objectives in a specialized domain to explicit contrastive alignment in decoder-only LLMs for general-domain conductivity. Entity spans are marked with LEIA-style [ENT]/[/ENT] tokens using DaMuEL (12.3B QID-annotated tokens across 53 languages) as the primary annotation source for 10 of 13 target languages, supplemented by a Wikipedia wikilinks-to-QID extraction pipeline for the 3 uncovered Tier 3 languages (SW/YO/KM) and mReFinED entity linking for non-hyperlinked mention gap-filling, with 1.5-2 weeks budgeted for preprocessing. Representations are extracted via mean-pooling at middle layers (~layer 16, validated via Phase 0 sweep). The proposal explicitly addresses the script barrier identified by Ifergan et al. (NAACL Findings 2025) and Bandarkar et al. (arXiv:2603.17070): script similarity dominates representation sharing (~37.6% same-script CKR vs. <10-20% cross-script), but entity priming disproportionately helps cross-script transfer, motivating entity-level alignment as targeting the right bottleneck. Cross-script QID pairs receive transliteration-augmented entity markers (e.g., [ENT]北京 (Beijing)[/ENT]), inspired by TransliCo (ACL 2024), with mandatory script-grouped evaluation (same-script vs. cross-script gains). Stratified batch construction uses 128-256 entities per batch with class-aware false-negative masking, type-aware hard negatives (~50% same-type entities via Wikidata P31 properties, following Robinson et al. ICLR 2021), and asymmetric positive sets for entities with uneven language coverage (K_min = 3 languages per QID). Joint optimization (L_NTP + λ·L_contrastive, λ=0.1 with warmup) includes gradient conflict monitoring: cosine similarity between NTP and contrastive gradients is tracked every 100 steps, with PCGrad (Yu et al., NeurIPS 2020) activated if conflicts exceed 30% of steps, and GradNorm (Chen et al., ICML 2018) for dynamic λ adjustment if gradient magnitudes diverge beyond 10:1. Inverse-frequency weighting prioritizes low-resource entity-facts. Catastrophic forgetting is mitigated through LoRA (rank 64) on middle layers (10-22), 15% general-domain replay, and cosine LR scheduling. A tiered language selection spans 13 languages across ~7 scripts: Tier 1 (EN/ZH/JA/DE), Tier 2 (AR/HI/TR/ID/VI/TH), Tier 3 (SW/YO/KM), with mandatory Phase 0 FactNet coverage audit and contingency replacements. Phase 0 pilot (500M tokens, 5 languages spanning ≥3 scripts, ~130 H100 hours) includes baselines against sentence-level contrastive (CCL-XCoT), middle-layer sentence contrastive (Liu & Niehues), masking-based entity alignment (KBioXLM-style adaptation), LEIA augmentation, and standard CPT, plus layer sweep, gradient analysis, and script-grouped evaluation. Six key novelties: (1) entity-level contrastive anchoring vs. sentence-level, (2) structured knowledge grounding via FactNet QIDs vs. parallel text, (3) frequency-aware weighting, (4) joint NTP+contrastive optimization with gradient conflict monitoring at entity level during CPT, (5) script-aware transliteration augmentation for cross-script entity alignment, (6) direct targeting of CLiKA's conductivity gap with script-stratified evaluation.\n\n## Core Problem\nCan entity-level contrastive alignment — anchored to Wikidata QIDs and grounded in FactNet's structured atomic facts — improve cross-lingual knowledge conductivity (as defined by CLiKA's XRR metric, Gao et al. NAACL 2024) more effectively than sentence/paragraph-level contrastive continued pretraining (e.g., CCL-XCoT) or sentence-level middle-layer alignment (Liu & Niehues, ACL 2025)? CLiKA established that neither multilingual pretraining nor instruction tuning substantially improves conductivity, with XRR scores below 0.01 for most non-English languages. EACA hypothesizes that this conductivity barrier persists because prior methods align at sentence/document granularity — conflating entity-specific factual knowledge with syntactic and discourse-level variation — whereas factual knowledge is inherently structured around entities (subject-property-object triples). A critical complication, identified by Ifergan et al. (NAACL Findings 2025) and Bandarkar et al. (arXiv:2603.17070), is that script similarity is the dominant factor in cross-lingual representation sharing: high behavioral consistency does not imply shared internal representation for cross-script language pairs, and script match — not language family — is the primary predictor of knowledge transfer failure. Crucially, however, Bandarkar et al.'s entity priming experiment shows that providing source-language entity names disproportionately improves cross-script transfer, directly implicating entity-level mapping failure as the mechanism behind the script barrier. This suggests that entity-level contrastive alignment targets the right bottleneck, but that cross-script entity alignment requires additional support (e.g., transliteration augmentation) beyond what same-script entity alignment needs. EACA therefore addresses a two-level problem: (1) entity-level alignment as the fundamental unit of factual knowledge transfer, and (2) script-aware strategies to bridge the representation gap across writing systems.\n\n## Opportunity\nCCL-XCoT (EMNLP 2025 Findings) demonstrates that contrastive continued pretraining reduces cross-lingual hallucination by up to 62% but operates at sentence/paragraph granularity with parallel text. Liu & Niehues (ACL 2025) show that middle-layer contrastive alignment (layer 16 of 32 in LLaMA-3-8B) significantly improves cross-lingual transfer for downstream tasks, but again at sentence-level granularity and for task-specific fine-tuning rather than factual consistency. CLiKA (NAACL 2024) reveals a critical gap: existing multilingual pretraining and instruction tuning improve surface-level consistency but fail to improve knowledge conductivity (XRR < 0.01), suggesting that fundamentally different alignment granularity is needed. Meanwhile, FactNet (arXiv:2602.03417, Feb 2026) provides 1.7B entity-grounded atomic facts across 316 Wikipedia editions with Wikidata QID linking — enabling entity-level contrastive pairs grounded in structured knowledge. Entity Lens (BlackboxNLP 2025) confirms that decoder LLMs develop entity-specific internal mechanisms to represent multi-token entities. Liu et al. (EMNLP 2025 Findings) show that cross-lingual transfer is frequency-driven, with low-frequency facts benefiting most. Critically, recent evidence from entity-level alignment analysis (Liu, Wang et al., arXiv:2510.10280) demonstrates that cross-lingual factual consistency correlates strongly with entity alignment (Pearson r > 0.7), with over 99% of consistent facts exhibiting successful entity alignment — providing direct empirical motivation for entity-level rather than sentence-level contrastive objectives. Marco et al. ('Unveiling LLMs', arXiv:2404.03623) further establish that factual knowledge about subject entities concentrates in middle layers (L5-L21 for LLaMA-2-7B). KBioXLM (EMNLP Findings 2023) provides an important precedent: it demonstrated that multi-granularity knowledge alignment (entity masking, relation masking, passage relation prediction) during continued pretraining of XLM-R yields +20 F1 points on cross-lingual zero-shot biomedical tasks, establishing entity-anchored alignment as effective — but using masking-based reconstruction on encoders rather than contrastive loss on decoder LLMs, and targeting downstream task transfer rather than factual conductivity. Ifergan et al. (NAACL Findings 2025) reveal a deeper challenge: using knowledge editing as a probe for representation sharing, they find script similarity is the dominant factor (same-script CKR ~37.6% in Mistral; cross-script <10-20%), and that behavioral consistency diverges sharply from representation sharing for cross-script pairs. Bandarkar et al. (arXiv:2603.17070, March 2026) confirm this with regression analysis showing script match as the primary predictor after controlling for model capability and question difficulty (~13% accuracy gap), but critically, their entity priming experiment shows that providing source-language entity names disproportionately improves cross-script questions — directly implicating entity mapping as the bottleneck. TransliCo (ACL 2024) demonstrates that transliteration-based contrastive learning bridges script barriers using only 5% of training data on encoders. DaMuEL (2023) provides 12.3B tokens with QID-linked entity annotations across 53 languages, enabling efficient preprocessing for 10 of EACA's 13 target languages. The opportunity is to combine these insights — entity-level anchoring + structured knowledge grounding + middle-layer extraction + inverse-frequency weighting + script-aware strategies — into a contrastive CPT method that targets the specific granularity (entities), representation layer (middle), data regime (low-frequency facts), and script barriers where current methods demonstrably fall short.\n\n## Related Work / Landscape\nThe cross-lingual factual consistency landscape spans several complementary approaches. CCL-XCoT (EMNLP 2025 Findings) is the primary baseline, employing InfoNCE symmetric contrastive loss during continued pretraining with a sentence-to-paragraph curriculum on Gemma-7B and LLaMA-3.1-8B using LoRA on layers 9-19/11-22, reducing hallucination by 62%, but operating at sentence/paragraph granularity without entity grounding or frequency weighting. Liu & Niehues (ACL 2025) represent the closest methodological precedent for contrastive alignment: they apply contrastive loss on mean-pooled sentence representations at middle layers (specifically layer 16 of 32 for LLaMA-3-8B-Instruct) during task-specific fine-tuning with LoRA (rank 8), demonstrating +1.5 F1 on slot filling and +1.5 BLEU on MT across 35 languages — however, they use sentence-level alignment with alternating (not joint) task/alignment training, target downstream task transfer rather than factual consistency, use parallel text rather than structured knowledge, and include no frequency weighting. EACA differentiates from Liu & Niehues on five axes: (1) entity-level rather than sentence-level granularity, (2) continued pretraining for factual consistency rather than task-specific fine-tuning, (3) FactNet-grounded contrastive pairs rather than parallel text, (4) joint NTP+contrastive objective rather than alternating training, and (5) inverse-frequency weighting for underrepresented facts. KBioXLM (Geng et al., EMNLP Findings 2023, arXiv:2311.11564) is an important precedent for multi-granularity entity-anchored alignment in multilingual pretraining. It performs continued pretraining on XLM-R using three alignment objectives grounded in UMLS biomedical knowledge: entity masking (code-switching entity mentions across EN-CN and predicting masked entity tokens via MLM cross-entropy), relation masking (masking relation tokens in subject-predicate-object triples), and passage relation prediction (3-way classification on aligned EN-CN Wikipedia passages). KBioXLM achieves +20 F1 points on cross-lingual zero-shot biomedical NER/RE. EACA extends this paradigm along four dimensions: (a) decoder-only LLMs vs. encoder (XLM-R), requiring contrastive loss on hidden states rather than masking-based reconstruction, since decoder LLMs lack bidirectional context for effective mask prediction; (b) general domain vs. biomedical, using FactNet's 1.7B facts across 316 editions vs. UMLS's specialized ontology; (c) explicit contrastive alignment (InfoNCE) vs. implicit alignment through masking, directly optimizing cross-lingual entity representation similarity rather than relying on the prediction bottleneck; (d) conductivity metric (CLiKA's XRR) vs. downstream task transfer, targeting the specific capability that prior methods fail to improve. CLiKA (Gao et al., NAACL 2024) provides the diagnostic framework: they define knowledge conductivity as the Cross-Retrieval Ratio (XRR) — retrieving knowledge learned in one language using another — and find that neither multilingual pretraining nor instruction tuning substantially improves XRR (scores < 0.01 for most non-English languages), with no concrete solutions proposed. The entity-level alignment analysis (Liu, Wang et al., arXiv:2510.10280) provides strong empirical support: cross-lingual consistency correlates with entity alignment at r > 0.7, and their SubInj method yields +14-32% recall and +17-44% consistency gains, but only at inference time; EACA aims to achieve this alignment at training time. On the script barrier dimension, Ifergan et al. ('Beneath the Surface of Consistency', NAACL Findings 2025, arXiv:2408.10646) demonstrate via knowledge editing probes on 7 decoder LLMs (7B scale) that script similarity is the dominant factor in cross-lingual knowledge representation sharing (CKR): same-script Latin pairs show ~37.6% average CKR in Mistral, while cross-script pairs show <10-20% transfer; crucially, they find that high behavioral consistency (CKC) does not imply shared representation for cross-script pairs, with E[NCL] consistently exceeding E[NTL]. Even targeted language extension pretraining achieves only marginal cross-script CKR improvement. Bandarkar et al. ('Large Reasoning Models Struggle to Transfer Parametric Knowledge Across Scripts', arXiv:2603.17070, March 2026) confirm via regression analysis on ECLeKTic and MultiLoKo that script match — not language family — is the primary predictor of knowledge transfer failure (~13% accuracy gap), but their entity priming experiment reveals that providing source-language entity names disproportionately improves cross-script questions, directly implicating entity mapping as the cross-script bottleneck. TransliCo (Liu et al., ACL 2024, arXiv:2401.06620) addresses script barriers through transliteration contrastive modeling (TCM), fine-tuning Glot500-m on 5% of data with Latin transliterations as contrastive targets, producing Furina which outperforms Glot500-m on cross-script zero-shot transfer — but operates on encoders at sentence level without entity grounding. Transliteration-based post-training alignment (Moosa et al., EMNLP Findings 2024, arXiv:2406.19759) achieves up to 50% improvement on cross-script English-centric transfer with even larger gains for non-English sources. EACA incorporates this insight by adding transliteration-augmented entity contrastive pairs for cross-script language combinations as a complementary mechanism. NeighXLM (EMNLP 2025 Findings) introduces neighbor-augmented contrastive pretraining for low-resource languages without parallel data, but targets general cross-lingual transfer rather than entity-specific factual consistency. PreAlign (EMNLP 2024) uses code-switching pretraining with word-level alignment but lacks entity anchoring. CrossIC-PT (EMNLP 2025) interleaves bilingual Wikipedia content without entity-level grounding. LEIA (ACL Findings 2024) inserts English entity names with [translate]/[/translate] markers during continued pretraining of decoder LLMs, improving cross-lingual transfer but without contrastive loss or frequency weighting. EntityCS (EMNLP Findings 2022) performs entity-centric code switching with Wikidata but is limited to encoder-only models. Entity Lens (BlackboxNLP 2025) reveals that decoder LLMs develop entity-specific mechanisms to represent and manipulate multi-token entities via task vectors. The middle-layer factual knowledge claim is supported by Liu & Niehues (ACL 2025) showing layer 16 of 32 has strongest cross-lingual retrieval alignment, and Marco et al. (arXiv:2404.03623) demonstrating via dynamic knowledge graphs that middle layers (L5-L21) encode comprehensive factual knowledge while late layers show 90%+ degradation. ELO (arXiv:2601.03648, Jan 2026) demonstrates efficient layer-specific optimization with 6.46x speedup from selective middle-layer updates. FactNet (arXiv:2602.03417) provides 1.7B entity-grounded facts across 316 Wikipedia editions with significant coverage skew. CLM-Bench (arXiv:2601.17397) shows edit vectors are nearly orthogonal across languages, further motivating entity-level alignment. DCO (arXiv:2603.04678, March 2026) proposes DPO-inspired post-hoc consistency optimization, complementary to pretraining-time methods. Veitsman et al. (arXiv:2603.18863, March 2026) find that sentence-level contrastive alignment fails for token-level tasks in XLM-R encoders, supporting entity-level approaches for entity-centric tasks. Cultural knowledge asymmetry research (ACL 2025) confirms that frequency drives cross-lingual transferability.\n\n## Approach\nEACA adds an InfoNCE contrastive loss on entity-span hidden states to the standard next-token prediction (NTP) objective during continued pretraining. The method comprises five integrated components: entity preprocessing, entity-level contrastive alignment, script-aware augmentation, stratified batch construction, and joint optimization with gradient monitoring.\n\n**1. Entity Preprocessing Pipeline.** Entity boundary annotation uses a two-stage pipeline. Stage 1 (primary): DaMuEL (2023), which provides 12.3B QID-annotated tokens across 53 languages (CC BY-SA), is used directly for the 10 target languages it covers (EN/ZH/JA/DE/AR/HI/TR/ID/VI/TH). DaMuEL provides start/end token indices per entity mention with Wikidata QID links, extracted from Wikipedia wikilinks and expanded via lemmatization and alias matching (~17% recall gain over raw wikilinks). Stage 2 (Tier 3 gap-filling): For the 3 Tier 3 languages not covered by DaMuEL (SW/YO/KM), a lightweight Wikipedia wikilinks extraction pipeline resolves hyperlinks to QIDs via Wikidata sitelinks (~50-60% mention coverage). mReFinED (EMNLP Findings 2023), which is 44-60x faster than comparable entity linkers, is applied as a second pass on high-resource languages to annotate non-hyperlinked entity mentions where higher recall is needed. Entity boundaries are marked with LEIA-style [ENT]/[/ENT] tokens around linked mentions. Preprocessing budget: 1.5-2 weeks engineering time, ~2-4 GPU-days on A100 for mReFinED gap-filling, ~24-48 CPU-hours for wikilinks extraction across Tier 3 languages. This pipeline is on the critical path and must complete before Phase 0.\n\n**2. Entity-Level Contrastive Alignment.** Entity representations are extracted via mean-pooling over hidden states within the [ENT]...[/ENT] span at a designated middle layer (defaulting to layer 16 for 32-layer models based on Liu & Niehues' ACL 2025 finding and Marco et al.'s analysis; validated via Phase 0 sweep over layers 12-20), with loss propagation blocked on boundary markers themselves. Contrastive pairs are constructed per QID from FactNet: positive pairs consist of atomic fact descriptions for the same QID across languages, while negatives come from different QIDs within the same batch (detailed in Component 4). Inverse-frequency weighting assigns higher contrastive loss weight to facts with lower cross-lingual FactNet coverage, directly targeting low-resource facts where CLiKA's conductivity analysis shows the largest gap.\n\nTheoretical motivation for entity-level granularity: Three converging lines of evidence support entity-level over sentence-level contrastive alignment for factual consistency: (1) Entity alignment analysis (arXiv:2510.10280) demonstrates Pearson r > 0.7 between entity alignment and cross-lingual consistency, with >99% of consistent facts showing successful entity alignment — establishing entities as the bottleneck for consistency; (2) CLM-Bench's finding that cross-lingual edit vectors are nearly orthogonal implies that factual knowledge editing, which operates at entity-level (subject-property-object triples), requires entity-aligned representations rather than sentence-aligned ones; (3) CLiKA's failure result — that sentence/document-level pretraining and instruction tuning do not improve conductivity — suggests that coarser-grained alignment conflates entity-specific factual knowledge with syntactic and discourse-level variation, diluting the alignment signal.\n\n**3. Script Barrier Mitigation.** EACA's 13 target languages span ~7 scripts (Latin: EN/DE/TR/ID/VI/SW/YO; CJK: ZH/JA; Arabic: AR; Devanagari: HI; Thai: TH; Khmer: KM). Ifergan et al. (NAACL Findings 2025) demonstrate that cross-lingual representation sharing (CKR) clusters strongly by script family (~37.6% same-script CKR vs. <10-20% cross-script in Mistral-7B), and Bandarkar et al. (arXiv:2603.17070) confirm script match as the primary predictor of transfer failure (~13% gap). This poses a genuine risk that entity-level contrastive alignment may primarily improve same-script entity alignment while showing limited gains for cross-script pairs. However, two findings provide grounds for cautious optimism: (a) Bandarkar et al.'s entity priming experiment shows source-language entity names disproportionately improve cross-script transfer, implicating entity mapping — not script-level representation — as the cross-script bottleneck for factual knowledge; (b) TransliCo (ACL 2024) demonstrates that transliteration-based contrastive learning bridges script barriers on encoders using only 5% of training data. EACA therefore incorporates a script-aware augmentation strategy: for cross-script QID pairs (e.g., EN-ZH, EN-AR, EN-HI, EN-TH, EN-KM), entity mentions in non-Latin scripts are supplemented with Latin transliterations appended within the [ENT] boundary (e.g., [ENT]北京 (Beijing)[/ENT]), providing a lexical bridge for the contrastive objective. This is tested as an ablation (EACA vs. EACA+translit) to isolate the contribution of transliteration augmentation beyond entity-level alignment. The evaluation plan includes mandatory script-grouped analysis: same-script entity alignment gains (Latin-Latin, CJK-CJK) vs. cross-script gains (Latin-CJK, Latin-Arabic, Latin-Devanagari, etc.), reporting both entity cosine similarity and downstream factual consistency metrics separately for each script-pair category. If Phase 0 reveals that cross-script entity alignment gains are <50% of same-script gains despite transliteration augmentation, this will be explicitly reported as a limitation and the analysis will quantify what fraction of EACA's overall conductivity improvement comes from same-script vs. cross-script alignment.\n\n**4. Stratified Batch Construction with Type-Aware Hard Negatives.** Effective contrastive learning is highly sensitive to negative quality (Robinson et al., ICLR 2021). EACA uses stratified mini-batching: each batch contains K_batch = 128-256 unique QIDs, with all available language instances per QID forming the positive set (asymmetric positive sets accommodate QIDs present in only 2-3 languages without dropping them). Minimum language coverage per QID is K_min = 3 languages; QIDs with fewer than 3 language instances are filtered during preprocessing. Class-Aware Masking (CAM) ensures that all instances of the same QID are excluded from the InfoNCE denominator, preventing false-negative contamination. For hard negative mining, type-aware stratification ensures ~50% of in-batch negatives share the anchor entity's Wikidata type (e.g., Q5/human, Q515/city, Q4830453/organization) — forcing the model to discriminate on fine-grained entity identity rather than coarse type. This is implemented via Wikidata instance-of (P31) properties, grouping entities into 8-10 macro-types for sampling. The remaining ~50% are random negatives for diversity. Batch composition is balanced across script families to ensure cross-script contrastive signals appear in every batch. The InfoNCE loss for entity e with QID q is: L_entity(q) = -log[exp(sim(h_q^i, h_q^j)/τ) / (exp(sim(h_q^i, h_q^j)/τ) + Σ_{k≠q} exp(sim(h_q^i, h_k)/τ))], where h_q^i, h_q^j are entity representations from different languages for the same QID, and h_k are representations from different QIDs, with τ = 0.07 as the temperature (tuned in Phase 0 over {0.05, 0.07, 0.1}).\n\n**5. Joint Optimization with Gradient Monitoring.** The joint objective is L_total = L_NTP + λ * L_entity_contrastive, with λ initialized at 0.1 (following guidance from headless LM work showing λ ∈ [0.01, 0.1] is appropriate for contrastive + generation joint training during CPT). A potential tension exists: NTP learns language-specific token distributions while contrastive loss pulls entity representations together across languages. Unlike Liu & Niehues' alternating approach, EACA uses joint optimization to ensure entity alignment co-adapts with the language modeling objective — but addresses gradient conflict risk through three mechanisms: (a) Phase 0 gradient analysis: cosine similarity between ∇L_NTP and ∇L_entity_contrastive is computed every 100 steps on the shared LoRA parameters. If gradient cosine similarity is negative for >30% of monitored steps, PCGrad projection (Yu et al., NeurIPS 2020) is applied — projecting the contrastive gradient onto the normal plane of the NTP gradient to eliminate destructive interference. (b) GradNorm (Chen et al., ICML 2018) is implemented as an optional dynamic λ adjustment mechanism: if the gradient magnitude ratio between the two losses drifts beyond 10:1, GradNorm normalizes to equalize learning rates. (c) λ warmup: contrastive loss weight ramps linearly from 0 to λ_target over the first 10% of training steps, allowing NTP to stabilize before contrastive pressure is introduced. Phase 0 reports gradient conflict frequency, cosine similarity distribution, and whether PCGrad/GradNorm activation was required — this informs the full training configuration. If gradient conflicts are severe (>50% of steps) even with PCGrad, the fallback is alternating optimization (NTP steps → contrastive steps per batch) following Liu & Niehues' validated approach.\n\nCatastrophic forgetting is mitigated through three mechanisms: (a) LoRA (rank 64) applied to middle layers only (layers 10-22), following CCL-XCoT's selective layer approach and ELO's findings that first/last layers are critical for general capabilities; (b) 15% general-domain English replay data mixed into training batches; (c) cosine learning rate schedule with linear warmup (peak LR 2e-5). Language selection follows a tiered strategy: Tier 1 comprises 4 anchor languages (EN/ZH/JA/DE, >1M entity-fact pairs), Tier 2 includes 6 mid-resource languages (AR/HI/TR/ID/VI/TH, 100K-1M pairs), and Tier 3 covers 3 low-resource languages (SW/YO/KM). Tier 3 viability assessment based on Wikipedia article counts (SW: ~117K, YO: ~37K, KM: ~12K) and FactNet's 0.36 low-resource yield rate estimates approximately 50K-200K entity-fact pairs for Swahili, 15K-60K for Yoruba, and 5K-25K for Khmer. None of the Tier 3 languages are covered by DaMuEL, so all three rely on the Wikipedia wikilinks extraction pipeline (Stage 2 above). A mandatory FactNet coverage audit in Phase 0 will report exact entity-fact pair counts for all 13 languages; minimum viable threshold is set at 10K entity-fact pairs per language (sufficient for contrastive batching at size 128-256 with adequate negative diversity). If any Tier 3 language falls below threshold, contingency replacements include Bengali (BN, ~157K Wikipedia articles), Tagalog (TL, ~115K articles), or Hausa (HA, ~8K articles but stronger NLP benchmark coverage). Languages below 25K pairs receive LEIA-style English entity augmentation to supplement contrastive pairs.\n\nPhase 0 pilot uses 500M tokens across 5 languages (3 Tier-1 + 2 Tier-2, selected to span at least 3 scripts for script barrier analysis) for approximately 130 H100 hours, with baselines including: (a) CCL-XCoT-style sentence-level contrastive CPT, (b) Liu & Niehues-style middle-layer sentence-level contrastive alignment (the closest methodological comparison, testing entity-level vs. sentence-level at the same middle layer), (c) LEIA-style entity augmentation without contrastive loss, (d) standard CPT, and (e) KBioXLM-style entity masking adaptation (masking [ENT]-bounded tokens and predicting via NTP, without contrastive loss — testing contrastive vs. masking-based entity alignment on decoders). Phase 0 additionally includes: a layer sweep (layers 12, 14, 16, 18, 20) to empirically determine optimal entity extraction depth; gradient conflict analysis (cosine similarity monitoring, PCGrad activation rate); and script-grouped entity alignment analysis (same-script vs. cross-script gains). Go/no-go criteria require entity cosine similarity improvement of at least 0.05, BMLAMA-53 consistency improvement of at least 2 points, no TyDiQA degradation beyond 1 point, AND gradient conflict rate below 50% (with or without PCGrad). Full training processes 1.5-2.5B tokens on LLaMA-3.1-8B (primary) and Gemma-7B (secondary, for CCL-XCoT comparability) across all 13 languages. A complementary EACA+DCO experiment tests whether pretraining-time and post-hoc consistency methods yield cumulative gains. Evaluation covers BMLAMA-53, TyDiQA-GoldP, X-CODAH, LiveCLKTBench, and CLiKA's XRR metric (to directly measure conductivity improvement), plus entity representation cosine similarity analysis. All metrics are reported with script-grouped breakdowns (same-script pairs, cross-script pairs, overall) as a mandatory analysis dimension. Ablations cover: entity-level vs. sentence-level contrastive (the central hypothesis), contrastive vs. masking-based entity alignment (EACA vs. KBioXLM-style adaptation), EACA vs. EACA+transliteration augmentation (script barrier mitigation), frequency weighting on/off, type-aware vs. random negatives, number of languages, layer selection, joint vs. alternating training, gradient conflict mitigation (none vs. PCGrad vs. GradNorm), contrastive pair construction (FactNet-grounded vs. parallel-text-based), and K_min language threshold (2 vs. 3 vs. 5).\n\n## Inspiration\nCCL-XCoT contrastive CPT framework (EMNLP 2025 Findings) + Liu & Niehues middle-layer contrastive alignment (ACL 2025) + FactNet entity-grounded facts (arXiv:2602.03417) + LEIA entity boundary markers (ACL 2024) + CLiKA conductivity diagnostic (NAACL 2024) + Entity-level alignment in crosslingual consistency (arXiv:2510.10280) + Entity Lens entity-specific mechanisms (BlackboxNLP 2025) + Marco et al. middle-layer factual knowledge (arXiv:2404.03623) + ELO selective layer optimization (arXiv:2601.03648) + Liu et al. frequency-driven transfer (EMNLP 2025) + CLM-Bench orthogonal edit vectors (arXiv:2601.17397) + cultural knowledge asymmetry frequency hypothesis (ACL 2025) + Ifergan et al. script-CKR dominance (NAACL Findings 2025) + Bandarkar et al. script barrier in reasoning models (arXiv:2603.17070) + TransliCo transliteration-contrastive script bridging (ACL 2024) + KBioXLM multi-granularity entity alignment (EMNLP Findings 2023) + DaMuEL QID-annotated corpus (2023) + Robinson et al. hard negative mining (ICLR 2021) + PCGrad gradient surgery (NeurIPS 2020) + GradNorm dynamic loss weighting (ICML 2018)\n\n## Key References\n- CCL-XCoT: An Efficient Cross-Lingual Knowledge Transfer Method for Mitigating Hallucination Generation (EMNLP Findings 2025)\n- Middle-Layer Representation Alignment for Cross-Lingual Transfer in Fine-Tuned LLMs [Liu & Niehues] (ACL 2025, arXiv:2502.14830)\n- Multilingual Pretraining and Instruction Tuning Improve Cross-Lingual Knowledge Alignment, But Only Shallowly [CLiKA] (NAACL 2024, arXiv:2404.04659)\n- On the Entity-Level Alignment in Crosslingual Consistency [Liu, Wang et al.] (arXiv:2510.10280)\n- FactNet: A Billion-Scale Knowledge Graph for Multilingual Factual Grounding (arXiv 2026)\n- LEIA: Facilitating Cross-lingual Knowledge Transfer in Language Models with Entity-based Data Augmentation (ACL Findings 2024)\n- On the Representations of Entities in Auto-regressive Large Language Models [Entity Lens] (BlackboxNLP 2025, arXiv:2510.09421)\n- Unveiling LLMs: The Evolution of Latent Representations in a Dynamic Knowledge Graph [Marco et al.] (arXiv:2404.03623)\n- Beneath the Surface of Consistency: Exploring Cross-lingual Knowledge Representation Sharing in LLMs [Ifergan et al.] (NAACL Findings 2025, arXiv:2408.10646)\n- Large Reasoning Models Struggle to Transfer Parametric Knowledge Across Scripts [Bandarkar et al.] (arXiv:2603.17070, March 2026)\n- TransliCo: A Contrastive Learning Framework to Address the Script Barrier in Multilingual Pretrained Language Models (ACL 2024, arXiv:2401.06620)\n- Breaking the Script Barrier in Multilingual Pre-Trained Language Models with Transliteration-Based Post-Training Alignment [Moosa et al.] (EMNLP Findings 2024, arXiv:2406.19759)\n- KBioXLM: A Knowledge-anchored Biomedical Multilingual Pretrained Language Model [Geng et al.] (EMNLP Findings 2023, arXiv:2311.11564)\n- DaMuEL: A Large Multilingual Dataset for Entity Linking (arXiv:2306.09288, 2023)\n- Contrastive Learning with Hard Negative Samples [Robinson et al.] (ICLR 2021)\n- Gradient Surgery for Multi-Task Learning [PCGrad, Yu et al.] (NeurIPS 2020)\n- GradNorm: Gradient Normalization for Adaptive Loss Balancing in Deep Multitask Networks [Chen et al.] (ICML 2018)\n- mReFinED: An Efficient End-to-End Multilingual Entity Linking Model (EMNLP Findings 2023)\n- NeighXLM: Enhancing Cross-Lingual Transfer in Low-Resource Languages via Neighbor-Augmented Contrastive Pretraining (EMNLP Findings 2025)\n- mLUKE: The Power of Entity Representations in Multilingual Pretrained Language Models (ACL 2022)\n- ELO: Efficient Layer-Specific Optimization for Continual Pretraining of Multilingual LLMs (arXiv 2026)\n- Tracing Multilingual Factual Knowledge Acquisition in Pretraining (EMNLP Findings 2025)\n- PreAlign: Boosting Cross-Lingual Transfer by Early Establishment of Multilingual Alignment (EMNLP 2024)\n- Enhancing LLM Language Adaption through Cross-lingual In-Context Pre-training [CrossIC-PT] (EMNLP 2025)\n- Cross-Lingual Transfer of Cultural Knowledge: An Asymmetric Phenomenon (ACL 2025)\n- EntityCS: Improving Zero-Shot Cross-lingual Transfer with Entity-Centric Code Switching (EMNLP Findings 2022)\n- Optimizing Language Models for Crosslingual Knowledge Consistency [DCO] (arXiv 2026)\n- Cross-Lingual Consistency of Factual Knowledge in Multilingual Language Models [BMLAMA] (EMNLP 2023)\n- LiveCLKTBench: Towards Reliable Evaluation of Cross-Lingual Knowledge Transfer in Multilingual LLMs (arXiv 2025)\n- Why Better Cross-Lingual Alignment Fails for Better Cross-Lingual Transfer: Case of Encoders [Veitsman et al.] (arXiv 2026)\n- CLM-Bench: Benchmarking and Analyzing Cross-lingual Misalignment of LLMs in Knowledge Editing (arXiv 2026)\n- DoLa: Decoding by Contrasting Layers Improves Factuality and Faithfulness of Large Language Models (ICLR 2024)\n\n## Resource Estimate\n- **manual**: {'gpu_hours': '1100-1550 H100 (Preprocessing: ~10-15 GPU-days A100 for mReFinED; Phase 0: ~130 including layer sweep + gradient analysis; Full training: ~800-1100; Evaluation: ~70; Ablations: ~90-165 including script/masking/gradient ablations)', 'timeline': '4.5-5.5 months (includes 1.5-2 weeks preprocessing pipeline)', 'estimated_gpu_cost': '$2,200-3,100 (at ~$2/H100-hr spot)'}\n- **human_in_loop**: {'gpu_hours': '900-1250 H100', 'timeline': '3.5-4.5 months', 'claude_api_cost': '$300-450 (FactNet coverage audit, DaMuEL integration, preprocessing pipeline, gradient analysis visualization, evaluation analysis, paper drafting)', 'estimated_gpu_cost': '$1,800-2,500'}\n- **auto_research**: {'gpu_hours': '1100-1600 H100', 'timeline': '3-4 months', 'claude_api_cost': '$600-950 (full pipeline automation: DaMuEL integration + mReFinED gap-filling + Tier 3 wikilinks pipeline + FactNet coverage audit + Tier 3 viability check, entity marker insertion, layer sweep, gradient analysis, hyperparameter sweep, script-grouped analysis, ablation analysis, paper writing)', 'estimated_gpu_cost': '$2,200-3,200', 'speed_bottleneck': 'Preprocessing pipeline (1.5-2 weeks) is on critical path before Phase 0; Phase 0 pilot (2-3 weeks including layer sweep, gradient analysis, and script-grouped evaluation) must complete before full training; full training wallclock ~30-50 hours per run on 8xH100; sequential dependency: preprocessing → FactNet audit gates Tier 3 language selection → pilot go/no-go gates full training'}\n"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-19T21:07:26.061Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-19T21:07:26.061Z",
+  "sessionId": "3c4dd84f-4c46-4453-9bd7-2594c23a26a3"
+}
+```
+
+---
+
+## Round 1
+
+44 recorded events
+
+### User
+
+_source line 3 · 2026-05-19T21:07:26.073Z_
+
+【任务】: 请评估以下 proposal 的客观中稿概率。
+必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。
+
+【proposal】:
+# Entity-Anchored Contrastive Alignment for Cross-Lingual Knowledge Conductivity
+
+## Description
+EACA is a continued pretraining method that introduces InfoNCE contrastive loss on entity-span hidden states alongside standard next-token prediction, targeting entity-level cross-lingual knowledge conductivity — a capability that CLiKA (NAACL 2024) established is not substantially improved by existing multilingual pretraining or instruction tuning (XRR < 0.01). Unlike CCL-XCoT (sentence/paragraph-level contrastive CPT) and Liu & Niehues (ACL 2025, sentence-level middle-layer contrastive fine-tuning), EACA anchors contrastive pairs to Wikidata QIDs using FactNet's 1.7B entity-grounded atomic facts, operating at the entity level — the granularity empirically shown to be the bottleneck for cross-lingual consistency (entity alignment correlates at r > 0.7 with consistency, arXiv:2510.10280). This extends KBioXLM's (EMNLP Findings 2023) precedent of multi-granularity entity alignment in multilingual pretraining from encoder-based masking objectives in a specialized domain to explicit contrastive alignment in decoder-only LLMs for general-domain conductivity. Entity spans are marked with LEIA-style [ENT]/[/ENT] tokens using DaMuEL (12.3B QID-annotated tokens across 53 languages) as the primary annotation source for 10 of 13 target languages, supplemented by a Wikipedia wikilinks-to-QID extraction pipeline for the 3 uncovered Tier 3 languages (SW/YO/KM) and mReFinED entity linking for non-hyperlinked mention gap-filling, with 1.5-2 weeks budgeted for preprocessing. Representations are extracted via mean-pooling at middle layers (~layer 16, validated via Phase 0 sweep). The proposal explicitly addresses the script barrier identified by Ifergan et al. (NAACL Findings 2025) and Bandarkar et al. (arXiv:2603.17070): script similarity dominates representation sharing (~37.6% same-script CKR vs. <10-20% cross-script), but entity priming disproportionately helps cross-script transfer, motivating entity-level alignment as targeting the right bottleneck. Cross-script QID pairs receive transliteration-augmented entity markers (e.g., [ENT]北京 (Beijing)[/ENT]), inspired by TransliCo (ACL 2024), with mandatory script-grouped evaluation (same-script vs. cross-script gains). Stratified batch construction uses 128-256 entities per batch with class-aware false-negative masking, type-aware hard negatives (~50% same-type entities via Wikidata P31 properties, following Robinson et al. ICLR 2021), and asymmetric positive sets for entities with uneven language coverage (K_min = 3 languages per QID). Joint optimization (L_NTP + λ·L_contrastive, λ=0.1 with warmup) includes gradient conflict monitoring: cosine similarity between NTP and contrastive gradients is tracked every 100 steps, with PCGrad (Yu et al., NeurIPS 2020) activated if conflicts exceed 30% of steps, and GradNorm (Chen et al., ICML 2018) for dynamic λ adjustment if gradient magnitudes diverge beyond 10:1. Inverse-frequency weighting prioritizes low-resource entity-facts. Catastrophic forgetting is mitigated through LoRA (rank 64) on middle layers (10-22), 15% general-domain replay, and cosine LR scheduling. A tiered language selection spans 13 languages across ~7 scripts: Tier 1 (EN/ZH/JA/DE), Tier 2 (AR/HI/TR/ID/VI/TH), Tier 3 (SW/YO/KM), with mandatory Phase 0 FactNet coverage audit and contingency replacements. Phase 0 pilot (500M tokens, 5 languages spanning ≥3 scripts, ~130 H100 hours) includes baselines against sentence-level contrastive (CCL-XCoT), middle-layer sentence contrastive (Liu & Niehues), masking-based entity alignment (KBioXLM-style adaptation), LEIA augmentation, and standard CPT, plus layer sweep, gradient analysis, and script-grouped evaluation. Six key novelties: (1) entity-level contrastive anchoring vs. sentence-level, (2) structured knowledge grounding via FactNet QIDs vs. parallel text, (3) frequency-aware weighting, (4) joint NTP+contrastive optimization with gradient conflict monitoring at entity level during CPT, (5) script-aware transliteration augmentation for cross-script entity alignment, (6) direct targeting of CLiKA's conductivity gap with script-stratified evaluation.
+
+## Core Problem
+Can entity-level contrastive alignment — anchored to Wikidata QIDs and grounded in FactNet's structured atomic facts — improve cross-lingual knowledge conductivity (as defined by CLiKA's XRR metric, Gao et al. NAACL 2024) more effectively than sentence/paragraph-level contrastive continued pretraining (e.g., CCL-XCoT) or sentence-level middle-layer alignment (Liu & Niehues, ACL 2025)? CLiKA established that neither multilingual pretraining nor instruction tuning substantially improves conductivity, with XRR scores below 0.01 for most non-English languages. EACA hypothesizes that this conductivity barrier persists because prior methods align at sentence/document granularity — conflating entity-specific factual knowledge with syntactic and discourse-level variation — whereas factual knowledge is inherently structured around entities (subject-property-object triples). A critical complication, identified by Ifergan et al. (NAACL Findings 2025) and Bandarkar et al. (arXiv:2603.17070), is that script similarity is the dominant factor in cross-lingual representation sharing: high behavioral consistency does not imply shared internal representation for cross-script language pairs, and script match — not language family — is the primary predictor of knowledge transfer failure. Crucially, however, Bandarkar et al.'s entity priming experiment shows that providing source-language entity names disproportionately improves cross-script transfer, directly implicating entity-level mapping failure as the mechanism behind the script barrier. This suggests that entity-level contrastive alignment targets the right bottleneck, but that cross-script entity alignment requires additional support (e.g., transliteration augmentation) beyond what same-script entity alignment needs. EACA therefore addresses a two-level problem: (1) entity-level alignment as the fundamental unit of factual knowledge transfer, and (2) script-aware strategies to bridge the representation gap across writing systems.
+
+## Opportunity
+CCL-XCoT (EMNLP 2025 Findings) demonstrates that contrastive continued pretraining reduces cross-lingual hallucination by up to 62% but operates at sentence/paragraph granularity with parallel text. Liu & Niehues (ACL 2025) show that middle-layer contrastive alignment (layer 16 of 32 in LLaMA-3-8B) significantly improves cross-lingual transfer for downstream tasks, but again at sentence-level granularity and for task-specific fine-tuning rather than factual consistency. CLiKA (NAACL 2024) reveals a critical gap: existing multilingual pretraining and instruction tuning improve surface-level consistency but fail to improve knowledge conductivity (XRR < 0.01), suggesting that fundamentally different alignment granularity is needed. Meanwhile, FactNet (arXiv:2602.03417, Feb 2026) provides 1.7B entity-grounded atomic facts across 316 Wikipedia editions with Wikidata QID linking — enabling entity-level contrastive pairs grounded in structured knowledge. Entity Lens (BlackboxNLP 2025) confirms that decoder LLMs develop entity-specific internal mechanisms to represent multi-token entities. Liu et al. (EMNLP 2025 Findings) show that cross-lingual transfer is frequency-driven, with low-frequency facts benefiting most. Critically, recent evidence from entity-level alignment analysis (Liu, Wang et al., arXiv:2510.10280) demonstrates that cross-lingual factual consistency correlates strongly with entity alignment (Pearson r > 0.7), with over 99% of consistent facts exhibiting successful entity alignment — providing direct empirical motivation for entity-level rather than sentence-level contrastive objectives. Marco et al. ('Unveiling LLMs', arXiv:2404.03623) further establish that factual knowledge about subject entities concentrates in middle layers (L5-L21 for LLaMA-2-7B). KBioXLM (EMNLP Findings 2023) provides an important precedent: it demonstrated that multi-granularity knowledge alignment (entity masking, relation masking, passage relation prediction) during continued pretraining of XLM-R yields +20 F1 points on cross-lingual zero-shot biomedical tasks, establishing entity-anchored alignment as effective — but using masking-based reconstruction on encoders rather than contrastive loss on decoder LLMs, and targeting downstream task transfer rather than factual conductivity. Ifergan et al. (NAACL Findings 2025) reveal a deeper challenge: using knowledge editing as a probe for representation sharing, they find script similarity is the dominant factor (same-script CKR ~37.6% in Mistral; cross-script <10-20%), and that behavioral consistency diverges sharply from representation sharing for cross-script pairs. Bandarkar et al. (arXiv:2603.17070, March 2026) confirm this with regression analysis showing script match as the primary predictor after controlling for model capability and question difficulty (~13% accuracy gap), but critically, their entity priming experiment shows that providing source-language entity names disproportionately improves cross-script questions — directly implicating entity mapping as the bottleneck. TransliCo (ACL 2024) demonstrates that transliteration-based contrastive learning bridges script barriers using only 5% of training data on encoders. DaMuEL (2023) provides 12.3B tokens with QID-linked entity annotations across 53 languages, enabling efficient preprocessing for 10 of EACA's 13 target languages. The opportunity is to combine these insights — entity-level anchoring + structured knowledge grounding + middle-layer extraction + inverse-frequency weighting + script-aware strategies — into a contrastive CPT method that targets the specific granularity (entities), representation layer (middle), data regime (low-frequency facts), and script barriers where current methods demonstrably fall short.
+
+## Related Work / Landscape
+The cross-lingual factual consistency landscape spans several complementary approaches. CCL-XCoT (EMNLP 2025 Findings) is the primary baseline, employing InfoNCE symmetric contrastive loss during continued pretraining with a sentence-to-paragraph curriculum on Gemma-7B and LLaMA-3.1-8B using LoRA on layers 9-19/11-22, reducing hallucination by 62%, but operating at sentence/paragraph granularity without entity grounding or frequency weighting. Liu & Niehues (ACL 2025) represent the closest methodological precedent for contrastive alignment: they apply contrastive loss on mean-pooled sentence representations at middle layers (specifically layer 16 of 32 for LLaMA-3-8B-Instruct) during task-specific fine-tuning with LoRA (rank 8), demonstrating +1.5 F1 on slot filling and +1.5 BLEU on MT across 35 languages — however, they use sentence-level alignment with alternating (not joint) task/alignment training, target downstream task transfer rather than factual consistency, use parallel text rather than structured knowledge, and include no frequency weighting. EACA differentiates from Liu & Niehues on five axes: (1) entity-level rather than sentence-level granularity, (2) continued pretraining for factual consistency rather than task-specific fine-tuning, (3) FactNet-grounded contrastive pairs rather than parallel text, (4) joint NTP+contrastive objective rather than alternating training, and (5) inverse-frequency weighting for underrepresented facts. KBioXLM (Geng et al., EMNLP Findings 2023, arXiv:2311.11564) is an important precedent for multi-granularity entity-anchored alignment in multilingual pretraining. It performs continued pretraining on XLM-R using three alignment objectives grounded in UMLS biomedical knowledge: entity masking (code-switching entity mentions across EN-CN and predicting masked entity tokens via MLM cross-entropy), relation masking (masking relation tokens in subject-predicate-object triples), and passage relation prediction (3-way classification on aligned EN-CN Wikipedia passages). KBioXLM achieves +20 F1 points on cross-lingual zero-shot biomedical NER/RE. EACA extends this paradigm along four dimensions: (a) decoder-only LLMs vs. encoder (XLM-R), requiring contrastive loss on hidden states rather than masking-based reconstruction, since decoder LLMs lack bidirectional context for effective mask prediction; (b) general domain vs. biomedical, using FactNet's 1.7B facts across 316 editions vs. UMLS's specialized ontology; (c) explicit contrastive alignment (InfoNCE) vs. implicit alignment through masking, directly optimizing cross-lingual entity representation similarity rather than relying on the prediction bottleneck; (d) conductivity metric (CLiKA's XRR) vs. downstream task transfer, targeting the specific capability that prior methods fail to improve. CLiKA (Gao et al., NAACL 2024) provides the diagnostic framework: they define knowledge conductivity as the Cross-Retrieval Ratio (XRR) — retrieving knowledge learned in one language using another — and find that neither multilingual pretraining nor instruction tuning substantially improves XRR (scores < 0.01 for most non-English languages), with no concrete solutions proposed. The entity-level alignment analysis (Liu, Wang et al., arXiv:2510.10280) provides strong empirical support: cross-lingual consistency correlates with entity alignment at r > 0.7, and their SubInj method yields +14-32% recall and +17-44% consistency gains, but only at inference time; EACA aims to achieve this alignment at training time. On the script barrier dimension, Ifergan et al. ('Beneath the Surface of Consistency', NAACL Findings 2025, arXiv:2408.10646) demonstrate via knowledge editing probes on 7 decoder LLMs (7B scale) that script similarity is the dominant factor in cross-lingual knowledge representation sharing (CKR): same-script Latin pairs show ~37.6% average CKR in Mistral, while cross-script pairs show <10-20% transfer; crucially, they find that high behavioral consistency (CKC) does not imply shared representation for cross-script pairs, with E[NCL] consistently exceeding E[NTL]. Even targeted language extension pretraining achieves only marginal cross-script CKR improvement. Bandarkar et al. ('Large Reasoning Models Struggle to Transfer Parametric Knowledge Across Scripts', arXiv:2603.17070, March 2026) confirm via regression analysis on ECLeKTic and MultiLoKo that script match — not language family — is the primary predictor of knowledge transfer failure (~13% accuracy gap), but their entity priming experiment reveals that providing source-language entity names disproportionately improves cross-script questions, directly implicating entity mapping as the cross-script bottleneck. TransliCo (Liu et al., ACL 2024, arXiv:2401.06620) addresses script barriers through transliteration contrastive modeling (TCM), fine-tuning Glot500-m on 5% of data with Latin transliterations as contrastive targets, producing Furina which outperforms Glot500-m on cross-script zero-shot transfer — but operates on encoders at sentence level without entity grounding. Transliteration-based post-training alignment (Moosa et al., EMNLP Findings 2024, arXiv:2406.19759) achieves up to 50% improvement on cross-script English-centric transfer with even larger gains for non-English sources. EACA incorporates this insight by adding transliteration-augmented entity contrastive pairs for cross-script language combinations as a complementary mechanism. NeighXLM (EMNLP 2025 Findings) introduces neighbor-augmented contrastive pretraining for low-resource languages without parallel data, but targets general cross-lingual transfer rather than entity-specific factual consistency. PreAlign (EMNLP 2024) uses code-switching pretraining with word-level alignment but lacks entity anchoring. CrossIC-PT (EMNLP 2025) interleaves bilingual Wikipedia content without entity-level grounding. LEIA (ACL Findings 2024) inserts English entity names with [translate]/[/translate] markers during continued pretraining of decoder LLMs, improving cross-lingual transfer but without contrastive loss or frequency weighting. EntityCS (EMNLP Findings 2022) performs entity-centric code switching with Wikidata but is limited to encoder-only models. Entity Lens (BlackboxNLP 2025) reveals that decoder LLMs develop entity-specific mechanisms to represent and manipulate multi-token entities via task vectors. The middle-layer factual knowledge claim is supported by Liu & Niehues (ACL 2025) showing layer 16 of 32 has strongest cross-lingual retrieval alignment, and Marco et al. (arXiv:2404.03623) demonstrating via dynamic knowledge graphs that middle layers (L5-L21) encode comprehensive factual knowledge while late layers show 90%+ degradation. ELO (arXiv:2601.03648, Jan 2026) demonstrates efficient layer-specific optimization with 6.46x speedup from selective middle-layer updates. FactNet (arXiv:2602.03417) provides 1.7B entity-grounded facts across 316 Wikipedia editions with significant coverage skew. CLM-Bench (arXiv:2601.17397) shows edit vectors are nearly orthogonal across languages, further motivating entity-level alignment. DCO (arXiv:2603.04678, March 2026) proposes DPO-inspired post-hoc consistency optimization, complementary to pretraining-time methods. Veitsman et al. (arXiv:2603.18863, March 2026) find that sentence-level contrastive alignment fails for token-level tasks in XLM-R encoders, supporting entity-level approaches for entity-centric tasks. Cultural knowledge asymmetry research (ACL 2025) confirms that frequency drives cross-lingual transferability.
+
+## Approach
+EACA adds an InfoNCE contrastive loss on entity-span hidden states to the standard next-token prediction (NTP) objective during continued pretraining. The method comprises five integrated components: entity preprocessing, entity-level contrastive alignment, script-aware augmentation, stratified batch construction, and joint optimization with gradient monitoring.
+
+**1. Entity Preprocessing Pipeline.** Entity boundary annotation uses a two-stage pipeline. Stage 1 (primary): DaMuEL (2023), which provides 12.3B QID-annotated tokens across 53 languages (CC BY-SA), is used directly for the 10 target languages it covers (EN/ZH/JA/DE/AR/HI/TR/ID/VI/TH). DaMuEL provides start/end token indices per entity mention with Wikidata QID links, extracted from Wikipedia wikilinks and expanded via lemmatization and alias matching (~17% recall gain over raw wikilinks). Stage 2 (Tier 3 gap-filling): For the 3 Tier 3 languages not covered by DaMuEL (SW/YO/KM), a lightweight Wikipedia wikilinks extraction pipeline resolves hyperlinks to QIDs via Wikidata sitelinks (~50-60% mention coverage). mReFinED (EMNLP Findings 2023), which is 44-60x faster than comparable entity linkers, is applied as a second pass on high-resource languages to annotate non-hyperlinked entity mentions where higher recall is needed. Entity boundaries are marked with LEIA-style [ENT]/[/ENT] tokens around linked mentions. Preprocessing budget: 1.5-2 weeks engineering time, ~2-4 GPU-days on A100 for mReFinED gap-filling, ~24-48 CPU-hours for wikilinks extraction across Tier 3 languages. This pipeline is on the critical path and must complete before Phase 0.
+
+**2. Entity-Level Contrastive Alignment.** Entity representations are extracted via mean-pooling over hidden states within the [ENT]...[/ENT] span at a designated middle layer (defaulting to layer 16 for 32-layer models based on Liu & Niehues' ACL 2025 finding and Marco et al.'s analysis; validated via Phase 0 sweep over layers 12-20), with loss propagation blocked on boundary markers themselves. Contrastive pairs are constructed per QID from FactNet: positive pairs consist of atomic fact descriptions for the same QID across languages, while negatives come from different QIDs within the same batch (detailed in Component 4). Inverse-frequency weighting assigns higher contrastive loss weight to facts with lower cross-lingual FactNet coverage, directly targeting low-resource facts where CLiKA's conductivity analysis shows the largest gap.
+
+Theoretical motivation for entity-level granularity: Three converging lines of evidence support entity-level over sentence-level contrastive alignment for factual consistency: (1) Entity alignment analysis (arXiv:2510.10280) demonstrates Pearson r > 0.7 between entity alignment and cross-lingual consistency, with >99% of consistent facts showing successful entity alignment — establishing entities as the bottleneck for consistency; (2) CLM-Bench's finding that cross-lingual edit vectors are nearly orthogonal implies that factual knowledge editing, which operates at entity-level (subject-property-object triples), requires entity-aligned representations rather than sentence-aligned ones; (3) CLiKA's failure result — that sentence/document-level pretraining and instruction tuning do not improve conductivity — suggests that coarser-grained alignment conflates entity-specific factual knowledge with syntactic and discourse-level variation, diluting the alignment signal.
+
+**3. Script Barrier Mitigation.** EACA's 13 target languages span ~7 scripts (Latin: EN/DE/TR/ID/VI/SW/YO; CJK: ZH/JA; Arabic: AR; Devanagari: HI; Thai: TH; Khmer: KM). Ifergan et al. (NAACL Findings 2025) demonstrate that cross-lingual representation sharing (CKR) clusters strongly by script family (~37.6% same-script CKR vs. <10-20% cross-script in Mistral-7B), and Bandarkar et al. (arXiv:2603.17070) confirm script match as the primary predictor of transfer failure (~13% gap). This poses a genuine risk that entity-level contrastive alignment may primarily improve same-script entity alignment while showing limited gains for cross-script pairs. However, two findings provide grounds for cautious optimism: (a) Bandarkar et al.'s entity priming experiment shows source-language entity names disproportionately improve cross-script transfer, implicating entity mapping — not script-level representation — as the cross-script bottleneck for factual knowledge; (b) TransliCo (ACL 2024) demonstrates that transliteration-based contrastive learning bridges script barriers on encoders using only 5% of training data. EACA therefore incorporates a script-aware augmentation strategy: for cross-script QID pairs (e.g., EN-ZH, EN-AR, EN-HI, EN-TH, EN-KM), entity mentions in non-Latin scripts are supplemented with Latin transliterations appended within the [ENT] boundary (e.g., [ENT]北京 (Beijing)[/ENT]), providing a lexical bridge for the contrastive objective. This is tested as an ablation (EACA vs. EACA+translit) to isolate the contribution of transliteration augmentation beyond entity-level alignment. The evaluation plan includes mandatory script-grouped analysis: same-script entity alignment gains (Latin-Latin, CJK-CJK) vs. cross-script gains (Latin-CJK, Latin-Arabic, Latin-Devanagari, etc.), reporting both entity cosine similarity and downstream factual consistency metrics separately for each script-pair category. If Phase 0 reveals that cross-script entity alignment gains are <50% of same-script gains despite transliteration augmentation, this will be explicitly reported as a limitation and the analysis will quantify what fraction of EACA's overall conductivity improvement comes from same-script vs. cross-script alignment.
+
+**4. Stratified Batch Construction with Type-Aware Hard Negatives.** Effective contrastive learning is highly sensitive to negative quality (Robinson et al., ICLR 2021). EACA uses stratified mini-batching: each batch contains K_batch = 128-256 unique QIDs, with all available language instances per QID forming the positive set (asymmetric positive sets accommodate QIDs present in only 2-3 languages without dropping them). Minimum language coverage per QID is K_min = 3 languages; QIDs with fewer than 3 language instances are filtered during preprocessing. Class-Aware Masking (CAM) ensures that all instances of the same QID are excluded from the InfoNCE denominator, preventing false-negative contamination. For hard negative mining, type-aware stratification ensures ~50% of in-batch negatives share the anchor entity's Wikidata type (e.g., Q5/human, Q515/city, Q4830453/organization) — forcing the model to discriminate on fine-grained entity identity rather than coarse type. This is implemented via Wikidata instance-of (P31) properties, grouping entities into 8-10 macro-types for sampling. The remaining ~50% are random negatives for diversity. Batch composition is balanced across script families to ensure cross-script contrastive signals appear in every batch. The InfoNCE loss for entity e with QID q is: L_entity(q) = -log[exp(sim(h_q^i, h_q^j)/τ) / (exp(sim(h_q^i, h_q^j)/τ) + Σ_{k≠q} exp(sim(h_q^i, h_k)/τ))], where h_q^i, h_q^j are entity representations from different languages for the same QID, and h_k are representations from different QIDs, with τ = 0.07 as the temperature (tuned in Phase 0 over {0.05, 0.07, 0.1}).
+
+**5. Joint Optimization with Gradient Monitoring.** The joint objective is L_total = L_NTP + λ * L_entity_contrastive, with λ initialized at 0.1 (following guidance from headless LM work showing λ ∈ [0.01, 0.1] is appropriate for contrastive + generation joint training during CPT). A potential tension exists: NTP learns language-specific token distributions while contrastive loss pulls entity representations together across languages. Unlike Liu & Niehues' alternating approach, EACA uses joint optimization to ensure entity alignment co-adapts with the language modeling objective — but addresses gradient conflict risk through three mechanisms: (a) Phase 0 gradient analysis: cosine similarity between ∇L_NTP and ∇L_entity_contrastive is computed every 100 steps on the shared LoRA parameters. If gradient cosine similarity is negative for >30% of monitored steps, PCGrad projection (Yu et al., NeurIPS 2020) is applied — projecting the contrastive gradient onto the normal plane of the NTP gradient to eliminate destructive interference. (b) GradNorm (Chen et al., ICML 2018) is implemented as an optional dynamic λ adjustment mechanism: if the gradient magnitude ratio between the two losses drifts beyond 10:1, GradNorm normalizes to equalize learning rates. (c) λ warmup: contrastive loss weight ramps linearly from 0 to λ_target over the first 10% of training steps, allowing NTP to stabilize before contrastive pressure is introduced. Phase 0 reports gradient conflict frequency, cosine similarity distribution, and whether PCGrad/GradNorm activation was required — this informs the full training configuration. If gradient conflicts are severe (>50% of steps) even with PCGrad, the fallback is alternating optimization (NTP steps → contrastive steps per batch) following Liu & Niehues' validated approach.
+
+Catastrophic forgetting is mitigated through three mechanisms: (a) LoRA (rank 64) applied to middle layers only (layers 10-22), following CCL-XCoT's selective layer approach and ELO's findings that first/last layers are critical for general capabilities; (b) 15% general-domain English replay data mixed into training batches; (c) cosine learning rate schedule with linear warmup (peak LR 2e-5). Language selection follows a tiered strategy: Tier 1 comprises 4 anchor languages (EN/ZH/JA/DE, >1M entity-fact pairs), Tier 2 includes 6 mid-resource languages (AR/HI/TR/ID/VI/TH, 100K-1M pairs), and Tier 3 covers 3 low-resource languages (SW/YO/KM). Tier 3 viability assessment based on Wikipedia article counts (SW: ~117K, YO: ~37K, KM: ~12K) and FactNet's 0.36 low-resource yield rate estimates approximately 50K-200K entity-fact pairs for Swahili, 15K-60K for Yoruba, and 5K-25K for Khmer. None of the Tier 3 languages are covered by DaMuEL, so all three rely on the Wikipedia wikilinks extraction pipeline (Stage 2 above). A mandatory FactNet coverage audit in Phase 0 will report exact entity-fact pair counts for all 13 languages; minimum viable threshold is set at 10K entity-fact pairs per language (sufficient for contrastive batching at size 128-256 with adequate negative diversity). If any Tier 3 language falls below threshold, contingency replacements include Bengali (BN, ~157K Wikipedia articles), Tagalog (TL, ~115K articles), or Hausa (HA, ~8K articles but stronger NLP benchmark coverage). Languages below 25K pairs receive LEIA-style English entity augmentation to supplement contrastive pairs.
+
+Phase 0 pilot uses 500M tokens across 5 languages (3 Tier-1 + 2 Tier-2, selected to span at least 3 scripts for script barrier analysis) for approximately 130 H100 hours, with baselines including: (a) CCL-XCoT-style sentence-level contrastive CPT, (b) Liu & Niehues-style middle-layer sentence-level contrastive alignment (the closest methodological comparison, testing entity-level vs. sentence-level at the same middle layer), (c) LEIA-style entity augmentation without contrastive loss, (d) standard CPT, and (e) KBioXLM-style entity masking adaptation (masking [ENT]-bounded tokens and predicting via NTP, without contrastive loss — testing contrastive vs. masking-based entity alignment on decoders). Phase 0 additionally includes: a layer sweep (layers 12, 14, 16, 18, 20) to empirically determine optimal entity extraction depth; gradient conflict analysis (cosine similarity monitoring, PCGrad activation rate); and script-grouped entity alignment analysis (same-script vs. cross-script gains). Go/no-go criteria require entity cosine similarity improvement of at least 0.05, BMLAMA-53 consistency improvement of at least 2 points, no TyDiQA degradation beyond 1 point, AND gradient conflict rate below 50% (with or without PCGrad). Full training processes 1.5-2.5B tokens on LLaMA-3.1-8B (primary) and Gemma-7B (secondary, for CCL-XCoT comparability) across all 13 languages. A complementary EACA+DCO experiment tests whether pretraining-time and post-hoc consistency methods yield cumulative gains. Evaluation covers BMLAMA-53, TyDiQA-GoldP, X-CODAH, LiveCLKTBench, and CLiKA's XRR metric (to directly measure conductivity improvement), plus entity representation cosine similarity analysis. All metrics are reported with script-grouped breakdowns (same-script pairs, cross-script pairs, overall) as a mandatory analysis dimension. Ablations cover: entity-level vs. sentence-level contrastive (the central hypothesis), contrastive vs. masking-based entity alignment (EACA vs. KBioXLM-style adaptation), EACA vs. EACA+transliteration augmentation (script barrier mitigation), frequency weighting on/off, type-aware vs. random negatives, number of languages, layer selection, joint vs. alternating training, gradient conflict mitigation (none vs. PCGrad vs. GradNorm), contrastive pair construction (FactNet-grounded vs. parallel-text-based), and K_min language threshold (2 vs. 3 vs. 5).
+
+## Inspiration
+CCL-XCoT contrastive CPT framework (EMNLP 2025 Findings) + Liu & Niehues middle-layer contrastive alignment (ACL 2025) + FactNet entity-grounded facts (arXiv:2602.03417) + LEIA entity boundary markers (ACL 2024) + CLiKA conductivity diagnostic (NAACL 2024) + Entity-level alignment in crosslingual consistency (arXiv:2510.10280) + Entity Lens entity-specific mechanisms (BlackboxNLP 2025) + Marco et al. middle-layer factual knowledge (arXiv:2404.03623) + ELO selective layer optimization (arXiv:2601.03648) + Liu et al. frequency-driven transfer (EMNLP 2025) + CLM-Bench orthogonal edit vectors (arXiv:2601.17397) + cultural knowledge asymmetry frequency hypothesis (ACL 2025) + Ifergan et al. script-CKR dominance (NAACL Findings 2025) + Bandarkar et al. script barrier in reasoning models (arXiv:2603.17070) + TransliCo transliteration-contrastive script bridging (ACL 2024) + KBioXLM multi-granularity entity alignment (EMNLP Findings 2023) + DaMuEL QID-annotated corpus (2023) + Robinson et al. hard negative mining (ICLR 2021) + PCGrad gradient surgery (NeurIPS 2020) + GradNorm dynamic loss weighting (ICML 2018)
+
+## Key References
+- CCL-XCoT: An Efficient Cross-Lingual Knowledge Transfer Method for Mitigating Hallucination Generation (EMNLP Findings 2025)
+- Middle-Layer Representation Alignment for Cross-Lingual Transfer in Fine-Tuned LLMs [Liu & Niehues] (ACL 2025, arXiv:2502.14830)
+- Multilingual Pretraining and Instruction Tuning Improve Cross-Lingual Knowledge Alignment, But Only Shallowly [CLiKA] (NAACL 2024, arXiv:2404.04659)
+- On the Entity-Level Alignment in Crosslingual Consistency [Liu, Wang et al.] (arXiv:2510.10280)
+- FactNet: A Billion-Scale Knowledge Graph for Multilingual Factual Grounding (arXiv 2026)
+- LEIA: Facilitating Cross-lingual Knowledge Transfer in Language Models with Entity-based Data Augmentation (ACL Findings 2024)
+- On the Representations of Entities in Auto-regressive Large Language Models [Entity Lens] (BlackboxNLP 2025, arXiv:2510.09421)
+- Unveiling LLMs: The Evolution of Latent Representations in a Dynamic Knowledge Graph [Marco et al.] (arXiv:2404.03623)
+- Beneath the Surface of Consistency: Exploring Cross-lingual Knowledge Representation Sharing in LLMs [Ifergan et al.] (NAACL Findings 2025, arXiv:2408.10646)
+- Large Reasoning Models Struggle to Transfer Parametric Knowledge Across Scripts [Bandarkar et al.] (arXiv:2603.17070, March 2026)
+- TransliCo: A Contrastive Learning Framework to Address the Script Barrier in Multilingual Pretrained Language Models (ACL 2024, arXiv:2401.06620)
+- Breaking the Script Barrier in Multilingual Pre-Trained Language Models with Transliteration-Based Post-Training Alignment [Moosa et al.] (EMNLP Findings 2024, arXiv:2406.19759)
+- KBioXLM: A Knowledge-anchored Biomedical Multilingual Pretrained Language Model [Geng et al.] (EMNLP Findings 2023, arXiv:2311.11564)
+- DaMuEL: A Large Multilingual Dataset for Entity Linking (arXiv:2306.09288, 2023)
+- Contrastive Learning with Hard Negative Samples [Robinson et al.] (ICLR 2021)
+- Gradient Surgery for Multi-Task Learning [PCGrad, Yu et al.] (NeurIPS 2020)
+- GradNorm: Gradient Normalization for Adaptive Loss Balancing in Deep Multitask Networks [Chen et al.] (ICML 2018)
+- mReFinED: An Efficient End-to-End Multilingual Entity Linking Model (EMNLP Findings 2023)
+- NeighXLM: Enhancing Cross-Lingual Transfer in Low-Resource Languages via Neighbor-Augmented Contrastive Pretraining (EMNLP Findings 2025)
+- mLUKE: The Power of Entity Representations in Multilingual Pretrained Language Models (ACL 2022)
+- ELO: Efficient Layer-Specific Optimization for Continual Pretraining of Multilingual LLMs (arXiv 2026)
+- Tracing Multilingual Factual Knowledge Acquisition in Pretraining (EMNLP Findings 2025)
+- PreAlign: Boosting Cross-Lingual Transfer by Early Establishment of Multilingual Alignment (EMNLP 2024)
+- Enhancing LLM Language Adaption through Cross-lingual In-Context Pre-training [CrossIC-PT] (EMNLP 2025)
+- Cross-Lingual Transfer of Cultural Knowledge: An Asymmetric Phenomenon (ACL 2025)
+- EntityCS: Improving Zero-Shot Cross-lingual Transfer with Entity-Centric Code Switching (EMNLP Findings 2022)
+- Optimizing Language Models for Crosslingual Knowledge Consistency [DCO] (arXiv 2026)
+- Cross-Lingual Consistency of Factual Knowledge in Multilingual Language Models [BMLAMA] (EMNLP 2023)
+- LiveCLKTBench: Towards Reliable Evaluation of Cross-Lingual Knowledge Transfer in Multilingual LLMs (arXiv 2025)
+- Why Better Cross-Lingual Alignment Fails for Better Cross-Lingual Transfer: Case of Encoders [Veitsman et al.] (arXiv 2026)
+- CLM-Bench: Benchmarking and Analyzing Cross-lingual Misalignment of LLMs in Knowledge Editing (arXiv 2026)
+- DoLa: Decoding by Contrasting Layers Improves Factuality and Faithfulness of Large Language Models (ICLR 2024)
+
+## Resource Estimate
+- **manual**: {'gpu_hours': '1100-1550 H100 (Preprocessing: ~10-15 GPU-days A100 for mReFinED; Phase 0: ~130 including layer sweep + gradient analysis; Full training: ~800-1100; Evaluation: ~70; Ablations: ~90-165 including script/masking/gradient ablations)', 'timeline': '4.5-5.5 months (includes 1.5-2 weeks preprocessing pipeline)', 'estimated_gpu_cost': '$2,200-3,100 (at ~$2/H100-hr spot)'}
+- **human_in_loop**: {'gpu_hours': '900-1250 H100', 'timeline': '3.5-4.5 months', 'claude_api_cost': '$300-450 (FactNet coverage audit, DaMuEL integration, preprocessing pipeline, gradient analysis visualization, evaluation analysis, paper drafting)', 'estimated_gpu_cost': '$1,800-2,500'}
+- **auto_research**: {'gpu_hours': '1100-1600 H100', 'timeline': '3-4 months', 'claude_api_cost': '$600-950 (full pipeline automation: DaMuEL integration + mReFinED gap-filling + Tier 3 wikilinks pipeline + FactNet coverage audit + Tier 3 viability check, entity marker insertion, layer sweep, gradient analysis, hyperparameter sweep, script-grouped analysis, ablation analysis, paper writing)', 'estimated_gpu_cost': '$2,200-3,200', 'speed_bottleneck': 'Preprocessing pipeline (1.5-2 weeks) is on critical path before Phase 0; Phase 0 pilot (2-3 weeks including layer sweep, gradient analysis, and script-grouped evaluation) must complete before full training; full training wallclock ~30-50 hours per run on 8xH100; sequential dependency: preprocessing → FactNet audit gates Tier 3 language selection → pilot go/no-go gates full training'}
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "b33f37e1-d77e-44cc-9d46-44534aeb3539",
+  "type": "user",
+  "uuid": "558ff450-624e-45c8-9c83-c03007b2c722",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "3c4dd84f-4c46-4453-9bd7-2594c23a26a3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-19T21:07:26.071Z_
+
+```json
+{
+  "parentUuid": "558ff450-624e-45c8-9c83-c03007b2c722",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "fd126f52-e08d-4d63-bc68-bb021ce9eed3",
+  "timestamp": "2026-05-19T21:07:26.071Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "3c4dd84f-4c46-4453-9bd7-2594c23a26a3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-19T21:07:26.071Z_
+
+```json
+{
+  "parentUuid": "fd126f52-e08d-4d63-bc68-bb021ce9eed3",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "9c459893-c098-4f16-8bfb-291d1b7bf6d0",
+  "timestamp": "2026-05-19T21:07:26.071Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "3c4dd84f-4c46-4453-9bd7-2594c23a26a3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Entity-Anchored Contrastive Alignment for Cross-Lingual Knowledge Conductivity  ## Description EACA is a continu…",
+  "leafUuid": "9c459893-c098-4f16-8bfb-291d1b7bf6d0",
+  "sessionId": "3c4dd84f-4c46-4453-9bd7-2594c23a26a3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Entity-anchored contrastive alignment for cross-lingual knowledge",
+  "sessionId": "3c4dd84f-4c46-4453-9bd7-2594c23a26a3"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-19T21:07:43.858Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to evaluate a research proposal for CoRL 2026 submission. Let me first carefully read the proposal, then conduct web searches to understand the current landscape before making my assessment.
+
+Wait - the user says CoRL 2026, but this proposal is about cross-lingual knowledge conductivity in LLMs. CoRL is the Conference on Robot Learning. This seems like it would be more appropriate for ACL, EMNLP, NAACL, or similar NLP/CL venues. Let me re-read the instructions...
+
+The instructions say "评估其投稿 CoRL 2026 主会的中稿潜力" - evaluating submission potential for CoRL 2026 main conference. 
+
+There's definitely a venue mismatch here - this is clearly an NLP/multilingual paper being evaluated for a robotics conference. I should note this discrepancy but proceed with evaluating the idea quality as instructed, since the system is designed as a general review process without preset constraints.
+
+Now I need to do some web searches to understand the current landscape around cross-lingual knowledge transfer, entity alignment, and related work in this space before I can properly assess the proposal's novelty and significance.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9c459893-c098-4f16-8bfb-291d1b7bf6d0",
+  "isSidechain": false,
+  "requestId": "req_011CbCcLCddKxu3rfYxC82KF",
+  "type": "assistant",
+  "uuid": "ef3fcffe-e859-462e-af16-633610ce45bc",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "3c4dd84f-4c46-4453-9bd7-2594c23a26a3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WdPTCXSWKEaCP1Eah4rgVF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 25672,
+      "output_tokens": 633,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 633,
+          "cache_read_input_tokens": 25672,
+          "cache_creation_input_tokens": 0,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-19T21:07:43.861Z_
+
+我需要先进行领域调研，然后再进行评估。让我先搜索相关文献。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ef3fcffe-e859-462e-af16-633610ce45bc",
+  "isSidechain": false,
+  "requestId": "req_011CbCcLCddKxu3rfYxC82KF",
+  "type": "assistant",
+  "uuid": "7360a5ad-966d-47c1-9f02-04a7f1f72801",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "3c4dd84f-4c46-4453-9bd7-2594c23a26a3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WdPTCXSWKEaCP1Eah4rgVF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 25672,
+      "output_tokens": 633,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 633,
+          "cache_read_input_tokens": 25672,
+          "cache_creation_input_tokens": 0,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-19T21:07:43.866Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01HZAkQaP4LAA5fYS2Vwrk5B`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7360a5ad-966d-47c1-9f02-04a7f1f72801",
+  "isSidechain": false,
+  "requestId": "req_011CbCcLCddKxu3rfYxC82KF",
+  "type": "assistant",
+  "uuid": "5d21c2bb-2e11-4510-8b33-5b9a56fbd4b4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "3c4dd84f-4c46-4453-9bd7-2594c23a26a3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WdPTCXSWKEaCP1Eah4rgVF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 25672,
+      "output_tokens": 633,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 633,
+          "cache_read_input_tokens": 25672,
+          "cache_creation_input_tokens": 0,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-19T21:07:43.872Z_
+
+<details><summary>↩ Tool result · `toolu_01HZAkQaP4LAA5fYS2Vwrk5B`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5d21c2bb-2e11-4510-8b33-5b9a56fbd4b4",
+  "isSidechain": false,
+  "promptId": "b33f37e1-d77e-44cc-9d46-44534aeb3539",
+  "type": "user",
+  "uuid": "6b95d039-2059-43ac-9715-ebc0133549e7",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "5d21c2bb-2e11-4510-8b33-5b9a56fbd4b4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "3c4dd84f-4c46-4453-9bd7-2594c23a26a3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-19T21:07:47.991Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now conduct the required web searches to understand the landscape before making my assessment.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6b95d039-2059-43ac-9715-ebc0133549e7",
+  "isSidechain": false,
+  "requestId": "req_011CbCcMWuzjSjGCVXd3WfUs",
+  "type": "assistant",
+  "uuid": "858b7bcd-858b-4df3-8c4a-b5dc4b707f1b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "3c4dd84f-4c46-4453-9bd7-2594c23a26a3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WYtKhWToruLgua2AC4atas",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1160,
+      "cache_read_input_tokens": 25672,
+      "output_tokens": 128,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1160,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 128,
+          "cache_read_input_tokens": 25672,
+          "cache_creation_input_tokens": 1160,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1160
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-19T21:07:48.930Z_
+
+Now let me conduct the required literature searches. I'll run multiple searches in parallel to cover the key areas.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "858b7bcd-858b-4df3-8c4a-b5dc4b707f1b",
+  "isSidechain": false,
+  "requestId": "req_011CbCcMWuzjSjGCVXd3WfUs",
+  "type": "assistant",
+  "uuid": "252f7f75-e200-4805-9471-c6afe7affe05",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "3c4dd84f-4c46-4453-9bd7-2594c23a26a3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WYtKhWToruLgua2AC4atas",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1160,
+      "cache_read_input_tokens": 25672,
+      "output_tokens": 128,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1160,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 128,
+          "cache_read_input_tokens": 25672,
+          "cache_creation_input_tokens": 1160,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1160
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-19T21:07:49.434Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UdGmW6Vw1Mn7GtRZNCnhbE`</summary>
+
+```json
+{
+  "query": "CLiKA cross-lingual knowledge conductivity XRR NAACL 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "252f7f75-e200-4805-9471-c6afe7affe05",
+  "isSidechain": false,
+  "requestId": "req_011CbCcMWuzjSjGCVXd3WfUs",
+  "type": "assistant",
+  "uuid": "61c9435f-47b6-4886-8443-278b71218a0c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "3c4dd84f-4c46-4453-9bd7-2594c23a26a3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WYtKhWToruLgua2AC4atas",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1160,
+      "cache_read_input_tokens": 25672,
+      "output_tokens": 128,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1160,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 128,
+          "cache_read_input_tokens": 25672,
+          "cache_creation_input_tokens": 1160,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1160
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-19T21:07:57.248Z_
+
+<details><summary>↩ Tool result · `toolu_01UdGmW6Vw1Mn7GtRZNCnhbE`</summary>
+
+```text
+Web search results for query: "CLiKA cross-lingual knowledge conductivity XRR NAACL 2024"
+
+Links: [{"title":"[Quick Review] Multilingual Pretraining and Instruction Tuning Improve Cross-Lingual Knowledge Alignment, But Only Shallowly","url":"https://liner.com/review/multilingual-pretraining-and-instruction-tuning-improve-crosslingual-knowledge-alignment-but"},{"title":"Multilingual Pretraining and Instruction Tuning Improve Cross-Lingual Knowledge Alignment, But Only Shallowly - ACL Anthology","url":"https://aclanthology.org/2024.naacl-long.339/"},{"title":"[2404.04659] Multilingual Pretraining and Instruction Tuning Improve Cross-Lingual Knowledge Alignment, But Only Shallowly","url":"https://arxiv.org/abs/2404.04659"},{"title":"[PDF] Multilingual Pretraining and Instruction Tuning Improve Cross-Lingual Knowledge Alignment, But Only Shallowly | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Multilingual-Pretraining-and-Instruction-Tuning-But-Gao-Hu/8f2630c308b46ce02a06ff623fcbc130d481481d"},{"title":"Multilingual Pretraining and Instruction Tuning Improve Cross-Lingual Knowledge Alignment, But Only Shallowly","url":"https://arxiv.org/html/2404.04659v1"},{"title":"Multilingual Pretraining and Instruction Tuning Improve Cross-Lingual   Knowledge Alignment, But Only Shallowly","url":"https://arxiv.org/pdf/2404.04659"},{"title":"Key ingredients for effective zero-shot cross-lingual knowledge transfer in generative tasks - ACL Anthology","url":"https://aclanthology.org/2024.naacl-long.401/"}]
+
+Based on the search results, here's what I found about CLiKA:
+
+CLiKA is a systematic framework to comprehensively assess cross-lingual knowledge alignment in LLMs at three distinct levels: Performance, Consistency, and Conductivity. The framework introduces specific metrics for each level: Re-scaled Accuracy (RA) for Performance, Correct prediction overlap with English (en-CO) for Consistency, and Cross-retrieval ratio (XRR) for Conductivity.
+
+This NAACL 2024 paper summarizes how multilingual pretraining and instruction tuning impact cross-lingual knowledge alignment. CLiKA utilizes three specialized testing datasets—Basic, Factual, and Fictional—to separately evaluate basic language ability and different aspects of cross-lingual knowledge alignment.
+
+Key findings from the research include: While both multilingual pretraining and instruction tuning are beneficial for cross-lingual knowledge alignment, the training strategy needs to be carefully designed. Continued pretraining improves the alignment of the target language at the cost of other languages, while mixed pretraining affects other languages less. Additionally, the overall cross-lingual knowledge alignment, especially in the conductivity level, is unsatisfactory for all tested LLMs, and neither multilingual pretraining nor instruction tuning can substantially improve the cross-lingual knowledge conductivity.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "61c9435f-47b6-4886-8443-278b71218a0c",
+  "isSidechain": false,
+  "promptId": "b33f37e1-d77e-44cc-9d46-44534aeb3539",
+  "type": "user",
+  "uuid": "ed0e8b9f-7d6b-43b0-9b83-255b3898834c",
+  "toolUseResult": {
+    "query": "CLiKA cross-lingual knowledge conductivity XRR NAACL 2024",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WqW8JGYVV3yeEgKjaom8Np",
+        "content": [
+          {
+            "title": "[Quick Review] Multilingual Pretraining and Instruction Tuning Improve Cross-Lingual Knowledge Alignment, But Only Shallowly",
+            "url": "https://liner.com/review/multilingual-pretraining-and-instruction-tuning-improve-crosslingual-knowledge-alignment-but"
+          },
+          {
+            "title": "Multilingual Pretraining and Instruction Tuning Improve Cross-Lingual Knowledge Alignment, But Only Shallowly - ACL Anthology",
+            "url": "https://aclanthology.org/2024.naacl-long.339/"
+          },
+          {
+            "title": "[2404.04659] Multilingual Pretraining and Instruction Tuning Improve Cross-Lingual Knowledge Alignment, But Only Shallowly",
+            "url": "https://arxiv.org/abs/2404.04659"
+          },
+          {
+            "title": "[PDF] Multilingual Pretraining and Instruction Tuning Improve Cross-Lingual Knowledge Alignment, But Only Shallowly | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Multilingual-Pretraining-and-Instruction-Tuning-But-Gao-Hu/8f2630c308b46ce02a06ff623fcbc130d481481d"
+          },
+          {
+            "title": "Multilingual Pretraining and Instruction Tuning Improve Cross-Lingual Knowledge Alignment, But Only Shallowly",
+            "url": "https://arxiv.org/html/2404.04659v1"
+          },
+          {
+            "title": "Multilingual Pretraining and Instruction Tuning Improve Cross-Lingual   Knowledge Alignment, But Only Shallowly",
+            "url": "https://arxiv.org/pdf/2404.04659"
+          },
+          {
+            "title": "Key ingredients for effective zero-shot cross-lingual knowledge transfer in generative tasks - ACL Anthology",
+            "url": "https://aclanthology.org/2024.naacl-long.401/"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about CLiKA:\n\nCLiKA is a systematic framework to comprehensively assess cross-lingual knowledge alignment in LLMs at three distinct levels: Performance, Consistency, and Conductivity. The framework introduces specific metrics for each level: Re-scaled Accuracy (RA) for Performance, Correct prediction overlap with English (en-CO) for Consistency, and Cross-retrieval ratio (XRR) for Conductivity.\n\nThis NAACL 2024 paper summarizes how multilingual pretraining and instruction tuning impact cross-lingual knowledge alignment. CLiKA utilizes three specialized testing datasets—Basic, Factual, and Fictional—to separately evaluate basic language ability and different aspects of cross-lingual knowledge alignment.\n\nKey findings from the research include: While both multilingual pretraining and instruction tuning are beneficial for cross-lingual knowledge alignment, the training strategy needs to be carefully designed. Continued pretraining improves the alignment of the target language at the cost of other languages, while mixed pretraining affects other languages less. Additionally, the overall cross-lingual knowledge alignment, especially in the conductivity level, is unsatisfactory for all tested LLMs, and neither multilingual pretraining nor instruction tuning can substantially improve the cross-lingual knowledge conductivity."
+    ],
+    "durationSeconds": 7.7982347029999985,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "61c9435f-47b6-4886-8443-278b71218a0c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "3c4dd84f-4c46-4453-9bd7-2594c23a26a3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-19T21:07:59.711Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01SXF9Gxo5fy8t6uHRZD78xm`</summary>
+
+```json
+{
+  "query": "CCL-XCoT contrastive cross-lingual continued pretraining hallucination EMNLP 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ed0e8b9f-7d6b-43b0-9b83-255b3898834c",
+  "isSidechain": false,
+  "requestId": "req_011CbCcNVvF8YGhFVLV4HE8m",
+  "type": "assistant",
+  "uuid": "7e36e48d-05bb-4d9c-b761-32dd5054cec0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "3c4dd84f-4c46-4453-9bd7-2594c23a26a3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019D5cZK1jBCwaEP9TkfVerg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 953,
+      "cache_read_input_tokens": 26832,
+      "output_tokens": 79,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 953,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 79,
+          "cache_read_input_tokens": 26832,
+          "cache_creation_input_tokens": 953,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 953
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-19T21:08:06.503Z_
+
+<details><summary>↩ Tool result · `toolu_01SXF9Gxo5fy8t6uHRZD78xm`</summary>
+
+```text
+Web search results for query: "CCL-XCoT contrastive cross-lingual continued pretraining hallucination EMNLP 2025"
+
+Links: [{"title":"CCL-XCoT: An Efficient Cross-Lingual Knowledge Transfer Method for Mitigating Hallucination Generation","url":"https://arxiv.org/html/2507.14239"},{"title":"CCL-XCoT: An Efficient Cross-Lingual Knowledge Transfer Method for Mitigating Hallucination Generation","url":"https://arxiv.org/pdf/2507.14239"},{"title":"[2507.14239] CCL-XCoT: An Efficient Cross-Lingual Knowledge Transfer Method for Mitigating Hallucination Generation","url":"https://arxiv.org/abs/2507.14239"},{"title":"Accepted Findings Papers - EMNLP 2025","url":"https://2025.emnlp.org/program/find_papers/"},{"title":"CCL-XCoT: An Efficient Cross-Lingual Knowledge Transfer ...","url":"https://aclanthology.org/2025.findings-emnlp.93.pdf"},{"title":"Cross-Lingual Continuous Pretraining","url":"https://www.emergentmind.com/topics/cross-lingual-continuous-pretraining"}]
+
+Based on the search results, here's what I found about CCL-XCoT:
+
+## Overview
+
+CCL-XCoT (Curriculum-based Contrastive Learning-based Cross-lingual Chain-of-Thought) is a two-stage fine-tuning framework for mitigating hallucination in Multilingual Large Language Models (MLLMs).
+
+## Key Components
+
+The approach has two main stages:
+
+1. **Continued Pre-training**: The method enhances cross-lingual semantic alignment through curriculum-based contrastive learning combined with next-token prediction during continued pre-training.
+
+2. **Instruction Fine-tuning**: It introduces a cross-lingual Chain-of-Thought (XCoT) prompting strategy during instruction fine-tuning, which guides the model to reason in a high-resource language before generating answers in the target low-resource language.
+
+## Performance
+
+The experimental results show that CCL-XCoT reduces hallucination rates by up to 62% and substantially improves factual knowledge transfer across language pairs, without relying on external retrieval or multi-model ensembles.
+
+## Publication
+
+The paper was accepted as a Findings paper at EMNLP 2025. The authors are Weihua Zheng, Roy Ka-Wei Lee, Zhengyuan Liu, Kui Wu, AiTi Aw, and Bowei Zou from the Institute for Infocomm Research (I²R), A*STAR, Singapore.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7e36e48d-05bb-4d9c-b761-32dd5054cec0",
+  "isSidechain": false,
+  "promptId": "b33f37e1-d77e-44cc-9d46-44534aeb3539",
+  "type": "user",
+  "uuid": "f1b3374d-c6e4-410e-9e41-768792809cb8",
+  "toolUseResult": {
+    "query": "CCL-XCoT contrastive cross-lingual continued pretraining hallucination EMNLP 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Kh3X1GeqJsSr6bxkH2MYdj",
+        "content": [
+          {
+            "title": "CCL-XCoT: An Efficient Cross-Lingual Knowledge Transfer Method for Mitigating Hallucination Generation",
+            "url": "https://arxiv.org/html/2507.14239"
+          },
+          {
+            "title": "CCL-XCoT: An Efficient Cross-Lingual Knowledge Transfer Method for Mitigating Hallucination Generation",
+            "url": "https://arxiv.org/pdf/2507.14239"
+          },
+          {
+            "title": "[2507.14239] CCL-XCoT: An Efficient Cross-Lingual Knowledge Transfer Method for Mitigating Hallucination Generation",
+            "url": "https://arxiv.org/abs/2507.14239"
+          },
+          {
+            "title": "Accepted Findings Papers - EMNLP 2025",
+            "url": "https://2025.emnlp.org/program/find_papers/"
+          },
+          {
+            "title": "CCL-XCoT: An Efficient Cross-Lingual Knowledge Transfer ...",
+            "url": "https://aclanthology.org/2025.findings-emnlp.93.pdf"
+          },
+          {
+            "title": "Cross-Lingual Continuous Pretraining",
+            "url": "https://www.emergentmind.com/topics/cross-lingual-continuous-pretraining"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about CCL-XCoT:\n\n## Overview\n\nCCL-XCoT (Curriculum-based Contrastive Learning-based Cross-lingual Chain-of-Thought) is a two-stage fine-tuning framework for mitigating hallucination in Multilingual Large Language Models (MLLMs).\n\n## Key Components\n\nThe approach has two main stages:\n\n1. **Continued Pre-training**: The method enhances cross-lingual semantic alignment through curriculum-based contrastive learning combined with next-token prediction during continued pre-training.\n\n2. **Instruction Fine-tuning**: It introduces a cross-lingual Chain-of-Thought (XCoT) prompting strategy during instruction fine-tuning, which guides the model to reason in a high-resource language before generating answers in the target low-resource language.\n\n## Performance\n\nThe experimental results show that CCL-XCoT reduces hallucination rates by up to 62% and substantially improves factual knowledge transfer across language pairs, without relying on external retrieval or multi-model ensembles.\n\n## Publication\n\nThe paper was accepted as a Findings paper at EMNLP 2025. The authors are Weihua Zheng, Roy Ka-Wei Lee, Zhengyuan Liu, Kui Wu, AiTi Aw, and Bowei Zou from the Institute for Infocomm Research (I²R), A*STAR, Singapore."
+    ],
+    "durationSeconds": 6.786340597000002,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "7e36e48d-05bb-4d9c-b761-32dd5054cec0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "3c4dd84f-4c46-4453-9bd7-2594c23a26a3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-19T21:08:08.864Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014HYpAtQWmoqNnGujrG9a3y`</summary>
+
+```json
+{
+  "query": "entity-level cross-lingual alignment contrastive learning multilingual LLM 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f1b3374d-c6e4-410e-9e41-768792809cb8",
+  "isSidechain": false,
+  "requestId": "req_011CbCcPBVkKYdWhM1FRMHUX",
+  "type": "assistant",
+  "uuid": "63f34af1-18c8-433c-a51d-a9ba247af6d2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "3c4dd84f-4c46-4453-9bd7-2594c23a26a3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EFqVGKnr6P7GyVZvGEzoKp",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 770,
+      "cache_read_input_tokens": 27785,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 770,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 27785,
+          "cache_creation_input_tokens": 770,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 770
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-19T21:08:17.182Z_
+
+<details><summary>↩ Tool result · `toolu_014HYpAtQWmoqNnGujrG9a3y`</summary>
+
+```text
+Web search results for query: "entity-level cross-lingual alignment contrastive learning multilingual LLM 2025 2026"
+
+Links: [{"title":"Improving In-context Learning of Multilingual Generative Language Models   with Cross-lingual Alignment","url":"https://arxiv.org/pdf/2311.08089"},{"title":"Multi-Level Contrastive Learning for Cross-Lingual Alignment | IEEE Conference Publication | IEEE Xplore","url":"https://ieeexplore.ieee.org/iel7/9745891/9746004/09747720.pdf"},{"title":"Can you map it to English? The Role of Cross-Lingual Alignment in Multilingual Performance of LLMs","url":"https://arxiv.org/pdf/2504.09378"},{"title":"Speak in Context: Multilingual ASR with Speech–Context Alignment via Contrastive Learning","url":"https://arxiv.org/html/2603.06505"},{"title":"Multi-Level Contrastive Learning for Cross-Lingual Alignment","url":"https://arxiv.org/pdf/2202.13083"},{"title":"On the Entity-Level Alignment in Crosslingual Consistency","url":"https://arxiv.org/pdf/2510.10280"},{"title":"AlignX: Advancing Multilingual Large Language Models ...","url":"https://aclanthology.org/2025.emnlp-main.328.pdf"},{"title":"Probing the Emergence of Cross-lingual Alignment during LLM Training","url":"https://arxiv.org/pdf/2406.13229"}]
+
+Based on the search results, here's what I found on entity-level cross-lingual alignment and contrastive learning in multilingual LLMs:
+
+## Key Research Areas
+
+**Entity-Level Alignment:**
+LLMs have demonstrated remarkable capabilities in multilingual tasks, including translation and factual recall, with crosslingual consistency – the ability to recall the same fact correctly across different languages – emerging as a desirable property for evaluating multilingual LLMs. Entity alignment is important and facilitates consistent factual recall across languages.
+
+**Contrastive Learning Approaches:**
+Multilingual contrastive learning aims to align the internal representations of models across different languages. A multi-level contrastive learning framework improves cross-lingual ability by integrating word-level information of parallel sentences into contrastive learning, unlike sentence-level alignment used in most previous studies.
+
+**Recent Work (2025-2026):**
+MEXA, a cross-lingual retrieval-based score introduced in 2025, measures cross-lingual alignment and demonstrates that languages with better MEXA scores exhibit better task accuracy, suggesting that cross-lingual alignment is a good indicator of an LLM's multilingual capability.
+
+The AlignX approach uses multilingual continual pre-training to align multilingual representations within LLMs, followed by multilingual instruction fine-tuning to stimulate multilingual capabilities while maintaining pre-established alignment.
+
+These recent studies highlight how entity-level and representation alignment through contrastive learning remain central to improving multilingual LLM performance.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "63f34af1-18c8-433c-a51d-a9ba247af6d2",
+  "isSidechain": false,
+  "promptId": "b33f37e1-d77e-44cc-9d46-44534aeb3539",
+  "type": "user",
+  "uuid": "c5259694-4f11-4c6d-ab2f-0ab339ea9cd6",
+  "toolUseResult": {
+    "query": "entity-level cross-lingual alignment contrastive learning multilingual LLM 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CyJnkKW8HAXkL3gs76e3bf",
+        "content": [
+          {
+            "title": "Improving In-context Learning of Multilingual Generative Language Models   with Cross-lingual Alignment",
+            "url": "https://arxiv.org/pdf/2311.08089"
+          },
+          {
+            "title": "Multi-Level Contrastive Learning for Cross-Lingual Alignment | IEEE Conference Publication | IEEE Xplore",
+            "url": "https://ieeexplore.ieee.org/iel7/9745891/9746004/09747720.pdf"
+          },
+          {
+            "title": "Can you map it to English? The Role of Cross-Lingual Alignment in Multilingual Performance of LLMs",
+            "url": "https://arxiv.org/pdf/2504.09378"
+          },
+          {
+            "title": "Speak in Context: Multilingual ASR with Speech–Context Alignment via Contrastive Learning",
+            "url": "https://arxiv.org/html/2603.06505"
+          },
+          {
+            "title": "Multi-Level Contrastive Learning for Cross-Lingual Alignment",
+            "url": "https://arxiv.org/pdf/2202.13083"
+          },
+          {
+            "title": "On the Entity-Level Alignment in Crosslingual Consistency",
+            "url": "https://arxiv.org/pdf/2510.10280"
+          },
+          {
+            "title": "AlignX: Advancing Multilingual Large Language Models ...",
+            "url": "https://aclanthology.org/2025.emnlp-main.328.pdf"
+          },
+          {
+            "title": "Probing the Emergence of Cross-lingual Alignment during LLM Training",
+            "url": "https://arxiv.org/pdf/2406.13229"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found on entity-level cross-lingual alignment and contrastive learning in multilingual LLMs:\n\n## Key Research Areas\n\n**Entity-Level Alignment:**\nLLMs have demonstrated remarkable capabilities in multilingual tasks, including translation and factual recall, with crosslingual consistency – the ability to recall the same fact correctly across different languages – emerging as a desirable property for evaluating multilingual LLMs. Entity alignment is important and facilitates consistent factual recall across languages.\n\n**Contrastive Learning Approaches:**\nMultilingual contrastive learning aims to align the internal representations of models across different languages. A multi-level contrastive learning framework improves cross-lingual ability by integrating word-level information of parallel sentences into contrastive learning, unlike sentence-level alignment used in most previous studies.\n\n**Recent Work (2025-2026):**\nMEXA, a cross-lingual retrieval-based score introduced in 2025, measures cross-lingual alignment and demonstrates that languages with better MEXA scores exhibit better task accuracy, suggesting that cross-lingual alignment is a good indicator of an LLM's multilingual capability.\n\nThe AlignX approach uses multilingual continual pre-training to align multilingual representations within LLMs, followed by multilingual instruction fine-tuning to stimulate multilingual capabilities while maintaining pre-established alignment.\n\nThese recent studies highlight how entity-level and representation alignment through contrastive learning remain central to improving multilingual LLM performance."
+    ],
+    "durationSeconds": 8.312731868000002,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "63f34af1-18c8-433c-a51d-a9ba247af6d2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "3c4dd84f-4c46-4453-9bd7-2594c23a26a3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Entity-Anchored Contrastive Alignment for Cross-Lingual Knowledge Conductivity  ## Description EACA is a continu…",
+  "leafUuid": "c5259694-4f11-4c6d-ab2f-0ab339ea9cd6",
+  "sessionId": "3c4dd84f-4c46-4453-9bd7-2594c23a26a3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Entity-anchored contrastive alignment for cross-lingual knowledge",
+  "sessionId": "3c4dd84f-4c46-4453-9bd7-2594c23a26a3"
+}
+```
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-19T21:08:21.355Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0199VSMZCwjki9Bva91gyZbT`</summary>
+
+```json
+{
+  "query": "FactNet billion-scale knowledge graph multilingual factual grounding arXiv 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c5259694-4f11-4c6d-ab2f-0ab339ea9cd6",
+  "isSidechain": false,
+  "requestId": "req_011CbCcPyDqnwK8LKFJD65XY",
+  "type": "assistant",
+  "uuid": "402ba57f-76d4-48cb-8c41-add5282c5c8f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "3c4dd84f-4c46-4453-9bd7-2594c23a26a3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XxYpff3iYW2Z2GYaDqYc6Z",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 827,
+      "cache_read_input_tokens": 28555,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 827,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 28555,
+          "cache_creation_input_tokens": 827,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 827
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-19T21:08:26.536Z_
+
+<details><summary>↩ Tool result · `toolu_0199VSMZCwjki9Bva91gyZbT`</summary>
+
+```text
+Web search results for query: "FactNet billion-scale knowledge graph multilingual factual grounding arXiv 2026"
+
+Links: [{"title":"[2602.03417] FactNet: A Billion-Scale Knowledge Graph for Multilingual Factual Grounding","url":"https://arxiv.org/abs/2602.03417"},{"title":"FactNet: Multilingual Knowledge Graph & FNAR","url":"https://www.emergentmind.com/topics/factnet"},{"title":"FactNet: A Billion-Scale Knowledge Graph for Multilingual Factual Grounding","url":"https://arxiv.org/pdf/2602.03417"},{"title":"GitHub - yl-shen/factnet: FactNet: A Billion-Scale Knowledge Graph for Multilingual Factual Grounding · GitHub","url":"https://github.com/yl-shen/factnet"},{"title":"FactNet: A Billion-Scale Knowledge Graph for Multilingual Factual Grounding","url":"https://arxiv.org/html/2602.03417v1"},{"title":"(PDF) FactNet: A Billion-Scale Knowledge Graph for Multilingual Factual Grounding","url":"https://www.researchgate.net/publication/400415601_FactNet_A_Billion-Scale_Knowledge_Graph_for_Multilingual_Factual_Grounding"}]
+
+I found the research paper you're looking for! Here are the key details:
+
+FactNet is a massive, open-source resource that unifies 1.7 billion atomic assertions with 3.01 billion auditable evidence pointers derived exclusively from 316 Wikipedia editions.
+
+**Key Features:**
+
+- FactNet employs a strictly deterministic construction pipeline, ensuring that every evidence unit is recoverable with byte-level precision.
+
+- Extensive auditing confirms a high grounding precision of 92.1%, even in long-tail languages.
+
+- The graph couples Wikidata claims with native evidence (from Wikipedia) via three layers: FactStatement (atomic unit), FactSense (grounded span with byte-offsets), and FactSynset (cross-lingual normalization).
+
+**Evaluation Suite:**
+
+FactNet-Bench is a comprehensive evaluation suite for Knowledge Graph Completion, Question Answering, and Fact Checking.
+
+The paper was published on arXiv on February 3, 2026 (arXiv:2602.03417) and is available at https://arxiv.org/abs/2602.03417.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "402ba57f-76d4-48cb-8c41-add5282c5c8f",
+  "isSidechain": false,
+  "promptId": "b33f37e1-d77e-44cc-9d46-44534aeb3539",
+  "type": "user",
+  "uuid": "f16a16b8-51e9-4899-8b1a-800da38500f7",
+  "toolUseResult": {
+    "query": "FactNet billion-scale knowledge graph multilingual factual grounding arXiv 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LiT1ZT4EXK4Smze3ZaQXc8",
+        "content": [
+          {
+            "title": "[2602.03417] FactNet: A Billion-Scale Knowledge Graph for Multilingual Factual Grounding",
+            "url": "https://arxiv.org/abs/2602.03417"
+          },
+          {
+            "title": "FactNet: Multilingual Knowledge Graph & FNAR",
+            "url": "https://www.emergentmind.com/topics/factnet"
+          },
+          {
+            "title": "FactNet: A Billion-Scale Knowledge Graph for Multilingual Factual Grounding",
+            "url": "https://arxiv.org/pdf/2602.03417"
+          },
+          {
+            "title": "GitHub - yl-shen/factnet: FactNet: A Billion-Scale Knowledge Graph for Multilingual Factual Grounding · GitHub",
+            "url": "https://github.com/yl-shen/factnet"
+          },
+          {
+            "title": "FactNet: A Billion-Scale Knowledge Graph for Multilingual Factual Grounding",
+            "url": "https://arxiv.org/html/2602.03417v1"
+          },
+          {
+            "title": "(PDF) FactNet: A Billion-Scale Knowledge Graph for Multilingual Factual Grounding",
+            "url": "https://www.researchgate.net/publication/400415601_FactNet_A_Billion-Scale_Knowledge_Graph_for_Multilingual_Factual_Grounding"
+          }
+        ]
+      },
+      "I found the research paper you're looking for! Here are the key details:\n\nFactNet is a massive, open-source resource that unifies 1.7 billion atomic assertions with 3.01 billion auditable evidence pointers derived exclusively from 316 Wikipedia editions.\n\n**Key Features:**\n\n- FactNet employs a strictly deterministic construction pipeline, ensuring that every evidence unit is recoverable with byte-level precision.\n\n- Extensive auditing confirms a high grounding precision of 92.1%, even in long-tail languages.\n\n- The graph couples Wikidata claims with native evidence (from Wikipedia) via three layers: FactStatement (atomic unit), FactSense (grounded span with byte-offsets), and FactSynset (cross-lingual normalization).\n\n**Evaluation Suite:**\n\nFactNet-Bench is a comprehensive evaluation suite for Knowledge Graph Completion, Question Answering, and Fact Checking.\n\nThe paper was published on arXiv on February 3, 2026 (arXiv:2602.03417) and is available at https://arxiv.org/abs/2602.03417."
+    ],
+    "durationSeconds": 5.1764575100000005,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "402ba57f-76d4-48cb-8c41-add5282c5c8f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "3c4dd84f-4c46-4453-9bd7-2594c23a26a3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-19T21:08:29.447Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BX17a4gNRvZUopDzM4N86Y`</summary>
+
+```json
+{
+  "query": "script barrier cross-lingual knowledge transfer reasoning models Bandarkar 2026 Ifergan NAACL 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f16a16b8-51e9-4899-8b1a-800da38500f7",
+  "isSidechain": false,
+  "requestId": "req_011CbCcQf7Chm5b3U7YMvzXj",
+  "type": "assistant",
+  "uuid": "7c79b7d9-3713-42a9-afcd-e8bc16ea2c1d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "3c4dd84f-4c46-4453-9bd7-2594c23a26a3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SwQF2H17DyD1FMUcDYwUrZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 695,
+      "cache_read_input_tokens": 29382,
+      "output_tokens": 80,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 695,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 80,
+          "cache_read_input_tokens": 29382,
+          "cache_creation_input_tokens": 695,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 695
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-19T21:08:37.112Z_
+
+<details><summary>↩ Tool result · `toolu_01BX17a4gNRvZUopDzM4N86Y`</summary>
+
+```text
+Web search results for query: "script barrier cross-lingual knowledge transfer reasoning models Bandarkar 2026 Ifergan NAACL 2025"
+
+Links: [{"title":"Large Reasoning Models Struggle to Transfer Parametric Knowledge Across Scripts","url":"https://arxiv.org/pdf/2603.17070"},{"title":"[2603.17070] Large Reasoning Models Struggle to Transfer Parametric Knowledge Across Scripts","url":"https://arxiv.org/abs/2603.17070"},{"title":"Breaking the Script Barrier in Multilingual Pre-Trained Language Models   with Transliteration-Based Post-Training Alignment","url":"https://arxiv.org/pdf/2406.19759"},{"title":"Breaking the Language Barrier: Improving Cross-Lingual Reasoning with   Structured Self-Attention","url":"https://arxiv.org/pdf/2310.15258"},{"title":"When Language Shapes Thought: Cross-Lingual Transfer of Factual Knowledge in Question Answering","url":"https://arxiv.org/pdf/2505.24409"},{"title":"Code-Switching In-Context Learning for Cross-Lingual Transfer of Large Language Models","url":"https://arxiv.org/pdf/2510.05678"}]
+
+Based on the search results, I found relevant information about the paper you're looking for:
+
+The paper "Large Reasoning Models Struggle to Transfer Parametric Knowledge Across Scripts" is by Lucas Bandarkar, Alan Ansell, and Trevor Cohn from Google Research and affiliated institutions. 
+
+The research demonstrates that the perceived gap in knowledge transfer is primarily a script barrier. The authors conducted observational data analysis on the performance of thinking models on two datasets with local knowledge from around the world, ECLeKTic and MultiLoKo, and their regression analysis shows that script match—not language or family—is the primary predictor of knowledge transfer failure once model capability and question difficulty are accounted for.
+
+The researchers developed a synthetic generation pipeline to design SFT samples to encourage the model to better reason about transliteration ambiguities when trying to fetch parametric knowledge at inference-time, and they show that teaching two models to reason better reduces the cross-script transfer gap.
+
+The paper was posted on arXiv on March 17, 2026 (arxiv ID: 2603.17070). However, I should note that while the search results confirm this is a recent paper by these authors on script barriers and cross-lingual knowledge transfer in reasoning models, I did not find specific confirmation of NAACL 2025 publication details in these results.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7c79b7d9-3713-42a9-afcd-e8bc16ea2c1d",
+  "isSidechain": false,
+  "promptId": "b33f37e1-d77e-44cc-9d46-44534aeb3539",
+  "type": "user",
+  "uuid": "a51cc2e8-4735-45d1-9f7e-7cb0c715b204",
+  "toolUseResult": {
+    "query": "script barrier cross-lingual knowledge transfer reasoning models Bandarkar 2026 Ifergan NAACL 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XK9edFTKozaAumMrW1vYhx",
+        "content": [
+          {
+            "title": "Large Reasoning Models Struggle to Transfer Parametric Knowledge Across Scripts",
+            "url": "https://arxiv.org/pdf/2603.17070"
+          },
+          {
+            "title": "[2603.17070] Large Reasoning Models Struggle to Transfer Parametric Knowledge Across Scripts",
+            "url": "https://arxiv.org/abs/2603.17070"
+          },
+          {
+            "title": "Breaking the Script Barrier in Multilingual Pre-Trained Language Models   with Transliteration-Based Post-Training Alignment",
+            "url": "https://arxiv.org/pdf/2406.19759"
+          },
+          {
+            "title": "Breaking the Language Barrier: Improving Cross-Lingual Reasoning with   Structured Self-Attention",
+            "url": "https://arxiv.org/pdf/2310.15258"
+          },
+          {
+            "title": "When Language Shapes Thought: Cross-Lingual Transfer of Factual Knowledge in Question Answering",
+            "url": "https://arxiv.org/pdf/2505.24409"
+          },
+          {
+            "title": "Code-Switching In-Context Learning for Cross-Lingual Transfer of Large Language Models",
+            "url": "https://arxiv.org/pdf/2510.05678"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about the paper you're looking for:\n\nThe paper \"Large Reasoning Models Struggle to Transfer Parametric Knowledge Across Scripts\" is by Lucas Bandarkar, Alan Ansell, and Trevor Cohn from Google Research and affiliated institutions. \n\nThe research demonstrates that the perceived gap in knowledge transfer is primarily a script barrier. The authors conducted observational data analysis on the performance of thinking models on two datasets with local knowledge from around the world, ECLeKTic and MultiLoKo, and their regression analysis shows that script match—not language or family—is the primary predictor of knowledge transfer failure once model capability and question difficulty are accounted for.\n\nThe researchers developed a synthetic generation pipeline to design SFT samples to encourage the model to better reason about transliteration ambiguities when trying to fetch parametric knowledge at inference-time, and they show that teaching two models to reason better reduces the cross-script transfer gap.\n\nThe paper was posted on arXiv on March 17, 2026 (arxiv ID: 2603.17070). However, I should note that while the search results confirm this is a recent paper by these authors on script barriers and cross-lingual knowledge transfer in reasoning models, I did not find specific confirmation of NAACL 2025 publication details in these results."
+    ],
+    "durationSeconds": 7.662436302999995,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "7c79b7d9-3713-42a9-afcd-e8bc16ea2c1d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "3c4dd84f-4c46-4453-9bd7-2594c23a26a3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-19T21:08:40.516Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Fc5pYbkpLe7GUprfS92Qm3`</summary>
+
+```json
+{
+  "query": "Liu Niehues middle-layer representation alignment cross-lingual transfer ACL 2025 contrastive"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a51cc2e8-4735-45d1-9f7e-7cb0c715b204",
+  "isSidechain": false,
+  "requestId": "req_011CbCcRSKXjX3zAvrud22dW",
+  "type": "assistant",
+  "uuid": "f5b40427-226d-4422-85c4-07a2fe10abcb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "3c4dd84f-4c46-4453-9bd7-2594c23a26a3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011RsHPcZhDpFE7kxTbB8bjJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 704,
+      "cache_read_input_tokens": 30077,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 704,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 30077,
+          "cache_creation_input_tokens": 704,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 704
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-19T21:08:47.573Z_
+
+<details><summary>↩ Tool result · `toolu_01Fc5pYbkpLe7GUprfS92Qm3`</summary>
+
+```text
+Web search results for query: "Liu Niehues middle-layer representation alignment cross-lingual transfer ACL 2025 contrastive"
+
+Links: [{"title":"Middle-Layer Representation Alignment for Cross-Lingual Transfer in Fine-Tuned LLMs - ACL Anthology","url":"https://aclanthology.org/2025.acl-long.778/"},{"title":"Middle-Layer Representation Alignment for Cross-Lingual Transfer in Fine-Tuned LLMs | Request PDF","url":"https://www.researchgate.net/publication/394303200_Middle-Layer_Representation_Alignment_for_Cross-Lingual_Transfer_in_Fine-Tuned_LLMs"},{"title":"Middle-Layer Representation Alignment for Cross-Lingual ...","url":"https://aclanthology.org/2025.acl-long.778.pdf"},{"title":"[Literature Review] Middle-Layer Representation Alignment for Cross-Lingual Transfer in Fine-Tuned LLMs","url":"https://www.themoonlight.io/en/review/middle-layer-representation-alignment-for-cross-lingual-transfer-in-fine-tuned-llms"},{"title":"Middle-Layer Representation Alignment for Cross-Lingual Transfer in Fine-Tuned LLMs","url":"https://arxiv.org/pdf/2502.14830"},{"title":"[2502.14830] Middle-Layer Representation Alignment for Cross-Lingual Transfer in Fine-Tuned LLMs","url":"https://arxiv.org/abs/2502.14830"},{"title":"Can you map it to English? The Role of Cross-Lingual ...","url":"https://aclanthology.org/2026.eacl-long.225.pdf"},{"title":"Middle-Layer Representation Alignment for Cross-Lingual Transfer in","url":"https://openreview.net/pdf/165a4c42ede4fa7182ef5ba60ec0669f5606b9b8.pdf"},{"title":"Middle-Layer Representation Alignment for Cross-Lingual Transfer in Fine-Tuned LLMs","url":"https://arxiv.org/html/2502.14830v1"}]
+
+Based on the search results, here's what I found about this research:
+
+## Paper Overview
+
+Liu and Niehues present "Middle-Layer Representation Alignment for Cross-Lingual Transfer in Fine-Tuned LLMs" at ACL 2025. The paper addresses how to extend task-specific capabilities of large language models across diverse languages, given that effective cross-lingual transfer is hindered by LLM performance gaps across languages and the scarcity of fine-tuning data in many languages.
+
+## Key Findings
+
+Through analysis of LLM internal representations from over 1,000+ language pairs, the authors discover that middle layers exhibit the strongest potential for cross-lingual alignment. Building on this finding, they propose a middle-layer alignment objective integrated into task-specific training.
+
+## Methodology
+
+The alignment objective is specified through a contrastive loss function that maximizes the similarity between semantically equivalent translations while simultaneously minimizing the similarity among non-translations. Concretely, activations from the middle layer of the network are extracted for parallel texts and mean-pooled over sequence.
+
+## Experimental Results
+
+Experiments on slot filling, machine translation, and structured text generation show consistent improvements in cross-lingual transfer, especially to lower-resource languages, and the method is robust to the choice of alignment languages and generalizes to languages unseen during alignment.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f5b40427-226d-4422-85c4-07a2fe10abcb",
+  "isSidechain": false,
+  "promptId": "b33f37e1-d77e-44cc-9d46-44534aeb3539",
+  "type": "user",
+  "uuid": "f1bcf573-15fb-4d99-90d6-1b6f91655aec",
+  "toolUseResult": {
+    "query": "Liu Niehues middle-layer representation alignment cross-lingual transfer ACL 2025 contrastive",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01GNYrAnmS5XSJBWpuYpSnZk",
+        "content": [
+          {
+            "title": "Middle-Layer Representation Alignment for Cross-Lingual Transfer in Fine-Tuned LLMs - ACL Anthology",
+            "url": "https://aclanthology.org/2025.acl-long.778/"
+          },
+          {
+            "title": "Middle-Layer Representation Alignment for Cross-Lingual Transfer in Fine-Tuned LLMs | Request PDF",
+            "url": "https://www.researchgate.net/publication/394303200_Middle-Layer_Representation_Alignment_for_Cross-Lingual_Transfer_in_Fine-Tuned_LLMs"
+          },
+          {
+            "title": "Middle-Layer Representation Alignment for Cross-Lingual ...",
+            "url": "https://aclanthology.org/2025.acl-long.778.pdf"
+          },
+          {
+            "title": "[Literature Review] Middle-Layer Representation Alignment for Cross-Lingual Transfer in Fine-Tuned LLMs",
+            "url": "https://www.themoonlight.io/en/review/middle-layer-representation-alignment-for-cross-lingual-transfer-in-fine-tuned-llms"
+          },
+          {
+            "title": "Middle-Layer Representation Alignment for Cross-Lingual Transfer in Fine-Tuned LLMs",
+            "url": "https://arxiv.org/pdf/2502.14830"
+          },
+          {
+            "title": "[2502.14830] Middle-Layer Representation Alignment for Cross-Lingual Transfer in Fine-Tuned LLMs",
+            "url": "https://arxiv.org/abs/2502.14830"
+          },
+          {
+            "title": "Can you map it to English? The Role of Cross-Lingual ...",
+            "url": "https://aclanthology.org/2026.eacl-long.225.pdf"
+          },
+          {
+            "title": "Middle-Layer Representation Alignment for Cross-Lingual Transfer in",
+            "url": "https://openreview.net/pdf/165a4c42ede4fa7182ef5ba60ec0669f5606b9b8.pdf"
+          },
+          {
+            "title": "Middle-Layer Representation Alignment for Cross-Lingual Transfer in Fine-Tuned LLMs",
+            "url": "https://arxiv.org/html/2502.14830v1"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about this research:\n\n## Paper Overview\n\nLiu and Niehues present \"Middle-Layer Representation Alignment for Cross-Lingual Transfer in Fine-Tuned LLMs\" at ACL 2025. The paper addresses how to extend task-specific capabilities of large language models across diverse languages, given that effective cross-lingual transfer is hindered by LLM performance gaps across languages and the scarcity of fine-tuning data in many languages.\n\n## Key Findings\n\nThrough analysis of LLM internal representations from over 1,000+ language pairs, the authors discover that middle layers exhibit the strongest potential for cross-lingual alignment. Building on this finding, they propose a middle-layer alignment objective integrated into task-specific training.\n\n## Methodology\n\nThe alignment objective is specified through a contrastive loss function that maximizes the similarity between semantically equivalent translations while simultaneously minimizing the similarity among non-translations. Concretely, activations from the middle layer of the network are extracted for parallel texts and mean-pooled over sequence.\n\n## Experimental Results\n\nExperiments on slot filling, machine translation, and structured text generation show consistent improvements in cross-lingual transfer, especially to lower-resource languages, and the method is robust to the choice of alignment languages and generalizes to languages unseen during alignment."
+    ],
+    "durationSeconds": 7.051600513999991,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "f5b40427-226d-4422-85c4-07a2fe10abcb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "3c4dd84f-4c46-4453-9bd7-2594c23a26a3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-19T21:08:51.119Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Gq7WT9zpK48j5YGjc3BJXN`</summary>
+
+```json
+{
+  "query": "KBioXLM knowledge-anchored biomedical multilingual entity alignment EMNLP 2023"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f1bcf573-15fb-4d99-90d6-1b6f91655aec",
+  "isSidechain": false,
+  "requestId": "req_011CbCcSD562MLkBv9ERJWNd",
+  "type": "assistant",
+  "uuid": "406cf07e-bbe9-41db-baae-6cd4af2dec59",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "3c4dd84f-4c46-4453-9bd7-2594c23a26a3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014c4MNpdyqmuZ2zeTeJ9ye9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 933,
+      "cache_read_input_tokens": 30781,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 933,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 30781,
+          "cache_creation_input_tokens": 933,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 933
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-19T21:08:59.477Z_
+
+<details><summary>↩ Tool result · `toolu_01Gq7WT9zpK48j5YGjc3BJXN`</summary>
+
+```text
+Web search results for query: "KBioXLM knowledge-anchored biomedical multilingual entity alignment EMNLP 2023"
+
+Links: [{"title":"KBioXLM: A Knowledge-anchored Biomedical Multilingual Pretrained Language Model - ACL Anthology","url":"https://aclanthology.org/2023.findings-emnlp.751/"},{"title":"[2311.11564] KBioXLM: A Knowledge-anchored Biomedical Multilingual Pretrained Language Model","url":"https://arxiv.org/abs/2311.11564"},{"title":"KBioXLM: A Knowledge-anchored Biomedical Multilingual Pretrained   Language Model","url":"https://arxiv.org/pdf/2311.11564"},{"title":"Paper page - KBioXLM: A Knowledge-anchored Biomedical Multilingual Pretrained Language Model","url":"https://huggingface.co/papers/2311.11564"},{"title":"Main Conference - EMNLP 2023","url":"https://2023.emnlp.org/program/accepted_main_conference/"}]
+
+Based on the search results, I found information about KBioXLM:
+
+KBioXLM is a model that transforms the multilingual pretrained model XLM-R into the biomedical domain using a knowledge-anchored approach. 
+
+The model achieves a biomedical multilingual corpus by incorporating three granularity knowledge alignments (entity, fact, and passage levels) into monolingual corpora, then designs three corresponding training tasks (entity masking, relation masking, and passage relation prediction) and continues training on top of the XLM-R model to enhance its domain cross-lingual ability.
+
+Experimental results demonstrate that the model significantly outperforms monolingual and multilingual pretrained models in cross-lingual zero-shot and few-shot scenarios, achieving improvements of up to 10+ points.
+
+The paper was published in Findings of the Association for Computational Linguistics: EMNLP 2023, in Singapore.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "406cf07e-bbe9-41db-baae-6cd4af2dec59",
+  "isSidechain": false,
+  "promptId": "b33f37e1-d77e-44cc-9d46-44534aeb3539",
+  "type": "user",
+  "uuid": "b17656e8-8d61-490b-b4d0-74627a954cc5",
+  "toolUseResult": {
+    "query": "KBioXLM knowledge-anchored biomedical multilingual entity alignment EMNLP 2023",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013qZBBLfTCxYsE2uyWeWS2d",
+        "content": [
+          {
+            "title": "KBioXLM: A Knowledge-anchored Biomedical Multilingual Pretrained Language Model - ACL Anthology",
+            "url": "https://aclanthology.org/2023.findings-emnlp.751/"
+          },
+          {
+            "title": "[2311.11564] KBioXLM: A Knowledge-anchored Biomedical Multilingual Pretrained Language Model",
+            "url": "https://arxiv.org/abs/2311.11564"
+          },
+          {
+            "title": "KBioXLM: A Knowledge-anchored Biomedical Multilingual Pretrained   Language Model",
+            "url": "https://arxiv.org/pdf/2311.11564"
+          },
+          {
+            "title": "Paper page - KBioXLM: A Knowledge-anchored Biomedical Multilingual Pretrained Language Model",
+            "url": "https://huggingface.co/papers/2311.11564"
+          },
+          {
+            "title": "Main Conference - EMNLP 2023",
+            "url": "https://2023.emnlp.org/program/accepted_main_conference/"
+          }
+        ]
+      },
+      "Based on the search results, I found information about KBioXLM:\n\nKBioXLM is a model that transforms the multilingual pretrained model XLM-R into the biomedical domain using a knowledge-anchored approach. \n\nThe model achieves a biomedical multilingual corpus by incorporating three granularity knowledge alignments (entity, fact, and passage levels) into monolingual corpora, then designs three corresponding training tasks (entity masking, relation masking, and passage relation prediction) and continues training on top of the XLM-R model to enhance its domain cross-lingual ability.\n\nExperimental results demonstrate that the model significantly outperforms monolingual and multilingual pretrained models in cross-lingual zero-shot and few-shot scenarios, achieving improvements of up to 10+ points.\n\nThe paper was published in Findings of the Association for Computational Linguistics: EMNLP 2023, in Singapore."
+    ],
+    "durationSeconds": 8.353439416000008,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "406cf07e-bbe9-41db-baae-6cd4af2dec59",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "3c4dd84f-4c46-4453-9bd7-2594c23a26a3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 30 · 2026-05-19T21:08:59.489Z_
+
+```json
+{
+  "parentUuid": "b17656e8-8d61-490b-b4d0-74627a954cc5",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "9222156d-c102-4150-9f8d-1ec2bf347824",
+  "timestamp": "2026-05-19T21:08:59.489Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "3c4dd84f-4c46-4453-9bd7-2594c23a26a3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-19T21:09:04.076Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Fu8R2SZ7Pm8JGjVfWe9WrV`</summary>
+
+```json
+{
+  "query": "cross-lingual entity alignment factual consistency decoder LLM 2025 2026 contrastive pretraining"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9222156d-c102-4150-9f8d-1ec2bf347824",
+  "isSidechain": false,
+  "requestId": "req_011CbCcT5zxr3q4ZUx6TLN6r",
+  "type": "assistant",
+  "uuid": "e53cd787-53ac-4e74-a93f-d664e41a289e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "3c4dd84f-4c46-4453-9bd7-2594c23a26a3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NJZFusMyT5YsWfeN8NrUD4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 699,
+      "cache_read_input_tokens": 31714,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 699,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 31714,
+          "cache_creation_input_tokens": 699,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 699
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-19T21:09:18.265Z_
+
+<details><summary>↩ Tool result · `toolu_01Fu8R2SZ7Pm8JGjVfWe9WrV`</summary>
+
+```text
+Web search results for query: "cross-lingual entity alignment factual consistency decoder LLM 2025 2026 contrastive pretraining"
+
+Links: [{"title":"Cross-Lingual Continuous Pretraining","url":"https://www.emergentmind.com/topics/cross-lingual-continuous-pretraining"},{"title":"Multilingual Factual Consistency Evaluation","url":"https://www.emergentmind.com/topics/multilingual-factual-consistency-evaluation"},{"title":"On the Entity-Level Alignment in Crosslingual Consistency","url":"https://arxiv.org/pdf/2510.10280"},{"title":"Tracing Multilingual Factual Knowledge Acquisition in Pretraining","url":"https://arxiv.org/pdf/2505.14824"},{"title":"Probing the Emergence of Cross-lingual Alignment during LLM Training","url":"https://arxiv.org/html/2406.13229v1"},{"title":"Middle-Layer Representation Alignment for Cross-Lingual ...","url":"https://aclanthology.org/2025.acl-long.778.pdf"}]
+
+Based on the web search results, here's what I found on this specialized topic:
+
+## Cross-Lingual Entity Alignment and Factual Consistency
+
+LLMs have demonstrated remarkable capabilities in multilingual tasks, including translation, question answering, and factual recall. However, LLMs frequently exhibit inconsistencies, particularly when the involved languages differ in script or linguistic structure.
+
+### Entity-Level Alignment as a Key Mechanism
+
+Entity-level alignment is revealed as a key mechanistic determinant: prompt-engineering interventions such as "SubInj" or "SubSub" (injecting English subject cues) effectively boost both cross-lingual factual recall and answer consistency, especially for low-resource or non-Latin scripts. Entity alignment is important and facilitates consistent factual recall across languages.
+
+### Recent Research on Pretraining and Factual Knowledge
+
+Recent work traces the dynamics of multilingual factual recall and crosslingual consistency throughout pretraining, analyzing its emergence across checkpoints using OLMo-7B, an English-centric decoder-only LLM.
+
+### Contrastive Pretraining Approaches
+
+Where parallel data is scarce, comparable corpora (Wikipedia interwiki links, retrieved web passages) can serve for weak contrastive supervision. Additionally, semantic retrieval extends the availability of in-context pairs beyond strict factual overlap, enabling large-scale augmentation of cross-lingual contexts using embeddings and approximate nearest neighbor search.
+
+### Recent ACL 2025 Work
+
+Recent work on cross-lingual transfer operates alignment objectives on middle-layer representations to improve performance in downstream tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e53cd787-53ac-4e74-a93f-d664e41a289e",
+  "isSidechain": false,
+  "promptId": "b33f37e1-d77e-44cc-9d46-44534aeb3539",
+  "type": "user",
+  "uuid": "9eefcea7-3942-4aee-9091-a92e207501b7",
+  "toolUseResult": {
+    "query": "cross-lingual entity alignment factual consistency decoder LLM 2025 2026 contrastive pretraining",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WFwMMUMJdtbvicuKSwHuWV",
+        "content": [
+          {
+            "title": "Cross-Lingual Continuous Pretraining",
+            "url": "https://www.emergentmind.com/topics/cross-lingual-continuous-pretraining"
+          },
+          {
+            "title": "Multilingual Factual Consistency Evaluation",
+            "url": "https://www.emergentmind.com/topics/multilingual-factual-consistency-evaluation"
+          },
+          {
+            "title": "On the Entity-Level Alignment in Crosslingual Consistency",
+            "url": "https://arxiv.org/pdf/2510.10280"
+          },
+          {
+            "title": "Tracing Multilingual Factual Knowledge Acquisition in Pretraining",
+            "url": "https://arxiv.org/pdf/2505.14824"
+          },
+          {
+            "title": "Probing the Emergence of Cross-lingual Alignment during LLM Training",
+            "url": "https://arxiv.org/html/2406.13229v1"
+          },
+          {
+            "title": "Middle-Layer Representation Alignment for Cross-Lingual ...",
+            "url": "https://aclanthology.org/2025.acl-long.778.pdf"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found on this specialized topic:\n\n## Cross-Lingual Entity Alignment and Factual Consistency\n\nLLMs have demonstrated remarkable capabilities in multilingual tasks, including translation, question answering, and factual recall. However, LLMs frequently exhibit inconsistencies, particularly when the involved languages differ in script or linguistic structure.\n\n### Entity-Level Alignment as a Key Mechanism\n\nEntity-level alignment is revealed as a key mechanistic determinant: prompt-engineering interventions such as \"SubInj\" or \"SubSub\" (injecting English subject cues) effectively boost both cross-lingual factual recall and answer consistency, especially for low-resource or non-Latin scripts. Entity alignment is important and facilitates consistent factual recall across languages.\n\n### Recent Research on Pretraining and Factual Knowledge\n\nRecent work traces the dynamics of multilingual factual recall and crosslingual consistency throughout pretraining, analyzing its emergence across checkpoints using OLMo-7B, an English-centric decoder-only LLM.\n\n### Contrastive Pretraining Approaches\n\nWhere parallel data is scarce, comparable corpora (Wikipedia interwiki links, retrieved web passages) can serve for weak contrastive supervision. Additionally, semantic retrieval extends the availability of in-context pairs beyond strict factual overlap, enabling large-scale augmentation of cross-lingual contexts using embeddings and approximate nearest neighbor search.\n\n### Recent ACL 2025 Work\n\nRecent work on cross-lingual transfer operates alignment objectives on middle-layer representations to improve performance in downstream tasks."
+    ],
+    "durationSeconds": 14.184016770000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "e53cd787-53ac-4e74-a93f-d664e41a289e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "3c4dd84f-4c46-4453-9bd7-2594c23a26a3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 33_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Entity-Anchored Contrastive Alignment for Cross-Lingual Knowledge Conductivity  ## Description EACA is a continu…",
+  "leafUuid": "9eefcea7-3942-4aee-9091-a92e207501b7",
+  "sessionId": "3c4dd84f-4c46-4453-9bd7-2594c23a26a3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 34_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Entity-anchored contrastive alignment for cross-lingual knowledge",
+  "sessionId": "3c4dd84f-4c46-4453-9bd7-2594c23a26a3"
+}
+```
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-19T21:09:22.469Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01P6ji1hFe7znsviASjjWDwZ`</summary>
+
+```json
+{
+  "query": "\"cross-lingual knowledge conductivity\" entity contrastive alignment Wikidata QID 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9eefcea7-3942-4aee-9091-a92e207501b7",
+  "isSidechain": false,
+  "requestId": "req_011CbCcUUrfhwGU6RcBUW9HX",
+  "type": "assistant",
+  "uuid": "a662a3e2-03d2-4db1-8490-5ebafcf61633",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "3c4dd84f-4c46-4453-9bd7-2594c23a26a3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AwuxwtsLHxifo1DCahxDNy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 738,
+      "cache_read_input_tokens": 32413,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 738,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 32413,
+          "cache_creation_input_tokens": 738,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 738
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-19T21:09:35.561Z_
+
+<details><summary>↩ Tool result · `toolu_01P6ji1hFe7znsviASjjWDwZ`</summary>
+
+```text
+Web search results for query: ""cross-lingual knowledge conductivity" entity contrastive alignment Wikidata QID 2025 2026"
+
+Links: [{"title":"Statistical and Neural Methods for Cross-lingual Entity Label Mapping in   Knowledge Graphs","url":"https://arxiv.org/pdf/2206.08709"},{"title":"Cross-Lingual Entity Matching for Knowledge Graphs by Hsiu-Wei Yang A thesis","url":"https://uwspace.uwaterloo.ca/bitstreams/c34194b1-f8fa-4fbe-b322-f3f3fc950b9a/download"},{"title":"Factual Inconsistencies in Multilingual Wikipedia Tables","url":"https://arxiv.org/html/2507.18406v1"},{"title":"SubGraph Networks based Entity Alignment for Cross-lingual Knowledge   Graph","url":"https://arxiv.org/pdf/2205.03557"},{"title":"Understanding and Improving Knowledge Graph Embedding for Entity Alignment","url":"https://proceedings.mlr.press/v162/guo22i/guo22i.pdf"},{"title":"Confidence-aware iterative training for cross-lingual entity alignment - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S095219762501070X"},{"title":"Cross-lingual entity alignment based on complex relationships and fine-grained attributes - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S1568494625002054"},{"title":"FuAlign: Cross-lingual entity alignment via multi-view representation learning of fused knowledge graphs - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S156625352200094X"}]
+
+Based on the web search results, I found relevant research on cross-lingual entity alignment with Wikidata QIDs, though I did not find a specific publication titled "cross-lingual knowledge conductivity entity contrastive alignment."
+
+However, the search results reveal active research in this area:
+
+Recent work has investigated the application of word and sentence alignment techniques coupled with matching algorithms to align cross-lingual entity labels extracted from Wikidata in 10 languages. Methods for cross-lingual mapping of labels rely on similarity scores from cross-lingual word alignment methods and achieve mapping accuracy of over 88% on Wikidata datasets.
+
+Additionally, some frameworks embed entities from multi-source knowledge graphs into a unified space with a contrastive loss, which relates to the contrastive alignment aspect of your query.
+
+Recent work leverages Wikidata IDs as a language-independent identifier, extracting the internal Wikipedia link and querying the MediaWiki API to resolve corresponding Wikidata QIDs.
+
+The search results indicate that cross-lingual entity alignment using Wikidata QIDs with contrastive learning methods is an active research area, but I was unable to locate a specific publication exactly matching your search query with those terms and 2025-2026 dates.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a662a3e2-03d2-4db1-8490-5ebafcf61633",
+  "isSidechain": false,
+  "promptId": "b33f37e1-d77e-44cc-9d46-44534aeb3539",
+  "type": "user",
+  "uuid": "863b351c-6a13-4ea7-9f76-616310a45524",
+  "toolUseResult": {
+    "query": "\"cross-lingual knowledge conductivity\" entity contrastive alignment Wikidata QID 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QMEVyFR6cvQwGRLCvdAmm1",
+        "content": [
+          {
+            "title": "Statistical and Neural Methods for Cross-lingual Entity Label Mapping in   Knowledge Graphs",
+            "url": "https://arxiv.org/pdf/2206.08709"
+          },
+          {
+            "title": "Cross-Lingual Entity Matching for Knowledge Graphs by Hsiu-Wei Yang A thesis",
+            "url": "https://uwspace.uwaterloo.ca/bitstreams/c34194b1-f8fa-4fbe-b322-f3f3fc950b9a/download"
+          },
+          {
+            "title": "Factual Inconsistencies in Multilingual Wikipedia Tables",
+            "url": "https://arxiv.org/html/2507.18406v1"
+          },
+          {
+            "title": "SubGraph Networks based Entity Alignment for Cross-lingual Knowledge   Graph",
+            "url": "https://arxiv.org/pdf/2205.03557"
+          },
+          {
+            "title": "Understanding and Improving Knowledge Graph Embedding for Entity Alignment",
+            "url": "https://proceedings.mlr.press/v162/guo22i/guo22i.pdf"
+          },
+          {
+            "title": "Confidence-aware iterative training for cross-lingual entity alignment - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S095219762501070X"
+          },
+          {
+            "title": "Cross-lingual entity alignment based on complex relationships and fine-grained attributes - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S1568494625002054"
+          },
+          {
+            "title": "FuAlign: Cross-lingual entity alignment via multi-view representation learning of fused knowledge graphs - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S156625352200094X"
+          }
+        ]
+      },
+      "Based on the web search results, I found relevant research on cross-lingual entity alignment with Wikidata QIDs, though I did not find a specific publication titled \"cross-lingual knowledge conductivity entity contrastive alignment.\"\n\nHowever, the search results reveal active research in this area:\n\nRecent work has investigated the application of word and sentence alignment techniques coupled with matching algorithms to align cross-lingual entity labels extracted from Wikidata in 10 languages. Methods for cross-lingual mapping of labels rely on similarity scores from cross-lingual word alignment methods and achieve mapping accuracy of over 88% on Wikidata datasets.\n\nAdditionally, some frameworks embed entities from multi-source knowledge graphs into a unified space with a contrastive loss, which relates to the contrastive alignment aspect of your query.\n\nRecent work leverages Wikidata IDs as a language-independent identifier, extracting the internal Wikipedia link and querying the MediaWiki API to resolve corresponding Wikidata QIDs.\n\nThe search results indicate that cross-lingual entity alignment using Wikidata QIDs with contrastive learning methods is an active research area, but I was unable to locate a specific publication exactly matching your search query with those terms and 2025-2026 dates."
+    ],
+    "durationSeconds": 13.086996844000009,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "a662a3e2-03d2-4db1-8490-5ebafcf61633",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "3c4dd84f-4c46-4453-9bd7-2594c23a26a3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-19T21:09:38.471Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CxSr7H3NXpomditPxdpsMM`</summary>
+
+```json
+{
+  "query": "DCO DPO cross-lingual consistency optimization arXiv 2026 AlignX EMNLP 2025 multilingual"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "863b351c-6a13-4ea7-9f76-616310a45524",
+  "isSidechain": false,
+  "requestId": "req_011CbCcVkEQbb2189bm99J3T",
+  "type": "assistant",
+  "uuid": "7ff3fa4c-9062-4f83-85fc-c1b864e1f09c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "3c4dd84f-4c46-4453-9bd7-2594c23a26a3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GGRQCRXFYDM6nQxpH84Fei",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 820,
+      "cache_read_input_tokens": 33151,
+      "output_tokens": 83,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 820,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 83,
+          "cache_read_input_tokens": 33151,
+          "cache_creation_input_tokens": 820,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 820
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-19T21:09:44.992Z_
+
+<details><summary>↩ Tool result · `toolu_01CxSr7H3NXpomditPxdpsMM`</summary>
+
+```text
+Web search results for query: "DCO DPO cross-lingual consistency optimization arXiv 2026 AlignX EMNLP 2025 multilingual"
+
+Links: [{"title":"[2603.04678] Optimizing Language Models for Crosslingual Knowledge Consistency","url":"https://arxiv.org/abs/2603.04678"},{"title":"[2603.04678v1] Optimizing Language Models for Crosslingual Knowledge Consistency","url":"https://arxiv.org/abs/2603.04678v1"},{"title":"Optimizing Language Models for Crosslingual Knowledge Consistency","url":"https://arxiv.org/html/2603.04678v1"},{"title":"Optimizing Language Models for Crosslingual Knowledge Consistency","url":"https://arxiv.org/pdf/2603.04678"},{"title":"CM-Align: Consistency-based Multilingual Alignment for Large Language Models","url":"https://arxiv.org/html/2509.08541"},{"title":"AlignX: Advancing Multilingual Large Language Models with Multilingual Representation Alignment","url":"https://arxiv.org/html/2509.24338"},{"title":"Implicit Cross-Lingual Rewarding for Efficient Multilingual Preference Alignment","url":"https://arxiv.org/pdf/2503.04647"},{"title":"[2503.04647] Implicit Cross-Lingual Rewarding for Efficient Multilingual Preference Alignment","url":"https://arxiv.org/abs/2503.04647"},{"title":"Cross-lingual Human-Preference Alignment for Neural Machine Translation with Direct Quality Optimization","url":"https://arxiv.org/pdf/2409.17673"}]
+
+Based on the search results, I found relevant information about your query:
+
+## DCO (Crosslingual Consistency Optimization)
+
+The paper proposes a novel structured reward function to improve crosslingual consistency in multilingual LLMs and introduces an efficient method, DCO. DCO significantly improves crosslingual consistency across diverse LLMs and outperforms existing methods when training with samples of multiple languages, while complementing DPO when gold labels are available.
+
+The method shows effectiveness in bilingual settings, significant out-of-domain generalizability, and controllable alignment via direction hyperparameters.
+
+## AlignX
+
+AlignX effectively enhances multilingual general and cross-lingual generation capabilities, with extending AlignX to 51 languages further improving performance and highlighting the benefits of increasing the number of aligned languages in enhancing knowledge sharing. The framework consists of multilingual continual pre-training, which aligns multilingual representations within LLMs.
+
+The search results show that both DCO and AlignX are recent methods (from 2025-2026) addressing multilingual and cross-lingual consistency in large language models, with DCO appearing on arXiv (2603.04678) and AlignX also having appeared as a recent publication (2509.24338).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7ff3fa4c-9062-4f83-85fc-c1b864e1f09c",
+  "isSidechain": false,
+  "promptId": "b33f37e1-d77e-44cc-9d46-44534aeb3539",
+  "type": "user",
+  "uuid": "fcb65a9c-0202-49b1-b960-40848e9af99f",
+  "toolUseResult": {
+    "query": "DCO DPO cross-lingual consistency optimization arXiv 2026 AlignX EMNLP 2025 multilingual",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01SzWggXAm9QRDsTuFzpfn67",
+        "content": [
+          {
+            "title": "[2603.04678] Optimizing Language Models for Crosslingual Knowledge Consistency",
+            "url": "https://arxiv.org/abs/2603.04678"
+          },
+          {
+            "title": "[2603.04678v1] Optimizing Language Models for Crosslingual Knowledge Consistency",
+            "url": "https://arxiv.org/abs/2603.04678v1"
+          },
+          {
+            "title": "Optimizing Language Models for Crosslingual Knowledge Consistency",
+            "url": "https://arxiv.org/html/2603.04678v1"
+          },
+          {
+            "title": "Optimizing Language Models for Crosslingual Knowledge Consistency",
+            "url": "https://arxiv.org/pdf/2603.04678"
+          },
+          {
+            "title": "CM-Align: Consistency-based Multilingual Alignment for Large Language Models",
+            "url": "https://arxiv.org/html/2509.08541"
+          },
+          {
+            "title": "AlignX: Advancing Multilingual Large Language Models with Multilingual Representation Alignment",
+            "url": "https://arxiv.org/html/2509.24338"
+          },
+          {
+            "title": "Implicit Cross-Lingual Rewarding for Efficient Multilingual Preference Alignment",
+            "url": "https://arxiv.org/pdf/2503.04647"
+          },
+          {
+            "title": "[2503.04647] Implicit Cross-Lingual Rewarding for Efficient Multilingual Preference Alignment",
+            "url": "https://arxiv.org/abs/2503.04647"
+          },
+          {
+            "title": "Cross-lingual Human-Preference Alignment for Neural Machine Translation with Direct Quality Optimization",
+            "url": "https://arxiv.org/pdf/2409.17673"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about your query:\n\n## DCO (Crosslingual Consistency Optimization)\n\nThe paper proposes a novel structured reward function to improve crosslingual consistency in multilingual LLMs and introduces an efficient method, DCO. DCO significantly improves crosslingual consistency across diverse LLMs and outperforms existing methods when training with samples of multiple languages, while complementing DPO when gold labels are available.\n\nThe method shows effectiveness in bilingual settings, significant out-of-domain generalizability, and controllable alignment via direction hyperparameters.\n\n## AlignX\n\nAlignX effectively enhances multilingual general and cross-lingual generation capabilities, with extending AlignX to 51 languages further improving performance and highlighting the benefits of increasing the number of aligned languages in enhancing knowledge sharing. The framework consists of multilingual continual pre-training, which aligns multilingual representations within LLMs.\n\nThe search results show that both DCO and AlignX are recent methods (from 2025-2026) addressing multilingual and cross-lingual consistency in large language models, with DCO appearing on arXiv (2603.04678) and AlignX also having appeared as a recent publication (2509.24338)."
+    ],
+    "durationSeconds": 6.517931339000002,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "7ff3fa4c-9062-4f83-85fc-c1b864e1f09c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "3c4dd84f-4c46-4453-9bd7-2594c23a26a3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-19T21:09:47.458Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01369M6sdVAuX1k1XBeg6Am4`</summary>
+
+```json
+{
+  "query": "CoRL 2026 Conference on Robot Learning submission topics scope"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fcb65a9c-0202-49b1-b960-40848e9af99f",
+  "isSidechain": false,
+  "requestId": "req_011CbCcWSXpVhAYbSjFR2mQV",
+  "type": "assistant",
+  "uuid": "e68ebab1-73cc-4edd-8d0f-f30ee04e90f3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "3c4dd84f-4c46-4453-9bd7-2594c23a26a3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RbEJEHTLV272JcPTAWrHxd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 805,
+      "cache_read_input_tokens": 33971,
+      "output_tokens": 64,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 805,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 64,
+          "cache_read_input_tokens": 33971,
+          "cache_creation_input_tokens": 805,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 805
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-19T21:09:54.557Z_
+
+<details><summary>↩ Tool result · `toolu_01369M6sdVAuX1k1XBeg6Am4`</summary>
+
+```text
+Web search results for query: "CoRL 2026 Conference on Robot Learning submission topics scope"
+
+Links: [{"title":"CoRL 2026 - Call for Papers","url":"https://www.corl.org/contributions/call-for-papers"},{"title":"CoRL LaTeX Template | Robot Learning Conference Format | Underleaf","url":"https://www.underleaf.ai/templates/corl"},{"title":"Conference on Robot Learning (CoRL) 2026: Everything You Need to Know - AI Expert Magazine - premier publication dedicated to AI","url":"https://www.aiexpertmagazine.com/conference-on-robot-learning-corl-2026-everything-you-need-to-know/"},{"title":"CoRL 2026 - Contributions","url":"https://www.corl.org/contributions"},{"title":"CoRL 2026 - Call for Workshops","url":"https://www.corl.org/contributions/call-for-workshops"},{"title":"CoRL 2026","url":"https://www.corl.org/"},{"title":"CoRL 2026 - About CoRL","url":"https://www.corl.org/about-corl"},{"title":"Optimizing Neurorobot Policy under Limited Demonstration Data through Preference Regret","url":"https://arxiv.org/pdf/2604.03523"},{"title":"Synthesising robot behaviour through reinforcement learning for homeostasis","url":"https://www.biorxiv.org/content/10.1101/2024.06.03.597087.full.pdf"}]
+
+Based on the search results, here's what CoRL 2026 is looking for in terms of submission topics and scope:
+
+## Conference Overview
+
+The Conference on Robot Learning (CoRL) is an annual international conference aiming to bring together the robotics and machine learning research communities, focusing on the increasingly important role of learning in robotics and its interaction with other areas of robotics.
+
+## Submission Topics
+
+CoRL welcomes papers in areas such as learning representations for robotic perception and control, learning robot foundation models or general-purpose knowledge systems for robotics, imitation learning for robotics, and reinforcement learning for control of physical robots. Additionally, CoRL covers topics including imitation learning, reinforcement learning for robots, sim-to-real transfer, robot perception through learning, learned manipulation and locomotion, and learning-based planning.
+
+## Submission Scope Requirements
+
+Submissions should focus on a core robotics problem and demonstrate the relevance of proposed models, algorithms, datasets, and benchmarks to robotics. Authors are encouraged to report real-robot experiments or provide convincing evidence that simulation experiments are transferable to real robots. Submissions without a robotics focus will be returned without review.
+
+All submissions should include a Limitations section, explicitly describing limiting assumptions, failure modes, and other limitations of the results and experiments and how these might be addressed in the future.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e68ebab1-73cc-4edd-8d0f-f30ee04e90f3",
+  "isSidechain": false,
+  "promptId": "b33f37e1-d77e-44cc-9d46-44534aeb3539",
+  "type": "user",
+  "uuid": "8d95d426-8dd4-4688-a622-ce79af642394",
+  "toolUseResult": {
+    "query": "CoRL 2026 Conference on Robot Learning submission topics scope",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EYag8RuCD1dufeyYddVcpS",
+        "content": [
+          {
+            "title": "CoRL 2026 - Call for Papers",
+            "url": "https://www.corl.org/contributions/call-for-papers"
+          },
+          {
+            "title": "CoRL LaTeX Template | Robot Learning Conference Format | Underleaf",
+            "url": "https://www.underleaf.ai/templates/corl"
+          },
+          {
+            "title": "Conference on Robot Learning (CoRL) 2026: Everything You Need to Know - AI Expert Magazine - premier publication dedicated to AI",
+            "url": "https://www.aiexpertmagazine.com/conference-on-robot-learning-corl-2026-everything-you-need-to-know/"
+          },
+          {
+            "title": "CoRL 2026 - Contributions",
+            "url": "https://www.corl.org/contributions"
+          },
+          {
+            "title": "CoRL 2026 - Call for Workshops",
+            "url": "https://www.corl.org/contributions/call-for-workshops"
+          },
+          {
+            "title": "CoRL 2026",
+            "url": "https://www.corl.org/"
+          },
+          {
+            "title": "CoRL 2026 - About CoRL",
+            "url": "https://www.corl.org/about-corl"
+          },
+          {
+            "title": "Optimizing Neurorobot Policy under Limited Demonstration Data through Preference Regret",
+            "url": "https://arxiv.org/pdf/2604.03523"
+          },
+          {
+            "title": "Synthesising robot behaviour through reinforcement learning for homeostasis",
+            "url": "https://www.biorxiv.org/content/10.1101/2024.06.03.597087.full.pdf"
+          }
+        ]
+      },
+      "Based on the search results, here's what CoRL 2026 is looking for in terms of submission topics and scope:\n\n## Conference Overview\n\nThe Conference on Robot Learning (CoRL) is an annual international conference aiming to bring together the robotics and machine learning research communities, focusing on the increasingly important role of learning in robotics and its interaction with other areas of robotics.\n\n## Submission Topics\n\nCoRL welcomes papers in areas such as learning representations for robotic perception and control, learning robot foundation models or general-purpose knowledge systems for robotics, imitation learning for robotics, and reinforcement learning for control of physical robots. Additionally, CoRL covers topics including imitation learning, reinforcement learning for robots, sim-to-real transfer, robot perception through learning, learned manipulation and locomotion, and learning-based planning.\n\n## Submission Scope Requirements\n\nSubmissions should focus on a core robotics problem and demonstrate the relevance of proposed models, algorithms, datasets, and benchmarks to robotics. Authors are encouraged to report real-robot experiments or provide convincing evidence that simulation experiments are transferable to real robots. Submissions without a robotics focus will be returned without review.\n\nAll submissions should include a Limitations section, explicitly describing limiting assumptions, failure modes, and other limitations of the results and experiments and how these might be addressed in the future."
+    ],
+    "durationSeconds": 7.094538780999981,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "e68ebab1-73cc-4edd-8d0f-f30ee04e90f3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "3c4dd84f-4c46-4453-9bd7-2594c23a26a3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41 · 2026-05-19T21:10:33.302Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This is a critical finding. CoRL 2026 is the Conference on Robot Learning, and its scope is explicitly about robotics and machine learning for robotics. The proposal is about cross-lingual knowledge conductivity in multilingual LLMs - this is entirely an NLP/CL topic with zero robotics relevance. The CoRL call for papers says "Submissions without a robotics focus will be returned without review."
+
+This is a fundamental venue mismatch. The proposal would be desk-rejected at CoRL. Let me note this prominently in my evaluation.
+
+However, re-reading the system prompt, it says to evaluate "对 NLP/CL 领域的影响力" under Significance. 
+
+The rubric is clearly designed for NLP/CL papers, so either the user made a mistake about the venue or this is a test case. I need to flag the venue mismatch as a critical issue that would result in desk rejection, but I should still evaluate the paper's merit as an NLP contribution since that's what the evaluation framework asks for. The acceptance probability at CoRL itself would be essentially zero due to the robotics requirement.
+
+Looking at the core proposal, the authors argue that entity-level contrastive alignment during continued pretraining improves cross-lingual knowledge transfer better than sentence-level approaches. Their reasoning hinges on CLiKA's finding that existing methods fail to improve conductivity, the strong correlation between entity alignment and factual consistency, and the claim that sentence-level alignment conflates entity-specific knowledge with syntactic variation. Now I'm checking whether this is actually a novel contribution or if there's a simpler explanation that would make the approach trivial.
+
+There are several existing methods that could achieve similar results without the proposed training-time contrastive alignment: entity augmentation techniques like LEIA, entity-level code-switching on decoder LLMs, or even inference-time interventions like SubInj and SubSub that already show substantial gains in recall and consistency. The critical question becomes whether training-time entity alignment provides meaningful improvements over these inference-time methods, which already achieve +14-32% recall and +17-44% consistency gains.
+
+The proposal also rests on several untested assumptions: that entity-level granularity is actually superior to sentence-level for contrastive alignment in decoder LLMs, that the observed correlation between entity alignment and consistency is causal rather than just correlational, that mean-pooling entity spans at middle layers produces useful representations for contrastive learning, and that applying InfoNCE loss to entity spans won't degrade the model's general performance.
+
+The novelty is primarily combinatorial—bringing together entity-level alignment, contrastive learning, middle-layer representations, and decoder LLMs in a way that hasn't been attempted before—but the individual components are well-established, and the core insight that entity-level alignment might outperform sentence-level alignment is fairly intuitive rather than conceptually surprising.
+
+The significance hinges on empirical validation: if entity-level alignment genuinely improves cross-lingual knowledge transfer, it addresses a real gap in the literature, but without strong experimental results showing this advantage, the contribution remains incremental. The related work is comprehensive and positions the approach clearly against prior work like CCL-XCoT and KBioXLM, though the proposal reads somewhat more like a thorough survey than a tightly focused research contribution.
+
+The core hypothesis is reasonable and testable, but the novelty is largely combinatorial—layering existing techniques together rather than introducing fundamentally new concepts. The intuition that entity-level alignment helps entity-level consistency is straightforward, and the fact that the inference-time SubInj method already achieves strong results raises questions about whether the added complexity of the training-time approach is justified. For a top-tier NLP venue like ACL or EMNLP, I'd estimate acceptance probability around 25-35%—the work is solid but might face pushback on whether the core finding, if positive, is sufficiently surprising. For a venue like CoRL 2026, this would be an immediate desk rejection since it's fundamentally an NLP contribution, not a reinforcement learning one.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8d95d426-8dd4-4688-a622-ce79af642394",
+  "isSidechain": false,
+  "requestId": "req_011CbCcX9TSTiYviDuNLPpzK",
+  "type": "assistant",
+  "uuid": "9b0bf03b-6b0c-4c8a-9f5d-0ac5b62f36a2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "3c4dd84f-4c46-4453-9bd7-2594c23a26a3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XSyKtCKYrbRn2yWg8QSnxT",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 754,
+      "cache_read_input_tokens": 34776,
+      "output_tokens": 6194,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 754,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6194,
+          "cache_read_input_tokens": 34776,
+          "cache_creation_input_tokens": 754,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 754
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42 · 2026-05-19T21:12:14.950Z_
+
+Now I have sufficient information to conduct my evaluation. Let me compile the analysis.
+
+---
+
+```
+【阶段】: Triage
+
+============================================================
+⚠️ 严重警告：venue 完全不匹配 ⚠️
+============================================================
+
+本 proposal 研究的是多语言 LLM 的 cross-lingual knowledge conductivity，
+属于 NLP/Computational Linguistics 领域。
+
+CoRL (Conference on Robot Learning) 2026 的 Call for Papers 明确指出：
+"Submissions without a robotics focus will be returned without review."
+CoRL 接受的主题包括：robot perception、manipulation、locomotion、
+sim-to-real transfer、imitation learning for robotics 等。
+
+本 proposal 与 robotics 零关联，投稿 CoRL 会被 desk reject。
+如果目标是 NLP 会议（ACL/EMNLP/NAACL），以下评估按 NLP 领域标准给出。
+如果确实要投 CoRL，概率为 ~0%，无需进一步评估。
+
+以下按 NLP/CL 领域会议标准评估 idea 质量。
+============================================================
+
+【领域调研】:
+
+1. CLiKA (Gao et al., NAACL 2024, arXiv:2404.04659):
+   定义了 cross-lingual knowledge conductivity 及 XRR 指标，发现现有多语言预训练和指令微调均无法实质性提升 conductivity（XRR < 0.01）。这是本 proposal 的核心问题来源。论文真实存在，描述准确。
+
+2. CCL-XCoT (Zheng et al., EMNLP Findings 2025, arXiv:2507.14239):
+   在句/段级别用 InfoNCE 对比学习进行 continued pretraining，配合 XCoT 指令微调，减少跨语言幻觉达 62%。本 proposal 的直接 baseline，描述准确。注意：CCL-XCoT 的 arXiv 日期为 2025 年 7 月，而 proposal 中声称其为 EMNLP 2025 Findings——需验证时间线是否一致（EMNLP 2025 于 2025 年底举行，7 月 arXiv 合理）。
+
+3. Liu & Niehues (ACL 2025, arXiv:2502.14830):
+   中间层（layer 16/32）句级对比对齐用于 task-specific fine-tuning，在 slot filling (+1.5 F1) 和 MT (+1.5 BLEU) 上取得改进。本 proposal 的方法论前辈，描述准确。
+
+4. KBioXLM (Geng et al., EMNLP Findings 2023, arXiv:2311.11564):
+   在 XLM-R 上用实体掩码、关系掩码、段落关系预测进行生物医学跨语言对齐，+20 F1。本 proposal 的实体级对齐先例，但限于 encoder + 生物医学域。描述准确。
+
+5. FactNet (arXiv:2602.03417, Feb 2026):
+   1.7B 实体锚定原子事实，316 个 Wikipedia 版本，92.1% grounding precision。真实存在，描述准确。
+
+6. Bandarkar et al. (arXiv:2603.17070, Mar 2026):
+   确认 script match 是跨语言知识迁移失败的主要预测因子（~13% gap），entity priming 实验证明实体映射是跨脚本瓶颈。真实存在，描述准确。
+
+7. Ifergan et al. (NAACL Findings 2025, arXiv:2408.10646):
+   用 knowledge editing 探针发现 script similarity 主导跨语言表征共享（same-script CKR ~37.6% vs. cross-script <10-20%）。真实存在，描述准确。
+
+8. DCO (arXiv:2603.04678, Mar 2026):
+   DPO-inspired post-hoc consistency optimization。本 proposal 提到其为互补方法。真实存在。
+
+9. AlignX (EMNLP 2025):
+   多语言 continual pretraining 对齐表征 + 指令微调，扩展到 51 种语言。与本 proposal 有重叠但粒度不同（AlignX 为通用表征对齐，非实体级）。
+
+10. Entity-Level Alignment (Liu, Wang et al., arXiv:2510.10280):
+    发现 entity alignment 与 cross-lingual consistency 的 Pearson r > 0.7，SubInj 方法在推理时就能达到 +14-32% recall 和 +17-44% consistency gains。真实存在，描述准确——但这恰恰构成了本 proposal 的 trivial alternative 威胁。
+
+- 调研总结: 
+  跨语言知识一致性/传导性是 2024-2026 年的活跃研究方向，已有工作沿两条线展开：(a) 句/段级对比 CPT (CCL-XCoT, Liu & Niehues)，(b) 推理时干预 (SubInj, entity priming)。实体级对比对齐在 decoder LLM 上的 CPT 尚无直接先例（KBioXLM 仅限 encoder + 生物医学），本 proposal 定位在此空白处。但该空白是否代表"真正未被探索的机会"还是"已有的组合但尚未有人做因为改进可能有限"，存在不确定性。
+
+
+【Trivial Alternative 检验】:
+
+存在两个严肃的 trivial alternative 威胁：
+
+(1) **推理时 SubInj/Entity Priming**：arXiv:2510.10280 的 SubInj 方法仅在推理时注入英语实体名称，就获得了 +14-32% recall 和 +17-44% consistency gains，且零训练成本。Bandarkar et al. 的 entity priming 实验同样表明推理时提供实体名就能显著改善跨脚本迁移。EACA 需要 ~1100-1600 H100 hours 的训练成本，如果最终效果与推理时干预相当，增量价值极低。Proposal 未直接与 SubInj 进行比较或论证为何训练时对齐优于推理时干预。
+
+(2) **LEIA + 简单 entity code-switching**：LEIA 已经证明在 decoder LLM CPT 中插入英语实体名可以改善跨语言迁移。如果 EACA 的核心优势主要来自实体边界标注（[ENT]/[/ENT]），而非对比损失本身，那么 LEIA 风格的简单 augmentation 可能已经捕获了大部分收益。
+
+增量价值论证：Proposal 的 implicit 论点是"训练时对齐 > 推理时干预"因为它改变了模型的内部表征而非仅仅在表面层面提供线索。这有一定道理，但未被论证——是一个需要实验验证的假设，而非已知事实。
+
+
+【前提假设检验】:
+
+核心 claim 的逻辑链：
+"句级对齐不够 → 实体才是事实知识的基本单位 → 实体级对比对齐能改善 conductivity"
+
+未经验证的关键假设：
+
+(1) **相关 ≠ 因果**：entity alignment 与 consistency 的 r > 0.7 相关性是观察性的。高 entity alignment 可能是 consistency 的结果而非原因——可能是因为模型在某些语言对上整体表征更好，因此 entity alignment 和 consistency 同时高。强制对齐 entity 表征是否能因果性地改善 consistency，是一个未经验证的跳跃。
+
+(2) **对比损失在 decoder LLM 隐藏状态上的有效性**：在 encoder 模型上，对比学习有大量成功先例（SimCLR, CLIP, E5 等）。但 decoder LLM 的隐藏状态具有不同特性——它们是自回归的、位置敏感的。Mean-pooling entity span 在 decoder 中间层是否能产生足够好的实体表征用于对比学习，是一个未经检验的假设。Liu & Niehues 在句级别展示了可行性，但实体级别 span 更短（通常 1-5 tokens），信号可能更弱。
+
+(3) **NTP 和实体对比损失的兼容性**：NTP 优化语言特定的 token 分布，对比损失拉近跨语言实体表征。这两个目标可能在 decoder LLM 中存在根本性冲突。Proposal 设计了 PCGrad/GradNorm 作为缓解措施，但如果冲突是根本性的（而非工程可调的），这些机制无法真正解决问题。
+
+
+【3 维度打分】:
+
+1. Novelty: 【中】
+   
+   理由：实体级对比对齐在 decoder LLM CPT 上的应用确实没有直接先例——这是真实的 novelty。KBioXLM (EMNLP Findings 2023) 做了实体级对齐但在 encoder 上用 masking 目标；CCL-XCoT (EMNLP Findings 2025) 做了对比 CPT 但在句/段级别；Liu & Niehues (ACL 2025) 做了中间层对比对齐但在句级别。EACA 在"粒度 × 模型架构 × 训练范式"三维矩阵中占据了一个空位。
+
+   但 novelty 的性质是**组合性的**而非**概念性的**——它将已有的组件（InfoNCE、entity span、middle-layer extraction、decoder LLM CPT）以新组合拼装在一起，每个组件都有明确先例。核心 insight "entity-level alignment should help entity-level consistency" 虽然在技术执行上是新的，但在概念上是相当直觉的。审稿人可能会认为这是 "the obvious next thing to try" 而非 "a surprising new insight"。
+
+   此外，方法的 novelty 声称中有些水分：proposal 列出了 6 条 novelty，但其中 (3) frequency-aware weighting、(4) gradient conflict monitoring、(5) transliteration augmentation、(6) script-stratified evaluation 均为工程细节或评估规范，不构成独立的 novelty 贡献。真正的核心 novelty 只有 (1) entity-level contrastive anchoring 和 (2) structured knowledge grounding via QIDs。
+
+2. Significance: 【中偏强】
+   
+   理由：研究问题本身重要且被明确界定。CLiKA (NAACL 2024) 令人信服地证明了 conductivity gap 的存在，且至今无有效解决方案。如果 EACA 的核心发现是 positive 的（实体级 > 句级），这对多语言 LLM 社区有实质指导意义——它会建立一个新的 CPT 范式。
+
+   但 significance 受限于两个因素：
+   - 如果结果仅限于 same-script pairs 有效而 cross-script 改善有限（这是 proposal 自己承认的风险），那么实际影响的语言覆盖范围会大打折扣。
+   - 推理时方法（SubInj）已经取得了实质性的 consistency gains，如果 EACA 的额外训练成本仅换来边际改善，则实际意义存疑。
+   
+   问题的重要性不等于解决方案的重要性。问题是 strong 的，但这个特定解决方案是否足够有力仍需验证。
+
+3. Related Work: 【强】
+   
+   理由：这是整个 proposal 最突出的部分。Related work 覆盖面极广且定位精确：
+   - 方法论维度：CCL-XCoT（句/段级对比 CPT）、Liu & Niehues（句级中间层对比对齐）、KBioXLM（encoder 实体级 masking 对齐）——每个都有清晰的差异化论述
+   - 问题维度：CLiKA（conductivity gap）、arXiv:2510.10280（entity alignment 与 consistency 的相关性）
+   - 脚本维度：Ifergan et al. (NAACL Findings 2025)、Bandarkar et al. (arXiv:2603.17070)、TransliCo (ACL 2024)
+   - 数据/资源维度：FactNet、DaMuEL、mReFinED
+   
+   所有引用的论文经调研确认真实存在，描述基本准确。positioning 对每个 baseline 都给出了多维度的区分。
+   
+   唯一的轻微不足是：对 SubInj (arXiv:2510.10280) 作为推理时替代方案的论述不够充分——它被作为 "motivation" 引用（entity alignment 很重要），但未被作为 "trivial alternative" 正面对比。
+
+
+【概率估计】: [25% - 35%] 中位 28%
+（注意：此概率基于投稿 ACL/EMNLP/NAACL 等 NLP 主会估计。
+ 投稿 CoRL 2026 的概率为 ~0%——venue 完全不匹配，会被 desk reject。）
+
+【估计理由】:
+- Novelty 为"中"：核心 idea 有真实的组合新颖性，但概念上是直觉的"the obvious next step"，缺少 surprising 的 insight。这限制了上界——即使实验完美执行，审稿人可能写 "well-executed but the idea is incremental"。
+- Significance 为"中偏强"：问题重要且被领域认可，但推理时 trivial alternative (SubInj) 的存在削弱了训练时方案的增量价值论证。
+- Related Work 为"强"：这是一个 plus，但不能弥补 idea 内核的 novelty 上限。
+- 概率上界被 Novelty 限制在 ~35%：如果核心实验全部 positive，审稿人大概率评价为 "solid empirical contribution, somewhat expected result"，可能获得一个 borderline accept。但如果有审稿人认为 SubInj 已经足够，或者认为从 correlation 到 causation 的跳跃不成立，则可能被拉到 reject。
+
+【主要风险】:
+1. **Trivial Alternative 风险**：SubInj 等推理时实体干预方法零训练成本即可获得显著 consistency gains (+17-44%)。如果 EACA 的额外 ~1100 H100 hours 训练仅换来边际改善（例如在 SubInj 基础上仅额外 +5%），审稿人会质疑其实际价值。Proposal 未提供"训练时对齐优于推理时干预"的先验论证。
+2. **相关-因果跳跃风险**：整个 proposal 的逻辑基础建立在"entity alignment 与 consistency 高度相关 → 因此强制 entity alignment 能改善 consistency"。但这一因果方向未被建立。如果 entity alignment 是高 consistency 的伴随现象而非原因，那么 EACA 的核心前提不成立。
+```
+
+Sources:
+- [CLiKA - NAACL 2024](https://aclanthology.org/2024.naacl-long.339/)
+- [CLiKA - arXiv](https://arxiv.org/abs/2404.04659)
+- [CCL-XCoT - arXiv](https://arxiv.org/abs/2507.14239)
+- [CCL-XCoT - EMNLP Findings 2025](https://aclanthology.org/2025.findings-emnlp.93.pdf)
+- [Liu & Niehues - ACL 2025](https://aclanthology.org/2025.acl-long.778/)
+- [Liu & Niehues - arXiv](https://arxiv.org/abs/2502.14830)
+- [KBioXLM - EMNLP Findings 2023](https://aclanthology.org/2023.findings-emnlp.751/)
+- [FactNet - arXiv](https://arxiv.org/abs/2602.03417)
+- [Bandarkar et al. - arXiv](https://arxiv.org/abs/2603.17070)
+- [DCO - arXiv](https://arxiv.org/abs/2603.04678)
+- [Entity-Level Alignment - arXiv](https://arxiv.org/pdf/2510.10280)
+- [AlignX - EMNLP 2025](https://arxiv.org/html/2509.24338)
+- [CoRL 2026 Call for Papers](https://www.corl.org/contributions/call-for-papers)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9b0bf03b-6b0c-4c8a-9f5d-0ac5b62f36a2",
+  "isSidechain": false,
+  "requestId": "req_011CbCcX9TSTiYviDuNLPpzK",
+  "type": "assistant",
+  "uuid": "87458e3b-15ee-4e18-adcb-e23aae11bf44",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "3c4dd84f-4c46-4453-9bd7-2594c23a26a3",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XSyKtCKYrbRn2yWg8QSnxT",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 754,
+      "cache_read_input_tokens": 34776,
+      "output_tokens": 6194,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 754,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6194,
+          "cache_read_input_tokens": 34776,
+          "cache_creation_input_tokens": 754,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 754
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 43_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Entity-Anchored Contrastive Alignment for Cross-Lingual Knowledge Conductivity  ## Description EACA is a continu…",
+  "leafUuid": "87458e3b-15ee-4e18-adcb-e23aae11bf44",
+  "sessionId": "3c4dd84f-4c46-4453-9bd7-2594c23a26a3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 44_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Entity-anchored contrastive alignment for cross-lingual knowledge",
+  "sessionId": "3c4dd84f-4c46-4453-9bd7-2594c23a26a3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 45_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Entity-Anchored Contrastive Alignment for Cross-Lingual Knowledge Conductivity  ## Description EACA is a continu…",
+  "leafUuid": "87458e3b-15ee-4e18-adcb-e23aae11bf44",
+  "sessionId": "3c4dd84f-4c46-4453-9bd7-2594c23a26a3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 46_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Entity-anchored contrastive alignment for cross-lingual knowledge",
+  "sessionId": "3c4dd84f-4c46-4453-9bd7-2594c23a26a3"
+}
+```
+
+---

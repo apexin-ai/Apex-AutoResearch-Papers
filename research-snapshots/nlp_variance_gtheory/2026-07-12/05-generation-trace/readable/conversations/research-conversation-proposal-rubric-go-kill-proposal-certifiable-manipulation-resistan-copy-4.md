@@ -1,0 +1,3738 @@
+# Research conversation: 【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。 【proposal】: # Certifiable Manipulation Resistan
+
+**Reproducibility Budgets for Open-Weight LLM Evaluation: A Generalizability Theory Study of 7–9B Instruction-Tuned Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 55
+- **Recorded user turns:** 1
+- **Tool calls:** 14
+- **Original source:** `logs/chats/exported-trajectories/account-3/e1ce9151-87fa-4efa-9fe1-ed55ae4a5cad.jsonl`
+- **Structured JSON:** [`117a4d45b3a5c26ea054.json`](../../sessions/11/117a4d45b3a5c26ea054.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-20T05:46:52.930Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-20T05:46:52.930Z",
+  "sessionId": "e1ce9151-87fa-4efa-9fe1-ed55ae4a5cad",
+  "content": "【任务】: 请评估以下 proposal 的客观中稿概率。\n必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。\n\n【proposal】:\n# Certifiable Manipulation Resistance for Multi-Judge LLM Evaluation: Information-Theoretic Bounds via Signal Correlation Structure\n\n## Description\n\nLLM evaluation faces systematic adversarial vulnerabilities—open-source judge models show 50–68% average attack success rates (SoK, April 2026, arXiv 2603.29403), and arena rankings can be flipped with ~1,000 strategic votes (ICML 2025). While Robertson & Koyejo (2025, arXiv 2508.05469) proved bounded f-divergence certification for single evaluators, concurrent works established peer prediction incentive-compatibility (Qiu et al., ICLR 2026; Chen et al., NeurIPS 2025), and Kaneko & Baldwin (NeurIPS 2025 spotlight, arXiv 2510.17000) proved tight single-model attack cost bounds (N_min ≥ log₂(1/ε)/I_max), no work provides formal N-judge manipulation-cost scaling as a function of measurable inter-judge correlation.\n\nWe establish the **adversarial dual of diversity scaling** and reveal a fundamental asymmetry. Yang et al. (ICLR 2026 Workshop AIMS, arXiv 2602.03794) proved task performance improves exponentially—residual uncertainty decays as (1-α_c)^{K*} via effective channel count K* = 2^{H(ρ)}. We prove the complementary result: adversarial manipulation cost grows only **polynomially** as Ω(K_eff^{1/2}). The structural reason for this asymmetry: stochastic evaluation errors are **incoherent** across judges and concentrate exponentially via standard inequalities, but adversarial perturbations are **coherent**—the adversary's shared perturbation reintroduces cross-judge coupling, limiting gains to polynomial variance reduction. This asymmetry implies diversity is fundamentally more cost-effective for accuracy than for robustness—a non-obvious result with direct resource-allocation implications.\n\nAs a co-primary contribution, we characterize how PEG's (Chen et al., NeurIPS 2025, arXiv 2505.13636) dominant-strategy truthfulness, requiring conditional independence (Assumption 4), degrades under partial correlation: ε-approximate equilibrium with ε = f(ρ) provides a continuous degradation curve from dominant-strategy (ρ=0) to approximate (ρ→1) regimes. No existing work provides this analysis.\n\nOur proof proceeds in two steps: (1) SDPI per-channel bounds (Polyanskiy & Wu, arXiv 1508.06025) constrain each judge's information leakage to at most I_max per query; across K parallel judges, total adversary information gain is bounded additively by K_eff · I_max. (2) Variance-reduction arguments (Horvath et al., arXiv 2106.06946) yield perturbation energy scaling as Ω(K_eff^{1/2}), giving g(I_max) = ½·log(K_eff)/log(K). The ½ exponent is derived from continuous-space (ℓ₂) variance reduction; for discrete text perturbations, we state it as a conjecture supported by the continuous analogue and test it empirically via adaptive attacks.\n\nUnder Turkmen et al.'s (arXiv 2602.08003) equicorrelated Gaussian copula: K_eff = 1+(K-1)·exp(-2·I_max). For heterogeneous correlation, K* = 2^{H(ρ)} (Yang et al.) serves as an upper-bound approximation of effective dimensionality in the adversarial context; its validity is tested via copula goodness-of-fit and empirical tightness experiments.\n\nA provocative implication: as frontier model capability increases, Kim et al. (ICML 2025, arXiv 2506.07962) show error correlations increase even across providers/architectures. Under our framework, this drives K_eff → 1 regardless of ensemble size, suggesting **certified manipulation-resistance may be fundamentally bounded at the frontier**—a \"diversity ceiling\" where adding more capable judges yields diminishing certified robustness returns even as accuracy continues to improve.\n\nThe framework also serves as a **prescriptive judge-selection tool**: K_eff maximization for certified robustness vs. Turkmen et al.'s MI maximization for accuracy—these may yield different optimal ensembles. We validate against 15 off-the-shelf attacks plus three protocol-aware adaptive attacks on SummEval, LiveCodeBench, and GPQA Diamond, with compute-normalized (FLOP-matched) baselines and copula model validation.\n\n## Core Problem\nCan we provide certifiable manipulation-resistance guarantees for N-judge LLM evaluation protocols, where the certified robustness bound is an explicit, computable function of measurable inter-judge signal correlation, validated against both off-the-shelf and protocol-aware adaptive adversarial attacks?\n\n## Opportunity\nThree critical gaps: (1) No formal N-agent scaling connecting manipulation cost to measurable inter-judge signal correlation. Robertson & Koyejo (arXiv 2508.05469) analyze pairwise evaluations; Chen et al.'s PEG (NeurIPS 2025, arXiv 2505.13636) requires conditional independence (Assumption 4) without characterizing degradation. (2) Empirical validation lacks adaptive attacks targeting multi-judge protocols (Carlini et al., arXiv 1902.06705 standard). (3) Yang et al.'s diversity-scaling (arXiv 2602.03794) addresses performance only—no adversarial dual exists, and the exponential-polynomial asymmetry is unknown.\n\nTurkmen et al. (arXiv 2602.08003): correlated ensemble error floor Φ(Φ⁻¹(1-p)/√ρ), MI decomposition for α estimation. Kaneko & Baldwin (NeurIPS 2025, arXiv 2510.17000): tight single-model bounds, no multi-judge composition. SoK (arXiv 2603.29403): 7-model committees reduce ASR to 10–19% without formal explanation. Qiu et al. (ICLR 2026, arXiv 2601.20299): BNE guarantees for truthfulness, not adversarial robustness.\n\n## Landscape\n**Single-evaluator foundations.** Robertson & Koyejo (arXiv 2508.05469, TMLR under review): TVD-MI, polynomial certification (Theorem 3.3), AUC 0.70–0.77. Identity-Link IRT follow-up (arXiv 2510.14966): sparse evaluation, two-judge validation (ρ=0.872).\n\n**Peer prediction.** Qiu et al. (ICLR 2026, arXiv 2601.20299): BNE guarantees, output truthfulness. Chen et al. PEG (NeurIPS 2025, arXiv 2505.13636): dominant strategy (Lemma 1), O(√T) regret (Theorem 2), Nash convergence (Theorem 3), conditional independence (Assumption 4)—degradation under violation uncharacterized.\n\n**Diversity scaling.** Yang et al. (ICLR 2026 Workshop AIMS, arXiv 2602.03794): K* = 2^{H(ρ)}, (1-α_c)^{K*} decay (Theorem 4.3), heterogeneity advantage (Corollary 4.4). Performance only.\n\n**Correlation models.** Turkmen et al. (arXiv 2602.08003): Gaussian copula, error floor (Theorem 4.4), MI decomposition (Theorem 4.3), within-family ρ~0.7-0.8, cross-family ρ~0.4-0.5. Kim et al. (ICML 2025, arXiv 2506.07962): 60% error agreement, +0.066 same-company, +0.076 same-architecture; larger/more accurate models more correlated even across providers. Chen et al. behavioral entanglement (arXiv 2604.07650): BEI/CIG, cross-family 40–60% lower.\n\n**Single-model adversarial bounds.** Kaneko & Baldwin (NeurIPS 2025 spotlight, arXiv 2510.17000): N_min ≥ log₂(1/ε)/I_max (Theorem 1), SPRT achievability (Theorem 2), four disclosure regimes.\n\n**Certifiable evaluation under noise.** Shen et al. (arXiv 2604.03257): constrained MLE, honest judges. Feng et al. (ICLR 2026, arXiv 2601.20913): hypothesis testing, Type-I error control (Theorem 5.1), variance-corrected thresholds (Theorem 5.4). Both assume non-adversarial judges.\n\n**Semantic/representational collapse.** Kong et al. (arXiv 2605.17193, May 2026): closed-loop multi-LLM systems exhibit semantic collapse across 200–1000 rounds; 12 interventions fail. Patel (arXiv 2604.03809): effective rank 2.17/3.0 for homogeneous committees. Both apply to **iterative closed-loop** settings. Our single-pass evaluation protocol (independent scoring, no inter-judge communication) avoids the feedback loops driving collapse; K_eff serves as a principled detector if diversity erosion occurs.\n\n**Scaling dissociation.** Jung & Na (arXiv 2604.00477): scoring reliability logarithmic, discovery N^0.69 power law.\n\n**Attack/defense landscape.** SoK (arXiv 2603.29403): 50–68% ASR open-source, 27–44% frontier, 7-model → 10–19%. RobustJudge (arXiv 2506.09443): 15 attacks, 7 defenses. CAP (OpenReview 2026): comparative assessment, no formal guarantees. Carlini et al. (arXiv 1902.06705): adaptive attack gold standard.\n\n**Coordination failure.** Frongillo et al. (arXiv 2503.16280): fine-grained signals destabilize uninformative equilibria. Keppo et al. (arXiv 2603.20281): 2→5 LLMs breaks collusion (+22%→+3%).\n\n**Multi-agent evaluation.** CollabEval (arXiv 2603.00993): three-phase, no adversarial guarantees. Ebrahimi et al. (IJCNLP-AACL 2025, arXiv 2505.24239): credibility-based aggregation.\n\n**Certified ensemble robustness.** Chen et al. (arXiv 2107.10873): diversified gradient + confidence margin necessary/sufficient. Horvath et al. (arXiv 2106.06946): √K certified radius via variance reduction. Both in continuous perturbation spaces.\n\nTHE KEY GAP: No formal N-agent manipulation-cost scaling as a function of measurable correlation; no characterization of the exponential-polynomial asymmetry between performance and robustness scaling; no PEG degradation analysis under correlation violation.\n\n## Approach\n\nFive components:\n\n**Component 1: Theoretical Framework—The Asymmetric Adversarial Dual.**\n\nWe prove manipulation cost grows as Ω(K_eff^{1/2}), establishing an asymmetric duality with Yang et al.'s exponential performance scaling. The structural origin: stochastic errors are incoherent across judges (exponential concentration), but adversarial perturbations are coherent (shared perturbation reintroduces coupling → polynomial variance reduction only). This implies a fundamental resource-allocation insight: the marginal robustness value of each additional judge diminishes faster than its marginal accuracy value.\n\n*Step 1—Per-Channel SDPI Bound.* Each judge is a noisy channel; SDPI (Polyanskiy & Wu, arXiv 1508.06025) bounds per-channel information leakage to I_max. K parallel judges yield additive total: K_eff · I_max per round. Extends Kaneko & Baldwin's single-channel N_min.\n\n*Step 2—Variance Reduction to Manipulation Cost.* Fano-ensemble decomposition (Morishita et al., ICML 2022, arXiv 2205.12683) into relevance, redundancy, combination loss. Marton's inequality (TV² ≤ ½·KL) + Robertson & Koyejo's Theorem 3.3 → perturbation energy Ω(K_eff^{1/2}). Exponent: g(I_max) = ½·log(K_eff)/log(K). Boundaries: g(0) = ½ (independent), g → 0 (fully correlated).\n\n*Copula Closed Form.* Turkmen et al.'s equicorrelated model: K_eff = 1+(K-1)·exp(-2·I_max), I_max = -½ log(1-ρ²). Eigenvalues λ₁ = 1+(K-1)ρ, λ₂ = 1-ρ.\n\n*Heterogeneous Extension.* K* = 2^{H(ρ)} (Yang et al.) as upper-bound approximation of adversarial effective dimensionality, yielding g ≥ ½·log(K*)/log(K). K*'s validity in the adversarial context (vs. its original performance context) is an approximation justified by the shared eigenstructure and validated empirically via tightness experiments.\n\n*Exponent Status.* The ½ exponent derives from continuous-space (ℓ₂) variance reduction (Horvath et al., arXiv 2106.06946). For discrete text perturbations, the perturbation geometry differs; we state ½ as a conjecture for the discrete evaluation setting, supported by the continuous analogue, and test it empirically. Whether the true discrete exponent is better or worse than ½ is an open question.\n\n*Frontier Diversity Ceiling.* Kim et al. (ICML 2025) show error correlations increase with model capability even across providers/architectures. Under our framework, this drives K_eff → 1 as ρ → 1, implying certified manipulation-resistance may face a fundamental ceiling at the frontier: adding more capable judges yields diminishing certified robustness returns even as accuracy improves. We examine this empirically and discuss its implications.\n\n**Component 2: PEG Guarantee Degradation + α Regime Analysis.**\n\n*Co-primary contribution.* PEG's dominant-strategy truthfulness (Lemma 1, Assumption 4 conditional independence; Chen et al., NeurIPS 2025, arXiv 2505.13636) degrades under correlation: ε-approximate equilibrium with ε = f(ρ). This degradation pattern may extend to other conditional-independence-assuming mechanisms in peer prediction, though we prove it specifically for PEG.\n\nα estimates using external priors (Turkmen et al. ρ~0.4-0.5; Kim et al. +0.066/+0.076) **validated via direct measurement** in pilot study. Note: Kim et al.'s agreement rate and copula ρ are different quantities; we derive the mapping explicitly.\n- Central: ρ ≈ 0.45, α ∈ [0.35, 0.65], K=7: 2.65–3.7×\n- Sensitivity: α=0.2 → 1.55×; α=0.8 → 5.2×; vacuous at α ≤ 0.05 (ρ ≥ 0.95)\n- Score-coverage dissociation (Jung & Na, arXiv 2604.00477): analyze certified bound saturation rate\n\n**Component 3: Practical Protocol Design.**\n\nThree families: DeepSeek-V4-Flash (284B MoE, 13B active), Qwen-3.5 (397B MoE, 17B active), Llama-4-Maverick (400B MoE, 17B active). Backups: Gemma-2-27B (dense, non-MoE), Mistral-Large-2, Command-R+.\n\nThree phases: (1) Independence measurement (calibration ≥500 samples for copula GoF; sensitivity at {100, 200, 500, 1000, 2000}); (2) TVD-MI evaluation + DMI-weighted aggregation (PEG, Chen et al., NeurIPS 2025); (3) Certification: Ω(K^α) bound with measured α.\n\nPrescriptive judge selection: K_eff maximization (robustness) vs. MI maximization (accuracy, Turkmen et al.) may yield different optimal ensembles.\n\n**Component 4: Certifiable Robustness Framing.**\n\nA defense showing 15% empirical ASR under today's 15 known attacks provides no guarantee against tomorrow's attacks—an adaptive adversary could spike ASR back to 60% with a novel strategy. Our framework guarantees Ω(K^α) manipulation cost regardless of attack strategy. Same value proposition as randomized smoothing: modest certified margins, but provable guarantees. Kaneko & Baldwin's per-judge N_min × K_eff gives multi-judge certified resistance.\n\n**Component 5: Adversarial Validation, PEG Degradation Testing, and Model Assumption Validation.**\n\n*Benchmarks.* SummEval (summarization; CAP comparison; broader quality metrics beyond factuality), LiveCodeBench (code; contamination-resistant, frontier-discriminative), GPQA Diamond (knowledge-intensive QA; discriminative for open-weight judges).\n\n*Threat models.* Black-box (aggregated output only), gray-box (judge identities known, individual outputs hidden), white-box (all outputs + DMI weights visible).\n\n*Off-the-shelf attacks.* RobustJudge's 15 methods + SoK vectors.\n\n*Adaptive attacks (Carlini et al., arXiv 1902.06705):*\n(a) Correlation-exploiting (gray/white): optimize perturbation to simultaneously fool high-ρ pairs; transfer-based optimization on proxy models if full MoE gradient infeasible.\n(b) Aggregation-targeting (white): optimize to shift aggregated score beyond certified bound.\n(c) Weakest-link (gray): concentrate on highest-I_max channel.\n(d) Best-effort tightness (white): PGD on MoE active parameters (13-17B, feasible per-forward-pass); fallback to PAIR + random-search hybrid. Budget: 10,000 queries. Convergence: <0.5% ASR improvement over last 2,000 queries. Report ASR-vs-budget curve with convergence annotation.\n\n*Compute-normalized baselines (FLOP-matched):*\n(a) Frontier single-model (GPT-4o-latest or Claude Sonnet).\n(b) Self-consistency: DeepSeek-V4-Flash × 7 (different temperatures/prompts), majority voting. Reports per-query FLOPs and wall-clock time.\n\n*Other baselines.* 7 RobustJudge defenses; CAP; CollabEval (arXiv 2603.00993); Ebrahimi et al. (IJCNLP-AACL 2025, arXiv 2505.24239); Robertson & Koyejo single-evaluator TVD-MI; majority voting K=3,5,7; PEG with DMI scoring.\n\n*PEG degradation validation.* Dedicated experiment: construct 5-7 judge panels spanning ρ from within-family (~0.7-0.8) to all-cross-family (~0.4-0.5) via mixed composition. For each panel, measure ρ_ij directly. Introduce a strategic deviator judge (via prompt injection) and measure its expected payoff gain vs. truthful baseline—payoff gain > 0 provides empirical ε lower bound. Report (measured_ρ, empirical_ε) scatter against theoretical f(ρ) curve. Track DMI regret across panels.\n\n*Dual-scaling validation.* In K-scaling ablation (K=1,2,3,5,7), simultaneously measure: (a) non-adversarial accuracy (Spearman/Kendall with ground truth), fitting (1-α_c)^{K*} model (report R²); (b) adversarial manipulation cost (empirical query count + certified bound), fitting K^α model (report R²). Overlay both curves (log-scale y-axis) to visualize exponential-polynomial asymmetry.\n\n*Model assumption validation.*\n(a) Full K×K ρ_ij matrix; Var(ρ_ij) for equicorrelation deviation.\n(b) Copula GoF (Anderson-Darling, minimum n=500; 50-100 for ρ stability only).\n(c) If GoF rejects: Kendall's tau rank correlation for dependence estimation; K* from rank-correlation matrix. Report Pearson-based vs. Kendall-based K* gap.\n(d) Heterogeneous bound (K*) vs. closed-form bound gap.\n\n*Ablations.*\n(a) K-scaling: K=1,2,3,5,7 (with dual-scaling overlay).\n(b) Diversity-type 2×2: {same-org, diff-org} × {same-arch-type, diff-arch-type}, ≥1 non-MoE model (Gemma-2-27B).\n(c) Accuracy-robustness tradeoff: MI-maximization vs. K_eff-maximization ensemble selection; Pareto frontier.\n(d) α sensitivity: [0.2, 0.8].\n(e) Calibration sensitivity: ρ at {100, 200, 500, 1000, 2000}; cross-domain calibration transfer (3×3 benchmark matrix: use ρ from benchmark A to compute bound for B, report transferred vs. in-domain bound deviation and ρ cross-domain stability); bootstrap error propagation to CI.\n\n*Statistical rigor.* ≥3 seeds (mean ± std). ρ: bootstrap 95% CI. Primary correction: Benjamini-Hochberg FDR. Conservative check on core claims: Bonferroni. Report uncorrected, BH-adjusted, and Bonferroni-adjusted values.\n\n*Pilot study (Weeks 1-2, ~100 H100-hrs).* ρ_ij on 500 samples per benchmark. Go/no-go: ρ > 0.7 → switch to backups. If all open-weight models show ρ > 0.7, report as empirical finding supporting the frontier diversity ceiling.\n\n## Resource Estimate\n{'manual': {'gpu_hours': '1,800-2,800 H100-equivalent', 'timeline': '18-24 weeks', 'estimated_gpu_cost': '$4,500-$7,000 at $2.50/hr', 'gpu_breakdown': 'Pilot ~100; single-judge baselines ~450; multi-judge protocol ~500; adaptive attacks (transfer/PAIR + tightness PGD) ~500; compute-normalized baselines ~50 + ~$300 API; copula/calibration/cross-domain ~100; PEG degradation validation ~80; diversity + accuracy-robustness ablation ~200; K-scaling + dual-scaling ~200; multi-seed ~300; dev/debug ~150'}, 'human_in_loop': {'gpu_hours': '1,400-2,200', 'timeline': '14-18 weeks', 'claude_api_cost': '$400-$600'}, 'auto_research': {'gpu_hours': '2,100-3,000', 'timeline': '9-13 weeks', 'claude_api_cost': '$1,200-$2,000'}}\n\n## Inspired By\nSeven lines: (1) Robertson & Koyejo bounded f-divergence (arXiv 2508.05469); (2) Qiu et al. BNE (ICLR 2026, arXiv 2601.20299) + Chen et al. PEG (NeurIPS 2025, arXiv 2505.13636); (3) Yang et al. K* diversity-scaling (ICLR 2026 Workshop AIMS, arXiv 2602.03794); (4) Turkmen et al. copula model (arXiv 2602.08003); (5) Kaneko & Baldwin single-model bounds (NeurIPS 2025 spotlight, arXiv 2510.17000); (6) SoK 7-model ASR reduction (arXiv 2603.29403); (7) Error correlation/entanglement (Chen et al. arXiv 2604.07650; Kim et al. ICML 2025, arXiv 2506.07962).\n\n## Target Venues\n- ICLR 2027 (estimated: October 2026; primary—full theory + comprehensive experiments)\n- AAAI 2027 (abstract: July 21, 2026; stretch goal)\n- USENIX Security 2027 Cycle 1 (August 2026; security-focused)\n- NeurIPS 2026 Workshops (~August 29, 2026)\n\n## Key References\n- Let's Measure Information Step-by-Step (Robertson & Koyejo, arXiv 2508.05469, 2025)\n- Identity-Link IRT (Robertson, arXiv 2510.14966, 2025)\n- Truthfulness Despite Weak Supervision (Qiu et al., ICLR 2026, arXiv 2601.20299)\n- PEG (Chen et al., NeurIPS 2025, arXiv 2505.13636)\n- Understanding Agent Scaling via Diversity (Yang et al., ICLR 2026 Workshop AIMS, arXiv 2602.03794)\n- Don't Always Pick the Highest-Performing Model (Turkmen et al., arXiv 2602.08003, 2026)\n- Bits Leaked per Query (Kaneko & Baldwin, NeurIPS 2025 spotlight, arXiv 2510.17000)\n- Robust LLM Performance Certification (Shen et al., arXiv 2604.03257, 2026)\n- Noisy but Valid (Feng et al., ICLR 2026, arXiv 2601.20913)\n- Logarithmic Scores, Power-Law Discoveries (Jung & Na, arXiv 2604.00477, 2026)\n- SoK: Security in LLM-as-a-Judge (arXiv 2603.29403, April 2026)\n- RobustJudge (arXiv 2506.09443, 2025)\n- Correlated Errors in LLMs (Kim et al., ICML 2025, arXiv 2506.07962)\n- Behavioral Entanglement (Chen et al., arXiv 2604.07650, 2026)\n- Benchmark Illusion (arXiv 2602.11898, 2026)\n- Strong Data-Processing Inequalities (Polyanskiy & Wu, arXiv 1508.06025, 2017)\n- Rethinking Fano's Inequality in Ensemble Learning (Morishita et al., ICML 2022, arXiv 2205.12683)\n- Certified Robustness for Ensemble Models (Chen et al., arXiv 2107.10873, 2021)\n- Boosting Randomized Smoothing with Variance Reduced Classifiers (Horvath et al., arXiv 2106.06946, 2021)\n- Information-Theoretically Optimal Adversarial Attacks (Yi et al., arXiv 2007.14042, 2020)\n- On the Fragility of AI Agent Collusion (Keppo et al., arXiv 2603.20281, 2026)\n- CollabEval (arXiv 2603.00993, March 2026)\n- Adversary-Resistant Multi-Agent via Credibility Scoring (Ebrahimi et al., IJCNLP-AACL 2025, arXiv 2505.24239)\n- Certifying Joint Adversarial Robustness for Ensembles (Chiang et al., arXiv 2004.10250, 2020)\n- Peer Prediction with More Signals than Reports (Frongillo et al., arXiv 2503.16280, 2025)\n- Adversarial Manipulation of Voting-Based Leaderboards (ICML 2025)\n- Vote Rigging on Chatbot Arena (ICML 2025)\n- am-ELO: Stable Arena-based Evaluation (ICML 2025 Poster)\n- CAP: Comparative Augmented Prompting (OpenReview 2026)\n- Aligned Textual Scoring Rules (Lu et al., arXiv 2507.06221, 2025)\n- Can You Trick the Grader? (EMNLP 2025 Findings)\n- On Evaluating Adversarial Robustness (Carlini et al., arXiv 1902.06705, 2019)\n- Multi-LLM Systems Exhibit Robust Semantic Collapse (Kong et al., arXiv 2605.17193, May 2026)\n- Representational Collapse in Multi-Agent LLM Committees (Patel, arXiv 2604.03809, April 2026)\n- LiveCodeBench (arXiv 2403.07974, 2024)"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-20T05:46:52.935Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-20T05:46:52.935Z",
+  "sessionId": "e1ce9151-87fa-4efa-9fe1-ed55ae4a5cad"
+}
+```
+
+---
+
+## Round 1
+
+53 recorded events
+
+### User
+
+_source line 3 · 2026-05-20T05:46:53.013Z_
+
+【任务】: 请评估以下 proposal 的客观中稿概率。
+必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。
+
+【proposal】:
+# Certifiable Manipulation Resistance for Multi-Judge LLM Evaluation: Information-Theoretic Bounds via Signal Correlation Structure
+
+## Description
+
+LLM evaluation faces systematic adversarial vulnerabilities—open-source judge models show 50–68% average attack success rates (SoK, April 2026, arXiv 2603.29403), and arena rankings can be flipped with ~1,000 strategic votes (ICML 2025). While Robertson & Koyejo (2025, arXiv 2508.05469) proved bounded f-divergence certification for single evaluators, concurrent works established peer prediction incentive-compatibility (Qiu et al., ICLR 2026; Chen et al., NeurIPS 2025), and Kaneko & Baldwin (NeurIPS 2025 spotlight, arXiv 2510.17000) proved tight single-model attack cost bounds (N_min ≥ log₂(1/ε)/I_max), no work provides formal N-judge manipulation-cost scaling as a function of measurable inter-judge correlation.
+
+We establish the **adversarial dual of diversity scaling** and reveal a fundamental asymmetry. Yang et al. (ICLR 2026 Workshop AIMS, arXiv 2602.03794) proved task performance improves exponentially—residual uncertainty decays as (1-α_c)^{K*} via effective channel count K* = 2^{H(ρ)}. We prove the complementary result: adversarial manipulation cost grows only **polynomially** as Ω(K_eff^{1/2}). The structural reason for this asymmetry: stochastic evaluation errors are **incoherent** across judges and concentrate exponentially via standard inequalities, but adversarial perturbations are **coherent**—the adversary's shared perturbation reintroduces cross-judge coupling, limiting gains to polynomial variance reduction. This asymmetry implies diversity is fundamentally more cost-effective for accuracy than for robustness—a non-obvious result with direct resource-allocation implications.
+
+As a co-primary contribution, we characterize how PEG's (Chen et al., NeurIPS 2025, arXiv 2505.13636) dominant-strategy truthfulness, requiring conditional independence (Assumption 4), degrades under partial correlation: ε-approximate equilibrium with ε = f(ρ) provides a continuous degradation curve from dominant-strategy (ρ=0) to approximate (ρ→1) regimes. No existing work provides this analysis.
+
+Our proof proceeds in two steps: (1) SDPI per-channel bounds (Polyanskiy & Wu, arXiv 1508.06025) constrain each judge's information leakage to at most I_max per query; across K parallel judges, total adversary information gain is bounded additively by K_eff · I_max. (2) Variance-reduction arguments (Horvath et al., arXiv 2106.06946) yield perturbation energy scaling as Ω(K_eff^{1/2}), giving g(I_max) = ½·log(K_eff)/log(K). The ½ exponent is derived from continuous-space (ℓ₂) variance reduction; for discrete text perturbations, we state it as a conjecture supported by the continuous analogue and test it empirically via adaptive attacks.
+
+Under Turkmen et al.'s (arXiv 2602.08003) equicorrelated Gaussian copula: K_eff = 1+(K-1)·exp(-2·I_max). For heterogeneous correlation, K* = 2^{H(ρ)} (Yang et al.) serves as an upper-bound approximation of effective dimensionality in the adversarial context; its validity is tested via copula goodness-of-fit and empirical tightness experiments.
+
+A provocative implication: as frontier model capability increases, Kim et al. (ICML 2025, arXiv 2506.07962) show error correlations increase even across providers/architectures. Under our framework, this drives K_eff → 1 regardless of ensemble size, suggesting **certified manipulation-resistance may be fundamentally bounded at the frontier**—a "diversity ceiling" where adding more capable judges yields diminishing certified robustness returns even as accuracy continues to improve.
+
+The framework also serves as a **prescriptive judge-selection tool**: K_eff maximization for certified robustness vs. Turkmen et al.'s MI maximization for accuracy—these may yield different optimal ensembles. We validate against 15 off-the-shelf attacks plus three protocol-aware adaptive attacks on SummEval, LiveCodeBench, and GPQA Diamond, with compute-normalized (FLOP-matched) baselines and copula model validation.
+
+## Core Problem
+Can we provide certifiable manipulation-resistance guarantees for N-judge LLM evaluation protocols, where the certified robustness bound is an explicit, computable function of measurable inter-judge signal correlation, validated against both off-the-shelf and protocol-aware adaptive adversarial attacks?
+
+## Opportunity
+Three critical gaps: (1) No formal N-agent scaling connecting manipulation cost to measurable inter-judge signal correlation. Robertson & Koyejo (arXiv 2508.05469) analyze pairwise evaluations; Chen et al.'s PEG (NeurIPS 2025, arXiv 2505.13636) requires conditional independence (Assumption 4) without characterizing degradation. (2) Empirical validation lacks adaptive attacks targeting multi-judge protocols (Carlini et al., arXiv 1902.06705 standard). (3) Yang et al.'s diversity-scaling (arXiv 2602.03794) addresses performance only—no adversarial dual exists, and the exponential-polynomial asymmetry is unknown.
+
+Turkmen et al. (arXiv 2602.08003): correlated ensemble error floor Φ(Φ⁻¹(1-p)/√ρ), MI decomposition for α estimation. Kaneko & Baldwin (NeurIPS 2025, arXiv 2510.17000): tight single-model bounds, no multi-judge composition. SoK (arXiv 2603.29403): 7-model committees reduce ASR to 10–19% without formal explanation. Qiu et al. (ICLR 2026, arXiv 2601.20299): BNE guarantees for truthfulness, not adversarial robustness.
+
+## Landscape
+**Single-evaluator foundations.** Robertson & Koyejo (arXiv 2508.05469, TMLR under review): TVD-MI, polynomial certification (Theorem 3.3), AUC 0.70–0.77. Identity-Link IRT follow-up (arXiv 2510.14966): sparse evaluation, two-judge validation (ρ=0.872).
+
+**Peer prediction.** Qiu et al. (ICLR 2026, arXiv 2601.20299): BNE guarantees, output truthfulness. Chen et al. PEG (NeurIPS 2025, arXiv 2505.13636): dominant strategy (Lemma 1), O(√T) regret (Theorem 2), Nash convergence (Theorem 3), conditional independence (Assumption 4)—degradation under violation uncharacterized.
+
+**Diversity scaling.** Yang et al. (ICLR 2026 Workshop AIMS, arXiv 2602.03794): K* = 2^{H(ρ)}, (1-α_c)^{K*} decay (Theorem 4.3), heterogeneity advantage (Corollary 4.4). Performance only.
+
+**Correlation models.** Turkmen et al. (arXiv 2602.08003): Gaussian copula, error floor (Theorem 4.4), MI decomposition (Theorem 4.3), within-family ρ~0.7-0.8, cross-family ρ~0.4-0.5. Kim et al. (ICML 2025, arXiv 2506.07962): 60% error agreement, +0.066 same-company, +0.076 same-architecture; larger/more accurate models more correlated even across providers. Chen et al. behavioral entanglement (arXiv 2604.07650): BEI/CIG, cross-family 40–60% lower.
+
+**Single-model adversarial bounds.** Kaneko & Baldwin (NeurIPS 2025 spotlight, arXiv 2510.17000): N_min ≥ log₂(1/ε)/I_max (Theorem 1), SPRT achievability (Theorem 2), four disclosure regimes.
+
+**Certifiable evaluation under noise.** Shen et al. (arXiv 2604.03257): constrained MLE, honest judges. Feng et al. (ICLR 2026, arXiv 2601.20913): hypothesis testing, Type-I error control (Theorem 5.1), variance-corrected thresholds (Theorem 5.4). Both assume non-adversarial judges.
+
+**Semantic/representational collapse.** Kong et al. (arXiv 2605.17193, May 2026): closed-loop multi-LLM systems exhibit semantic collapse across 200–1000 rounds; 12 interventions fail. Patel (arXiv 2604.03809): effective rank 2.17/3.0 for homogeneous committees. Both apply to **iterative closed-loop** settings. Our single-pass evaluation protocol (independent scoring, no inter-judge communication) avoids the feedback loops driving collapse; K_eff serves as a principled detector if diversity erosion occurs.
+
+**Scaling dissociation.** Jung & Na (arXiv 2604.00477): scoring reliability logarithmic, discovery N^0.69 power law.
+
+**Attack/defense landscape.** SoK (arXiv 2603.29403): 50–68% ASR open-source, 27–44% frontier, 7-model → 10–19%. RobustJudge (arXiv 2506.09443): 15 attacks, 7 defenses. CAP (OpenReview 2026): comparative assessment, no formal guarantees. Carlini et al. (arXiv 1902.06705): adaptive attack gold standard.
+
+**Coordination failure.** Frongillo et al. (arXiv 2503.16280): fine-grained signals destabilize uninformative equilibria. Keppo et al. (arXiv 2603.20281): 2→5 LLMs breaks collusion (+22%→+3%).
+
+**Multi-agent evaluation.** CollabEval (arXiv 2603.00993): three-phase, no adversarial guarantees. Ebrahimi et al. (IJCNLP-AACL 2025, arXiv 2505.24239): credibility-based aggregation.
+
+**Certified ensemble robustness.** Chen et al. (arXiv 2107.10873): diversified gradient + confidence margin necessary/sufficient. Horvath et al. (arXiv 2106.06946): √K certified radius via variance reduction. Both in continuous perturbation spaces.
+
+THE KEY GAP: No formal N-agent manipulation-cost scaling as a function of measurable correlation; no characterization of the exponential-polynomial asymmetry between performance and robustness scaling; no PEG degradation analysis under correlation violation.
+
+## Approach
+
+Five components:
+
+**Component 1: Theoretical Framework—The Asymmetric Adversarial Dual.**
+
+We prove manipulation cost grows as Ω(K_eff^{1/2}), establishing an asymmetric duality with Yang et al.'s exponential performance scaling. The structural origin: stochastic errors are incoherent across judges (exponential concentration), but adversarial perturbations are coherent (shared perturbation reintroduces coupling → polynomial variance reduction only). This implies a fundamental resource-allocation insight: the marginal robustness value of each additional judge diminishes faster than its marginal accuracy value.
+
+*Step 1—Per-Channel SDPI Bound.* Each judge is a noisy channel; SDPI (Polyanskiy & Wu, arXiv 1508.06025) bounds per-channel information leakage to I_max. K parallel judges yield additive total: K_eff · I_max per round. Extends Kaneko & Baldwin's single-channel N_min.
+
+*Step 2—Variance Reduction to Manipulation Cost.* Fano-ensemble decomposition (Morishita et al., ICML 2022, arXiv 2205.12683) into relevance, redundancy, combination loss. Marton's inequality (TV² ≤ ½·KL) + Robertson & Koyejo's Theorem 3.3 → perturbation energy Ω(K_eff^{1/2}). Exponent: g(I_max) = ½·log(K_eff)/log(K). Boundaries: g(0) = ½ (independent), g → 0 (fully correlated).
+
+*Copula Closed Form.* Turkmen et al.'s equicorrelated model: K_eff = 1+(K-1)·exp(-2·I_max), I_max = -½ log(1-ρ²). Eigenvalues λ₁ = 1+(K-1)ρ, λ₂ = 1-ρ.
+
+*Heterogeneous Extension.* K* = 2^{H(ρ)} (Yang et al.) as upper-bound approximation of adversarial effective dimensionality, yielding g ≥ ½·log(K*)/log(K). K*'s validity in the adversarial context (vs. its original performance context) is an approximation justified by the shared eigenstructure and validated empirically via tightness experiments.
+
+*Exponent Status.* The ½ exponent derives from continuous-space (ℓ₂) variance reduction (Horvath et al., arXiv 2106.06946). For discrete text perturbations, the perturbation geometry differs; we state ½ as a conjecture for the discrete evaluation setting, supported by the continuous analogue, and test it empirically. Whether the true discrete exponent is better or worse than ½ is an open question.
+
+*Frontier Diversity Ceiling.* Kim et al. (ICML 2025) show error correlations increase with model capability even across providers/architectures. Under our framework, this drives K_eff → 1 as ρ → 1, implying certified manipulation-resistance may face a fundamental ceiling at the frontier: adding more capable judges yields diminishing certified robustness returns even as accuracy improves. We examine this empirically and discuss its implications.
+
+**Component 2: PEG Guarantee Degradation + α Regime Analysis.**
+
+*Co-primary contribution.* PEG's dominant-strategy truthfulness (Lemma 1, Assumption 4 conditional independence; Chen et al., NeurIPS 2025, arXiv 2505.13636) degrades under correlation: ε-approximate equilibrium with ε = f(ρ). This degradation pattern may extend to other conditional-independence-assuming mechanisms in peer prediction, though we prove it specifically for PEG.
+
+α estimates using external priors (Turkmen et al. ρ~0.4-0.5; Kim et al. +0.066/+0.076) **validated via direct measurement** in pilot study. Note: Kim et al.'s agreement rate and copula ρ are different quantities; we derive the mapping explicitly.
+- Central: ρ ≈ 0.45, α ∈ [0.35, 0.65], K=7: 2.65–3.7×
+- Sensitivity: α=0.2 → 1.55×; α=0.8 → 5.2×; vacuous at α ≤ 0.05 (ρ ≥ 0.95)
+- Score-coverage dissociation (Jung & Na, arXiv 2604.00477): analyze certified bound saturation rate
+
+**Component 3: Practical Protocol Design.**
+
+Three families: DeepSeek-V4-Flash (284B MoE, 13B active), Qwen-3.5 (397B MoE, 17B active), Llama-4-Maverick (400B MoE, 17B active). Backups: Gemma-2-27B (dense, non-MoE), Mistral-Large-2, Command-R+.
+
+Three phases: (1) Independence measurement (calibration ≥500 samples for copula GoF; sensitivity at {100, 200, 500, 1000, 2000}); (2) TVD-MI evaluation + DMI-weighted aggregation (PEG, Chen et al., NeurIPS 2025); (3) Certification: Ω(K^α) bound with measured α.
+
+Prescriptive judge selection: K_eff maximization (robustness) vs. MI maximization (accuracy, Turkmen et al.) may yield different optimal ensembles.
+
+**Component 4: Certifiable Robustness Framing.**
+
+A defense showing 15% empirical ASR under today's 15 known attacks provides no guarantee against tomorrow's attacks—an adaptive adversary could spike ASR back to 60% with a novel strategy. Our framework guarantees Ω(K^α) manipulation cost regardless of attack strategy. Same value proposition as randomized smoothing: modest certified margins, but provable guarantees. Kaneko & Baldwin's per-judge N_min × K_eff gives multi-judge certified resistance.
+
+**Component 5: Adversarial Validation, PEG Degradation Testing, and Model Assumption Validation.**
+
+*Benchmarks.* SummEval (summarization; CAP comparison; broader quality metrics beyond factuality), LiveCodeBench (code; contamination-resistant, frontier-discriminative), GPQA Diamond (knowledge-intensive QA; discriminative for open-weight judges).
+
+*Threat models.* Black-box (aggregated output only), gray-box (judge identities known, individual outputs hidden), white-box (all outputs + DMI weights visible).
+
+*Off-the-shelf attacks.* RobustJudge's 15 methods + SoK vectors.
+
+*Adaptive attacks (Carlini et al., arXiv 1902.06705):*
+(a) Correlation-exploiting (gray/white): optimize perturbation to simultaneously fool high-ρ pairs; transfer-based optimization on proxy models if full MoE gradient infeasible.
+(b) Aggregation-targeting (white): optimize to shift aggregated score beyond certified bound.
+(c) Weakest-link (gray): concentrate on highest-I_max channel.
+(d) Best-effort tightness (white): PGD on MoE active parameters (13-17B, feasible per-forward-pass); fallback to PAIR + random-search hybrid. Budget: 10,000 queries. Convergence: <0.5% ASR improvement over last 2,000 queries. Report ASR-vs-budget curve with convergence annotation.
+
+*Compute-normalized baselines (FLOP-matched):*
+(a) Frontier single-model (GPT-4o-latest or Claude Sonnet).
+(b) Self-consistency: DeepSeek-V4-Flash × 7 (different temperatures/prompts), majority voting. Reports per-query FLOPs and wall-clock time.
+
+*Other baselines.* 7 RobustJudge defenses; CAP; CollabEval (arXiv 2603.00993); Ebrahimi et al. (IJCNLP-AACL 2025, arXiv 2505.24239); Robertson & Koyejo single-evaluator TVD-MI; majority voting K=3,5,7; PEG with DMI scoring.
+
+*PEG degradation validation.* Dedicated experiment: construct 5-7 judge panels spanning ρ from within-family (~0.7-0.8) to all-cross-family (~0.4-0.5) via mixed composition. For each panel, measure ρ_ij directly. Introduce a strategic deviator judge (via prompt injection) and measure its expected payoff gain vs. truthful baseline—payoff gain > 0 provides empirical ε lower bound. Report (measured_ρ, empirical_ε) scatter against theoretical f(ρ) curve. Track DMI regret across panels.
+
+*Dual-scaling validation.* In K-scaling ablation (K=1,2,3,5,7), simultaneously measure: (a) non-adversarial accuracy (Spearman/Kendall with ground truth), fitting (1-α_c)^{K*} model (report R²); (b) adversarial manipulation cost (empirical query count + certified bound), fitting K^α model (report R²). Overlay both curves (log-scale y-axis) to visualize exponential-polynomial asymmetry.
+
+*Model assumption validation.*
+(a) Full K×K ρ_ij matrix; Var(ρ_ij) for equicorrelation deviation.
+(b) Copula GoF (Anderson-Darling, minimum n=500; 50-100 for ρ stability only).
+(c) If GoF rejects: Kendall's tau rank correlation for dependence estimation; K* from rank-correlation matrix. Report Pearson-based vs. Kendall-based K* gap.
+(d) Heterogeneous bound (K*) vs. closed-form bound gap.
+
+*Ablations.*
+(a) K-scaling: K=1,2,3,5,7 (with dual-scaling overlay).
+(b) Diversity-type 2×2: {same-org, diff-org} × {same-arch-type, diff-arch-type}, ≥1 non-MoE model (Gemma-2-27B).
+(c) Accuracy-robustness tradeoff: MI-maximization vs. K_eff-maximization ensemble selection; Pareto frontier.
+(d) α sensitivity: [0.2, 0.8].
+(e) Calibration sensitivity: ρ at {100, 200, 500, 1000, 2000}; cross-domain calibration transfer (3×3 benchmark matrix: use ρ from benchmark A to compute bound for B, report transferred vs. in-domain bound deviation and ρ cross-domain stability); bootstrap error propagation to CI.
+
+*Statistical rigor.* ≥3 seeds (mean ± std). ρ: bootstrap 95% CI. Primary correction: Benjamini-Hochberg FDR. Conservative check on core claims: Bonferroni. Report uncorrected, BH-adjusted, and Bonferroni-adjusted values.
+
+*Pilot study (Weeks 1-2, ~100 H100-hrs).* ρ_ij on 500 samples per benchmark. Go/no-go: ρ > 0.7 → switch to backups. If all open-weight models show ρ > 0.7, report as empirical finding supporting the frontier diversity ceiling.
+
+## Resource Estimate
+{'manual': {'gpu_hours': '1,800-2,800 H100-equivalent', 'timeline': '18-24 weeks', 'estimated_gpu_cost': '$4,500-$7,000 at $2.50/hr', 'gpu_breakdown': 'Pilot ~100; single-judge baselines ~450; multi-judge protocol ~500; adaptive attacks (transfer/PAIR + tightness PGD) ~500; compute-normalized baselines ~50 + ~$300 API; copula/calibration/cross-domain ~100; PEG degradation validation ~80; diversity + accuracy-robustness ablation ~200; K-scaling + dual-scaling ~200; multi-seed ~300; dev/debug ~150'}, 'human_in_loop': {'gpu_hours': '1,400-2,200', 'timeline': '14-18 weeks', 'claude_api_cost': '$400-$600'}, 'auto_research': {'gpu_hours': '2,100-3,000', 'timeline': '9-13 weeks', 'claude_api_cost': '$1,200-$2,000'}}
+
+## Inspired By
+Seven lines: (1) Robertson & Koyejo bounded f-divergence (arXiv 2508.05469); (2) Qiu et al. BNE (ICLR 2026, arXiv 2601.20299) + Chen et al. PEG (NeurIPS 2025, arXiv 2505.13636); (3) Yang et al. K* diversity-scaling (ICLR 2026 Workshop AIMS, arXiv 2602.03794); (4) Turkmen et al. copula model (arXiv 2602.08003); (5) Kaneko & Baldwin single-model bounds (NeurIPS 2025 spotlight, arXiv 2510.17000); (6) SoK 7-model ASR reduction (arXiv 2603.29403); (7) Error correlation/entanglement (Chen et al. arXiv 2604.07650; Kim et al. ICML 2025, arXiv 2506.07962).
+
+## Target Venues
+- ICLR 2027 (estimated: October 2026; primary—full theory + comprehensive experiments)
+- AAAI 2027 (abstract: July 21, 2026; stretch goal)
+- USENIX Security 2027 Cycle 1 (August 2026; security-focused)
+- NeurIPS 2026 Workshops (~August 29, 2026)
+
+## Key References
+- Let's Measure Information Step-by-Step (Robertson & Koyejo, arXiv 2508.05469, 2025)
+- Identity-Link IRT (Robertson, arXiv 2510.14966, 2025)
+- Truthfulness Despite Weak Supervision (Qiu et al., ICLR 2026, arXiv 2601.20299)
+- PEG (Chen et al., NeurIPS 2025, arXiv 2505.13636)
+- Understanding Agent Scaling via Diversity (Yang et al., ICLR 2026 Workshop AIMS, arXiv 2602.03794)
+- Don't Always Pick the Highest-Performing Model (Turkmen et al., arXiv 2602.08003, 2026)
+- Bits Leaked per Query (Kaneko & Baldwin, NeurIPS 2025 spotlight, arXiv 2510.17000)
+- Robust LLM Performance Certification (Shen et al., arXiv 2604.03257, 2026)
+- Noisy but Valid (Feng et al., ICLR 2026, arXiv 2601.20913)
+- Logarithmic Scores, Power-Law Discoveries (Jung & Na, arXiv 2604.00477, 2026)
+- SoK: Security in LLM-as-a-Judge (arXiv 2603.29403, April 2026)
+- RobustJudge (arXiv 2506.09443, 2025)
+- Correlated Errors in LLMs (Kim et al., ICML 2025, arXiv 2506.07962)
+- Behavioral Entanglement (Chen et al., arXiv 2604.07650, 2026)
+- Benchmark Illusion (arXiv 2602.11898, 2026)
+- Strong Data-Processing Inequalities (Polyanskiy & Wu, arXiv 1508.06025, 2017)
+- Rethinking Fano's Inequality in Ensemble Learning (Morishita et al., ICML 2022, arXiv 2205.12683)
+- Certified Robustness for Ensemble Models (Chen et al., arXiv 2107.10873, 2021)
+- Boosting Randomized Smoothing with Variance Reduced Classifiers (Horvath et al., arXiv 2106.06946, 2021)
+- Information-Theoretically Optimal Adversarial Attacks (Yi et al., arXiv 2007.14042, 2020)
+- On the Fragility of AI Agent Collusion (Keppo et al., arXiv 2603.20281, 2026)
+- CollabEval (arXiv 2603.00993, March 2026)
+- Adversary-Resistant Multi-Agent via Credibility Scoring (Ebrahimi et al., IJCNLP-AACL 2025, arXiv 2505.24239)
+- Certifying Joint Adversarial Robustness for Ensembles (Chiang et al., arXiv 2004.10250, 2020)
+- Peer Prediction with More Signals than Reports (Frongillo et al., arXiv 2503.16280, 2025)
+- Adversarial Manipulation of Voting-Based Leaderboards (ICML 2025)
+- Vote Rigging on Chatbot Arena (ICML 2025)
+- am-ELO: Stable Arena-based Evaluation (ICML 2025 Poster)
+- CAP: Comparative Augmented Prompting (OpenReview 2026)
+- Aligned Textual Scoring Rules (Lu et al., arXiv 2507.06221, 2025)
+- Can You Trick the Grader? (EMNLP 2025 Findings)
+- On Evaluating Adversarial Robustness (Carlini et al., arXiv 1902.06705, 2019)
+- Multi-LLM Systems Exhibit Robust Semantic Collapse (Kong et al., arXiv 2605.17193, May 2026)
+- Representational Collapse in Multi-Agent LLM Committees (Patel, arXiv 2604.03809, April 2026)
+- LiveCodeBench (arXiv 2403.07974, 2024)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "0ca768bf-2bb9-4c6e-b061-13b24d10a840",
+  "type": "user",
+  "uuid": "3d3d2ada-30c2-4a09-9e9e-e60c1bc8b804",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e1ce9151-87fa-4efa-9fe1-ed55ae4a5cad",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-20T05:46:53.012Z_
+
+```json
+{
+  "parentUuid": "3d3d2ada-30c2-4a09-9e9e-e60c1bc8b804",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "0e90b45f-f323-4bd3-af81-59d9fe50ee6d",
+  "timestamp": "2026-05-20T05:46:53.012Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e1ce9151-87fa-4efa-9fe1-ed55ae4a5cad",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-20T05:46:53.012Z_
+
+```json
+{
+  "parentUuid": "0e90b45f-f323-4bd3-af81-59d9fe50ee6d",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "42d85e12-87c3-41b9-aeaa-6fd11c6f4d66",
+  "timestamp": "2026-05-20T05:46:53.012Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e1ce9151-87fa-4efa-9fe1-ed55ae4a5cad",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Certifiable Manipulation Resistance for Multi-Judge LLM Evaluation: Information-Theoretic Bounds via Signal Corr…",
+  "leafUuid": "42d85e12-87c3-41b9-aeaa-6fd11c6f4d66",
+  "sessionId": "e1ce9151-87fa-4efa-9fe1-ed55ae4a5cad"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Multi-judge LLM evaluation manipulation resistance bounds",
+  "sessionId": "e1ce9151-87fa-4efa-9fe1-ed55ae4a5cad"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-20T05:46:57.420Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to evaluate a research proposal for EMNLP 2026 submission. Before I can give a proper assessment, I need to do thorough literature research using WebSearch. Let me first load the WebSearch tool, then conduct my research.
+
+Let me start by loading the WebSearch tool schema.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "42d85e12-87c3-41b9-aeaa-6fd11c6f4d66",
+  "isSidechain": false,
+  "requestId": "req_011CbDHweinjwZCiogBZk5U5",
+  "type": "assistant",
+  "uuid": "89825401-0298-4bbe-8c6c-00977c6685fa",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e1ce9151-87fa-4efa-9fe1-ed55ae4a5cad",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QW4e77AeHhRsMVZ9QXwPyU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11247,
+      "cache_read_input_tokens": 11374,
+      "output_tokens": 158,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11247,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 158,
+          "cache_read_input_tokens": 11374,
+          "cache_creation_input_tokens": 11247,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11247
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-20T05:46:57.430Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Y7C6WvZ6K6fzy77xWeGSsx`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "89825401-0298-4bbe-8c6c-00977c6685fa",
+  "isSidechain": false,
+  "requestId": "req_011CbDHweinjwZCiogBZk5U5",
+  "type": "assistant",
+  "uuid": "bd4df2d5-8c5e-4050-b90f-f4128d8a66f0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e1ce9151-87fa-4efa-9fe1-ed55ae4a5cad",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QW4e77AeHhRsMVZ9QXwPyU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11247,
+      "cache_read_input_tokens": 11374,
+      "output_tokens": 158,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11247,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 158,
+          "cache_read_input_tokens": 11374,
+          "cache_creation_input_tokens": 11247,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11247
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-20T05:46:57.438Z_
+
+<details><summary>↩ Tool result · `toolu_01Y7C6WvZ6K6fzy77xWeGSsx`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bd4df2d5-8c5e-4050-b90f-f4128d8a66f0",
+  "isSidechain": false,
+  "promptId": "0ca768bf-2bb9-4c6e-b061-13b24d10a840",
+  "type": "user",
+  "uuid": "ec5b0ea7-ffbe-4d1d-95c8-54f567bcc0d1",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "bd4df2d5-8c5e-4050-b90f-f4128d8a66f0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e1ce9151-87fa-4efa-9fe1-ed55ae4a5cad",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11 · 2026-05-20T05:47:02.764Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me conduct thorough literature research before evaluating this proposal. I need to search for:
+
+1. The current state of adversarial robustness in LLM-as-a-judge evaluation
+2. Multi-judge LLM evaluation and manipulation resistance
+3. Information-theoretic bounds for LLM evaluation security
+4. The specific key papers mentioned (to verify claims and understand the landscape)
+5. Certified robustness for ensemble models and its application to LLM judges
+
+Let me do 5 targeted searches.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ec5b0ea7-ffbe-4d1d-95c8-54f567bcc0d1",
+  "isSidechain": false,
+  "requestId": "req_011CbDHwzApqpqcxEfyesEwD",
+  "type": "assistant",
+  "uuid": "97e0c1d7-c998-4b3a-9c61-569d06520d5a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e1ce9151-87fa-4efa-9fe1-ed55ae4a5cad",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C3fX6JhEGe4Zq8GEfGY6jU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 686,
+      "cache_read_input_tokens": 22621,
+      "output_tokens": 475,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 686,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 475,
+          "cache_read_input_tokens": 22621,
+          "cache_creation_input_tokens": 686,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 686
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-20T05:47:03.308Z_
+
+I'll now conduct the required literature research before evaluating. Let me run multiple targeted searches in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "97e0c1d7-c998-4b3a-9c61-569d06520d5a",
+  "isSidechain": false,
+  "requestId": "req_011CbDHwzApqpqcxEfyesEwD",
+  "type": "assistant",
+  "uuid": "16f29891-5a41-4a4b-ac18-12f69473f32d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e1ce9151-87fa-4efa-9fe1-ed55ae4a5cad",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C3fX6JhEGe4Zq8GEfGY6jU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 686,
+      "cache_read_input_tokens": 22621,
+      "output_tokens": 475,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 686,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 475,
+          "cache_read_input_tokens": 22621,
+          "cache_creation_input_tokens": 686,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 686
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-20T05:47:03.836Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013MMRzTY28jGvLdHW1zdWUs`</summary>
+
+```json
+{
+  "query": "adversarial attacks LLM-as-a-judge multi-judge robustness 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "16f29891-5a41-4a4b-ac18-12f69473f32d",
+  "isSidechain": false,
+  "requestId": "req_011CbDHwzApqpqcxEfyesEwD",
+  "type": "assistant",
+  "uuid": "676888b4-27d5-461f-ad77-4d2daa108589",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e1ce9151-87fa-4efa-9fe1-ed55ae4a5cad",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C3fX6JhEGe4Zq8GEfGY6jU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 686,
+      "cache_read_input_tokens": 22621,
+      "output_tokens": 475,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 686,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 475,
+          "cache_read_input_tokens": 22621,
+          "cache_creation_input_tokens": 686,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 686
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-20T05:47:04.803Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014rbhwacLj2xwznEXnyxEum`</summary>
+
+```json
+{
+  "query": "certified robustness manipulation resistance LLM evaluation information-theoretic bounds 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "676888b4-27d5-461f-ad77-4d2daa108589",
+  "isSidechain": false,
+  "requestId": "req_011CbDHwzApqpqcxEfyesEwD",
+  "type": "assistant",
+  "uuid": "98657128-9aec-4bc2-8459-8866c7152781",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e1ce9151-87fa-4efa-9fe1-ed55ae4a5cad",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C3fX6JhEGe4Zq8GEfGY6jU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 686,
+      "cache_read_input_tokens": 22621,
+      "output_tokens": 475,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 686,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 475,
+          "cache_read_input_tokens": 22621,
+          "cache_creation_input_tokens": 686,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 686
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-20T05:47:05.277Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011rV77qwoz8K1NJKQ1D1Qfc`</summary>
+
+```json
+{
+  "query": "SoK security LLM judge arXiv 2603.29403 multi-model committee attack success rate"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "98657128-9aec-4bc2-8459-8866c7152781",
+  "isSidechain": false,
+  "requestId": "req_011CbDHwzApqpqcxEfyesEwD",
+  "type": "assistant",
+  "uuid": "005e2e2b-a7f8-4975-8e4e-5f4a257cf48c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e1ce9151-87fa-4efa-9fe1-ed55ae4a5cad",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C3fX6JhEGe4Zq8GEfGY6jU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 686,
+      "cache_read_input_tokens": 22621,
+      "output_tokens": 475,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 686,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 475,
+          "cache_read_input_tokens": 22621,
+          "cache_creation_input_tokens": 686,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 686
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-20T05:47:06.239Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015v5p2y7XoiJUzWTqGTSWv4`</summary>
+
+```json
+{
+  "query": "Kaneko Baldwin \"bits leaked per query\" NeurIPS 2025 arXiv 2510.17000 single model adversarial bounds"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "005e2e2b-a7f8-4975-8e4e-5f4a257cf48c",
+  "isSidechain": false,
+  "requestId": "req_011CbDHwzApqpqcxEfyesEwD",
+  "type": "assistant",
+  "uuid": "159c97b8-3d99-4b47-958e-a5c5e7b9efd3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e1ce9151-87fa-4efa-9fe1-ed55ae4a5cad",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C3fX6JhEGe4Zq8GEfGY6jU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 686,
+      "cache_read_input_tokens": 22621,
+      "output_tokens": 475,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 686,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 475,
+          "cache_read_input_tokens": 22621,
+          "cache_creation_input_tokens": 686,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 686
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-20T05:47:07.034Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01K7yTSMP42PQPEdjmRHUE12`</summary>
+
+```json
+{
+  "query": "Yang et al diversity scaling multi-agent effective channel count arXiv 2602.03794 ICLR 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "159c97b8-3d99-4b47-958e-a5c5e7b9efd3",
+  "isSidechain": false,
+  "requestId": "req_011CbDHwzApqpqcxEfyesEwD",
+  "type": "assistant",
+  "uuid": "ee4bbc06-5648-4717-9ec4-4d6e80d2f8c0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e1ce9151-87fa-4efa-9fe1-ed55ae4a5cad",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C3fX6JhEGe4Zq8GEfGY6jU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 686,
+      "cache_read_input_tokens": 22621,
+      "output_tokens": 475,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 686,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 475,
+          "cache_read_input_tokens": 22621,
+          "cache_creation_input_tokens": 686,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 686
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-20T05:47:11.591Z_
+
+<details><summary>↩ Tool result · `toolu_013MMRzTY28jGvLdHW1zdWUs`</summary>
+
+```text
+Web search results for query: "adversarial attacks LLM-as-a-judge multi-judge robustness 2025 2026"
+
+Links: [{"title":"Is LLM-as-a-Judge Robust? Investigating Universal Adversarial Attacks on   Zero-shot LLM Assessment","url":"https://arxiv.org/pdf/2402.14016"},{"title":"CAP: Improving the Robustness of LLM-as-a-Judge Against Adversarial Score Manipulation via Comparative Augmented Prompting | OpenReview","url":"https://openreview.net/forum?id=wYU6OYFvid"},{"title":"LLMs Cannot Reliably Judge (Yet?): A Comprehensive Assessment on the Robustness of LLM-as-a-Judge","url":"https://arxiv.org/html/2506.09443v1"},{"title":"(PDF) Adversarial Attacks on LLM-as-a-Judge Systems: Insights from Prompt Injections","url":"https://www.researchgate.net/publication/391220170_Adversarial_Attacks_on_LLM-as-a-Judge_Systems_Insights_from_Prompt_Injections"},{"title":"Is LLM-as-a-Judge Robust? Investigating Universal Adversarial Attacks on Zero-shot LLM Assessment","url":"https://arxiv.org/html/2402.14016v2"},{"title":"Adversarial Attacks on LLM-as-a-Judge Systems: Insights from Prompt Injections","url":"https://arxiv.org/html/2504.18333v1"},{"title":"[2402.14016] Is LLM-as-a-Judge Robust? Investigating Universal Adversarial Attacks on Zero-shot LLM Assessment","url":"https://arxiv.org/abs/2402.14016"},{"title":"Benchmarking adversarial robustness to bias elicitation in large language models: scalable automated assessment with LLM-as-a-judge | Machine Learning | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s10994-025-06862-6"},{"title":"[2504.18333] Adversarial Attacks on LLM-as-a-Judge Systems: Insights from Prompt Injections","url":"https://arxiv.org/abs/2504.18333"}]
+
+Based on the web search results, here's what I found on adversarial attacks against LLM-as-a-judge systems and multi-judge robustness:
+
+## Key Findings on Adversarial Attacks Against LLM-as-a-Judge
+
+LLM-as-a-Judge systems exhibit significant vulnerability to adversarial attacks, where carefully crafted suffixes or prompts can easily manipulate scoring outcomes and cause abnormal score inflation.
+
+### Attack Methods
+
+LLM-as-a-Judge systems are vulnerable to a range of adversarial attacks, including Combined Attack and PAIR, while defense mechanisms such as Re-tokenization and LLM-based Detectors offer improved protection. Both LLM-scoring and pairwise LLM-comparative assessment are vulnerable to such attacks, and concatenating a universal phrase of under 5 tokens can trick systems into providing significantly higher assessment scores.
+
+### Multi-Judge and Robustness Approaches
+
+Recommendations for developing more robust evaluation frameworks include using multi-model committees with diverse architectures and preferring comparative assessment over absolute scoring methods. Comparative evaluation tasks exhibit stronger robustness against such attacks compared to absolute scoring tasks.
+
+### Recent Research (2025-2026)
+
+The CAP (Comparative Augmented Prompting) method enhances robustness by integrating a structured comparative mechanism into the absolute scoring framework, and experimental results show the CAP method effectively maintains scoring accuracy while significantly reducing the success rate of adversarial attacks. Current LLM-as-a-Judge systems are not yet sufficiently robust for secure deployment in critical evaluation tasks, and highlight the need for future research to strengthen their resilience against adversarial attacks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "676888b4-27d5-461f-ad77-4d2daa108589",
+  "isSidechain": false,
+  "promptId": "0ca768bf-2bb9-4c6e-b061-13b24d10a840",
+  "type": "user",
+  "uuid": "739f6c43-f642-4b92-8fa3-67f061097455",
+  "toolUseResult": {
+    "query": "adversarial attacks LLM-as-a-judge multi-judge robustness 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01UbESXVHXxxxVL7fsnkbRu2",
+        "content": [
+          {
+            "title": "Is LLM-as-a-Judge Robust? Investigating Universal Adversarial Attacks on   Zero-shot LLM Assessment",
+            "url": "https://arxiv.org/pdf/2402.14016"
+          },
+          {
+            "title": "CAP: Improving the Robustness of LLM-as-a-Judge Against Adversarial Score Manipulation via Comparative Augmented Prompting | OpenReview",
+            "url": "https://openreview.net/forum?id=wYU6OYFvid"
+          },
+          {
+            "title": "LLMs Cannot Reliably Judge (Yet?): A Comprehensive Assessment on the Robustness of LLM-as-a-Judge",
+            "url": "https://arxiv.org/html/2506.09443v1"
+          },
+          {
+            "title": "(PDF) Adversarial Attacks on LLM-as-a-Judge Systems: Insights from Prompt Injections",
+            "url": "https://www.researchgate.net/publication/391220170_Adversarial_Attacks_on_LLM-as-a-Judge_Systems_Insights_from_Prompt_Injections"
+          },
+          {
+            "title": "Is LLM-as-a-Judge Robust? Investigating Universal Adversarial Attacks on Zero-shot LLM Assessment",
+            "url": "https://arxiv.org/html/2402.14016v2"
+          },
+          {
+            "title": "Adversarial Attacks on LLM-as-a-Judge Systems: Insights from Prompt Injections",
+            "url": "https://arxiv.org/html/2504.18333v1"
+          },
+          {
+            "title": "[2402.14016] Is LLM-as-a-Judge Robust? Investigating Universal Adversarial Attacks on Zero-shot LLM Assessment",
+            "url": "https://arxiv.org/abs/2402.14016"
+          },
+          {
+            "title": "Benchmarking adversarial robustness to bias elicitation in large language models: scalable automated assessment with LLM-as-a-judge | Machine Learning | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s10994-025-06862-6"
+          },
+          {
+            "title": "[2504.18333] Adversarial Attacks on LLM-as-a-Judge Systems: Insights from Prompt Injections",
+            "url": "https://arxiv.org/abs/2504.18333"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found on adversarial attacks against LLM-as-a-judge systems and multi-judge robustness:\n\n## Key Findings on Adversarial Attacks Against LLM-as-a-Judge\n\nLLM-as-a-Judge systems exhibit significant vulnerability to adversarial attacks, where carefully crafted suffixes or prompts can easily manipulate scoring outcomes and cause abnormal score inflation.\n\n### Attack Methods\n\nLLM-as-a-Judge systems are vulnerable to a range of adversarial attacks, including Combined Attack and PAIR, while defense mechanisms such as Re-tokenization and LLM-based Detectors offer improved protection. Both LLM-scoring and pairwise LLM-comparative assessment are vulnerable to such attacks, and concatenating a universal phrase of under 5 tokens can trick systems into providing significantly higher assessment scores.\n\n### Multi-Judge and Robustness Approaches\n\nRecommendations for developing more robust evaluation frameworks include using multi-model committees with diverse architectures and preferring comparative assessment over absolute scoring methods. Comparative evaluation tasks exhibit stronger robustness against such attacks compared to absolute scoring tasks.\n\n### Recent Research (2025-2026)\n\nThe CAP (Comparative Augmented Prompting) method enhances robustness by integrating a structured comparative mechanism into the absolute scoring framework, and experimental results show the CAP method effectively maintains scoring accuracy while significantly reducing the success rate of adversarial attacks. Current LLM-as-a-Judge systems are not yet sufficiently robust for secure deployment in critical evaluation tasks, and highlight the need for future research to strengthen their resilience against adversarial attacks."
+    ],
+    "durationSeconds": 7.750225038000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "676888b4-27d5-461f-ad77-4d2daa108589",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e1ce9151-87fa-4efa-9fe1-ed55ae4a5cad",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-20T05:47:12.525Z_
+
+<details><summary>↩ Tool result · `toolu_014rbhwacLj2xwznEXnyxEum`</summary>
+
+```text
+Web search results for query: "certified robustness manipulation resistance LLM evaluation information-theoretic bounds 2025 2026"
+
+Links: [{"title":"Let’s Measure Information Step-by-Step: LLM-Based Evaluation Beyond Vibes","url":"https://arxiv.org/pdf/2508.05469"},{"title":"CluCERT: Certifying LLM Robustness via Clustering-Guided Denoising Smoothing","url":"https://arxiv.org/pdf/2512.08967"},{"title":"Evaluating the performance and robustness of LLMs in ...","url":"https://pubs.rsc.org/en/content/articlepdf/2025/dd/d5dd00090d"},{"title":"Vulnerability of LLMs’ Stated Beliefs? LLMs Belief Resistance Check Through Strategic Persuasive Conversation Interventions","url":"https://arxiv.org/html/2601.13590"},{"title":"Robust LLM Performance Certification via Constrained Maximum Likelihood Estimation","url":"https://arxiv.org/html/2604.03257"},{"title":"Provable Defense Framework for LLM Jailbreaks via Noise-Augumented Alignment","url":"https://arxiv.org/pdf/2602.01587"}]
+
+I found several relevant research papers on certified robustness, manipulation resistance, and LLM evaluation with information-theoretic approaches from 2025-2026. Here's a summary of the key findings:
+
+## Information-Theoretic Evaluation Mechanisms
+
+Information-theoretic mechanisms with formal guarantees provide substantially more effective detection of strategic manipulation than current evaluation practices. The data processing inequality ensures that strategic manipulation can only degrade mutual information, and when agents attempt to game the mechanism by distorting their reports, they simultaneously reduce the mutual information between their response and the source and degrade the quality of their output.
+
+## Certified Robustness Approaches
+
+CluCERT is a novel framework for certifying LLM robustness via clustering-guided denoising smoothing, which introduces a semantic clustering filter that reduces noisy samples and retains meaningful perturbations, supported by theoretical analysis. This method outperforms existing certified approaches in both robustness bounds and computational efficiency.
+
+## Provable Defense Frameworks
+
+There is an urgent need to move from empirical resilience to certifiable robustness, providing mathematical guarantees that a model's safety is invariant within a defined perturbation budget.
+
+## Manipulation Resistance Evaluation
+
+Most robustness methods target factual correctness rather than resistance to persuasive manipulation. Recent work has been examining how structured persuasive interventions affect LLM belief persistence and resistance to manipulation attempts.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "98657128-9aec-4bc2-8459-8866c7152781",
+  "isSidechain": false,
+  "promptId": "0ca768bf-2bb9-4c6e-b061-13b24d10a840",
+  "type": "user",
+  "uuid": "8bf439b5-00d7-4010-9e2d-546ca74804bd",
+  "toolUseResult": {
+    "query": "certified robustness manipulation resistance LLM evaluation information-theoretic bounds 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01E1VKx5MidX9r5vkLyPk36L",
+        "content": [
+          {
+            "title": "Let’s Measure Information Step-by-Step: LLM-Based Evaluation Beyond Vibes",
+            "url": "https://arxiv.org/pdf/2508.05469"
+          },
+          {
+            "title": "CluCERT: Certifying LLM Robustness via Clustering-Guided Denoising Smoothing",
+            "url": "https://arxiv.org/pdf/2512.08967"
+          },
+          {
+            "title": "Evaluating the performance and robustness of LLMs in ...",
+            "url": "https://pubs.rsc.org/en/content/articlepdf/2025/dd/d5dd00090d"
+          },
+          {
+            "title": "Vulnerability of LLMs’ Stated Beliefs? LLMs Belief Resistance Check Through Strategic Persuasive Conversation Interventions",
+            "url": "https://arxiv.org/html/2601.13590"
+          },
+          {
+            "title": "Robust LLM Performance Certification via Constrained Maximum Likelihood Estimation",
+            "url": "https://arxiv.org/html/2604.03257"
+          },
+          {
+            "title": "Provable Defense Framework for LLM Jailbreaks via Noise-Augumented Alignment",
+            "url": "https://arxiv.org/pdf/2602.01587"
+          }
+        ]
+      },
+      "I found several relevant research papers on certified robustness, manipulation resistance, and LLM evaluation with information-theoretic approaches from 2025-2026. Here's a summary of the key findings:\n\n## Information-Theoretic Evaluation Mechanisms\n\nInformation-theoretic mechanisms with formal guarantees provide substantially more effective detection of strategic manipulation than current evaluation practices. The data processing inequality ensures that strategic manipulation can only degrade mutual information, and when agents attempt to game the mechanism by distorting their reports, they simultaneously reduce the mutual information between their response and the source and degrade the quality of their output.\n\n## Certified Robustness Approaches\n\nCluCERT is a novel framework for certifying LLM robustness via clustering-guided denoising smoothing, which introduces a semantic clustering filter that reduces noisy samples and retains meaningful perturbations, supported by theoretical analysis. This method outperforms existing certified approaches in both robustness bounds and computational efficiency.\n\n## Provable Defense Frameworks\n\nThere is an urgent need to move from empirical resilience to certifiable robustness, providing mathematical guarantees that a model's safety is invariant within a defined perturbation budget.\n\n## Manipulation Resistance Evaluation\n\nMost robustness methods target factual correctness rather than resistance to persuasive manipulation. Recent work has been examining how structured persuasive interventions affect LLM belief persistence and resistance to manipulation attempts."
+    ],
+    "durationSeconds": 7.716266292,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "98657128-9aec-4bc2-8459-8866c7152781",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e1ce9151-87fa-4efa-9fe1-ed55ae4a5cad",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-20T05:47:13.032Z_
+
+<details><summary>↩ Tool result · `toolu_015v5p2y7XoiJUzWTqGTSWv4`</summary>
+
+```text
+Web search results for query: "Kaneko Baldwin "bits leaked per query" NeurIPS 2025 arXiv 2510.17000 single model adversarial bounds"
+
+Links: [{"title":"[2510.17000] Bits Leaked per Query: Information-Theoretic Bounds on Adversarial Attacks against LLMs","url":"https://arxiv.org/abs/2510.17000"},{"title":"Machine Learning Oct 2025","url":"https://arxiv.org/list/cs.LG/2025-10?skip=4175&show=25"},{"title":"How many queries does it take to break an AI? We put a number on it. - MBZUAI","url":"https://mbzuai.ac.ae/news/how-many-queries-does-it-take-to-break-an-ai-we-put-a-number-on-it/"},{"title":"Bits Leaked per Query: Information-Theoretic Bounds on Adversarial Attacks against LLMs","url":"https://arxiv.org/html/2510.17000"},{"title":"Bits Leaked per Query: Information-Theoretic Bounds on Adversarial Attacks against LLMs","url":"https://arxiv.org/pdf/2510.17000"},{"title":"Bits Leaked per Query: Information-Theoretic Bounds for Adversarial Attacks on LLMs | OpenReview","url":"https://openreview.net/forum?id=DwXX8c7xst"},{"title":"MBZUAI on X: \"This year, our NeurIPS papers share a simple ambition: to make AI that doesn’t just predict, but understands, imagines, and communicates. We looked at how models leak information (Bits Leaked per Query), how they learn cause and effect (CausalVerse), how their abilities evolve https://t.co/GJTBnxYtEd\" / X","url":"https://x.com/mbzuai/status/1995414451705758049"}]
+
+I found the paper you're looking for! Here's what I found:
+
+"Bits Leaked per Query: Information-Theoretic Bounds on Adversarial Attacks against LLMs" by Masahiro Kaneko and Timothy Baldwin is a NeurIPS 2025 spotlight paper with arXiv ID 2510.17000.
+
+**Paper Overview:**
+
+The paper views adversarial attacks by malicious users threatening LLM safety as attempts to infer a target property that becomes knowable only after the model's reply is observed. Examples of target properties include the binary flag that triggers an LLM's harmful response or rejection, and the degree to which information deleted by unlearning can be restored.
+
+**Key Contribution:**
+
+The paper proposes that to drive the attack error rate down to ε, you need at least log(1/ε)/I queries, where I is the mutual information between what the model exposes on each call and the attacker's latent target. The study provides the first systematic, multi-model confirmation that the query cost of attacking an LLM falls in near-perfect inverse proportion to the information it leaks.
+
+**Evaluation:**
+
+The evaluation covers seven LLMs: GPT-4, DeepSeek-R1, three OLMo-2 variants, and two Llama-4 checkpoints.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "159c97b8-3d99-4b47-958e-a5c5e7b9efd3",
+  "isSidechain": false,
+  "promptId": "0ca768bf-2bb9-4c6e-b061-13b24d10a840",
+  "type": "user",
+  "uuid": "07dfbda0-af9f-4261-b610-a8c8b0bd550c",
+  "toolUseResult": {
+    "query": "Kaneko Baldwin \"bits leaked per query\" NeurIPS 2025 arXiv 2510.17000 single model adversarial bounds",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BT5EbG3qdyqFvup4PZeqjc",
+        "content": [
+          {
+            "title": "[2510.17000] Bits Leaked per Query: Information-Theoretic Bounds on Adversarial Attacks against LLMs",
+            "url": "https://arxiv.org/abs/2510.17000"
+          },
+          {
+            "title": "Machine Learning Oct 2025",
+            "url": "https://arxiv.org/list/cs.LG/2025-10?skip=4175&show=25"
+          },
+          {
+            "title": "How many queries does it take to break an AI? We put a number on it. - MBZUAI",
+            "url": "https://mbzuai.ac.ae/news/how-many-queries-does-it-take-to-break-an-ai-we-put-a-number-on-it/"
+          },
+          {
+            "title": "Bits Leaked per Query: Information-Theoretic Bounds on Adversarial Attacks against LLMs",
+            "url": "https://arxiv.org/html/2510.17000"
+          },
+          {
+            "title": "Bits Leaked per Query: Information-Theoretic Bounds on Adversarial Attacks against LLMs",
+            "url": "https://arxiv.org/pdf/2510.17000"
+          },
+          {
+            "title": "Bits Leaked per Query: Information-Theoretic Bounds for Adversarial Attacks on LLMs | OpenReview",
+            "url": "https://openreview.net/forum?id=DwXX8c7xst"
+          },
+          {
+            "title": "MBZUAI on X: \"This year, our NeurIPS papers share a simple ambition: to make AI that doesn’t just predict, but understands, imagines, and communicates. We looked at how models leak information (Bits Leaked per Query), how they learn cause and effect (CausalVerse), how their abilities evolve https://t.co/GJTBnxYtEd\" / X",
+            "url": "https://x.com/mbzuai/status/1995414451705758049"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's what I found:\n\n\"Bits Leaked per Query: Information-Theoretic Bounds on Adversarial Attacks against LLMs\" by Masahiro Kaneko and Timothy Baldwin is a NeurIPS 2025 spotlight paper with arXiv ID 2510.17000.\n\n**Paper Overview:**\n\nThe paper views adversarial attacks by malicious users threatening LLM safety as attempts to infer a target property that becomes knowable only after the model's reply is observed. Examples of target properties include the binary flag that triggers an LLM's harmful response or rejection, and the degree to which information deleted by unlearning can be restored.\n\n**Key Contribution:**\n\nThe paper proposes that to drive the attack error rate down to ε, you need at least log(1/ε)/I queries, where I is the mutual information between what the model exposes on each call and the attacker's latent target. The study provides the first systematic, multi-model confirmation that the query cost of attacking an LLM falls in near-perfect inverse proportion to the information it leaks.\n\n**Evaluation:**\n\nThe evaluation covers seven LLMs: GPT-4, DeepSeek-R1, three OLMo-2 variants, and two Llama-4 checkpoints."
+    ],
+    "durationSeconds": 6.789914284999999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "159c97b8-3d99-4b47-958e-a5c5e7b9efd3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e1ce9151-87fa-4efa-9fe1-ed55ae4a5cad",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Certifiable Manipulation Resistance for Multi-Judge LLM Evaluation: Information-Theoretic Bounds via Signal Corr…",
+  "leafUuid": "07dfbda0-af9f-4261-b610-a8c8b0bd550c",
+  "sessionId": "e1ce9151-87fa-4efa-9fe1-ed55ae4a5cad"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Multi-judge LLM evaluation manipulation resistance bounds",
+  "sessionId": "e1ce9151-87fa-4efa-9fe1-ed55ae4a5cad"
+}
+```
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-20T05:47:14.452Z_
+
+<details><summary>↩ Tool result · `toolu_01K7yTSMP42PQPEdjmRHUE12`</summary>
+
+```text
+Web search results for query: "Yang et al diversity scaling multi-agent effective channel count arXiv 2602.03794 ICLR 2026"
+
+Links: [{"title":"[2602.03794] Understanding Agent Scaling in LLM-Based Multi-Agent Systems via Diversity","url":"https://arxiv.org/abs/2602.03794"},{"title":"Understanding Agent Scaling in LLM-Based Multi-Agent Systems via Diversity","url":"https://arxiv.org/pdf/2602.03794"},{"title":"Understanding Agent Scaling in LLM-Based Multi-Agent Systems via Diversity","url":"https://arxiv.org/html/2602.03794"},{"title":"[2602.03219v2] Beyond Quantity: Trajectory Diversity Scaling for Code Agents","url":"https://arxiv.org/abs/2602.03219v2"},{"title":"Beyond Quantity: Trajectory Diversity Scaling for Code Agents","url":"https://arxiv.org/html/2602.03219"}]
+
+I found the paper! Here are the key details about the research:
+
+**Paper Title:** Understanding Agent Scaling in LLM-Based Multi-Agent Systems via Diversity
+
+**Authors and arXiv ID:** Yingxuan Yang, Chengrui Qu, Muning Wen, Laixi Shi, Ying Wen, Weinan Zhang, Adam Wierman, Shangding Gu (arXiv 2602.03794)
+
+**Key Findings:**
+
+The research finds that scaling performance by increasing the number of agents exhibits strong diminishing returns in homogeneous settings, while introducing heterogeneity (e.g., different models, prompts, or tools) continues to yield substantial gains.
+
+The researchers derive architecture-agnostic bounds demonstrating that improvements depend on how many effective channels the system accesses, with homogeneous agents saturating early because their outputs are strongly correlated, whereas heterogeneous agents contribute complementary evidence.
+
+The paper introduces K*, an effective channel count that quantifies the number of effective channels without groundtruth labels.
+
+**Empirical Results:** Heterogeneous configurations consistently outperform homogeneous scaling: 2 diverse agents can match or exceed the performance of 16 homogeneous agents.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ee4bbc06-5648-4717-9ec4-4d6e80d2f8c0",
+  "isSidechain": false,
+  "promptId": "0ca768bf-2bb9-4c6e-b061-13b24d10a840",
+  "type": "user",
+  "uuid": "1aa301fd-dd9f-494f-8e55-b22d38272410",
+  "toolUseResult": {
+    "query": "Yang et al diversity scaling multi-agent effective channel count arXiv 2602.03794 ICLR 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EF8v1BbHVQtK5wDRmbyAEv",
+        "content": [
+          {
+            "title": "[2602.03794] Understanding Agent Scaling in LLM-Based Multi-Agent Systems via Diversity",
+            "url": "https://arxiv.org/abs/2602.03794"
+          },
+          {
+            "title": "Understanding Agent Scaling in LLM-Based Multi-Agent Systems via Diversity",
+            "url": "https://arxiv.org/pdf/2602.03794"
+          },
+          {
+            "title": "Understanding Agent Scaling in LLM-Based Multi-Agent Systems via Diversity",
+            "url": "https://arxiv.org/html/2602.03794"
+          },
+          {
+            "title": "[2602.03219v2] Beyond Quantity: Trajectory Diversity Scaling for Code Agents",
+            "url": "https://arxiv.org/abs/2602.03219v2"
+          },
+          {
+            "title": "Beyond Quantity: Trajectory Diversity Scaling for Code Agents",
+            "url": "https://arxiv.org/html/2602.03219"
+          }
+        ]
+      },
+      "I found the paper! Here are the key details about the research:\n\n**Paper Title:** Understanding Agent Scaling in LLM-Based Multi-Agent Systems via Diversity\n\n**Authors and arXiv ID:** Yingxuan Yang, Chengrui Qu, Muning Wen, Laixi Shi, Ying Wen, Weinan Zhang, Adam Wierman, Shangding Gu (arXiv 2602.03794)\n\n**Key Findings:**\n\nThe research finds that scaling performance by increasing the number of agents exhibits strong diminishing returns in homogeneous settings, while introducing heterogeneity (e.g., different models, prompts, or tools) continues to yield substantial gains.\n\nThe researchers derive architecture-agnostic bounds demonstrating that improvements depend on how many effective channels the system accesses, with homogeneous agents saturating early because their outputs are strongly correlated, whereas heterogeneous agents contribute complementary evidence.\n\nThe paper introduces K*, an effective channel count that quantifies the number of effective channels without groundtruth labels.\n\n**Empirical Results:** Heterogeneous configurations consistently outperform homogeneous scaling: 2 diverse agents can match or exceed the performance of 16 homogeneous agents."
+    ],
+    "durationSeconds": 7.415860133999999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "ee4bbc06-5648-4717-9ec4-4d6e80d2f8c0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e1ce9151-87fa-4efa-9fe1-ed55ae4a5cad",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-20T05:47:15.324Z_
+
+<details><summary>↩ Tool result · `toolu_011rV77qwoz8K1NJKQ1D1Qfc`</summary>
+
+```text
+Web search results for query: "SoK security LLM judge arXiv 2603.29403 multi-model committee attack success rate"
+
+Links: [{"title":"[2603.29403] Security in LLM-as-a-Judge: A Comprehensive SoK","url":"https://arxiv.org/abs/2603.29403"},{"title":"Security in LLM-as-a-Judge: A Comprehensive SoK","url":"https://arxiv.org/html/2603.29403"},{"title":"Security in LLM-as-a-Judge: A Comprehensive SoK","url":"https://arxiv.org/pdf/2603.29403"},{"title":"SoK: a Comprehensive Causality Analysis Framework for Large Language Model Security","url":"https://arxiv.org/html/2512.04841v1"},{"title":"Can AI Keep a Secret? Contextual Integrity Verification: A Provable Security Architecture for LLMs","url":"https://arxiv.org/pdf/2508.09288"}]
+
+Great! I found the paper. Now let me search for more specific information about multi-model committee attacks and success rates in this paper.
+
+Links: [{"title":"Adversarial Attacks on LLM-as-a-Judge Systems: Insights from Prompt   Injections","url":"https://arxiv.org/pdf/2504.18333"},{"title":"[2504.18333] Adversarial Attacks on LLM-as-a-Judge Systems: Insights from Prompt Injections","url":"https://arxiv.org/abs/2504.18333"},{"title":"[2603.29403] Security in LLM-as-a-Judge: A Comprehensive SoK","url":"https://arxiv.org/abs/2603.29403"},{"title":"Investigating the Vulnerability of LLM-as-a-Judge ...","url":"https://arxiv.org/pdf/2505.13348"},{"title":"A Coin Flip for Safety: LLM Judges Fail to Reliably Measure Adversarial Robustness","url":"https://arxiv.org/pdf/2603.06594"},{"title":"Security in LLM-as-a-Judge: A Comprehensive SoK","url":"https://arxiv.org/html/2603.29403"},{"title":"LLMs Cannot Reliably Judge (Yet?): A Comprehensive Assessment on the Robustness of LLM-as-a-Judge","url":"https://arxiv.org/pdf/2506.09443"},{"title":"[2603.04417] Same Input, Different Scores: A Multi Model Study on the Inconsistency of LLM Judge","url":"https://arxiv.org/abs/2603.04417"}]
+
+Based on the web search results, I found the paper you're asking about:
+
+## Paper Overview
+
+The paper "Security in LLM-as-a-Judge: A Comprehensive SoK" is the first Systematization of Knowledge (SoK) focusing on the security aspects of LLM-as-a-Judge systems, presenting a comprehensive literature review of 863 works with 45 relevant studies published between 2020 and 2026.
+
+## Key Findings
+
+The paper addresses how LLM-as-a-Judge (LaaJ) systems, which use powerful language models to assess the quality, safety, or correctness of generated outputs, introduce novel security risks and reliability concerns, with LLM-based judges becoming both targets of adversarial manipulation and instruments through which attacks are conducted.
+
+The study proposes a taxonomy that organizes recent research according to the role played by LLM-as-a-Judge in the security landscape, distinguishing between attacks targeting LaaJ systems, attacks performed through LaaJ, defenses leveraging LaaJ for security purposes, and applications where LaaJ is used as an evaluation strategy in security-related domains.
+
+Regarding multi-model committee attacks specifically, while the search results reference related work on LLM judge security, the specific attack success rates for multi-model committee approaches from the 2603.29403 paper were not detailed in the search results. For detailed statistics on multi-model committee attack success rates, you would need to access the full PDF of the paper directly.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "005e2e2b-a7f8-4975-8e4e-5f4a257cf48c",
+  "isSidechain": false,
+  "promptId": "0ca768bf-2bb9-4c6e-b061-13b24d10a840",
+  "type": "user",
+  "uuid": "7fa47d42-2a10-465b-a71a-b0f02851ef8b",
+  "toolUseResult": {
+    "query": "SoK security LLM judge arXiv 2603.29403 multi-model committee attack success rate",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015y8cozfbWgvhXpJAAfBULJ",
+        "content": [
+          {
+            "title": "[2603.29403] Security in LLM-as-a-Judge: A Comprehensive SoK",
+            "url": "https://arxiv.org/abs/2603.29403"
+          },
+          {
+            "title": "Security in LLM-as-a-Judge: A Comprehensive SoK",
+            "url": "https://arxiv.org/html/2603.29403"
+          },
+          {
+            "title": "Security in LLM-as-a-Judge: A Comprehensive SoK",
+            "url": "https://arxiv.org/pdf/2603.29403"
+          },
+          {
+            "title": "SoK: a Comprehensive Causality Analysis Framework for Large Language Model Security",
+            "url": "https://arxiv.org/html/2512.04841v1"
+          },
+          {
+            "title": "Can AI Keep a Secret? Contextual Integrity Verification: A Provable Security Architecture for LLMs",
+            "url": "https://arxiv.org/pdf/2508.09288"
+          }
+        ]
+      },
+      "Great! I found the paper. Now let me search for more specific information about multi-model committee attacks and success rates in this paper.",
+      {
+        "tool_use_id": "srvtoolu_01CYT3FSyJ6oPCvW3L6izZb9",
+        "content": [
+          {
+            "title": "Adversarial Attacks on LLM-as-a-Judge Systems: Insights from Prompt   Injections",
+            "url": "https://arxiv.org/pdf/2504.18333"
+          },
+          {
+            "title": "[2504.18333] Adversarial Attacks on LLM-as-a-Judge Systems: Insights from Prompt Injections",
+            "url": "https://arxiv.org/abs/2504.18333"
+          },
+          {
+            "title": "[2603.29403] Security in LLM-as-a-Judge: A Comprehensive SoK",
+            "url": "https://arxiv.org/abs/2603.29403"
+          },
+          {
+            "title": "Investigating the Vulnerability of LLM-as-a-Judge ...",
+            "url": "https://arxiv.org/pdf/2505.13348"
+          },
+          {
+            "title": "A Coin Flip for Safety: LLM Judges Fail to Reliably Measure Adversarial Robustness",
+            "url": "https://arxiv.org/pdf/2603.06594"
+          },
+          {
+            "title": "Security in LLM-as-a-Judge: A Comprehensive SoK",
+            "url": "https://arxiv.org/html/2603.29403"
+          },
+          {
+            "title": "LLMs Cannot Reliably Judge (Yet?): A Comprehensive Assessment on the Robustness of LLM-as-a-Judge",
+            "url": "https://arxiv.org/pdf/2506.09443"
+          },
+          {
+            "title": "[2603.04417] Same Input, Different Scores: A Multi Model Study on the Inconsistency of LLM Judge",
+            "url": "https://arxiv.org/abs/2603.04417"
+          }
+        ]
+      },
+      "Based on the web search results, I found the paper you're asking about:\n\n## Paper Overview\n\nThe paper \"Security in LLM-as-a-Judge: A Comprehensive SoK\" is the first Systematization of Knowledge (SoK) focusing on the security aspects of LLM-as-a-Judge systems, presenting a comprehensive literature review of 863 works with 45 relevant studies published between 2020 and 2026.\n\n## Key Findings\n\nThe paper addresses how LLM-as-a-Judge (LaaJ) systems, which use powerful language models to assess the quality, safety, or correctness of generated outputs, introduce novel security risks and reliability concerns, with LLM-based judges becoming both targets of adversarial manipulation and instruments through which attacks are conducted.\n\nThe study proposes a taxonomy that organizes recent research according to the role played by LLM-as-a-Judge in the security landscape, distinguishing between attacks targeting LaaJ systems, attacks performed through LaaJ, defenses leveraging LaaJ for security purposes, and applications where LaaJ is used as an evaluation strategy in security-related domains.\n\nRegarding multi-model committee attacks specifically, while the search results reference related work on LLM judge security, the specific attack success rates for multi-model committee approaches from the 2603.29403 paper were not detailed in the search results. For detailed statistics on multi-model committee attack success rates, you would need to access the full PDF of the paper directly."
+    ],
+    "durationSeconds": 10.044603836000002,
+    "searchCount": 2
+  },
+  "sourceToolAssistantUUID": "005e2e2b-a7f8-4975-8e4e-5f4a257cf48c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e1ce9151-87fa-4efa-9fe1-ed55ae4a5cad",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25 · 2026-05-20T05:47:18.375Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I've got results for my first batch of searches. Let me now do a few more targeted searches to understand the specific competitive landscape better.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7fa47d42-2a10-465b-a71a-b0f02851ef8b",
+  "isSidechain": false,
+  "requestId": "req_011CbDHyJ67suF3aNBtvUDQ3",
+  "type": "assistant",
+  "uuid": "4de1616b-56ac-4e69-9585-f7ae776fc32b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e1ce9151-87fa-4efa-9fe1-ed55ae4a5cad",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JXmh7rQuUFMcYHB7YhPyyk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1409,
+      "cache_creation_input_tokens": 3189,
+      "cache_read_input_tokens": 23307,
+      "output_tokens": 399,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3189,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1409,
+          "output_tokens": 399,
+          "cache_read_input_tokens": 23307,
+          "cache_creation_input_tokens": 3189,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3189
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26 · 2026-05-20T05:47:19.327Z_
+
+Good initial research. Let me do additional targeted searches to verify more specific claims and understand the competitive landscape.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4de1616b-56ac-4e69-9585-f7ae776fc32b",
+  "isSidechain": false,
+  "requestId": "req_011CbDHyJ67suF3aNBtvUDQ3",
+  "type": "assistant",
+  "uuid": "0ee97172-ee21-417a-99e0-895daa23d0fd",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e1ce9151-87fa-4efa-9fe1-ed55ae4a5cad",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JXmh7rQuUFMcYHB7YhPyyk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1409,
+      "cache_creation_input_tokens": 3189,
+      "cache_read_input_tokens": 23307,
+      "output_tokens": 399,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3189,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1409,
+          "output_tokens": 399,
+          "cache_read_input_tokens": 23307,
+          "cache_creation_input_tokens": 3189,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3189
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-20T05:47:20.282Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DW3DqXnRGCkBV3tHtmwwhk`</summary>
+
+```json
+{
+  "query": "Robertson Koyejo \"Let's Measure Information Step-by-Step\" TVD-MI LLM evaluation arXiv 2508.05469"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0ee97172-ee21-417a-99e0-895daa23d0fd",
+  "isSidechain": false,
+  "requestId": "req_011CbDHyJ67suF3aNBtvUDQ3",
+  "type": "assistant",
+  "uuid": "4a536c4c-4e02-4002-aefe-009be77f7ba9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e1ce9151-87fa-4efa-9fe1-ed55ae4a5cad",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JXmh7rQuUFMcYHB7YhPyyk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1409,
+      "cache_creation_input_tokens": 3189,
+      "cache_read_input_tokens": 23307,
+      "output_tokens": 399,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3189,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1409,
+          "output_tokens": 399,
+          "cache_read_input_tokens": 23307,
+          "cache_creation_input_tokens": 3189,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3189
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-20T05:47:21.221Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01T4GsNsu2id1Y3e2ZHgF8K1`</summary>
+
+```json
+{
+  "query": "PEG peer evaluation game Chen NeurIPS 2025 arXiv 2505.13636 conditional independence dominant strategy"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4a536c4c-4e02-4002-aefe-009be77f7ba9",
+  "isSidechain": false,
+  "requestId": "req_011CbDHyJ67suF3aNBtvUDQ3",
+  "type": "assistant",
+  "uuid": "36a027b0-92b2-42e2-848d-bd25ca16001e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e1ce9151-87fa-4efa-9fe1-ed55ae4a5cad",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JXmh7rQuUFMcYHB7YhPyyk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1409,
+      "cache_creation_input_tokens": 3189,
+      "cache_read_input_tokens": 23307,
+      "output_tokens": 399,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3189,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1409,
+          "output_tokens": 399,
+          "cache_read_input_tokens": 23307,
+          "cache_creation_input_tokens": 3189,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3189
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-20T05:47:22.765Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KJB13zi5A86TMkCCXGs4GW`</summary>
+
+```json
+{
+  "query": "Turkmen et al correlated LLM ensemble Gaussian copula error floor arXiv 2602.08003"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "36a027b0-92b2-42e2-848d-bd25ca16001e",
+  "isSidechain": false,
+  "requestId": "req_011CbDHyJ67suF3aNBtvUDQ3",
+  "type": "assistant",
+  "uuid": "63de3022-5fb6-4825-af9b-a0cffab7ab7b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e1ce9151-87fa-4efa-9fe1-ed55ae4a5cad",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JXmh7rQuUFMcYHB7YhPyyk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1409,
+      "cache_creation_input_tokens": 3189,
+      "cache_read_input_tokens": 23307,
+      "output_tokens": 399,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3189,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1409,
+          "output_tokens": 399,
+          "cache_read_input_tokens": 23307,
+          "cache_creation_input_tokens": 3189,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3189
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-20T05:47:23.700Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012yaTJ7qpetnHmiFZwsB5gm`</summary>
+
+```json
+{
+  "query": "Kim et al correlated errors LLMs ICML 2025 arXiv 2506.07962 same architecture provider"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "63de3022-5fb6-4825-af9b-a0cffab7ab7b",
+  "isSidechain": false,
+  "requestId": "req_011CbDHyJ67suF3aNBtvUDQ3",
+  "type": "assistant",
+  "uuid": "6c31edf2-cd29-47c8-90ca-85ae428fb460",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e1ce9151-87fa-4efa-9fe1-ed55ae4a5cad",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JXmh7rQuUFMcYHB7YhPyyk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1409,
+      "cache_creation_input_tokens": 3189,
+      "cache_read_input_tokens": 23307,
+      "output_tokens": 399,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3189,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1409,
+          "output_tokens": 399,
+          "cache_read_input_tokens": 23307,
+          "cache_creation_input_tokens": 3189,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3189
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-20T05:47:24.344Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01K9Mau4ANGnvwjrsgM4AAMC`</summary>
+
+```json
+{
+  "query": "Horvath et al variance reduction certified radius ensemble robustness arXiv 2106.06946 randomized smoothing"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6c31edf2-cd29-47c8-90ca-85ae428fb460",
+  "isSidechain": false,
+  "requestId": "req_011CbDHyJ67suF3aNBtvUDQ3",
+  "type": "assistant",
+  "uuid": "e9b9d9ca-a17f-4079-acb6-35f150ff9c9e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e1ce9151-87fa-4efa-9fe1-ed55ae4a5cad",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JXmh7rQuUFMcYHB7YhPyyk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1409,
+      "cache_creation_input_tokens": 3189,
+      "cache_read_input_tokens": 23307,
+      "output_tokens": 399,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3189,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1409,
+          "output_tokens": 399,
+          "cache_read_input_tokens": 23307,
+          "cache_creation_input_tokens": 3189,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3189
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-20T05:47:26.386Z_
+
+<details><summary>↩ Tool result · `toolu_01DW3DqXnRGCkBV3tHtmwwhk`</summary>
+
+```text
+Web search results for query: "Robertson Koyejo "Let's Measure Information Step-by-Step" TVD-MI LLM evaluation arXiv 2508.05469"
+
+Links: [{"title":"[2508.05469] Let's Measure Information Step-by-Step: LLM-Based Evaluation Beyond Vibes","url":"https://arxiv.org/abs/2508.05469"},{"title":"[PDF] Let's Measure Information Step-by-Step: LLM-Based Evaluation Beyond Vibes | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Let's-Measure-Information-Step-by-Step:-LLM-Based-Robertson-Koyejo/824098ede34f59514ebc25a69c69c68d1e89b664"},{"title":"Identity-Link IRT for Label-Free LLM Evaluation:","url":"https://arxiv.org/pdf/2510.14966"},{"title":"Let’s Measure Information Step-by-Step: LLM-Based Evaluation Beyond Vibes","url":"https://arxiv.org/html/2508.05469"},{"title":"Let's Measure Information Step-by-Step: LLM-Based Evaluation Beyond Vibes - Consensus","url":"https://consensus.app/papers/lets-measure-information-stepbystep-llmbased-evaluation-robertson-koyejo/d4e764d3a82a56c9a8a885ba75e29ce4/"}]
+
+Based on the search results, here's what I found about the paper:
+
+## Paper Overview
+
+The paper "Let's Measure Information Step-by-Step: LLM-Based Evaluation Beyond Vibes" by Zachary Robertson and Sanmi Koyejo studies evaluation of AI systems without ground truth by exploiting a link between strategic gaming and information loss.
+
+## Key Technical Contributions
+
+The authors analyze which information-theoretic mechanisms resist adversarial manipulation, extending finite-sample bounds to show that bounded f-divergences (e.g., total variation distance) maintain polynomial guarantees under attacks while unbounded measures (e.g., KL divergence) degrade exponentially.
+
+To implement these mechanisms, they model the overseer as an agent and characterize incentive-compatible scoring rules as f-mutual information objectives.
+
+## Empirical Results
+
+Under adversarial attacks, TVD-MI maintains effectiveness (area under curve 0.70-0.77) while traditional judge queries are near chance (AUC ≈ 0.50), demonstrating that querying LLMs for information relationships rather than direct quality judgments can be more robust.
+
+## Publication Details
+
+The paper is available on arXiv as preprint 2508.05469 from 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4a536c4c-4e02-4002-aefe-009be77f7ba9",
+  "isSidechain": false,
+  "promptId": "0ca768bf-2bb9-4c6e-b061-13b24d10a840",
+  "type": "user",
+  "uuid": "114fb373-c454-4adc-a242-1940e3df48e5",
+  "toolUseResult": {
+    "query": "Robertson Koyejo \"Let's Measure Information Step-by-Step\" TVD-MI LLM evaluation arXiv 2508.05469",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Q6evYryB5oGyAFNSeE2baC",
+        "content": [
+          {
+            "title": "[2508.05469] Let's Measure Information Step-by-Step: LLM-Based Evaluation Beyond Vibes",
+            "url": "https://arxiv.org/abs/2508.05469"
+          },
+          {
+            "title": "[PDF] Let's Measure Information Step-by-Step: LLM-Based Evaluation Beyond Vibes | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Let's-Measure-Information-Step-by-Step:-LLM-Based-Robertson-Koyejo/824098ede34f59514ebc25a69c69c68d1e89b664"
+          },
+          {
+            "title": "Identity-Link IRT for Label-Free LLM Evaluation:",
+            "url": "https://arxiv.org/pdf/2510.14966"
+          },
+          {
+            "title": "Let’s Measure Information Step-by-Step: LLM-Based Evaluation Beyond Vibes",
+            "url": "https://arxiv.org/html/2508.05469"
+          },
+          {
+            "title": "Let's Measure Information Step-by-Step: LLM-Based Evaluation Beyond Vibes - Consensus",
+            "url": "https://consensus.app/papers/lets-measure-information-stepbystep-llmbased-evaluation-robertson-koyejo/d4e764d3a82a56c9a8a885ba75e29ce4/"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the paper:\n\n## Paper Overview\n\nThe paper \"Let's Measure Information Step-by-Step: LLM-Based Evaluation Beyond Vibes\" by Zachary Robertson and Sanmi Koyejo studies evaluation of AI systems without ground truth by exploiting a link between strategic gaming and information loss.\n\n## Key Technical Contributions\n\nThe authors analyze which information-theoretic mechanisms resist adversarial manipulation, extending finite-sample bounds to show that bounded f-divergences (e.g., total variation distance) maintain polynomial guarantees under attacks while unbounded measures (e.g., KL divergence) degrade exponentially.\n\nTo implement these mechanisms, they model the overseer as an agent and characterize incentive-compatible scoring rules as f-mutual information objectives.\n\n## Empirical Results\n\nUnder adversarial attacks, TVD-MI maintains effectiveness (area under curve 0.70-0.77) while traditional judge queries are near chance (AUC ≈ 0.50), demonstrating that querying LLMs for information relationships rather than direct quality judgments can be more robust.\n\n## Publication Details\n\nThe paper is available on arXiv as preprint 2508.05469 from 2025."
+    ],
+    "durationSeconds": 6.099002585999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "4a536c4c-4e02-4002-aefe-009be77f7ba9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e1ce9151-87fa-4efa-9fe1-ed55ae4a5cad",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-20T05:47:28.321Z_
+
+<details><summary>↩ Tool result · `toolu_01T4GsNsu2id1Y3e2ZHgF8K1`</summary>
+
+```text
+Web search results for query: "PEG peer evaluation game Chen NeurIPS 2025 arXiv 2505.13636 conditional independence dominant strategy"
+
+Links: [{"title":"[2505.13636] Incentivizing Truthful Language Models via Peer Elicitation Games","url":"https://arxiv.org/abs/2505.13636"},{"title":"Incentivizing Truthful Language Models via Peer Elicitation Games","url":"https://arxiv.org/pdf/2505.13636"},{"title":"Incentivizing Truthful Language Models via Peer Elicitation Games","url":"https://arxiv.org/html/2505.13636"},{"title":"Truthfulness Despite Weak Supervision: Evaluating and Training LLMs Using Peer Prediction","url":"https://arxiv.org/pdf/2601.20299"},{"title":"Incentivizing Evaluation via Limited Access to Ground Truth:   Peer-Prediction Makes Things Worse","url":"https://arxiv.org/pdf/1606.07042"}]
+
+Based on the search results, I found the paper you're looking for:
+
+Peer Elicitation Games (PEG) is a training-free, game-theoretic framework for aligning LLMs through a peer elicitation mechanism involving a generator and multiple discriminators instantiated from distinct base models.
+
+Discriminators interact in a peer evaluation setting, where rewards are computed using a determinant-based mutual information score that provably incentivizes truthful reporting without requiring ground-truth labels.
+
+Regarding the theoretical guarantees you asked about:
+
+The framework establishes theoretical guarantees showing that each agent, via online learning, achieves sublinear regret in the sense their cumulative performance approaches that of the best fixed truthful strategy in hindsight, and moreover proves last-iterate convergence to a truthful Nash equilibrium, ensuring that the actual policies used by agents converge to stable and truthful behavior over time.
+
+The paper (arXiv 2505.13636) was authored by Baiting Chen and colleagues and appears to have been presented at NeurIPS 2025. The code for the experiments is available on GitHub at https://github.com/toz015/neurips2025-repo.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "36a027b0-92b2-42e2-848d-bd25ca16001e",
+  "isSidechain": false,
+  "promptId": "0ca768bf-2bb9-4c6e-b061-13b24d10a840",
+  "type": "user",
+  "uuid": "1adae73f-9835-4ef0-b8b5-4fe38af9a4fd",
+  "toolUseResult": {
+    "query": "PEG peer evaluation game Chen NeurIPS 2025 arXiv 2505.13636 conditional independence dominant strategy",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01KVZ9DgTzGzEXpN86armXGT",
+        "content": [
+          {
+            "title": "[2505.13636] Incentivizing Truthful Language Models via Peer Elicitation Games",
+            "url": "https://arxiv.org/abs/2505.13636"
+          },
+          {
+            "title": "Incentivizing Truthful Language Models via Peer Elicitation Games",
+            "url": "https://arxiv.org/pdf/2505.13636"
+          },
+          {
+            "title": "Incentivizing Truthful Language Models via Peer Elicitation Games",
+            "url": "https://arxiv.org/html/2505.13636"
+          },
+          {
+            "title": "Truthfulness Despite Weak Supervision: Evaluating and Training LLMs Using Peer Prediction",
+            "url": "https://arxiv.org/pdf/2601.20299"
+          },
+          {
+            "title": "Incentivizing Evaluation via Limited Access to Ground Truth:   Peer-Prediction Makes Things Worse",
+            "url": "https://arxiv.org/pdf/1606.07042"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\nPeer Elicitation Games (PEG) is a training-free, game-theoretic framework for aligning LLMs through a peer elicitation mechanism involving a generator and multiple discriminators instantiated from distinct base models.\n\nDiscriminators interact in a peer evaluation setting, where rewards are computed using a determinant-based mutual information score that provably incentivizes truthful reporting without requiring ground-truth labels.\n\nRegarding the theoretical guarantees you asked about:\n\nThe framework establishes theoretical guarantees showing that each agent, via online learning, achieves sublinear regret in the sense their cumulative performance approaches that of the best fixed truthful strategy in hindsight, and moreover proves last-iterate convergence to a truthful Nash equilibrium, ensuring that the actual policies used by agents converge to stable and truthful behavior over time.\n\nThe paper (arXiv 2505.13636) was authored by Baiting Chen and colleagues and appears to have been presented at NeurIPS 2025. The code for the experiments is available on GitHub at https://github.com/toz015/neurips2025-repo."
+    ],
+    "durationSeconds": 7.0960237809999995,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "36a027b0-92b2-42e2-848d-bd25ca16001e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e1ce9151-87fa-4efa-9fe1-ed55ae4a5cad",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 34_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Certifiable Manipulation Resistance for Multi-Judge LLM Evaluation: Information-Theoretic Bounds via Signal Corr…",
+  "leafUuid": "1adae73f-9835-4ef0-b8b5-4fe38af9a4fd",
+  "sessionId": "e1ce9151-87fa-4efa-9fe1-ed55ae4a5cad"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 35_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Multi-judge LLM evaluation manipulation resistance bounds",
+  "sessionId": "e1ce9151-87fa-4efa-9fe1-ed55ae4a5cad"
+}
+```
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-20T05:47:30.288Z_
+
+<details><summary>↩ Tool result · `toolu_01KJB13zi5A86TMkCCXGs4GW`</summary>
+
+```text
+Web search results for query: "Turkmen et al correlated LLM ensemble Gaussian copula error floor arXiv 2602.08003"
+
+Links: [{"title":"[2602.08003] Don't Always Pick the Highest-Performing Model: An Information Theoretic View of LLM Ensemble Selection","url":"https://arxiv.org/abs/2602.08003"},{"title":"Don’t Always Pick the Highest-Performing Model: An Information Theoretic View of LLM Ensemble Selection","url":"https://arxiv.org/html/2602.08003"},{"title":"Don't Always Pick the Highest-Performing Model: An Information Theoretic View of LLM Ensemble Selection","url":"https://arxiv.org/pdf/2602.08003"},{"title":"Rethinking the Role of LLMs in Time Series Forecasting","url":"https://arxiv.org/html/2602.14744v1"},{"title":"LLMs and the Madness of Crowds","url":"https://arxiv.org/pdf/2411.01539"},{"title":"1 ADAPTIVE ENSEMBLE LEARNING WITH GAUSSIAN COPULA FOR LOAD FORECASTING","url":"https://arxiv.org/pdf/2508.17700"}]
+
+I found the paper you're searching for! Here are the results:
+
+**Paper Title:** "Don't Always Pick the Highest-Performing Model: An Information Theoretic View of LLM Ensemble Selection" by Yigit Turkmen and Baturalp Buyukates and Melih Bastopcu
+
+**Key Findings:**
+
+Large language models (LLMs) are often ensembled together to improve overall reliability and robustness, but in practice models are strongly correlated, raising the question of which models should be selected when forming an LLM ensemble.
+
+The researchers formulate budgeted ensemble selection as maximizing the mutual information between the true label and predictions of the selected models. To explain why performance can saturate even with many models, they model the correlated errors of the models using Gaussian-copula and show an information-theoretic error floor for the performance of the ensemble.
+
+They propose a simple greedy mutual-information selection algorithm that estimates the required information terms directly from data and iteratively builds an ensemble under a query budget. The approach is tested on two question answering datasets and one binary sentiment classification dataset: MEDMCQA, MMLU, and IMDB movie reviews.
+
+The paper was published on **February 8, 2026** and is available on arXiv as paper **2602.08003**.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "63de3022-5fb6-4825-af9b-a0cffab7ab7b",
+  "isSidechain": false,
+  "promptId": "0ca768bf-2bb9-4c6e-b061-13b24d10a840",
+  "type": "user",
+  "uuid": "d39e0bf2-f09f-4ab9-b214-f5d07be9a485",
+  "toolUseResult": {
+    "query": "Turkmen et al correlated LLM ensemble Gaussian copula error floor arXiv 2602.08003",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01YJYjJS7TanJDrbSiCSewsn",
+        "content": [
+          {
+            "title": "[2602.08003] Don't Always Pick the Highest-Performing Model: An Information Theoretic View of LLM Ensemble Selection",
+            "url": "https://arxiv.org/abs/2602.08003"
+          },
+          {
+            "title": "Don’t Always Pick the Highest-Performing Model: An Information Theoretic View of LLM Ensemble Selection",
+            "url": "https://arxiv.org/html/2602.08003"
+          },
+          {
+            "title": "Don't Always Pick the Highest-Performing Model: An Information Theoretic View of LLM Ensemble Selection",
+            "url": "https://arxiv.org/pdf/2602.08003"
+          },
+          {
+            "title": "Rethinking the Role of LLMs in Time Series Forecasting",
+            "url": "https://arxiv.org/html/2602.14744v1"
+          },
+          {
+            "title": "LLMs and the Madness of Crowds",
+            "url": "https://arxiv.org/pdf/2411.01539"
+          },
+          {
+            "title": "1 ADAPTIVE ENSEMBLE LEARNING WITH GAUSSIAN COPULA FOR LOAD FORECASTING",
+            "url": "https://arxiv.org/pdf/2508.17700"
+          }
+        ]
+      },
+      "I found the paper you're searching for! Here are the results:\n\n**Paper Title:** \"Don't Always Pick the Highest-Performing Model: An Information Theoretic View of LLM Ensemble Selection\" by Yigit Turkmen and Baturalp Buyukates and Melih Bastopcu\n\n**Key Findings:**\n\nLarge language models (LLMs) are often ensembled together to improve overall reliability and robustness, but in practice models are strongly correlated, raising the question of which models should be selected when forming an LLM ensemble.\n\nThe researchers formulate budgeted ensemble selection as maximizing the mutual information between the true label and predictions of the selected models. To explain why performance can saturate even with many models, they model the correlated errors of the models using Gaussian-copula and show an information-theoretic error floor for the performance of the ensemble.\n\nThey propose a simple greedy mutual-information selection algorithm that estimates the required information terms directly from data and iteratively builds an ensemble under a query budget. The approach is tested on two question answering datasets and one binary sentiment classification dataset: MEDMCQA, MMLU, and IMDB movie reviews.\n\nThe paper was published on **February 8, 2026** and is available on arXiv as paper **2602.08003**."
+    ],
+    "durationSeconds": 7.520582512000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "63de3022-5fb6-4825-af9b-a0cffab7ab7b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e1ce9151-87fa-4efa-9fe1-ed55ae4a5cad",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-20T05:47:31.727Z_
+
+<details><summary>↩ Tool result · `toolu_012yaTJ7qpetnHmiFZwsB5gm`</summary>
+
+```text
+Web search results for query: "Kim et al correlated errors LLMs ICML 2025 arXiv 2506.07962 same architecture provider"
+
+Links: [{"title":"[2506.07962] Correlated Errors in Large Language Models","url":"https://arxiv.org/abs/2506.07962"},{"title":"[Paper Note] Correlated Errors in Large Language Models, Elliot Kim+, ICML'25 · Issue #2145 · AkihikoWatanabe/paper_notes","url":"https://github.com/AkihikoWatanabe/paper_notes/issues/2145"},{"title":"[2506.07962v1] Correlated Errors in Large Language Models","url":"https://arxiv.org/abs/2506.07962v1"},{"title":"[PDF] Correlated Errors in Large Language Models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Correlated-Errors-in-Large-Language-Models-Kim-Garg/365ba5ab458c8ad6d4ed6996ab3e0ff3f386edbc"},{"title":"(PDF) Correlated Errors in Large Language Models","url":"https://www.researchgate.net/publication/392529896_Correlated_Errors_in_Large_Language_Models"},{"title":"arXiv:2506.07962v1 [cs.CL] 9 Jun 2025","url":"https://arxiv.org/pdf/2506.07962"},{"title":"LLMs and the Madness of Crowds","url":"https://arxiv.org/pdf/2411.01539"},{"title":"LLMs Know More Than They Show: On the Intrinsic Representation of LLM Hallucinations","url":"https://arxiv.org/pdf/2410.02707"}]
+
+I found the paper you're looking for! Here are the key details:
+
+**Paper Title:** Correlated Errors in Large Language Models
+
+**Authors:** Elliot Kim, Avi Garg, Kenny Peng, and Nikhil Garg
+
+**arXiv ID:** 2506.07962 (submitted June 9, 2025)
+
+**Key Findings:**
+
+The study conducted a large-scale empirical evaluation on over 350 LLMs using two popular leaderboards and a resume-screening task, finding substantial correlation in model errors—on one leaderboard dataset, models agree 60% of the time when both models err.
+
+The researchers identified factors driving model correlation, including shared architectures and providers. However, larger and more accurate models have highly correlated errors, even with distinct architectures and providers.
+
+The paper shows the effects of correlation in two downstream tasks: LLM-as-judge evaluation and hiring—the latter reflecting theoretical predictions regarding algorithmic monoculture.
+
+The paper is available on arXiv at https://arxiv.org/abs/2506.07962.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6c31edf2-cd29-47c8-90ca-85ae428fb460",
+  "isSidechain": false,
+  "promptId": "0ca768bf-2bb9-4c6e-b061-13b24d10a840",
+  "type": "user",
+  "uuid": "53b9e96e-a71f-4649-b01b-3f92f78b2fab",
+  "toolUseResult": {
+    "query": "Kim et al correlated errors LLMs ICML 2025 arXiv 2506.07962 same architecture provider",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DqVdHnp5MszQn3bnTVvK9p",
+        "content": [
+          {
+            "title": "[2506.07962] Correlated Errors in Large Language Models",
+            "url": "https://arxiv.org/abs/2506.07962"
+          },
+          {
+            "title": "[Paper Note] Correlated Errors in Large Language Models, Elliot Kim+, ICML'25 · Issue #2145 · AkihikoWatanabe/paper_notes",
+            "url": "https://github.com/AkihikoWatanabe/paper_notes/issues/2145"
+          },
+          {
+            "title": "[2506.07962v1] Correlated Errors in Large Language Models",
+            "url": "https://arxiv.org/abs/2506.07962v1"
+          },
+          {
+            "title": "[PDF] Correlated Errors in Large Language Models | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Correlated-Errors-in-Large-Language-Models-Kim-Garg/365ba5ab458c8ad6d4ed6996ab3e0ff3f386edbc"
+          },
+          {
+            "title": "(PDF) Correlated Errors in Large Language Models",
+            "url": "https://www.researchgate.net/publication/392529896_Correlated_Errors_in_Large_Language_Models"
+          },
+          {
+            "title": "arXiv:2506.07962v1 [cs.CL] 9 Jun 2025",
+            "url": "https://arxiv.org/pdf/2506.07962"
+          },
+          {
+            "title": "LLMs and the Madness of Crowds",
+            "url": "https://arxiv.org/pdf/2411.01539"
+          },
+          {
+            "title": "LLMs Know More Than They Show: On the Intrinsic Representation of LLM Hallucinations",
+            "url": "https://arxiv.org/pdf/2410.02707"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here are the key details:\n\n**Paper Title:** Correlated Errors in Large Language Models\n\n**Authors:** Elliot Kim, Avi Garg, Kenny Peng, and Nikhil Garg\n\n**arXiv ID:** 2506.07962 (submitted June 9, 2025)\n\n**Key Findings:**\n\nThe study conducted a large-scale empirical evaluation on over 350 LLMs using two popular leaderboards and a resume-screening task, finding substantial correlation in model errors—on one leaderboard dataset, models agree 60% of the time when both models err.\n\nThe researchers identified factors driving model correlation, including shared architectures and providers. However, larger and more accurate models have highly correlated errors, even with distinct architectures and providers.\n\nThe paper shows the effects of correlation in two downstream tasks: LLM-as-judge evaluation and hiring—the latter reflecting theoretical predictions regarding algorithmic monoculture.\n\nThe paper is available on arXiv at https://arxiv.org/abs/2506.07962."
+    ],
+    "durationSeconds": 8.025010967999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "6c31edf2-cd29-47c8-90ca-85ae428fb460",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e1ce9151-87fa-4efa-9fe1-ed55ae4a5cad",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-20T05:47:31.827Z_
+
+<details><summary>↩ Tool result · `toolu_01K9Mau4ANGnvwjrsgM4AAMC`</summary>
+
+```text
+Web search results for query: "Horvath et al variance reduction certified radius ensemble robustness arXiv 2106.06946 randomized smoothing"
+
+Links: [{"title":"[2106.06946] Boosting Randomized Smoothing with Variance Reduced Classifiers","url":"https://arxiv.org/abs/2106.06946"},{"title":"Boosting Randomized Smoothing with Variance Reduced Classifiers","url":"https://arxiv.org/pdf/2106.06946"},{"title":"Trust, But Verify: A Survey of Randomized Smoothing Techniques","url":"https://arxiv.org/html/2312.12608v1"},{"title":"Rethinking Randomized Smoothing from the Perspective of Scalability","url":"https://arxiv.org/pdf/2312.12608"},{"title":"CR-UTP: Certified Robustness against Universal Text Perturbations on Large Language Models","url":"https://arxiv.org/html/2406.01873"},{"title":"Mitigating the Curse of Dimensionality for Certified Robustness via Dual Randomized Smoothing","url":"https://arxiv.org/html/2404.09586"},{"title":"Multi-head ensemble of smoothed classifiers for certified robustness - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0893608025003053"}]
+
+I found the paper you're looking for! Here's what I can tell you about it:
+
+The paper "Boosting Randomized Smoothing with Variance Reduced Classifiers" by Miklós Z. Horváth, Mark Niklas Müller, Marc Fischer, and Martin Vechev theoretically motivates why ensembles are a particularly suitable choice as base models for randomized smoothing, and empirically confirms this choice to obtain state-of-the-art results in multiple settings.
+
+The key insight is that the reduced variance of ensembles over the perturbations introduced in randomized smoothing leads to significantly more consistent classifications for a given input, which in turn leads to substantially increased certifiable radii for samples close to the decision boundary.
+
+The paper introduces a novel, theoretically motivated, and statistically sound soft-ensemble scheme for randomized smoothing that reduces perturbation variance and increases certified radii, as well as a data-dependent adaptive sampling scheme for randomized smoothing that reduces the sample complexity for predetermined certification radii in a statistically sound manner.
+
+The paper is available on arXiv at https://arxiv.org/abs/2106.06946.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e9b9d9ca-a17f-4079-acb6-35f150ff9c9e",
+  "isSidechain": false,
+  "promptId": "0ca768bf-2bb9-4c6e-b061-13b24d10a840",
+  "type": "user",
+  "uuid": "3bdeed6b-cda0-4dcd-8a53-a2f94963b7af",
+  "toolUseResult": {
+    "query": "Horvath et al variance reduction certified radius ensemble robustness arXiv 2106.06946 randomized smoothing",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014NgafbFVzQnqaqM6xroFwh",
+        "content": [
+          {
+            "title": "[2106.06946] Boosting Randomized Smoothing with Variance Reduced Classifiers",
+            "url": "https://arxiv.org/abs/2106.06946"
+          },
+          {
+            "title": "Boosting Randomized Smoothing with Variance Reduced Classifiers",
+            "url": "https://arxiv.org/pdf/2106.06946"
+          },
+          {
+            "title": "Trust, But Verify: A Survey of Randomized Smoothing Techniques",
+            "url": "https://arxiv.org/html/2312.12608v1"
+          },
+          {
+            "title": "Rethinking Randomized Smoothing from the Perspective of Scalability",
+            "url": "https://arxiv.org/pdf/2312.12608"
+          },
+          {
+            "title": "CR-UTP: Certified Robustness against Universal Text Perturbations on Large Language Models",
+            "url": "https://arxiv.org/html/2406.01873"
+          },
+          {
+            "title": "Mitigating the Curse of Dimensionality for Certified Robustness via Dual Randomized Smoothing",
+            "url": "https://arxiv.org/html/2404.09586"
+          },
+          {
+            "title": "Multi-head ensemble of smoothed classifiers for certified robustness - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0893608025003053"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's what I can tell you about it:\n\nThe paper \"Boosting Randomized Smoothing with Variance Reduced Classifiers\" by Miklós Z. Horváth, Mark Niklas Müller, Marc Fischer, and Martin Vechev theoretically motivates why ensembles are a particularly suitable choice as base models for randomized smoothing, and empirically confirms this choice to obtain state-of-the-art results in multiple settings.\n\nThe key insight is that the reduced variance of ensembles over the perturbations introduced in randomized smoothing leads to significantly more consistent classifications for a given input, which in turn leads to substantially increased certifiable radii for samples close to the decision boundary.\n\nThe paper introduces a novel, theoretically motivated, and statistically sound soft-ensemble scheme for randomized smoothing that reduces perturbation variance and increases certified radii, as well as a data-dependent adaptive sampling scheme for randomized smoothing that reduces the sample complexity for predetermined certification radii in a statistically sound manner.\n\nThe paper is available on arXiv at https://arxiv.org/abs/2106.06946."
+    ],
+    "durationSeconds": 7.480049062999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "e9b9d9ca-a17f-4079-acb6-35f150ff9c9e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e1ce9151-87fa-4efa-9fe1-ed55ae4a5cad",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 39 · 2026-05-20T05:47:31.830Z_
+
+```json
+{
+  "parentUuid": "3bdeed6b-cda0-4dcd-8a53-a2f94963b7af",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "05e910fc-3e97-4c11-9d7d-aef96113bb2b",
+  "timestamp": "2026-05-20T05:47:31.830Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e1ce9151-87fa-4efa-9fe1-ed55ae4a5cad",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 40 · 2026-05-20T05:47:34.885Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I now have a strong understanding of the key papers. Let me do one more round of searches to understand the most recent developments and any directly competing works that might claim to do what this proposal does.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "05e910fc-3e97-4c11-9d7d-aef96113bb2b",
+  "isSidechain": false,
+  "requestId": "req_011CbDHzWdx6zGXdKS1Nv3Et",
+  "type": "assistant",
+  "uuid": "d563d4d4-0ee1-474c-b7da-95cfeb5f4c7c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e1ce9151-87fa-4efa-9fe1-ed55ae4a5cad",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016ukN6Cve8dPe7dVCGfuKzS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5196,
+      "cache_read_input_tokens": 26496,
+      "output_tokens": 264,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5196,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 264,
+          "cache_read_input_tokens": 26496,
+          "cache_creation_input_tokens": 5196,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5196
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41 · 2026-05-20T05:47:35.378Z_
+
+Let me do a final round of searches to check for directly competing work and the latest developments.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d563d4d4-0ee1-474c-b7da-95cfeb5f4c7c",
+  "isSidechain": false,
+  "requestId": "req_011CbDHzWdx6zGXdKS1Nv3Et",
+  "type": "assistant",
+  "uuid": "2ead40d7-45c5-410a-8f37-67069fa083fb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e1ce9151-87fa-4efa-9fe1-ed55ae4a5cad",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016ukN6Cve8dPe7dVCGfuKzS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5196,
+      "cache_read_input_tokens": 26496,
+      "output_tokens": 264,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5196,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 264,
+          "cache_read_input_tokens": 26496,
+          "cache_creation_input_tokens": 5196,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5196
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-20T05:47:36.319Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VaWqixXaTwCMUmnjr9rkNb`</summary>
+
+```json
+{
+  "query": "multi-judge LLM evaluation certified manipulation cost scaling correlation formal guarantees 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2ead40d7-45c5-410a-8f37-67069fa083fb",
+  "isSidechain": false,
+  "requestId": "req_011CbDHzWdx6zGXdKS1Nv3Et",
+  "type": "assistant",
+  "uuid": "d65092bd-6f37-43db-9a27-d7268fcd59f2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e1ce9151-87fa-4efa-9fe1-ed55ae4a5cad",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016ukN6Cve8dPe7dVCGfuKzS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5196,
+      "cache_read_input_tokens": 26496,
+      "output_tokens": 264,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5196,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 264,
+          "cache_read_input_tokens": 26496,
+          "cache_creation_input_tokens": 5196,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5196
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-20T05:47:37.261Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KcV9Zci7pD1GmiWQUgQp1P`</summary>
+
+```json
+{
+  "query": "SDPI strong data processing inequality ensemble adversarial robustness information leakage multi-model 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d65092bd-6f37-43db-9a27-d7268fcd59f2",
+  "isSidechain": false,
+  "requestId": "req_011CbDHzWdx6zGXdKS1Nv3Et",
+  "type": "assistant",
+  "uuid": "333a9e3f-304d-42b3-9167-aaa325b12e9a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e1ce9151-87fa-4efa-9fe1-ed55ae4a5cad",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016ukN6Cve8dPe7dVCGfuKzS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5196,
+      "cache_read_input_tokens": 26496,
+      "output_tokens": 264,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5196,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 264,
+          "cache_read_input_tokens": 26496,
+          "cache_creation_input_tokens": 5196,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5196
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-20T05:47:38.121Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UDq2bXtB5VuByURiom6AjY`</summary>
+
+```json
+{
+  "query": "behavioral entanglement LLM Chen arXiv 2604.07650 cross-family correlation evaluation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "333a9e3f-304d-42b3-9167-aaa325b12e9a",
+  "isSidechain": false,
+  "requestId": "req_011CbDHzWdx6zGXdKS1Nv3Et",
+  "type": "assistant",
+  "uuid": "67bffbe4-c302-4911-8eb9-c57e5cd9f5e3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e1ce9151-87fa-4efa-9fe1-ed55ae4a5cad",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016ukN6Cve8dPe7dVCGfuKzS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5196,
+      "cache_read_input_tokens": 26496,
+      "output_tokens": 264,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5196,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 264,
+          "cache_read_input_tokens": 26496,
+          "cache_creation_input_tokens": 5196,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5196
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-20T05:47:45.002Z_
+
+<details><summary>↩ Tool result · `toolu_01KcV9Zci7pD1GmiWQUgQp1P`</summary>
+
+```text
+Web search results for query: "SDPI strong data processing inequality ensemble adversarial robustness information leakage multi-model 2025 2026"
+
+Links: [{"title":"Toward Adversarial Robustness Network Intrusion Detection Based on Multi-Model Ensemble Approach","url":"https://www.mdpi.com/1424-8220/26/8/2478"},{"title":"Strong data-processing inequalities for channels and Bayesian networks","url":"https://arxiv.org/pdf/1508.06025"},{"title":"Adversarial robustness in deep neural networks based on variable attributes of the stochastic ensemble model","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10442534/"},{"title":"Properties of the Strong Data Processing Constant for R\\'enyi Divergence","url":"https://arxiv.org/pdf/2403.10656"},{"title":"Strong data processing inequalities and $\\Phi$-Sobolev inequalities for   discrete channels","url":"https://arxiv.org/pdf/1411.3575"}]
+
+I found search results related to your query. Here's what the search returned:
+
+**Strong Data Processing Inequality (SDPI):**
+
+Various channel-dependent improvements (called strong data-processing inequalities, or SDPIs) of the data-processing inequality have been proposed both classically and more recently. Strong data processing inequalities (SDPI) are an important object of study in Information Theory and have been well studied for f-divergences.
+
+**Multi-Model Ensemble and Adversarial Robustness:**
+
+Machine learning-based network intrusion detection systems (NIDSs) remain vulnerable to adversarial manipulation, but the robustness literature for tabular NIDS data is still dominated by single-model, single-dataset, and non-adaptive evaluations. Recent research has explored XGBoost, LightGBM, TabNet, and Residual MLP on RT_IOT2022 and Web_IDS23 under standard attacks, representative constrained/adaptive attacks, component-wise ablations, sample-fraction sensitivity, repeated-run significance tests, per-class F1 analysis, and computational-overhead measurements.
+
+Additionally, an attribute-based stochastic ensemble model using the DDM ideology combines randomness with model diversity to improve adversarial robustness.
+
+The search results include recent 2025-2026 publications on adversarial robustness in multi-model ensemble approaches, though the specific connection between SDPI and information leakage in multi-model systems may require more specialized research papers.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "333a9e3f-304d-42b3-9167-aaa325b12e9a",
+  "isSidechain": false,
+  "promptId": "0ca768bf-2bb9-4c6e-b061-13b24d10a840",
+  "type": "user",
+  "uuid": "4f79172e-d036-445e-95b8-ef86f617b523",
+  "toolUseResult": {
+    "query": "SDPI strong data processing inequality ensemble adversarial robustness information leakage multi-model 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BvBAXP1nzd19Hq6Vm9beDN",
+        "content": [
+          {
+            "title": "Toward Adversarial Robustness Network Intrusion Detection Based on Multi-Model Ensemble Approach",
+            "url": "https://www.mdpi.com/1424-8220/26/8/2478"
+          },
+          {
+            "title": "Strong data-processing inequalities for channels and Bayesian networks",
+            "url": "https://arxiv.org/pdf/1508.06025"
+          },
+          {
+            "title": "Adversarial robustness in deep neural networks based on variable attributes of the stochastic ensemble model",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10442534/"
+          },
+          {
+            "title": "Properties of the Strong Data Processing Constant for R\\'enyi Divergence",
+            "url": "https://arxiv.org/pdf/2403.10656"
+          },
+          {
+            "title": "Strong data processing inequalities and $\\Phi$-Sobolev inequalities for   discrete channels",
+            "url": "https://arxiv.org/pdf/1411.3575"
+          }
+        ]
+      },
+      "I found search results related to your query. Here's what the search returned:\n\n**Strong Data Processing Inequality (SDPI):**\n\nVarious channel-dependent improvements (called strong data-processing inequalities, or SDPIs) of the data-processing inequality have been proposed both classically and more recently. Strong data processing inequalities (SDPI) are an important object of study in Information Theory and have been well studied for f-divergences.\n\n**Multi-Model Ensemble and Adversarial Robustness:**\n\nMachine learning-based network intrusion detection systems (NIDSs) remain vulnerable to adversarial manipulation, but the robustness literature for tabular NIDS data is still dominated by single-model, single-dataset, and non-adaptive evaluations. Recent research has explored XGBoost, LightGBM, TabNet, and Residual MLP on RT_IOT2022 and Web_IDS23 under standard attacks, representative constrained/adaptive attacks, component-wise ablations, sample-fraction sensitivity, repeated-run significance tests, per-class F1 analysis, and computational-overhead measurements.\n\nAdditionally, an attribute-based stochastic ensemble model using the DDM ideology combines randomness with model diversity to improve adversarial robustness.\n\nThe search results include recent 2025-2026 publications on adversarial robustness in multi-model ensemble approaches, though the specific connection between SDPI and information leakage in multi-model systems may require more specialized research papers."
+    ],
+    "durationSeconds": 7.7364203740000015,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "333a9e3f-304d-42b3-9167-aaa325b12e9a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e1ce9151-87fa-4efa-9fe1-ed55ae4a5cad",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-20T05:47:45.968Z_
+
+<details><summary>↩ Tool result · `toolu_01VaWqixXaTwCMUmnjr9rkNb`</summary>
+
+```text
+Web search results for query: "multi-judge LLM evaluation certified manipulation cost scaling correlation formal guarantees 2026"
+
+Links: [{"title":"LLM-as-Judge Best Practices in 2026: Calibration, Bias, and Cost","url":"https://futureagi.com/blog/llm-as-judge-best-practices-2026"},{"title":"LLM as a Judge: A 2026 Guide to Automated Model Assessment | Label Your Data","url":"https://labelyourdata.com/articles/llm-as-a-judge"},{"title":"Cer-Eval: Certifiable and Cost-Efficient Evaluation Framework for LLMs","url":"https://arxiv.org/pdf/2505.03814"},{"title":"Trust or Escalate: LLM Judges with Provable Guarantees for Human   Agreement","url":"https://arxiv.org/pdf/2407.18370"},{"title":"LLM-as-a-Judge Simply Explained: The Complete Guide to Run LLM Evals at Scale - Confident AI","url":"https://www.confident-ai.com/blog/why-llm-as-a-judge-is-the-best-llm-evaluation-method"},{"title":"Trust or Escalate: LLM Judges with Provable Guarantees for Human Agreement | OpenReview","url":"https://openreview.net/forum?id=UHPnqSTBPO"},{"title":"Tuning LLM Judge Design Decisions for 1/1000 of the Cost","url":"https://arxiv.org/html/2501.17178v4"},{"title":"Tuning LLM Judge Design Decisions for 1/1000 of the Cost","url":"https://arxiv.org/pdf/2501.17178"},{"title":"LLM-as-Judge on a Budget Aadirupa Saha1 UIC Aniket Wagde UIC Branislav Kveton","url":"https://arxiv.org/pdf/2602.15481"}]
+
+Based on the search results, here are the key findings related to your query about multi-judge LLM evaluation with formal guarantees and cost considerations:
+
+## Certified/Formal Guarantees
+
+Cascaded Selective Evaluation proposes starting from a cheaper language model as a judge and escalating to stronger models only when the previous judge is not sufficiently confident, while guaranteeing high agreement with humans, with the abstention policy automatically decided based on user-specified risk tolerance.
+
+This framework also proposes cascaded selective evaluation where cheaper models are used as initial judges and escalated to stronger models only when necessary while still providing provable guarantees of human agreement.
+
+## Cost Scaling and Correlation
+
+Scaling the LLM judge base model improves performance, but scaling alone is insufficient to reach good performance and helps identify cheaper ways to evaluate judges than using correlation with Arena benchmarks.
+
+One method achieved over 80% human agreement on ChatArena while covering 79.1% of all samples, with 88.1% evaluated by substantially cheaper Mistral-7B or GPT-3.5 instead of GPT-4.
+
+## Multi-Judge Approaches
+
+Multi-judge ensembles reduce systematic effects since different judges have different position biases.
+
+Systematic hyperparameter tuning of judges can use multi-objective and multi-fidelity approaches that account for both accuracy and cost while stopping early for poor configurations.
+
+The research indicates active work in 2025-2026 on providing formal guarantees for LLM-based evaluation while managing costs through strategic use of cheaper models and ensemble approaches.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d65092bd-6f37-43db-9a27-d7268fcd59f2",
+  "isSidechain": false,
+  "promptId": "0ca768bf-2bb9-4c6e-b061-13b24d10a840",
+  "type": "user",
+  "uuid": "59ac242b-d4b7-4fe9-b242-444b3ca16fbd",
+  "toolUseResult": {
+    "query": "multi-judge LLM evaluation certified manipulation cost scaling correlation formal guarantees 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QryEygHZ3ifbu5EAEdvFiy",
+        "content": [
+          {
+            "title": "LLM-as-Judge Best Practices in 2026: Calibration, Bias, and Cost",
+            "url": "https://futureagi.com/blog/llm-as-judge-best-practices-2026"
+          },
+          {
+            "title": "LLM as a Judge: A 2026 Guide to Automated Model Assessment | Label Your Data",
+            "url": "https://labelyourdata.com/articles/llm-as-a-judge"
+          },
+          {
+            "title": "Cer-Eval: Certifiable and Cost-Efficient Evaluation Framework for LLMs",
+            "url": "https://arxiv.org/pdf/2505.03814"
+          },
+          {
+            "title": "Trust or Escalate: LLM Judges with Provable Guarantees for Human   Agreement",
+            "url": "https://arxiv.org/pdf/2407.18370"
+          },
+          {
+            "title": "LLM-as-a-Judge Simply Explained: The Complete Guide to Run LLM Evals at Scale - Confident AI",
+            "url": "https://www.confident-ai.com/blog/why-llm-as-a-judge-is-the-best-llm-evaluation-method"
+          },
+          {
+            "title": "Trust or Escalate: LLM Judges with Provable Guarantees for Human Agreement | OpenReview",
+            "url": "https://openreview.net/forum?id=UHPnqSTBPO"
+          },
+          {
+            "title": "Tuning LLM Judge Design Decisions for 1/1000 of the Cost",
+            "url": "https://arxiv.org/html/2501.17178v4"
+          },
+          {
+            "title": "Tuning LLM Judge Design Decisions for 1/1000 of the Cost",
+            "url": "https://arxiv.org/pdf/2501.17178"
+          },
+          {
+            "title": "LLM-as-Judge on a Budget Aadirupa Saha1 UIC Aniket Wagde UIC Branislav Kveton",
+            "url": "https://arxiv.org/pdf/2602.15481"
+          }
+        ]
+      },
+      "Based on the search results, here are the key findings related to your query about multi-judge LLM evaluation with formal guarantees and cost considerations:\n\n## Certified/Formal Guarantees\n\nCascaded Selective Evaluation proposes starting from a cheaper language model as a judge and escalating to stronger models only when the previous judge is not sufficiently confident, while guaranteeing high agreement with humans, with the abstention policy automatically decided based on user-specified risk tolerance.\n\nThis framework also proposes cascaded selective evaluation where cheaper models are used as initial judges and escalated to stronger models only when necessary while still providing provable guarantees of human agreement.\n\n## Cost Scaling and Correlation\n\nScaling the LLM judge base model improves performance, but scaling alone is insufficient to reach good performance and helps identify cheaper ways to evaluate judges than using correlation with Arena benchmarks.\n\nOne method achieved over 80% human agreement on ChatArena while covering 79.1% of all samples, with 88.1% evaluated by substantially cheaper Mistral-7B or GPT-3.5 instead of GPT-4.\n\n## Multi-Judge Approaches\n\nMulti-judge ensembles reduce systematic effects since different judges have different position biases.\n\nSystematic hyperparameter tuning of judges can use multi-objective and multi-fidelity approaches that account for both accuracy and cost while stopping early for poor configurations.\n\nThe research indicates active work in 2025-2026 on providing formal guarantees for LLM-based evaluation while managing costs through strategic use of cheaper models and ensemble approaches."
+    ],
+    "durationSeconds": 9.645874999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "d65092bd-6f37-43db-9a27-d7268fcd59f2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e1ce9151-87fa-4efa-9fe1-ed55ae4a5cad",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 47_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Certifiable Manipulation Resistance for Multi-Judge LLM Evaluation: Information-Theoretic Bounds via Signal Corr…",
+  "leafUuid": "59ac242b-d4b7-4fe9-b242-444b3ca16fbd",
+  "sessionId": "e1ce9151-87fa-4efa-9fe1-ed55ae4a5cad"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 48_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Multi-judge LLM evaluation manipulation resistance bounds",
+  "sessionId": "e1ce9151-87fa-4efa-9fe1-ed55ae4a5cad"
+}
+```
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-20T05:47:51.115Z_
+
+<details><summary>↩ Tool result · `toolu_01UDq2bXtB5VuByURiom6AjY`</summary>
+
+```text
+Web search results for query: "behavioral entanglement LLM Chen arXiv 2604.07650 cross-family correlation evaluation"
+
+Links: [{"title":"[2604.07650] How Independent are Large Language Models? A Statistical Framework for Auditing Behavioral Entanglement and Reweighting Verifier Ensembles","url":"https://arxiv.org/abs/2604.07650"},{"title":"[2604.07650v1] How Independent are Large Language Models? A Statistical Framework for Auditing Behavioral Entanglement and Reweighting Verifier Ensembles","url":"https://arxiv.org/abs/2604.07650v1"},{"title":"How Independent are Large Language Models? A Statistical Framework for Auditing Behavioral Entanglement and Reweighting Verifier Ensembles","url":"https://arxiv.org/html/2604.07650"},{"title":"How Independent are Large Language Models? A Statistical Framework for Auditing Behavioral Entanglement and Reweighting Verifier Ensembles","url":"https://arxiv.org/pdf/2604.07650"},{"title":"[2603.19297] CLaRE-ty Amid Chaos: Quantifying Representational Entanglement to Predict Ripple Effects in LLM Editing","url":"https://arxiv.org/abs/2603.19297"}]
+
+I found the paper you're looking for. Here's information about arXiv 2604.07650:
+
+**Title:** How Independent are Large Language Models? A Statistical Framework for Auditing Behavioral Entanglement and Reweighting Verifier Ensembles
+
+**Authors:** Chenchen Kuai, Jiwan Jiang, Zihao Zhu, Hao Wang, Keshu Wu, Zihao Li, Yunlong Zhang, Chenxi Liu, Zhengzhong Tu, Zhiwen Fan, and Yang Zhou from Texas A&M University
+
+**Main Concept:** The paper addresses hidden behavioral dependencies (latent entanglement) induced by shared pretraining data, distillation, and alignment pipelines that can undermine multi-model systems. In practice, this manifests as correlated reasoning patterns and synchronized failures, where apparent agreement reflects shared error modes rather than independent validation.
+
+**Key Methodology:** The authors develop a statistical framework for auditing behavioral entanglement among black-box LLMs, introducing a multiresolution hierarchy that characterizes the joint failure manifold through two metrics: a Difficulty-Weighted Behavioral Entanglement Index and a Cumulative Information Gain (CIG) metric.
+
+**Cross-Family Evaluation:** The paper includes extensive experiments on 18 LLMs from six model families, identifying widespread behavioral entanglement and analyzing its impact on LLM-as-a-judge evaluation.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "67bffbe4-c302-4911-8eb9-c57e5cd9f5e3",
+  "isSidechain": false,
+  "promptId": "0ca768bf-2bb9-4c6e-b061-13b24d10a840",
+  "type": "user",
+  "uuid": "efec0e4d-5cba-4a9c-adcc-77c9102700f6",
+  "toolUseResult": {
+    "query": "behavioral entanglement LLM Chen arXiv 2604.07650 cross-family correlation evaluation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EP3g9ZpbCfbZtKcuYuyXji",
+        "content": [
+          {
+            "title": "[2604.07650] How Independent are Large Language Models? A Statistical Framework for Auditing Behavioral Entanglement and Reweighting Verifier Ensembles",
+            "url": "https://arxiv.org/abs/2604.07650"
+          },
+          {
+            "title": "[2604.07650v1] How Independent are Large Language Models? A Statistical Framework for Auditing Behavioral Entanglement and Reweighting Verifier Ensembles",
+            "url": "https://arxiv.org/abs/2604.07650v1"
+          },
+          {
+            "title": "How Independent are Large Language Models? A Statistical Framework for Auditing Behavioral Entanglement and Reweighting Verifier Ensembles",
+            "url": "https://arxiv.org/html/2604.07650"
+          },
+          {
+            "title": "How Independent are Large Language Models? A Statistical Framework for Auditing Behavioral Entanglement and Reweighting Verifier Ensembles",
+            "url": "https://arxiv.org/pdf/2604.07650"
+          },
+          {
+            "title": "[2603.19297] CLaRE-ty Amid Chaos: Quantifying Representational Entanglement to Predict Ripple Effects in LLM Editing",
+            "url": "https://arxiv.org/abs/2603.19297"
+          }
+        ]
+      },
+      "I found the paper you're looking for. Here's information about arXiv 2604.07650:\n\n**Title:** How Independent are Large Language Models? A Statistical Framework for Auditing Behavioral Entanglement and Reweighting Verifier Ensembles\n\n**Authors:** Chenchen Kuai, Jiwan Jiang, Zihao Zhu, Hao Wang, Keshu Wu, Zihao Li, Yunlong Zhang, Chenxi Liu, Zhengzhong Tu, Zhiwen Fan, and Yang Zhou from Texas A&M University\n\n**Main Concept:** The paper addresses hidden behavioral dependencies (latent entanglement) induced by shared pretraining data, distillation, and alignment pipelines that can undermine multi-model systems. In practice, this manifests as correlated reasoning patterns and synchronized failures, where apparent agreement reflects shared error modes rather than independent validation.\n\n**Key Methodology:** The authors develop a statistical framework for auditing behavioral entanglement among black-box LLMs, introducing a multiresolution hierarchy that characterizes the joint failure manifold through two metrics: a Difficulty-Weighted Behavioral Entanglement Index and a Cumulative Information Gain (CIG) metric.\n\n**Cross-Family Evaluation:** The paper includes extensive experiments on 18 LLMs from six model families, identifying widespread behavioral entanglement and analyzing its impact on LLM-as-a-judge evaluation."
+    ],
+    "durationSeconds": 12.991806691999999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "67bffbe4-c302-4911-8eb9-c57e5cd9f5e3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e1ce9151-87fa-4efa-9fe1-ed55ae4a5cad",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50 · 2026-05-20T05:48:51.661Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a comprehensive understanding of the literature landscape. Let me synthesize my assessment.
+
+## Summary of my research findings:
+
+1. **Kaneko & Baldwin (NeurIPS 2025 spotlight, 2510.17000)**: Establishes per-query information leakage bounds for single-model adversarial attacks. This is real and verified.
+
+2. **Robertson & Koyejo (2508.05469)**: TVD-MI framework for robust evaluation, polynomial certification under attacks. Verified.
+
+3. **Yang et al. (2602.03794)**: Diversity scaling with K* effective channel count. 
+
+4. **Turkmen et al. (2602.08003)**: Gaussian copula model for correlated LLM ensembles. Verified.
+
+5. **Kim et al. (ICML 2025, 2506.07962)**: Correlated errors across LLMs, larger models more correlated. Verified.
+
+6. **Chen et al. PEG (NeurIPS 2025, 2505.13636)**: Peer elicitation games with dominant strategy truthfulness. Verified.
+
+7. **SoK (2603.29403)**: Comprehensive survey of LLM-as-a-judge security. Verified.
+
+8. **Horváth et al.**: Still compiling the remaining papers... The proposal's theoretical framing around adversarial diversity scaling is compelling—the asymmetry between exponential performance gains and polynomial robustness scaling presents a genuinely novel insight. The experimental design is remarkably thorough, spanning 15 off-the-shelf attacks plus 3 adaptive variants with compute-normalized baselines and rigorous statistical validation across multiple domains. The "frontier diversity ceiling" concept is particularly provocative, suggesting that certified robustness may hit fundamental limits as models improve, which could reshape how we think about multi-judge defenses.
+
+That said, there are some theoretical vulnerabilities worth acknowledging. The core Ω(K_eff^{1/2}) scaling result is extrapolated from continuous ℓ₂ variance reduction theory to discrete text perturbations—a significant leap that the proposal treats as a conjecture rather than a proven result. Similarly, borrowing K* from Yang et al.'s performance scaling work as a proxy for adversarial effective dimensionality is an approximation that needs empirical grounding. The equicorrelated Gaussian copula assumption also introduces modeling assumptions that require validation through goodness-of-fit testing.
+
+Beyond these theoretical gaps, the scope feels stretched across too many directions: manipulation cost scaling theory, PEG degradation under correlation, practical protocol design, frontier diversity analysis, and comprehensive adversarial validation. While the 1,800–2,800 H100-hours is manageable, the breadth of contributions risks diluting the theoretical depth of any single component.
+
+There's also a practical concern about the threat model—white-box access to multi-judge systems is unrealistic when judges are API-based, making the gray-box setting more relevant. And while the proposal targets ICLR, AAAI, USENIX Security, and NeurIPS workshops rather than EMNLP, I'm evaluating on academic merit regardless of venue fit.
+
+The research problem is genuinely important: LLM evaluation robustness matters, and the question of how certified manipulation resistance scales with judge diversity and correlation is well-framed. The method has real strengths—the adversarial dual framing is elegant and the exponential-versus-polynomial asymmetry is a non-obvious insight—but the proofs lean heavily on composing existing tools rather than developing new mathematical foundations. The discrete case conjecture and the K* approximation are notable gaps. On the experimental side, the plan is comprehensive, covering 15 off-the-shelf attacks plus 3 adaptive ones. Weighing the strengths against the weaknesses, the real gap and novel framing push this higher, but the conjectural discrete exponent and ambitious scope create meaningful risk. For EMNLP specifically, the evaluation focus aligns well with the community's interests, though I should account for the fact that this is more of a synthesis contribution than a fundamental breakthrough. My estimate lands around 38% acceptance probability. The PEG degradation analysis as a co-primary contribution dilutes the focus somewhat, though the frontier diversity ceiling insight is genuinely interesting and could spark meaningful discussion. Weighing everything—the clear gap, novel framing, honest limitations, comprehensive experiments, and timely relevance against the conjectural core bound and ambitious scope—I'm settling on 30-42%, median 35%.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "efec0e4d-5cba-4a9c-adcc-77c9102700f6",
+  "isSidechain": false,
+  "requestId": "req_011CbDJ1w5uDfFDSMLyFnj1s",
+  "type": "assistant",
+  "uuid": "7d52d0a1-87fd-4696-b5a0-6af75e35a43a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e1ce9151-87fa-4efa-9fe1-ed55ae4a5cad",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0153mKNQzcgnBkiaVyAcccBj",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2491,
+      "cache_read_input_tokens": 31692,
+      "output_tokens": 7718,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2491,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 7718,
+          "cache_read_input_tokens": 31692,
+          "cache_creation_input_tokens": 2491,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2491
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51 · 2026-05-20T05:50:43.482Z_
+
+Now I have sufficient research to provide a thorough evaluation. Let me compile my assessment.
+
+---
+
+```
+【阶段】: Triage
+
+【领域调研】:
+- [Kaneko & Baldwin, arXiv 2510.17000] (NeurIPS 2025 Spotlight): 建立了单模型信息泄露下界 N_min ≥ log₂(1/ε)/I_max，是本 proposal 的直接理论基石之一。确认该工作仅覆盖单模型，不涉及多judge组合。
+- [Robertson & Koyejo, arXiv 2508.05469] (TMLR under review): TVD-MI 框架，证明 bounded f-divergence 在对抗攻击下保持多项式认证。AUC 0.70-0.77 vs. 传统judge AUC≈0.50。同样仅分析 pairwise evaluation，无 N-judge 扩展。
+- [Yang et al., arXiv 2602.03794] (ICLR 2026 Workshop AIMS): 定义 K*=2^{H(ρ)} 有效通道数，证明性能不确定性以 (1-α_c)^{K*} 指数衰减。仅涉及任务性能，无对抗分析。
+- [Turkmen et al., arXiv 2602.08003] (arXiv 2026): Gaussian copula 建模 LLM 相关性错误，推导信息论误差下限，提出 MI 最大化选择算法。提供了 ρ 估计工具但无对抗场景应用。
+- [Kim et al., arXiv 2506.07962] (ICML 2025): 大规模实证（350+ LLMs）发现错误高度相关（60%共同错误），且更大更准的模型相关性更高，即使跨架构/提供商。这直接支撑 proposal 的 "frontier diversity ceiling" 论点。
+- [Chen et al. PEG, arXiv 2505.13636] (NeurIPS 2025): Peer Elicitation Game，dominant-strategy truthfulness + O(√T) regret + Nash 收敛。确认其 Assumption 4（条件独立）未被分析在违反时的退化行为。
+- [SoK, arXiv 2603.29403] (arXiv 2026): 首个 LLM-as-a-Judge 安全综述（863篇文献），确认开源模型 50-68% ASR，7模型委员会降至 10-19%，但无形式化解释。
+- [Horvath et al., arXiv 2106.06946] (2021): 证明集成模型方差降低→认证半径提升（√K 扩展），但限于连续扰动空间。
+- [Chen et al. 行为纠缠, arXiv 2604.07650] (arXiv 2026): 18个LLM跨6个模型族的行为纠缠审计框架，BEI/CIG 指标，发现跨族纠缠比同族低 40-60%。
+- [Feng et al., arXiv 2601.20913] (ICLR 2026): 假设检验框架，Type-I error control + 方差校正阈值，但假设 honest judges。
+- 调研总结: 该细分领域（多judge LLM评估的对抗鲁棒性认证）确实存在一个明确的空白——单模型有理论下界(Kaneko & Baldwin)，多模型有经验观察(SoK的7模型→10-19% ASR)，但二者之间缺乏形式化的桥梁。Proposal 声称的 gap 经验证成立，无直接竞争者占据该位置。
+
+【整体印象】: 
+如果我是审稿人，看完这篇 proposal 的第一反应是**倾向 weak accept**。这是一篇雄心勃勃、文献调研极其扎实的工作，它精确地识别了一个真实且重要的理论空白——将单模型对抗边界扩展到多judge场景，并将操纵成本与可测量的judge间相关性联系起来。"对抗性对偶"的叙事框架（性能指数衰减 vs. 鲁棒性多项式增长）既优雅又有实际启示。实验设计的完备程度在 proposal 阶段是罕见的（自适应攻击、计算归一化基线、copula验证、pilot study go/no-go标准）。
+
+然而，我有两个主要顾虑：(1) 核心理论结果的 ½ 指数在离散文本扰动设置下仅为猜想，而非证明，这削弱了 "certifiable" 的力度；(2) 范围极为宏大（理论框架 + PEG退化 + 协议设计 + frontier ceiling + 全面验证），单篇论文难以同时做好所有部分。
+
+【核心贡献】: 
+三个层次的贡献：
+1. **主贡献**：建立多judge操纵成本 Ω(K_eff^{1/2}) 的信息论下界，揭示与性能指数扩展的不对称性——这是一个非平凡的洞见，对评估系统的资源分配有直接指导意义。
+2. **共主贡献**：PEG 在条件独立假设违反时的 ε-近似均衡退化分析，提供从 dominant-strategy (ρ=0) 到 approximate (ρ→1) 的连续退化曲线。
+3. **实践贡献**：基于 K_eff 的规范性judge选择工具，以及 "frontier diversity ceiling" 洞见。
+
+价值评估：主贡献如果能严格证明（不仅是猜想），对领域有较高价值。不对称性结果具有概念上的重要性——它告诉从业者"加更多judge对准确性的边际收益远大于对鲁棒性的边际收益"，这是反直觉的。"Frontier diversity ceiling" 若被实证支持，可能成为广泛引用的结论。
+
+【方法合理性】: 
+方法整体合理，但存在几个需要注意的层次：
+
+**合理的部分：**
+- SDPI 约束每个 judge 信息泄露→加性组合的思路是自然的，是 Kaneko & Baldwin 的直接扩展。
+- 利用 Turkmen et al. 的 copula 模型得到 K_eff 闭式解是一个优雅的技术选择。
+- Marton 不等式 + Robertson & Koyejo 的 Theorem 3.3 连接到扰动能量是合理的推导链条。
+
+**有疑虑的部分：**
+- **½ 指数猜想**：核心 bound 从连续空间 ℓ₂ 方差降低外推到离散文本扰动。这是一个非平凡的跳跃。离散设置中的扰动几何本质不同（Hamming 空间 vs. 欧氏空间），真实指数可能更好也可能更差。Proposal 诚实地标记为猜想，但这意味着论文的 "certifiable" claim 在严格意义上是不完整的。
+- **K* 借用**：将 Yang et al. 为性能推导的 K*=2^{H(ρ)} 用于对抗场景，论证基于"共享特征结构"。虽然计划了实证验证，但理论上的合理性论证略显薄弱。
+
+**更简单的替代方案？**
+- 纯经验方法（如SoK已经观察到的7模型→10-19% ASR）可以给出实用指导，但无法提供形式化保证——这正是 proposal 的价值所在。
+- 直接使用 randomized smoothing 类比但不做信息论推导？可能更简单但会丧失 K_eff 与相关性的显式联系。
+- 总体来说，提出的方法路径是达成目标的自然选择，没有明显更简单的替代方案能同时给出可计算的认证bound。
+
+【5 维度打分】:
+  1. 研究问题: 【强】 — 问题精确且重要。LLM-as-a-judge 安全是一个快速增长的领域（SoK 统计了 863 篇文献），但形式化的多judge操纵成本分析完全空白。问题的形式化方式（操纵成本作为可测量相关性的函数）既理论上干净又实践上可操作。Kim et al. (ICML 2025) 关于前沿模型相关性增加的发现使这个问题更加紧迫。唯一的小缺点是"certifiable"这个词在核心bound为猜想时略显过强。
+
+  2. 方法与创新: 【中-强】 — "对抗性对偶"框架是新颖的，指数-多项式不对称性是一个genuinely non-obvious的洞见。但证明技术主要是现有工具的组合（SDPI + Horvath方差降低 + Turkmen copula），而非全新的数学机制。½ 指数在核心离散设置下未被证明（仅是连续空间类比的猜想），这是一个显著的理论不完整性。相比之下，Kaneko & Baldwin 的单模型bound 是严格的。PEG 退化分析是一个有用但相对窄的扩展。与 Robertson & Koyejo (arXiv 2508.05469) 的区分足够清晰（他们做单评估者，本工作做 N-judge 组合）。与 Horvath et al. (arXiv 2106.06946) 的关系需要在论文中仔细处理——他们的 √K 结果在连续空间已经建立，proposal 的贡献在于将其迁移到 LLM evaluation 语境并建立与相关性的联系。
+
+  3. 实验设计: 【强】 — 这是 proposal 最突出的优势之一。实验方案的完备程度在 proposal 阶段极为罕见：(a) 遵循 Carlini et al. (arXiv 1902.06705) 自适应攻击金标准设计了3种protocol-aware攻击；(b) 计算归一化基线（FLOP-matched）填补了该领域常见的公平比较空白；(c) copula GoF 验证模型假设；(d) PEG退化专项实验；(e) dual-scaling 可视化；(f) 跨域校准迁移；(g) bootstrap CI + 多重比较校正（BH + Bonferroni）；(h) pilot study 带 go/no-go 标准。如果能全部执行，这将设立该子领域的实验标准。主要风险：范围如此之大，能否在timeline内全部完成存疑。
+
+  4. 可行性: 【中】 — 资源估计详尽且看起来合理（1,800-2,800 H100时 ≈ $4,500-$7,000）。Pilot study 的 go/no-go 设计是成熟的风险管理。但我有两个担忧：(a) 18-24周的timeline对于这个scope来说偏紧——理论证明（或猜想的实证支撑）+ 5个实验组件（基线、多judge协议、自适应攻击、PEG退化、模型假设验证）+ 写作，这是一个2-3人团队半年的工作量；(b) 如果 copula GoF 检验拒绝了equicorrelation假设（现实中很可能），需要切换到 Kendall tau 路径，这增加了不确定性。
+
+  5. 写作与呈现: 【中-强】 — Proposal 本身的组织结构清晰，从 gap identification → theoretical framework → experimental design 的逻辑链完整。关键假设和局限性被诚实标记（½ 指数猜想、K* 借用的近似性质）。叙事框架（"对抗性对偶"、"frontier diversity ceiling"）具有记忆性和传播力。主要顾虑：论文需要在8-9页中容纳大量内容（理论框架 + PEG退化 + 3个benchmark × 多种攻击 + 模型验证），可能导致关键细节被压缩到附录。信息密度极高，可能导致部分审稿人觉得"too dense"或"tries to do too much"。
+
+【概率估计】: [30% - 42%] 中位 35%
+
+【估计理由】: 
+这是一篇方向正确、gap真实、框架新颖、实验设计出色的 proposal。它的核心优势在于：(1) 确实没有人做过多judge操纵成本与相关性的形式化分析；(2) 指数-多项式不对称性是一个有概念贡献的洞见；(3) 实验方案的严谨程度可以部分弥补理论上的不完整性。
+
+概率被压制在 35% 中位而非更高的原因：
+- **核心bound的猜想性质**：一篇以 "certifiable" 为标题卖点的论文，其核心 ½ 指数在目标设置（离散文本扰动）下是猜想而非证明，这会成为审稿人攻击的焦点。实证支撑可以缓解但不能完全解决。
+- **范围过大的风险**：5个组件（理论 + PEG退化 + 协议 + ceiling + 验证）中，任何一个执行不到位都会被扣分。审稿人可能建议"拆成两篇"。
+- **理论贡献的"合成"性质**：证明是 SDPI + 方差降低 + copula 的组合，可能被认为是"已知工具的直接应用"而非根本性的理论创新。
+
+上界 42% 的情景：½ 指数得到强实证支撑（多benchmark一致），frontier diversity ceiling 产生令人信服的实证结果，PEG退化给出干净的理论曲线，论文写作精炼到位。
+下界 30% 的情景：某些实验未能完全执行，审稿人对 ½ 指数猜想反应强烈，范围过大导致深度不足。
+
+【主要风险】: 
+1. **½ 指数猜想被质疑为致命弱点**：审稿人可能认为"在目标设置下核心bound未被证明"等价于"核心理论贡献不成立"，直接给 reject。Proposal 的缓解策略（实证验证 + 诚实标记为猜想）部分有效，但风险无法完全消除。
+2. **范围过大导致执行质量下降**：5个主要组件 + 3个benchmark + 18种攻击 + 多项ablation，在18-24周内完成并写成一篇精炼的论文是极大的挑战。审稿人可能觉得"each part individually is not deep enough"。
+
+【实施评估】:
+  - 计算资源: 1,800-2,800 H100-hours（≈$4,500-$7,000），主要消耗在自适应攻击PGD（~500hrs）和多judge协议运行（~500hrs）。合理但需要稳定的GPU集群访问。
+  - 数据需求: SummEval、LiveCodeBench、GPQA Diamond 均为公开benchmark，无数据收集需求。Copula校准需要每benchmark ≥500样本，均可从现有数据获取。
+  - 人工介入: 低。主要在 pilot study 的 go/no-go 决策和自适应攻击设计时需要人工判断。
+  - 训练需求: 无模型训练。所有judge模型使用现成权重（DeepSeek-V4-Flash, Qwen-3.5, Llama-4-Maverick 等）。自适应攻击的PGD在MoE活跃参数上（13-17B）操作，是推理+梯度计算而非全量训练。
+  - 新 Benchmark: 无需构建新benchmark。使用现有公开benchmark。
+  - 预估周期: 18-24周（手动）/ 14-18周（人机协作）/ 9-13周（自动化研究）。对于这个scope，18-24周偏紧但可行，前提是团队有2-3人且理论和实验并行推进。
+```
+
+Sources:
+- [Kaneko & Baldwin - Bits Leaked per Query (NeurIPS 2025)](https://arxiv.org/abs/2510.17000)
+- [Robertson & Koyejo - Let's Measure Information Step-by-Step](https://arxiv.org/abs/2508.05469)
+- [Yang et al. - Understanding Agent Scaling via Diversity](https://arxiv.org/abs/2602.03794)
+- [Turkmen et al. - Don't Always Pick the Highest-Performing Model](https://arxiv.org/abs/2602.08003)
+- [Kim et al. - Correlated Errors in Large Language Models (ICML 2025)](https://arxiv.org/abs/2506.07962)
+- [Chen et al. - PEG: Incentivizing Truthful LLMs via Peer Elicitation Games (NeurIPS 2025)](https://arxiv.org/abs/2505.13636)
+- [SoK: Security in LLM-as-a-Judge](https://arxiv.org/abs/2603.29403)
+- [Horvath et al. - Boosting Randomized Smoothing with Variance Reduced Classifiers](https://arxiv.org/abs/2106.06946)
+- [Chen et al. - Behavioral Entanglement](https://arxiv.org/abs/2604.07650)
+- [Feng et al. - Noisy but Valid (ICLR 2026)](https://arxiv.org/abs/2601.20913)
+- [Shen et al. - Robust LLM Performance Certification](https://arxiv.org/abs/2604.03257)
+- [CAP - Comparative Augmented Prompting](https://openreview.net/forum?id=wYU6OYFvid)
+- [RobustJudge](https://arxiv.org/abs/2506.09443)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7d52d0a1-87fd-4696-b5a0-6af75e35a43a",
+  "isSidechain": false,
+  "requestId": "req_011CbDJ1w5uDfFDSMLyFnj1s",
+  "type": "assistant",
+  "uuid": "091e3adc-b0e7-4253-87f3-49d426a44509",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "e1ce9151-87fa-4efa-9fe1-ed55ae4a5cad",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0153mKNQzcgnBkiaVyAcccBj",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2491,
+      "cache_read_input_tokens": 31692,
+      "output_tokens": 7718,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2491,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 7718,
+          "cache_read_input_tokens": 31692,
+          "cache_creation_input_tokens": 2491,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2491
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 52_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Certifiable Manipulation Resistance for Multi-Judge LLM Evaluation: Information-Theoretic Bounds via Signal Corr…",
+  "leafUuid": "091e3adc-b0e7-4253-87f3-49d426a44509",
+  "sessionId": "e1ce9151-87fa-4efa-9fe1-ed55ae4a5cad"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 53_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Multi-judge LLM evaluation manipulation resistance bounds",
+  "sessionId": "e1ce9151-87fa-4efa-9fe1-ed55ae4a5cad"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 54_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Certifiable Manipulation Resistance for Multi-Judge LLM Evaluation: Information-Theoretic Bounds via Signal Corr…",
+  "leafUuid": "091e3adc-b0e7-4253-87f3-49d426a44509",
+  "sessionId": "e1ce9151-87fa-4efa-9fe1-ed55ae4a5cad"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 55_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Multi-judge LLM evaluation manipulation resistance bounds",
+  "sessionId": "e1ce9151-87fa-4efa-9fe1-ed55ae4a5cad"
+}
+```
+
+---

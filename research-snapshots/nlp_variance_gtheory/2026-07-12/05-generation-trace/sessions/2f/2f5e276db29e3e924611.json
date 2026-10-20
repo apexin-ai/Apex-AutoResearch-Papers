@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "2f5e276db29e3e924611",
+  "project": "nlp_variance_gtheory--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: nlp_variance_gtheory ## 运行环境 - 服务器名: westd-32570 - SSH 连接命令: ssh connect.westd.seetacloud.com # ",
+  "task_key": "530d7e89-b683-481a-845d-26f4727cfdc3",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/530d7e89-b683-481a-845d-26f4727cfdc3.jsonl",
+    "occurrence": 1,
+    "bytes": 623101,
+    "sha256": "878564b3a9a290c22312dbd47ee95215f303ea508c9ee3ce1e9dd5c8de7bcd81"
+  },
+  "statistics": {
+    "messages": 205,
+    "user_turns": 2,
+    "tool_calls": 63,
+    "roles": {
+      "record": 44,
+      "user": 2,
+      "assistant": 33,
+      "tool_call": 63,
+      "tool_result": 63
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "2f5e276db29e3e924611-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 198,
+      "chunks": [
+        {
+          "path": "2f5e276db29e3e924611-part-0001.json",
+          "message_count": 172
+        },
+        {
+          "path": "2f5e276db29e3e924611-part-0002.json",
+          "message_count": 26
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "2f5e276db29e3e924611-part-0002.json",
+          "message_count": 5
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-nlp-variance-gtheory-westd-32570-ssh-ssh-connect-westd-seetacl-copy-11.md"
+}

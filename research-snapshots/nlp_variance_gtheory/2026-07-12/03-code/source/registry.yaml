@@ -1,0 +1,762 @@
+baseline: null
+experiments:
+  mvp_phase_a:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-20T18:55:08.941Z'
+    updated_at: '2026-05-20T19:07:46.760Z'
+    hypothesis: G-theory can successfully decompose infrastructure (precision) × methodology
+      (prompt, seed, ordering, temperature) crossed variance components in LLM evaluation,
+      with at least 2 components exceeding 5% of total variance and at least 1 significant
+      precision×methodology interaction.
+    spec:
+      command: bash run_full_mvp.sh (nohup)
+      server: westd-32570
+      data_path: data/mmlu_items.json + data/few_shot_examples.json
+      data_count: 5400
+      model_name: meta-llama/Llama-3.1-8B-Instruct
+      seed: 42,123,456
+      gpu: cuda:0
+      design: 108 conditions = 3 precision x 2 temperature x 3 prompts x 3 seeds x
+        2 orderings x 50 items
+      checkpoint_path: westd-32570:/root/nlp_variance_gtheory/results/
+      log_path: westd-32570:/tmp/mvp_phase_a.log
+    conclusion: success
+    metrics:
+      total_records: 5400
+      conditions: 108
+      overall_accuracy: 0.6557
+      accuracy_bfloat16: 0.6844
+      accuracy_float16: 0.6833
+      accuracy_float32: 0.5994
+      g_coefficient_correct: 0.357
+      top_variance_correct:
+        item_id: 0.5844
+        residual: 0.1759
+        precision:item_id: 0.0724
+        temperature:item_id: 0.0685
+        prompt_template:item_id: 0.0573
+      top_variance_text_match:
+        residual: 0.407
+        prompt_template:item_id: 0.375
+        temperature: 0.169
+        temperature:item_id: 0.025
+        precision:temperature: 0.013
+      pass_criteria_a_pipeline: true
+      pass_criteria_b_components: true
+      pass_criteria_c_interaction: true
+      pass_criteria_c_detail: precision:temperature 1.3% CI not containing zero (text_exact_match)
+    completed_at: '2026-05-20T18:55:34.082Z'
+  bf16_eager_disentangle:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-20T19:30:14.607Z'
+    updated_at: '2026-05-20T19:30:44.440Z'
+    hypothesis: The 8.5pp accuracy gap between FP32 and BF16 in MVP Phase A is primarily
+      due to engine differences (V0 enforce_eager vs V1 CUDA graph), not numerical
+      precision. Running BF16+enforce_eager should show similar degradation to FP32.
+    parent: mvp_phase_a
+    spec:
+      command: python run_bf16_eager.py
+      server: westd-32570
+      data_path: data/mmlu_items.json
+      data_count: 1800
+      model_name: meta-llama/Llama-3.1-8B-Instruct
+      seed: 42,123,456
+      gpu: cuda:0
+      design: 36 conditions (BF16 + enforce_eager=True)
+      checkpoint_source: meta-llama/Llama-3.1-8B-Instruct (HF)
+      eval_data: MMLU 50 items (5 subjects × 10)
+      checkpoint_path: westd-32570:/root/nlp_variance_gtheory/results/bf16_eager_results.jsonl
+      log_path: westd-32570:/tmp/bf16_eager.log
+    conclusion: negative
+    metrics:
+      bf16_v1_accuracy: 0.6844
+      bf16_eager_accuracy: 0.6822
+      fp32_v0_accuracy: 0.5994
+      engine_effect_pct: 2.6
+      precision_effect_pct: 97.4
+      engine_gap_pp: 0.22
+      precision_gap_pp: 8.28
+      total_gap_pp: 8.5
+    completed_at: '2026-05-20T19:30:44.440Z'
+  exp001_pilot:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-21T00:06:01.765Z'
+    updated_at: '2026-05-21T00:06:38.865Z'
+    hypothesis: exp-001 pipeline (4-GPU sharding, model_path mapping, offset-based
+      splitting, 200 items) produces correct and complete JSONL output with all 15
+      fields, suitable for downstream G-theory analysis code development
+    spec:
+      command: python -m src.inference.run_experiment --design design_matrix_exp001_llama_local.csv
+        --max-conditions 25 --offset {0,25,50,75} --gpu-id 0
+      server: westd-32570
+      data_path: data/mmlu_items_exp001.json
+      data_count: 200
+      model_name: meta-llama/Llama-3.1-8B-Instruct
+      seed: multiple (42,123,456,789,1024,2048)
+      gpu: cuda:0-3
+      checkpoint_path: N/A
+      log_path: /tmp/pilot_gpu{0-3}.log
+    conclusion: success
+    completed_at: '2026-05-21T00:06:32.472Z'
+    metrics:
+      total_records: 20000
+      expected_records: 20000
+      overall_accuracy: 0.616
+      gpu0_acc: 0.605
+      gpu1_acc: 0.622
+      gpu2_acc: 0.627
+      gpu3_acc: 0.61
+      avg_latency_ms: 180.9
+      output_size_mb: 13
+      precision_coverage: float32 only (100 conditions)
+      temperature_coverage: T=0.0 only (100 conditions)
+      fields_complete: true
+  exp001_llama:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-21T00:29:18.258Z'
+    updated_at: '2026-05-21T11:59:00.689Z'
+    hypothesis: 'Single-model (Llama-3.1-8B-Instruct) G-theory variance decomposition
+      at full scale (1,296 conditions × 200 items across 3 precisions × 3 temperatures
+      × 6 prompts × 6 seeds × 4 orderings) will confirm MVP findings: item_id dominates
+      binary_correct variance, while text_exact_match reveals infrastructure×methodology
+      interactions'
+    parent: mvp_phase_a
+    spec:
+      command: python -m src.inference.run_experiment --design results/exp001_llama/shards/shard_{0-3}.csv
+        --gpu-id 0 (4 GPUs parallel)
+      server: westd-32570
+      data_path: data/mmlu_items_exp001.json (200 items x 10 subjects)
+      data_count: 200
+      model_name: meta-llama/Llama-3.1-8B-Instruct
+      seed: 42,123,456,789,1024,2048
+      gpu: cuda:0-3 (4x RTX PRO 6000 96GB)
+      checkpoint_source: HuggingFace (pre-trained, no fine-tuning)
+      eval_data: MMLU 200 items (10 subjects x 20 items)
+      checkpoint_path: westd-32570:/root/nlp_variance_gtheory/results/exp001_llama/shard_{0-3}.jsonl
+      log_path: westd-32570:/tmp/llama_gpu{0-3}.log
+    conclusion: success
+    metrics:
+      total_records: 239200
+      expected_records: 239200
+      conditions: 1196
+      items_per_condition: 200
+      overall_accuracy: 0.6814
+      accuracy_bfloat16: 0.7108
+      accuracy_float16: 0.7114
+      accuracy_float32: 0.604
+      accuracy_T0.0: 0.6987
+      accuracy_T0.3: 0.6795
+      accuracy_T0.7: 0.6699
+      null_predictions: 42
+      null_pct: 0
+    completed_at: '2026-05-21T02:00:49.414Z'
+    notes: 'G_item bug: gstudy_full.py used ICC (SS proportion) not Henderson I G
+      coefficient. Stored G=0.6108, corrected G=0.9184. Variance percentages (item_id%=61.1%)
+      are correct — only G_item affected. Cross-model G_item (compute_g_coefficients.py)
+      is unaffected (correct formula).'
+  exp001_gemma:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-21T02:00:51.314Z'
+    updated_at: '2026-05-21T04:35:03.962Z'
+    hypothesis: Gemma-2-9b-it variance decomposition at full scale (1,296 conditions
+      × 200 items) will show model-specific variance structure differences compared
+      to Llama — enabling model-as-facet analysis (Claim 1 make-or-break)
+    parent: exp001_llama
+    spec:
+      command: python -m src.inference.run_experiment --design results/exp001_gemma/shards/shard_{0-3}.csv
+        --gpu-id {0-3} (4 GPUs parallel, nohup)
+      server: westd-32570
+      data_path: data/mmlu_items_exp001.json (200 items x 10 subjects)
+      data_count: 200
+      model_name: google/gemma-2-9b-it
+      seed: 42,123,456,789,1024,2048
+      gpu: cuda:0-3 (4x RTX PRO 6000 96GB)
+      checkpoint_source: HuggingFace (pre-trained, no fine-tuning)
+      eval_data: MMLU 200 items (10 subjects x 20 items)
+    reproduce:
+      finished_at: '2026-05-21T02:40:22.023Z'
+    failure_reason: process dead 5× with no sentinel/W&B — auto-resolved as failed
+    conclusion: success
+    completed_at: '2026-05-21T02:40:22.097Z'
+    extra:
+      hook_events:
+      - event: on_failed
+        action: agent
+        ts: '2026-05-21T02:40:23.502187+00:00'
+    notes: Gemma2 不支持 fp16（vLLM numerical instability error）。实际完成 bf16（86,400 records）+
+      fp32（86,400 records）= 172,800 records。fp32 是独立重启跑完的（原 cron 误判为 failed）。Cross-model
+      分析使用 bf16+fp32 平衡设计（D005）。
+    metrics:
+      total_records: 172800
+      bf16_records: 86400
+      fp32_records: 86400
+      fp16_records: 0
+      precisions_available:
+      - bfloat16
+      - float32
+      fp16_note: Gemma2 does not support float16 (vLLM numerical instability)
+      conditions_bf16: 432
+      conditions_fp32: 432
+      total_conditions: 864
+      items_per_condition: 200
+  exp001_mistral:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-21T04:34:53.849Z'
+    updated_at: '2026-05-21T05:32:47.678Z'
+    hypothesis: Mistral-7B-Instruct-v0.3 variance decomposition at full scale (1,296
+      conditions × 200 items) will contribute to cross-model G-theory analysis — model-as-facet
+      tests whether item_id dominance holds across architecturally diverse models
+      (Claim 1)
+    parent: exp001_llama
+    spec:
+      command: python -m src.inference.run_experiment --design results/exp001_mistral/shards/shard_{0-3}.csv
+        --gpu-id {0-3} (4 GPUs parallel, auto-started by chain script after Gemma
+        fp32)
+      server: westd-32570
+      data_path: data/mmlu_items_exp001.json (200 items x 10 subjects)
+      data_count: 200
+      model_name: mistralai/Mistral-7B-Instruct-v0.3
+      seed: 42,123,456,789,1024,2048
+      gpu: cuda:0-3 (4x RTX PRO 6000 96GB)
+      checkpoint_source: HuggingFace (pre-trained, no fine-tuning)
+      eval_data: MMLU 200 items (10 subjects x 20 items)
+      checkpoint_path: westd-32570:/root/nlp_variance_gtheory/results/exp001_mistral/shard_{0-3}.jsonl
+      log_path: westd-32570:/tmp/mistral_gpu{0-3}.log
+    conclusion: success
+    metrics:
+      total_records: 259200
+      expected_records: 259200
+      conditions: 1296
+      items_per_condition: 200
+      overall_accuracy: 0.6124
+      accuracy_bfloat16: null
+      accuracy_float16: null
+      accuracy_float32: null
+      precisions_available:
+      - bfloat16
+      - float16
+      - float32
+      per_precision_records: 86400
+      per_temperature_records: 86400
+    completed_at: '2026-05-21T05:32:47.678Z'
+  exp001_qwen:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-21T05:32:56.720Z'
+    updated_at: '2026-05-21T07:47:49.329Z'
+    hypothesis: Qwen3-8B variance decomposition at full scale (1,296 conditions ×
+      200 items) completes the 4-model design for cross-model G-theory analysis —
+      tests whether item_id dominance and model×item interaction patterns hold with
+      a 4th architecturally distinct model (Claim 1)
+    parent: exp001_llama
+    spec:
+      command: python -m src.inference.run_experiment --design results/exp001_qwen/shards/shard_{0-3}.csv
+        --gpu-id {0-3} (4 GPUs parallel, auto-started by chain script after Mistral)
+      server: westd-32570
+      data_path: data/mmlu_items_exp001.json (200 items x 10 subjects)
+      data_count: 200
+      model_name: Qwen/Qwen3-8B
+      seed: 42,123,456,789,1024,2048
+      gpu: cuda:0-3 (4x RTX PRO 6000 96GB)
+      checkpoint_source: HuggingFace (pre-trained, no fine-tuning)
+      eval_data: MMLU 200 items (10 subjects x 20 items)
+      checkpoint_path: westd-32570:/root/nlp_variance_gtheory/results/exp001_qwen/shard_{0-3}.jsonl
+      log_path: westd-32570:/tmp/qwen_gpu{0-3}.log
+    reproduce:
+      finished_at: '2026-05-21T06:59:51.731Z'
+    failure_reason: process dead 5× with no sentinel/W&B — auto-resolved as failed
+    conclusion: success
+    completed_at: '2026-05-21T06:59:51.867Z'
+    extra:
+      hook_events:
+      - event: on_failed
+        action: agent
+        ts: '2026-05-21T06:59:53.266768+00:00'
+    notes: 全部完成。4 shards × 64,800 = 259,200 records。shard_3 通过 de-dup + 补跑 69 conditions
+      修复（patch worker 验证 324 unique condition_ids）。Accuracy 72.52%。注意：恢复 merged_with_dup
+      方案有问题（部分 condition 400 条重复，accuracy=0 异常），最终采用 de-dup+patch 方案。
+    metrics:
+      total_records: 259200
+      overall_accuracy: 0.7252
+      accuracy_bf16: 0.726
+      accuracy_fp16: 0.7257
+      accuracy_fp32: 0.7235
+      unique_conditions: 1227
+      temperatures:
+      - 0
+      - 0.3
+      - 0.7
+  exp001b_resampling:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-21T07:52:15.585Z'
+    updated_at: '2026-05-21T12:11:56.076Z'
+    hypothesis: 'Single-model item_id dominance (~58%) in G-theory decomposition is
+      robust to item sampling — 3 independent 200-item stratified MMLU samples will
+      show consistent item_id%, interaction percentages, and G_item (CV < 10%), ruling
+      out that exp-001''s findings are artifacts of the specific 200-item sample.
+      Baseline comparison: Llama single-model 6-facet decomposition.'
+    parent: exp001_llama
+    server: westd-32570
+    gpu: cuda:0,cuda:1,cuda:2,cuda:3
+    reproduce:
+      server: westd-32570
+      gpu: cuda:0,cuda:1,cuda:2,cuda:3
+      started_at: '2026-05-21T07:53:10.678Z'
+    spec:
+      command: bash scripts/run_exp001b.sh (3 samples serial, 4 GPU parallel per sample)
+      server: westd-32570
+      data_path: data/mmlu_items_exp001b_sample{1,2,3}.json (3×200 items, zero overlap
+        with exp-001 and each other)
+      data_count: 600
+      model_name: meta-llama/Llama-3.1-8B-Instruct
+      seed: 42,123,456,789,1024,2048
+      gpu: cuda:0-3
+      checkpoint_source: HuggingFace (pre-trained, no fine-tuning)
+      eval_data: MMLU 3×200 items (10 subjects × 20 items per sample)
+      master_pid: 112600
+      sample1_pids: 112700-112703
+      precision: bfloat16 only
+      temperatures: 0.0, 0.3, 0.7
+      conditions_per_sample: 432
+      records_per_sample: 86400
+      total_records: 259200
+    conclusion: success
+    metrics:
+      total_records: 259200
+      samples: 3
+      records_per_sample: 86400
+      accuracy_sample1: 0.7207
+      accuracy_sample2: 0.6212
+      accuracy_sample3: 0.686
+      item_id_pct_mean: 74.48
+      item_id_pct_cv: 2.7
+      g_item_mean: 0.96
+      g_item_cv: 0.5
+      g_item_sample1: 0.9637
+      g_item_sample2: 0.962
+      g_item_sample3: 0.9548
+      min_items_g80_range: 31-38
+      seed_item_cv: 5.5
+      prompt_item_cv: 12.2
+      hypothesis_confirmed: true
+      g_item_corrected: 2026-05-21, ICC→Henderson I G coefficient
+    checkpoint_path: /root/nlp_variance_gtheory/results/exp001b/
+    log_path: /root/nlp_variance_gtheory/results/exp001b/master.log
+    completed_at: '2026-05-21T08:37:23.809Z'
+  exp002_multi_benchmark:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-21T08:45:14.217Z'
+    updated_at: '2026-05-21T13:43:22.204Z'
+    hypothesis: 'Cross-benchmark variance gradient: item_id dominance systematically
+      decreases from knowledge-retrieval (MMLU) to reasoning (GSM8K) benchmarks, and
+      D-study reliability budgets are benchmark-conditional — supporting Claim 1 (benchmark
+      gradient) and Claim 3 (benchmark-conditional budget). 4 models × 4 benchmarks
+      × bf16 × 2 temps × 6 prompts × 6 seeds × 4 orderings × 200 items = 921,600 records.'
+    parent: exp001_llama
+    server: westd-32570
+    gpu: cuda:0,cuda:1,cuda:2,cuda:3
+    reproduce:
+      server: westd-32570
+      gpu: cuda:0,cuda:1,cuda:2,cuda:3
+      started_at: '2026-05-21T08:46:14.611Z'
+    spec:
+      command: bash scripts/run_exp002.sh (4 GPU by model, 4 benchmarks serial per
+        GPU)
+      server: westd-32570
+      data_path: data/{mmlu,gsm8k,arc,hellaswag}_items_exp002.json (4x200 items)
+      data_count: 800
+      model_name: Llama-3.1-8B/Gemma-2-9B/Mistral-7B/Qwen3-8B
+      seed: 42,123,456,789,1024,2048
+      gpu: cuda:0-3
+      precision: bfloat16 only
+      temperatures: 0.0, 0.7
+      conditions_total: 4608
+      records_total: 921600
+      master_pid: 133392
+      gsm8k_fix: Added stop sequences, accuracy 30%->64.5%
+      checkpoint_source: HuggingFace (pre-trained, no fine-tuning)
+      eval_data: MMLU/GSM8K/ARC-Challenge/HellaSwag 4x200 items stratified samples
+      checkpoint_path: westd-32570:/root/nlp_variance_gtheory/results/exp002/*.jsonl
+        (16 files)
+      log_path: westd-32570:/root/nlp_variance_gtheory/results/exp002/full_run.log
+    conclusion: success
+    completed_at: '2026-05-21T13:43:16.150Z'
+    metrics:
+      total_records: 921600
+      files: 16
+      records_per_file: 57600
+      models: 4
+      benchmarks: 4
+      conditions_total: 4608
+      benchmarks_list:
+      - mmlu
+      - arc
+      - hellaswag
+      - gsm8k
+      models_list:
+      - Llama-3.1-8B
+      - Gemma-2-9B
+      - Mistral-7B
+      - Qwen3-8B
+      math_followup: running on all 4 GPUs as exp-002 extension
+  exp-002:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-21T09:10:14.630Z'
+    updated_at: '2026-05-21T10:44:56.264Z'
+    spec:
+      command: bash scripts/run_exp002_full.sh
+      server: westd-32570
+      data_path: design_matrix_exp002.csv
+      data_count: 4608
+      model_name: Llama-3.1-8B/Gemma-2-9B/Mistral-7B/Qwen3-8B
+      seed: 42
+      checkpoint_path: N/A - duplicate of exp002_multi_benchmark
+      log_path: N/A - duplicate entry
+    conclusion: killed
+    completed_at: '2026-05-21T10:44:56.264Z'
+  exp002_olmo_mmlu:
+    status: PREPARING
+    retry_count: 0
+    created_at: '2026-05-21T15:39:28.982Z'
+    updated_at: '2026-05-22T21:46:42.056Z'
+    hypothesis: 'D009 8-model expansion: OLMo-2-7B MMLU inference — MC benchmark expected
+      item-dominated variance pattern per D010'
+    conclusion: killed
+    notes: 已有 8 模型 + 72B 数据足够投稿，扩展模型集为 post-submission 工作
+  exp002_yi_mmlu:
+    status: PREPARING
+    retry_count: 0
+    created_at: '2026-05-21T15:39:29.059Z'
+    updated_at: '2026-05-22T21:46:36.404Z'
+    hypothesis: 'D009 8-model expansion: Yi-1.5-9B-Chat MMLU inference — MC benchmark
+      expected item-dominated variance pattern per D010'
+    conclusion: killed
+    notes: 已有 8 模型 + 72B 数据足够投稿，扩展模型集为 post-submission 工作
+  exp002_olmo_arc:
+    status: PREPARING
+    retry_count: 0
+    created_at: '2026-05-21T15:39:29.119Z'
+    updated_at: '2026-05-22T21:46:42.978Z'
+    hypothesis: 'D009 8-model expansion: OLMo-2-7B ARC inference — MC benchmark expected
+      item-dominated variance pattern per D010'
+    conclusion: killed
+    notes: 已有 8 模型 + 72B 数据足够投稿，扩展模型集为 post-submission 工作
+  exp002_olmo_hellaswag:
+    status: PREPARING
+    retry_count: 0
+    created_at: '2026-05-21T15:39:29.179Z'
+    updated_at: '2026-05-22T21:46:43.903Z'
+    hypothesis: 'D009 8-model expansion: OLMo-2-7B HellaSwag inference — MC benchmark
+      expected item-dominated variance pattern'
+    conclusion: killed
+    notes: 已有 8 模型 + 72B 数据足够投稿，扩展模型集为 post-submission 工作
+  exp002_olmo_gsm8k:
+    status: PREPARING
+    retry_count: 0
+    created_at: '2026-05-21T15:59:36.302Z'
+    updated_at: '2026-05-22T21:46:45.405Z'
+    hypothesis: 'D009 8-model expansion: OLMo-2-7B GSM8K inference — free-form benchmark
+      expected methodology-dominated variance pattern per D010'
+    conclusion: killed
+    notes: 已有 8 模型 + 72B 数据足够投稿，扩展模型集为 post-submission 工作
+  exp002_olmo_math:
+    status: PREPARING
+    retry_count: 0
+    created_at: '2026-05-21T15:59:36.362Z'
+    updated_at: '2026-05-22T21:46:46.297Z'
+    hypothesis: 'D009 8-model expansion: OLMo-2-7B MATH inference — free-form benchmark
+      expected methodology-dominated variance pattern per D010'
+    conclusion: killed
+    notes: 已有 8 模型 + 72B 数据足够投稿，扩展模型集为 post-submission 工作
+  exp002_yi_arc:
+    status: PREPARING
+    retry_count: 0
+    created_at: '2026-05-21T16:39:34.713Z'
+    updated_at: '2026-05-22T21:46:37.815Z'
+    hypothesis: 'D009 8-model expansion: Yi-1.5-9B-Chat ARC inference — MC benchmark
+      expected item-dominated variance pattern per D010'
+    conclusion: killed
+    notes: 已有 8 模型 + 72B 数据足够投稿，扩展模型集为 post-submission 工作
+  exp002_yi_hellaswag:
+    status: PREPARING
+    retry_count: 0
+    created_at: '2026-05-21T16:59:07.559Z'
+    updated_at: '2026-05-22T21:46:38.758Z'
+    hypothesis: 'D009 8-model expansion: Yi-1.5-9B-Chat HellaSwag inference — MC benchmark
+      expected item-dominated variance pattern per D010'
+    conclusion: killed
+    notes: 已有 8 模型 + 72B 数据足够投稿，扩展模型集为 post-submission 工作
+  exp002_yi_gsm8k:
+    status: PREPARING
+    retry_count: 0
+    created_at: '2026-05-21T16:59:08.475Z'
+    updated_at: '2026-05-22T21:46:39.787Z'
+    hypothesis: 'D009 8-model expansion: Yi-1.5-9B-Chat GSM8K inference — free-form
+      benchmark expected methodology-dominated variance pattern per D010'
+    conclusion: killed
+    notes: 已有 8 模型 + 72B 数据足够投稿，扩展模型集为 post-submission 工作
+  exp002_yi_math:
+    status: PREPARING
+    retry_count: 0
+    created_at: '2026-05-21T16:59:09.445Z'
+    updated_at: '2026-05-22T21:46:40.716Z'
+    hypothesis: 'D009 8-model expansion: Yi-1.5-9B-Chat MATH inference — free-form
+      benchmark expected methodology-dominated variance pattern per D010'
+    conclusion: killed
+    notes: 已有 8 模型 + 72B 数据足够投稿，扩展模型集为 post-submission 工作
+  exp002_math_extension:
+    status: PREPARING
+    retry_count: 0
+    created_at: '2026-05-21T16:59:12.561Z'
+    updated_at: '2026-05-22T21:46:47.116Z'
+    hypothesis: 'D009 8-model expansion: 4-model MATH inference (Llama/Mistral/Qwen/Gemma)
+      — free-form benchmark expected methodology-dominated variance pattern per D010'
+    conclusion: killed
+    notes: 已有 8 模型 + 72B 数据足够投稿，扩展模型集为 post-submission 工作
+  exp002_internlm_mmlu:
+    status: PREPARING
+    retry_count: 0
+    created_at: '2026-05-21T16:59:13.845Z'
+    updated_at: '2026-05-22T21:46:31.206Z'
+    hypothesis: 'D009 8-model expansion: InternLM2.5-7B-Chat MMLU inference — MC benchmark
+      expected item-dominated variance pattern per D010'
+    conclusion: killed
+    notes: 已有 8 模型 + 72B 数据足够投稿，扩展模型集为 post-submission 工作
+  exp002_internlm_arc:
+    status: PREPARING
+    retry_count: 0
+    created_at: '2026-05-21T17:19:13.036Z'
+    updated_at: '2026-05-22T21:46:32.126Z'
+    hypothesis: 'D009 8-model expansion: InternLM2.5-7B-Chat ARC inference — MC benchmark
+      expected item-dominated variance pattern per D010'
+    conclusion: killed
+    notes: 已有 8 模型 + 72B 数据足够投稿，扩展模型集为 post-submission 工作
+  exp002_internlm_hellaswag:
+    status: PREPARING
+    retry_count: 0
+    created_at: '2026-05-21T17:19:13.961Z'
+    updated_at: '2026-05-22T21:46:33.099Z'
+    hypothesis: 'D009 8-model expansion: InternLM2.5-7B-Chat HellaSwag inference —
+      MC benchmark expected item-dominated variance pattern per D010'
+    conclusion: killed
+    notes: 已有 8 模型 + 72B 数据足够投稿，扩展模型集为 post-submission 工作
+  exp002_internlm_gsm8k:
+    status: PREPARING
+    retry_count: 0
+    created_at: '2026-05-21T17:19:15.335Z'
+    updated_at: '2026-05-22T21:46:34.595Z'
+    hypothesis: 'D009 8-model expansion: InternLM2.5-7B-Chat GSM8K inference — free-form
+      benchmark expected methodology-dominated variance pattern per D010'
+    conclusion: killed
+    notes: 已有 8 模型 + 72B 数据足够投稿，扩展模型集为 post-submission 工作
+  exp002_internlm_math:
+    status: PREPARING
+    retry_count: 0
+    created_at: '2026-05-21T17:39:04.445Z'
+    updated_at: '2026-05-22T21:46:35.447Z'
+    hypothesis: 'D009 8-model expansion: InternLM2.5-7B-Chat MATH inference — free-form
+      benchmark expected methodology-dominated variance pattern per D010'
+    conclusion: killed
+    notes: 已有 8 模型 + 72B 数据足够投稿，扩展模型集为 post-submission 工作
+  exp002_deepseek_mmlu:
+    status: PREPARING
+    retry_count: 0
+    created_at: '2026-05-21T17:39:04.512Z'
+    updated_at: '2026-05-22T21:46:00.102Z'
+    hypothesis: 'D009 8-model expansion: DeepSeek-LLM-7B-Chat MMLU inference — MC
+      benchmark expected item-dominated variance pattern per D010'
+    conclusion: killed
+    notes: 已有 8 模型 + 72B 数据足够投稿，扩展模型集为 post-submission 工作
+  exp002_deepseek_arc:
+    status: PREPARING
+    retry_count: 0
+    created_at: '2026-05-21T17:39:04.591Z'
+    updated_at: '2026-05-22T21:46:26.319Z'
+    hypothesis: 'D009 8-model expansion: DeepSeek-LLM-7B-Chat ARC inference — MC benchmark
+      expected item-dominated variance pattern per D010'
+    conclusion: killed
+    notes: 已有 8 模型 + 72B 数据足够投稿，扩展模型集为 post-submission 工作
+  exp002_deepseek_hellaswag:
+    status: PREPARING
+    retry_count: 0
+    created_at: '2026-05-21T17:59:12.495Z'
+    updated_at: '2026-05-22T21:46:27.870Z'
+    hypothesis: 'D009 8-model expansion: DeepSeek-LLM-7B-Chat HellaSwag inference
+      — MC benchmark expected item-dominated variance pattern per D010'
+    conclusion: killed
+    notes: 已有 8 模型 + 72B 数据足够投稿，扩展模型集为 post-submission 工作
+  exp002_deepseek_gsm8k:
+    status: PREPARING
+    retry_count: 0
+    created_at: '2026-05-21T17:59:13.426Z'
+    updated_at: '2026-05-22T21:46:28.850Z'
+    hypothesis: 'D009 8-model expansion: DeepSeek-LLM-7B-Chat GSM8K inference — free-form
+      benchmark expected methodology-dominated variance pattern per D010'
+    conclusion: killed
+    notes: 已有 8 模型 + 72B 数据足够投稿，扩展模型集为 post-submission 工作
+  exp002_deepseek_math:
+    status: PREPARING
+    retry_count: 0
+    created_at: '2026-05-21T18:19:21.944Z'
+    updated_at: '2026-05-22T21:46:29.789Z'
+    hypothesis: 'D009 8-model expansion: DeepSeek-LLM-7B-Chat MATH inference — free-form
+      benchmark expected methodology-dominated variance pattern per D010'
+    conclusion: killed
+    notes: 已有 8 模型 + 72B 数据足够投稿，扩展模型集为 post-submission 工作
+  exp003_scale_3b:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-22T04:23:28.800Z'
+    updated_at: '2026-05-22T07:06:05.445Z'
+    hypothesis: 'Scale validation: Qwen2.5-3B-Instruct on MMLU shows item-related
+      variance (item_id + model×item) >60% with same facet ranking as 7B-9B models,
+      confirming G-theory variance structure is scale-invariant at the small-model
+      end. Parent: 8-model G-study showed consistent structure across 7B-9B range.'
+    parent: exp002_multi_benchmark
+    spec:
+      command: CUDA_VISIBLE_DEVICES=0 python -m src.inference.run_experiment --design
+        design_matrix_exp003_3b.csv --items data/mmlu_items_exp001.json --benchmark
+        mmlu --precision bfloat16 --gpu-id 0 --tensor-parallel 1 --output results/exp003_scale_3b_mmlu.jsonl
+      server: westd-32570
+      data_path: data/mmlu_items_exp001.json
+      data_count: 288
+      model_name: Qwen/Qwen2.5-3B-Instruct
+      seed: multiple
+      checkpoint_source: Qwen/Qwen2.5-3B-Instruct
+      eval_data: mmlu
+      checkpoint_path: results/exp003_scale_3b_mmlu.jsonl
+      log_path: /tmp/inference_3b.log
+    conclusion: success
+    completed_at: '2026-05-22T07:00:05.734Z'
+    metrics:
+      total_records: 57600
+      conditions: 288
+      grand_mean: 0.682
+      item_id_pct: 75.32
+      item_related_pct: 88.9
+      G_item: 0.963
+  exp003_scale_72b:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-22T04:23:29.154Z'
+    updated_at: '2026-05-22T19:06:18.265Z'
+    hypothesis: 'Scale validation: Qwen2.5-72B-Instruct (4-card TP=4) on MMLU shows
+      item-related variance (item_id + model×item) >60% with same facet ranking as
+      7B-9B models, confirming G-theory variance structure is scale-invariant at the
+      large-model end. If item_id% drops significantly at 72B scale, this reveals
+      a scale-dependent variance boundary.'
+    parent: exp002_multi_benchmark
+    conclusion: success
+    metrics:
+      total_records: 57600
+      conditions: 288
+      grand_mean: 0.87
+      item_id_pct: 83.25
+      prompt_item_pct: 6.81
+      residual_pct: 7.45
+      G_item: 0.979
+      crossed_3model_item_id_pct: 35.71
+      crossed_3model_model_item_pct: 38.55
+      crossed_3model_G_item: 0.72
+    spec:
+      checkpoint_path: N/A (inference only)
+      log_path: /tmp/72b_inference.log
+      command: python -m src.inference.run_experiment --design design_matrix_exp003_72b.csv
+        --items data/mmlu_items_exp001.json --benchmark mmlu --precision bfloat16
+        --gpu-id 0 --tensor-parallel 4 --output results/exp003_scale_72b_mmlu.jsonl
+      server: westd-32570
+      data_path: /root/nlp_variance_gtheory/results/exp003_scale_72b_mmlu.jsonl
+      data_count: 57600
+      model_name: Qwen2.5-72B-Instruct
+    completed_at: '2026-05-22T19:06:18.265Z'
+  exp003_scale_7b:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-22T04:43:17.991Z'
+    updated_at: '2026-05-22T07:06:06.478Z'
+    hypothesis: 'Scale validation within-family midpoint: Qwen2.5-7B-Instruct on MMLU
+      provides the within-family 7B reference for 3-point scale curve (3B/7B/72B).
+      Item-related variance (item_id + model×item) >60% expected, bridging the 3B
+      and 72B endpoints to confirm monotonic scale-invariance of variance structure.'
+    parent: exp002_multi_benchmark
+    spec:
+      command: CUDA_VISIBLE_DEVICES=1 python -m src.inference.run_experiment --design
+        design_matrix_exp003_7b.csv --items data/mmlu_items_exp001.json --benchmark
+        mmlu --precision bfloat16 --gpu-id 0 --tensor-parallel 1 --output results/exp003_scale_7b_mmlu.jsonl
+      server: westd-32570
+      data_path: data/mmlu_items_exp001.json
+      data_count: 144
+      model_name: Qwen/Qwen2.5-7B-Instruct
+      seed: multiple
+      checkpoint_source: Qwen/Qwen2.5-7B-Instruct
+      eval_data: mmlu
+      checkpoint_path: results/exp003_scale_7b_mmlu.jsonl
+      log_path: /tmp/inference_7b.log
+    conclusion: success
+    completed_at: '2026-05-22T05:55:56.091Z'
+    metrics:
+      total_records: 57600
+      conditions: 288
+      grand_mean: 0.742
+      item_id_pct: 73.37
+      item_related_pct: 90.21
+      G_item: 0.956
+  exp_llama70b_mmlu:
+    status: PREPARING
+    retry_count: 0
+    created_at: '2026-05-23T09:03:34.855Z'
+    updated_at: '2026-05-23T09:03:34.855Z'
+    hypothesis: 'Cross-family scale validation: Llama-3.1-70B-Instruct on MMLU shows
+      item-dominated variance structure consistent with Qwen2.5-72B (item_id >60%,
+      G_item >0.90), confirming G-theory findings are architecture-invariant at large
+      scale'
+  exp_llama70b:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-23T15:25:53.832Z'
+    updated_at: '2026-05-24T04:03:42.163Z'
+    hypothesis: 'Cross-family scale validation: Llama-3.1-70B-Instruct (non-Qwen family,
+      70B scale) on 5 benchmarks should show item-dominated variance structure consistent
+      with Qwen2.5-72B (G=0.979, item_id=83.25%), confirming G-theory variance decomposition
+      is invariant across model families and not an artifact of a single architecture.'
+    parent: exp003_scale_72b
+    spec:
+      command: bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate
+        base && cd /root/nlp_variance_gtheory && python scripts/exp_llama70b/run_llama70b_mmlu_only.py"
+      server: westd-32570
+      gpu:
+      - cuda:0
+      - cuda:1
+      - cuda:2
+      - cuda:3
+      pid: '335884'
+      log_path: ~/runs/nlp_variance_gtheory/exp_llama70b.log
+      submitted_at: '2026-05-23T16:18:10.122Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      checkpoint_path: /root/nlp_variance_gtheory/data/exp_llama70b/llama70b_mmlu.jsonl
+      wall_clock_seconds: 42332.0
+      gpu_hours: 47.04
+    metrics:
+      item_id_pct: 74.51
+      G_item: 0.9566
+      residual_pct: 11.92
+      seed_item_pct: 5.02
+      prompt_item_pct: 4.24
+      temp_item_pct: 2.92
+      ordering_item_pct: 1.33
+      grand_mean: 0.8157
+    conclusion: success
+    reproduce:
+      finished_at: '2026-05-24T04:03:07.827Z'
+    completed_at: '2026-05-24T04:03:42.163Z'

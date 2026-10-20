@@ -1,0 +1,1996 @@
+# Research conversation: You are a senior ML researcher performing a deep analysis of a published paper. **Today's date: 2026-05-28 (UTC).** ## Y
+
+**Reproducibility Budgets for Open-Weight LLM Evaluation: A Generalizability Theory Study of 7–9B Instruction-Tuned Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 31
+- **Recorded user turns:** 1
+- **Tool calls:** 5
+- **Original source:** `logs/chats/exported-trajectories/account-2/b70334ba-1730-4203-939a-7143bb7bbbda.jsonl`
+- **Structured JSON:** [`1e1762b165772876ca04.json`](../../sessions/1e/1e1762b165772876ca04.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-28T11:07:38.983Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-28T11:07:38.983Z",
+  "sessionId": "b70334ba-1730-4203-939a-7143bb7bbbda",
+  "content": "You are a senior ML researcher performing a deep analysis of a published paper.\n\n**Today's date: 2026-05-28 (UTC).**\n\n## Your goal\n\nAnalyze this paper NOT just for what it does, but for **HOW it innovates** — what can we learn from its approach to doing research? What made this paper good enough for a top venue?\n\n## Research context\n\nWe are generating ideas in the area of: **Target: AAAI 2026\nTrack: AI for Science / Knowledge Representation and Reasoning\n\nDirection: Build the first domain-adaptive autoformalization pipeline that conditions formalization, retrieval, and repair strategies on mathematical subdomain (algebra, topology, analysis, number theory). The core insight is that autoformalization errors are not uniform — topology formalizations fail on typeclass instances while algebra formalizations fail on coercion chains — and domain-aware systems can exploit these patterns. Evaluate on cross-domain generalization: train on 3 domains, test on the held-out 4th.\n\nSeed Papers:\n- VeriSoftBench (arXiv 2602.18307, Feb 2026) — Proves Mathlib-trained provers fail on out-of-domain verification; motivates domain adaptation\n- APRIL (arXiv 2602.02990, Feb 2026) — 260k repair tuples enabling domain-stratified error analysis; no existing stratification\n- Herald (ICLR 2025) — 580k NL-formal pairs with Mathlib4 module provenance; enables domain labeling via module hierarchy\n- Autoformalizer with Tool Feedback (arXiv 2510.06857, Oct 2025) — Integrates repair into training but domain-agnostic; our domain-aware version is the delta\n- StepFun-Formalizer (AAAI 2026) — Current SOTA single-shot autoformalization; general-purpose baseline to beat on per-domain metrics\n- 130k Topology (arXiv 2601.03298, Jan 2026) — Domain-specific success via manual effort; motivates systematic domain adaptation\n- REAL-Prover (arXiv 2505.20613, May 2025) — Domain-aware retrieval helps proving; we extend retrieval to formalization\n- DDR (arXiv 2511.11990, Nov 2025) — Retrieval-augmented autoformalization via dependency generation; domain-agnostic baseline\n\nKnown Gaps:\n- No autoformalization system adapts its pipeline to mathematical subdomain; all treat algebra and topology identically despite different error distributions\n- APRIL's 260k repair tuples have never been stratified by domain — the domain-specific error taxonomy is uncharacterized\n- Retrieval-augmented autoformalization (DDR) retrieves domain-agnostic dependencies; domain-conditioned retrieval (Mathlib module-aware) is untested\n\nTheoretical Anchor: Domain shift theory from transfer learning — the distribution of formal language constructs (typeclasses, coercions, tactic vocabularies) differs measurably across Mathlib4 module hierarchies, creating a domain adaptation problem that standard domain-agnostic models underperform on. VeriSoftBench empirically confirms this for software domains; we extend the analysis to mathematical subdomains.\n\nConstraints:\n- Compute: ≤200 H100-hours (estimated ~70-80 H100-hours)\n- Must use open-source models only (Qwen2.5-7B or Goedel-Prover-V2-8B as base)\n- Evaluate on ≥3 benchmarks: miniF2F v2, ProofNet (domain-stratified), VeriSoftBench\n- Release all artifacts: model weights, domain-stratified APRIL analysis, evaluation scripts\n\nQuality Self-Checks:\n- [x] Core insight: Autoformalization errors cluster by mathematical domain, and domain-conditioned pipelines can exploit this structure.\n- [x] Why not obvious: Prior work treats autoformalization as domain-agnostic; domain adaptation requires Mathlib module hierarchy knowledge and domain-stratified training data that only became available with Herald (2025) and APRIL (2026).\n- [ ] Baseline fear test: RISK — a domain-agnostic model with more repair iterations could match 80% of the gain. Mitigation: the cross-domain generalization experiment (train on 3, test on 4th) specifically isolates domain adaptation's contribution vs. more compute.\n- [x] Information exploited: Mathlib4's module hierarchy as domain labels + APRIL's repair tuples stratified by error type and domain — information that exists in the data but no system currently uses.\n\nAvoid:\n- Framing as 'proof search improvement' — this is about formalization quality, not proving power\n- Competing on miniF2F leaderboard numbers — the contribution is per-domain reliability, not aggregate SOTA\n- Simple cycle consistency (claimed by 3 papers in 2025-2026)\n- Pure data scaling (diminishing returns per Goedel-Prover-V2)\n- Ignoring Autoformalizer with Tool Feedback as prior art — must clearly differentiate via domain-awareness**\n\n## Paper to analyze\n\n{\n  \"title\": \"Autoformalization in the Era of Large Language Models: A Survey\",\n  \"authors\": \"Ke Weng et al.\",\n  \"venue\": \"arXiv 2025\",\n  \"url\": \"https://arxiv.org/abs/2505.23486\",\n  \"why_important\": \"Most comprehensive survey of autoformalization (May 2025); covers data preparation, model development, evaluation, and open-source tools; essential reference for positioning domain-adaptive work within the field\",\n  \"one_line_summary\": \"Comprehensive survey covering autoformalization from mathematical and LLM perspectives, analyzing workflows from data preprocessing through evaluation and trustworthiness.\"\n}\n\n## Instructions\n\n1. **Deep read**: Use WebFetch to read this paper's full abstract, introduction, method section, and conclusion on arXiv or OpenReview. If it's on OpenReview, also read the reviewer comments and author responses.\n\n2. **Analyze the innovation structure**: Don't just summarize — dissect HOW the authors arrived at their contribution:\n   - What gap did they identify and HOW did they find it?\n   - What was the key insight that others missed?\n   - How did they formulate the problem differently from prior work?\n   - What existing technique did they adapt/combine/simplify?\n\n3. **Learn from reviewers**: If you can find reviewer comments, extract:\n   - What did reviewers praise most?\n   - What concerns were raised and how were they addressed?\n   - What would have made this paper even stronger?\n\n## Output format\n\nOutput a single JSON object:\n{\n  \"title\": \"Paper title\",\n  \"venue\": \"Where published\",\n  \"problem_identification\": \"What gap/problem did they identify? How did they find it? (2-3 sentences)\",\n  \"key_insight\": \"The core intellectual contribution — the aha moment (1-2 sentences)\",\n  \"innovation_type\": \"new_formulation | new_technique | new_benchmark | simplification | cross_domain | combination | scaling | analysis\",\n  \"method_summary\": \"Technical approach in 3-5 sentences — enough to understand the machinery\",\n  \"what_makes_it_good\": \"Why did this paper get accepted? What would reviewers have liked? (2-3 sentences)\",\n  \"limitations_acknowledged\": \"What gaps did the authors themselves identify? (1-2 sentences)\",\n  \"open_questions\": \"What follow-up questions does this paper raise? What remains unsolved? (2-3 bullet points)\",\n  \"building_blocks\": [\"List of methods/tools/datasets used that could be reused\"],\n  \"reviewer_feedback_summary\": \"If found on OpenReview: key praise and concerns. Otherwise: null\",\n  \"relevance_to_seed\": \"How does this paper relate to our research area? What can we learn from it? (1-2 sentences)\"\n}\n\nBe analytical, not descriptive. We want to learn the CRAFT of doing good research, not just know what this paper did."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-28T11:07:38.986Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-28T11:07:38.986Z",
+  "sessionId": "b70334ba-1730-4203-939a-7143bb7bbbda"
+}
+```
+
+---
+
+## Round 1
+
+29 recorded events
+
+### User
+
+_source line 3 · 2026-05-28T11:07:39.034Z_
+
+You are a senior ML researcher performing a deep analysis of a published paper.
+
+**Today's date: 2026-05-28 (UTC).**
+
+## Your goal
+
+Analyze this paper NOT just for what it does, but for **HOW it innovates** — what can we learn from its approach to doing research? What made this paper good enough for a top venue?
+
+## Research context
+
+We are generating ideas in the area of: **Target: AAAI 2026
+Track: AI for Science / Knowledge Representation and Reasoning
+
+Direction: Build the first domain-adaptive autoformalization pipeline that conditions formalization, retrieval, and repair strategies on mathematical subdomain (algebra, topology, analysis, number theory). The core insight is that autoformalization errors are not uniform — topology formalizations fail on typeclass instances while algebra formalizations fail on coercion chains — and domain-aware systems can exploit these patterns. Evaluate on cross-domain generalization: train on 3 domains, test on the held-out 4th.
+
+Seed Papers:
+- VeriSoftBench (arXiv 2602.18307, Feb 2026) — Proves Mathlib-trained provers fail on out-of-domain verification; motivates domain adaptation
+- APRIL (arXiv 2602.02990, Feb 2026) — 260k repair tuples enabling domain-stratified error analysis; no existing stratification
+- Herald (ICLR 2025) — 580k NL-formal pairs with Mathlib4 module provenance; enables domain labeling via module hierarchy
+- Autoformalizer with Tool Feedback (arXiv 2510.06857, Oct 2025) — Integrates repair into training but domain-agnostic; our domain-aware version is the delta
+- StepFun-Formalizer (AAAI 2026) — Current SOTA single-shot autoformalization; general-purpose baseline to beat on per-domain metrics
+- 130k Topology (arXiv 2601.03298, Jan 2026) — Domain-specific success via manual effort; motivates systematic domain adaptation
+- REAL-Prover (arXiv 2505.20613, May 2025) — Domain-aware retrieval helps proving; we extend retrieval to formalization
+- DDR (arXiv 2511.11990, Nov 2025) — Retrieval-augmented autoformalization via dependency generation; domain-agnostic baseline
+
+Known Gaps:
+- No autoformalization system adapts its pipeline to mathematical subdomain; all treat algebra and topology identically despite different error distributions
+- APRIL's 260k repair tuples have never been stratified by domain — the domain-specific error taxonomy is uncharacterized
+- Retrieval-augmented autoformalization (DDR) retrieves domain-agnostic dependencies; domain-conditioned retrieval (Mathlib module-aware) is untested
+
+Theoretical Anchor: Domain shift theory from transfer learning — the distribution of formal language constructs (typeclasses, coercions, tactic vocabularies) differs measurably across Mathlib4 module hierarchies, creating a domain adaptation problem that standard domain-agnostic models underperform on. VeriSoftBench empirically confirms this for software domains; we extend the analysis to mathematical subdomains.
+
+Constraints:
+- Compute: ≤200 H100-hours (estimated ~70-80 H100-hours)
+- Must use open-source models only (Qwen2.5-7B or Goedel-Prover-V2-8B as base)
+- Evaluate on ≥3 benchmarks: miniF2F v2, ProofNet (domain-stratified), VeriSoftBench
+- Release all artifacts: model weights, domain-stratified APRIL analysis, evaluation scripts
+
+Quality Self-Checks:
+- [x] Core insight: Autoformalization errors cluster by mathematical domain, and domain-conditioned pipelines can exploit this structure.
+- [x] Why not obvious: Prior work treats autoformalization as domain-agnostic; domain adaptation requires Mathlib module hierarchy knowledge and domain-stratified training data that only became available with Herald (2025) and APRIL (2026).
+- [ ] Baseline fear test: RISK — a domain-agnostic model with more repair iterations could match 80% of the gain. Mitigation: the cross-domain generalization experiment (train on 3, test on 4th) specifically isolates domain adaptation's contribution vs. more compute.
+- [x] Information exploited: Mathlib4's module hierarchy as domain labels + APRIL's repair tuples stratified by error type and domain — information that exists in the data but no system currently uses.
+
+Avoid:
+- Framing as 'proof search improvement' — this is about formalization quality, not proving power
+- Competing on miniF2F leaderboard numbers — the contribution is per-domain reliability, not aggregate SOTA
+- Simple cycle consistency (claimed by 3 papers in 2025-2026)
+- Pure data scaling (diminishing returns per Goedel-Prover-V2)
+- Ignoring Autoformalizer with Tool Feedback as prior art — must clearly differentiate via domain-awareness**
+
+## Paper to analyze
+
+{
+  "title": "Autoformalization in the Era of Large Language Models: A Survey",
+  "authors": "Ke Weng et al.",
+  "venue": "arXiv 2025",
+  "url": "https://arxiv.org/abs/2505.23486",
+  "why_important": "Most comprehensive survey of autoformalization (May 2025); covers data preparation, model development, evaluation, and open-source tools; essential reference for positioning domain-adaptive work within the field",
+  "one_line_summary": "Comprehensive survey covering autoformalization from mathematical and LLM perspectives, analyzing workflows from data preprocessing through evaluation and trustworthiness."
+}
+
+## Instructions
+
+1. **Deep read**: Use WebFetch to read this paper's full abstract, introduction, method section, and conclusion on arXiv or OpenReview. If it's on OpenReview, also read the reviewer comments and author responses.
+
+2. **Analyze the innovation structure**: Don't just summarize — dissect HOW the authors arrived at their contribution:
+   - What gap did they identify and HOW did they find it?
+   - What was the key insight that others missed?
+   - How did they formulate the problem differently from prior work?
+   - What existing technique did they adapt/combine/simplify?
+
+3. **Learn from reviewers**: If you can find reviewer comments, extract:
+   - What did reviewers praise most?
+   - What concerns were raised and how were they addressed?
+   - What would have made this paper even stronger?
+
+## Output format
+
+Output a single JSON object:
+{
+  "title": "Paper title",
+  "venue": "Where published",
+  "problem_identification": "What gap/problem did they identify? How did they find it? (2-3 sentences)",
+  "key_insight": "The core intellectual contribution — the aha moment (1-2 sentences)",
+  "innovation_type": "new_formulation | new_technique | new_benchmark | simplification | cross_domain | combination | scaling | analysis",
+  "method_summary": "Technical approach in 3-5 sentences — enough to understand the machinery",
+  "what_makes_it_good": "Why did this paper get accepted? What would reviewers have liked? (2-3 sentences)",
+  "limitations_acknowledged": "What gaps did the authors themselves identify? (1-2 sentences)",
+  "open_questions": "What follow-up questions does this paper raise? What remains unsolved? (2-3 bullet points)",
+  "building_blocks": ["List of methods/tools/datasets used that could be reused"],
+  "reviewer_feedback_summary": "If found on OpenReview: key praise and concerns. Otherwise: null",
+  "relevance_to_seed": "How does this paper relate to our research area? What can we learn from it? (1-2 sentences)"
+}
+
+Be analytical, not descriptive. We want to learn the CRAFT of doing good research, not just know what this paper did.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "dd8b4e91-f25f-4083-9c6f-3f6b50bcb7b5",
+  "type": "user",
+  "uuid": "2fcdba95-a95d-4347-ac57-ec1c4bb3f65a",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "b70334ba-1730-4203-939a-7143bb7bbbda",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-28T11:07:39.033Z_
+
+```json
+{
+  "parentUuid": "2fcdba95-a95d-4347-ac57-ec1c4bb3f65a",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "6365db6e-b5b7-4213-b8af-6ec58e87776b",
+  "timestamp": "2026-05-28T11:07:39.033Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "b70334ba-1730-4203-939a-7143bb7bbbda",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-28T11:07:39.033Z_
+
+```json
+{
+  "parentUuid": "6365db6e-b5b7-4213-b8af-6ec58e87776b",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "0ef0c2c0-93a8-4ed9-b0b9-b3d80eadb5c4",
+  "timestamp": "2026-05-28T11:07:39.033Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "b70334ba-1730-4203-939a-7143bb7bbbda",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze autoformalization survey for domain-adaptive positioning",
+  "sessionId": "b70334ba-1730-4203-939a-7143bb7bbbda"
+}
+```
+
+---
+
+### Assistant
+
+_source line 7 · 2026-05-28T11:07:42.174Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to analyze a paper on autoformalization. Let me first fetch the paper from arXiv to read its content.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0ef0c2c0-93a8-4ed9-b0b9-b3d80eadb5c4",
+  "isSidechain": false,
+  "requestId": "req_011CbUrsgeQw2Zpkf9BG1mFT",
+  "type": "assistant",
+  "uuid": "1a905e15-a9f5-40b4-a495-cb7a997a0c58",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "b70334ba-1730-4203-939a-7143bb7bbbda",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NGrGSxbc9ZN3fHvwFrcSRN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3261,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 120,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3261,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 120,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 3261,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3261
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-28T11:07:42.275Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_0183V3Vu1AQ7MfXUjVPgA71h`</summary>
+
+```json
+{
+  "query": "select:WebFetch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1a905e15-a9f5-40b4-a495-cb7a997a0c58",
+  "isSidechain": false,
+  "requestId": "req_011CbUrsgeQw2Zpkf9BG1mFT",
+  "type": "assistant",
+  "uuid": "5b09ad0e-1adb-4685-8e04-12df24480fc6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "b70334ba-1730-4203-939a-7143bb7bbbda",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NGrGSxbc9ZN3fHvwFrcSRN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3261,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 120,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3261,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 120,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 3261,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3261
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-28T11:07:42.284Z_
+
+<details><summary>↩ Tool result · `toolu_0183V3Vu1AQ7MfXUjVPgA71h`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5b09ad0e-1adb-4685-8e04-12df24480fc6",
+  "isSidechain": false,
+  "promptId": "dd8b4e91-f25f-4083-9c6f-3f6b50bcb7b5",
+  "type": "user",
+  "uuid": "7f16f773-bf49-4b97-bb00-726855942c7d",
+  "toolUseResult": {
+    "matches": [
+      "WebFetch"
+    ],
+    "query": "select:WebFetch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "5b09ad0e-1adb-4685-8e04-12df24480fc6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "b70334ba-1730-4203-939a-7143bb7bbbda",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10 · 2026-05-28T11:07:45.472Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me fetch the paper from arXiv. I'll fetch both the abstract page and the full paper PDF.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7f16f773-bf49-4b97-bb00-726855942c7d",
+  "isSidechain": false,
+  "requestId": "req_011CbUrsvhkbBMw2MbhfVK75",
+  "type": "assistant",
+  "uuid": "e0ae3cb0-b992-441a-a903-ed1807007042",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "b70334ba-1730-4203-939a-7143bb7bbbda",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015voFC6qEcMGksjAubKyX2d",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 640,
+      "cache_read_input_tokens": 14275,
+      "output_tokens": 423,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 640,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 423,
+          "cache_read_input_tokens": 14275,
+          "cache_creation_input_tokens": 640,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 640
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11 · 2026-05-28T11:07:45.935Z_
+
+Let me fetch the paper from multiple sources to get a comprehensive view.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e0ae3cb0-b992-441a-a903-ed1807007042",
+  "isSidechain": false,
+  "requestId": "req_011CbUrsvhkbBMw2MbhfVK75",
+  "type": "assistant",
+  "uuid": "e40767d0-9539-494f-8f0f-b9a5599e4e9d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "b70334ba-1730-4203-939a-7143bb7bbbda",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015voFC6qEcMGksjAubKyX2d",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 640,
+      "cache_read_input_tokens": 14275,
+      "output_tokens": 423,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 640,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 423,
+          "cache_read_input_tokens": 14275,
+          "cache_creation_input_tokens": 640,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 640
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-28T11:07:47.333Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01GP4rA3mCktTJc5kLWzcwsD`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2505.23486",
+  "prompt": "Extract the full abstract, list of authors, submission date, and any other metadata available on this arXiv page for this autoformalization survey paper."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e40767d0-9539-494f-8f0f-b9a5599e4e9d",
+  "isSidechain": false,
+  "requestId": "req_011CbUrsvhkbBMw2MbhfVK75",
+  "type": "assistant",
+  "uuid": "829a9294-e6c9-4019-8e03-f0b2f4cfe86c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "b70334ba-1730-4203-939a-7143bb7bbbda",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015voFC6qEcMGksjAubKyX2d",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 640,
+      "cache_read_input_tokens": 14275,
+      "output_tokens": 423,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 640,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 423,
+          "cache_read_input_tokens": 14275,
+          "cache_creation_input_tokens": 640,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 640
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-28T11:07:52.481Z_
+
+<details><summary>↩ Tool result · `toolu_01GP4rA3mCktTJc5kLWzcwsD`</summary>
+
+```text
+# Autoformalization Survey Paper - Metadata
+
+**Title:** Autoformalization in the Era of Large Language Models: A Survey
+
+**Authors:** Ke Weng, Lun Du, Sirui Li, Wangyue Lu, Haozhe Sun, Hengyu Liu, Tiancheng Zhang
+
+**arXiv Identifier:** 2505.23486
+
+**Subject Classification:** Computer Science > Artificial Intelligence (cs.AI)
+
+**Submission Dates:**
+- v1: May 29, 2025
+- v2: July 3, 2025 (current version)
+
+**Abstract:** The paper addresses "the process of transforming informal mathematical propositions into verifiable formal representations," positioning autoformalization as central to automated theorem proving. The authors examine advances from mathematical and LLM perspectives, covering applications across mathematical domains, workflow stages from data preprocessing through evaluation, and how autoformalization enhances verifiability of LLM outputs. They conclude by summarizing available models, datasets, and outlining remaining challenges.
+
+**DOI:** https://doi.org/10.48550/arXiv.2505.23486
+
+**Available Formats:** PDF, HTML (experimental), TeX source
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "829a9294-e6c9-4019-8e03-f0b2f4cfe86c",
+  "isSidechain": false,
+  "promptId": "dd8b4e91-f25f-4083-9c6f-3f6b50bcb7b5",
+  "type": "user",
+  "uuid": "d0ff77f2-e74b-4af6-8f6e-82bb86e6f0dc",
+  "toolUseResult": {
+    "bytes": 46137,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Autoformalization Survey Paper - Metadata\n\n**Title:** Autoformalization in the Era of Large Language Models: A Survey\n\n**Authors:** Ke Weng, Lun Du, Sirui Li, Wangyue Lu, Haozhe Sun, Hengyu Liu, Tiancheng Zhang\n\n**arXiv Identifier:** 2505.23486\n\n**Subject Classification:** Computer Science > Artificial Intelligence (cs.AI)\n\n**Submission Dates:**\n- v1: May 29, 2025\n- v2: July 3, 2025 (current version)\n\n**Abstract:** The paper addresses \"the process of transforming informal mathematical propositions into verifiable formal representations,\" positioning autoformalization as central to automated theorem proving. The authors examine advances from mathematical and LLM perspectives, covering applications across mathematical domains, workflow stages from data preprocessing through evaluation, and how autoformalization enhances verifiability of LLM outputs. They conclude by summarizing available models, datasets, and outlining remaining challenges.\n\n**DOI:** https://doi.org/10.48550/arXiv.2505.23486\n\n**Available Formats:** PDF, HTML (experimental), TeX source",
+    "durationMs": 5145,
+    "url": "https://arxiv.org/abs/2505.23486"
+  },
+  "sourceToolAssistantUUID": "829a9294-e6c9-4019-8e03-f0b2f4cfe86c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "b70334ba-1730-4203-939a-7143bb7bbbda",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-28T11:07:53.039Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01TUdLPxkAmYau9NvA4vGANN`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2505.23486",
+  "prompt": "Extract the FULL content of this paper, especially:\n1. The complete introduction section\n2. The structure/organization of the survey (table of contents or section headers)\n3. The methodology/taxonomy they use to organize autoformalization work\n4. Key findings, observations, and insights about the field\n5. The conclusion and future directions section\n6. Any discussion of domain-specific aspects of autoformalization (e.g., differences between mathematical subdomains like algebra, topology, analysis)\n7. Any discussion of error types, failure modes, or challenges in autoformalization\n8. Any discussion of retrieval-augmented approaches, repair mechanisms, or domain adaptation\n9. Key tables and figures summarizing the landscape\n10. References to Herald, APRIL, DDR, VeriSoftBench, or domain-specific formalization\n\nBe as comprehensive as possible - extract all substantive content."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d0ff77f2-e74b-4af6-8f6e-82bb86e6f0dc",
+  "isSidechain": false,
+  "requestId": "req_011CbUrsvhkbBMw2MbhfVK75",
+  "type": "assistant",
+  "uuid": "c538d4d5-4f27-445d-a246-2f0d7b6d76aa",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "b70334ba-1730-4203-939a-7143bb7bbbda",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015voFC6qEcMGksjAubKyX2d",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 640,
+      "cache_read_input_tokens": 14275,
+      "output_tokens": 423,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 640,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 423,
+          "cache_read_input_tokens": 14275,
+          "cache_creation_input_tokens": 640,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 640
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 15_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML researcher performing a deep analysis of a published paper.  **Today's date: 2026-05-28 (UTC).**  ## Your goal  Analyze this paper NOT just for what it does, but for **HOW it innov…",
+  "leafUuid": "c538d4d5-4f27-445d-a246-2f0d7b6d76aa",
+  "sessionId": "b70334ba-1730-4203-939a-7143bb7bbbda"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 16_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze autoformalization survey for domain-adaptive positioning",
+  "sessionId": "b70334ba-1730-4203-939a-7143bb7bbbda"
+}
+```
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-28T11:08:13.556Z_
+
+<details><summary>↩ Tool result · `toolu_01TUdLPxkAmYau9NvA4vGANN`</summary>
+
+```text
+# Comprehensive Summary: Autoformalization in the Era of Large Language Models
+
+## Overview
+This survey examines autoformalization—translating informal mathematics into formally verifiable representations—focusing on LLM-driven approaches. The authors emphasize autoformalization's dual role: advancing mathematical theorem proving while enabling verification of LLM outputs.
+
+## Core Structure & Organization
+
+The survey employs a **three-dimensional framework** for analyzing autoformalization:
+
+1. **Mathematical Problem Domain**: Geometry/topology, algebra/number theory, complex systems
+2. **Difficulty Levels**: High school, undergraduate, graduate mathematics
+3. **Abstraction Levels**: Procedural (high school), logical (university), structural (graduate)
+
+The workflow analysis covers: data preprocessing → methods → postprocessing → evaluation → theorem proof.
+
+## Key Methodological Contributions
+
+### Data Preprocessing Strategies
+- **Quality Enhancement**: Model scoring (excellent/good/average/poor ratings) and hypothesis rejection filter low-quality data
+- **Quantity Expansion**: Multi-language formalization (translating between Isabelle and Lean4), GitHub corpus mining, synthetic data generation through mathematical concept composition
+
+### Formalization Methods
+
+**Rule-Based Approaches**: Use controlled natural languages (Mizar, NaProche, ForTheL) and grammar frameworks like GF to create abstract syntax trees and linearize formal expressions.
+
+**LLM-Based Approaches**: Leverage few-shot learning capabilities. Key insight: "Informalization is much simpler than formalization," enabling effective back-translation for data augmentation. Addresses semantic gaps (polysemy vs. precise definitions) and logic gaps (tacit knowledge vs. explicit completeness).
+
+### Postprocessing & Evaluation
+
+**Error Correction Mechanisms**:
+- Hypothesis rejection filters self-contradictory statements
+- Alignment scoring (cosine similarity of informal-formal pairs) detects semantic mismatches
+- Tool correction and guess correction mechanisms fix proof tactic errors
+
+**Evaluation Metrics**:
+- **Syntactic Accuracy**: Type-checking in proof assistants; symbol equivalence verification
+- **Semantic Equivalence**: BEqL/BEq+ indices for algebraic accuracy; LeanScorer (LLM-based decomposition into premises/conclusions); semantic self-verification using test instances
+
+## Domain-Specific Insights
+
+### Geometry & Topology
+Challenge: Encoding graphical information into symbolic logic while maintaining text-graphics alignment. Solution: Formalized systems extract geometric rules for logic-diagram reasoning.
+
+### Algebra & Number Theory
+Focus on symbolic manipulation and nested structures. Universal Transformer with replication mechanisms handles out-of-vocabulary terms by using generic tags for numeric constants and variables.
+
+### Complex Systems/Frontier Problems
+Signal temporal logic formalizes constraints in PDEs. Frontier Math benchmarks reveal significant gaps: GPT-O3 solves 25.2% while other LLMs achieve ~2%, indicating limited creative reasoning.
+
+### Abstraction Evolution
+- **High School**: Procedural techniques (discriminant computation, graph analysis)
+- **University**: Logical formalism decouples concepts from numerical values (epsilon-delta limits)
+- **Graduate**: Structural abstraction treating functions as space elements (Lp spaces, duality properties)
+
+## Theorem Proving Advances
+
+**Tactic-Step Methods**: Expert iteration with breadth-first search (BFS-Prover: 72.95% on MiniF2F); critic models select simpler exercises guiding deeper exploration.
+
+**Whole-Proof Generation**: 
+- Goedel-Prover achieves 57.6% on MiniF2F through iterative data synthesis
+- Qwen2.5-based model reaches 80.7% via structured reasoning and RL
+- Best result: 88.9% (MiniF2F) combining RL, subgoal decomposition, and DeepSeek V3
+
+## LLM Output Verification Framework
+
+### Code Validation
+- **Non-Interactive**: Dependency graphs capture semantic information; assertion/specification/loop-invariant generation via LLM-tool combinations
+- **Interactive**: LLMs translate between formal languages; reasoning chains guide optimization via type inference
+
+### Medical Domain
+Binary relation verification formalizes disease-gene-drug associations using biomedical ontologies (GO, DOID, ChEBI) as ground truth.
+
+### General LLM Verification
+"Formal generative validation gap" framework enables self-improvement; symbolic references embed data source identifiers enabling efficient formal transformation.
+
+## Critical Challenges
+
+1. **Data Scarcity**: Parallel corpora remain small (LeanWorkbook: 4.8MB) relative to LLM pretraining datasets
+2. **Scalability**: Full retraining is computationally expensive; compositional generalization needed
+3. **Modularity**: Hybrid LLM-symbolic approaches lacking in current systems
+4. **Creative Reasoning**: Gap between existing models and human mathematical expertise on frontier problems
+
+## Key Datasets & Resources
+
+Major benchmarks include MiniF2F (488 olympiad problems), ProofNet (374 undergraduate theorems), LeanDojo (122,517 theorems), and newly expanded datasets (Herald: 624,436 statements; Numinamath: 860,000 competition problems).
+
+**Table 3 notes**: Most datasets lack all four components (informal statement, formal statement, informal solution, formal solution). Herald and FORML4 are comprehensive; many datasets only provide problem statements without solutions.
+
+## Future Directions
+
+Survey emphasizes: compositional generalization without fine-tuning, human-in-the-loop annotation pipelines, tighter LLM-formal-verification integration, and systems supporting creative mathematical discovery beyond proof verification.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c538d4d5-4f27-445d-a246-2f0d7b6d76aa",
+  "isSidechain": false,
+  "promptId": "dd8b4e91-f25f-4083-9c6f-3f6b50bcb7b5",
+  "type": "user",
+  "uuid": "45c16fe0-7cb5-4dfa-9851-dfe1af7783c8",
+  "toolUseResult": {
+    "bytes": 232158,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Comprehensive Summary: Autoformalization in the Era of Large Language Models\n\n## Overview\nThis survey examines autoformalization—translating informal mathematics into formally verifiable representations—focusing on LLM-driven approaches. The authors emphasize autoformalization's dual role: advancing mathematical theorem proving while enabling verification of LLM outputs.\n\n## Core Structure & Organization\n\nThe survey employs a **three-dimensional framework** for analyzing autoformalization:\n\n1. **Mathematical Problem Domain**: Geometry/topology, algebra/number theory, complex systems\n2. **Difficulty Levels**: High school, undergraduate, graduate mathematics\n3. **Abstraction Levels**: Procedural (high school), logical (university), structural (graduate)\n\nThe workflow analysis covers: data preprocessing → methods → postprocessing → evaluation → theorem proof.\n\n## Key Methodological Contributions\n\n### Data Preprocessing Strategies\n- **Quality Enhancement**: Model scoring (excellent/good/average/poor ratings) and hypothesis rejection filter low-quality data\n- **Quantity Expansion**: Multi-language formalization (translating between Isabelle and Lean4), GitHub corpus mining, synthetic data generation through mathematical concept composition\n\n### Formalization Methods\n\n**Rule-Based Approaches**: Use controlled natural languages (Mizar, NaProche, ForTheL) and grammar frameworks like GF to create abstract syntax trees and linearize formal expressions.\n\n**LLM-Based Approaches**: Leverage few-shot learning capabilities. Key insight: \"Informalization is much simpler than formalization,\" enabling effective back-translation for data augmentation. Addresses semantic gaps (polysemy vs. precise definitions) and logic gaps (tacit knowledge vs. explicit completeness).\n\n### Postprocessing & Evaluation\n\n**Error Correction Mechanisms**:\n- Hypothesis rejection filters self-contradictory statements\n- Alignment scoring (cosine similarity of informal-formal pairs) detects semantic mismatches\n- Tool correction and guess correction mechanisms fix proof tactic errors\n\n**Evaluation Metrics**:\n- **Syntactic Accuracy**: Type-checking in proof assistants; symbol equivalence verification\n- **Semantic Equivalence**: BEqL/BEq+ indices for algebraic accuracy; LeanScorer (LLM-based decomposition into premises/conclusions); semantic self-verification using test instances\n\n## Domain-Specific Insights\n\n### Geometry & Topology\nChallenge: Encoding graphical information into symbolic logic while maintaining text-graphics alignment. Solution: Formalized systems extract geometric rules for logic-diagram reasoning.\n\n### Algebra & Number Theory\nFocus on symbolic manipulation and nested structures. Universal Transformer with replication mechanisms handles out-of-vocabulary terms by using generic tags for numeric constants and variables.\n\n### Complex Systems/Frontier Problems\nSignal temporal logic formalizes constraints in PDEs. Frontier Math benchmarks reveal significant gaps: GPT-O3 solves 25.2% while other LLMs achieve ~2%, indicating limited creative reasoning.\n\n### Abstraction Evolution\n- **High School**: Procedural techniques (discriminant computation, graph analysis)\n- **University**: Logical formalism decouples concepts from numerical values (epsilon-delta limits)\n- **Graduate**: Structural abstraction treating functions as space elements (Lp spaces, duality properties)\n\n## Theorem Proving Advances\n\n**Tactic-Step Methods**: Expert iteration with breadth-first search (BFS-Prover: 72.95% on MiniF2F); critic models select simpler exercises guiding deeper exploration.\n\n**Whole-Proof Generation**: \n- Goedel-Prover achieves 57.6% on MiniF2F through iterative data synthesis\n- Qwen2.5-based model reaches 80.7% via structured reasoning and RL\n- Best result: 88.9% (MiniF2F) combining RL, subgoal decomposition, and DeepSeek V3\n\n## LLM Output Verification Framework\n\n### Code Validation\n- **Non-Interactive**: Dependency graphs capture semantic information; assertion/specification/loop-invariant generation via LLM-tool combinations\n- **Interactive**: LLMs translate between formal languages; reasoning chains guide optimization via type inference\n\n### Medical Domain\nBinary relation verification formalizes disease-gene-drug associations using biomedical ontologies (GO, DOID, ChEBI) as ground truth.\n\n### General LLM Verification\n\"Formal generative validation gap\" framework enables self-improvement; symbolic references embed data source identifiers enabling efficient formal transformation.\n\n## Critical Challenges\n\n1. **Data Scarcity**: Parallel corpora remain small (LeanWorkbook: 4.8MB) relative to LLM pretraining datasets\n2. **Scalability**: Full retraining is computationally expensive; compositional generalization needed\n3. **Modularity**: Hybrid LLM-symbolic approaches lacking in current systems\n4. **Creative Reasoning**: Gap between existing models and human mathematical expertise on frontier problems\n\n## Key Datasets & Resources\n\nMajor benchmarks include MiniF2F (488 olympiad problems), ProofNet (374 undergraduate theorems), LeanDojo (122,517 theorems), and newly expanded datasets (Herald: 624,436 statements; Numinamath: 860,000 competition problems).\n\n**Table 3 notes**: Most datasets lack all four components (informal statement, formal statement, informal solution, formal solution). Herald and FORML4 are comprehensive; many datasets only provide problem statements without solutions.\n\n## Future Directions\n\nSurvey emphasizes: compositional generalization without fine-tuning, human-in-the-loop annotation pipelines, tighter LLM-formal-verification integration, and systems supporting creative mathematical discovery beyond proof verification.",
+    "durationMs": 20512,
+    "url": "https://arxiv.org/html/2505.23486"
+  },
+  "sourceToolAssistantUUID": "c538d4d5-4f27-445d-a246-2f0d7b6d76aa",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "b70334ba-1730-4203-939a-7143bb7bbbda",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18 · 2026-05-28T11:08:17.747Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I have a solid overview. Let me now fetch more specific details about the paper's discussion of error types, domain-specific challenges, and any references to our seed papers. Let me also try to get the full paper PDF for more detailed analysis.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "45c16fe0-7cb5-4dfa-9851-dfe1af7783c8",
+  "isSidechain": false,
+  "requestId": "req_011CbUrvE6a5VicnAdAWWwUE",
+  "type": "assistant",
+  "uuid": "b6e43fe6-02b1-48a7-a526-534a8cc8545f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "b70334ba-1730-4203-939a-7143bb7bbbda",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ld9j3u3ZHYtbR631f7XnRo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2044,
+      "cache_read_input_tokens": 14915,
+      "output_tokens": 679,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2044,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 679,
+          "cache_read_input_tokens": 14915,
+          "cache_creation_input_tokens": 2044,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2044
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19 · 2026-05-28T11:08:19.214Z_
+
+Good, I have the overview. Let me dig deeper into specific sections that are most relevant to our research direction.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b6e43fe6-02b1-48a7-a526-534a8cc8545f",
+  "isSidechain": false,
+  "requestId": "req_011CbUrvE6a5VicnAdAWWwUE",
+  "type": "assistant",
+  "uuid": "1deb388f-42a8-4ed5-9ab6-c46f23c40ec9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "b70334ba-1730-4203-939a-7143bb7bbbda",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ld9j3u3ZHYtbR631f7XnRo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2044,
+      "cache_read_input_tokens": 14915,
+      "output_tokens": 679,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2044,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 679,
+          "cache_read_input_tokens": 14915,
+          "cache_creation_input_tokens": 2044,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2044
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-28T11:08:28.496Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01GbG6wE228hmfPLmXxeJ1iN`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2505.23486",
+  "prompt": "Focus specifically on these aspects and extract ALL details:\n\n1. POSTPROCESSING AND ERROR CORRECTION: What specific error types in autoformalization are discussed? What repair/correction mechanisms are described? Any mention of domain-specific error patterns?\n\n2. RETRIEVAL-AUGMENTED APPROACHES: Any discussion of retrieval during formalization? Dependency retrieval? Library-aware formalization?\n\n3. DOMAIN DIFFERENCES: Any discussion of how different mathematical domains (algebra vs topology vs analysis vs number theory) require different formalization strategies? Any discussion of Mathlib module hierarchy?\n\n4. EVALUATION AND BENCHMARKS: What evaluation methods are discussed? How do they handle domain-stratified evaluation? What are the limitations of current evaluation?\n\n5. DATA PREPROCESSING: How do they discuss data quality, augmentation, filtering? Any domain-specific data strategies?\n\n6. Specific references to: Herald, APRIL, DDR, VeriSoftBench, REAL-Prover, StepFun-Formalizer, 130k Topology dataset, Autoformalizer with Tool Feedback\n\n7. OPEN CHALLENGES: What specific unsolved problems do they identify? Any gaps that our domain-adaptive approach could fill?\n\nExtract verbatim quotes where possible."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1deb388f-42a8-4ed5-9ab6-c46f23c40ec9",
+  "isSidechain": false,
+  "requestId": "req_011CbUrvE6a5VicnAdAWWwUE",
+  "type": "assistant",
+  "uuid": "21e45794-1c49-4231-991a-7db59339171f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "b70334ba-1730-4203-939a-7143bb7bbbda",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ld9j3u3ZHYtbR631f7XnRo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2044,
+      "cache_read_input_tokens": 14915,
+      "output_tokens": 679,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2044,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 679,
+          "cache_read_input_tokens": 14915,
+          "cache_creation_input_tokens": 2044,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2044
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-28T11:08:32.762Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_019cGuc8Dvt5b2KZq6HZJNZ8`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2505.23486",
+  "prompt": "Extract the COMPLETE conclusion and future directions section of this paper, word for word if possible. Also extract any discussion of:\n\n1. The taxonomy of formalization approaches (rule-based vs LLM-based vs hybrid)\n2. The workflow pipeline stages they identify\n3. How they organize and categorize the existing literature\n4. Their framework for understanding what makes autoformalization hard\n5. Any tables or figures that summarize the landscape of tools, datasets, or methods\n6. The specific challenges they identify with current LLM-based autoformalization\n7. Any discussion of trustworthiness, reliability, or verification of autoformalization outputs\n8. How they position autoformalization relative to theorem proving\n\nBe as detailed and comprehensive as possible, including specific paper citations they reference."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "21e45794-1c49-4231-991a-7db59339171f",
+  "isSidechain": false,
+  "requestId": "req_011CbUrvE6a5VicnAdAWWwUE",
+  "type": "assistant",
+  "uuid": "f6f37a6c-fd78-4bb9-984f-c54b2f8fa470",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "b70334ba-1730-4203-939a-7143bb7bbbda",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ld9j3u3ZHYtbR631f7XnRo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2044,
+      "cache_read_input_tokens": 14915,
+      "output_tokens": 679,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2044,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 679,
+          "cache_read_input_tokens": 14915,
+          "cache_creation_input_tokens": 2044,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2044
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-28T11:08:50.267Z_
+
+<details><summary>↩ Tool result · `toolu_01GbG6wE228hmfPLmXxeJ1iN`</summary>
+
+```text
+# Analysis of Autoformalization Survey: Key Technical Aspects
+
+## 1. POSTPROCESSING AND ERROR CORRECTION
+
+The survey identifies two main error categories in autoformalization:
+
+**Semantic illusions** (statement-level mismatches): "the mismatch between the generated formal language statements and the natural language statements." The document describes hypothesis rejection filtering: when formal proofs self-contradict, they're filtered using the principle that "contradiction implies false proposition."
+
+**Logic errors** (proof-level failures): Described as "the break of proof logic caused by using wrong proof tactics." Correction mechanisms include:
+- Tool correction: "modify LLM formal certificate used in the error generated by the strategy"
+- Guess correction: addressing tactic selection failures
+- Alignment scoring: minimizing contrastive loss to ensure "cosine similarity of corresponding informal-formal pair is higher than not"
+
+Domain-specific error patterns aren't extensively discussed, though the survey notes geometry problems have unique challenges with implicit graphical reasoning.
+
+## 2. RETRIEVAL-AUGMENTED APPROACHES
+
+RAG is explicitly listed as a task category. The survey mentions:
+
+"By retrieving semantically related previous proofs or structures from the theorem library, RAG assists the generator to construct effective reasoning trajectories more efficiently."
+
+Multiple models employ RAG (LEGO-PROVER, LeanDojo, DeepSeek-Prover-V2, BFS-Prover), but specific dependency or library-aware retrieval mechanisms aren't detailed. The document notes LeanDojo provides "122,517 Theorems, proofs, tactics, premises from mathlib4" supporting RAG training.
+
+## 3. DOMAIN DIFFERENCES
+
+The survey provides substantive analysis across three mathematical domains:
+
+**Geometry/Topology**: Features cross-modal alignment challenges—"graphics in geometry problems have hidden attributes such as angle and side length, and graphic information needs to be encoded into symbolic logic." Solutions like formalized systems extracting "graphical rules" are mentioned.
+
+**Algebra/Number Theory**: "The core of Autoformalization of this kind of problem is to convert variables, equations and operation rules described by natural language into symbolic logic chains." Uses semantic parsing with "replication mechanism that introduces a different generic tag for each unique numeric constant or variable literal."
+
+**Complex Systems/Frontier Problems**: "Partial differential equations...uses signal temporal logic to formalize the constraints...to clearly and accurately express the complex specification constraints into logical formulas."
+
+Mathlib module hierarchy isn't explicitly discussed; the document mentions Mathlib4 as a data source but doesn't address stratification strategies.
+
+## 4. EVALUATION AND BENCHMARKS
+
+**Syntactic accuracy**: "whether the final formal result can pass the type check of Lean, Coq and other environments."
+
+**Semantic equivalence** metrics include:
+- Text similarity (BLEU, ROUGE)
+- Symbolic computation indices: "BEqL...can indicate the accuracy of various syntactic changes" and "BEq+ introduces more complex policy combinations"
+- Alignment scoring: "for LLM generated formal results, even if the BLEU index is high also don't tell the formal result with the corresponding natural language expression is semantic equivalence"
+- LeanScorer: "uses a LLM to decompose natural language statements into premises and conclusions"
+- Symbolic equivalence (via ATP): verification when "premises and conclusions...are respectively equivalent...by ATP proof"
+
+**Limitations**: The survey acknowledges manual evaluation is "time-consuming and subjective" and notes that domain-stratified evaluation isn't systematized—benchmarks like MiniF2F (488 problems) lack explicit mathematical domain taxonomy.
+
+## 5. DATA PREPROCESSING
+
+**Quality enhancement**:
+- Model scoring (DeepSeek-Prover rates statements as "excellent/good/above average/average/poor")
+- Hypothesis rejection: "let DeepSeek-Prover try to prove false propositions, if successful proves it is filtered"
+- Filtering for "logical consistency and semantic consistency"
+
+**Quantity augmentation**:
+- Multi-language formalization: "translated two of the largest corpora: Archive of Formal Proofs (Isabelle) and mathlib4 (Lean4) into natural language using GPT-4"
+- GitHub mining: "collects almost all of the Lean4 repositories on GitHub"
+- Synthetic generation: "extracts mathematical concepts from mathlib, and randomly selects two concepts to let the LLM generates informal problem statements"
+- Disproof injection: "disproves the assumptions in the formal proof, so that the number of parallel corpora created in the end is nearly doubled"
+
+Domain-specific preprocessing strategies aren't differentiated.
+
+## 6. SPECIFIC REFERENCES ANALYSIS
+
+**Found in document:**
+- **Herald**: Dataset with "624,436...containing 580k valid statements and 44k NL-FL proofs" from Mathlib4 for graduate-level mathematics
+- **REAL-Prover**: Uses "FATE-M, ProofNet, MiniF2F, Numinamath, Lean-Workbook" for formal proof generation and autoformalization
+
+**Not found:**
+- APRIL, DDR, VeriSoftBench, StepFun-Formalizer, 130k Topology dataset, Autoformalizer with Tool Feedback
+
+These appear to be recent or specialized systems outside this survey's scope (dated 2505).
+
+## 7. OPEN CHALLENGES
+
+The survey identifies:
+
+**Data scarcity**: "autoformalization requires high-quality parallel corpora...such data remains limited in both scale and diversity." Current resources are "small compared to the massive datasets used to train LLMs in other domains."
+
+**Generalization without retraining**: "relying on full retraining is computationally expensive and impractical at scale. Instead, we envision autoformalization systems that can generalize compositionally, adapt to new domains with minimal supervision."
+
+**Interactivity/modularity**: "future systems may benefit from combining LLMs with symbolic reasoning engines, proof assistants, and logic-based verifiers."
+
+**Abstract theory formalization**: "The ability to formalize larger and more abstract theories—without the need for extensive fine-tuning—will be crucial."
+
+**Frontier problems**: GPT-O3 solved only 25.2% of Frontier Mathematics problems, revealing "large gap...in the dimension of creative reasoning."
+
+These gaps directly align with domain-adaptive approaches targeting specific mathematical subdisciplines with tailored strategies.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "21e45794-1c49-4231-991a-7db59339171f",
+  "isSidechain": false,
+  "promptId": "dd8b4e91-f25f-4083-9c6f-3f6b50bcb7b5",
+  "type": "user",
+  "uuid": "d737d9ba-d6b6-492d-b077-180ae18004ed",
+  "toolUseResult": {
+    "bytes": 232158,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Analysis of Autoformalization Survey: Key Technical Aspects\n\n## 1. POSTPROCESSING AND ERROR CORRECTION\n\nThe survey identifies two main error categories in autoformalization:\n\n**Semantic illusions** (statement-level mismatches): \"the mismatch between the generated formal language statements and the natural language statements.\" The document describes hypothesis rejection filtering: when formal proofs self-contradict, they're filtered using the principle that \"contradiction implies false proposition.\"\n\n**Logic errors** (proof-level failures): Described as \"the break of proof logic caused by using wrong proof tactics.\" Correction mechanisms include:\n- Tool correction: \"modify LLM formal certificate used in the error generated by the strategy\"\n- Guess correction: addressing tactic selection failures\n- Alignment scoring: minimizing contrastive loss to ensure \"cosine similarity of corresponding informal-formal pair is higher than not\"\n\nDomain-specific error patterns aren't extensively discussed, though the survey notes geometry problems have unique challenges with implicit graphical reasoning.\n\n## 2. RETRIEVAL-AUGMENTED APPROACHES\n\nRAG is explicitly listed as a task category. The survey mentions:\n\n\"By retrieving semantically related previous proofs or structures from the theorem library, RAG assists the generator to construct effective reasoning trajectories more efficiently.\"\n\nMultiple models employ RAG (LEGO-PROVER, LeanDojo, DeepSeek-Prover-V2, BFS-Prover), but specific dependency or library-aware retrieval mechanisms aren't detailed. The document notes LeanDojo provides \"122,517 Theorems, proofs, tactics, premises from mathlib4\" supporting RAG training.\n\n## 3. DOMAIN DIFFERENCES\n\nThe survey provides substantive analysis across three mathematical domains:\n\n**Geometry/Topology**: Features cross-modal alignment challenges—\"graphics in geometry problems have hidden attributes such as angle and side length, and graphic information needs to be encoded into symbolic logic.\" Solutions like formalized systems extracting \"graphical rules\" are mentioned.\n\n**Algebra/Number Theory**: \"The core of Autoformalization of this kind of problem is to convert variables, equations and operation rules described by natural language into symbolic logic chains.\" Uses semantic parsing with \"replication mechanism that introduces a different generic tag for each unique numeric constant or variable literal.\"\n\n**Complex Systems/Frontier Problems**: \"Partial differential equations...uses signal temporal logic to formalize the constraints...to clearly and accurately express the complex specification constraints into logical formulas.\"\n\nMathlib module hierarchy isn't explicitly discussed; the document mentions Mathlib4 as a data source but doesn't address stratification strategies.\n\n## 4. EVALUATION AND BENCHMARKS\n\n**Syntactic accuracy**: \"whether the final formal result can pass the type check of Lean, Coq and other environments.\"\n\n**Semantic equivalence** metrics include:\n- Text similarity (BLEU, ROUGE)\n- Symbolic computation indices: \"BEqL...can indicate the accuracy of various syntactic changes\" and \"BEq+ introduces more complex policy combinations\"\n- Alignment scoring: \"for LLM generated formal results, even if the BLEU index is high also don't tell the formal result with the corresponding natural language expression is semantic equivalence\"\n- LeanScorer: \"uses a LLM to decompose natural language statements into premises and conclusions\"\n- Symbolic equivalence (via ATP): verification when \"premises and conclusions...are respectively equivalent...by ATP proof\"\n\n**Limitations**: The survey acknowledges manual evaluation is \"time-consuming and subjective\" and notes that domain-stratified evaluation isn't systematized—benchmarks like MiniF2F (488 problems) lack explicit mathematical domain taxonomy.\n\n## 5. DATA PREPROCESSING\n\n**Quality enhancement**:\n- Model scoring (DeepSeek-Prover rates statements as \"excellent/good/above average/average/poor\")\n- Hypothesis rejection: \"let DeepSeek-Prover try to prove false propositions, if successful proves it is filtered\"\n- Filtering for \"logical consistency and semantic consistency\"\n\n**Quantity augmentation**:\n- Multi-language formalization: \"translated two of the largest corpora: Archive of Formal Proofs (Isabelle) and mathlib4 (Lean4) into natural language using GPT-4\"\n- GitHub mining: \"collects almost all of the Lean4 repositories on GitHub\"\n- Synthetic generation: \"extracts mathematical concepts from mathlib, and randomly selects two concepts to let the LLM generates informal problem statements\"\n- Disproof injection: \"disproves the assumptions in the formal proof, so that the number of parallel corpora created in the end is nearly doubled\"\n\nDomain-specific preprocessing strategies aren't differentiated.\n\n## 6. SPECIFIC REFERENCES ANALYSIS\n\n**Found in document:**\n- **Herald**: Dataset with \"624,436...containing 580k valid statements and 44k NL-FL proofs\" from Mathlib4 for graduate-level mathematics\n- **REAL-Prover**: Uses \"FATE-M, ProofNet, MiniF2F, Numinamath, Lean-Workbook\" for formal proof generation and autoformalization\n\n**Not found:**\n- APRIL, DDR, VeriSoftBench, StepFun-Formalizer, 130k Topology dataset, Autoformalizer with Tool Feedback\n\nThese appear to be recent or specialized systems outside this survey's scope (dated 2505).\n\n## 7. OPEN CHALLENGES\n\nThe survey identifies:\n\n**Data scarcity**: \"autoformalization requires high-quality parallel corpora...such data remains limited in both scale and diversity.\" Current resources are \"small compared to the massive datasets used to train LLMs in other domains.\"\n\n**Generalization without retraining**: \"relying on full retraining is computationally expensive and impractical at scale. Instead, we envision autoformalization systems that can generalize compositionally, adapt to new domains with minimal supervision.\"\n\n**Interactivity/modularity**: \"future systems may benefit from combining LLMs with symbolic reasoning engines, proof assistants, and logic-based verifiers.\"\n\n**Abstract theory formalization**: \"The ability to formalize larger and more abstract theories—without the need for extensive fine-tuning—will be crucial.\"\n\n**Frontier problems**: GPT-O3 solved only 25.2% of Frontier Mathematics problems, revealing \"large gap...in the dimension of creative reasoning.\"\n\nThese gaps directly align with domain-adaptive approaches targeting specific mathematical subdisciplines with tailored strategies.",
+    "durationMs": 21764,
+    "url": "https://arxiv.org/html/2505.23486"
+  },
+  "sourceToolAssistantUUID": "21e45794-1c49-4231-991a-7db59339171f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "b70334ba-1730-4203-939a-7143bb7bbbda",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML researcher performing a deep analysis of a published paper.  **Today's date: 2026-05-28 (UTC).**  ## Your goal  Analyze this paper NOT just for what it does, but for **HOW it innov…",
+  "leafUuid": "d737d9ba-d6b6-492d-b077-180ae18004ed",
+  "sessionId": "b70334ba-1730-4203-939a-7143bb7bbbda"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 24_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze autoformalization survey for domain-adaptive positioning",
+  "sessionId": "b70334ba-1730-4203-939a-7143bb7bbbda"
+}
+```
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-28T11:09:11.038Z_
+
+<details><summary>↩ Tool result · `toolu_019cGuc8Dvt5b2KZq6HZJNZ8`</summary>
+
+```text
+# Comprehensive Analysis of Autoformalization Survey
+
+## Conclusion and Future Directions
+
+The authors identify **data scarcity** as the most pressing challenge: "autoformalization requires high-quality parallel corpora consisting of aligned informal and formal mathematical statements" yet current resources remain "small compared to the massive datasets used to train LLMs in other domains."
+
+Key future priorities include:
+- Developing scalable data collection pipelines and synthetic data generation techniques
+- Creating systems that generalize compositionally and adapt to new domains with minimal supervision
+- Improving interactivity through hybrid approaches combining LLMs with symbolic reasoning engines and proof assistants
+- Advancing toward systems capable of creative mathematical reasoning—proposing conjectures and assisting human mathematicians
+
+---
+
+## 1. Taxonomy of Formalization Approaches
+
+### Rule-Based Methods
+Leverage explicit logical, syntactic, and semantic rules for structural transformations. Representative systems include **Mizar, NaProche, ForTheL, MathNat, and VerboseLean**. The survey highlights Pathak's framework using **GF (Grammatical Framework)** to translate natural language into formal language via abstract syntax trees and Lean expression syntax.
+
+### LLM-Based Methods
+More flexible than rule-based approaches, capturing nuanced details in natural language. Key observations:
+- LLMs can translate between informal and formal statements "with less than 5 examples"
+- **Informalization is significantly easier than formalization**: informal competition problems achieve ~70% accuracy while formal versions achieve only ~30%
+- This asymmetry enables back-translation strategies
+
+### Key Gaps Addressed
+The survey identifies two fundamental gaps between informal and formal languages:
+
+1. **Semantic gap**: Informal languages exhibit polysemy; formal languages require unambiguous single definitions
+2. **Logic gap**: Informal languages omit tacit knowledge; formal languages demand explicit completeness with atomic-level proof steps
+
+---
+
+## 2. Workflow Pipeline Stages
+
+Figure 1 illustrates the complete pipeline with five major components:
+
+### 4.1 Data Preprocessing
+**Enhanced Data Quality:**
+- Model scoring (rating as "excellent," "good," "above average," "average," or "poor")
+- Hypothesis rejection (testing whether false propositions can be proven—if successful, data is filtered)
+- Filtering to ensure logical and semantic consistency
+
+**Increased Data Quantity:**
+- Multi-language formal language datasets (translating Archive of Formal Proofs [Isabelle] and mathlib4 [Lean4] to natural language)
+- Expanded search scope (collecting nearly all Lean4 GitHub repositories; extracting from 10,000 Mathlib4 historical commits)
+- Synthetic data generation (extracting mathematical concepts and generating problem-proof pairs; creating contradictory statements to double dataset size)
+
+### 4.2 Method Implementation
+
+**Rule-Based Autoformalization:**
+Uses GF grammar tools to parse mathematical texts and construct abstract syntax trees for conversion to formal language.
+
+**LLM-Based Autoformalization:**
+- Guides automatic provers by mapping informal proofs to formal proof steps, filling semantic gaps
+- Two-stage training (code training then mathematical reasoning) outperforms simultaneous training
+- Back-translation using teacher-student model approaches or regex-based keyword extraction
+- Requires addressing the large gap between informal and formal representations
+
+**Post-Processing:**
+- Semantic illusion mitigation: hypothesis rejection filters self-contradictory statements
+- Alignment evaluation: contrastive loss methods (FormalAlign) improve informal-formal pair similarity
+- Logic error correction: tool correction and guess correction mechanisms address faulty proof tactics
+
+**Evaluation:**
+
+| Metric | Purpose |
+|--------|---------|
+| **Syntactic Accuracy** | Type checking in Lean/Coq environments; code generation correctness |
+| **Semantic Equivalence** | Formal expressions accurately reflect natural language |
+| **Symbolic Equivalence** | ATP proof verification; checking variable correspondence |
+| **BEqL/BEq+** | Symbolic computation indices for syntactic accuracy verification |
+| **Alignment Scoring** | Contrastive metrics for semantic alignment evaluation |
+| **LeanScorer** | LLM-based decomposition of statements into premises/conclusions |
+| **Semantic Self-Verification** | Testing formal results against generated test cases |
+
+### 4.3 Theorem Proof
+
+**Tactic Step Proving:**
+- Breadth-first search with expert iteration
+- BFS-Prover achieves 72.95% pass rate on MiniF2F
+- Critic models select simpler exercises to guide deeper proof exploration
+- Data synthesis frameworks generate 30,000 synthetic proof instances
+
+**Whole-Proof Generation:**
+- End-to-end training: GPT-4 generates large-scale formal statements (1.64M statements in Goedel-Pset-v1)
+- Iterative expansion: continuously training on previously unsolved problems
+- Structured formal reasoning with large-scale reinforcement learning (Qwen2.5-72B achieves 80.7% on MiniF2F)
+- Post-training with Lean 4 compiler feedback as reward signals
+- Subgoal decomposition with reinforcement learning (achieving 88.9% on MiniF2F, solving 49 Putnam problems)
+
+---
+
+## 3. Literature Organization Framework
+
+### Three-Dimensional Categorization
+
+**Mathematical Problem Domain:**
+- Geometry and Topology (handling graphical reasoning and cross-modal alignment)
+- Algebra and Number Theory (symbolic logic and variable relationships)
+- Complex Systems and Frontier Problems (PDEs, unformalized frontier mathematics)
+
+**Difficulty Levels:**
+- **High School**: Clear ideas, short proofs, basic algebraic/geometric propositions
+- **Undergraduate**: Real analysis, linear algebra, abstract algebra, topology from classical textbooks
+- **Graduate**: Research-level theorems from arXiv papers; requires "unlinked formalization" (connecting definitions without full context)
+
+**Abstraction Levels:**
+- **Procedural** (high school): Technique-dependent, concrete examples, intuitive interpretations
+- **Logical** (undergraduate): Symbolic logic, formal definitions, rigorous derivations
+- **Structural** (graduate): Abstract spaces defined by properties; focus on space structure rather than individual elements
+
+---
+
+## 4. Framework for Understanding Autoformalization Difficulty
+
+The survey highlights specific challenges:
+
+**Geometry/Topology:**
+Problem statements embed significant information in graphics. Models must extract features from diagrams and align text-graphic semantics (e.g., vertex position matching). Implicit graphical reasoning (e.g., circle intersections) requires explicit formalization.
+
+**Algebra/Number Theory:**
+Requires resolving nested symbolic structures, implicit operation priorities, and out-of-vocabulary mathematical terms. The survey references Cunningham et al.'s semantic parsing with Universal Transformers using generic tags for unseen variables and numbers.
+
+**Frontier Mathematics:**
+Graduate-level problems require understanding complex proof strategies and establishing connections between definitions in sparse contexts. Example: Herald dataset provides fine-grained corpus of advanced mathematical proofs in Lean 4.
+
+**General Complexity Indicators:**
+- Proof length and tactic count increase with difficulty
+- Level of abstraction increases from procedural→logical→structural
+- Background knowledge requirements escalate from high school→graduate levels
+
+---
+
+## 5. Comprehensive Tables and Figures
+
+### Table 1: Open Source Models/Methods
+Catalogues 27 major tools (DeepSeek-Prover-V1, LeanEuclid, Isa-AutoFormal, etc.) with associated datasets and task categories (Formal Proof Gen, Data Construction, Autoformalization, Informalization, RAG, AST simplification).
+
+### Table 2: Datasets/Benchmarks
+Summarizes 20 major datasets with sizes ranging from 50 (arxiv2Formal) to 1,133,283 (Leanabell-Prover-Formal-Statement), including:
+- MiniF2F (488 olympiad problems)
+- ProofNet (374 undergraduate problems)
+- DeepSeek-Prover-V1 (27,503 Lean4 proofs)
+- Herald (624,436 generated statements)
+
+### Table 3: Dataset Element Coverage
+Tracks which datasets provide: Informal Statement, Formal Statement, Informal Solution, Formal Solution—revealing data availability across different task requirements.
+
+### Figure 2: Multi-Dimensional Partitioning
+Visualizes the three-axis framework organizing autoformalization research by mathematical domain, difficulty level, and workflow components.
+
+---
+
+## 6. Specific Challenges with LLM-Based Autoformalization
+
+**Data Bottleneck:**
+Current resources "are small compared to the massive datasets used to train LLMs in other domains." LeanWorkbook (4.8MB) represents progress but remains insufficient.
+
+**Asymmetric Difficulty:**
+Informalization achieves ~70% accuracy; formalization only ~30%—indicating models struggle with the forward direction requiring explicit completion of omitted logical steps.
+
+**Two-Stage Training Requirement:**
+Simultaneous code and mathematical reasoning training underperforms sequential training, suggesting LLMs struggle with parallel acquisition of formal syntax and mathematical semantics.
+
+**Semantic Illusion Problem:**
+Generated formal statements may contradict premises or misalign with natural language originals despite syntactic correctness.
+
+**Proof Strategy Errors:**
+Wrong tactics during natural language-to-formal conversion can break proof logic chain integrity.
+
+---
+
+## 7. Trustworthiness, Reliability, and Verification
+
+### LLM Output Hallucination Mitigation
+The survey positions autoformalization as addressing a critical problem: "LLMs are prone to generating outputs that are factually incorrect or logically unsound—a phenomenon widely referred to as hallucination." Autoformalization "translates natural language outputs from LLMs into precise, verifiable representations" enabling "symbolic reasoning over LLM outputs."
+
+### Code Validation Approaches
+
+**Non-Interactive Methods:**
+- **Dependency graphs**: Static analysis capturing semantic information through control flow, state, and type dependencies
+- **Assertion generation**: Automated test case construction with expected behavior verification
+- **Specification generation**: Dialog-driven and mutation-driven phases improving LLM-generated specifications through iterative verifier feedback
+- **Loop invariant generation**: Loopy system using LLMs to generate candidates verified by symbolic tools (Frama-C), with automated repair mechanisms
+
+**Interactive Methods:**
+- LLM-assisted code generation with tree search and validator feedback
+- LLM judgment using static analysis converted to natural language prompts guiding optimization
+
+### Medical Domain Application
+Formal verification using binary relation association verification validates reliability in biomedical ontology contexts, ensuring semantic accuracy against GO, DOID, ChEBI datasets.
+
+### LLM Self-Improvement
+Song et al. propose frameworks where models validate own outputs, filtering and reweighting data using "generative validation gap" measurements. SymGen uses "symbolic references" embedding reference identifiers for data fields, establishing traceability between natural language and structured data.
+
+---
+
+## 8. Autoformalization vs. Theorem Proving
+
+The survey treats these as complementary but distinct:
+
+**Autoformalization** focuses on converting informal mathematical statements to formal representations—addressing the translation problem.
+
+**Theorem Proof** emphasizes constructing complete, verifiable derivations validating the translated statements—addressing the proof generation problem.
+
+The relationship is symbiotic: theorem proving advances (larger proof datasets, stronger search strategies) generate new training data for autoformalization. Conversely, better autoformalization enables larger-scale formalized problem sets for proof training.
+
+The survey argues that "while autoformalization emphasizes the transformation of informal statements into formal representations, its practical utility is ultimately grounded in the ability to construct complete and verifiable proofs." Recent systems integrate both—generating formal statements AND their proofs end-to-end.
+
+---
+
+## Summary Table: Method Categories and Performance
+
+| Approach | Key Innovation | Best Benchmark Result | Dataset Size |
+|----------|---|---|---|
+| **BFS-Prover** | Breadth-first expert iteration | 72.95% (MiniF2F) | Scalable search |
+| **Goedel-Prover** | Iterative dataset expansion | 57.6% (MiniF2F) | 1.64M statements |
+| **Formal Reasoning Model** | Structured reasoning + RL | 80.7% (MiniF2F) | Qwen2.5-72B base |
+| **LoT-Solver** | Subgoal decomposition + RL | 88.9% (MiniF2F) | DeepSeek V3 base |
+| **FormalAlign** | Contrastive semantic alignment | Evaluation metric | MiniF2F/FormL4 |
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f6f37a6c-fd78-4bb9-984f-c54b2f8fa470",
+  "isSidechain": false,
+  "promptId": "dd8b4e91-f25f-4083-9c6f-3f6b50bcb7b5",
+  "type": "user",
+  "uuid": "571a0608-bead-40f9-9f6b-ec065db21800",
+  "toolUseResult": {
+    "bytes": 232158,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Comprehensive Analysis of Autoformalization Survey\n\n## Conclusion and Future Directions\n\nThe authors identify **data scarcity** as the most pressing challenge: \"autoformalization requires high-quality parallel corpora consisting of aligned informal and formal mathematical statements\" yet current resources remain \"small compared to the massive datasets used to train LLMs in other domains.\"\n\nKey future priorities include:\n- Developing scalable data collection pipelines and synthetic data generation techniques\n- Creating systems that generalize compositionally and adapt to new domains with minimal supervision\n- Improving interactivity through hybrid approaches combining LLMs with symbolic reasoning engines and proof assistants\n- Advancing toward systems capable of creative mathematical reasoning—proposing conjectures and assisting human mathematicians\n\n---\n\n## 1. Taxonomy of Formalization Approaches\n\n### Rule-Based Methods\nLeverage explicit logical, syntactic, and semantic rules for structural transformations. Representative systems include **Mizar, NaProche, ForTheL, MathNat, and VerboseLean**. The survey highlights Pathak's framework using **GF (Grammatical Framework)** to translate natural language into formal language via abstract syntax trees and Lean expression syntax.\n\n### LLM-Based Methods\nMore flexible than rule-based approaches, capturing nuanced details in natural language. Key observations:\n- LLMs can translate between informal and formal statements \"with less than 5 examples\"\n- **Informalization is significantly easier than formalization**: informal competition problems achieve ~70% accuracy while formal versions achieve only ~30%\n- This asymmetry enables back-translation strategies\n\n### Key Gaps Addressed\nThe survey identifies two fundamental gaps between informal and formal languages:\n\n1. **Semantic gap**: Informal languages exhibit polysemy; formal languages require unambiguous single definitions\n2. **Logic gap**: Informal languages omit tacit knowledge; formal languages demand explicit completeness with atomic-level proof steps\n\n---\n\n## 2. Workflow Pipeline Stages\n\nFigure 1 illustrates the complete pipeline with five major components:\n\n### 4.1 Data Preprocessing\n**Enhanced Data Quality:**\n- Model scoring (rating as \"excellent,\" \"good,\" \"above average,\" \"average,\" or \"poor\")\n- Hypothesis rejection (testing whether false propositions can be proven—if successful, data is filtered)\n- Filtering to ensure logical and semantic consistency\n\n**Increased Data Quantity:**\n- Multi-language formal language datasets (translating Archive of Formal Proofs [Isabelle] and mathlib4 [Lean4] to natural language)\n- Expanded search scope (collecting nearly all Lean4 GitHub repositories; extracting from 10,000 Mathlib4 historical commits)\n- Synthetic data generation (extracting mathematical concepts and generating problem-proof pairs; creating contradictory statements to double dataset size)\n\n### 4.2 Method Implementation\n\n**Rule-Based Autoformalization:**\nUses GF grammar tools to parse mathematical texts and construct abstract syntax trees for conversion to formal language.\n\n**LLM-Based Autoformalization:**\n- Guides automatic provers by mapping informal proofs to formal proof steps, filling semantic gaps\n- Two-stage training (code training then mathematical reasoning) outperforms simultaneous training\n- Back-translation using teacher-student model approaches or regex-based keyword extraction\n- Requires addressing the large gap between informal and formal representations\n\n**Post-Processing:**\n- Semantic illusion mitigation: hypothesis rejection filters self-contradictory statements\n- Alignment evaluation: contrastive loss methods (FormalAlign) improve informal-formal pair similarity\n- Logic error correction: tool correction and guess correction mechanisms address faulty proof tactics\n\n**Evaluation:**\n\n| Metric | Purpose |\n|--------|---------|\n| **Syntactic Accuracy** | Type checking in Lean/Coq environments; code generation correctness |\n| **Semantic Equivalence** | Formal expressions accurately reflect natural language |\n| **Symbolic Equivalence** | ATP proof verification; checking variable correspondence |\n| **BEqL/BEq+** | Symbolic computation indices for syntactic accuracy verification |\n| **Alignment Scoring** | Contrastive metrics for semantic alignment evaluation |\n| **LeanScorer** | LLM-based decomposition of statements into premises/conclusions |\n| **Semantic Self-Verification** | Testing formal results against generated test cases |\n\n### 4.3 Theorem Proof\n\n**Tactic Step Proving:**\n- Breadth-first search with expert iteration\n- BFS-Prover achieves 72.95% pass rate on MiniF2F\n- Critic models select simpler exercises to guide deeper proof exploration\n- Data synthesis frameworks generate 30,000 synthetic proof instances\n\n**Whole-Proof Generation:**\n- End-to-end training: GPT-4 generates large-scale formal statements (1.64M statements in Goedel-Pset-v1)\n- Iterative expansion: continuously training on previously unsolved problems\n- Structured formal reasoning with large-scale reinforcement learning (Qwen2.5-72B achieves 80.7% on MiniF2F)\n- Post-training with Lean 4 compiler feedback as reward signals\n- Subgoal decomposition with reinforcement learning (achieving 88.9% on MiniF2F, solving 49 Putnam problems)\n\n---\n\n## 3. Literature Organization Framework\n\n### Three-Dimensional Categorization\n\n**Mathematical Problem Domain:**\n- Geometry and Topology (handling graphical reasoning and cross-modal alignment)\n- Algebra and Number Theory (symbolic logic and variable relationships)\n- Complex Systems and Frontier Problems (PDEs, unformalized frontier mathematics)\n\n**Difficulty Levels:**\n- **High School**: Clear ideas, short proofs, basic algebraic/geometric propositions\n- **Undergraduate**: Real analysis, linear algebra, abstract algebra, topology from classical textbooks\n- **Graduate**: Research-level theorems from arXiv papers; requires \"unlinked formalization\" (connecting definitions without full context)\n\n**Abstraction Levels:**\n- **Procedural** (high school): Technique-dependent, concrete examples, intuitive interpretations\n- **Logical** (undergraduate): Symbolic logic, formal definitions, rigorous derivations\n- **Structural** (graduate): Abstract spaces defined by properties; focus on space structure rather than individual elements\n\n---\n\n## 4. Framework for Understanding Autoformalization Difficulty\n\nThe survey highlights specific challenges:\n\n**Geometry/Topology:**\nProblem statements embed significant information in graphics. Models must extract features from diagrams and align text-graphic semantics (e.g., vertex position matching). Implicit graphical reasoning (e.g., circle intersections) requires explicit formalization.\n\n**Algebra/Number Theory:**\nRequires resolving nested symbolic structures, implicit operation priorities, and out-of-vocabulary mathematical terms. The survey references Cunningham et al.'s semantic parsing with Universal Transformers using generic tags for unseen variables and numbers.\n\n**Frontier Mathematics:**\nGraduate-level problems require understanding complex proof strategies and establishing connections between definitions in sparse contexts. Example: Herald dataset provides fine-grained corpus of advanced mathematical proofs in Lean 4.\n\n**General Complexity Indicators:**\n- Proof length and tactic count increase with difficulty\n- Level of abstraction increases from procedural→logical→structural\n- Background knowledge requirements escalate from high school→graduate levels\n\n---\n\n## 5. Comprehensive Tables and Figures\n\n### Table 1: Open Source Models/Methods\nCatalogues 27 major tools (DeepSeek-Prover-V1, LeanEuclid, Isa-AutoFormal, etc.) with associated datasets and task categories (Formal Proof Gen, Data Construction, Autoformalization, Informalization, RAG, AST simplification).\n\n### Table 2: Datasets/Benchmarks\nSummarizes 20 major datasets with sizes ranging from 50 (arxiv2Formal) to 1,133,283 (Leanabell-Prover-Formal-Statement), including:\n- MiniF2F (488 olympiad problems)\n- ProofNet (374 undergraduate problems)\n- DeepSeek-Prover-V1 (27,503 Lean4 proofs)\n- Herald (624,436 generated statements)\n\n### Table 3: Dataset Element Coverage\nTracks which datasets provide: Informal Statement, Formal Statement, Informal Solution, Formal Solution—revealing data availability across different task requirements.\n\n### Figure 2: Multi-Dimensional Partitioning\nVisualizes the three-axis framework organizing autoformalization research by mathematical domain, difficulty level, and workflow components.\n\n---\n\n## 6. Specific Challenges with LLM-Based Autoformalization\n\n**Data Bottleneck:**\nCurrent resources \"are small compared to the massive datasets used to train LLMs in other domains.\" LeanWorkbook (4.8MB) represents progress but remains insufficient.\n\n**Asymmetric Difficulty:**\nInformalization achieves ~70% accuracy; formalization only ~30%—indicating models struggle with the forward direction requiring explicit completion of omitted logical steps.\n\n**Two-Stage Training Requirement:**\nSimultaneous code and mathematical reasoning training underperforms sequential training, suggesting LLMs struggle with parallel acquisition of formal syntax and mathematical semantics.\n\n**Semantic Illusion Problem:**\nGenerated formal statements may contradict premises or misalign with natural language originals despite syntactic correctness.\n\n**Proof Strategy Errors:**\nWrong tactics during natural language-to-formal conversion can break proof logic chain integrity.\n\n---\n\n## 7. Trustworthiness, Reliability, and Verification\n\n### LLM Output Hallucination Mitigation\nThe survey positions autoformalization as addressing a critical problem: \"LLMs are prone to generating outputs that are factually incorrect or logically unsound—a phenomenon widely referred to as hallucination.\" Autoformalization \"translates natural language outputs from LLMs into precise, verifiable representations\" enabling \"symbolic reasoning over LLM outputs.\"\n\n### Code Validation Approaches\n\n**Non-Interactive Methods:**\n- **Dependency graphs**: Static analysis capturing semantic information through control flow, state, and type dependencies\n- **Assertion generation**: Automated test case construction with expected behavior verification\n- **Specification generation**: Dialog-driven and mutation-driven phases improving LLM-generated specifications through iterative verifier feedback\n- **Loop invariant generation**: Loopy system using LLMs to generate candidates verified by symbolic tools (Frama-C), with automated repair mechanisms\n\n**Interactive Methods:**\n- LLM-assisted code generation with tree search and validator feedback\n- LLM judgment using static analysis converted to natural language prompts guiding optimization\n\n### Medical Domain Application\nFormal verification using binary relation association verification validates reliability in biomedical ontology contexts, ensuring semantic accuracy against GO, DOID, ChEBI datasets.\n\n### LLM Self-Improvement\nSong et al. propose frameworks where models validate own outputs, filtering and reweighting data using \"generative validation gap\" measurements. SymGen uses \"symbolic references\" embedding reference identifiers for data fields, establishing traceability between natural language and structured data.\n\n---\n\n## 8. Autoformalization vs. Theorem Proving\n\nThe survey treats these as complementary but distinct:\n\n**Autoformalization** focuses on converting informal mathematical statements to formal representations—addressing the translation problem.\n\n**Theorem Proof** emphasizes constructing complete, verifiable derivations validating the translated statements—addressing the proof generation problem.\n\nThe relationship is symbiotic: theorem proving advances (larger proof datasets, stronger search strategies) generate new training data for autoformalization. Conversely, better autoformalization enables larger-scale formalized problem sets for proof training.\n\nThe survey argues that \"while autoformalization emphasizes the transformation of informal statements into formal representations, its practical utility is ultimately grounded in the ability to construct complete and verifiable proofs.\" Recent systems integrate both—generating formal statements AND their proofs end-to-end.\n\n---\n\n## Summary Table: Method Categories and Performance\n\n| Approach | Key Innovation | Best Benchmark Result | Dataset Size |\n|----------|---|---|---|\n| **BFS-Prover** | Breadth-first expert iteration | 72.95% (MiniF2F) | Scalable search |\n| **Goedel-Prover** | Iterative dataset expansion | 57.6% (MiniF2F) | 1.64M statements |\n| **Formal Reasoning Model** | Structured reasoning + RL | 80.7% (MiniF2F) | Qwen2.5-72B base |\n| **LoT-Solver** | Subgoal decomposition + RL | 88.9% (MiniF2F) | DeepSeek V3 base |\n| **FormalAlign** | Contrastive semantic alignment | Evaluation metric | MiniF2F/FormL4 |",
+    "durationMs": 38273,
+    "url": "https://arxiv.org/html/2505.23486"
+  },
+  "sourceToolAssistantUUID": "f6f37a6c-fd78-4bb9-984f-c54b2f8fa470",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "b70334ba-1730-4203-939a-7143bb7bbbda",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26 · 2026-05-28T11:09:29.602Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a comprehensive view of the paper. Let me also check if there are any reviewer comments (unlikely for arXiv, but let me see if it's also on OpenReview or has been published at a venue).
+
+Actually, this is an arXiv preprint, not published at a venue with peer review. So there won't be reviewer comments. Let me synthesize my analysis now.
+
+Let me think about what makes this survey valuable and how it relates to our research direction:
+
+1. **Problem Identification**: The survey identifies the fragmentation of autoformalization research - work scattered across mathematical domains, difficulty levels, and workflow stages. The key gap they found is that no comprehensive survey exists that covers autoformalization from both mathematical and LLM perspectives in the era of LLMs.
+
+
+2. **Key Insight**: The three-dimensional framework (mathematical domain × difficulty level × abstraction level) is the organizing intellectual contribution. This framework reveals that autoformalization challenges are NOT uniform across these dimensions.
+3. **Innovation Type**: This is primarily an "analysis" type paper - a survey that synthesizes and organizes existing work.
+4. **Relevance to our research**: The survey explicitly identifies domain-specific challenges (geometry/topology vs algebra/number theory vs complex systems) but doesn't propose domain-adaptive solutions. It catalogs the open challenges around data scarcity, generalization, and domain adaptation, along with existing datasets like Herald (580k pairs) that align with our planned work.
+
+The survey also highlights the asymmetry between informalization and formalization accuracy, identifies error types like semantic illusions and logic errors without stratifying them by domain, and crucially notes that adapting to new domains with minimal supervision remains unsolved. What's particularly valuable is that it doesn't reference APRIL, DDR, VeriSoftBench, or several of our other seed papers—confirming these are genuinely novel contributions.
+
+This positioning is strong because the survey validates our core hypotheses: different mathematical domains do face distinct formalization challenges, no one has systematically tackled domain-adaptive autoformalization, and the necessary infrastructure exists to enable domain-stratified analysis. Error correction is active but remains domain-agnostic, leaving space for our contributions.
+
+Now I'm structuring the final JSON analysis.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "571a0608-bead-40f9-9f6b-ec065db21800",
+  "isSidechain": false,
+  "requestId": "req_011CbUrzTsuUB2hE9dyju69v",
+  "type": "assistant",
+  "uuid": "ccb9f1ed-400c-49bd-8857-7bc3afb15d0f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "b70334ba-1730-4203-939a-7143bb7bbbda",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SjuaTbD5ukZfcZsUWaapfK",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5149,
+      "cache_read_input_tokens": 16959,
+      "output_tokens": 2404,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5149,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2404,
+          "cache_read_input_tokens": 16959,
+          "cache_creation_input_tokens": 5149,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5149
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27 · 2026-05-28T11:10:16.854Z_
+
+Now I have comprehensive content from the paper. Let me synthesize the analysis.
+
+```json
+{
+  "title": "Autoformalization in the Era of Large Language Models: A Survey",
+  "venue": "arXiv preprint (May 2025, revised July 2025)",
+  "problem_identification": "The authors identified that autoformalization research was fragmented across disconnected communities — mathematical theorem proving, LLM evaluation, code verification — with no unified framework connecting mathematical domain structure, difficulty levels, and workflow stages. They found this gap by observing that existing surveys covered either formal mathematics OR LLMs, but not the intersection where autoformalization operates as the bridge between informal reasoning and machine-verifiable outputs. The rapid growth of LLM-based formalization systems (27+ open-source tools, 20+ datasets catalogued) made synthesis urgent.",
+  "key_insight": "Autoformalization is not a single problem but decomposes along three independent axes — mathematical domain (geometry/topology vs. algebra/number theory vs. complex systems), difficulty level (high school → graduate), and abstraction level (procedural → logical → structural) — and the failure modes, required techniques, and evaluation strategies differ qualitatively along each axis. This three-dimensional decomposition reveals that treating autoformalization as domain-agnostic is a structural error, not merely a missed optimization.",
+  "innovation_type": "analysis",
+  "method_summary": "The survey introduces a three-dimensional organizational framework (mathematical domain × difficulty level × abstraction level) to categorize all autoformalization work. It then traces a canonical workflow pipeline: data preprocessing (quality enhancement via hypothesis rejection and model scoring; quantity expansion via back-translation, GitHub mining, and synthetic generation) → formalization methods (rule-based via GF/controlled languages vs. LLM-based via few-shot learning) → postprocessing (semantic illusion filtering, alignment scoring via contrastive loss, tactic error correction) → evaluation (syntactic type-checking, semantic equivalence via BEqL/BEq+/LeanScorer, symbolic equivalence via ATP). It catalogs 27 open-source tools and 20+ datasets with a coverage matrix tracking which provide informal statements, formal statements, informal solutions, and formal solutions. The survey also extends the scope to LLM output verification in code and medical domains, positioning autoformalization as a general trustworthiness mechanism.",
+  "what_makes_it_good": "The paper succeeds because of its organizational clarity — the three-dimensional framework is genuinely useful for researchers positioning new work, and the comprehensive cataloguing (Tables 1-3) provides immediate practical value. The critical observation that informalization achieves ~70% accuracy while formalization achieves only ~30% crystallizes the fundamental asymmetry in the field and explains why back-translation is effective. Most importantly, the survey maps the landscape well enough to make gaps visible: it describes domain-specific challenges (geometry needs cross-modal alignment, algebra needs symbolic chain resolution, topology needs typeclass handling) but reveals that no system adapts its strategy based on these differences.",
+  "limitations_acknowledged": "The authors acknowledge that data scarcity remains the dominant bottleneck (LeanWorkbook is only 4.8MB), that current evaluation conflates syntactic correctness with semantic equivalence, and that compositional generalization — adapting to new domains without full retraining — is an unsolved problem. They also note that frontier mathematical reasoning (GPT-O3 solves only 25.2% of Frontier Math problems) reveals fundamental gaps in creative reasoning that current systems cannot address.",
+  "open_questions": [
+    "How can autoformalization systems generalize compositionally to new mathematical domains with minimal supervision? The survey identifies this as critical but offers no concrete mechanism — domain-conditioned pipelines using Mathlib module hierarchy labels are an unexplored approach.",
+    "Why does the survey's own three-dimensional framework (domain × difficulty × abstraction) not lead to domain-stratified evaluation? Current benchmarks like MiniF2F (488 problems) lack explicit domain taxonomy, meaning per-domain reliability is unmeasured — a gap our cross-domain generalization experiment directly addresses.",
+    "Can error correction mechanisms be made domain-aware? The survey identifies semantic illusions and tactic errors as the two main failure modes but treats them as uniform across domains — it never asks whether topology formalizations fail differently than algebra formalizations, despite describing qualitatively different challenges for each."
+  ],
+  "building_blocks": [
+    "Three-dimensional framework (domain × difficulty × abstraction) as a conceptual scaffold for domain-adaptive work",
+    "Herald dataset (580k NL-formal pairs with Mathlib4 provenance) — confirmed as a comprehensive data source with fine-grained module metadata",
+    "Hypothesis rejection filtering for data quality (proving false propositions to detect self-contradictions)",
+    "FormalAlign contrastive alignment scoring for evaluating informal-formal pair quality",
+    "LeanScorer (LLM-based decomposition into premises/conclusions) as a semantic evaluation metric",
+    "BEqL/BEq+ symbolic computation indices for syntactic accuracy verification",
+    "Back-translation / informalization pipeline for synthetic data augmentation (~70% accuracy)",
+    "Two-stage training strategy (code pretraining → mathematical reasoning fine-tuning)",
+    "Model scoring for data quality (excellent/good/average/poor ratings as curriculum signals)",
+    "Goedel-Prover iterative dataset expansion methodology",
+    "MiniF2F (488 problems), ProofNet (374 problems), LeanDojo (122k theorems) as evaluation benchmarks"
+  ],
+  "reviewer_feedback_summary": null,
+  "relevance_to_seed": "This survey is the ideal positioning paper for our domain-adaptive autoformalization work: it explicitly describes qualitatively different challenges across mathematical domains (geometry needs cross-modal alignment, algebra needs symbolic chain resolution, complex systems need signal temporal logic) yet catalogues zero systems that adapt their pipeline based on domain — confirming our core gap claim. Critically, the survey does NOT reference APRIL, DDR, VeriSoftBench, StepFun-Formalizer, or the 130k Topology dataset, meaning these post-survey contributions (and our domain-stratified analysis of APRIL's repair tuples) represent genuinely novel information that the field's most comprehensive survey could not anticipate. The survey's own three-dimensional framework (domain × difficulty × abstraction) provides intellectual scaffolding we can cite to justify domain conditioning, while its identification of 'compositional generalization without retraining' as an open challenge directly motivates our cross-domain generalization experiment (train on 3 domains, test on held-out 4th)."
+}
+```
+
+## Key Takeaways for Our Research
+
+**What we can learn from this survey's *craft*:**
+
+1. **The survey confirms our gap is real and unoccupied.** The most comprehensive autoformalization survey (May 2025) describes domain-specific challenges qualitatively but catalogs zero domain-adaptive systems. It even builds a three-dimensional framework (domain × difficulty × abstraction) that *implies* domain conditioning should exist — but stops short of proposing it. This is the classic "the answer was hiding in the taxonomy" pattern.
+
+2. **The survey's blind spots are our opportunity.** It doesn't reference APRIL, DDR, VeriSoftBench, or the 130k Topology dataset — all post-survey. Our domain-stratified analysis of APRIL's 260k repair tuples is information that literally didn't exist when this survey was written.
+
+3. **Cite their framework, fill their gap.** We should explicitly cite the three-dimensional framework and argue: "Weng et al. (2025) identify domain as a key axis of variation in autoformalization difficulty, but no system exploits this structure. We operationalize their insight by conditioning the entire pipeline on mathematical subdomain."
+
+4. **Their error taxonomy is domain-agnostic — ours shouldn't be.** The survey identifies "semantic illusions" and "logic errors" as the two failure modes but never asks whether these distribute differently across algebra vs. topology. Our APRIL stratification directly answers this question they implicitly raised but didn't pursue.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ccb9f1ed-400c-49bd-8857-7bc3afb15d0f",
+  "isSidechain": false,
+  "requestId": "req_011CbUrzTsuUB2hE9dyju69v",
+  "type": "assistant",
+  "uuid": "4cd8ba07-c481-4cbe-9cbf-598fd1fd1371",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "b70334ba-1730-4203-939a-7143bb7bbbda",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SjuaTbD5ukZfcZsUWaapfK",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5149,
+      "cache_read_input_tokens": 16959,
+      "output_tokens": 2404,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5149,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2404,
+          "cache_read_input_tokens": 16959,
+          "cache_creation_input_tokens": 5149,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5149
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 28_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML researcher performing a deep analysis of a published paper.  **Today's date: 2026-05-28 (UTC).**  ## Your goal  Analyze this paper NOT just for what it does, but for **HOW it innov…",
+  "leafUuid": "4cd8ba07-c481-4cbe-9cbf-598fd1fd1371",
+  "sessionId": "b70334ba-1730-4203-939a-7143bb7bbbda"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 29_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze autoformalization survey for domain-adaptive positioning",
+  "sessionId": "b70334ba-1730-4203-939a-7143bb7bbbda"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 30_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML researcher performing a deep analysis of a published paper.  **Today's date: 2026-05-28 (UTC).**  ## Your goal  Analyze this paper NOT just for what it does, but for **HOW it innov…",
+  "leafUuid": "4cd8ba07-c481-4cbe-9cbf-598fd1fd1371",
+  "sessionId": "b70334ba-1730-4203-939a-7143bb7bbbda"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 31_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze autoformalization survey for domain-adaptive positioning",
+  "sessionId": "b70334ba-1730-4203-939a-7143bb7bbbda"
+}
+```
+
+---

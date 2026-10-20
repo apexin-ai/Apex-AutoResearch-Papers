@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "1da55b7e04d4a98c75b2",
+  "project": "nlp_variance_gtheory--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: You are a senior ML researcher conducting a comprehensive literature survey. **Today's date: 2026-05-29 (UTC).** ## Task",
+  "task_key": "564f59ba-30f0-4474-95ce-496fd475283e",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/564f59ba-30f0-4474-95ce-496fd475283e.jsonl",
+    "occurrence": 1,
+    "bytes": 517666,
+    "sha256": "be6365c59dc29d084e0d6ae56288a25a997a13837de3de00f3ea006d3ed57be2"
+  },
+  "statistics": {
+    "messages": 196,
+    "user_turns": 1,
+    "tool_calls": 68,
+    "roles": {
+      "record": 41,
+      "user": 1,
+      "assistant": 18,
+      "tool_call": 68,
+      "tool_result": 68
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "1da55b7e04d4a98c75b2-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 194,
+      "chunks": [
+        {
+          "path": "1da55b7e04d4a98c75b2-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "1da55b7e04d4a98c75b2-part-0002.json",
+          "message_count": 16
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-you-are-a-senior-ml-researcher-conducting-a-comprehensive-literature-survey-to-copy-7.md"
+}

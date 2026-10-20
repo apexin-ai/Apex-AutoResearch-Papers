@@ -1,0 +1,6316 @@
+# Research conversation: You are a senior ML researcher performing a deep analysis of a published paper. **Today's date: 2026-05-27 (UTC).** ## Y
+
+**Reproducibility Budgets for Open-Weight LLM Evaluation: A Generalizability Theory Study of 7–9B Instruction-Tuned Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 100
+- **Recorded user turns:** 1
+- **Tool calls:** 32
+- **Original source:** `logs/chats/exported-trajectories/account-3/fd433d01-745c-4fd4-ad27-b9a83566dd45.jsonl`
+- **Structured JSON:** [`b10c03c245754d85a564.json`](../../sessions/b1/b10c03c245754d85a564.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-27T15:35:58.818Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-27T15:35:58.818Z",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "content": "You are a senior ML researcher performing a deep analysis of a published paper.\n\n**Today's date: 2026-05-27 (UTC).**\n\n## Your goal\n\nAnalyze this paper NOT just for what it does, but for **HOW it innovates** — what can we learn from its approach to doing research? What made this paper good enough for a top venue?\n\n## Research context\n\nWe are generating ideas in the area of: **Synthetic Data and Self-Improvement for Mathematical Reasoning Training**\n\n## Paper to analyze\n\n{\n  \"title\": \"Training Language Models to Self-Correct via Reinforcement Learning (SCoRe)\",\n  \"authors\": \"Aviral Kumar et al.\",\n  \"venue\": \"ICLR 2025 (Oral)\",\n  \"url\": \"https://arxiv.org/abs/2409.12917\",\n  \"why_important\": \"ICLR 2025 Oral; first effective multi-turn RL approach for self-correction using entirely self-generated data\",\n  \"one_line_summary\": \"Proposes SCoRe, a multi-turn online RL method that trains LLMs to correct their own mistakes, improving self-correction by 15.6% on MATH and 9.1% on HumanEval for Gemini models.\"\n}\n\n## Instructions\n\n1. **Deep read**: Use WebFetch to read this paper's full abstract, introduction, method section, and conclusion on arXiv or OpenReview. If it's on OpenReview, also read the reviewer comments and author responses.\n\n2. **Analyze the innovation structure**: Don't just summarize — dissect HOW the authors arrived at their contribution:\n   - What gap did they identify and HOW did they find it?\n   - What was the key insight that others missed?\n   - How did they formulate the problem differently from prior work?\n   - What existing technique did they adapt/combine/simplify?\n\n3. **Learn from reviewers**: If you can find reviewer comments, extract:\n   - What did reviewers praise most?\n   - What concerns were raised and how were they addressed?\n   - What would have made this paper even stronger?\n\n## Output format\n\nOutput a single JSON object:\n{\n  \"title\": \"Paper title\",\n  \"venue\": \"Where published\",\n  \"problem_identification\": \"What gap/problem did they identify? How did they find it? (2-3 sentences)\",\n  \"key_insight\": \"The core intellectual contribution — the aha moment (1-2 sentences)\",\n  \"innovation_type\": \"new_formulation | new_technique | new_benchmark | simplification | cross_domain | combination | scaling | analysis\",\n  \"method_summary\": \"Technical approach in 3-5 sentences — enough to understand the machinery\",\n  \"what_makes_it_good\": \"Why did this paper get accepted? What would reviewers have liked? (2-3 sentences)\",\n  \"limitations_acknowledged\": \"What gaps did the authors themselves identify? (1-2 sentences)\",\n  \"open_questions\": \"What follow-up questions does this paper raise? What remains unsolved? (2-3 bullet points)\",\n  \"building_blocks\": [\"List of methods/tools/datasets used that could be reused\"],\n  \"reviewer_feedback_summary\": \"If found on OpenReview: key praise and concerns. Otherwise: null\",\n  \"relevance_to_seed\": \"How does this paper relate to our research area? What can we learn from it? (1-2 sentences)\"\n}\n\nBe analytical, not descriptive. We want to learn the CRAFT of doing good research, not just know what this paper did."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-27T15:35:58.820Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-27T15:35:58.820Z",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45"
+}
+```
+
+---
+
+## Round 1
+
+98 recorded events
+
+### User
+
+_source line 3 · 2026-05-27T15:35:58.859Z_
+
+You are a senior ML researcher performing a deep analysis of a published paper.
+
+**Today's date: 2026-05-27 (UTC).**
+
+## Your goal
+
+Analyze this paper NOT just for what it does, but for **HOW it innovates** — what can we learn from its approach to doing research? What made this paper good enough for a top venue?
+
+## Research context
+
+We are generating ideas in the area of: **Synthetic Data and Self-Improvement for Mathematical Reasoning Training**
+
+## Paper to analyze
+
+{
+  "title": "Training Language Models to Self-Correct via Reinforcement Learning (SCoRe)",
+  "authors": "Aviral Kumar et al.",
+  "venue": "ICLR 2025 (Oral)",
+  "url": "https://arxiv.org/abs/2409.12917",
+  "why_important": "ICLR 2025 Oral; first effective multi-turn RL approach for self-correction using entirely self-generated data",
+  "one_line_summary": "Proposes SCoRe, a multi-turn online RL method that trains LLMs to correct their own mistakes, improving self-correction by 15.6% on MATH and 9.1% on HumanEval for Gemini models."
+}
+
+## Instructions
+
+1. **Deep read**: Use WebFetch to read this paper's full abstract, introduction, method section, and conclusion on arXiv or OpenReview. If it's on OpenReview, also read the reviewer comments and author responses.
+
+2. **Analyze the innovation structure**: Don't just summarize — dissect HOW the authors arrived at their contribution:
+   - What gap did they identify and HOW did they find it?
+   - What was the key insight that others missed?
+   - How did they formulate the problem differently from prior work?
+   - What existing technique did they adapt/combine/simplify?
+
+3. **Learn from reviewers**: If you can find reviewer comments, extract:
+   - What did reviewers praise most?
+   - What concerns were raised and how were they addressed?
+   - What would have made this paper even stronger?
+
+## Output format
+
+Output a single JSON object:
+{
+  "title": "Paper title",
+  "venue": "Where published",
+  "problem_identification": "What gap/problem did they identify? How did they find it? (2-3 sentences)",
+  "key_insight": "The core intellectual contribution — the aha moment (1-2 sentences)",
+  "innovation_type": "new_formulation | new_technique | new_benchmark | simplification | cross_domain | combination | scaling | analysis",
+  "method_summary": "Technical approach in 3-5 sentences — enough to understand the machinery",
+  "what_makes_it_good": "Why did this paper get accepted? What would reviewers have liked? (2-3 sentences)",
+  "limitations_acknowledged": "What gaps did the authors themselves identify? (1-2 sentences)",
+  "open_questions": "What follow-up questions does this paper raise? What remains unsolved? (2-3 bullet points)",
+  "building_blocks": ["List of methods/tools/datasets used that could be reused"],
+  "reviewer_feedback_summary": "If found on OpenReview: key praise and concerns. Otherwise: null",
+  "relevance_to_seed": "How does this paper relate to our research area? What can we learn from it? (1-2 sentences)"
+}
+
+Be analytical, not descriptive. We want to learn the CRAFT of doing good research, not just know what this paper did.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "038af6dc-dba3-4001-9426-894f41afea55",
+  "type": "user",
+  "uuid": "4e39cbbb-df08-4d90-8b52-d43afbf4846e",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-27T15:35:58.859Z_
+
+```json
+{
+  "parentUuid": "4e39cbbb-df08-4d90-8b52-d43afbf4846e",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "700c5e8a-628b-45f1-915e-fcfef37bd015",
+  "timestamp": "2026-05-27T15:35:58.859Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-27T15:35:58.859Z_
+
+```json
+{
+  "parentUuid": "700c5e8a-628b-45f1-915e-fcfef37bd015",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "1931d3f0-f5fd-4d07-b946-d9939139c0ff",
+  "timestamp": "2026-05-27T15:35:58.859Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze SCoRe self-correction RL paper",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45"
+}
+```
+
+---
+
+### Assistant
+
+_source line 7 · 2026-05-27T15:36:02.145Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to analyze the paper "Training Language Models to Self-Correct via Reinforcement Learning (SCoRe)" by Aviral Kumar et al. I need to fetch the paper from arXiv and also check OpenReview for reviewer comments. Let me start by fetching both sources.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1931d3f0-f5fd-4d07-b946-d9939139c0ff",
+  "isSidechain": false,
+  "requestId": "req_011CbTKXZC2aUwEdPJzoL7Pk",
+  "type": "assistant",
+  "uuid": "6ed00ada-df61-402b-9523-af1155a5a901",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018vPFdo69FnvehR66sFZnZG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2197,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 179,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2197,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 179,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 2197,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2197
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-27T15:36:02.897Z_
+
+I'll fetch the paper from arXiv and also check OpenReview for reviewer comments in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6ed00ada-df61-402b-9523-af1155a5a901",
+  "isSidechain": false,
+  "requestId": "req_011CbTKXZC2aUwEdPJzoL7Pk",
+  "type": "assistant",
+  "uuid": "7be970f9-a3eb-46a5-af82-6b63c3c23d68",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018vPFdo69FnvehR66sFZnZG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2197,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 179,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2197,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 179,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 2197,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2197
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-27T15:36:02.911Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01H6zVztFNG76eKgYUfm8VRp`</summary>
+
+```json
+{
+  "query": "select:WebFetch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7be970f9-a3eb-46a5-af82-6b63c3c23d68",
+  "isSidechain": false,
+  "requestId": "req_011CbTKXZC2aUwEdPJzoL7Pk",
+  "type": "assistant",
+  "uuid": "4f4b665b-d613-45a3-a187-81a661ebb59d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018vPFdo69FnvehR66sFZnZG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2197,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 179,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2197,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 179,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 2197,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2197
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-27T15:36:02.919Z_
+
+<details><summary>↩ Tool result · `toolu_01H6zVztFNG76eKgYUfm8VRp`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4f4b665b-d613-45a3-a187-81a661ebb59d",
+  "isSidechain": false,
+  "promptId": "038af6dc-dba3-4001-9426-894f41afea55",
+  "type": "user",
+  "uuid": "0c9545ae-8536-4dfd-8976-d316626c043e",
+  "toolUseResult": {
+    "matches": [
+      "WebFetch"
+    ],
+    "query": "select:WebFetch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "4f4b665b-d613-45a3-a187-81a661ebb59d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11 · 2026-05-27T15:36:05.927Z_
+
+Now let me fetch the paper from arXiv and search for it on OpenReview in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0c9545ae-8536-4dfd-8976-d316626c043e",
+  "isSidechain": false,
+  "requestId": "req_011CbTKXrv8DuqxVYSMBBuKV",
+  "type": "assistant",
+  "uuid": "387fa6b6-b651-4701-8789-0da19a2530ab",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XYBLE745ZuRvpTTU5wT328",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 699,
+      "cache_read_input_tokens": 13211,
+      "output_tokens": 457,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 699,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 457,
+          "cache_read_input_tokens": 13211,
+          "cache_creation_input_tokens": 699,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 699
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-27T15:36:06.863Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01MNJYNECkxyeYVtUXeFjVQZ`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2409.12917",
+  "prompt": "Extract the full abstract, introduction, and any method/approach description visible on this page. Also extract the author list and any metadata about the paper."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "387fa6b6-b651-4701-8789-0da19a2530ab",
+  "isSidechain": false,
+  "requestId": "req_011CbTKXrv8DuqxVYSMBBuKV",
+  "type": "assistant",
+  "uuid": "8e4903dc-7b72-4198-9f0b-7199ed9d229b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XYBLE745ZuRvpTTU5wT328",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 699,
+      "cache_read_input_tokens": 13211,
+      "output_tokens": 457,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 699,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 457,
+          "cache_read_input_tokens": 13211,
+          "cache_creation_input_tokens": 699,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 699
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-27T15:36:10.269Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01SbeBMjovSMwFiLxh1p9K3T`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2409.12917v2",
+  "prompt": "Extract the FULL content of this paper, focusing on:\n1. The complete Introduction section\n2. The complete Method/Approach section (likely called something like \"SCoRe\" or \"Method\" or \"Approach\")\n3. The Experiments section - key results and ablations\n4. The Conclusion/Discussion section\n5. Any discussion of limitations\n\nBe as detailed as possible. Include specific technical details about the training procedure, loss functions, reward shaping, and the two-stage approach."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8e4903dc-7b72-4198-9f0b-7199ed9d229b",
+  "isSidechain": false,
+  "requestId": "req_011CbTKXrv8DuqxVYSMBBuKV",
+  "type": "assistant",
+  "uuid": "5370ed7b-0ffc-497f-9d90-476fc048d7c5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XYBLE745ZuRvpTTU5wT328",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 699,
+      "cache_read_input_tokens": 13211,
+      "output_tokens": 457,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 699,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 457,
+          "cache_read_input_tokens": 13211,
+          "cache_creation_input_tokens": 699,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 699
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-27T15:36:10.429Z_
+
+<details><summary>↩ Tool result · `toolu_01SbeBMjovSMwFiLxh1p9K3T`</summary>
+
+```text
+The server returned HTTP 404 Not Found.
+
+The response body was not retrieved. If this URL requires authentication, use an authenticated tool (e.g. `gh` for GitHub, or an MCP-provided fetch tool) instead of WebFetch.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5370ed7b-0ffc-497f-9d90-476fc048d7c5",
+  "isSidechain": false,
+  "promptId": "038af6dc-dba3-4001-9426-894f41afea55",
+  "type": "user",
+  "uuid": "ab2f60e5-5702-4ed9-9f73-9f5e618971ba",
+  "toolUseResult": {
+    "bytes": 0,
+    "code": 404,
+    "codeText": "Not Found",
+    "result": "The server returned HTTP 404 Not Found.\n\nThe response body was not retrieved. If this URL requires authentication, use an authenticated tool (e.g. `gh` for GitHub, or an MCP-provided fetch tool) instead of WebFetch.",
+    "durationMs": 157,
+    "url": "https://arxiv.org/html/2409.12917v2"
+  },
+  "sourceToolAssistantUUID": "5370ed7b-0ffc-497f-9d90-476fc048d7c5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-27T15:36:12.053Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01NTPzGwDciThe3qaDzaxP6w`</summary>
+
+```json
+{
+  "url": "https://openreview.net/search?term=Training+Language+Models+to+Self-Correct+via+Reinforcement+Learning&venue=ICLR+2025",
+  "prompt": "Find the OpenReview submission page for the paper \"Training Language Models to Self-Correct via Reinforcement Learning\" (SCoRe) at ICLR 2025. Extract any links to the paper's review page, or list the search results shown."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ab2f60e5-5702-4ed9-9f73-9f5e618971ba",
+  "isSidechain": false,
+  "requestId": "req_011CbTKXrv8DuqxVYSMBBuKV",
+  "type": "assistant",
+  "uuid": "e88805a1-7ffa-48eb-b5db-dc1b3499a0b0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XYBLE745ZuRvpTTU5wT328",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 699,
+      "cache_read_input_tokens": 13211,
+      "output_tokens": 457,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 699,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 457,
+          "cache_read_input_tokens": 13211,
+          "cache_creation_input_tokens": 699,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 699
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-27T15:36:12.546Z_
+
+<details><summary>↩ Tool result · `toolu_01MNJYNECkxyeYVtUXeFjVQZ`</summary>
+
+```text
+# Paper Summary: Training Language Models to Self-Correct via Reinforcement Learning
+
+## Metadata
+- **arXiv ID:** 2409.12917
+- **Submission Date:** September 19, 2024 (v1); October 4, 2024 (v2)
+- **Field:** Computer Science > Machine Learning (cs.LG)
+- **License:** CC BY 4.0
+
+## Authors
+Aviral Kumar, Vincent Zhuang, Rishabh Agarwal, Yi Su, John D Co-Reyes, Avi Singh, Kate Baumli, Shariq Iqbal, Colton Bishop, Rebecca Roelofs, Lei M Zhang, Kay McKinney, Disha Shrivastava, Cosmin Paduraru, George Tucker, Doina Precup, Feryal Behbahani, and Aleksandra Faust.
+
+## Abstract
+The authors address a critical limitation in large language models: their inability to effectively self-correct. They propose SCoRe, described as "a multi-turn online reinforcement learning approach" that improves self-correction using only model-generated data.
+
+The paper identifies two key failure modes in supervised fine-tuning approaches: distribution mismatch and behavior collapse. SCoRe mitigates these issues through multi-turn RL initialization and reward bonuses designed to promote effective self-correction rather than fitting high-reward responses.
+
+## Key Results
+Testing on Gemini 1.0 Pro and 1.5 Flash models showed improvements of 15.6% and 9.1% respectively on MATH and HumanEval benchmarks compared to baseline self-correction performance.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8e4903dc-7b72-4198-9f0b-7199ed9d229b",
+  "isSidechain": false,
+  "promptId": "038af6dc-dba3-4001-9426-894f41afea55",
+  "type": "user",
+  "uuid": "a8a476eb-c326-4111-a332-4316b0111017",
+  "toolUseResult": {
+    "bytes": 50792,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Paper Summary: Training Language Models to Self-Correct via Reinforcement Learning\n\n## Metadata\n- **arXiv ID:** 2409.12917\n- **Submission Date:** September 19, 2024 (v1); October 4, 2024 (v2)\n- **Field:** Computer Science > Machine Learning (cs.LG)\n- **License:** CC BY 4.0\n\n## Authors\nAviral Kumar, Vincent Zhuang, Rishabh Agarwal, Yi Su, John D Co-Reyes, Avi Singh, Kate Baumli, Shariq Iqbal, Colton Bishop, Rebecca Roelofs, Lei M Zhang, Kay McKinney, Disha Shrivastava, Cosmin Paduraru, George Tucker, Doina Precup, Feryal Behbahani, and Aleksandra Faust.\n\n## Abstract\nThe authors address a critical limitation in large language models: their inability to effectively self-correct. They propose SCoRe, described as \"a multi-turn online reinforcement learning approach\" that improves self-correction using only model-generated data.\n\nThe paper identifies two key failure modes in supervised fine-tuning approaches: distribution mismatch and behavior collapse. SCoRe mitigates these issues through multi-turn RL initialization and reward bonuses designed to promote effective self-correction rather than fitting high-reward responses.\n\n## Key Results\nTesting on Gemini 1.0 Pro and 1.5 Flash models showed improvements of 15.6% and 9.1% respectively on MATH and HumanEval benchmarks compared to baseline self-correction performance.",
+    "durationMs": 5680,
+    "url": "https://arxiv.org/abs/2409.12917"
+  },
+  "sourceToolAssistantUUID": "8e4903dc-7b72-4198-9f0b-7199ed9d229b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-27T15:36:15.092Z_
+
+<details><summary>↩ Tool result · `toolu_01NTPzGwDciThe3qaDzaxP6w`</summary>
+
+```text
+# OpenReview Search Result
+
+Based on the webpage content provided, I cannot locate the submission page for "Training Language Models to Self-Correct via Reinforcement Learning" (SCoRe) at ICLR 2025.
+
+The content shown is limited to OpenReview's navigation and footer elements. To find this specific paper, you would need to:
+
+1. Visit the **OpenReview.net homepage** and use their search functionality
+2. Navigate to the **All Venues** section and locate ICLR 2025
+3. Browse the conference submissions directly
+
+The current excerpt does not display any search results or paper-specific links for the SCoRe submission.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e88805a1-7ffa-48eb-b5db-dc1b3499a0b0",
+  "isSidechain": false,
+  "promptId": "038af6dc-dba3-4001-9426-894f41afea55",
+  "type": "user",
+  "uuid": "3bfe90be-12ef-49c0-85d0-9a17fdadbfbf",
+  "toolUseResult": {
+    "bytes": 62481,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# OpenReview Search Result\n\nBased on the webpage content provided, I cannot locate the submission page for \"Training Language Models to Self-Correct via Reinforcement Learning\" (SCoRe) at ICLR 2025.\n\nThe content shown is limited to OpenReview's navigation and footer elements. To find this specific paper, you would need to:\n\n1. Visit the **OpenReview.net homepage** and use their search functionality\n2. Navigate to the **All Venues** section and locate ICLR 2025\n3. Browse the conference submissions directly\n\nThe current excerpt does not display any search results or paper-specific links for the SCoRe submission.",
+    "durationMs": 3037,
+    "url": "https://openreview.net/search?term=Training+Language+Models+to+Self-Correct+via+Reinforcement+Learning&venue=ICLR+2025"
+  },
+  "sourceToolAssistantUUID": "e88805a1-7ffa-48eb-b5db-dc1b3499a0b0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18 · 2026-05-27T15:36:17.752Z_
+
+Let me try the HTML version with a different URL format and also search OpenReview directly for the paper.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3bfe90be-12ef-49c0-85d0-9a17fdadbfbf",
+  "isSidechain": false,
+  "requestId": "req_011CbTKYkSyG5Grv2XewgHa3",
+  "type": "assistant",
+  "uuid": "9e61c555-5c45-4243-8053-0d3d4d162756",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016MCA1E6Zg97p5QL7AeC5mK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1127,
+      "cache_read_input_tokens": 13910,
+      "output_tokens": 380,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1127,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 380,
+          "cache_read_input_tokens": 13910,
+          "cache_creation_input_tokens": 1127,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1127
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-27T15:36:21.223Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_011ymeHSZyDfDRPon5bsictn`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2409.12917",
+  "prompt": "Extract the FULL content of this paper, focusing on:\n1. The complete Introduction section - what problem they identify and how\n2. The complete Method/Approach section - the SCoRe training procedure, including Stage I and Stage II, loss functions, reward shaping, KL regularization\n3. Key experimental results and ablations\n4. The Conclusion/Discussion/Limitations sections\n\nBe extremely detailed. Include specific technical details about:\n- How they diagnose problems with SFT-based self-correction (distribution mismatch, behavior collapse)\n- The two-stage training procedure\n- The reward bonus mechanism\n- How they prevent collapse of first-turn accuracy"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9e61c555-5c45-4243-8053-0d3d4d162756",
+  "isSidechain": false,
+  "requestId": "req_011CbTKYkSyG5Grv2XewgHa3",
+  "type": "assistant",
+  "uuid": "f6f5f9ad-8d5d-42a5-9dcb-433b3572b41d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016MCA1E6Zg97p5QL7AeC5mK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1127,
+      "cache_read_input_tokens": 13910,
+      "output_tokens": 380,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1127,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 380,
+          "cache_read_input_tokens": 13910,
+          "cache_creation_input_tokens": 1127,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1127
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-27T15:36:21.235Z_
+
+<details><summary>↩ Tool result · `toolu_011ymeHSZyDfDRPon5bsictn`</summary>
+
+```text
+The server returned HTTP 404 Not Found.
+
+The response body was not retrieved. If this URL requires authentication, use an authenticated tool (e.g. `gh` for GitHub, or an MCP-provided fetch tool) instead of WebFetch.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f6f5f9ad-8d5d-42a5-9dcb-433b3572b41d",
+  "isSidechain": false,
+  "promptId": "038af6dc-dba3-4001-9426-894f41afea55",
+  "type": "user",
+  "uuid": "ac7cdbc9-e4b3-47eb-bda1-62031dacaeeb",
+  "toolUseResult": {
+    "bytes": 0,
+    "code": 404,
+    "codeText": "Not Found",
+    "result": "The server returned HTTP 404 Not Found.\n\nThe response body was not retrieved. If this URL requires authentication, use an authenticated tool (e.g. `gh` for GitHub, or an MCP-provided fetch tool) instead of WebFetch.",
+    "durationMs": 8,
+    "url": "https://arxiv.org/html/2409.12917"
+  },
+  "sourceToolAssistantUUID": "f6f5f9ad-8d5d-42a5-9dcb-433b3572b41d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-27T15:36:22.716Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01CB1XtPWLiCRvML4utqjhkE`</summary>
+
+```json
+{
+  "url": "https://openreview.net/search?term=SCoRe+self-correct+reinforcement+learning&venue=ICLR.cc/2025/Conference",
+  "prompt": "Find the OpenReview page for \"Training Language Models to Self-Correct via Reinforcement Learning\" (SCoRe). Extract any paper links, review scores, or submission IDs."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ac7cdbc9-e4b3-47eb-bda1-62031dacaeeb",
+  "isSidechain": false,
+  "requestId": "req_011CbTKYkSyG5Grv2XewgHa3",
+  "type": "assistant",
+  "uuid": "5b2a6e88-4dc3-4c48-9db3-5c0f1c42bba9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016MCA1E6Zg97p5QL7AeC5mK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1127,
+      "cache_read_input_tokens": 13910,
+      "output_tokens": 380,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1127,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 380,
+          "cache_read_input_tokens": 13910,
+          "cache_creation_input_tokens": 1127,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1127
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML researcher performing a deep analysis of a published paper.  **Today's date: 2026-05-27 (UTC).**  ## Your goal  Analyze this paper NOT just for what it does, but for **HOW it innov…",
+  "leafUuid": "5b2a6e88-4dc3-4c48-9db3-5c0f1c42bba9",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze SCoRe self-correction RL paper",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45"
+}
+```
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-27T15:36:27.146Z_
+
+<details><summary>↩ Tool result · `toolu_01CB1XtPWLiCRvML4utqjhkE`</summary>
+
+```text
+I cannot find the OpenReview page for "Training Language Models to Self-Correct via Reinforcement Learning" (SCoRe) in the provided content. 
+
+The webpage excerpt only shows OpenReview's navigation structure and footer information, including links to general sections like "About OpenReview," "All Venues," and "FAQ." It does not contain any specific paper listings, review scores, submission IDs, or details about the SCoRe paper you're asking about.
+
+To locate this paper, you would need to visit OpenReview.net directly and use their search functionality or browse through the relevant conference/venue proceedings.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5b2a6e88-4dc3-4c48-9db3-5c0f1c42bba9",
+  "isSidechain": false,
+  "promptId": "038af6dc-dba3-4001-9426-894f41afea55",
+  "type": "user",
+  "uuid": "88b5c225-b00b-4fda-b3f5-ce6d5bc29766",
+  "toolUseResult": {
+    "bytes": 62449,
+    "code": 200,
+    "codeText": "OK",
+    "result": "I cannot find the OpenReview page for \"Training Language Models to Self-Correct via Reinforcement Learning\" (SCoRe) in the provided content. \n\nThe webpage excerpt only shows OpenReview's navigation structure and footer information, including links to general sections like \"About OpenReview,\" \"All Venues,\" and \"FAQ.\" It does not contain any specific paper listings, review scores, submission IDs, or details about the SCoRe paper you're asking about.\n\nTo locate this paper, you would need to visit OpenReview.net directly and use their search functionality or browse through the relevant conference/venue proceedings.",
+    "durationMs": 4428,
+    "url": "https://openreview.net/search?term=SCoRe+self-correct+reinforcement+learning&venue=ICLR.cc/2025/Conference"
+  },
+  "sourceToolAssistantUUID": "5b2a6e88-4dc3-4c48-9db3-5c0f1c42bba9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25 · 2026-05-27T15:36:30.261Z_
+
+Let me try different URL formats to access the paper content and OpenReview page.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "88b5c225-b00b-4fda-b3f5-ce6d5bc29766",
+  "isSidechain": false,
+  "requestId": "req_011CbTKZe2njsRVpv9NEYsuc",
+  "type": "assistant",
+  "uuid": "7399167a-dc8b-4b12-8653-9b4e0846cc1d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017TQw5MTeA5md3L1tcw9kBu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 630,
+      "cache_read_input_tokens": 15037,
+      "output_tokens": 442,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 630,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 442,
+          "cache_read_input_tokens": 15037,
+          "cache_creation_input_tokens": 630,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 630
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-27T15:36:34.253Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01VpX47TYkGQNizAZTPTZTy9`</summary>
+
+```json
+{
+  "url": "https://ar5iv.labs.arxiv.org/html/2409.12917",
+  "prompt": "Extract the FULL technical content of this paper. I need:\n\n1. INTRODUCTION: What problem do they identify? How do they motivate the work? What prior approaches fail and why?\n\n2. METHOD SECTION (SCoRe approach): \n   - What are the two failure modes of SFT (distribution mismatch and behavior collapse)?\n   - How does Stage I work? What is its objective?\n   - How does Stage II work? What is its objective?\n   - What is the reward bonus mechanism?\n   - What KL regularization is used and why?\n   - How do they prevent collapse of first-turn performance?\n\n3. EXPERIMENTS: Key results on MATH and HumanEval, ablation studies, what baselines they compare against\n\n4. CONCLUSION and LIMITATIONS\n\nBe as detailed and technical as possible. Include equations/formulas if visible."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7399167a-dc8b-4b12-8653-9b4e0846cc1d",
+  "isSidechain": false,
+  "requestId": "req_011CbTKZe2njsRVpv9NEYsuc",
+  "type": "assistant",
+  "uuid": "f47d3337-c528-410a-84e6-ae6396e02b7e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017TQw5MTeA5md3L1tcw9kBu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 630,
+      "cache_read_input_tokens": 15037,
+      "output_tokens": 442,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 630,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 442,
+          "cache_read_input_tokens": 15037,
+          "cache_creation_input_tokens": 630,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 630
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-27T15:36:36.745Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_0154LWytBGR26uvBgBxKhmMS`</summary>
+
+```json
+{
+  "url": "https://openreview.net/forum?id=rXPMnDMqhR",
+  "prompt": "Extract ALL reviewer comments, scores, and author responses for this ICLR 2025 paper. Include:\n1. Each reviewer's score and confidence\n2. Key strengths identified by reviewers\n3. Key weaknesses/concerns raised\n4. Author responses to concerns\n5. Any meta-review or area chair comments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f47d3337-c528-410a-84e6-ae6396e02b7e",
+  "isSidechain": false,
+  "requestId": "req_011CbTKZe2njsRVpv9NEYsuc",
+  "type": "assistant",
+  "uuid": "30f95cc7-5c39-4568-9ddc-c0322d060d38",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017TQw5MTeA5md3L1tcw9kBu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 630,
+      "cache_read_input_tokens": 15037,
+      "output_tokens": 442,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 630,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 442,
+          "cache_read_input_tokens": 15037,
+          "cache_creation_input_tokens": 630,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 630
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-27T15:36:39.902Z_
+
+<details><summary>↩ Tool result · `toolu_0154LWytBGR26uvBgBxKhmMS`</summary>
+
+```text
+I cannot extract the requested information because the web page content provided is an error page indicating that a specific note (rXPMnDMqhR) was not found on OpenReview.net.
+
+The page displays only:
+- "The Note rXPMnDMqhR was not found"
+- Standard navigation links and footer information
+- No actual paper content, reviewer comments, scores, author responses, or meta-reviews
+
+To obtain reviewer comments, scores, and author responses for an ICLR 2025 paper, you would need to:
+1. Access a valid OpenReview paper page (not an error page)
+2. Ensure the note ID or paper link is correct
+3. Verify that the paper and its reviews are publicly available on the platform
+
+If you have a correct link to an ICLR 2025 paper review, please provide that content and I can extract the relevant information according to your specifications.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "30f95cc7-5c39-4568-9ddc-c0322d060d38",
+  "isSidechain": false,
+  "promptId": "038af6dc-dba3-4001-9426-894f41afea55",
+  "type": "user",
+  "uuid": "18b2e2e0-46a6-4708-9882-57081058eb78",
+  "toolUseResult": {
+    "bytes": 58573,
+    "code": 200,
+    "codeText": "OK",
+    "result": "I cannot extract the requested information because the web page content provided is an error page indicating that a specific note (rXPMnDMqhR) was not found on OpenReview.net.\n\nThe page displays only:\n- \"The Note rXPMnDMqhR was not found\"\n- Standard navigation links and footer information\n- No actual paper content, reviewer comments, scores, author responses, or meta-reviews\n\nTo obtain reviewer comments, scores, and author responses for an ICLR 2025 paper, you would need to:\n1. Access a valid OpenReview paper page (not an error page)\n2. Ensure the note ID or paper link is correct\n3. Verify that the paper and its reviews are publicly available on the platform\n\nIf you have a correct link to an ICLR 2025 paper review, please provide that content and I can extract the relevant information according to your specifications.",
+    "durationMs": 3153,
+    "url": "https://openreview.net/forum?id=rXPMnDMqhR"
+  },
+  "sourceToolAssistantUUID": "30f95cc7-5c39-4568-9ddc-c0322d060d38",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-27T15:36:44.905Z_
+
+<details><summary>↩ Tool result · `toolu_01VpX47TYkGQNizAZTPTZTy9`</summary>
+
+```text
+I appreciate your request, but I need to be transparent about what I can deliver based on the source material provided.
+
+## Issue with Source Material
+
+The webpage content you've shared is **not the actual paper**—it's an error page from ar5iv (a paper conversion service). The key message is:
+
+> "Conversion to HTML had a Fatal error and exited abruptly. This document may be truncated or damaged."
+
+This means the full technical content of paper 2409.12917 is **not available** in the material you've provided. The page only contains navigation elements, metadata, and error messaging—no actual research content about methods, experiments, or results.
+
+## What I Cannot Do
+
+Without access to the actual paper text, I cannot provide:
+- Technical descriptions of the SCoRe approach or its two stages
+- Mathematical formulations or equations
+- Experimental results on MATH and HumanEval benchmarks
+- Ablation study details
+- Specific failure modes or regularization techniques
+
+## Recommendation
+
+To extract this technical content, you would need to:
+1. Access the original arXiv PDF directly at https://arxiv.org/abs/2409.12917
+2. Try a different conversion service
+3. Provide the actual paper text or PDF content
+
+I'm happy to analyze the paper once you can share the actual technical content.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f47d3337-c528-410a-84e6-ae6396e02b7e",
+  "isSidechain": false,
+  "promptId": "038af6dc-dba3-4001-9426-894f41afea55",
+  "type": "user",
+  "uuid": "158bce8e-dbd1-4937-a654-10e03a29353d",
+  "toolUseResult": {
+    "bytes": 8127,
+    "code": 200,
+    "codeText": "OK",
+    "result": "I appreciate your request, but I need to be transparent about what I can deliver based on the source material provided.\n\n## Issue with Source Material\n\nThe webpage content you've shared is **not the actual paper**—it's an error page from ar5iv (a paper conversion service). The key message is:\n\n> \"Conversion to HTML had a Fatal error and exited abruptly. This document may be truncated or damaged.\"\n\nThis means the full technical content of paper 2409.12917 is **not available** in the material you've provided. The page only contains navigation elements, metadata, and error messaging—no actual research content about methods, experiments, or results.\n\n## What I Cannot Do\n\nWithout access to the actual paper text, I cannot provide:\n- Technical descriptions of the SCoRe approach or its two stages\n- Mathematical formulations or equations\n- Experimental results on MATH and HumanEval benchmarks\n- Ablation study details\n- Specific failure modes or regularization techniques\n\n## Recommendation\n\nTo extract this technical content, you would need to:\n1. Access the original arXiv PDF directly at https://arxiv.org/abs/2409.12917\n2. Try a different conversion service\n3. Provide the actual paper text or PDF content\n\nI'm happy to analyze the paper once you can share the actual technical content.",
+    "durationMs": 10647,
+    "url": "https://ar5iv.labs.arxiv.org/html/2409.12917"
+  },
+  "sourceToolAssistantUUID": "f47d3337-c528-410a-84e6-ae6396e02b7e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 30 · 2026-05-27T15:36:44.909Z_
+
+```json
+{
+  "parentUuid": "158bce8e-dbd1-4937-a654-10e03a29353d",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "9ec0500a-e6bf-4256-9929-f17f6e0fcb10",
+  "timestamp": "2026-05-27T15:36:44.909Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-27T15:36:48.945Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01SGJ6CjYmwik6Lqnmy5B8TZ`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/pdf/2409.12917",
+  "prompt": "Extract the FULL technical content of this paper on SCoRe (Self-Correction via Reinforcement Learning). I need:\n\n1. INTRODUCTION: Problem identification, motivation, what prior approaches fail and why\n2. METHOD: The SCoRe approach details - Stage I, Stage II, reward shaping, KL regularization, how they prevent collapse\n3. EXPERIMENTS: Key results, ablations, baselines\n4. CONCLUSION and LIMITATIONS\n\nBe extremely detailed and technical."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9ec0500a-e6bf-4256-9929-f17f6e0fcb10",
+  "isSidechain": false,
+  "requestId": "req_011CbTKawxKxRSFJUQvyELta",
+  "type": "assistant",
+  "uuid": "1db8d2c0-647d-4218-966e-06c1466228ce",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VMYP8VgVXxYAX8SkMNzMxK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 237,
+      "cache_creation_input_tokens": 869,
+      "cache_read_input_tokens": 15667,
+      "output_tokens": 287,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 869,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 237,
+          "output_tokens": 287,
+          "cache_read_input_tokens": 15667,
+          "cache_creation_input_tokens": 869,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 869
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-27T15:36:50.141Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01CaaFFWo8j3rHsAEVFc7twY`</summary>
+
+```json
+{
+  "url": "https://openreview.net/forum?id=fYAblhdiVm",
+  "prompt": "Extract ALL reviewer comments, scores, and author responses for this paper. Include reviewer scores, strengths, weaknesses, and author rebuttals."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1db8d2c0-647d-4218-966e-06c1466228ce",
+  "isSidechain": false,
+  "requestId": "req_011CbTKawxKxRSFJUQvyELta",
+  "type": "assistant",
+  "uuid": "57d1f580-038f-4c34-8771-6f04002219af",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VMYP8VgVXxYAX8SkMNzMxK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 237,
+      "cache_creation_input_tokens": 869,
+      "cache_read_input_tokens": 15667,
+      "output_tokens": 287,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 869,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 237,
+          "output_tokens": 287,
+          "cache_read_input_tokens": 15667,
+          "cache_creation_input_tokens": 869,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 869
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-27T15:36:53.152Z_
+
+<details><summary>↩ Tool result · `toolu_01CaaFFWo8j3rHsAEVFc7twY`</summary>
+
+```text
+# Unable to Extract Review Information
+
+Based on the webpage content provided, **no reviewer comments, scores, or author responses are available to extract**.
+
+The page displays an error message: "The Note fYAblhdiVm was not found." This indicates the requested paper or review document does not exist or is inaccessible on OpenReview.net.
+
+To access the review information you're seeking, you would need:
+- A valid OpenReview paper URL
+- Proper access permissions (if the paper is under embargo)
+- Verification that the paper identifier is correct
+
+Please provide the correct paper link or identifier to retrieve reviewer feedback and scores.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "57d1f580-038f-4c34-8771-6f04002219af",
+  "isSidechain": false,
+  "promptId": "038af6dc-dba3-4001-9426-894f41afea55",
+  "type": "user",
+  "uuid": "b1e11376-01c0-4f30-82e5-59ecddc9f1a7",
+  "toolUseResult": {
+    "bytes": 58573,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Unable to Extract Review Information\n\nBased on the webpage content provided, **no reviewer comments, scores, or author responses are available to extract**.\n\nThe page displays an error message: \"The Note fYAblhdiVm was not found.\" This indicates the requested paper or review document does not exist or is inaccessible on OpenReview.net.\n\nTo access the review information you're seeking, you would need:\n- A valid OpenReview paper URL\n- Proper access permissions (if the paper is under embargo)\n- Verification that the paper identifier is correct\n\nPlease provide the correct paper link or identifier to retrieve reviewer feedback and scores.",
+    "durationMs": 3008,
+    "url": "https://openreview.net/forum?id=fYAblhdiVm"
+  },
+  "sourceToolAssistantUUID": "57d1f580-038f-4c34-8771-6f04002219af",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-27T15:37:00.841Z_
+
+<details><summary>↩ Tool result · `toolu_01SGJ6CjYmwik6Lqnmy5B8TZ`</summary>
+
+```text
+# SCoRe: Self-Correction via Reinforcement Learning - Technical Summary
+
+## INTRODUCTION
+
+The paper addresses the limitation that large language models (LLMs) often generate suboptimal outputs on their first attempt. While existing methods like rejection sampling and best-of-N decoding can improve quality, they require multiple model samples, increasing computational cost during inference.
+
+**Problem**: Models lack mechanisms to self-correct outputs after generation. Prior approaches either depend on external feedback or don't leverage the model's own ability to identify and fix errors without additional sampling overhead.
+
+**Motivation**: The authors propose that LLMs can learn to autonomously correct their outputs through reinforcement learning, treating self-correction as a learned behavior rather than a post-hoc filtering mechanism.
+
+---
+
+## METHOD: SCoRe Framework
+
+### Stage I: Correction Data Collection
+- Generate diverse outputs using nucleus/top-k sampling
+- Use a reward model to score initial outputs and corrected versions
+- Create training pairs showing: initial response → corrected response with higher reward
+- This stage builds the foundation for teaching the model what "good corrections" look like
+
+### Stage II: Reinforcement Learning Training
+The core innovation uses RL to optimize two objectives:
+
+**Reward Optimization**: 
+- Train policy to maximize expected reward of corrected outputs
+- The model learns: "Given my initial response, what changes improve quality?"
+
+**KL Regularization**:
+- Maintain proximity to base model distribution: "Keep divergence from original model within bounds"
+- Prevents training collapse where the model forgets general capabilities
+- Critical for ensuring corrections don't degrade unrelated tasks
+
+### Preventing Collapse Mechanisms
+
+1. **Dual Objective Balance**: Simultaneously optimize rewards while constraining drift from pretrained behavior
+2. **Reward Shaping**: Design rewards that specifically incentivize meaningful corrections without gaming
+3. **KL Penalty**: Weighted divergence penalty prevents catastrophic forgetting
+
+---
+
+## EXPERIMENTS
+
+### Key Results
+- **Baseline Comparison**: SCoRe outperforms rejection sampling and best-of-N with equivalent computational budget at inference
+- **Efficiency Gain**: Single-pass correction achieves quality of methods requiring multiple samples
+- **Scalability**: Benefits increase on harder tasks where initial outputs have more room for improvement
+
+### Ablations
+- **Removing Stage I**: Performance drops significantly without correction data pretraining
+- **Removing KL Regularization**: Model collapses to gaming reward signal on narrow task distribution
+- **Reward Function Design**: Careful engineering crucial; naive rewards lead to spurious corrections
+
+---
+
+## CONCLUSION & LIMITATIONS
+
+**Strengths**: 
+- Enables efficient inference-time improvement without sampling overhead
+- Framework is modular and works with different reward models
+- Single-pass correction is practical for deployment
+
+**Limitations**:
+- Depends on availability of high-quality reward models for training
+- May not generalize beyond domain where correction data was collected
+- KL regularization hyperparameter is critical; suboptimal settings break performance
+- Corrections are still single-attempt; cascading errors possible
+- No analysis of failure modes where model "hallucinate fixes"
+
+---
+
+## Technical Insights
+
+The key innovation is framing self-correction as an RL problem with explicit constraints. By treating KL regularization as a first-class objective (not an afterthought), the authors solve the "capability collapse" problem that plagued earlier self-improvement approaches. This enables a genuinely practical method where models improve outputs without external compute overhead.
+
+[Binary content (application/pdf, 850.7KB) also saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu-idea-review/fd433d01-745c-4fd4-ad27-b9a83566dd45/tool-results/webfetch-1779896208963-10z5tj.pdf]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1db8d2c0-647d-4218-966e-06c1466228ce",
+  "isSidechain": false,
+  "promptId": "038af6dc-dba3-4001-9426-894f41afea55",
+  "type": "user",
+  "uuid": "a2e50527-dbb6-42cc-9d9e-6036563cc02d",
+  "toolUseResult": {
+    "bytes": 871090,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# SCoRe: Self-Correction via Reinforcement Learning - Technical Summary\n\n## INTRODUCTION\n\nThe paper addresses the limitation that large language models (LLMs) often generate suboptimal outputs on their first attempt. While existing methods like rejection sampling and best-of-N decoding can improve quality, they require multiple model samples, increasing computational cost during inference.\n\n**Problem**: Models lack mechanisms to self-correct outputs after generation. Prior approaches either depend on external feedback or don't leverage the model's own ability to identify and fix errors without additional sampling overhead.\n\n**Motivation**: The authors propose that LLMs can learn to autonomously correct their outputs through reinforcement learning, treating self-correction as a learned behavior rather than a post-hoc filtering mechanism.\n\n---\n\n## METHOD: SCoRe Framework\n\n### Stage I: Correction Data Collection\n- Generate diverse outputs using nucleus/top-k sampling\n- Use a reward model to score initial outputs and corrected versions\n- Create training pairs showing: initial response → corrected response with higher reward\n- This stage builds the foundation for teaching the model what \"good corrections\" look like\n\n### Stage II: Reinforcement Learning Training\nThe core innovation uses RL to optimize two objectives:\n\n**Reward Optimization**: \n- Train policy to maximize expected reward of corrected outputs\n- The model learns: \"Given my initial response, what changes improve quality?\"\n\n**KL Regularization**:\n- Maintain proximity to base model distribution: \"Keep divergence from original model within bounds\"\n- Prevents training collapse where the model forgets general capabilities\n- Critical for ensuring corrections don't degrade unrelated tasks\n\n### Preventing Collapse Mechanisms\n\n1. **Dual Objective Balance**: Simultaneously optimize rewards while constraining drift from pretrained behavior\n2. **Reward Shaping**: Design rewards that specifically incentivize meaningful corrections without gaming\n3. **KL Penalty**: Weighted divergence penalty prevents catastrophic forgetting\n\n---\n\n## EXPERIMENTS\n\n### Key Results\n- **Baseline Comparison**: SCoRe outperforms rejection sampling and best-of-N with equivalent computational budget at inference\n- **Efficiency Gain**: Single-pass correction achieves quality of methods requiring multiple samples\n- **Scalability**: Benefits increase on harder tasks where initial outputs have more room for improvement\n\n### Ablations\n- **Removing Stage I**: Performance drops significantly without correction data pretraining\n- **Removing KL Regularization**: Model collapses to gaming reward signal on narrow task distribution\n- **Reward Function Design**: Careful engineering crucial; naive rewards lead to spurious corrections\n\n---\n\n## CONCLUSION & LIMITATIONS\n\n**Strengths**: \n- Enables efficient inference-time improvement without sampling overhead\n- Framework is modular and works with different reward models\n- Single-pass correction is practical for deployment\n\n**Limitations**:\n- Depends on availability of high-quality reward models for training\n- May not generalize beyond domain where correction data was collected\n- KL regularization hyperparameter is critical; suboptimal settings break performance\n- Corrections are still single-attempt; cascading errors possible\n- No analysis of failure modes where model \"hallucinate fixes\"\n\n---\n\n## Technical Insights\n\nThe key innovation is framing self-correction as an RL problem with explicit constraints. By treating KL regularization as a first-class objective (not an afterthought), the authors solve the \"capability collapse\" problem that plagued earlier self-improvement approaches. This enables a genuinely practical method where models improve outputs without external compute overhead.\n\n[Binary content (application/pdf, 850.7KB) also saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu-idea-review/fd433d01-745c-4fd4-ad27-b9a83566dd45/tool-results/webfetch-1779896208963-10z5tj.pdf]",
+    "durationMs": 11891,
+    "url": "https://arxiv.org/pdf/2409.12917"
+  },
+  "sourceToolAssistantUUID": "1db8d2c0-647d-4218-966e-06c1466228ce",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35 · 2026-05-27T15:37:04.588Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I got some content from the PDF but it's somewhat summarized by the model. Let me try to get more specific technical details about the method, and also try to find the OpenReview page. Let me search for the correct OpenReview ID.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a2e50527-dbb6-42cc-9d9e-6036563cc02d",
+  "isSidechain": false,
+  "requestId": "req_011CbTKc8LS5NPtVEKDMs9Ff",
+  "type": "assistant",
+  "uuid": "368f6280-4b2d-4c9d-bb4c-798dd79cbbf1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QBhcExVaeiiQybuV7PG9Af",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 169,
+      "cache_creation_input_tokens": 1416,
+      "cache_read_input_tokens": 16536,
+      "output_tokens": 349,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1416,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 169,
+          "output_tokens": 349,
+          "cache_read_input_tokens": 16536,
+          "cache_creation_input_tokens": 1416,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1416
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36 · 2026-05-27T15:37:05.099Z_
+
+Let me get more detailed technical content and find the correct OpenReview page.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "368f6280-4b2d-4c9d-bb4c-798dd79cbbf1",
+  "isSidechain": false,
+  "requestId": "req_011CbTKc8LS5NPtVEKDMs9Ff",
+  "type": "assistant",
+  "uuid": "3af0c62b-0f04-4e95-81d6-9dd404460e96",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QBhcExVaeiiQybuV7PG9Af",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 169,
+      "cache_creation_input_tokens": 1416,
+      "cache_read_input_tokens": 16536,
+      "output_tokens": 349,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1416,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 169,
+          "output_tokens": 349,
+          "cache_read_input_tokens": 16536,
+          "cache_creation_input_tokens": 1416,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1416
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-27T15:37:07.012Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_015b6Uz9TcvL7KEFYLxuYWHJ`</summary>
+
+```json
+{
+  "url": "https://openreview.net/search?term=Training+Language+Models+to+Self-Correct+via+Reinforcement+Learning",
+  "prompt": "Look for the paper \"Training Language Models to Self-Correct via Reinforcement Learning\" by Aviral Kumar. Extract any forum links, paper IDs, or URLs to the paper's review page on OpenReview."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3af0c62b-0f04-4e95-81d6-9dd404460e96",
+  "isSidechain": false,
+  "requestId": "req_011CbTKc8LS5NPtVEKDMs9Ff",
+  "type": "assistant",
+  "uuid": "fc101f52-64c3-42cf-b39e-b720696469e7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QBhcExVaeiiQybuV7PG9Af",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 169,
+      "cache_creation_input_tokens": 1416,
+      "cache_read_input_tokens": 16536,
+      "output_tokens": 349,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1416,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 169,
+          "output_tokens": 349,
+          "cache_read_input_tokens": 16536,
+          "cache_creation_input_tokens": 1416,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1416
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-27T15:37:08.106Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01T6P7fxGwL6n4wBUY7gb7BU`</summary>
+
+```json
+{
+  "url": "https://scholar.google.com/scholar?q=%22Training+Language+Models+to+Self-Correct+via+Reinforcement+Learning%22+SCoRe",
+  "prompt": "Find the Google Scholar entry for this paper. Look for any OpenReview links or alternative URLs where the full paper or reviews can be accessed."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fc101f52-64c3-42cf-b39e-b720696469e7",
+  "isSidechain": false,
+  "requestId": "req_011CbTKc8LS5NPtVEKDMs9Ff",
+  "type": "assistant",
+  "uuid": "5a7456b1-5a62-4c31-bd66-3987e7542401",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QBhcExVaeiiQybuV7PG9Af",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 169,
+      "cache_creation_input_tokens": 1416,
+      "cache_read_input_tokens": 16536,
+      "output_tokens": 349,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1416,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 169,
+          "output_tokens": 349,
+          "cache_read_input_tokens": 16536,
+          "cache_creation_input_tokens": 1416,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1416
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 39_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML researcher performing a deep analysis of a published paper.  **Today's date: 2026-05-27 (UTC).**  ## Your goal  Analyze this paper NOT just for what it does, but for **HOW it innov…",
+  "leafUuid": "5a7456b1-5a62-4c31-bd66-3987e7542401",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 40_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze SCoRe self-correction RL paper",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45"
+}
+```
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-27T15:37:11.873Z_
+
+<details><summary>↩ Tool result · `toolu_015b6Uz9TcvL7KEFYLxuYWHJ`</summary>
+
+```text
+Based on the web page content provided, I cannot find the paper "Training Language Models to Self-Correct via Reinforcement Learning" by Aviral Kumar or any associated forum links, paper IDs, or review page URLs.
+
+The content shown is limited to OpenReview.net's navigation menu and footer information, which includes general site links like "About OpenReview," "All Venues," and policy pages. To locate this specific paper, you would need to search directly on the OpenReview platform or visit their venues section.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fc101f52-64c3-42cf-b39e-b720696469e7",
+  "isSidechain": false,
+  "promptId": "038af6dc-dba3-4001-9426-894f41afea55",
+  "type": "user",
+  "uuid": "2d812fc3-d02b-4c82-8187-4d845450a95d",
+  "toolUseResult": {
+    "bytes": 62404,
+    "code": 200,
+    "codeText": "OK",
+    "result": "Based on the web page content provided, I cannot find the paper \"Training Language Models to Self-Correct via Reinforcement Learning\" by Aviral Kumar or any associated forum links, paper IDs, or review page URLs.\n\nThe content shown is limited to OpenReview.net's navigation menu and footer information, which includes general site links like \"About OpenReview,\" \"All Venues,\" and policy pages. To locate this specific paper, you would need to search directly on the OpenReview platform or visit their venues section.",
+    "durationMs": 4857,
+    "url": "https://openreview.net/search?term=Training+Language+Models+to+Self-Correct+via+Reinforcement+Learning"
+  },
+  "sourceToolAssistantUUID": "fc101f52-64c3-42cf-b39e-b720696469e7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-27T15:37:12.614Z_
+
+<details><summary>↩ Tool result · `toolu_01T6P7fxGwL6n4wBUY7gb7BU`</summary>
+
+```text
+I cannot locate a Google Scholar entry for the paper "Training Language Models to Self-Correct via Reinforcement Learning" (SCoRe) based on the provided content. 
+
+The webpage shown is a Google Scholar search results page in Japanese, but it displays only interface elements and error messages—no actual search results or paper information. The page indicates a system processing issue with the message "現在システムで処理を実行できません。しばらくしてからもう一度お試しください" (the system cannot currently process requests; please try again later).
+
+No OpenReview links, alternative URLs, or paper details are visible in the provided content. To find this paper, you would need to perform a direct search on Google Scholar or visit OpenReview.net directly.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5a7456b1-5a62-4c31-bd66-3987e7542401",
+  "isSidechain": false,
+  "promptId": "038af6dc-dba3-4001-9426-894f41afea55",
+  "type": "user",
+  "uuid": "3012da1f-27b6-40d7-bfef-237b75db2e5e",
+  "toolUseResult": {
+    "bytes": 133795,
+    "code": 200,
+    "codeText": "OK",
+    "result": "I cannot locate a Google Scholar entry for the paper \"Training Language Models to Self-Correct via Reinforcement Learning\" (SCoRe) based on the provided content. \n\nThe webpage shown is a Google Scholar search results page in Japanese, but it displays only interface elements and error messages—no actual search results or paper information. The page indicates a system processing issue with the message \"現在システムで処理を実行できません。しばらくしてからもう一度お試しください\" (the system cannot currently process requests; please try again later).\n\nNo OpenReview links, alternative URLs, or paper details are visible in the provided content. To find this paper, you would need to perform a direct search on Google Scholar or visit OpenReview.net directly.",
+    "durationMs": 4505,
+    "url": "https://scholar.google.com/scholar?q=%22Training+Language+Models+to+Self-Correct+via+Reinforcement+Learning%22+SCoRe"
+  },
+  "sourceToolAssistantUUID": "5a7456b1-5a62-4c31-bd66-3987e7542401",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-27T15:37:17.728Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01BZ7Tz9twa4LEJeJk2psZB8`</summary>
+
+```json
+{
+  "url": "https://openreview.net/forum?id=KgrMSnJpco",
+  "prompt": "Extract ALL reviewer comments, scores, and author responses for this ICLR 2025 paper about self-correction via reinforcement learning (SCoRe). Include reviewer ratings, strengths, weaknesses, questions, and author rebuttals."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3012da1f-27b6-40d7-bfef-237b75db2e5e",
+  "isSidechain": false,
+  "requestId": "req_011CbTKczQiWdG3Au8vpAxND",
+  "type": "assistant",
+  "uuid": "d97db33e-31fe-49ce-a393-a46c7e4eeb84",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015ngwvVFCcMkymyAaWvB87C",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 858,
+      "cache_read_input_tokens": 17952,
+      "output_tokens": 249,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 858,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 249,
+          "cache_read_input_tokens": 17952,
+          "cache_creation_input_tokens": 858,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 858
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-27T15:37:18.723Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01TyatYFehLLn9a3GJ1KT19m`</summary>
+
+```json
+{
+  "url": "https://iclr.cc/virtual/2025/oral/31802",
+  "prompt": "Find information about the SCoRe paper (Training Language Models to Self-Correct via Reinforcement Learning) at ICLR 2025. Extract any OpenReview links or review information."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d97db33e-31fe-49ce-a393-a46c7e4eeb84",
+  "isSidechain": false,
+  "requestId": "req_011CbTKczQiWdG3Au8vpAxND",
+  "type": "assistant",
+  "uuid": "101acbbc-724d-4875-b6a8-03b16cf5888b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015ngwvVFCcMkymyAaWvB87C",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 858,
+      "cache_read_input_tokens": 17952,
+      "output_tokens": 249,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 858,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 249,
+          "cache_read_input_tokens": 17952,
+          "cache_creation_input_tokens": 858,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 858
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-27T15:37:22.143Z_
+
+<details><summary>↩ Tool result · `toolu_01TyatYFehLLn9a3GJ1KT19m`</summary>
+
+```text
+I've reviewed the provided web page content, but it does not contain information about the SCoRe paper ("Training Language Models to Self-Correct via Reinforcement Learning"). 
+
+The page presents details about a different ICLR 2025 oral presentation: "A Computational Framework for Modeling Emergence of Color Vision in the Human Brain" by Atsunobu Kotani and Yi-Ren Ng.
+
+The only OpenReview link available on this page references that color vision paper: "https://openreview.net/forum?id=2025-Oral--20-685b0982"
+
+To find information about the SCoRe paper you're looking for, you would need to search the ICLR 2025 proceedings or OpenReview directly using different search criteria.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "101acbbc-724d-4875-b6a8-03b16cf5888b",
+  "isSidechain": false,
+  "promptId": "038af6dc-dba3-4001-9426-894f41afea55",
+  "type": "user",
+  "uuid": "7dfaccad-c400-4d15-ab76-eeacbfec8658",
+  "toolUseResult": {
+    "bytes": 82150,
+    "code": 200,
+    "codeText": "OK",
+    "result": "I've reviewed the provided web page content, but it does not contain information about the SCoRe paper (\"Training Language Models to Self-Correct via Reinforcement Learning\"). \n\nThe page presents details about a different ICLR 2025 oral presentation: \"A Computational Framework for Modeling Emergence of Color Vision in the Human Brain\" by Atsunobu Kotani and Yi-Ren Ng.\n\nThe only OpenReview link available on this page references that color vision paper: \"https://openreview.net/forum?id=2025-Oral--20-685b0982\"\n\nTo find information about the SCoRe paper you're looking for, you would need to search the ICLR 2025 proceedings or OpenReview directly using different search criteria.",
+    "durationMs": 3417,
+    "url": "https://iclr.cc/virtual/2025/oral/31802"
+  },
+  "sourceToolAssistantUUID": "101acbbc-724d-4875-b6a8-03b16cf5888b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-27T15:37:22.476Z_
+
+<details><summary>↩ Tool result · `toolu_01BZ7Tz9twa4LEJeJk2psZB8`</summary>
+
+```text
+# Unable to Retrieve Review Information
+
+Based on the web page content provided, I cannot extract any reviewer comments, scores, or author responses. The page displays an error message indicating that "The Note KgrMSnJpco was not found" on OpenReview.net.
+
+The content shows only the OpenReview platform's standard navigation elements, footer links, and error notification—no paper details, reviews, or discussion content are present.
+
+**To access the ICLR 2025 SCoRe paper reviews, you would need:**
+- A direct link to an accessible OpenReview page for that specific submission
+- Confirmation that the note ID is correct and publicly available
+
+I recommend visiting OpenReview.net directly or searching for the paper by title to locate active review content.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d97db33e-31fe-49ce-a393-a46c7e4eeb84",
+  "isSidechain": false,
+  "promptId": "038af6dc-dba3-4001-9426-894f41afea55",
+  "type": "user",
+  "uuid": "33347f49-265e-4983-b3e2-caa039f4de74",
+  "toolUseResult": {
+    "bytes": 58573,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Unable to Retrieve Review Information\n\nBased on the web page content provided, I cannot extract any reviewer comments, scores, or author responses. The page displays an error message indicating that \"The Note KgrMSnJpco was not found\" on OpenReview.net.\n\nThe content shows only the OpenReview platform's standard navigation elements, footer links, and error notification—no paper details, reviews, or discussion content are present.\n\n**To access the ICLR 2025 SCoRe paper reviews, you would need:**\n- A direct link to an accessible OpenReview page for that specific submission\n- Confirmation that the note ID is correct and publicly available\n\nI recommend visiting OpenReview.net directly or searching for the paper by title to locate active review content.",
+    "durationMs": 4744,
+    "url": "https://openreview.net/forum?id=KgrMSnJpco"
+  },
+  "sourceToolAssistantUUID": "d97db33e-31fe-49ce-a393-a46c7e4eeb84",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-27T15:37:25.752Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01RL4m8B2DQG7mCQEhtYHC9t`</summary>
+
+```json
+{
+  "url": "https://openreview.net/forum?id=u6DpXGbMpi",
+  "prompt": "Extract ALL reviewer comments, scores, strengths, weaknesses, questions, and author responses for this paper. Include the complete text of each review."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "33347f49-265e-4983-b3e2-caa039f4de74",
+  "isSidechain": false,
+  "requestId": "req_011CbTKdiaVWmkV4KpA3n58n",
+  "type": "assistant",
+  "uuid": "58cdc77d-d280-48e2-b14d-01a89da1db82",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QNxEzey3KVdLAZuJWgZ9s8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 208,
+      "cache_creation_input_tokens": 447,
+      "cache_read_input_tokens": 18810,
+      "output_tokens": 266,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 447,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 208,
+          "output_tokens": 266,
+          "cache_read_input_tokens": 18810,
+          "cache_creation_input_tokens": 447,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 447
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-27T15:37:27.688Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_014bWrfZWA7LJzRyEFEqNAc2`</summary>
+
+```json
+{
+  "url": "https://www.semanticscholar.org/paper/Training-Language-Models-to-Self-Correct-via-Kumar-Zhuang/8e87a8c2b29b07cf5bedc2dd3d69e1dcebd38c0a",
+  "prompt": "Extract information about this paper including any links to OpenReview, ICLR proceedings, or review pages. Also extract the full abstract and any summary information available."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "58cdc77d-d280-48e2-b14d-01a89da1db82",
+  "isSidechain": false,
+  "requestId": "req_011CbTKdiaVWmkV4KpA3n58n",
+  "type": "assistant",
+  "uuid": "d3c7e795-5d2d-4f87-b186-7527530363dd",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QNxEzey3KVdLAZuJWgZ9s8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 208,
+      "cache_creation_input_tokens": 447,
+      "cache_read_input_tokens": 18810,
+      "output_tokens": 266,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 447,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 208,
+          "output_tokens": 266,
+          "cache_read_input_tokens": 18810,
+          "cache_creation_input_tokens": 447,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 447
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-27T15:37:27.817Z_
+
+<details><summary>↩ Tool result · `toolu_01RL4m8B2DQG7mCQEhtYHC9t`</summary>
+
+```text
+I cannot extract reviewer comments, scores, strengths, weaknesses, questions, or author responses because the webpage content shows only an error message.
+
+The page displays: "The Note u6DpXGbMpi was not found"
+
+This indicates the requested paper or review document is not accessible at this URL. No review data is available in the provided content to extract.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "58cdc77d-d280-48e2-b14d-01a89da1db82",
+  "isSidechain": false,
+  "promptId": "038af6dc-dba3-4001-9426-894f41afea55",
+  "type": "user",
+  "uuid": "da4c1d79-e8a5-445f-8579-e02caff91b90",
+  "toolUseResult": {
+    "bytes": 58573,
+    "code": 200,
+    "codeText": "OK",
+    "result": "I cannot extract reviewer comments, scores, strengths, weaknesses, questions, or author responses because the webpage content shows only an error message.\n\nThe page displays: \"The Note u6DpXGbMpi was not found\"\n\nThis indicates the requested paper or review document is not accessible at this URL. No review data is available in the provided content to extract.",
+    "durationMs": 2063,
+    "url": "https://openreview.net/forum?id=u6DpXGbMpi"
+  },
+  "sourceToolAssistantUUID": "58cdc77d-d280-48e2-b14d-01a89da1db82",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-27T15:37:30.020Z_
+
+<details><summary>↩ Tool result · `toolu_014bWrfZWA7LJzRyEFEqNAc2`</summary>
+
+```text
+I appreciate your request, but the web page content provided appears to be empty or blank. There is no paper information, abstract, links, or content for me to extract.
+
+To help you effectively, please provide:
+- The actual web page content or URL
+- The paper title
+- Author information
+- Abstract text
+- Any relevant links
+
+Once you share the content, I'll be happy to extract the information following your guidelines about character limits, quotations, and source attribution.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d3c7e795-5d2d-4f87-b186-7527530363dd",
+  "isSidechain": false,
+  "promptId": "038af6dc-dba3-4001-9426-894f41afea55",
+  "type": "user",
+  "uuid": "3677aa6a-93dc-416f-a352-e00508d5ab55",
+  "toolUseResult": {
+    "bytes": 0,
+    "code": 202,
+    "codeText": "Accepted",
+    "result": "I appreciate your request, but the web page content provided appears to be empty or blank. There is no paper information, abstract, links, or content for me to extract.\n\nTo help you effectively, please provide:\n- The actual web page content or URL\n- The paper title\n- Author information\n- Abstract text\n- Any relevant links\n\nOnce you share the content, I'll be happy to extract the information following your guidelines about character limits, quotations, and source attribution.",
+    "durationMs": 2330,
+    "url": "https://www.semanticscholar.org/paper/Training-Language-Models-to-Self-Correct-via-Kumar-Zhuang/8e87a8c2b29b07cf5bedc2dd3d69e1dcebd38c0a"
+  },
+  "sourceToolAssistantUUID": "d3c7e795-5d2d-4f87-b186-7527530363dd",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-27T15:37:33.180Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01PwXditbFQDdavekSeNpXpF`</summary>
+
+```json
+{
+  "url": "https://openreview.net/forum?id=qcFB3MUxnB",
+  "prompt": "Extract ALL reviewer comments, scores, strengths, weaknesses, and author responses for this paper about self-correction via reinforcement learning."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3677aa6a-93dc-416f-a352-e00508d5ab55",
+  "isSidechain": false,
+  "requestId": "req_011CbTKeGqDbpdPSWPk7geC1",
+  "type": "assistant",
+  "uuid": "34f205ef-94b6-477a-8849-85c48d4cd985",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y2DNfPjggRgRCGkGVBH3VK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 712,
+      "cache_read_input_tokens": 19257,
+      "output_tokens": 241,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 712,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 241,
+          "cache_read_input_tokens": 19257,
+          "cache_creation_input_tokens": 712,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 712
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-27T15:37:34.186Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01H73E3gNeh4DrwXSvJAddQU`</summary>
+
+```json
+{
+  "url": "https://iclr.cc/virtual/2025/search?query=self-correct+reinforcement+learning",
+  "prompt": "Find the ICLR 2025 page for the paper \"Training Language Models to Self-Correct via Reinforcement Learning\" (SCoRe) by Aviral Kumar. Extract the OpenReview forum link."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "34f205ef-94b6-477a-8849-85c48d4cd985",
+  "isSidechain": false,
+  "requestId": "req_011CbTKeGqDbpdPSWPk7geC1",
+  "type": "assistant",
+  "uuid": "93df6bb2-33b8-48e1-8432-a4f8c69757ee",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y2DNfPjggRgRCGkGVBH3VK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 712,
+      "cache_read_input_tokens": 19257,
+      "output_tokens": 241,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 712,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 241,
+          "cache_read_input_tokens": 19257,
+          "cache_creation_input_tokens": 712,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 712
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-27T15:37:35.770Z_
+
+<details><summary>↩ Tool result · `toolu_01PwXditbFQDdavekSeNpXpF`</summary>
+
+```text
+I cannot extract the requested reviewer comments, scores, strengths, weaknesses, and author responses because the web page content provided is an error page from OpenReview.
+
+The page displays: "The Note qcFB3MUxnB was not found"
+
+This indicates the specific paper you're referencing cannot be accessed. The page contains only navigation elements and footer information, not any peer review data or paper content. To obtain the review information you're seeking, you would need to:
+
+1. Verify the correct paper identifier
+2. Ensure the paper exists on OpenReview
+3. Access a working version of the paper's page
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "34f205ef-94b6-477a-8849-85c48d4cd985",
+  "isSidechain": false,
+  "promptId": "038af6dc-dba3-4001-9426-894f41afea55",
+  "type": "user",
+  "uuid": "f4b0798b-9a17-47a4-aa0b-bd2fd8b5a553",
+  "toolUseResult": {
+    "bytes": 58573,
+    "code": 200,
+    "codeText": "OK",
+    "result": "I cannot extract the requested reviewer comments, scores, strengths, weaknesses, and author responses because the web page content provided is an error page from OpenReview.\n\nThe page displays: \"The Note qcFB3MUxnB was not found\"\n\nThis indicates the specific paper you're referencing cannot be accessed. The page contains only navigation elements and footer information, not any peer review data or paper content. To obtain the review information you're seeking, you would need to:\n\n1. Verify the correct paper identifier\n2. Ensure the paper exists on OpenReview\n3. Access a working version of the paper's page",
+    "durationMs": 2585,
+    "url": "https://openreview.net/forum?id=qcFB3MUxnB"
+  },
+  "sourceToolAssistantUUID": "34f205ef-94b6-477a-8849-85c48d4cd985",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-27T15:37:42.128Z_
+
+<details><summary>↩ Tool result · `toolu_01H73E3gNeh4DrwXSvJAddQU`</summary>
+
+```text
+# Response
+
+Based on the webpage content provided, I can confirm that "Training Language Models to Self-Correct via Reinforcement Learning" by Aviral Kumar appears in the ICLR 2025 search results in two formats:
+
+1. **Oral presentation** (Sat 0:30): `/virtual/2025/oral/31899`
+2. **Poster presentation** (Fri 19:00): `/virtual/2025/poster/30501`
+
+However, the content shown does not include a direct OpenReview forum link. The page indicates that "ICLR Proceedings at OpenReview" are available at `https://openreview.net/group?id=ICLR.cc`, but the specific OpenReview forum link for this paper is not displayed in the provided excerpt. To locate the exact OpenReview forum URL, you would need to visit one of the event pages listed above or access the OpenReview proceedings directly.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "93df6bb2-33b8-48e1-8432-a4f8c69757ee",
+  "isSidechain": false,
+  "promptId": "038af6dc-dba3-4001-9426-894f41afea55",
+  "type": "user",
+  "uuid": "898d2900-01c1-4d65-8caa-05a6a3319f9b",
+  "toolUseResult": {
+    "bytes": 57860,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Response\n\nBased on the webpage content provided, I can confirm that \"Training Language Models to Self-Correct via Reinforcement Learning\" by Aviral Kumar appears in the ICLR 2025 search results in two formats:\n\n1. **Oral presentation** (Sat 0:30): `/virtual/2025/oral/31899`\n2. **Poster presentation** (Fri 19:00): `/virtual/2025/poster/30501`\n\nHowever, the content shown does not include a direct OpenReview forum link. The page indicates that \"ICLR Proceedings at OpenReview\" are available at `https://openreview.net/group?id=ICLR.cc`, but the specific OpenReview forum link for this paper is not displayed in the provided excerpt. To locate the exact OpenReview forum URL, you would need to visit one of the event pages listed above or access the OpenReview proceedings directly.",
+    "durationMs": 7940,
+    "url": "https://iclr.cc/virtual/2025/search?query=self-correct+reinforcement+learning"
+  },
+  "sourceToolAssistantUUID": "93df6bb2-33b8-48e1-8432-a4f8c69757ee",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 55 · 2026-05-27T15:37:42.135Z_
+
+```json
+{
+  "parentUuid": "898d2900-01c1-4d65-8caa-05a6a3319f9b",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "ebafcc44-c005-4d32-95e5-9ed1191250c0",
+  "timestamp": "2026-05-27T15:37:42.135Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 56 · 2026-05-27T15:37:45.013Z_
+
+Good, found the ICLR virtual page references. Let me use those to find the OpenReview link.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ebafcc44-c005-4d32-95e5-9ed1191250c0",
+  "isSidechain": false,
+  "requestId": "req_011CbTKfAeB66Wfi2Z9dMRBn",
+  "type": "assistant",
+  "uuid": "f9ea4862-ad0c-4174-8f83-4a7170729060",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014xhycbdkp1dVo3i9W3afAA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 748,
+      "cache_read_input_tokens": 19969,
+      "output_tokens": 250,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 748,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 250,
+          "cache_read_input_tokens": 19969,
+          "cache_creation_input_tokens": 748,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 748
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-27T15:37:45.954Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01VatnZQbDTVCMz2qvmLgodj`</summary>
+
+```json
+{
+  "url": "https://iclr.cc/virtual/2025/poster/30501",
+  "prompt": "Find the OpenReview forum link for this paper \"Training Language Models to Self-Correct via Reinforcement Learning\". Extract any OpenReview URL or forum ID."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f9ea4862-ad0c-4174-8f83-4a7170729060",
+  "isSidechain": false,
+  "requestId": "req_011CbTKfAeB66Wfi2Z9dMRBn",
+  "type": "assistant",
+  "uuid": "71f3f97a-3cb8-4618-8228-aaf8d0b7aa01",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014xhycbdkp1dVo3i9W3afAA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 748,
+      "cache_read_input_tokens": 19969,
+      "output_tokens": 250,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 748,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 250,
+          "cache_read_input_tokens": 19969,
+          "cache_creation_input_tokens": 748,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 748
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58 · 2026-05-27T15:37:46.585Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01LhCztGCfu68WntBkKDZJXk`</summary>
+
+```json
+{
+  "url": "https://iclr.cc/virtual/2025/oral/31899",
+  "prompt": "Find the OpenReview forum link for this paper \"Training Language Models to Self-Correct via Reinforcement Learning\". Extract any OpenReview URL, forum ID, or review information."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "71f3f97a-3cb8-4618-8228-aaf8d0b7aa01",
+  "isSidechain": false,
+  "requestId": "req_011CbTKfAeB66Wfi2Z9dMRBn",
+  "type": "assistant",
+  "uuid": "b1013119-0ece-412d-98a2-da4e3ecf7db4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014xhycbdkp1dVo3i9W3afAA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 748,
+      "cache_read_input_tokens": 19969,
+      "output_tokens": 250,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 748,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 250,
+          "cache_read_input_tokens": 19969,
+          "cache_creation_input_tokens": 748,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 748
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-27T15:37:48.511Z_
+
+<details><summary>↩ Tool result · `toolu_01VatnZQbDTVCMz2qvmLgodj`</summary>
+
+```text
+# OpenReview Forum Link
+
+The OpenReview forum link for this paper is provided in the document:
+
+**URL:** https://openreview.net/forum?id=CjwERcAU7w
+
+**Forum ID:** CjwERcAU7w
+
+This link appears in the paper's metadata section, labeled as "[OpenReview]" alongside other paper details.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "71f3f97a-3cb8-4618-8228-aaf8d0b7aa01",
+  "isSidechain": false,
+  "promptId": "038af6dc-dba3-4001-9426-894f41afea55",
+  "type": "user",
+  "uuid": "c32bf359-64d8-4e1b-8e2e-df152138b43d",
+  "toolUseResult": {
+    "bytes": 83177,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# OpenReview Forum Link\n\nThe OpenReview forum link for this paper is provided in the document:\n\n**URL:** https://openreview.net/forum?id=CjwERcAU7w\n\n**Forum ID:** CjwERcAU7w\n\nThis link appears in the paper's metadata section, labeled as \"[OpenReview]\" alongside other paper details.",
+    "durationMs": 2554,
+    "url": "https://iclr.cc/virtual/2025/poster/30501"
+  },
+  "sourceToolAssistantUUID": "71f3f97a-3cb8-4618-8228-aaf8d0b7aa01",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-27T15:37:48.991Z_
+
+<details><summary>↩ Tool result · `toolu_01LhCztGCfu68WntBkKDZJXk`</summary>
+
+```text
+# OpenReview Link for "Training Language Models to Self-Correct via Reinforcement Learning"
+
+The OpenReview forum link for this paper is:
+
+**https://openreview.net/forum?id=2025-Oral--3518-b401f1b4**
+
+This link appears in the document under the paper's metadata section, labeled as "[OpenReview]" and provides direct access to the paper's discussion forum on the OpenReview platform.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b1013119-0ece-412d-98a2-da4e3ecf7db4",
+  "isSidechain": false,
+  "promptId": "038af6dc-dba3-4001-9426-894f41afea55",
+  "type": "user",
+  "uuid": "6d1f4a0c-34f0-4b83-aa7d-2653ff7caa8d",
+  "toolUseResult": {
+    "bytes": 82181,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# OpenReview Link for \"Training Language Models to Self-Correct via Reinforcement Learning\"\n\nThe OpenReview forum link for this paper is:\n\n**https://openreview.net/forum?id=2025-Oral--3518-b401f1b4**\n\nThis link appears in the document under the paper's metadata section, labeled as \"[OpenReview]\" and provides direct access to the paper's discussion forum on the OpenReview platform.",
+    "durationMs": 2403,
+    "url": "https://iclr.cc/virtual/2025/oral/31899"
+  },
+  "sourceToolAssistantUUID": "b1013119-0ece-412d-98a2-da4e3ecf7db4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61 · 2026-05-27T15:37:51.973Z_
+
+Now let me fetch the OpenReview page with reviews and also get more paper details.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6d1f4a0c-34f0-4b83-aa7d-2653ff7caa8d",
+  "isSidechain": false,
+  "requestId": "req_011CbTKffvodVFdVZGkrYc7U",
+  "type": "assistant",
+  "uuid": "1946db0f-e189-4c3f-9342-1aee1fba5a8d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q5N8SmF1BsdJcAvcDHm3mA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 496,
+      "cache_read_input_tokens": 20717,
+      "output_tokens": 208,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 496,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 208,
+          "cache_read_input_tokens": 20717,
+          "cache_creation_input_tokens": 496,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 496
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62 · 2026-05-27T15:37:54.227Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01A2mf1vJHrfsjUk5pUfNi2N`</summary>
+
+```json
+{
+  "url": "https://openreview.net/forum?id=CjwERcAU7w",
+  "prompt": "Extract ALL reviewer comments, scores, strengths, weaknesses, questions, and author responses for this paper. I need:\n1. Each reviewer's overall score and confidence score\n2. Detailed strengths listed by each reviewer\n3. Detailed weaknesses/concerns listed by each reviewer\n4. Questions posed by reviewers\n5. Author responses to each review\n6. Any meta-review or area chair comments\n7. Final decisions\n\nBe as complete and detailed as possible."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1946db0f-e189-4c3f-9342-1aee1fba5a8d",
+  "isSidechain": false,
+  "requestId": "req_011CbTKffvodVFdVZGkrYc7U",
+  "type": "assistant",
+  "uuid": "3536fb6c-a2f8-499a-844d-f26dcee3e8f1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q5N8SmF1BsdJcAvcDHm3mA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 496,
+      "cache_read_input_tokens": 20717,
+      "output_tokens": 208,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 496,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 208,
+          "cache_read_input_tokens": 20717,
+          "cache_creation_input_tokens": 496,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 496
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 63_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML researcher performing a deep analysis of a published paper.  **Today's date: 2026-05-27 (UTC).**  ## Your goal  Analyze this paper NOT just for what it does, but for **HOW it innov…",
+  "leafUuid": "3536fb6c-a2f8-499a-844d-f26dcee3e8f1",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 64_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze SCoRe self-correction RL paper",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45"
+}
+```
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-27T15:37:58.216Z_
+
+<details><summary>↩ Tool result · `toolu_01A2mf1vJHrfsjUk5pUfNi2N`</summary>
+
+```text
+# Analysis of Reviewer Comments
+
+Based on the provided web page content, I cannot extract the detailed review information you requested. 
+
+The page displays only the **paper metadata and abstract** for "Training Language Models to Self-Correct via Reinforcement Learning" (Submission #3518, ICLR 2025). The content includes:
+
+- Title, authors, and publication date
+- Abstract summarizing the SCoRe method
+- Keywords and primary research area
+- Submission compliance certifications
+
+**Missing Information:**
+The following items you requested are **not present** on this page:
+1. Individual reviewer scores and confidence levels
+2. Detailed strengths/weaknesses from reviewers
+3. Reviewer questions
+4. Author responses
+5. Meta-reviews or area chair comments
+6. Final acceptance decisions
+
+**To Access Reviews:** You would need to visit the full OpenReview submission page and navigate to sections labeled "Reviews," "Comments," or "Author Responses"—these typically appear below the abstract on dedicated review pages but are not included in the content provided.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3536fb6c-a2f8-499a-844d-f26dcee3e8f1",
+  "isSidechain": false,
+  "promptId": "038af6dc-dba3-4001-9426-894f41afea55",
+  "type": "user",
+  "uuid": "a46608bc-9794-4ebd-bd33-7a5cb3f267f3",
+  "toolUseResult": {
+    "bytes": 94744,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Analysis of Reviewer Comments\n\nBased on the provided web page content, I cannot extract the detailed review information you requested. \n\nThe page displays only the **paper metadata and abstract** for \"Training Language Models to Self-Correct via Reinforcement Learning\" (Submission #3518, ICLR 2025). The content includes:\n\n- Title, authors, and publication date\n- Abstract summarizing the SCoRe method\n- Keywords and primary research area\n- Submission compliance certifications\n\n**Missing Information:**\nThe following items you requested are **not present** on this page:\n1. Individual reviewer scores and confidence levels\n2. Detailed strengths/weaknesses from reviewers\n3. Reviewer questions\n4. Author responses\n5. Meta-reviews or area chair comments\n6. Final acceptance decisions\n\n**To Access Reviews:** You would need to visit the full OpenReview submission page and navigate to sections labeled \"Reviews,\" \"Comments,\" or \"Author Responses\"—these typically appear below the abstract on dedicated review pages but are not included in the content provided.",
+    "durationMs": 3985,
+    "url": "https://openreview.net/forum?id=CjwERcAU7w"
+  },
+  "sourceToolAssistantUUID": "3536fb6c-a2f8-499a-844d-f26dcee3e8f1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66 · 2026-05-27T15:38:02.132Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_014fxcQbP1FmycUze8EcJKSg`</summary>
+
+```json
+{
+  "url": "https://openreview.net/forum?id=CjwERcAU7w&noteId=CjwERcAU7w",
+  "prompt": "Extract ALL reviewer comments and reviews visible on this page. Look for sections labeled \"Official Review\", reviewer scores, strengths, weaknesses, and any discussion. Extract everything you can find."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a46608bc-9794-4ebd-bd33-7a5cb3f267f3",
+  "isSidechain": false,
+  "requestId": "req_011CbTKgMNNbrKaoG5mnaxYd",
+  "type": "assistant",
+  "uuid": "f39403d4-ea00-477e-8fe5-58b0582b8d7b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016Yc9DU1X7SSRjdRKNZAYcU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 449,
+      "cache_read_input_tokens": 21213,
+      "output_tokens": 248,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 449,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 248,
+          "cache_read_input_tokens": 21213,
+          "cache_creation_input_tokens": 449,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 449
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-27T15:38:03.639Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01F1Mr1oV1efqxF6YpSigqzG`</summary>
+
+```json
+{
+  "url": "https://api.openreview.net/notes?forum=CjwERcAU7w",
+  "prompt": "Extract all review data from this API response. I need reviewer scores, strengths, weaknesses, questions, and any author responses. Extract the complete review text for each reviewer."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f39403d4-ea00-477e-8fe5-58b0582b8d7b",
+  "isSidechain": false,
+  "requestId": "req_011CbTKgMNNbrKaoG5mnaxYd",
+  "type": "assistant",
+  "uuid": "b91bb1bd-cde8-4766-982d-c4f54a03c0d5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016Yc9DU1X7SSRjdRKNZAYcU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 449,
+      "cache_read_input_tokens": 21213,
+      "output_tokens": 248,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 449,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 248,
+          "cache_read_input_tokens": 21213,
+          "cache_creation_input_tokens": 449,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 449
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-27T15:38:05.198Z_
+
+<details><summary>↩ Tool result · `toolu_014fxcQbP1FmycUze8EcJKSg`</summary>
+
+```text
+# Review Comments Extraction
+
+Based on my examination of the provided web page content, **no reviewer comments or official reviews are visible on this page**.
+
+The page displays:
+- Paper metadata (title, authors, publication date)
+- An abstract of the research
+- Submission information and ethics certifications
+- Footer navigation links
+
+However, the actual reviewer comments, official reviews, scores, strengths/weaknesses assessments, and discussion sections are **not included** in the content provided. These review materials would typically appear in separate sections on OpenReview but are absent from this particular page extract.
+
+To access reviewer comments for this paper, one would need to view the full OpenReview page, which may require appropriate access permissions depending on the conference's review visibility settings.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f39403d4-ea00-477e-8fe5-58b0582b8d7b",
+  "isSidechain": false,
+  "promptId": "038af6dc-dba3-4001-9426-894f41afea55",
+  "type": "user",
+  "uuid": "0da656bf-c99b-4c83-9ac3-57e92cbbd558",
+  "toolUseResult": {
+    "bytes": 94827,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Review Comments Extraction\n\nBased on my examination of the provided web page content, **no reviewer comments or official reviews are visible on this page**.\n\nThe page displays:\n- Paper metadata (title, authors, publication date)\n- An abstract of the research\n- Submission information and ethics certifications\n- Footer navigation links\n\nHowever, the actual reviewer comments, official reviews, scores, strengths/weaknesses assessments, and discussion sections are **not included** in the content provided. These review materials would typically appear in separate sections on OpenReview but are absent from this particular page extract.\n\nTo access reviewer comments for this paper, one would need to view the full OpenReview page, which may require appropriate access permissions depending on the conference's review visibility settings.",
+    "durationMs": 3065,
+    "url": "https://openreview.net/forum?id=CjwERcAU7w&noteId=CjwERcAU7w"
+  },
+  "sourceToolAssistantUUID": "f39403d4-ea00-477e-8fe5-58b0582b8d7b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-27T15:38:09.315Z_
+
+<details><summary>↩ Tool result · `toolu_01F1Mr1oV1efqxF6YpSigqzG`</summary>
+
+```text
+# Review Data Extraction Results
+
+Based on the API response provided, there is **no review data to extract**. 
+
+The response shows:
+- `"notes": []` - an empty notes array
+- `"count": 0` - zero reviews present
+
+There are no reviewer scores, strengths, weaknesses, questions, author responses, or review text available in this dataset.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b91bb1bd-cde8-4766-982d-c4f54a03c0d5",
+  "isSidechain": false,
+  "promptId": "038af6dc-dba3-4001-9426-894f41afea55",
+  "type": "user",
+  "uuid": "27d0a357-6719-4b72-9889-784a8e231944",
+  "toolUseResult": {
+    "bytes": 22,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Review Data Extraction Results\n\nBased on the API response provided, there is **no review data to extract**. \n\nThe response shows:\n- `\"notes\": []` - an empty notes array\n- `\"count\": 0` - zero reviews present\n\nThere are no reviewer scores, strengths, weaknesses, questions, author responses, or review text available in this dataset.",
+    "durationMs": 5675,
+    "url": "https://api.openreview.net/notes?forum=CjwERcAU7w"
+  },
+  "sourceToolAssistantUUID": "b91bb1bd-cde8-4766-982d-c4f54a03c0d5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70 · 2026-05-27T15:38:13.839Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01YZhQ6pVdLzRwQhDD4iSjez`</summary>
+
+```json
+{
+  "command": "curl -s \"https://api.openreview.net/notes/search?query=Training+Language+Models+to+Self-Correct+via+Reinforcement+Learning&source=forum&limit=5\" 2>/dev/null | python3 -c \"import sys,json; data=json.load(sys.stdin); [print(n.get('id',''),n.get('forum',''),n.get('content',{}).get('title',{}).get('value','')[:80]) for n in data.get('notes',[])]\" 2>/dev/null || echo \"API call failed\"",
+  "description": "Search OpenReview API for the SCoRe paper"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "27d0a357-6719-4b72-9889-784a8e231944",
+  "isSidechain": false,
+  "requestId": "req_011CbTKhAr8uBM3vaohxDY9i",
+  "type": "assistant",
+  "uuid": "6f9f845a-9010-4273-83bb-7a837bb6236f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WjBmQvmxrYwcwMEmUS6h1S",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 549,
+      "cache_read_input_tokens": 21662,
+      "output_tokens": 220,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 549,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 220,
+          "cache_read_input_tokens": 21662,
+          "cache_creation_input_tokens": 549,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 549
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-27T15:38:13.869Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01YZhQ6pVdLzRwQhDD4iSjez`</summary>
+
+```text
+This Bash command contains multiple operations. The following parts require approval: curl -s "https://api.openreview.net/notes/search?query=Training+Language+Models+to+Self-Correct+via+Reinforcement+Learning&source=forum&limit=5", python3 -c "import sys,json; data=json.load(sys.stdin); [print(n.get('id',''),n.get('forum',''),n.get('content',{}).get('title',{}).get('value','')[:80]) for n in data.get('notes',[])]" || echo "API call failed"
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6f9f845a-9010-4273-83bb-7a837bb6236f",
+  "isSidechain": false,
+  "promptId": "038af6dc-dba3-4001-9426-894f41afea55",
+  "type": "user",
+  "uuid": "6f74a17f-5e9e-414e-ab7c-64a64dbe83f4",
+  "toolUseResult": "Error: This Bash command contains multiple operations. The following parts require approval: curl -s \"https://api.openreview.net/notes/search?query=Training+Language+Models+to+Self-Correct+via+Reinforcement+Learning&source=forum&limit=5\", python3 -c \"import sys,json; data=json.load(sys.stdin); [print(n.get('id',''),n.get('forum',''),n.get('content',{}).get('title',{}).get('value','')[:80]) for n in data.get('notes',[])]\" || echo \"API call failed\"",
+  "sourceToolAssistantUUID": "6f9f845a-9010-4273-83bb-7a837bb6236f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72 · 2026-05-27T15:38:17.326Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01VCrUQxkgXdqzkP7MRqKTyp`</summary>
+
+```json
+{
+  "command": "curl -s \"https://api.openreview.net/notes/search?query=Training+Language+Models+to+Self-Correct+via+Reinforcement+Learning&source=forum&limit=5\"",
+  "description": "Search OpenReview API for the SCoRe paper forum ID"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6f74a17f-5e9e-414e-ab7c-64a64dbe83f4",
+  "isSidechain": false,
+  "requestId": "req_011CbTKhXnDukGhxr6jaELSP",
+  "type": "assistant",
+  "uuid": "8178b32e-72d4-4bb9-b802-6245faeec599",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FseVqNfRSESh6GBYh5HbiF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 382,
+      "cache_read_input_tokens": 22211,
+      "output_tokens": 130,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 382,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 130,
+          "cache_read_input_tokens": 22211,
+          "cache_creation_input_tokens": 382,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 382
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-27T15:38:17.333Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01VCrUQxkgXdqzkP7MRqKTyp`</summary>
+
+```text
+This command requires approval
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8178b32e-72d4-4bb9-b802-6245faeec599",
+  "isSidechain": false,
+  "promptId": "038af6dc-dba3-4001-9426-894f41afea55",
+  "type": "user",
+  "uuid": "504376d4-8912-43f0-8d14-dcbcea3a2519",
+  "toolUseResult": "Error: This command requires approval",
+  "sourceToolAssistantUUID": "8178b32e-72d4-4bb9-b802-6245faeec599",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74 · 2026-05-27T15:38:20.558Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_015BpN4vo7f1TCR4cX8AXAWH`</summary>
+
+```json
+{
+  "url": "https://api.openreview.net/notes/search?query=Training+Language+Models+to+Self-Correct+via+Reinforcement+Learning&source=forum&limit=5",
+  "prompt": "Extract all note IDs and forum IDs from this API response. I'm looking for the paper \"Training Language Models to Self-Correct via Reinforcement Learning\"."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "504376d4-8912-43f0-8d14-dcbcea3a2519",
+  "isSidechain": false,
+  "requestId": "req_011CbTKhmPGxqonzNq8EqaSV",
+  "type": "assistant",
+  "uuid": "b6446dd3-6073-42bd-975d-52149db5cbf0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013RnxBPWBgfdXrTnNuKaBkE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 154,
+      "cache_read_input_tokens": 22593,
+      "output_tokens": 147,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 154,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 147,
+          "cache_read_input_tokens": 22593,
+          "cache_creation_input_tokens": 154,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 154
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-27T15:38:40.170Z_
+
+<details><summary>↩ Tool result · `toolu_015BpN4vo7f1TCR4cX8AXAWH`</summary>
+
+```text
+# Search Results
+
+I reviewed the provided JSON data containing 6 paper records, but **the paper "Training Language Models to Self-Correct via Reinforcement Learning" is not present** in this API response.
+
+## Papers Found in This Dataset:
+
+| Note ID | Forum ID | Title |
+|---------|----------|-------|
+| 4D4TSJE6-K | 4D4TSJE6-K | Learning Math Reasoning from Self-Sampled Correct and Partially-Correct Solutions |
+| HyeG9yHKPr | HyeG9yHKPr | Causally Correct Partial Models for Reinforcement Learning |
+| bwGy1ZeqvCX | bwGy1ZeqvCX | Generative Self-training Improves Pre-training for Visual Dialog |
+| lq_khmyRdII | lq_khmyRdII | Better Language Models of Code through Self-Improvement |
+| cF05wEwD2Qu | cF05wEwD2Qu | On Combining Global and Localized Self-Supervised Models of Speech |
+
+**Conclusion:** The target paper does not appear in this dataset. You may need to search with different parameters or check additional API responses.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b6446dd3-6073-42bd-975d-52149db5cbf0",
+  "isSidechain": false,
+  "promptId": "038af6dc-dba3-4001-9426-894f41afea55",
+  "type": "user",
+  "uuid": "77d99f79-df4a-48ec-b7e0-d2d33a7a22db",
+  "toolUseResult": {
+    "bytes": 14358,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Search Results\n\nI reviewed the provided JSON data containing 6 paper records, but **the paper \"Training Language Models to Self-Correct via Reinforcement Learning\" is not present** in this API response.\n\n## Papers Found in This Dataset:\n\n| Note ID | Forum ID | Title |\n|---------|----------|-------|\n| 4D4TSJE6-K | 4D4TSJE6-K | Learning Math Reasoning from Self-Sampled Correct and Partially-Correct Solutions |\n| HyeG9yHKPr | HyeG9yHKPr | Causally Correct Partial Models for Reinforcement Learning |\n| bwGy1ZeqvCX | bwGy1ZeqvCX | Generative Self-training Improves Pre-training for Visual Dialog |\n| lq_khmyRdII | lq_khmyRdII | Better Language Models of Code through Self-Improvement |\n| cF05wEwD2Qu | cF05wEwD2Qu | On Combining Global and Localized Self-Supervised Models of Speech |\n\n**Conclusion:** The target paper does not appear in this dataset. You may need to search with different parameters or check additional API responses.",
+    "durationMs": 19610,
+    "url": "https://api.openreview.net/notes/search?query=Training+Language+Models+to+Self-Correct+via+Reinforcement+Learning&source=forum&limit=5"
+  },
+  "sourceToolAssistantUUID": "b6446dd3-6073-42bd-975d-52149db5cbf0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 76 · 2026-05-27T15:38:40.177Z_
+
+```json
+{
+  "parentUuid": "77d99f79-df4a-48ec-b7e0-d2d33a7a22db",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "62917dab-a568-4d0e-b73b-76d43db1a3e1",
+  "timestamp": "2026-05-27T15:38:40.177Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 77 · 2026-05-27T15:38:43.123Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me try a different approach to find the OpenReview reviews. Let me try to use the V2 API which is what OpenReview currently uses.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "62917dab-a568-4d0e-b73b-76d43db1a3e1",
+  "isSidechain": false,
+  "requestId": "req_011CbTKjSneEQTpxTV3kLLj5",
+  "type": "assistant",
+  "uuid": "ae531ac5-d54f-40f2-a507-aa1a875ba44d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GiZjFpPqojuMu8NS5Hb4ZF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 553,
+      "cache_read_input_tokens": 22747,
+      "output_tokens": 317,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 553,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 317,
+          "cache_read_input_tokens": 22747,
+          "cache_creation_input_tokens": 553,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 553
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 78 · 2026-05-27T15:38:44.063Z_
+
+Let me try the OpenReview V2 API and also get more paper content from a blog post or summary.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ae531ac5-d54f-40f2-a507-aa1a875ba44d",
+  "isSidechain": false,
+  "requestId": "req_011CbTKjSneEQTpxTV3kLLj5",
+  "type": "assistant",
+  "uuid": "9a531910-62c3-465d-b832-21a9e917b30a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GiZjFpPqojuMu8NS5Hb4ZF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 553,
+      "cache_read_input_tokens": 22747,
+      "output_tokens": 317,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 553,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 317,
+          "cache_read_input_tokens": 22747,
+          "cache_creation_input_tokens": 553,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 553
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-27T15:38:45.420Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_019psXEKLdgg5y6y8mRrUXUu`</summary>
+
+```json
+{
+  "url": "https://api2.openreview.net/notes?content.title=Training+Language+Models+to+Self-Correct+via+Reinforcement+Learning&domain=ICLR.cc/2025/Conference&limit=5",
+  "prompt": "Extract the forum ID, note ID, and any other identifiers for this paper from the API response."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9a531910-62c3-465d-b832-21a9e917b30a",
+  "isSidechain": false,
+  "requestId": "req_011CbTKjSneEQTpxTV3kLLj5",
+  "type": "assistant",
+  "uuid": "8b763332-05fd-484b-9694-3dbf2d25486a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GiZjFpPqojuMu8NS5Hb4ZF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 553,
+      "cache_read_input_tokens": 22747,
+      "output_tokens": 317,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 553,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 317,
+          "cache_read_input_tokens": 22747,
+          "cache_creation_input_tokens": 553,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 553
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-27T15:38:45.884Z_
+
+<details><summary>↩ Tool result · `toolu_019psXEKLdgg5y6y8mRrUXUu`</summary>
+
+```text
+The server returned HTTP 400 Bad Request.
+
+The response body was not retrieved. If this URL requires authentication, use an authenticated tool (e.g. `gh` for GitHub, or an MCP-provided fetch tool) instead of WebFetch.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8b763332-05fd-484b-9694-3dbf2d25486a",
+  "isSidechain": false,
+  "promptId": "038af6dc-dba3-4001-9426-894f41afea55",
+  "type": "user",
+  "uuid": "7c487b35-7be8-4576-bbd7-f378a830f1f9",
+  "toolUseResult": {
+    "bytes": 0,
+    "code": 400,
+    "codeText": "Bad Request",
+    "result": "The server returned HTTP 400 Bad Request.\n\nThe response body was not retrieved. If this URL requires authentication, use an authenticated tool (e.g. `gh` for GitHub, or an MCP-provided fetch tool) instead of WebFetch.",
+    "durationMs": 458,
+    "url": "https://api2.openreview.net/notes?content.title=Training+Language+Models+to+Self-Correct+via+Reinforcement+Learning&domain=ICLR.cc/2025/Conference&limit=5"
+  },
+  "sourceToolAssistantUUID": "8b763332-05fd-484b-9694-3dbf2d25486a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-27T15:38:46.825Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01WiwLEZ1DKT3JNiA4LZhtSo`</summary>
+
+```json
+{
+  "url": "https://huggingface.co/papers/2409.12917",
+  "prompt": "Extract the full abstract and any detailed summary of this paper about SCoRe (Self-Correction via Reinforcement Learning). Look for technical details about the method."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7c487b35-7be8-4576-bbd7-f378a830f1f9",
+  "isSidechain": false,
+  "requestId": "req_011CbTKjSneEQTpxTV3kLLj5",
+  "type": "assistant",
+  "uuid": "25f0f266-dfc2-42f9-b19e-bccd8eca3076",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GiZjFpPqojuMu8NS5Hb4ZF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 553,
+      "cache_read_input_tokens": 22747,
+      "output_tokens": 317,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 553,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 317,
+          "cache_read_input_tokens": 22747,
+          "cache_creation_input_tokens": 553,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 553
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-27T15:38:47.514Z_
+
+<details><summary>↩ Tool result · `toolu_01WiwLEZ1DKT3JNiA4LZhtSo`</summary>
+
+```text
+&lt;persisted-output>
+Output too large (80KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu-idea-review/fd433d01-745c-4fd4-ad27-b9a83566dd45/tool-results/toolu_01WiwLEZ1DKT3JNiA4LZhtSo.txt
+
+Preview (first 2KB):
+# Training Language Models to Self-Correct via Reinforcement Learning
+
+Aviral Kumar&lt;sup>\*,+,1&lt;/sup>, Vincent Zhuang&lt;sup>\*,+,1&lt;/sup>, Rishabh Agarwal&lt;sup>\*,1&lt;/sup>, Yi Su&lt;sup>\*,1&lt;/sup>, JD Co-Reyes&lt;sup>1&lt;/sup>, Avi Singh&lt;sup>1&lt;/sup>, Kate Baumli&lt;sup>1&lt;/sup>, Shariq Iqbal&lt;sup>1&lt;/sup>, Colton Bishop&lt;sup>1&lt;/sup>, Rebecca Roelofs&lt;sup>1&lt;/sup>, Lei M Zhang&lt;sup>1&lt;/sup>, Kay McKinney&lt;sup>1&lt;/sup>, Disha Shrivastava&lt;sup>1&lt;/sup>, Cosmin Padurararu&lt;sup>1&lt;/sup>, George Tucker&lt;sup>1&lt;/sup>, Doina Precup&lt;sup>1&lt;/sup>, Feryal Behbahani&lt;sup>†,1&lt;/sup> and Aleksandra Faust&lt;sup>†,1&lt;/sup>
+
+&lt;sup>1&lt;/sup>Google DeepMind, \*Equal Contribution, &lt;sup>+&lt;/sup>Randomly ordered via coin flip, &lt;sup>†&lt;/sup>Jointly supervised.
+
+Self-correction is a highly desirable capability of large language models (LLMs), yet it has consistently been found to be largely ineffective in modern LLMs. Current methods for training self-correction typically depend on either multiple models, a more advanced model, or additional forms of supervision. To address these shortcomings, we develop a multi-turn online reinforcement learning (RL) approach, *SCoRe*, that significantly improves an LLM’s self-correction ability using *entirely self-generated data*. To build *SCoRe*, we first show that variants of supervised fine-tuning (SFT) on offline model-generated correction traces are often insufficient for instilling self-correction behavior. In particular, we observe that training via SFT falls prey to either a distribution mismatch between mistakes made by the data-collection policy and the model’s own responses, or to behavior collapse, where learning implicitly prefers only a certain mode of correction behavior that is often not effective at self-correction on test problems. *SCoRe* addresses these challenges by training under the model’s own distribution of self-generated correction traces and using appropriate regularization to steer the learning process into learning a self-correction behavior that is effective at tes
+...
+&lt;/persisted-output>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```````json
+{
+  "recorded_role": "user",
+  "parentUuid": "25f0f266-dfc2-42f9-b19e-bccd8eca3076",
+  "isSidechain": false,
+  "promptId": "038af6dc-dba3-4001-9426-894f41afea55",
+  "type": "user",
+  "uuid": "57daf9f8-fe84-4b8d-b235-1a451fecc4c1",
+  "toolUseResult": {
+    "bytes": 82026,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Training Language Models to Self-Correct via Reinforcement Learning\n\nAviral Kumar&lt;sup>\\*,+,1&lt;/sup>, Vincent Zhuang&lt;sup>\\*,+,1&lt;/sup>, Rishabh Agarwal&lt;sup>\\*,1&lt;/sup>, Yi Su&lt;sup>\\*,1&lt;/sup>, JD Co-Reyes&lt;sup>1&lt;/sup>, Avi Singh&lt;sup>1&lt;/sup>, Kate Baumli&lt;sup>1&lt;/sup>, Shariq Iqbal&lt;sup>1&lt;/sup>, Colton Bishop&lt;sup>1&lt;/sup>, Rebecca Roelofs&lt;sup>1&lt;/sup>, Lei M Zhang&lt;sup>1&lt;/sup>, Kay McKinney&lt;sup>1&lt;/sup>, Disha Shrivastava&lt;sup>1&lt;/sup>, Cosmin Padurararu&lt;sup>1&lt;/sup>, George Tucker&lt;sup>1&lt;/sup>, Doina Precup&lt;sup>1&lt;/sup>, Feryal Behbahani&lt;sup>†,1&lt;/sup> and Aleksandra Faust&lt;sup>†,1&lt;/sup>\n\n&lt;sup>1&lt;/sup>Google DeepMind, \\*Equal Contribution, &lt;sup>+&lt;/sup>Randomly ordered via coin flip, &lt;sup>†&lt;/sup>Jointly supervised.\n\nSelf-correction is a highly desirable capability of large language models (LLMs), yet it has consistently been found to be largely ineffective in modern LLMs. Current methods for training self-correction typically depend on either multiple models, a more advanced model, or additional forms of supervision. To address these shortcomings, we develop a multi-turn online reinforcement learning (RL) approach, *SCoRe*, that significantly improves an LLM’s self-correction ability using *entirely self-generated data*. To build *SCoRe*, we first show that variants of supervised fine-tuning (SFT) on offline model-generated correction traces are often insufficient for instilling self-correction behavior. In particular, we observe that training via SFT falls prey to either a distribution mismatch between mistakes made by the data-collection policy and the model’s own responses, or to behavior collapse, where learning implicitly prefers only a certain mode of correction behavior that is often not effective at self-correction on test problems. *SCoRe* addresses these challenges by training under the model’s own distribution of self-generated correction traces and using appropriate regularization to steer the learning process into learning a self-correction behavior that is effective at test time as opposed to fitting high-reward responses for a given prompt. This regularization process includes an initial phase of multi-turn RL on a base model to generate a policy initialization that is less susceptible to collapse, followed by using a reward bonus to amplify self-correction. With Gemini 1.0 Pro and 1.5 Flash models, we find that *SCoRe* achieves state-of-the-art self-correction performance, improving the base models’ self-correction by 15.6% and 9.1% respectively on MATH and HumanEval.\n\n## 1. Introduction\n\nLarge language models (LLMs) are a useful tool for reasoning in scientific domains such as math and coding (Lozhkov et al., 2024; Shao et al., 2024; Team, 2024). An aspirational property of LLMs in such settings is their ability to implement *meta-strategies* or *algorithms* that use test-time computation to generate improved responses. However, modern LLMs do not implement such strategies reliably. For instance, consider a problem that requires models to detect and revise (or “self-correct”) their own responses in order to eventually arrive at the best possible final response. This self-correction capability has been shown to be severely lacking in current LLMs, especially in the absence of external input (also called *intrinsic self-correction*) (Huang et al., 2023; Kamoi et al., 2024).\n\nTo make progress towards teaching LLMs to implement meta-strategies for challenging inputs, we study a special instance of training LLMs to perform self-correction to fix their mistakes “on-the-fly”. This should be possible: on many queries where current LLMs fail, they possess the underlying “knowledge” needed to arrive at the correct response but are unable to correctly elicit and draw inferences about their own knowledge when needed (Yang et al., 2024). For example, strong LLMs can often successfully complete a sub-part of a math proof when prompted with the remainder, but may not be able to complete it from scratch. In a similar vein, leveraging their previous responses should, in principle, enable LLMs toFigure 1 | **Left:** *SCoRe* achieves state-of-the-art self-correction performance on MATH; **Right:** *SCoRe* inference-time scaling: spending samples on *sequential* self-correction becomes more effective than only on *parallel* direct samples (Section 6.2).\n\nimprove their subsequent ones. Despite this, self-correction has remained elusive, highlighting the need to go beyond existing training paradigms.\n\n**How can we imbue LLMs with self-correction abilities?** Prior attempts for self-correcting LLMs either rely on prompt-engineering (Kim et al., 2023; Madaan et al., 2023) or on fine-tuning models specifically for self-correction. While the former approaches often fail to perform meaningful intrinsic self-correction, fine-tuning approaches require running multiple models during inference, such as a separate refinement model (Havrilla et al., 2024b; Welleck et al., 2023), or rely on “teacher” supervision to guide the process of self-correction (Qu et al., 2024). With the use of separate models of teacher supervision, self-correction does not necessarily outperform parallel, independent attempts. We develop an approach that is effective at self-correction *without* these requirements. Our approach, **Self-Correction via Reinforcement Learning** (*SCoRe*), trains only a single model that can both produce a response to a problem and *also* correct errors without any oracle feedback.\n\nTo develop *SCoRe*, we start by analyzing the shortcomings of SFT-based approaches (e.g., STaR (Zelikman et al., 2022)) and naive RL that optimizes final response correctness for teaching self-correction. We find that such approaches fall prey to either: (1) *distribution shift*, where the trained model is able to correct errors made by the base model that generated the data, but these gains do not transfer to self-correction under the learned model’s own mistakes; or (2) *behavior collapse*, where the learning progress simply learns to produce the best first-attempt response followed by superficial or no modifications in the second attempt. To address these issues, *SCoRe* trains for self-correction directly via on-policy, multi-turn RL. To prevent behavior collapse, *SCoRe* employs two-stage training: in the first stage, it produces an initialization that is less susceptible to behavior collapse by training to correct second-attempt responses while constraining the first-turn distribution to be close to the base model; followed by training on both attempts to maximize reward in the second stage. Crucially, the second stage of multi-turn RL employs a reward shaping term that rewards “progress” towards self-correction as opposed to the correctness of the final response.\n\nOur main contribution is *SCoRe*, a multi-turn RL approach for teaching LLMs how to correct their own mistakes. To the best of our knowledge, *SCoRe* is the first approach to attain significantly positive intrinsic self-correction: relative to base Gemini models, our method attains an absolute **15.6%** gain on self-correction for reasoning problems from MATH (Hendrycks et al., 2021) and an absolute **9.1%** gainon coding problems from HumanEval (Chen et al., 2021). We additionally motivate the design of *SCoRe* by extensively studying the failure modes of SFT and standard RL approaches, which broadly indicate that reinforcement learning plays an essential role in *self-trained* self-correction.\n\n## 2. Related Work\n\nPrior works study self-correction for LLMs under a variety of assumptions and problem settings. The most prominent settings include problems where external input tokens from an environment are available, such as agentic tasks (Liu et al., 2023), code repair (Jain et al., 2024), and tool use (Chen et al., 2023). While self-correction with external feedback is possible with strong models (Pan et al., 2023), even they struggle in the substantially harder setting with no external input (intrinsic self-correction) (Huang et al., 2023; Kamoi et al., 2024). Prior work that attempts to amplify intrinsic correction abilities is largely based on prompting and fine-tuning.\n\n**Prompting for intrinsic self-correction.** Recent work demonstrates that naively prompting LLMs for self-correction can degrade performance (Huang et al., 2023; Qu et al., 2024; Tyen et al., 2024; Zheng et al., 2024). These results contradict prior work (Kim et al., 2023; Madaan et al., 2023; Shinn et al., 2023) and largely stem from mismatched assumptions about the setting (Kamoi et al., 2024). For example, Kim et al. (2023); Shinn et al. (2023) use ground-truth answers during self-correction that may not generally be available; Madaan et al. (2023) use weak prompts for initial responses, thereby overestimating the total improvement possible. Therefore, there is no major work showing successful intrinsic self-correction via prompting alone. In the context of code self-repair, Olausson et al. (2023) show that even when strong models are prompted with some form of partial feedback, e.g., test-cases but not the desired outcomes, they are unable to correct their mistakes.\n\n**Fine-tuning for intrinsic self-correction.** Several works that go beyond prompting rely on fine-tuning with demonstrations of revisions, e.g. obtaining revisions directly from human annotators (Saunders et al., 2022) or stronger models (Qu et al., 2024; Ye et al., 2023). Our work aims to train for self-correction entirely without the use of larger models or humans, when the *learner itself is asked to generate its own training data*. Similar to these prior works, we assume access to a reward function for evaluating model-generated outputs (Akyürek et al., 2023; Welleck et al., 2023; Zhang et al., 2024). Perhaps the closest to us from this set is Qu et al. (2024), which utilizes an iterative STaR-like approach self-correction. While this work largely uses oracle teacher supervision, their preliminary results from training for self-correction only show minor improvements over five turns, consistent with the results we see for STaR. We show that *SCoRe* attains substantially better results. Other approaches train separate models for performing correction (e.g., GLoRE (Havrilla et al., 2024b), Self-Correction (Welleck et al., 2023), Akyürek et al. (2023); Paul et al. (2023)). While such approaches can be convenient, they require system design for serving multiple models at deployment.\n\n**Multi-turn RL for LLMs.** Prior work at the intersection of LLMs and multi-turn RL builds machinery for optimizing rewards with value-based (Farebrother et al., 2024; Shani et al., 2024; Snell et al., 2022; Zhou et al., 2024), policy-based (Shao et al., 2024; Xiong et al., 2024), and model-based (Hong et al., 2024) approaches. We do not focus on building machinery for RL (we use the approach of Ahmadian et al. (2024)), but rather train for self-correction as an RL problem.MATH Example 1: Arithmetic Self-Correction\n\n**Problem.** If  $n \\equiv 2 \\pmod{7}$ , then find the remainder when  $(n+2)(n+4)(n+6)$  is divided by 7.\n\n**S&lt;sub>Co&lt;/sub>Re turn 1 solution (incorrect).** Since  $n \\equiv 2 \\pmod{7}$ , we can write  $n = 7k + 2$  for some integer  $k$ . Substituting, we get  $(n+2)(n+4)(n+6) = (7k+4)(7k+6)(7k+8) \\equiv 4 \\cdot 6 \\cdot 8 \\pmod{7} \\equiv 192 \\pmod{7} \\equiv 1 \\pmod{7}$ . Final Answer: The final answer is 1. I hope it is correct.\n\n**Self-correction instruction.** There might be an error in the solution above because of lack of understanding of the question. Please correct the error, if any, and rewrite the solution.\n\n**S&lt;sub>Co&lt;/sub>Re turn 2 solution (correct).** Since  $n \\equiv 2 \\pmod{7}$ , we can write  $n = 7k + 2$  for some integer  $k$ . Substituting, we get  $(n+2)(n+4)(n+6) = (7k+4)(7k+6)(7k+8) \\equiv 4 \\cdot 6 \\cdot 1 \\pmod{7} \\equiv 24 \\pmod{7} \\equiv 3 \\pmod{7}$ . Final Answer: The final answer is 3. I hope it is correct.\n\nMATH Example 2: Reasoning Self-Correction\n\n**Problem.** Let  $f(x) = \\left\\lfloor \\left(-\\frac{5}{8}\\right)^x \\right\\rfloor$  be a function that is defined for all values of  $x$  in  $[0, \\infty)$  such that  $f(x)$  is a real number. How many distinct values exist in the range of  $f(x)$ ?\n\n**S&lt;sub>Co&lt;/sub>Re turn 1 solution (incorrect).** As  $x$  increases, the value of  $\\left(-\\frac{5}{8}\\right)^x$  decreases. Since the floor function rounds down to the nearest integer, the range of  $f(x)$  consists of all the integers less than or equal to  $\\left\\lfloor \\left(-\\frac{5}{8}\\right)^0 \\right\\rfloor = 1$ . Therefore, the range of  $f(x)$  is  $\\{1, 0, -1, -2, \\dots\\}$ , and there are  $\\infty$  distinct values in the range. Final Answer: The final answer is  $\\infty$ . I hope it is correct.\n\n**Self-correction instruction.** There might be an error in the solution above because of lack of understanding of the question. Please correct the error, if any, and rewrite the solution.\n\n**S&lt;sub>Co&lt;/sub>Re turn 2 solution (correct).** As  $x$  increases from 0 to  $\\infty$ , the value of  $\\left(-\\frac{5}{8}\\right)^x$  oscillates between positive and negative values, but its absolute value decreases. The floor function rounds down to the nearest integer, so the range of  $f(x)$  consists of the integers less than or equal to  $\\left\\lfloor \\left(-\\frac{5}{8}\\right)^0 \\right\\rfloor = 1$ . Since the absolute value of  $\\left(-\\frac{5}{8}\\right)^x$  decreases as  $x$  increases, the range of  $f(x)$  is finite and consists of the integers:  $\\{1, 0, -1\\}$ . Final Answer: The final answer is 3. I hope it is correct.\n\nFigure 2 | Two example traces of self-correction. In the upper example, S&lt;sub>Co&lt;/sub>Re is able to correct an arithmetic mistake it makes in turn 1. In the lower example, the model is able to correct a reasoning error.\n\n### 3. Preliminaries and Problem Setup\n\nOur goal is to develop an approach for training LLMs to improve their own predictions entirely on self-generated data. As discussed so far, we situate ourselves in the intrinsic self-correction setting (Huang et al., 2023), where models attempt to correct their initial responses *without* any external feedback. Concretely, given a dataset  $\\mathcal{D} = \\{(x_i, y_i^*)\\}_{i=1}^N$  of problems  $x_i$  and responses  $y_i^*$ , we will train an LLM policy  $\\pi_\\theta(\\cdot | [x, \\hat{y}_{1:l}, p_{1:l}])$  that, given the problem  $x$ , previous  $l$  model attempts  $\\hat{y}_{1:l}$  at the problem, and auxiliary instructions  $p_{1:l}$  (e.g., instruction to find a mistake and improve the response), solves the problem  $x$  as correctly as possible. This formalism is akin to the multi-turn MDP in Qu et al. (2024). We also assume access to an oracle reward  $\\hat{r}(y, y^*)$ , such as an answer checker (Uesato et al., 2022), that evaluates the correctness of response  $y$  by comparing it with the oracle response  $y^*$ . Critically, we *do not* assume access to this oracle at test-time; instead, the model must deduce whether there was a mistake and correct it if necessary, as is often the case in e.g. mathematical reasoning problems. Unlike the setup of Qu et al. (2024), we also do not run majority voting for most of our main results. Two example traces of self-correction are given in Figure 2, and our problem setting is depicted pictorially in Figure 3.Figure 3 | **The problem setting of self-correction.** *SCoRe* trains a model to not just produce the best possible response, but instead aims to train the model to produce the best final response in the final attempt. In the second turn, extra input in the form of an instruction asking the model to correct itself or model-generated may be provided.\n\nWe aim to find an LLM policy  $\\pi(\\square|\\circ)$  mapping input tokens  $\\circ$  to output tokens  $\\square$  that maximizes the correctness reward obtained from the verifier at the end of  $l + 1$  turns ( $l = 1$ ). Formally:\n\n$$\\max_{\\pi_{\\theta}} \\mathcal{E}_{x, y^* \\sim \\mathcal{D}, \\hat{y}_{l+1} \\sim \\pi_{\\theta}(\\cdot | [x, \\hat{y}_{1:l}, p_{1:l}])} \\left[ \\sum_{i=1}^{l+1} \\hat{r}(\\hat{y}_i, y^*) \\right]. \\quad (1)$$\n\nCrucially, note that unlike standard SFT or prevalent RL fine-tuning workflows, which train the policy  $\\pi$  to directly produce  $y^*$  (or any other  $y$  with  $\\hat{r}(y, y^*) = 1$ ), Equation 1 trains  $\\pi$  over multiple attempts *simultaneously*, where intermediate turns are supervised indirectly to maximize the sum.\n\n**Base RL fine-tuning approach we use.** We use a REINFORCE policy gradient training approach with a KL-divergence penalty against a fixed model (Ahmadian et al., 2024), which is widely used in RL fine-tuning of LLMs, primarily in the setting of single-turn RLHF. Formally, these methods train the policy  $\\pi_{\\theta}(\\cdot | x)$  to optimize the following, where  $\\pi_{\\text{ref}}$  is a reference policy.\n\n$$\\max_{\\theta} \\mathbb{E}_{x_t, y_t \\sim \\pi_{\\theta}(\\cdot | x_t)} [\\hat{r}(y_t, y^*) - \\beta_1 D_{KL}(\\pi_{\\theta}(\\cdot | x_t) || \\pi_{\\text{ref}}(\\cdot | x_t))], \\quad (2)$$\n\n**Metrics.** To measure self-correction performance (we consider  $l = 2$  in this paper), we report and analyze the following metrics: (1) **Accuracy@t1**: the model’s accuracy at the first attempt; (2) **Accuracy@t2**: the model’s accuracy at the second attempt, (3)  $\\Delta(\\mathbf{t1}, \\mathbf{t2})$ : the net improvement in model accuracy between the first and second attempts, which measures the efficacy of self-correction, (4)  $\\Delta^{i \\rightarrow c}(\\mathbf{t1}, \\mathbf{t2})$ : the fraction of problems that are incorrect in the first attempt but become correct at the second attempt, which measures how many *new* problems can self-correction solve; and (5)  $\\Delta^{c \\rightarrow i}(\\mathbf{t1}, \\mathbf{t2})$ : the fraction of problems that are correct in the first attempt but become incorrect at the second attempt, which measures how well the model understands what makes a response correct.\n\n## 4. SFT on Self-Generated Data is Insufficient for Self-Correction\n\nA natural approach for training self-correction is to utilize some form of supervised fine-tuning on data collected from a base model. Variants of this approach have been shown to scale well on single-turn reasoning problems (Singh et al., 2023; Zelikman et al., 2022). In this section, we assess the empiricalTable 1 | **Self-correction performance after training on  $\\mathcal{D}_{\\text{STaR}}$  and  $\\mathcal{D}_{\\text{SFT}}$ .** We find that the gap between the second and first attempts ( $\\Delta(t1, t2)$ ) is either negative or small. Both approaches erroneously modify a correct response to be incorrect, i.e., reflected in a high  $\\Delta^{c \\rightarrow i}(t1, t2)$  and a low  $\\Delta^{i \\rightarrow c}(t1, t2)$ .\n\n&lt;table border=\"1\">\n&lt;thead>\n&lt;tr>\n&lt;th>Method&lt;/th>\n&lt;th>Accuracy@t1&lt;/th>\n&lt;th>Accuracy@t2&lt;/th>\n&lt;th>&lt;math>\\Delta(t1, t2)&lt;/math>&lt;/th>\n&lt;th>&lt;math>\\Delta^{i \\rightarrow c}(t1, t2)&lt;/math>&lt;/th>\n&lt;th>&lt;math>\\Delta^{c \\rightarrow i}(t1, t2)&lt;/math>&lt;/th>\n&lt;/tr>\n&lt;/thead>\n&lt;tbody>\n&lt;tr>\n&lt;td>Base model&lt;/td>\n&lt;td>52.6%&lt;/td>\n&lt;td>41.4%&lt;/td>\n&lt;td>-11.2%&lt;/td>\n&lt;td>4.6%&lt;/td>\n&lt;td>15.8%&lt;/td>\n&lt;/tr>\n&lt;tr>\n&lt;td>STaR &lt;math>\\mathcal{D}_{\\text{STaR}}&lt;/math>&lt;/td>\n&lt;td>55.4%&lt;/td>\n&lt;td>41.2%&lt;/td>\n&lt;td>-14.2%&lt;/td>\n&lt;td>5.4%&lt;/td>\n&lt;td>19.6%&lt;/td>\n&lt;/tr>\n&lt;tr>\n&lt;td>STaR &lt;math>\\mathcal{D}_{\\text{STaR}}^+&lt;/math>&lt;/td>\n&lt;td>53.6%&lt;/td>\n&lt;td>54.0%&lt;/td>\n&lt;td>0.4%&lt;/td>\n&lt;td>2.6%&lt;/td>\n&lt;td>2.2%&lt;/td>\n&lt;/tr>\n&lt;tr>\n&lt;td>Pair-SFT &lt;math>\\mathcal{D}_{\\text{SFT}}&lt;/math>&lt;/td>\n&lt;td>52.4%&lt;/td>\n&lt;td>54.2%&lt;/td>\n&lt;td>1.8%&lt;/td>\n&lt;td>5.4%&lt;/td>\n&lt;td>3.6%&lt;/td>\n&lt;/tr>\n&lt;tr>\n&lt;td>Pair-SFT &lt;math>\\mathcal{D}_{\\text{SFT}}^+&lt;/math>&lt;/td>\n&lt;td>55.0%&lt;/td>\n&lt;td>55.0%&lt;/td>\n&lt;td>0%&lt;/td>\n&lt;td>0%&lt;/td>\n&lt;td>0%&lt;/td>\n&lt;/tr>\n&lt;/tbody>\n&lt;/table>\n\nefficacy of two such approaches for self-correction: STaR (Zelikman et al., 2022), and a version of Welleck et al. (2023) that trains only one model.\n\nWe ultimately find that although these methods improve self-correction over the base model, they fail to achieve substantially positive self-correction ( $\\Delta(t1, t2)$ ). By probing these models, we observe two main failure modes: (1) a collapse to non-correcting behavior, where the models learn to produce a good response on the first attempt and only make minor (or no) modifications in the second attempt, and (2) an inability of offline methods to be robust to distribution shift in the first-attempt responses.\n\n**Analysis setup: methods and dataset construction.** We prompt Gemini 1.5 Flash to obtain a large number of two-turn self-correction traces on MATH (Hendrycks et al., 2021). The STaR approach filters these trajectories to retain only those that successfully revise incorrect responses and runs SFT on the resulting dataset. Another approach is to use base model data from above to construct “synthetic” repair traces by pairing incorrect responses with correct ones (Welleck et al., 2023). We study a variant of this method that we call **Pair-SFT**, which does not train a separate corrector model and does not augment this initial dataset with multi-turn traces. Formally, we denote the datasets for STaR and Pair-SFT as  $\\mathcal{D}_{\\text{STaR}}$  and  $\\mathcal{D}_{\\text{SFT}}$  respectively. We run 3 iterations for STaR following the protocol in Singh et al. (2024), and only one iteration for Pair-SFT, following the protocol in Welleck et al. (2023) and other standard workflows on SFT.\n\n**Main empirical findings.** We present the self-correction results before and after fine-tuning on  $\\mathcal{D}_{\\text{STaR}}$  and  $\\mathcal{D}_{\\text{SFT}}$  in Table 1. We find that although  $\\Delta(t1, t2)$  is substantially higher for Pair-SFT relative to the base model, there is only little benefit to self-correction (1.8% gain). This gain is of a similar order to findings from Qu et al. (2024). By studying  $\\Delta^{i \\rightarrow c}$  and  $\\Delta^{c \\rightarrow i}$ , we find that SFT mainly reduces the number of correct problems that are mistakenly changed to incorrect in the second attempt, but does not significantly increase the fraction of incorrect first attempts that are corrected. This result is consistent with prior works on intrinsic self-correction that have found negligible or negative  $\\Delta(t1, t2)$  values.\n\nWe also find that unlike Pair-SFT, training on  $\\mathcal{D}_{\\text{STaR}}$  does not reduce  $\\Delta^{c \\rightarrow i}$ , indicating that the STaR policy does not have a clear understanding of when to make modifications and when not to. Observing this, we also trained on an extended version of  $\\mathcal{D}_{\\text{STaR}}^+$  (and  $\\mathcal{D}_{\\text{SFT}}^+$ ), which additionally contains tuples with both correct responses. We would expect the addition of such “correct-to-correct” data to prevent the model from erroneously revising a correct response. As shown in Table 1, the inclusion of this data helps STaR substantially but only results in 0.4% change in  $\\Delta(t1, t2)$ . On the other hand, for SFT, inclusion of this(a) Histograms of edit distance ratios on MATH 500.(c) Pair-SFT edit distance ratios.\n\nFigure 4 | Edit distance between first-attempt and second-attempt responses from fine-tuned models, our approach (SCoRe) and the base model. While training on self-generated error correction traces learns to not make major edits primarily, SFT learns to make some edits but is still quite conservative.\n\ndata overly biases the model against changing its answer.\n\n### Diving deeper: analyzing self-correction behavior.\n\nTo further understand how these STaR and SFT models edit their responses, we measured their **edit distance ratios**, defined as the edit distance between the responses normalized by the total length of both the responses. As shown in Figure 4a, while the base model sometimes makes substantially large edits to the original response, models fine-tuned on  $\\mathcal{D}_{STaR}$  and  $\\mathcal{D}_{SFT}$  are overly conservative and often make no edits at all. This is akin to a form of **behavior collapse**: training to maximize likelihoods on off-policy revision traces does not teach the desired correction “behavior”, even though it improves first-attempt accuracy. Similar observations of LLMs ignoring nuanced behaviors (e.g., producing a mistake in a response and then correcting it in subsequent steps) have been observed in Ye et al. (2024).\n\nFigure 5 | Self-correction performance on different sets of first-attempt responses: (a) “fixed”: first response is sampled from the initial model, (b) “self-generated”: first response is generated by the learner itself. Throughout training, the correction rate on fixed responses increases for both train and validation problems, but degrades substantially on self-generated responses. This indicates that training on a fixed offline dataset of correction traces suffers from distribution shift.\n\nWe also compared the distributions of edit distance ratios on training and test-time self-correction traces in Figures 4b/4c. While STaR produces qualitatively similar edit distance ratios on both the train and validation sets, we still observe some discrepancies between the train and validation edit distance ratios for SFT, implying that Pair-SFT is not very effective at generalizing to new problems from the same(a) **Training accuracy curves.** When training with standard multi-turn RL, the responses at both the attempts become tightly coupled together, leading to poor coverage for subsequent iterations and worse learning progress. Stage I in *SCoRe* is explicitly designed to alleviate this and achieves much higher  $\\Delta(t1, t2)$ , leading to increased exploration and better final performance.\n\n(b) **Frequency in which the learner proposes a different answer in the second turn.** Without explicitly modifying the policy initialization as in *SCoRe*, the policy quickly learns to often not change its answer, leading to poor exploration. Stage I in *SCoRe* prevents this issue, and learns non-collapsed behavior in Stage II.\n\nFigure 6 | **Behavior collapse in standard multi-turn RL** for training self-correction. These results indicate that some explicit approach to avoid collapse is necessary, i.e. Stage I in *SCoRe*.\n\ndistribution. We visualized this by plotting the self-correction performance of the SFT model on a fixed set of first attempts and self-generated first attempts in Figure 5. We observe vastly different behaviors between static and self-generated first-attempt distributions: while the model is able to optimize training correction accuracy and also slightly improves on first attempts appearing in the validation set (distributed *i.i.d.* to the training distribution), its self-correction accuracy degrades. Hence, **distribution shift** is a significant challenge for offline methods such as Pair-SFT.\n\n#### Takeaways: Insufficiency of SFT\n\nSFT-based methods suffer from two distinct failures when learning self-correction: (1) distribution shift, and (2) behavior collapse. Training on on-policy data can fix (1), but not (2).\n\n## 5. *SCoRe*: Self-Correction via Multi-Turn Reinforcement Learning\n\nThe above results highlight that an effective approach for training LLMs to self-correct entirely via self-generated data must address both distribution shift and behavior collapse. Utilizing on-policy RL is a natural way to address distribution shift, and our method will do so by extending Equation 2 to multiple turns under the hierarchical framework of Zhou et al. (2024). However, **is behavior collapse an issue for standard multi-turn RL? And if not, how can we address it?**\n\nTo answer these questions, we run standard multi-turn RL training to optimize Equation 1 only on  $(x_2, y_2)$  pairs. Since this objective maximizes the second-attempt performance of the model without training the first attempt, we expect the self-correction  $\\Delta(t1, t2)$  of the model to increase. However, as shown in Figure 6, while the performance of each attempt improves with training, their difference  $\\Delta(t1, t2)$  does not. In other words, standard multi-turn RL converges to a state that is overly biased against changing its response, resulting in no self-correction ability and a similar behavior collapse as what we saw with STaR.\n\n**Why does RL still suffer from collapse?** There are at least two equally good solutions when optimizing a policy with RL on the training data: (i) learning to improve from the first to the second attempt, or (ii)**Figure 7 | An overview of our approach (SCoRe).** SCoRe trains a model in two stages: **Stage I**: instead of running SFT (which produces pathological amplification of biases) to initialize RL training, we train a good initialization that can produce high-reward responses in the second-attempt while mimicking the base model’s initial response at the first attempt. **Stage II**: jointly optimizing both attempts, where the latter uses a shaped reward to incentivize the discovery of the self-correction strategy instead of the simple strategy of producing the best first response followed by making any minor edits to it in the second attempt.\n\nlearning to produce the best first-attempt response, followed by no correction in the second attempt. Of course only the former strategy generalizes to new problems, but an overparameterized LLM may not necessarily learn strategy (i) instead of (ii), since both of these strategies can be equally optimal on *the training set*. Abstractly, learning the “meta strategy” of self-correction during training is difficult unless the “direct” strategy that optimizes reward appears less viable on the training data. Conceptually, this is similar to the memorization challenge in meta-learning (Yin et al., 2019), which suggests that when provided with mutually exclusive tasks, meta-learning is likely to recover the supervised learning solution (without using context from the few shots) that directly predicts the output. Here, this is analogous to not self-correcting past attempts, directly producing an answer.\n\n**Method overview.** Although a good self-correcting policy should maximize both accuracy@t1 and accuracy@t2, we saw that standard RL leads to a collapse to non-correcting behavior. Hence, our key insight in SCoRe is that we must more explicitly encourage self-correction behavior, which we accomplish via a two-stage approach. The first stage (**Stage I**) serves the role of initialization where we train the model to decouple its behavior across the two attempts by attempting to optimize second-attempt accuracy while explicitly constraining the distribution of first attempts to the base model. From here, **Stage II** then jointly optimizes the reward of both attempts. To ensure that Stage II does not collapse to the “direct” solution, we bias the reward to reinforce self-correction progress.\n\n### 5.1. Stage I: Training an Initialization that Decouples Attempts\n\nThe goal of Stage I of SCoRe is to obtain an initialization by improving the base model’s coverage over second attempts given the first attempt, so that subsequent training for self-correction is less prone to behavior collapse. While this would typically be done via SFT, our results in Section 4 show that SFT itself suffers from collapse. Therefore, we use RL in this stage to decouple the two attempts. To do so, we explicitly fine-tune the base model to produce *high-reward* responses at the second attempt, while forcing the model to not change its first attempt by constraining it to be close to the base model using a KL-divergence. While this may appear sub-optimal – a first attempt with fewer mistakes should lead to a better second attempt – but as we will show, this stage is critical in reducing the base model’s bias towards simply coupling the first and second-attempt distributions, thus avoiding behavior collapse whenactual multi-turn RL is run. Formally, the objective is:\n\n$$\\max_{\\theta} \\mathbb{E}_{\\mathbf{x}_1, y_1 \\sim \\pi_{\\theta}(\\cdot|\\mathbf{x}), y_2 \\sim \\pi_{\\theta}(\\cdot|[\\mathbf{x}_1, p_1])} \\left[ \\hat{r}(y_2, y^*) - \\beta_2 D_{KL}(\\pi_{\\theta}(\\cdot|\\mathbf{x}_1) || \\pi_{\\text{ref}}(\\cdot|\\mathbf{x}_1)) \\right], \\quad (3)$$\n\nwhere  $\\beta_2$  is a hyperparameter designed to enforce a strict KL penalty **only on the first attempt** to avoid shifting of the first-turn responses (denoted by the term in blue). Note that we still utilize the default KL-divergence penalty from Equation 2, but with a relatively small weight and is omitted from Equation 3 for clarity. Indeed, we show that compared to standard multi-turn RL, Stage I is more effective at decoupling the two responses (Figure 6b) and leads to better Stage II performance.\n\n## 5.2. Stage II: Multi-Turn RL with Reward Shaping\n\nThe second stage of **SCoRe** is initialized from Stage I and now jointly optimizes the performance of both attempts. Concretely, Stage II trains the policy  $\\pi_{\\theta}(\\cdot|\\cdot)$  using the following objective:\n\n$$\\max_{\\theta} \\mathbb{E}_{\\mathbf{x}_1, y_1 \\sim \\pi_{\\theta}(\\cdot|\\mathbf{x}), y_2 \\sim \\pi_{\\theta}(\\cdot|[\\mathbf{x}_1, p_1])} \\left[ \\sum_{i=1}^2 \\hat{r}(y_i, y^*) - \\beta_1 D_{KL}(\\pi_{\\theta}(\\cdot|\\mathbf{x}_i) || \\pi_{\\text{ref}}(\\cdot|\\mathbf{x}_i)) \\right], \\quad (4)$$\n\nwhere  $\\mathbf{x}_i, i \\in \\{1, 2\\}$  corresponds to the set of input tokens passed as context to the model.\n\n**Reward shaping to prevent behavior collapse.** In principle, optimizing Equation 4 can also produce a solution that couples responses. This is because we still aim to maximize ground-truth rewards at both attempts. To prevent the learning process from collapsing to a non self-correcting solution in Stage II, we need to bias the learning problem towards self-correction. We implement this via *reward shaping*: by rewarding transitions that make “progress” towards learning the desired self-correction behavior. Concretely, given an two-turn rollout sampled from the policy  $\\tau = \\{\\mathbf{x}_1, \\hat{y}_1, \\hat{r}(y_1, y^*), \\mathbf{x}_2, \\hat{y}_2, \\hat{r}(y_2, y^*)\\}$ , we modify the reward  $\\hat{r}(y_2, y^*)$  in Equation 4, at the second attempt with a bonus  $\\tilde{b}(y_2|y_1, y^*) := \\alpha \\cdot (\\hat{r}(y_2, y^*) - \\hat{r}(y_1, y^*))$ , where  $\\alpha$  is a positive constant multiplier, ideally larger than 1.0. Adding this bonus to the second attempt measures a notion of progress by *only* emphasizing transitions that flip the correctness of the response and assigns a heavy negative penalty to transitions that change a correct response to incorrect in the second attempt. Thus, the addition of this bonus should regularize the training process from collapsing on to the “direct” solution that also appears optimal on the training set but does not learn self-correction.\n\n## 5.3. Putting it Together and Implementation Details\n\nOur approach is illustrated pictorially in Figure 7. We detail all hyperparameters used in Appendix B. In practice, one can also use an adaptive  $\\beta_2$  that attempts to balance the magnitudes of the first-attempt KL regularization and the second-attempt policy objective. In some of our experiments, we also choose to amplify the coverage of states used for on-policy RL by incorporating first-attempt solutions obtained by repeatedly sampling the base model as *offline* prompts in RL. We find that incorporating this data, especially in Stage II – where the first-turn policy may have drifted further from that of the base model – can have substantial benefits especially when attempting to learn from limited data.\n\n### Takeaways and Implications\n\nThe core insight behind **SCoRe** is that we must make it more attractive to learn a more nuanced algorithmic strategy (i.e., self-correction) instead of collapsing to a degenerate behavior mode. To avoid distribution shift, this must be done on self-generated online data.Table 2 | **Performance of *SCoRe* on MATH.** *SCoRe* not only attains a higher accuracy at both attempts, but also provides the most positive self-correction performance  $\\Delta(t1, t2)$ .\n\n&lt;table border=\"1\">\n&lt;thead>\n&lt;tr>\n&lt;th>Approach&lt;/th>\n&lt;th>Acc.@t1&lt;/th>\n&lt;th>Acc.@t2&lt;/th>\n&lt;th>&lt;math>\\Delta(t1, t2)&lt;/math>&lt;/th>\n&lt;th>&lt;math>\\Delta^{i \\rightarrow c}(t1, t2)&lt;/math>&lt;/th>\n&lt;th>&lt;math>\\Delta^{c \\rightarrow i}(t1, t2)&lt;/math>&lt;/th>\n&lt;/tr>\n&lt;/thead>\n&lt;tbody>\n&lt;tr>\n&lt;td>Base model&lt;/td>\n&lt;td>52.6%&lt;/td>\n&lt;td>41.4%&lt;/td>\n&lt;td>-11.2%&lt;/td>\n&lt;td>4.6%&lt;/td>\n&lt;td>15.8%&lt;/td>\n&lt;/tr>\n&lt;tr>\n&lt;td>Self-Refine (Madaan et al., 2023)&lt;/td>\n&lt;td>52.8%&lt;/td>\n&lt;td>51.8%&lt;/td>\n&lt;td>-1.0%&lt;/td>\n&lt;td>3.2%&lt;/td>\n&lt;td>4.2%&lt;/td>\n&lt;/tr>\n&lt;tr>\n&lt;td>STaR w/ &lt;math>\\mathcal{D}_{\\text{StaR}}^+&lt;/math> (Zelikman et al., 2022)&lt;/td>\n&lt;td>53.6%&lt;/td>\n&lt;td>54.0%&lt;/td>\n&lt;td>0.4%&lt;/td>\n&lt;td>2.6%&lt;/td>\n&lt;td>2.2%&lt;/td>\n&lt;/tr>\n&lt;tr>\n&lt;td>Pair-SFT w/ &lt;math>\\mathcal{D}_{\\text{SFT}}&lt;/math> (Welleck et al., 2023)&lt;/td>\n&lt;td>52.4%&lt;/td>\n&lt;td>54.2%&lt;/td>\n&lt;td>1.8%&lt;/td>\n&lt;td>5.4%&lt;/td>\n&lt;td>3.6%&lt;/td>\n&lt;/tr>\n&lt;tr>\n&lt;td>&lt;b>&lt;i>SCoRe&lt;/i> (Ours)&lt;/b>&lt;/td>\n&lt;td>&lt;b>60.0%&lt;/b>&lt;/td>\n&lt;td>&lt;b>64.4%&lt;/b>&lt;/td>\n&lt;td>&lt;b>4.4%&lt;/b>&lt;/td>\n&lt;td>&lt;b>5.8%&lt;/b>&lt;/td>\n&lt;td>&lt;b>1.4%&lt;/b>&lt;/td>\n&lt;/tr>\n&lt;/tbody>\n&lt;/table>\n\n## 6. Experimental Evaluation\n\nThe goal of our experiments is to demonstrate the efficacy and justify the design of *SCoRe* in training LLMs how to self-correct by only training on their own data. To this end, we perform a comparative evaluation of *SCoRe* against prior methods that also use self-generated data to train for self-correction, and run several ablation studies on two representative reasoning tasks where error correction is crucial.\n\n**Tasks.** We mainly focus on reasoning problems in math and coding: (a) math problem solving on MATH (Hendrycks et al., 2021), and (b) code generation on MBPP (Austin et al., 2021) and HumanEval (Chen et al., 2021). We use the following train-test splits in our experiments: (1) **MATH**: following Lightman et al. (2023), we augment the MATH training set with 4500 problems from the test set, and report results on the remaining 500 problems (MATH500); and (2) **Code generation**: we train on MBPP and report results on HumanEval, which does not expose test cases to the model. For all tasks, we use binary rewards during training, indicating whether the model’s answer matches the ground truth one (for MATH) or passes all test cases (for coding).\n\n**Evaluation protocol and metrics.** We report the self-correction accuracy on a number of tasks with two sequential attempts at the problem, i.e., one round of self-correction. For code generation, following the evaluation protocol of Ni et al. (2024), we also report results on MBPP-R, an offline repair task that requires correcting incorrect first-attempt programs generated from PaLM 2.\n\n**Models.** For all of our experiments on coding problems, we fine-tune Gemini 1.0 Pro and for MATH, we fine-tune Gemini 1.5 Flash. For all evaluations, we use greedy decoding (i.e. temperature 0), except for inference-compute scaling in Section 6.2 where we set temperature to be 0.7. For all training methods, we attempted to use a fixed budget of model samples and gradient updates, and do not vary hyperparameters such as learning rate and batch size between runs. For all RL runs, we selected checkpoints with the highest training reward, although a small held-out validation set of problems can also be used.\n\n**Evaluation prompts.** We use zero-shot CoT prompting for evaluation on MATH, zero-shot prompting for evaluation on HumanEval, and the canonical three-shot prompt for first-attempt training samples on MBPP (Austin et al., 2021). At the second attempt, we utilize an instruction that does not reveal the correctness of the previous answer, but asks the model to attempt to deduce whether a mistake exists in its first attempt response, and if so, potentially rewrite its response. Our full prompts and self-correction instructions can be found in Appendix C.\n\n**Baselines & comparisons.** We compare *SCoRe* to relevant prior approaches based on prompting or those that fine-tune only a single model for both solving the task and for revising responses, and only use self-generated data. Specifically, we compare to **Self-Refine** (Madaan et al., 2023), a representativeTable 3 | Performance of *SCoRe* on HumanEval. *SCoRe* attains the highest self-correction performance ( $\\text{Accuracy@t2}$ ,  $\\Delta(t1, t2)$ ), and also outperforms other methods at offline correction (**MBPP-R**).\n\n&lt;table border=\"1\">\n&lt;thead>\n&lt;tr>\n&lt;th>Method&lt;/th>\n&lt;th>MBPP-R&lt;/th>\n&lt;th>Acc.@t1&lt;/th>\n&lt;th>Acc.@t2&lt;/th>\n&lt;th>&lt;math>\\Delta(t1, t2)&lt;/math>&lt;/th>\n&lt;th>&lt;math>\\Delta^{i \\rightarrow c}(t1, t2)&lt;/math>&lt;/th>\n&lt;th>&lt;math>\\Delta^{c \\rightarrow i}(t1, t2)&lt;/math>&lt;/th>\n&lt;/tr>\n&lt;/thead>\n&lt;tbody>\n&lt;tr>\n&lt;td>Base model&lt;/td>\n&lt;td>47.3%&lt;/td>\n&lt;td>53.7%&lt;/td>\n&lt;td>56.7%&lt;/td>\n&lt;td>3.0%&lt;/td>\n&lt;td>7.9%&lt;/td>\n&lt;td>4.9%&lt;/td>\n&lt;/tr>\n&lt;tr>\n&lt;td>Self-Refine&lt;/td>\n&lt;td>30.7%&lt;/td>\n&lt;td>53.7%&lt;/td>\n&lt;td>52.5%&lt;/td>\n&lt;td>-1.2%&lt;/td>\n&lt;td>9.8%&lt;/td>\n&lt;td>11.0%&lt;/td>\n&lt;/tr>\n&lt;tr>\n&lt;td>Pair-SFT&lt;/td>\n&lt;td>59.8%&lt;/td>\n&lt;td>56.1%&lt;/td>\n&lt;td>54.3%&lt;/td>\n&lt;td>-1.8%&lt;/td>\n&lt;td>4.3%&lt;/td>\n&lt;td>6.1%&lt;/td>\n&lt;/tr>\n&lt;tr>\n&lt;td>&lt;b>&lt;i>SCoRe&lt;/i> (Ours)&lt;/b>&lt;/td>\n&lt;td>&lt;b>60.6%&lt;/b>&lt;/td>\n&lt;td>52.4%&lt;/td>\n&lt;td>&lt;b>64.6%&lt;/b>&lt;/td>\n&lt;td>&lt;b>12.2%&lt;/b>&lt;/td>\n&lt;td>&lt;b>15.2%&lt;/b>&lt;/td>\n&lt;td>&lt;b>3.0%&lt;/b>&lt;/td>\n&lt;/tr>\n&lt;/tbody>\n&lt;/table>\n\nprompting-based approach to elicit self-correction behaviors from a model, akin to Reflexion (Shinn et al., 2023). Among the fine-tuning based approaches, we compare to **Pair-SFT** based on the approach from Welleck et al. (2023), and multi-turn **STaR** (Singh et al., 2023; Zelikman et al., 2022) that fine-tune the model by maximizing log-likelihood respectively on synthetically-paired repair traces (Pair-SFT) and successful repair traces (STaR).\n\n### 6.1. Benchmark Results\n\n**MATH.** Our results are shown in Table 2, as well as in Figure 1. *SCoRe* exhibits substantially stronger performance on both direct and self-correction accuracies relative to baselines. Notably, the intrinsic self-correction gain  $\\Delta(t1, t2)$  of 4.4% is the first significantly positive delta, despite having fewer incorrect problems to correct by virtue of its higher Accuracy@t1. Relative to the base model Gemini 1.5 Flash, *SCoRe* improves  $\\Delta(t1, t2)$  by 15.6%, and Accuracy@t2 by 23.0%, and over the next best prior approach, Pair-SFT, by 10.2% and 2.6% respectively. By observing the frequency of problems that change from incorrect in the first attempt to correct in the second attempt and vice versa, we see that *SCoRe* both improves the rate at which it fixes incorrect answers (14.5%, compared to 9.5% for base) and reduces the proportion of correct answers it changes (15.8% to 1.4%).\n\n**Code generation.** Our results for the code generation task are shown in Table 3. Generally, we find that *SCoRe* achieves both improved self-correction and offline repair performance. For MBPP-R (Ni et al., 2024), we find that *SCoRe* improves the base model from 47.3% to 60.6%, which is comparable to the gap between GPT-3.5 (43%) and GPT-4 (63.2%). Despite only training on MBPP, we find that *SCoRe* is especially effective at generalizing to HumanEval, achieving a **12.2%** intrinsic self-correction delta, or 9% higher than the base model. By contrast, Pair-SFT works nearly as well on the static repair task MBPP-R, but actually degrades the base model when evaluated in the self-correction setting, thus underscoring the importances of on-policy sampling for self-correction.\n\n### 6.2. Inference-Compute Scaling with Self-Correction\n\nNext, we investigate if *SCoRe* can be used in conjunction with inference-time compute scaling strategies. To do so, we evaluate self-consistency decoding (Wang et al., 2022), where we sample a diverse set of solutions, and then select the most consistent answer among these solutions. Typically, the default strategy is to sample all solutions in parallel to perform majority voting. However, we show in Figure 1 (right) that instead of sampling  $2K$  solutions in parallel, it is *more* compute-efficient to sample  $K$  solutions in parallel, then perform one round of self-correction on each solution. With 32 solution budget per problem, parallel sampling shows a 7.4% accuracy gain, while combining it with sequential sampling using self-correction yields a 10.5% improvement.Table 4 | **Ablation studies to understand the impact of various components in *SCoRe*.** Observe that while single-turn training is effective at optimizing the first-attempt accuracy of the model, it leads to degradation in the second attempt. The performance improvements without Stage I or without reward shaping in *SCoRe* are small when measured by the difference in accuracy over the two attempts. Utilizing STaR generally leads to worse performance even when it is run from an effective Stage I checkpoint.\n\n&lt;table border=\"1\">\n&lt;thead>\n&lt;tr>\n&lt;th>Method&lt;/th>\n&lt;th>Accuracy@t1&lt;/th>\n&lt;th>Accuracy@t2&lt;/th>\n&lt;th>&lt;math>\\Delta(t1, t2)&lt;/math>&lt;/th>\n&lt;/tr>\n&lt;/thead>\n&lt;tbody>\n&lt;tr>\n&lt;td>&lt;i>SCoRe&lt;/i> (Ours)&lt;/td>\n&lt;td>60.0%&lt;/td>\n&lt;td>&lt;b>64.4%&lt;/b>&lt;/td>\n&lt;td>&lt;b>4.4%&lt;/b>&lt;/td>\n&lt;/tr>\n&lt;tr>\n&lt;td>w/o multi-turn training&lt;/td>\n&lt;td>&lt;b>61.8%&lt;/b>&lt;/td>\n&lt;td>59.4%&lt;/td>\n&lt;td>-2.4%&lt;/td>\n&lt;/tr>\n&lt;tr>\n&lt;td>w/o Stage I&lt;/td>\n&lt;td>59.2%&lt;/td>\n&lt;td>61.4%&lt;/td>\n&lt;td>2.2%&lt;/td>\n&lt;/tr>\n&lt;tr>\n&lt;td>w/o reward shaping&lt;/td>\n&lt;td>60.0%&lt;/td>\n&lt;td>62.6%&lt;/td>\n&lt;td>2.6%&lt;/td>\n&lt;/tr>\n&lt;tr>\n&lt;td>w/ STaR instead of REINFORCE Stage II&lt;/td>\n&lt;td>56.2%&lt;/td>\n&lt;td>58.4%&lt;/td>\n&lt;td>2.2%&lt;/td>\n&lt;/tr>\n&lt;/tbody>\n&lt;/table>\n\n### 6.3. Ablation Studies: Understanding the Impact of *SCoRe* Components\n\nFinally, we also present a number of ablation studies to understand the importance of various components in *SCoRe*. We perform these ablations on the MATH dataset. Concretely, we aim to answer the following questions: **(1) the importance of multi-turn training:** Can RL trained to maximize single-turn performance achieve better accuracy@t1 or accuracy@t2?; **(2) the importance of multi-stage training:** How essential is Stage I to *SCoRe*? In other words, why not run Stage II directly?; **(3) the impact of reward shaping.** How would removing the reward shaping terms affect performance of *SCoRe* in Stage II, assuming Stage I was done identically?; **(4) the importance of on-policy RL:** What if we replaced REINFORCE in Stage II with STaR?\n\nThe results of all of these ablation experiments are shown in Table 4. As expected, single-turn training improves turn 1 performance, but has negative  $\\Delta(t1, t2)$ . As shown in Figure 6, Stage I is critical to *SCoRe*; without it, the model achieves 2% lower  $\\Delta(t1, t2)$  and 3% lower accuracy@t2. Similarly, we find that removing reward shaping also hurts performance, indicating that the RL objectives in both stages play a significant role in teaching the self-correction behavior. We also find that replacing REINFORCE with STaR in Stage II results in significantly lower absolute performance with no visible improvements in self-improvement performance, which contrasts with the findings in [Havrilla et al. \\(2024a\\)](#) that STaR and on-policy RL have similar convergence rates for single-turn RL. This suggests that leveraging on-policy samples is especially critical in the self-correction setting, which presents a multi-turn problem that admits potentially spurious solutions.\n\n## 7. Discussion, Limitations, and Conclusion\n\nIn this work, we investigated how to imbue LLMs with self-correction behavior that enables them to correct their own responses on the fly. To accomplish this, we proposed *SCoRe*, a multi-turn RL approach, and demonstrated through extensive evaluations *that it is one of the first methods* to attain significantly positive intrinsic self-correction performance. To do so, we rigorously analyzed the behavior of various SFT approaches and identified failure modes in which the model learns a non-correcting strategy (e.g. learning to make no edits; behavior collapse) or falls prey to distribution shift. *SCoRe* trains a self-correcting strategy by utilizing a two-stage design and reward shaping, both of which help preventing behavior collapse into not learning effective self-corrective behavior. *SCoRe* has limitations that also provide avenues for future work. We did not train *SCoRe* for more than one round of iterative self-correction dueto infrastructural reasons, which means that subsequent rounds may not be as effective as the first. Future work should train with more than two attempts via RL, which is already a common and effective practice to obtain effective self-correction behavior over more than two rounds with SFT (Qu et al., 2024; Snell et al., 2024). Unifying Stages I and II would also be interesting, since it would alleviate the limitation of running multiple runs. Finally, our results suggest that learning *meta-strategies* (e.g., self-correction) might require going beyond standard LLM fine-tuning (Section 4), and incorporate regularization (e.g., progress reward).\n\n## Acknowledgements\n\nThe authors would like to thank Satinder Baveja, Kalesha Bullard, Gheorghe Comanici, Claire Cui, Valentin Dalibard, Angelos Filos, Yang Gao, Zoubin Ghahramani, Izzeddin Gur, Raia Hadsell, Clara Huiyi Hu, Melvin Johnson, Mina Khan, Balaji Lakshminarayanan, Yiran Mao, Hussain Masoom, Junhyuk Oh, Jordi Orbay, David Silver, and Yury Sulsky for helpful discussions, feedback, and sponsorship. We thank Amrith Setlur, Yuxiao Qu, Charlie Snell, Tianhe Yu, and Xinyang (Young) Geng for helpful discussions and feedback on an earlier version of the paper.\n\n## Author Contributions\n\nAK and VZ led the paper, with substantial technical contributions from RA and YS. VZ led the experimentation in the final paper with AK, with support from RA and YS. AK and RA conceived the initial idea with advice and discussions from DS, FB, AF, JDC, AS, and GT. JDC, YS, AS, RA, and AK iterated on the methodology. The development of the final method was done by AK and VZ, with inputs from RA and FB. VZ led the infrastructure development, while RA, YS, CP, SI, KB, DS, and LMZ contributed to the infrastructure. AK, RA, FB, AF, DP, GT advised on the overall direction. AK and VZ wrote the manuscript, with input from all co-authors. KM provided program management. FB, and AF co-supervised the project.\n\n## References\n\n- A. Ahmadian, C. Cremer, M. Gallé, M. Fadaee, J. Kreutzer, A. Üstün, and S. Hooker. Back to basics: Revisiting reinforce style optimization for learning from human feedback in llms. *arXiv preprint arXiv:2402.14740*, 2024.\n- A. F. Akyürek, E. Akyürek, A. Madaan, A. Kalyan, P. Clark, D. Wijaya, and N. Tandon. Rl4f: Generating natural language feedback with reinforcement learning for repairing model outputs. *arXiv preprint arXiv:2305.08844*, 2023.\n- J. Austin, A. Odena, M. Nye, M. Bosma, H. Michalewski, D. Dohan, E. Jiang, C. Cai, M. Terry, Q. Le, et al. Program synthesis with large language models. *arXiv preprint arXiv:2108.07732*, 2021.\n- M. Chen, J. Tworek, H. Jun, Q. Yuan, H. P. D. O. Pinto, J. Kaplan, H. Edwards, Y. Burda, N. Joseph, G. Brockman, et al. Evaluating large language models trained on code. *arXiv preprint arXiv:2107.03374*, 2021.\n- X. Chen, M. Lin, N. Schärli, and D. Zhou. Teaching large language models to self-debug. *arXiv preprint arXiv:2304.05128*, 2023.J. Farebrother, J. Orbay, Q. Vuong, A. A. Taiga, Y. Chebotar, T. Xiao, A. Irpan, S. Levine, P. S. Castro, A. Faust, et al. Stop regressing: Training value functions via classification for scalable deep rl. *arXiv preprint arXiv:2403.03950*, 2024.\n\nA. Havrilla, Y. Du, S. C. Raparthy, C. Nalmpantis, J. Dwivedi-Yu, M. Zhuravinskyi, E. Hambro, S. Sukhbaatar, and R. Raileanu. Teaching large language models to reason with reinforcement learning. *arXiv preprint arXiv:2403.04642*, 2024a.\n\nA. Havrilla, S. Raparthy, C. Nalmpantis, J. Dwivedi-Yu, M. Zhuravinskyi, E. Hambro, and R. Railneau. Glore: When, where, and how to improve llm reasoning via global and local refinements. *arXiv preprint arXiv:2402.10963*, 2024b.\n\nD. Hendrycks, C. Burns, S. Kadavath, A. Arora, S. Basart, E. Tang, D. Song, and J. Steinhardt. Measuring mathematical problem solving with the math dataset. *NeurIPS*, 2021.\n\nJ. Hong, N. Lee, and J. Thorne. Reference-free monolithic preference optimization with odds ratio. *arXiv preprint arXiv:2403.07691*, 2024.\n\nJ. Huang, X. Chen, S. Mishra, H. S. Zheng, A. W. Yu, X. Song, and D. Zhou. Large language models cannot self-correct reasoning yet. *arXiv preprint arXiv:2310.01798*, 2023.\n\nN. Jain, K. Han, A. Gu, W.-D. Li, F. Yan, T. Zhang, S. Wang, A. Solar-Lezama, K. Sen, and I. Stoica. Livecodebench: Holistic and contamination free evaluation of large language models for code. *arXiv preprint arXiv:2403.07974*, 2024.\n\nR. Kamoi, Y. Zhang, N. Zhang, J. Han, and R. Zhang. When can llms actually correct their own mistakes? a critical survey of self-correction of llms. *arXiv preprint arXiv:2406.01297*, 2024.\n\nG. Kim, P. Baldi, and S. McAleer. Language models can solve computer tasks. *arXiv preprint arXiv:2303.17491*, 2023.\n\nH. Lightman, V. Kosaraju, Y. Burda, H. Edwards, B. Baker, T. Lee, J. Leike, J. Schulman, I. Sutskever, and K. Cobbe. Let's verify step by step. *arXiv preprint arXiv:2305.20050*, 2023.\n\nX. Liu, H. Yu, H. Zhang, Y. Xu, X. Lei, H. Lai, Y. Gu, H. Ding, K. Men, K. Yang, et al. Agentbench: Evaluating llms as agents. *arXiv preprint arXiv:2308.03688*, 2023.\n\nA. Lozhkov, R. Li, L. B. Allal, F. Cassano, J. Lamy-Poirier, N. Tazi, A. Tang, D. Pykhtar, J. Liu, Y. Wei, et al. Starcoder 2 and the stack v2: The next generation. *arXiv preprint arXiv:2402.19173*, 2024.\n\nA. Madaan, N. Tandon, P. Gupta, S. Hallinan, L. Gao, S. Wiegrefte, U. Alon, N. Dziri, S. Prabhumoye, Y. Yang, et al. Self-refine: Iterative refinement with self-feedback. *arXiv preprint arXiv:2303.17651*, 2023.\n\nA. Ni, M. Allamanis, A. Cohan, Y. Deng, K. Shi, C. Sutton, and P. Yin. Next: Teaching large language models to reason about code execution. *arXiv preprint arXiv:2404.14662*, 2024.\n\nT. X. Olausson, J. P. Inala, C. Wang, J. Gao, and A. Solar-Lezama. Is self-repair a silver bullet for code generation? In *The Twelfth International Conference on Learning Representations*, 2023.L. Pan, M. Saxon, W. Xu, D. Nathani, X. Wang, and W. Y. Wang. Automatically correcting large language models: Surveying the landscape of diverse self-correction strategies. *arXiv preprint arXiv:2308.03188*, 2023.\n\nD. Paul, M. Ismayilzada, M. Peyrard, B. Borges, A. Bosselut, R. West, and B. Faltings. Refiner: Reasoning feedback on intermediate representations. *arXiv preprint arXiv:2304.01904*, 2023.\n\nY. Qu, T. Zhang, N. Garg, and A. Kumar. Recursive introspection: Teaching language model agents how to self-improve. *arXiv preprint arXiv:2407.18219*, 2024.\n\nW. Saunders, C. Yeh, J. Wu, S. Bills, L. Ouyang, J. Ward, and J. Leike. Self-critiquing models for assisting human evaluators. *arXiv preprint arXiv:2206.05802*, 2022.\n\nL. Shani, A. Rosenberg, A. Cassel, O. Lang, D. Calandriello, A. Zipori, H. Noga, O. Keller, B. Piot, I. Szpektor, et al. Multi-turn reinforcement learning from preference human feedback. *arXiv preprint arXiv:2405.14655*, 2024.\n\nZ. Shao, P. Wang, Q. Zhu, R. Xu, J. Song, M. Zhang, Y. Li, Y. Wu, and D. Guo. Deepseekmath: Pushing the limits of mathematical reasoning in open language models. *arXiv preprint arXiv:2402.03300*, 2024.\n\nN. Shinn, B. Labash, and A. Gopinath. Reflexion: an autonomous agent with dynamic memory and self-reflection. *arXiv preprint arXiv:2303.11366*, 2023.\n\nA. Singh, J. D. Co-Reyes, R. Agarwal, A. Anand, P. Patil, P. J. Liu, J. Harrison, J. Lee, K. Xu, A. Parisi, et al. Beyond human data: Scaling self-training for problem-solving with language models. *arXiv preprint arXiv:2312.06585*, 2023.\n\nA. Singh, J. D. Co-Reyes, R. Agarwal, A. Anand, P. Patil, X. Garcia, P. J. Liu, J. Harrison, J. Lee, K. Xu, A. Parisi, A. Kumar, A. Alemi, A. Rizkowsky, A. Nova, B. Adlam, B. Bohnet, G. Elsayed, H. Sedghi, I. Mordatch, I. Simpson, I. Gur, J. Snoek, J. Pennington, J. Hron, K. Kenealy, K. Swersky, K. Mahajan, L. Culp, L. Xiao, M. L. Bileschi, N. Constant, R. Novak, R. Liu, T. Warkentin, Y. Qian, Y. Bansal, E. Dyer, B. Neyshabur, J. Sohl-Dickstein, and N. Fiedel. Beyond human data: Scaling self-training for problem-solving with language models, 2024.\n\nC. Snell, I. Kostrikov, Y. Su, M. Yang, and S. Levine. Offline rl for natural language generation with implicit language q learning. *arXiv preprint arXiv:2206.11871*, 2022.\n\nC. Snell, J. Lee, K. Xu, and A. Kumar. Scaling llm test-time compute optimally can be more effective than scaling model parameters. *arXiv preprint arXiv:2408.03314*, 2024.\n\nC. Team. Codegemma: Open code models based on gemma. *arXiv preprint arXiv:2406.11409*, 2024.\n\nG. Tyen, H. Mansoor, V. Cărbune, Y. P. Chen, and T. Mak. Llms cannot find reasoning errors, but can correct them given the error location. In *Findings of the Association for Computational Linguistics ACL 2024*, pages 13894–13908, 2024.\n\nJ. Uesato, N. Kushman, R. Kumar, F. Song, N. Siegel, L. Wang, A. Creswell, G. Irving, and I. Higgins. Solving math word problems with process-and outcome-based feedback. *arXiv preprint arXiv:2211.14275*, 2022.X. Wang, J. Wei, D. Schuurmans, Q. Le, E. Chi, S. Narang, A. Chowdhery, and D. Zhou. Self-consistency improves chain of thought reasoning in language models. *arXiv preprint arXiv:2203.11171*, 2022.\n\nS. Welleck, X. Lu, P. West, F. Brahman, T. Shen, D. Khashabi, and Y. Choi. Generating sequences by learning to self-correct. In *The Eleventh International Conference on Learning Representations*, 2023. URL &lt;https://openreview.net/forum?id=hH36JeQZDa0>.\n\nW. Xiong, C. Shi, J. Shen, A. Rosenberg, Z. Qin, D. Calandriello, M. Khalman, R. Joshi, B. Piot, M. Saleh, et al. Building math agents with multi-turn iterative preference learning. *arXiv preprint arXiv:2409.02392*, 2024.\n\nS. Yang, E. Gribovskaya, N. Kassner, M. Geva, and S. Riedel. Do large language models latently perform multi-hop reasoning? *arXiv preprint arXiv:2402.16837*, 2024.\n\nS. Ye, Y. Jo, D. Kim, S. Kim, H. Hwang, and M. Seo. Selfee: Iterative self-revising llm empowered by self-feedback generation. *Blog post*, 2023.\n\nT. Ye, Z. Xu, Y. Li, and Z. Allen-Zhu. Physics of language models: Part 2.2, how to learn from mistakes on grade-school math problems, 2024. URL &lt;https://arxiv.org/abs/2408.16293>.\n\nM. Yin, G. Tucker, M. Zhou, S. Levine, and C. Finn. Meta-learning without memorization. *arXiv preprint arXiv:1912.03820*, 2019.\n\nE. Zelikman, Y. Wu, J. Mu, and N. Goodman. Star: Bootstrapping reasoning with reasoning. *Advances in Neural Information Processing Systems*, 35:15476–15488, 2022.\n\nY. Zhang, M. Khalifa, L. Logeswaran, J. Kim, M. Lee, H. Lee, and L. Wang. Small language models need strong verifiers to self-correct reasoning. *arXiv preprint arXiv:2404.17140*, 2024.\n\nH. S. Zheng, S. Mishra, H. Zhang, X. Chen, M. Chen, A. Nova, L. Hou, H.-T. Cheng, Q. V. Le, E. H. Chi, et al. Natural plan: Benchmarking llms on natural language planning. *arXiv preprint arXiv:2406.04520*, 2024.\n\nY. Zhou, A. Zanette, J. Pan, S. Levine, and A. Kumar. Archer: Training language model agents via hierarchical multi-turn rl. *arXiv preprint arXiv:2402.19446*, 2024.# Appendices\n\n## A. Additional Experiments\n\n### A.1. Scaling to Multiple Attempts\n\nFigure 8 | Performance of the base model, Pair-SFT, and **SCoRe** over 10 attempts on MATH.\n\nWe investigate the performance of various models when asked to iteratively self-correct over multiple attempts, despite only being trained over two attempts (or not at all, in the case of the base model). As shown in Figure 8, we find that the performance of the base Gemini 1.5 Flash model is quite noisy, but never surpasses that of the first attempt. Similarly, Pair-SFT does not improve past the second attempt. By contrast, the performance of **SCoRe** increases slightly past two turns, although it does plateau likely because the distribution over responses shifts quickly as more revision attempts are performed. We leave improving the scaling properties of self-correction, a form of *meta-learning*, to future work.\n\n### A.2. Reward Function Design\n\nFigure 9 | Impact of discount factor of  $\\gamma$  on standard multi-turn RL training.\n\nIn all of our experiments, we used only the instantaneous reward in our policy gradient objective, which is equivalent to returns with discount factor  $\\gamma = 0$ . We additionally investigated whether leveraging$\\gamma > 0$ , in conjunction with reward shaping, can elicit self-correction paper. As presented in Figure 9, we find that with  $\\gamma = 0.8$  and  $\\alpha = 1.0$ , multi-turn RL still suffers from the same non-correcting behavior collapse as the standard multi-turn RL approach.\n\n## B. Additional Experiment Details\n\nTable 5 | Hyperparameters for *SCoRe* on MATH (left) and MBPP (right)\n\n&lt;table border=\"1\">\n&lt;thead>\n&lt;tr>\n&lt;th>Hyperparameter&lt;/th>\n&lt;th>Value&lt;/th>\n&lt;th>Hyperparameter&lt;/th>\n&lt;th>Value&lt;/th>\n&lt;/tr>\n&lt;/thead>\n&lt;tbody>\n&lt;tr>\n&lt;td>Base model&lt;/td>\n&lt;td>Gemini 1.5 Flash&lt;/td>\n&lt;td>Base model&lt;/td>\n&lt;td>Gemini 1.0 Pro&lt;/td>\n&lt;/tr>\n&lt;tr>\n&lt;td>Optimizer&lt;/td>\n&lt;td>Adam&lt;/td>\n&lt;td>Optimizer&lt;/td>\n&lt;td>Adam&lt;/td>\n&lt;/tr>\n&lt;tr>\n&lt;td>Learning rate&lt;/td>\n&lt;td>5e-6&lt;/td>\n&lt;td>Learning rate&lt;/td>\n&lt;td>1e-5&lt;/td>\n&lt;/tr>\n&lt;tr>\n&lt;td>Training steps&lt;/td>\n&lt;td>3000&lt;/td>\n&lt;td>Training steps&lt;/td>\n&lt;td>1500&lt;/td>\n&lt;/tr>\n&lt;tr>\n&lt;td>Batch size&lt;/td>\n&lt;td>512&lt;/td>\n&lt;td>Batch size&lt;/td>\n&lt;td>128&lt;/td>\n&lt;/tr>\n&lt;tr>\n&lt;td>Sampling temperature&lt;/td>\n&lt;td>1.0&lt;/td>\n&lt;td>Sampling temperature&lt;/td>\n&lt;td>1.0&lt;/td>\n&lt;/tr>\n&lt;tr>\n&lt;td>&lt;math>\\alpha&lt;/math>&lt;/td>\n&lt;td>10&lt;/td>\n&lt;td>&lt;math>\\alpha&lt;/math>&lt;/td>\n&lt;td>10&lt;/td>\n&lt;/tr>\n&lt;tr>\n&lt;td>&lt;math>\\beta_1&lt;/math>&lt;/td>\n&lt;td>0.01&lt;/td>\n&lt;td>&lt;math>\\beta_1&lt;/math>&lt;/td>\n&lt;td>0.01&lt;/td>\n&lt;/tr>\n&lt;tr>\n&lt;td>&lt;math>\\beta_2&lt;/math>&lt;/td>\n&lt;td>0.1&lt;/td>\n&lt;td>&lt;math>\\beta_2&lt;/math>&lt;/td>\n&lt;td>0.25&lt;/td>\n&lt;/tr>\n&lt;/tbody>\n&lt;/table>\n\nWe include the hyperparameters used for training *SCoRe* in Table 5.\n\n## C. Prompts\n\n### MATH Zero-shot Prompt\n\nYou are a math expert. When you respond, respond only with the Solution of the final Problem, thinking step by step. At the end of the Solution, when you give your final answer, write it in the form \"Final Answer: The final answer is \\$answer\\$. I hope it is correct.\"\n\n### MATH Self-Correction Instruction\n\nThere might be an error in the solution above because of lack of understanding of the question. Please correct the error, if any, and rewrite the solution. Only output the final solution! At the end of the Solution, when you give your final answer, write it in the form \"Final Answer: The final answer is \\$answer\\$. I hope it is correct.\"\n\n### MBPP 3-shot Prompt\n\nYou are an expert Python programmer, and here is your task: Write a function to find the similar elements from the given two tuple lists. Your code should pass these tests:\n\n```\nassert similar_elements((3, 4, 5, 6), (5, 7, 4, 10)) == (4, 5)\nassert similar_elements((1, 2, 3, 4), (5, 4, 3, 7)) == (3, 4)\nassert similar_elements((11, 12, 14, 13), (17, 15, 14, 13)) == (13, 14)\n```\n\n[BEGIN]```\ndef similar_elements(test_tup1, test_tup2):\n    res = tuple(set(test_tup1) & set(test_tup2))\n    return (res)\n```\n\n[DONE]\n\nYou are an expert Python programmer, and here is your task: Write a python function to identify non-prime numbers. Your code should pass these tests:\n\n```\nassert is_not_prime(2) == False\nassert is_not_prime(10) == True\nassert is_not_prime(35) == True\n```\n\n[BEGIN]\n\n```\nimport math\ndef is_not_prime(n):\n    result = False\n    for i in range(2, int(math.sqrt(n)) + 1):\n        if n %\n            result = True\n    return result\n```\n\n[DONE]\n\nYou are an expert Python programmer, and here is your task: Write a function to find the largest integers from a given list of numbers using heap queue algorithm. Your code should pass these tests:\n\n```\nassert heap_queue_largest([25, 35, 22, 85, 14, 65, 75, 22, 58], 3) == [85, 75, 65]\nassert heap_queue_largest([25, 35, 22, 85, 14, 65, 75, 22, 58], 2) == [85, 75]\nassert heap_queue_largest([25, 35, 22, 85, 14, 65, 75, 22, 58], 5) == [85, 75, 65, 58, 35]\n```\n\n[BEGIN]\n\n```\nimport heapq as hq\ndef heap_queue_largest(nums, n):\n    largest_nums = hq.nlargest(n, nums)\n    return largest_nums\n```\n\n[DONE]\n\n#### MBPP/HumanEval Self-Correction Instruction\n\n# There might be an error in the code above because of lack of understanding of the question. Please correct the error, if any, and rewrite the solution. Only output the final correct Python program!\n\n## D. Qualitative Analysis of *SCoRe*\n\nWe also perform a qualitative investigation into how *SCoRe* addresses the self-repair shortcomings of base LLMs, and provide several examples in Appendix E. We find that *SCoRe* is able to refine its own responses in a variety of manners - rewriting the entire solution when necessary, or reproducing thecorrect parts of the solution, while revising the incorrect ones. For the latter, we interestingly find that *SCoRe* is especially adept at revising its computational mistakes, and even demonstrates a bias towards showing more steps in certain computations and manipulations in order to increase its probability of producing a correct answer. We additionally observe that the model learns to occasionally self-correct *within* a turn, e.g. MATH example 4.\n\n## E. Examples of *SCoRe* Self-Correction\n\n### HumanEval Example 1\n\n#### Problem:\n\n```\ndef cycpattern_check(a , b):\n```\n\n```\n    \"\"\"You are given 2 words. You need to return True if the second word or any of its rotations is a substring in the first word\n```\n\n```\n    cycpattern_check(\"abcd\",\"abd\") => False\n    cycpattern_check(\"hello\",\"ell\") => True\n    cycpattern_check(\"whassup\",\"psus\") => False\n    cycpattern_check(\"abab\",\"baa\") => True\n    cycpattern_check(\"efef\",\"eeff\") => False\n    cycpattern_check(\"himenss\",\"simen\") => True\n```\n\n```\n    \"\"\"\n```\n\n#### Turn 1 solution (incorrect):\n\n```\ndef cycpattern_check(a , b):\n```\n\n```\n    \"\"\"You are given 2 words. You need to return True if the second word or any of its rotations is a substring in the first word\n```\n\n```\n    cycpattern_check(\"abcd\",\"abd\") => False\n    cycpattern_check(\"hello\",\"ell\") => True\n    cycpattern_check(\"whassup\",\"psus\") => False\n    cycpattern_check(\"abab\",\"baa\") => True\n    cycpattern_check(\"efef\",\"eeff\") => False\n    cycpattern_check(\"himenss\",\"simen\") => True\n```\n\n```\n    \"\"\"\n```\n\n```\n    for i in range(len(b)):\n        if a.find(b[i:])!= -1:\n            return True\n    return False\n```\n\n#### Turn 2 solution (correct):\n\n```\ndef cycpattern_check(a , b):\n```\n\n```\n    \"\"\"You are given 2 words. You need to return True if the second word or any of its rotations is a substring in the first word\n```\n\n```\n    cycpattern_check(\"abcd\",\"abd\") => False\n    cycpattern_check(\"hello\",\"ell\") => True\n    cycpattern_check(\"whassup\",\"psus\") => False\n    cycpattern_check(\"abab\",\"baa\") => True\n    cycpattern_check(\"efef\",\"eeff\") => False\n    cycpattern_check(\"himenss\",\"simen\") => True\n``````\n\n\"\"\"\nfor i in range(len(b)):\n    rotated_b = b[i:] + b[:i]\n    if a.find(rotated_b) != -1:\n        return True\nreturn False\n\n```\n\n## HumanEval Example 2\n\n### Problem:\n\n```\ndef even_odd_count(num):\n```\n\n```\n\"\"\"Given an integer. return a tuple that has the number of even and odd digits respectively.\n```\n\nExample:\n\n```\n\neven_odd_count(-12) ==> (1, 1)\neven_odd_count(123) ==> (1, 2)\n\"\"\"\n\n```\n\n### Turn 1 solution (incorrect):\n\n```\ndef even_odd_count(num):\n```\n\n```\n\"\"\"Given an integer. return a tuple that has the number of even and odd digits respectively.\n```\n\nExample:\n\n```\n\neven_odd_count(-12) ==> (1, 1)\neven_odd_count(123) ==> (1, 2)\n\"\"\"\n\n```\n\n```\neven_count = 0\n```\n\n```\nodd_count = 0\n```\n\n```\nfor digit in str(num):\n```\n\n```\n    int_digit = int(digit)\n```\n\n```\n    if int_digit %\n```\n\n```\n        even_count += 1\n```\n\n```\n    else:\n```\n\n```\n        odd_count += 1\n```\n\n```\nreturn even_count, odd_count\n```\n\n### Turn 2 solution (correct):\n\n```\ndef even_odd_count(num):\n```\n\n```\n\"\"\"Given an integer. return a tuple that has the number of even and odd digits respectively.\n```\n\nExample:\n\n```\n\neven_odd_count(-12) ==> (1, 1)\neven_odd_count(123) ==> (1, 2)\n\"\"\"\n\n```\n\n```\neven_count = 0\n```\n\n```\nodd_count = 0\n``````\nfor digit in str(abs(num)):  \n    int_digit = int(digit)  \n    if int_digit %  \n        even_count += 1  \n    else:  \n        odd_count += 1  \n  \nreturn even_count, odd_count\n```MATH Example 1\n\n**Problem.** Let  $A$  be a matrix such that\n\n$$A \\begin{pmatrix} 3 \\\\ 1 \\\\ 0 \\end{pmatrix} = \\begin{pmatrix} 2 \\\\ 4 \\\\ -3 \\end{pmatrix} \\quad \\text{and} \\quad A \\begin{pmatrix} -5 \\\\ 2 \\\\ 2 \\end{pmatrix} = \\begin{pmatrix} 0 \\\\ -5 \\\\ -5 \\end{pmatrix}.$$\n\nFind  $A \\begin{pmatrix} -13 \\\\ 3 \\\\ 4 \\end{pmatrix}$ .\n\n**SCoRe turn 1 solution (incorrect).** We can write\n\n$$\\begin{pmatrix} -13 \\\\ 3 \\\\ 4 \\end{pmatrix} = a \\begin{pmatrix} 3 \\\\ 1 \\\\ 0 \\end{pmatrix} + b \\begin{pmatrix} -5 \\\\ 2 \\\\ 2 \\end{pmatrix}$$\n\nfor some scalars  $a$  and  $b$ . Solving the system of equations\n\n$$3a - 5b = -13,$$\n\n$$a + 2b = 3,$$\n\n$$2b = 4,$$\n\nwe find  $a = -1$  and  $b = 2$ . Therefore,\n\n$$A \\begin{pmatrix} -13 \\\\ 3 \\\\ 4 \\end{pmatrix} = A \\left( -1 \\begin{pmatrix} 3 \\\\ 1 \\\\ 0 \\end{pmatrix} + 2 \\begin{pmatrix} -5 \\\\ 2 \\\\ 2 \\end{pmatrix} \\right) = -1A \\begin{pmatrix} 3 \\\\ 1 \\\\ 0 \\end{pmatrix} + 2A \\begin{pmatrix} -5 \\\\ 2 \\\\ 2 \\end{pmatrix} = -1 \\begin{pmatrix} 2 \\\\ 4 \\\\ -3 \\end{pmatrix} + 2 \\begin{pmatrix} 0 \\\\ -5 \\\\ -5 \\end{pmatrix} = \\boxed{\\begin{pmatrix} -2 \\\\ -14 \\\\ -13 \\end{pmatrix}}.$$\n\nFinal Answer: The final answer is  $\\begin{pmatrix} -2 \\\\ -14 \\\\ -13 \\end{pmatrix}$ . I hope it is correct.\n\n**SCoRe turn 2 solution (correct).** We can write\n\n$$\\begin{pmatrix} -13 \\\\ 3 \\\\ 4 \\end{pmatrix} = a \\begin{pmatrix} 3 \\\\ 1 \\\\ 0 \\end{pmatrix} + b \\begin{pmatrix} -5 \\\\ 2 \\\\ 2 \\end{pmatrix}$$\n\nfor some scalars  $a$  and  $b$ . This gives us the system of equations:\n\n$$3a - 5b = -13,$$\n\n$$a + 2b = 3,$$\n\n$$2b = 4.$$\n\nSolving the third equation, we get  $b = 2$ . Substituting into the second equation, we get  $a = -1$ . We can check that these values of  $a$  and  $b$  also satisfy the first equation.\n\nTherefore,\n\n$$A \\begin{pmatrix} -13 \\\\ 3 \\\\ 4 \\end{pmatrix} = A \\left( -1 \\begin{pmatrix} 3 \\\\ 1 \\\\ 0 \\end{pmatrix} + 2 \\begin{pmatrix} -5 \\\\ 2 \\\\ 2 \\end{pmatrix} \\right) = -1A \\begin{pmatrix} 3 \\\\ 1 \\\\ 0 \\end{pmatrix} + 2A \\begin{pmatrix} -5 \\\\ 2 \\\\ 2 \\end{pmatrix} = -1 \\begin{pmatrix} 2 \\\\ 4 \\\\ -3 \\end{pmatrix} + 2 \\begin{pmatrix} 0 \\\\ -5 \\\\ -5 \\end{pmatrix} = \\begin{pmatrix} -2 \\\\ -4 \\\\ 3 \\end{pmatrix} + \\begin{pmatrix} 0 \\\\ -10 \\\\ -10 \\end{pmatrix} = \\boxed{\\begin{pmatrix} -2 \\\\ -14 \\\\ -7 \\end{pmatrix}}.$$\n\nFinal Answer: The final answer is  $\\begin{pmatrix} -2 \\\\ -14 \\\\ -7 \\end{pmatrix}$ . I hope it is correct.MATH Example 2\n\n**Problem.** Simplify  $\\frac{1}{5} \\cdot \\frac{8}{7} \\div \\frac{12}{20}$ .\n\n**SCoRe turn 1 solution (incorrect).** First, we can simplify the division by multiplying by the reciprocal of the divisor:\n\n$$\\frac{1}{5} \\cdot \\frac{8}{7} \\div \\frac{12}{20} = \\frac{1}{5} \\cdot \\frac{8}{7} \\cdot \\frac{20}{12}$$\n\nNext, we can simplify by canceling common factors:\n\n$$\\frac{1}{5} \\cdot \\frac{8}{7} \\cdot \\frac{20}{12} = \\frac{1 \\cdot 8 \\cdot 20}{5 \\cdot 7 \\cdot 12} = \\frac{1 \\cdot 2 \\cdot 4 \\cdot 5 \\cdot 4}{5 \\cdot 7 \\cdot 2 \\cdot 6} = \\frac{4 \\cdot 4}{7 \\cdot 6} = \\frac{2 \\cdot 2 \\cdot 2 \\cdot 2}{7 \\cdot 2 \\cdot 3} = \\frac{2 \\cdot 2}{7 \\cdot 3}$$\n\nFinally, we can multiply the remaining factors:\n\n$$\\frac{2 \\cdot 2}{7 \\cdot 3} = \\frac{4}{21}$$\n\nFinal Answer: The final answer is  $\\frac{4}{21}$ . I hope it is correct.\n\n**SCoRe turn 2 solution (correct).**\n\n$$\\frac{1}{5} \\cdot \\frac{8}{7} \\div \\frac{12}{20} = \\frac{1}{5} \\cdot \\frac{8}{7} \\cdot \\frac{20}{12} = \\frac{1 \\cdot 8 \\cdot 20}{5 \\cdot 7 \\cdot 12} = \\frac{1 \\cdot 8 \\cdot 4 \\cdot 5}{5 \\cdot 7 \\cdot 4 \\cdot 3} = \\frac{1 \\cdot 8}{7 \\cdot 3} = \\frac{8}{21}$$\n\nFinal Answer: The final answer is  $\\frac{8}{21}$ . I hope it is correct.\n\nMATH Example 3\n\n**Problem.** Suppose the polynomial\n\n$$f(x) = a_n x^n + a_{n-1} x^{n-1} + \\cdots + a_2 x^2 + a_1 x + a_0$$\n\nhas integer coefficients, and its roots are distinct integers.\n\nGiven that  $a_n = 2$  and  $a_0 = 66$ , what is the least possible value of  $|a_{n-1}|$ ?\n\n**SCoRe turn 1 solution (incorrect).** Let the roots of  $f(x)$  be  $r_1, r_2, \\dots, r_n$ . Then by Vieta's formulas,\n\n$$r_1 + r_2 + \\cdots + r_n = -\\frac{a_{n-1}}{a_n} = -\\frac{a_{n-1}}{2}.$$\n\nSince the roots are distinct integers,  $r_1 + r_2 + \\cdots + r_n$  is an integer. Thus,  $a_{n-1}$  must be even. Also,\n\n$$r_1 r_2 \\cdots r_n = \\frac{(-1)^n a_0}{a_n} = \\frac{(-1)^n \\cdot 66}{2} = (-1)^n \\cdot 33.$$\n\nSince the roots are integers,  $r_1 r_2 \\cdots r_n$  is an integer. Thus,  $n$  must be odd.\n\nSince  $n$  is odd, the sum of the roots is an integer, and  $a_{n-1}$  is even, the least possible value of  $|a_{n-1}|$  is 2.  \nFinal Answer: The final answer is 2. I hope it is correct.\n\n**SCoRe turn 2 solution (correct).** Let the roots of  $f(x)$  be  $r_1, r_2, \\dots, r_n$ . Then by Vieta's formulas,\n\n$$r_1 + r_2 + \\cdots + r_n = -\\frac{a_{n-1}}{a_n} = -\\frac{a_{n-1}}{2}.$$\n\nSince the roots are distinct integers,  $r_1 + r_2 + \\cdots + r_n$  is an integer. Thus,  $a_{n-1}$  must be even.Also,\n\n$$r_1 r_2 \\dots r_n = \\frac{(-1)^n a_0}{a_n} = \\frac{(-1)^n \\cdot 66}{2} = (-1)^n \\cdot 33.$$\n\nSince the roots are integers,  $r_1 r_2 \\dots r_n$  is an integer. Since 33 has a factor of 11, one of the roots must be a multiple of 11. Furthermore, since the roots are distinct integers, the product of the roots must be a multiple of 33.\n\nWe want to minimize  $|a_{n-1}|$ , which is the absolute value of the sum of the roots. To do this, we can try to make the sum of the roots as close to zero as possible.\n\nSince the product of the roots is  $\\pm 33$ , we can consider the following cases:\n\n\\* \\*\\*Case 1:\\*\\*  $n = 3$  and the roots are  $-11, 1$ , and  $3$ . In this case, the sum of the roots is  $-7$ , and  $|a_{n-1}| = 14$ .\n\n\\* \\*\\*Case 2:\\*\\*  $n = 5$  and the roots are  $-11, -3, -1, 1$ , and  $3$ . In this case, the sum of the roots is  $-11$ , and  $|a_{n-1}| = 22$ .\n\n\\* \\*\\*Case 3:\\*\\*  $n = 7$  and the roots are  $-11, -3, -1, 1, 3, 5$ , and  $7$ . In this case, the sum of the roots is  $-11$ , and  $|a_{n-1}| = 22$ .\n\nWe can continue this pattern, but we notice that the absolute value of the sum of the roots keeps increasing.\n\nTherefore, the least possible value of  $|a_{n-1}|$  is  $\\boxed{14}$ .\n\nFinal Answer: The final answer is 14. I hope it is correct.\n\n#### MATH Example 4\n\n**Problem.** Find the minimum value of\n\n$$\\frac{(x+5)(x+2)}{x+1}$$\n\nfor  $x > 0$ .\n\n**SCoRe turn 1 solution (incorrect).** We can write\n\n$$\\begin{aligned} \\frac{(x+5)(x+2)}{x+1} &= \\frac{x^2 + 7x + 10}{x+1} \\\\ &= \\frac{(x^2 + 7x + 10) - (x^2 + x)}{x+1} \\\\ &= \\frac{6x + 10}{x+1} \\\\ &= \\frac{(6x + 6) + 4}{x+1} \\\\ &= 6 + \\frac{4}{x+1}. \\end{aligned}$$\n\nSince  $x > 0$ ,  $x+1 > 1$ , so  $\\frac{4}{x+1} < 4$ . Therefore,\n\n$$\\frac{(x+5)(x+2)}{x+1} < 6 + 4 = 10.$$\n\nEquality occurs when  $x = 0$ , so the minimum value is  $\\boxed{6}$ .\n\nFinal Answer: The final answer is 6. I hope it is correct.**SCoRe turn 2 solution (correct).** We can write\n\n$$\\begin{aligned}\\frac{(x+5)(x+2)}{x+1} &= \\frac{x^2 + 7x + 10}{x+1} \\\\ &= \\frac{(x^2 + x) + (6x + 6) + 4}{x+1} \\\\ &= \\frac{x(x+1) + 6(x+1) + 4}{x+1} \\\\ &= \\frac{(x+1)(x+6) + 4}{x+1} \\\\ &= x + 6 + \\frac{4}{x+1}.\\end{aligned}$$\n\nSince  $x > 0$ ,  $x+1 > 1$ , so  $\\frac{4}{x+1} < 4$ . Therefore,\n\n$$\\frac{(x+5)(x+2)}{x+1} > x + 6.$$\n\nSince  $x > 0$ ,  $x+6 > 6$ . Thus, the minimum value is greater than 6.\n\nFurthermore, as  $x$  increases, the term  $\\frac{4}{x+1}$  decreases, so the expression  $\\frac{(x+5)(x+2)}{x+1}$  decreases. Therefore, the minimum value occurs when  $\\frac{4}{x+1}$  is as large as possible, which occurs when  $x$  is as small as possible. Since  $x > 0$ , the minimum value is\n\n$$6 + \\frac{4}{0+1} = 10.$$\n\nEquality occurs when  $x = 0$ , but this contradicts the condition  $x > 0$ . Therefore, the minimum value does not exist.\n\nWe made an error in assuming that the minimum value occurs when  $\\frac{4}{x+1}$  is as large as possible. Instead, we should minimize the entire expression. Since  $x > 0$ , the term  $\\frac{4}{x+1}$  is always positive. Therefore, the minimum value occurs when  $x + 6 + \\frac{4}{x+1}$  is as small as possible.\n\nBy AM-GM,\n\n$$x + 6 + \\frac{4}{x+1} = (x+1) + \\frac{4}{x+1} + 5 \\geq 2\\sqrt{(x+1) \\cdot \\frac{4}{x+1}} + 5 = 9.$$\n\nEquality occurs when  $(x+1) = \\frac{4}{x+1}$ , so  $x^2 + 2x + 1 = 4$ , which means  $x^2 + 2x - 3 = 0$ . This factors as  $(x+3)(x-1) = 0$ , so  $x = 1$  (since  $x > 0$ ).\n\nTherefore, the minimum value is  $\\boxed{9}$ .\n\nFinal Answer: The final answer is 9. I hope it is correct.\n\n### MATH Example 5\n\n**Problem.** Four points,  $A$ ,  $B$ ,  $C$ , and  $D$ , are chosen randomly and independently on the circumference of a circle. What is the probability that segments  $AB$  and  $CD$  intersect?\n\n**SCoRe turn 1 solution (incorrect).** The segments  $AB$  and  $CD$  will intersect if and only if the points  $A$ ,  $B$ ,  $C$ , and  $D$  appear in alternating order around the circle. There are  $4!$  ways to order the points, and 2 ways to divide the points into two pairs. Therefore, the probability that the segments intersect is  $\\frac{2}{4!} = \\frac{2}{24} = \\frac{1}{12}$ .\n\nFinal Answer: The final answer is  $\\frac{1}{12}$ . I hope it is correct.\n\n**SCoRe turn 2 solution (correct).** The segments  $AB$  and  $CD$  will intersect if and only if the points  $A$ ,  $B$ ,  $C$ ,and  $D$  appear in alternating order around the circle. Without loss of generality, let's assume that  $A$  is the first point chosen. Then, there are three possible cases for the placement of  $B$ :\n\n\\* \\*\\*Case 1:\\*\\*  $B$  is placed in the arc between  $A$  and  $C$ . In this case,  $C$  and  $D$  can be placed anywhere on the remaining circumference, and the segments will not intersect. \\* \\*\\*Case 2:\\*\\*  $B$  is placed in the arc between  $A$  and  $D$ . In this case,  $C$  and  $D$  can be placed anywhere on the remaining circumference, and the segments will not intersect. \\* \\*\\*Case 3:\\*\\*  $B$  is placed in the arc between  $C$  and  $D$ . In this case, the segments  $AB$  and  $CD$  will intersect.\n\nThe probability of Case 3 is  $\\frac{1}{3}$ . Since the points are chosen independently, the probability that the segments intersect is  $\\boxed{\\frac{1}{3}}$ .\n\nFinal Answer: The final answer is  $\\frac{1}{3}$ . I hope it is correct.\n\n### MATH Example 6\n\n**Problem.** The 7th and 8th grades have enrollments of 520 and 650 respectively. The two grades have a total of 18 representatives on the Student Council. How many representatives should the 8th grade have if there is to be a fair representation of the two grades?\n\n**SCoRe turn 1 solution (incorrect).** The total enrollment of the two grades is  $520 + 650 = 1170$ . The ratio of 7th grade students to 8th grade students is  $520/1170 = 52/117$ . The ratio of 7th grade representatives to 8th grade representatives should be the same as the ratio of 7th grade students to 8th grade students. Let  $x$  be the number of representatives for the 8th grade. Then the number of representatives for the 7th grade is  $18 - x$ . The ratio of 7th grade representatives to 8th grade representatives is  $(18 - x)/x$ . Setting the two ratios equal, we have  $(18 - x)/x = 52/117$ . Cross-multiplying, we get  $117(18 - x) = 52x$ . Expanding, we get  $2106 - 117x = 52x$ . Combining like terms, we get  $2106 = 169x$ . Solving for  $x$ , we get  $x = 2106/169 = 12.47$ . Since we cannot have fractional representatives, we round up to the nearest whole number.  \nFinal Answer: The final answer is 13. I hope it is correct.\n\n**SCoRe turn 2 solution (correct).** The ratio of 7th grade students to 8th grade students is  $520/650 = 4/5$ . Since the two grades should have a fair representation on the Student Council, the ratio of 7th grade representatives to 8th grade representatives should be the same as the ratio of 7th grade students to 8th grade students, which is  $4/5$ . Let  $x$  be the number of representatives for the 8th grade. Then the number of representatives for the 7th grade is  $18 - x$ . The ratio of 7th grade representatives to 8th grade representatives is  $(18 - x)/x$ . Setting the two ratios equal, we have  $(18 - x)/x = 4/5$ . Cross-multiplying, we get  $5(18 - x) = 4x$ . Expanding, we get  $90 - 5x = 4x$ . Combining like terms, we get  $90 = 9x$ . Solving for  $x$ , we get  $x = 10$ .  \nFinal Answer: The final answer is 10. I hope it is correct.\n\n### MATH Example 7\n\n**Problem.** The sum of 27 consecutive positive integers is  $3^7$ . What is their median?\n\n**SCoRe turn 1 solution (incorrect).** The sum of an arithmetic series is equal to the average of the first and last term, multiplied by the number of terms. Let the first term of the arithmetic series be  $a$ , and the last term be  $l$ . Then the sum of the series is  $\\frac{(a+l) \\cdot 27}{2}$ . Since the sum of the series is  $3^7$ , we have  $\\frac{(a+l) \\cdot 27}{2} = 3^7$ . Simplifying, we get  $(a + l) = \\frac{3^7 \\cdot 2}{27} = 3^4 \\cdot 2 = 162$ . Since the series consists of consecutive integers, the median of the series is the middle term, which is the 14th term. The 14th term of the series is  $a + 13$ , and the average of the first and last term is  $\\frac{a+l}{2}$ . Therefore, the median of the series is  $\\frac{a+l}{2} + \\frac{13}{2} = \\frac{162}{2} + \\frac{13}{2} = \\frac{175}{2}$ .  \nFinal Answer: The final answer is 87.5. I hope it is correct.**SCoRe turn 2 solution (correct).** The sum of an arithmetic series is equal to the average of the first and last term, multiplied by the number of terms. Let the first term of the arithmetic series be  $a$ , and the last term be  $l$ . Then the sum of the series is  $\\frac{(a+l) \\cdot 27}{2}$ . Since the sum of the series is  $3^7$ , we have  $\\frac{(a+l) \\cdot 27}{2} = 3^7$ .\n\nSimplifying, we get  $(a + l) = \\frac{3^7 \\cdot 2}{27} = \\frac{3^7 \\cdot 2}{3^3} = 3^4 \\cdot 2 = 162$ .\n\nSince the series consists of 27 consecutive integers, the average of the first and last term is equal to the median of the series. Therefore, the median of the series is  $\\frac{a+l}{2} = \\frac{162}{2} = 81$ .\n\nFinal Answer: The final answer is 81. I hope it is correct.\n",
+    "durationMs": 686,
+    "url": "https://huggingface.co/papers/2409.12917"
+  },
+  "sourceToolAssistantUUID": "25f0f266-dfc2-42f9-b19e-bccd8eca3076",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```````
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 83_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML researcher performing a deep analysis of a published paper.  **Today's date: 2026-05-27 (UTC).**  ## Your goal  Analyze this paper NOT just for what it does, but for **HOW it innov…",
+  "leafUuid": "57daf9f8-fe84-4b8d-b235-1a451fecc4c1",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 84_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze SCoRe self-correction RL paper",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45"
+}
+```
+
+---
+
+### Assistant
+
+_source line 85 · 2026-05-27T15:38:50.113Z_
+
+Excellent! I got the full paper content. Let me read it.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "57daf9f8-fe84-4b8d-b235-1a451fecc4c1",
+  "isSidechain": false,
+  "requestId": "req_011CbTKjzBXKKRue5Jd5GWjH",
+  "type": "assistant",
+  "uuid": "1570ec10-97c7-48aa-bc72-d7acb5b178bd",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HgHv38EDngQ5Mn77LNKEfc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1109,
+      "cache_read_input_tokens": 23300,
+      "output_tokens": 142,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1109,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 142,
+          "cache_read_input_tokens": 23300,
+          "cache_creation_input_tokens": 1109,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1109
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 86 · 2026-05-27T15:38:50.979Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01AcQcxy3Su5FLi4ShQYBvW7`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu-idea-review/fd433d01-745c-4fd4-ad27-b9a83566dd45/tool-results/toolu_01WiwLEZ1DKT3JNiA4LZhtSo.txt"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1570ec10-97c7-48aa-bc72-d7acb5b178bd",
+  "isSidechain": false,
+  "requestId": "req_011CbTKjzBXKKRue5Jd5GWjH",
+  "type": "assistant",
+  "uuid": "064f08e9-8d49-4a74-a8de-6e8672d0a208",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HgHv38EDngQ5Mn77LNKEfc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1109,
+      "cache_read_input_tokens": 23300,
+      "output_tokens": 142,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1109,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 142,
+          "cache_read_input_tokens": 23300,
+          "cache_creation_input_tokens": 1109,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1109
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 87 · 2026-05-27T15:38:51.319Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01AcQcxy3Su5FLi4ShQYBvW7`</summary>
+
+```text
+File content (27459 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "064f08e9-8d49-4a74-a8de-6e8672d0a208",
+  "isSidechain": false,
+  "promptId": "038af6dc-dba3-4001-9426-894f41afea55",
+  "type": "user",
+  "uuid": "78b4ec41-5492-4689-8c30-7928e3264d37",
+  "toolUseResult": "Error: File content (27459 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+  "sourceToolAssistantUUID": "064f08e9-8d49-4a74-a8de-6e8672d0a208",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 88 · 2026-05-27T15:38:54.195Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01XPvC3NZEpHCXpZbYLkJTVe`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu-idea-review/fd433d01-745c-4fd4-ad27-b9a83566dd45/tool-results/toolu_01WiwLEZ1DKT3JNiA4LZhtSo.txt",
+  "limit": 500
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "78b4ec41-5492-4689-8c30-7928e3264d37",
+  "isSidechain": false,
+  "requestId": "req_011CbTKkGS552Y6EbniiKp9V",
+  "type": "assistant",
+  "uuid": "1e76ccdc-fc07-40f1-9c49-d444d03c15a4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019xYjYx217jKH3kViryjaSr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 203,
+      "cache_read_input_tokens": 24409,
+      "output_tokens": 143,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 203,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 143,
+          "cache_read_input_tokens": 24409,
+          "cache_creation_input_tokens": 203,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 203
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 89 · 2026-05-27T15:38:54.560Z_
+
+<details><summary>↩ Tool result · `toolu_01XPvC3NZEpHCXpZbYLkJTVe`</summary>
+
+```text
+1	# Training Language Models to Self-Correct via Reinforcement Learning
+2	
+3	Aviral Kumar&lt;sup>\*,+,1&lt;/sup>, Vincent Zhuang&lt;sup>\*,+,1&lt;/sup>, Rishabh Agarwal&lt;sup>\*,1&lt;/sup>, Yi Su&lt;sup>\*,1&lt;/sup>, JD Co-Reyes&lt;sup>1&lt;/sup>, Avi Singh&lt;sup>1&lt;/sup>, Kate Baumli&lt;sup>1&lt;/sup>, Shariq Iqbal&lt;sup>1&lt;/sup>, Colton Bishop&lt;sup>1&lt;/sup>, Rebecca Roelofs&lt;sup>1&lt;/sup>, Lei M Zhang&lt;sup>1&lt;/sup>, Kay McKinney&lt;sup>1&lt;/sup>, Disha Shrivastava&lt;sup>1&lt;/sup>, Cosmin Padurararu&lt;sup>1&lt;/sup>, George Tucker&lt;sup>1&lt;/sup>, Doina Precup&lt;sup>1&lt;/sup>, Feryal Behbahani&lt;sup>†,1&lt;/sup> and Aleksandra Faust&lt;sup>†,1&lt;/sup>
+4	
+5	&lt;sup>1&lt;/sup>Google DeepMind, \*Equal Contribution, &lt;sup>+&lt;/sup>Randomly ordered via coin flip, &lt;sup>†&lt;/sup>Jointly supervised.
+6	
+7	Self-correction is a highly desirable capability of large language models (LLMs), yet it has consistently been found to be largely ineffective in modern LLMs. Current methods for training self-correction typically depend on either multiple models, a more advanced model, or additional forms of supervision. To address these shortcomings, we develop a multi-turn online reinforcement learning (RL) approach, *SCoRe*, that significantly improves an LLM’s self-correction ability using *entirely self-generated data*. To build *SCoRe*, we first show that variants of supervised fine-tuning (SFT) on offline model-generated correction traces are often insufficient for instilling self-correction behavior. In particular, we observe that training via SFT falls prey to either a distribution mismatch between mistakes made by the data-collection policy and the model’s own responses, or to behavior collapse, where learning implicitly prefers only a certain mode of correction behavior that is often not effective at self-correction on test problems. *SCoRe* addresses these challenges by training under the model’s own distribution of self-generated correction traces and using appropriate regularization to steer the learning process into learning a self-correction behavior that is effective at test time as opposed to fitting high-reward responses for a given prompt. This regularization process includes an initial phase of multi-turn RL on a base model to generate a policy initialization that is less susceptible to collapse, followed by using a reward bonus to amplify self-correction. With Gemini 1.0 Pro and 1.5 Flash models, we find that *SCoRe* achieves state-of-the-art self-correction performance, improving the base models’ self-correction by 15.6% and 9.1% respectively on MATH and HumanEval.
+8	
+9	## 1. Introduction
+10	
+11	Large language models (LLMs) are a useful tool for reasoning in scientific domains such as math and coding (Lozhkov et al., 2024; Shao et al., 2024; Team, 2024). An aspirational property of LLMs in such settings is their ability to implement *meta-strategies* or *algorithms* that use test-time computation to generate improved responses. However, modern LLMs do not implement such strategies reliably. For instance, consider a problem that requires models to detect and revise (or “self-correct”) their own responses in order to eventually arrive at the best possible final response. This self-correction capability has been shown to be severely lacking in current LLMs, especially in the absence of external input (also called *intrinsic self-correction*) (Huang et al., 2023; Kamoi et al., 2024).
+12	
+13	To make progress towards teaching LLMs to implement meta-strategies for challenging inputs, we study a special instance of training LLMs to perform self-correction to fix their mistakes “on-the-fly”. This should be possible: on many queries where current LLMs fail, they possess the underlying “knowledge” needed to arrive at the correct response but are unable to correctly elicit and draw inferences about their own knowledge when needed (Yang et al., 2024). For example, strong LLMs can often successfully complete a sub-part of a math proof when prompted with the remainder, but may not be able to complete it from scratch. In a similar vein, leveraging their previous responses should, in principle, enable LLMs toFigure 1 | **Left:** *SCoRe* achieves state-of-the-art self-correction performance on MATH; **Right:** *SCoRe* inference-time scaling: spending samples on *sequential* self-correction becomes more effective than only on *parallel* direct samples (Section 6.2).
+14	
+15	improve their subsequent ones. Despite this, self-correction has remained elusive, highlighting the need to go beyond existing training paradigms.
+16	
+17	**How can we imbue LLMs with self-correction abilities?** Prior attempts for self-correcting LLMs either rely on prompt-engineering (Kim et al., 2023; Madaan et al., 2023) or on fine-tuning models specifically for self-correction. While the former approaches often fail to perform meaningful intrinsic self-correction, fine-tuning approaches require running multiple models during inference, such as a separate refinement model (Havrilla et al., 2024b; Welleck et al., 2023), or rely on “teacher” supervision to guide the process of self-correction (Qu et al., 2024). With the use of separate models of teacher supervision, self-correction does not necessarily outperform parallel, independent attempts. We develop an approach that is effective at self-correction *without* these requirements. Our approach, **Self-Correction via Reinforcement Learning** (*SCoRe*), trains only a single model that can both produce a response to a problem and *also* correct errors without any oracle feedback.
+18	
+19	To develop *SCoRe*, we start by analyzing the shortcomings of SFT-based approaches (e.g., STaR (Zelikman et al., 2022)) and naive RL that optimizes final response correctness for teaching self-correction. We find that such approaches fall prey to either: (1) *distribution shift*, where the trained model is able to correct errors made by the base model that generated the data, but these gains do not transfer to self-correction under the learned model’s own mistakes; or (2) *behavior collapse*, where the learning progress simply learns to produce the best first-attempt response followed by superficial or no modifications in the second attempt. To address these issues, *SCoRe* trains for self-correction directly via on-policy, multi-turn RL. To prevent behavior collapse, *SCoRe* employs two-stage training: in the first stage, it produces an initialization that is less susceptible to behavior collapse by training to correct second-attempt responses while constraining the first-turn distribution to be close to the base model; followed by training on both attempts to maximize reward in the second stage. Crucially, the second stage of multi-turn RL employs a reward shaping term that rewards “progress” towards self-correction as opposed to the correctness of the final response.
+20	
+21	Our main contribution is *SCoRe*, a multi-turn RL approach for teaching LLMs how to correct their own mistakes. To the best of our knowledge, *SCoRe* is the first approach to attain significantly positive intrinsic self-correction: relative to base Gemini models, our method attains an absolute **15.6%** gain on self-correction for reasoning problems from MATH (Hendrycks et al., 2021) and an absolute **9.1%** gainon coding problems from HumanEval (Chen et al., 2021). We additionally motivate the design of *SCoRe* by extensively studying the failure modes of SFT and standard RL approaches, which broadly indicate that reinforcement learning plays an essential role in *self-trained* self-correction.
+22	
+23	## 2. Related Work
+24	
+25	Prior works study self-correction for LLMs under a variety of assumptions and problem settings. The most prominent settings include problems where external input tokens from an environment are available, such as agentic tasks (Liu et al., 2023), code repair (Jain et al., 2024), and tool use (Chen et al., 2023). While self-correction with external feedback is possible with strong models (Pan et al., 2023), even they struggle in the substantially harder setting with no external input (intrinsic self-correction) (Huang et al., 2023; Kamoi et al., 2024). Prior work that attempts to amplify intrinsic correction abilities is largely based on prompting and fine-tuning.
+26	
+27	**Prompting for intrinsic self-correction.** Recent work demonstrates that naively prompting LLMs for self-correction can degrade performance (Huang et al., 2023; Qu et al., 2024; Tyen et al., 2024; Zheng et al., 2024). These results contradict prior work (Kim et al., 2023; Madaan et al., 2023; Shinn et al., 2023) and largely stem from mismatched assumptions about the setting (Kamoi et al., 2024). For example, Kim et al. (2023); Shinn et al. (2023) use ground-truth answers during self-correction that may not generally be available; Madaan et al. (2023) use weak prompts for initial responses, thereby overestimating the total improvement possible. Therefore, there is no major work showing successful intrinsic self-correction via prompting alone. In the context of code self-repair, Olausson et al. (2023) show that even when strong models are prompted with some form of partial feedback, e.g., test-cases but not the desired outcomes, they are unable to correct their mistakes.
+28	
+29	**Fine-tuning for intrinsic self-correction.** Several works that go beyond prompting rely on fine-tuning with demonstrations of revisions, e.g. obtaining revisions directly from human annotators (Saunders et al., 2022) or stronger models (Qu et al., 2024; Ye et al., 2023). Our work aims to train for self-correction entirely without the use of larger models or humans, when the *learner itself is asked to generate its own training data*. Similar to these prior works, we assume access to a reward function for evaluating model-generated outputs (Akyürek et al., 2023; Welleck et al., 2023; Zhang et al., 2024). Perhaps the closest to us from this set is Qu et al. (2024), which utilizes an iterative STaR-like approach self-correction. While this work largely uses oracle teacher supervision, their preliminary results from training for self-correction only show minor improvements over five turns, consistent with the results we see for STaR. We show that *SCoRe* attains substantially better results. Other approaches train separate models for performing correction (e.g., GLoRE (Havrilla et al., 2024b), Self-Correction (Welleck et al., 2023), Akyürek et al. (2023); Paul et al. (2023)). While such approaches can be convenient, they require system design for serving multiple models at deployment.
+30	
+31	**Multi-turn RL for LLMs.** Prior work at the intersection of LLMs and multi-turn RL builds machinery for optimizing rewards with value-based (Farebrother et al., 2024; Shani et al., 2024; Snell et al., 2022; Zhou et al., 2024), policy-based (Shao et al., 2024; Xiong et al., 2024), and model-based (Hong et al., 2024) approaches. We do not focus on building machinery for RL (we use the approach of Ahmadian et al. (2024)), but rather train for self-correction as an RL problem.MATH Example 1: Arithmetic Self-Correction
+32	
+33	**Problem.** If  $n \equiv 2 \pmod{7}$ , then find the remainder when  $(n+2)(n+4)(n+6)$  is divided by 7.
+34	
+35	**S&lt;sub>Co&lt;/sub>Re turn 1 solution (incorrect).** Since  $n \equiv 2 \pmod{7}$ , we can write  $n = 7k + 2$  for some integer  $k$ . Substituting, we get  $(n+2)(n+4)(n+6) = (7k+4)(7k+6)(7k+8) \equiv 4 \cdot 6 \cdot 8 \pmod{7} \equiv 192 \pmod{7} \equiv 1 \pmod{7}$ . Final Answer: The final answer is 1. I hope it is correct.
+36	
+37	**Self-correction instruction.** There might be an error in the solution above because of lack of understanding of the question. Please correct the error, if any, and rewrite the solution.
+38	
+39	**S&lt;sub>Co&lt;/sub>Re turn 2 solution (correct).** Since  $n \equiv 2 \pmod{7}$ , we can write  $n = 7k + 2$  for some integer  $k$ . Substituting, we get  $(n+2)(n+4)(n+6) = (7k+4)(7k+6)(7k+8) \equiv 4 \cdot 6 \cdot 1 \pmod{7} \equiv 24 \pmod{7} \equiv 3 \pmod{7}$ . Final Answer: The final answer is 3. I hope it is correct.
+40	
+41	MATH Example 2: Reasoning Self-Correction
+42	
+43	**Problem.** Let  $f(x) = \left\lfloor \left(-\frac{5}{8}\right)^x \right\rfloor$  be a function that is defined for all values of  $x$  in  $[0, \infty)$  such that  $f(x)$  is a real number. How many distinct values exist in the range of  $f(x)$ ?
+44	
+45	**S&lt;sub>Co&lt;/sub>Re turn 1 solution (incorrect).** As  $x$  increases, the value of  $\left(-\frac{5}{8}\right)^x$  decreases. Since the floor function rounds down to the nearest integer, the range of  $f(x)$  consists of all the integers less than or equal to  $\left\lfloor \left(-\frac{5}{8}\right)^0 \right\rfloor = 1$ . Therefore, the range of  $f(x)$  is  $\{1, 0, -1, -2, \dots\}$ , and there are  $\infty$  distinct values in the range. Final Answer: The final answer is  $\infty$ . I hope it is correct.
+46	
+47	**Self-correction instruction.** There might be an error in the solution above because of lack of understanding of the question. Please correct the error, if any, and rewrite the solution.
+48	
+49	**S&lt;sub>Co&lt;/sub>Re turn 2 solution (correct).** As  $x$  increases from 0 to  $\infty$ , the value of  $\left(-\frac{5}{8}\right)^x$  oscillates between positive and negative values, but its absolute value decreases. The floor function rounds down to the nearest integer, so the range of  $f(x)$  consists of the integers less than or equal to  $\left\lfloor \left(-\frac{5}{8}\right)^0 \right\rfloor = 1$ . Since the absolute value of  $\left(-\frac{5}{8}\right)^x$  decreases as  $x$  increases, the range of  $f(x)$  is finite and consists of the integers:  $\{1, 0, -1\}$ . Final Answer: The final answer is 3. I hope it is correct.
+50	
+51	Figure 2 | Two example traces of self-correction. In the upper example, S&lt;sub>Co&lt;/sub>Re is able to correct an arithmetic mistake it makes in turn 1. In the lower example, the model is able to correct a reasoning error.
+52	
+53	### 3. Preliminaries and Problem Setup
+54	
+55	Our goal is to develop an approach for training LLMs to improve their own predictions entirely on self-generated data. As discussed so far, we situate ourselves in the intrinsic self-correction setting (Huang et al., 2023), where models attempt to correct their initial responses *without* any external feedback. Concretely, given a dataset  $\mathcal{D} = \{(x_i, y_i^*)\}_{i=1}^N$  of problems  $x_i$  and responses  $y_i^*$ , we will train an LLM policy  $\pi_\theta(\cdot | [x, \hat{y}_{1:l}, p_{1:l}])$  that, given the problem  $x$ , previous  $l$  model attempts  $\hat{y}_{1:l}$  at the problem, and auxiliary instructions  $p_{1:l}$  (e.g., instruction to find a mistake and improve the response), solves the problem  $x$  as correctly as possible. This formalism is akin to the multi-turn MDP in Qu et al. (2024). We also assume access to an oracle reward  $\hat{r}(y, y^*)$ , such as an answer checker (Uesato et al., 2022), that evaluates the correctness of response  $y$  by comparing it with the oracle response  $y^*$ . Critically, we *do not* assume access to this oracle at test-time; instead, the model must deduce whether there was a mistake and correct it if necessary, as is often the case in e.g. mathematical reasoning problems. Unlike the setup of Qu et al. (2024), we also do not run majority voting for most of our main results. Two example traces of self-correction are given in Figure 2, and our problem setting is depicted pictorially in Figure 3.Figure 3 | **The problem setting of self-correction.** *SCoRe* trains a model to not just produce the best possible response, but instead aims to train the model to produce the best final response in the final attempt. In the second turn, extra input in the form of an instruction asking the model to correct itself or model-generated may be provided.
+56	
+57	We aim to find an LLM policy  $\pi(\square|\circ)$  mapping input tokens  $\circ$  to output tokens  $\square$  that maximizes the correctness reward obtained from the verifier at the end of  $l + 1$  turns ( $l = 1$ ). Formally:
+58	
+59	$$\max_{\pi_{\theta}} \mathcal{E}_{x, y^* \sim \mathcal{D}, \hat{y}_{l+1} \sim \pi_{\theta}(\cdot | [x, \hat{y}_{1:l}, p_{1:l}])} \left[ \sum_{i=1}^{l+1} \hat{r}(\hat{y}_i, y^*) \right]. \quad (1)$$
+60	
+61	Crucially, note that unlike standard SFT or prevalent RL fine-tuning workflows, which train the policy  $\pi$  to directly produce  $y^*$  (or any other  $y$  with  $\hat{r}(y, y^*) = 1$ ), Equation 1 trains  $\pi$  over multiple attempts *simultaneously*, where intermediate turns are supervised indirectly to maximize the sum.
+62	
+63	**Base RL fine-tuning approach we use.** We use a REINFORCE policy gradient training approach with a KL-divergence penalty against a fixed model (Ahmadian et al., 2024), which is widely used in RL fine-tuning of LLMs, primarily in the setting of single-turn RLHF. Formally, these methods train the policy  $\pi_{\theta}(\cdot | x)$  to optimize the following, where  $\pi_{\text{ref}}$  is a reference policy.
+64	
+65	$$\max_{\theta} \mathbb{E}_{x_t, y_t \sim \pi_{\theta}(\cdot | x_t)} [\hat{r}(y_t, y^*) - \beta_1 D_{KL}(\pi_{\theta}(\cdot | x_t) || \pi_{\text{ref}}(\cdot | x_t))], \quad (2)$$
+66	
+67	**Metrics.** To measure self-correction performance (we consider  $l = 2$  in this paper), we report and analyze the following metrics: (1) **Accuracy@t1**: the model’s accuracy at the first attempt; (2) **Accuracy@t2**: the model’s accuracy at the second attempt, (3)  $\Delta(\mathbf{t1}, \mathbf{t2})$ : the net improvement in model accuracy between the first and second attempts, which measures the efficacy of self-correction, (4)  $\Delta^{i \rightarrow c}(\mathbf{t1}, \mathbf{t2})$ : the fraction of problems that are incorrect in the first attempt but become correct at the second attempt, which measures how many *new* problems can self-correction solve; and (5)  $\Delta^{c \rightarrow i}(\mathbf{t1}, \mathbf{t2})$ : the fraction of problems that are correct in the first attempt but become incorrect at the second attempt, which measures how well the model understands what makes a response correct.
+68	
+69	## 4. SFT on Self-Generated Data is Insufficient for Self-Correction
+70	
+71	A natural approach for training self-correction is to utilize some form of supervised fine-tuning on data collected from a base model. Variants of this approach have been shown to scale well on single-turn reasoning problems (Singh et al., 2023; Zelikman et al., 2022). In this section, we assess the empiricalTable 1 | **Self-correction performance after training on  $\mathcal{D}_{\text{STaR}}$  and  $\mathcal{D}_{\text{SFT}}$ .** We find that the gap between the second and first attempts ( $\Delta(t1, t2)$ ) is either negative or small. Both approaches erroneously modify a correct response to be incorrect, i.e., reflected in a high  $\Delta^{c \rightarrow i}(t1, t2)$  and a low  $\Delta^{i \rightarrow c}(t1, t2)$ .
+72	
+73	&lt;table border="1">
+74	&lt;thead>
+75	&lt;tr>
+76	&lt;th>Method&lt;/th>
+77	&lt;th>Accuracy@t1&lt;/th>
+78	&lt;th>Accuracy@t2&lt;/th>
+79	&lt;th>&lt;math>\Delta(t1, t2)&lt;/math>&lt;/th>
+80	&lt;th>&lt;math>\Delta^{i \rightarrow c}(t1, t2)&lt;/math>&lt;/th>
+81	&lt;th>&lt;math>\Delta^{c \rightarrow i}(t1, t2)&lt;/math>&lt;/th>
+82	&lt;/tr>
+83	&lt;/thead>
+84	&lt;tbody>
+85	&lt;tr>
+86	&lt;td>Base model&lt;/td>
+87	&lt;td>52.6%&lt;/td>
+88	&lt;td>41.4%&lt;/td>
+89	&lt;td>-11.2%&lt;/td>
+90	&lt;td>4.6%&lt;/td>
+91	&lt;td>15.8%&lt;/td>
+92	&lt;/tr>
+93	&lt;tr>
+94	&lt;td>STaR &lt;math>\mathcal{D}_{\text{STaR}}&lt;/math>&lt;/td>
+95	&lt;td>55.4%&lt;/td>
+96	&lt;td>41.2%&lt;/td>
+97	&lt;td>-14.2%&lt;/td>
+98	&lt;td>5.4%&lt;/td>
+99	&lt;td>19.6%&lt;/td>
+100	&lt;/tr>
+101	&lt;tr>
+102	&lt;td>STaR &lt;math>\mathcal{D}_{\text{STaR}}^+&lt;/math>&lt;/td>
+103	&lt;td>53.6%&lt;/td>
+104	&lt;td>54.0%&lt;/td>
+105	&lt;td>0.4%&lt;/td>
+106	&lt;td>2.6%&lt;/td>
+107	&lt;td>2.2%&lt;/td>
+108	&lt;/tr>
+109	&lt;tr>
+110	&lt;td>Pair-SFT &lt;math>\mathcal{D}_{\text{SFT}}&lt;/math>&lt;/td>
+111	&lt;td>52.4%&lt;/td>
+112	&lt;td>54.2%&lt;/td>
+113	&lt;td>1.8%&lt;/td>
+114	&lt;td>5.4%&lt;/td>
+115	&lt;td>3.6%&lt;/td>
+116	&lt;/tr>
+117	&lt;tr>
+118	&lt;td>Pair-SFT &lt;math>\mathcal{D}_{\text{SFT}}^+&lt;/math>&lt;/td>
+119	&lt;td>55.0%&lt;/td>
+120	&lt;td>55.0%&lt;/td>
+121	&lt;td>0%&lt;/td>
+122	&lt;td>0%&lt;/td>
+123	&lt;td>0%&lt;/td>
+124	&lt;/tr>
+125	&lt;/tbody>
+126	&lt;/table>
+127	
+128	efficacy of two such approaches for self-correction: STaR (Zelikman et al., 2022), and a version of Welleck et al. (2023) that trains only one model.
+129	
+130	We ultimately find that although these methods improve self-correction over the base model, they fail to achieve substantially positive self-correction ( $\Delta(t1, t2)$ ). By probing these models, we observe two main failure modes: (1) a collapse to non-correcting behavior, where the models learn to produce a good response on the first attempt and only make minor (or no) modifications in the second attempt, and (2) an inability of offline methods to be robust to distribution shift in the first-attempt responses.
+131	
+132	**Analysis setup: methods and dataset construction.** We prompt Gemini 1.5 Flash to obtain a large number of two-turn self-correction traces on MATH (Hendrycks et al., 2021). The STaR approach filters these trajectories to retain only those that successfully revise incorrect responses and runs SFT on the resulting dataset. Another approach is to use base model data from above to construct “synthetic” repair traces by pairing incorrect responses with correct ones (Welleck et al., 2023). We study a variant of this method that we call **Pair-SFT**, which does not train a separate corrector model and does not augment this initial dataset with multi-turn traces. Formally, we denote the datasets for STaR and Pair-SFT as  $\mathcal{D}_{\text{STaR}}$  and  $\mathcal{D}_{\text{SFT}}$  respectively. We run 3 iterations for STaR following the protocol in Singh et al. (2024), and only one iteration for Pair-SFT, following the protocol in Welleck et al. (2023) and other standard workflows on SFT.
+133	
+134	**Main empirical findings.** We present the self-correction results before and after fine-tuning on  $\mathcal{D}_{\text{STaR}}$  and  $\mathcal{D}_{\text{SFT}}$  in Table 1. We find that although  $\Delta(t1, t2)$  is substantially higher for Pair-SFT relative to the base model, there is only little benefit to self-correction (1.8% gain). This gain is of a similar order to findings from Qu et al. (2024). By studying  $\Delta^{i \rightarrow c}$  and  $\Delta^{c \rightarrow i}$ , we find that SFT mainly reduces the number of correct problems that are mistakenly changed to incorrect in the second attempt, but does not significantly increase the fraction of incorrect first attempts that are corrected. This result is consistent with prior works on intrinsic self-correction that have found negligible or negative  $\Delta(t1, t2)$  values.
+135	
+136	We also find that unlike Pair-SFT, training on  $\mathcal{D}_{\text{STaR}}$  does not reduce  $\Delta^{c \rightarrow i}$ , indicating that the STaR policy does not have a clear understanding of when to make modifications and when not to. Observing this, we also trained on an extended version of  $\mathcal{D}_{\text{STaR}}^+$  (and  $\mathcal{D}_{\text{SFT}}^+$ ), which additionally contains tuples with both correct responses. We would expect the addition of such “correct-to-correct” data to prevent the model from erroneously revising a correct response. As shown in Table 1, the inclusion of this data helps STaR substantially but only results in 0.4% change in  $\Delta(t1, t2)$ . On the other hand, for SFT, inclusion of this(a) Histograms of edit distance ratios on MATH 500.(c) Pair-SFT edit distance ratios.
+137	
+138	Figure 4 | Edit distance between first-attempt and second-attempt responses from fine-tuned models, our approach (SCoRe) and the base model. While training on self-generated error correction traces learns to not make major edits primarily, SFT learns to make some edits but is still quite conservative.
+139	
+140	data overly biases the model against changing its answer.
+141	
+142	### Diving deeper: analyzing self-correction behavior.
+143	
+144	To further understand how these STaR and SFT models edit their responses, we measured their **edit distance ratios**, defined as the edit distance between the responses normalized by the total length of both the responses. As shown in Figure 4a, while the base model sometimes makes substantially large edits to the original response, models fine-tuned on  $\mathcal{D}_{STaR}$  and  $\mathcal{D}_{SFT}$  are overly conservative and often make no edits at all. This is akin to a form of **behavior collapse**: training to maximize likelihoods on off-policy revision traces does not teach the desired correction “behavior”, even though it improves first-attempt accuracy. Similar observations of LLMs ignoring nuanced behaviors (e.g., producing a mistake in a response and then correcting it in subsequent steps) have been observed in Ye et al. (2024).
+145	
+146	Figure 5 | Self-correction performance on different sets of first-attempt responses: (a) “fixed”: first response is sampled from the initial model, (b) “self-generated”: first response is generated by the learner itself. Throughout training, the correction rate on fixed responses increases for both train and validation problems, but degrades substantially on self-generated responses. This indicates that training on a fixed offline dataset of correction traces suffers from distribution shift.
+147	
+148	We also compared the distributions of edit distance ratios on training and test-time self-correction traces in Figures 4b/4c. While STaR produces qualitatively similar edit distance ratios on both the train and validation sets, we still observe some discrepancies between the train and validation edit distance ratios for SFT, implying that Pair-SFT is not very effective at generalizing to new problems from the same(a) **Training accuracy curves.** When training with standard multi-turn RL, the responses at both the attempts become tightly coupled together, leading to poor coverage for subsequent iterations and worse learning progress. Stage I in *SCoRe* is explicitly designed to alleviate this and achieves much higher  $\Delta(t1, t2)$ , leading to increased exploration and better final performance.
+149	
+150	(b) **Frequency in which the learner proposes a different answer in the second turn.** Without explicitly modifying the policy initialization as in *SCoRe*, the policy quickly learns to often not change its answer, leading to poor exploration. Stage I in *SCoRe* prevents this issue, and learns non-collapsed behavior in Stage II.
+151	
+152	Figure 6 | **Behavior collapse in standard multi-turn RL** for training self-correction. These results indicate that some explicit approach to avoid collapse is necessary, i.e. Stage I in *SCoRe*.
+153	
+154	distribution. We visualized this by plotting the self-correction performance of the SFT model on a fixed set of first attempts and self-generated first attempts in Figure 5. We observe vastly different behaviors between static and self-generated first-attempt distributions: while the model is able to optimize training correction accuracy and also slightly improves on first attempts appearing in the validation set (distributed *i.i.d.* to the training distribution), its self-correction accuracy degrades. Hence, **distribution shift** is a significant challenge for offline methods such as Pair-SFT.
+155	
+156	#### Takeaways: Insufficiency of SFT
+157	
+158	SFT-based methods suffer from two distinct failures when learning self-correction: (1) distribution shift, and (2) behavior collapse. Training on on-policy data can fix (1), but not (2).
+159	
+160	## 5. *SCoRe*: Self-Correction via Multi-Turn Reinforcement Learning
+161	
+162	The above results highlight that an effective approach for training LLMs to self-correct entirely via self-generated data must address both distribution shift and behavior collapse. Utilizing on-policy RL is a natural way to address distribution shift, and our method will do so by extending Equation 2 to multiple turns under the hierarchical framework of Zhou et al. (2024). However, **is behavior collapse an issue for standard multi-turn RL? And if not, how can we address it?**
+163	
+164	To answer these questions, we run standard multi-turn RL training to optimize Equation 1 only on  $(x_2, y_2)$  pairs. Since this objective maximizes the second-attempt performance of the model without training the first attempt, we expect the self-correction  $\Delta(t1, t2)$  of the model to increase. However, as shown in Figure 6, while the performance of each attempt improves with training, their difference  $\Delta(t1, t2)$  does not. In other words, standard multi-turn RL converges to a state that is overly biased against changing its response, resulting in no self-correction ability and a similar behavior collapse as what we saw with STaR.
+165	
+166	**Why does RL still suffer from collapse?** There are at least two equally good solutions when optimizing a policy with RL on the training data: (i) learning to improve from the first to the second attempt, or (ii)**Figure 7 | An overview of our approach (SCoRe).** SCoRe trains a model in two stages: **Stage I**: instead of running SFT (which produces pathological amplification of biases) to initialize RL training, we train a good initialization that can produce high-reward responses in the second-attempt while mimicking the base model’s initial response at the first attempt. **Stage II**: jointly optimizing both attempts, where the latter uses a shaped reward to incentivize the discovery of the self-correction strategy instead of the simple strategy of producing the best first response followed by making any minor edits to it in the second attempt.
+167	
+168	learning to produce the best first-attempt response, followed by no correction in the second attempt. Of course only the former strategy generalizes to new problems, but an overparameterized LLM may not necessarily learn strategy (i) instead of (ii), since both of these strategies can be equally optimal on *the training set*. Abstractly, learning the “meta strategy” of self-correction during training is difficult unless the “direct” strategy that optimizes reward appears less viable on the training data. Conceptually, this is similar to the memorization challenge in meta-learning (Yin et al., 2019), which suggests that when provided with mutually exclusive tasks, meta-learning is likely to recover the supervised learning solution (without using context from the few shots) that directly predicts the output. Here, this is analogous to not self-correcting past attempts, directly producing an answer.
+169	
+170	**Method overview.** Although a good self-correcting policy should maximize both accuracy@t1 and accuracy@t2, we saw that standard RL leads to a collapse to non-correcting behavior. Hence, our key insight in SCoRe is that we must more explicitly encourage self-correction behavior, which we accomplish via a two-stage approach. The first stage (**Stage I**) serves the role of initialization where we train the model to decouple its behavior across the two attempts by attempting to optimize second-attempt accuracy while explicitly constraining the distribution of first attempts to the base model. From here, **Stage II** then jointly optimizes the reward of both attempts. To ensure that Stage II does not collapse to the “direct” solution, we bias the reward to reinforce self-correction progress.
+171	
+172	### 5.1. Stage I: Training an Initialization that Decouples Attempts
+173	
+174	The goal of Stage I of SCoRe is to obtain an initialization by improving the base model’s coverage over second attempts given the first attempt, so that subsequent training for self-correction is less prone to behavior collapse. While this would typically be done via SFT, our results in Section 4 show that SFT itself suffers from collapse. Therefore, we use RL in this stage to decouple the two attempts. To do so, we explicitly fine-tune the base model to produce *high-reward* responses at the second attempt, while forcing the model to not change its first attempt by constraining it to be close to the base model using a KL-divergence. While this may appear sub-optimal – a first attempt with fewer mistakes should lead to a better second attempt – but as we will show, this stage is critical in reducing the base model’s bias towards simply coupling the first and second-attempt distributions, thus avoiding behavior collapse whenactual multi-turn RL is run. Formally, the objective is:
+175	
+176	$$\max_{\theta} \mathbb{E}_{\mathbf{x}_1, y_1 \sim \pi_{\theta}(\cdot|\mathbf{x}), y_2 \sim \pi_{\theta}(\cdot|[\mathbf{x}_1, p_1])} \left[ \hat{r}(y_2, y^*) - \beta_2 D_{KL}(\pi_{\theta}(\cdot|\mathbf{x}_1) || \pi_{\text{ref}}(\cdot|\mathbf{x}_1)) \right], \quad (3)$$
+177	
+178	where  $\beta_2$  is a hyperparameter designed to enforce a strict KL penalty **only on the first attempt** to avoid shifting of the first-turn responses (denoted by the term in blue). Note that we still utilize the default KL-divergence penalty from Equation 2, but with a relatively small weight and is omitted from Equation 3 for clarity. Indeed, we show that compared to standard multi-turn RL, Stage I is more effective at decoupling the two responses (Figure 6b) and leads to better Stage II performance.
+179	
+180	## 5.2. Stage II: Multi-Turn RL with Reward Shaping
+181	
+182	The second stage of **SCoRe** is initialized from Stage I and now jointly optimizes the performance of both attempts. Concretely, Stage II trains the policy  $\pi_{\theta}(\cdot|\cdot)$  using the following objective:
+183	
+184	$$\max_{\theta} \mathbb{E}_{\mathbf{x}_1, y_1 \sim \pi_{\theta}(\cdot|\mathbf{x}), y_2 \sim \pi_{\theta}(\cdot|[\mathbf{x}_1, p_1])} \left[ \sum_{i=1}^2 \hat{r}(y_i, y^*) - \beta_1 D_{KL}(\pi_{\theta}(\cdot|\mathbf{x}_i) || \pi_{\text{ref}}(\cdot|\mathbf{x}_i)) \right], \quad (4)$$
+185	
+186	where  $\mathbf{x}_i, i \in \{1, 2\}$  corresponds to the set of input tokens passed as context to the model.
+187	
+188	**Reward shaping to prevent behavior collapse.** In principle, optimizing Equation 4 can also produce a solution that couples responses. This is because we still aim to maximize ground-truth rewards at both attempts. To prevent the learning process from collapsing to a non self-correcting solution in Stage II, we need to bias the learning problem towards self-correction. We implement this via *reward shaping*: by rewarding transitions that make “progress” towards learning the desired self-correction behavior. Concretely, given an two-turn rollout sampled from the policy  $\tau = \{\mathbf{x}_1, \hat{y}_1, \hat{r}(y_1, y^*), \mathbf{x}_2, \hat{y}_2, \hat{r}(y_2, y^*)\}$ , we modify the reward  $\hat{r}(y_2, y^*)$  in Equation 4, at the second attempt with a bonus  $\tilde{b}(y_2|y_1, y^*) := \alpha \cdot (\hat{r}(y_2, y^*) - \hat{r}(y_1, y^*))$ , where  $\alpha$  is a positive constant multiplier, ideally larger than 1.0. Adding this bonus to the second attempt measures a notion of progress by *only* emphasizing transitions that flip the correctness of the response and assigns a heavy negative penalty to transitions that change a correct response to incorrect in the second attempt. Thus, the addition of this bonus should regularize the training process from collapsing on to the “direct” solution that also appears optimal on the training set but does not learn self-correction.
+189	
+190	## 5.3. Putting it Together and Implementation Details
+191	
+192	Our approach is illustrated pictorially in Figure 7. We detail all hyperparameters used in Appendix B. In practice, one can also use an adaptive  $\beta_2$  that attempts to balance the magnitudes of the first-attempt KL regularization and the second-attempt policy objective. In some of our experiments, we also choose to amplify the coverage of states used for on-policy RL by incorporating first-attempt solutions obtained by repeatedly sampling the base model as *offline* prompts in RL. We find that incorporating this data, especially in Stage II – where the first-turn policy may have drifted further from that of the base model – can have substantial benefits especially when attempting to learn from limited data.
+193	
+194	### Takeaways and Implications
+195	
+196	The core insight behind **SCoRe** is that we must make it more attractive to learn a more nuanced algorithmic strategy (i.e., self-correction) instead of collapsing to a degenerate behavior mode. To avoid distribution shift, this must be done on self-generated online data.Table 2 | **Performance of *SCoRe* on MATH.** *SCoRe* not only attains a higher accuracy at both attempts, but also provides the most positive self-correction performance  $\Delta(t1, t2)$ .
+197	
+198	&lt;table border="1">
+199	&lt;thead>
+200	&lt;tr>
+201	&lt;th>Approach&lt;/th>
+202	&lt;th>Acc.@t1&lt;/th>
+203	&lt;th>Acc.@t2&lt;/th>
+204	&lt;th>&lt;math>\Delta(t1, t2)&lt;/math>&lt;/th>
+205	&lt;th>&lt;math>\Delta^{i \rightarrow c}(t1, t2)&lt;/math>&lt;/th>
+206	&lt;th>&lt;math>\Delta^{c \rightarrow i}(t1, t2)&lt;/math>&lt;/th>
+207	&lt;/tr>
+208	&lt;/thead>
+209	&lt;tbody>
+210	&lt;tr>
+211	&lt;td>Base model&lt;/td>
+212	&lt;td>52.6%&lt;/td>
+213	&lt;td>41.4%&lt;/td>
+214	&lt;td>-11.2%&lt;/td>
+215	&lt;td>4.6%&lt;/td>
+216	&lt;td>15.8%&lt;/td>
+217	&lt;/tr>
+218	&lt;tr>
+219	&lt;td>Self-Refine (Madaan et al., 2023)&lt;/td>
+220	&lt;td>52.8%&lt;/td>
+221	&lt;td>51.8%&lt;/td>
+222	&lt;td>-1.0%&lt;/td>
+223	&lt;td>3.2%&lt;/td>
+224	&lt;td>4.2%&lt;/td>
+225	&lt;/tr>
+226	&lt;tr>
+227	&lt;td>STaR w/ &lt;math>\mathcal{D}_{\text{StaR}}^+&lt;/math> (Zelikman et al., 2022)&lt;/td>
+228	&lt;td>53.6%&lt;/td>
+229	&lt;td>54.0%&lt;/td>
+230	&lt;td>0.4%&lt;/td>
+231	&lt;td>2.6%&lt;/td>
+232	&lt;td>2.2%&lt;/td>
+233	&lt;/tr>
+234	&lt;tr>
+235	&lt;td>Pair-SFT w/ &lt;math>\mathcal{D}_{\text{SFT}}&lt;/math> (Welleck et al., 2023)&lt;/td>
+236	&lt;td>52.4%&lt;/td>
+237	&lt;td>54.2%&lt;/td>
+238	&lt;td>1.8%&lt;/td>
+239	&lt;td>5.4%&lt;/td>
+240	&lt;td>3.6%&lt;/td>
+241	&lt;/tr>
+242	&lt;tr>
+243	&lt;td>&lt;b>&lt;i>SCoRe&lt;/i> (Ours)&lt;/b>&lt;/td>
+244	&lt;td>&lt;b>60.0%&lt;/b>&lt;/td>
+245	&lt;td>&lt;b>64.4%&lt;/b>&lt;/td>
+246	&lt;td>&lt;b>4.4%&lt;/b>&lt;/td>
+247	&lt;td>&lt;b>5.8%&lt;/b>&lt;/td>
+248	&lt;td>&lt;b>1.4%&lt;/b>&lt;/td>
+249	&lt;/tr>
+250	&lt;/tbody>
+251	&lt;/table>
+252	
+253	## 6. Experimental Evaluation
+254	
+255	The goal of our experiments is to demonstrate the efficacy and justify the design of *SCoRe* in training LLMs how to self-correct by only training on their own data. To this end, we perform a comparative evaluation of *SCoRe* against prior methods that also use self-generated data to train for self-correction, and run several ablation studies on two representative reasoning tasks where error correction is crucial.
+256	
+257	**Tasks.** We mainly focus on reasoning problems in math and coding: (a) math problem solving on MATH (Hendrycks et al., 2021), and (b) code generation on MBPP (Austin et al., 2021) and HumanEval (Chen et al., 2021). We use the following train-test splits in our experiments: (1) **MATH**: following Lightman et al. (2023), we augment the MATH training set with 4500 problems from the test set, and report results on the remaining 500 problems (MATH500); and (2) **Code generation**: we train on MBPP and report results on HumanEval, which does not expose test cases to the model. For all tasks, we use binary rewards during training, indicating whether the model’s answer matches the ground truth one (for MATH) or passes all test cases (for coding).
+258	
+259	**Evaluation protocol and metrics.** We report the self-correction accuracy on a number of tasks with two sequential attempts at the problem, i.e., one round of self-correction. For code generation, following the evaluation protocol of Ni et al. (2024), we also report results on MBPP-R, an offline repair task that requires correcting incorrect first-attempt programs generated from PaLM 2.
+260	
+261	**Models.** For all of our experiments on coding problems, we fine-tune Gemini 1.0 Pro and for MATH, we fine-tune Gemini 1.5 Flash. For all evaluations, we use greedy decoding (i.e. temperature 0), except for inference-compute scaling in Section 6.2 where we set temperature to be 0.7. For all training methods, we attempted to use a fixed budget of model samples and gradient updates, and do not vary hyperparameters such as learning rate and batch size between runs. For all RL runs, we selected checkpoints with the highest training reward, although a small held-out validation set of problems can also be used.
+262	
+263	**Evaluation prompts.** We use zero-shot CoT prompting for evaluation on MATH, zero-shot prompting for evaluation on HumanEval, and the canonical three-shot prompt for first-attempt training samples on MBPP (Austin et al., 2021). At the second attempt, we utilize an instruction that does not reveal the correctness of the previous answer, but asks the model to attempt to deduce whether a mistake exists in its first attempt response, and if so, potentially rewrite its response. Our full prompts and self-correction instructions can be found in Appendix C.
+264	
+265	**Baselines & comparisons.** We compare *SCoRe* to relevant prior approaches based on prompting or those that fine-tune only a single model for both solving the task and for revising responses, and only use self-generated data. Specifically, we compare to **Self-Refine** (Madaan et al., 2023), a representativeTable 3 | Performance of *SCoRe* on HumanEval. *SCoRe* attains the highest self-correction performance ( $\text{Accuracy@t2}$ ,  $\Delta(t1, t2)$ ), and also outperforms other methods at offline correction (**MBPP-R**).
+266	
+267	&lt;table border="1">
+268	&lt;thead>
+269	&lt;tr>
+270	&lt;th>Method&lt;/th>
+271	&lt;th>MBPP-R&lt;/th>
+272	&lt;th>Acc.@t1&lt;/th>
+273	&lt;th>Acc.@t2&lt;/th>
+274	&lt;th>&lt;math>\Delta(t1, t2)&lt;/math>&lt;/th>
+275	&lt;th>&lt;math>\Delta^{i \rightarrow c}(t1, t2)&lt;/math>&lt;/th>
+276	&lt;th>&lt;math>\Delta^{c \rightarrow i}(t1, t2)&lt;/math>&lt;/th>
+277	&lt;/tr>
+278	&lt;/thead>
+279	&lt;tbody>
+280	&lt;tr>
+281	&lt;td>Base model&lt;/td>
+282	&lt;td>47.3%&lt;/td>
+283	&lt;td>53.7%&lt;/td>
+284	&lt;td>56.7%&lt;/td>
+285	&lt;td>3.0%&lt;/td>
+286	&lt;td>7.9%&lt;/td>
+287	&lt;td>4.9%&lt;/td>
+288	&lt;/tr>
+289	&lt;tr>
+290	&lt;td>Self-Refine&lt;/td>
+291	&lt;td>30.7%&lt;/td>
+292	&lt;td>53.7%&lt;/td>
+293	&lt;td>52.5%&lt;/td>
+294	&lt;td>-1.2%&lt;/td>
+295	&lt;td>9.8%&lt;/td>
+296	&lt;td>11.0%&lt;/td>
+297	&lt;/tr>
+298	&lt;tr>
+299	&lt;td>Pair-SFT&lt;/td>
+300	&lt;td>59.8%&lt;/td>
+301	&lt;td>56.1%&lt;/td>
+302	&lt;td>54.3%&lt;/td>
+303	&lt;td>-1.8%&lt;/td>
+304	&lt;td>4.3%&lt;/td>
+305	&lt;td>6.1%&lt;/td>
+306	&lt;/tr>
+307	&lt;tr>
+308	&lt;td>&lt;b>&lt;i>SCoRe&lt;/i> (Ours)&lt;/b>&lt;/td>
+309	&lt;td>&lt;b>60.6%&lt;/b>&lt;/td>
+310	&lt;td>52.4%&lt;/td>
+311	&lt;td>&lt;b>64.6%&lt;/b>&lt;/td>
+312	&lt;td>&lt;b>12.2%&lt;/b>&lt;/td>
+313	&lt;td>&lt;b>15.2%&lt;/b>&lt;/td>
+314	&lt;td>&lt;b>3.0%&lt;/b>&lt;/td>
+315	&lt;/tr>
+316	&lt;/tbody>
+317	&lt;/table>
+318	
+319	prompting-based approach to elicit self-correction behaviors from a model, akin to Reflexion (Shinn et al., 2023). Among the fine-tuning based approaches, we compare to **Pair-SFT** based on the approach from Welleck et al. (2023), and multi-turn **STaR** (Singh et al., 2023; Zelikman et al., 2022) that fine-tune the model by maximizing log-likelihood respectively on synthetically-paired repair traces (Pair-SFT) and successful repair traces (STaR).
+320	
+321	### 6.1. Benchmark Results
+322	
+323	**MATH.** Our results are shown in Table 2, as well as in Figure 1. *SCoRe* exhibits substantially stronger performance on both direct and self-correction accuracies relative to baselines. Notably, the intrinsic self-correction gain  $\Delta(t1, t2)$  of 4.4% is the first significantly positive delta, despite having fewer incorrect problems to correct by virtue of its higher Accuracy@t1. Relative to the base model Gemini 1.5 Flash, *SCoRe* improves  $\Delta(t1, t2)$  by 15.6%, and Accuracy@t2 by 23.0%, and over the next best prior approach, Pair-SFT, by 10.2% and 2.6% respectively. By observing the frequency of problems that change from incorrect in the first attempt to correct in the second attempt and vice versa, we see that *SCoRe* both improves the rate at which it fixes incorrect answers (14.5%, compared to 9.5% for base) and reduces the proportion of correct answers it changes (15.8% to 1.4%).
+324	
+325	**Code generation.** Our results for the code generation task are shown in Table 3. Generally, we find that *SCoRe* achieves both improved self-correction and offline repair performance. For MBPP-R (Ni et al., 2024), we find that *SCoRe* improves the base model from 47.3% to 60.6%, which is comparable to the gap between GPT-3.5 (43%) and GPT-4 (63.2%). Despite only training on MBPP, we find that *SCoRe* is especially effective at generalizing to HumanEval, achieving a **12.2%** intrinsic self-correction delta, or 9% higher than the base model. By contrast, Pair-SFT works nearly as well on the static repair task MBPP-R, but actually degrades the base model when evaluated in the self-correction setting, thus underscoring the importances of on-policy sampling for self-correction.
+326	
+327	### 6.2. Inference-Compute Scaling with Self-Correction
+328	
+329	Next, we investigate if *SCoRe* can be used in conjunction with inference-time compute scaling strategies. To do so, we evaluate self-consistency decoding (Wang et al., 2022), where we sample a diverse set of solutions, and then select the most consistent answer among these solutions. Typically, the default strategy is to sample all solutions in parallel to perform majority voting. However, we show in Figure 1 (right) that instead of sampling  $2K$  solutions in parallel, it is *more* compute-efficient to sample  $K$  solutions in parallel, then perform one round of self-correction on each solution. With 32 solution budget per problem, parallel sampling shows a 7.4% accuracy gain, while combining it with sequential sampling using self-correction yields a 10.5% improvement.Table 4 | **Ablation studies to understand the impact of various components in *SCoRe*.** Observe that while single-turn training is effective at optimizing the first-attempt accuracy of the model, it leads to degradation in the second attempt. The performance improvements without Stage I or without reward shaping in *SCoRe* are small when measured by the difference in accuracy over the two attempts. Utilizing STaR generally leads to worse performance even when it is run from an effective Stage I checkpoint.
+330	
+331	&lt;table border="1">
+332	&lt;thead>
+333	&lt;tr>
+334	&lt;th>Method&lt;/th>
+335	&lt;th>Accuracy@t1&lt;/th>
+336	&lt;th>Accuracy@t2&lt;/th>
+337	&lt;th>&lt;math>\Delta(t1, t2)&lt;/math>&lt;/th>
+338	&lt;/tr>
+339	&lt;/thead>
+340	&lt;tbody>
+341	&lt;tr>
+342	&lt;td>&lt;i>SCoRe&lt;/i> (Ours)&lt;/td>
+343	&lt;td>60.0%&lt;/td>
+344	&lt;td>&lt;b>64.4%&lt;/b>&lt;/td>
+345	&lt;td>&lt;b>4.4%&lt;/b>&lt;/td>
+346	&lt;/tr>
+347	&lt;tr>
+348	&lt;td>w/o multi-turn training&lt;/td>
+349	&lt;td>&lt;b>61.8%&lt;/b>&lt;/td>
+350	&lt;td>59.4%&lt;/td>
+351	&lt;td>-2.4%&lt;/td>
+352	&lt;/tr>
+353	&lt;tr>
+354	&lt;td>w/o Stage I&lt;/td>
+355	&lt;td>59.2%&lt;/td>
+356	&lt;td>61.4%&lt;/td>
+357	&lt;td>2.2%&lt;/td>
+358	&lt;/tr>
+359	&lt;tr>
+360	&lt;td>w/o reward shaping&lt;/td>
+361	&lt;td>60.0%&lt;/td>
+362	&lt;td>62.6%&lt;/td>
+363	&lt;td>2.6%&lt;/td>
+364	&lt;/tr>
+365	&lt;tr>
+366	&lt;td>w/ STaR instead of REINFORCE Stage II&lt;/td>
+367	&lt;td>56.2%&lt;/td>
+368	&lt;td>58.4%&lt;/td>
+369	&lt;td>2.2%&lt;/td>
+370	&lt;/tr>
+371	&lt;/tbody>
+372	&lt;/table>
+373	
+374	### 6.3. Ablation Studies: Understanding the Impact of *SCoRe* Components
+375	
+376	Finally, we also present a number of ablation studies to understand the importance of various components in *SCoRe*. We perform these ablations on the MATH dataset. Concretely, we aim to answer the following questions: **(1) the importance of multi-turn training:** Can RL trained to maximize single-turn performance achieve better accuracy@t1 or accuracy@t2?; **(2) the importance of multi-stage training:** How essential is Stage I to *SCoRe*? In other words, why not run Stage II directly?; **(3) the impact of reward shaping.** How would removing the reward shaping terms affect performance of *SCoRe* in Stage II, assuming Stage I was done identically?; **(4) the importance of on-policy RL:** What if we replaced REINFORCE in Stage II with STaR?
+377	
+378	The results of all of these ablation experiments are shown in Table 4. As expected, single-turn training improves turn 1 performance, but has negative  $\Delta(t1, t2)$ . As shown in Figure 6, Stage I is critical to *SCoRe*; without it, the model achieves 2% lower  $\Delta(t1, t2)$  and 3% lower accuracy@t2. Similarly, we find that removing reward shaping also hurts performance, indicating that the RL objectives in both stages play a significant role in teaching the self-correction behavior. We also find that replacing REINFORCE with STaR in Stage II results in significantly lower absolute performance with no visible improvements in self-improvement performance, which contrasts with the findings in [Havrilla et al. \(2024a\)](#) that STaR and on-policy RL have similar convergence rates for single-turn RL. This suggests that leveraging on-policy samples is especially critical in the self-correction setting, which presents a multi-turn problem that admits potentially spurious solutions.
+379	
+380	## 7. Discussion, Limitations, and Conclusion
+381	
+382	In this work, we investigated how to imbue LLMs with self-correction behavior that enables them to correct their own responses on the fly. To accomplish this, we proposed *SCoRe*, a multi-turn RL approach, and demonstrated through extensive evaluations *that it is one of the first methods* to attain significantly positive intrinsic self-correction performance. To do so, we rigorously analyzed the behavior of various SFT approaches and identified failure modes in which the model learns a non-correcting strategy (e.g. learning to make no edits; behavior collapse) or falls prey to distribution shift. *SCoRe* trains a self-correcting strategy by utilizing a two-stage design and reward shaping, both of which help preventing behavior collapse into not learning effective self-corrective behavior. *SCoRe* has limitations that also provide avenues for future work. We did not train *SCoRe* for more than one round of iterative self-correction dueto infrastructural reasons, which means that subsequent rounds may not be as effective as the first. Future work should train with more than two attempts via RL, which is already a common and effective practice to obtain effective self-correction behavior over more than two rounds with SFT (Qu et al., 2024; Snell et al., 2024). Unifying Stages I and II would also be interesting, since it would alleviate the limitation of running multiple runs. Finally, our results suggest that learning *meta-strategies* (e.g., self-correction) might require going beyond standard LLM fine-tuning (Section 4), and incorporate regularization (e.g., progress reward).
+383	
+384	## Acknowledgements
+385	
+386	The authors would like to thank Satinder Baveja, Kalesha Bullard, Gheorghe Comanici, Claire Cui, Valentin Dalibard, Angelos Filos, Yang Gao, Zoubin Ghahramani, Izzeddin Gur, Raia Hadsell, Clara Huiyi Hu, Melvin Johnson, Mina Khan, Balaji Lakshminarayanan, Yiran Mao, Hussain Masoom, Junhyuk Oh, Jordi Orbay, David Silver, and Yury Sulsky for helpful discussions, feedback, and sponsorship. We thank Amrith Setlur, Yuxiao Qu, Charlie Snell, Tianhe Yu, and Xinyang (Young) Geng for helpful discussions and feedback on an earlier version of the paper.
+387	
+388	## Author Contributions
+389	
+390	AK and VZ led the paper, with substantial technical contributions from RA and YS. VZ led the experimentation in the final paper with AK, with support from RA and YS. AK and RA conceived the initial idea with advice and discussions from DS, FB, AF, JDC, AS, and GT. JDC, YS, AS, RA, and AK iterated on the methodology. The development of the final method was done by AK and VZ, with inputs from RA and FB. VZ led the infrastructure development, while RA, YS, CP, SI, KB, DS, and LMZ contributed to the infrastructure. AK, RA, FB, AF, DP, GT advised on the overall direction. AK and VZ wrote the manuscript, with input from all co-authors. KM provided program management. FB, and AF co-supervised the project.
+391	
+392	## References
+393	
+394	- A. Ahmadian, C. Cremer, M. Gallé, M. Fadaee, J. Kreutzer, A. Üstün, and S. Hooker. Back to basics: Revisiting reinforce style optimization for learning from human feedback in llms. *arXiv preprint arXiv:2402.14740*, 2024.
+395	- A. F. Akyürek, E. Akyürek, A. Madaan, A. Kalyan, P. Clark, D. Wijaya, and N. Tandon. Rl4f: Generating natural language feedback with reinforcement learning for repairing model outputs. *arXiv preprint arXiv:2305.08844*, 2023.
+396	- J. Austin, A. Odena, M. Nye, M. Bosma, H. Michalewski, D. Dohan, E. Jiang, C. Cai, M. Terry, Q. Le, et al. Program synthesis with large language models. *arXiv preprint arXiv:2108.07732*, 2021.
+397	- M. Chen, J. Tworek, H. Jun, Q. Yuan, H. P. D. O. Pinto, J. Kaplan, H. Edwards, Y. Burda, N. Joseph, G. Brockman, et al. Evaluating large language models trained on code. *arXiv preprint arXiv:2107.03374*, 2021.
+398	- X. Chen, M. Lin, N. Schärli, and D. Zhou. Teaching large language models to self-debug. *arXiv preprint arXiv:2304.05128*, 2023.J. Farebrother, J. Orbay, Q. Vuong, A. A. Taiga, Y. Chebotar, T. Xiao, A. Irpan, S. Levine, P. S. Castro, A. Faust, et al. Stop regressing: Training value functions via classification for scalable deep rl. *arXiv preprint arXiv:2403.03950*, 2024.
+399	
+400	A. Havrilla, Y. Du, S. C. Raparthy, C. Nalmpantis, J. Dwivedi-Yu, M. Zhuravinskyi, E. Hambro, S. Sukhbaatar, and R. Raileanu. Teaching large language models to reason with reinforcement learning. *arXiv preprint arXiv:2403.04642*, 2024a.
+401	
+402	A. Havrilla, S. Raparthy, C. Nalmpantis, J. Dwivedi-Yu, M. Zhuravinskyi, E. Hambro, and R. Railneau. Glore: When, where, and how to improve llm reasoning via global and local refinements. *arXiv preprint arXiv:2402.10963*, 2024b.
+403	
+404	D. Hendrycks, C. Burns, S. Kadavath, A. Arora, S. Basart, E. Tang, D. Song, and J. Steinhardt. Measuring mathematical problem solving with the math dataset. *NeurIPS*, 2021.
+405	
+406	J. Hong, N. Lee, and J. Thorne. Reference-free monolithic preference optimization with odds ratio. *arXiv preprint arXiv:2403.07691*, 2024.
+407	
+408	J. Huang, X. Chen, S. Mishra, H. S. Zheng, A. W. Yu, X. Song, and D. Zhou. Large language models cannot self-correct reasoning yet. *arXiv preprint arXiv:2310.01798*, 2023.
+409	
+410	N. Jain, K. Han, A. Gu, W.-D. Li, F. Yan, T. Zhang, S. Wang, A. Solar-Lezama, K. Sen, and I. Stoica. Livecodebench: Holistic and contamination free evaluation of large language models for code. *arXiv preprint arXiv:2403.07974*, 2024.
+411	
+412	R. Kamoi, Y. Zhang, N. Zhang, J. Han, and R. Zhang. When can llms actually correct their own mistakes? a critical survey of self-correction of llms. *arXiv preprint arXiv:2406.01297*, 2024.
+413	
+414	G. Kim, P. Baldi, and S. McAleer. Language models can solve computer tasks. *arXiv preprint arXiv:2303.17491*, 2023.
+415	
+416	H. Lightman, V. Kosaraju, Y. Burda, H. Edwards, B. Baker, T. Lee, J. Leike, J. Schulman, I. Sutskever, and K. Cobbe. Let's verify step by step. *arXiv preprint arXiv:2305.20050*, 2023.
+417	
+418	X. Liu, H. Yu, H. Zhang, Y. Xu, X. Lei, H. Lai, Y. Gu, H. Ding, K. Men, K. Yang, et al. Agentbench: Evaluating llms as agents. *arXiv preprint arXiv:2308.03688*, 2023.
+419	
+420	A. Lozhkov, R. Li, L. B. Allal, F. Cassano, J. Lamy-Poirier, N. Tazi, A. Tang, D. Pykhtar, J. Liu, Y. Wei, et al. Starcoder 2 and the stack v2: The next generation. *arXiv preprint arXiv:2402.19173*, 2024.
+421	
+422	A. Madaan, N. Tandon, P. Gupta, S. Hallinan, L. Gao, S. Wiegrefte, U. Alon, N. Dziri, S. Prabhumoye, Y. Yang, et al. Self-refine: Iterative refinement with self-feedback. *arXiv preprint arXiv:2303.17651*, 2023.
+423	
+424	A. Ni, M. Allamanis, A. Cohan, Y. Deng, K. Shi, C. Sutton, and P. Yin. Next: Teaching large language models to reason about code execution. *arXiv preprint arXiv:2404.14662*, 2024.
+425	
+426	T. X. Olausson, J. P. Inala, C. Wang, J. Gao, and A. Solar-Lezama. Is self-repair a silver bullet for code generation? In *The Twelfth International Conference on Learning Representations*, 2023.L. Pan, M. Saxon, W. Xu, D. Nathani, X. Wang, and W. Y. Wang. Automatically correcting large language models: Surveying the landscape of diverse self-correction strategies. *arXiv preprint arXiv:2308.03188*, 2023.
+427	
+428	D. Paul, M. Ismayilzada, M. Peyrard, B. Borges, A. Bosselut, R. West, and B. Faltings. Refiner: Reasoning feedback on intermediate representations. *arXiv preprint arXiv:2304.01904*, 2023.
+429	
+430	Y. Qu, T. Zhang, N. Garg, and A. Kumar. Recursive introspection: Teaching language model agents how to self-improve. *arXiv preprint arXiv:2407.18219*, 2024.
+431	
+432	W. Saunders, C. Yeh, J. Wu, S. Bills, L. Ouyang, J. Ward, and J. Leike. Self-critiquing models for assisting human evaluators. *arXiv preprint arXiv:2206.05802*, 2022.
+433	
+434	L. Shani, A. Rosenberg, A. Cassel, O. Lang, D. Calandriello, A. Zipori, H. Noga, O. Keller, B. Piot, I. Szpektor, et al. Multi-turn reinforcement learning from preference human feedback. *arXiv preprint arXiv:2405.14655*, 2024.
+435	
+436	Z. Shao, P. Wang, Q. Zhu, R. Xu, J. Song, M. Zhang, Y. Li, Y. Wu, and D. Guo. Deepseekmath: Pushing the limits of mathematical reasoning in open language models. *arXiv preprint arXiv:2402.03300*, 2024.
+437	
+438	N. Shinn, B. Labash, and A. Gopinath. Reflexion: an autonomous agent with dynamic memory and self-reflection. *arXiv preprint arXiv:2303.11366*, 2023.
+439	
+440	A. Singh, J. D. Co-Reyes, R. Agarwal, A. Anand, P. Patil, P. J. Liu, J. Harrison, J. Lee, K. Xu, A. Parisi, et al. Beyond human data: Scaling self-training for problem-solving with language models. *arXiv preprint arXiv:2312.06585*, 2023.
+441	
+442	A. Singh, J. D. Co-Reyes, R. Agarwal, A. Anand, P. Patil, X. Garcia, P. J. Liu, J. Harrison, J. Lee, K. Xu, A. Parisi, A. Kumar, A. Alemi, A. Rizkowsky, A. Nova, B. Adlam, B. Bohnet, G. Elsayed, H. Sedghi, I. Mordatch, I. Simpson, I. Gur, J. Snoek, J. Pennington, J. Hron, K. Kenealy, K. Swersky, K. Mahajan, L. Culp, L. Xiao, M. L. Bileschi, N. Constant, R. Novak, R. Liu, T. Warkentin, Y. Qian, Y. Bansal, E. Dyer, B. Neyshabur, J. Sohl-Dickstein, and N. Fiedel. Beyond human data: Scaling self-training for problem-solving with language models, 2024.
+443	
+444	C. Snell, I. Kostrikov, Y. Su, M. Yang, and S. Levine. Offline rl for natural language generation with implicit language q learning. *arXiv preprint arXiv:2206.11871*, 2022.
+445	
+446	C. Snell, J. Lee, K. Xu, and A. Kumar. Scaling llm test-time compute optimally can be more effective than scaling model parameters. *arXiv preprint arXiv:2408.03314*, 2024.
+447	
+448	C. Team. Codegemma: Open code models based on gemma. *arXiv preprint arXiv:2406.11409*, 2024.
+449	
+450	G. Tyen, H. Mansoor, V. Cărbune, Y. P. Chen, and T. Mak. Llms cannot find reasoning errors, but can correct them given the error location. In *Findings of the Association for Computational Linguistics ACL 2024*, pages 13894–13908, 2024.
+451	
+452	J. Uesato, N. Kushman, R. Kumar, F. Song, N. Siegel, L. Wang, A. Creswell, G. Irving, and I. Higgins. Solving math word problems with process-and outcome-based feedback. *arXiv preprint arXiv:2211.14275*, 2022.X. Wang, J. Wei, D. Schuurmans, Q. Le, E. Chi, S. Narang, A. Chowdhery, and D. Zhou. Self-consistency improves chain of thought reasoning in language models. *arXiv preprint arXiv:2203.11171*, 2022.
+453	
+454	S. Welleck, X. Lu, P. West, F. Brahman, T. Shen, D. Khashabi, and Y. Choi. Generating sequences by learning to self-correct. In *The Eleventh International Conference on Learning Representations*, 2023. URL &lt;https://openreview.net/forum?id=hH36JeQZDa0>.
+455	
+456	W. Xiong, C. Shi, J. Shen, A. Rosenberg, Z. Qin, D. Calandriello, M. Khalman, R. Joshi, B. Piot, M. Saleh, et al. Building math agents with multi-turn iterative preference learning. *arXiv preprint arXiv:2409.02392*, 2024.
+457	
+458	S. Yang, E. Gribovskaya, N. Kassner, M. Geva, and S. Riedel. Do large language models latently perform multi-hop reasoning? *arXiv preprint arXiv:2402.16837*, 2024.
+459	
+460	S. Ye, Y. Jo, D. Kim, S. Kim, H. Hwang, and M. Seo. Selfee: Iterative self-revising llm empowered by self-feedback generation. *Blog post*, 2023.
+461	
+462	T. Ye, Z. Xu, Y. Li, and Z. Allen-Zhu. Physics of language models: Part 2.2, how to learn from mistakes on grade-school math problems, 2024. URL &lt;https://arxiv.org/abs/2408.16293>.
+463	
+464	M. Yin, G. Tucker, M. Zhou, S. Levine, and C. Finn. Meta-learning without memorization. *arXiv preprint arXiv:1912.03820*, 2019.
+465	
+466	E. Zelikman, Y. Wu, J. Mu, and N. Goodman. Star: Bootstrapping reasoning with reasoning. *Advances in Neural Information Processing Systems*, 35:15476–15488, 2022.
+467	
+468	Y. Zhang, M. Khalifa, L. Logeswaran, J. Kim, M. Lee, H. Lee, and L. Wang. Small language models need strong verifiers to self-correct reasoning. *arXiv preprint arXiv:2404.17140*, 2024.
+469	
+470	H. S. Zheng, S. Mishra, H. Zhang, X. Chen, M. Chen, A. Nova, L. Hou, H.-T. Cheng, Q. V. Le, E. H. Chi, et al. Natural plan: Benchmarking llms on natural language planning. *arXiv preprint arXiv:2406.04520*, 2024.
+471	
+472	Y. Zhou, A. Zanette, J. Pan, S. Levine, and A. Kumar. Archer: Training language model agents via hierarchical multi-turn rl. *arXiv preprint arXiv:2402.19446*, 2024.# Appendices
+473	
+474	## A. Additional Experiments
+475	
+476	### A.1. Scaling to Multiple Attempts
+477	
+478	Figure 8 | Performance of the base model, Pair-SFT, and **SCoRe** over 10 attempts on MATH.
+479	
+480	We investigate the performance of various models when asked to iteratively self-correct over multiple attempts, despite only being trained over two attempts (or not at all, in the case of the base model). As shown in Figure 8, we find that the performance of the base Gemini 1.5 Flash model is quite noisy, but never surpasses that of the first attempt. Similarly, Pair-SFT does not improve past the second attempt. By contrast, the performance of **SCoRe** increases slightly past two turns, although it does plateau likely because the distribution over responses shifts quickly as more revision attempts are performed. We leave improving the scaling properties of self-correction, a form of *meta-learning*, to future work.
+481	
+482	### A.2. Reward Function Design
+483	
+484	Figure 9 | Impact of discount factor of  $\gamma$  on standard multi-turn RL training.
+485	
+486	In all of our experiments, we used only the instantaneous reward in our policy gradient objective, which is equivalent to returns with discount factor  $\gamma = 0$ . We additionally investigated whether leveraging$\gamma > 0$ , in conjunction with reward shaping, can elicit self-correction paper. As presented in Figure 9, we find that with  $\gamma = 0.8$  and  $\alpha = 1.0$ , multi-turn RL still suffers from the same non-correcting behavior collapse as the standard multi-turn RL approach.
+487	
+488	## B. Additional Experiment Details
+489	
+490	Table 5 | Hyperparameters for *SCoRe* on MATH (left) and MBPP (right)
+491	
+492	&lt;table border="1">
+493	&lt;thead>
+494	&lt;tr>
+495	&lt;th>Hyperparameter&lt;/th>
+496	&lt;th>Value&lt;/th>
+497	&lt;th>Hyperparameter&lt;/th>
+498	&lt;th>Value&lt;/th>
+499	&lt;/tr>
+500	&lt;/thead>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1e76ccdc-fc07-40f1-9c49-d444d03c15a4",
+  "isSidechain": false,
+  "promptId": "038af6dc-dba3-4001-9426-894f41afea55",
+  "type": "user",
+  "uuid": "708bff43-2b98-44d9-8c85-2f5f4c6aa235",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu-idea-review/fd433d01-745c-4fd4-ad27-b9a83566dd45/tool-results/toolu_01WiwLEZ1DKT3JNiA4LZhtSo.txt",
+      "content": "# Training Language Models to Self-Correct via Reinforcement Learning\n\nAviral Kumar&lt;sup>\\*,+,1&lt;/sup>, Vincent Zhuang&lt;sup>\\*,+,1&lt;/sup>, Rishabh Agarwal&lt;sup>\\*,1&lt;/sup>, Yi Su&lt;sup>\\*,1&lt;/sup>, JD Co-Reyes&lt;sup>1&lt;/sup>, Avi Singh&lt;sup>1&lt;/sup>, Kate Baumli&lt;sup>1&lt;/sup>, Shariq Iqbal&lt;sup>1&lt;/sup>, Colton Bishop&lt;sup>1&lt;/sup>, Rebecca Roelofs&lt;sup>1&lt;/sup>, Lei M Zhang&lt;sup>1&lt;/sup>, Kay McKinney&lt;sup>1&lt;/sup>, Disha Shrivastava&lt;sup>1&lt;/sup>, Cosmin Padurararu&lt;sup>1&lt;/sup>, George Tucker&lt;sup>1&lt;/sup>, Doina Precup&lt;sup>1&lt;/sup>, Feryal Behbahani&lt;sup>†,1&lt;/sup> and Aleksandra Faust&lt;sup>†,1&lt;/sup>\n\n&lt;sup>1&lt;/sup>Google DeepMind, \\*Equal Contribution, &lt;sup>+&lt;/sup>Randomly ordered via coin flip, &lt;sup>†&lt;/sup>Jointly supervised.\n\nSelf-correction is a highly desirable capability of large language models (LLMs), yet it has consistently been found to be largely ineffective in modern LLMs. Current methods for training self-correction typically depend on either multiple models, a more advanced model, or additional forms of supervision. To address these shortcomings, we develop a multi-turn online reinforcement learning (RL) approach, *SCoRe*, that significantly improves an LLM’s self-correction ability using *entirely self-generated data*. To build *SCoRe*, we first show that variants of supervised fine-tuning (SFT) on offline model-generated correction traces are often insufficient for instilling self-correction behavior. In particular, we observe that training via SFT falls prey to either a distribution mismatch between mistakes made by the data-collection policy and the model’s own responses, or to behavior collapse, where learning implicitly prefers only a certain mode of correction behavior that is often not effective at self-correction on test problems. *SCoRe* addresses these challenges by training under the model’s own distribution of self-generated correction traces and using appropriate regularization to steer the learning process into learning a self-correction behavior that is effective at test time as opposed to fitting high-reward responses for a given prompt. This regularization process includes an initial phase of multi-turn RL on a base model to generate a policy initialization that is less susceptible to collapse, followed by using a reward bonus to amplify self-correction. With Gemini 1.0 Pro and 1.5 Flash models, we find that *SCoRe* achieves state-of-the-art self-correction performance, improving the base models’ self-correction by 15.6% and 9.1% respectively on MATH and HumanEval.\n\n## 1. Introduction\n\nLarge language models (LLMs) are a useful tool for reasoning in scientific domains such as math and coding (Lozhkov et al., 2024; Shao et al., 2024; Team, 2024). An aspirational property of LLMs in such settings is their ability to implement *meta-strategies* or *algorithms* that use test-time computation to generate improved responses. However, modern LLMs do not implement such strategies reliably. For instance, consider a problem that requires models to detect and revise (or “self-correct”) their own responses in order to eventually arrive at the best possible final response. This self-correction capability has been shown to be severely lacking in current LLMs, especially in the absence of external input (also called *intrinsic self-correction*) (Huang et al., 2023; Kamoi et al., 2024).\n\nTo make progress towards teaching LLMs to implement meta-strategies for challenging inputs, we study a special instance of training LLMs to perform self-correction to fix their mistakes “on-the-fly”. This should be possible: on many queries where current LLMs fail, they possess the underlying “knowledge” needed to arrive at the correct response but are unable to correctly elicit and draw inferences about their own knowledge when needed (Yang et al., 2024). For example, strong LLMs can often successfully complete a sub-part of a math proof when prompted with the remainder, but may not be able to complete it from scratch. In a similar vein, leveraging their previous responses should, in principle, enable LLMs toFigure 1 | **Left:** *SCoRe* achieves state-of-the-art self-correction performance on MATH; **Right:** *SCoRe* inference-time scaling: spending samples on *sequential* self-correction becomes more effective than only on *parallel* direct samples (Section 6.2).\n\nimprove their subsequent ones. Despite this, self-correction has remained elusive, highlighting the need to go beyond existing training paradigms.\n\n**How can we imbue LLMs with self-correction abilities?** Prior attempts for self-correcting LLMs either rely on prompt-engineering (Kim et al., 2023; Madaan et al., 2023) or on fine-tuning models specifically for self-correction. While the former approaches often fail to perform meaningful intrinsic self-correction, fine-tuning approaches require running multiple models during inference, such as a separate refinement model (Havrilla et al., 2024b; Welleck et al., 2023), or rely on “teacher” supervision to guide the process of self-correction (Qu et al., 2024). With the use of separate models of teacher supervision, self-correction does not necessarily outperform parallel, independent attempts. We develop an approach that is effective at self-correction *without* these requirements. Our approach, **Self-Correction via Reinforcement Learning** (*SCoRe*), trains only a single model that can both produce a response to a problem and *also* correct errors without any oracle feedback.\n\nTo develop *SCoRe*, we start by analyzing the shortcomings of SFT-based approaches (e.g., STaR (Zelikman et al., 2022)) and naive RL that optimizes final response correctness for teaching self-correction. We find that such approaches fall prey to either: (1) *distribution shift*, where the trained model is able to correct errors made by the base model that generated the data, but these gains do not transfer to self-correction under the learned model’s own mistakes; or (2) *behavior collapse*, where the learning progress simply learns to produce the best first-attempt response followed by superficial or no modifications in the second attempt. To address these issues, *SCoRe* trains for self-correction directly via on-policy, multi-turn RL. To prevent behavior collapse, *SCoRe* employs two-stage training: in the first stage, it produces an initialization that is less susceptible to behavior collapse by training to correct second-attempt responses while constraining the first-turn distribution to be close to the base model; followed by training on both attempts to maximize reward in the second stage. Crucially, the second stage of multi-turn RL employs a reward shaping term that rewards “progress” towards self-correction as opposed to the correctness of the final response.\n\nOur main contribution is *SCoRe*, a multi-turn RL approach for teaching LLMs how to correct their own mistakes. To the best of our knowledge, *SCoRe* is the first approach to attain significantly positive intrinsic self-correction: relative to base Gemini models, our method attains an absolute **15.6%** gain on self-correction for reasoning problems from MATH (Hendrycks et al., 2021) and an absolute **9.1%** gainon coding problems from HumanEval (Chen et al., 2021). We additionally motivate the design of *SCoRe* by extensively studying the failure modes of SFT and standard RL approaches, which broadly indicate that reinforcement learning plays an essential role in *self-trained* self-correction.\n\n## 2. Related Work\n\nPrior works study self-correction for LLMs under a variety of assumptions and problem settings. The most prominent settings include problems where external input tokens from an environment are available, such as agentic tasks (Liu et al., 2023), code repair (Jain et al., 2024), and tool use (Chen et al., 2023). While self-correction with external feedback is possible with strong models (Pan et al., 2023), even they struggle in the substantially harder setting with no external input (intrinsic self-correction) (Huang et al., 2023; Kamoi et al., 2024). Prior work that attempts to amplify intrinsic correction abilities is largely based on prompting and fine-tuning.\n\n**Prompting for intrinsic self-correction.** Recent work demonstrates that naively prompting LLMs for self-correction can degrade performance (Huang et al., 2023; Qu et al., 2024; Tyen et al., 2024; Zheng et al., 2024). These results contradict prior work (Kim et al., 2023; Madaan et al., 2023; Shinn et al., 2023) and largely stem from mismatched assumptions about the setting (Kamoi et al., 2024). For example, Kim et al. (2023); Shinn et al. (2023) use ground-truth answers during self-correction that may not generally be available; Madaan et al. (2023) use weak prompts for initial responses, thereby overestimating the total improvement possible. Therefore, there is no major work showing successful intrinsic self-correction via prompting alone. In the context of code self-repair, Olausson et al. (2023) show that even when strong models are prompted with some form of partial feedback, e.g., test-cases but not the desired outcomes, they are unable to correct their mistakes.\n\n**Fine-tuning for intrinsic self-correction.** Several works that go beyond prompting rely on fine-tuning with demonstrations of revisions, e.g. obtaining revisions directly from human annotators (Saunders et al., 2022) or stronger models (Qu et al., 2024; Ye et al., 2023). Our work aims to train for self-correction entirely without the use of larger models or humans, when the *learner itself is asked to generate its own training data*. Similar to these prior works, we assume access to a reward function for evaluating model-generated outputs (Akyürek et al., 2023; Welleck et al., 2023; Zhang et al., 2024). Perhaps the closest to us from this set is Qu et al. (2024), which utilizes an iterative STaR-like approach self-correction. While this work largely uses oracle teacher supervision, their preliminary results from training for self-correction only show minor improvements over five turns, consistent with the results we see for STaR. We show that *SCoRe* attains substantially better results. Other approaches train separate models for performing correction (e.g., GLoRE (Havrilla et al., 2024b), Self-Correction (Welleck et al., 2023), Akyürek et al. (2023); Paul et al. (2023)). While such approaches can be convenient, they require system design for serving multiple models at deployment.\n\n**Multi-turn RL for LLMs.** Prior work at the intersection of LLMs and multi-turn RL builds machinery for optimizing rewards with value-based (Farebrother et al., 2024; Shani et al., 2024; Snell et al., 2022; Zhou et al., 2024), policy-based (Shao et al., 2024; Xiong et al., 2024), and model-based (Hong et al., 2024) approaches. We do not focus on building machinery for RL (we use the approach of Ahmadian et al. (2024)), but rather train for self-correction as an RL problem.MATH Example 1: Arithmetic Self-Correction\n\n**Problem.** If  $n \\equiv 2 \\pmod{7}$ , then find the remainder when  $(n+2)(n+4)(n+6)$  is divided by 7.\n\n**S&lt;sub>Co&lt;/sub>Re turn 1 solution (incorrect).** Since  $n \\equiv 2 \\pmod{7}$ , we can write  $n = 7k + 2$  for some integer  $k$ . Substituting, we get  $(n+2)(n+4)(n+6) = (7k+4)(7k+6)(7k+8) \\equiv 4 \\cdot 6 \\cdot 8 \\pmod{7} \\equiv 192 \\pmod{7} \\equiv 1 \\pmod{7}$ . Final Answer: The final answer is 1. I hope it is correct.\n\n**Self-correction instruction.** There might be an error in the solution above because of lack of understanding of the question. Please correct the error, if any, and rewrite the solution.\n\n**S&lt;sub>Co&lt;/sub>Re turn 2 solution (correct).** Since  $n \\equiv 2 \\pmod{7}$ , we can write  $n = 7k + 2$  for some integer  $k$ . Substituting, we get  $(n+2)(n+4)(n+6) = (7k+4)(7k+6)(7k+8) \\equiv 4 \\cdot 6 \\cdot 1 \\pmod{7} \\equiv 24 \\pmod{7} \\equiv 3 \\pmod{7}$ . Final Answer: The final answer is 3. I hope it is correct.\n\nMATH Example 2: Reasoning Self-Correction\n\n**Problem.** Let  $f(x) = \\left\\lfloor \\left(-\\frac{5}{8}\\right)^x \\right\\rfloor$  be a function that is defined for all values of  $x$  in  $[0, \\infty)$  such that  $f(x)$  is a real number. How many distinct values exist in the range of  $f(x)$ ?\n\n**S&lt;sub>Co&lt;/sub>Re turn 1 solution (incorrect).** As  $x$  increases, the value of  $\\left(-\\frac{5}{8}\\right)^x$  decreases. Since the floor function rounds down to the nearest integer, the range of  $f(x)$  consists of all the integers less than or equal to  $\\left\\lfloor \\left(-\\frac{5}{8}\\right)^0 \\right\\rfloor = 1$ . Therefore, the range of  $f(x)$  is  $\\{1, 0, -1, -2, \\dots\\}$ , and there are  $\\infty$  distinct values in the range. Final Answer: The final answer is  $\\infty$ . I hope it is correct.\n\n**Self-correction instruction.** There might be an error in the solution above because of lack of understanding of the question. Please correct the error, if any, and rewrite the solution.\n\n**S&lt;sub>Co&lt;/sub>Re turn 2 solution (correct).** As  $x$  increases from 0 to  $\\infty$ , the value of  $\\left(-\\frac{5}{8}\\right)^x$  oscillates between positive and negative values, but its absolute value decreases. The floor function rounds down to the nearest integer, so the range of  $f(x)$  consists of the integers less than or equal to  $\\left\\lfloor \\left(-\\frac{5}{8}\\right)^0 \\right\\rfloor = 1$ . Since the absolute value of  $\\left(-\\frac{5}{8}\\right)^x$  decreases as  $x$  increases, the range of  $f(x)$  is finite and consists of the integers:  $\\{1, 0, -1\\}$ . Final Answer: The final answer is 3. I hope it is correct.\n\nFigure 2 | Two example traces of self-correction. In the upper example, S&lt;sub>Co&lt;/sub>Re is able to correct an arithmetic mistake it makes in turn 1. In the lower example, the model is able to correct a reasoning error.\n\n### 3. Preliminaries and Problem Setup\n\nOur goal is to develop an approach for training LLMs to improve their own predictions entirely on self-generated data. As discussed so far, we situate ourselves in the intrinsic self-correction setting (Huang et al., 2023), where models attempt to correct their initial responses *without* any external feedback. Concretely, given a dataset  $\\mathcal{D} = \\{(x_i, y_i^*)\\}_{i=1}^N$  of problems  $x_i$  and responses  $y_i^*$ , we will train an LLM policy  $\\pi_\\theta(\\cdot | [x, \\hat{y}_{1:l}, p_{1:l}])$  that, given the problem  $x$ , previous  $l$  model attempts  $\\hat{y}_{1:l}$  at the problem, and auxiliary instructions  $p_{1:l}$  (e.g., instruction to find a mistake and improve the response), solves the problem  $x$  as correctly as possible. This formalism is akin to the multi-turn MDP in Qu et al. (2024). We also assume access to an oracle reward  $\\hat{r}(y, y^*)$ , such as an answer checker (Uesato et al., 2022), that evaluates the correctness of response  $y$  by comparing it with the oracle response  $y^*$ . Critically, we *do not* assume access to this oracle at test-time; instead, the model must deduce whether there was a mistake and correct it if necessary, as is often the case in e.g. mathematical reasoning problems. Unlike the setup of Qu et al. (2024), we also do not run majority voting for most of our main results. Two example traces of self-correction are given in Figure 2, and our problem setting is depicted pictorially in Figure 3.Figure 3 | **The problem setting of self-correction.** *SCoRe* trains a model to not just produce the best possible response, but instead aims to train the model to produce the best final response in the final attempt. In the second turn, extra input in the form of an instruction asking the model to correct itself or model-generated may be provided.\n\nWe aim to find an LLM policy  $\\pi(\\square|\\circ)$  mapping input tokens  $\\circ$  to output tokens  $\\square$  that maximizes the correctness reward obtained from the verifier at the end of  $l + 1$  turns ( $l = 1$ ). Formally:\n\n$$\\max_{\\pi_{\\theta}} \\mathcal{E}_{x, y^* \\sim \\mathcal{D}, \\hat{y}_{l+1} \\sim \\pi_{\\theta}(\\cdot | [x, \\hat{y}_{1:l}, p_{1:l}])} \\left[ \\sum_{i=1}^{l+1} \\hat{r}(\\hat{y}_i, y^*) \\right]. \\quad (1)$$\n\nCrucially, note that unlike standard SFT or prevalent RL fine-tuning workflows, which train the policy  $\\pi$  to directly produce  $y^*$  (or any other  $y$  with  $\\hat{r}(y, y^*) = 1$ ), Equation 1 trains  $\\pi$  over multiple attempts *simultaneously*, where intermediate turns are supervised indirectly to maximize the sum.\n\n**Base RL fine-tuning approach we use.** We use a REINFORCE policy gradient training approach with a KL-divergence penalty against a fixed model (Ahmadian et al., 2024), which is widely used in RL fine-tuning of LLMs, primarily in the setting of single-turn RLHF. Formally, these methods train the policy  $\\pi_{\\theta}(\\cdot | x)$  to optimize the following, where  $\\pi_{\\text{ref}}$  is a reference policy.\n\n$$\\max_{\\theta} \\mathbb{E}_{x_t, y_t \\sim \\pi_{\\theta}(\\cdot | x_t)} [\\hat{r}(y_t, y^*) - \\beta_1 D_{KL}(\\pi_{\\theta}(\\cdot | x_t) || \\pi_{\\text{ref}}(\\cdot | x_t))], \\quad (2)$$\n\n**Metrics.** To measure self-correction performance (we consider  $l = 2$  in this paper), we report and analyze the following metrics: (1) **Accuracy@t1**: the model’s accuracy at the first attempt; (2) **Accuracy@t2**: the model’s accuracy at the second attempt, (3)  $\\Delta(\\mathbf{t1}, \\mathbf{t2})$ : the net improvement in model accuracy between the first and second attempts, which measures the efficacy of self-correction, (4)  $\\Delta^{i \\rightarrow c}(\\mathbf{t1}, \\mathbf{t2})$ : the fraction of problems that are incorrect in the first attempt but become correct at the second attempt, which measures how many *new* problems can self-correction solve; and (5)  $\\Delta^{c \\rightarrow i}(\\mathbf{t1}, \\mathbf{t2})$ : the fraction of problems that are correct in the first attempt but become incorrect at the second attempt, which measures how well the model understands what makes a response correct.\n\n## 4. SFT on Self-Generated Data is Insufficient for Self-Correction\n\nA natural approach for training self-correction is to utilize some form of supervised fine-tuning on data collected from a base model. Variants of this approach have been shown to scale well on single-turn reasoning problems (Singh et al., 2023; Zelikman et al., 2022). In this section, we assess the empiricalTable 1 | **Self-correction performance after training on  $\\mathcal{D}_{\\text{STaR}}$  and  $\\mathcal{D}_{\\text{SFT}}$ .** We find that the gap between the second and first attempts ( $\\Delta(t1, t2)$ ) is either negative or small. Both approaches erroneously modify a correct response to be incorrect, i.e., reflected in a high  $\\Delta^{c \\rightarrow i}(t1, t2)$  and a low  $\\Delta^{i \\rightarrow c}(t1, t2)$ .\n\n&lt;table border=\"1\">\n&lt;thead>\n&lt;tr>\n&lt;th>Method&lt;/th>\n&lt;th>Accuracy@t1&lt;/th>\n&lt;th>Accuracy@t2&lt;/th>\n&lt;th>&lt;math>\\Delta(t1, t2)&lt;/math>&lt;/th>\n&lt;th>&lt;math>\\Delta^{i \\rightarrow c}(t1, t2)&lt;/math>&lt;/th>\n&lt;th>&lt;math>\\Delta^{c \\rightarrow i}(t1, t2)&lt;/math>&lt;/th>\n&lt;/tr>\n&lt;/thead>\n&lt;tbody>\n&lt;tr>\n&lt;td>Base model&lt;/td>\n&lt;td>52.6%&lt;/td>\n&lt;td>41.4%&lt;/td>\n&lt;td>-11.2%&lt;/td>\n&lt;td>4.6%&lt;/td>\n&lt;td>15.8%&lt;/td>\n&lt;/tr>\n&lt;tr>\n&lt;td>STaR &lt;math>\\mathcal{D}_{\\text{STaR}}&lt;/math>&lt;/td>\n&lt;td>55.4%&lt;/td>\n&lt;td>41.2%&lt;/td>\n&lt;td>-14.2%&lt;/td>\n&lt;td>5.4%&lt;/td>\n&lt;td>19.6%&lt;/td>\n&lt;/tr>\n&lt;tr>\n&lt;td>STaR &lt;math>\\mathcal{D}_{\\text{STaR}}^+&lt;/math>&lt;/td>\n&lt;td>53.6%&lt;/td>\n&lt;td>54.0%&lt;/td>\n&lt;td>0.4%&lt;/td>\n&lt;td>2.6%&lt;/td>\n&lt;td>2.2%&lt;/td>\n&lt;/tr>\n&lt;tr>\n&lt;td>Pair-SFT &lt;math>\\mathcal{D}_{\\text{SFT}}&lt;/math>&lt;/td>\n&lt;td>52.4%&lt;/td>\n&lt;td>54.2%&lt;/td>\n&lt;td>1.8%&lt;/td>\n&lt;td>5.4%&lt;/td>\n&lt;td>3.6%&lt;/td>\n&lt;/tr>\n&lt;tr>\n&lt;td>Pair-SFT &lt;math>\\mathcal{D}_{\\text{SFT}}^+&lt;/math>&lt;/td>\n&lt;td>55.0%&lt;/td>\n&lt;td>55.0%&lt;/td>\n&lt;td>0%&lt;/td>\n&lt;td>0%&lt;/td>\n&lt;td>0%&lt;/td>\n&lt;/tr>\n&lt;/tbody>\n&lt;/table>\n\nefficacy of two such approaches for self-correction: STaR (Zelikman et al., 2022), and a version of Welleck et al. (2023) that trains only one model.\n\nWe ultimately find that although these methods improve self-correction over the base model, they fail to achieve substantially positive self-correction ( $\\Delta(t1, t2)$ ). By probing these models, we observe two main failure modes: (1) a collapse to non-correcting behavior, where the models learn to produce a good response on the first attempt and only make minor (or no) modifications in the second attempt, and (2) an inability of offline methods to be robust to distribution shift in the first-attempt responses.\n\n**Analysis setup: methods and dataset construction.** We prompt Gemini 1.5 Flash to obtain a large number of two-turn self-correction traces on MATH (Hendrycks et al., 2021). The STaR approach filters these trajectories to retain only those that successfully revise incorrect responses and runs SFT on the resulting dataset. Another approach is to use base model data from above to construct “synthetic” repair traces by pairing incorrect responses with correct ones (Welleck et al., 2023). We study a variant of this method that we call **Pair-SFT**, which does not train a separate corrector model and does not augment this initial dataset with multi-turn traces. Formally, we denote the datasets for STaR and Pair-SFT as  $\\mathcal{D}_{\\text{STaR}}$  and  $\\mathcal{D}_{\\text{SFT}}$  respectively. We run 3 iterations for STaR following the protocol in Singh et al. (2024), and only one iteration for Pair-SFT, following the protocol in Welleck et al. (2023) and other standard workflows on SFT.\n\n**Main empirical findings.** We present the self-correction results before and after fine-tuning on  $\\mathcal{D}_{\\text{STaR}}$  and  $\\mathcal{D}_{\\text{SFT}}$  in Table 1. We find that although  $\\Delta(t1, t2)$  is substantially higher for Pair-SFT relative to the base model, there is only little benefit to self-correction (1.8% gain). This gain is of a similar order to findings from Qu et al. (2024). By studying  $\\Delta^{i \\rightarrow c}$  and  $\\Delta^{c \\rightarrow i}$ , we find that SFT mainly reduces the number of correct problems that are mistakenly changed to incorrect in the second attempt, but does not significantly increase the fraction of incorrect first attempts that are corrected. This result is consistent with prior works on intrinsic self-correction that have found negligible or negative  $\\Delta(t1, t2)$  values.\n\nWe also find that unlike Pair-SFT, training on  $\\mathcal{D}_{\\text{STaR}}$  does not reduce  $\\Delta^{c \\rightarrow i}$ , indicating that the STaR policy does not have a clear understanding of when to make modifications and when not to. Observing this, we also trained on an extended version of  $\\mathcal{D}_{\\text{STaR}}^+$  (and  $\\mathcal{D}_{\\text{SFT}}^+$ ), which additionally contains tuples with both correct responses. We would expect the addition of such “correct-to-correct” data to prevent the model from erroneously revising a correct response. As shown in Table 1, the inclusion of this data helps STaR substantially but only results in 0.4% change in  $\\Delta(t1, t2)$ . On the other hand, for SFT, inclusion of this(a) Histograms of edit distance ratios on MATH 500.(c) Pair-SFT edit distance ratios.\n\nFigure 4 | Edit distance between first-attempt and second-attempt responses from fine-tuned models, our approach (SCoRe) and the base model. While training on self-generated error correction traces learns to not make major edits primarily, SFT learns to make some edits but is still quite conservative.\n\ndata overly biases the model against changing its answer.\n\n### Diving deeper: analyzing self-correction behavior.\n\nTo further understand how these STaR and SFT models edit their responses, we measured their **edit distance ratios**, defined as the edit distance between the responses normalized by the total length of both the responses. As shown in Figure 4a, while the base model sometimes makes substantially large edits to the original response, models fine-tuned on  $\\mathcal{D}_{STaR}$  and  $\\mathcal{D}_{SFT}$  are overly conservative and often make no edits at all. This is akin to a form of **behavior collapse**: training to maximize likelihoods on off-policy revision traces does not teach the desired correction “behavior”, even though it improves first-attempt accuracy. Similar observations of LLMs ignoring nuanced behaviors (e.g., producing a mistake in a response and then correcting it in subsequent steps) have been observed in Ye et al. (2024).\n\nFigure 5 | Self-correction performance on different sets of first-attempt responses: (a) “fixed”: first response is sampled from the initial model, (b) “self-generated”: first response is generated by the learner itself. Throughout training, the correction rate on fixed responses increases for both train and validation problems, but degrades substantially on self-generated responses. This indicates that training on a fixed offline dataset of correction traces suffers from distribution shift.\n\nWe also compared the distributions of edit distance ratios on training and test-time self-correction traces in Figures 4b/4c. While STaR produces qualitatively similar edit distance ratios on both the train and validation sets, we still observe some discrepancies between the train and validation edit distance ratios for SFT, implying that Pair-SFT is not very effective at generalizing to new problems from the same(a) **Training accuracy curves.** When training with standard multi-turn RL, the responses at both the attempts become tightly coupled together, leading to poor coverage for subsequent iterations and worse learning progress. Stage I in *SCoRe* is explicitly designed to alleviate this and achieves much higher  $\\Delta(t1, t2)$ , leading to increased exploration and better final performance.\n\n(b) **Frequency in which the learner proposes a different answer in the second turn.** Without explicitly modifying the policy initialization as in *SCoRe*, the policy quickly learns to often not change its answer, leading to poor exploration. Stage I in *SCoRe* prevents this issue, and learns non-collapsed behavior in Stage II.\n\nFigure 6 | **Behavior collapse in standard multi-turn RL** for training self-correction. These results indicate that some explicit approach to avoid collapse is necessary, i.e. Stage I in *SCoRe*.\n\ndistribution. We visualized this by plotting the self-correction performance of the SFT model on a fixed set of first attempts and self-generated first attempts in Figure 5. We observe vastly different behaviors between static and self-generated first-attempt distributions: while the model is able to optimize training correction accuracy and also slightly improves on first attempts appearing in the validation set (distributed *i.i.d.* to the training distribution), its self-correction accuracy degrades. Hence, **distribution shift** is a significant challenge for offline methods such as Pair-SFT.\n\n#### Takeaways: Insufficiency of SFT\n\nSFT-based methods suffer from two distinct failures when learning self-correction: (1) distribution shift, and (2) behavior collapse. Training on on-policy data can fix (1), but not (2).\n\n## 5. *SCoRe*: Self-Correction via Multi-Turn Reinforcement Learning\n\nThe above results highlight that an effective approach for training LLMs to self-correct entirely via self-generated data must address both distribution shift and behavior collapse. Utilizing on-policy RL is a natural way to address distribution shift, and our method will do so by extending Equation 2 to multiple turns under the hierarchical framework of Zhou et al. (2024). However, **is behavior collapse an issue for standard multi-turn RL? And if not, how can we address it?**\n\nTo answer these questions, we run standard multi-turn RL training to optimize Equation 1 only on  $(x_2, y_2)$  pairs. Since this objective maximizes the second-attempt performance of the model without training the first attempt, we expect the self-correction  $\\Delta(t1, t2)$  of the model to increase. However, as shown in Figure 6, while the performance of each attempt improves with training, their difference  $\\Delta(t1, t2)$  does not. In other words, standard multi-turn RL converges to a state that is overly biased against changing its response, resulting in no self-correction ability and a similar behavior collapse as what we saw with STaR.\n\n**Why does RL still suffer from collapse?** There are at least two equally good solutions when optimizing a policy with RL on the training data: (i) learning to improve from the first to the second attempt, or (ii)**Figure 7 | An overview of our approach (SCoRe).** SCoRe trains a model in two stages: **Stage I**: instead of running SFT (which produces pathological amplification of biases) to initialize RL training, we train a good initialization that can produce high-reward responses in the second-attempt while mimicking the base model’s initial response at the first attempt. **Stage II**: jointly optimizing both attempts, where the latter uses a shaped reward to incentivize the discovery of the self-correction strategy instead of the simple strategy of producing the best first response followed by making any minor edits to it in the second attempt.\n\nlearning to produce the best first-attempt response, followed by no correction in the second attempt. Of course only the former strategy generalizes to new problems, but an overparameterized LLM may not necessarily learn strategy (i) instead of (ii), since both of these strategies can be equally optimal on *the training set*. Abstractly, learning the “meta strategy” of self-correction during training is difficult unless the “direct” strategy that optimizes reward appears less viable on the training data. Conceptually, this is similar to the memorization challenge in meta-learning (Yin et al., 2019), which suggests that when provided with mutually exclusive tasks, meta-learning is likely to recover the supervised learning solution (without using context from the few shots) that directly predicts the output. Here, this is analogous to not self-correcting past attempts, directly producing an answer.\n\n**Method overview.** Although a good self-correcting policy should maximize both accuracy@t1 and accuracy@t2, we saw that standard RL leads to a collapse to non-correcting behavior. Hence, our key insight in SCoRe is that we must more explicitly encourage self-correction behavior, which we accomplish via a two-stage approach. The first stage (**Stage I**) serves the role of initialization where we train the model to decouple its behavior across the two attempts by attempting to optimize second-attempt accuracy while explicitly constraining the distribution of first attempts to the base model. From here, **Stage II** then jointly optimizes the reward of both attempts. To ensure that Stage II does not collapse to the “direct” solution, we bias the reward to reinforce self-correction progress.\n\n### 5.1. Stage I: Training an Initialization that Decouples Attempts\n\nThe goal of Stage I of SCoRe is to obtain an initialization by improving the base model’s coverage over second attempts given the first attempt, so that subsequent training for self-correction is less prone to behavior collapse. While this would typically be done via SFT, our results in Section 4 show that SFT itself suffers from collapse. Therefore, we use RL in this stage to decouple the two attempts. To do so, we explicitly fine-tune the base model to produce *high-reward* responses at the second attempt, while forcing the model to not change its first attempt by constraining it to be close to the base model using a KL-divergence. While this may appear sub-optimal – a first attempt with fewer mistakes should lead to a better second attempt – but as we will show, this stage is critical in reducing the base model’s bias towards simply coupling the first and second-attempt distributions, thus avoiding behavior collapse whenactual multi-turn RL is run. Formally, the objective is:\n\n$$\\max_{\\theta} \\mathbb{E}_{\\mathbf{x}_1, y_1 \\sim \\pi_{\\theta}(\\cdot|\\mathbf{x}), y_2 \\sim \\pi_{\\theta}(\\cdot|[\\mathbf{x}_1, p_1])} \\left[ \\hat{r}(y_2, y^*) - \\beta_2 D_{KL}(\\pi_{\\theta}(\\cdot|\\mathbf{x}_1) || \\pi_{\\text{ref}}(\\cdot|\\mathbf{x}_1)) \\right], \\quad (3)$$\n\nwhere  $\\beta_2$  is a hyperparameter designed to enforce a strict KL penalty **only on the first attempt** to avoid shifting of the first-turn responses (denoted by the term in blue). Note that we still utilize the default KL-divergence penalty from Equation 2, but with a relatively small weight and is omitted from Equation 3 for clarity. Indeed, we show that compared to standard multi-turn RL, Stage I is more effective at decoupling the two responses (Figure 6b) and leads to better Stage II performance.\n\n## 5.2. Stage II: Multi-Turn RL with Reward Shaping\n\nThe second stage of **SCoRe** is initialized from Stage I and now jointly optimizes the performance of both attempts. Concretely, Stage II trains the policy  $\\pi_{\\theta}(\\cdot|\\cdot)$  using the following objective:\n\n$$\\max_{\\theta} \\mathbb{E}_{\\mathbf{x}_1, y_1 \\sim \\pi_{\\theta}(\\cdot|\\mathbf{x}), y_2 \\sim \\pi_{\\theta}(\\cdot|[\\mathbf{x}_1, p_1])} \\left[ \\sum_{i=1}^2 \\hat{r}(y_i, y^*) - \\beta_1 D_{KL}(\\pi_{\\theta}(\\cdot|\\mathbf{x}_i) || \\pi_{\\text{ref}}(\\cdot|\\mathbf{x}_i)) \\right], \\quad (4)$$\n\nwhere  $\\mathbf{x}_i, i \\in \\{1, 2\\}$  corresponds to the set of input tokens passed as context to the model.\n\n**Reward shaping to prevent behavior collapse.** In principle, optimizing Equation 4 can also produce a solution that couples responses. This is because we still aim to maximize ground-truth rewards at both attempts. To prevent the learning process from collapsing to a non self-correcting solution in Stage II, we need to bias the learning problem towards self-correction. We implement this via *reward shaping*: by rewarding transitions that make “progress” towards learning the desired self-correction behavior. Concretely, given an two-turn rollout sampled from the policy  $\\tau = \\{\\mathbf{x}_1, \\hat{y}_1, \\hat{r}(y_1, y^*), \\mathbf{x}_2, \\hat{y}_2, \\hat{r}(y_2, y^*)\\}$ , we modify the reward  $\\hat{r}(y_2, y^*)$  in Equation 4, at the second attempt with a bonus  $\\tilde{b}(y_2|y_1, y^*) := \\alpha \\cdot (\\hat{r}(y_2, y^*) - \\hat{r}(y_1, y^*))$ , where  $\\alpha$  is a positive constant multiplier, ideally larger than 1.0. Adding this bonus to the second attempt measures a notion of progress by *only* emphasizing transitions that flip the correctness of the response and assigns a heavy negative penalty to transitions that change a correct response to incorrect in the second attempt. Thus, the addition of this bonus should regularize the training process from collapsing on to the “direct” solution that also appears optimal on the training set but does not learn self-correction.\n\n## 5.3. Putting it Together and Implementation Details\n\nOur approach is illustrated pictorially in Figure 7. We detail all hyperparameters used in Appendix B. In practice, one can also use an adaptive  $\\beta_2$  that attempts to balance the magnitudes of the first-attempt KL regularization and the second-attempt policy objective. In some of our experiments, we also choose to amplify the coverage of states used for on-policy RL by incorporating first-attempt solutions obtained by repeatedly sampling the base model as *offline* prompts in RL. We find that incorporating this data, especially in Stage II – where the first-turn policy may have drifted further from that of the base model – can have substantial benefits especially when attempting to learn from limited data.\n\n### Takeaways and Implications\n\nThe core insight behind **SCoRe** is that we must make it more attractive to learn a more nuanced algorithmic strategy (i.e., self-correction) instead of collapsing to a degenerate behavior mode. To avoid distribution shift, this must be done on self-generated online data.Table 2 | **Performance of *SCoRe* on MATH.** *SCoRe* not only attains a higher accuracy at both attempts, but also provides the most positive self-correction performance  $\\Delta(t1, t2)$ .\n\n&lt;table border=\"1\">\n&lt;thead>\n&lt;tr>\n&lt;th>Approach&lt;/th>\n&lt;th>Acc.@t1&lt;/th>\n&lt;th>Acc.@t2&lt;/th>\n&lt;th>&lt;math>\\Delta(t1, t2)&lt;/math>&lt;/th>\n&lt;th>&lt;math>\\Delta^{i \\rightarrow c}(t1, t2)&lt;/math>&lt;/th>\n&lt;th>&lt;math>\\Delta^{c \\rightarrow i}(t1, t2)&lt;/math>&lt;/th>\n&lt;/tr>\n&lt;/thead>\n&lt;tbody>\n&lt;tr>\n&lt;td>Base model&lt;/td>\n&lt;td>52.6%&lt;/td>\n&lt;td>41.4%&lt;/td>\n&lt;td>-11.2%&lt;/td>\n&lt;td>4.6%&lt;/td>\n&lt;td>15.8%&lt;/td>\n&lt;/tr>\n&lt;tr>\n&lt;td>Self-Refine (Madaan et al., 2023)&lt;/td>\n&lt;td>52.8%&lt;/td>\n&lt;td>51.8%&lt;/td>\n&lt;td>-1.0%&lt;/td>\n&lt;td>3.2%&lt;/td>\n&lt;td>4.2%&lt;/td>\n&lt;/tr>\n&lt;tr>\n&lt;td>STaR w/ &lt;math>\\mathcal{D}_{\\text{StaR}}^+&lt;/math> (Zelikman et al., 2022)&lt;/td>\n&lt;td>53.6%&lt;/td>\n&lt;td>54.0%&lt;/td>\n&lt;td>0.4%&lt;/td>\n&lt;td>2.6%&lt;/td>\n&lt;td>2.2%&lt;/td>\n&lt;/tr>\n&lt;tr>\n&lt;td>Pair-SFT w/ &lt;math>\\mathcal{D}_{\\text{SFT}}&lt;/math> (Welleck et al., 2023)&lt;/td>\n&lt;td>52.4%&lt;/td>\n&lt;td>54.2%&lt;/td>\n&lt;td>1.8%&lt;/td>\n&lt;td>5.4%&lt;/td>\n&lt;td>3.6%&lt;/td>\n&lt;/tr>\n&lt;tr>\n&lt;td>&lt;b>&lt;i>SCoRe&lt;/i> (Ours)&lt;/b>&lt;/td>\n&lt;td>&lt;b>60.0%&lt;/b>&lt;/td>\n&lt;td>&lt;b>64.4%&lt;/b>&lt;/td>\n&lt;td>&lt;b>4.4%&lt;/b>&lt;/td>\n&lt;td>&lt;b>5.8%&lt;/b>&lt;/td>\n&lt;td>&lt;b>1.4%&lt;/b>&lt;/td>\n&lt;/tr>\n&lt;/tbody>\n&lt;/table>\n\n## 6. Experimental Evaluation\n\nThe goal of our experiments is to demonstrate the efficacy and justify the design of *SCoRe* in training LLMs how to self-correct by only training on their own data. To this end, we perform a comparative evaluation of *SCoRe* against prior methods that also use self-generated data to train for self-correction, and run several ablation studies on two representative reasoning tasks where error correction is crucial.\n\n**Tasks.** We mainly focus on reasoning problems in math and coding: (a) math problem solving on MATH (Hendrycks et al., 2021), and (b) code generation on MBPP (Austin et al., 2021) and HumanEval (Chen et al., 2021). We use the following train-test splits in our experiments: (1) **MATH**: following Lightman et al. (2023), we augment the MATH training set with 4500 problems from the test set, and report results on the remaining 500 problems (MATH500); and (2) **Code generation**: we train on MBPP and report results on HumanEval, which does not expose test cases to the model. For all tasks, we use binary rewards during training, indicating whether the model’s answer matches the ground truth one (for MATH) or passes all test cases (for coding).\n\n**Evaluation protocol and metrics.** We report the self-correction accuracy on a number of tasks with two sequential attempts at the problem, i.e., one round of self-correction. For code generation, following the evaluation protocol of Ni et al. (2024), we also report results on MBPP-R, an offline repair task that requires correcting incorrect first-attempt programs generated from PaLM 2.\n\n**Models.** For all of our experiments on coding problems, we fine-tune Gemini 1.0 Pro and for MATH, we fine-tune Gemini 1.5 Flash. For all evaluations, we use greedy decoding (i.e. temperature 0), except for inference-compute scaling in Section 6.2 where we set temperature to be 0.7. For all training methods, we attempted to use a fixed budget of model samples and gradient updates, and do not vary hyperparameters such as learning rate and batch size between runs. For all RL runs, we selected checkpoints with the highest training reward, although a small held-out validation set of problems can also be used.\n\n**Evaluation prompts.** We use zero-shot CoT prompting for evaluation on MATH, zero-shot prompting for evaluation on HumanEval, and the canonical three-shot prompt for first-attempt training samples on MBPP (Austin et al., 2021). At the second attempt, we utilize an instruction that does not reveal the correctness of the previous answer, but asks the model to attempt to deduce whether a mistake exists in its first attempt response, and if so, potentially rewrite its response. Our full prompts and self-correction instructions can be found in Appendix C.\n\n**Baselines & comparisons.** We compare *SCoRe* to relevant prior approaches based on prompting or those that fine-tune only a single model for both solving the task and for revising responses, and only use self-generated data. Specifically, we compare to **Self-Refine** (Madaan et al., 2023), a representativeTable 3 | Performance of *SCoRe* on HumanEval. *SCoRe* attains the highest self-correction performance ( $\\text{Accuracy@t2}$ ,  $\\Delta(t1, t2)$ ), and also outperforms other methods at offline correction (**MBPP-R**).\n\n&lt;table border=\"1\">\n&lt;thead>\n&lt;tr>\n&lt;th>Method&lt;/th>\n&lt;th>MBPP-R&lt;/th>\n&lt;th>Acc.@t1&lt;/th>\n&lt;th>Acc.@t2&lt;/th>\n&lt;th>&lt;math>\\Delta(t1, t2)&lt;/math>&lt;/th>\n&lt;th>&lt;math>\\Delta^{i \\rightarrow c}(t1, t2)&lt;/math>&lt;/th>\n&lt;th>&lt;math>\\Delta^{c \\rightarrow i}(t1, t2)&lt;/math>&lt;/th>\n&lt;/tr>\n&lt;/thead>\n&lt;tbody>\n&lt;tr>\n&lt;td>Base model&lt;/td>\n&lt;td>47.3%&lt;/td>\n&lt;td>53.7%&lt;/td>\n&lt;td>56.7%&lt;/td>\n&lt;td>3.0%&lt;/td>\n&lt;td>7.9%&lt;/td>\n&lt;td>4.9%&lt;/td>\n&lt;/tr>\n&lt;tr>\n&lt;td>Self-Refine&lt;/td>\n&lt;td>30.7%&lt;/td>\n&lt;td>53.7%&lt;/td>\n&lt;td>52.5%&lt;/td>\n&lt;td>-1.2%&lt;/td>\n&lt;td>9.8%&lt;/td>\n&lt;td>11.0%&lt;/td>\n&lt;/tr>\n&lt;tr>\n&lt;td>Pair-SFT&lt;/td>\n&lt;td>59.8%&lt;/td>\n&lt;td>56.1%&lt;/td>\n&lt;td>54.3%&lt;/td>\n&lt;td>-1.8%&lt;/td>\n&lt;td>4.3%&lt;/td>\n&lt;td>6.1%&lt;/td>\n&lt;/tr>\n&lt;tr>\n&lt;td>&lt;b>&lt;i>SCoRe&lt;/i> (Ours)&lt;/b>&lt;/td>\n&lt;td>&lt;b>60.6%&lt;/b>&lt;/td>\n&lt;td>52.4%&lt;/td>\n&lt;td>&lt;b>64.6%&lt;/b>&lt;/td>\n&lt;td>&lt;b>12.2%&lt;/b>&lt;/td>\n&lt;td>&lt;b>15.2%&lt;/b>&lt;/td>\n&lt;td>&lt;b>3.0%&lt;/b>&lt;/td>\n&lt;/tr>\n&lt;/tbody>\n&lt;/table>\n\nprompting-based approach to elicit self-correction behaviors from a model, akin to Reflexion (Shinn et al., 2023). Among the fine-tuning based approaches, we compare to **Pair-SFT** based on the approach from Welleck et al. (2023), and multi-turn **STaR** (Singh et al., 2023; Zelikman et al., 2022) that fine-tune the model by maximizing log-likelihood respectively on synthetically-paired repair traces (Pair-SFT) and successful repair traces (STaR).\n\n### 6.1. Benchmark Results\n\n**MATH.** Our results are shown in Table 2, as well as in Figure 1. *SCoRe* exhibits substantially stronger performance on both direct and self-correction accuracies relative to baselines. Notably, the intrinsic self-correction gain  $\\Delta(t1, t2)$  of 4.4% is the first significantly positive delta, despite having fewer incorrect problems to correct by virtue of its higher Accuracy@t1. Relative to the base model Gemini 1.5 Flash, *SCoRe* improves  $\\Delta(t1, t2)$  by 15.6%, and Accuracy@t2 by 23.0%, and over the next best prior approach, Pair-SFT, by 10.2% and 2.6% respectively. By observing the frequency of problems that change from incorrect in the first attempt to correct in the second attempt and vice versa, we see that *SCoRe* both improves the rate at which it fixes incorrect answers (14.5%, compared to 9.5% for base) and reduces the proportion of correct answers it changes (15.8% to 1.4%).\n\n**Code generation.** Our results for the code generation task are shown in Table 3. Generally, we find that *SCoRe* achieves both improved self-correction and offline repair performance. For MBPP-R (Ni et al., 2024), we find that *SCoRe* improves the base model from 47.3% to 60.6%, which is comparable to the gap between GPT-3.5 (43%) and GPT-4 (63.2%). Despite only training on MBPP, we find that *SCoRe* is especially effective at generalizing to HumanEval, achieving a **12.2%** intrinsic self-correction delta, or 9% higher than the base model. By contrast, Pair-SFT works nearly as well on the static repair task MBPP-R, but actually degrades the base model when evaluated in the self-correction setting, thus underscoring the importances of on-policy sampling for self-correction.\n\n### 6.2. Inference-Compute Scaling with Self-Correction\n\nNext, we investigate if *SCoRe* can be used in conjunction with inference-time compute scaling strategies. To do so, we evaluate self-consistency decoding (Wang et al., 2022), where we sample a diverse set of solutions, and then select the most consistent answer among these solutions. Typically, the default strategy is to sample all solutions in parallel to perform majority voting. However, we show in Figure 1 (right) that instead of sampling  $2K$  solutions in parallel, it is *more* compute-efficient to sample  $K$  solutions in parallel, then perform one round of self-correction on each solution. With 32 solution budget per problem, parallel sampling shows a 7.4% accuracy gain, while combining it with sequential sampling using self-correction yields a 10.5% improvement.Table 4 | **Ablation studies to understand the impact of various components in *SCoRe*.** Observe that while single-turn training is effective at optimizing the first-attempt accuracy of the model, it leads to degradation in the second attempt. The performance improvements without Stage I or without reward shaping in *SCoRe* are small when measured by the difference in accuracy over the two attempts. Utilizing STaR generally leads to worse performance even when it is run from an effective Stage I checkpoint.\n\n&lt;table border=\"1\">\n&lt;thead>\n&lt;tr>\n&lt;th>Method&lt;/th>\n&lt;th>Accuracy@t1&lt;/th>\n&lt;th>Accuracy@t2&lt;/th>\n&lt;th>&lt;math>\\Delta(t1, t2)&lt;/math>&lt;/th>\n&lt;/tr>\n&lt;/thead>\n&lt;tbody>\n&lt;tr>\n&lt;td>&lt;i>SCoRe&lt;/i> (Ours)&lt;/td>\n&lt;td>60.0%&lt;/td>\n&lt;td>&lt;b>64.4%&lt;/b>&lt;/td>\n&lt;td>&lt;b>4.4%&lt;/b>&lt;/td>\n&lt;/tr>\n&lt;tr>\n&lt;td>w/o multi-turn training&lt;/td>\n&lt;td>&lt;b>61.8%&lt;/b>&lt;/td>\n&lt;td>59.4%&lt;/td>\n&lt;td>-2.4%&lt;/td>\n&lt;/tr>\n&lt;tr>\n&lt;td>w/o Stage I&lt;/td>\n&lt;td>59.2%&lt;/td>\n&lt;td>61.4%&lt;/td>\n&lt;td>2.2%&lt;/td>\n&lt;/tr>\n&lt;tr>\n&lt;td>w/o reward shaping&lt;/td>\n&lt;td>60.0%&lt;/td>\n&lt;td>62.6%&lt;/td>\n&lt;td>2.6%&lt;/td>\n&lt;/tr>\n&lt;tr>\n&lt;td>w/ STaR instead of REINFORCE Stage II&lt;/td>\n&lt;td>56.2%&lt;/td>\n&lt;td>58.4%&lt;/td>\n&lt;td>2.2%&lt;/td>\n&lt;/tr>\n&lt;/tbody>\n&lt;/table>\n\n### 6.3. Ablation Studies: Understanding the Impact of *SCoRe* Components\n\nFinally, we also present a number of ablation studies to understand the importance of various components in *SCoRe*. We perform these ablations on the MATH dataset. Concretely, we aim to answer the following questions: **(1) the importance of multi-turn training:** Can RL trained to maximize single-turn performance achieve better accuracy@t1 or accuracy@t2?; **(2) the importance of multi-stage training:** How essential is Stage I to *SCoRe*? In other words, why not run Stage II directly?; **(3) the impact of reward shaping.** How would removing the reward shaping terms affect performance of *SCoRe* in Stage II, assuming Stage I was done identically?; **(4) the importance of on-policy RL:** What if we replaced REINFORCE in Stage II with STaR?\n\nThe results of all of these ablation experiments are shown in Table 4. As expected, single-turn training improves turn 1 performance, but has negative  $\\Delta(t1, t2)$ . As shown in Figure 6, Stage I is critical to *SCoRe*; without it, the model achieves 2% lower  $\\Delta(t1, t2)$  and 3% lower accuracy@t2. Similarly, we find that removing reward shaping also hurts performance, indicating that the RL objectives in both stages play a significant role in teaching the self-correction behavior. We also find that replacing REINFORCE with STaR in Stage II results in significantly lower absolute performance with no visible improvements in self-improvement performance, which contrasts with the findings in [Havrilla et al. \\(2024a\\)](#) that STaR and on-policy RL have similar convergence rates for single-turn RL. This suggests that leveraging on-policy samples is especially critical in the self-correction setting, which presents a multi-turn problem that admits potentially spurious solutions.\n\n## 7. Discussion, Limitations, and Conclusion\n\nIn this work, we investigated how to imbue LLMs with self-correction behavior that enables them to correct their own responses on the fly. To accomplish this, we proposed *SCoRe*, a multi-turn RL approach, and demonstrated through extensive evaluations *that it is one of the first methods* to attain significantly positive intrinsic self-correction performance. To do so, we rigorously analyzed the behavior of various SFT approaches and identified failure modes in which the model learns a non-correcting strategy (e.g. learning to make no edits; behavior collapse) or falls prey to distribution shift. *SCoRe* trains a self-correcting strategy by utilizing a two-stage design and reward shaping, both of which help preventing behavior collapse into not learning effective self-corrective behavior. *SCoRe* has limitations that also provide avenues for future work. We did not train *SCoRe* for more than one round of iterative self-correction dueto infrastructural reasons, which means that subsequent rounds may not be as effective as the first. Future work should train with more than two attempts via RL, which is already a common and effective practice to obtain effective self-correction behavior over more than two rounds with SFT (Qu et al., 2024; Snell et al., 2024). Unifying Stages I and II would also be interesting, since it would alleviate the limitation of running multiple runs. Finally, our results suggest that learning *meta-strategies* (e.g., self-correction) might require going beyond standard LLM fine-tuning (Section 4), and incorporate regularization (e.g., progress reward).\n\n## Acknowledgements\n\nThe authors would like to thank Satinder Baveja, Kalesha Bullard, Gheorghe Comanici, Claire Cui, Valentin Dalibard, Angelos Filos, Yang Gao, Zoubin Ghahramani, Izzeddin Gur, Raia Hadsell, Clara Huiyi Hu, Melvin Johnson, Mina Khan, Balaji Lakshminarayanan, Yiran Mao, Hussain Masoom, Junhyuk Oh, Jordi Orbay, David Silver, and Yury Sulsky for helpful discussions, feedback, and sponsorship. We thank Amrith Setlur, Yuxiao Qu, Charlie Snell, Tianhe Yu, and Xinyang (Young) Geng for helpful discussions and feedback on an earlier version of the paper.\n\n## Author Contributions\n\nAK and VZ led the paper, with substantial technical contributions from RA and YS. VZ led the experimentation in the final paper with AK, with support from RA and YS. AK and RA conceived the initial idea with advice and discussions from DS, FB, AF, JDC, AS, and GT. JDC, YS, AS, RA, and AK iterated on the methodology. The development of the final method was done by AK and VZ, with inputs from RA and FB. VZ led the infrastructure development, while RA, YS, CP, SI, KB, DS, and LMZ contributed to the infrastructure. AK, RA, FB, AF, DP, GT advised on the overall direction. AK and VZ wrote the manuscript, with input from all co-authors. KM provided program management. FB, and AF co-supervised the project.\n\n## References\n\n- A. Ahmadian, C. Cremer, M. Gallé, M. Fadaee, J. Kreutzer, A. Üstün, and S. Hooker. Back to basics: Revisiting reinforce style optimization for learning from human feedback in llms. *arXiv preprint arXiv:2402.14740*, 2024.\n- A. F. Akyürek, E. Akyürek, A. Madaan, A. Kalyan, P. Clark, D. Wijaya, and N. Tandon. Rl4f: Generating natural language feedback with reinforcement learning for repairing model outputs. *arXiv preprint arXiv:2305.08844*, 2023.\n- J. Austin, A. Odena, M. Nye, M. Bosma, H. Michalewski, D. Dohan, E. Jiang, C. Cai, M. Terry, Q. Le, et al. Program synthesis with large language models. *arXiv preprint arXiv:2108.07732*, 2021.\n- M. Chen, J. Tworek, H. Jun, Q. Yuan, H. P. D. O. Pinto, J. Kaplan, H. Edwards, Y. Burda, N. Joseph, G. Brockman, et al. Evaluating large language models trained on code. *arXiv preprint arXiv:2107.03374*, 2021.\n- X. Chen, M. Lin, N. Schärli, and D. Zhou. Teaching large language models to self-debug. *arXiv preprint arXiv:2304.05128*, 2023.J. Farebrother, J. Orbay, Q. Vuong, A. A. Taiga, Y. Chebotar, T. Xiao, A. Irpan, S. Levine, P. S. Castro, A. Faust, et al. Stop regressing: Training value functions via classification for scalable deep rl. *arXiv preprint arXiv:2403.03950*, 2024.\n\nA. Havrilla, Y. Du, S. C. Raparthy, C. Nalmpantis, J. Dwivedi-Yu, M. Zhuravinskyi, E. Hambro, S. Sukhbaatar, and R. Raileanu. Teaching large language models to reason with reinforcement learning. *arXiv preprint arXiv:2403.04642*, 2024a.\n\nA. Havrilla, S. Raparthy, C. Nalmpantis, J. Dwivedi-Yu, M. Zhuravinskyi, E. Hambro, and R. Railneau. Glore: When, where, and how to improve llm reasoning via global and local refinements. *arXiv preprint arXiv:2402.10963*, 2024b.\n\nD. Hendrycks, C. Burns, S. Kadavath, A. Arora, S. Basart, E. Tang, D. Song, and J. Steinhardt. Measuring mathematical problem solving with the math dataset. *NeurIPS*, 2021.\n\nJ. Hong, N. Lee, and J. Thorne. Reference-free monolithic preference optimization with odds ratio. *arXiv preprint arXiv:2403.07691*, 2024.\n\nJ. Huang, X. Chen, S. Mishra, H. S. Zheng, A. W. Yu, X. Song, and D. Zhou. Large language models cannot self-correct reasoning yet. *arXiv preprint arXiv:2310.01798*, 2023.\n\nN. Jain, K. Han, A. Gu, W.-D. Li, F. Yan, T. Zhang, S. Wang, A. Solar-Lezama, K. Sen, and I. Stoica. Livecodebench: Holistic and contamination free evaluation of large language models for code. *arXiv preprint arXiv:2403.07974*, 2024.\n\nR. Kamoi, Y. Zhang, N. Zhang, J. Han, and R. Zhang. When can llms actually correct their own mistakes? a critical survey of self-correction of llms. *arXiv preprint arXiv:2406.01297*, 2024.\n\nG. Kim, P. Baldi, and S. McAleer. Language models can solve computer tasks. *arXiv preprint arXiv:2303.17491*, 2023.\n\nH. Lightman, V. Kosaraju, Y. Burda, H. Edwards, B. Baker, T. Lee, J. Leike, J. Schulman, I. Sutskever, and K. Cobbe. Let's verify step by step. *arXiv preprint arXiv:2305.20050*, 2023.\n\nX. Liu, H. Yu, H. Zhang, Y. Xu, X. Lei, H. Lai, Y. Gu, H. Ding, K. Men, K. Yang, et al. Agentbench: Evaluating llms as agents. *arXiv preprint arXiv:2308.03688*, 2023.\n\nA. Lozhkov, R. Li, L. B. Allal, F. Cassano, J. Lamy-Poirier, N. Tazi, A. Tang, D. Pykhtar, J. Liu, Y. Wei, et al. Starcoder 2 and the stack v2: The next generation. *arXiv preprint arXiv:2402.19173*, 2024.\n\nA. Madaan, N. Tandon, P. Gupta, S. Hallinan, L. Gao, S. Wiegrefte, U. Alon, N. Dziri, S. Prabhumoye, Y. Yang, et al. Self-refine: Iterative refinement with self-feedback. *arXiv preprint arXiv:2303.17651*, 2023.\n\nA. Ni, M. Allamanis, A. Cohan, Y. Deng, K. Shi, C. Sutton, and P. Yin. Next: Teaching large language models to reason about code execution. *arXiv preprint arXiv:2404.14662*, 2024.\n\nT. X. Olausson, J. P. Inala, C. Wang, J. Gao, and A. Solar-Lezama. Is self-repair a silver bullet for code generation? In *The Twelfth International Conference on Learning Representations*, 2023.L. Pan, M. Saxon, W. Xu, D. Nathani, X. Wang, and W. Y. Wang. Automatically correcting large language models: Surveying the landscape of diverse self-correction strategies. *arXiv preprint arXiv:2308.03188*, 2023.\n\nD. Paul, M. Ismayilzada, M. Peyrard, B. Borges, A. Bosselut, R. West, and B. Faltings. Refiner: Reasoning feedback on intermediate representations. *arXiv preprint arXiv:2304.01904*, 2023.\n\nY. Qu, T. Zhang, N. Garg, and A. Kumar. Recursive introspection: Teaching language model agents how to self-improve. *arXiv preprint arXiv:2407.18219*, 2024.\n\nW. Saunders, C. Yeh, J. Wu, S. Bills, L. Ouyang, J. Ward, and J. Leike. Self-critiquing models for assisting human evaluators. *arXiv preprint arXiv:2206.05802*, 2022.\n\nL. Shani, A. Rosenberg, A. Cassel, O. Lang, D. Calandriello, A. Zipori, H. Noga, O. Keller, B. Piot, I. Szpektor, et al. Multi-turn reinforcement learning from preference human feedback. *arXiv preprint arXiv:2405.14655*, 2024.\n\nZ. Shao, P. Wang, Q. Zhu, R. Xu, J. Song, M. Zhang, Y. Li, Y. Wu, and D. Guo. Deepseekmath: Pushing the limits of mathematical reasoning in open language models. *arXiv preprint arXiv:2402.03300*, 2024.\n\nN. Shinn, B. Labash, and A. Gopinath. Reflexion: an autonomous agent with dynamic memory and self-reflection. *arXiv preprint arXiv:2303.11366*, 2023.\n\nA. Singh, J. D. Co-Reyes, R. Agarwal, A. Anand, P. Patil, P. J. Liu, J. Harrison, J. Lee, K. Xu, A. Parisi, et al. Beyond human data: Scaling self-training for problem-solving with language models. *arXiv preprint arXiv:2312.06585*, 2023.\n\nA. Singh, J. D. Co-Reyes, R. Agarwal, A. Anand, P. Patil, X. Garcia, P. J. Liu, J. Harrison, J. Lee, K. Xu, A. Parisi, A. Kumar, A. Alemi, A. Rizkowsky, A. Nova, B. Adlam, B. Bohnet, G. Elsayed, H. Sedghi, I. Mordatch, I. Simpson, I. Gur, J. Snoek, J. Pennington, J. Hron, K. Kenealy, K. Swersky, K. Mahajan, L. Culp, L. Xiao, M. L. Bileschi, N. Constant, R. Novak, R. Liu, T. Warkentin, Y. Qian, Y. Bansal, E. Dyer, B. Neyshabur, J. Sohl-Dickstein, and N. Fiedel. Beyond human data: Scaling self-training for problem-solving with language models, 2024.\n\nC. Snell, I. Kostrikov, Y. Su, M. Yang, and S. Levine. Offline rl for natural language generation with implicit language q learning. *arXiv preprint arXiv:2206.11871*, 2022.\n\nC. Snell, J. Lee, K. Xu, and A. Kumar. Scaling llm test-time compute optimally can be more effective than scaling model parameters. *arXiv preprint arXiv:2408.03314*, 2024.\n\nC. Team. Codegemma: Open code models based on gemma. *arXiv preprint arXiv:2406.11409*, 2024.\n\nG. Tyen, H. Mansoor, V. Cărbune, Y. P. Chen, and T. Mak. Llms cannot find reasoning errors, but can correct them given the error location. In *Findings of the Association for Computational Linguistics ACL 2024*, pages 13894–13908, 2024.\n\nJ. Uesato, N. Kushman, R. Kumar, F. Song, N. Siegel, L. Wang, A. Creswell, G. Irving, and I. Higgins. Solving math word problems with process-and outcome-based feedback. *arXiv preprint arXiv:2211.14275*, 2022.X. Wang, J. Wei, D. Schuurmans, Q. Le, E. Chi, S. Narang, A. Chowdhery, and D. Zhou. Self-consistency improves chain of thought reasoning in language models. *arXiv preprint arXiv:2203.11171*, 2022.\n\nS. Welleck, X. Lu, P. West, F. Brahman, T. Shen, D. Khashabi, and Y. Choi. Generating sequences by learning to self-correct. In *The Eleventh International Conference on Learning Representations*, 2023. URL &lt;https://openreview.net/forum?id=hH36JeQZDa0>.\n\nW. Xiong, C. Shi, J. Shen, A. Rosenberg, Z. Qin, D. Calandriello, M. Khalman, R. Joshi, B. Piot, M. Saleh, et al. Building math agents with multi-turn iterative preference learning. *arXiv preprint arXiv:2409.02392*, 2024.\n\nS. Yang, E. Gribovskaya, N. Kassner, M. Geva, and S. Riedel. Do large language models latently perform multi-hop reasoning? *arXiv preprint arXiv:2402.16837*, 2024.\n\nS. Ye, Y. Jo, D. Kim, S. Kim, H. Hwang, and M. Seo. Selfee: Iterative self-revising llm empowered by self-feedback generation. *Blog post*, 2023.\n\nT. Ye, Z. Xu, Y. Li, and Z. Allen-Zhu. Physics of language models: Part 2.2, how to learn from mistakes on grade-school math problems, 2024. URL &lt;https://arxiv.org/abs/2408.16293>.\n\nM. Yin, G. Tucker, M. Zhou, S. Levine, and C. Finn. Meta-learning without memorization. *arXiv preprint arXiv:1912.03820*, 2019.\n\nE. Zelikman, Y. Wu, J. Mu, and N. Goodman. Star: Bootstrapping reasoning with reasoning. *Advances in Neural Information Processing Systems*, 35:15476–15488, 2022.\n\nY. Zhang, M. Khalifa, L. Logeswaran, J. Kim, M. Lee, H. Lee, and L. Wang. Small language models need strong verifiers to self-correct reasoning. *arXiv preprint arXiv:2404.17140*, 2024.\n\nH. S. Zheng, S. Mishra, H. Zhang, X. Chen, M. Chen, A. Nova, L. Hou, H.-T. Cheng, Q. V. Le, E. H. Chi, et al. Natural plan: Benchmarking llms on natural language planning. *arXiv preprint arXiv:2406.04520*, 2024.\n\nY. Zhou, A. Zanette, J. Pan, S. Levine, and A. Kumar. Archer: Training language model agents via hierarchical multi-turn rl. *arXiv preprint arXiv:2402.19446*, 2024.# Appendices\n\n## A. Additional Experiments\n\n### A.1. Scaling to Multiple Attempts\n\nFigure 8 | Performance of the base model, Pair-SFT, and **SCoRe** over 10 attempts on MATH.\n\nWe investigate the performance of various models when asked to iteratively self-correct over multiple attempts, despite only being trained over two attempts (or not at all, in the case of the base model). As shown in Figure 8, we find that the performance of the base Gemini 1.5 Flash model is quite noisy, but never surpasses that of the first attempt. Similarly, Pair-SFT does not improve past the second attempt. By contrast, the performance of **SCoRe** increases slightly past two turns, although it does plateau likely because the distribution over responses shifts quickly as more revision attempts are performed. We leave improving the scaling properties of self-correction, a form of *meta-learning*, to future work.\n\n### A.2. Reward Function Design\n\nFigure 9 | Impact of discount factor of  $\\gamma$  on standard multi-turn RL training.\n\nIn all of our experiments, we used only the instantaneous reward in our policy gradient objective, which is equivalent to returns with discount factor  $\\gamma = 0$ . We additionally investigated whether leveraging$\\gamma > 0$ , in conjunction with reward shaping, can elicit self-correction paper. As presented in Figure 9, we find that with  $\\gamma = 0.8$  and  $\\alpha = 1.0$ , multi-turn RL still suffers from the same non-correcting behavior collapse as the standard multi-turn RL approach.\n\n## B. Additional Experiment Details\n\nTable 5 | Hyperparameters for *SCoRe* on MATH (left) and MBPP (right)\n\n&lt;table border=\"1\">\n&lt;thead>\n&lt;tr>\n&lt;th>Hyperparameter&lt;/th>\n&lt;th>Value&lt;/th>\n&lt;th>Hyperparameter&lt;/th>\n&lt;th>Value&lt;/th>\n&lt;/tr>\n&lt;/thead>",
+      "numLines": 500,
+      "startLine": 1,
+      "totalLines": 1037
+    }
+  },
+  "sourceToolAssistantUUID": "1e76ccdc-fc07-40f1-9c49-d444d03c15a4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 90_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML researcher performing a deep analysis of a published paper.  **Today's date: 2026-05-27 (UTC).**  ## Your goal  Analyze this paper NOT just for what it does, but for **HOW it innov…",
+  "leafUuid": "708bff43-2b98-44d9-8c85-2f5f4c6aa235",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 91_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze SCoRe self-correction RL paper",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45"
+}
+```
+
+---
+
+### Assistant
+
+_source line 92 · 2026-05-27T15:38:57.868Z_
+
+Now let me try to find the OpenReview page with the correct ID.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "708bff43-2b98-44d9-8c85-2f5f4c6aa235",
+  "isSidechain": false,
+  "requestId": "req_011CbTKkWJ1WGzgxwEijFspr",
+  "type": "assistant",
+  "uuid": "98437bfd-b54b-464e-b3a1-f4c3128ba882",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JgiWFTE7tqwJF95ef7g6QS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 20149,
+      "cache_read_input_tokens": 24612,
+      "output_tokens": 162,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20149,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 162,
+          "cache_read_input_tokens": 24612,
+          "cache_creation_input_tokens": 20149,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20149
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93 · 2026-05-27T15:39:00.526Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01Du4n88qcXUS8VRo2PvKh5s`</summary>
+
+```json
+{
+  "url": "https://openreview.net/forum?id=CjwERcAU7w&noteId=all",
+  "prompt": "Extract ALL review content on this page. Look for any official reviews, reviewer scores (soundness, presentation, contribution, rating), strengths, weaknesses, questions raised by reviewers, author rebuttals, and meta-reviews. Extract everything visible."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "98437bfd-b54b-464e-b3a1-f4c3128ba882",
+  "isSidechain": false,
+  "requestId": "req_011CbTKkWJ1WGzgxwEijFspr",
+  "type": "assistant",
+  "uuid": "dea74b48-34d2-42c1-9ea6-c9475f96f249",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JgiWFTE7tqwJF95ef7g6QS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 20149,
+      "cache_read_input_tokens": 24612,
+      "output_tokens": 162,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20149,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 162,
+          "cache_read_input_tokens": 24612,
+          "cache_creation_input_tokens": 20149,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20149
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-27T15:39:13.291Z_
+
+<details><summary>↩ Tool result · `toolu_01Du4n88qcXUS8VRo2PvKh5s`</summary>
+
+```text
+# Review Content Extraction
+
+Based on my examination of the provided web page content, **no review content is present**. 
+
+The page displays:
+- Paper metadata (title, authors, publication date)
+- Abstract summarizing the research on self-correction in language models via reinforcement learning
+- Submission details and ethics confirmations
+
+The page does not include:
+- Official reviewer comments or scores
+- Soundness, presentation, or contribution ratings
+- Strengths and weaknesses assessments
+- Reviewer questions
+- Author rebuttals
+- Meta-reviews
+
+This appears to be the paper's landing page on OpenReview rather than a page containing peer review discussions. Review content would typically appear in a separate reviews section if the review period were open or completed.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "dea74b48-34d2-42c1-9ea6-c9475f96f249",
+  "isSidechain": false,
+  "promptId": "038af6dc-dba3-4001-9426-894f41afea55",
+  "type": "user",
+  "uuid": "be6785d5-ecae-4773-a9cc-c92c29af05f9",
+  "toolUseResult": {
+    "bytes": 94799,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Review Content Extraction\n\nBased on my examination of the provided web page content, **no review content is present**. \n\nThe page displays:\n- Paper metadata (title, authors, publication date)\n- Abstract summarizing the research on self-correction in language models via reinforcement learning\n- Submission details and ethics confirmations\n\nThe page does not include:\n- Official reviewer comments or scores\n- Soundness, presentation, or contribution ratings\n- Strengths and weaknesses assessments\n- Reviewer questions\n- Author rebuttals\n- Meta-reviews\n\nThis appears to be the paper's landing page on OpenReview rather than a page containing peer review discussions. Review content would typically appear in a separate reviews section if the review period were open or completed.",
+    "durationMs": 12761,
+    "url": "https://openreview.net/forum?id=CjwERcAU7w&noteId=all"
+  },
+  "sourceToolAssistantUUID": "dea74b48-34d2-42c1-9ea6-c9475f96f249",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95 · 2026-05-27T15:39:16.970Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01WWQ7yKZFmphCeJU6nUSxFj`</summary>
+
+```json
+{
+  "url": "https://api2.openreview.net/notes?forum=CjwERcAU7w&details=replies",
+  "prompt": "Extract all review data from this API response. Look for official reviews with scores, strengths, weaknesses, and any discussion comments. Extract ALL content."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "be6785d5-ecae-4773-a9cc-c92c29af05f9",
+  "isSidechain": false,
+  "requestId": "req_011CbTKmtQKPqCUR3cD9QXWY",
+  "type": "assistant",
+  "uuid": "c3035a93-df3e-4221-907d-95a973a0fac8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0115iLgVB7UsVAKgDv6fcewE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 335,
+      "cache_read_input_tokens": 44761,
+      "output_tokens": 126,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 335,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 126,
+          "cache_read_input_tokens": 44761,
+          "cache_creation_input_tokens": 335,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 335
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-27T15:39:25.877Z_
+
+<details><summary>↩ Tool result · `toolu_01WWQ7yKZFmphCeJU6nUSxFj`</summary>
+
+```text
+# Review Summary: SCoRe - Training Language Models to Self-Correct via RL
+
+## Paper Decision
+**Status:** Accept (Oral) at ICLR 2025
+
+## Key Reviews
+
+### Reviewer 1 (Reviewer_e4kn) - Rating: 8/10
+**Strengths:**
+- Realistic self-correction setting with practical applicability
+- Insightful analysis identifying two core limitations: "distribution shift and behavior collapse"
+- Superior performance compared to baselines on Gemini models
+
+**Weaknesses:**
+- Concern about reward shaping potentially encouraging first-attempt errors
+- Requests additional single-turn baseline comparisons
+
+### Reviewer 2 (Reviewer_8Fu1) - Rating: 8/10
+**Strengths:**
+- Clear presentation with detailed algorithmic explanations
+- Strong empirical results across evaluations
+- Thorough failure-mode analysis of prior SFT-based methods
+
+**Weaknesses:**
+- Questions complexity of design choices versus simpler alternatives
+- Lacks theoretical justification for generalization claims
+- Maintains uncertainty about adaptive policy benefits
+
+### Reviewer 3 (Reviewer_26Gk) - Rating: 8/10
+**Strengths:**
+- "Commendable clarity" with detailed explanations
+- Good empirical analysis with ablations
+- Identifies key method limitations clearly
+
+**Weaknesses:**
+- No open-source model experiments (initially)
+- Only two-attempt training demonstrated
+- MATH dataset train/test overlap concerns
+
+### Reviewer 4 (Reviewer_GTtS) - Rating: 8/10
+**Strengths:**
+- "Very solid experiments and ablation studies"
+- First successful reliable self-correction approach
+- In-depth analysis for inference scaling
+
+**Weaknesses:**
+- Private Gemini models limit reproducibility
+- Limited dataset diversity (3 datasets only)
+- Lacks cross-domain evaluation
+
+## Meta-Review Assessment
+The Area Chair highlighted significant contributions: first successful self-correction without external supervision, strong empirical validation, and clear failure-mode analysis. Authors successfully addressed concerns by adding Gemma 2B experiments, extending to three correction attempts, and clarifying dataset practices.
+
+## Author Responses
+Authors conducted substantial additional work:
+- Added open-source Gemma 2B results showing 16.8% → 24% improvement
+- Extended to three-turn self-correction with positive performance gains
+- Evaluated on held-out datasets (Functional Math, MathOdyssey)
+- Clarified standard MATH dataset split practices
+- Provided inference timing analysis showing 2.5x faster sequential latency
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c3035a93-df3e-4221-907d-95a973a0fac8",
+  "isSidechain": false,
+  "promptId": "038af6dc-dba3-4001-9426-894f41afea55",
+  "type": "user",
+  "uuid": "3d63912a-68c2-4e48-af93-0a3f6992e14e",
+  "toolUseResult": {
+    "bytes": 108763,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Review Summary: SCoRe - Training Language Models to Self-Correct via RL\n\n## Paper Decision\n**Status:** Accept (Oral) at ICLR 2025\n\n## Key Reviews\n\n### Reviewer 1 (Reviewer_e4kn) - Rating: 8/10\n**Strengths:**\n- Realistic self-correction setting with practical applicability\n- Insightful analysis identifying two core limitations: \"distribution shift and behavior collapse\"\n- Superior performance compared to baselines on Gemini models\n\n**Weaknesses:**\n- Concern about reward shaping potentially encouraging first-attempt errors\n- Requests additional single-turn baseline comparisons\n\n### Reviewer 2 (Reviewer_8Fu1) - Rating: 8/10\n**Strengths:**\n- Clear presentation with detailed algorithmic explanations\n- Strong empirical results across evaluations\n- Thorough failure-mode analysis of prior SFT-based methods\n\n**Weaknesses:**\n- Questions complexity of design choices versus simpler alternatives\n- Lacks theoretical justification for generalization claims\n- Maintains uncertainty about adaptive policy benefits\n\n### Reviewer 3 (Reviewer_26Gk) - Rating: 8/10\n**Strengths:**\n- \"Commendable clarity\" with detailed explanations\n- Good empirical analysis with ablations\n- Identifies key method limitations clearly\n\n**Weaknesses:**\n- No open-source model experiments (initially)\n- Only two-attempt training demonstrated\n- MATH dataset train/test overlap concerns\n\n### Reviewer 4 (Reviewer_GTtS) - Rating: 8/10\n**Strengths:**\n- \"Very solid experiments and ablation studies\"\n- First successful reliable self-correction approach\n- In-depth analysis for inference scaling\n\n**Weaknesses:**\n- Private Gemini models limit reproducibility\n- Limited dataset diversity (3 datasets only)\n- Lacks cross-domain evaluation\n\n## Meta-Review Assessment\nThe Area Chair highlighted significant contributions: first successful self-correction without external supervision, strong empirical validation, and clear failure-mode analysis. Authors successfully addressed concerns by adding Gemma 2B experiments, extending to three correction attempts, and clarifying dataset practices.\n\n## Author Responses\nAuthors conducted substantial additional work:\n- Added open-source Gemma 2B results showing 16.8% → 24% improvement\n- Extended to three-turn self-correction with positive performance gains\n- Evaluated on held-out datasets (Functional Math, MathOdyssey)\n- Clarified standard MATH dataset split practices\n- Provided inference timing analysis showing 2.5x faster sequential latency",
+    "durationMs": 8903,
+    "url": "https://api2.openreview.net/notes?forum=CjwERcAU7w&details=replies"
+  },
+  "sourceToolAssistantUUID": "c3035a93-df3e-4221-907d-95a973a0fac8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 97 · 2026-05-27T15:39:47.081Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have comprehensive information about the paper. Let me compile the analysis into the requested JSON format.
+
+Let me synthesize what I've learned:
+
+**Problem Identification**: The authors identified that LLMs cannot effectively self-correct their own responses without external feedback (intrinsic self-correction). They found this by carefully analyzing WHY existing approaches (SFT-based methods like STaR and Pair-SFT) fail, identifying two specific failure modes: (1) distribution mismatch - where the model learns to correct errors made by the base model during data collection, but these gains don't transfer to correcting its own mistakes after training; and (2) behavior collapse - where the model learns to produce a good first answer and then makes minimal/no changes in the second attempt.
+ 
+The key insight is that self-correction functions as a meta-strategy requiring fundamentally different training than standard fine-tuning, since overparameterized models naturally gravitate toward the easier solution of generating strong first answers rather than learning to correct them. They address this by reformulating self-correction as a multi-turn RL problem with explicit regularization to prevent collapse, decoupling the two attempts and biasing rewards toward correction progress.
+
+Their approach uses two stages: first, they train the second attempt to maximize reward while constraining the first attempt to stay close to the base model through a strong KL penalty, then jointly optimize both attempts with reward shaping that explicitly bonuses improvement between attempts. The method achieves strong empirical results and provides a principled solution grounded in deep diagnostic analysis of why existing approaches fail.
+
+The main limitations are that they only trained for two turns due to infrastructure constraints and tested primarily on Gemini models, though they added Gemma 2B in the rebuttal. The approach builds on REINFORCE with KL regularization and multi-turn MDPs, and the key insight is that on-policy RL with careful regularization substantially outperforms SFT when training on self-generated reasoning traces.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3d63912a-68c2-4e48-af93-0a3f6992e14e",
+  "isSidechain": false,
+  "requestId": "req_011CbTKnpDaQ6pBCGYSjT2xZ",
+  "type": "assistant",
+  "uuid": "59a5de50-2ef0-4cc6-96ba-c748dd787d96",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EPP6iAySuVp6U5zFYhtGs1",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 733,
+      "cache_read_input_tokens": 45096,
+      "output_tokens": 2349,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 733,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2349,
+          "cache_read_input_tokens": 45096,
+          "cache_creation_input_tokens": 733,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 733
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 98 · 2026-05-27T15:40:23.723Z_
+
+Now I have comprehensive content from the paper and reviewer feedback. Let me compile the deep analysis.
+
+```json
+{
+  "title": "Training Language Models to Self-Correct via Reinforcement Learning (SCoRe)",
+  "venue": "ICLR 2025 (Oral)",
+  "problem_identification": "The authors identified that intrinsic self-correction (without external feedback) is essentially broken in modern LLMs — prompting-based methods fail, and SFT-based approaches hit two specific failure modes. They found this not by theorizing, but by running careful diagnostic experiments: they measured edit distance distributions, tracked correction rates under 'fixed' vs 'self-generated' first attempts, and decomposed accuracy into i→c and c→i transitions. This empirical dissection revealed (1) distribution shift — SFT models learn to correct the *base model's* mistakes but not their own post-training mistakes — and (2) behavior collapse — models learn to produce good first answers and make minimal/no edits, a degenerate but equally optimal strategy on training data.",
+  "key_insight": "Self-correction is a 'meta-strategy' that admits a spurious shortcut: on any finite training set, 'produce the best possible first answer then change nothing' scores equally well as 'learn to actually fix mistakes.' This is directly analogous to the memorization problem in meta-learning (Yin et al., 2019). The fix requires explicitly making the shortcut less attractive: decouple the two attempts via asymmetric KL constraints (Stage I), then bias rewards toward correction *progress* rather than absolute correctness (Stage II).",
+  "innovation_type": "combination",
+  "method_summary": "SCoRe is a two-stage on-policy multi-turn RL method. Stage I trains an initialization that decouples attempts: it optimizes second-attempt reward while applying a strong KL penalty *only on the first attempt* to keep it close to the base model, preventing the model from coupling both turns into a single high-quality response. Stage II then jointly optimizes both attempts using REINFORCE with a shaped reward bonus b(y₂|y₁) = α·(r(y₂) - r(y₁)), which explicitly rewards transitions that flip incorrect→correct and heavily penalizes correct→incorrect transitions. Both stages use on-policy sampling to avoid distribution shift. The method uses binary correctness rewards (answer checkers for math, test cases for code) and requires no external models, teacher supervision, or human feedback — only self-generated data from the model being trained.",
+  "what_makes_it_good": "Three things made this paper exceptional: (1) Section 4 is a masterclass in diagnostic research — before proposing their method, they systematically dissect *why* SFT fails through edit distance analysis, distribution shift experiments, and behavior collapse measurements, making the subsequent method feel inevitable rather than ad-hoc. (2) The connection to meta-learning memorization is a genuinely novel conceptual bridge that reframes the problem and explains why naive RL also collapses. (3) The results are unambiguous — SCoRe achieves the first significantly positive intrinsic self-correction (Δ(t1,t2) = +4.4% on MATH vs. -11.2% for the base model), with clean ablations showing each component matters. All four reviewers gave 8/10, praising the clarity and rigor.",
+  "limitations_acknowledged": "The authors note they only trained for two turns due to infrastructure constraints, meaning additional correction rounds may not be effective. They also acknowledge that unifying Stages I and II into a single training run would be desirable, and that their results are limited to Gemini models and a small set of benchmarks (though they added Gemma 2B and additional benchmarks during rebuttal).",
+  "open_questions": [
+    "Can this approach scale to many turns of iterative self-correction (3, 5, 10 turns)? The two-turn limitation is architectural, not fundamental, and the authors' preliminary multi-turn results (Appendix A.1) show SCoRe plateaus after ~2 turns, suggesting the training distribution must match the evaluation horizon.",
+    "Does the two-stage design generalize to other meta-strategies beyond self-correction (e.g., self-verification, adaptive problem decomposition, backtracking search)? The memorization-in-meta-learning framing suggests a general principle for training any 'algorithmic' behavior in LLMs.",
+    "Can the reward shaping approach be replaced or augmented with process reward models (PRMs) that provide denser feedback on the quality of corrections, potentially enabling more fine-grained self-correction strategies?"
+  ],
+  "building_blocks": [
+    "REINFORCE with KL-divergence penalty (Ahmadian et al., 2024)",
+    "Multi-turn MDP formulation for LLM training (Zhou et al., 2024 - ARCHER)",
+    "STaR / self-training on model-generated traces (Zelikman et al., 2022)",
+    "Binary correctness rewards via answer checkers and test-case execution",
+    "Reward shaping via progress bonus (r(y₂) - r(y₁))",
+    "Asymmetric KL regularization across turns",
+    "Self-consistency decoding / majority voting (Wang et al., 2022)",
+    "Gemini 1.0 Pro and 1.5 Flash models",
+    "MATH, HumanEval, and MBPP benchmarks",
+    "Edit distance ratio analysis for diagnosing behavior collapse"
+  ],
+  "reviewer_feedback_summary": "All four reviewers scored 8/10. Key praise: (1) 'commendable clarity' in writing and method explanation, (2) 'very solid experiments and ablation studies,' (3) the failure-mode analysis of SFT was seen as a standalone contribution, (4) first successful reliable intrinsic self-correction approach. Key concerns: (1) reproducibility — private Gemini models limit external validation (addressed by adding Gemma 2B experiments showing 16.8%→24% improvement), (2) only two-turn training demonstrated (addressed by showing positive results extending to three turns), (3) potential that reward shaping encourages deliberately worse first attempts (addressed empirically — Accuracy@t1 actually improves), (4) limited dataset diversity with only 3 benchmarks (partially addressed by adding Functional Math and MathOdyssey evaluations). The meta-reviewer highlighted that authors 'successfully addressed concerns' during rebuttal.",
+  "relevance_to_seed": "Directly relevant to synthetic data and self-improvement for mathematical reasoning: SCoRe demonstrates that the *training paradigm* matters as much as the data — SFT on self-generated correction traces fails, but on-policy RL with careful regularization on the same task succeeds dramatically. The key transferable lesson for our research area is that teaching LLMs meta-cognitive strategies (like self-correction or verification) requires explicitly preventing behavioral shortcuts through reward design and training structure, not just generating more or better synthetic data."
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "59a5de50-2ef0-4cc6-96ba-c748dd787d96",
+  "isSidechain": false,
+  "requestId": "req_011CbTKnpDaQ6pBCGYSjT2xZ",
+  "type": "assistant",
+  "uuid": "7c4b998e-ed53-4f7f-a0a4-b201aa06f6db",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EPP6iAySuVp6U5zFYhtGs1",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 733,
+      "cache_read_input_tokens": 45096,
+      "output_tokens": 2349,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 733,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2349,
+          "cache_read_input_tokens": 45096,
+          "cache_creation_input_tokens": 733,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 733
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 99_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML researcher performing a deep analysis of a published paper.  **Today's date: 2026-05-27 (UTC).**  ## Your goal  Analyze this paper NOT just for what it does, but for **HOW it innov…",
+  "leafUuid": "7c4b998e-ed53-4f7f-a0a4-b201aa06f6db",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 100_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze SCoRe self-correction RL paper",
+  "sessionId": "fd433d01-745c-4fd4-ad27-b9a83566dd45"
+}
+```
+
+---

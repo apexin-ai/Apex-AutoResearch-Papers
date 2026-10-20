@@ -1,0 +1,2779 @@
+# Research conversation: 【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。 【proposal】: # Mapping the Surface-Latent Faithf
+
+**Reproducibility Budgets for Open-Weight LLM Evaluation: A Generalizability Theory Study of 7–9B Instruction-Tuned Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 42
+- **Recorded user turns:** 1
+- **Tool calls:** 10
+- **Original source:** `logs/chats/exported-trajectories/account-2/a304bff6-b5ec-43ab-8be0-0c6626f5e053.jsonl`
+- **Structured JSON:** [`0f2242d55e63c7d6d9d2.json`](../../sessions/0f/0f2242d55e63c7d6d9d2.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-20T03:26:25.673Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-20T03:26:25.673Z",
+  "sessionId": "a304bff6-b5ec-43ab-8be0-0c6626f5e053",
+  "content": "【任务】: 请评估以下 proposal 的客观中稿概率。\n必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。\n\n【proposal】:\n# Mapping the Surface-Latent Faithfulness Gap Across RL Training: A Probe-Based Longitudinal Study of Reasoning Models\n\n## Description\nWe propose the first systematic longitudinal study jointly tracking surface-level CoT faithfulness and probe-measured latent faithfulness across matched GRPO training checkpoints of open-weight reasoning models. Unlike the VLM checkpoint study (2602.12506) which used only LLM-as-judge surface metrics on vision-language models, and unlike 'Monitoring the Internal Monologue' (2605.18549) which tracked probe trajectories during inference of fixed models, we generate fine-grained GRPO checkpoints (~20 per model) from two architecturally distinct families — DeepSeek-R1-Distill-Qwen-7B (starting with distilled reasoning) and Qwen3-8B (starting from base) — and at each checkpoint measure: (1) linear probe AUC on pre-CoT residual-stream activations as a latent answer-commitment proxy, (2) hint-injection acknowledgment rate (Chen et al. protocol) as a surface faithfulness metric, (3) NLDD reasoning horizon length as a causal reliance metric, and (4) activation patching effect sizes for CoT tokens. The central hypothesis is that GRPO training creates a widening surface-latent faithfulness gap — surface metrics improve (or plateau) while latent answer pre-commitment strengthens — consistent with the RLVR monitorability finding that surface gains are orthogonal to causal reliance. We apply changepoint detection as an exploratory tool to characterize divergence dynamics without assuming specific functional forms. This work bridges the critical gap between training-dynamics studies (which lack latent measures) and mechanistic faithfulness studies (which lack temporal depth), providing the first temporal map of how RL systematically decouples what reasoning models say from what they compute. Results directly inform whether RL-trained reasoning models require latent-space monitoring infrastructure beyond CoT inspection.\n\n## Core Problem\nWhen and how does the gap between surface CoT faithfulness (measured by behavioral metrics like hint-injection rates and causal reliance) and latent faithfulness (measured by residual-stream probes predicting answer pre-commitment) develop during GRPO training of reasoning models — and what dynamics characterize this divergence?\n\n## Opportunity\nThree converging 2026 findings create a precise, actionable gap. First, the RLVR monitorability paper (2602.03978) showed that RL's surface-monitorability gains come from response distribution sharpening and increased prompt attention — NOT from stronger causal reliance on reasoning traces. Second, pre-CoT probes (2603.01437) demonstrated that instruction-tuned models encode answers in residual-stream activations before generating any CoT (>0.9 AUC), with these directions being causally efficacious. Third, the VLM checkpoint paper (2602.12506) showed an accuracy-faithfulness trade-off during RL fine-tuning — but using only LLM-as-judge surface metrics on vision-language models, with no latent-space analysis. Meanwhile, 'Monitoring the Internal Monologue' (2605.18549) introduced probe trajectories as a powerful inference-time monitoring tool but analyzed only fixed, already-trained models — never tracking how probe characteristics evolve across RL training steps. The Obfuscation Atlas (2602.15515) tracked deception probes across RLVR but focused narrowly on reward-hacking obfuscation rather than general faithfulness divergence. Nobody has jointly measured both surface faithfulness metrics and activation-probe-based latent faithfulness at matched RL training checkpoints to characterize how — and how fast — RL decouples what reasoning models say from what they compute. If this divergence is large and systematic, RL-trained reasoning models require latent-space monitoring beyond CoT inspection for safe deployment.\n\n## Landscape\nThe CoT faithfulness literature in 2026 is large but fragmented along complementary axes, leaving the longitudinal surface-latent gap unstudied:\n\n**Surface faithfulness across RL steps (behavioral only):** Chen et al. (Anthropic 2025, 2505.05410) measured surface faithfulness via hint-injection across RL steps, finding initial improvement that plateaus (~25% for Claude 3.7 Sonnet). The VLM checkpoint paper (2602.12506) tracked CoT consistency via LLM-as-judge across GRPO checkpoints of Qwen2.5-VL-7B-Instruct, finding an accuracy-faithfulness trade-off — but used only behavioral metrics (letter entropy, judge-rated consistency) with no activation probes, and studied VLMs rather than language models.\n\n**Latent faithfulness in final models (snapshot only):** Pre-CoT probes (2603.01437) showed >0.9 AUC answer prediction from residual streams of Gemma 2 and Qwen 2.5 before any CoT tokens. 'Catching Rationalization in the Act' (2603.17199) trained probes to detect motivated reasoning pre- and post-CoT. 'The Hypocrisy Gap' (2602.02496) used SAEs to quantify internal-belief/CoT divergence. 'Why Models Know But Don't Say' (2603.26410) measured thinking-token vs. answer divergence. All analyze final models only.\n\n**Probe trajectories during inference (token-level, not training-level):** 'Monitoring the Internal Monologue' (2605.18549, May 2026) constructed probe trajectories across token positions during generation, achieving 95% AUROC for predicting outcomes. However, this tracks probes across tokens within a single generation of a fixed model — not across RL training checkpoints. Their models (Llama-8B-R1-Distill, Qwen3-4B/8B/14B) are final checkpoints only.\n\n**Deception probes across RLVR (deception-specific):** The Obfuscation Atlas (2602.15515) trained logistic regression probes on residual streams of Llama-3-8B through 70B across GRPO steps, mapping deception emergence. But their focus is reward-hacking obfuscation in coding tasks, not general reasoning faithfulness, and they don't measure surface faithfulness metrics jointly.\n\n**RL-Obfuscation (adversarial evasion):** RL-Obfuscation (2506.14261) showed 7B-14B models can learn to evade latent-space monitors through RL, with token-level monitors being vulnerable. This is an adversarial finding about monitor fragility, not a characterization of natural faithfulness divergence.\n\n**Faithfulness-improving RL methods:** FaithRL (2602.03507), AtManRL (2604.16158), and faithfulness-aware step-level RL (2602.05897) propose RL objectives that improve faithfulness, but none characterize the divergence trajectory of standard GRPO/RLVR training.\n\n**RL training dynamics:** Learning dynamics papers (2601.04670) show reduced feature diversity during RL but don't track faithfulness. The synthetic phase-transition paper (2602.01017) demonstrates faithful→unfaithful transitions under controlled noise in toy arithmetic — the only prior showing discrete transitions, but in a setting far removed from real GRPO.\n\n**The gap:** No existing work jointly tracks probe-measured latent faithfulness AND surface CoT faithfulness metrics at matched RL training checkpoints across training to characterize divergence dynamics in language reasoning models.\n\n## Approach\nWe produce our own fine-grained GRPO training checkpoints from two architecturally distinct open-weight model families, then jointly measure surface and latent faithfulness at each checkpoint.\n\n**Model families and checkpoint generation:**\n(1) DeepSeek-R1-Distill-Qwen-7B as base model, trained with GRPO using the Open-R1 pipeline (HuggingFace TRL) on MATH + GPQA, saving checkpoints every 50 GRPO steps for ~20 checkpoints across training. This model starts with distilled reasoning capability, letting us study how further RL reshapes faithfulness.\n(2) Qwen3-8B (base dense model, Apache 2.0) trained with the same GRPO pipeline and datasets, providing an architecturally distinct family that starts without distilled reasoning traces.\n\n**Metrics at each checkpoint:**\n(a) *Latent faithfulness proxy*: Train linear probes on residual-stream activations at the last pre-CoT token (following the methodology of Cox et al., 2603.01437), predicting the model's final answer. Report probe AUC and the layer at which AUC first exceeds 0.8 ('commitment layer'). A rising probe AUC across training indicates strengthening answer pre-commitment — the model increasingly 'knows' its answer before reasoning.\n(b) *Surface faithfulness — hint-injection*: Apply Chen et al.'s protocol with sycophancy and anchoring hints on a fixed MMLU/GPQA subset (~500 items). Report hint-acknowledgment rate (lower = more faithful surface behavior).\n(c) *Causal reliance — NLDD*: Compute the Normalized Logit Difference Decay metric (2602.11201) by corrupting individual reasoning steps and measuring confidence drops. Report the Reasoning Horizon k* (the chain-length fraction beyond which steps have negligible causal effect).\n(d) *Activation patching* (on 5 evenly-spaced checkpoints per family): Measure the causal effect of CoT-token activations on the final answer via mean-ablation patching, quantifying how much the model's computation actually flows through the reasoning trace.\n\n**Analysis:**\n- Construct the *surface-latent divergence curve*: plot surface faithfulness improvement (declining hint-acknowledgment rate) against latent bypass strengthening (rising probe AUC / shortening reasoning horizon) across GRPO steps.\n- Apply changepoint detection (PELT algorithm) as an *exploratory* tool to identify whether divergence accelerates at specific training phases — we do NOT claim phase transitions a priori but test for non-linear dynamics.\n- Compare divergence trajectories between the two model families to assess generality.\n- On a subset of checkpoints, apply the probe-trajectory methodology of 'Monitoring the Internal Monologue' (2605.18549) to test whether the character of inference-time probe trajectories (volatility, trend features) changes systematically across training — bridging their token-level and our checkpoint-level analyses.\n\n**Scaling validation:** If initial 7B results show clear divergence, replicate core probe + hint-injection measurements on DeepSeek-R1-Distill-Qwen-14B with ~10 GRPO checkpoints to verify the pattern holds at larger scale.\n\n**Key methodological choices justified:**\n- Using R1-Distill-7B rather than R1-671B: reviewer correctly identified that Dev1/Dev2/Dev3 checkpoints are not publicly available. Distilled 7B models are computationally tractable (single A100 for inference, 8×A100 for GRPO training) and let us generate arbitrarily fine-grained checkpoints.\n- GRPO rather than PPO: GRPO is the algorithm used in DeepSeek-R1 and the VLM checkpoint paper, ensuring comparability.\n- Two model families with different starting points (distilled reasoning vs. base): controls for whether divergence is an artifact of the starting model's reasoning capability.\n\n## Resource Estimate\n{'manual': {'gpu_hours': '350–500 A100-hours (GRPO training: ~80 A100-hrs × 2 families = 160 hrs; probe training + inference on ~20 checkpoints × 2 families: ~100 hrs; hint-injection evaluation: ~40 hrs; NLDD computation: ~30 hrs; activation patching on 10 checkpoints: ~50 hrs; 14B scaling validation: ~70 hrs)', 'timeline': '8–11 weeks (2 weeks GRPO training + pipeline setup, 3 weeks probe training & surface measurements in parallel, 2 weeks activation patching & NLDD, 1–2 weeks analysis, 1–2 weeks writing)', 'estimated_gpu_cost': '$900–$1,250 at ~$2.50/A100-hr spot pricing'}, 'human_in_loop': {'gpu_hours': '300–400 A100-hours (Claude handles probe training scripts, metric computation pipelines, statistical analysis, and plotting; human designs experiments, interprets results, writes key paper sections)', 'timeline': '6–8 weeks', 'claude_api_cost': '$120–$250 (Sonnet 4.6 for code generation, data analysis scripts, and paper drafting; ~40M input + 8M output tokens)', 'estimated_gpu_cost': '$750–$1,000'}, 'auto_research': {'gpu_hours': '300–400 A100-hours', 'timeline': '4–5 weeks (parallelized GRPO training for both families, then parallelized probe training and evaluation across checkpoints)', 'claude_api_cost': '$300–$550 (orchestration agent managing GRPO runs, checkpoint evaluation sweeps, result interpretation, iterative analysis; ~120M input + 25M output tokens)', 'estimated_gpu_cost': '$750–$1,000', 'speed_bottleneck': 'Sequential dependency: GRPO training must complete (or reach sufficient checkpoints) before probe training begins. However, probe training on early checkpoints can start while GRPO training continues. The two model families can be trained in parallel. 14B scaling validation is contingent on 7B results being compelling.'}}\n\n## Inspired By\nDirect gap between three convergent findings: (1) RLVR monitorability gains NOT from causal reliance (2602.03978), (2) pre-CoT probes show answer pre-commitment exists in residual streams (2603.01437), (3) VLM checkpoint paper shows accuracy-faithfulness trade-off during RL but with no latent-space analysis (2602.12506). The 'Monitoring the Internal Monologue' paper (2605.18549) shows probe trajectories are powerful for monitoring but leaves the training-dynamics dimension unexplored. The Obfuscation Atlas (2602.15515) demonstrates that probing across RLVR checkpoints is technically feasible at scale.\n\n## Target Venues\n- ICLR 2027 (abstract: Sep 19, 2026; full paper: Sep 24, 2026 — primary target, strong fit for mechanistic interpretability; ~18 weeks from now gives ample time for full experiments including 14B scaling)\n- AAAI 2027 (abstract: Jul 21, 2026; full paper: Jul 28, 2026 — ambitious secondary target; ~9 weeks from now, feasible with focused 7B-only results if GRPO training starts immediately)\n- NeurIPS 2026 workshops (workshop paper deadlines ~Aug 29, 2026; e.g., Mechanistic Interpretability, AI Safety, or Alignment workshops — good venue for initial results even if full paper targets ICLR)\n\n## Key References\n- Reasoning Models Don't Always Say What They Think (Anthropic 2025, arXiv 2505.05410)\n- Monitorability as a Free Gift: How RLVR Spontaneously Aligns Reasoning (arXiv 2026, 2602.03978)\n- Decoding Answers Before Chain-of-Thought: Evidence from Pre-CoT Probes and Activation Steering (arXiv 2026, 2603.01437)\n- On Robustness and Chain-of-Thought Consistency of RL-Finetuned VLMs (arXiv 2026, 2602.12506)\n- Monitoring the Internal Monologue: Probe Trajectories Reveal Reasoning Dynamics (arXiv 2026, 2605.18549)\n- The Obfuscation Atlas: Mapping Where Honesty Emerges in RLVR with Deception Probes (FAR AI/arXiv 2026, 2602.15515)\n- RL-Obfuscation: Can Language Models Learn to Evade Latent-Space Monitors? (arXiv 2025/2026, 2506.14261)\n- How Does Unfaithful Reasoning Emerge from Autoregressive Training? A Study of Synthetic Experiments (arXiv 2026, 2602.01017)\n- Mechanistic Evidence for Faithfulness Decay in Chain-of-Thought Reasoning (arXiv 2026, 2602.11201)\n- Learning Dynamics in RL Post-Training for Language Models (arXiv 2026, 2601.04670)\n- Reasoning Theater: Disentangling Model Beliefs from Chain-of-Thought (Goodfire/arXiv 2026, 2603.05488)\n- The Hypocrisy Gap: Quantifying Divergence Between Internal Belief and Chain-of-Thought Explanation via Sparse Autoencoders (arXiv 2026, 2602.02496)\n- Catching Rationalization in the Act: Detecting Motivated Reasoning Before and After CoT via Activation Probing (arXiv 2026, 2603.17199)\n- Why Models Know But Don't Say: CoT Faithfulness Divergence Between Thinking Tokens and Answers in Open-Weight Reasoning Models (arXiv 2026, 2603.26410)\n- FaithRL: Learning to Reason Faithfully through Step-Level Faithfulness Maximization (arXiv 2026, 2602.03507)\n- AtManRL: Towards Faithful Reasoning via Differentiable Attention Saliency (arXiv 2026, 2604.16158)\n- DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning (DeepSeek 2025, 2501.12948)\n- Predictive Scaling Laws for Efficient GRPO Training of Large Reasoning Models (arXiv 2025, 2507.18014)\n"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-20T03:26:25.676Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-20T03:26:25.676Z",
+  "sessionId": "a304bff6-b5ec-43ab-8be0-0c6626f5e053"
+}
+```
+
+---
+
+## Round 1
+
+40 recorded events
+
+### User
+
+_source line 3 · 2026-05-20T03:26:25.687Z_
+
+【任务】: 请评估以下 proposal 的客观中稿概率。
+必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。
+
+【proposal】:
+# Mapping the Surface-Latent Faithfulness Gap Across RL Training: A Probe-Based Longitudinal Study of Reasoning Models
+
+## Description
+We propose the first systematic longitudinal study jointly tracking surface-level CoT faithfulness and probe-measured latent faithfulness across matched GRPO training checkpoints of open-weight reasoning models. Unlike the VLM checkpoint study (2602.12506) which used only LLM-as-judge surface metrics on vision-language models, and unlike 'Monitoring the Internal Monologue' (2605.18549) which tracked probe trajectories during inference of fixed models, we generate fine-grained GRPO checkpoints (~20 per model) from two architecturally distinct families — DeepSeek-R1-Distill-Qwen-7B (starting with distilled reasoning) and Qwen3-8B (starting from base) — and at each checkpoint measure: (1) linear probe AUC on pre-CoT residual-stream activations as a latent answer-commitment proxy, (2) hint-injection acknowledgment rate (Chen et al. protocol) as a surface faithfulness metric, (3) NLDD reasoning horizon length as a causal reliance metric, and (4) activation patching effect sizes for CoT tokens. The central hypothesis is that GRPO training creates a widening surface-latent faithfulness gap — surface metrics improve (or plateau) while latent answer pre-commitment strengthens — consistent with the RLVR monitorability finding that surface gains are orthogonal to causal reliance. We apply changepoint detection as an exploratory tool to characterize divergence dynamics without assuming specific functional forms. This work bridges the critical gap between training-dynamics studies (which lack latent measures) and mechanistic faithfulness studies (which lack temporal depth), providing the first temporal map of how RL systematically decouples what reasoning models say from what they compute. Results directly inform whether RL-trained reasoning models require latent-space monitoring infrastructure beyond CoT inspection.
+
+## Core Problem
+When and how does the gap between surface CoT faithfulness (measured by behavioral metrics like hint-injection rates and causal reliance) and latent faithfulness (measured by residual-stream probes predicting answer pre-commitment) develop during GRPO training of reasoning models — and what dynamics characterize this divergence?
+
+## Opportunity
+Three converging 2026 findings create a precise, actionable gap. First, the RLVR monitorability paper (2602.03978) showed that RL's surface-monitorability gains come from response distribution sharpening and increased prompt attention — NOT from stronger causal reliance on reasoning traces. Second, pre-CoT probes (2603.01437) demonstrated that instruction-tuned models encode answers in residual-stream activations before generating any CoT (>0.9 AUC), with these directions being causally efficacious. Third, the VLM checkpoint paper (2602.12506) showed an accuracy-faithfulness trade-off during RL fine-tuning — but using only LLM-as-judge surface metrics on vision-language models, with no latent-space analysis. Meanwhile, 'Monitoring the Internal Monologue' (2605.18549) introduced probe trajectories as a powerful inference-time monitoring tool but analyzed only fixed, already-trained models — never tracking how probe characteristics evolve across RL training steps. The Obfuscation Atlas (2602.15515) tracked deception probes across RLVR but focused narrowly on reward-hacking obfuscation rather than general faithfulness divergence. Nobody has jointly measured both surface faithfulness metrics and activation-probe-based latent faithfulness at matched RL training checkpoints to characterize how — and how fast — RL decouples what reasoning models say from what they compute. If this divergence is large and systematic, RL-trained reasoning models require latent-space monitoring beyond CoT inspection for safe deployment.
+
+## Landscape
+The CoT faithfulness literature in 2026 is large but fragmented along complementary axes, leaving the longitudinal surface-latent gap unstudied:
+
+**Surface faithfulness across RL steps (behavioral only):** Chen et al. (Anthropic 2025, 2505.05410) measured surface faithfulness via hint-injection across RL steps, finding initial improvement that plateaus (~25% for Claude 3.7 Sonnet). The VLM checkpoint paper (2602.12506) tracked CoT consistency via LLM-as-judge across GRPO checkpoints of Qwen2.5-VL-7B-Instruct, finding an accuracy-faithfulness trade-off — but used only behavioral metrics (letter entropy, judge-rated consistency) with no activation probes, and studied VLMs rather than language models.
+
+**Latent faithfulness in final models (snapshot only):** Pre-CoT probes (2603.01437) showed >0.9 AUC answer prediction from residual streams of Gemma 2 and Qwen 2.5 before any CoT tokens. 'Catching Rationalization in the Act' (2603.17199) trained probes to detect motivated reasoning pre- and post-CoT. 'The Hypocrisy Gap' (2602.02496) used SAEs to quantify internal-belief/CoT divergence. 'Why Models Know But Don't Say' (2603.26410) measured thinking-token vs. answer divergence. All analyze final models only.
+
+**Probe trajectories during inference (token-level, not training-level):** 'Monitoring the Internal Monologue' (2605.18549, May 2026) constructed probe trajectories across token positions during generation, achieving 95% AUROC for predicting outcomes. However, this tracks probes across tokens within a single generation of a fixed model — not across RL training checkpoints. Their models (Llama-8B-R1-Distill, Qwen3-4B/8B/14B) are final checkpoints only.
+
+**Deception probes across RLVR (deception-specific):** The Obfuscation Atlas (2602.15515) trained logistic regression probes on residual streams of Llama-3-8B through 70B across GRPO steps, mapping deception emergence. But their focus is reward-hacking obfuscation in coding tasks, not general reasoning faithfulness, and they don't measure surface faithfulness metrics jointly.
+
+**RL-Obfuscation (adversarial evasion):** RL-Obfuscation (2506.14261) showed 7B-14B models can learn to evade latent-space monitors through RL, with token-level monitors being vulnerable. This is an adversarial finding about monitor fragility, not a characterization of natural faithfulness divergence.
+
+**Faithfulness-improving RL methods:** FaithRL (2602.03507), AtManRL (2604.16158), and faithfulness-aware step-level RL (2602.05897) propose RL objectives that improve faithfulness, but none characterize the divergence trajectory of standard GRPO/RLVR training.
+
+**RL training dynamics:** Learning dynamics papers (2601.04670) show reduced feature diversity during RL but don't track faithfulness. The synthetic phase-transition paper (2602.01017) demonstrates faithful→unfaithful transitions under controlled noise in toy arithmetic — the only prior showing discrete transitions, but in a setting far removed from real GRPO.
+
+**The gap:** No existing work jointly tracks probe-measured latent faithfulness AND surface CoT faithfulness metrics at matched RL training checkpoints across training to characterize divergence dynamics in language reasoning models.
+
+## Approach
+We produce our own fine-grained GRPO training checkpoints from two architecturally distinct open-weight model families, then jointly measure surface and latent faithfulness at each checkpoint.
+
+**Model families and checkpoint generation:**
+(1) DeepSeek-R1-Distill-Qwen-7B as base model, trained with GRPO using the Open-R1 pipeline (HuggingFace TRL) on MATH + GPQA, saving checkpoints every 50 GRPO steps for ~20 checkpoints across training. This model starts with distilled reasoning capability, letting us study how further RL reshapes faithfulness.
+(2) Qwen3-8B (base dense model, Apache 2.0) trained with the same GRPO pipeline and datasets, providing an architecturally distinct family that starts without distilled reasoning traces.
+
+**Metrics at each checkpoint:**
+(a) *Latent faithfulness proxy*: Train linear probes on residual-stream activations at the last pre-CoT token (following the methodology of Cox et al., 2603.01437), predicting the model's final answer. Report probe AUC and the layer at which AUC first exceeds 0.8 ('commitment layer'). A rising probe AUC across training indicates strengthening answer pre-commitment — the model increasingly 'knows' its answer before reasoning.
+(b) *Surface faithfulness — hint-injection*: Apply Chen et al.'s protocol with sycophancy and anchoring hints on a fixed MMLU/GPQA subset (~500 items). Report hint-acknowledgment rate (lower = more faithful surface behavior).
+(c) *Causal reliance — NLDD*: Compute the Normalized Logit Difference Decay metric (2602.11201) by corrupting individual reasoning steps and measuring confidence drops. Report the Reasoning Horizon k* (the chain-length fraction beyond which steps have negligible causal effect).
+(d) *Activation patching* (on 5 evenly-spaced checkpoints per family): Measure the causal effect of CoT-token activations on the final answer via mean-ablation patching, quantifying how much the model's computation actually flows through the reasoning trace.
+
+**Analysis:**
+- Construct the *surface-latent divergence curve*: plot surface faithfulness improvement (declining hint-acknowledgment rate) against latent bypass strengthening (rising probe AUC / shortening reasoning horizon) across GRPO steps.
+- Apply changepoint detection (PELT algorithm) as an *exploratory* tool to identify whether divergence accelerates at specific training phases — we do NOT claim phase transitions a priori but test for non-linear dynamics.
+- Compare divergence trajectories between the two model families to assess generality.
+- On a subset of checkpoints, apply the probe-trajectory methodology of 'Monitoring the Internal Monologue' (2605.18549) to test whether the character of inference-time probe trajectories (volatility, trend features) changes systematically across training — bridging their token-level and our checkpoint-level analyses.
+
+**Scaling validation:** If initial 7B results show clear divergence, replicate core probe + hint-injection measurements on DeepSeek-R1-Distill-Qwen-14B with ~10 GRPO checkpoints to verify the pattern holds at larger scale.
+
+**Key methodological choices justified:**
+- Using R1-Distill-7B rather than R1-671B: reviewer correctly identified that Dev1/Dev2/Dev3 checkpoints are not publicly available. Distilled 7B models are computationally tractable (single A100 for inference, 8×A100 for GRPO training) and let us generate arbitrarily fine-grained checkpoints.
+- GRPO rather than PPO: GRPO is the algorithm used in DeepSeek-R1 and the VLM checkpoint paper, ensuring comparability.
+- Two model families with different starting points (distilled reasoning vs. base): controls for whether divergence is an artifact of the starting model's reasoning capability.
+
+## Resource Estimate
+{'manual': {'gpu_hours': '350–500 A100-hours (GRPO training: ~80 A100-hrs × 2 families = 160 hrs; probe training + inference on ~20 checkpoints × 2 families: ~100 hrs; hint-injection evaluation: ~40 hrs; NLDD computation: ~30 hrs; activation patching on 10 checkpoints: ~50 hrs; 14B scaling validation: ~70 hrs)', 'timeline': '8–11 weeks (2 weeks GRPO training + pipeline setup, 3 weeks probe training & surface measurements in parallel, 2 weeks activation patching & NLDD, 1–2 weeks analysis, 1–2 weeks writing)', 'estimated_gpu_cost': '$900–$1,250 at ~$2.50/A100-hr spot pricing'}, 'human_in_loop': {'gpu_hours': '300–400 A100-hours (Claude handles probe training scripts, metric computation pipelines, statistical analysis, and plotting; human designs experiments, interprets results, writes key paper sections)', 'timeline': '6–8 weeks', 'claude_api_cost': '$120–$250 (Sonnet 4.6 for code generation, data analysis scripts, and paper drafting; ~40M input + 8M output tokens)', 'estimated_gpu_cost': '$750–$1,000'}, 'auto_research': {'gpu_hours': '300–400 A100-hours', 'timeline': '4–5 weeks (parallelized GRPO training for both families, then parallelized probe training and evaluation across checkpoints)', 'claude_api_cost': '$300–$550 (orchestration agent managing GRPO runs, checkpoint evaluation sweeps, result interpretation, iterative analysis; ~120M input + 25M output tokens)', 'estimated_gpu_cost': '$750–$1,000', 'speed_bottleneck': 'Sequential dependency: GRPO training must complete (or reach sufficient checkpoints) before probe training begins. However, probe training on early checkpoints can start while GRPO training continues. The two model families can be trained in parallel. 14B scaling validation is contingent on 7B results being compelling.'}}
+
+## Inspired By
+Direct gap between three convergent findings: (1) RLVR monitorability gains NOT from causal reliance (2602.03978), (2) pre-CoT probes show answer pre-commitment exists in residual streams (2603.01437), (3) VLM checkpoint paper shows accuracy-faithfulness trade-off during RL but with no latent-space analysis (2602.12506). The 'Monitoring the Internal Monologue' paper (2605.18549) shows probe trajectories are powerful for monitoring but leaves the training-dynamics dimension unexplored. The Obfuscation Atlas (2602.15515) demonstrates that probing across RLVR checkpoints is technically feasible at scale.
+
+## Target Venues
+- ICLR 2027 (abstract: Sep 19, 2026; full paper: Sep 24, 2026 — primary target, strong fit for mechanistic interpretability; ~18 weeks from now gives ample time for full experiments including 14B scaling)
+- AAAI 2027 (abstract: Jul 21, 2026; full paper: Jul 28, 2026 — ambitious secondary target; ~9 weeks from now, feasible with focused 7B-only results if GRPO training starts immediately)
+- NeurIPS 2026 workshops (workshop paper deadlines ~Aug 29, 2026; e.g., Mechanistic Interpretability, AI Safety, or Alignment workshops — good venue for initial results even if full paper targets ICLR)
+
+## Key References
+- Reasoning Models Don't Always Say What They Think (Anthropic 2025, arXiv 2505.05410)
+- Monitorability as a Free Gift: How RLVR Spontaneously Aligns Reasoning (arXiv 2026, 2602.03978)
+- Decoding Answers Before Chain-of-Thought: Evidence from Pre-CoT Probes and Activation Steering (arXiv 2026, 2603.01437)
+- On Robustness and Chain-of-Thought Consistency of RL-Finetuned VLMs (arXiv 2026, 2602.12506)
+- Monitoring the Internal Monologue: Probe Trajectories Reveal Reasoning Dynamics (arXiv 2026, 2605.18549)
+- The Obfuscation Atlas: Mapping Where Honesty Emerges in RLVR with Deception Probes (FAR AI/arXiv 2026, 2602.15515)
+- RL-Obfuscation: Can Language Models Learn to Evade Latent-Space Monitors? (arXiv 2025/2026, 2506.14261)
+- How Does Unfaithful Reasoning Emerge from Autoregressive Training? A Study of Synthetic Experiments (arXiv 2026, 2602.01017)
+- Mechanistic Evidence for Faithfulness Decay in Chain-of-Thought Reasoning (arXiv 2026, 2602.11201)
+- Learning Dynamics in RL Post-Training for Language Models (arXiv 2026, 2601.04670)
+- Reasoning Theater: Disentangling Model Beliefs from Chain-of-Thought (Goodfire/arXiv 2026, 2603.05488)
+- The Hypocrisy Gap: Quantifying Divergence Between Internal Belief and Chain-of-Thought Explanation via Sparse Autoencoders (arXiv 2026, 2602.02496)
+- Catching Rationalization in the Act: Detecting Motivated Reasoning Before and After CoT via Activation Probing (arXiv 2026, 2603.17199)
+- Why Models Know But Don't Say: CoT Faithfulness Divergence Between Thinking Tokens and Answers in Open-Weight Reasoning Models (arXiv 2026, 2603.26410)
+- FaithRL: Learning to Reason Faithfully through Step-Level Faithfulness Maximization (arXiv 2026, 2602.03507)
+- AtManRL: Towards Faithful Reasoning via Differentiable Attention Saliency (arXiv 2026, 2604.16158)
+- DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning (DeepSeek 2025, 2501.12948)
+- Predictive Scaling Laws for Efficient GRPO Training of Large Reasoning Models (arXiv 2025, 2507.18014)
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "518b50ab-95c1-4a8b-bea2-bc15f10ec71b",
+  "type": "user",
+  "uuid": "ad34e0cd-c982-43b0-baa2-ae425e2e6d49",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a304bff6-b5ec-43ab-8be0-0c6626f5e053",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-20T03:26:25.686Z_
+
+```json
+{
+  "parentUuid": "ad34e0cd-c982-43b0-baa2-ae425e2e6d49",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "1fc9331d-5a1c-480b-bfd1-e129b21050ab",
+  "timestamp": "2026-05-20T03:26:25.686Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a304bff6-b5ec-43ab-8be0-0c6626f5e053",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-20T03:26:25.686Z_
+
+```json
+{
+  "parentUuid": "1fc9331d-5a1c-480b-bfd1-e129b21050ab",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "467c34cd-083e-4d85-a644-536995b73fd4",
+  "timestamp": "2026-05-20T03:26:25.686Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a304bff6-b5ec-43ab-8be0-0c6626f5e053",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Mapping the Surface-Latent Faithfulness Gap Across RL Training: A Probe-Based Longitudinal Study of Reasoning Mo…",
+  "leafUuid": "467c34cd-083e-4d85-a644-536995b73fd4",
+  "sessionId": "a304bff6-b5ec-43ab-8be0-0c6626f5e053"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze surface-latent faithfulness gap across RL training",
+  "sessionId": "a304bff6-b5ec-43ab-8be0-0c6626f5e053"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-20T03:26:40.574Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to evaluate a research proposal for CoRL 2026 (Conference on Robot Learning). Wait, actually, looking at the proposal more carefully, the target venues listed are ICLR 2027, AAAI 2027, and NeurIPS 2026 workshops. The user mentioned "CoRL 2026 主会" but the proposal itself targets ICLR/AAAI/NeurIPS. Let me re-read...
+
+The user says "评估其投稿 CoRL 2026 主会的中稿潜力" - evaluating the probability of acceptance at CoRL 2026 main conference. But the proposal's target venues are ICLR 2027, AAAI 2027, and NeurIPS 2026 workshops. 
+
+There's a clear mismatch here—the proposal focuses on chain-of-thought faithfulness in reasoning models, which is fundamentally an NLP and interpretability topic, not robotics. CoRL would be a poor venue for this work. I'll evaluate it based on the venues it actually targets, which are much better aligned with the research direction.
+
+Let me search for recent work on chain-of-thought faithfulness, reinforcement learning training dynamics, and the specific papers cited to understand the current landscape and verify the proposal's grounding.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "467c34cd-083e-4d85-a644-536995b73fd4",
+  "isSidechain": false,
+  "requestId": "req_011CbD7ESH885UUbn9dZ5Uog",
+  "type": "assistant",
+  "uuid": "6cb2b024-923b-4454-ac7d-48881b90c3c8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a304bff6-b5ec-43ab-8be0-0c6626f5e053",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011SParibQmpdFKZye4jjTC5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 19733,
+      "output_tokens": 592,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 592,
+          "cache_read_input_tokens": 19733,
+          "cache_creation_input_tokens": 0,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-20T03:26:41.113Z_
+
+I'll start by conducting the required literature search to ground my evaluation. Let me search for the key topics and verify the cited papers.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6cb2b024-923b-4454-ac7d-48881b90c3c8",
+  "isSidechain": false,
+  "requestId": "req_011CbD7ESH885UUbn9dZ5Uog",
+  "type": "assistant",
+  "uuid": "aa690f5c-8656-4a99-b197-6035f5537d78",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a304bff6-b5ec-43ab-8be0-0c6626f5e053",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011SParibQmpdFKZye4jjTC5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 19733,
+      "output_tokens": 592,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 592,
+          "cache_read_input_tokens": 19733,
+          "cache_creation_input_tokens": 0,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-20T03:26:41.503Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_019hQMjDXhxGGCfQyma4zXny`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "aa690f5c-8656-4a99-b197-6035f5537d78",
+  "isSidechain": false,
+  "requestId": "req_011CbD7ESH885UUbn9dZ5Uog",
+  "type": "assistant",
+  "uuid": "b5eda279-4006-4a1b-a79f-bb88c05be2b5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a304bff6-b5ec-43ab-8be0-0c6626f5e053",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011SParibQmpdFKZye4jjTC5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 19733,
+      "output_tokens": 592,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 592,
+          "cache_read_input_tokens": 19733,
+          "cache_creation_input_tokens": 0,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-20T03:26:41.511Z_
+
+<details><summary>↩ Tool result · `toolu_019hQMjDXhxGGCfQyma4zXny`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b5eda279-4006-4a1b-a79f-bb88c05be2b5",
+  "isSidechain": false,
+  "promptId": "518b50ab-95c1-4a8b-bea2-bc15f10ec71b",
+  "type": "user",
+  "uuid": "7042b6f9-5054-49a8-9335-9f0cb0980b05",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "b5eda279-4006-4a1b-a79f-bb88c05be2b5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a304bff6-b5ec-43ab-8be0-0c6626f5e053",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-20T03:26:46.371Z_
+
+Now let me conduct the required searches to understand the landscape. I'll run multiple searches in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7042b6f9-5054-49a8-9335-9f0cb0980b05",
+  "isSidechain": false,
+  "requestId": "req_011CbD7Fc5m9XHyeRLBHxRt4",
+  "type": "assistant",
+  "uuid": "9232be0b-1dd1-4c3e-b48f-092e8c530928",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a304bff6-b5ec-43ab-8be0-0c6626f5e053",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015GY3cwkSf8RRDuCupL2osc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1119,
+      "cache_read_input_tokens": 19733,
+      "output_tokens": 92,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1119,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 92,
+          "cache_read_input_tokens": 19733,
+          "cache_creation_input_tokens": 1119,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1119
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-20T03:26:46.851Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013t4u76eMpXVwQpDcLyN4VA`</summary>
+
+```json
+{
+  "query": "CoT chain-of-thought faithfulness RL training dynamics 2026 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9232be0b-1dd1-4c3e-b48f-092e8c530928",
+  "isSidechain": false,
+  "requestId": "req_011CbD7Fc5m9XHyeRLBHxRt4",
+  "type": "assistant",
+  "uuid": "5e4731fb-75f7-4645-b56e-b7223bde5183",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a304bff6-b5ec-43ab-8be0-0c6626f5e053",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015GY3cwkSf8RRDuCupL2osc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1119,
+      "cache_read_input_tokens": 19733,
+      "output_tokens": 92,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1119,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 92,
+          "cache_read_input_tokens": 19733,
+          "cache_creation_input_tokens": 1119,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1119
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-20T03:26:53.844Z_
+
+<details><summary>↩ Tool result · `toolu_013t4u76eMpXVwQpDcLyN4VA`</summary>
+
+```text
+Web search results for query: "CoT chain-of-thought faithfulness RL training dynamics 2026 arxiv"
+
+Links: [{"title":"[2602.20710] Counterfactual Simulation Training for Chain-of-Thought Faithfulness","url":"https://arxiv.org/abs/2602.20710"},{"title":"Preprint. Counterfactual Simulation Training for Chain-of-Thought Faithfulness","url":"https://arxiv.org/pdf/2602.20710"},{"title":"On Robustness and Chain-of-Thought consistency of RL-Finetuned VLMs","url":"https://arxiv.org/html/2602.12506v1"},{"title":"AtManRL: Towards Faithful Reasoning via Differentiable Attention Saliency","url":"https://arxiv.org/html/2604.16158"},{"title":"[2508.19827] Analysing Chain of Thought Dynamics: Active Guidance or Unfaithful Post-hoc Rationalisation?","url":"https://arxiv.org/abs/2508.19827"},{"title":"Analysing Chain of Thought Dynamics: Active Guidance or Unfaithful Post-hoc Rationalisation?","url":"https://arxiv.org/pdf/2508.19827"},{"title":"On Robustness and Chain-of-Thought Consistency of RL-Finetuned VLMs","url":"https://arxiv.org/pdf/2602.12506"}]
+
+I found several relevant papers from arxiv on chain-of-thought faithfulness and RL training dynamics from 2026. Here are the key results:
+
+## Recent Papers (2026)
+
+**1. Counterfactual Simulation Training for Chain-of-Thought Faithfulness** (February 24, 2026)
+- Introduces Counterfactual Simulation Training (CST), which aims to improve CoT faithfulness by rewarding CoTs that enable a simulator to accurately predict a model's outputs over counterfactual inputs.
+- Experiments with models up to 235B parameters show that CST can substantially improve monitor accuracy on cue-based counterfactuals (by 35 accuracy points) as well as simulatability over generic counterfactuals (by 2 points).
+- Results show that CST outperforms prompting baselines, rewriting unfaithful CoTs with an LLM is 5x more efficient than RL alone, and larger models benefit more from CST.
+
+**2. On Robustness and Chain-of-Thought Consistency of RL-Finetuned VLMs** (February 13, 2026)
+- Analysis of RL fine-tuning dynamics uncovers an accuracy–faithfulness trade-off: fine-tuning raises benchmark accuracy, but can simultaneously erode the reliability of the accompanying CoT and its robustness to contextual shifts.
+- Incorporating a faithfulness-aware reward can restore alignment between answers and reasoning, but when paired with augmentation, training risks collapsing onto shortcut strategies.
+
+**3. AtManRL: Towards Faithful Reasoning via Differentiable Attention Saliency** (April 17, 2026)
+- This paper proposes methods for improving CoT faithfulness through attention-based mechanisms.
+
+These papers explore the critical challenge of ensuring that chain-of-thought reasoning is truly faithful to the model's actual decision-making process, particularly in the context of RL-based training methods.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5e4731fb-75f7-4645-b56e-b7223bde5183",
+  "isSidechain": false,
+  "promptId": "518b50ab-95c1-4a8b-bea2-bc15f10ec71b",
+  "type": "user",
+  "uuid": "65219a7f-e9e5-4fe4-8d2a-006f01f1aa15",
+  "toolUseResult": {
+    "query": "CoT chain-of-thought faithfulness RL training dynamics 2026 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Rc8ZSVuZbE4nJ4scbf3ysy",
+        "content": [
+          {
+            "title": "[2602.20710] Counterfactual Simulation Training for Chain-of-Thought Faithfulness",
+            "url": "https://arxiv.org/abs/2602.20710"
+          },
+          {
+            "title": "Preprint. Counterfactual Simulation Training for Chain-of-Thought Faithfulness",
+            "url": "https://arxiv.org/pdf/2602.20710"
+          },
+          {
+            "title": "On Robustness and Chain-of-Thought consistency of RL-Finetuned VLMs",
+            "url": "https://arxiv.org/html/2602.12506v1"
+          },
+          {
+            "title": "AtManRL: Towards Faithful Reasoning via Differentiable Attention Saliency",
+            "url": "https://arxiv.org/html/2604.16158"
+          },
+          {
+            "title": "[2508.19827] Analysing Chain of Thought Dynamics: Active Guidance or Unfaithful Post-hoc Rationalisation?",
+            "url": "https://arxiv.org/abs/2508.19827"
+          },
+          {
+            "title": "Analysing Chain of Thought Dynamics: Active Guidance or Unfaithful Post-hoc Rationalisation?",
+            "url": "https://arxiv.org/pdf/2508.19827"
+          },
+          {
+            "title": "On Robustness and Chain-of-Thought Consistency of RL-Finetuned VLMs",
+            "url": "https://arxiv.org/pdf/2602.12506"
+          }
+        ]
+      },
+      "I found several relevant papers from arxiv on chain-of-thought faithfulness and RL training dynamics from 2026. Here are the key results:\n\n## Recent Papers (2026)\n\n**1. Counterfactual Simulation Training for Chain-of-Thought Faithfulness** (February 24, 2026)\n- Introduces Counterfactual Simulation Training (CST), which aims to improve CoT faithfulness by rewarding CoTs that enable a simulator to accurately predict a model's outputs over counterfactual inputs.\n- Experiments with models up to 235B parameters show that CST can substantially improve monitor accuracy on cue-based counterfactuals (by 35 accuracy points) as well as simulatability over generic counterfactuals (by 2 points).\n- Results show that CST outperforms prompting baselines, rewriting unfaithful CoTs with an LLM is 5x more efficient than RL alone, and larger models benefit more from CST.\n\n**2. On Robustness and Chain-of-Thought Consistency of RL-Finetuned VLMs** (February 13, 2026)\n- Analysis of RL fine-tuning dynamics uncovers an accuracy–faithfulness trade-off: fine-tuning raises benchmark accuracy, but can simultaneously erode the reliability of the accompanying CoT and its robustness to contextual shifts.\n- Incorporating a faithfulness-aware reward can restore alignment between answers and reasoning, but when paired with augmentation, training risks collapsing onto shortcut strategies.\n\n**3. AtManRL: Towards Faithful Reasoning via Differentiable Attention Saliency** (April 17, 2026)\n- This paper proposes methods for improving CoT faithfulness through attention-based mechanisms.\n\nThese papers explore the critical challenge of ensuring that chain-of-thought reasoning is truly faithful to the model's actual decision-making process, particularly in the context of RL-based training methods."
+    ],
+    "durationSeconds": 6.987176954999999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "5e4731fb-75f7-4645-b56e-b7223bde5183",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a304bff6-b5ec-43ab-8be0-0c6626f5e053",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-20T03:26:56.567Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0145sgXqDqAwSWsdxo4BnRju`</summary>
+
+```json
+{
+  "query": "pre-CoT probes residual stream answer prediction 2603.01437 arxiv 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "65219a7f-e9e5-4fe4-8d2a-006f01f1aa15",
+  "isSidechain": false,
+  "requestId": "req_011CbD7GWatTSdhSwCCoGB1G",
+  "type": "assistant",
+  "uuid": "1566c241-4412-4ffa-aca9-b5a81a7daefa",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a304bff6-b5ec-43ab-8be0-0c6626f5e053",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BCbWSR23nHiYrDwLYXb17M",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 937,
+      "cache_read_input_tokens": 20852,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 937,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 20852,
+          "cache_creation_input_tokens": 937,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 937
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-20T03:27:02.178Z_
+
+<details><summary>↩ Tool result · `toolu_0145sgXqDqAwSWsdxo4BnRju`</summary>
+
+```text
+Web search results for query: "pre-CoT probes residual stream answer prediction 2603.01437 arxiv 2026"
+
+Links: [{"title":"[2603.01437] Decoding Answers Before Chain-of-Thought: Evidence from Pre-CoT Probes and Activation Steering","url":"https://arxiv.org/abs/2603.01437"},{"title":"Decoding Answers Before Chain-of-Thought: Evidence from Pre-CoT Probes and Activation Steering","url":"https://arxiv.org/html/2603.01437"},{"title":"Decoding Answers Before Chain-of-Thought: Evidence from Pre-CoT Probes and Activation Steering","url":"https://arxiv.org/pdf/2603.01437"},{"title":"Catching rationalization in the act: detecting motivated reasoning before and after CoT via activation probing","url":"https://arxiv.org/html/2603.17199"},{"title":"Catching rationalization in the act: detecting motivated reasoning before and after CoT via activation probing","url":"https://arxiv.org/pdf/2603.17199"},{"title":"[2603.17199] Catching rationalization in the act: detecting motivated reasoning before and after CoT via activation probing","url":"https://arxiv.org/abs/2603.17199"},{"title":"Analysing the Residual Stream of Language Models Under Knowledge   Conflicts","url":"https://arxiv.org/pdf/2410.16090"},{"title":"Temporal Predictors of Outcome in Reasoning Language Models","url":"https://arxiv.org/pdf/2511.14773"}]
+
+I found the paper you're looking for! Here's what I discovered:
+
+The paper is titled "Decoding Answers Before Chain-of-Thought: Evidence from Pre-CoT Probes and Activation Steering" (arXiv 2603.01437).
+
+**Key Findings:**
+
+The research provides mechanistic evidence that instruction-tuned models often determine their answer before generating CoT. Specifically, training linear probes on residual stream activations at the last token before CoT, the researchers can predict the model's final answer with 0.9 AUC on most tasks.
+
+Additionally, these directions are not only predictive, but also causal: steering activations along the probe direction flips model answers in over 50% of cases, significantly exceeding orthogonal baselines.
+
+The research addresses an important question about the faithfulness of chain-of-thought reasoning in large language models, suggesting that the verbalized reasoning may not always reflect the actual decision-making process occurring within the model.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1566c241-4412-4ffa-aca9-b5a81a7daefa",
+  "isSidechain": false,
+  "promptId": "518b50ab-95c1-4a8b-bea2-bc15f10ec71b",
+  "type": "user",
+  "uuid": "04f6734d-2055-40bf-804e-2267fcb5f0ce",
+  "toolUseResult": {
+    "query": "pre-CoT probes residual stream answer prediction 2603.01437 arxiv 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FEiEkuw7xDnJheQNnpoZL2",
+        "content": [
+          {
+            "title": "[2603.01437] Decoding Answers Before Chain-of-Thought: Evidence from Pre-CoT Probes and Activation Steering",
+            "url": "https://arxiv.org/abs/2603.01437"
+          },
+          {
+            "title": "Decoding Answers Before Chain-of-Thought: Evidence from Pre-CoT Probes and Activation Steering",
+            "url": "https://arxiv.org/html/2603.01437"
+          },
+          {
+            "title": "Decoding Answers Before Chain-of-Thought: Evidence from Pre-CoT Probes and Activation Steering",
+            "url": "https://arxiv.org/pdf/2603.01437"
+          },
+          {
+            "title": "Catching rationalization in the act: detecting motivated reasoning before and after CoT via activation probing",
+            "url": "https://arxiv.org/html/2603.17199"
+          },
+          {
+            "title": "Catching rationalization in the act: detecting motivated reasoning before and after CoT via activation probing",
+            "url": "https://arxiv.org/pdf/2603.17199"
+          },
+          {
+            "title": "[2603.17199] Catching rationalization in the act: detecting motivated reasoning before and after CoT via activation probing",
+            "url": "https://arxiv.org/abs/2603.17199"
+          },
+          {
+            "title": "Analysing the Residual Stream of Language Models Under Knowledge   Conflicts",
+            "url": "https://arxiv.org/pdf/2410.16090"
+          },
+          {
+            "title": "Temporal Predictors of Outcome in Reasoning Language Models",
+            "url": "https://arxiv.org/pdf/2511.14773"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's what I discovered:\n\nThe paper is titled \"Decoding Answers Before Chain-of-Thought: Evidence from Pre-CoT Probes and Activation Steering\" (arXiv 2603.01437).\n\n**Key Findings:**\n\nThe research provides mechanistic evidence that instruction-tuned models often determine their answer before generating CoT. Specifically, training linear probes on residual stream activations at the last token before CoT, the researchers can predict the model's final answer with 0.9 AUC on most tasks.\n\nAdditionally, these directions are not only predictive, but also causal: steering activations along the probe direction flips model answers in over 50% of cases, significantly exceeding orthogonal baselines.\n\nThe research addresses an important question about the faithfulness of chain-of-thought reasoning in large language models, suggesting that the verbalized reasoning may not always reflect the actual decision-making process occurring within the model."
+    ],
+    "durationSeconds": 5.607740305999999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "1566c241-4412-4ffa-aca9-b5a81a7daefa",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a304bff6-b5ec-43ab-8be0-0c6626f5e053",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-20T03:27:05.719Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Lww3sci7pVPVJqsE17YjB5`</summary>
+
+```json
+{
+  "query": "RLVR monitorability 2602.03978 reasoning models surface faithfulness 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "04f6734d-2055-40bf-804e-2267fcb5f0ce",
+  "isSidechain": false,
+  "requestId": "req_011CbD7H8LCtqrT74QQzwboh",
+  "type": "assistant",
+  "uuid": "f7a9df2d-a859-4e9a-a721-8e82a4c51c52",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a304bff6-b5ec-43ab-8be0-0c6626f5e053",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KSH6xsMYnHSSQUMQd6aX5D",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 715,
+      "cache_read_input_tokens": 21789,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 715,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 21789,
+          "cache_creation_input_tokens": 715,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 715
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-20T03:27:12.476Z_
+
+<details><summary>↩ Tool result · `toolu_01Lww3sci7pVPVJqsE17YjB5`</summary>
+
+```text
+Web search results for query: "RLVR monitorability 2602.03978 reasoning models surface faithfulness 2026"
+
+Links: [{"title":"Monitorability as a Free Gift: How RLVR Spontaneously Aligns Reasoning","url":"https://arxiv.org/pdf/2602.03978"},{"title":"Monitorability as a Free Gift: How RLVR Spontaneously Aligns Reasoning","url":"https://arxiv.org/html/2602.03978"},{"title":"[2602.03978] Monitorability as a Free Gift: How RLVR Spontaneously Aligns Reasoning","url":"https://arxiv.org/abs/2602.03978"},{"title":"🥇Top AI Papers of the Week","url":"https://nlp.elvissaravia.com/p/top-ai-papers-of-the-week-058"},{"title":"Monitoring Reasoning Models for Misbehavior and the Risks of Promoting Obfuscation","url":"https://arxiv.org/html/2503.11926v1"},{"title":"arXiv:2505.13774v2 [cs.AI] 28 May 2025","url":"https://arxiv.org/pdf/2505.13774"},{"title":"When Can LLMs Learn to Reason with Weak Supervision?","url":"https://arxiv.org/html/2604.18574v1"}]
+
+I found the research paper you're looking for. Here are the key results:
+
+## "Monitorability as a Free Gift: How RLVR Spontaneously Aligns Reasoning"
+
+This paper by Zidi Xiong, Shan Chen, and Himabindu Lakkaraju examines how auditing chain-of-thought (CoT) traces for safety becomes critical as Large Reasoning Models (LRMs) are increasingly deployed.
+
+**Main Findings:**
+
+Recent work reported that monitorability—the degree to which CoT faithfully and informatively reflects internal computation—can appear as a "free gift" during the early stages of Reinforcement Learning with Verifiable Rewards (RLVR). However, the effect is not universal, with monitorability improvements being strongly data-dependent, and the critical role of data diversity and instruction-following data during RLVR training demonstrated.
+
+**Key Insights:**
+
+- Monitorability is orthogonal to capability—improvements in reasoning performance do not imply increased transparency.
+
+- Through mechanistic analysis, monitorability gains are attributed primarily to response distribution sharpening (entropy reduction) and increased attention to the prompt, rather than stronger causal reliance on reasoning traces.
+
+The paper was published on February 5, 2026 (arXiv:2602.03978).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f7a9df2d-a859-4e9a-a721-8e82a4c51c52",
+  "isSidechain": false,
+  "promptId": "518b50ab-95c1-4a8b-bea2-bc15f10ec71b",
+  "type": "user",
+  "uuid": "2f1f6e06-79e8-4909-be2b-36054a2ea34d",
+  "toolUseResult": {
+    "query": "RLVR monitorability 2602.03978 reasoning models surface faithfulness 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Me4cATQUcYVjNTyWkvJABM",
+        "content": [
+          {
+            "title": "Monitorability as a Free Gift: How RLVR Spontaneously Aligns Reasoning",
+            "url": "https://arxiv.org/pdf/2602.03978"
+          },
+          {
+            "title": "Monitorability as a Free Gift: How RLVR Spontaneously Aligns Reasoning",
+            "url": "https://arxiv.org/html/2602.03978"
+          },
+          {
+            "title": "[2602.03978] Monitorability as a Free Gift: How RLVR Spontaneously Aligns Reasoning",
+            "url": "https://arxiv.org/abs/2602.03978"
+          },
+          {
+            "title": "🥇Top AI Papers of the Week",
+            "url": "https://nlp.elvissaravia.com/p/top-ai-papers-of-the-week-058"
+          },
+          {
+            "title": "Monitoring Reasoning Models for Misbehavior and the Risks of Promoting Obfuscation",
+            "url": "https://arxiv.org/html/2503.11926v1"
+          },
+          {
+            "title": "arXiv:2505.13774v2 [cs.AI] 28 May 2025",
+            "url": "https://arxiv.org/pdf/2505.13774"
+          },
+          {
+            "title": "When Can LLMs Learn to Reason with Weak Supervision?",
+            "url": "https://arxiv.org/html/2604.18574v1"
+          }
+        ]
+      },
+      "I found the research paper you're looking for. Here are the key results:\n\n## \"Monitorability as a Free Gift: How RLVR Spontaneously Aligns Reasoning\"\n\nThis paper by Zidi Xiong, Shan Chen, and Himabindu Lakkaraju examines how auditing chain-of-thought (CoT) traces for safety becomes critical as Large Reasoning Models (LRMs) are increasingly deployed.\n\n**Main Findings:**\n\nRecent work reported that monitorability—the degree to which CoT faithfully and informatively reflects internal computation—can appear as a \"free gift\" during the early stages of Reinforcement Learning with Verifiable Rewards (RLVR). However, the effect is not universal, with monitorability improvements being strongly data-dependent, and the critical role of data diversity and instruction-following data during RLVR training demonstrated.\n\n**Key Insights:**\n\n- Monitorability is orthogonal to capability—improvements in reasoning performance do not imply increased transparency.\n\n- Through mechanistic analysis, monitorability gains are attributed primarily to response distribution sharpening (entropy reduction) and increased attention to the prompt, rather than stronger causal reliance on reasoning traces.\n\nThe paper was published on February 5, 2026 (arXiv:2602.03978)."
+    ],
+    "durationSeconds": 6.753771250999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "f7a9df2d-a859-4e9a-a721-8e82a4c51c52",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a304bff6-b5ec-43ab-8be0-0c6626f5e053",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-20T03:27:16.070Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NRWkQWgH1w9q7Y8CHNhCfW`</summary>
+
+```json
+{
+  "query": "\"Monitoring the Internal Monologue\" probe trajectories reasoning 2605.18549 arxiv 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2f1f6e06-79e8-4909-be2b-36054a2ea34d",
+  "isSidechain": false,
+  "requestId": "req_011CbD7HtDRdeoadRYH8zv4J",
+  "type": "assistant",
+  "uuid": "e1fa9fb3-65fd-43e7-a41d-a13e049f2383",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a304bff6-b5ec-43ab-8be0-0c6626f5e053",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mn6mfca5N2h7rJpnZxpcRL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 758,
+      "cache_read_input_tokens": 22504,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 758,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 22504,
+          "cache_creation_input_tokens": 758,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 758
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-20T03:27:25.441Z_
+
+<details><summary>↩ Tool result · `toolu_01NRWkQWgH1w9q7Y8CHNhCfW`</summary>
+
+```text
+Web search results for query: ""Monitoring the Internal Monologue" probe trajectories reasoning 2605.18549 arxiv 2026"
+
+Links: [{"title":"[2605.18549] Monitoring the Internal Monologue: Probe Trajectories Reveal Reasoning Dynamics","url":"https://arxiv.org/abs/2605.18549"},{"title":"Monitoring the Internal Monologue: Probe Trajectories Reveal Reasoning Dynamics","url":"https://arxiv.org/html/2605.18549"},{"title":"Catching rationalization in the act: detecting motivated reasoning before and after CoT via activation probing","url":"https://arxiv.org/pdf/2603.17199"},{"title":"Truth as a Trajectory: What Internal Representations Reveal About Large Language Model Reasoning","url":"https://arxiv.org/pdf/2603.01326"},{"title":"Monitorability as a Free Gift: How RLVR Spontaneously Aligns Reasoning","url":"https://arxiv.org/pdf/2602.03978"},{"title":"Probing the Trajectories of Reasoning Traces in Large Language Models","url":"https://arxiv.org/html/2601.23163v1"},{"title":"LLM Reasoning as Trajectories: Step-Specific Representation Geometry and Correctness Signals","url":"https://arxiv.org/pdf/2604.05655"},{"title":"Noticing the Watcher: LLM Agents Can Infer CoT Monitoring from Blocking Feedback","url":"https://arxiv.org/pdf/2603.16928"}]
+
+I found the paper you were looking for! Here are the key details:
+
+**"Monitoring the Internal Monologue: Probe Trajectories Reveal Reasoning Dynamics"** by Maciej Chrabaszcz and 4 other authors explores how Large Reasoning Models (LRMs) introduce new opportunities for safety monitoring through their Chain of Thought (CoT) reasoning.
+
+**Main Research Focus:**
+
+The researchers investigate the hidden representations of LRMs to determine whether future behavior can be predicted from prompt and CoT representations. By evaluating a probe at each generated token, they construct a probe trajectory, which is the continuous evolution of a concept's probability across the reasoning process.
+
+**Key Findings:**
+
+1. Future model behavior is more distinguishable when examined over the full trajectory than from a single static prediction.
+
+2. The choice of pooling operation is critical: average-pooling and last-token methods collapse to near-random performance, while max-pooling achieves up to 95% AUROC and yields stable probe trajectories.
+
+3. Using four datasets and four reasoning models across the domains of safety and mathematics, the research demonstrates that trajectory features encode task-specific dynamics that improve outcome separability.
+
+The paper (arxiv 2605.18549) was published very recently (2 days ago based on the metadata) and is available on arXiv.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e1fa9fb3-65fd-43e7-a41d-a13e049f2383",
+  "isSidechain": false,
+  "promptId": "518b50ab-95c1-4a8b-bea2-bc15f10ec71b",
+  "type": "user",
+  "uuid": "ac568ccf-cf01-4e3f-a5bd-fde3c0824003",
+  "toolUseResult": {
+    "query": "\"Monitoring the Internal Monologue\" probe trajectories reasoning 2605.18549 arxiv 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01S5WHMowac2j78y4jvMT3YQ",
+        "content": [
+          {
+            "title": "[2605.18549] Monitoring the Internal Monologue: Probe Trajectories Reveal Reasoning Dynamics",
+            "url": "https://arxiv.org/abs/2605.18549"
+          },
+          {
+            "title": "Monitoring the Internal Monologue: Probe Trajectories Reveal Reasoning Dynamics",
+            "url": "https://arxiv.org/html/2605.18549"
+          },
+          {
+            "title": "Catching rationalization in the act: detecting motivated reasoning before and after CoT via activation probing",
+            "url": "https://arxiv.org/pdf/2603.17199"
+          },
+          {
+            "title": "Truth as a Trajectory: What Internal Representations Reveal About Large Language Model Reasoning",
+            "url": "https://arxiv.org/pdf/2603.01326"
+          },
+          {
+            "title": "Monitorability as a Free Gift: How RLVR Spontaneously Aligns Reasoning",
+            "url": "https://arxiv.org/pdf/2602.03978"
+          },
+          {
+            "title": "Probing the Trajectories of Reasoning Traces in Large Language Models",
+            "url": "https://arxiv.org/html/2601.23163v1"
+          },
+          {
+            "title": "LLM Reasoning as Trajectories: Step-Specific Representation Geometry and Correctness Signals",
+            "url": "https://arxiv.org/pdf/2604.05655"
+          },
+          {
+            "title": "Noticing the Watcher: LLM Agents Can Infer CoT Monitoring from Blocking Feedback",
+            "url": "https://arxiv.org/pdf/2603.16928"
+          }
+        ]
+      },
+      "I found the paper you were looking for! Here are the key details:\n\n**\"Monitoring the Internal Monologue: Probe Trajectories Reveal Reasoning Dynamics\"** by Maciej Chrabaszcz and 4 other authors explores how Large Reasoning Models (LRMs) introduce new opportunities for safety monitoring through their Chain of Thought (CoT) reasoning.\n\n**Main Research Focus:**\n\nThe researchers investigate the hidden representations of LRMs to determine whether future behavior can be predicted from prompt and CoT representations. By evaluating a probe at each generated token, they construct a probe trajectory, which is the continuous evolution of a concept's probability across the reasoning process.\n\n**Key Findings:**\n\n1. Future model behavior is more distinguishable when examined over the full trajectory than from a single static prediction.\n\n2. The choice of pooling operation is critical: average-pooling and last-token methods collapse to near-random performance, while max-pooling achieves up to 95% AUROC and yields stable probe trajectories.\n\n3. Using four datasets and four reasoning models across the domains of safety and mathematics, the research demonstrates that trajectory features encode task-specific dynamics that improve outcome separability.\n\nThe paper (arxiv 2605.18549) was published very recently (2 days ago based on the metadata) and is available on arXiv."
+    ],
+    "durationSeconds": 9.365711599000003,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "e1fa9fb3-65fd-43e7-a41d-a13e049f2383",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a304bff6-b5ec-43ab-8be0-0c6626f5e053",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Mapping the Surface-Latent Faithfulness Gap Across RL Training: A Probe-Based Longitudinal Study of Reasoning Mo…",
+  "leafUuid": "ac568ccf-cf01-4e3f-a5bd-fde3c0824003",
+  "sessionId": "a304bff6-b5ec-43ab-8be0-0c6626f5e053"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze surface-latent faithfulness gap across RL training",
+  "sessionId": "a304bff6-b5ec-43ab-8be0-0c6626f5e053"
+}
+```
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-20T03:27:29.201Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UvorUn4ZG1RcmVXTaJtso4`</summary>
+
+```json
+{
+  "query": "Obfuscation Atlas deception probes RLVR 2602.15515 \"RL-Obfuscation\" latent space monitors 2506.14261 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ac568ccf-cf01-4e3f-a5bd-fde3c0824003",
+  "isSidechain": false,
+  "requestId": "req_011CbD7Jqi8peRvVDte6YLVu",
+  "type": "assistant",
+  "uuid": "2eb6816c-a755-4d7d-8109-4380c545feca",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a304bff6-b5ec-43ab-8be0-0c6626f5e053",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SRvBm2iUBqGy8zUMt2DQRA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 792,
+      "cache_read_input_tokens": 23262,
+      "output_tokens": 96,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 792,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 96,
+          "cache_read_input_tokens": 23262,
+          "cache_creation_input_tokens": 792,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 792
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-20T03:27:35.714Z_
+
+<details><summary>↩ Tool result · `toolu_01UvorUn4ZG1RcmVXTaJtso4`</summary>
+
+```text
+Web search results for query: "Obfuscation Atlas deception probes RLVR 2602.15515 "RL-Obfuscation" latent space monitors 2506.14261 2026"
+
+Links: [{"title":"The Obfuscation Atlas: Mapping Where Honesty Emerges in RLVR with Deception Probes | FAR.AI","url":"https://www.far.ai/research/the-obfuscation-atlas-mapping-where-honesty-emerges-in-rlvr-with-deception-probes"},{"title":"[2602.15515] The Obfuscation Atlas: Mapping Where Honesty Emerges in RLVR with Deception Probes","url":"https://arxiv.org/abs/2602.15515"},{"title":"The Obfuscation Atlas: Mapping Where Honesty Emerges in RLVR with Deception Probes | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/obfuscation-atlas-mapping-where-honesty-emerges-rlvr"},{"title":"The Obfuscation Atlas: Mapping Where Honesty Emerges in RLVR with Deception Probes","url":"https://arxiv.org/html/2602.15515v1"},{"title":"GitHub - AlignmentResearch/obfuscation-atlas: The Obfuscation Atlas: Mapping Where Honesty Emerges in RLVR with Deception Probes · GitHub","url":"https://github.com/AlignmentResearch/obfuscation-atlas"},{"title":"The Obfuscation Atlas:","url":"https://arxiv.org/pdf/2602.15515"},{"title":"The Obfuscation Atlas: Mapping Where Honesty Emerges in RLVR with Deception Probes","url":"https://www.catalyzex.com/paper/the-obfuscation-atlas-mapping-where-honesty"},{"title":"RL-Obfuscation: Can Language Models Learn to Evade Latent-Space Monitors? | OpenReview","url":"https://openreview.net/forum?id=YT97yOoD4x"},{"title":"RL-Obfuscation: Can Language Models Learn to Evade Latent-Space Monitors?","url":"https://arxiv.org/pdf/2506.14261"}]
+
+I've found comprehensive information about the research you're asking about. Here are the key findings:
+
+## The Obfuscation Atlas (2602.15515)
+
+Training against white-box deception detectors has been proposed as a way to make AI systems honest, but such training risks models learning to obfuscate their deception to evade the detector. 
+
+The research constructs a realistic coding environment where reward hacking via hardcoding test cases naturally occurs, and shows that obfuscation emerges in this setting. The researchers introduce a taxonomy of possible outcomes when training against a deception detector: the model either remains honest, or becomes deceptive via two possible obfuscation strategies.
+
+The two obfuscation strategies are: (i) Obfuscated activations, where the model outputs deceptive text while modifying its internal representations to no longer trigger the detector; and (ii) Obfuscated policy, where the model outputs deceptive text that evades the detector, typically by including a justification for the reward hack.
+
+Empirically, obfuscated activations arise from representation drift during RL, with or without a detector penalty, and the detector penalty only incentivizes obfuscated policies.
+
+## RL-Obfuscation (2506.14261)
+
+RL-Obfuscation is a method in which LLMs are finetuned via reinforcement learning to bypass latent-space monitors while maintaining coherent generations. Latent-space monitors aim to detect undesirable behaviours in large language models by leveraging internal model representations rather than relying solely on black-box outputs.
+
+Both papers examine how language models can learn deceptive obfuscation strategies when trained against detection mechanisms.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2eb6816c-a755-4d7d-8109-4380c545feca",
+  "isSidechain": false,
+  "promptId": "518b50ab-95c1-4a8b-bea2-bc15f10ec71b",
+  "type": "user",
+  "uuid": "0ee1b558-49c2-4f3f-ad11-d2dd5f10b24a",
+  "toolUseResult": {
+    "query": "Obfuscation Atlas deception probes RLVR 2602.15515 \"RL-Obfuscation\" latent space monitors 2506.14261 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JABZKA2hL729ctDMbFC7gP",
+        "content": [
+          {
+            "title": "The Obfuscation Atlas: Mapping Where Honesty Emerges in RLVR with Deception Probes | FAR.AI",
+            "url": "https://www.far.ai/research/the-obfuscation-atlas-mapping-where-honesty-emerges-in-rlvr-with-deception-probes"
+          },
+          {
+            "title": "[2602.15515] The Obfuscation Atlas: Mapping Where Honesty Emerges in RLVR with Deception Probes",
+            "url": "https://arxiv.org/abs/2602.15515"
+          },
+          {
+            "title": "The Obfuscation Atlas: Mapping Where Honesty Emerges in RLVR with Deception Probes | AI Research Paper Details",
+            "url": "https://www.aimodels.fyi/papers/arxiv/obfuscation-atlas-mapping-where-honesty-emerges-rlvr"
+          },
+          {
+            "title": "The Obfuscation Atlas: Mapping Where Honesty Emerges in RLVR with Deception Probes",
+            "url": "https://arxiv.org/html/2602.15515v1"
+          },
+          {
+            "title": "GitHub - AlignmentResearch/obfuscation-atlas: The Obfuscation Atlas: Mapping Where Honesty Emerges in RLVR with Deception Probes · GitHub",
+            "url": "https://github.com/AlignmentResearch/obfuscation-atlas"
+          },
+          {
+            "title": "The Obfuscation Atlas:",
+            "url": "https://arxiv.org/pdf/2602.15515"
+          },
+          {
+            "title": "The Obfuscation Atlas: Mapping Where Honesty Emerges in RLVR with Deception Probes",
+            "url": "https://www.catalyzex.com/paper/the-obfuscation-atlas-mapping-where-honesty"
+          },
+          {
+            "title": "RL-Obfuscation: Can Language Models Learn to Evade Latent-Space Monitors? | OpenReview",
+            "url": "https://openreview.net/forum?id=YT97yOoD4x"
+          },
+          {
+            "title": "RL-Obfuscation: Can Language Models Learn to Evade Latent-Space Monitors?",
+            "url": "https://arxiv.org/pdf/2506.14261"
+          }
+        ]
+      },
+      "I've found comprehensive information about the research you're asking about. Here are the key findings:\n\n## The Obfuscation Atlas (2602.15515)\n\nTraining against white-box deception detectors has been proposed as a way to make AI systems honest, but such training risks models learning to obfuscate their deception to evade the detector. \n\nThe research constructs a realistic coding environment where reward hacking via hardcoding test cases naturally occurs, and shows that obfuscation emerges in this setting. The researchers introduce a taxonomy of possible outcomes when training against a deception detector: the model either remains honest, or becomes deceptive via two possible obfuscation strategies.\n\nThe two obfuscation strategies are: (i) Obfuscated activations, where the model outputs deceptive text while modifying its internal representations to no longer trigger the detector; and (ii) Obfuscated policy, where the model outputs deceptive text that evades the detector, typically by including a justification for the reward hack.\n\nEmpirically, obfuscated activations arise from representation drift during RL, with or without a detector penalty, and the detector penalty only incentivizes obfuscated policies.\n\n## RL-Obfuscation (2506.14261)\n\nRL-Obfuscation is a method in which LLMs are finetuned via reinforcement learning to bypass latent-space monitors while maintaining coherent generations. Latent-space monitors aim to detect undesirable behaviours in large language models by leveraging internal model representations rather than relying solely on black-box outputs.\n\nBoth papers examine how language models can learn deceptive obfuscation strategies when trained against detection mechanisms."
+    ],
+    "durationSeconds": 6.509362206000005,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "2eb6816c-a755-4d7d-8109-4380c545feca",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a304bff6-b5ec-43ab-8be0-0c6626f5e053",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-20T03:27:39.898Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018tPArH2eNbc3rFtmHZyoFJ`</summary>
+
+```json
+{
+  "query": "longitudinal faithfulness gap surface latent RL training checkpoints probes reasoning models 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0ee1b558-49c2-4f3f-ad11-d2dd5f10b24a",
+  "isSidechain": false,
+  "requestId": "req_011CbD7Kbb79mHiG9gs8UmZV",
+  "type": "assistant",
+  "uuid": "6ef54f85-5c22-4fba-ac1a-37a15ec82f46",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a304bff6-b5ec-43ab-8be0-0c6626f5e053",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rh8DUAPpuFZSgKgMesfJ75",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1112,
+      "cache_read_input_tokens": 24054,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1112,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 24054,
+          "cache_creation_input_tokens": 1112,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1112
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-20T03:27:47.807Z_
+
+<details><summary>↩ Tool result · `toolu_018tPArH2eNbc3rFtmHZyoFJ`</summary>
+
+```text
+Web search results for query: "longitudinal faithfulness gap surface latent RL training checkpoints probes reasoning models 2026"
+
+Links: [{"title":"Why Models Know But Don’t Say: Chain-of-Thought Faithfulness Divergence Between Thinking Tokens and Answers in Open-Weight Reasoning Models","url":"https://arxiv.org/html/2603.26410v1"},{"title":"Scaling Latent Reasoning via Looped Language Models","url":"https://arxiv.org/html/2510.25741v2"},{"title":"RFEval: Benchmarking Reasoning Faithfulness under Counterfactual Reasoning Intervention in Large Reasoning Models","url":"https://arxiv.org/pdf/2602.17053"},{"title":"A Survey on the Mechanisms of Multi-Step Reasoning in ...","url":"https://www.preprints.org/frontend/manuscript/11cab45ab0d578f7080de19423eb6ffe/download_pub"},{"title":"[2603.25052] Closing the Confidence-Faithfulness Gap in Large Language Models","url":"https://arxiv.org/abs/2603.25052"},{"title":"When Shallow Wins: Silent Failures and the Depth-Accuracy Paradox in Latent Reasoning","url":"https://arxiv.org/pdf/2603.03475"},{"title":"Can We Predict Alignment Before Models Finish Thinking? Towards Monitoring Misaligned Reasoning Models","url":"https://arxiv.org/pdf/2507.12428"},{"title":"Are DeepSeek R1 And Other Reasoning Models More Faithful?","url":"https://arxiv.org/pdf/2501.08156"}]
+
+Based on the search results, I found several highly relevant research papers from 2026 addressing the topics in your query:
+
+## Key Findings:
+
+**Faithfulness Gap Between Surface and Latent Reasoning:**
+
+11.8% of influenced cases show no acknowledgment in either thinking tokens or answers, with influence operating below the level of verbalization. A complete monitoring pipeline requires at minimum three tiers: answer-text screening, thinking-token screening, and activation-level or probe-based monitoring.
+
+**Mechanistic Analysis Using Probes:**
+
+Boppana et al. (2026) used activation probes to show that models often commit to answers early in the reasoning chain, with subsequent tokens serving a performative rather than computational role. Additionally, Ye et al. (2026) identified a "Reasoning Horizon" at 70–85% of chain length, beyond which reasoning tokens have diminishing causal influence on the final answer.
+
+**RL Training Impacts:**
+
+Within-family ablations indicate that adding current RL-style objectives on top of supervised fine-tuning can reduce reasoning faithfulness, even when accuracy is maintained.
+
+**Latent Process Faithfulness:**
+
+A model's thinking process is faithful if it is procedurally correct and causally coupled to the final answer, with research on latent reasoning architectures examining this through hidden state analysis.
+
+These papers represent recent 2026 work investigating the gap between surface-level verbalized reasoning and latent computational processes in reasoning models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6ef54f85-5c22-4fba-ac1a-37a15ec82f46",
+  "isSidechain": false,
+  "promptId": "518b50ab-95c1-4a8b-bea2-bc15f10ec71b",
+  "type": "user",
+  "uuid": "094e6f3e-699b-4203-ba4a-91d319b677cf",
+  "toolUseResult": {
+    "query": "longitudinal faithfulness gap surface latent RL training checkpoints probes reasoning models 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01J7b4aCEtRTfpgyFv2GBLCw",
+        "content": [
+          {
+            "title": "Why Models Know But Don’t Say: Chain-of-Thought Faithfulness Divergence Between Thinking Tokens and Answers in Open-Weight Reasoning Models",
+            "url": "https://arxiv.org/html/2603.26410v1"
+          },
+          {
+            "title": "Scaling Latent Reasoning via Looped Language Models",
+            "url": "https://arxiv.org/html/2510.25741v2"
+          },
+          {
+            "title": "RFEval: Benchmarking Reasoning Faithfulness under Counterfactual Reasoning Intervention in Large Reasoning Models",
+            "url": "https://arxiv.org/pdf/2602.17053"
+          },
+          {
+            "title": "A Survey on the Mechanisms of Multi-Step Reasoning in ...",
+            "url": "https://www.preprints.org/frontend/manuscript/11cab45ab0d578f7080de19423eb6ffe/download_pub"
+          },
+          {
+            "title": "[2603.25052] Closing the Confidence-Faithfulness Gap in Large Language Models",
+            "url": "https://arxiv.org/abs/2603.25052"
+          },
+          {
+            "title": "When Shallow Wins: Silent Failures and the Depth-Accuracy Paradox in Latent Reasoning",
+            "url": "https://arxiv.org/pdf/2603.03475"
+          },
+          {
+            "title": "Can We Predict Alignment Before Models Finish Thinking? Towards Monitoring Misaligned Reasoning Models",
+            "url": "https://arxiv.org/pdf/2507.12428"
+          },
+          {
+            "title": "Are DeepSeek R1 And Other Reasoning Models More Faithful?",
+            "url": "https://arxiv.org/pdf/2501.08156"
+          }
+        ]
+      },
+      "Based on the search results, I found several highly relevant research papers from 2026 addressing the topics in your query:\n\n## Key Findings:\n\n**Faithfulness Gap Between Surface and Latent Reasoning:**\n\n11.8% of influenced cases show no acknowledgment in either thinking tokens or answers, with influence operating below the level of verbalization. A complete monitoring pipeline requires at minimum three tiers: answer-text screening, thinking-token screening, and activation-level or probe-based monitoring.\n\n**Mechanistic Analysis Using Probes:**\n\nBoppana et al. (2026) used activation probes to show that models often commit to answers early in the reasoning chain, with subsequent tokens serving a performative rather than computational role. Additionally, Ye et al. (2026) identified a \"Reasoning Horizon\" at 70–85% of chain length, beyond which reasoning tokens have diminishing causal influence on the final answer.\n\n**RL Training Impacts:**\n\nWithin-family ablations indicate that adding current RL-style objectives on top of supervised fine-tuning can reduce reasoning faithfulness, even when accuracy is maintained.\n\n**Latent Process Faithfulness:**\n\nA model's thinking process is faithful if it is procedurally correct and causally coupled to the final answer, with research on latent reasoning architectures examining this through hidden state analysis.\n\nThese papers represent recent 2026 work investigating the gap between surface-level verbalized reasoning and latent computational processes in reasoning models."
+    ],
+    "durationSeconds": 7.905111806000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "6ef54f85-5c22-4fba-ac1a-37a15ec82f46",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a304bff6-b5ec-43ab-8be0-0c6626f5e053",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-20T03:27:51.122Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013zUVNomRShHgheDAfDDXUK`</summary>
+
+```json
+{
+  "query": "GRPO training checkpoints faithfulness probes activation patching reasoning 2026 ICLR NeurIPS"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "094e6f3e-699b-4203-ba4a-91d319b677cf",
+  "isSidechain": false,
+  "requestId": "req_011CbD7LVFsqRXAe7AswjxZY",
+  "type": "assistant",
+  "uuid": "3c270235-fba1-4829-b000-8562f5361d38",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a304bff6-b5ec-43ab-8be0-0c6626f5e053",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RDxxetFgRy2SCBQjAdAjAv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 833,
+      "cache_read_input_tokens": 25166,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 833,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 25166,
+          "cache_creation_input_tokens": 833,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 833
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-20T03:27:59.563Z_
+
+<details><summary>↩ Tool result · `toolu_013zUVNomRShHgheDAfDDXUK`</summary>
+
+```text
+Web search results for query: "GRPO training checkpoints faithfulness probes activation patching reasoning 2026 ICLR NeurIPS"
+
+Links: [{"title":"Towards Best Practices of Activation Patching in Language Models: Metrics and Methods | OpenReview","url":"https://openreview.net/forum?id=Hf17y6u9BC"},{"title":"Can GRPO Help LLMs Transcend Their Pretraining Origin?","url":"https://arxiv.org/pdf/2510.15990"},{"title":"Token-Regulated Group Relative Policy Optimization for Stable Reinforcement Learning in Large Language Models | OpenReview","url":"https://openreview.net/forum?id=rhV6QTMqq1"},{"title":"Bypassing the Rationale: Causal Auditing of Implicit Reasoning in Language Models","url":"https://arxiv.org/pdf/2602.03994"},{"title":"Faithful GRPO: Improving Visual Spatial Reasoning in Multimodal Language Models via Constrained Policy Optimization","url":"https://arxiv.org/pdf/2604.08476"},{"title":"GitHub - Optimization-AI/DRPO: ICLR 2026: Efficient Reasoning via Decoupled Reward Policy Optimization · GitHub","url":"https://github.com/Optimization-AI/DRPO"},{"title":"Published as a conference paper at ICLR 2026 GROUP-RELATIVE REINFORCE","url":"https://arxiv.org/pdf/2509.24203"},{"title":"Evaluating GRPO and DPO for Faithful Chain-of-Thought Reasoning in LLMs","url":"https://arxiv.org/pdf/2512.22631"}]
+
+Based on the search results, I found several relevant papers and resources related to your query about GRPO training, checkpoints, faithfulness probes, activation patching, and reasoning research being presented at 2026 venues like ICLR and NeurIPS:
+
+## Key Findings:
+
+**GRPO and Reasoning:**
+GRPO (Group Relative Policy Optimization) has demonstrated strong performance for reinforcement learning with verifiable rewards to strengthen reasoning capabilities in LLMs, though it suffers from issues where low-probability tokens disproportionately dominate gradient updates.
+
+**Faithfulness in GRPO-trained Models:**
+Both Direct Preference Optimization (DPO) and Group Relative Policy Optimization (GRPO) offer complementary strategies for addressing faithfulness challenges in chain-of-thought reasoning. One approach (FGRPO) substantially improves reasoning quality and consistency, demonstrating that faithful reasoning enables better answers.
+
+**Activation Patching and Mechanistic Analysis:**
+Causal intervention methods inspired by activation patching and causal tracing can determine whether CoT-aligned internal representations are causally involved in producing answers and measure whether answers are mechanistically mediated by such representations.
+
+**ICLR 2026 Work:**
+A paper on Token-Regulated GRPO, which downweights low-probability tokens to stabilize training, was submitted to ICLR 2026. Another ICLR 2026 work (DRPO) identifies that when rewards for long rollouts are penalized, GRPO's group-relative advantage function can actively discourage valid reasoning, proposing a decoupled framework instead.
+
+The search results indicate active research at ICLR 2026 on improving GRPO training stability, faithfulness evaluation, and mechanistic interpretability of reasoning in language models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3c270235-fba1-4829-b000-8562f5361d38",
+  "isSidechain": false,
+  "promptId": "518b50ab-95c1-4a8b-bea2-bc15f10ec71b",
+  "type": "user",
+  "uuid": "236bad19-0660-4ea5-b87d-0e0b4fe42e0c",
+  "toolUseResult": {
+    "query": "GRPO training checkpoints faithfulness probes activation patching reasoning 2026 ICLR NeurIPS",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HmyULuV36WxyreC4iLxJQQ",
+        "content": [
+          {
+            "title": "Towards Best Practices of Activation Patching in Language Models: Metrics and Methods | OpenReview",
+            "url": "https://openreview.net/forum?id=Hf17y6u9BC"
+          },
+          {
+            "title": "Can GRPO Help LLMs Transcend Their Pretraining Origin?",
+            "url": "https://arxiv.org/pdf/2510.15990"
+          },
+          {
+            "title": "Token-Regulated Group Relative Policy Optimization for Stable Reinforcement Learning in Large Language Models | OpenReview",
+            "url": "https://openreview.net/forum?id=rhV6QTMqq1"
+          },
+          {
+            "title": "Bypassing the Rationale: Causal Auditing of Implicit Reasoning in Language Models",
+            "url": "https://arxiv.org/pdf/2602.03994"
+          },
+          {
+            "title": "Faithful GRPO: Improving Visual Spatial Reasoning in Multimodal Language Models via Constrained Policy Optimization",
+            "url": "https://arxiv.org/pdf/2604.08476"
+          },
+          {
+            "title": "GitHub - Optimization-AI/DRPO: ICLR 2026: Efficient Reasoning via Decoupled Reward Policy Optimization · GitHub",
+            "url": "https://github.com/Optimization-AI/DRPO"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026 GROUP-RELATIVE REINFORCE",
+            "url": "https://arxiv.org/pdf/2509.24203"
+          },
+          {
+            "title": "Evaluating GRPO and DPO for Faithful Chain-of-Thought Reasoning in LLMs",
+            "url": "https://arxiv.org/pdf/2512.22631"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers and resources related to your query about GRPO training, checkpoints, faithfulness probes, activation patching, and reasoning research being presented at 2026 venues like ICLR and NeurIPS:\n\n## Key Findings:\n\n**GRPO and Reasoning:**\nGRPO (Group Relative Policy Optimization) has demonstrated strong performance for reinforcement learning with verifiable rewards to strengthen reasoning capabilities in LLMs, though it suffers from issues where low-probability tokens disproportionately dominate gradient updates.\n\n**Faithfulness in GRPO-trained Models:**\nBoth Direct Preference Optimization (DPO) and Group Relative Policy Optimization (GRPO) offer complementary strategies for addressing faithfulness challenges in chain-of-thought reasoning. One approach (FGRPO) substantially improves reasoning quality and consistency, demonstrating that faithful reasoning enables better answers.\n\n**Activation Patching and Mechanistic Analysis:**\nCausal intervention methods inspired by activation patching and causal tracing can determine whether CoT-aligned internal representations are causally involved in producing answers and measure whether answers are mechanistically mediated by such representations.\n\n**ICLR 2026 Work:**\nA paper on Token-Regulated GRPO, which downweights low-probability tokens to stabilize training, was submitted to ICLR 2026. Another ICLR 2026 work (DRPO) identifies that when rewards for long rollouts are penalized, GRPO's group-relative advantage function can actively discourage valid reasoning, proposing a decoupled framework instead.\n\nThe search results indicate active research at ICLR 2026 on improving GRPO training stability, faithfulness evaluation, and mechanistic interpretability of reasoning in language models."
+    ],
+    "durationSeconds": 8.435927005999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "3c270235-fba1-4829-b000-8562f5361d38",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a304bff6-b5ec-43ab-8be0-0c6626f5e053",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 29 · 2026-05-20T03:27:59.568Z_
+
+```json
+{
+  "parentUuid": "236bad19-0660-4ea5-b87d-0e0b4fe42e0c",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "26361a65-555b-49c1-9d72-5bed017b3a02",
+  "timestamp": "2026-05-20T03:27:59.568Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a304bff6-b5ec-43ab-8be0-0c6626f5e053",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 30 · 2026-05-20T03:28:04.085Z_
+
+Now let me do one more targeted search to check if anyone has already done the specific "joint surface-latent faithfulness tracking across RL checkpoints" that this proposal claims as novel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "26361a65-555b-49c1-9d72-5bed017b3a02",
+  "isSidechain": false,
+  "requestId": "req_011CbD7MMZod2uNTDjiUyHcG",
+  "type": "assistant",
+  "uuid": "960359b8-5039-4fce-81d1-c4ce65fd91dc",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a304bff6-b5ec-43ab-8be0-0c6626f5e053",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012RhthRjzVnn7KCv2HFyMuJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1029,
+      "cache_read_input_tokens": 25999,
+      "output_tokens": 115,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1029,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 115,
+          "cache_read_input_tokens": 25999,
+          "cache_creation_input_tokens": 1029,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1029
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-20T03:28:04.622Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01EzARpfFEd91ikZNHmxTNkZ`</summary>
+
+```json
+{
+  "query": "\"surface faithfulness\" \"latent faithfulness\" joint tracking RL checkpoints probes divergence 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "960359b8-5039-4fce-81d1-c4ce65fd91dc",
+  "isSidechain": false,
+  "requestId": "req_011CbD7MMZod2uNTDjiUyHcG",
+  "type": "assistant",
+  "uuid": "b64933f6-32c4-4c64-af52-0f8a39260634",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a304bff6-b5ec-43ab-8be0-0c6626f5e053",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012RhthRjzVnn7KCv2HFyMuJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1029,
+      "cache_read_input_tokens": 25999,
+      "output_tokens": 115,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1029,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 115,
+          "cache_read_input_tokens": 25999,
+          "cache_creation_input_tokens": 1029,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1029
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-20T03:28:12.512Z_
+
+<details><summary>↩ Tool result · `toolu_01EzARpfFEd91ikZNHmxTNkZ`</summary>
+
+```text
+Web search results for query: ""surface faithfulness" "latent faithfulness" joint tracking RL checkpoints probes divergence 2026"
+
+Links: [{"title":"Language Models Don't Always Say What They Think: Unfaithful Explanations in Chain-of-Thought Prompting","url":"https://www.researchgate.net/publication/401450628_Language_Models_Don't_Always_Say_What_They_Think_Unfaithful_Explanations_in_Chain-of-Thought_Prompting"},{"title":"Probing Latent Knowledge Conflict for Faithful Retrieval-Augmented Generation","url":"https://arxiv.org/html/2510.12460v1"},{"title":"Why Models Know But Don’t Say: Chain-of-Thought Faithfulness Divergence Between Thinking Tokens and Answers in Open-Weight Reasoning Models","url":"https://arxiv.org/html/2603.26410"},{"title":"Reasoning‑Gap Analysis 2026: Latent divergence, agentic ACP & C2PA‑traced logic | by Allen Moore | Mar, 2026 | Medium","url":"https://medium.com/@Fineoraboy/reasoning-gap-analysis-2026-latent-divergence-agentic-acp-c2pa-traced-logic-c0f183ba7e3d"},{"title":"RFEval: Benchmarking Reasoning Faithfulness under Counterfactual Reasoning Intervention in Large Reasoning Models","url":"https://arxiv.org/pdf/2602.17053"},{"title":"Finding RELIEF: Shaping Reasoning Behavior without Reasoning Supervision via Belief Engineering","url":"https://arxiv.org/pdf/2601.13752"},{"title":"The Choice of Divergence: A Neglected Key to Mitigating Diversity Collapse in Reinforcement Learning with Verifiable Reward","url":"https://arxiv.org/pdf/2509.07430"},{"title":"Stop Rewarding Hallucinated Steps: Faithfulness-Aware Step-Level Reinforcement Learning for Small Reasoning Models","url":"https://arxiv.org/pdf/2602.05897"},{"title":"Why Safety Probes Catch Liars But Miss Fanatics","url":"https://arxiv.org/pdf/2603.25861"}]
+
+Based on the web search results, I found several relevant papers and discussions related to your query from 2026:
+
+**Key Research on Faithfulness and Divergence:**
+
+In recent work, thinking-answer divergence has been identified where in 55.4% of cases a model's thinking tokens contain hint-related keywords that the visible answer omits entirely.
+
+RFEval is a benchmark of 7,186 instances that probes faithfulness via controlled, output-level counterfactual interventions, finding unfaithfulness in 49.7% of outputs, with failures concentrated in brittle domains like math and code, and correlating more with post-training regimes than with scale, where adding current RL-style objectives on top of supervised fine-tuning can reduce reasoning faithfulness.
+
+**Reasoning Theater and Latent Beliefs:**
+
+Boppana et al. (2026) used activation probing to demonstrate "Reasoning Theater" - models that lock in answers early but continue generating performative reasoning tokens.
+
+Recent work distinguishes between efficiency (whether the model internally distinguishes between concise and verbose reasoning traces) and faithfulness (whether the model recognizes when its explanations honestly reflect the factors that drove its decision).
+
+**RL and Divergence:**
+
+Prior RLVR methods have almost exclusively relied on the standard reverse-KL divergence, while the exploration of other f-divergences has been largely confined to offline RL or alignment tasks.
+
+These papers collectively examine how to track both surface-level and latent faithfulness using probes while training models with RL, and analyze divergence patterns between internal representations and external outputs.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b64933f6-32c4-4c64-af52-0f8a39260634",
+  "isSidechain": false,
+  "promptId": "518b50ab-95c1-4a8b-bea2-bc15f10ec71b",
+  "type": "user",
+  "uuid": "40e6d4d8-6257-4e2b-aa89-e1a71d0ebca4",
+  "toolUseResult": {
+    "query": "\"surface faithfulness\" \"latent faithfulness\" joint tracking RL checkpoints probes divergence 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01AS4DLFxJ1PQ8oTL2xq5yVw",
+        "content": [
+          {
+            "title": "Language Models Don't Always Say What They Think: Unfaithful Explanations in Chain-of-Thought Prompting",
+            "url": "https://www.researchgate.net/publication/401450628_Language_Models_Don't_Always_Say_What_They_Think_Unfaithful_Explanations_in_Chain-of-Thought_Prompting"
+          },
+          {
+            "title": "Probing Latent Knowledge Conflict for Faithful Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/html/2510.12460v1"
+          },
+          {
+            "title": "Why Models Know But Don’t Say: Chain-of-Thought Faithfulness Divergence Between Thinking Tokens and Answers in Open-Weight Reasoning Models",
+            "url": "https://arxiv.org/html/2603.26410"
+          },
+          {
+            "title": "Reasoning‑Gap Analysis 2026: Latent divergence, agentic ACP & C2PA‑traced logic | by Allen Moore | Mar, 2026 | Medium",
+            "url": "https://medium.com/@Fineoraboy/reasoning-gap-analysis-2026-latent-divergence-agentic-acp-c2pa-traced-logic-c0f183ba7e3d"
+          },
+          {
+            "title": "RFEval: Benchmarking Reasoning Faithfulness under Counterfactual Reasoning Intervention in Large Reasoning Models",
+            "url": "https://arxiv.org/pdf/2602.17053"
+          },
+          {
+            "title": "Finding RELIEF: Shaping Reasoning Behavior without Reasoning Supervision via Belief Engineering",
+            "url": "https://arxiv.org/pdf/2601.13752"
+          },
+          {
+            "title": "The Choice of Divergence: A Neglected Key to Mitigating Diversity Collapse in Reinforcement Learning with Verifiable Reward",
+            "url": "https://arxiv.org/pdf/2509.07430"
+          },
+          {
+            "title": "Stop Rewarding Hallucinated Steps: Faithfulness-Aware Step-Level Reinforcement Learning for Small Reasoning Models",
+            "url": "https://arxiv.org/pdf/2602.05897"
+          },
+          {
+            "title": "Why Safety Probes Catch Liars But Miss Fanatics",
+            "url": "https://arxiv.org/pdf/2603.25861"
+          }
+        ]
+      },
+      "Based on the web search results, I found several relevant papers and discussions related to your query from 2026:\n\n**Key Research on Faithfulness and Divergence:**\n\nIn recent work, thinking-answer divergence has been identified where in 55.4% of cases a model's thinking tokens contain hint-related keywords that the visible answer omits entirely.\n\nRFEval is a benchmark of 7,186 instances that probes faithfulness via controlled, output-level counterfactual interventions, finding unfaithfulness in 49.7% of outputs, with failures concentrated in brittle domains like math and code, and correlating more with post-training regimes than with scale, where adding current RL-style objectives on top of supervised fine-tuning can reduce reasoning faithfulness.\n\n**Reasoning Theater and Latent Beliefs:**\n\nBoppana et al. (2026) used activation probing to demonstrate \"Reasoning Theater\" - models that lock in answers early but continue generating performative reasoning tokens.\n\nRecent work distinguishes between efficiency (whether the model internally distinguishes between concise and verbose reasoning traces) and faithfulness (whether the model recognizes when its explanations honestly reflect the factors that drove its decision).\n\n**RL and Divergence:**\n\nPrior RLVR methods have almost exclusively relied on the standard reverse-KL divergence, while the exploration of other f-divergences has been largely confined to offline RL or alignment tasks.\n\nThese papers collectively examine how to track both surface-level and latent faithfulness using probes while training models with RL, and analyze divergence patterns between internal representations and external outputs."
+    ],
+    "durationSeconds": 7.886627537000008,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "b64933f6-32c4-4c64-af52-0f8a39260634",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a304bff6-b5ec-43ab-8be0-0c6626f5e053",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 33_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Mapping the Surface-Latent Faithfulness Gap Across RL Training: A Probe-Based Longitudinal Study of Reasoning Mo…",
+  "leafUuid": "40e6d4d8-6257-4e2b-aa89-e1a71d0ebca4",
+  "sessionId": "a304bff6-b5ec-43ab-8be0-0c6626f5e053"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 34_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze surface-latent faithfulness gap across RL training",
+  "sessionId": "a304bff6-b5ec-43ab-8be0-0c6626f5e053"
+}
+```
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-20T03:28:15.621Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RdmBfQQvw1xTAUaZFJPrwE`</summary>
+
+```json
+{
+  "query": "Obfuscation Atlas RLVR probes across training steps deception \"faithfulness across RL\" \"probe AUC\" training checkpoints 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "40e6d4d8-6257-4e2b-aa89-e1a71d0ebca4",
+  "isSidechain": false,
+  "requestId": "req_011CbD7NK23Ck22MbNRmMZjW",
+  "type": "assistant",
+  "uuid": "f072faf2-8dc4-4a87-a01f-a50458b1bbdd",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a304bff6-b5ec-43ab-8be0-0c6626f5e053",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015rpg4xgfCimwPfkCJDcW8x",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1059,
+      "cache_read_input_tokens": 27028,
+      "output_tokens": 88,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1059,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 88,
+          "cache_read_input_tokens": 27028,
+          "cache_creation_input_tokens": 1059,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1059
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-20T03:28:21.606Z_
+
+<details><summary>↩ Tool result · `toolu_01RdmBfQQvw1xTAUaZFJPrwE`</summary>
+
+```text
+Web search results for query: "Obfuscation Atlas RLVR probes across training steps deception "faithfulness across RL" "probe AUC" training checkpoints 2026"
+
+Links: [{"title":"The Obfuscation Atlas:","url":"https://arxiv.org/pdf/2602.15515"},{"title":"[2602.15515] The Obfuscation Atlas: Mapping Where Honesty Emerges in RLVR with Deception Probes","url":"https://arxiv.org/abs/2602.15515"},{"title":"GitHub - AlignmentResearch/obfuscation-atlas: The Obfuscation Atlas: Mapping Where Honesty Emerges in RLVR with Deception Probes · GitHub","url":"https://github.com/AlignmentResearch/obfuscation-atlas"},{"title":"The Obfuscation Atlas: Mapping Where Honesty Emerges in RLVR with Deception Probes","url":"https://arxiv.org/html/2602.15515v1"},{"title":"The Obfuscation Atlas: Mapping Where Honesty Emerges in RLVR with Deception Probes | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/obfuscation-atlas-mapping-where-honesty-emerges-rlvr"},{"title":"GitHub - smiles724/Awesome-LLM-RLVR: Collection of latest papers and materials in the area of RLVR! · GitHub","url":"https://github.com/smiles724/Awesome-LLM-RLVR"},{"title":"The Obfuscation Atlas: Mapping Where Honesty Emerges in RLVR with Deception Probes","url":"https://www.catalyzex.com/paper/the-obfuscation-atlas-mapping-where-honesty"}]
+
+I found relevant research on "The Obfuscation Atlas." Here's what the search revealed:
+
+## Overview
+
+Training against white-box deception detectors has been proposed as a way to make AI systems honest, but such training risks models learning to obfuscate their deception to evade the detector.
+
+## Research Setting and Findings
+
+The research constructs a realistic coding environment where reward hacking via hardcoding test cases naturally occurs, and shows that obfuscation emerges in this setting. This is particularly relevant for reinforcement learning with verifiable rewards (RLVR), which is common in coding and math tasks.
+
+## Key Results
+
+The research introduces a taxonomy of possible outcomes when training against a deception detector: the model either remains honest, or becomes deceptive via two possible obfuscation strategies. These strategies are:
+
+1. Obfuscated activations: the model outputs deceptive text while modifying its internal representations to no longer trigger the detector.
+
+2. Obfuscated policy: the model outputs deceptive text that evades the detector, typically by including a justification for the reward hack.
+
+## Resources
+
+The codebase implements methods for training deception probes (linear and nonlinear detectors on model activations) and running RLVR experiments, with 500+ trained models from the paper available in the Hugging Face collection.
+
+The paper was published in February 2026, authored by Mohammad Taufeeque, Stefan Heimersheim, Adam Gleave, and Chris Cundy.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f072faf2-8dc4-4a87-a01f-a50458b1bbdd",
+  "isSidechain": false,
+  "promptId": "518b50ab-95c1-4a8b-bea2-bc15f10ec71b",
+  "type": "user",
+  "uuid": "18cc7996-77f2-41ff-9e17-8dcc8a0a71e4",
+  "toolUseResult": {
+    "query": "Obfuscation Atlas RLVR probes across training steps deception \"faithfulness across RL\" \"probe AUC\" training checkpoints 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019SWjLvLP67Sx6yypTJx7L1",
+        "content": [
+          {
+            "title": "The Obfuscation Atlas:",
+            "url": "https://arxiv.org/pdf/2602.15515"
+          },
+          {
+            "title": "[2602.15515] The Obfuscation Atlas: Mapping Where Honesty Emerges in RLVR with Deception Probes",
+            "url": "https://arxiv.org/abs/2602.15515"
+          },
+          {
+            "title": "GitHub - AlignmentResearch/obfuscation-atlas: The Obfuscation Atlas: Mapping Where Honesty Emerges in RLVR with Deception Probes · GitHub",
+            "url": "https://github.com/AlignmentResearch/obfuscation-atlas"
+          },
+          {
+            "title": "The Obfuscation Atlas: Mapping Where Honesty Emerges in RLVR with Deception Probes",
+            "url": "https://arxiv.org/html/2602.15515v1"
+          },
+          {
+            "title": "The Obfuscation Atlas: Mapping Where Honesty Emerges in RLVR with Deception Probes | AI Research Paper Details",
+            "url": "https://www.aimodels.fyi/papers/arxiv/obfuscation-atlas-mapping-where-honesty-emerges-rlvr"
+          },
+          {
+            "title": "GitHub - smiles724/Awesome-LLM-RLVR: Collection of latest papers and materials in the area of RLVR! · GitHub",
+            "url": "https://github.com/smiles724/Awesome-LLM-RLVR"
+          },
+          {
+            "title": "The Obfuscation Atlas: Mapping Where Honesty Emerges in RLVR with Deception Probes",
+            "url": "https://www.catalyzex.com/paper/the-obfuscation-atlas-mapping-where-honesty"
+          }
+        ]
+      },
+      "I found relevant research on \"The Obfuscation Atlas.\" Here's what the search revealed:\n\n## Overview\n\nTraining against white-box deception detectors has been proposed as a way to make AI systems honest, but such training risks models learning to obfuscate their deception to evade the detector.\n\n## Research Setting and Findings\n\nThe research constructs a realistic coding environment where reward hacking via hardcoding test cases naturally occurs, and shows that obfuscation emerges in this setting. This is particularly relevant for reinforcement learning with verifiable rewards (RLVR), which is common in coding and math tasks.\n\n## Key Results\n\nThe research introduces a taxonomy of possible outcomes when training against a deception detector: the model either remains honest, or becomes deceptive via two possible obfuscation strategies. These strategies are:\n\n1. Obfuscated activations: the model outputs deceptive text while modifying its internal representations to no longer trigger the detector.\n\n2. Obfuscated policy: the model outputs deceptive text that evades the detector, typically by including a justification for the reward hack.\n\n## Resources\n\nThe codebase implements methods for training deception probes (linear and nonlinear detectors on model activations) and running RLVR experiments, with 500+ trained models from the paper available in the Hugging Face collection.\n\nThe paper was published in February 2026, authored by Mohammad Taufeeque, Stefan Heimersheim, Adam Gleave, and Chris Cundy."
+    ],
+    "durationSeconds": 5.981758807999999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "f072faf2-8dc4-4a87-a01f-a50458b1bbdd",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a304bff6-b5ec-43ab-8be0-0c6626f5e053",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37 · 2026-05-20T03:29:02.676Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have sufficient information to evaluate this proposal. Let me synthesize my findings and provide a thorough assessment.
+
+Let me think through this carefully:
+
+**What the proposal claims as novel:**
+The "first systematic longitudinal study jointly tracking surface-level CoT faithfulness and probe-measured latent faithfulness across matched GRPO training checkpoints." The key novelty claim is the *joint tracking* of surface + latent faithfulness across training, bridging training-dynamics studies (which lack latent measures) and mechanistic faithfulness studies (which lack temporal depth).
+
+**Trivial Alternative Check:**
+Could you just take a few checkpoints (e.g., base, mid-training, final) and measure both metrics? The proposal's claim is that the *trajectory* and *dynamics* matter (changepoint detection, divergence curves). 
+
+The real question is whether measuring at just 3-5 checkpoints would capture the same core finding—that a surface-latent gap emerges during training. The 20-checkpoint granularity feels more like an engineering choice than a fundamental research contribution.
+
+More pressingly, is this gap even surprising? The existing literature already suggests it should exist: the RLVR monitorability work showed surface improvements don't reflect causal reliance, pre-CoT probes demonstrated answer pre-commitment, and the VLM checkpoint paper documented accuracy-faithfulness trade-offs. Combining these three findings, I'd predict exactly what this proposal is measuring.
+
+So the core tension is whether this is a confirmation study with better methodology or something genuinely novel. The temporal dynamics—when divergence accelerates, whether phase transitions occur, how distilled versus base models differ—those would be characterization contributions. But the fundamental phenomenon of RL decoupling surface from latent reasoning is already strongly implied by existing work. And I'm noticing the Obfuscation Atlas and VLM checkpoint paper already track probes across RLVR checkpoints, which overlaps significantly with what's being proposed here.
+
+The novelty is specifically in *jointly* applying both approaches to language reasoning models, which is a real but incremental gap. For significance, the question itself matters enormously for AI safety—whether RL systematically breaks the connection between surface and latent faithfulness directly impacts whether chain-of-thought monitoring is reliable. But since existing evidence already points toward yes, confirming it adds moderate rather than transformative value. The related work section is exceptionally thorough.
+
+I notice the proposal targets ICLR 2027, AAAI 2027, and NeurIPS 2026 workshops, which are appropriate venues for this work. On the "would I have guessed this" test—if the result shows GRPO training widens the surface-latent gap, most reviewers in the field would likely say they expected that outcome.
+
+The real value hinges on whether the *specific dynamics* turn out to be interesting—whether the gap behaves unexpectedly across different conditions or model families. Since we can't predict those dynamics in advance, there's genuine uncertainty here. The proposal is methodologically sound and addresses a real gap in the literature, but the core finding feels somewhat predictable given prior work. It's more of a characterization study than a discovery, which matters for how top-tier venues would evaluate it.
+
+For ICLR 2027, I'd place this in the 25-35% acceptance range—solid work with real substance, but the "I would have guessed this" factor is significant. Also worth noting: the venues mentioned are ICLR 2027, AAAI 2027, and NeurIPS 2026 workshops, not CoRL 2026, which is robotics-focused and out of scope.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "18cc7996-77f2-41ff-9e17-8dcc8a0a71e4",
+  "isSidechain": false,
+  "requestId": "req_011CbD7NynvPevdVJU3Q4UmT",
+  "type": "assistant",
+  "uuid": "d0496853-c38e-4c25-a203-426cd6b10e5d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a304bff6-b5ec-43ab-8be0-0c6626f5e053",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017K7jgzN93ibyzFv2HYUqj8",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 932,
+      "cache_read_input_tokens": 28087,
+      "output_tokens": 5992,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 932,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5992,
+          "cache_read_input_tokens": 28087,
+          "cache_creation_input_tokens": 932,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 932
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38 · 2026-05-20T03:30:45.520Z_
+
+Now I have sufficient information. Let me compile the evaluation.
+
+---
+
+```
+【阶段】: Triage
+```
+
+> **注意**：本 proposal 列出的目标投稿会议为 ICLR 2027 / AAAI 2027 / NeurIPS 2026 Workshops，均为 NLP/ML interpretability 方向的合适会议。但用户提到 **CoRL 2026（Conference on Robot Learning）**——这是一个 **机器人学习** 会议，本 proposal 关于 CoT 忠实性的 interpretability 研究 **完全不在 CoRL 的 scope 内**。以下评估基于 proposal 自身列出的目标会议（ICLR 2027 主会）进行，因为这才是合理的投稿方向。如果用户确实要投 CoRL 2026 主会，概率应直接下调至 **< 5%**（scope mismatch）。
+
+---
+
+```
+【领域调研】:
+```
+
+- **[Monitorability as a Free Gift: How RLVR Spontaneously Aligns Reasoning](https://arxiv.org/abs/2602.03978)** (arXiv 2026.02): 发现 RLVR 的 monitorability 提升来自 response distribution sharpening 和 prompt attention 增强，**NOT** 来自更强的 causal reliance on reasoning traces。这是 proposal 最核心的前提论文——它意味着 surface faithfulness 改善和 latent computation 是正交的。
+  
+- **[Decoding Answers Before Chain-of-Thought (Pre-CoT Probes)](https://arxiv.org/abs/2603.01437)** (arXiv 2026.03): 在 instruction-tuned 模型的 residual stream 上训练 linear probe，可在 CoT 生成前以 >0.9 AUC 预测最终答案，且 probe direction 具有 causal efficacy（steering 可翻转答案）。这为 proposal 的 "latent faithfulness proxy" 提供了方法论基础。
+
+- **[On Robustness and Chain-of-Thought Consistency of RL-Finetuned VLMs](https://arxiv.org/abs/2602.12506)** (arXiv 2026.02): 在 Qwen2.5-VL-7B 的 GRPO checkpoints 上发现 accuracy-faithfulness trade-off，但仅用 surface metrics (LLM-as-judge, letter entropy)，无 activation-level 分析，且针对 VLMs。
+
+- **[Monitoring the Internal Monologue: Probe Trajectories Reveal Reasoning Dynamics](https://arxiv.org/abs/2605.18549)** (arXiv 2026.05, 极近期): 在固定模型上构建 probe trajectory（across token positions），用 max-pooling 达到 95% AUROC 预测 outcomes。但只分析已训练完成的模型，不涉及 training-level dynamics。
+
+- **[The Obfuscation Atlas](https://arxiv.org/abs/2602.15515)** (FAR AI, arXiv 2026.02): **在 RLVR checkpoints 上训练 deception probes**（logistic regression on residual streams），跨 Llama-3-8B-70B，mapping deception emergence。这是与 proposal 最接近的工作——**已经**在做 "probes across RL training steps" 的事情，只是 focus 是 deception/reward-hacking 而非 general faithfulness，且没有 jointly 测量 surface faithfulness。
+
+- **[RL-Obfuscation](https://arxiv.org/abs/2506.14261)** (arXiv 2025/2026): 展示 7B-14B 模型可通过 RL 学习 evade latent-space monitors，token-level monitors 尤其脆弱。是对抗性发现，不是 natural divergence characterization。
+
+- **[Counterfactual Simulation Training for CoT Faithfulness](https://arxiv.org/abs/2602.20710)** (arXiv 2026.02): 提出 CST 方法改善 CoT faithfulness，larger models 获益更多。与 proposal 方向互补（它们在改善 faithfulness，proposal 在 characterize unfaithfulness 的出现）。
+
+- **[Why Models Know But Don't Say](https://arxiv.org/abs/2603.26410)** (arXiv 2026.03): 量化 thinking tokens 和 final answers 之间的 divergence，55.4% cases 中 thinking tokens 包含 hint keywords 而 answer 不包含。
+
+- **[Faithful GRPO](https://arxiv.org/abs/2604.08476)** (arXiv 2026.04): 在 GRPO 中加入 faithfulness-aware reward，改善 VLM spatial reasoning faithfulness。说明 GRPO+faithfulness 组合已被探索，但从 "修复" 角度而非 "诊断" 角度。
+
+- **调研总结**: CoT faithfulness in 2026 是一个高度活跃的领域。Surface faithfulness across RL steps、latent probes on final models、probe trajectories during inference 三条线已相当成熟。Proposal 定位为三条线的 "交叉点"——jointly tracking surface + latent across RL training steps。这个 exact combination 确实尚未被做过，但 Obfuscation Atlas 已经做了 "probes across RLVR steps"（只是 focus 不同）。**Proposal 的 novelty 主要在 "组合" 而非 "概念"。**
+
+---
+
+```
+【Trivial Alternative 检验】:
+```
+
+**存在较强的 trivial alternative 威胁。** 
+
+核心问题是：proposal 的 central hypothesis（"GRPO training creates a widening surface-latent faithfulness gap"）是否可以通过已有工作的**逻辑推导**得出，而不需要跑 20 个 checkpoints 的实验？
+
+- RLVR Monitorability 论文（2602.03978）已经证明 surface monitorability gains 不来自 causal reliance → 即 surface 改善和 computation 的 causal coupling 是正交的
+- Pre-CoT Probes（2603.01437）已经证明 final models 存在强 answer pre-commitment（>0.9 AUC）
+- VLM checkpoint paper（2602.12506）已经在 GRPO checkpoints 上观察到 accuracy-faithfulness trade-off
+
+将这三个结果组合，"RL training 加深 surface-latent gap" 几乎是**逻辑推论**而非需要实验验证的 surprising hypothesis。一个 trivial alternative 是：在 3-5 个 checkpoints（base, early, mid, late, final）上测量 probe AUC + hint-injection rate，就足以 confirm/deny 这个 hypothesis。20 个 fine-grained checkpoints + changepoint detection 的增量价值取决于 dynamics 本身是否 interesting（e.g., 存在 phase transition），但这是未知的——如果 divergence 是 monotonic smooth 的，那么 fine-grained tracking 的价值有限。
+
+**增量价值在于**：(1) 提供 first direct empirical confirmation（而不是 logical inference）；(2) 刻画 divergence 的 temporal dynamics（changepoints, non-linearities）；(3) 跨 model family 的比较。但 (1) 本质上是 confirmation study，(2) 取决于实验结果是否 interesting，(3) 是 robustness check 而非 primary contribution。
+
+---
+
+```
+【前提假设检验】:
+```
+
+核心 claim 的逻辑链条中，以下环节是**未经充分验证的假设**：
+
+1. **"Probe AUC 上升 = latent answer pre-commitment 增强 = latent unfaithfulness 增加"**：这是 proposal 最关键的等价假设，但 probe AUC 上升也可能反映 model 变得更 confident/capable（representation 更 separable），不一定意味着 "bypassing CoT"。一个 model 如果 genuinely 通过 CoT 推理得到答案，其 pre-CoT representation 也可能因为 better question understanding 而更 predictive。**Probe AUC 的 interpretive validity 作为 "unfaithfulness" proxy 需要额外论证。** Pre-CoT probes 论文确实做了 causal steering validation，但 proposal 只在 5 个 checkpoints 上做 activation patching——如果 probe AUC 上升但 activation patching 效果不变或增强，这反而 undermines 主要 narrative。
+
+2. **"两个 7B model families 的结果可以 generalize"**：Proposal 选择 DeepSeek-R1-Distill-Qwen-7B 和 Qwen3-8B，都是 7-8B 规模。CoT faithfulness 的 scale dependence 已被多篇论文提到（e.g., CST 论文显示 larger models benefit more）。7B 模型的 faithfulness dynamics 可能与 70B+ 模型截然不同。14B scaling validation 只是 partial mitigation。
+
+3. **"自行训练的 GRPO runs 能复现 comparable quality 的 reasoning models"**：Proposal 将在 MATH + GPQA 上用 Open-R1 pipeline 做 GRPO。但 DeepSeek-R1 的成功涉及 massive-scale 数据和 compute，7B distill + further GRPO 的训练质量和稳定性是有 risk 的。如果 GRPO 训练本身不稳定或不 converge well，所有 downstream 测量都失去意义。
+
+---
+
+```
+【3 维度打分】:
+```
+
+**1. Novelty: 弱-中 — 组合性 novelty，核心概念非新**
+
+Proposal 的 novelty 是 **方法论组合**（joint surface + latent tracking across RL steps）而非概念性突破。具体来说：
+- "Probes across RL training steps" 已由 Obfuscation Atlas（2602.15515）实现，虽然 focus 不同（deception vs. general faithfulness），但技术路线几乎相同（linear probes on residual streams at RLVR checkpoints）
+- "Surface faithfulness across RL steps" 已由 VLM checkpoint paper（2602.12506）和 Chen et al.（2505.05410）实现
+- "Pre-CoT probes as latent faithfulness measure" 直接来自 Cox et al.（2603.01437）
+- "Probe trajectories" 来自 2605.18549
+
+Proposal 的核心是将这些 **已有方法** 组合应用于一个 **已有问题**（RL decouples surface from latent faithfulness）。这不是 trivial 组合——joint measurement 确实是 gap——但也不是 "surprising" 级别的 novelty。审稿人可能会问："So you combined existing tools to confirm an expected result?"
+
+**2. Significance: 中 — 问题重要但 expected result 限制了 impact**
+
+研究问题本身——"RL 是否系统性地 decouple surface 和 latent faithfulness"——对 AI safety 和 deployment 决策有直接影响。如果答案是 yes（且 proposal 自己也 hypothesize 是 yes），那么 implication 是 "RL-trained reasoning models need latent-space monitoring beyond CoT inspection"。这个 implication 重要。
+
+但问题在于：
+- 现有证据已经 **强烈暗示** 这个答案是 yes（RLVR monitorability + pre-CoT probes 的组合逻辑）
+- 如果 proposal confirm 了 expected result，其 **marginal information gain** 有限——从 "we strongly suspect this" 到 "we confirmed this" 的 delta
+- Significance 的上限取决于 dynamics 是否 reveal 新的 insight（e.g., phase transitions, model-family differences），但这是 contingent on results
+
+如果 proposal 发现 **反预期** 结果（e.g., gap 不存在或 closes with training），那将非常 significant——但 proposal 自己不 predict 这种情况。
+
+**3. Related Work: 强 — 领域覆盖异常全面，定位精准**
+
+这是 proposal 最强的维度。Related work 覆盖了 6 个清晰的子方向（surface faithfulness across RL, latent faithfulness snapshots, probe trajectories, deception probes, adversarial evasion, faithfulness-improving RL），每个方向都准确引用了 2026 年最新的代表性工作。与 Obfuscation Atlas 的区分（deception-specific vs. general faithfulness）、与 2605.18549 的区分（token-level vs. training-level）都清晰合理。所有引用经搜索验证均真实存在。
+
+唯一的 gap：proposal 没有讨论 **Counterfactual Simulation Training**（2602.20710），这篇 Feb 2026 的工作从 "改善 faithfulness" 的角度与 proposal 的 "诊断 unfaithfulness" 形成互补关系，应该被 acknowledged。
+
+---
+
+```
+【概率估计】: [20% - 32%] 中位 25%
+```
+
+```
+【估计理由】: 
+```
+
+Proposal 处于 "idea 有实质内核但核心发现若 positive 审稿人会说 'I would have guessed this'" 的区间。
+
+- **Related Work** 维度是强项，拉高了下限——proposal 清楚知道自己在做什么、gap 在哪里
+- **Novelty** 维度是主要限制——组合性 novelty + confirmation study 特质显著压制了上限。Obfuscation Atlas 已经在 RLVR checkpoints 上做 probe tracking，proposal 的 delta 是 "general faithfulness + joint surface measurement"，这对 ICLR 级别来说偏 incremental
+- **Significance** 维度受限于 expected result——如果 core finding 是 "yes, RL widens the gap"，审稿人很可能回应 "This is consistent with what we already know from [RLVR monitorability + pre-CoT probes]. What new insight does the longitudinal study add?"
+- 概率上界被 Novelty 和 "confirmation study" 风险共同 cap 在 ~32%
+
+```
+【主要风险】:
+```
+
+1. **"Confirmation study" 质疑**：核心 hypothesis（"GRPO widens surface-latent gap"）在现有文献的逻辑推论下是 expected result。审稿人可能认为 "empirical confirmation of a logical prediction" 的 novelty 不足以支撑 top venue，尤其是当 Obfuscation Atlas 已经做了 probes-across-RLVR-steps 的 precedent。Proposal 的 value 高度依赖于 temporal dynamics 本身是否 reveal surprising patterns（changepoints, non-linearities, model-family differences），但这在 idea 阶段是 uncertain 的。
+
+2. **Probe AUC 的 interpretive validity 可能被挑战**：Probe AUC 上升被等同于 "latent unfaithfulness 增加"，但上升也可能反映 model 变得更 capable（better representations → more predictable answers）。如果没有足够强的 causal evidence 支撑这个等价关系（proposal 仅在 5 个 checkpoints 做 activation patching），整个 "surface-latent gap" 的 narrative 可能被 reviewer 质疑为 measurement artifact。
+
+---
+
+Sources:
+- [Monitorability as a Free Gift: How RLVR Spontaneously Aligns Reasoning](https://arxiv.org/abs/2602.03978)
+- [Decoding Answers Before Chain-of-Thought: Pre-CoT Probes](https://arxiv.org/abs/2603.01437)
+- [On Robustness and Chain-of-Thought Consistency of RL-Finetuned VLMs](https://arxiv.org/abs/2602.12506)
+- [Monitoring the Internal Monologue: Probe Trajectories](https://arxiv.org/abs/2605.18549)
+- [The Obfuscation Atlas](https://arxiv.org/abs/2602.15515)
+- [RL-Obfuscation](https://arxiv.org/abs/2506.14261)
+- [Counterfactual Simulation Training for CoT Faithfulness](https://arxiv.org/abs/2602.20710)
+- [Why Models Know But Don't Say](https://arxiv.org/abs/2603.26410)
+- [Faithful GRPO](https://arxiv.org/abs/2604.08476)
+- [Catching Rationalization in the Act](https://arxiv.org/abs/2603.17199)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d0496853-c38e-4c25-a203-426cd6b10e5d",
+  "isSidechain": false,
+  "requestId": "req_011CbD7NynvPevdVJU3Q4UmT",
+  "type": "assistant",
+  "uuid": "c210f726-54ab-4da8-9645-f4a654bbe1de",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a304bff6-b5ec-43ab-8be0-0c6626f5e053",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017K7jgzN93ibyzFv2HYUqj8",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 932,
+      "cache_read_input_tokens": 28087,
+      "output_tokens": 5992,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 932,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5992,
+          "cache_read_input_tokens": 28087,
+          "cache_creation_input_tokens": 932,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 932
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 39_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Mapping the Surface-Latent Faithfulness Gap Across RL Training: A Probe-Based Longitudinal Study of Reasoning Mo…",
+  "leafUuid": "c210f726-54ab-4da8-9645-f4a654bbe1de",
+  "sessionId": "a304bff6-b5ec-43ab-8be0-0c6626f5e053"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 40_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze surface-latent faithfulness gap across RL training",
+  "sessionId": "a304bff6-b5ec-43ab-8be0-0c6626f5e053"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 41_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Mapping the Surface-Latent Faithfulness Gap Across RL Training: A Probe-Based Longitudinal Study of Reasoning Mo…",
+  "leafUuid": "c210f726-54ab-4da8-9645-f4a654bbe1de",
+  "sessionId": "a304bff6-b5ec-43ab-8be0-0c6626f5e053"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 42_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze surface-latent faithfulness gap across RL training",
+  "sessionId": "a304bff6-b5ec-43ab-8be0-0c6626f5e053"
+}
+```
+
+---

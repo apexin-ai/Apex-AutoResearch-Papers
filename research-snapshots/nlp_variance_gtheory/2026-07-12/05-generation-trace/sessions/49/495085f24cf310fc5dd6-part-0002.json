@@ -1,0 +1,1113 @@
+{
+  "schema_version": "1.0",
+  "session_id": "495085f24cf310fc5dd6",
+  "rounds": [
+    {
+      "number": 3,
+      "messages": [
+        {
+          "source_line": 160,
+          "timestamp": "2026-05-20T05:20:19.374Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have all verification results. Let me produce the round 2 integration.\n\n【阶段】: 迭代第 2 轮\n\n【交叉验证调研】:\n本轮进行 4 次 WebSearch，验证结果如下：\n\n1. **CoLD (arXiv:2507.15698)** — ✅ 已验证。Counterfactually-guided length debiasing for process reward models，使用 causal graph analysis + counterfactual reasoning，但限于 training-time、单维度（length only）、white-box。2025 年 7 月提交。发掘 agent 描述准确。\n\n2. **Causal Rubrics / CROME (arXiv:2506.16507)** — ✅ 已验证。Google DeepMind/McGill/MILA 团队，使用 causal augmentations（隔离 causal attribute 变化的 pairs）和 neutral augmentations（tie-labeled pairs），RewardBench 上平均 +5.4%。已发表于 ICML 2025。发掘 agent 描述准确。注意：此论文（ICML 2025）与 proposal 已引用的 arXiv:2604.13833（2026 年 4 月 preprint，也叫 CROME）是不同论文，两者均应保留。\n\n3. **RATE imperfect counterfactual insight** — ✅ 已验证。RATE 的核心 insight 确实是\"单次 rewrite 引入 substantial bias，需要 double-rewrite 校正\"。发掘 agent 将 CSD 的 DML 路径定位为解决同一问题（imperfect counterfactuals）的替代方案，这一论证逻辑上成立——DML 的 nuisance function 可以 partial out 残余 content variation，与 RATE 的 double-rewrite 提供不同的 robustness guarantee。\n\n4. **RewardBench 2 格式** — ⚠️ 部分验证。RewardBench 2 确认存在且含新 domain（factuality, precise instruction following），但搜索未能确认补救 agent 所称的\"4-choice 格式\"。仍然采纳补救 agent 关于\"明确说明不同评测格式下的方法适配\"的建议，因为这是好的实验设计实践。\n\n【发掘 agent 有效建议采纳】:\n\n1. **发掘点 1（DML 作为 imperfect counterfactual 的第二道防线）** — ✅ 已验证，采纳。RATE 的 imperfect counterfactual insight 确实成立。CSD 应在 §3.2 显式论证\"counterfactual intervention = first-stage identification, DML = second-stage robustness\"的双层架构，与 RATE 的 double-rewrite 形成方法论对比。这堵住了\"为什么不直接算配对差\"的 trivial alternative。\n\n2. **发掘点 2（RLHF alignment pipeline significance）** — ✅ 已验证（Preference Leakage round 1 已确认），采纳。Preference Leakage (ICLR 2026) 确实实证了 style contamination 从 judge → preference data → policy 的传播路径。将 CSD 重新定位为该传播链的 intervention point 是合理的 significance 提升。但注意保持节制——proposal 不应声称已验证 CSD 在 RLHF training 中的效果（这超出实验范围），而是在 Expected Outcome 中作为 broader impact 讨论。\n\n3. **发掘点 3（补充 CoLD 和 Causal Rubrics 到 related work）** — ✅ 已验证，采纳。两篇论文均确认存在且与 CSD 形成 \"white-box training-time vs. black-box post-hoc\" 的对比。Causal Rubrics (arXiv:2506.16507, ICML 2025) 是 ICML 发表论文，不引用会被审稿人视为遗漏。\n\n4. **发掘点 4（ISE 作为 community standard 诊断工具）** — 采纳，基于合理推断。当前确实缺乏统一的 causal bias diagnostic 指标。但措辞上应保持谨慎——claim \"potential community standard\" 而非 \"will be the standard\"。\n\n【补救 agent 有效建议采纳】:\n\n1. **缺陷 1（补 RATE 作为 baseline）** — ✅ 已验证，采纳。RATE 是 ICML 2025 paper，与 CSD 最相似的因果方法。构造 \"RATE-corrected\" baseline（RATE 的 causal estimates + CSD 的 correction formula），并在效率曲线上对比 RATE 25x vs CSD 7x。\n\n2. **缺陷 2（counterfactual quality 人工审核）** — 采纳，基于合理推断。在人工评估中增加 100-150 个 counterfactual pairs 的质量审核，验证自动 gate 与人工判断的一致性。这直接回应 RATE 关于 imperfect counterfactual 的 concern。\n\n3. **缺陷 3（RewardBench 2 格式适配）** — 部分采纳。4-choice 格式未得到搜索确认，但\"明确说明不同评测格式下的适配方案\"是好的实验设计实践。在 §4 中增加简要说明 CSD 对 pointwise / pairwise / multi-choice 格式的适配。\n\n4. **缺陷 4（DML 超参数 sensitivity）** — 采纳，放入 ablation 作为 supplementary check。nuisance estimator 对比（GBT vs RF vs Lasso）+ 样本量讨论。\n\n5. **缺陷 5（人工评估 power）** — 部分采纳。不增加总样本量（200 条足够），但采纳按分歧程度分位数 sampling 的策略，并报告 Krippendorff's α 的 bootstrap CI。\n\n6. **缺陷 6（manipulation check）** — 采纳。增加 style metric effect size 表格验证 intervention 有效性。低成本高价值。\n\n7. **缺陷 7（FairJudge 公平对比）** — 采纳，呈现方式调整。结果表中区分 all-judge-applicable 和 open-weight-only methods。\n\n【本轮 proposal 主要变更】:\n\n**Idea 层面变更：**\n- §3.2 新增\"dual-layer identification\"论证：counterfactual intervention = first-stage, DML = second-stage robustness against imperfect counterfactuals，与 RATE double-rewrite 显式对比\n- §1/§5 新增 RLHF pipeline significance：CSD 作为 preference data curation 的 style contamination intervention point\n- §1 Related Work 补充 CoLD (arXiv:2507.15698) 和 Causal Rubrics (arXiv:2506.16507, ICML 2025)\n- §2 ISE 贡献提升为\"potential community-standard causal bias diagnostic\"\n\n**实验层面变更：**\n- Baselines 新增 RATE-corrected（第 8 个 baseline）\n- 新增 counterfactual quality human audit（100-150 pairs）\n- 新增 manipulation check table（per-axis style metric effect sizes）\n- 新增 DML robustness check（nuisance estimator comparison，appendix 级）\n- 格式适配说明（pointwise/pairwise/multi-choice）\n- 人工评估调整为分歧分位数 sampling + Krippendorff's α bootstrap CI\n- FairJudge 对比呈现方式明确区分\n\n【idea 质量评估】: Novelty=中强偏强（dual-layer identification 论证显著强化了方法论的 non-triviality；完整的 causal debiasing 文献景观已建立；legitimacy-aware α 仍是独特贡献） Significance=中强偏强（RLHF pipeline significance 将 impact 从 evaluation community 扩展到 alignment community） → idea 天花板约 50%\n\n【实验完备性评估】: Technical Soundness=中强（RATE baseline 补上了最大空缺；counterfactual quality audit + manipulation check 直接验证核心假设；统计分析已全面） → 地板约 36%\n\n【当前概率估计】: [36% - 50%] 中位 42%\n\n【决策】: 继续\n\n【决策理由】: 第 2 轮改动仍然实质性——DML dual-layer 论证和 RATE baseline 分别从 idea 和实验两个维度显著加固了 proposal。发掘 agent 明确表示\"在已有高质量框架上 sharpening\"，补救 agent 确认\"不存在致命缺陷\"，这些信号表明 proposal 正在逼近收敛。但本轮新增了较多内容（RLHF framing、CoLD/CausalRubrics related work、RATE baseline、counterfactual audit、manipulation check），需要再走一轮让 worker 检验整合后的 proposal 是否连贯、是否有新的盲点。预计第 3 轮将触发收敛。\n\n**引用保留核对清单**（逐条确认所有引用在纯净版中出现）:\n\n原始 proposal 引用:\n- ✅ SOS-Bench (arXiv:2409.15268)\n- ✅ CASSE (arXiv:2601.10809)\n- ✅ Preference Leakage (ICLR 2026, arXiv:2502.01534)\n- ✅ FairJudge (arXiv:2602.06625)\n- ✅ LC-AlpacaEval (ICLR 2025, arXiv:2404.04475)\n- ✅ RATE (ICML 2025, arXiv:2410.11348)\n- ✅ BBE (arXiv:2603.05485)\n- ✅ Chernozhukov et al. 2018 (DML)\n- ✅ RubricBench (arXiv:2603.01562)\n- ✅ NAACL 2021 (Pryzant et al., Causal Effects of Linguistic Properties)\n- ✅ NAACL 2024\n- ✅ NeurIPS 2025 (RBD, arXiv:2505.17100)\n- ✅ AAAI 2026 (PRECISE, arXiv:2601.18777)\n- ✅ AAAI 2027 (CMBE, arXiv:2505.16522)\n- ✅ ICLR 2027 (CRM, arXiv:2501.09620)\n\nRound 1 additions:\n- ✅ Post-hoc Reward Calibration (ICLR 2025, arXiv:2409.17407)\n- ✅ Causally Motivated Intervention (arXiv:2604.27495)\n- ✅ CROME (arXiv:2604.13833)\n- ✅ Counterfactual Rhetorical Style (arXiv:2512.19908)\n- ✅ Soumik (arXiv:2604.23178)\n- ✅ RewardBench 2 (arXiv:2506.01937)\n\nRound 2 additions:\n- ✅ CoLD (arXiv:2507.15698)\n- ✅ Causal Rubrics (arXiv:2506.16507, ICML 2025)\n\n【下一轮 proposal（纯净版，将原样传给 worker）】:\n---\n## Causal Style Decomposition for Debiasing Black-Box LLM Judges\n\n### 1. Problem and Motivation\n\nLLM-as-a-Judge pipelines are increasingly used for automated evaluation, but suffer from systematic style biases. SOS-Bench (arXiv:2409.15268) demonstrates that surface-level style features dominate substance in judge scoring. CASSE (arXiv:2601.10809) identifies 12 cross-correlated style features inducing evaluation side effects, with the core finding that style features are deeply entangled rather than orthogonal. Preference Leakage (ICLR 2026, arXiv:2502.01534) shows style-driven contamination propagates through training pipelines—from judge preferences to reward models to policy models. Soumik (arXiv:2604.23178) quantifies style bias at 0.76–0.92 across 5 judges, far exceeding position bias (≤0.04). Earlier work on LLM evaluation bias (NAACL 2024) and RubricBench (arXiv:2603.01562) further document how surface features mislead judges, revealing a 27% accuracy gap between model-generated and human rubrics on hard samples with misleading surface bias.\n\nCrucially, this is not merely an evaluation problem. Preference Leakage (ICLR 2026) demonstrates that style bias in judges propagates downstream: biased preference labels enter RLHF/DPO training data, contaminating reward models and ultimately policy models. Debiasing judges at the evaluation stage therefore has cascading benefits for the entire LLM alignment pipeline.\n\nExisting debiasing approaches each have fundamental limitations:\n\n- **Training-based**: FairJudge (arXiv:2602.06625) uses SFT→DPO→GRPO to retrain judges, requiring white-box access and per-judge retraining, inapplicable to proprietary models.\n- **Observational regression**: Length-Controlled AlpacaEval (ICLR 2025, arXiv:2404.04475) regresses out length effects at zero cost; Post-hoc Reward Calibration (ICLR 2025, arXiv:2409.17407) extends this via locally weighted regression across 33 reward models. Both handle only a single dimension and rely on observational associations that conflate genuine quality correlates with spurious confounding.\n- **Perturbation-based**: Bias-Bounded Evaluation (BBE, arXiv:2603.05485) injects DP-inspired Gaussian noise for formal bias bounds but destroys signal alongside bias; RATE (ICML 2025, arXiv:2410.11348) uses a double-rewrite protocol for causal explainability of reward models, providing the key insight that single-rewrite counterfactuals are imperfect and introduce substantial bias, but requires ~25x inference overhead and does not produce corrected scores.\n- **Reasoning-based**: RBD (NeurIPS 2025, arXiv:2505.17100) is a plug-in module that detects biased evaluations and guides self-correction via structured reasoning (+18.5% accuracy), but operates at the prompt level without disentangling specific style dimensions.\n- **Statistical**: PRECISE (AAAI 2026, arXiv:2601.18777) extends prediction-powered inference to combine human annotations with LLM judgments for debiased ranking estimation, but requires human labels and does not identify which style dimensions drive bias.\n- **Prompt-engineering**: Soumik (arXiv:2604.23178) evaluates 9 prompt-based strategies; the best (\"combined budget\") achieves +7.2 to +11.2pp on select model-strategy pairs.\n\nA parallel line of causal approaches targets reward model debiasing, all requiring white-box access or training-time intervention: Causally Motivated Inference-Time Intervention (arXiv:2604.27495) decomposes Bradley-Terry reward models via total effect / controlled direct effect and intervenes at the neuron level. CROME (arXiv:2604.13833) uses causal data augmentation to suppress prompt-independent shortcuts. Causal Rubrics (arXiv:2506.16507, ICML 2025) employs causal augmentations (pairs isolating causal attribute changes) and neutral augmentations (tie-labeled pairs varying spurious attributes) to train robust reward models, improving RewardBench accuracy by up to 5.4%. CoLD (arXiv:2507.15698) applies counterfactual reasoning and causal graph analysis for length debiasing of process reward models, but is limited to training-time, single-dimension (length), and white-box settings. Causal Reward Modeling (CRM; ICLR 2027, arXiv:2501.09620) enforces counterfactual invariance in reward predictions. CMBE (AAAI 2027, arXiv:2505.16522) proposes simultaneous multi-bias causal effect estimation and elimination.\n\nSeparately, counterfactual LLM-based style measurement (arXiv:2512.19908) demonstrates that LLM-generated counterfactual rewrites combined with Bradley-Terry aggregation can robustly quantify rhetorical style effects at scale (>250K counterfactuals on 8,485 ICLR papers)—but quantifies style without correcting for it.\n\nFoundational work on causal effects of linguistic properties (Pryzant et al., NAACL 2021) established methods for estimating causal effects of text attributes using distant supervision and pre-trained language models, providing the methodological precedent for CSD's approach.\n\n**The open gap**: No existing method provides principled, multi-dimensional causal debiasing for black-box LLM judges while preserving legitimate style-quality associations. White-box causal methods (Causal Rubrics, CoLD, arXiv:2604.27495) cannot be applied to proprietary judge APIs. Black-box methods remain limited to observational regression (LC-AlpacaEval) or prompt engineering (RBD, Soumik). CSD fills this gap by bridging two independently developing literatures: (1) the NLP evaluation community's empirical documentation of style biases with ad-hoc fixes, and (2) the causal inference / econometrics community's principled frameworks (Double Machine Learning; Chernozhukov et al. 2018) that have not yet been systematically applied to black-box LLM judge debiasing.\n\n### 2. Core Contributions\n\n1. **Causal Style Decomposition (CSD) framework**: A black-box, post-hoc method that decomposes LLM judge scores into content-driven and style-driven components via targeted counterfactual interventions along three style axes, using a dual-layer causal identification strategy: counterfactual intervention for first-stage identification, DML (Chernozhukov et al. 2018) for second-stage robustness against imperfect counterfactuals.\n\n2. **Legitimacy-aware correction**: Unlike all prior debiasing methods that implicitly assume style effects should be fully removed, CSD introduces a domain-conditional α parameter distinguishing domain-invariant style bias from domain-specific legitimate style-quality associations—addressing CASSE's (arXiv:2601.10809) finding that style removal has unintended side effects. This is a conceptual advance: the question is not just \"how much style bias exists\" but \"which portion of style influence is bias vs. signal.\"\n\n3. **Interventional Style Effect (ISE) metric**: A standardized, causal diagnostic for per-axis judge bias auditing. Unlike observational bias scores (e.g., Soumik's style bias metric of 0.76–0.92), ISE measures interventional causal sensitivity, enabling principled cross-judge comparison (\"GPT-4o's formality ISE is 2.3× Claude's\"), cross-domain analysis, and version-tracking of judge bias. ISE has potential as a community-standard bias reporting metric analogous to FID for image generation.\n\n4. **Empirical validation** across 5 judges × 5 benchmarks with 8 baselines, comprehensive ablations, compute-normalized comparisons, counterfactual quality auditing, and human evaluation.\n\n### 3. Method\n\n#### 3.1 Counterfactual Style Generation\n\nFor each response $r$, generate 6 counterfactuals by intervening on 3 style axes in 2 directions each:\n- **Formality**: formal ↔ informal tone (preserving content)\n- **Verbosity**: concise ↔ verbose (preserving information content)\n- **Formatting**: heavy markdown/structure ↔ plain text\n\nRewriter: Qwen3-32B (default). When the target judge is Qwen3-32B, use an independent rewriter (Llama-3.3-70B) to prevent rewriter-evaluator confounding, following the independence principle in RATE (ICML 2025, arXiv:2410.11348).\n\n**Content preservation gates**: Counterfactuals must pass BERTScore ≥ 0.92 AND NLI entailment score ≥ 0.95 relative to the original. Failing samples are re-generated (up to 3 retries) or excluded.\n\n**Three-axis design rationale**: Formality, verbosity, and formatting capture the dominant style variation documented in SOS-Bench (arXiv:2409.15268) and CASSE (arXiv:2601.10809). We treat their approximate independence as an empirical hypothesis to be verified (via correlation analysis of ISE estimates across axes), not an a priori assumption—important given CASSE's finding of style feature entanglement. Coverage analysis (fraction of total style variance these 3 axes explain) is included as an ablation. The framework extends to additional axes at linear cost.\n\n#### 3.2 Dual-Layer Causal Identification via DML\n\n**Why DML on top of counterfactual intervention?** A natural question is: given paired data (original + 6 counterfactuals), why not simply compute mean paired score differences as ATE estimates? The answer is that content preservation gates (BERTScore ≥ 0.92, NLI ≥ 0.95) are imperfect—residual content leakage inevitably passes through. RATE (ICML 2025, arXiv:2410.11348) demonstrated that imperfect counterfactuals introduce substantial bias in causal estimates, solving this via a double-rewrite protocol (rewriting the rewrite to cancel rewrite-induced bias). CSD takes an alternative approach with stronger theoretical guarantees:\n\n- **First layer (counterfactual intervention)**: Provides approximate do-calculus identification by actively manipulating style while holding content approximately fixed.\n- **Second layer (DML)**: The nuisance function $g(Content, Style_{-d})$ captures and partials out residual content variation that leaked through imperfect gates, providing doubly-robust, $\\sqrt{n}$-consistent estimation even if either the treatment or outcome model is misspecified.\n\nThis dual-layer design means CSD is robust to the imperfect-counterfactual problem that RATE solves via double-rewrite, but at ~7x inference cost (vs. RATE's ~25x) and with formal semiparametric efficiency guarantees.\n\nFor each style axis $d \\in \\{formality, verbosity, formatting\\}$, estimate the causal effect $\\beta_d$:\n\n$$Score = \\beta_d \\cdot Style_d + g(Content, Style_{-d}) + \\epsilon$$\n\nwhere $g(\\cdot)$ is estimated via gradient-boosted trees with 5-fold cross-fitting per Chernozhukov et al. (2018). Building on the causal identification logic of Pryzant et al. (NAACL 2021), this framework estimates the direct causal effect of each style dimension on judge scores while controlling for content quality and other style axes.\n\n#### 3.3 Legitimacy-Aware Correction\n\n$$Score_{debiased} = Score_{original} - \\sum_{d} (1 - \\alpha_d) \\cdot \\hat{\\beta}_d \\cdot (Style_d - Style_{ref})$$\n\nwhere $\\alpha_d \\in [0,1]$ is domain-conditional. $\\alpha_d = 0$: full debiasing; $\\alpha_d = 1$: no debiasing.\n\n**α calibration protocol**: Leave-one-benchmark-out cross-validation. Sensitivity analysis reports performance across α ∈ {0.0, 0.1, ..., 1.0}.\n\n#### 3.4 Format Adaptation\n\nCSD adapts to different evaluation formats: (a) **Pointwise** (MT-Bench): debias each response's score independently; (b) **Pairwise** (Arena-Hard-Auto, SOS-Bench): debias both chosen and rejected responses, then re-rank; (c) **Multi-choice** (RewardBench, RewardBench 2): debias each candidate's score independently, then select the highest-scoring candidate. Inference cost scales with the number of candidates per instance.\n\n#### 3.5 Inference Cost\n\nCSD requires 7 judge calls per response (1 original + 6 counterfactuals), ~7x overhead. This compares favorably to RATE's ~25x, while providing actionable score correction rather than only explainability.\n\n### 4. Experimental Design\n\n#### 4.1 Judges (5)\n\nGPT-4o, Claude Sonnet 4, Gemini 2.5 Pro, Qwen3-32B, Llama-4-Maverick. Covers 4 provider families and both proprietary and open-weight models.\n\n#### 4.2 Benchmarks (5)\n\n- **SOS-Bench** (arXiv:2409.15268): Style-substance separation evaluation\n- **RewardBench**: Standard reward model evaluation\n- **RewardBench 2** (arXiv:2506.01937): Updated with factuality and precise instruction following domains\n- **MT-Bench**: Multi-turn dialogue quality\n- **Arena-Hard-Auto**: Challenging single-turn evaluation\n\n#### 4.3 Baselines (8)\n\n| Baseline | Type | Extra cost | Applicability |\n|---|---|---|---|\n| Raw Judge | No debiasing | 1x | All judges |\n| LC-AlpacaEval (ICLR 2025, arXiv:2404.04475) | Single-dim observational regression | 1x | All judges |\n| Multi-Reg | Multi-dim observational regression | 1x | All judges |\n| BBE (arXiv:2603.05485) | DP noise injection | 1x | All judges |\n| Prompt-Debiasing (Soumik, arXiv:2604.23178) | Combined budget prompt strategy | 1x | All judges |\n| RATE-corrected (ICML 2025, arXiv:2410.11348) | Double-rewrite causal estimation + CSD-style correction | ~25x | All judges |\n| FairJudge (arXiv:2602.06625) | Training-based (SFT→DPO→GRPO) | 1x post-train | Open-weight only |\n| 7-Call Majority Vote | Same-budget sampling | 7x | All judges |\n\nMulti-Reg uses automated style feature extractors (markdown density, word count, Flesch-Kincaid readability) as covariates for multivariate regression—the most direct observational alternative to CSD. RATE-corrected applies RATE's double-rewrite causal estimates with CSD's correction formula, enabling direct comparison of the two causal identification strategies at different compute budgets. 7-Call Majority Vote controls for inference budget fairness. Results tables clearly distinguish all-judge-applicable baselines from open-weight-only methods (FairJudge) to avoid misleading comparison.\n\n#### 4.4 Metrics\n\n- **Primary**: Pairwise accuracy, Spearman/Kendall-τ correlation with ground-truth quality\n- **Diagnostic**: ISE per axis per judge (causal bias magnitude)\n- **Efficiency**: Accuracy-per-judge-call curve (1x, 3x, 5x, 7x, 25x budget)\n\n#### 4.5 Ablations\n\n1. **Decomposition method**: Linear regression vs. DML vs. nonparametric kernel estimation for β\n2. **Per-axis importance**: Single-axis (3 runs) + pairwise combinations (3 runs) + full 3-axis\n3. **Content preservation thresholds**: BERTScore ∈ {0.85, 0.88, 0.90, 0.92, 0.95} × NLI ∈ {0.90, 0.93, 0.95, 0.97}\n4. **Cross-rewriter consistency**: ISE and accuracy using Qwen3-32B vs. Llama-3.3-70B vs. Claude as rewriter\n5. **Axis coverage**: Variance decomposition—fraction of judge score variance explained by 3 axes vs. residual\n6. **α sensitivity**: Full grid α ∈ [0,1], per-domain performance landscape\n7. **ISE-based cross-judge comparison**: ISE estimates across judges and domains\n8. **Manipulation check**: Per-axis style metric effect sizes (Cohen's d) on automated proxies—formality → Flesch-Kincaid / formality classifier; verbosity → word count ratio; formatting → markdown element density. Validates that counterfactual interventions produce sufficient style variation for reliable ISE estimation.\n9. **DML robustness check** (supplementary): Nuisance estimator comparison (GBT vs. Random Forest vs. Lasso), per-cell effective sample size, and DML standard error analysis. Discussion of statistical power for smaller benchmarks (e.g., MT-Bench ~80 multi-turn dialogues).\n\n#### 4.6 Human Evaluation\n\n**Quality evaluation (200 responses)**: Stratified by divergence between CSD and raw judge rankings—sampled from top-20% (high divergence), middle 40%, and bottom 40% by divergence magnitude. 3 annotators per response, 5-point Likert scale evaluating content quality and presentation quality independently. Inter-annotator agreement target: Krippendorff's α ≥ 0.6, reported with bootstrap 95% CI. Annotation rubric includes operationalized definitions and anchor examples, following RubricBench (arXiv:2603.01562) best practices.\n\n**Counterfactual quality audit (100–150 pairs)**: ~50 per style axis, annotators judge: (1) whether target axis was successfully changed (binary), (2) whether non-target axes were unintentionally changed (Likert 1–5), (3) whether content semantics were preserved (Likert 1–5). Report Cohen's κ between automated gates (BERTScore + NLI) and human judgment, plus false positive/negative rates of the automated gates. This validates CSD's core assumption of content-preserving style intervention and addresses CASSE's (arXiv:2601.10809) entanglement concern.\n\n#### 4.7 Statistical Analysis\n\n- Pairwise accuracy differences: paired bootstrap test (10,000 resamples), 95% CIs\n- Correlation differences: Fisher r-to-z transformation for Spearman, bootstrap CIs for Kendall-τ\n- DML coefficients: asymptotic standard errors and p-values per Chernozhukov et al. (2018)\n- All main results include 95% confidence intervals\n\n### 5. Expected Outcome and Broader Impact\n\nCSD is expected to demonstrate that dual-layer causal identification (counterfactual intervention + DML) provides debiasing gains beyond observational regression (LC-AlpacaEval, Multi-Reg), perturbation methods (BBE), and prompt engineering (Soumik), particularly in domains where style-content confounding is strong. Comparison with RATE-corrected will isolate the efficiency advantage (7x vs. 25x) and compare robustness to imperfect counterfactuals (DML nuisance absorption vs. double-rewrite cancellation). The legitimacy-aware α mechanism is expected to show selective debiasing outperforms both full debiasing and no debiasing.\n\n**Broader impact on alignment pipelines**: Beyond evaluation, CSD can serve as a data quality intervention in RLHF/DPO pipelines. Preference Leakage (ICLR 2026, arXiv:2502.01534) demonstrated that style-biased judge labels contaminate reward models and downstream policies. Applying CSD to debias preference labels before they enter training could break this contamination chain at its source. While validating this downstream effect is beyond the scope of the current experiments, the framework is directly applicable to preference data curation, and we discuss this as a concrete direction for future work.\n\n**Acknowledged limitations**: (1) 3-axis coverage may miss residual style bias from uncovered dimensions; (2) counterfactual quality depends on rewriter capability; (3) 7x inference cost may be prohibitive for large-scale deployment, though axis-selective application reduces cost.\n---\n\nSources:\n- [CoLD: Counterfactually-Guided Length Debiasing](https://arxiv.org/abs/2507.15698)\n- [Robust Reward Modeling via Causal Rubrics](https://arxiv.org/abs/2506.16507)\n- [RATE: Causal Explainability of Reward Models](https://arxiv.org/abs/2410.11348)\n- [RewardBench 2](https://arxiv.org/abs/2506.01937)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9b5f74c7-d8e9-424f-82e7-cb3beb9e5383",
+            "isSidechain": false,
+            "requestId": "req_011CbDFg7Vg7G7G5qbPPrgjN",
+            "type": "assistant",
+            "uuid": "0cb094f5-327f-48ab-b929-c765e7fce9ae",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "c8ddb01f-fc6b-4647-bff1-fa0d392be333",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01De3S47EWfvJKWT7NNdAoAs",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4676,
+                "cache_read_input_tokens": 111488,
+                "output_tokens": 8629,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 4676,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 8629,
+                    "cache_read_input_tokens": 111488,
+                    "cache_creation_input_tokens": 4676,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 4676
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000160"
+        },
+        {
+          "source_line": 161,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "【任务】: 以「角色 B：迭代中」整合第 2 轮 worker 输出，按指定格式输出决策、概率估计、以及（若继续）下一轮 proposal 纯净版。  【发掘 agent 本轮输出】: Now I have sufficient context from my research. Let me formulate my analysis.  ---  【状态】: 有发掘空间  【前置调研发现】 -…",
+                "leafUuid": "0cb094f5-327f-48ab-b929-c765e7fce9ae",
+                "sessionId": "c8ddb01f-fc6b-4647-bff1-fa0d392be333"
+              }
+            }
+          ],
+          "id": "event-000161"
+        },
+        {
+          "source_line": 162,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Refine causal style debiasing proposal for review",
+                "sessionId": "c8ddb01f-fc6b-4647-bff1-fa0d392be333"
+              }
+            }
+          ],
+          "id": "event-000162"
+        },
+        {
+          "source_line": 163,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "【任务】: 以「角色 B：迭代中」整合第 2 轮 worker 输出，按指定格式输出决策、概率估计、以及（若继续）下一轮 proposal 纯净版。  【发掘 agent 本轮输出】: Now I have sufficient context from my research. Let me formulate my analysis.  ---  【状态】: 有发掘空间  【前置调研发现】 -…",
+                "leafUuid": "0cb094f5-327f-48ab-b929-c765e7fce9ae",
+                "sessionId": "c8ddb01f-fc6b-4647-bff1-fa0d392be333"
+              }
+            }
+          ],
+          "id": "event-000163"
+        },
+        {
+          "source_line": 164,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Refine causal style debiasing proposal for review",
+                "sessionId": "c8ddb01f-fc6b-4647-bff1-fa0d392be333"
+              }
+            }
+          ],
+          "id": "event-000164"
+        },
+        {
+          "source_line": 165,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Refine causal style debiasing proposal for review",
+                "sessionId": "c8ddb01f-fc6b-4647-bff1-fa0d392be333"
+              }
+            }
+          ],
+          "id": "event-000165"
+        },
+        {
+          "source_line": 166,
+          "timestamp": "2026-05-20T05:26:36.566Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-20T05:26:36.566Z",
+                "sessionId": "c8ddb01f-fc6b-4647-bff1-fa0d392be333",
+                "content": "【任务】: 以「角色 B：迭代中」整合第 3 轮 worker 输出，按指定格式输出决策、概率估计、以及（若继续）下一轮 proposal 纯净版。\n\n【发掘 agent 本轮输出】:\nNow I have sufficient research to make a well-grounded assessment. Let me synthesize my findings.\n\n---\n\n【状态】: 有发掘空间\n\n【前置调研发现】\n- **RATE (arXiv:2410.11348, ICML 2025)**: 最接近的因果方法。通过 double-rewrite 协议解决不完美反事实问题，但仅提供可解释性（不提供校正分数），且推理成本 ~25x。CSD 与 RATE 的差异化定位清晰且合理——DML 吸收 vs. double-rewrite 抵消是两种不同的因果识别策略。\n- **Causal Rubrics / CROME (arXiv:2506.16507, ICML 2025)**: 通过因果数据增强（causal augmentations + neutral augmentations）训练鲁棒 reward model，RewardBench 提升 5.4%。白盒、训练时，与 CSD 的黑盒、后处理定位形成互补而非竞争。\n- **CoLD (arXiv:2507.15698)**: 反事实推理 + 因果图分析用于 process reward model 的长度去偏。限于训练时、单维度（长度）、白盒，进一步确认了 CSD 所声称的 gap 的真实性。\n- **CMBE (arXiv:2505.16522, AAAI 2027)**: 同时估计多种偏差的因果效应并在推理时消除。概念上最接近 CSD 的多维因果去偏，但限于白盒模型。CSD 应更清晰地与 CMBE 区分——不仅是黑盒 vs. 白盒，更是因果识别策略的差异（CMBE 依赖模型内部表示，CSD 依赖外部反事实干预）。\n- **UDA (arXiv:2508.09724, AAAI 2026)**: 通过自适应调整 Elo K-factor 实现无监督的 pairwise judge 去偏，降低 judge 间分歧 63.4%。黑盒、后处理，但机制完全不同（共识驱动 vs. 因果识别）。**Proposal 未引用此工作，可能构成 related work 遗漏。**\n- **Nonparametric LLM Evaluation from Preference Data (arXiv:2601.21816, 2026)**: 将 DML 风格的去偏估计器应用于 LLM 排名，从偏好数据中导出半参数有效估计。与 CSD 共享 DML 方法论基础但目标不同（ranking 估计 vs. 分数去偏）。**Proposal 未引用此工作，可能被审稿人视为 DML-in-LLM-evaluation 方向的遗漏。**\n- **CASSE (arXiv:2601.10809)**: 12 种风格特征深度纠缠的实证发现，为 CSD 的三轴独立性假设提供了重要背景。Proposal 已合理引用并讨论。\n- **Counterfactual LLM-based Style Measurement (arXiv:2512.19908)**: 用 LLM 反事实重写 + Bradley-Terry 聚合量化修辞风格效应（>250K 反事实），但只量化不校正。与 CSD 的第一层（反事实生成）方法论相近，但 CSD 增加了 DML 校正层。\n- 调研总结：该领域当前呈现两条平行发展的技术路线——(1) 白盒因果方法（内部表示干预、训练时增强）快速发展但无法应用于闭源模型；(2) 黑盒方法仍停留在观测回归或 prompt 工程层面。CSD 的核心定位——将半参数因果推断引入黑盒 judge 去偏——在调研中未发现直接竞争者，gap 是真实的。\n\n---\n\n【发掘点 1】\n- 维度: 核心 claim 强化\n- 内容: Proposal 当前将 \"dual-layer causal identification\" 主要呈现为解决 \"imperfect counterfactual\" 这一技术难题的方案。但这低估了它的方法论深度。更有力的 framing 是：**CSD 建立了一个从经济计量学的半参数效率理论到 NLP 评估去偏的桥梁，证明反事实干预 + DML 交叉拟合不仅解决了不完美反事实问题，还提供了 RATE 的 double-rewrite 策略所不具备的理论属性——$\\sqrt{n}$-一致性和半参数效率界。** 当前写法中 DML 的理论优势（doubly-robust、semiparametric efficiency）被淹没在技术细节中，没有被提升为核心差异化论点。建议在 Core Contributions 部分明确对比：RATE 的 double-rewrite 是 **algorithmic bias correction**（依赖重写偏差的对称性假设），而 CSD 的 DML 是 **statistical bias correction**（依赖半参数统计理论，对偏差结构的假设更弱）。这不仅是效率之争（7x vs 25x），而是因果识别 paradigm 的差异。\n- 价值: 直接强化 Novelty 维度。审稿人在面对 \"counterfactual + regression\" 的组合时，容易将其视为 engineering contribution。将核心贡献提升到 **methodological bridging** 的高度——从经济计量学到 NLP 评估的跨领域方法论迁移——能显著提高 novelty 的感知度，让审稿人认识到这不仅是 \"又一个去偏方法\"，而是引入了一个更强的理论工具。\n- 调研依据: RATE (ICML 2025) 的 double-rewrite 依赖 \"rewriting the rewrite cancels rewrite-induced bias\" 这一对称性假设，这在 RATE 论文中被讨论为核心 assumption。CSD 的 DML 路线绕过了这一假设，但 proposal 未充分挖掘这一理论优势的 framing 价值。\n\n【发掘点 2】\n- 维度: significance 提升\n- 内容: ISE (Interventional Style Effect) 作为标准化诊断指标的潜力被严重低估。当前 proposal 在 Contribution 3 中仅用一段话描述 ISE，并以 \"potential as a community-standard bias reporting metric analogous to FID\" 一笔带过。建议将 ISE 的意义从 \"诊断副产品\" 提升为 **独立的、可能影响评估实践范式的贡献**。具体来说：(1) ISE 提供了第一个 **可跨 judge、跨域、跨版本对比的因果偏差量化标准**——这与 Soumik (arXiv:2604.23178) 的观测性 style bias score（0.76-0.92）形成鲜明对比，后者无法区分因果效应和相关性；(2) ISE 可以作为 **judge 选型的定量依据**（\"在此任务上选择 formality ISE 最低的 judge\"），这是目前 LLM judge 选型缺乏的；(3) ISE 可以 **追踪模型版本迭代中偏差的变化**（\"GPT-4o → GPT-5 的 verbosity ISE 降低了 40%\"），为模型提供商提供可操作的偏差审计工具。建议在 paper 中用一个小节专门讨论 ISE 的应用场景和标准化潜力，并论证为什么因果量化（而非观测相关性）对偏差报告至关重要。\n- 价值: 直接提升 Significance。即使 CSD 的去偏效果增量有限，ISE 作为独立的偏差审计标准仍有独立价值。这为 paper 提供了\"双保险\"的贡献结构——即使审稿人对去偏效果的增量存疑，ISE 本身就值得发表。\n- 调研依据: Soumik (arXiv:2604.23178) 量化了 style bias 为 0.76-0.92，但这是观测性指标。当前领域缺乏统一的、因果性的偏差量化标准，审稿人对 \"bias 很大\" 的判断依赖各自的 ad-hoc 指标。ISE 填补的不仅是技术空白，更是评估范式的空白。\n\n【发掘点 3】\n- 维度: related work 差异化\n- 内容: Proposal 遗漏了两篇与 CSD 方法论或应用场景直接相关的工作：**(1) UDA (arXiv:2508.09724, AAAI 2026)**——同为黑盒、后处理的 judge 去偏方法，通过自适应 Elo K-factor 降低 judge 间分歧。虽然机制完全不同（共识驱动 vs. 因果识别），但审稿人很可能将其视为同一赛道的竞争者。Proposal 应明确讨论并区分：UDA 通过 judge 集成实现去偏（需要多个 judge），CSD 通过因果分解实现去偏（在单个 judge 上工作），两者互补。**(2) Nonparametric LLM Evaluation from Preference Data (arXiv:2601.21816)**——同样在 LLM 评估中使用 DML 风格的半参数推断。虽然目标不同（ranking 估计 vs. 分数去偏），但共享 DML 方法论基础，审稿人可能追问 CSD 与此工作的关系。\n- 价值: 直接提升 Related Work 差异化，预防审稿人的 \"missing related work\" 质疑。UDA 的遗漏尤其危险，因为它在 AAAI 2026 发表，知名度高，且同属黑盒 judge 去偏这一赛道。\n- 调研依据: UDA (arXiv:2508.09724) 和 Nonparametric LLM Evaluation (arXiv:2601.21816) 均在调研中发现，与 CSD 在方法论或应用场景上存在交叉。\n\n【发掘点 4】\n- 维度: novelty 锐化\n- 内容: Legitimacy-aware correction（α 参数）是一个被低估的概念贡献。当前 proposal 将其呈现为 \"domain-conditional parameter\"，但其思想内核远不止于此。建议将 α 参数与公平性文献中的经典区分——**legitimate vs. illegitimate factors in decision-making**——显式关联。在因果公平性框架（Kilbertus et al. 2017, Nabi & Shpitser 2018）中，路径特定的因果效应被分为 \"通过合法路径的效应\" 和 \"通过非法路径的效应\"。CSD 的 α 机制本质上做的是同一件事：在 judge 评分中区分 **通过合法路径的风格影响**（如：技术文档中格式确实反映组织能力）和 **通过非法路径的风格偏差**（如：judge 对 markdown 格式的无差别偏好）。这个类比不仅增强 α 的理论根基，还将 CSD 的贡献连接到更广泛的因果公平性研究，扩大论文的受众面。\n- 价值: 同时提升 Novelty（将 engineering parameter 提升为概念框架）和 Significance（连接到更广泛的因果公平性领域）。这个连接是有实质内容的，不是生硬嫁接——judge 去偏和公平性文献面对的核心问题是一样的：哪些影响因素是应该保留的，哪些是应该消除的。\n- 调研依据: 基于领域整体趋势判断。当前 LLM 去偏文献（LC-AlpacaEval、BBE、RBD 等）均采用 \"风格效应 = 偏差，应完全消除\" 的隐含假设。CASSE (arXiv:2601.10809) 实证发现移除风格有 unintended side effects，但没有提出区分合法/非法风格影响的框架。CSD 的 α 机制是该领域第一个系统性地处理这一区分的尝试。\n\nSources:\n- [RATE: Causal Explainability of Reward Models with Imperfect Counterfactuals](https://arxiv.org/abs/2410.11348)\n- [Judging the Judges: Systematic Evaluation of Bias Mitigation Strategies (Soumik)](https://arxiv.org/abs/2604.23178)\n- [RBD: Debiasing with a Reasoning-based Bias Detector](https://arxiv.org/abs/2505.17100)\n- [CASSE: Side Effects of Style Features](https://arxiv.org/abs/2601.10809)\n- [Causal Rubrics / CROME](https://arxiv.org/abs/2506.16507)\n- [CoLD: Counterfactually-Guided Length Debiasing](https://arxiv.org/abs/2507.15698)\n- [Debiasing Reward Models via Causally Motivated Inference-Time Intervention](https://arxiv.org/abs/2604.27495)\n- [CMBE: Multi-Bias Elimination via Causal Effect Estimation](https://arxiv.org/abs/2505.16522)\n- [CRM: Beyond Reward Hacking via Causal Rewards](https://arxiv.org/abs/2501.09620)\n- [FairJudge](https://arxiv.org/abs/2602.06625)\n- [BBE: Bias-Bounded Evaluation](https://arxiv.org/abs/2603.05485)\n- [UDA: Unsupervised Debiasing Alignment](https://arxiv.org/abs/2508.09724)\n- [Counterfactual LLM-based Framework for Measuring Rhetorical Style](https://arxiv.org/abs/2512.19908)\n- [Preference Leakage](https://arxiv.org/abs/2502.01534)\n- [Nonparametric LLM Evaluation from Preference Data](https://arxiv.org/abs/2601.21816)\n\n【补救 agent 本轮输出】:\nNow I have sufficient research to provide a thorough experimental design review. Let me synthesize my findings.\n\n---\n\n【状态】: 有缺陷待补救\n\n【前置调研发现】\n- **RATE (ICML 2025, arXiv:2410.11348)**: Uses double-rewrite protocol on IMDB, ELI5, HelpSteer, HH-RLHF datasets. Baselines include single-rewrite ATE and observational regression. Key finding: imperfect counterfactuals introduce substantial bias. Ablation on rewriter choice and attribute axis.\n- **Soumik (arXiv:2604.23178)**: Tests 9 prompt-based debiasing strategies across 5 judges. Baselines: minimal prompt, calibrated rubric, CoT, position swap, combined budget. Evaluates style bias (0.76–0.92), position bias (≤0.04), verbosity bias. Reports per-model per-strategy matrices.\n- **FairJudge (arXiv:2602.06625)**: SFT→DPO→GRPO training curriculum. Evaluates on multiple benchmarks for agreement/F1 improvement, bias reduction across position, length, format, and model provenance. White-box only.\n- **BBE (arXiv:2603.05485)**: DP-inspired Gaussian noise injection. Evaluated on Arena-Hard-Auto with 4 judges. Reports (τ=0.5, δ=0.01) bias-bounded guarantees while retaining 61–99% correlation with original rankings. Limited to formatting perturbations.\n- **RBD (NeurIPS 2025, arXiv:2505.17100)**: Fine-tuned detector (1.5B–14B) + self-correction. Evaluates on 4 bias types (verbosity, position, bandwagon, sentiment) across 8 LLM evaluators. Reports +18.5% accuracy, +10.9% consistency. Baselines: prompting-based methods, fine-tuned judges.\n- **Causal Rubrics / CROME (ICML 2025, arXiv:2506.16507)**: Causal + neutral augmentations for reward model robustness. Evaluates on RewardBench (+5.4% avg), WildGuardTest, GSM8k, reWordBench (+9.1% aggregate). Reports per-category breakdowns (Safety +13.2%, Reasoning +7.2%).\n- **LC-AlpacaEval (ICLR 2025, arXiv:2404.04475)**: Logistic regression debiasing on length dimension. Increases Spearman correlation with Chatbot Arena from 0.93→0.98. Known issues: high variance in LC win rates, adversarial vulnerability.\n- **RewardBench 2 (arXiv:2506.01937)**: Best-of-4 format (25% random baseline), 6 domains (math, safety, instruction following, focus, factuality, ties). ~20pp harder than RewardBench 1. Reports downstream correlation with BoN and PPO.\n- **Counterfactual Style Measurement (arXiv:2512.19908)**: LLM persona rewrites + pairwise BT aggregation on 8,485 ICLR papers (>250K counterfactuals). Quantifies rhetorical style effects but does not correct scores.\n- **CoLD (arXiv:2507.15698)**: Counterfactual reasoning + causal graph for length debiasing of PRMs. Three components: length-penalty, learned bias estimator, joint training. White-box, single-dimension (length), training-time only.\n- **BERTScore Limitations (arXiv:2511.09997)**: BERTScore's token-level matching fails to distinguish semantically critical numerical differences; false positive rates depend heavily on domain (2% FP at ~0.955 F1 threshold for reading tasks).\n\n- **调研总结**: 这个领域当前的实验设计标准要求：(1) 多 judge × 多 benchmark 的交叉评估矩阵；(2) compute-normalized baselines（同等推理预算下的公平对比）；(3) 对 counterfactual 质量的严格验证（自动+人工）；(4) per-axis / per-domain 的细粒度分析；(5) 与 human ground truth 的相关性分析。审稿人普遍期望 ablation 能隔离每个组件的贡献，且 statistical significance 需有置信区间支撑。该 proposal 的实验设计框架整体相当扎实——5 judges × 5 benchmarks、8 baselines、9 项 ablations、统计分析方案均达到或超过领域标准。以下缺陷为可补救的精细化问题，无方向性致命缺陷。\n\n---\n\n【缺陷 1】\n- 类别: 评估方案缺陷\n- 问题: MT-Bench 仅有 80 条 multi-turn dialogue，proposal 在 §4.9 中提及\"Discussion of statistical power for smaller benchmarks (e.g., MT-Bench ~80 multi-turn dialogues)\"作为 supplementary，但 DML 的 5-fold cross-fitting 要求每 fold 至少有足够样本量来训练 nuisance function $g(\\cdot)$。以 80 条为例，每 fold 仅 64 条训练、16 条估计，gradient-boosted trees 的 nuisance function 在如此小的样本上几乎无法可靠估计，DML 的 $\\sqrt{n}$-consistency 保证在有限样本下可能严重退化。这不仅是统计功效问题，更是方法是否能在该 benchmark 上产生有意义结果的根本问题。如果 MT-Bench 上的 DML 估计完全不可靠，审稿人会质疑为什么要在该 benchmark 上报告结果。\n- 严重度: 可补救\n- 补救方案: (1) 对 MT-Bench 改用 leave-one-out cross-fitting 或 3-fold（而非 5-fold）以增加每 fold 训练样本；(2) 在 MT-Bench 上额外报告 bootstrap confidence interval width，如果 CI 过宽则诚实报告并将其定位为 \"directional evidence\" 而非 strong claim；(3) 考虑将 MT-Bench 的分析粒度从 per-response 提升到 per-response-per-turn（80 questions × 2 turns × 多个被评模型的回复 = 更多 observations），明确说明 effective sample size；(4) 替代方案：如果 MT-Bench 确实 n 太小，可以将其作为 supplementary 中的 case study 而非主表结果，主表聚焦 n 更大的 benchmarks（SOS-Bench, RewardBench, RewardBench 2, Arena-Hard-Auto）。\n- 调研依据: DML 文献（Chernozhukov et al. 2018）的 $\\sqrt{n}$-consistency 是渐近结果；MT-Bench 的 80 条数据量在 DML cross-fitting 中已知是极端小样本场景。BBE (arXiv:2603.05485) 仅在 Arena-Hard-Auto 上评估而非 MT-Bench，可能也有类似考量。\n\n【缺陷 2】\n- 类别: baseline 不足或过时\n- 问题: Proposal 中的 8 个 baselines 覆盖了主要方法类别，但缺少 **RBD (NeurIPS 2025, arXiv:2505.17100)** 作为实际跑分 baseline。Proposal 在 related work 中提到了 RBD（\"+18.5% accuracy\"），但 baseline 表中没有纳入。RBD 是目前最新的 NeurIPS 2025 plug-in debiasing 方法，与 CSD 同样是 black-box compatible（通过外部模块工作），且有强实验结果。审稿人极有可能要求与 RBD 对比，尤其是 RBD 也号称 \"any LLM can be a reliable judge\"。\n- 严重度: 可补救\n- 补救方案: 将 RBD 纳入 baseline 表。RBD 有 1.5B–14B 开源模型，可以直接获取。inference cost 约为 2x（一次 bias detection + 一次 self-correction），在 compute-normalized comparison 中应标注为 ~2x。注意 RBD 主要针对 verbosity + position bias，不完全覆盖 formality/formatting，这正是 CSD 的差异化优势——但必须在实验中公平展示。\n- 调研依据: RBD (NeurIPS 2025) 在 8 个 LLM evaluator 上验证了有效性，是目前 plug-in debiasing 领域的 SOTA。Soumik (arXiv:2604.23178) 也将 RBD 类策略纳入了比较范围。\n\n【缺陷 3】\n- 类别: 评估方案缺陷\n- 问题: Proposal 的 \"ground-truth quality\" 定义不够清晰。§4.4 中 primary metric 提到 \"pairwise accuracy, Spearman/Kendall-τ correlation with ground-truth quality\"，但不同 benchmark 的 ground truth 性质差异巨大：RewardBench/RewardBench 2 有明确的 chosen/rejected labels；SOS-Bench 有 style-substance 分离的人工标注；Arena-Hard-Auto 用 Chatbot Arena 排名作为 proxy ground truth；MT-Bench 有 GPT-4 reference scores 和部分人工标注。**如果 CSD 的目标是去除 style bias，那么理想的 ground truth 应该是 \"content-only quality\"——但大部分 benchmark 的 human labels 本身也可能包含 style 影响。** 审稿人会质疑：你用来衡量 debiasing 效果的 ground truth 本身是否也是 style-biased？\n- 严重度: 可补救\n- 补救方案: (1) 在论文中明确讨论每个 benchmark 的 ground truth 的 style-contamination 程度——例如 RewardBench 的 chosen/rejected 是否经过 style normalization；(2) 将 SOS-Bench 作为 **primary validation benchmark**，因为它的设计目标就是分离 style 和 substance，其 ground truth 最适合评估 debiasing 效果；(3) 对 Arena-Hard-Auto 和 MT-Bench，诚实讨论 ground truth 可能本身含有 style preference 的局限性；(4) 在 human evaluation（§4.6）中，让标注者**分别评分 content quality 和 presentation quality**（proposal 已经有这个设计，很好），明确将 human content-only score 作为最纯净的 ground truth anchor。\n- 调研依据: LC-AlpacaEval (arXiv:2404.04475) 使用 Chatbot Arena 作为 proxy ground truth 并达到 0.98 Spearman correlation，但 Chatbot Arena 本身的投票也受 style 影响。RubricBench (arXiv:2603.01562) 揭示了 human rubric 与 model rubric 在 hard samples 上 27% 的 accuracy gap，暗示 ground truth 的质量是关键问题。\n\n【缺陷 4】\n- 类别: ablation 不完整\n- 问题: §4.5 的 ablation 设计已经相当丰富（9 项），但缺少一个关键 ablation：**CSD without DML (naive paired difference)**。Proposal 在 §3.2 中论证了 DML 相对于 naive ATE estimation 的优势（处理 imperfect counterfactuals），但 ablation 列表中的 \"Decomposition method: Linear regression vs. DML vs. nonparametric kernel estimation\" 不完全等同于 \"no DML at all\"。具体来说，应该有一个 ablation 直接用 paired score difference（original vs. counterfactual 的简单均值差）作为 $\\hat{\\beta}_d$ 的估计，完全不做 DML 的 nuisance function 拟合。这是验证 DML 层是否真正 adds value 的最直接对照。\n- 严重度: 可补救\n- 补救方案: 在 ablation §4.5.1 中增加 \"Naive Paired Difference (no nuisance adjustment)\" 作为 decomposition method 的一个额外条件。具体做法：$\\hat{\\beta}_d^{naive} = \\frac{1}{n}\\sum_i (Score(r_i^{+d}) - Score(r_i^{-d}))$，直接用作 correction。与 DML 估计对比，可以量化 DML 的 nuisance absorption 带来的增量收益。这也回应了 RATE (ICML 2025) 关于 imperfect counterfactuals 的核心 concern。\n- 调研依据: RATE (arXiv:2410.11348) 明确展示了 naive single-rewrite ATE vs. double-rewrite ATE 的差异，CSD 应提供类似的 naive vs. DML 对比。\n\n【缺陷 5】\n- 类别: 可行性问题\n- 问题: Proposal 声称 CSD 需要 7x judge calls，但实际总推理成本被低估了。每个 response 需要：(1) 1 次 rewriter 调用生成 6 counterfactuals（或 6 次 rewriter 调用，每个 axis 2 个方向）；(2) 6 次 content preservation gate 检查（BERTScore + NLI）；(3) 最多 3 次 retry per failed counterfactual；(4) 7 次 judge 调用。如果使用 proprietary judge（如 GPT-4o），5 benchmarks × hundreds of instances × 7 judge calls = 大量 API 成本。此外，对于 pairwise benchmarks（Arena-Hard-Auto, SOS-Bench），每个 instance 有 2 个 response，实际是 14 judge calls per instance。对于 RewardBench 2 的 best-of-4 格式，是 28 judge calls per instance。跨 5 个 proprietary judges 做全部 5 benchmarks 的 API 成本可能相当可观。\n- 严重度: 可补救\n- 补救方案: (1) 在 proposal 中提供一个详细的 **cost breakdown table**：列出每个 benchmark 的 instance 数量、每个 instance 的 judge calls 数量（考虑 pointwise/pairwise/multi-choice 格式）、retry 预算，以及总 API call 估算；(2) 明确区分 rewriter cost（可用开源 Qwen3-32B 本地推理）和 judge cost（部分需 API）；(3) 对成本敏感的实验（如全矩阵 5×5），考虑是否需要 subsample 某些大 benchmark；(4) 提供 total estimated cost in USD（审稿人越来越关注 reproducibility 和 compute accessibility）。这不影响方法本身的 validity，但有助于审稿人评估 reproducibility。\n- 调研依据: Arena-Hard-Auto 的评估成本约 $20 for baseline；BBE (arXiv:2603.05485) 和 LC-AlpacaEval (arXiv:2404.04475) 的成本优势（1x）是它们的卖点之一。CSD 的 7x 开销需要透明地与这些方法比较。\n\n【缺陷 6】\n- 类别: 实验设计不足\n- 问题: §3.1 的 content preservation gates 使用 BERTScore ≥ 0.92 AND NLI entailment ≥ 0.95 作为 threshold，但 BERTScore 对**数值差异**不敏感（FinNuE, arXiv:2511.09997 指出 BERTScore 的 token-level matching 无法区分语义关键的数值差异），且对 **code/structured content**（如果 responses 包含代码片段或数学公式）可能完全失效。在 RewardBench 2 的 math domain 或需要精确 instruction following 的 domain 中，counterfactual rewrites 可能在保持 BERTScore 高分的同时引入了语义偏移。NLI 模型对长文本的可靠性也存疑（大部分 NLI 模型在 >512 token 时性能下降）。\n- 严重度: 可补救\n- 补救方案: (1) 增加 **domain-specific content preservation check**：对数学/代码 domain 使用 exact-match 或 execution-based equivalence check（如代码执行结果一致性）；(2) 在 manipulation check ablation（§4.5.8）中加入 **per-domain false positive analysis**：报告每个 benchmark domain 中 automated gates 的 false positive rate；(3) human evaluation 中的 counterfactual quality audit（§4.6）应明确按 domain 分层——math/code responses 与 open-ended responses 的 content preservation quality 可能差异很大；(4) 考虑补充 GPT-4o-based semantic equivalence check 作为 automated gate 的第三层验证。\n- 调研依据: FinNuE (arXiv:2511.09997) 明确揭示了 BERTScore 对数值的盲区；RewardBench 2 (arXiv:2506.01937) 包含 math 和 factuality domains，这些 domain 对内容精确性要求更高。\n\n【缺陷 7】\n- 类别: compute 公平性问题\n- 问题: Proposal 已经包含了 \"7-Call Majority Vote\" 作为 compute-normalized baseline（很好），但 **accuracy-per-judge-call curve**（§4.4）的设计细节不够明确。具体来说：(1) 1x 和 3x 预算下 CSD 如何运作？CSD 需要最少 7 calls（1 original + 6 counterfactuals），无法在 <7x 预算下运行完整方法；(2) 5x 预算下是否意味着只用 2 个 axis 而非 3 个？如果是，需要明确 axis selection 策略。这条 curve 对展示 CSD 的 cost-effectiveness 至关重要，但如果 CSD 在 <7x 时根本不能参与比较，那 curve 的意义主要在于展示低预算 baselines vs. CSD at 7x vs. RATE at 25x，应明确说明。\n- 严重度: 可补救\n- 补救方案: (1) 在 accuracy-per-judge-call curve 中，明确标注 CSD 仅在 7x 点有数据，而不是画一条连续 curve；(2) 利用 per-axis ablation 的结果（§4.5.2）构建 \"CSD-lite\" variants：1-axis CSD (3x: 1 original + 2 counterfactuals)、2-axis CSD (5x)、full 3-axis CSD (7x)，这样可以在 3x 和 5x 预算点上展示 CSD 的 graceful degradation；(3) 将 RATE-corrected 在 25x 点上的表现与 CSD at 7x 直接比较，如果 CSD 在 7x 已经接近 RATE at 25x，这是强有力的 efficiency argument。\n- 调研依据: 基于领域实验规范判断。Compute-normalized comparison 在 RLHF/evaluation 文献中越来越受重视（Best-of-N scaling curves 是标准做法），但需要明确方法在不同预算点的具体操作方式。\n\n【缺陷 8】\n- 类别: 实验设计不足\n- 问题: Proposal 未讨论 **style axis 之间的交互效应（interaction effects）和 entanglement**。CASSE (arXiv:2601.10809) 的核心发现是 style features \"deeply entangled rather than orthogonal\"，例如 prompting for conciseness significantly reduces perceived expertise。CSD 的 correction formula（§3.3）是 **additive**：$Score_{debiased} = Score_{original} - \\sum_d (1-\\alpha_d) \\hat{\\beta}_d (Style_d - Style_{ref})$，这隐含假设了 style effects 是线性可加的。如果 formality 和 verbosity 之间存在强交互效应（例如，formal + verbose 的 bias 远大于 formal bias + verbose bias），additive correction 会 under- or over-correct。Proposal 在 §3.1 中提到\"treat their approximate independence as an empirical hypothesis to be verified (via correlation analysis of ISE estimates across axes)\"，但这只检验了 ISE estimates 的相关性，而非 correction formula 的 additivity 假设。\n- 严重度: 可补救\n- 补救方案: (1) 增加一个 ablation 检验交互效应：除了 3 个 single-axis 和 3 个 pairwise combinations（已有），增加检查 pairwise combination 的效果是否等于两个 single-axis 效果之和（$\\hat{\\beta}_{d_1 \\cup d_2}$ vs. $\\hat{\\beta}_{d_1} + \\hat{\\beta}_{d_2}$）；(2) 在 DML 框架中加入交互项：$Score = \\beta_1 Style_1 + \\beta_2 Style_2 + \\beta_3 Style_3 + \\gamma_{12} Style_1 \\times Style_2 + \\ldots + g(Content) + \\epsilon$，检验 $\\gamma$ 是否显著为零；(3) 如果交互效应显著，讨论 additive correction 的 approximation error 量级，以及是否需要 joint correction。\n- 调研依据: CASSE (arXiv:2601.10809) 的核心 finding 是 style feature entanglement，这是 CSD 必须直接回应的实证发现。\n\n【缺陷 9】\n- 类别: 实验设计不足\n- 问题: Proposal 缺少对 **judge version sensitivity** 的讨论和实验设计。Proprietary judges（GPT-4o, Claude Sonnet 4, Gemini 2.5 Pro）会随时间更新，CSD 估计的 $\\hat{\\beta}_d$ 是特定于某一 judge version 的。如果 GPT-4o 在实验完成后更新了版本，CSD 的 calibration 可能需要重做。这对 CSD 作为 \"practical debiasing tool\" 的定位有影响。虽然这不影响论文的学术贡献，但审稿人可能会在 limitations 中要求讨论。\n- 严重度: 可补救\n- 补救方案: (1) 在 limitations section 中明确讨论 model version dependency；(2) 如果时间和预算允许，用同一 judge 的不同 snapshot（如 GPT-4o 的不同日期 API version）做一个小规模 stability check，观察 ISE 在 minor version 更新间的变化幅度；(3) 将 ISE 的 version-tracking 功能作为 CSD 的优势之一来 frame——正是因为 ISE 能量化 bias，所以它可以用来 monitor judge drift over time。\n- 调研依据: 基于领域实验规范判断。Preference Leakage (ICLR 2026, arXiv:2502.01534) 关注了 judge-generator 之间的 contamination，但未讨论 judge version 变化对 calibration 的影响。\n\n---\n\n**总体评估**: 这个 proposal 的实验设计框架在该领域中属于**中上水平**——5 judges × 5 benchmarks 的覆盖面、8 个涵盖多种方法类型的 baselines、9 项 ablations、严格的统计分析方案和 human evaluation 设计，均表明作者对实验设计有深入思考。上述 9 个缺陷均为**可补救的精细化问题**，而非方向性致命缺陷。最优先处理的是：缺陷 2（补 RBD baseline）、缺陷 4（补 naive paired difference ablation）、缺陷 8（检验 additivity 假设），这三个最可能被审稿人明确要求。其余缺陷（MT-Bench 样本量、ground truth 讨论、content preservation 的 domain-specific 验证、cost breakdown、compute curve 细节、version sensitivity）属于完善性建议，补上会显著提升论文的 rigor 和说服力。\n\nSources:\n- [RATE: Causal Explainability of Reward Models with Imperfect Counterfactuals](https://arxiv.org/abs/2410.11348)\n- [Soumik: Judging the Judges](https://arxiv.org/html/2604.23178v1)\n- [FairJudge: An Adaptive, Debiased, and Consistent LLM-as-a-Judge](https://arxiv.org/abs/2602.06625)\n- [BBE: Towards Provably Unbiased LLM Judges via Bias-Bounded Evaluation](https://arxiv.org/abs/2603.05485)\n- [RBD: Any Large Language Model Can Be a Reliable Judge](https://arxiv.org/abs/2505.17100)\n- [Causal Rubrics / CROME: Robust Reward Modeling via Causal Rubrics](https://arxiv.org/abs/2506.16507)\n- [LC-AlpacaEval: Length-Controlled AlpacaEval](https://arxiv.org/abs/2404.04475)\n- [RewardBench 2: Advancing Reward Model Evaluation](https://arxiv.org/abs/2506.01937)\n- [Counterfactual LLM-based Framework for Measuring Rhetorical Style](https://arxiv.org/abs/2512.19908)\n- [CoLD: Counterfactually-Guided Length Debiasing for Process Reward Models](https://arxiv.org/abs/2507.15698)\n- [CASSE: A Concise Agent is Less Expert](https://arxiv.org/html/2601.10809)\n- [Preference Leakage: A Contamination Problem in LLM-as-a-judge](https://arxiv.org/abs/2502.01534)\n- [PRECISE: Reducing the Bias of LLM Evaluations](https://arxiv.org/abs/2601.18777)\n- [FinNuE: Exposing the Risks of Using BERTScore for Numerical Semantic Evaluation](https://arxiv.org/html/2511.09997v1)\n- [RubricBench](https://arxiv.org/abs/2603.01562)\n- [MT-Bench: Judging LLM-as-a-Judge](https://arxiv.org/pdf/2306.05685)"
+              }
+            }
+          ],
+          "id": "event-000166"
+        },
+        {
+          "source_line": 167,
+          "timestamp": "2026-05-20T05:26:36.566Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-20T05:26:36.566Z",
+                "sessionId": "c8ddb01f-fc6b-4647-bff1-fa0d392be333"
+              }
+            }
+          ],
+          "id": "event-000167"
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "messages": [
+        {
+          "source_line": 168,
+          "timestamp": "2026-05-20T05:26:36.620Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "【任务】: 以「角色 B：迭代中」整合第 3 轮 worker 输出，按指定格式输出决策、概率估计、以及（若继续）下一轮 proposal 纯净版。\n\n【发掘 agent 本轮输出】:\nNow I have sufficient research to make a well-grounded assessment. Let me synthesize my findings.\n\n---\n\n【状态】: 有发掘空间\n\n【前置调研发现】\n- **RATE (arXiv:2410.11348, ICML 2025)**: 最接近的因果方法。通过 double-rewrite 协议解决不完美反事实问题，但仅提供可解释性（不提供校正分数），且推理成本 ~25x。CSD 与 RATE 的差异化定位清晰且合理——DML 吸收 vs. double-rewrite 抵消是两种不同的因果识别策略。\n- **Causal Rubrics / CROME (arXiv:2506.16507, ICML 2025)**: 通过因果数据增强（causal augmentations + neutral augmentations）训练鲁棒 reward model，RewardBench 提升 5.4%。白盒、训练时，与 CSD 的黑盒、后处理定位形成互补而非竞争。\n- **CoLD (arXiv:2507.15698)**: 反事实推理 + 因果图分析用于 process reward model 的长度去偏。限于训练时、单维度（长度）、白盒，进一步确认了 CSD 所声称的 gap 的真实性。\n- **CMBE (arXiv:2505.16522, AAAI 2027)**: 同时估计多种偏差的因果效应并在推理时消除。概念上最接近 CSD 的多维因果去偏，但限于白盒模型。CSD 应更清晰地与 CMBE 区分——不仅是黑盒 vs. 白盒，更是因果识别策略的差异（CMBE 依赖模型内部表示，CSD 依赖外部反事实干预）。\n- **UDA (arXiv:2508.09724, AAAI 2026)**: 通过自适应调整 Elo K-factor 实现无监督的 pairwise judge 去偏，降低 judge 间分歧 63.4%。黑盒、后处理，但机制完全不同（共识驱动 vs. 因果识别）。**Proposal 未引用此工作，可能构成 related work 遗漏。**\n- **Nonparametric LLM Evaluation from Preference Data (arXiv:2601.21816, 2026)**: 将 DML 风格的去偏估计器应用于 LLM 排名，从偏好数据中导出半参数有效估计。与 CSD 共享 DML 方法论基础但目标不同（ranking 估计 vs. 分数去偏）。**Proposal 未引用此工作，可能被审稿人视为 DML-in-LLM-evaluation 方向的遗漏。**\n- **CASSE (arXiv:2601.10809)**: 12 种风格特征深度纠缠的实证发现，为 CSD 的三轴独立性假设提供了重要背景。Proposal 已合理引用并讨论。\n- **Counterfactual LLM-based Style Measurement (arXiv:2512.19908)**: 用 LLM 反事实重写 + Bradley-Terry 聚合量化修辞风格效应（>250K 反事实），但只量化不校正。与 CSD 的第一层（反事实生成）方法论相近，但 CSD 增加了 DML 校正层。\n- 调研总结：该领域当前呈现两条平行发展的技术路线——(1) 白盒因果方法（内部表示干预、训练时增强）快速发展但无法应用于闭源模型；(2) 黑盒方法仍停留在观测回归或 prompt 工程层面。CSD 的核心定位——将半参数因果推断引入黑盒 judge 去偏——在调研中未发现直接竞争者，gap 是真实的。\n\n---\n\n【发掘点 1】\n- 维度: 核心 claim 强化\n- 内容: Proposal 当前将 \"dual-layer causal identification\" 主要呈现为解决 \"imperfect counterfactual\" 这一技术难题的方案。但这低估了它的方法论深度。更有力的 framing 是：**CSD 建立了一个从经济计量学的半参数效率理论到 NLP 评估去偏的桥梁，证明反事实干预 + DML 交叉拟合不仅解决了不完美反事实问题，还提供了 RATE 的 double-rewrite 策略所不具备的理论属性——$\\sqrt{n}$-一致性和半参数效率界。** 当前写法中 DML 的理论优势（doubly-robust、semiparametric efficiency）被淹没在技术细节中，没有被提升为核心差异化论点。建议在 Core Contributions 部分明确对比：RATE 的 double-rewrite 是 **algorithmic bias correction**（依赖重写偏差的对称性假设），而 CSD 的 DML 是 **statistical bias correction**（依赖半参数统计理论，对偏差结构的假设更弱）。这不仅是效率之争（7x vs 25x），而是因果识别 paradigm 的差异。\n- 价值: 直接强化 Novelty 维度。审稿人在面对 \"counterfactual + regression\" 的组合时，容易将其视为 engineering contribution。将核心贡献提升到 **methodological bridging** 的高度——从经济计量学到 NLP 评估的跨领域方法论迁移——能显著提高 novelty 的感知度，让审稿人认识到这不仅是 \"又一个去偏方法\"，而是引入了一个更强的理论工具。\n- 调研依据: RATE (ICML 2025) 的 double-rewrite 依赖 \"rewriting the rewrite cancels rewrite-induced bias\" 这一对称性假设，这在 RATE 论文中被讨论为核心 assumption。CSD 的 DML 路线绕过了这一假设，但 proposal 未充分挖掘这一理论优势的 framing 价值。\n\n【发掘点 2】\n- 维度: significance 提升\n- 内容: ISE (Interventional Style Effect) 作为标准化诊断指标的潜力被严重低估。当前 proposal 在 Contribution 3 中仅用一段话描述 ISE，并以 \"potential as a community-standard bias reporting metric analogous to FID\" 一笔带过。建议将 ISE 的意义从 \"诊断副产品\" 提升为 **独立的、可能影响评估实践范式的贡献**。具体来说：(1) ISE 提供了第一个 **可跨 judge、跨域、跨版本对比的因果偏差量化标准**——这与 Soumik (arXiv:2604.23178) 的观测性 style bias score（0.76-0.92）形成鲜明对比，后者无法区分因果效应和相关性；(2) ISE 可以作为 **judge 选型的定量依据**（\"在此任务上选择 formality ISE 最低的 judge\"），这是目前 LLM judge 选型缺乏的；(3) ISE 可以 **追踪模型版本迭代中偏差的变化**（\"GPT-4o → GPT-5 的 verbosity ISE 降低了 40%\"），为模型提供商提供可操作的偏差审计工具。建议在 paper 中用一个小节专门讨论 ISE 的应用场景和标准化潜力，并论证为什么因果量化（而非观测相关性）对偏差报告至关重要。\n- 价值: 直接提升 Significance。即使 CSD 的去偏效果增量有限，ISE 作为独立的偏差审计标准仍有独立价值。这为 paper 提供了\"双保险\"的贡献结构——即使审稿人对去偏效果的增量存疑，ISE 本身就值得发表。\n- 调研依据: Soumik (arXiv:2604.23178) 量化了 style bias 为 0.76-0.92，但这是观测性指标。当前领域缺乏统一的、因果性的偏差量化标准，审稿人对 \"bias 很大\" 的判断依赖各自的 ad-hoc 指标。ISE 填补的不仅是技术空白，更是评估范式的空白。\n\n【发掘点 3】\n- 维度: related work 差异化\n- 内容: Proposal 遗漏了两篇与 CSD 方法论或应用场景直接相关的工作：**(1) UDA (arXiv:2508.09724, AAAI 2026)**——同为黑盒、后处理的 judge 去偏方法，通过自适应 Elo K-factor 降低 judge 间分歧。虽然机制完全不同（共识驱动 vs. 因果识别），但审稿人很可能将其视为同一赛道的竞争者。Proposal 应明确讨论并区分：UDA 通过 judge 集成实现去偏（需要多个 judge），CSD 通过因果分解实现去偏（在单个 judge 上工作），两者互补。**(2) Nonparametric LLM Evaluation from Preference Data (arXiv:2601.21816)**——同样在 LLM 评估中使用 DML 风格的半参数推断。虽然目标不同（ranking 估计 vs. 分数去偏），但共享 DML 方法论基础，审稿人可能追问 CSD 与此工作的关系。\n- 价值: 直接提升 Related Work 差异化，预防审稿人的 \"missing related work\" 质疑。UDA 的遗漏尤其危险，因为它在 AAAI 2026 发表，知名度高，且同属黑盒 judge 去偏这一赛道。\n- 调研依据: UDA (arXiv:2508.09724) 和 Nonparametric LLM Evaluation (arXiv:2601.21816) 均在调研中发现，与 CSD 在方法论或应用场景上存在交叉。\n\n【发掘点 4】\n- 维度: novelty 锐化\n- 内容: Legitimacy-aware correction（α 参数）是一个被低估的概念贡献。当前 proposal 将其呈现为 \"domain-conditional parameter\"，但其思想内核远不止于此。建议将 α 参数与公平性文献中的经典区分——**legitimate vs. illegitimate factors in decision-making**——显式关联。在因果公平性框架（Kilbertus et al. 2017, Nabi & Shpitser 2018）中，路径特定的因果效应被分为 \"通过合法路径的效应\" 和 \"通过非法路径的效应\"。CSD 的 α 机制本质上做的是同一件事：在 judge 评分中区分 **通过合法路径的风格影响**（如：技术文档中格式确实反映组织能力）和 **通过非法路径的风格偏差**（如：judge 对 markdown 格式的无差别偏好）。这个类比不仅增强 α 的理论根基，还将 CSD 的贡献连接到更广泛的因果公平性研究，扩大论文的受众面。\n- 价值: 同时提升 Novelty（将 engineering parameter 提升为概念框架）和 Significance（连接到更广泛的因果公平性领域）。这个连接是有实质内容的，不是生硬嫁接——judge 去偏和公平性文献面对的核心问题是一样的：哪些影响因素是应该保留的，哪些是应该消除的。\n- 调研依据: 基于领域整体趋势判断。当前 LLM 去偏文献（LC-AlpacaEval、BBE、RBD 等）均采用 \"风格效应 = 偏差，应完全消除\" 的隐含假设。CASSE (arXiv:2601.10809) 实证发现移除风格有 unintended side effects，但没有提出区分合法/非法风格影响的框架。CSD 的 α 机制是该领域第一个系统性地处理这一区分的尝试。\n\nSources:\n- [RATE: Causal Explainability of Reward Models with Imperfect Counterfactuals](https://arxiv.org/abs/2410.11348)\n- [Judging the Judges: Systematic Evaluation of Bias Mitigation Strategies (Soumik)](https://arxiv.org/abs/2604.23178)\n- [RBD: Debiasing with a Reasoning-based Bias Detector](https://arxiv.org/abs/2505.17100)\n- [CASSE: Side Effects of Style Features](https://arxiv.org/abs/2601.10809)\n- [Causal Rubrics / CROME](https://arxiv.org/abs/2506.16507)\n- [CoLD: Counterfactually-Guided Length Debiasing](https://arxiv.org/abs/2507.15698)\n- [Debiasing Reward Models via Causally Motivated Inference-Time Intervention](https://arxiv.org/abs/2604.27495)\n- [CMBE: Multi-Bias Elimination via Causal Effect Estimation](https://arxiv.org/abs/2505.16522)\n- [CRM: Beyond Reward Hacking via Causal Rewards](https://arxiv.org/abs/2501.09620)\n- [FairJudge](https://arxiv.org/abs/2602.06625)\n- [BBE: Bias-Bounded Evaluation](https://arxiv.org/abs/2603.05485)\n- [UDA: Unsupervised Debiasing Alignment](https://arxiv.org/abs/2508.09724)\n- [Counterfactual LLM-based Framework for Measuring Rhetorical Style](https://arxiv.org/abs/2512.19908)\n- [Preference Leakage](https://arxiv.org/abs/2502.01534)\n- [Nonparametric LLM Evaluation from Preference Data](https://arxiv.org/abs/2601.21816)\n\n【补救 agent 本轮输出】:\nNow I have sufficient research to provide a thorough experimental design review. Let me synthesize my findings.\n\n---\n\n【状态】: 有缺陷待补救\n\n【前置调研发现】\n- **RATE (ICML 2025, arXiv:2410.11348)**: Uses double-rewrite protocol on IMDB, ELI5, HelpSteer, HH-RLHF datasets. Baselines include single-rewrite ATE and observational regression. Key finding: imperfect counterfactuals introduce substantial bias. Ablation on rewriter choice and attribute axis.\n- **Soumik (arXiv:2604.23178)**: Tests 9 prompt-based debiasing strategies across 5 judges. Baselines: minimal prompt, calibrated rubric, CoT, position swap, combined budget. Evaluates style bias (0.76–0.92), position bias (≤0.04), verbosity bias. Reports per-model per-strategy matrices.\n- **FairJudge (arXiv:2602.06625)**: SFT→DPO→GRPO training curriculum. Evaluates on multiple benchmarks for agreement/F1 improvement, bias reduction across position, length, format, and model provenance. White-box only.\n- **BBE (arXiv:2603.05485)**: DP-inspired Gaussian noise injection. Evaluated on Arena-Hard-Auto with 4 judges. Reports (τ=0.5, δ=0.01) bias-bounded guarantees while retaining 61–99% correlation with original rankings. Limited to formatting perturbations.\n- **RBD (NeurIPS 2025, arXiv:2505.17100)**: Fine-tuned detector (1.5B–14B) + self-correction. Evaluates on 4 bias types (verbosity, position, bandwagon, sentiment) across 8 LLM evaluators. Reports +18.5% accuracy, +10.9% consistency. Baselines: prompting-based methods, fine-tuned judges.\n- **Causal Rubrics / CROME (ICML 2025, arXiv:2506.16507)**: Causal + neutral augmentations for reward model robustness. Evaluates on RewardBench (+5.4% avg), WildGuardTest, GSM8k, reWordBench (+9.1% aggregate). Reports per-category breakdowns (Safety +13.2%, Reasoning +7.2%).\n- **LC-AlpacaEval (ICLR 2025, arXiv:2404.04475)**: Logistic regression debiasing on length dimension. Increases Spearman correlation with Chatbot Arena from 0.93→0.98. Known issues: high variance in LC win rates, adversarial vulnerability.\n- **RewardBench 2 (arXiv:2506.01937)**: Best-of-4 format (25% random baseline), 6 domains (math, safety, instruction following, focus, factuality, ties). ~20pp harder than RewardBench 1. Reports downstream correlation with BoN and PPO.\n- **Counterfactual Style Measurement (arXiv:2512.19908)**: LLM persona rewrites + pairwise BT aggregation on 8,485 ICLR papers (>250K counterfactuals). Quantifies rhetorical style effects but does not correct scores.\n- **CoLD (arXiv:2507.15698)**: Counterfactual reasoning + causal graph for length debiasing of PRMs. Three components: length-penalty, learned bias estimator, joint training. White-box, single-dimension (length), training-time only.\n- **BERTScore Limitations (arXiv:2511.09997)**: BERTScore's token-level matching fails to distinguish semantically critical numerical differences; false positive rates depend heavily on domain (2% FP at ~0.955 F1 threshold for reading tasks).\n\n- **调研总结**: 这个领域当前的实验设计标准要求：(1) 多 judge × 多 benchmark 的交叉评估矩阵；(2) compute-normalized baselines（同等推理预算下的公平对比）；(3) 对 counterfactual 质量的严格验证（自动+人工）；(4) per-axis / per-domain 的细粒度分析；(5) 与 human ground truth 的相关性分析。审稿人普遍期望 ablation 能隔离每个组件的贡献，且 statistical significance 需有置信区间支撑。该 proposal 的实验设计框架整体相当扎实——5 judges × 5 benchmarks、8 baselines、9 项 ablations、统计分析方案均达到或超过领域标准。以下缺陷为可补救的精细化问题，无方向性致命缺陷。\n\n---\n\n【缺陷 1】\n- 类别: 评估方案缺陷\n- 问题: MT-Bench 仅有 80 条 multi-turn dialogue，proposal 在 §4.9 中提及\"Discussion of statistical power for smaller benchmarks (e.g., MT-Bench ~80 multi-turn dialogues)\"作为 supplementary，但 DML 的 5-fold cross-fitting 要求每 fold 至少有足够样本量来训练 nuisance function $g(\\cdot)$。以 80 条为例，每 fold 仅 64 条训练、16 条估计，gradient-boosted trees 的 nuisance function 在如此小的样本上几乎无法可靠估计，DML 的 $\\sqrt{n}$-consistency 保证在有限样本下可能严重退化。这不仅是统计功效问题，更是方法是否能在该 benchmark 上产生有意义结果的根本问题。如果 MT-Bench 上的 DML 估计完全不可靠，审稿人会质疑为什么要在该 benchmark 上报告结果。\n- 严重度: 可补救\n- 补救方案: (1) 对 MT-Bench 改用 leave-one-out cross-fitting 或 3-fold（而非 5-fold）以增加每 fold 训练样本；(2) 在 MT-Bench 上额外报告 bootstrap confidence interval width，如果 CI 过宽则诚实报告并将其定位为 \"directional evidence\" 而非 strong claim；(3) 考虑将 MT-Bench 的分析粒度从 per-response 提升到 per-response-per-turn（80 questions × 2 turns × 多个被评模型的回复 = 更多 observations），明确说明 effective sample size；(4) 替代方案：如果 MT-Bench 确实 n 太小，可以将其作为 supplementary 中的 case study 而非主表结果，主表聚焦 n 更大的 benchmarks（SOS-Bench, RewardBench, RewardBench 2, Arena-Hard-Auto）。\n- 调研依据: DML 文献（Chernozhukov et al. 2018）的 $\\sqrt{n}$-consistency 是渐近结果；MT-Bench 的 80 条数据量在 DML cross-fitting 中已知是极端小样本场景。BBE (arXiv:2603.05485) 仅在 Arena-Hard-Auto 上评估而非 MT-Bench，可能也有类似考量。\n\n【缺陷 2】\n- 类别: baseline 不足或过时\n- 问题: Proposal 中的 8 个 baselines 覆盖了主要方法类别，但缺少 **RBD (NeurIPS 2025, arXiv:2505.17100)** 作为实际跑分 baseline。Proposal 在 related work 中提到了 RBD（\"+18.5% accuracy\"），但 baseline 表中没有纳入。RBD 是目前最新的 NeurIPS 2025 plug-in debiasing 方法，与 CSD 同样是 black-box compatible（通过外部模块工作），且有强实验结果。审稿人极有可能要求与 RBD 对比，尤其是 RBD 也号称 \"any LLM can be a reliable judge\"。\n- 严重度: 可补救\n- 补救方案: 将 RBD 纳入 baseline 表。RBD 有 1.5B–14B 开源模型，可以直接获取。inference cost 约为 2x（一次 bias detection + 一次 self-correction），在 compute-normalized comparison 中应标注为 ~2x。注意 RBD 主要针对 verbosity + position bias，不完全覆盖 formality/formatting，这正是 CSD 的差异化优势——但必须在实验中公平展示。\n- 调研依据: RBD (NeurIPS 2025) 在 8 个 LLM evaluator 上验证了有效性，是目前 plug-in debiasing 领域的 SOTA。Soumik (arXiv:2604.23178) 也将 RBD 类策略纳入了比较范围。\n\n【缺陷 3】\n- 类别: 评估方案缺陷\n- 问题: Proposal 的 \"ground-truth quality\" 定义不够清晰。§4.4 中 primary metric 提到 \"pairwise accuracy, Spearman/Kendall-τ correlation with ground-truth quality\"，但不同 benchmark 的 ground truth 性质差异巨大：RewardBench/RewardBench 2 有明确的 chosen/rejected labels；SOS-Bench 有 style-substance 分离的人工标注；Arena-Hard-Auto 用 Chatbot Arena 排名作为 proxy ground truth；MT-Bench 有 GPT-4 reference scores 和部分人工标注。**如果 CSD 的目标是去除 style bias，那么理想的 ground truth 应该是 \"content-only quality\"——但大部分 benchmark 的 human labels 本身也可能包含 style 影响。** 审稿人会质疑：你用来衡量 debiasing 效果的 ground truth 本身是否也是 style-biased？\n- 严重度: 可补救\n- 补救方案: (1) 在论文中明确讨论每个 benchmark 的 ground truth 的 style-contamination 程度——例如 RewardBench 的 chosen/rejected 是否经过 style normalization；(2) 将 SOS-Bench 作为 **primary validation benchmark**，因为它的设计目标就是分离 style 和 substance，其 ground truth 最适合评估 debiasing 效果；(3) 对 Arena-Hard-Auto 和 MT-Bench，诚实讨论 ground truth 可能本身含有 style preference 的局限性；(4) 在 human evaluation（§4.6）中，让标注者**分别评分 content quality 和 presentation quality**（proposal 已经有这个设计，很好），明确将 human content-only score 作为最纯净的 ground truth anchor。\n- 调研依据: LC-AlpacaEval (arXiv:2404.04475) 使用 Chatbot Arena 作为 proxy ground truth 并达到 0.98 Spearman correlation，但 Chatbot Arena 本身的投票也受 style 影响。RubricBench (arXiv:2603.01562) 揭示了 human rubric 与 model rubric 在 hard samples 上 27% 的 accuracy gap，暗示 ground truth 的质量是关键问题。\n\n【缺陷 4】\n- 类别: ablation 不完整\n- 问题: §4.5 的 ablation 设计已经相当丰富（9 项），但缺少一个关键 ablation：**CSD without DML (naive paired difference)**。Proposal 在 §3.2 中论证了 DML 相对于 naive ATE estimation 的优势（处理 imperfect counterfactuals），但 ablation 列表中的 \"Decomposition method: Linear regression vs. DML vs. nonparametric kernel estimation\" 不完全等同于 \"no DML at all\"。具体来说，应该有一个 ablation 直接用 paired score difference（original vs. counterfactual 的简单均值差）作为 $\\hat{\\beta}_d$ 的估计，完全不做 DML 的 nuisance function 拟合。这是验证 DML 层是否真正 adds value 的最直接对照。\n- 严重度: 可补救\n- 补救方案: 在 ablation §4.5.1 中增加 \"Naive Paired Difference (no nuisance adjustment)\" 作为 decomposition method 的一个额外条件。具体做法：$\\hat{\\beta}_d^{naive} = \\frac{1}{n}\\sum_i (Score(r_i^{+d}) - Score(r_i^{-d}))$，直接用作 correction。与 DML 估计对比，可以量化 DML 的 nuisance absorption 带来的增量收益。这也回应了 RATE (ICML 2025) 关于 imperfect counterfactuals 的核心 concern。\n- 调研依据: RATE (arXiv:2410.11348) 明确展示了 naive single-rewrite ATE vs. double-rewrite ATE 的差异，CSD 应提供类似的 naive vs. DML 对比。\n\n【缺陷 5】\n- 类别: 可行性问题\n- 问题: Proposal 声称 CSD 需要 7x judge calls，但实际总推理成本被低估了。每个 response 需要：(1) 1 次 rewriter 调用生成 6 counterfactuals（或 6 次 rewriter 调用，每个 axis 2 个方向）；(2) 6 次 content preservation gate 检查（BERTScore + NLI）；(3) 最多 3 次 retry per failed counterfactual；(4) 7 次 judge 调用。如果使用 proprietary judge（如 GPT-4o），5 benchmarks × hundreds of instances × 7 judge calls = 大量 API 成本。此外，对于 pairwise benchmarks（Arena-Hard-Auto, SOS-Bench），每个 instance 有 2 个 response，实际是 14 judge calls per instance。对于 RewardBench 2 的 best-of-4 格式，是 28 judge calls per instance。跨 5 个 proprietary judges 做全部 5 benchmarks 的 API 成本可能相当可观。\n- 严重度: 可补救\n- 补救方案: (1) 在 proposal 中提供一个详细的 **cost breakdown table**：列出每个 benchmark 的 instance 数量、每个 instance 的 judge calls 数量（考虑 pointwise/pairwise/multi-choice 格式）、retry 预算，以及总 API call 估算；(2) 明确区分 rewriter cost（可用开源 Qwen3-32B 本地推理）和 judge cost（部分需 API）；(3) 对成本敏感的实验（如全矩阵 5×5），考虑是否需要 subsample 某些大 benchmark；(4) 提供 total estimated cost in USD（审稿人越来越关注 reproducibility 和 compute accessibility）。这不影响方法本身的 validity，但有助于审稿人评估 reproducibility。\n- 调研依据: Arena-Hard-Auto 的评估成本约 $20 for baseline；BBE (arXiv:2603.05485) 和 LC-AlpacaEval (arXiv:2404.04475) 的成本优势（1x）是它们的卖点之一。CSD 的 7x 开销需要透明地与这些方法比较。\n\n【缺陷 6】\n- 类别: 实验设计不足\n- 问题: §3.1 的 content preservation gates 使用 BERTScore ≥ 0.92 AND NLI entailment ≥ 0.95 作为 threshold，但 BERTScore 对**数值差异**不敏感（FinNuE, arXiv:2511.09997 指出 BERTScore 的 token-level matching 无法区分语义关键的数值差异），且对 **code/structured content**（如果 responses 包含代码片段或数学公式）可能完全失效。在 RewardBench 2 的 math domain 或需要精确 instruction following 的 domain 中，counterfactual rewrites 可能在保持 BERTScore 高分的同时引入了语义偏移。NLI 模型对长文本的可靠性也存疑（大部分 NLI 模型在 >512 token 时性能下降）。\n- 严重度: 可补救\n- 补救方案: (1) 增加 **domain-specific content preservation check**：对数学/代码 domain 使用 exact-match 或 execution-based equivalence check（如代码执行结果一致性）；(2) 在 manipulation check ablation（§4.5.8）中加入 **per-domain false positive analysis**：报告每个 benchmark domain 中 automated gates 的 false positive rate；(3) human evaluation 中的 counterfactual quality audit（§4.6）应明确按 domain 分层——math/code responses 与 open-ended responses 的 content preservation quality 可能差异很大；(4) 考虑补充 GPT-4o-based semantic equivalence check 作为 automated gate 的第三层验证。\n- 调研依据: FinNuE (arXiv:2511.09997) 明确揭示了 BERTScore 对数值的盲区；RewardBench 2 (arXiv:2506.01937) 包含 math 和 factuality domains，这些 domain 对内容精确性要求更高。\n\n【缺陷 7】\n- 类别: compute 公平性问题\n- 问题: Proposal 已经包含了 \"7-Call Majority Vote\" 作为 compute-normalized baseline（很好），但 **accuracy-per-judge-call curve**（§4.4）的设计细节不够明确。具体来说：(1) 1x 和 3x 预算下 CSD 如何运作？CSD 需要最少 7 calls（1 original + 6 counterfactuals），无法在 <7x 预算下运行完整方法；(2) 5x 预算下是否意味着只用 2 个 axis 而非 3 个？如果是，需要明确 axis selection 策略。这条 curve 对展示 CSD 的 cost-effectiveness 至关重要，但如果 CSD 在 <7x 时根本不能参与比较，那 curve 的意义主要在于展示低预算 baselines vs. CSD at 7x vs. RATE at 25x，应明确说明。\n- 严重度: 可补救\n- 补救方案: (1) 在 accuracy-per-judge-call curve 中，明确标注 CSD 仅在 7x 点有数据，而不是画一条连续 curve；(2) 利用 per-axis ablation 的结果（§4.5.2）构建 \"CSD-lite\" variants：1-axis CSD (3x: 1 original + 2 counterfactuals)、2-axis CSD (5x)、full 3-axis CSD (7x)，这样可以在 3x 和 5x 预算点上展示 CSD 的 graceful degradation；(3) 将 RATE-corrected 在 25x 点上的表现与 CSD at 7x 直接比较，如果 CSD 在 7x 已经接近 RATE at 25x，这是强有力的 efficiency argument。\n- 调研依据: 基于领域实验规范判断。Compute-normalized comparison 在 RLHF/evaluation 文献中越来越受重视（Best-of-N scaling curves 是标准做法），但需要明确方法在不同预算点的具体操作方式。\n\n【缺陷 8】\n- 类别: 实验设计不足\n- 问题: Proposal 未讨论 **style axis 之间的交互效应（interaction effects）和 entanglement**。CASSE (arXiv:2601.10809) 的核心发现是 style features \"deeply entangled rather than orthogonal\"，例如 prompting for conciseness significantly reduces perceived expertise。CSD 的 correction formula（§3.3）是 **additive**：$Score_{debiased} = Score_{original} - \\sum_d (1-\\alpha_d) \\hat{\\beta}_d (Style_d - Style_{ref})$，这隐含假设了 style effects 是线性可加的。如果 formality 和 verbosity 之间存在强交互效应（例如，formal + verbose 的 bias 远大于 formal bias + verbose bias），additive correction 会 under- or over-correct。Proposal 在 §3.1 中提到\"treat their approximate independence as an empirical hypothesis to be verified (via correlation analysis of ISE estimates across axes)\"，但这只检验了 ISE estimates 的相关性，而非 correction formula 的 additivity 假设。\n- 严重度: 可补救\n- 补救方案: (1) 增加一个 ablation 检验交互效应：除了 3 个 single-axis 和 3 个 pairwise combinations（已有），增加检查 pairwise combination 的效果是否等于两个 single-axis 效果之和（$\\hat{\\beta}_{d_1 \\cup d_2}$ vs. $\\hat{\\beta}_{d_1} + \\hat{\\beta}_{d_2}$）；(2) 在 DML 框架中加入交互项：$Score = \\beta_1 Style_1 + \\beta_2 Style_2 + \\beta_3 Style_3 + \\gamma_{12} Style_1 \\times Style_2 + \\ldots + g(Content) + \\epsilon$，检验 $\\gamma$ 是否显著为零；(3) 如果交互效应显著，讨论 additive correction 的 approximation error 量级，以及是否需要 joint correction。\n- 调研依据: CASSE (arXiv:2601.10809) 的核心 finding 是 style feature entanglement，这是 CSD 必须直接回应的实证发现。\n\n【缺陷 9】\n- 类别: 实验设计不足\n- 问题: Proposal 缺少对 **judge version sensitivity** 的讨论和实验设计。Proprietary judges（GPT-4o, Claude Sonnet 4, Gemini 2.5 Pro）会随时间更新，CSD 估计的 $\\hat{\\beta}_d$ 是特定于某一 judge version 的。如果 GPT-4o 在实验完成后更新了版本，CSD 的 calibration 可能需要重做。这对 CSD 作为 \"practical debiasing tool\" 的定位有影响。虽然这不影响论文的学术贡献，但审稿人可能会在 limitations 中要求讨论。\n- 严重度: 可补救\n- 补救方案: (1) 在 limitations section 中明确讨论 model version dependency；(2) 如果时间和预算允许，用同一 judge 的不同 snapshot（如 GPT-4o 的不同日期 API version）做一个小规模 stability check，观察 ISE 在 minor version 更新间的变化幅度；(3) 将 ISE 的 version-tracking 功能作为 CSD 的优势之一来 frame——正是因为 ISE 能量化 bias，所以它可以用来 monitor judge drift over time。\n- 调研依据: 基于领域实验规范判断。Preference Leakage (ICLR 2026, arXiv:2502.01534) 关注了 judge-generator 之间的 contamination，但未讨论 judge version 变化对 calibration 的影响。\n\n---\n\n**总体评估**: 这个 proposal 的实验设计框架在该领域中属于**中上水平**——5 judges × 5 benchmarks 的覆盖面、8 个涵盖多种方法类型的 baselines、9 项 ablations、严格的统计分析方案和 human evaluation 设计，均表明作者对实验设计有深入思考。上述 9 个缺陷均为**可补救的精细化问题**，而非方向性致命缺陷。最优先处理的是：缺陷 2（补 RBD baseline）、缺陷 4（补 naive paired difference ablation）、缺陷 8（检验 additivity 假设），这三个最可能被审稿人明确要求。其余缺陷（MT-Bench 样本量、ground truth 讨论、content preservation 的 domain-specific 验证、cost breakdown、compute curve 细节、version sensitivity）属于完善性建议，补上会显著提升论文的 rigor 和说服力。\n\nSources:\n- [RATE: Causal Explainability of Reward Models with Imperfect Counterfactuals](https://arxiv.org/abs/2410.11348)\n- [Soumik: Judging the Judges](https://arxiv.org/html/2604.23178v1)\n- [FairJudge: An Adaptive, Debiased, and Consistent LLM-as-a-Judge](https://arxiv.org/abs/2602.06625)\n- [BBE: Towards Provably Unbiased LLM Judges via Bias-Bounded Evaluation](https://arxiv.org/abs/2603.05485)\n- [RBD: Any Large Language Model Can Be a Reliable Judge](https://arxiv.org/abs/2505.17100)\n- [Causal Rubrics / CROME: Robust Reward Modeling via Causal Rubrics](https://arxiv.org/abs/2506.16507)\n- [LC-AlpacaEval: Length-Controlled AlpacaEval](https://arxiv.org/abs/2404.04475)\n- [RewardBench 2: Advancing Reward Model Evaluation](https://arxiv.org/abs/2506.01937)\n- [Counterfactual LLM-based Framework for Measuring Rhetorical Style](https://arxiv.org/abs/2512.19908)\n- [CoLD: Counterfactually-Guided Length Debiasing for Process Reward Models](https://arxiv.org/abs/2507.15698)\n- [CASSE: A Concise Agent is Less Expert](https://arxiv.org/html/2601.10809)\n- [Preference Leakage: A Contamination Problem in LLM-as-a-judge](https://arxiv.org/abs/2502.01534)\n- [PRECISE: Reducing the Bias of LLM Evaluations](https://arxiv.org/abs/2601.18777)\n- [FinNuE: Exposing the Risks of Using BERTScore for Numerical Semantic Evaluation](https://arxiv.org/html/2511.09997v1)\n- [RubricBench](https://arxiv.org/abs/2603.01562)\n- [MT-Bench: Judging LLM-as-a-Judge](https://arxiv.org/pdf/2306.05685)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0cb094f5-327f-48ab-b929-c765e7fce9ae",
+            "isSidechain": false,
+            "promptId": "3036f069-81e7-46a1-8fc5-72e94725c172",
+            "type": "user",
+            "uuid": "4f112f8b-563d-4014-96db-a6c132bad6c8",
+            "permissionMode": "default",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "c8ddb01f-fc6b-4647-bff1-fa0d392be333",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000168"
+        },
+        {
+          "source_line": 169,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "【任务】: 以「角色 B：迭代中」整合第 3 轮 worker 输出，按指定格式输出决策、概率估计、以及（若继续）下一轮 proposal 纯净版。  【发掘 agent 本轮输出】: Now I have sufficient research to make a well-grounded assessment. Let me synthesize my findings.  ---  【状态…",
+                "leafUuid": "4f112f8b-563d-4014-96db-a6c132bad6c8",
+                "sessionId": "c8ddb01f-fc6b-4647-bff1-fa0d392be333"
+              }
+            }
+          ],
+          "id": "event-000169"
+        },
+        {
+          "source_line": 170,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Refine causal style debiasing proposal for review",
+                "sessionId": "c8ddb01f-fc6b-4647-bff1-fa0d392be333"
+              }
+            }
+          ],
+          "id": "event-000170"
+        },
+        {
+          "source_line": 171,
+          "timestamp": "2026-05-20T05:26:40.372Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Mr6LhiU222bjjhrfgqQFS8",
+              "name": "WebSearch",
+              "input": {
+                "query": "arXiv 2508.09724 UDA unsupervised debiasing alignment pairwise LLM-as-a-judge Elo K-factor 2025"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4f112f8b-563d-4014-96db-a6c132bad6c8",
+            "isSidechain": false,
+            "requestId": "req_011CbDGPzAa4MQj7Un2xytfS",
+            "type": "assistant",
+            "uuid": "1bfd5b27-56b2-43f4-974d-a87d7d40e7a4",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "c8ddb01f-fc6b-4647-bff1-fa0d392be333",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XYFdF9arAAbkuquyys6aiC",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 20383,
+                "cache_read_input_tokens": 116164,
+                "output_tokens": 93,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 20383,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 93,
+                    "cache_read_input_tokens": 116164,
+                    "cache_creation_input_tokens": 20383,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 20383
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000171"
+        },
+        {
+          "source_line": 172,
+          "timestamp": "2026-05-20T05:26:47.199Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Mr6LhiU222bjjhrfgqQFS8",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arXiv 2508.09724 UDA unsupervised debiasing alignment pairwise LLM-as-a-judge Elo K-factor 2025\"\n\nLinks: [{\"title\":\"[2508.09724] UDA: Unsupervised Debiasing Alignment for Pair-wise LLM-as-a-Judge\",\"url\":\"https://arxiv.org/abs/2508.09724\"},{\"title\":\"UDA: Unsupervised Debiasing Alignment for Pair-wise LLM-as-a-Judge\",\"url\":\"https://arxiv.org/pdf/2508.09724\"},{\"title\":\"(PDF) UDA: Unsupervised Debiasing Alignment for Pair-wise LLM-as-a-Judge\",\"url\":\"https://www.researchgate.net/publication/394472798_UDA_Unsupervised_Debiasing_Alignment_for_Pair-wise_LLM-as-a-Judge\"},{\"title\":\"UDA: Unsupervised Debiasing Alignment for Pair-wise LLM-as-a-Judge | Proceedings of the AAAI Conference on Artificial Intelligence\",\"url\":\"https://ojs.aaai.org/index.php/AAAI/article/view/40788\"},{\"title\":\"Multi-view affinity-based projection alignment for unsupervised domain adaptation via locality preserving optimization\",\"url\":\"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12216763/\"},{\"title\":\"Partially-Shared Variational Auto-encoders for Unsupervised Domain   Adaptation with Target Shift\",\"url\":\"https://arxiv.org/pdf/2001.07895\"},{\"title\":\"BP-Triplet Net for Unsupervised Domain Adaptation: A Bayesian   Perspective\",\"url\":\"https://arxiv.org/pdf/2202.09541\"}]\n\nBased on the search results, here's what I found about arXiv paper 2508.09724:\n\n## Overview\n\nThe paper is titled \"UDA: Unsupervised Debiasing Alignment for Pair-wise LLM-as-a-Judge\" with authors Yang Zhang, Cunxiang Wang, Lindong Wu, Wenbo Yu, Yidong Wang, Guangsheng Bao, and Jie Tang. It was submitted on August 13, 2025, with a second version on November 16, 2025.\n\n## Problem Statement\n\nPairwise evaluation of LLMs is prone to preference bias where judges systematically favor certain outputs, leading to inconsistent and skewed rankings across different judges.\n\n## Solution\n\nThe paper proposes UDA (Unsupervised Debiasing Alignment), a framework that reduces inter-judge disagreement by dynamically adjusting the Elo rating system, where a compact neural network learns to adaptively set the K-factor and refine win probabilities.\n\nUDA operates in a fully unsupervised manner, guided solely by minimizing dispersion among Elo trajectories of all judges, forcing alignment towards collective consensus as an unsupervised proxy for more stable evaluation.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1bfd5b27-56b2-43f4-974d-a87d7d40e7a4",
+            "isSidechain": false,
+            "promptId": "3036f069-81e7-46a1-8fc5-72e94725c172",
+            "type": "user",
+            "uuid": "3a6af5a1-c389-4270-b73a-04f1494517d4",
+            "toolUseResult": {
+              "query": "arXiv 2508.09724 UDA unsupervised debiasing alignment pairwise LLM-as-a-judge Elo K-factor 2025",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01TahE2fgiirrqxcKAdCizJw",
+                  "content": [
+                    {
+                      "title": "[2508.09724] UDA: Unsupervised Debiasing Alignment for Pair-wise LLM-as-a-Judge",
+                      "url": "https://arxiv.org/abs/2508.09724"
+                    },
+                    {
+                      "title": "UDA: Unsupervised Debiasing Alignment for Pair-wise LLM-as-a-Judge",
+                      "url": "https://arxiv.org/pdf/2508.09724"
+                    },
+                    {
+                      "title": "(PDF) UDA: Unsupervised Debiasing Alignment for Pair-wise LLM-as-a-Judge",
+                      "url": "https://www.researchgate.net/publication/394472798_UDA_Unsupervised_Debiasing_Alignment_for_Pair-wise_LLM-as-a-Judge"
+                    },
+                    {
+                      "title": "UDA: Unsupervised Debiasing Alignment for Pair-wise LLM-as-a-Judge | Proceedings of the AAAI Conference on Artificial Intelligence",
+                      "url": "https://ojs.aaai.org/index.php/AAAI/article/view/40788"
+                    },
+                    {
+                      "title": "Multi-view affinity-based projection alignment for unsupervised domain adaptation via locality preserving optimization",
+                      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12216763/"
+                    },
+                    {
+                      "title": "Partially-Shared Variational Auto-encoders for Unsupervised Domain   Adaptation with Target Shift",
+                      "url": "https://arxiv.org/pdf/2001.07895"
+                    },
+                    {
+                      "title": "BP-Triplet Net for Unsupervised Domain Adaptation: A Bayesian   Perspective",
+                      "url": "https://arxiv.org/pdf/2202.09541"
+                    }
+                  ]
+                },
+                "Based on the search results, here's what I found about arXiv paper 2508.09724:\n\n## Overview\n\nThe paper is titled \"UDA: Unsupervised Debiasing Alignment for Pair-wise LLM-as-a-Judge\" with authors Yang Zhang, Cunxiang Wang, Lindong Wu, Wenbo Yu, Yidong Wang, Guangsheng Bao, and Jie Tang. It was submitted on August 13, 2025, with a second version on November 16, 2025.\n\n## Problem Statement\n\nPairwise evaluation of LLMs is prone to preference bias where judges systematically favor certain outputs, leading to inconsistent and skewed rankings across different judges.\n\n## Solution\n\nThe paper proposes UDA (Unsupervised Debiasing Alignment), a framework that reduces inter-judge disagreement by dynamically adjusting the Elo rating system, where a compact neural network learns to adaptively set the K-factor and refine win probabilities.\n\nUDA operates in a fully unsupervised manner, guided solely by minimizing dispersion among Elo trajectories of all judges, forcing alignment towards collective consensus as an unsupervised proxy for more stable evaluation."
+              ],
+              "durationSeconds": 6.820364087,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "1bfd5b27-56b2-43f4-974d-a87d7d40e7a4",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "c8ddb01f-fc6b-4647-bff1-fa0d392be333",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000172"
+        },
+        {
+          "source_line": 173,
+          "timestamp": "2026-05-20T05:26:50.155Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018xAiYPbGanWTpbZdFAad4D",
+              "name": "WebSearch",
+              "input": {
+                "query": "arXiv 2601.21816 \"nonparametric LLM evaluation\" preference data DML semiparametric 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3a6af5a1-c389-4270-b73a-04f1494517d4",
+            "isSidechain": false,
+            "requestId": "req_011CbDGQmKgQ8TRFkM8AD2A4",
+            "type": "assistant",
+            "uuid": "f4cba15d-a25b-4520-83e0-b18e746249ea",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "c8ddb01f-fc6b-4647-bff1-fa0d392be333",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01K5m1stgLnZ3dNMoRcgvXXW",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 873,
+                "cache_read_input_tokens": 136547,
+                "output_tokens": 83,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 873,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 83,
+                    "cache_read_input_tokens": 136547,
+                    "cache_creation_input_tokens": 873,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 873
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000173"
+        },
+        {
+          "source_line": 174,
+          "timestamp": "2026-05-20T05:26:55.541Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018xAiYPbGanWTpbZdFAad4D",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arXiv 2601.21816 \"nonparametric LLM evaluation\" preference data DML semiparametric 2026\"\n\nLinks: [{\"title\":\"[2601.21816] Nonparametric LLM Evaluation from Preference Data\",\"url\":\"https://arxiv.org/abs/2601.21816\"},{\"title\":\"Nonparametric LLM Evaluation from Preference Data\",\"url\":\"https://arxiv.org/pdf/2601.21816\"},{\"title\":\"Nonparametric LLM Evaluation from Preference Data\",\"url\":\"https://arxiv.org/html/2601.21816\"},{\"title\":\"LLM Evaluation as Tensor Completion: Low Rank Structure and Semiparametric Efficiency\",\"url\":\"https://arxiv.org/pdf/2604.05460\"},{\"title\":\"LLM Evaluation as Tensor Completion: Low-Rank Structure and Semiparametric Efficiency\",\"url\":\"https://arxiv.org/html/2604.05460v1\"}]\n\nI found the paper! Here's what the search revealed:\n\nThe paper proposes a nonparametric statistical framework called DMLRANK for comparing and ranking LLMs from preference data using debiased machine learning (DML). It introduces generalized average ranking scores (GARS), which generalize commonly used ranking models, including the Bradley-Terry model or PageRank/Rank centrality with complex human responses such as ties.\n\nThe framework produces statistically efficient estimates of GARS ranking scores and naturally allows incorporating black-box machine learning methods for estimation. Additional advantages include the ability to be combined with pre-trained LLM evaluators (e.g., using LLM-as-a-judge) and suggesting optimal policies for collecting preference data under budget constraints.\n\nThe paper was published on January 30, 2026, and builds on semiparametric efficiency theory to develop debiased estimators.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f4cba15d-a25b-4520-83e0-b18e746249ea",
+            "isSidechain": false,
+            "promptId": "3036f069-81e7-46a1-8fc5-72e94725c172",
+            "type": "user",
+            "uuid": "5aff7379-d733-4b3e-861b-32879192cca5",
+            "toolUseResult": {
+              "query": "arXiv 2601.21816 \"nonparametric LLM evaluation\" preference data DML semiparametric 2026",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01Cow3yENRE5BzAScDhcHgE7",
+                  "content": [
+                    {
+                      "title": "[2601.21816] Nonparametric LLM Evaluation from Preference Data",
+                      "url": "https://arxiv.org/abs/2601.21816"
+                    },
+                    {
+                      "title": "Nonparametric LLM Evaluation from Preference Data",
+                      "url": "https://arxiv.org/pdf/2601.21816"
+                    },
+                    {
+                      "title": "Nonparametric LLM Evaluation from Preference Data",
+                      "url": "https://arxiv.org/html/2601.21816"
+                    },
+                    {
+                      "title": "LLM Evaluation as Tensor Completion: Low Rank Structure and Semiparametric Efficiency",
+                      "url": "https://arxiv.org/pdf/2604.05460"
+                    },
+                    {
+                      "title": "LLM Evaluation as Tensor Completion: Low-Rank Structure and Semiparametric Efficiency",
+                      "url": "https://arxiv.org/html/2604.05460v1"
+                    }
+                  ]
+                },
+                "I found the paper! Here's what the search revealed:\n\nThe paper proposes a nonparametric statistical framework called DMLRANK for comparing and ranking LLMs from preference data using debiased machine learning (DML). It introduces generalized average ranking scores (GARS), which generalize commonly used ranking models, including the Bradley-Terry model or PageRank/Rank centrality with complex human responses such as ties.\n\nThe framework produces statistically efficient estimates of GARS ranking scores and naturally allows incorporating black-box machine learning methods for estimation. Additional advantages include the ability to be combined with pre-trained LLM evaluators (e.g., using LLM-as-a-judge) and suggesting optimal policies for collecting preference data under budget constraints.\n\nThe paper was published on January 30, 2026, and builds on semiparametric efficiency theory to develop debiased estimators."
+              ],
+              "durationSeconds": 5.383555306999999,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "f4cba15d-a25b-4520-83e0-b18e746249ea",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "c8ddb01f-fc6b-4647-bff1-fa0d392be333",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000174"
+        },
+        {
+          "source_line": 175,
+          "timestamp": "2026-05-20T05:26:58.031Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TxRy6CdyQAAQUmUkLvFooe",
+              "name": "WebSearch",
+              "input": {
+                "query": "arXiv 2511.09997 BERTScore numerical semantic evaluation limitations false positive 2025"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5aff7379-d733-4b3e-861b-32879192cca5",
+            "isSidechain": false,
+            "requestId": "req_011CbDGRNznahH9JdLJgZY52",
+            "type": "assistant",
+            "uuid": "9566d8f3-92e8-4a84-8844-0ce5cc9445d4",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "c8ddb01f-fc6b-4647-bff1-fa0d392be333",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YcKcn2GMWMqQ2zvwEgtwFY",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 563,
+                "cache_read_input_tokens": 137420,
+                "output_tokens": 74,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 563,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 74,
+                    "cache_read_input_tokens": 137420,
+                    "cache_creation_input_tokens": 563,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 563
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000175"
+        },
+        {
+          "source_line": 176,
+          "timestamp": "2026-05-20T05:27:04.918Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TxRy6CdyQAAQUmUkLvFooe",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arXiv 2511.09997 BERTScore numerical semantic evaluation limitations false positive 2025\"\n\nLinks: [{\"title\":\"[2511.09997] FinNuE: Exposing the Risks of Using BERTScore for Numerical Semantic Evaluation in Finance\",\"url\":\"https://arxiv.org/abs/2511.09997\"},{\"title\":\"FinNuE: Exposing the Risks of Using BERTScore for Numerical\",\"url\":\"https://arxiv.org/pdf/2511.09997\"},{\"title\":\"FinNuE: Exposing the Risks of Using BERTScore for Numerical Semantic Evaluation in Finance\",\"url\":\"https://arxiv.org/html/2511.09997v1\"},{\"title\":\"BERTScore: Contextual Text Evaluation\",\"url\":\"https://www.emergentmind.com/topics/bertscore\"},{\"title\":\"BERTScore: Semantic Text Evaluation\",\"url\":\"https://www.emergentmind.com/topics/bert-score\"},{\"title\":\"BERTScore Explained in 5 minutes. Evaluating Text Generation with BERT… | by Abonia Sojasingarayar | Medium\",\"url\":\"https://medium.com/@abonia/bertscore-explained-in-5-minutes-0b98553bfb71\"}]\n\nBased on the search results, I found the arXiv paper 2511.09997. Here's what it reveals:\n\n**Title and Purpose:**\nFinNuE: Exposing the Risks of Using BERTScore for Numerical Semantic Evaluation in Finance\n\n**Key Limitation Identified:**\nBERTScore exhibits low sensitivity to numerical variation, a significant weakness in finance where numerical precision directly affects meaning (e.g., distinguishing a 2% gain from a 20% loss). More specifically, BERTScore shows limited sensitivity to numerical magnitude, often assigning similar scores to sentences with substantially different numerical values (e.g., 2% vs. 200%).\n\n**Concrete Example:**\nTwo sentences: \"The company reported a 2% revenue increase\" and \"The company reported a 20% revenue increase\" are semantically distinct with vastly different financial implications, yet BERTScore assigns these a similarity score of 0.97.\n\n**The Solution Proposed:**\nThe researchers introduced FinNuE, a diagnostic dataset constructed with controlled numerical perturbations across earnings calls, regulatory filings, social media, and news articles.\n\n**Findings:**\nBERTScore fails to distinguish semantically critical numerical differences, often assigning high similarity scores to financially divergent text pairs.\n\nThe paper was published in November 2025 and appeared in the CIKM 2025 Workshop on Advances in Financial AI.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9566d8f3-92e8-4a84-8844-0ce5cc9445d4",
+            "isSidechain": false,
+            "promptId": "3036f069-81e7-46a1-8fc5-72e94725c172",
+            "type": "user",
+            "uuid": "7b88169d-2e10-4b6b-a847-e8ad8075d438",
+            "toolUseResult": {
+              "query": "arXiv 2511.09997 BERTScore numerical semantic evaluation limitations false positive 2025",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01V9PmgKxNhtxbQ1xay19CJA",
+                  "content": [
+                    {
+                      "title": "[2511.09997] FinNuE: Exposing the Risks of Using BERTScore for Numerical Semantic Evaluation in Finance",
+                      "url": "https://arxiv.org/abs/2511.09997"
+                    },
+                    {
+                      "title": "FinNuE: Exposing the Risks of Using BERTScore for Numerical",
+                      "url": "https://arxiv.org/pdf/2511.09997"
+                    },
+                    {
+                      "title": "FinNuE: Exposing the Risks of Using BERTScore for Numerical Semantic Evaluation in Finance",
+                      "url": "https://arxiv.org/html/2511.09997v1"
+                    },
+                    {
+                      "title": "BERTScore: Contextual Text Evaluation",
+                      "url": "https://www.emergentmind.com/topics/bertscore"
+                    },
+                    {
+                      "title": "BERTScore: Semantic Text Evaluation",
+                      "url": "https://www.emergentmind.com/topics/bert-score"
+                    },
+                    {
+                      "title": "BERTScore Explained in 5 minutes. Evaluating Text Generation with BERT… | by Abonia Sojasingarayar | Medium",
+                      "url": "https://medium.com/@abonia/bertscore-explained-in-5-minutes-0b98553bfb71"
+                    }
+                  ]
+                },
+                "Based on the search results, I found the arXiv paper 2511.09997. Here's what it reveals:\n\n**Title and Purpose:**\nFinNuE: Exposing the Risks of Using BERTScore for Numerical Semantic Evaluation in Finance\n\n**Key Limitation Identified:**\nBERTScore exhibits low sensitivity to numerical variation, a significant weakness in finance where numerical precision directly affects meaning (e.g., distinguishing a 2% gain from a 20% loss). More specifically, BERTScore shows limited sensitivity to numerical magnitude, often assigning similar scores to sentences with substantially different numerical values (e.g., 2% vs. 200%).\n\n**Concrete Example:**\nTwo sentences: \"The company reported a 2% revenue increase\" and \"The company reported a 20% revenue increase\" are semantically distinct with vastly different financial implications, yet BERTScore assigns these a similarity score of 0.97.\n\n**The Solution Proposed:**\nThe researchers introduced FinNuE, a diagnostic dataset constructed with controlled numerical perturbations across earnings calls, regulatory filings, social media, and news articles.\n\n**Findings:**\nBERTScore fails to distinguish semantically critical numerical differences, often assigning high similarity scores to financially divergent text pairs.\n\nThe paper was published in November 2025 and appeared in the CIKM 2025 Workshop on Advances in Financial AI."
+              ],
+              "durationSeconds": 6.882783722,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "9566d8f3-92e8-4a84-8844-0ce5cc9445d4",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "c8ddb01f-fc6b-4647-bff1-fa0d392be333",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000176"
+        },
+        {
+          "source_line": 177,
+          "timestamp": "2026-05-20T05:28:18.730Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Good, all three key references from this round are verified:\n\n1. **UDA (arXiv:2508.09724)** — ✅ Confirmed. Published at AAAI (ojs.aaai.org). Unsupervised debiasing alignment via adaptive Elo K-factor. Black-box, consensus-driven debiasing (needs multiple judges). The发掘 agent correctly identified this as a potential related work gap.\n\nWait, I notice the search result shows UDA was published in \"Proceedings of the AAAI Conference on Artificial Intelligence\" - let me check if this is AAAI 2026. \n\nThe paper was submitted August 2025, so AAAI 2026 (Feb 2026) is plausible. The发掘 agent says \"AAAI 2026\". Let me confirm... Actually, the search result says \"UDA: Unsupervised Debiasing Alignment for Pair-wise LLM-as-a-Judge | Proceedings of the AAAI Conference on Artificial Intelligence\" and it links to ojs.aaai.org/index.php/AAAI/article/view/40788. This confirms it's published at AAAI.\n\n2. **Nonparametric LLM Evaluation (arXiv:2601.21816)** — ✅\n\nThe DMLRANK framework uses DML for LLM ranking from preference data, sharing methodology with CSD but focusing on ranking estimation rather than score debiasing.\n\n3. **FinNuE / BERTScore limitations (arXiv:2511.09997)** — ✅ Confirmed. BERTScore assigns 0.97 similarity to \"2% increase\" vs \"20% increase\", validating the concern about BERTScore's limitations for numerical and code content.\n\nNow I'm checking convergence across the worker agents. The发掘 agent mentions \"有发掘空间\" but the suggestions are refinements in framing rather than directional shifts, while the补救 agent acknowledges \"有缺陷待补救\" but clarifies these are fine-tuning issues, not fundamental flaws.\n\nLooking at the convergence criteria: both agents are in polishing mode rather than proposing structural changes. Round 2 and Round 3 are both doing incremental sharpening—Round 2 added DML justification and RATE baseline, while Round 3 focuses on framing refinements like semiparametric efficiency and ISE community standards, plus experiment polish with RBD baseline and interaction effects. This is approaching the threshold for two consecutive rounds of fine-tuning. No seesaw effects are appearing, and the median probability trajectory shows Round 1 at 39%, Round 2 at 42%, with Round 3 still being evaluated.\n\nNow examining the specific suggestions from Round 3: the discovery agent's proposals are mostly reframing work—semiparametric efficiency versus DML assumptions, ISE as a community standard, and adding UDA and DMLRANK to related work. The fairness literature connection for the α parameter is conceptually interesting but potentially overreaching. The remediation agent flags the MT-Bench sample size as a valid but minor concern that cross-fitting could address, and is evaluating RBD as a baseline.\n\nThe critical decision point is whether to continue iterating. Both agents acknowledge the proposal has matured substantially, and Round 3 suggestions are predominantly polish and framing refinements rather than fundamental gaps. The probability gains are diminishing—only about 2 percentage points per round now—which suggests convergence might be optimal. The main counterargument is that RBD as a baseline represents a genuine experimental gap worth addressing, but that's a single concrete addition against a pattern of diminishing returns.\n\nI'm going to converge after this round. The core idea, framing, and experimental design are solid, both workers are in polishing mode, and the remaining suggestions are concrete enough to integrate without another review cycle. Continuing risks over-engineering at this point.\n\nNow I need to triage which suggestions to adopt. The semiparametric efficiency framing is worth integrating since it clarifies the theoretical positioning, and I should partially adopt the ISE application scenarios without over-expanding. The UDA reference in related work is also a straightforward addition.\n\nFor the causal fairness connection to α, I'll include just a brief mention rather than a full treatment—the conceptual link is valid but I don't want the paper overreaching without solid citations. From the other agent, I'm adopting the MT-Bench sample size adjustment, the RBD baseline, ground truth clarity, and the naive paired difference ablation since these are all concrete improvements that directly strengthen the experimental validation.\n\nNow I'm working through the final probability estimate. The novelty sits at medium-strong—the semiparametric efficiency framing and causal fairness angle push it toward strong territory but don't quite get there. Significance is solid given the RLHF pipeline impact and ISE's potential as a community standard, putting the idea ceiling around 50-52%. On the experimental side, adding the RBD baseline, naive ablation, and interaction checks brings technical soundness up to medium-strong.\n\nCombining these factors, I'm looking at a range of 38% to 52% with a midpoint around 44%—a modest 2 percentage point improvement from the previous round, which suggests the analysis is converging. Since this midpoint exceeds the 36% threshold, I should move forward with the final output format, presenting the optimization suggestions against the original proposal along with an implementation assessment.\n\nI'm now working through the structure: first documenting this round's convergence decision, then providing the final optimization plan. The challenge is that I need to compare against the original proposal text, which I don't have directly available, so I'll need to frame the recommendations based on what the workers have described and the changes that have emerged through the iterations. I'm verifying the conference details for both papers—PRECISE and UDA both appear to be published at AAAI 2026, which makes sense since multiple papers are accepted at each conference. The article ID numbering on the AAAI platform should help confirm whether they're from the same conference year. The convergence check passes since the mid-range at 44% exceeds the 36% threshold, so I'll proceed with outputting the optimization plan. For implementation, I'm assessing the resource requirements: five judges across five benchmarks will need substantial GPU capacity for open-weight models like Qwen3-32B and API credits for proprietary ones, plus I need to account for the annotation workload of around 1050 tasks across quality evaluation and counterfactual audits with trained annotators, while the data sources are all publicly available and no model training is necessary.\n\nThe timeline looks like three to four months accounting for counterfactual generation, running the judge calls, human evaluation, analysis, and writeup.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7b88169d-2e10-4b6b-a847-e8ad8075d438",
+            "isSidechain": false,
+            "requestId": "req_011CbDGS55YgMkQ33o8HxiQ2",
+            "type": "assistant",
+            "uuid": "b8efc755-0bbc-4750-87f9-36427bfb275f",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "c8ddb01f-fc6b-4647-bff1-fa0d392be333",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HhpCuobhSqYhS9z2vEHnqR",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 743,
+                "cache_read_input_tokens": 137983,
+                "output_tokens": 8962,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 743,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 8962,
+                    "cache_read_input_tokens": 137983,
+                    "cache_creation_input_tokens": 743,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 743
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000177"
+        },
+        {
+          "source_line": 178,
+          "timestamp": "2026-05-20T05:30:19.845Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All key references verified. Let me now produce the round 3 integration and convergence decision.\n\n【阶段】: 迭代第 3 轮\n\n【交叉验证调研】:\n本轮进行 3 次 WebSearch：\n\n1. **UDA (arXiv:2508.09724)** — ✅ 已验证。发表于 AAAI 2026（ojs.aaai.org 确认）。通过自适应 Elo K-factor 实现 unsupervised pairwise judge debiasing，降低 judge 间分歧。黑盒、后处理，但需要多个 judge 的集成（共识驱动），而 CSD 在单个 judge 上工作（因果识别）。发掘 agent 描述准确，差异化角度成立。\n\n2. **DMLRANK / Nonparametric LLM Evaluation (arXiv:2601.21816)** — ✅ 已验证。使用 DML 推导 generalized average ranking scores (GARS) 的半参数有效估计。与 CSD 共享 DML 方法论基础但目标不同（ranking 估计 vs. 分数去偏）。引用可强化\"DML 在 LLM 评估中的应用是一个正在发展的方向\"的叙事。\n\n3. **FinNuE / BERTScore 数值盲区 (arXiv:2511.09997)** — ✅ 已验证。BERTScore 对 \"2% increase\" vs \"20% increase\" 给出 0.97 的相似度分。补救 agent 关于 BERTScore 在 math/code domain 不可靠的 concern 有据。\n\n【发掘 agent 有效建议采纳】:\n\n1. **发掘点 1（semiparametric efficiency vs. RATE symmetry assumption）** — ✅ 逻辑验证通过，采纳。RATE 的 double-rewrite 依赖\"重写偏差对称性\"假设（rewrite-of-rewrite 抵消原始 rewrite 偏差），这是特定的算法性偏差校正。CSD 的 DML 依赖半参数统计理论，对偏差结构的假设更弱（doubly-robust, $\\sqrt{n}$-consistent）。但采纳时保持节制——在 §2 Contribution 1 中简化表述为\"statistical robustness guarantee vs. algorithmic bias correction\"，不展开过多理论细节以避免膨胀。\n\n2. **发掘点 2（ISE 应用场景扩展）** — 部分采纳。ISE 的 cross-judge/cross-domain/cross-version 对比功能值得一提，但不宜大篇幅展开（审稿人更关注去偏效果本身）。在 §2 Contribution 3 中用 2-3 句描述具体应用场景即可。\n\n3. **发掘点 3（UDA + DMLRANK related work）** — ✅ 已验证，采纳。UDA 确认发表于 AAAI 2026，DMLRANK 确认使用 DML。两篇均简短纳入 related work，建立差异化：UDA = 共识驱动 (需多 judge) vs. CSD = 因果识别 (单 judge)；DMLRANK = DML 用于 ranking vs. CSD = DML 用于 score debiasing。\n\n4. **发掘点 4（α 与因果公平性文献的关联）** — 部分采纳。概念连接（legitimate vs. illegitimate causal pathways）是有洞见的，但如果没有搜索验证 Kilbertus et al. 2017 / Nabi & Shpitser 2018 的具体内容，贸然引用有风险。采纳方向：在描述 α 时提及\"this distinction parallels the legitimate vs. illegitimate factor decomposition in causal fairness literature\"，但不展开具体引用，避免过度嫁接。\n\n【补救 agent 有效建议采纳】:\n\n1. **缺陷 1（MT-Bench 样本量）** — 采纳。MT-Bench 改用 3-fold cross-fitting，报告 bootstrap CI width，定位为 directional evidence。\n\n2. **缺陷 2（补 RBD baseline）** — ✅ 已验证（NeurIPS 2025 确认），采纳。RBD 是当前 plug-in debiasing SOTA，有开源模型，~2x 推理成本。纳入 baseline 表。\n\n3. **缺陷 3（ground truth 定义清晰化）** — 采纳。SOS-Bench 作为 primary validation（其 ground truth 最贴合 content-only quality），其他 benchmark 诚实讨论 ground truth 可能含 style preference 的局限。\n\n4. **缺陷 4（naive paired difference ablation）** — 采纳。这是验证 DML 增量价值的最直接对照，直接支持 dual-layer 论证。\n\n5. **缺陷 5（cost breakdown）** — 采纳。增加简要成本估算表，提升 reproducibility 透明度。\n\n6. **缺陷 6（BERTScore 数值盲区）** — ✅ 已验证，采纳。对 math/code domain 增加 domain-specific preservation check。\n\n7. **缺陷 7（compute curve 设计）** — 采纳。利用 per-axis ablation 构造 CSD-lite variants（1-axis@3x, 2-axis@5x, 3-axis@7x）。\n\n8. **缺陷 8（interaction effects）** — 采纳。在 DML 中加入交互项检验 additivity 假设，直接回应 CASSE 的 entanglement concern。\n\n9. **缺陷 9（judge version sensitivity）** — 采纳为 limitations 讨论条目。\n\n【本轮 proposal 主要变更】:\n\n**Idea 层面变更：**\n- §2 Contribution 1 强化 DML vs. RATE 的方法论差异：statistical robustness (DML) vs. algorithmic correction (double-rewrite)\n- §1 Related Work 补充 UDA (AAAI 2026, arXiv:2508.09724) 和 DMLRANK (arXiv:2601.21816)\n- §2 Contribution 2 中 α 简要关联 causal fairness 的 legitimate/illegitimate pathway 区分\n- §3.3 correction formula 增加交互效应检验的讨论\n\n**实验层面变更：**\n- Baselines 新增 RBD (NeurIPS 2025)，共 9 个 baseline\n- 新增 ablation: naive paired difference (no nuisance adjustment)\n- 新增 ablation: interaction effects 检验 (DML with interaction terms)\n- MT-Bench 改用 3-fold + honest CI reporting\n- 增加 cost breakdown 估算\n- BERTScore gate 补充 domain-specific check (math/code)\n- Compute curve 明确 CSD-lite variants (1-axis@3x, 2-axis@5x)\n- Ground truth 讨论分 benchmark 说明 style contamination 程度\n- Limitations 增加 judge version sensitivity 讨论\n\n【idea 质量评估】: Novelty=中强偏强（dual-layer identification with formal semiparametric guarantee、legitimacy-aware correction 关联 causal fairness、ISE 作为标准化诊断——三个贡献层次分明且各有独立价值） Significance=强（RLHF pipeline 影响 + ISE 评估范式 + 填补 black-box causal debiasing 的真实空白） → idea 天花板约 52%\n\n【实验完备性评估】: Technical Soundness=中强偏强（9 baselines 含 RATE-corrected 和 RBD 两个最强竞争者；11 项 ablation 含 naive-vs-DML 和 interaction effects 两个关键验证；counterfactual quality 双重审核；统计分析全面） → 地板约 38%\n\n【当前概率估计】: [38% - 52%] 中位 44%\n\n【决策】: 收敛\n\n【决策理由】:\n1. **Worker 信号**：两个 worker 连续两轮（第 2、3 轮）均处于\"sharpening/refinement\"模式——发掘 agent 第 2 轮说\"在已有高质量框架上的 sharpening 和 elevation\"，第 3 轮依然是 framing 优化；补救 agent 第 2 轮说\"不存在致命缺陷\"，第 3 轮说\"可补救的精细化问题，无方向性致命缺陷\"。\n2. **概率趋势**：第 1 轮 39% → 第 2 轮 42% → 第 3 轮 44%，增幅递减（3pp → 2pp），边际收益已趋于零。\n3. **变更性质**：第 3 轮的改动主要是 framing 微调（semiparametric efficiency 表述、ISE 应用场景）和 experiment polish（RBD baseline、naive ablation、interaction check），没有结构性变化。\n4. **无跷跷板**：三轮迭代中未出现\"补 A 崩 B\"的情况，每轮都在累积改善。\n5. **中位 44% ≥ 36%**，通过最终验收阈值。\n\n---\n\n【优化方案】\n\n以下为对比**原始 proposal** 的修改建议列表，按影响力排序：\n\n1. **[Related Work 全局] — 补充 7 篇遗漏的关键文献并建立显式差异化** — [Related Work + Novelty]\n   - arXiv:2604.27495 (Causally Motivated Inference-Time Intervention): white-box neuron 干预 vs. CSD black-box\n   - arXiv:2512.19908 (Counterfactual Rhetorical Style): 量化风格但不校正 vs. CSD 量化+校正闭环\n   - arXiv:2409.17407 (Post-hoc Reward Calibration, ICLR 2025): 单维度 observational regression vs. CSD 多维 causal identification\n   - arXiv:2604.13833 (CROME): training-time causal augmentation vs. CSD post-hoc\n   - arXiv:2506.16507 (Causal Rubrics, ICML 2025): causal+neutral augmentations for RM training vs. CSD black-box\n   - arXiv:2507.15698 (CoLD): training-time 单维度(length) counterfactual debiasing vs. CSD 多维\n   - arXiv:2508.09724 (UDA, AAAI 2026): consensus-driven multi-judge debiasing vs. CSD single-judge causal\n   - arXiv:2601.21816 (DMLRANK): DML 用于 ranking estimation (共享方法论基础)\n   - 这些文献构成\"causal debiasing for LLM evaluation\"的完整研究景观，CSD 精确填补 black-box + post-hoc + multi-dimensional + score correction 的空白交叉点\n\n2. **[§1 Motivation] — 重构 framing：桥接两个文献 + RLHF pipeline significance** — [Significance]\n   - 将 CSD 定位为桥接 NLP 评估社区（ad-hoc debiasing）与因果推断社区（principled DML framework）\n   - 引用 Preference Leakage (ICLR 2026) 论证 style bias 通过 judge → preference data → policy 的传播链，CSD 作为该链条的 intervention point\n   - 将 significance 从\"better evaluation metric\"提升到\"breaking style contamination in alignment pipelines\"\n\n3. **[§3.2 Method] — 论证 dual-layer causal identification** — [Novelty]\n   - 显式论证\"counterfactual intervention = first-stage identification, DML = second-stage robustness against imperfect counterfactuals\"\n   - 与 RATE 的 double-rewrite 对比：DML 提供 statistical robustness ($\\sqrt{n}$-consistency, doubly-robust) vs. RATE 的 algorithmic correction (依赖 rewrite 偏差对称性假设)\n   - 堵住\"直接算配对差不就行了\"的 trivial alternative\n   - 在 ablation 中加入 naive paired difference baseline 直接验证\n\n4. **[§3.2 Method] — 正面回应多维观测回归的 trivial alternative** — [Novelty]\n   - 论证 observational regression 在 style-content 混杂时失效（高质量技术文档天然需要结构化格式）\n   - 加入 Multi-Reg baseline 作为实验中最直接的 observational 对照\n\n5. **[§2 Core Contributions] — 提升 legitimacy-aware correction 为核心贡献** — [Novelty + Significance]\n   - α 从方法细节提升为概念贡献：首次在 LLM judge debiasing 中系统区分 bias vs. legitimate style-quality association\n   - 关联因果公平性中的 legitimate vs. illegitimate pathway 区分\n   - 解决 CASSE 揭示的\"style removal has side effects\"问题\n\n6. **[§2 Core Contributions] — ISE 提升为标准化诊断工具** — [Significance]\n   - ISE 从\"诊断副产品\"提升为\"potential community-standard causal bias auditing metric\"\n   - 具体应用场景：cross-judge 对比、cross-domain 分析、judge version tracking\n   - 与 Soumik 的 observational bias score 形成因果 vs. 相关的差异\n\n7. **[§4.3 Baselines] — 从 5 个扩展到 9 个 baseline，覆盖所有方法类别** — [Technical Soundness]\n   - 新增 Multi-Reg (多维观测回归)、Prompt-Debiasing (Soumik)、RATE-corrected (~25x)、RBD (NeurIPS 2025, ~2x)、7-Call Majority Vote\n   - 构成最全面的 compute-normalized 对比矩阵\n\n8. **[§4.5 Ablations] — 从原始设计扩展为 12 项 ablation** — [Technical Soundness]\n   - 新增：naive paired difference (验证 DML 增量)、per-axis importance (各轴边际贡献)、cross-rewriter consistency、manipulation check (style metric effect sizes)、DML robustness check (nuisance estimator comparison)、interaction effects (检验 additivity 假设)、axis coverage (variance decomposition)\n\n9. **[§4.6 Human Evaluation] — 双层人工评估设计** — [Technical Soundness]\n   - 新增 counterfactual quality audit (100-150 pairs)：验证自动 gate 与人工判断一致性\n   - Quality evaluation 改为 divergence-stratified sampling + Krippendorff's α bootstrap CI\n   - 按 RubricBench (arXiv:2603.01562) 标准设计 annotation rubric\n\n10. **[§3.1] — 三轴独立性从 assumption 降级为 empirical verification** — [Soundness]\n    - 回应 CASSE entanglement concern：独立性是 hypothesis 而非 axiom\n    - 增加 interaction effects 检验和 coverage analysis ablation\n\n11. **[§4.7 Statistical Analysis] — 全面统计分析方案** — [Technical Soundness]\n    - paired bootstrap test (10K resamples)、Fisher r-to-z、DML asymptotic SE\n    - 所有主结果报告 95% CI\n\n12. **[§4.2 Benchmarks] — 补充 RewardBench 2 + SOS-Bench 作为 primary validation** — [Technical Soundness]\n    - RewardBench 2 (arXiv:2506.01937) 增加 factuality 和 precise instruction following 评测\n    - SOS-Bench 因其 ground truth 最贴合 content-only quality 被定位为 primary validation benchmark\n\n13. **[§3.1, §4.5] — Rewriter-judge 独立性保障 + content preservation domain-specific check** — [Soundness]\n    - Qwen3-32B 作为 target judge 时使用替代 rewriter\n    - BERTScore 对 math/code 不敏感 (FinNuE, arXiv:2511.09997)，增加 domain-specific 检查\n\n14. **[§3.3] — α leave-one-benchmark-out 协议 + format adaptation 说明** — [Soundness]\n    - 防止 α 调优数据泄漏\n    - 明确 CSD 在 pointwise / pairwise / multi-choice 格式下的适配\n\n15. **[§5 Limitations] — Judge version sensitivity + 3-axis coverage limitation** — [Completeness]\n    - 诚实讨论 proprietary judge 版本更新对 calibration 的影响\n    - 3 轴覆盖可能遗漏残余 style bias\n\n【主要风险】:\n1. **Trivial alternative 质疑**：审稿人可能仍然认为 Multi-Reg (多维观测回归) 在实践中\"足够好\"，CSD 的因果识别带来的增量不值得 7x 开销。如果实验中 CSD 相对 Multi-Reg 的提升不够显著（<3pp），这一风险会成为致命打击。核心防线是 naive-vs-DML ablation 和 confounding argument。\n2. **Counterfactual quality 不足**：如果 counterfactual rewrite 的 content preservation 不够好（特别是在 math/code domain），DML 的 second-layer robustness 可能不足以补偿，导致去偏效果退化。核心防线是 counterfactual quality audit 和 domain-specific preservation checks。\n\n【实施评估】:\n- **计算资源**: 需要 2-4 张 A100 GPU 用于 Qwen3-32B rewriter 和 Llama-4-Maverick / Qwen3-32B judge 的本地推理。3 个 proprietary judges (GPT-4o, Claude Sonnet 4, Gemini 2.5 Pro) 需 API 访问。估算 API 成本：5 benchmarks × avg ~500 instances × 7-14 judge calls × 3 proprietary judges ≈ 50K-150K API calls，按当前价格约 $500-2000。RATE-corrected baseline 额外需要 ~25x calls 在部分 benchmarks 上（可 subsample 控制成本）。DML 计算本身极轻量（gradient-boosted trees + cross-fitting，单 CPU 分钟级）。\n- **数据需求**: SOS-Bench、RewardBench (v1 + v2)、MT-Bench、Arena-Hard-Auto 均公开可得。RewardBench 2 数据在 HuggingFace (allenai/reward-bench-2)。无需构建新数据集。\n- **人工介入**: 200 条 quality evaluation × 3 annotators = 600 annotations + 150 条 counterfactual audit × 3 annotators = 450 annotations，总计约 1,050 条标注任务。需要具备 NLP 评估经验的标注员（非众包，建议研究生或专业标注团队）。预估人工标注工时：每条约 3-5 分钟，总计 ~50-90 小时。\n- **训练需求**: **无模型训练**。CSD 是纯 post-hoc 方法。DML estimation 使用 off-the-shelf gradient-boosted trees (LightGBM/XGBoost)，无需 GPU 训练。FairJudge baseline 需要在 open-weight judges 上训练（按其论文协议），但这是 baseline 复现而非 CSD 本身的需求。\n- **新 Benchmark**: 不需要构建新 benchmark。使用 5 个现有公开 benchmark。\n- **预估周期**: 总计约 3-4 个月。\n  - 第 1 月：counterfactual generation pipeline 开发 + content preservation gate 调优 + pilot 测试\n  - 第 2 月：全矩阵实验运行 (5 judges × 5 benchmarks × 9 baselines)，DML estimation，ablation 实验\n  - 第 3 月：人工标注 (quality eval + counterfactual audit) + RBD/FairJudge baseline 复现 + 统计分析\n  - 第 4 月：论文撰写 + 补充实验"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b8efc755-0bbc-4750-87f9-36427bfb275f",
+            "isSidechain": false,
+            "requestId": "req_011CbDGS55YgMkQ33o8HxiQ2",
+            "type": "assistant",
+            "uuid": "76077d75-2a1e-4d5e-b531-375059ec73d5",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "c8ddb01f-fc6b-4647-bff1-fa0d392be333",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HhpCuobhSqYhS9z2vEHnqR",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 743,
+                "cache_read_input_tokens": 137983,
+                "output_tokens": 8962,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 743,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 8962,
+                    "cache_read_input_tokens": 137983,
+                    "cache_creation_input_tokens": 743,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 743
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000178"
+        },
+        {
+          "source_line": 179,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "【任务】: 以「角色 B：迭代中」整合第 3 轮 worker 输出，按指定格式输出决策、概率估计、以及（若继续）下一轮 proposal 纯净版。  【发掘 agent 本轮输出】: Now I have sufficient research to make a well-grounded assessment. Let me synthesize my findings.  ---  【状态…",
+                "leafUuid": "76077d75-2a1e-4d5e-b531-375059ec73d5",
+                "sessionId": "c8ddb01f-fc6b-4647-bff1-fa0d392be333"
+              }
+            }
+          ],
+          "id": "event-000179"
+        },
+        {
+          "source_line": 180,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Refine causal style debiasing proposal for review",
+                "sessionId": "c8ddb01f-fc6b-4647-bff1-fa0d392be333"
+              }
+            }
+          ],
+          "id": "event-000180"
+        },
+        {
+          "source_line": 181,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "【任务】: 以「角色 B：迭代中」整合第 3 轮 worker 输出，按指定格式输出决策、概率估计、以及（若继续）下一轮 proposal 纯净版。  【发掘 agent 本轮输出】: Now I have sufficient research to make a well-grounded assessment. Let me synthesize my findings.  ---  【状态…",
+                "leafUuid": "76077d75-2a1e-4d5e-b531-375059ec73d5",
+                "sessionId": "c8ddb01f-fc6b-4647-bff1-fa0d392be333"
+              }
+            }
+          ],
+          "id": "event-000181"
+        },
+        {
+          "source_line": 182,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Refine causal style debiasing proposal for review",
+                "sessionId": "c8ddb01f-fc6b-4647-bff1-fa0d392be333"
+              }
+            }
+          ],
+          "id": "event-000182"
+        },
+        {
+          "source_line": 183,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Refine causal style debiasing proposal for review",
+                "sessionId": "c8ddb01f-fc6b-4647-bff1-fa0d392be333"
+              }
+            }
+          ],
+          "id": "event-000183"
+        },
+        {
+          "source_line": 184,
+          "timestamp": "2026-05-20T05:30:21.037Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-20T05:30:21.037Z",
+                "sessionId": "c8ddb01f-fc6b-4647-bff1-fa0d392be333",
+                "content": "【任务】: 流程已收敛且中位概率达交付门槛，请按「角色 C：最终输出」的通过格式，输出优化方案文本（对比原始 proposal 的修改建议列表 + 主要风险）。"
+              }
+            }
+          ],
+          "id": "event-000184"
+        },
+        {
+          "source_line": 185,
+          "timestamp": "2026-05-20T05:30:21.038Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-20T05:30:21.038Z",
+                "sessionId": "c8ddb01f-fc6b-4647-bff1-fa0d392be333"
+              }
+            }
+          ],
+          "id": "event-000185"
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "messages": [
+        {
+          "source_line": 186,
+          "timestamp": "2026-05-20T05:30:21.062Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "【任务】: 流程已收敛且中位概率达交付门槛，请按「角色 C：最终输出」的通过格式，输出优化方案文本（对比原始 proposal 的修改建议列表 + 主要风险）。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "76077d75-2a1e-4d5e-b531-375059ec73d5",
+            "isSidechain": false,
+            "promptId": "544178a0-d9fb-4a8d-9181-05237f4603ab",
+            "type": "user",
+            "uuid": "d4f2bbb9-c28d-41e5-9a11-f6dea9b32af1",
+            "permissionMode": "default",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "c8ddb01f-fc6b-4647-bff1-fa0d392be333",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000186"
+        },
+        {
+          "source_line": 187,
+          "timestamp": "2026-05-20T05:30:50.547Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user is asking me to output the final delivery in the \"角色 C: 最终输出（通过）\" format. Since the process has converged with mid probability 44% ≥ 36%, I should output the optimization plan comparing to the original proposal.\n\nI already produced most of this content in my round 3 output, but the user wants me to output it cleanly in the specified format. Let me re-read the format requirements:\n\n```\n【优化方案】\n\n1. [位置 / 章节] — [具体改动] — [命中哪个评审维度的加分]\n\n\n```\n\nNow I need to structure the specific optimizations with precise locations, concrete changes, and which review dimensions they address. I'll also need to identify the main risks that reviewers might challenge and provide implementation assessments covering computational resources, data requirements, and any human annotation needs.\n\nFor the implementation side, I should estimate whether model training is necessary, what the scale and duration would be, whether we need to build new benchmarks or evaluation datasets, and what the overall timeline looks like from project start to submission. Across the revisions, we've substantially expanded the experimental scope—adding four more baselines including multi-regression and majority voting approaches, incorporating RewardBench 2 and SOS-Bench for broader validation, and scaling ablations from three to twelve variants. The human evaluation now includes counterfactual quality checks and stratified sampling by divergence, while the statistical rigor has been tightened with bootstrap confidence intervals, Fisher transformation for correlation analysis, and debiased machine learning standard errors. We're also verifying rewriter-judge independence, testing interaction effects, and adding domain-specific content preservation checks alongside a detailed cost breakdown and leave-one-benchmark-out validation for α robustness.\n\nNow I'm organizing these improvements into a prioritized list by their impact on the overall evaluation strength.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d4f2bbb9-c28d-41e5-9a11-f6dea9b32af1",
+            "isSidechain": false,
+            "requestId": "req_011CbDGgXia4xUw2QrFTgind",
+            "type": "assistant",
+            "uuid": "26a26155-3c60-4b80-b428-0042990223e9",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "c8ddb01f-fc6b-4647-bff1-fa0d392be333",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NeeYwboPfYDpejBcUnoYcx",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 9032,
+                "cache_read_input_tokens": 138726,
+                "output_tokens": 6245,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 9032,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 6245,
+                    "cache_read_input_tokens": 138726,
+                    "cache_creation_input_tokens": 9032,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 9032
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000187"
+        },
+        {
+          "source_line": 188,
+          "timestamp": "2026-05-20T05:32:31.055Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "【优化方案】\n\n1. **[§1 Related Work 全局] — 补充 9 篇遗漏关键文献，建立完整的因果去偏研究景观并显式差异化** — [Related Work 致命遗漏修复 + Novelty 锐化]\n   原始 proposal 遗漏了与 CSD 高度相关的近期工作，审稿人极可能以\"missing critical related work + overclaimed novelty\"扣分。补充以下文献并逐篇建立差异化：\n   - arXiv:2604.27495 (Causally Motivated Inference-Time Intervention, Apr 2026): white-box neuron 干预 → CSD 为 black-box，无需模型内部访问\n   - arXiv:2512.19908 (Counterfactual Rhetorical Style, Dec 2025): 方法管线高度相似（LLM counterfactual rewrite + 统计聚合）但只量化不校正 → CSD 完成量化→校正闭环\n   - arXiv:2409.17407 (Post-hoc Reward Calibration, ICLR 2025): 单维度 observational locally-weighted regression → CSD 为多维 interventional causal identification\n   - arXiv:2604.13833 (CROME, Apr 2026): training-time causal data augmentation → CSD 为 post-hoc，无需重训 judge\n   - arXiv:2506.16507 (Causal Rubrics, ICML 2025): causal+neutral augmentations 训练 robust RM → 白盒 training-time，CSD 为黑盒 post-hoc\n   - arXiv:2507.15698 (CoLD, Jul 2025): counterfactual 因果去偏 PRM，但 training-time + 单维度(length) + white-box → CSD 三个维度均超越\n   - arXiv:2508.09724 (UDA, AAAI 2026): 黑盒后处理 judge 去偏，但需多 judge 共识驱动 → CSD 在单个 judge 上工作\n   - arXiv:2601.21816 (DMLRANK, Jan 2026): DML 用于 LLM ranking estimation → 共享方法论基础但目标不同，强化\"DML 在 LLM 评估中正成为一个研究方向\"的叙事\n   - arXiv:2604.23178 (Soumik, Apr 2026): 9 种去偏策略的全面对比 → CSD 应与其 best strategy（combined budget, +11.2pp）直接对比\n   这些文献构成\"causal debiasing for LLM evaluation\"的完整景观。CSD 精确填补 **black-box + post-hoc + multi-dimensional + score correction** 的交叉空白——每篇竞争者至少在一个维度上缺失。\n\n2. **[§1 Motivation 第 1-2 段] — 重构核心 framing：桥接两个文献体系 + RLHF pipeline significance** — [Significance 天花板提升]\n   原始 framing 是\"给黑盒 judge 去偏\"。优化为双层 significance 叙事：\n   - **跨领域桥梁**：NLP 评估社区大量记录了 style bias 但修复方式 ad-hoc（regression、prompt engineering）；因果推断/经济计量学社区有成熟的 DML 框架但未系统应用于黑盒 LLM judge。CSD 是两者的 principled integration。\n   - **RLHF pipeline 影响**：引用 Preference Leakage (ICLR 2026, arXiv:2502.01534) 论证 style bias 从 judge → preference data → reward model → policy model 的传播链。CSD 不仅修正 evaluation，还能在 preference data curation 阶段截断 style contamination 传播。在 §5 Expected Outcome 中作为 broader impact 讨论（不过度声称，因为 downstream RLHF 效果超出当前实验范围）。\n\n3. **[§3.2 Method 核心] — 新增 dual-layer causal identification 论证，堵住两个 trivial alternative** — [Novelty 最关键防线]\n   原始 proposal 仅说\"DML 有 doubly-robust 性质\"，未论证其在 counterfactual 设计下的增量价值。优化为显式双层论证：\n   - **Trivial Alternative 1（\"直接算配对差\"）**：RATE (ICML 2025) 证明 imperfect counterfactuals 引入 substantial bias。CSD 的 DML nuisance function 作为 second-stage robustness 吸收残余 content leakage，提供 $\\sqrt{n}$-consistent + doubly-robust 的统计保证。对比 RATE 的 double-rewrite（依赖 rewrite 偏差对称性假设，algorithmic correction）vs. CSD 的 DML（依赖半参数统计理论，statistical correction，假设更弱）。\n   - **Trivial Alternative 2（\"多维观测回归\"）**：直接扩展 LC-AlpacaEval 到多维特征的 observational regression 无法区分 confounded style-quality association（如高质量技术文档天然需要结构化格式）。CSD 的 counterfactual intervention 通过 do-calculus 打破混杂。在实验中纳入 Multi-Reg baseline 直接展示增量。\n\n4. **[§2 Contribution 2] — 将 legitimacy-aware correction (α) 从方法细节提升为核心概念贡献** — [Novelty 锐化]\n   原始 proposal 将 α 作为 calibration 细节呈现。优化为独立的概念贡献：\n   - 所有现有去偏方法（LC-AlpacaEval、FairJudge、BBE、RBD）隐式假设 style effect 应被完全移除\n   - CASSE (arXiv:2601.10809) 实证了 style removal 有 unintended side effects\n   - CSD 的 domain-conditional α 是该领域首次系统区分 bias vs. legitimate style-quality association，类比因果公平性中 legitimate vs. illegitimate causal pathway 的区分\n   - leave-one-benchmark-out 协议 + α sensitivity analysis 确保 α 不是过拟合的 knob\n\n5. **[§2 Contribution 3] — ISE 从诊断副产品提升为标准化因果偏差审计工具** — [Significance 加分]\n   原始 proposal 将 ISE 作为第三贡献一笔带过。优化为强调其独立价值：\n   - ISE 提供第一个可跨 judge、跨域、跨版本对比的因果偏差量化标准\n   - 对比 Soumik 的 observational style bias score (0.76-0.92)：ISE 是 interventional 的，能区分因果效应和相关性\n   - 具体应用场景：judge 选型定量依据、模型版本迭代偏差追踪、bias auditing 报告标准\n\n6. **[§3.1 三轴设计] — \"genuinely independent\" 从 assumption 降级为 empirical verification target** — [Soundness 防御]\n   原始 proposal 声称三轴\"genuinely independent\"。CASSE 的核心发现（style features deeply entangled）直接挑战此 claim。优化为：\n   - 三轴独立性是 empirical hypothesis，不是 axiom\n   - 通过 ISE correlation analysis + interaction effects check 验证\n   - 在 DML 中加入 $\\gamma_{ij} Style_i \\times Style_j$ 交互项，检验 $\\gamma$ 是否显著为零\n   - 如果交互效应显著，量化 additive correction 的 approximation error\n   - Coverage analysis（3 轴解释总 style variance 的比例）作为 scope limitation 的定量标注\n\n7. **[§4.3 Baselines] — 从 5 个扩展到 9 个，覆盖所有方法类别** — [Technical Soundness 核心加分]\n   原始 baselines（Raw Judge、LC-AlpacaEval、BBE、FairJudge、format normalization）遗漏了多个审稿人必然要求的对照。新增：\n   - **Multi-Reg**（多维观测回归）：最直接的 trivial alternative 对照，零额外开销\n   - **Prompt-Debiasing** (Soumik combined budget, arXiv:2604.23178)：最佳 prompt-engineering 去偏，零额外开销\n   - **RATE-corrected** (arXiv:2410.11348, ~25x)：ICML 2025 因果方法，double-rewrite + CSD-style correction\n   - **RBD** (arXiv:2505.17100, NeurIPS 2025, ~2x)：plug-in reasoning-based bias detector，当前 SOTA\n   - **7-Call Majority Vote** (7x)：compute-normalized 控制，同预算下随机采样取众数\n   结果表区分 all-judge-applicable 和 open-weight-only (FairJudge) 方法，避免 unfair comparison\n\n8. **[§4.5 Ablations] — 从 ~3 项扩展到 12 项，构建完整的组件验证矩阵** — [Technical Soundness 重要加分]\n   原始 ablation 仅有 linear vs DML vs nonparametric + ISE-based 对比。新增：\n   - **Naive paired difference (no nuisance)**: 直接验证 DML 增量价值——如果 naive ATE 与 DML 差距大，证明 second-layer robustness 有实质贡献\n   - **Per-axis importance**: 3 single-axis + 3 pairwise + full 3-axis，展示各轴边际贡献\n   - **Interaction effects**: DML 交互项检验 additivity 假设，回应 CASSE entanglement\n   - **Cross-rewriter consistency**: 3 个不同 rewriter 的 ISE 一致性，验证方法对 rewriter 的鲁棒性\n   - **Manipulation check**: 每轴 style metric effect size (Cohen's d)，验证 intervention 有效性\n   - **Content preservation threshold sensitivity**: BERTScore × NLI 的 grid search\n   - **Axis coverage**: variance decomposition，量化 3 轴的解释力\n   - **α sensitivity**: full grid α ∈ [0,1]\n   - **DML robustness check** (supplementary): nuisance estimator (GBT/RF/Lasso) + 样本量分析\n\n9. **[§4.6 Human Evaluation] — 双层人工评估设计** — [Technical Soundness 加分]\n   原始设计为 200 条 × 5-point Likert，缺乏细节。优化为：\n   - **Quality evaluation (200 responses)**: divergence-stratified sampling（按 CSD vs. raw judge 分歧程度分层），3 annotators/response，Krippendorff's α ≥ 0.6 + bootstrap CI，annotation rubric 按 RubricBench (arXiv:2603.01562) 标准设计\n   - **Counterfactual quality audit (100-150 pairs)**: ~50/axis，标注员判断目标轴变化成功率、非目标轴意外变化、内容保留度；报告 Cohen's κ（automated gate vs. human），直接验证 CSD 核心假设\n\n10. **[§4.2 Benchmarks] — 补充 RewardBench 2 + SOS-Bench 定位为 primary validation** — [Technical Soundness]\n    原始为 4 个 benchmark。新增 RewardBench 2 (arXiv:2506.01937, factuality + precise instruction following)。SOS-Bench 的 ground truth 最贴合 content-only quality，定位为 primary validation benchmark。对 Arena-Hard-Auto 和 MT-Bench，诚实讨论 ground truth 可能含 style preference 的局限。MT-Bench (~80 条) 改用 3-fold cross-fitting + 定位为 directional evidence。\n\n11. **[§3.1 + §4.5] — Rewriter-judge 独立性 + domain-specific content preservation** — [Soundness 防御]\n    - 当 target judge 为 Qwen3-32B 时，使用 Llama-3.3-70B 作为 rewriter，遵循 RATE 的独立性原则\n    - BERTScore 对 numerical content 不敏感 (FinNuE, arXiv:2511.09997)，对 math/code domain 补充 domain-specific check（exact-match 或 execution-based equivalence）\n    - 人工 counterfactual audit 按 domain 分层，分别评估 math/code vs. open-ended responses\n\n12. **[§4.7 Statistical Analysis] — 完整统计分析方案** — [Technical Soundness]\n    原始 proposal 未指定统计检验。新增：paired bootstrap (10K resamples) + Fisher r-to-z + DML asymptotic SE (Chernozhukov et al. 2018) + 所有主结果报告 95% CI。\n\n13. **[§3.4 + §4.4] — Format adaptation + compute curve 设计** — [Completeness]\n    - 明确 CSD 在 pointwise / pairwise / multi-choice 格式下的适配方案\n    - Accuracy-per-judge-call curve 利用 per-axis ablation 构造 CSD-lite variants: 1-axis@3x, 2-axis@5x, 3-axis@7x，展示 graceful degradation\n    - 提供 cost breakdown 表（instance count × judge calls × format factor），估算总 API 成本\n\n14. **[§3.3] — α leave-one-benchmark-out 协议** — [Soundness 防御]\n    原始 proposal 的 α 调优方案存在数据泄漏风险。改为 leave-one-benchmark-out cross-validation + full grid sensitivity analysis，确保 α 选择的稳健性。\n\n15. **[§5 Limitations] — 诚实讨论 scope limitations** — [Completeness]\n    新增：(1) 3-axis coverage 的残余 bias；(2) counterfactual quality 依赖 rewriter 能力；(3) 7x 推理成本；(4) proprietary judge version sensitivity（版本更新后 β 估计可能需要重新校准）。\n\n【主要风险】:\n1. **CSD vs. Multi-Reg 增量不显著**：如果多维观测回归在实验中接近 CSD 的去偏效果（差距 <3pp），审稿人会质疑 7x 开销下因果识别的价值。这是最大的存在性风险——核心防线是 naive-vs-DML ablation 证明 DML 层有增量、以及在 style-content confounding 强的 domain（如 coding/technical writing）上展示因果识别的优势。\n2. **Counterfactual quality 在特定 domain 退化**：如果 math/code domain 的 counterfactual preservation 质量差（BERTScore 的 numerical 盲区 + rewriter 对技术内容的改写能力限制），CSD 在 RewardBench 2 的 math/factuality domain 上可能表现不佳。核心防线是 domain-specific preservation checks + counterfactual quality audit + 诚实报告 per-domain 结果。\n\n【实施评估】:\n- **计算资源**: 2-4 张 A100 GPU 用于 Qwen3-32B / Llama-3.3-70B rewriter 本地推理及 open-weight judge (Qwen3-32B, Llama-4-Maverick) 推理。3 个 proprietary judges (GPT-4o, Claude Sonnet 4, Gemini 2.5 Pro) 需 API 访问。估算 API 调用量：5 benchmarks × avg ~500 instances × 7-14 calls/instance (视 format) × 3 proprietary judges ≈ 50K-150K API calls，按当前价格约 $500-2,000。RATE-corrected baseline 额外 ~25x calls（可 subsample 至 200 instances/benchmark 控制成本）。DML estimation 本身极轻量（LightGBM/XGBoost cross-fitting，单 CPU 分钟级）。\n- **数据需求**: SOS-Bench、RewardBench (v1)、RewardBench 2 (HuggingFace: allenai/reward-bench-2)、MT-Bench、Arena-Hard-Auto，全部公开可得，无需额外数据采集或许可。\n- **人工介入**: 200 条 quality evaluation × 3 annotators + 150 条 counterfactual audit × 3 annotators = 1,050 条标注任务。需具备 NLP 评估经验的标注员（推荐研究生或专业标注团队，非众包）。每条约 3-5 分钟，总计约 55-90 人时。需设计 annotation rubric（含 anchor examples）并进行 pilot calibration。\n- **训练需求**: **无模型训练**。CSD 是纯 post-hoc 推理时方法。DML 使用 off-the-shelf gradient-boosted trees，无需 GPU 训练。FairJudge baseline 需在 open-weight judges 上复现其 SFT→DPO→GRPO 训练（按其论文协议，约 1-2 天 per judge on 4×A100），但这是 baseline 复现需求，不是 CSD 本身的需求。RBD baseline 有开源 checkpoint，直接加载推理。\n- **新 Benchmark**: 不需要构建新 benchmark。使用 5 个现有公开 benchmark。\n- **预估周期**: 总计约 3.5-4 个月，从启动到 EMNLP 2026 投稿就绪。\n  - 第 1 月：counterfactual generation pipeline 开发（rewriter prompt 工程 + content preservation gate 调优 + manipulation check pilot）+ baseline 复现 (FairJudge training, RBD/RATE setup)\n  - 第 2 月：全矩阵实验运行 (5 judges × 5 benchmarks × 9 baselines)，DML estimation + 全部 12 项 ablation\n  - 第 3 月：人工标注（quality eval + counterfactual audit）+ 统计分析 + per-domain 结果整理\n  - 第 3.5-4 月：论文撰写 + 补充实验 + camera-ready polish"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "26a26155-3c60-4b80-b428-0042990223e9",
+            "isSidechain": false,
+            "requestId": "req_011CbDGgXia4xUw2QrFTgind",
+            "type": "assistant",
+            "uuid": "c0298d83-7d02-4918-ab0c-ab6c0d40b9e7",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "c8ddb01f-fc6b-4647-bff1-fa0d392be333",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NeeYwboPfYDpejBcUnoYcx",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 9032,
+                "cache_read_input_tokens": 138726,
+                "output_tokens": 6245,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 9032,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 6245,
+                    "cache_read_input_tokens": 138726,
+                    "cache_creation_input_tokens": 9032,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 9032
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000188"
+        },
+        {
+          "source_line": 189,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "【任务】: 流程已收敛且中位概率达交付门槛，请按「角色 C：最终输出」的通过格式，输出优化方案文本（对比原始 proposal 的修改建议列表 + 主要风险）。",
+                "leafUuid": "c0298d83-7d02-4918-ab0c-ab6c0d40b9e7",
+                "sessionId": "c8ddb01f-fc6b-4647-bff1-fa0d392be333"
+              }
+            }
+          ],
+          "id": "event-000189"
+        },
+        {
+          "source_line": 190,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Refine causal style debiasing proposal for review",
+                "sessionId": "c8ddb01f-fc6b-4647-bff1-fa0d392be333"
+              }
+            }
+          ],
+          "id": "event-000190"
+        }
+      ]
+    }
+  ]
+}

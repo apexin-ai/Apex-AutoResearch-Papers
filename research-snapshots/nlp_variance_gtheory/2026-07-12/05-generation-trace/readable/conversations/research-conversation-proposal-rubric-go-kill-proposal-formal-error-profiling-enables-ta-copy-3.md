@@ -1,0 +1,2709 @@
+# Research conversation: 【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。 【proposal】: # Formal Error Profiling Enables Ta
+
+**Reproducibility Budgets for Open-Weight LLM Evaluation: A Generalizability Theory Study of 7–9B Instruction-Tuned Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 42
+- **Recorded user turns:** 1
+- **Tool calls:** 11
+- **Original source:** `logs/chats/exported-trajectories/account-2/d91d2915-23c5-40a3-baef-86a9aa1c68b6.jsonl`
+- **Structured JSON:** [`a9cbe8f5f7a739475737.json`](../../sessions/a9/a9cbe8f5f7a739475737.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-27T08:26:57.409Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-27T08:26:57.409Z",
+  "sessionId": "d91d2915-23c5-40a3-baef-86a9aa1c68b6",
+  "content": "【任务】: 请评估以下 proposal 的客观中稿概率。\n必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。\n\n【proposal】:\n# Formal Error Profiling Enables Targeted Math Self-Improvement\n\n## Core Problem\n\nSelf-improvement loops for mathematical reasoning suffer from two key failures: model collapse when using self-verification, and wasteful data generation that doesn't target the model's actual mathematical skill deficits. Can formal symbolic tools serve as both collapse-proof verifiers and fine-grained error diagnosticians to enable stable, efficient self-improvement?\n\n## Research Opportunity\n\nThree recent advances create a ripe moment: FoVer (ACL 2026) proved formal tools can generate accurate step-level error labels for training, STAT (ICLR 2026) showed skill-gap-targeted synthesis outperforms uniform synthesis by 7.5% on MATH, and NSRSA (March 2026) demonstrated symbolic verification helps iterative self-training but only at the arithmetic level on GSM8K. The specific combination of formal step-level error categorization driving targeted symbolic problem synthesis in a closed self-improvement loop has not been attempted. Unlike LLM-teacher-based error analysis (Self-Error-Instruct, STAT, WarriorMath), formal tools provide ground-truth error diagnosis that cannot be hacked or hallucinated, directly addressing the collapse mechanism identified by the solver-verifier gap theory.\n\n## Research Landscape\n\nCurrent SOTA in synthetic math data includes SPARQ (June 2025, +24% via quality-diversity algorithms from 7.5K seeds), CoTEvol (April 2026, +6.6% average via evolutionary CoT synthesis), and MathMixup (Jan 2026, 47.6% on 7 benchmarks via difficulty-controlled curriculum). For self-improvement, SPICE (Oct 2025) achieves +8.9% math improvement via document-grounded self-play, while SvS (Aug 2025) achieves +18.3% Pass@32 on AIME24 via variational problem synthesis maintaining training entropy. For verification, FoVer trains generalizable PRMs from formal verification data across 12 benchmarks, and imperfect verifier research (April 2026) shows noise rates up to 15% are tolerable. Key limitation: all error-targeted synthesis methods (STAT, Self-Error-Instruct, WarriorMath) depend on frontier LLM teachers for error diagnosis rather than formal tools — STAT uses a teacher model's metacognition to build skill profiles, introducing teacher-dependent biases. Meanwhile, NSRSA's symbolic verification covers only arithmetic operations on GSM8K, leaving algebraic manipulation, equation solving, and constraint reasoning uncovered. The Bidirectional Curriculum framework (March 2026) dynamically adjusts difficulty but lacks formal verification to ensure step-level correctness of synthesized solutions. Concurrent work: Adaptive Problem Generation via Symbolic Representations (Feb 2026) uses SymPy-based symbolic representations in a closed-loop RLVR framework to adapt problem difficulty, but does not perform error-type diagnosis or skill-targeted synthesis — it adapts difficulty globally rather than targeting specific formal error categories. SwS (NeurIPS 2025, updates April 2026) identifies weaknesses via RL pass-rate analysis but without formal step-level diagnosis. Reasoning Core (March 2026) procedurally generates verifiable symbolic data but is not error-targeted or iterative. Safe (ACL 2025) performs step-aware Lean 4 verification but in one-shot refinement, not closed-loop training.\n\n## Proposed Approach\n\nWe propose a closed-loop self-improvement system where formal symbolic tools (Z3 for satisfiability/logic, SymPy for algebraic computation) serve as both step-level error diagnosticians and targeted problem generators. Each iteration formalizes the student model's solutions, uses symbolic verification to classify step-level errors into a fine-grained taxonomy (algebraic manipulation, equation solving, arithmetic, constraint reasoning, logical inference), and then drives SymPy-based problem synthesis that generates new problems specifically targeting the model's weakest skills — with ground-truth solutions guaranteed by the solver. The student is fine-tuned on this targeted data via SFT and DPO (using formally-verified vs. formally-rejected solution pairs as preference pairs), then re-profiled. Unlike LLM-teacher error analysis (STAT, Self-Error-Instruct), formal diagnosis is unhackable and teacher-free; unlike NSRSA's arithmetic-only symbolic verification on GSM8K, our system covers the full spectrum from algebra through proof-level reasoning across MATH-level and competition problems, using Qwen3.5-9B as the student model.\n\n## Detailed Description\n\nSelf-improvement loops for mathematical reasoning fail through model collapse (solver-verifier gap) and untargeted data waste. We propose FormalLoop, a teacher-free, collapse-resistant self-improvement system using formal symbolic tools as ground-truth error diagnosticians. Each iteration: (1) the student model (Qwen3.5-9B) solves problems, (2) solutions are formalized and verified step-by-step using Z3 and SymPy, (3) step-level errors are classified into a formal mathematical skill taxonomy (algebraic manipulation, equation solving, arithmetic, constraint reasoning, logical inference), (4) SymPy-based problem synthesis generates targeted problems exercising weak skills with solver-guaranteed solutions, and (5) the student trains via SFT+DPO on targeted data and formally-constructed preference pairs. This unifies three validated-but-disconnected advances: FoVer's formal step-level labels (ACL 2026), STAT's error-targeted synthesis superiority (ICLR 2026, +7.5% over uniform), and NSRSA's symbolic verification for training stability (arXiv 2026) — extending formal verification from arithmetic-only GSM8K to full algebraic-to-proof MATH-level coverage, and from one-shot PRM training to iterative closed-loop improvement. Key differentiator vs. concurrent work: Adaptive Problem Generation (Feb 2026) adapts difficulty globally but does not diagnose error types; SwS identifies weaknesses via pass rates without formal diagnosis.\n\n## Key References\n\n- FoVer: Efficient PRM Training Data Synthesis via Formal Verification (ACL Findings 2026)\n- STAT: Skill-Targeted Adaptive Training (ICLR 2026)\n- Stabilizing Iterative Self-Training with Verified Reasoning via Symbolic Recursive Self-Alignment [NSRSA] (arXiv 2026)\n- Theoretical Modeling of LLM Self-Improvement Training Dynamics Through Solver-Verifier Gap (ICLR 2026)\n- SPARQ: Synthetic Problem Generation for Reasoning via Quality-Diversity Algorithms (arXiv 2025)\n- CoTEvol: Self-Evolving Chain-of-Thoughts for Data Synthesis in Mathematical Reasoning (arXiv 2026)\n- MathMixup: Boosting LLM Mathematical Reasoning with Difficulty-Controllable Data Synthesis and Curriculum Learning (arXiv 2026)\n- Self-Error-Instruct: Generalizing from Errors for LLMs Mathematical Reasoning (ACL 2025)\n- SPICE: Self-Play In Corpus Environments Improves Reasoning (arXiv 2025)\n- SvS: Beyond Pass@1: Self-Play with Variational Problem Synthesis Sustains RLVR (arXiv 2025)\n- SwS: Self-aware Weakness-driven Problem Synthesis in Reinforcement Learning for LLM Reasoning (NeurIPS 2025)\n- Adaptive Problem Generation via Symbolic Representations (arXiv 2026)\n- An Imperfect Verifier is Good Enough: Learning with Noisy Rewards (arXiv 2026)\n- Step-Wise Formal Verification for LLM-Based Mathematical Problem Solving [MATH-VF] (arXiv 2025)\n- Safe: Enhancing Mathematical Reasoning via Retrospective Step-aware Formal Verification (ACL 2025)\n- WarriorMath: Enhancing the Mathematical Ability of Large Language Models with a Defect-aware Framework (arXiv 2025)\n- Bidirectional Curriculum Generation: A Multi-Agent Framework for Data-Efficient Mathematical Reasoning (arXiv 2026)\n- Reasoning Core: A Scalable Procedural Data Generation Suite for Symbolic Pre-training and Post-Training (arXiv 2026)\n- Neuro-Symbolic Data Generation for Math Reasoning (NeurIPS 2024)\n\n## Resource Estimate\n\n- **manual**: gpu_hours: 600 H100 hours (5 self-training iterations × ~70h generation/verification/training + 200h evaluation/ablations), timeline: 4-5 months (formalization pipeline, Z3/SymPy integration, error taxonomy design, problem synthesis templates, training infrastructure, 5 iterations, paper writing), estimated_gpu_cost: $1,500 (at ~$2.50/hr H100 spot)\n- **human_in_loop**: gpu_hours: 550 H100 hours (Claude accelerates formalization pipeline and taxonomy iteration, slightly fewer wasted runs), timeline: 3-4 months, claude_api_cost: $400-600 (code generation for Z3/SymPy pipeline, formalization prompt engineering, error taxonomy refinement, analysis), estimated_gpu_cost: $1,375\n- **auto_research**: gpu_hours: 550 H100 hours (same experimental compute, fewer false starts), timeline: 6-8 weeks (parallelized implementation, automated hyperparameter search, faster iteration), claude_api_cost: $1,200-2,000 (end-to-end pipeline implementation, formalization code, experiment orchestration, paper drafting), estimated_gpu_cost: $1,375, speed_bottleneck: Symbolic verification throughput — Z3/SymPy step verification is CPU-bound (~0.5-2s per step) and serialized per solution; formalizing natural language solutions to symbolic form requires careful LLM-to-formal translation with ~60-70% success rate, necessitating retry loops\n"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-27T08:26:57.411Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-27T08:26:57.411Z",
+  "sessionId": "d91d2915-23c5-40a3-baef-86a9aa1c68b6"
+}
+```
+
+---
+
+## Round 1
+
+40 recorded events
+
+### User
+
+_source line 3 · 2026-05-27T08:26:57.422Z_
+
+【任务】: 请评估以下 proposal 的客观中稿概率。
+必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。
+
+【proposal】:
+# Formal Error Profiling Enables Targeted Math Self-Improvement
+
+## Core Problem
+
+Self-improvement loops for mathematical reasoning suffer from two key failures: model collapse when using self-verification, and wasteful data generation that doesn't target the model's actual mathematical skill deficits. Can formal symbolic tools serve as both collapse-proof verifiers and fine-grained error diagnosticians to enable stable, efficient self-improvement?
+
+## Research Opportunity
+
+Three recent advances create a ripe moment: FoVer (ACL 2026) proved formal tools can generate accurate step-level error labels for training, STAT (ICLR 2026) showed skill-gap-targeted synthesis outperforms uniform synthesis by 7.5% on MATH, and NSRSA (March 2026) demonstrated symbolic verification helps iterative self-training but only at the arithmetic level on GSM8K. The specific combination of formal step-level error categorization driving targeted symbolic problem synthesis in a closed self-improvement loop has not been attempted. Unlike LLM-teacher-based error analysis (Self-Error-Instruct, STAT, WarriorMath), formal tools provide ground-truth error diagnosis that cannot be hacked or hallucinated, directly addressing the collapse mechanism identified by the solver-verifier gap theory.
+
+## Research Landscape
+
+Current SOTA in synthetic math data includes SPARQ (June 2025, +24% via quality-diversity algorithms from 7.5K seeds), CoTEvol (April 2026, +6.6% average via evolutionary CoT synthesis), and MathMixup (Jan 2026, 47.6% on 7 benchmarks via difficulty-controlled curriculum). For self-improvement, SPICE (Oct 2025) achieves +8.9% math improvement via document-grounded self-play, while SvS (Aug 2025) achieves +18.3% Pass@32 on AIME24 via variational problem synthesis maintaining training entropy. For verification, FoVer trains generalizable PRMs from formal verification data across 12 benchmarks, and imperfect verifier research (April 2026) shows noise rates up to 15% are tolerable. Key limitation: all error-targeted synthesis methods (STAT, Self-Error-Instruct, WarriorMath) depend on frontier LLM teachers for error diagnosis rather than formal tools — STAT uses a teacher model's metacognition to build skill profiles, introducing teacher-dependent biases. Meanwhile, NSRSA's symbolic verification covers only arithmetic operations on GSM8K, leaving algebraic manipulation, equation solving, and constraint reasoning uncovered. The Bidirectional Curriculum framework (March 2026) dynamically adjusts difficulty but lacks formal verification to ensure step-level correctness of synthesized solutions. Concurrent work: Adaptive Problem Generation via Symbolic Representations (Feb 2026) uses SymPy-based symbolic representations in a closed-loop RLVR framework to adapt problem difficulty, but does not perform error-type diagnosis or skill-targeted synthesis — it adapts difficulty globally rather than targeting specific formal error categories. SwS (NeurIPS 2025, updates April 2026) identifies weaknesses via RL pass-rate analysis but without formal step-level diagnosis. Reasoning Core (March 2026) procedurally generates verifiable symbolic data but is not error-targeted or iterative. Safe (ACL 2025) performs step-aware Lean 4 verification but in one-shot refinement, not closed-loop training.
+
+## Proposed Approach
+
+We propose a closed-loop self-improvement system where formal symbolic tools (Z3 for satisfiability/logic, SymPy for algebraic computation) serve as both step-level error diagnosticians and targeted problem generators. Each iteration formalizes the student model's solutions, uses symbolic verification to classify step-level errors into a fine-grained taxonomy (algebraic manipulation, equation solving, arithmetic, constraint reasoning, logical inference), and then drives SymPy-based problem synthesis that generates new problems specifically targeting the model's weakest skills — with ground-truth solutions guaranteed by the solver. The student is fine-tuned on this targeted data via SFT and DPO (using formally-verified vs. formally-rejected solution pairs as preference pairs), then re-profiled. Unlike LLM-teacher error analysis (STAT, Self-Error-Instruct), formal diagnosis is unhackable and teacher-free; unlike NSRSA's arithmetic-only symbolic verification on GSM8K, our system covers the full spectrum from algebra through proof-level reasoning across MATH-level and competition problems, using Qwen3.5-9B as the student model.
+
+## Detailed Description
+
+Self-improvement loops for mathematical reasoning fail through model collapse (solver-verifier gap) and untargeted data waste. We propose FormalLoop, a teacher-free, collapse-resistant self-improvement system using formal symbolic tools as ground-truth error diagnosticians. Each iteration: (1) the student model (Qwen3.5-9B) solves problems, (2) solutions are formalized and verified step-by-step using Z3 and SymPy, (3) step-level errors are classified into a formal mathematical skill taxonomy (algebraic manipulation, equation solving, arithmetic, constraint reasoning, logical inference), (4) SymPy-based problem synthesis generates targeted problems exercising weak skills with solver-guaranteed solutions, and (5) the student trains via SFT+DPO on targeted data and formally-constructed preference pairs. This unifies three validated-but-disconnected advances: FoVer's formal step-level labels (ACL 2026), STAT's error-targeted synthesis superiority (ICLR 2026, +7.5% over uniform), and NSRSA's symbolic verification for training stability (arXiv 2026) — extending formal verification from arithmetic-only GSM8K to full algebraic-to-proof MATH-level coverage, and from one-shot PRM training to iterative closed-loop improvement. Key differentiator vs. concurrent work: Adaptive Problem Generation (Feb 2026) adapts difficulty globally but does not diagnose error types; SwS identifies weaknesses via pass rates without formal diagnosis.
+
+## Key References
+
+- FoVer: Efficient PRM Training Data Synthesis via Formal Verification (ACL Findings 2026)
+- STAT: Skill-Targeted Adaptive Training (ICLR 2026)
+- Stabilizing Iterative Self-Training with Verified Reasoning via Symbolic Recursive Self-Alignment [NSRSA] (arXiv 2026)
+- Theoretical Modeling of LLM Self-Improvement Training Dynamics Through Solver-Verifier Gap (ICLR 2026)
+- SPARQ: Synthetic Problem Generation for Reasoning via Quality-Diversity Algorithms (arXiv 2025)
+- CoTEvol: Self-Evolving Chain-of-Thoughts for Data Synthesis in Mathematical Reasoning (arXiv 2026)
+- MathMixup: Boosting LLM Mathematical Reasoning with Difficulty-Controllable Data Synthesis and Curriculum Learning (arXiv 2026)
+- Self-Error-Instruct: Generalizing from Errors for LLMs Mathematical Reasoning (ACL 2025)
+- SPICE: Self-Play In Corpus Environments Improves Reasoning (arXiv 2025)
+- SvS: Beyond Pass@1: Self-Play with Variational Problem Synthesis Sustains RLVR (arXiv 2025)
+- SwS: Self-aware Weakness-driven Problem Synthesis in Reinforcement Learning for LLM Reasoning (NeurIPS 2025)
+- Adaptive Problem Generation via Symbolic Representations (arXiv 2026)
+- An Imperfect Verifier is Good Enough: Learning with Noisy Rewards (arXiv 2026)
+- Step-Wise Formal Verification for LLM-Based Mathematical Problem Solving [MATH-VF] (arXiv 2025)
+- Safe: Enhancing Mathematical Reasoning via Retrospective Step-aware Formal Verification (ACL 2025)
+- WarriorMath: Enhancing the Mathematical Ability of Large Language Models with a Defect-aware Framework (arXiv 2025)
+- Bidirectional Curriculum Generation: A Multi-Agent Framework for Data-Efficient Mathematical Reasoning (arXiv 2026)
+- Reasoning Core: A Scalable Procedural Data Generation Suite for Symbolic Pre-training and Post-Training (arXiv 2026)
+- Neuro-Symbolic Data Generation for Math Reasoning (NeurIPS 2024)
+
+## Resource Estimate
+
+- **manual**: gpu_hours: 600 H100 hours (5 self-training iterations × ~70h generation/verification/training + 200h evaluation/ablations), timeline: 4-5 months (formalization pipeline, Z3/SymPy integration, error taxonomy design, problem synthesis templates, training infrastructure, 5 iterations, paper writing), estimated_gpu_cost: $1,500 (at ~$2.50/hr H100 spot)
+- **human_in_loop**: gpu_hours: 550 H100 hours (Claude accelerates formalization pipeline and taxonomy iteration, slightly fewer wasted runs), timeline: 3-4 months, claude_api_cost: $400-600 (code generation for Z3/SymPy pipeline, formalization prompt engineering, error taxonomy refinement, analysis), estimated_gpu_cost: $1,375
+- **auto_research**: gpu_hours: 550 H100 hours (same experimental compute, fewer false starts), timeline: 6-8 weeks (parallelized implementation, automated hyperparameter search, faster iteration), claude_api_cost: $1,200-2,000 (end-to-end pipeline implementation, formalization code, experiment orchestration, paper drafting), estimated_gpu_cost: $1,375, speed_bottleneck: Symbolic verification throughput — Z3/SymPy step verification is CPU-bound (~0.5-2s per step) and serialized per solution; formalizing natural language solutions to symbolic form requires careful LLM-to-formal translation with ~60-70% success rate, necessitating retry loops
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "01cb32b0-52ad-48e6-9ee1-e4237439b5e8",
+  "type": "user",
+  "uuid": "6047fc7d-0c27-4dad-adf0-d8c7163d824e",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d91d2915-23c5-40a3-baef-86a9aa1c68b6",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-27T08:26:57.421Z_
+
+```json
+{
+  "parentUuid": "6047fc7d-0c27-4dad-adf0-d8c7163d824e",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "af5f2115-240c-46a3-8b14-5d113c7b5ae1",
+  "timestamp": "2026-05-27T08:26:57.421Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d91d2915-23c5-40a3-baef-86a9aa1c68b6",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-27T08:26:57.421Z_
+
+```json
+{
+  "parentUuid": "af5f2115-240c-46a3-8b14-5d113c7b5ae1",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "6e1d0374-6c32-42b7-992f-d134af00f2dc",
+  "timestamp": "2026-05-27T08:26:57.421Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d91d2915-23c5-40a3-baef-86a9aa1c68b6",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Formal error profiling for math self-improvement",
+  "sessionId": "d91d2915-23c5-40a3-baef-86a9aa1c68b6"
+}
+```
+
+---
+
+### Assistant
+
+_source line 7 · 2026-05-27T08:27:02.160Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to evaluate a research proposal for AAAI 2026 submission. I need to first do thorough literature research before scoring. Let me search for the key topics and papers mentioned in this proposal.
+
+The proposal is about "Formal Error Profiling Enables Targeted Math Self-Improvement" - using formal symbolic tools (Z3, SymPy) for step-level error diagnosis and targeted problem synthesis in a closed-loop self-improvement system for mathematical reasoning.
+
+Let me do several web searches to understand the landscape.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6e1d0374-6c32-42b7-992f-d134af00f2dc",
+  "isSidechain": false,
+  "requestId": "req_011CbSkp3YwZR6Q9jQ2dWhrT",
+  "type": "assistant",
+  "uuid": "15854e4f-333c-41d4-aed6-b23f02492476",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d91d2915-23c5-40a3-baef-86a9aa1c68b6",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BokQVJJNy1JEvJ95aFfo48",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 17755,
+      "output_tokens": 234,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 234,
+          "cache_read_input_tokens": 17755,
+          "cache_creation_input_tokens": 0,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-27T08:27:02.677Z_
+
+I need to conduct thorough literature research before evaluating this proposal. Let me search for the key topics and papers mentioned.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "15854e4f-333c-41d4-aed6-b23f02492476",
+  "isSidechain": false,
+  "requestId": "req_011CbSkp3YwZR6Q9jQ2dWhrT",
+  "type": "assistant",
+  "uuid": "b94180fd-b3af-4c29-9cd2-b93451afa5da",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d91d2915-23c5-40a3-baef-86a9aa1c68b6",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BokQVJJNy1JEvJ95aFfo48",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 17755,
+      "output_tokens": 234,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 234,
+          "cache_read_input_tokens": 17755,
+          "cache_creation_input_tokens": 0,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-27T08:27:02.828Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01LcTLxdi1KdbJN76k1eYuyj`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b94180fd-b3af-4c29-9cd2-b93451afa5da",
+  "isSidechain": false,
+  "requestId": "req_011CbSkp3YwZR6Q9jQ2dWhrT",
+  "type": "assistant",
+  "uuid": "46b0ecd3-9604-482d-aa4a-48eab2faab65",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d91d2915-23c5-40a3-baef-86a9aa1c68b6",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BokQVJJNy1JEvJ95aFfo48",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 17755,
+      "output_tokens": 234,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 234,
+          "cache_read_input_tokens": 17755,
+          "cache_creation_input_tokens": 0,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-27T08:27:02.835Z_
+
+<details><summary>↩ Tool result · `toolu_01LcTLxdi1KdbJN76k1eYuyj`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "46b0ecd3-9604-482d-aa4a-48eab2faab65",
+  "isSidechain": false,
+  "promptId": "01cb32b0-52ad-48e6-9ee1-e4237439b5e8",
+  "type": "user",
+  "uuid": "7057bac4-09ea-4a42-8eb5-64c432598187",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "46b0ecd3-9604-482d-aa4a-48eab2faab65",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d91d2915-23c5-40a3-baef-86a9aa1c68b6",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11 · 2026-05-27T08:27:05.823Z_
+
+Now let me conduct the required literature searches. I'll run multiple searches in parallel to cover the key areas.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7057bac4-09ea-4a42-8eb5-64c432598187",
+  "isSidechain": false,
+  "requestId": "req_011CbSkpSut9dpxq4qjUTDeZ",
+  "type": "assistant",
+  "uuid": "ddc952d1-c6df-430b-a772-fe1af74042b7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d91d2915-23c5-40a3-baef-86a9aa1c68b6",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C5XAnuPdwWEtmHZsoE1Nb2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 761,
+      "cache_read_input_tokens": 17755,
+      "output_tokens": 91,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 761,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 91,
+          "cache_read_input_tokens": 17755,
+          "cache_creation_input_tokens": 761,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 761
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-27T08:27:06.109Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011oJUSiwb7Q6bjxXnxRoVJx`</summary>
+
+```json
+{
+  "query": "FoVer formal verification PRM training data synthesis ACL 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ddc952d1-c6df-430b-a772-fe1af74042b7",
+  "isSidechain": false,
+  "requestId": "req_011CbSkpSut9dpxq4qjUTDeZ",
+  "type": "assistant",
+  "uuid": "543baa62-6dd5-40f4-8402-3ef856325c7f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d91d2915-23c5-40a3-baef-86a9aa1c68b6",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C5XAnuPdwWEtmHZsoE1Nb2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 761,
+      "cache_read_input_tokens": 17755,
+      "output_tokens": 91,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 761,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 91,
+          "cache_read_input_tokens": 17755,
+          "cache_creation_input_tokens": 761,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 761
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-27T08:27:13.696Z_
+
+<details><summary>↩ Tool result · `toolu_011oJUSiwb7Q6bjxXnxRoVJx`</summary>
+
+```text
+Web search results for query: "FoVer formal verification PRM training data synthesis ACL 2026"
+
+Links: [{"title":"FoVer: Efficient PRM Training Data Synthesis via Formal Verification","url":"https://fover-prm.github.io/"},{"title":"GitHub - psunlpgroup/FoVer: This repository includes code and materials for the paper \"Efficient PRM Training Data Synthesis via Formal Verification\" (ACL 2026 Findings). · GitHub","url":"https://github.com/psunlpgroup/FoVer"},{"title":"[2505.15960] Efficient PRM Training Data Synthesis via Formal Verification","url":"https://arxiv.org/abs/2505.15960"},{"title":"Efficient PRM Training Data Synthesis via Formal Verification","url":"https://arxiv.org/html/2505.15960v3"},{"title":"Generalizable Process Reward Models via Formally Verified Training Data | OpenReview","url":"https://openreview.net/forum?id=LAejsDitr3"},{"title":"Generalizable Process Reward Models via Formally Verified Training Data","url":"https://arxiv.org/pdf/2505.15960"}]
+
+Based on the search results, here's what I found about FoVer:
+
+## Overview
+
+FoVer is a framework that synthesizes PRM training data from formal reasoning tasks by annotating step-level error labels using formal verification tools such as Z3 and Isabelle. The paper was published in the Findings of ACL 2026.
+
+## Problem Being Addressed
+
+Process Reward Models (PRMs) have emerged as a promising approach for improving LLM reasoning capabilities by providing process supervision over reasoning traces, but existing approaches for constructing PRM training data remain costly and noisy, as they typically rely on human annotation or sampling-based labeling methods that require repeated LLM calls.
+
+## Key Innovation
+
+By leveraging formal verification, FoVer enables efficient and accurate PRM data construction without requiring human annotation or additional LLM calls. The work creates PRM training data from formal logic and theorem proving tasks.
+
+## Experimental Results
+
+Experiments on 12 reasoning benchmarks show that fine-tuning on the FoVer training data improves PRMs not only on math and logic reasoning tasks, which are informal variants of the training tasks, but also on NLI and BBH benchmarks, which differ substantially from the tasks used to construct the training data.
+
+You can find the paper on arXiv (2505.15960), with code and materials available on the official GitHub repository and project website.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "543baa62-6dd5-40f4-8402-3ef856325c7f",
+  "isSidechain": false,
+  "promptId": "01cb32b0-52ad-48e6-9ee1-e4237439b5e8",
+  "type": "user",
+  "uuid": "6018eb98-13df-4c1a-9968-d5eb786662a5",
+  "toolUseResult": {
+    "query": "FoVer formal verification PRM training data synthesis ACL 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WP446ontWugq8X69M7Rw9t",
+        "content": [
+          {
+            "title": "FoVer: Efficient PRM Training Data Synthesis via Formal Verification",
+            "url": "https://fover-prm.github.io/"
+          },
+          {
+            "title": "GitHub - psunlpgroup/FoVer: This repository includes code and materials for the paper \"Efficient PRM Training Data Synthesis via Formal Verification\" (ACL 2026 Findings). · GitHub",
+            "url": "https://github.com/psunlpgroup/FoVer"
+          },
+          {
+            "title": "[2505.15960] Efficient PRM Training Data Synthesis via Formal Verification",
+            "url": "https://arxiv.org/abs/2505.15960"
+          },
+          {
+            "title": "Efficient PRM Training Data Synthesis via Formal Verification",
+            "url": "https://arxiv.org/html/2505.15960v3"
+          },
+          {
+            "title": "Generalizable Process Reward Models via Formally Verified Training Data | OpenReview",
+            "url": "https://openreview.net/forum?id=LAejsDitr3"
+          },
+          {
+            "title": "Generalizable Process Reward Models via Formally Verified Training Data",
+            "url": "https://arxiv.org/pdf/2505.15960"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about FoVer:\n\n## Overview\n\nFoVer is a framework that synthesizes PRM training data from formal reasoning tasks by annotating step-level error labels using formal verification tools such as Z3 and Isabelle. The paper was published in the Findings of ACL 2026.\n\n## Problem Being Addressed\n\nProcess Reward Models (PRMs) have emerged as a promising approach for improving LLM reasoning capabilities by providing process supervision over reasoning traces, but existing approaches for constructing PRM training data remain costly and noisy, as they typically rely on human annotation or sampling-based labeling methods that require repeated LLM calls.\n\n## Key Innovation\n\nBy leveraging formal verification, FoVer enables efficient and accurate PRM data construction without requiring human annotation or additional LLM calls. The work creates PRM training data from formal logic and theorem proving tasks.\n\n## Experimental Results\n\nExperiments on 12 reasoning benchmarks show that fine-tuning on the FoVer training data improves PRMs not only on math and logic reasoning tasks, which are informal variants of the training tasks, but also on NLI and BBH benchmarks, which differ substantially from the tasks used to construct the training data.\n\nYou can find the paper on arXiv (2505.15960), with code and materials available on the official GitHub repository and project website."
+    ],
+    "durationSeconds": 7.583197257,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "543baa62-6dd5-40f4-8402-3ef856325c7f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d91d2915-23c5-40a3-baef-86a9aa1c68b6",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 14_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Formal Error Profiling Enables Targeted Math Self-Improvement  ## Core Problem  Self-improvement loops for mathe…",
+  "leafUuid": "6018eb98-13df-4c1a-9968-d5eb786662a5",
+  "sessionId": "d91d2915-23c5-40a3-baef-86a9aa1c68b6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 15_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Formal error profiling for math self-improvement",
+  "sessionId": "d91d2915-23c5-40a3-baef-86a9aa1c68b6"
+}
+```
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-27T08:27:16.097Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GGqsfbQYFNMPB5hVKsRjwR`</summary>
+
+```json
+{
+  "query": "STAT skill-targeted adaptive training ICLR 2026 math reasoning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6018eb98-13df-4c1a-9968-d5eb786662a5",
+  "isSidechain": false,
+  "requestId": "req_011CbSkqExpAJdBDdPm5iDM4",
+  "type": "assistant",
+  "uuid": "7d320412-d762-4915-8e60-efab54e462cb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d91d2915-23c5-40a3-baef-86a9aa1c68b6",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RxxtrFs58yA45qhc67rs7B",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 725,
+      "cache_read_input_tokens": 18516,
+      "output_tokens": 68,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 725,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 68,
+          "cache_read_input_tokens": 18516,
+          "cache_creation_input_tokens": 725,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 725
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-27T08:27:23.662Z_
+
+<details><summary>↩ Tool result · `toolu_01GGqsfbQYFNMPB5hVKsRjwR`</summary>
+
+```text
+Web search results for query: "STAT skill-targeted adaptive training ICLR 2026 math reasoning"
+
+Links: [{"title":"Skill-Targeted Adaptive Training","url":"https://arxiv.org/pdf/2510.10023"},{"title":"ICLR Poster STAT: Skill-Targeted Adaptive Training","url":"https://iclr.cc/virtual/2026/poster/10007620"},{"title":"Skill-Targeted Adaptive Training | Princeton Language and Intelligence","url":"https://pli.princeton.edu/events/2026/skill-targeted-adaptive-training"},{"title":"NeurIPS STAT: Skill-Targeted Adaptive Training","url":"https://nips.cc/virtual/2025/loc/san-diego/131068"},{"title":"[2510.10023] Skill-Targeted Adaptive Training","url":"https://arxiv.org/abs/2510.10023"},{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2601.20614"},{"title":"Skill-Targeted Adaptive Training","url":"https://arxiv.org/html/2510.10023"}]
+
+I found comprehensive information about STAT (Skill-Targeted Adaptive Training) from ICLR 2026. Here's what I found:
+
+## Overview
+
+STAT is a new fine-tuning strategy that trains a student model by using the metacognition ability of a stronger large language model (LLM) as the teacher.
+
+## How It Works
+
+The teacher uses the task dataset to create a list of skills needed for the task and labels each data point with its required skills. By monitoring the student's answers, the teacher creates a Missing-Skill-Profile for the student, tracking how often they failed to apply each skill in their responses.
+
+The approach has two variants:
+- **STAT-Sel**: The teacher uses an existing set of training examples but adaptively reweights them according to the Missing-Skill-Profile.
+- **STAT-Syn**: The teacher synthesizes additional examples involving missing skills.
+
+## Results
+
+Across extensive experiments on Llama and Qwen models, the methods yield improvements of up to 7.5% on MATH, whereas SFT provides only limited gains. Additionally, STAT enhances performance on out-of-distribution benchmarks (e.g., AIME24/25, AMC23, etc.) by an average of 4.6%.
+
+STAT is complementary to RL via GRPO: after the model is improved using STAT to address skill gaps, GRPO continues to add further gains.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7d320412-d762-4915-8e60-efab54e462cb",
+  "isSidechain": false,
+  "promptId": "01cb32b0-52ad-48e6-9ee1-e4237439b5e8",
+  "type": "user",
+  "uuid": "f164d91d-0492-4fa1-b50d-2322dcbd16e5",
+  "toolUseResult": {
+    "query": "STAT skill-targeted adaptive training ICLR 2026 math reasoning",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01AFrTdxkDLbmGW2hp284J5b",
+        "content": [
+          {
+            "title": "Skill-Targeted Adaptive Training",
+            "url": "https://arxiv.org/pdf/2510.10023"
+          },
+          {
+            "title": "ICLR Poster STAT: Skill-Targeted Adaptive Training",
+            "url": "https://iclr.cc/virtual/2026/poster/10007620"
+          },
+          {
+            "title": "Skill-Targeted Adaptive Training | Princeton Language and Intelligence",
+            "url": "https://pli.princeton.edu/events/2026/skill-targeted-adaptive-training"
+          },
+          {
+            "title": "NeurIPS STAT: Skill-Targeted Adaptive Training",
+            "url": "https://nips.cc/virtual/2025/loc/san-diego/131068"
+          },
+          {
+            "title": "[2510.10023] Skill-Targeted Adaptive Training",
+            "url": "https://arxiv.org/abs/2510.10023"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2601.20614"
+          },
+          {
+            "title": "Skill-Targeted Adaptive Training",
+            "url": "https://arxiv.org/html/2510.10023"
+          }
+        ]
+      },
+      "I found comprehensive information about STAT (Skill-Targeted Adaptive Training) from ICLR 2026. Here's what I found:\n\n## Overview\n\nSTAT is a new fine-tuning strategy that trains a student model by using the metacognition ability of a stronger large language model (LLM) as the teacher.\n\n## How It Works\n\nThe teacher uses the task dataset to create a list of skills needed for the task and labels each data point with its required skills. By monitoring the student's answers, the teacher creates a Missing-Skill-Profile for the student, tracking how often they failed to apply each skill in their responses.\n\nThe approach has two variants:\n- **STAT-Sel**: The teacher uses an existing set of training examples but adaptively reweights them according to the Missing-Skill-Profile.\n- **STAT-Syn**: The teacher synthesizes additional examples involving missing skills.\n\n## Results\n\nAcross extensive experiments on Llama and Qwen models, the methods yield improvements of up to 7.5% on MATH, whereas SFT provides only limited gains. Additionally, STAT enhances performance on out-of-distribution benchmarks (e.g., AIME24/25, AMC23, etc.) by an average of 4.6%.\n\nSTAT is complementary to RL via GRPO: after the model is improved using STAT to address skill gaps, GRPO continues to add further gains."
+    ],
+    "durationSeconds": 7.560932334999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "7d320412-d762-4915-8e60-efab54e462cb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d91d2915-23c5-40a3-baef-86a9aa1c68b6",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-27T08:27:26.596Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0152kArrjVw23ZrmFJhn7aPQ`</summary>
+
+```json
+{
+  "query": "symbolic verification self-improvement math reasoning LLM 2026 closed-loop iterative training"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f164d91d-0492-4fa1-b50d-2322dcbd16e5",
+  "isSidechain": false,
+  "requestId": "req_011CbSkqyat23xy3dCY4KVgJ",
+  "type": "assistant",
+  "uuid": "5782351a-471f-4e92-949d-d7ee8f6249ef",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d91d2915-23c5-40a3-baef-86a9aa1c68b6",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AF9TobFQFhpYSYZzrijtpD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 706,
+      "cache_read_input_tokens": 19241,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 706,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 19241,
+          "cache_creation_input_tokens": 706,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 706
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-27T08:27:34.979Z_
+
+<details><summary>↩ Tool result · `toolu_0152kArrjVw23ZrmFJhn7aPQ`</summary>
+
+```text
+Web search results for query: "symbolic verification self-improvement math reasoning LLM 2026 closed-loop iterative training"
+
+Links: [{"title":"Stabilizing Iterative Self-Training with Verified Reasoning via Symbolic Recursive Self-Alignment","url":"https://arxiv.org/pdf/2603.21558"},{"title":"Dual-Phase LLM Reasoning: Self-Evolved Mathematical Frameworks","url":"https://arxiv.org/pdf/2601.05616"},{"title":"V-STaR: Training Verifiers for Self-Taught Reasoners","url":"https://arxiv.org/pdf/2402.06457"},{"title":"A Survey on LLM Symbolic Reasoning","url":"https://d197for5662m48.cloudfront.net/documents/publicationstatus/295282/preprint_pdf/17368bd9e5235ed8466977226241d74d.pdf"},{"title":"Boosting LLM Reasoning via Spontaneous Self-Correction","url":"https://arxiv.org/pdf/2506.06923"}]
+
+Based on the search results, here are the key findings related to symbolic verification, self-improvement, math reasoning, and closed-loop iterative training for LLMs:
+
+## Key Research Approach: NSRSA
+
+Neuro-Symbolic Recursive Self-Alignment (NSRSA) stabilizes iterative self-training by embedding a symbolic verification subsystem that gates training data quality at the reasoning step level. NSRSA verifies each arithmetic operation via sympy, checks logical flow consistency across reasoning steps, and enforces domain constraints.
+
+NSRSA rejects approximately 34% of correct-answer solutions that pass outcome verification, eliminating "lucky guesses" with flawed reasoning from the training set. Constructing DPO preference pairs from NSRSA verification teaches the model to distinguish sound from flawed reasoning (reward accuracy 46% → 63%).
+
+## Related Iterative Training Methods
+
+V-STaR uses iteratively generated correct and incorrect solutions from an LLM to train a better generator and verifier, and leads to 6% to 17% absolute improvement in test accuracy over prior self-improvement and verification-based methods for math reasoning.
+
+A recent SFT method develops long-reasoning models that only requires the model's own generated data for iterative improvement.
+
+## Broader Context
+
+SIONS develops an environment-guided self-training loop that refines reasoning via self-exploration, self-correction, and self-rewarding, demonstrating how symbolic approaches enable closed-loop self-improvement systems.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5782351a-471f-4e92-949d-d7ee8f6249ef",
+  "isSidechain": false,
+  "promptId": "01cb32b0-52ad-48e6-9ee1-e4237439b5e8",
+  "type": "user",
+  "uuid": "089de3e5-5975-4365-82e8-b1e10181797d",
+  "toolUseResult": {
+    "query": "symbolic verification self-improvement math reasoning LLM 2026 closed-loop iterative training",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012WiLhLFc4JmfBxXFSB2gqE",
+        "content": [
+          {
+            "title": "Stabilizing Iterative Self-Training with Verified Reasoning via Symbolic Recursive Self-Alignment",
+            "url": "https://arxiv.org/pdf/2603.21558"
+          },
+          {
+            "title": "Dual-Phase LLM Reasoning: Self-Evolved Mathematical Frameworks",
+            "url": "https://arxiv.org/pdf/2601.05616"
+          },
+          {
+            "title": "V-STaR: Training Verifiers for Self-Taught Reasoners",
+            "url": "https://arxiv.org/pdf/2402.06457"
+          },
+          {
+            "title": "A Survey on LLM Symbolic Reasoning",
+            "url": "https://d197for5662m48.cloudfront.net/documents/publicationstatus/295282/preprint_pdf/17368bd9e5235ed8466977226241d74d.pdf"
+          },
+          {
+            "title": "Boosting LLM Reasoning via Spontaneous Self-Correction",
+            "url": "https://arxiv.org/pdf/2506.06923"
+          }
+        ]
+      },
+      "Based on the search results, here are the key findings related to symbolic verification, self-improvement, math reasoning, and closed-loop iterative training for LLMs:\n\n## Key Research Approach: NSRSA\n\nNeuro-Symbolic Recursive Self-Alignment (NSRSA) stabilizes iterative self-training by embedding a symbolic verification subsystem that gates training data quality at the reasoning step level. NSRSA verifies each arithmetic operation via sympy, checks logical flow consistency across reasoning steps, and enforces domain constraints.\n\nNSRSA rejects approximately 34% of correct-answer solutions that pass outcome verification, eliminating \"lucky guesses\" with flawed reasoning from the training set. Constructing DPO preference pairs from NSRSA verification teaches the model to distinguish sound from flawed reasoning (reward accuracy 46% → 63%).\n\n## Related Iterative Training Methods\n\nV-STaR uses iteratively generated correct and incorrect solutions from an LLM to train a better generator and verifier, and leads to 6% to 17% absolute improvement in test accuracy over prior self-improvement and verification-based methods for math reasoning.\n\nA recent SFT method develops long-reasoning models that only requires the model's own generated data for iterative improvement.\n\n## Broader Context\n\nSIONS develops an environment-guided self-training loop that refines reasoning via self-exploration, self-correction, and self-rewarding, demonstrating how symbolic approaches enable closed-loop self-improvement systems."
+    ],
+    "durationSeconds": 8.380295587,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "5782351a-471f-4e92-949d-d7ee8f6249ef",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d91d2915-23c5-40a3-baef-86a9aa1c68b6",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-27T08:27:38.320Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QavkSnnwN2cQna1X76bka3`</summary>
+
+```json
+{
+  "query": "adaptive problem generation symbolic representations SymPy RLVR math 2026 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "089de3e5-5975-4365-82e8-b1e10181797d",
+  "isSidechain": false,
+  "requestId": "req_011CbSkroyxDFDc8dikCiJXN",
+  "type": "assistant",
+  "uuid": "2e3b64e3-da9c-439f-b966-c7c75f535727",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d91d2915-23c5-40a3-baef-86a9aa1c68b6",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G5rrvMFNotiuVvqiCzLNBb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 691,
+      "cache_read_input_tokens": 19947,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 691,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 19947,
+          "cache_creation_input_tokens": 691,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 691
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-27T08:27:45.027Z_
+
+<details><summary>↩ Tool result · `toolu_01QavkSnnwN2cQna1X76bka3`</summary>
+
+```text
+Web search results for query: "adaptive problem generation symbolic representations SymPy RLVR math 2026 arXiv"
+
+Links: [{"title":"[2602.19187] Adaptive Problem Generation via Symbolic Representations","url":"https://arxiv.org/abs/2602.19187"},{"title":"Adaptive Problem Generation via Symbolic Representations","url":"https://arxiv.org/pdf/2602.19187"},{"title":"GitHub - smiles724/Awesome-LLM-RLVR: Collection of latest papers and materials in the area of RLVR! · GitHub","url":"https://github.com/smiles724/Awesome-LLM-RLVR"},{"title":"Making Mathematical Reasoning Adaptive","url":"https://arxiv.org/pdf/2510.04617"},{"title":"System and method of adaptive generation of problem determination decision procedures","url":"https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/7831537"},{"title":"Rethinking Math Reasoning Evaluation: A Robust LLM-as-a-Judge Framework Beyond Symbolic Rigidity","url":"https://arxiv.org/html/2604.22597"}]
+
+I found the paper you were searching for! Here are the results:
+
+The arXiv paper "Adaptive Problem Generation via Symbolic Representations" (2602.19187) addresses problem generation by performing modifications in a symbolic problem space, representing each problem as a set of symbolic variables and constraints using algebraic frameworks such as SymPy or SMT formulations.
+
+This representation enables precise control over problem structure, automatic generation of ground-truth solutions, and decouples mathematical reasoning from linguistic realization. To adapt the problem difficulty to the model, the authors introduce a closed-loop framework that learns modification strategies through prompt optimization in symbolic space.
+
+The work builds on recent research showing that mathematical reasoning can be scaled through synthetic training data for reinforcement learning from verifier feedback (RLVR). Experimental results demonstrate that both adaptive problem generation and symbolic representation modifications contribute to improving the model's math solving ability.
+
+The paper was submitted on February 22, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2e3b64e3-da9c-439f-b966-c7c75f535727",
+  "isSidechain": false,
+  "promptId": "01cb32b0-52ad-48e6-9ee1-e4237439b5e8",
+  "type": "user",
+  "uuid": "4f22f715-f4f0-4b79-990e-68d1edf6a492",
+  "toolUseResult": {
+    "query": "adaptive problem generation symbolic representations SymPy RLVR math 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01K8st8iTS9634AR9Am6EqRw",
+        "content": [
+          {
+            "title": "[2602.19187] Adaptive Problem Generation via Symbolic Representations",
+            "url": "https://arxiv.org/abs/2602.19187"
+          },
+          {
+            "title": "Adaptive Problem Generation via Symbolic Representations",
+            "url": "https://arxiv.org/pdf/2602.19187"
+          },
+          {
+            "title": "GitHub - smiles724/Awesome-LLM-RLVR: Collection of latest papers and materials in the area of RLVR! · GitHub",
+            "url": "https://github.com/smiles724/Awesome-LLM-RLVR"
+          },
+          {
+            "title": "Making Mathematical Reasoning Adaptive",
+            "url": "https://arxiv.org/pdf/2510.04617"
+          },
+          {
+            "title": "System and method of adaptive generation of problem determination decision procedures",
+            "url": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/7831537"
+          },
+          {
+            "title": "Rethinking Math Reasoning Evaluation: A Robust LLM-as-a-Judge Framework Beyond Symbolic Rigidity",
+            "url": "https://arxiv.org/html/2604.22597"
+          }
+        ]
+      },
+      "I found the paper you were searching for! Here are the results:\n\nThe arXiv paper \"Adaptive Problem Generation via Symbolic Representations\" (2602.19187) addresses problem generation by performing modifications in a symbolic problem space, representing each problem as a set of symbolic variables and constraints using algebraic frameworks such as SymPy or SMT formulations.\n\nThis representation enables precise control over problem structure, automatic generation of ground-truth solutions, and decouples mathematical reasoning from linguistic realization. To adapt the problem difficulty to the model, the authors introduce a closed-loop framework that learns modification strategies through prompt optimization in symbolic space.\n\nThe work builds on recent research showing that mathematical reasoning can be scaled through synthetic training data for reinforcement learning from verifier feedback (RLVR). Experimental results demonstrate that both adaptive problem generation and symbolic representation modifications contribute to improving the model's math solving ability.\n\nThe paper was submitted on February 22, 2026."
+    ],
+    "durationSeconds": 6.702067107000002,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "2e3b64e3-da9c-439f-b966-c7c75f535727",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d91d2915-23c5-40a3-baef-86a9aa1c68b6",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-27T08:27:48.054Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019pU1S2Ky6Ng5yqMUyymyvV`</summary>
+
+```json
+{
+  "query": "SwS self-aware weakness-driven problem synthesis reinforcement learning LLM reasoning NeurIPS 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4f22f715-f4f0-4b79-990e-68d1edf6a492",
+  "isSidechain": false,
+  "requestId": "req_011CbSksYvNJod79CYQNhLxG",
+  "type": "assistant",
+  "uuid": "29537def-6304-4e46-be0f-52753c2ba3d0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d91d2915-23c5-40a3-baef-86a9aa1c68b6",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CU1tozCkrySzkuFCaPEnTd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 600,
+      "cache_read_input_tokens": 20638,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 600,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 20638,
+          "cache_creation_input_tokens": 600,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 600
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-27T08:27:56.816Z_
+
+<details><summary>↩ Tool result · `toolu_019pU1S2Ky6Ng5yqMUyymyvV`</summary>
+
+```text
+Web search results for query: "SwS self-aware weakness-driven problem synthesis reinforcement learning LLM reasoning NeurIPS 2025"
+
+Links: [{"title":"SwS: Self-aware Weakness-driven Problem Synthesis in Reinforcement Learning for LLM Reasoning | OpenReview","url":"https://openreview.net/forum?id=0jQUNQsZra"},{"title":"SwS: Self-aware Weakness-driven Problem Synthesis in Reinforcement Learning for LLM Reasoning - Microsoft Research","url":"https://www.microsoft.com/en-us/research/publication/sws-self-aware-weakness-driven-problem-synthesis-in-reinforcement-learning-for-llm-reasoning/"},{"title":"GitHub - MasterVito/SwS: Official Repo for SwS: A Weakness-driven Problem Synthesis Framework in RL for LLM Reasoning","url":"https://github.com/MasterVito/SwS"},{"title":"SwS: Self-aware Weakness-driven Problem Synthesis in Reinforcement Learning for LLM Reasoning","url":"https://mastervito.github.io/MasterVito.SwS.github.io/"},{"title":"[2506.08989] SwS: Self-aware Weakness-driven Problem Synthesis in Reinforcement Learning for LLM Reasoning","url":"https://arxiv.org/abs/2506.08989"},{"title":"SwS: Self-aware Weakness-driven Problem Synthesis in ...","url":"https://openreview.net/pdf/c3403842de341324f63358f1732f1518761661f2.pdf"},{"title":"Self-aware Weakness-Driven Synthesis Framework","url":"https://www.emergentmind.com/topics/self-aware-weakness-driven-problem-synthesis-framework-sws"},{"title":"SwS: Self-aware Weakness-driven Problem Synthesis in Reinforcement Learning for LLM Reasoning","url":"https://arxiv.org/html/2506.08989v1"}]
+
+Based on the search results, I found detailed information about the SwS framework:
+
+## SwS: Self-aware Weakness-driven Problem Synthesis
+
+SwS has been accepted as a NeurIPS 2025 poster paper and addresses the application of Reinforcement Learning with Verifiable Rewards (RLVR) for training large language models on complex reasoning tasks, such as mathematical problem solving.
+
+### Problem and Solution
+
+A key prerequisite for RLVR scalability is a high-quality problem set with precise and verifiable answers, but the scarcity of well-crafted human-labeled math problems and limited-verification answers in existing synthetic datasets limit their effectiveness. Most problem synthesis strategies indiscriminately expand the problem set without considering the model's capabilities, leading to low efficiency in generating useful questions.
+
+The SwS framework systematically identifies model deficiencies and leverages them for problem augmentation. Weaknesses are defined as questions that the model consistently fails to learn through iterative sampling during RL training, and the framework extracts core concepts from these failure cases to synthesize new problems that strengthen the model's weak areas in subsequent augmented training.
+
+### Results
+
+Without relying on external knowledge distillation, the framework enables robust generalization by empowering the model to self-identify and address its weaknesses in RL, yielding average performance gains of 10.0% and 7.7% on 7B and 32B models across eight mainstream reasoning benchmarks.
+
+The code and implementations for RL training and problem synthesis were released in October 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "29537def-6304-4e46-be0f-52753c2ba3d0",
+  "isSidechain": false,
+  "promptId": "01cb32b0-52ad-48e6-9ee1-e4237439b5e8",
+  "type": "user",
+  "uuid": "d956cb49-37ce-40b9-b40c-8d207ca6d73d",
+  "toolUseResult": {
+    "query": "SwS self-aware weakness-driven problem synthesis reinforcement learning LLM reasoning NeurIPS 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01ECoKoA2qk48nDt8k7p4VtB",
+        "content": [
+          {
+            "title": "SwS: Self-aware Weakness-driven Problem Synthesis in Reinforcement Learning for LLM Reasoning | OpenReview",
+            "url": "https://openreview.net/forum?id=0jQUNQsZra"
+          },
+          {
+            "title": "SwS: Self-aware Weakness-driven Problem Synthesis in Reinforcement Learning for LLM Reasoning - Microsoft Research",
+            "url": "https://www.microsoft.com/en-us/research/publication/sws-self-aware-weakness-driven-problem-synthesis-in-reinforcement-learning-for-llm-reasoning/"
+          },
+          {
+            "title": "GitHub - MasterVito/SwS: Official Repo for SwS: A Weakness-driven Problem Synthesis Framework in RL for LLM Reasoning",
+            "url": "https://github.com/MasterVito/SwS"
+          },
+          {
+            "title": "SwS: Self-aware Weakness-driven Problem Synthesis in Reinforcement Learning for LLM Reasoning",
+            "url": "https://mastervito.github.io/MasterVito.SwS.github.io/"
+          },
+          {
+            "title": "[2506.08989] SwS: Self-aware Weakness-driven Problem Synthesis in Reinforcement Learning for LLM Reasoning",
+            "url": "https://arxiv.org/abs/2506.08989"
+          },
+          {
+            "title": "SwS: Self-aware Weakness-driven Problem Synthesis in ...",
+            "url": "https://openreview.net/pdf/c3403842de341324f63358f1732f1518761661f2.pdf"
+          },
+          {
+            "title": "Self-aware Weakness-Driven Synthesis Framework",
+            "url": "https://www.emergentmind.com/topics/self-aware-weakness-driven-problem-synthesis-framework-sws"
+          },
+          {
+            "title": "SwS: Self-aware Weakness-driven Problem Synthesis in Reinforcement Learning for LLM Reasoning",
+            "url": "https://arxiv.org/html/2506.08989v1"
+          }
+        ]
+      },
+      "Based on the search results, I found detailed information about the SwS framework:\n\n## SwS: Self-aware Weakness-driven Problem Synthesis\n\nSwS has been accepted as a NeurIPS 2025 poster paper and addresses the application of Reinforcement Learning with Verifiable Rewards (RLVR) for training large language models on complex reasoning tasks, such as mathematical problem solving.\n\n### Problem and Solution\n\nA key prerequisite for RLVR scalability is a high-quality problem set with precise and verifiable answers, but the scarcity of well-crafted human-labeled math problems and limited-verification answers in existing synthetic datasets limit their effectiveness. Most problem synthesis strategies indiscriminately expand the problem set without considering the model's capabilities, leading to low efficiency in generating useful questions.\n\nThe SwS framework systematically identifies model deficiencies and leverages them for problem augmentation. Weaknesses are defined as questions that the model consistently fails to learn through iterative sampling during RL training, and the framework extracts core concepts from these failure cases to synthesize new problems that strengthen the model's weak areas in subsequent augmented training.\n\n### Results\n\nWithout relying on external knowledge distillation, the framework enables robust generalization by empowering the model to self-identify and address its weaknesses in RL, yielding average performance gains of 10.0% and 7.7% on 7B and 32B models across eight mainstream reasoning benchmarks.\n\nThe code and implementations for RL training and problem synthesis were released in October 2025."
+    ],
+    "durationSeconds": 8.75759379,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "29537def-6304-4e46-be0f-52753c2ba3d0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d91d2915-23c5-40a3-baef-86a9aa1c68b6",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-27T08:27:59.417Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PZdc5b2JqiB5o94hukbP1G`</summary>
+
+```json
+{
+  "query": "formal verification error diagnosis step-level math reasoning LLM targeted training data generation 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d956cb49-37ce-40b9-b40c-8d207ca6d73d",
+  "isSidechain": false,
+  "requestId": "req_011CbSktRKk8pAL8n2CoPZfF",
+  "type": "assistant",
+  "uuid": "67cc2acb-d84c-4753-9e61-3f3e11757811",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d91d2915-23c5-40a3-baef-86a9aa1c68b6",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017NfqxurivWiuqWpZSDpqXb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 929,
+      "cache_read_input_tokens": 21238,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 929,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 21238,
+          "cache_creation_input_tokens": 929,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 929
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-27T08:28:08.585Z_
+
+<details><summary>↩ Tool result · `toolu_01PZdc5b2JqiB5o94hukbP1G`</summary>
+
+```text
+Web search results for query: "formal verification error diagnosis step-level math reasoning LLM targeted training data generation 2025 2026"
+
+Links: [{"title":"Step-Wise Formal Verification for LLM-Based Mathematical Problem Solving","url":"https://arxiv.org/html/2505.20869v1"},{"title":"Step-Wise Formal Verification for LLM-Based Mathematical ...","url":"https://arxiv.org/pdf/2505.20869"},{"title":"[2505.20869] Step-Wise Formal Verification for LLM-Based Mathematical Problem Solving","url":"https://arxiv.org/abs/2505.20869"},{"title":"Self-Verifiable Mathematical Reasoning","url":"https://www.emergentmind.com/topics/self-verifiable-mathematical-reasoning"},{"title":"Hard2Verify: A Step-Level Verification Benchmark for Open-Ended Frontier Math","url":"https://arxiv.org/pdf/2510.13744"},{"title":"HERMES: Towards Efficient and Verifiable Mathematical Reasoning in LLMs","url":"https://arxiv.org/pdf/2511.18760"},{"title":"Safe: Enhancing Mathematical Reasoning in Large Language Models via Retrospective Step-aware Formal Verification","url":"https://arxiv.org/pdf/2506.04592"}]
+
+Based on the web search results, here's what I found on this topic:
+
+## Recent Research on Formal Verification and LLM Mathematical Reasoning
+
+Several significant research initiatives in 2025-2026 are addressing formal verification, error diagnosis, and step-level mathematical reasoning for LLMs:
+
+### MATH-VF Framework
+The MATH-VF framework includes a Formalizer and a Critic for formally verifying the correctness of solutions generated by large language models, first utilizing a Formalizer which employs an LLM to translate a natural language solution into a formal context, and afterward, the Critic (which integrates various external tools such as a Computer Algebra System and an SMT solver) evaluates the correctness of each statement within the formal context.
+
+### Step-Level Verification Approaches
+Safe introduces retrospective, step-aware formal verification: all NL reasoning traces are decomposed into steps, auto-formalized into Lean theorems, and passed to ATPs for proof.
+
+### Error Identification and Benchmarking
+Mathematical reasoning serves as a gold-standard evaluation setting for benchmarking reasoning progress in large language models, with benchmarks introduced to assess LLMs at the grade-school, high-school, university, and competition math level.
+
+### Self-Verification Integration
+RISE integrates self-verification into RL, with the MDP alternating between solution and self-verification phases, where an outcome verifier provides discrete verifiable rewards and verification feedback is used both as a reward signal and as a training target for the agent.
+
+These approaches collectively represent significant progress in combining formal verification with LLM training to improve mathematical reasoning reliability.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "67cc2acb-d84c-4753-9e61-3f3e11757811",
+  "isSidechain": false,
+  "promptId": "01cb32b0-52ad-48e6-9ee1-e4237439b5e8",
+  "type": "user",
+  "uuid": "50a0de85-86d1-42f3-bac5-215e82079c2e",
+  "toolUseResult": {
+    "query": "formal verification error diagnosis step-level math reasoning LLM targeted training data generation 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VmwCqFdpHojET1aFEk9w99",
+        "content": [
+          {
+            "title": "Step-Wise Formal Verification for LLM-Based Mathematical Problem Solving",
+            "url": "https://arxiv.org/html/2505.20869v1"
+          },
+          {
+            "title": "Step-Wise Formal Verification for LLM-Based Mathematical ...",
+            "url": "https://arxiv.org/pdf/2505.20869"
+          },
+          {
+            "title": "[2505.20869] Step-Wise Formal Verification for LLM-Based Mathematical Problem Solving",
+            "url": "https://arxiv.org/abs/2505.20869"
+          },
+          {
+            "title": "Self-Verifiable Mathematical Reasoning",
+            "url": "https://www.emergentmind.com/topics/self-verifiable-mathematical-reasoning"
+          },
+          {
+            "title": "Hard2Verify: A Step-Level Verification Benchmark for Open-Ended Frontier Math",
+            "url": "https://arxiv.org/pdf/2510.13744"
+          },
+          {
+            "title": "HERMES: Towards Efficient and Verifiable Mathematical Reasoning in LLMs",
+            "url": "https://arxiv.org/pdf/2511.18760"
+          },
+          {
+            "title": "Safe: Enhancing Mathematical Reasoning in Large Language Models via Retrospective Step-aware Formal Verification",
+            "url": "https://arxiv.org/pdf/2506.04592"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found on this topic:\n\n## Recent Research on Formal Verification and LLM Mathematical Reasoning\n\nSeveral significant research initiatives in 2025-2026 are addressing formal verification, error diagnosis, and step-level mathematical reasoning for LLMs:\n\n### MATH-VF Framework\nThe MATH-VF framework includes a Formalizer and a Critic for formally verifying the correctness of solutions generated by large language models, first utilizing a Formalizer which employs an LLM to translate a natural language solution into a formal context, and afterward, the Critic (which integrates various external tools such as a Computer Algebra System and an SMT solver) evaluates the correctness of each statement within the formal context.\n\n### Step-Level Verification Approaches\nSafe introduces retrospective, step-aware formal verification: all NL reasoning traces are decomposed into steps, auto-formalized into Lean theorems, and passed to ATPs for proof.\n\n### Error Identification and Benchmarking\nMathematical reasoning serves as a gold-standard evaluation setting for benchmarking reasoning progress in large language models, with benchmarks introduced to assess LLMs at the grade-school, high-school, university, and competition math level.\n\n### Self-Verification Integration\nRISE integrates self-verification into RL, with the MDP alternating between solution and self-verification phases, where an outcome verifier provides discrete verifiable rewards and verification feedback is used both as a reward signal and as a training target for the agent.\n\nThese approaches collectively represent significant progress in combining formal verification with LLM training to improve mathematical reasoning reliability."
+    ],
+    "durationSeconds": 9.162401380000002,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "67cc2acb-d84c-4753-9e61-3f3e11757811",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d91d2915-23c5-40a3-baef-86a9aa1c68b6",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 26_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Formal Error Profiling Enables Targeted Math Self-Improvement  ## Core Problem  Self-improvement loops for mathe…",
+  "leafUuid": "50a0de85-86d1-42f3-bac5-215e82079c2e",
+  "sessionId": "d91d2915-23c5-40a3-baef-86a9aa1c68b6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 27_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Formal error profiling for math self-improvement",
+  "sessionId": "d91d2915-23c5-40a3-baef-86a9aa1c68b6"
+}
+```
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-27T08:28:11.482Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015mL7aWpUeKgsAUBFMkvyDN`</summary>
+
+```json
+{
+  "query": "model collapse self-improvement LLM solver-verifier gap theory math reasoning 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "50a0de85-86d1-42f3-bac5-215e82079c2e",
+  "isSidechain": false,
+  "requestId": "req_011CbSkuHfegnvgoVgMACmwJ",
+  "type": "assistant",
+  "uuid": "199afe82-6f13-4453-ab71-1bb124ea57e1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d91d2915-23c5-40a3-baef-86a9aa1c68b6",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K7ZHHpUsb9sRT7Vds1AJri",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 789,
+      "cache_read_input_tokens": 22167,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 789,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 22167,
+          "cache_creation_input_tokens": 789,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 789
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-27T08:28:18.474Z_
+
+<details><summary>↩ Tool result · `toolu_015mL7aWpUeKgsAUBFMkvyDN`</summary>
+
+```text
+Web search results for query: "model collapse self-improvement LLM solver-verifier gap theory math reasoning 2025 2026"
+
+Links: [{"title":"Theoretical Modeling of LLM Self-Improvement Training Dynamics Through Solver-Verifier Gap","url":"https://arxiv.org/html/2507.00075v1"},{"title":"Theoretical Modeling of LLM Self-Improvement Training Dynamics Through Solver-Verifier Gap","url":"https://www.researchgate.net/publication/393260770_Theoretical_Modeling_of_LLM_Self-Improvement_Training_Dynamics_Through_Solver-Verifier_Gap"},{"title":"Published as a conference paper at ICLR 2026 THEORETICAL MODELING","url":"https://openreview.net/pdf?id=Hh7x3c0cZl"},{"title":"Theoretical Modeling of Large Language Model Self-Improvement Training Dynamics Through Solver-Verifier Gap","url":"https://arxiv.org/html/2507.00075"},{"title":"Theoretical Modeling of LLM Self-Improvement Training ...","url":"https://arxiv.org/pdf/2507.00075"}]
+
+Based on the search results, I found several highly relevant papers on this topic:
+
+## Key Research
+
+The main work addresses theoretical modeling of LLM self-improvement training dynamics through the solver-verifier gap concept, inspired by the conjecture that self-improvement performance enhancement stems from the gap between an LLM's solver capability and verifier capability.
+
+## Self-Improvement in LLMs
+
+Self-improvement is a growing area of work focused on training or fine-tuning LLMs using the data they generate. Self-improvement enables models to adapt and evolve autonomously across real-world scenarios such as reasoning, alignment, and planning.
+
+## Data Bottleneck Motivation
+
+The training of LLMs typically necessitates massive data, and data collection faces significant challenges with concerns that available data sources could be depleted in the future.
+
+## Theoretical Framework
+
+Under the theoretical framework, training dynamics are potentially empowered by the solver-verifier gap, with accuracy exhibiting exponential curves towards a limit for self-improvement.
+
+## Model Collapse Concerns
+
+Research has explored potential negative consequences of self-improvement, including degradation issues and failures on out-of-domain reasoning tasks.
+
+The search results include a peer-reviewed paper published at ICLR 2026 that directly addresses these theoretical aspects of LLM self-improvement dynamics.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "199afe82-6f13-4453-ab71-1bb124ea57e1",
+  "isSidechain": false,
+  "promptId": "01cb32b0-52ad-48e6-9ee1-e4237439b5e8",
+  "type": "user",
+  "uuid": "7a9b5f47-8364-4156-834a-a945adf97c61",
+  "toolUseResult": {
+    "query": "model collapse self-improvement LLM solver-verifier gap theory math reasoning 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01MZ7zSKu28vubP28ytyJUv1",
+        "content": [
+          {
+            "title": "Theoretical Modeling of LLM Self-Improvement Training Dynamics Through Solver-Verifier Gap",
+            "url": "https://arxiv.org/html/2507.00075v1"
+          },
+          {
+            "title": "Theoretical Modeling of LLM Self-Improvement Training Dynamics Through Solver-Verifier Gap",
+            "url": "https://www.researchgate.net/publication/393260770_Theoretical_Modeling_of_LLM_Self-Improvement_Training_Dynamics_Through_Solver-Verifier_Gap"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026 THEORETICAL MODELING",
+            "url": "https://openreview.net/pdf?id=Hh7x3c0cZl"
+          },
+          {
+            "title": "Theoretical Modeling of Large Language Model Self-Improvement Training Dynamics Through Solver-Verifier Gap",
+            "url": "https://arxiv.org/html/2507.00075"
+          },
+          {
+            "title": "Theoretical Modeling of LLM Self-Improvement Training ...",
+            "url": "https://arxiv.org/pdf/2507.00075"
+          }
+        ]
+      },
+      "Based on the search results, I found several highly relevant papers on this topic:\n\n## Key Research\n\nThe main work addresses theoretical modeling of LLM self-improvement training dynamics through the solver-verifier gap concept, inspired by the conjecture that self-improvement performance enhancement stems from the gap between an LLM's solver capability and verifier capability.\n\n## Self-Improvement in LLMs\n\nSelf-improvement is a growing area of work focused on training or fine-tuning LLMs using the data they generate. Self-improvement enables models to adapt and evolve autonomously across real-world scenarios such as reasoning, alignment, and planning.\n\n## Data Bottleneck Motivation\n\nThe training of LLMs typically necessitates massive data, and data collection faces significant challenges with concerns that available data sources could be depleted in the future.\n\n## Theoretical Framework\n\nUnder the theoretical framework, training dynamics are potentially empowered by the solver-verifier gap, with accuracy exhibiting exponential curves towards a limit for self-improvement.\n\n## Model Collapse Concerns\n\nResearch has explored potential negative consequences of self-improvement, including degradation issues and failures on out-of-domain reasoning tasks.\n\nThe search results include a peer-reviewed paper published at ICLR 2026 that directly addresses these theoretical aspects of LLM self-improvement dynamics."
+    ],
+    "durationSeconds": 6.987787242999999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "199afe82-6f13-4453-ab71-1bb124ea57e1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d91d2915-23c5-40a3-baef-86a9aa1c68b6",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 30 · 2026-05-27T08:28:18.479Z_
+
+```json
+{
+  "parentUuid": "7a9b5f47-8364-4156-834a-a945adf97c61",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "7039efd9-e861-4878-9b38-a3366acc3cd4",
+  "timestamp": "2026-05-27T08:28:18.479Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d91d2915-23c5-40a3-baef-86a9aa1c68b6",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-27T08:28:21.654Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013s6GUzT1Y6yDaKsNbhCZPt`</summary>
+
+```json
+{
+  "query": "\"error-targeted\" OR \"weakness-targeted\" math data synthesis self-improvement LLM 2026 formal symbolic"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7039efd9-e861-4878-9b38-a3366acc3cd4",
+  "isSidechain": false,
+  "requestId": "req_011CbSkv1x7hppiJetmk5vcP",
+  "type": "assistant",
+  "uuid": "f60dbcf5-7ed0-43c2-af81-7c66598d754c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d91d2915-23c5-40a3-baef-86a9aa1c68b6",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X4mdhqNGbHC2RNiWCfSnVD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 781,
+      "cache_read_input_tokens": 22956,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 781,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 22956,
+          "cache_creation_input_tokens": 781,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 781
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-27T08:28:29.546Z_
+
+<details><summary>↩ Tool result · `toolu_013s6GUzT1Y6yDaKsNbhCZPt`</summary>
+
+```text
+Web search results for query: ""error-targeted" OR "weakness-targeted" math data synthesis self-improvement LLM 2026 formal symbolic"
+
+Links: [{"title":"Self-Error-Instruct: Generalizing from Errors for LLMs Mathematical Reasoning","url":"https://arxiv.org/pdf/2505.22591"},{"title":"SwS: Self-aware Weakness-driven Problem Synthesis in Reinforcement Learning for LLM Reasoning","url":"https://arxiv.org/pdf/2506.08989"},{"title":"WarriorMath: Enhancing the Mathematical Ability of Large Language Models with a Defect-aware Framework","url":"https://arxiv.org/pdf/2508.01245"},{"title":"Generalizing from Errors for LLMs Mathematical Reasoning","url":"https://aclanthology.org/2025.acl-long.417.pdf"},{"title":"LLM-Based Theorem Provers","url":"https://www.emergentmind.com/topics/llm-based-theorem-provers"},{"title":"Forewarned is Forearmed: Leveraging LLMs for Data Synthesis through   Failure-Inducing Exploration","url":"https://arxiv.org/pdf/2410.16736"}]
+
+Based on the search results, I found several recent papers (2025-2026) related to error-targeted and weakness-targeted data synthesis for LLM self-improvement in mathematical reasoning:
+
+## Key Papers Found:
+
+1. **Self-Error-Instruct (SEI)**: A framework that addresses model weaknesses and synthesizes more generalized targeted training data. The approach generates error keyphrases based on instructor model analysis, identifies error types through clustering, and synthesizes additional training data using a self-instruct approach.
+
+2. **SwS (Self-aware Weakness-driven Problem Synthesis)**: A framework that explicitly targets the model's capabilities and self-identified weaknesses, enabling more focused and efficient improvement in RL training.
+
+3. **WarriorMath**: A defect-aware framework for mathematical problem solving that integrates targeted data synthesis and progressive training, where questions that base LLMs fail to solve are identified and iteratively improved, followed by progressive learning that fine-tunes the model using increasingly challenging data tailored to its weaknesses.
+
+4. **Failure-Inducing Exploration**: A paradigm for generating valuable training data targeting the improvement of target model weaknesses, where failure-inducing preference learning enables proposing effective and diverse instructions that challenge the target LLM.
+
+These approaches represent a broader shift toward **error-targeted** and **weakness-targeted** data synthesis as a method for LLM self-improvement, moving beyond general difficulty progression to address specific capability defects.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f60dbcf5-7ed0-43c2-af81-7c66598d754c",
+  "isSidechain": false,
+  "promptId": "01cb32b0-52ad-48e6-9ee1-e4237439b5e8",
+  "type": "user",
+  "uuid": "a78403c0-e0df-48ab-88fa-1c171cacc3d0",
+  "toolUseResult": {
+    "query": "\"error-targeted\" OR \"weakness-targeted\" math data synthesis self-improvement LLM 2026 formal symbolic",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01P1RbZ2X9Di27mmemvUL78f",
+        "content": [
+          {
+            "title": "Self-Error-Instruct: Generalizing from Errors for LLMs Mathematical Reasoning",
+            "url": "https://arxiv.org/pdf/2505.22591"
+          },
+          {
+            "title": "SwS: Self-aware Weakness-driven Problem Synthesis in Reinforcement Learning for LLM Reasoning",
+            "url": "https://arxiv.org/pdf/2506.08989"
+          },
+          {
+            "title": "WarriorMath: Enhancing the Mathematical Ability of Large Language Models with a Defect-aware Framework",
+            "url": "https://arxiv.org/pdf/2508.01245"
+          },
+          {
+            "title": "Generalizing from Errors for LLMs Mathematical Reasoning",
+            "url": "https://aclanthology.org/2025.acl-long.417.pdf"
+          },
+          {
+            "title": "LLM-Based Theorem Provers",
+            "url": "https://www.emergentmind.com/topics/llm-based-theorem-provers"
+          },
+          {
+            "title": "Forewarned is Forearmed: Leveraging LLMs for Data Synthesis through   Failure-Inducing Exploration",
+            "url": "https://arxiv.org/pdf/2410.16736"
+          }
+        ]
+      },
+      "Based on the search results, I found several recent papers (2025-2026) related to error-targeted and weakness-targeted data synthesis for LLM self-improvement in mathematical reasoning:\n\n## Key Papers Found:\n\n1. **Self-Error-Instruct (SEI)**: A framework that addresses model weaknesses and synthesizes more generalized targeted training data. The approach generates error keyphrases based on instructor model analysis, identifies error types through clustering, and synthesizes additional training data using a self-instruct approach.\n\n2. **SwS (Self-aware Weakness-driven Problem Synthesis)**: A framework that explicitly targets the model's capabilities and self-identified weaknesses, enabling more focused and efficient improvement in RL training.\n\n3. **WarriorMath**: A defect-aware framework for mathematical problem solving that integrates targeted data synthesis and progressive training, where questions that base LLMs fail to solve are identified and iteratively improved, followed by progressive learning that fine-tunes the model using increasingly challenging data tailored to its weaknesses.\n\n4. **Failure-Inducing Exploration**: A paradigm for generating valuable training data targeting the improvement of target model weaknesses, where failure-inducing preference learning enables proposing effective and diverse instructions that challenge the target LLM.\n\nThese approaches represent a broader shift toward **error-targeted** and **weakness-targeted** data synthesis as a method for LLM self-improvement, moving beyond general difficulty progression to address specific capability defects."
+    ],
+    "durationSeconds": 7.888734257000004,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "f60dbcf5-7ed0-43c2-af81-7c66598d754c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d91d2915-23c5-40a3-baef-86a9aa1c68b6",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-27T08:28:32.724Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LLTdxbSowCcwGbrZfMwHXH`</summary>
+
+```json
+{
+  "query": "Z3 SymPy step-level error classification math reasoning automatic formalization natural language to symbolic 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a78403c0-e0df-48ab-88fa-1c171cacc3d0",
+  "isSidechain": false,
+  "requestId": "req_011CbSkvqFiHZZE3Xy3Rteaf",
+  "type": "assistant",
+  "uuid": "78efab94-ac14-4050-a224-61a9073e5de4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d91d2915-23c5-40a3-baef-86a9aa1c68b6",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EAPDzsy4ErkJ2TeaTy5f2x",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 737,
+      "cache_read_input_tokens": 23737,
+      "output_tokens": 78,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 737,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 78,
+          "cache_read_input_tokens": 23737,
+          "cache_creation_input_tokens": 737,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 737
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-27T08:28:41.463Z_
+
+<details><summary>↩ Tool result · `toolu_01LLTdxbSowCcwGbrZfMwHXH`</summary>
+
+```text
+Web search results for query: "Z3 SymPy step-level error classification math reasoning automatic formalization natural language to symbolic 2025 2026"
+
+Links: [{"title":"Step-Wise Formal Verification for LLM-Based Mathematical ...","url":"https://arxiv.org/pdf/2505.20869"},{"title":"Neuro-Symbolic Data Generation for Math Reasoning Zenan Li1∗ Zhi Zhou1∗","url":"https://openreview.net/pdf?id=CIcMZGLyZW"},{"title":"Step-Wise Formal Verification for LLM-Based Mathematical Problem Solving","url":"https://arxiv.org/html/2505.20869v1"},{"title":"FMC: Formalization of Natural Language Mathematical Competition Problems","url":"https://arxiv.org/pdf/2507.11275"},{"title":"A Survey on LLM Symbolic Reasoning","url":"https://d197for5662m48.cloudfront.net/documents/publicationstatus/295282/preprint_pdf/17368bd9e5235ed8466977226241d74d.pdf"},{"title":"StepFun-Formalizer: Unlocking the Autoformalization Potential of LLMs through Knowledge-Reasoning Fusion","url":"https://arxiv.org/pdf/2508.04440"},{"title":"Conjecturing: An Overlooked Step in Formal Mathematical Reasoning","url":"https://arxiv.org/pdf/2510.11986"}]
+
+I found several relevant research papers related to your search query. Here are the key findings:
+
+## Recent Research on Mathematical Reasoning with Z3 and SymPy
+
+A recent paper on step-wise formal verification introduces a critic that integrates Large Language Models with external tools, such as SymPy and Z3-Solver for determining the correctness of mathematical problem solving steps. The framework called MATH-VF provides step-by-step verification of mathematical reasoning, evaluating the correctness of solutions while also providing constructive feedback for incorrect ones.
+
+## Neuro-Symbolic Data Generation
+
+Another study integrates five mathematical tools including Z3, CVC4, MathSAT, SymPy, and SciPy, employing SMT-LIB as a unified formal language to enhance the performance.
+
+## Autoformalization Approaches
+
+Recent autoformalization methods leverage large-scale datasets of natural language mathematical problems to construct formal language datasets, with some approaches using large language models with error feedback to achieve fully automatic and training-free formalization.
+
+Autoformalization aims to translate natural-language mathematical statements into formally verifiable statements in formal languages such as Lean, Coq, and Isabelle.
+
+## Symbolic Reasoning with LLMs
+
+Logic-LM formulates natural-language logical problems into symbolic representations (e.g., FOL, CSP, SAT) and delegates inference to external solvers such as Prover9 and Z3, with a self-refinement loop that leverages solver feedback to iteratively correct symbolic errors.
+
+These papers represent recent advances (2025-2026) in combining natural language processing with formal verification tools for mathematical reasoning.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "78efab94-ac14-4050-a224-61a9073e5de4",
+  "isSidechain": false,
+  "promptId": "01cb32b0-52ad-48e6-9ee1-e4237439b5e8",
+  "type": "user",
+  "uuid": "ba1931cb-695f-41d3-9661-3802405f21d7",
+  "toolUseResult": {
+    "query": "Z3 SymPy step-level error classification math reasoning automatic formalization natural language to symbolic 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0143eFoV7atVMcNcgpirPRNb",
+        "content": [
+          {
+            "title": "Step-Wise Formal Verification for LLM-Based Mathematical ...",
+            "url": "https://arxiv.org/pdf/2505.20869"
+          },
+          {
+            "title": "Neuro-Symbolic Data Generation for Math Reasoning Zenan Li1∗ Zhi Zhou1∗",
+            "url": "https://openreview.net/pdf?id=CIcMZGLyZW"
+          },
+          {
+            "title": "Step-Wise Formal Verification for LLM-Based Mathematical Problem Solving",
+            "url": "https://arxiv.org/html/2505.20869v1"
+          },
+          {
+            "title": "FMC: Formalization of Natural Language Mathematical Competition Problems",
+            "url": "https://arxiv.org/pdf/2507.11275"
+          },
+          {
+            "title": "A Survey on LLM Symbolic Reasoning",
+            "url": "https://d197for5662m48.cloudfront.net/documents/publicationstatus/295282/preprint_pdf/17368bd9e5235ed8466977226241d74d.pdf"
+          },
+          {
+            "title": "StepFun-Formalizer: Unlocking the Autoformalization Potential of LLMs through Knowledge-Reasoning Fusion",
+            "url": "https://arxiv.org/pdf/2508.04440"
+          },
+          {
+            "title": "Conjecturing: An Overlooked Step in Formal Mathematical Reasoning",
+            "url": "https://arxiv.org/pdf/2510.11986"
+          }
+        ]
+      },
+      "I found several relevant research papers related to your search query. Here are the key findings:\n\n## Recent Research on Mathematical Reasoning with Z3 and SymPy\n\nA recent paper on step-wise formal verification introduces a critic that integrates Large Language Models with external tools, such as SymPy and Z3-Solver for determining the correctness of mathematical problem solving steps. The framework called MATH-VF provides step-by-step verification of mathematical reasoning, evaluating the correctness of solutions while also providing constructive feedback for incorrect ones.\n\n## Neuro-Symbolic Data Generation\n\nAnother study integrates five mathematical tools including Z3, CVC4, MathSAT, SymPy, and SciPy, employing SMT-LIB as a unified formal language to enhance the performance.\n\n## Autoformalization Approaches\n\nRecent autoformalization methods leverage large-scale datasets of natural language mathematical problems to construct formal language datasets, with some approaches using large language models with error feedback to achieve fully automatic and training-free formalization.\n\nAutoformalization aims to translate natural-language mathematical statements into formally verifiable statements in formal languages such as Lean, Coq, and Isabelle.\n\n## Symbolic Reasoning with LLMs\n\nLogic-LM formulates natural-language logical problems into symbolic representations (e.g., FOL, CSP, SAT) and delegates inference to external solvers such as Prover9 and Z3, with a self-refinement loop that leverages solver feedback to iteratively correct symbolic errors.\n\nThese papers represent recent advances (2025-2026) in combining natural language processing with formal verification tools for mathematical reasoning."
+    ],
+    "durationSeconds": 8.734355838999996,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "78efab94-ac14-4050-a224-61a9073e5de4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d91d2915-23c5-40a3-baef-86a9aa1c68b6",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-27T08:28:44.843Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LD57VvACcYFWwDiofrxgXZ`</summary>
+
+```json
+{
+  "query": "NSRSA symbolic recursive self-alignment iterative self-training verified reasoning arXiv 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ba1931cb-695f-41d3-9661-3802405f21d7",
+  "isSidechain": false,
+  "requestId": "req_011CbSkwiUT2d7kscSUqYkML",
+  "type": "assistant",
+  "uuid": "81388d53-6400-4ef6-a6dc-39af0c5de943",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d91d2915-23c5-40a3-baef-86a9aa1c68b6",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Pcr8LahWP8jgpXsvxkZa5h",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 840,
+      "cache_read_input_tokens": 24474,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 840,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 24474,
+          "cache_creation_input_tokens": 840,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 840
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-27T08:28:50.825Z_
+
+<details><summary>↩ Tool result · `toolu_01LD57VvACcYFWwDiofrxgXZ`</summary>
+
+```text
+Web search results for query: "NSRSA symbolic recursive self-alignment iterative self-training verified reasoning arXiv 2026"
+
+Links: [{"title":"Stabilizing Iterative Self-Training with Verified Reasoning via Symbolic Recursive Self-Alignment","url":"https://arxiv.org/pdf/2603.21558"},{"title":"Stabilizing Iterative Self-Training with Verified Reasoning via Symbolic Recursive Self-Alignment","url":"https://arxiv.org/html/2603.21558"},{"title":"[2603.21558] Stabilizing Iterative Self-Training with Verified Reasoning via Symbolic Recursive Self-Alignment","url":"https://arxiv.org/abs/2603.21558"},{"title":"Deep Self-Evolving Reasoning","url":"https://arxiv.org/pdf/2510.17498"},{"title":"Why Self-Rewarding Works: Theoretical Guarantees for Iterative Alignment of Language Models","url":"https://arxiv.org/pdf/2601.22513"}]
+
+I found the paper you're looking for! The paper is titled "Stabilizing Iterative Self-Training with Verified Reasoning via Symbolic Recursive Self-Alignment" by Xinyu Zhang, and it proposes NSRSA (Neuro-Symbolic Recursive Self-Alignment), which stabilizes iterative self-training by embedding a symbolic verification subsystem that gates training data quality at the reasoning step level.
+
+The paper addresses a fundamental challenge where errors in intermediate reasoning compound as models train on self-generated data across multiple iterations, leading to mode collapse and performance degradation.
+
+Unlike outcome-only filtering, NSRSA verifies each arithmetic operation via sympy, checks logical flow consistency across reasoning steps, and enforces domain constraints. The researchers evaluated NSRSA on GSM8K using Qwen3-4B-Thinking across 5 self-training iterations, and found that NSRSA rejects approximately 34% of correct-answer solutions that pass outcome verification, eliminating "lucky guesses" with flawed reasoning from the training set.
+
+The paper was published on arXiv on March 23, 2026 (arXiv ID: 2603.21558).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "81388d53-6400-4ef6-a6dc-39af0c5de943",
+  "isSidechain": false,
+  "promptId": "01cb32b0-52ad-48e6-9ee1-e4237439b5e8",
+  "type": "user",
+  "uuid": "bcca5cd1-da30-4087-ac87-c8292306a581",
+  "toolUseResult": {
+    "query": "NSRSA symbolic recursive self-alignment iterative self-training verified reasoning arXiv 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01APwdo9xCaxR3E81zW2Xt3v",
+        "content": [
+          {
+            "title": "Stabilizing Iterative Self-Training with Verified Reasoning via Symbolic Recursive Self-Alignment",
+            "url": "https://arxiv.org/pdf/2603.21558"
+          },
+          {
+            "title": "Stabilizing Iterative Self-Training with Verified Reasoning via Symbolic Recursive Self-Alignment",
+            "url": "https://arxiv.org/html/2603.21558"
+          },
+          {
+            "title": "[2603.21558] Stabilizing Iterative Self-Training with Verified Reasoning via Symbolic Recursive Self-Alignment",
+            "url": "https://arxiv.org/abs/2603.21558"
+          },
+          {
+            "title": "Deep Self-Evolving Reasoning",
+            "url": "https://arxiv.org/pdf/2510.17498"
+          },
+          {
+            "title": "Why Self-Rewarding Works: Theoretical Guarantees for Iterative Alignment of Language Models",
+            "url": "https://arxiv.org/pdf/2601.22513"
+          }
+        ]
+      },
+      "I found the paper you're looking for! The paper is titled \"Stabilizing Iterative Self-Training with Verified Reasoning via Symbolic Recursive Self-Alignment\" by Xinyu Zhang, and it proposes NSRSA (Neuro-Symbolic Recursive Self-Alignment), which stabilizes iterative self-training by embedding a symbolic verification subsystem that gates training data quality at the reasoning step level.\n\nThe paper addresses a fundamental challenge where errors in intermediate reasoning compound as models train on self-generated data across multiple iterations, leading to mode collapse and performance degradation.\n\nUnlike outcome-only filtering, NSRSA verifies each arithmetic operation via sympy, checks logical flow consistency across reasoning steps, and enforces domain constraints. The researchers evaluated NSRSA on GSM8K using Qwen3-4B-Thinking across 5 self-training iterations, and found that NSRSA rejects approximately 34% of correct-answer solutions that pass outcome verification, eliminating \"lucky guesses\" with flawed reasoning from the training set.\n\nThe paper was published on arXiv on March 23, 2026 (arXiv ID: 2603.21558)."
+    ],
+    "durationSeconds": 5.977897213999997,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "81388d53-6400-4ef6-a6dc-39af0c5de943",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d91d2915-23c5-40a3-baef-86a9aa1c68b6",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37 · 2026-05-27T08:29:43.386Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have gathered sufficient information about the key papers and the landscape. Let me synthesize my findings and evaluate this proposal.
+
+Let me summarize what I've learned:
+
+1. **FoVer (ACL 2026 Findings)**: Uses formal verification (Z3, Isabelle) to create PRM training data with step-level error labels. Tested on 12 benchmarks. This is real and accurately described.
+
+2. **STAT (ICLR 2026)**: Uses teacher LLM metacognition to build skill profiles, then reweights or synthesizes training data targeting missing skills. +7.5% on MATH. This is real and accurately described.
+
+
+3. **NSRSA (arXiv March 2026)**: Applies symbolic verification through SymPy to stabilize iterative self-training on GSM8K, though limited to arithmetic operations. This is real and accurately described.
+
+4. **Adaptive Problem Generation via Symbolic Representations (arXiv Feb 2026)**: Leverages SymPy-based symbolic representations in closed-loop RLVR with global difficulty adaptation rather than error-type targeting. This is real and accurately described.
+
+5. **SwS (NeurIPS 2025)**: Synthesizes problems based on weakness patterns identified through RL pass rates, without formal step-level diagnosis. This is real and accurately described.
+
+6. **Solver** (thinking appears to continue...)
+
+7. **MATH-VF**: Performs step-wise formal verification using SymPy and Z3 to evaluate the correctness of mathematical solutions. This is real.
+
+8. **Self-Error-Instruct, WarriorMath**: Target errors through synthesis but rely on LLM teachers rather than formal methods. This is real.
+
+Now I'm evaluating the core proposal: a closed-loop system where formal symbolic tools like Z3 and SymPy diagnose errors at the step level (classifying them into a taxonomy) and generate targeted problems that address the model's specific weaknesses, cycling through solving, verification, error classification, problem synthesis, training, and re-profiling.
+
+The novelty hinges on combining these three validated approaches—formal verification, error taxonomy, and targeted synthesis—but I need to assess whether this combination is truly novel or if it's mostly assembling existing techniques.
+
+Looking at each prior work: FoVer generates training data from formal verification but doesn't classify errors or synthesize problems. STAT does skill-targeted synthesis but relies on LLM metacognition, not formal tools. NSRSA uses symbolic verification for iterative training but only at the arithmetic level on GSM8K. Adaptive Problem Generation uses SymPy in a closed-loop system but lacks formal error diagnosis. SwS identifies weaknesses through pass rates, not formal analysis.
+
+The specific combination of formal step-level error diagnosis feeding into error taxonomy classification, which then drives targeted symbolic problem synthesis in an iterative closed-loop training setup, does appear to be novel—none of the existing works integrate all three components together.
+
+The novelty here is primarily combinatorial, bringing together formal verification, error-targeted synthesis, and iterative self-training in a way that hasn't been done before. The individual pieces already exist: formal verification with Z3 or SymPy for mathematics, error-targeted synthesis across multiple prior works, and iterative self-training loops. What's distinctive is using formal tools for error diagnosis instead of relying on LLM teachers, which provides ground-truth labels without the teacher-dependent biases that STAT introduces.
+
+But there's a real tension here. STAT already achieves strong empirical results with +7.5% gains on MATH using teacher-based skill profiling. The formal verification approach claims to avoid teacher bias, yet it only succeeds on 60-70% of problems, meaning you lose 30-40% of your training data compared to a teacher model that would have near-complete coverage. The proposal needs to show that the quality gains from formal error diagnosis actually outweigh this coverage loss. There's also a simpler alternative: just use FoVer's approach to generate process reward model training data and then use that PRM as a verifier in an iterative loop, which would be less complex than building out the full error taxonomy and targeted synthesis pipeline.
+
+Now I'm checking the core assumptions. The first big one is whether formal tools can actually classify step-level errors into meaningful categories — FoVer only gives binary correct/incorrect labels, so jumping to fine-grained error types like algebraic manipulation versus equation solving versus arithmetic errors is a significant leap. Can Z3 and SymPy reliably distinguish between these? Second, the formalization bottleneck is real — 60-70% success rate means you're losing data and introducing bias toward easily-formalized problems. Third, there's the claim that targeted synthesis of problems for weak skills drives better improvement than uniform synthesis, which STAT partially supports but isn't fully proven.
+
+The research itself tackles an important problem — self-improvement for math reasoning is genuinely valuable — but the practical limitations are substantial. The formalization bottleneck cuts your dataset significantly, and Z3/SymPy can't handle the full range of math problems, especially anything requiring geometric intuition or combinatorial reasoning.
+
+The related work section is thorough with 18+ references, though I notice Adaptive Problem Generation from February 2026 is doing something quite similar with SymPy in a closed-loop framework. The distinction about targeting specific error categories versus global difficulty adaptation feels somewhat incremental.
+
+The core contribution here is really a thoughtful combination of existing techniques rather than a conceptually novel insight. The central claim that formal verification tools diagnose errors better than teacher LLMs for targeted synthesis is reasonable but unproven, and there are real practical concerns around the formalization success rate and tool coverage that could limit impact.
+
+I'm settling on a 25-35% range, probably around 28-30%. The research direction is sound and there's genuine novelty in the integration, but the finding itself wouldn't surprise an informed reviewer—it's a fairly natural next step combining FoVer, STAT, and NSRSA. Though I should acknowledge the "unhackable" verification angle does have some theoretical appeal, and the closed-loop structure with formal verification at each step is architecturally clean.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bcca5cd1-da30-4087-ac87-c8292306a581",
+  "isSidechain": false,
+  "requestId": "req_011CbSkxQEd8nJGzY3uHvJjE",
+  "type": "assistant",
+  "uuid": "4cbf9048-b4b5-471d-a711-05aae44c0c1a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d91d2915-23c5-40a3-baef-86a9aa1c68b6",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CRHeB7eHWK5XKCchaYESVG",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 615,
+      "cache_read_input_tokens": 25314,
+      "output_tokens": 6162,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 615,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6162,
+          "cache_read_input_tokens": 25314,
+          "cache_creation_input_tokens": 615,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 615
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38 · 2026-05-27T08:31:02.843Z_
+
+Now I have sufficient information to conduct the evaluation. Let me compile my findings.
+
+---
+
+```
+【阶段】: Triage
+
+【领域调研】:
+- FoVer (ACL 2026 Findings, arXiv 2505.15960): 使用 Z3 和 Isabelle 等形式化验证工具为 PRM 训练数据生成步骤级别的正确/错误二元标签。在 12 个推理 benchmark 上验证了泛化性。与本 proposal 关系：proposal 的形式化验证思路直接受其启发，但 FoVer 只生成二元标签，不做错误类型分类，也不做 targeted synthesis。
+- STAT (ICLR 2026, arXiv 2510.10023): 用 teacher LLM 的元认知能力构建学生模型的 Missing-Skill-Profile，然后重采样或合成针对缺失技能的训练数据。在 MATH 上 +7.5%，OOD benchmark +4.6%。与本 proposal 关系：STAT 是最直接的竞争者——同样做 skill-targeted synthesis，但依赖 teacher LLM 而非 formal tools。Proposal 的核心 claim 是 formal tools 比 teacher LLM 更可靠，但 STAT 的经验表现已经很强。
+- NSRSA (arXiv 2603.21558, March 2026): 在 GSM8K 上用 SymPy 做算术级别的符号验证来稳定迭代自训练，拒绝约 34% 的"答对但推理有错"的样本。与本 proposal 关系：proposal 声称将 NSRSA 的覆盖范围从算术扩展到全谱数学推理，这是一个合理的扩展方向。
+- Adaptive Problem Generation via Symbolic Representations (arXiv 2602.19187, Feb 2026): 用 SymPy 在符号空间做 closed-loop RLVR，通过 prompt optimization 适应问题难度。与本 proposal 关系：这是最近的 concurrent work，同样使用 SymPy 在 closed-loop 中做 problem generation。Proposal 声称的差异是"error-type diagnosis vs. global difficulty adaptation"，但两者在 symbolic closed-loop 框架上高度重叠。
+- SwS (NeurIPS 2025, arXiv 2506.08989): 通过 RL pass rate 分析识别模型弱点，提取失败案例的核心概念来合成新问题。7B/32B 模型分别 +10.0%/+7.7%。与本 proposal 关系：同样做 weakness-driven synthesis，但用统计信号而非 formal diagnosis。
+- Self-Error-Instruct (ACL 2025): 从模型错误中生成训练数据，使用 LLM 分析错误类型。与本 proposal 关系：类似的 error-driven 思路，但依赖 LLM 而非 formal tools。
+- WarriorMath (arXiv 2025): Defect-aware framework，识别模型失败的问题并迭代提升。与本 proposal 关系：类似的缺陷识别+针对性训练范式。
+- MATH-VF (arXiv 2505.20869): 用 SymPy + Z3 做 step-wise formal verification，包含 Formalizer + Critic 架构。与本 proposal 关系：验证了 Z3/SymPy 做步骤级验证的技术可行性，但不做错误分类或 targeted synthesis。
+- Solver-Verifier Gap Theory (ICLR 2026): 理论建模了 self-improvement 的 collapse 动力学。与本 proposal 关系：为 proposal 声称的 "collapse-resistant" 设计提供理论动机。
+
+- 调研总结: 数学推理的 self-improvement 和 targeted synthesis 是 2025-2026 年的高活跃研究方向。已有大量工作分别探索了形式化验证（FoVer, MATH-VF, NSRSA）、weakness-targeted synthesis（STAT, SwS, Self-Error-Instruct）、和 iterative self-training（NSRSA, V-STaR）。本 proposal 处于这三条线的交叉点，核心贡献是"用 formal tools 替代 teacher LLM 做 error diagnosis + targeted synthesis 的闭环"。这个交叉点确实尚未被完全占据，但各个组件均已存在，且 Adaptive Problem Generation (Feb 2026) 在 symbolic closed-loop 框架上与本 proposal 高度重叠。
+
+【Trivial Alternative 检验】:
+存在明确的 trivial alternative 威胁：
+1. **STAT + 强 teacher model**：STAT 已经用 teacher LLM 实现了 skill-targeted synthesis 并取得 +7.5% on MATH。用 GPT-4o/Claude 做 error diagnosis 的覆盖率接近 100%，而 proposal 自己承认 formalization success rate 只有 60-70%。如果 teacher-based 方法在覆盖率上占优，formal tools 的"不可被 hack"优势是否能弥补 30-40% 的数据损失？这一点没有任何论证。
+2. **FoVer PRM + 标准迭代训练**：直接用 FoVer 生成的 PRM 做 verifier-in-the-loop 的 iterative training，不需要构建完整的错误分类 taxonomy 和 targeted synthesis pipeline。这条路径工程成本低得多。
+3. **SwS 式 pass-rate 弱点识别 + 简单 symbolic verification**：不需要形式化整个错误分类过程，只需要用 pass rate 统计信号识别弱点类型，再用 symbolic tools 做最终验证即可。
+
+增量价值的核心论点——formal tools 提供 "ground-truth, unhackable" error diagnosis——在理论上有说服力，但缺乏实证支撑来证明这比 teacher-based diagnosis 实际产生更好的 targeted training data。
+
+【前提假设检验】:
+核心逻辑链中存在多个未经验证的关键假设：
+
+1. **"Z3/SymPy 可以可靠地将步骤级错误分类为有意义的 taxonomy"**（致命假设）：FoVer 只做二元标签（correct/incorrect），从二元验证到细粒度错误类型分类（algebraic manipulation, equation solving, arithmetic, constraint reasoning, logical inference）是一个非平凡的飞跃。Z3 返回 unsat 不等于它能告诉你"这是代数操作错误"还是"约束推理错误"。这个分类逻辑如何实现？Proposal 完全没有解释这个关键技术细节。
+
+2. **"LLM 生成的自然语言解题过程可以可靠地形式化为符号形式"**（重要假设）：Proposal 自己估计 formalization success rate 为 60-70%，意味着丢失 30-40% 的数据。更关键的是，formalization failure 不是随机的——更复杂、更需要创造性推理的问题更难形式化，导致系统性偏差：formal error profiling 恰好在最需要诊断的困难问题上失效。
+
+3. **"人工设计的错误 taxonomy 映射到真实的模型能力缺陷"**（中等假设）：模型错误可能不会干净地落入 5 个预定义类别，可能存在大量 cross-category 或 out-of-taxonomy 错误。
+
+4. **"针对特定错误类别合成的 SymPy 问题能有效训练模型修复对应的能力缺陷"**（中等假设）：SymPy 合成的问题在形式和语言风格上与真实数学问题可能有分布偏移，导致训练效果受限。STAT 的成功部分归因于 teacher LLM 合成的问题更接近自然分布。
+
+【3 维度打分】:
+  1. Novelty: 弱-中 — 核心贡献是三个已有方向（formal verification, targeted synthesis, iterative self-training）的组合。每个组件都有直接的先行工作：FoVer (formal labels)、STAT (targeted synthesis)、NSRSA (symbolic verification for self-training)、Adaptive Problem Generation (symbolic closed-loop)。Proposal 声称的独特之处——"formal error taxonomy driving targeted synthesis"——是一个自然的组合步骤，而非概念性创新。Adaptive Problem Generation (Feb 2026) 已经在 symbolic closed-loop framework 上占据了很大的空间。一个有经验的审稿人看到 FoVer + STAT + NSRSA 后，很可能会想到类似的组合方案。核心 claim "formal > teacher-based for error diagnosis" 如果被实验验证为 positive，审稿人大概率会说 "I would have guessed this (if formal tools can achieve sufficient coverage)"，而不是 "surprising"。
+
+  2. Significance: 中 — 研究问题本身很重要：数学推理的 self-improvement 是热门方向，解决 model collapse 和数据效率问题有实际价值。但实际影响受限于：(a) 形式化瓶颈将系统限制在可被 Z3/SymPy 覆盖的数学子领域（排除几何直觉、组合创造性推理等），(b) 60-70% formalization success rate 意味着系统对困难问题的覆盖有系统性偏差，(c) 如果 STAT + strong teacher 已经足够好，formal tools 的增量贡献可能不足以改变实践。研究贡献更多是方法论层面（"formal tools 可以替代 teacher LLMs"），而非范式层面。
+
+  3. Related Work: 强 — Proposal 对相关工作的覆盖非常全面，引用了 18+ 篇近期论文，涵盖 verification (FoVer, MATH-VF, Safe, NSRSA)、synthesis (SPARQ, CoTEvol, MathMixup)、self-improvement (SPICE, SvS, SwS)、error-targeted (STAT, Self-Error-Instruct, WarriorMath)、concurrent work (Adaptive Problem Generation, Bidirectional Curriculum, Reasoning Core)。对每篇工作的描述经我调研验证基本准确，差异化定位清晰（formal vs. teacher-based, arithmetic-only vs. full-spectrum, one-shot vs. iterative）。这是 proposal 最强的维度。
+
+【概率估计】: [20% - 30%] 中位 25%
+
+【估计理由】: 
+- Related Work 维度强，说明作者对领域有深入理解，这为执行质量提供了保障，但不提升 idea 本身的上限。
+- Novelty 弱-中是主要限制因素：组合式创新 + 最近的 concurrent work (Adaptive Problem Generation) 高度重叠 + 核心 claim 如果 positive 不够 surprising。AAAI 审稿人对"A+B+C 组合"类论文通常要求证明组合本身带来的 synergy 远超 trivial combination。
+- Significance 中但受限于形式化瓶颈——如果系统只能覆盖可被 SymPy/Z3 形式化的子集，其 practical impact 有上限。
+- 前提假设检验暴露了一个关键技术空白：从二元验证到细粒度错误分类的跳跃缺乏技术说明，这不是实验层面可以简单补救的问题，而是 idea 内核的逻辑缺环。
+- Trivial alternative 威胁真实存在：STAT + strong teacher 可能以更高覆盖率达到类似效果。
+
+综合来看，这是一个方向正确、literature awareness 优秀、但 idea 内核增量有限的 proposal。处于 "idea 有实质内核但核心发现不够 surprising" 的区间。上界受 novelty 和 trivial alternative 威胁限制。
+
+【主要风险】: 
+1. **组合式 novelty 不被认可**：审稿人可能认为 FoVer + STAT + NSRSA 的组合是 "obvious next step"，尤其在 Adaptive Problem Generation (Feb 2026) 已经占据了 symbolic closed-loop 这个位置之后。Novelty claim 的核心差异化——"error-type diagnosis vs. global difficulty adaptation"——可能被认为是一个 incremental distinction 而非 fundamental innovation。
+2. **核心技术 claim 缺乏支撑**："Formal tools 能做 fine-grained error taxonomy classification" 是整个系统的关键假设，但 proposal 没有解释这个分类如何从 Z3/SymPy 的验证输出中推导出来。如果审稿人追问这个问题（"Z3 returns unsat — how exactly does that tell you it's an algebraic manipulation error vs. a constraint reasoning error?"），缺乏令人信服的回答将严重削弱 idea 的可信度。
+```
+
+Sources:
+- [FoVer: Efficient PRM Training Data Synthesis via Formal Verification](https://arxiv.org/abs/2505.15960)
+- [STAT: Skill-Targeted Adaptive Training (ICLR 2026)](https://arxiv.org/abs/2510.10023)
+- [NSRSA: Stabilizing Iterative Self-Training with Verified Reasoning via Symbolic Recursive Self-Alignment](https://arxiv.org/abs/2603.21558)
+- [Adaptive Problem Generation via Symbolic Representations](https://arxiv.org/abs/2602.19187)
+- [SwS: Self-aware Weakness-driven Problem Synthesis (NeurIPS 2025)](https://arxiv.org/abs/2506.08989)
+- [Self-Error-Instruct: Generalizing from Errors for LLMs Mathematical Reasoning (ACL 2025)](https://aclanthology.org/2025.acl-long.417.pdf)
+- [Step-Wise Formal Verification for LLM-Based Mathematical Problem Solving (MATH-VF)](https://arxiv.org/abs/2505.20869)
+- [Solver-Verifier Gap Theory (ICLR 2026)](https://openreview.net/pdf?id=Hh7x3c0cZl)
+- [WarriorMath](https://arxiv.org/abs/2508.01245)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4cbf9048-b4b5-471d-a711-05aae44c0c1a",
+  "isSidechain": false,
+  "requestId": "req_011CbSkxQEd8nJGzY3uHvJjE",
+  "type": "assistant",
+  "uuid": "5e3853f4-4080-49c0-8869-a53e650d27a8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "d91d2915-23c5-40a3-baef-86a9aa1c68b6",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CRHeB7eHWK5XKCchaYESVG",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 615,
+      "cache_read_input_tokens": 25314,
+      "output_tokens": 6162,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 615,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6162,
+          "cache_read_input_tokens": 25314,
+          "cache_creation_input_tokens": 615,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 615
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 39_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Formal Error Profiling Enables Targeted Math Self-Improvement  ## Core Problem  Self-improvement loops for mathe…",
+  "leafUuid": "5e3853f4-4080-49c0-8869-a53e650d27a8",
+  "sessionId": "d91d2915-23c5-40a3-baef-86a9aa1c68b6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 40_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Formal error profiling for math self-improvement",
+  "sessionId": "d91d2915-23c5-40a3-baef-86a9aa1c68b6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 41_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Formal Error Profiling Enables Targeted Math Self-Improvement  ## Core Problem  Self-improvement loops for mathe…",
+  "leafUuid": "5e3853f4-4080-49c0-8869-a53e650d27a8",
+  "sessionId": "d91d2915-23c5-40a3-baef-86a9aa1c68b6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 42_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Formal error profiling for math self-improvement",
+  "sessionId": "d91d2915-23c5-40a3-baef-86a9aa1c68b6"
+}
+```
+
+---

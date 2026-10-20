@@ -1,0 +1,1181 @@
+# Research conversation: You are a senior ML research advisor synthesizing a literature review into an actionable research strategy. **Today's da
+
+**Reproducibility Budgets for Open-Weight LLM Evaluation: A Generalizability Theory Study of 7–9B Instruction-Tuned Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 17
+- **Recorded user turns:** 1
+- **Tool calls:** 1
+- **Original source:** `logs/chats/exported-trajectories/account-2/d2afaa5f-3638-4542-b331-039035bd0dba.jsonl`
+- **Structured JSON:** [`0e46a9d29e7236352113.json`](../../sessions/0e/0e46a9d29e7236352113.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-28T11:22:48.262Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-28T11:22:48.262Z",
+  "sessionId": "d2afaa5f-3638-4542-b331-039035bd0dba",
+  "content": "You are a senior ML research advisor synthesizing a literature review into an actionable research strategy.\n\n**Today's date: 2026-05-28 (UTC).**\n\n## Research area: Target: AAAI 2026\nTrack: AI for Science / Knowledge Representation and Reasoning\n\nDirection: Build the first domain-adaptive autoformalization pipeline that conditions formalization, retrieval, and repair strategies on mathematical subdomain (algebra, topology, analysis, number theory). The core insight is that autoformalization errors are not uniform — topology formalizations fail on typeclass instances while algebra formalizations fail on coercion chains — and domain-aware systems can exploit these patterns. Evaluate on cross-domain generalization: train on 3 domains, test on the held-out 4th.\n\nSeed Papers:\n- VeriSoftBench (arXiv 2602.18307, Feb 2026) — Proves Mathlib-trained provers fail on out-of-domain verification; motivates domain adaptation\n- APRIL (arXiv 2602.02990, Feb 2026) — 260k repair tuples enabling domain-stratified error analysis; no existing stratification\n- Herald (ICLR 2025) — 580k NL-formal pairs with Mathlib4 module provenance; enables domain labeling via module hierarchy\n- Autoformalizer with Tool Feedback (arXiv 2510.06857, Oct 2025) — Integrates repair into training but domain-agnostic; our domain-aware version is the delta\n- StepFun-Formalizer (AAAI 2026) — Current SOTA single-shot autoformalization; general-purpose baseline to beat on per-domain metrics\n- 130k Topology (arXiv 2601.03298, Jan 2026) — Domain-specific success via manual effort; motivates systematic domain adaptation\n- REAL-Prover (arXiv 2505.20613, May 2025) — Domain-aware retrieval helps proving; we extend retrieval to formalization\n- DDR (arXiv 2511.11990, Nov 2025) — Retrieval-augmented autoformalization via dependency generation; domain-agnostic baseline\n\nKnown Gaps:\n- No autoformalization system adapts its pipeline to mathematical subdomain; all treat algebra and topology identically despite different error distributions\n- APRIL's 260k repair tuples have never been stratified by domain — the domain-specific error taxonomy is uncharacterized\n- Retrieval-augmented autoformalization (DDR) retrieves domain-agnostic dependencies; domain-conditioned retrieval (Mathlib module-aware) is untested\n\nTheoretical Anchor: Domain shift theory from transfer learning — the distribution of formal language constructs (typeclasses, coercions, tactic vocabularies) differs measurably across Mathlib4 module hierarchies, creating a domain adaptation problem that standard domain-agnostic models underperform on. VeriSoftBench empirically confirms this for software domains; we extend the analysis to mathematical subdomains.\n\nConstraints:\n- Compute: ≤200 H100-hours (estimated ~70-80 H100-hours)\n- Must use open-source models only (Qwen2.5-7B or Goedel-Prover-V2-8B as base)\n- Evaluate on ≥3 benchmarks: miniF2F v2, ProofNet (domain-stratified), VeriSoftBench\n- Release all artifacts: model weights, domain-stratified APRIL analysis, evaluation scripts\n\nQuality Self-Checks:\n- [x] Core insight: Autoformalization errors cluster by mathematical domain, and domain-conditioned pipelines can exploit this structure.\n- [x] Why not obvious: Prior work treats autoformalization as domain-agnostic; domain adaptation requires Mathlib module hierarchy knowledge and domain-stratified training data that only became available with Herald (2025) and APRIL (2026).\n- [ ] Baseline fear test: RISK — a domain-agnostic model with more repair iterations could match 80% of the gain. Mitigation: the cross-domain generalization experiment (train on 3, test on 4th) specifically isolates domain adaptation's contribution vs. more compute.\n- [x] Information exploited: Mathlib4's module hierarchy as domain labels + APRIL's repair tuples stratified by error type and domain — information that exists in the data but no system currently uses.\n\nAvoid:\n- Framing as 'proof search improvement' — this is about formalization quality, not proving power\n- Competing on miniF2F leaderboard numbers — the contribution is per-domain reliability, not aggregate SOTA\n- Simple cycle consistency (claimed by 3 papers in 2025-2026)\n- Pure data scaling (diminishing returns per Goedel-Prover-V2)\n- Ignoring Autoformalizer with Tool Feedback as prior art — must clearly differentiate via domain-awareness\n\n## Paper analyses (18 papers)\n\n[\n  {\n    \"title\": \"ReForm: Reflective Autoformalization with Prospective Bounded Sequence Optimization\",\n    \"venue\": \"ICLR 2026\",\n    \"problem_identification\": \"The authors identified that autoformalization systems treat the task as single-pass translation, achieving syntactic correctness (Lean-compilable code) but systematically failing on semantic fidelity — the formalized statement doesn't preserve the mathematical meaning. They found this gap by observing that human experts use iterative review-and-refinement, not one-shot translation, and that concurrent data-centric approaches (Kimina, Goedel-V2) improved data quality but still operated under the one-pass paradigm without self-correction. Crucially, they also discovered that 16.4%–38.5% of *human-written* formalizations in standard benchmarks (miniF2F, ProofNet) contain semantic errors, demonstrating the problem is fundamental, not just a model weakness.\",\n    \"key_insight\": \"Autoformalization should be reconceptualized from translation to iterative self-correction: interleave formal statement generation with semantic self-validation in a single autoregressive sequence, then train this reflective loop with heterogeneous rewards at different sequence positions (task reward at the end for correctness, auxiliary rewards at intermediate steps for critique quality) to prevent the self-validation from degenerating into superficial or hallucinated critiques.\",\n    \"innovation_type\": \"combination\",\n    \"method_summary\": \"ReForm operates through a unified autoregressive generation that internally loops: (1) generate a candidate formal statement S_t, (2) produce a semantic critique C_t evaluating whether S_t faithfully captures the original problem, (3) refine and generate S_{t+1} based on the critique, repeating until the critique confirms semantic fidelity. The key training innovation is Prospective Bounded Sequence Optimization (PBSO), which handles heterogeneous rewards at different positions in the sequence — a terminal task reward r_task (syntactic + semantic correctness of the final statement) and auxiliary rewards r_aux at each intermediate critique step (whether the critique accurately diagnosed the semantic relationship). PBSO computes a prospective bounded return G_t via backward accumulation with discount factor γ and clipping to [r_min, r_max] to prevent gradient instability, then derives position-specific advantages normalized across sampled trajectories, fed into standard GRPO for policy optimization. Training data consists of 447K SFT trajectories (83.1% single-iteration, rest multi-round) generated via a multi-agent system, followed by RL on 2,048 curated problems with stratified pass rates.\",\n    \"what_makes_it_good\": \"Three things made this paper compelling. First, the contribution is architecturally principled — rather than just scaling data or models, they identified a structural limitation (one-pass paradigm) and proposed a structural solution (reflective loop), and the ablation showing the one-pass baseline collapses on hard benchmarks (16.7% vs. 46.7% on AIME2025) validates the diagnosis. Second, the PBSO algorithm solves a genuine technical problem — existing RL methods handle only terminal rewards, but the reflective paradigm requires supervising intermediate critique quality, and their bounded return formulation is both simple and principled. Third, the ConsistencyCheck benchmark is a meta-contribution that strengthens the entire evaluation: by showing human experts err 38.5% of the time and frontier LLMs classify at 85.8% accuracy, they both calibrate what 'good' means and inoculate against the objection that LLM-as-judge is unreliable (their improvements are 2.5–3.5σ above the evaluation noise floor).\",\n    \"limitations_acknowledged\": \"The authors note that their evaluation relies on LLM-based semantic judges with ~85% accuracy, creating irreducible noise (though they argue their effect sizes are large enough to be robust). They also acknowledge the classification-generation gap — even determining semantic consistency is only 85.8% accurate, which sets a soft ceiling on generation quality. The paper does not discuss domain-specific failure modes or whether the reflective paradigm helps equally across mathematical subdomains.\",\n    \"open_questions\": [\n      \"Does the reflective self-correction paradigm help equally across mathematical subdomains (algebra, topology, analysis, number theory), or does it disproportionately fix certain error types (e.g., quantifier scope errors in analysis vs. typeclass instance errors in topology)? The paper treats all domains identically — domain-stratified analysis of where reflection helps most is entirely missing.\",\n      \"What is the computational cost-quality tradeoff of the reflective iterations? The paper shows 83.1% of training problems resolve in one iteration — does the model learn *when* to iterate vs. when single-pass suffices, and could domain signals improve this decision?\",\n      \"Can the auxiliary reward mechanism be extended to domain-specific critique templates? Currently r_aux uses a generic IsFaithfulCritique check — domain-aware auxiliary rewards (e.g., checking typeclass resolution in topology, coercion chain validity in algebra) could provide stronger supervision signals.\"\n    ],\n    \"building_blocks\": [\n      \"Reflective autoformalization paradigm — interleaving generation and self-validation in a single autoregressive sequence (reusable architecture pattern)\",\n      \"PBSO algorithm — heterogeneous rewards at different sequence positions with prospective bounded returns and position-specific advantages (generalizable RL technique for multi-objective sequential generation)\",\n      \"ConsistencyCheck benchmark — 859 expert-annotated items for evaluating semantic consistency judges (directly reusable for evaluation)\",\n      \"Heterogeneous reward mechanism (r_task + r_aux) — task reward for final correctness + auxiliary reward for intermediate critique quality (applicable to any self-correction pipeline)\",\n      \"Multi-agent SFT data generation pipeline — producing 447K reflective trajectories with iteration distributions (reusable data generation approach)\",\n      \"LLM-as-judge calibration methodology — using expert-annotated benchmarks to quantify judge reliability and compute effect sizes relative to evaluation noise (reusable evaluation methodology)\",\n      \"Training recipe: Qwen3-8B/32B base → SFT on reflective trajectories → RL with PBSO (reproducible pipeline with stated hyperparameters)\"\n    ],\n    \"reviewer_feedback_summary\": null,\n    \"relevance_to_seed\": \"ReForm is a direct and critical baseline for our domain-adaptive autoformalization work. It achieves strong results but treats all mathematical domains identically — the reflective loop, critique templates, and reward signals are completely domain-agnostic. Our key opportunity is threefold: (1) Domain-stratify ReForm's results to show that its improvements are uneven across subdomains (likely strong on competition math where critique patterns are uniform, weaker on topology/analysis where error modes differ structurally), demonstrating the gap our work fills. (2) Extend the auxiliary reward r_aux with domain-conditioned critique quality signals — e.g., for topology formalizations, reward critiques that specifically check typeclass instance resolution; for algebra, reward critiques that verify coercion chains. (3) Use the reflective paradigm as architecture but replace domain-agnostic retrieval/repair with our domain-conditioned pipeline, showing that domain adaptation is orthogonal to and composable with reflection — the combination should outperform either alone. ReForm's PBSO algorithm is also directly reusable for training our domain-adaptive models with domain-specific heterogeneous rewards.\"\n  },\n  {\n    \"title\": \"ATLAS: Autoformalizing Theorems through Lifting, Augmentation, and Synthesis of Data\",\n    \"venue\": \"NeurIPS 2025\",\n    \"problem_identification\": \"Prior autoformalization data pipelines face a fundamental scalability-correctness trade-off: extracting FL statements from Mathlib and generating NL counterparts (Herald) guarantees Mathlib-grounded correctness but is bottlenecked by Mathlib's finite size; conversely, scraping NL from the web (Lean Workbook, DeepSeek-Prover) scales freely but requires extensive preprocessing to filter out concepts absent from Mathlib, losing ~28% of data. The authors identified this by analyzing both pipelines' failure modes: Herald cannot exceed Mathlib's statement count, while Lean Workbook must discard 130k+ NL statements whose concepts lack Mathlib support. The insight is that neither starting from NL nor FL is ideal — starting from *concepts* extracted from Mathlib creates a third path that is both scalable and grounded.\",\n    \"key_insight\": \"Instead of starting from existing statements (NL or FL), extract mathematical *concepts* from Mathlib's module hierarchy as seeds, then synthesize novel NL statements from concept pairs and iteratively train a student model to formalize them — decoupling data generation from the fixed statement space while maintaining Mathlib groundedness. The second key insight is that formal languages have exploitable structural properties (proof state inspection via Lean Infoview, contraposition via tactics) that enable augmentation strategies impossible in natural language.\",\n    \"innovation_type\": \"combination\",\n    \"method_summary\": \"ATLAS has three components: (1) **Data Lifting** constructs a 'concept repository' by abstracting Mathlib's content into 13 domains, 55 topics, and 350 concepts organized hierarchically. (2) **Data Synthesis** uses knowledge distillation with expert iteration: a teacher model (DeepSeek-V2.5) generates NL statements from randomly sampled concept pairs, a student model (Llama3.1-8B) translates NL→FL, the Lean compiler verifies syntactic validity, the teacher *revises* (not regenerates) failed FL statements and checks semantic alignment of passing ones — repeated for 10 iterations where the student improves from 42.68% to 82.30% data contribution ratio. (3) **Data Augmentation** exploits Lean4's Infoview: proof stepping (via DeepSeek-Prover-V1.5) exposes intermediate proof states that yield new FL statements, and applying the `contrapose!` tactic generates equivalent contrapositives. This produces 117k parallel statements (54k synthetic + 22k proof augmentation + 40k contraposition augmentation). The ATLAS Translator is the student fine-tuned with LoRA on this combined dataset.\",\n    \"what_makes_it_good\": \"The paper succeeds because it reframes the data generation problem at a deeper level of abstraction — concepts rather than statements — which elegantly resolves the scalability-correctness tension that plagued all prior work. The formal-language-aware augmentation (proof stepping + contraposition) is genuinely novel and exploits structural properties unique to formal languages, making it non-obvious. The experimental rigor is strong: statistical significance testing (two-tailed t-test, p<0.05), 5-seed averaging, clean ablations isolating each component's contribution, and demonstration that the data transfers to stronger base models (DeepSeek-Prover-V1.5-7B achieves 54.99% pass@1 on ProofNet). The work is also remarkably efficient — fine-tuning takes 10 minutes to 1 hour per iteration on a single A100.\",\n    \"limitations_acknowledged\": \"The authors note that correctness of generated mathematical propositions is not guaranteed (they may be vacuously true or trivially false), though they argue semantic equivalence between NL and FL matters more than mathematical truth for autoformalization training. The concept repository is limited to undergraduate-level content (350 concepts from 13 domains), and the framework has only been demonstrated for Lean 4.\",\n    \"open_questions\": [\n      \"The concept repository covers 13 Mathlib domains but the paper never analyzes whether performance varies across domains — do certain domains (e.g., topology vs. algebra) benefit more from synthesis vs. augmentation? This is exactly the domain-stratified analysis gap our work targets.\",\n      \"The teacher revision step (FL-Rev) fixes compiler errors, but the error taxonomy is unexplored — what types of formalization errors occur most frequently, and do they cluster by mathematical domain? APRIL's 260k repair tuples could answer this if stratified against ATLAS's concept categories.\",\n      \"Expert iteration plateaus visibly around round 7-8 in Figure 5 — could domain-conditioned iteration (allocating more rounds to harder domains) break through this ceiling? The current uniform 10-round strategy may be suboptimal.\"\n    ],\n    \"building_blocks\": [\n      \"Concept repository from Mathlib's undergrad.yaml (13 domains, 55 topics, 350 concepts) — directly reusable as domain labels\",\n      \"Expert iteration with knowledge distillation for autoformalization (teacher revises student's FL, not generates de novo)\",\n      \"Lean4 Infoview-based augmentation: proof stepping and contraposition as formal-language-aware data multiplication\",\n      \"FL statement parsing into structured components (theorem_name, theorem_variables, theorem_hypotheses, theorem_conclusion) via #check tactic\",\n      \"NLI-based semantic alignment check (back-translate FL→NL then check NLI with original NL using Qwen2.5)\",\n      \"LLaMA-Factory + LoRA fine-tuning pipeline for 8B models on autoformalization\",\n      \"MathQual benchmark: 465 graduate-level NL statements for harder evaluation\",\n      \"Validation pipeline: translate → compile → back-translate → NLI check\"\n    ],\n    \"reviewer_feedback_summary\": \"NeurIPS 2025 reviews for this paper (OpenReview forum id: MlJyAvQaxp) are not yet publicly accessible through the API. The paper was accepted as a poster. Based on the paper's structure and known NeurIPS review standards, likely praised aspects include: the clean three-component framework with clear ablations, statistical significance testing, and the novel concept-first approach. Likely concerns would include: (1) the correctness issue — generated propositions may be mathematically trivial or vacuous, and the paper's argument that this doesn't matter for autoformalization is philosophically debatable; (2) evaluation only on compilation + NLI rather than downstream theorem proving; (3) concept repository limited to undergraduate level. The v1→v3 revision history (Feb 2025 → Oct 2025) suggests substantial revisions during the review cycle.\",\n    \"relevance_to_seed\": \"ATLAS is directly relevant as both a key baseline to beat and a source of reusable infrastructure. Its concept repository (13 domains, 55 topics, 350 concepts from Mathlib's module hierarchy) provides exactly the domain labeling scheme our domain-adaptive pipeline needs — we can stratify ATLAS's 117k statements by domain and analyze whether synthesis vs. augmentation effectiveness varies across algebra, topology, analysis, etc. Critically, ATLAS treats all domains identically (uniform concept sampling, uniform iteration count, domain-agnostic augmentation) — our contribution is showing that domain-conditioned strategies (different retrieval, different repair, different augmentation emphasis per domain) outperform this one-size-fits-all approach. The proof stepping and contraposition augmentation techniques are directly reusable but should be applied with domain-aware weighting.\"\n  },\n  {\n    \"title\": \"FormaRL: Enhancing Autoformalization with No Labeled Data\",\n    \"venue\": \"COLM 2025\",\n    \"problem_identification\": \"The authors identified a fundamental bottleneck: autoformalization progress was gated on labeled NL-formal pairs, which are expensive to create and scarce for advanced mathematics. Prior SFT methods required 25k+ labeled pairs (Lean Workbook) or 243k pairs (RAutoformalizer), yet still struggled on advanced math. The key observation was that the Lean compiler already provides a free, rigorous verification signal — but nobody had figured out how to turn this into a training signal without ground-truth labels, because syntax-correctness alone is insufficient (a model can generate trivially correct but semantically wrong Lean code).\",\n    \"key_insight\": \"Two cheap, imperfect signals — Lean compiler syntax checking (high precision on form, zero signal on semantics) and LLM consistency checking (noisy signal on semantics, zero signal on formal correctness) — are individually gameable but jointly form a minimal sufficient reward for RL training. The ablation is the proof: without consistency checking, the model learns to emit syntactically valid but semantically unrelated Lean code (100% SC, 0% CC); without syntax checking, it learns to parrot natural language that passes consistency but isn't formalized at all (0.27% SC, 74.66% CC). Only together do they produce 26.15% actual formalization accuracy — a 'minimal viable reward' argument.\",\n    \"innovation_type\": \"combination\",\n    \"method_summary\": \"FormaRL uses GRPO (Group Relative Policy Optimization, from DeepSeek-R1) to train a formalizer with a binary reward: a candidate formalization scores 1.0 only if it passes BOTH (1) Lean 4 compiler syntax verification, confirming valid formal syntax, AND (2) LLM-based consistency checking via DeepSeek-V3, confirming semantic alignment with the original NL statement after stripping comments/metadata. The training uses a simplified GRPO without KL divergence regularization. Only 859 unlabeled NL math statements from miniF2F and ProofNet are used — no ground-truth formal translations. For evaluation, only the first candidate passing SC proceeds to CC, mitigating the consistency checker's declining specificity at high sampling budgets. The authors also introduce 'uproof', a 5,273-problem benchmark from 14 undergraduate textbooks spanning analysis, algebra, topology, and probability for out-of-distribution evaluation.\",\n    \"what_makes_it_good\": \"Three things make this paper compelling: (1) The data efficiency result is striking and counterintuitive — 859 unlabeled examples outperform SFT on 25k labeled pairs, giving the paper a clear 'wow factor' headline (4.04% → 26.15% on ProofNet). (2) The ablation study (Table 5) is exceptionally well-designed, showing concrete failure modes (reward hacking via trivial syntax, reward hacking via NL parroting) that prove both reward components are necessary — this converts a simple method into a principled one. (3) The authors proactively investigate and rule out reward hacking through manual review of 100 samples (Table 7), showing intellectual honesty that builds trust in RL-based results.\",\n    \"limitations_acknowledged\": \"The authors acknowledge that FormaRL's performance 'heavily relies on the distinguishing ability of the LLM used in CC' — weaker CC backends (Qwen2.5 vs DeepSeek-V3) degrade results. They also note diminishing returns when applying FormaRL on top of already SFT-trained models, suggesting the method captures overlapping signal. The consistency checker's specificity drops sharply at high sampling budgets (to ~52% for miniF2F, ~16% for ProofNet at pass@8), limiting scalability of the reward signal.\",\n    \"open_questions\": [\n      \"Can domain-specific consistency checkers improve reward quality? The CC specificity drops to 79.68% on ProofNet (advanced math) vs 92.22% on miniF2F (elementary math), suggesting the reward signal degrades precisely where it matters most — advanced, domain-specialized content. Domain-conditioned CC could directly address this.\",\n      \"What is the ceiling of this approach? FormaRL plateaus when stacked on SFT, and the in-distribution results (Table 4) show FormaRL actually slightly underperforms SFT on miniF2F SC pass rate (81.56% vs 88.32%) while winning on ProofNet — suggesting RL learns different capabilities than SFT, not strictly better ones. Understanding this complementarity is unexplored.\",\n      \"Can the reward design be extended beyond statement formalization to proof generation? The authors speculate about RL for theorem proving on uproof/NaturalProofs but provide no experiments. The reward signal for proofs (compiler acceptance of full proof vs. sorry) is actually cleaner than for statements, raising the question of why this wasn't attempted.\"\n    ],\n    \"building_blocks\": [\n      \"GRPO (Group Relative Policy Optimization) without KL regularization — simplified RL algorithm from DeepSeek-R1\",\n      \"Lean 4 compiler as syntax verification oracle (binary: compiles or not)\",\n      \"LLM-as-judge for semantic consistency checking (binary: semantically aligned or not)\",\n      \"Qwen2.5-Coder-7B-Instruct as base model for formalizer\",\n      \"DeepSeek-V3 as consistency check backend during training\",\n      \"ProofNet benchmark (371 advanced math formalization problems)\",\n      \"miniF2F benchmark (488 elementary math problems)\",\n      \"uproof dataset (5,273 undergraduate-level problems from 14 textbooks, across analysis/algebra/topology/probability)\",\n      \"Lean Workbook (25.2k NL-Lean pairs from AOPS, used for SFT baselines)\",\n      \"TRL + Accelerate libraries for RL training\",\n      \"Binary reward design pattern: conjunction of necessary-but-insufficient verifiers\"\n    ],\n    \"reviewer_feedback_summary\": null,\n    \"relevance_to_seed\": \"FormaRL is directly relevant in two ways: (1) Its RL reward framework can be domain-conditioned — the consistency checker's specificity already varies by domain (92% miniF2F vs 80% ProofNet), empirically confirming that domain-aware reward design would help. A domain-conditioned CC (e.g., prompting with Mathlib module context or using domain-specific few-shot examples) could improve reward quality precisely where it currently fails. (2) The uproof dataset, stratified across analysis/algebra/topology/probability, provides a ready-made evaluation resource for our cross-domain generalization experiments. More broadly, FormaRL demonstrates that RL with compiler feedback is the right training paradigm for autoformalization — our contribution would be showing that domain-conditioning the reward (not just the model) unlocks further gains, especially on the advanced-math domains where FormaRL's domain-agnostic CC already degrades.\"\n  },\n  {\n    \"title\": \"NL2Lean: Translating Natural Language into Lean 4 through Multi-Aspect Reinforcement Learning\",\n    \"venue\": \"EMNLP 2025\",\n    \"problem_identification\": \"The authors identified that existing autoformalization methods (TheoremLlama, FANS, Herald) all rely on static supervised fine-tuning, producing Lean 4 outputs that are 'logically incorrect or semantically misaligned with the input natural language' despite sometimes compiling successfully. They found this gap by observing that instruction-tuned LLMs lack fine-grained semantic feedback during training — compilation is binary and tells you nothing about whether the formalized statement means the same thing as the input. The diagnostic insight is that compilability ≠ correctness: in their ablation, compile-checking alone yields 19.3% compile rate but only 15.6% semantic accuracy on Lean Workbook, proving that ~20% of compilable statements are semantically wrong.\",\n    \"key_insight\": \"Autoformalization quality is not a single dimension but decomposes into at least four partially independent aspects (semantic preservation, subterm structural alignment, global structural similarity, syntactic compilability), and training separate reward models for each — then combining them via weighted PPO — yields much denser gradient signal than any single reward, including the commonly-used binary compilation check. The ablation proves the independence: global alignment alone (24.6%) dramatically outperforms compile-checking alone (15.6%), and all four combined (26.6%) beat any singleton.\",\n    \"innovation_type\": \"combination\",\n    \"method_summary\": \"ReLean has three stages. (1) Initialize a LLaMA3-8B base translator by SFT on Herald's ~580k NL–Lean4 pairs. (2) Define four reward functions: semantic alignment (reverse-translate generated Lean4 back to NL via prompting, then compute cosine similarity of sentence embeddings with the original NL input), term-level alignment (extract subterms from generated and reference statements via prompting, compute normalized LCS length), global-level alignment (negative edit distance between generated and reference Lean4), and compile-checking (binary REPL compilation). For each reward, train a separate Bradley-Terry preference reward model initialized from the generator backbone with a linear value head, using preference pairs constructed by comparing two generations per input on each metric. (3) Normalize all four reward model outputs to [0,1], combine as weighted sum (λ_s=0.2, λ_t=0.25, λ_g=0.35, λ_c=0.2), and train with PPO (η=0.05 KL penalty, 80k steps). Additionally, apply curriculum learning: compute per-example difficulty on three dimensions (semantic similarity gap, subterm count, ROUGE gap), average them, and sort training data easy-to-hard.\",\n    \"what_makes_it_good\": \"Three things make this paper acceptance-worthy. First, the reward decomposition is well-motivated and the ablation study is unusually thorough — they test each reward in isolation, compare trained reward models vs. raw metrics as feedback signals (finding reward models give more stable training curves), and test curriculum learning variants (single-aspect, reversed, multi-aspect). This level of ablation leaves no question about which components contribute. Second, they include both automatic evaluation (compilation + backtranslation-based semantic accuracy) and human evaluation with 4 annotators on 50 examples per dataset, showing consistent gains (27.6% vs 22.4% human accuracy on Lean Workbook). Third, the finding that compilation alone is insufficient — a clean, quotable result that advances the community's understanding of the autoformalization problem.\",\n    \"limitations_acknowledged\": \"The authors acknowledge their evaluation still relies on expensive human annotation to assess semantic correctness and alignment of generated Lean 4 statements. They plan to develop automated evaluation metrics to reduce this dependence. Notably, they do NOT acknowledge the narrow evaluation scope (only two datasets, relatively small test sets of 500 examples) or the lack of domain-stratified analysis across mathematical subfields.\",\n    \"open_questions\": [\n      \"The reward weights (λ_s=0.2, λ_t=0.25, λ_g=0.35, λ_c=0.2) are presented as fixed hyperparameters — how sensitive are results to these weights, and should they vary by mathematical domain (e.g., higher compile-checking weight for topology where type errors dominate)?\",\n      \"The semantic alignment reward relies on reverse-translation quality — if the reverse translator fails systematically for certain mathematical domains (e.g., topology-specific vocabulary), this reward becomes unreliable precisely where it's most needed. No analysis of reward reliability per domain is provided.\",\n      \"ProofNet spans real analysis, linear algebra, abstract algebra, and topology, but results are reported only in aggregate — what is the per-domain breakdown? The paper's own framework (multi-aspect difficulty scoring) naturally supports domain stratification but this analysis is never performed.\"\n    ],\n    \"building_blocks\": [\n      \"Herald dataset (580k NL-Lean4 pairs) as SFT initialization foundation\",\n      \"Bradley-Terry preference modeling for training reward models from generated pairs\",\n      \"Reverse-translation + embedding cosine similarity as semantic alignment signal\",\n      \"Subterm extraction via prompting + LCS for structural alignment\",\n      \"Edit distance as global structural similarity metric\",\n      \"Lean 4 REPL for compile-checking reward\",\n      \"Multi-dimensional difficulty scoring for curriculum construction\",\n      \"PPO with KL penalty and multi-reward weighted combination\",\n      \"LLaMA3-8B as base model for both generator and reward models (shared architecture initialization)\",\n      \"Lean Workbook and ProofNet as evaluation benchmarks\"\n    ],\n    \"reviewer_feedback_summary\": null,\n    \"relevance_to_seed\": \"This paper is highly relevant to our domain-adaptive autoformalization direction in three ways. (1) The multi-aspect reward decomposition is a natural extension point: our domain-aware system could condition reward weights on mathematical subdomain (e.g., upweight typeclass-resolution checking for topology, coercion-chain checking for algebra) or train domain-specific reward models. (2) Their key finding — that compile-checking alone is insufficient and different quality dimensions are partially independent — directly supports our thesis that domain-specific error patterns (topology fails on typeclasses, algebra on coercions) require domain-specific feedback signals, not just more compilation attempts. (3) Their curriculum learning framework could be extended with domain as a difficulty dimension, scheduling 'easier' domains before harder ones. Critically, ProofNet already spans multiple mathematical subdomains, yet NL2Lean reports only aggregate numbers — our domain-stratified evaluation would reveal exactly where their domain-agnostic approach leaves performance on the table.\"\n  },\n  {\n    \"title\": \"CRAMF: Automated Formalization via Conceptual Retrieval-Augmented LLMs\",\n    \"venue\": \"arXiv 2025 (v1 August 2025, v2 March 2026); no confirmed peer-reviewed venue found\",\n    \"problem_identification\": \"The authors identified that LLM autoformalization failures aren't just generation errors — they stem from two structured root causes: (1) hallucination of undefined Mathlib identifiers (fabricating predicates like `_Function.Continuous_` instead of using `ContinuousOn`), and (2) conceptual polymorphism, where identical natural-language terms (e.g., 'neighborhood') map to different formal definitions depending on mathematical context (topological vs. metric spaces). They found this by analyzing compilation failures and categorizing them into a taxonomy, recognizing that prior retrieval-augmented approaches retrieved similar *statements* but never the *definitions* of core concepts — a level-of-abstraction mismatch that left the grounding problem unsolved.\",\n    \"key_insight\": \"The core insight is to shift retrieval granularity from statement-level to concept-level: instead of finding similar formal theorems to copy patterns from, retrieve the formal *definitions* of the mathematical concepts mentioned in the natural-language input, thereby grounding the LLM in the actual Mathlib API rather than letting it hallucinate identifiers. This reframes autoformalization as a knowledge-grounded generation problem rather than a translation problem.\",\n    \"innovation_type\": \"combination\",\n    \"method_summary\": \"CRAMF constructs a structured knowledge base of 26,000+ Mathlib4 definitions organized under 1,000+ mathematical concepts via an ontology O=(C,P,A,R) with three entity types: abstract concepts (with domain labels), formal definitions (with identifiers, expressions, module paths), and NL annotations (reverse-translated via InternLM-Math-7B with self-consistency filtering). At inference time, an LLM extracts both explicit and implicit mathematical concepts from the input (with a rewriting step for implicit structures, e.g., recognizing combinatorics problems as graph theory). Each concept is enriched with a terminological interpretation, then fed through dual-channel hybrid retrieval: symbol-level regex matching against Mathlib identifiers plus MathBERT semantic similarity search, with bge-reranker-v2-m3 reranking to select top-3 definitions injected into the formalization prompt. The system is plug-and-play, requiring no model fine-tuning.\",\n    \"what_makes_it_good\": \"Three things distinguish this work: (1) Clean problem decomposition — they don't just 'add RAG' but precisely diagnose *why* hallucination happens (undefined predicates, symbol misuse, polymorphism) and build retrieval to address each failure mode. (2) The plug-and-play architecture demonstrates generality across 7 models (open and proprietary) with statistically significant improvements (Wilcoxon signed-rank, p<0.01), showing the contribution is in the retrieval infrastructure, not model-specific tuning. (3) The ablation is unusually thorough — they isolate MCE, DHR, reranking, and the rewriting mechanism separately, and the 15.7% drop from removing dual-channel retrieval convincingly demonstrates the core mechanism's value rather than confounding factors.\",\n    \"limitations_acknowledged\": \"The authors implicitly acknowledge that CRAMF adds non-trivial latency (~4.5-12.4s end-to-end) and that smaller models show minimal gains (0.4-1.2% for already-strong models like Claude 4.1), suggesting the approach primarily helps models that lack formal mathematics knowledge rather than those already near ceiling. No explicit limitations section is provided, and they do not discuss domain-specific failure modes or scaling to libraries beyond Mathlib4.\",\n    \"open_questions\": [\n      \"The knowledge base stores module paths per definition but never *uses* this domain information for retrieval — could domain-conditioned retrieval (filtering or re-weighting by mathematical subdomain) improve the 44.2% HitRate@3, especially for polymorphic concepts where domain context is the disambiguation signal?\",\n      \"The 26k-definition KB covers Mathlib4 as of one snapshot; how does the system handle Mathlib version drift (new definitions, renamed identifiers, deprecated API), and could the KB construction pipeline be made incremental?\",\n      \"The rewriting mechanism for implicit concepts (combinatorics → graph theory) relies on LLM mathematical modeling ability — this is itself error-prone. Could domain-specific rewriting templates or formalized ontological hierarchies improve robustness for domains with high implicit-concept density?\"\n    ],\n    \"building_blocks\": [\n      \"26k-entry Mathlib4 concept-definition knowledge base with ontology schema (concepts → definitions → NL annotations)\",\n      \"Reverse-translation pipeline: Lean4 doc-gen4 → InternLM-Math-7B with self-consistency → DeepSeek-V3 concept extraction\",\n      \"MathBERT embeddings for mathematical semantic similarity\",\n      \"bge-reranker-v2-m3 for definition reranking\",\n      \"Dual-channel retrieval: symbol-level regex + semantic similarity\",\n      \"Mathematical Concept Extraction (MCE) with explicit/implicit concept separation\",\n      \"Problem rewriting mechanism for implicit mathematical structures\",\n      \"AdvancedMath benchmark: 173 problems covering spatial geometry, vector algebra, series theory, differential equations\",\n      \"Evaluation protocol: CPR@10, FAR@10 with back-translation semantic consistency, Average Contribution Score for retrieval quality\"\n    ],\n    \"reviewer_feedback_summary\": null,\n    \"relevance_to_seed\": \"CRAMF is the most direct baseline for our domain-conditioned retrieval: their KB already stores Mathlib module paths per definition (the exact metadata needed for domain labeling via Herald's module hierarchy), but their retrieval is entirely domain-agnostic — they never filter or weight by mathematical subdomain, even when facing the conceptual polymorphism problem (e.g., 'neighborhood' in topology vs. metric spaces) that is *definitionally* a domain disambiguation problem. Our domain-adaptive pipeline can directly extend CRAMF's architecture by conditioning the dual-channel retrieval on inferred mathematical subdomain, turning their polymorphism weakness into our domain-awareness strength. The 44.2% HitRate@3 ceiling and the finding that general-purpose models benefit most (62.1% gain for DeepSeek-V3 vs. 3% for Claude 4.1) suggest domain-conditioned retrieval has the most room to improve on problems where concept polymorphism is highest — exactly the cross-domain boundary cases our held-out-domain evaluation targets.\"\n  },\n  {\n    \"title\": \"Faithful Autoformalization via Roundtrip Verification and Repair\",\n    \"venue\": \"arXiv preprint (April 2026, no confirmed venue yet)\",\n    \"problem_identification\": \"The authors identified a fundamental bootstrapping problem: autoformalization systems have no way to verify faithfulness without ground-truth formal annotations, which are exactly what autoformalization is supposed to produce. Prior work either assumed ground truth existed (benchmark evaluation), used binary verifier accept/reject signals (losing diagnostic information), or relied on LLM self-evaluation (no formal grounding). The gap became actionable because SMT solvers can check logical equivalence efficiently, turning a verification-without-oracle problem into a roundtrip consistency problem with formal guarantees.\",\n    \"key_insight\": \"Decomposing the roundtrip into three explicit, independently repairable stages (formalize → back-translate → re-formalize) transforms equivalence failure from a binary signal into a localizable diagnosis: you can identify WHICH translation step introduced semantic drift and scope the repair to that step alone. The deeper insight, validated empirically, is that diagnosis quality matters more than pipeline model quality — swapping only the diagnoser (not the whole pipeline) restores scoped repair's advantage, revealing diagnosis as the true bottleneck.\",\n    \"innovation_type\": \"new_formulation\",\n    \"method_summary\": \"The framework defines three typed translation stages T₁(NL→Formal), T₂(Formal→NL), T₃(NL→Formal) and checks whether T₁(x) ≡ T₃(T₂(T₁(x))) via an SMT solver. When equivalence fails, a diagnosis function D examines the four pipeline artifacts (x, y_orig, x', y_rt) in sequential order, halting at the first inconsistent stage, and produces a scoped explanation referencing only adjacent artifacts. Stage-specific repair operators R_i receive this explanation and fix only the diagnosed stage, after which all downstream stages are regenerated. The loop iterates up to K=3 times. Critically, bidirectional NLI serves only as an independent post-hoc validation signal — it is never used as an optimization target, preserving clean separation between the formal verification loop and semantic evaluation.\",\n    \"what_makes_it_good\": \"Three qualities elevate this beyond a systems paper. First, the formulation is genuinely general — the framework is parameterized by any formalism Σ admitting equivalence checking (SMT, type-checkers, test suites), making it a reusable abstraction rather than a one-off pipeline. Second, the ablation design is surgical: comparing scoped repair against random-stage repair and full regeneration isolates the value of diagnosis, while the cross-model intervention (swap only the diagnoser) isolates the bottleneck to a single component. Third, they are intellectually honest — they explicitly characterize roundtrip consistency as necessary-but-not-sufficient and validate with an independent NLI signal rather than claiming the formal check alone suffices, with the 16% residual drift rate reported transparently.\",\n    \"limitations_acknowledged\": \"Both corpora are English statutory text from Texas (227 rules total), so generalization to mathematical or multilingual domains is untested. The roundtrip check cannot detect 'stable hallucinations' where both formalizations agree yet neither faithfully represents the source — approximately 16% of formally equivalent rules still show NLI drift. Domain schemas required semi-manual construction (~200 predicates), limiting scalability.\",\n    \"open_questions\": [\n      \"Can diagnosis be made domain-aware? The paper shows diagnosis is the bottleneck, but the diagnoser is domain-agnostic — a natural extension is conditioning diagnosis on domain-specific error taxonomies (e.g., in math: typeclass failures in topology vs. coercion errors in algebra), which could substantially improve repair targeting.\",\n      \"Does roundtrip verification transfer to dependent type theory (\n... (truncated)\n\n## Your task\n\nSynthesize these paper analyses into a **Field Guide** — a strategic document that would help a researcher generate novel, high-quality ideas in this area. This is NOT a survey — it's an opinionated strategy guide for innovation.\n\nThink about:\n- What PATTERNS OF INNOVATION keep working in this field?\n- What do reviewers consistently reward?\n- Where are the real gaps (not assumed gaps)?\n- What combinations haven't been tried?\n- What mistakes should we avoid?\n\n## Output format\n\nOutput a JSON object with these sections:\n{\n  \"innovation_patterns\": [\n    {\"pattern\": \"name\", \"description\": \"how it works\", \"examples\": [\"paper1\", \"paper2\"], \"success_rate\": \"high/medium/low\"}\n  ],\n  \"reviewer_preferences\": [\n    \"What reviewers in this area consistently care about (based on evidence from paper analyses)\"\n  ],\n  \"field_gaps\": [\n    {\"gap\": \"description of unsolved problem\", \"evidence\": \"which papers mention this limitation\", \"difficulty\": \"high/medium/low\", \"impact_if_solved\": \"high/medium/low\"}\n  ],\n  \"untried_combinations\": [\n    {\"idea_sketch\": \"what could be combined\", \"from_papers\": [\"which papers inspire this\"], \"why_promising\": \"reason\"}\n  ],\n  \"method_building_blocks\": [\n    {\"tool\": \"name\", \"what_it_does\": \"description\", \"used_by\": [\"papers\"], \"could_be_applied_to\": \"new application\"}\n  ],\n  \"common_pitfalls\": [\n    \"Mistakes to avoid when working in this area (based on reviewer feedback and paper limitations)\"\n  ],\n  \"field_trajectory\": \"Where is this field heading? What are the 2-3 most promising macro-directions? (paragraph)\",\n  \"meta_advice\": \"If you were advising a PhD student to write a strong 2026 paper in this area, what would you tell them? (paragraph)\"\n}\n\nBe specific and evidence-based — every claim should reference specific papers from the analyses. Avoid generic advice like 'be novel' — instead say 'Papers that combine X with Y for task Z have been getting accepted (see Paper A, Paper B).'.\n\nIMPORTANT: You MUST end your response with the JSON object."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-28T11:22:48.265Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-28T11:22:48.265Z",
+  "sessionId": "d2afaa5f-3638-4542-b331-039035bd0dba"
+}
+```
+
+---
+
+## Round 1
+
+15 recorded events
+
+### User
+
+_source line 3 · 2026-05-28T11:22:48.278Z_
+
+You are a senior ML research advisor synthesizing a literature review into an actionable research strategy.
+
+**Today's date: 2026-05-28 (UTC).**
+
+## Research area: Target: AAAI 2026
+Track: AI for Science / Knowledge Representation and Reasoning
+
+Direction: Build the first domain-adaptive autoformalization pipeline that conditions formalization, retrieval, and repair strategies on mathematical subdomain (algebra, topology, analysis, number theory). The core insight is that autoformalization errors are not uniform — topology formalizations fail on typeclass instances while algebra formalizations fail on coercion chains — and domain-aware systems can exploit these patterns. Evaluate on cross-domain generalization: train on 3 domains, test on the held-out 4th.
+
+Seed Papers:
+- VeriSoftBench (arXiv 2602.18307, Feb 2026) — Proves Mathlib-trained provers fail on out-of-domain verification; motivates domain adaptation
+- APRIL (arXiv 2602.02990, Feb 2026) — 260k repair tuples enabling domain-stratified error analysis; no existing stratification
+- Herald (ICLR 2025) — 580k NL-formal pairs with Mathlib4 module provenance; enables domain labeling via module hierarchy
+- Autoformalizer with Tool Feedback (arXiv 2510.06857, Oct 2025) — Integrates repair into training but domain-agnostic; our domain-aware version is the delta
+- StepFun-Formalizer (AAAI 2026) — Current SOTA single-shot autoformalization; general-purpose baseline to beat on per-domain metrics
+- 130k Topology (arXiv 2601.03298, Jan 2026) — Domain-specific success via manual effort; motivates systematic domain adaptation
+- REAL-Prover (arXiv 2505.20613, May 2025) — Domain-aware retrieval helps proving; we extend retrieval to formalization
+- DDR (arXiv 2511.11990, Nov 2025) — Retrieval-augmented autoformalization via dependency generation; domain-agnostic baseline
+
+Known Gaps:
+- No autoformalization system adapts its pipeline to mathematical subdomain; all treat algebra and topology identically despite different error distributions
+- APRIL's 260k repair tuples have never been stratified by domain — the domain-specific error taxonomy is uncharacterized
+- Retrieval-augmented autoformalization (DDR) retrieves domain-agnostic dependencies; domain-conditioned retrieval (Mathlib module-aware) is untested
+
+Theoretical Anchor: Domain shift theory from transfer learning — the distribution of formal language constructs (typeclasses, coercions, tactic vocabularies) differs measurably across Mathlib4 module hierarchies, creating a domain adaptation problem that standard domain-agnostic models underperform on. VeriSoftBench empirically confirms this for software domains; we extend the analysis to mathematical subdomains.
+
+Constraints:
+- Compute: ≤200 H100-hours (estimated ~70-80 H100-hours)
+- Must use open-source models only (Qwen2.5-7B or Goedel-Prover-V2-8B as base)
+- Evaluate on ≥3 benchmarks: miniF2F v2, ProofNet (domain-stratified), VeriSoftBench
+- Release all artifacts: model weights, domain-stratified APRIL analysis, evaluation scripts
+
+Quality Self-Checks:
+- [x] Core insight: Autoformalization errors cluster by mathematical domain, and domain-conditioned pipelines can exploit this structure.
+- [x] Why not obvious: Prior work treats autoformalization as domain-agnostic; domain adaptation requires Mathlib module hierarchy knowledge and domain-stratified training data that only became available with Herald (2025) and APRIL (2026).
+- [ ] Baseline fear test: RISK — a domain-agnostic model with more repair iterations could match 80% of the gain. Mitigation: the cross-domain generalization experiment (train on 3, test on 4th) specifically isolates domain adaptation's contribution vs. more compute.
+- [x] Information exploited: Mathlib4's module hierarchy as domain labels + APRIL's repair tuples stratified by error type and domain — information that exists in the data but no system currently uses.
+
+Avoid:
+- Framing as 'proof search improvement' — this is about formalization quality, not proving power
+- Competing on miniF2F leaderboard numbers — the contribution is per-domain reliability, not aggregate SOTA
+- Simple cycle consistency (claimed by 3 papers in 2025-2026)
+- Pure data scaling (diminishing returns per Goedel-Prover-V2)
+- Ignoring Autoformalizer with Tool Feedback as prior art — must clearly differentiate via domain-awareness
+
+## Paper analyses (18 papers)
+
+[
+  {
+    "title": "ReForm: Reflective Autoformalization with Prospective Bounded Sequence Optimization",
+    "venue": "ICLR 2026",
+    "problem_identification": "The authors identified that autoformalization systems treat the task as single-pass translation, achieving syntactic correctness (Lean-compilable code) but systematically failing on semantic fidelity — the formalized statement doesn't preserve the mathematical meaning. They found this gap by observing that human experts use iterative review-and-refinement, not one-shot translation, and that concurrent data-centric approaches (Kimina, Goedel-V2) improved data quality but still operated under the one-pass paradigm without self-correction. Crucially, they also discovered that 16.4%–38.5% of *human-written* formalizations in standard benchmarks (miniF2F, ProofNet) contain semantic errors, demonstrating the problem is fundamental, not just a model weakness.",
+    "key_insight": "Autoformalization should be reconceptualized from translation to iterative self-correction: interleave formal statement generation with semantic self-validation in a single autoregressive sequence, then train this reflective loop with heterogeneous rewards at different sequence positions (task reward at the end for correctness, auxiliary rewards at intermediate steps for critique quality) to prevent the self-validation from degenerating into superficial or hallucinated critiques.",
+    "innovation_type": "combination",
+    "method_summary": "ReForm operates through a unified autoregressive generation that internally loops: (1) generate a candidate formal statement S_t, (2) produce a semantic critique C_t evaluating whether S_t faithfully captures the original problem, (3) refine and generate S_{t+1} based on the critique, repeating until the critique confirms semantic fidelity. The key training innovation is Prospective Bounded Sequence Optimization (PBSO), which handles heterogeneous rewards at different positions in the sequence — a terminal task reward r_task (syntactic + semantic correctness of the final statement) and auxiliary rewards r_aux at each intermediate critique step (whether the critique accurately diagnosed the semantic relationship). PBSO computes a prospective bounded return G_t via backward accumulation with discount factor γ and clipping to [r_min, r_max] to prevent gradient instability, then derives position-specific advantages normalized across sampled trajectories, fed into standard GRPO for policy optimization. Training data consists of 447K SFT trajectories (83.1% single-iteration, rest multi-round) generated via a multi-agent system, followed by RL on 2,048 curated problems with stratified pass rates.",
+    "what_makes_it_good": "Three things made this paper compelling. First, the contribution is architecturally principled — rather than just scaling data or models, they identified a structural limitation (one-pass paradigm) and proposed a structural solution (reflective loop), and the ablation showing the one-pass baseline collapses on hard benchmarks (16.7% vs. 46.7% on AIME2025) validates the diagnosis. Second, the PBSO algorithm solves a genuine technical problem — existing RL methods handle only terminal rewards, but the reflective paradigm requires supervising intermediate critique quality, and their bounded return formulation is both simple and principled. Third, the ConsistencyCheck benchmark is a meta-contribution that strengthens the entire evaluation: by showing human experts err 38.5% of the time and frontier LLMs classify at 85.8% accuracy, they both calibrate what 'good' means and inoculate against the objection that LLM-as-judge is unreliable (their improvements are 2.5–3.5σ above the evaluation noise floor).",
+    "limitations_acknowledged": "The authors note that their evaluation relies on LLM-based semantic judges with ~85% accuracy, creating irreducible noise (though they argue their effect sizes are large enough to be robust). They also acknowledge the classification-generation gap — even determining semantic consistency is only 85.8% accurate, which sets a soft ceiling on generation quality. The paper does not discuss domain-specific failure modes or whether the reflective paradigm helps equally across mathematical subdomains.",
+    "open_questions": [
+      "Does the reflective self-correction paradigm help equally across mathematical subdomains (algebra, topology, analysis, number theory), or does it disproportionately fix certain error types (e.g., quantifier scope errors in analysis vs. typeclass instance errors in topology)? The paper treats all domains identically — domain-stratified analysis of where reflection helps most is entirely missing.",
+      "What is the computational cost-quality tradeoff of the reflective iterations? The paper shows 83.1% of training problems resolve in one iteration — does the model learn *when* to iterate vs. when single-pass suffices, and could domain signals improve this decision?",
+      "Can the auxiliary reward mechanism be extended to domain-specific critique templates? Currently r_aux uses a generic IsFaithfulCritique check — domain-aware auxiliary rewards (e.g., checking typeclass resolution in topology, coercion chain validity in algebra) could provide stronger supervision signals."
+    ],
+    "building_blocks": [
+      "Reflective autoformalization paradigm — interleaving generation and self-validation in a single autoregressive sequence (reusable architecture pattern)",
+      "PBSO algorithm — heterogeneous rewards at different sequence positions with prospective bounded returns and position-specific advantages (generalizable RL technique for multi-objective sequential generation)",
+      "ConsistencyCheck benchmark — 859 expert-annotated items for evaluating semantic consistency judges (directly reusable for evaluation)",
+      "Heterogeneous reward mechanism (r_task + r_aux) — task reward for final correctness + auxiliary reward for intermediate critique quality (applicable to any self-correction pipeline)",
+      "Multi-agent SFT data generation pipeline — producing 447K reflective trajectories with iteration distributions (reusable data generation approach)",
+      "LLM-as-judge calibration methodology — using expert-annotated benchmarks to quantify judge reliability and compute effect sizes relative to evaluation noise (reusable evaluation methodology)",
+      "Training recipe: Qwen3-8B/32B base → SFT on reflective trajectories → RL with PBSO (reproducible pipeline with stated hyperparameters)"
+    ],
+    "reviewer_feedback_summary": null,
+    "relevance_to_seed": "ReForm is a direct and critical baseline for our domain-adaptive autoformalization work. It achieves strong results but treats all mathematical domains identically — the reflective loop, critique templates, and reward signals are completely domain-agnostic. Our key opportunity is threefold: (1) Domain-stratify ReForm's results to show that its improvements are uneven across subdomains (likely strong on competition math where critique patterns are uniform, weaker on topology/analysis where error modes differ structurally), demonstrating the gap our work fills. (2) Extend the auxiliary reward r_aux with domain-conditioned critique quality signals — e.g., for topology formalizations, reward critiques that specifically check typeclass instance resolution; for algebra, reward critiques that verify coercion chains. (3) Use the reflective paradigm as architecture but replace domain-agnostic retrieval/repair with our domain-conditioned pipeline, showing that domain adaptation is orthogonal to and composable with reflection — the combination should outperform either alone. ReForm's PBSO algorithm is also directly reusable for training our domain-adaptive models with domain-specific heterogeneous rewards."
+  },
+  {
+    "title": "ATLAS: Autoformalizing Theorems through Lifting, Augmentation, and Synthesis of Data",
+    "venue": "NeurIPS 2025",
+    "problem_identification": "Prior autoformalization data pipelines face a fundamental scalability-correctness trade-off: extracting FL statements from Mathlib and generating NL counterparts (Herald) guarantees Mathlib-grounded correctness but is bottlenecked by Mathlib's finite size; conversely, scraping NL from the web (Lean Workbook, DeepSeek-Prover) scales freely but requires extensive preprocessing to filter out concepts absent from Mathlib, losing ~28% of data. The authors identified this by analyzing both pipelines' failure modes: Herald cannot exceed Mathlib's statement count, while Lean Workbook must discard 130k+ NL statements whose concepts lack Mathlib support. The insight is that neither starting from NL nor FL is ideal — starting from *concepts* extracted from Mathlib creates a third path that is both scalable and grounded.",
+    "key_insight": "Instead of starting from existing statements (NL or FL), extract mathematical *concepts* from Mathlib's module hierarchy as seeds, then synthesize novel NL statements from concept pairs and iteratively train a student model to formalize them — decoupling data generation from the fixed statement space while maintaining Mathlib groundedness. The second key insight is that formal languages have exploitable structural properties (proof state inspection via Lean Infoview, contraposition via tactics) that enable augmentation strategies impossible in natural language.",
+    "innovation_type": "combination",
+    "method_summary": "ATLAS has three components: (1) **Data Lifting** constructs a 'concept repository' by abstracting Mathlib's content into 13 domains, 55 topics, and 350 concepts organized hierarchically. (2) **Data Synthesis** uses knowledge distillation with expert iteration: a teacher model (DeepSeek-V2.5) generates NL statements from randomly sampled concept pairs, a student model (Llama3.1-8B) translates NL→FL, the Lean compiler verifies syntactic validity, the teacher *revises* (not regenerates) failed FL statements and checks semantic alignment of passing ones — repeated for 10 iterations where the student improves from 42.68% to 82.30% data contribution ratio. (3) **Data Augmentation** exploits Lean4's Infoview: proof stepping (via DeepSeek-Prover-V1.5) exposes intermediate proof states that yield new FL statements, and applying the `contrapose!` tactic generates equivalent contrapositives. This produces 117k parallel statements (54k synthetic + 22k proof augmentation + 40k contraposition augmentation). The ATLAS Translator is the student fine-tuned with LoRA on this combined dataset.",
+    "what_makes_it_good": "The paper succeeds because it reframes the data generation problem at a deeper level of abstraction — concepts rather than statements — which elegantly resolves the scalability-correctness tension that plagued all prior work. The formal-language-aware augmentation (proof stepping + contraposition) is genuinely novel and exploits structural properties unique to formal languages, making it non-obvious. The experimental rigor is strong: statistical significance testing (two-tailed t-test, p<0.05), 5-seed averaging, clean ablations isolating each component's contribution, and demonstration that the data transfers to stronger base models (DeepSeek-Prover-V1.5-7B achieves 54.99% pass@1 on ProofNet). The work is also remarkably efficient — fine-tuning takes 10 minutes to 1 hour per iteration on a single A100.",
+    "limitations_acknowledged": "The authors note that correctness of generated mathematical propositions is not guaranteed (they may be vacuously true or trivially false), though they argue semantic equivalence between NL and FL matters more than mathematical truth for autoformalization training. The concept repository is limited to undergraduate-level content (350 concepts from 13 domains), and the framework has only been demonstrated for Lean 4.",
+    "open_questions": [
+      "The concept repository covers 13 Mathlib domains but the paper never analyzes whether performance varies across domains — do certain domains (e.g., topology vs. algebra) benefit more from synthesis vs. augmentation? This is exactly the domain-stratified analysis gap our work targets.",
+      "The teacher revision step (FL-Rev) fixes compiler errors, but the error taxonomy is unexplored — what types of formalization errors occur most frequently, and do they cluster by mathematical domain? APRIL's 260k repair tuples could answer this if stratified against ATLAS's concept categories.",
+      "Expert iteration plateaus visibly around round 7-8 in Figure 5 — could domain-conditioned iteration (allocating more rounds to harder domains) break through this ceiling? The current uniform 10-round strategy may be suboptimal."
+    ],
+    "building_blocks": [
+      "Concept repository from Mathlib's undergrad.yaml (13 domains, 55 topics, 350 concepts) — directly reusable as domain labels",
+      "Expert iteration with knowledge distillation for autoformalization (teacher revises student's FL, not generates de novo)",
+      "Lean4 Infoview-based augmentation: proof stepping and contraposition as formal-language-aware data multiplication",
+      "FL statement parsing into structured components (theorem_name, theorem_variables, theorem_hypotheses, theorem_conclusion) via #check tactic",
+      "NLI-based semantic alignment check (back-translate FL→NL then check NLI with original NL using Qwen2.5)",
+      "LLaMA-Factory + LoRA fine-tuning pipeline for 8B models on autoformalization",
+      "MathQual benchmark: 465 graduate-level NL statements for harder evaluation",
+      "Validation pipeline: translate → compile → back-translate → NLI check"
+    ],
+    "reviewer_feedback_summary": "NeurIPS 2025 reviews for this paper (OpenReview forum id: MlJyAvQaxp) are not yet publicly accessible through the API. The paper was accepted as a poster. Based on the paper's structure and known NeurIPS review standards, likely praised aspects include: the clean three-component framework with clear ablations, statistical significance testing, and the novel concept-first approach. Likely concerns would include: (1) the correctness issue — generated propositions may be mathematically trivial or vacuous, and the paper's argument that this doesn't matter for autoformalization is philosophically debatable; (2) evaluation only on compilation + NLI rather than downstream theorem proving; (3) concept repository limited to undergraduate level. The v1→v3 revision history (Feb 2025 → Oct 2025) suggests substantial revisions during the review cycle.",
+    "relevance_to_seed": "ATLAS is directly relevant as both a key baseline to beat and a source of reusable infrastructure. Its concept repository (13 domains, 55 topics, 350 concepts from Mathlib's module hierarchy) provides exactly the domain labeling scheme our domain-adaptive pipeline needs — we can stratify ATLAS's 117k statements by domain and analyze whether synthesis vs. augmentation effectiveness varies across algebra, topology, analysis, etc. Critically, ATLAS treats all domains identically (uniform concept sampling, uniform iteration count, domain-agnostic augmentation) — our contribution is showing that domain-conditioned strategies (different retrieval, different repair, different augmentation emphasis per domain) outperform this one-size-fits-all approach. The proof stepping and contraposition augmentation techniques are directly reusable but should be applied with domain-aware weighting."
+  },
+  {
+    "title": "FormaRL: Enhancing Autoformalization with No Labeled Data",
+    "venue": "COLM 2025",
+    "problem_identification": "The authors identified a fundamental bottleneck: autoformalization progress was gated on labeled NL-formal pairs, which are expensive to create and scarce for advanced mathematics. Prior SFT methods required 25k+ labeled pairs (Lean Workbook) or 243k pairs (RAutoformalizer), yet still struggled on advanced math. The key observation was that the Lean compiler already provides a free, rigorous verification signal — but nobody had figured out how to turn this into a training signal without ground-truth labels, because syntax-correctness alone is insufficient (a model can generate trivially correct but semantically wrong Lean code).",
+    "key_insight": "Two cheap, imperfect signals — Lean compiler syntax checking (high precision on form, zero signal on semantics) and LLM consistency checking (noisy signal on semantics, zero signal on formal correctness) — are individually gameable but jointly form a minimal sufficient reward for RL training. The ablation is the proof: without consistency checking, the model learns to emit syntactically valid but semantically unrelated Lean code (100% SC, 0% CC); without syntax checking, it learns to parrot natural language that passes consistency but isn't formalized at all (0.27% SC, 74.66% CC). Only together do they produce 26.15% actual formalization accuracy — a 'minimal viable reward' argument.",
+    "innovation_type": "combination",
+    "method_summary": "FormaRL uses GRPO (Group Relative Policy Optimization, from DeepSeek-R1) to train a formalizer with a binary reward: a candidate formalization scores 1.0 only if it passes BOTH (1) Lean 4 compiler syntax verification, confirming valid formal syntax, AND (2) LLM-based consistency checking via DeepSeek-V3, confirming semantic alignment with the original NL statement after stripping comments/metadata. The training uses a simplified GRPO without KL divergence regularization. Only 859 unlabeled NL math statements from miniF2F and ProofNet are used — no ground-truth formal translations. For evaluation, only the first candidate passing SC proceeds to CC, mitigating the consistency checker's declining specificity at high sampling budgets. The authors also introduce 'uproof', a 5,273-problem benchmark from 14 undergraduate textbooks spanning analysis, algebra, topology, and probability for out-of-distribution evaluation.",
+    "what_makes_it_good": "Three things make this paper compelling: (1) The data efficiency result is striking and counterintuitive — 859 unlabeled examples outperform SFT on 25k labeled pairs, giving the paper a clear 'wow factor' headline (4.04% → 26.15% on ProofNet). (2) The ablation study (Table 5) is exceptionally well-designed, showing concrete failure modes (reward hacking via trivial syntax, reward hacking via NL parroting) that prove both reward components are necessary — this converts a simple method into a principled one. (3) The authors proactively investigate and rule out reward hacking through manual review of 100 samples (Table 7), showing intellectual honesty that builds trust in RL-based results.",
+    "limitations_acknowledged": "The authors acknowledge that FormaRL's performance 'heavily relies on the distinguishing ability of the LLM used in CC' — weaker CC backends (Qwen2.5 vs DeepSeek-V3) degrade results. They also note diminishing returns when applying FormaRL on top of already SFT-trained models, suggesting the method captures overlapping signal. The consistency checker's specificity drops sharply at high sampling budgets (to ~52% for miniF2F, ~16% for ProofNet at pass@8), limiting scalability of the reward signal.",
+    "open_questions": [
+      "Can domain-specific consistency checkers improve reward quality? The CC specificity drops to 79.68% on ProofNet (advanced math) vs 92.22% on miniF2F (elementary math), suggesting the reward signal degrades precisely where it matters most — advanced, domain-specialized content. Domain-conditioned CC could directly address this.",
+      "What is the ceiling of this approach? FormaRL plateaus when stacked on SFT, and the in-distribution results (Table 4) show FormaRL actually slightly underperforms SFT on miniF2F SC pass rate (81.56% vs 88.32%) while winning on ProofNet — suggesting RL learns different capabilities than SFT, not strictly better ones. Understanding this complementarity is unexplored.",
+      "Can the reward design be extended beyond statement formalization to proof generation? The authors speculate about RL for theorem proving on uproof/NaturalProofs but provide no experiments. The reward signal for proofs (compiler acceptance of full proof vs. sorry) is actually cleaner than for statements, raising the question of why this wasn't attempted."
+    ],
+    "building_blocks": [
+      "GRPO (Group Relative Policy Optimization) without KL regularization — simplified RL algorithm from DeepSeek-R1",
+      "Lean 4 compiler as syntax verification oracle (binary: compiles or not)",
+      "LLM-as-judge for semantic consistency checking (binary: semantically aligned or not)",
+      "Qwen2.5-Coder-7B-Instruct as base model for formalizer",
+      "DeepSeek-V3 as consistency check backend during training",
+      "ProofNet benchmark (371 advanced math formalization problems)",
+      "miniF2F benchmark (488 elementary math problems)",
+      "uproof dataset (5,273 undergraduate-level problems from 14 textbooks, across analysis/algebra/topology/probability)",
+      "Lean Workbook (25.2k NL-Lean pairs from AOPS, used for SFT baselines)",
+      "TRL + Accelerate libraries for RL training",
+      "Binary reward design pattern: conjunction of necessary-but-insufficient verifiers"
+    ],
+    "reviewer_feedback_summary": null,
+    "relevance_to_seed": "FormaRL is directly relevant in two ways: (1) Its RL reward framework can be domain-conditioned — the consistency checker's specificity already varies by domain (92% miniF2F vs 80% ProofNet), empirically confirming that domain-aware reward design would help. A domain-conditioned CC (e.g., prompting with Mathlib module context or using domain-specific few-shot examples) could improve reward quality precisely where it currently fails. (2) The uproof dataset, stratified across analysis/algebra/topology/probability, provides a ready-made evaluation resource for our cross-domain generalization experiments. More broadly, FormaRL demonstrates that RL with compiler feedback is the right training paradigm for autoformalization — our contribution would be showing that domain-conditioning the reward (not just the model) unlocks further gains, especially on the advanced-math domains where FormaRL's domain-agnostic CC already degrades."
+  },
+  {
+    "title": "NL2Lean: Translating Natural Language into Lean 4 through Multi-Aspect Reinforcement Learning",
+    "venue": "EMNLP 2025",
+    "problem_identification": "The authors identified that existing autoformalization methods (TheoremLlama, FANS, Herald) all rely on static supervised fine-tuning, producing Lean 4 outputs that are 'logically incorrect or semantically misaligned with the input natural language' despite sometimes compiling successfully. They found this gap by observing that instruction-tuned LLMs lack fine-grained semantic feedback during training — compilation is binary and tells you nothing about whether the formalized statement means the same thing as the input. The diagnostic insight is that compilability ≠ correctness: in their ablation, compile-checking alone yields 19.3% compile rate but only 15.6% semantic accuracy on Lean Workbook, proving that ~20% of compilable statements are semantically wrong.",
+    "key_insight": "Autoformalization quality is not a single dimension but decomposes into at least four partially independent aspects (semantic preservation, subterm structural alignment, global structural similarity, syntactic compilability), and training separate reward models for each — then combining them via weighted PPO — yields much denser gradient signal than any single reward, including the commonly-used binary compilation check. The ablation proves the independence: global alignment alone (24.6%) dramatically outperforms compile-checking alone (15.6%), and all four combined (26.6%) beat any singleton.",
+    "innovation_type": "combination",
+    "method_summary": "ReLean has three stages. (1) Initialize a LLaMA3-8B base translator by SFT on Herald's ~580k NL–Lean4 pairs. (2) Define four reward functions: semantic alignment (reverse-translate generated Lean4 back to NL via prompting, then compute cosine similarity of sentence embeddings with the original NL input), term-level alignment (extract subterms from generated and reference statements via prompting, compute normalized LCS length), global-level alignment (negative edit distance between generated and reference Lean4), and compile-checking (binary REPL compilation). For each reward, train a separate Bradley-Terry preference reward model initialized from the generator backbone with a linear value head, using preference pairs constructed by comparing two generations per input on each metric. (3) Normalize all four reward model outputs to [0,1], combine as weighted sum (λ_s=0.2, λ_t=0.25, λ_g=0.35, λ_c=0.2), and train with PPO (η=0.05 KL penalty, 80k steps). Additionally, apply curriculum learning: compute per-example difficulty on three dimensions (semantic similarity gap, subterm count, ROUGE gap), average them, and sort training data easy-to-hard.",
+    "what_makes_it_good": "Three things make this paper acceptance-worthy. First, the reward decomposition is well-motivated and the ablation study is unusually thorough — they test each reward in isolation, compare trained reward models vs. raw metrics as feedback signals (finding reward models give more stable training curves), and test curriculum learning variants (single-aspect, reversed, multi-aspect). This level of ablation leaves no question about which components contribute. Second, they include both automatic evaluation (compilation + backtranslation-based semantic accuracy) and human evaluation with 4 annotators on 50 examples per dataset, showing consistent gains (27.6% vs 22.4% human accuracy on Lean Workbook). Third, the finding that compilation alone is insufficient — a clean, quotable result that advances the community's understanding of the autoformalization problem.",
+    "limitations_acknowledged": "The authors acknowledge their evaluation still relies on expensive human annotation to assess semantic correctness and alignment of generated Lean 4 statements. They plan to develop automated evaluation metrics to reduce this dependence. Notably, they do NOT acknowledge the narrow evaluation scope (only two datasets, relatively small test sets of 500 examples) or the lack of domain-stratified analysis across mathematical subfields.",
+    "open_questions": [
+      "The reward weights (λ_s=0.2, λ_t=0.25, λ_g=0.35, λ_c=0.2) are presented as fixed hyperparameters — how sensitive are results to these weights, and should they vary by mathematical domain (e.g., higher compile-checking weight for topology where type errors dominate)?",
+      "The semantic alignment reward relies on reverse-translation quality — if the reverse translator fails systematically for certain mathematical domains (e.g., topology-specific vocabulary), this reward becomes unreliable precisely where it's most needed. No analysis of reward reliability per domain is provided.",
+      "ProofNet spans real analysis, linear algebra, abstract algebra, and topology, but results are reported only in aggregate — what is the per-domain breakdown? The paper's own framework (multi-aspect difficulty scoring) naturally supports domain stratification but this analysis is never performed."
+    ],
+    "building_blocks": [
+      "Herald dataset (580k NL-Lean4 pairs) as SFT initialization foundation",
+      "Bradley-Terry preference modeling for training reward models from generated pairs",
+      "Reverse-translation + embedding cosine similarity as semantic alignment signal",
+      "Subterm extraction via prompting + LCS for structural alignment",
+      "Edit distance as global structural similarity metric",
+      "Lean 4 REPL for compile-checking reward",
+      "Multi-dimensional difficulty scoring for curriculum construction",
+      "PPO with KL penalty and multi-reward weighted combination",
+      "LLaMA3-8B as base model for both generator and reward models (shared architecture initialization)",
+      "Lean Workbook and ProofNet as evaluation benchmarks"
+    ],
+    "reviewer_feedback_summary": null,
+    "relevance_to_seed": "This paper is highly relevant to our domain-adaptive autoformalization direction in three ways. (1) The multi-aspect reward decomposition is a natural extension point: our domain-aware system could condition reward weights on mathematical subdomain (e.g., upweight typeclass-resolution checking for topology, coercion-chain checking for algebra) or train domain-specific reward models. (2) Their key finding — that compile-checking alone is insufficient and different quality dimensions are partially independent — directly supports our thesis that domain-specific error patterns (topology fails on typeclasses, algebra on coercions) require domain-specific feedback signals, not just more compilation attempts. (3) Their curriculum learning framework could be extended with domain as a difficulty dimension, scheduling 'easier' domains before harder ones. Critically, ProofNet already spans multiple mathematical subdomains, yet NL2Lean reports only aggregate numbers — our domain-stratified evaluation would reveal exactly where their domain-agnostic approach leaves performance on the table."
+  },
+  {
+    "title": "CRAMF: Automated Formalization via Conceptual Retrieval-Augmented LLMs",
+    "venue": "arXiv 2025 (v1 August 2025, v2 March 2026); no confirmed peer-reviewed venue found",
+    "problem_identification": "The authors identified that LLM autoformalization failures aren't just generation errors — they stem from two structured root causes: (1) hallucination of undefined Mathlib identifiers (fabricating predicates like `_Function.Continuous_` instead of using `ContinuousOn`), and (2) conceptual polymorphism, where identical natural-language terms (e.g., 'neighborhood') map to different formal definitions depending on mathematical context (topological vs. metric spaces). They found this by analyzing compilation failures and categorizing them into a taxonomy, recognizing that prior retrieval-augmented approaches retrieved similar *statements* but never the *definitions* of core concepts — a level-of-abstraction mismatch that left the grounding problem unsolved.",
+    "key_insight": "The core insight is to shift retrieval granularity from statement-level to concept-level: instead of finding similar formal theorems to copy patterns from, retrieve the formal *definitions* of the mathematical concepts mentioned in the natural-language input, thereby grounding the LLM in the actual Mathlib API rather than letting it hallucinate identifiers. This reframes autoformalization as a knowledge-grounded generation problem rather than a translation problem.",
+    "innovation_type": "combination",
+    "method_summary": "CRAMF constructs a structured knowledge base of 26,000+ Mathlib4 definitions organized under 1,000+ mathematical concepts via an ontology O=(C,P,A,R) with three entity types: abstract concepts (with domain labels), formal definitions (with identifiers, expressions, module paths), and NL annotations (reverse-translated via InternLM-Math-7B with self-consistency filtering). At inference time, an LLM extracts both explicit and implicit mathematical concepts from the input (with a rewriting step for implicit structures, e.g., recognizing combinatorics problems as graph theory). Each concept is enriched with a terminological interpretation, then fed through dual-channel hybrid retrieval: symbol-level regex matching against Mathlib identifiers plus MathBERT semantic similarity search, with bge-reranker-v2-m3 reranking to select top-3 definitions injected into the formalization prompt. The system is plug-and-play, requiring no model fine-tuning.",
+    "what_makes_it_good": "Three things distinguish this work: (1) Clean problem decomposition — they don't just 'add RAG' but precisely diagnose *why* hallucination happens (undefined predicates, symbol misuse, polymorphism) and build retrieval to address each failure mode. (2) The plug-and-play architecture demonstrates generality across 7 models (open and proprietary) with statistically significant improvements (Wilcoxon signed-rank, p<0.01), showing the contribution is in the retrieval infrastructure, not model-specific tuning. (3) The ablation is unusually thorough — they isolate MCE, DHR, reranking, and the rewriting mechanism separately, and the 15.7% drop from removing dual-channel retrieval convincingly demonstrates the core mechanism's value rather than confounding factors.",
+    "limitations_acknowledged": "The authors implicitly acknowledge that CRAMF adds non-trivial latency (~4.5-12.4s end-to-end) and that smaller models show minimal gains (0.4-1.2% for already-strong models like Claude 4.1), suggesting the approach primarily helps models that lack formal mathematics knowledge rather than those already near ceiling. No explicit limitations section is provided, and they do not discuss domain-specific failure modes or scaling to libraries beyond Mathlib4.",
+    "open_questions": [
+      "The knowledge base stores module paths per definition but never *uses* this domain information for retrieval — could domain-conditioned retrieval (filtering or re-weighting by mathematical subdomain) improve the 44.2% HitRate@3, especially for polymorphic concepts where domain context is the disambiguation signal?",
+      "The 26k-definition KB covers Mathlib4 as of one snapshot; how does the system handle Mathlib version drift (new definitions, renamed identifiers, deprecated API), and could the KB construction pipeline be made incremental?",
+      "The rewriting mechanism for implicit concepts (combinatorics → graph theory) relies on LLM mathematical modeling ability — this is itself error-prone. Could domain-specific rewriting templates or formalized ontological hierarchies improve robustness for domains with high implicit-concept density?"
+    ],
+    "building_blocks": [
+      "26k-entry Mathlib4 concept-definition knowledge base with ontology schema (concepts → definitions → NL annotations)",
+      "Reverse-translation pipeline: Lean4 doc-gen4 → InternLM-Math-7B with self-consistency → DeepSeek-V3 concept extraction",
+      "MathBERT embeddings for mathematical semantic similarity",
+      "bge-reranker-v2-m3 for definition reranking",
+      "Dual-channel retrieval: symbol-level regex + semantic similarity",
+      "Mathematical Concept Extraction (MCE) with explicit/implicit concept separation",
+      "Problem rewriting mechanism for implicit mathematical structures",
+      "AdvancedMath benchmark: 173 problems covering spatial geometry, vector algebra, series theory, differential equations",
+      "Evaluation protocol: CPR@10, FAR@10 with back-translation semantic consistency, Average Contribution Score for retrieval quality"
+    ],
+    "reviewer_feedback_summary": null,
+    "relevance_to_seed": "CRAMF is the most direct baseline for our domain-conditioned retrieval: their KB already stores Mathlib module paths per definition (the exact metadata needed for domain labeling via Herald's module hierarchy), but their retrieval is entirely domain-agnostic — they never filter or weight by mathematical subdomain, even when facing the conceptual polymorphism problem (e.g., 'neighborhood' in topology vs. metric spaces) that is *definitionally* a domain disambiguation problem. Our domain-adaptive pipeline can directly extend CRAMF's architecture by conditioning the dual-channel retrieval on inferred mathematical subdomain, turning their polymorphism weakness into our domain-awareness strength. The 44.2% HitRate@3 ceiling and the finding that general-purpose models benefit most (62.1% gain for DeepSeek-V3 vs. 3% for Claude 4.1) suggest domain-conditioned retrieval has the most room to improve on problems where concept polymorphism is highest — exactly the cross-domain boundary cases our held-out-domain evaluation targets."
+  },
+  {
+    "title": "Faithful Autoformalization via Roundtrip Verification and Repair",
+    "venue": "arXiv preprint (April 2026, no confirmed venue yet)",
+    "problem_identification": "The authors identified a fundamental bootstrapping problem: autoformalization systems have no way to verify faithfulness without ground-truth formal annotations, which are exactly what autoformalization is supposed to produce. Prior work either assumed ground truth existed (benchmark evaluation), used binary verifier accept/reject signals (losing diagnostic information), or relied on LLM self-evaluation (no formal grounding). The gap became actionable because SMT solvers can check logical equivalence efficiently, turning a verification-without-oracle problem into a roundtrip consistency problem with formal guarantees.",
+    "key_insight": "Decomposing the roundtrip into three explicit, independently repairable stages (formalize → back-translate → re-formalize) transforms equivalence failure from a binary signal into a localizable diagnosis: you can identify WHICH translation step introduced semantic drift and scope the repair to that step alone. The deeper insight, validated empirically, is that diagnosis quality matters more than pipeline model quality — swapping only the diagnoser (not the whole pipeline) restores scoped repair's advantage, revealing diagnosis as the true bottleneck.",
+    "innovation_type": "new_formulation",
+    "method_summary": "The framework defines three typed translation stages T₁(NL→Formal), T₂(Formal→NL), T₃(NL→Formal) and checks whether T₁(x) ≡ T₃(T₂(T₁(x))) via an SMT solver. When equivalence fails, a diagnosis function D examines the four pipeline artifacts (x, y_orig, x', y_rt) in sequential order, halting at the first inconsistent stage, and produces a scoped explanation referencing only adjacent artifacts. Stage-specific repair operators R_i receive this explanation and fix only the diagnosed stage, after which all downstream stages are regenerated. The loop iterates up to K=3 times. Critically, bidirectional NLI serves only as an independent post-hoc validation signal — it is never used as an optimization target, preserving clean separation between the formal verification loop and semantic evaluation.",
+    "what_makes_it_good": "Three qualities elevate this beyond a systems paper. First, the formulation is genuinely general — the framework is parameterized by any formalism Σ admitting equivalence checking (SMT, type-checkers, test suites), making it a reusable abstraction rather than a one-off pipeline. Second, the ablation design is surgical: comparing scoped repair against random-stage repair and full regeneration isolates the value of diagnosis, while the cross-model intervention (swap only the diagnoser) isolates the bottleneck to a single component. Third, they are intellectually honest — they explicitly characterize roundtrip consistency as necessary-but-not-sufficient and validate with an independent NLI signal rather than claiming the formal check alone suffices, with the 16% residual drift rate reported transparently.",
+    "limitations_acknowledged": "Both corpora are English statutory text from Texas (227 rules total), so generalization to mathematical or multilingual domains is untested. The roundtrip check cannot detect 'stable hallucinations' where both formalizations agree yet neither faithfully represents the source — approximately 16% of formally equivalent rules still show NLI drift. Domain schemas required semi-manual construction (~200 predicates), limiting scalability.",
+    "open_questions": [
+      "Can diagnosis be made domain-aware? The paper shows diagnosis is the bottleneck, but the diagnoser is domain-agnostic — a natural extension is conditioning diagnosis on domain-specific error taxonomies (e.g., in math: typeclass failures in topology vs. coercion errors in algebra), which could substantially improve repair targeting.",
+      "Does roundtrip verification transfer to dependent type theory (
+... (truncated)
+
+## Your task
+
+Synthesize these paper analyses into a **Field Guide** — a strategic document that would help a researcher generate novel, high-quality ideas in this area. This is NOT a survey — it's an opinionated strategy guide for innovation.
+
+Think about:
+- What PATTERNS OF INNOVATION keep working in this field?
+- What do reviewers consistently reward?
+- Where are the real gaps (not assumed gaps)?
+- What combinations haven't been tried?
+- What mistakes should we avoid?
+
+## Output format
+
+Output a JSON object with these sections:
+{
+  "innovation_patterns": [
+    {"pattern": "name", "description": "how it works", "examples": ["paper1", "paper2"], "success_rate": "high/medium/low"}
+  ],
+  "reviewer_preferences": [
+    "What reviewers in this area consistently care about (based on evidence from paper analyses)"
+  ],
+  "field_gaps": [
+    {"gap": "description of unsolved problem", "evidence": "which papers mention this limitation", "difficulty": "high/medium/low", "impact_if_solved": "high/medium/low"}
+  ],
+  "untried_combinations": [
+    {"idea_sketch": "what could be combined", "from_papers": ["which papers inspire this"], "why_promising": "reason"}
+  ],
+  "method_building_blocks": [
+    {"tool": "name", "what_it_does": "description", "used_by": ["papers"], "could_be_applied_to": "new application"}
+  ],
+  "common_pitfalls": [
+    "Mistakes to avoid when working in this area (based on reviewer feedback and paper limitations)"
+  ],
+  "field_trajectory": "Where is this field heading? What are the 2-3 most promising macro-directions? (paragraph)",
+  "meta_advice": "If you were advising a PhD student to write a strong 2026 paper in this area, what would you tell them? (paragraph)"
+}
+
+Be specific and evidence-based — every claim should reference specific papers from the analyses. Avoid generic advice like 'be novel' — instead say 'Papers that combine X with Y for task Z have been getting accepted (see Paper A, Paper B).'.
+
+IMPORTANT: You MUST end your response with the JSON object.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "ca3e2c57-2408-426d-a002-814963f53358",
+  "type": "user",
+  "uuid": "7530e378-e8b2-4c96-95ab-f384b735997a",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "d2afaa5f-3638-4542-b331-039035bd0dba",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-28T11:22:48.276Z_
+
+```json
+{
+  "parentUuid": "7530e378-e8b2-4c96-95ab-f384b735997a",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "c7f6d3ae-fb06-4460-a00e-fdaec606dc7c",
+  "timestamp": "2026-05-28T11:22:48.276Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "d2afaa5f-3638-4542-b331-039035bd0dba",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-28T11:22:48.276Z_
+
+```json
+{
+  "parentUuid": "c7f6d3ae-fb06-4460-a00e-fdaec606dc7c",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "2653c962-6e6c-4170-8065-9aa086ab2305",
+  "timestamp": "2026-05-28T11:22:48.276Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "d2afaa5f-3638-4542-b331-039035bd0dba",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML research advisor synthesizing a literature review into an actionable research strategy.  **Today's date: 2026-05-28 (UTC).**  ## Research area: Target: AAAI 2026 Track: AI for Scie…",
+  "leafUuid": "2653c962-6e6c-4170-8065-9aa086ab2305",
+  "sessionId": "d2afaa5f-3638-4542-b331-039035bd0dba"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Domain-adaptive autoformalization with cross-domain evaluation",
+  "sessionId": "d2afaa5f-3638-4542-b331-039035bd0dba"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-28T11:23:15.305Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to synthesize 18 paper analyses (though only 6 are fully shown, with the rest truncated) into a strategic "Field Guide" for domain-adaptive autoformalization research. Let me carefully analyze all the provided paper analyses and the research direction to produce a comprehensive, evidence-based JSON output.
+
+Let me organize my thinking around the key papers and their contributions:
+
+1. **ReForm** (ICLR 2026) - Reflective autoformalization with iterative self-correction + PBSO for heterogeneous rewards
+
+
+2. **ATLAS** (NeurIPS 2025) - Concept-first data generation from Mathlib hierarchy, expert iteration, formal-language augmentation
+3. **FormaRL** (COLM 2025) - RL with no labeled data, dual reward (compiler + consistency), GRPO
+4. **NL2Lean/ReLean** (EMNLP 2025) - Multi-aspect reward decomposition (semantic, structural, compile), PPO with curriculum
+5. **CRAMF** (arXiv 2025) - Concept-level retrieval from Mathlib KB, dual-channel hybrid retrieval
+6. **Faithful Autoformalization** (arXiv 2026) - Roundtrip verification with SMT, scoped diagnosis and recovery mechanisms
+
+I'm also tracking the foundational work: VeriSoftBench on domain shift, APRIL's 260k repair tuples, Herald's 580k NL-formal pairs with module provenance, plus several approaches that integrate repair into training loops or use domain-aware retrieval for proving. Now I'm synthesizing the core patterns—reward decomposition across multiple signals appears consistently (FormaRL's dual rewards, NL2Lean's multi-aspect approach), and retrieval augmentation with structured knowledge keeps emerging as a key lever, whether through concept-level indexing or domain-aware strategies.
+
+I'm also seeing iterative refinement loops across successful systems, from ReForm's reflection mechanisms to APRIL's repair cycles, alongside clever exploitation of formal language structure like using the compiler as an oracle. Data generation through synthesis rather than pure collection is another strong pattern. Looking at what reviewers actually value: thorough ablations, statistical rigor, novel evaluation methodology, honest limitations, and mixed automatic-human evaluation.
+
+The gaps are becoming clearer—every paper reports aggregate results but none stratifies by mathematical domain, CRAMF stores module paths but never leverages them for domain-conditioned retrieval, and there's no domain-specific error taxonomy despite having repair data that could be analyzed this way.
+
+I'm noticing several untried combinations that could be powerful: combining domain-conditioned retrieval with reflection loops, using ATLAS's concept repository as domain labels for APRIL's repairs, or adding domain-aware reward design to FormaRL's RL approach. The building blocks are all there—Herald's 580k pairs with module provenance, ATLAS's 13-domain concept repository, APRIL's 260k repair tuples, CRAMF's knowledge base, and the Lean 4 compiler as a verification oracle—plus standard RL training methods and various benchmarks to evaluate on.
+
+Now I'm compiling the comprehensive JSON configuration that brings all these pieces together.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2653c962-6e6c-4170-8065-9aa086ab2305",
+  "isSidechain": false,
+  "requestId": "req_011CbUt2i3849Ssm5tfjAvhc",
+  "type": "assistant",
+  "uuid": "053f407e-3305-454c-98e1-890056b4819f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "d2afaa5f-3638-4542-b331-039035bd0dba",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GvFMtoHLSGrWq2XVK656Uu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12310,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 1586,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12310,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1586,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 12310,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12310
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-28T11:23:16.342Z_
+
+I'll analyze the paper analyses carefully to synthesize a comprehensive field guide. Let me first check if there are additional paper analyses beyond what was shown (the prompt mentions 18 papers but the content was truncated).
+
+Let me work with the 6 fully provided analyses plus the 8 seed papers to construct the field guide, drawing on all available evidence.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "053f407e-3305-454c-98e1-890056b4819f",
+  "isSidechain": false,
+  "requestId": "req_011CbUt2i3849Ssm5tfjAvhc",
+  "type": "assistant",
+  "uuid": "5d85b3ee-5fd4-4038-8690-8d0b4b15fd03",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "d2afaa5f-3638-4542-b331-039035bd0dba",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GvFMtoHLSGrWq2XVK656Uu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12310,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 1586,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12310,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1586,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 12310,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12310
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-28T11:23:24.354Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_018sVV3QVpAAhZ3ujLuU6t9Y`</summary>
+
+```json
+{
+  "subagent_type": "claude",
+  "description": "Verify seed paper details",
+  "prompt": "I need you to help me cross-reference some details. I'm working on a research strategy synthesis about domain-adaptive autoformalization for mathematics. I have analyses of these papers:\n\n1. ReForm (ICLR 2026) - Reflective autoformalization with PBSO\n2. ATLAS (NeurIPS 2025) - Concept-first data synthesis from Mathlib\n3. FormaRL (COLM 2025) - RL with no labeled data, dual reward\n4. NL2Lean/ReLean (EMNLP 2025) - Multi-aspect reward decomposition\n5. CRAMF (arXiv 2025) - Concept-level retrieval-augmented formalization\n6. Faithful Autoformalization (arXiv 2026) - Roundtrip verification and repair\n\nAnd these seed papers:\n- VeriSoftBench (arXiv 2602.18307) - Out-of-domain verification failure\n- APRIL (arXiv 2602.02990) - 260k repair tuples\n- Herald (ICLR 2025) - 580k NL-formal pairs with Mathlib4 module provenance\n- Autoformalizer with Tool Feedback (arXiv 2510.06857) - Repair integrated into training\n- StepFun-Formalizer (AAAI 2026) - SOTA single-shot autoformalization\n- 130k Topology (arXiv 2601.03298) - Domain-specific formalization\n- REAL-Prover (arXiv 2505.20613) - Domain-aware retrieval for proving\n- DDR (arXiv 2511.11990) - Retrieval-augmented autoformalization via dependency generation\n\nPlease just confirm: is this a total of 14 distinct papers? And are there patterns across these that relate to domain adaptation vs domain-agnostic approaches? Just give me a short summary of the key observation - under 100 words."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5d85b3ee-5fd4-4038-8690-8d0b4b15fd03",
+  "isSidechain": false,
+  "requestId": "req_011CbUt2i3849Ssm5tfjAvhc",
+  "type": "assistant",
+  "uuid": "7afc08e8-15ed-4941-a2c7-fb830c10291a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "d2afaa5f-3638-4542-b331-039035bd0dba",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GvFMtoHLSGrWq2XVK656Uu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12310,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 1586,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12310,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1586,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 12310,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12310
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-28T11:23:24.363Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_018sVV3QVpAAhZ3ujLuU6t9Y`</summary>
+
+```text
+Cannot create agent worktree: not in a git repository and no WorktreeCreate hooks are configured. Configure WorktreeCreate/WorktreeRemove hooks in settings.json to use worktree isolation with other VCS systems.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7afc08e8-15ed-4941-a2c7-fb830c10291a",
+  "isSidechain": false,
+  "promptId": "ca3e2c57-2408-426d-a002-814963f53358",
+  "type": "user",
+  "uuid": "2bf0497a-4d10-41d2-8cf6-72efc381ec10",
+  "toolUseResult": "Error: Cannot create agent worktree: not in a git repository and no WorktreeCreate hooks are configured. Configure WorktreeCreate/WorktreeRemove hooks in settings.json to use worktree isolation with other VCS systems.",
+  "sourceToolAssistantUUID": "7afc08e8-15ed-4941-a2c7-fb830c10291a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "d2afaa5f-3638-4542-b331-039035bd0dba",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-28T11:24:06.847Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The agent tool failed because there's no git repo. That's fine - I don't actually need it. I have all the information I need from the detailed paper analyses provided. Let me just synthesize the field guide directly from the rich analysis already given.
+
+Let me carefully construct the JSON output by going through each section systematically.
+
+**Innovation Patterns:**
+
+1. **Multi-signal reward composition** - Combining multiple imperfect signals into a joint reward. FormaRL (compiler + LLM consistency), NL2Lean (4 aspects), ReForm (task + auxiliary). This is the dominant pattern - every successful RL-based paper does this.
+
+
+2. **Iterative refinement with diagnosis** - The breakthrough comes from multi-round loops with explicit feedback mechanisms rather than single-pass approaches. ReForm's reflective loop, Faithful's roundtrip with scoped repair, and APRIL's repair tuples all show that diagnosis quality matters more than raw model capability.
+3. **Structured knowledge retrieval at the right granularity** - Papers succeed by finding the optimal abstraction level for retrieval. CRAMF moves from statement-level to concept-level, DDR generates dependencies, and REAL-Prover does domain-aware retrieval for proving.
+4. **Exploiting formal language structure** - Systems leverage the inherent structure of formal languages through tools like ATLAS's Infoview augmentation and compilers as oracles in FormaRL and NL2Lean.
+5. **Concept-first data generation** - Rather than collecting or scraping data, ATLAS synthesizes from a repository of mathematical concepts, decoupling data scale from existing corpus limitations.
+
+**Reviewer Preferences:**
+
+The papers that stand out share common evaluation practices: thorough ablations isolating each component's contribution, statistical significance testing with appropriate methods, proactive investigation of failure modes, and combining both automatic and human evaluation metrics.
+
+**Field Gaps:**
+
+I'm noticing a critical blind spot across all these papers—they report aggregate metrics but never stratify results by mathematical subdomain, even though the benchmarks span multiple domains and the metadata exists. Similarly, while some approaches like CRAMF store domain information per definition, none actually leverage it for domain-conditioned retrieval. There's also a gap around intellectual honesty about limitations and reusable abstractions that generalize beyond the specific paper's scope.
+
+Looking deeper, I see several unexplored opportunities: nobody's analyzed error distributions across domains despite having rich error taxonomies (like APRIL's 260k repair tuples or CRAMF's hallucination/polymorphism categories), and FormaRL's own results hint that reward quality is domain-dependent—specificity drops from 92% to 80% across benchmarks—yet nobody's tried varying rewards by domain. Cross-domain generalization is completely untested; there's no evaluation of training on three domains and testing on a fourth to see how well these systems actually transfer.
+
+Beyond that, I'm noticing several promising combinations nobody's tried: pairing concept-level retrieval with domain conditioning, adding domain-specific auxiliary rewards to reflective loops, using domain-aware consistency checkers within RL frameworks, scheduling reward weights differently per domain (like emphasizing typeclass weights for topology), and applying domain-specific error diagnosis to roundtrip verification. There's also potential in allocating more iteration budget to harder domains during expert iteration.
+
+Now I'm cataloging the common pitfalls across these papers—most report only aggregate metrics when reviewers increasingly want stratified results, many conflate compilation with correctness despite evidence that 20% of compilable statements are semantically wrong, and several overstate cycle consistency as a novel contribution when it's already claimed by multiple recent papers. There's also the issue of LLM judge specificity degrading significantly at scale, and the diminishing returns from pure data scaling without structural improvements.
+
+The field is shifting decisively toward RL-trained systems with multi-signal rewards, knowledge-grounded generation using structured retrieval, and self-correcting pipelines with formal verification integrated throughout. The real opportunity ahead is domain adaptation—the infrastructure pieces like module provenance tracking and concept repositories already exist, but nobody's synthesized them into a coherent approach yet.
+
+There's a glaring gap nobody's exploiting: every paper has the data to analyze how autoformalization errors vary across mathematical subdomains, but none actually does it. If I can show that error patterns differ systematically by domain and that conditioning components on domain structure improves performance, that's a clean, defensible contribution. The experiments would be straightforward—stratify existing benchmarks to measure performance variance across domains, build domain-aware retrieval and repair mechanisms, then test cross-domain generalization to isolate what domain adaptation actually adds beyond just scaling compute.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2bf0497a-4d10-41d2-8cf6-72efc381ec10",
+  "isSidechain": false,
+  "requestId": "req_011CbUt5NViFFLbvutp6RpUT",
+  "type": "assistant",
+  "uuid": "99e8f2c6-5fce-4baf-8817-ba519b31ad23",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "d2afaa5f-3638-4542-b331-039035bd0dba",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FW9prakpg5jtRWPkZxTpox",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1656,
+      "cache_read_input_tokens": 23324,
+      "output_tokens": 9957,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1656,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 9957,
+          "cache_read_input_tokens": 23324,
+          "cache_creation_input_tokens": 1656,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1656
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-28T11:27:18.281Z_
+
+Now let me synthesize the comprehensive field guide directly from all the paper analyses provided. This is a deep synthesis task that I can handle from the rich detail already given.
+
+```json
+{
+  "innovation_patterns": [
+    {
+      "pattern": "Multi-Signal Reward Composition",
+      "description": "Combine multiple imperfect verification signals (each individually gameable) into a joint reward that is harder to hack. The key insight across papers is that no single signal — compiler acceptance, semantic similarity, structural alignment — is sufficient, but their conjunction creates a 'minimal sufficient reward.' Each signal catches a different failure mode that the others miss.",
+      "examples": ["FormaRL (compiler + LLM consistency; ablation shows each alone is gameable: 100% SC/0% CC vs 0.27% SC/74.66% CC)", "NL2Lean (4-aspect: semantic alignment + subterm structure + global similarity + compilation, with trained Bradley-Terry reward models per aspect)", "ReForm (task reward r_task at terminal + auxiliary reward r_aux at intermediate critique steps, combined via PBSO)"],
+      "success_rate": "high"
+    },
+    {
+      "pattern": "Iterative Refinement with Explicit Diagnosis",
+      "description": "Replace single-pass generation with multi-round loops where each iteration includes an explicit diagnosis step that localizes the error, followed by scoped repair targeting only the diagnosed component. The diagnosis quality (not the generator quality) is the true bottleneck — papers that ablate diagnosis vs. random repair show large gaps.",
+      "examples": ["ReForm (reflective loop: generate → critique → refine, with 16.7% vs 46.7% gap proving reflection is essential on hard benchmarks)", "Faithful Autoformalization (roundtrip: formalize → back-translate → re-formalize → SMT check, with scoped repair after stage-level diagnosis)", "APRIL (260k repair tuples enabling error-specific corrections, though currently unstratified by domain)"],
+      "success_rate": "high"
+    },
+    {
+      "pattern": "Retrieval at the Right Abstraction Level",
+      "description": "Shift retrieval granularity to match the actual information need. Statement-level retrieval provides syntactic patterns but misses semantic grounding; concept-level retrieval provides API-correct identifiers; dependency-level retrieval provides structural scaffolding. The innovation is identifying which level of abstraction the generation model actually lacks.",
+      "examples": ["CRAMF (concept-level retrieval of Mathlib definitions, not similar theorems — addresses identifier hallucination directly)", "DDR (dependency-level retrieval generating import paths and prerequisite lemmas)", "REAL-Prover (domain-aware retrieval for proof search, showing retrieval conditioned on mathematical context outperforms generic retrieval)"],
+      "success_rate": "high"
+    },
+    {
+      "pattern": "Exploiting Formal Language Structural Properties",
+      "description": "Formal languages have verifiable, inspectable, and transformable properties that natural language lacks — and papers that build these into their training or augmentation pipeline consistently outperform those that treat formalization as 'just translation.' The Lean compiler is a free oracle; Lean's Infoview exposes proof states; tactics generate logically equivalent transformations.",
+      "examples": ["ATLAS (Infoview proof-stepping yields new FL statements; contrapose! tactic generates equivalents — augmentation impossible in NL)", "FormaRL (Lean compiler as binary syntax oracle combined with LLM semantic signal)", "NL2Lean (Lean REPL as one of four reward dimensions)"],
+      "success_rate": "high"
+    },
+    {
+      "pattern": "Concept-First Data Synthesis",
+      "description": "Instead of starting from existing statements (NL→FL or FL→NL), extract mathematical concepts from Mathlib's structured hierarchy and synthesize novel statement pairs from concept combinations. This decouples data scale from existing corpus size while maintaining Mathlib groundedness — resolving the scalability-correctness tradeoff that plagued all prior data pipelines.",
+      "examples": ["ATLAS (concept repository from Mathlib's undergrad.yaml → teacher synthesizes NL from concept pairs → student formalizes → expert iteration; scales from 42.68% to 82.30% student contribution over 10 rounds)"],
+      "success_rate": "medium"
+    },
+    {
+      "pattern": "RL Training with Compiler-in-the-Loop",
+      "description": "Use RL (GRPO or PPO) with the formal language compiler as a verification oracle in the reward function, avoiding the need for ground-truth labeled data. The compiler provides a free, precise (but incomplete) signal that anchors RL training. Papers that combine compiler signal with at least one semantic signal consistently outperform SFT baselines.",
+      "examples": ["FormaRL (GRPO with compiler + consistency check; 859 unlabeled examples beat 25k labeled SFT pairs)", "NL2Lean (PPO with compile-check as one of four rewards; compile-alone yields 15.6% but combined hits 26.6%)", "ReForm (RL with PBSO after SFT initialization, Lean compiler implicit in task reward)"],
+      "success_rate": "high"
+    }
+  ],
+
+  "reviewer_preferences": [
+    "Surgical ablations that isolate each component's marginal contribution — every accepted paper (ReForm, ATLAS, FormaRL, NL2Lean, CRAMF, Faithful) includes ablations removing one component at a time. FormaRL's reward-hacking ablation (Table 5) and Faithful's scoped-vs-random repair comparison are cited as exemplary because they show concrete failure modes, not just numbers dropping.",
+    "Statistical significance testing with named tests — ATLAS uses two-tailed t-tests (p<0.05) with 5-seed averaging; CRAMF uses Wilcoxon signed-rank (p<0.01). Papers without significance testing are vulnerable to reviewer pushback, especially when gains are moderate (2-5%).",
+    "Novel evaluation benchmarks or methodology that strengthens the entire subfield — ReForm's ConsistencyCheck (859 expert-annotated items calibrating LLM-as-judge reliability), FormaRL's uproof (5,273 problems across 4 domains), ATLAS's MathQual (465 graduate-level problems). Reviewers treat these as independent contributions that raise the paper's value even if the method gains are modest.",
+    "Proactive investigation and transparent reporting of failure modes — FormaRL manually reviews 100 samples to rule out reward hacking (Table 7); Faithful reports the 16% residual drift rate rather than hiding it. This builds trust in results, especially for RL-based methods where reward hacking is a known concern.",
+    "Human evaluation alongside automatic metrics — NL2Lean includes 4 annotators on 50 examples per dataset; ReForm's ConsistencyCheck uses expert annotations. Reviewers in autoformalization are increasingly skeptical of compile-rate-only evaluation after NL2Lean showed ~20% of compilable statements are semantically wrong.",
+    "Clean problem decomposition that reframes the task — CRAMF reframes autoformalization as knowledge-grounded generation (not translation); ReForm reframes it as iterative self-correction (not single-pass); Faithful reframes verification as roundtrip consistency. Papers that offer a new conceptual lens consistently receive higher novelty scores.",
+    "Plug-and-play or model-agnostic architectures that demonstrate generality — CRAMF tests across 7 models (open + proprietary) with consistent gains; Faithful's framework is parameterized by any formalism with equivalence checking. This insulates against the reviewer objection 'this only works with model X.'",
+    "Compute efficiency and reproducibility — ATLAS trains in 10 min to 1 hour per iteration on a single A100; FormaRL uses only 859 unlabeled examples. Reviewers reward resource-efficient methods, especially when competing against data-scaling approaches with diminishing returns (per Goedel-Prover-V2)."
+  ],
+
+  "field_gaps": [
+    {
+      "gap": "No autoformalization system stratifies performance or adapts its pipeline by mathematical subdomain. Every paper — ReForm, ATLAS, NL2Lean, FormaRL, CRAMF — reports aggregate metrics on multi-domain benchmarks (ProofNet spans analysis, algebra, topology; uproof covers 4 domains) but never breaks results down by domain. The metadata for domain labeling exists (Herald's Mathlib module provenance, ATLAS's 13-domain concept repository) but has never been exploited.",
+      "evidence": "ReForm: 'does not discuss domain-specific failure modes'; ATLAS: 'never analyzes whether performance varies across domains'; NL2Lean: 'ProofNet spans multiple subdomains but results reported only in aggregate'; FormaRL: CC specificity drops from 92% (miniF2F) to 80% (ProofNet) showing implicit domain dependence; CRAMF: 'stores module paths but never uses domain information for retrieval'",
+      "difficulty": "medium",
+      "impact_if_solved": "high"
+    },
+    {
+      "gap": "APRIL's 260k repair tuples have never been stratified by mathematical domain to characterize domain-specific error taxonomies. The repair data exists and could reveal that topology formalizations systematically fail on typeclass instances while algebra formalizations fail on coercion chains, but no analysis has been performed.",
+      "evidence": "Seed paper analysis: 'APRIL's 260k repair tuples have never been stratified by domain — the domain-specific error taxonomy is uncharacterized'; CRAMF identifies hallucination and polymorphism as error categories but never maps them to domains; Faithful shows diagnosis quality is the bottleneck but uses domain-agnostic diagnosis",
+      "difficulty": "low",
+      "impact_if_solved": "high"
+    },
+    {
+      "gap": "Domain-conditioned retrieval for autoformalization is entirely untested. CRAMF's knowledge base already stores Mathlib module paths per definition (perfect metadata for domain filtering), but retrieval is domain-agnostic. DDR generates dependencies without domain context. REAL-Prover demonstrates domain-aware retrieval helps proving, but nobody has applied the principle to formalization.",
+      "evidence": "CRAMF: 'stores module paths per definition but never uses this domain information for retrieval'; DDR: 'retrieves domain-agnostic dependencies'; REAL-Prover: 'domain-aware retrieval helps proving; we extend retrieval to formalization'; CRAMF's 44.2% HitRate@3 ceiling suggests room for improvement via domain conditioning",
+      "difficulty": "medium",
+      "impact_if_solved": "high"
+    },
+    {
+      "gap": "Cross-domain generalization evaluation (train on K-1 domains, test on held-out Kth domain) has never been performed for autoformalization. VeriSoftBench demonstrates this failure mode for software verification but the analysis hasn't been extended to mathematical subdomains. No paper measures whether autoformalization systems genuinely learn domain-transferable skills or merely memorize domain-specific patterns.",
+      "evidence": "VeriSoftBench: 'proves Mathlib-trained provers fail on out-of-domain verification; motivates domain adaptation'; 130k Topology: 'domain-specific success via manual effort; motivates systematic domain adaptation'; no analyzed paper includes held-out-domain evaluation",
+      "difficulty": "medium",
+      "impact_if_solved": "high"
+    },
+    {
+      "gap": "Reward signal quality degrades on advanced/specialized mathematics, and no paper addresses this domain-dependent degradation. FormaRL's consistency checker drops from 92% specificity to 16% at higher sampling budgets on ProofNet. NL2Lean's semantic alignment reward relies on reverse-translation quality that may fail for domain-specific vocabulary. This means RL training signals are weakest precisely for the hardest, most specialized content.",
+      "evidence": "FormaRL: 'CC specificity drops sharply at high sampling budgets (~52% for miniF2F, ~16% for ProofNet at pass@8)'; NL2Lean: 'if the reverse translator fails systematically for certain mathematical domains, this reward becomes unreliable precisely where it's most needed'; ReForm's LLM judges achieve only ~85% accuracy, with unknown domain variation",
+      "difficulty": "high",
+      "impact_if_solved": "high"
+    },
+    {
+      "gap": "Stable hallucinations — where formal roundtrip verification passes but the formalization is semantically wrong — remain undetected. Faithful Autoformalization reports a 16% residual drift rate even when formal equivalence holds. No system addresses the case where the model consistently misinterprets a concept the same way in both directions.",
+      "evidence": "Faithful Autoformalization: 'approximately 16% of formally equivalent rules still show NLI drift'; this represents a fundamental limitation of roundtrip-based verification that no analyzed paper solves",
+      "difficulty": "high",
+      "impact_if_solved": "medium"
+    },
+    {
+      "gap": "No paper analyzes when to iterate vs. when single-pass formalization suffices. ReForm shows 83.1% of training problems resolve in one iteration, but the model doesn't learn to predict iteration need. Domain signals could inform this decision — some domains may systematically require more refinement rounds than others.",
+      "evidence": "ReForm: '83.1% of training problems resolve in one iteration — does the model learn when to iterate vs. when single-pass suffices?'; ATLAS's expert iteration plateaus around round 7-8; neither analyzes domain-conditioned iteration allocation",
+      "difficulty": "medium",
+      "impact_if_solved": "medium"
+    }
+  ],
+
+  "untried_combinations": [
+    {
+      "idea_sketch": "Domain-conditioned concept retrieval: Extend CRAMF's 26k-definition knowledge base with ATLAS's domain labels (13 domains via Mathlib module hierarchy), then condition the dual-channel retrieval on inferred mathematical subdomain. For polymorphic concepts (e.g., 'neighborhood' in topology vs. metric spaces), use domain context as the disambiguation signal rather than relying solely on embedding similarity.",
+      "from_papers": ["CRAMF", "ATLAS", "REAL-Prover"],
+      "why_promising": "CRAMF already stores Mathlib module paths per definition (the exact metadata needed) but never uses them. Their 44.2% HitRate@3 and the identified conceptual polymorphism problem are explicitly domain-disambiguation problems. REAL-Prover proves domain-aware retrieval helps proving; the extension to formalization is natural and untested. ATLAS's concept repository provides ready-made domain labels."
+    },
+    {
+      "idea_sketch": "Domain-stratified APRIL error analysis + domain-conditioned repair: Stratify APRIL's 260k repair tuples using Herald's Mathlib module provenance to build a domain-specific error taxonomy, then train domain-conditioned repair models that apply different fix strategies per subdomain (typeclass resolution repair for topology, coercion chain repair for algebra).",
+      "from_papers": ["APRIL", "Herald", "Faithful Autoformalization"],
+      "why_promising": "APRIL's data exists but has never been stratified — this is a pure analysis contribution requiring no new data collection. Faithful Autoformalization proves that diagnosis quality (not generator quality) is the bottleneck for repair, and domain-aware diagnosis would directly improve repair targeting. The combination produces both an empirical contribution (error taxonomy) and a systems contribution (domain-conditioned repair)."
+    },
+    {
+      "idea_sketch": "ReForm's reflective loop with domain-specific auxiliary rewards: Replace ReForm's generic IsFaithfulCritique auxiliary reward r_aux with domain-conditioned critique quality signals — for topology formalizations, reward critiques that check typeclass instance resolution; for algebra, reward critiques that verify coercion chain validity. Train using PBSO with domain-varying reward weights.",
+      "from_papers": ["ReForm", "NL2Lean", "FormaRL"],
+      "why_promising": "ReForm's PBSO algorithm already supports heterogeneous rewards at different positions — the extension to domain-conditioned rewards is architecturally clean. NL2Lean's multi-aspect reward decomposition shows that different quality dimensions are partially independent (their ablation proves this). FormaRL's empirical finding that CC specificity varies by domain (92% vs 80%) proves domain-conditioned rewards would have measurable impact. The combination is orthogonal to reflection — domain adaptation and self-correction should compose multiplicatively."
+    },
+    {
+      "idea_sketch": "RL with domain-specific consistency checkers: Extend FormaRL's dual reward (compiler + LLM consistency) by replacing the generic consistency checker with domain-specialized versions — prompted with Mathlib module context, few-shot examples from the relevant subdomain, and domain-specific error patterns. This directly addresses the specificity degradation on advanced mathematics.",
+      "from_papers": ["FormaRL", "CRAMF", "APRIL"],
+      "why_promising": "FormaRL's consistency checker specificity drops from 92% to as low as 16% on advanced math, meaning the reward signal degenerates exactly where it matters most. CRAMF's knowledge base provides domain-specific definitions to ground the consistency check. APRIL's repair tuples (once stratified) provide domain-specific error examples for few-shot prompting. The fix is low-cost (prompt engineering, not model retraining) but addresses a measured bottleneck."
+    },
+    {
+      "idea_sketch": "Cross-domain curriculum learning: Extend NL2Lean's multi-dimensional difficulty scoring with domain as an explicit dimension, using ATLAS's concept hierarchy to sequence training from domains with simpler formal language patterns (e.g., elementary number theory) to domains with complex type-theoretic requirements (e.g., topology with deep typeclass hierarchies). Combine with FormaRL's RL paradigm for label-free training.",
+      "from_papers": ["NL2Lean", "ATLAS", "FormaRL", "130k Topology"],
+      "why_promising": "NL2Lean already shows curriculum learning helps (easy-to-hard by difficulty) but uses domain-agnostic difficulty. 130k Topology demonstrates topology requires specialized treatment suggesting domains have inherent difficulty ordering. ATLAS's concept hierarchy provides natural domain-level difficulty labels. No paper has tried domain-sequenced curriculum for autoformalization."
+    },
+    {
+      "idea_sketch": "Roundtrip verification with domain-aware diagnosis for mathematical formalization: Adapt Faithful Autoformalization's three-stage roundtrip (formalize → back-translate → re-formalize → equivalence check) from legal to mathematical text, using Lean 4's type checker instead of SMT solvers, and conditioning the diagnosis function on APRIL's domain-specific error taxonomy to produce more targeted repair explanations.",
+      "from_papers": ["Faithful Autoformalization", "APRIL", "ReForm"],
+      "why_promising": "Faithful proves diagnosis is the bottleneck (swapping only the diagnoser restores scoped repair's advantage). Their framework is explicitly parameterized by any formalism with equivalence checking — Lean's type checker qualifies. APRIL's repair tuples, once stratified by domain, provide exactly the domain-specific diagnostic templates needed. The legal→math transfer is architecturally clean but never attempted."
+    }
+  ],
+
+  "method_building_blocks": [
+    {
+      "tool": "Herald's 580k NL-Formal Pairs with Mathlib4 Module Provenance",
+      "what_it_does": "Provides the largest curated parallel corpus of NL-Lean4 pairs, each tagged with the originating Mathlib4 module path — enabling domain labeling via the module hierarchy (e.g., Mathlib.Topology.* → topology, Mathlib.Algebra.* → algebra)",
+      "used_by": ["Herald", "NL2Lean (580k pairs for SFT initialization)", "ATLAS (implicitly, via Mathlib)"],
+      "could_be_applied_to": "Domain labeling for any autoformalization system — stratify training data, evaluation results, and error analysis by mathematical subdomain using module path prefixes as domain tags"
+    },
+    {
+      "tool": "ATLAS's Concept Repository (13 domains, 55 topics, 350 concepts)",
+      "what_it_does": "A structured hierarchy extracted from Mathlib's undergrad.yaml that maps mathematical concepts to domains, topics, and Mathlib definitions — providing a clean domain taxonomy for labeling and concept-level retrieval",
+      "used_by": ["ATLAS"],
+      "could_be_applied_to": "Domain-conditioned training data selection, evaluation stratification, concept-level retrieval filtering, and domain-aware curriculum construction for any autoformalization pipeline"
+    },
+    {
+      "tool": "APRIL's 260k Repair Tuples",
+      "what_it_does": "Pairs of (buggy formalization, compiler error, fixed formalization) enabling error analysis and repair model training — the largest repair dataset for Lean 4 autoformalization",
+      "used_by": ["APRIL", "Autoformalizer with Tool Feedback (conceptually)"],
+      "could_be_applied_to": "Domain-stratified error taxonomy construction (label each tuple via Herald's module provenance), domain-specific repair model training, and empirical validation that error distributions differ by mathematical subdomain"
+    },
+    {
+      "tool": "CRAMF's 26k-Entry Concept-Definition Knowledge Base",
+      "what_it_does": "Maps 1,000+ mathematical concepts to 26,000+ Mathlib4 formal definitions with module paths, NL annotations, and ontological relations — a structured knowledge base for concept-grounded retrieval",
+      "used_by": ["CRAMF"],
+      "could_be_applied_to": "Domain-conditioned retrieval (filter/weight by module path prefix), polymorphic concept disambiguation (select the definition matching the inferred domain), and domain-specific knowledge injection for any formalization model"
+    },
+    {
+      "tool": "GRPO without KL Regularization",
+      "what_it_does": "A simplified RL algorithm (from DeepSeek-R1) that computes group-relative advantages across sampled trajectories without the complexity of KL divergence regularization — enabling efficient RL training with binary or composite rewards",
+      "used_by": ["FormaRL", "ReForm (with PBSO extension)"],
+      "could_be_applied_to": "Domain-conditioned RL training where reward signals are domain-specific (e.g., domain-aware consistency checkers provide different reward quality per subdomain)"
+    },
+    {
+      "tool": "Lean 4 Compiler as Verification Oracle",
+      "what_it_does": "Provides a free, precise binary signal (compiles/doesn't compile) with structured error messages — usable as one component of RL reward, data filtering, or iterative repair feedback",
+      "used_by": ["FormaRL", "NL2Lean", "ATLAS", "ReForm (implicit)", "APRIL"],
+      "could_be_applied_to": "Domain-stratified error analysis (categorize compiler error types by mathematical domain), domain-conditioned repair (different fix strategies based on error type + domain), and as the syntax anchor in any multi-signal reward composition"
+    },
+    {
+      "tool": "PBSO (Prospective Bounded Sequence Optimization)",
+      "what_it_does": "Handles heterogeneous rewards at different positions in a generated sequence — terminal task reward + intermediate auxiliary rewards — via backward-accumulating bounded returns with position-specific advantages, enabling RL training of self-correcting generation loops",
+      "used_by": ["ReForm"],
+      "could_be_applied_to": "Training domain-adaptive reflective autoformalizers where auxiliary rewards are domain-conditioned (e.g., different critique quality signals for topology vs. algebra)"
+    },
+    {
+      "tool": "Lean 4 Infoview-Based Augmentation",
+      "what_it_does": "Uses Lean's proof stepping (via tactics) to expose intermediate proof states as new formal statements, and applies logical transformations (contraposition) to generate equivalent formalizations — formal-language-specific data multiplication",
+      "used_by": ["ATLAS"],
+      "could_be_applied_to": "Domain-weighted augmentation — apply proof stepping more aggressively in data-scarce domains (e.g., topology) and contraposition in domains where it produces natural-looking results (e.g., number theory), rather than uniform application"
+    },
+    {
+      "tool": "Reverse-Translation + NLI for Semantic Alignment",
+      "what_it_does": "Back-translates a formal statement to NL, then checks semantic alignment with the original NL input via NLI or embedding similarity — providing a noisy but scalable semantic correctness signal",
+      "used_by": ["NL2Lean (cosine similarity of sentence embeddings)", "ATLAS (NLI via Qwen2.5)", "FormaRL (LLM consistency check)", "Faithful (bidirectional NLI as independent validation)"],
+      "could_be_applied_to": "Domain-conditioned semantic checking — use domain-specific back-translation models or NLI systems trained/prompted on mathematical subdomain vocabulary to improve signal quality on advanced topics where generic models fail"
+    },
+    {
+      "tool": "uproof Benchmark (5,273 problems across 4 domains)",
+      "what_it_does": "Undergraduate-level problems from 14 textbooks spanning analysis, algebra, topology, and probability — pre-stratified by mathematical domain for out-of-distribution evaluation",
+      "used_by": ["FormaRL"],
+      "could_be_applied_to": "Cross-domain generalization evaluation (train on 3 domains, test on held-out 4th) — the benchmark is already domain-labeled, making it the most natural test bed for domain adaptation experiments"
+    },
+    {
+      "tool": "ConsistencyCheck Benchmark (859 expert-annotated items)",
+      "what_it_does": "Expert-annotated items for evaluating whether LLM-based semantic judges can correctly assess NL-formal alignment — calibrates the evaluation noise floor and enables effect-size analysis",
+      "used_by": ["ReForm"],
+      "could_be_applied_to": "Domain-stratified judge calibration — measure whether LLM judges are equally reliable across mathematical subdomains, identifying domains where automatic evaluation is trustworthy vs. where human evaluation is needed"
+    }
+  ],
+
+  "common_pitfalls": [
+    "Reporting only aggregate metrics on multi-domain benchmarks: Every analyzed paper (ReForm, ATLAS, NL2Lean, FormaRL, CRAMF) evaluates on benchmarks spanning multiple mathematical domains but reports only aggregate numbers. This is both a missed analytical opportunity and an increasingly notable omission — reviewers familiar with VeriSoftBench's domain-shift findings will expect domain-stratified analysis.",
+    "Equating compilation success with formalization quality: NL2Lean proves that ~20% of compilable Lean statements are semantically wrong. FormaRL's ablation shows a model can achieve 100% syntax correctness with 0% semantic correctness by gaming the compiler reward alone. Any evaluation or reward design that relies heavily on compilation rate without semantic checking will produce misleading results.",
+    "Using cycle consistency or back-translation as a primary contribution: The research direction document explicitly flags this as 'claimed by 3 papers in 2025-2026.' Faithful Autoformalization shows that even with SMT-backed roundtrip verification, 16% of results are still semantically wrong ('stable hallucinations'). A paper whose main novelty is roundtrip checking alone will be seen as incremental.",
+    "Ignoring reward signal degradation on advanced/specialized mathematics: FormaRL's consistency checker drops from 92% specificity on elementary math (miniF2F) to 16% on advanced math (ProofNet pass@8). Any RL-based system that doesn't analyze and address domain-dependent reward quality is training with corrupted signals precisely where it matters most, and reviewers will flag this after reading FormaRL.",
+    "Over-investing in data scaling without structural insight: The research direction notes 'diminishing returns per Goedel-Prover-V2' for pure data scaling. ATLAS's expert iteration plateaus around round 7-8. Papers that claim improvement mainly through 'we used more data' face an uphill reviewer battle; structural innovations (domain conditioning, retrieval, reward design) are more valued.",
+    "Neglecting to clearly differentiate from Autoformalizer with Tool Feedback: This paper integrates repair into the training loop (the same high-level approach as domain-conditioned repair). Any domain-adaptive repair paper must explicitly contrast with this work — the delta must be domain-awareness, not just 'repair in training.'",
+    "Framing the contribution as 'proof search improvement' when the actual contribution is 'formalization quality': The autoformalization community is distinct from the theorem proving community, and reviewers will penalize papers that conflate formalization accuracy with proving power. Per the research direction: 'the contribution is per-domain reliability, not aggregate SOTA.'",
+    "Training domain-specific models without a domain-agnostic ablation baseline: The 'baseline fear test' in the research direction is real — a domain-agnostic model with more repair iterations could match 80% of the gain. Any domain-adaptive paper MUST include the cross-domain generalization experiment (train on 3, test on held-out 4th) to isolate domain adaptation's contribution from the confound of more compute/more iterations.",
+    "Not providing human evaluation for semantic correctness claims: NL2Lean was praised for including 4 annotators; ReForm was praised for expert-annotated ConsistencyCheck. Papers claiming semantic improvements without any human evaluation face credibility challenges, especially given that automatic semantic judges are only ~85% accurate."
+  ],
+
+  "field_trajectory": "The autoformalization field is converging on three macro-directions that will define top-venue papers through 2026-2027. First, the dominant training paradigm is shifting from supervised fine-tuning to RL with multi-signal rewards — FormaRL, NL2Lean, and ReForm all demonstrate that RL with composite verification signals (compiler + semantic + structural) substantially outperforms SFT, even with orders of magnitude less labeled data. The next evolution of this trend is domain-conditioned reward design, where reward signals are adapted to the mathematical subdomain to address the empirically demonstrated degradation on specialized content (FormaRL's specificity collapse on advanced math). Second, the field is moving from statement-level to concept-level and dependency-level retrieval augmentation — CRAMF's concept-level KB and DDR's dependency generation represent the first generation, but domain-conditioned retrieval (filtering and weighting by mathematical subdomain context) is the obvious and untested next step, with REAL-Prover's success in domain-aware retrieval for proving providing a clear proof-of-concept in the adjacent proving domain. Third, self-correcting pipelines with explicit diagnosis are replacing single-pass architectures — ReForm's reflective loop and Faithful's roundtrip-with-repair show that iterative refinement with localized error diagnosis produces large gains on hard problems. The synthesis of all three trends — domain-conditioned RL training of self-correcting formalization models with domain-aware retrieval — represents the highest-value research direction, and the infrastructure for this synthesis now exists (Herald's module provenance for domain labels, APRIL's repair tuples for error taxonomy, ATLAS's concept repository for domain hierarchy, CRAMF's KB for domain-conditioned retrieval) but no paper has connected these pieces. The first paper to perform a rigorous domain-stratified analysis of autoformalization errors and build a domain-adaptive pipeline will establish a new subfield at the intersection of domain adaptation and formal mathematics.",
+
+  "meta_advice": "If you are targeting AAAI 2026's AI for Science / KR&R track with domain-adaptive autoformalization, here is what will separate an accept from a reject. First, lead with the empirical finding, not the system: your strongest card is the domain-stratified error analysis of APRIL's 260k repair tuples, showing that topology errors cluster around typeclass instances while algebra errors cluster around coercion chains. This analysis requires no new models — just labeling existing data via Herald's module provenance — and produces a standalone contribution (the domain-specific error taxonomy) that validates the entire paper's premise. Reviewers in KR&R will value this empirical grounding over another 'we beat the baseline by 2%' claim. Second, design the cross-domain generalization experiment (train on 3 domains, test on held-out 4th) as your primary evaluation, not a secondary ablation. This is your defense against the 'baseline fear test' — a domain-agnostic model with more compute cannot match domain adaptation on the held-out domain, and this experiment cleanly isolates your contribution. Use uproof's 4-domain structure and ProofNet's multi-domain coverage for this. Third, build on proven components rather than inventing new ones: use CRAMF's concept-level retrieval but add domain conditioning via Mathlib module paths; use FormaRL's GRPO training but replace the generic consistency checker with domain-prompted versions; use ATLAS's concept repository as your domain taxonomy. Reviewers reward papers that compose existing building blocks in principled ways (as ReForm and CRAMF were praised for). Fourth, include thorough ablations with statistical significance testing — every accepted paper in this space does this. Test your domain-conditioned retrieval vs. domain-agnostic CRAMF, domain-conditioned repair vs. domain-agnostic APRIL, and the full pipeline vs. each component alone. Use paired significance tests (Wilcoxon signed-rank, following CRAMF's convention). Fifth, release all artifacts (domain-stratified APRIL analysis, evaluation scripts, model weights) — this is both a stated constraint and a strategic advantage, as the autoformalization community is small and artifact releases generate citations and goodwill disproportionate to the effort. Compute-wise, your 70-80 H100-hour budget is sufficient: FormaRL trains with 859 examples, ATLAS fine-tunes in under an hour per iteration, and your base models (Qwen2.5-7B or Goedel-Prover-V2-8B) are efficient. Allocate the majority of compute to the cross-domain RL experiments and keep 20% in reserve for ablation reruns. The paper's narrative should be: 'autoformalization errors are domain-structured, existing systems ignore this structure, and domain-adaptive pipelines can exploit it — here is the evidence, the system, and the evaluation proving generalization.'"
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "99e8f2c6-5fce-4baf-8817-ba519b31ad23",
+  "isSidechain": false,
+  "requestId": "req_011CbUt5NViFFLbvutp6RpUT",
+  "type": "assistant",
+  "uuid": "6772f5ae-7c51-4baa-a4a9-2cf89cf6b0c7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "d2afaa5f-3638-4542-b331-039035bd0dba",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FW9prakpg5jtRWPkZxTpox",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1656,
+      "cache_read_input_tokens": 23324,
+      "output_tokens": 9957,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1656,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 9957,
+          "cache_read_input_tokens": 23324,
+          "cache_creation_input_tokens": 1656,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1656
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 14_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML research advisor synthesizing a literature review into an actionable research strategy.  **Today's date: 2026-05-28 (UTC).**  ## Research area: Target: AAAI 2026 Track: AI for Scie…",
+  "leafUuid": "6772f5ae-7c51-4baa-a4a9-2cf89cf6b0c7",
+  "sessionId": "d2afaa5f-3638-4542-b331-039035bd0dba"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 15_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Domain-adaptive autoformalization with cross-domain evaluation",
+  "sessionId": "d2afaa5f-3638-4542-b331-039035bd0dba"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 16_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML research advisor synthesizing a literature review into an actionable research strategy.  **Today's date: 2026-05-28 (UTC).**  ## Research area: Target: AAAI 2026 Track: AI for Scie…",
+  "leafUuid": "6772f5ae-7c51-4baa-a4a9-2cf89cf6b0c7",
+  "sessionId": "d2afaa5f-3638-4542-b331-039035bd0dba"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 17_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Domain-adaptive autoformalization with cross-domain evaluation",
+  "sessionId": "d2afaa5f-3638-4542-b331-039035bd0dba"
+}
+```
+
+---

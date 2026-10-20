@@ -1,0 +1,2959 @@
+# Research conversation: You are a senior ML researcher performing deep analysis of multiple published papers. **Today's date: 2026-05-30 (UTC).*
+
+**Reproducibility Budgets for Open-Weight LLM Evaluation: A Generalizability Theory Study of 7–9B Instruction-Tuned Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 34
+- **Recorded user turns:** 1
+- **Tool calls:** 6
+- **Original source:** `logs/chats/exported-trajectories/account-2/9caa965a-b7bd-4c0e-9c96-921fcec5e116.jsonl`
+- **Structured JSON:** [`39427c2f4cb261ff97de.json`](../../sessions/39/39427c2f4cb261ff97de.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-30T06:19:05.356Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-30T06:19:05.356Z",
+  "sessionId": "9caa965a-b7bd-4c0e-9c96-921fcec5e116",
+  "content": "You are a senior ML researcher performing deep analysis of multiple published papers.\n\n**Today's date: 2026-05-30 (UTC).**\n\n## Research context\n\nWe are generating ideas in the area of: **Target: AAAI 2026\nTrack: Machine Learning / Knowledge Representation and Reasoning\n\nDirection: Trace the complete computational circuit governing RAG evidence integration vs. override in open-weight LLMs, mapping causal interactions between retrieval heads, parametric memory components, copy suppression mechanisms, and FFN layers. Use the discovered circuit to design principled, multi-point inference-time interventions that outperform existing heuristic steering methods (SpARE, CoRect, ContextFocus) on knowledge-conflict benchmarks.\n\nSeed Papers:\n- ReDeEP (ICLR 2025) — Identifies Knowledge FFNs and Copying Heads as key components but stops at component-level; no circuit tracing\n- Retrieval Head Mechanistically Explains Long-Context Factuality (ICLR 2025) — Identifies <5% of heads carry retrieval signal; universal across model families; but no interaction with parametric circuits\n- Taming Knowledge Conflicts / JuICE (ICML 2025) — Discovers superposition in attention heads (both memory and context); proposes test-time intervention; complicates clean head-type dichotomy but remains head-level\n- CoRect (arXiv 2025) — Discovers flip phenomenon (56% of conflict cases); deep FFN layers suppress correct answers; intervention is additive patching without circuit diagnosis\n- Knowledge Circuits in Pretrained Transformers (NeurIPS 2024) — Provides circuit discovery methodology for factual recall; not applied to RAG\n- CD-T: Efficient Automated Circuit Discovery (ICLR 2025) — Enables circuit discovery in seconds; 97% ROC AUC; key enabling tool\n- SpARE (NAACL 2025) — SAE-based steering under knowledge conflicts; +10% EM; heuristic target selection\n- Atlas of In-Context Learning (NeurIPS 2025) — Separates in-context vs parametric heads; 94% AUC linear probe; but no causal interaction mapping\n\nKnown Gaps:\n- No end-to-end circuit has been traced connecting retrieval heads → FFN layers → copy suppression → output in RAG, comparing success vs failure cases\n- JUICE shows heads operate in superposition (both memory and context), but no work has traced how this superposition resolves across layers and through FFN interactions\n- The flip phenomenon (CoRect: correct answers appear mid-layers then get suppressed) has no circuit-level causal explanation\n- Existing interventions (SpARE, CoRect, ContextFocus, JuICE) select targets heuristically or statistically, not via causal circuit analysis; no multi-point coordinated intervention exists\n\nTheoretical Anchor: The promote-suppress-iterate mechanism (Yan & Jia, EMNLP 2025) provides a theoretical framework — MLPs promote all candidate answers while attention suppresses alternatives iteratively. In RAG, this mechanism should create a specific circuit pathology: retrieval heads promote context-derived answers, but parametric MLPs re-promote stored answers in deeper layers, and copy suppression heads (which operate via general suppression, not selective) inadvertently suppress context-derived tokens. The flip phenomenon is a direct observable consequence of this circuit pathology.\n\nConstraints:\n- Compute: ≤200 H100-hours\n- Models: Llama-3.1-8B (primary), Gemma-2-9B (validation)\n- Tools: CD-T, TransformerLens, pyvene, attribution patching\n- Timeline: 10-12 weeks to AAAI August 2026 deadline\n\nQuality Self-Checks:\n- [x] Core insight: In RAG, evidence override is caused by a specific circuit pathology where parametric MLPs in deep layers re-assert stored answers after retrieval heads have already injected context-derived answers — and this pathology can be surgically repaired.\n- [x] Why not obvious: JUICE shows heads are in superposition (not cleanly separable), so you can't just prune memory heads. You need full circuit tracing to find where the parametric signal actually dominates, which requires the promote-suppress-iterate lens applied to RAG specifically.\n- [x] Baseline fear test: Simple baselines (prune top-k memory heads, boost top-k retrieval heads) exist (Jin et al. 2024, IRCAN). Circuit-informed intervention must show that selecting targets via causal analysis yields better targets than statistical/heuristic selection. The multi-point coordination (boost + suppress simultaneously at circuit-identified layers) is what baselines cannot do.\n- [x] Information exploited: The full causal interaction graph between components that existing methods treat in isolation. Specifically, which FFN neurons in which layers re-assert parametric answers AFTER retrieval heads have already injected context, and which copy suppression heads inadvertently suppress context-derived tokens.\n\nAvoid:\n- Replicating ReDeEP at larger scale (component identification without circuit tracing)\n- Assuming clean retrieval-head vs memory-head separation (JUICE refutes this; must account for superposition)\n- Pure interpretability without intervention (AAAI reviewers will ask 'so what?')\n- Ignoring the flip phenomenon as validation (it's the most mechanistically informative empirical finding)\n- Over-claiming circuit completeness (circuits at 7B may be distributed; frame contributions carefully)**\n\n## Your task (Batch 3)\n\nAnalyze the following 5 papers. For EACH paper:\n1. Use WebSearch and WebFetch to find and read its abstract, introduction, and method section.\n2. If on OpenReview, also read reviewer comments.\n3. Write a concise analysis focusing on HOW the paper innovates.\n\n## Papers to analyze\n\n[\n  {\n    \"title\": \"Retrieval Head Mechanistically Explains Long-Context Factuality\",\n    \"authors\": \"Wenhao Wu et al.\",\n    \"venue\": \"ICLR 2025 (Oral)\",\n    \"url\": \"https://arxiv.org/abs/2404.15574\",\n    \"why_important\": \"ICLR 2025 Oral; discovers that <5% of attention heads (retrieval heads) carry the retrieval signal universally across model families; foundational for identifying the retrieval component of your circuit\",\n    \"one_line_summary\": \"Discovers that a sparse, universal set of 'retrieval heads' (<5% of all heads) are responsible for retrieving information from long contexts, and pruning them causes hallucination.\"\n  },\n  {\n    \"title\": \"CoRect: Context-Aware Logit Contrast for Hidden State Rectification to Resolve Knowledge Conflicts\",\n    \"authors\": \"Xuhua Ma, Richong Zhang, Zhijie Nie\",\n    \"venue\": \"arXiv 2026\",\n    \"url\": \"https://arxiv.org/abs/2602.08221\",\n    \"why_important\": \"Identifies the parametric suppression phenomenon (deep FFN layers override context-sensitive representations); key empirical finding your circuit must explain causally\",\n    \"one_line_summary\": \"Discovers that deep FFN layers suppress context-grounded representations with memorized priors, and proposes label-free logit contrast between contextualized/non-contextualized passes to identify and rectify affected layers.\"\n  },\n  {\n    \"title\": \"ParamMute: Suppressing Knowledge-Critical FFNs for Faithful Retrieval-Augmented Generation\",\n    \"authors\": \"Pengcheng Huang et al.\",\n    \"venue\": \"NeurIPS 2025\",\n    \"url\": \"https://arxiv.org/abs/2502.15543\",\n    \"why_important\": \"NeurIPS 2025; directly targets FFN suppression for RAG faithfulness; identifies which FFN layers cause unfaithful generation; close competitor/baseline for your proposed approach\",\n    \"one_line_summary\": \"Identifies FFN layers most associated with unfaithful RAG generation, suppresses their activation, and applies knowledge preference calibration, achieving substantial reductions in parametric memory reliance.\"\n  },\n  {\n    \"title\": \"Analysing the Residual Stream of Language Models Under Knowledge Conflicts\",\n    \"authors\": \"Yu Zhao et al.\",\n    \"venue\": \"NeurIPS 2024 Workshop (Foundation Model Interventions)\",\n    \"url\": \"https://arxiv.org/abs/2410.16090\",\n    \"why_important\": \"Shows that knowledge conflict signals are detectable in the residual stream at mid-layers; conflicting knowledge coexists without erasure; provides representation-level evidence your circuit must explain\",\n    \"one_line_summary\": \"Demonstrates that LLMs internally register knowledge conflict signals in the residual stream at mid-layers, with distinct patterns for contextual vs. parametric knowledge use, enabling 90% accurate conflict detection via probing.\"\n  },\n  {\n    \"title\": \"A Survey on Sparse Autoencoders: Interpreting the Internal Mechanisms of Large Language Models\",\n    \"authors\": \"Dong Shu et al.\",\n    \"venue\": \"EMNLP 2025 Findings\",\n    \"url\": \"https://arxiv.org/abs/2503.05613\",\n    \"why_important\": \"Comprehensive survey of SAE methods (architecture, training, evaluation, applications); essential reference for your SAE/transcoder-based circuit analysis methodology\",\n    \"one_line_summary\": \"Comprehensive survey covering SAE architecture designs, training strategies, feature explanation methods, evaluation metrics, and applications in understanding and manipulating LLM behaviors.\"\n  }\n]\n\n## Analysis requirements\n\nFor each paper, analyze:\n- What gap did they identify and HOW?\n- What was the key insight others missed?\n- How did they formulate the problem differently?\n- What existing technique did they adapt/combine/simplify?\n- If reviewer comments are available: what was praised, what was criticized?\n\n## CRITICAL: Length constraint\n\n**Each paper's analysis MUST be under 2000 characters.** Be concise and analytical — no filler, no generic praise, no redundant descriptions. Every sentence must carry information.\n\n## Output format\n\nOutput a JSON array. Each element:\n{\n  \"title\": \"Paper title\",\n  \"venue\": \"Where published\",\n  \"problem_identification\": \"What gap/problem? How found? (1-2 sentences)\",\n  \"key_insight\": \"Core intellectual contribution (1 sentence)\",\n  \"innovation_type\": \"new_formulation | new_technique | new_benchmark | simplification | cross_domain | combination | scaling | analysis\",\n  \"method_summary\": \"Technical approach (2-3 sentences)\",\n  \"limitations_and_open_questions\": \"Gaps + follow-up questions (1-2 sentences)\",\n  \"building_blocks\": [\"Reusable methods/tools/datasets\"],\n  \"relevance_to_seed\": \"Relation to our research area (1 sentence)\"\n}\n\nYou MUST output exactly 5 analyses in the JSON array. IMPORTANT: End your response with the JSON array."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-30T06:19:05.377Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-30T06:19:05.377Z",
+  "sessionId": "9caa965a-b7bd-4c0e-9c96-921fcec5e116"
+}
+```
+
+---
+
+## Round 1
+
+32 recorded events
+
+### User
+
+_source line 3 · 2026-05-30T06:19:05.471Z_
+
+You are a senior ML researcher performing deep analysis of multiple published papers.
+
+**Today's date: 2026-05-30 (UTC).**
+
+## Research context
+
+We are generating ideas in the area of: **Target: AAAI 2026
+Track: Machine Learning / Knowledge Representation and Reasoning
+
+Direction: Trace the complete computational circuit governing RAG evidence integration vs. override in open-weight LLMs, mapping causal interactions between retrieval heads, parametric memory components, copy suppression mechanisms, and FFN layers. Use the discovered circuit to design principled, multi-point inference-time interventions that outperform existing heuristic steering methods (SpARE, CoRect, ContextFocus) on knowledge-conflict benchmarks.
+
+Seed Papers:
+- ReDeEP (ICLR 2025) — Identifies Knowledge FFNs and Copying Heads as key components but stops at component-level; no circuit tracing
+- Retrieval Head Mechanistically Explains Long-Context Factuality (ICLR 2025) — Identifies <5% of heads carry retrieval signal; universal across model families; but no interaction with parametric circuits
+- Taming Knowledge Conflicts / JuICE (ICML 2025) — Discovers superposition in attention heads (both memory and context); proposes test-time intervention; complicates clean head-type dichotomy but remains head-level
+- CoRect (arXiv 2025) — Discovers flip phenomenon (56% of conflict cases); deep FFN layers suppress correct answers; intervention is additive patching without circuit diagnosis
+- Knowledge Circuits in Pretrained Transformers (NeurIPS 2024) — Provides circuit discovery methodology for factual recall; not applied to RAG
+- CD-T: Efficient Automated Circuit Discovery (ICLR 2025) — Enables circuit discovery in seconds; 97% ROC AUC; key enabling tool
+- SpARE (NAACL 2025) — SAE-based steering under knowledge conflicts; +10% EM; heuristic target selection
+- Atlas of In-Context Learning (NeurIPS 2025) — Separates in-context vs parametric heads; 94% AUC linear probe; but no causal interaction mapping
+
+Known Gaps:
+- No end-to-end circuit has been traced connecting retrieval heads → FFN layers → copy suppression → output in RAG, comparing success vs failure cases
+- JUICE shows heads operate in superposition (both memory and context), but no work has traced how this superposition resolves across layers and through FFN interactions
+- The flip phenomenon (CoRect: correct answers appear mid-layers then get suppressed) has no circuit-level causal explanation
+- Existing interventions (SpARE, CoRect, ContextFocus, JuICE) select targets heuristically or statistically, not via causal circuit analysis; no multi-point coordinated intervention exists
+
+Theoretical Anchor: The promote-suppress-iterate mechanism (Yan & Jia, EMNLP 2025) provides a theoretical framework — MLPs promote all candidate answers while attention suppresses alternatives iteratively. In RAG, this mechanism should create a specific circuit pathology: retrieval heads promote context-derived answers, but parametric MLPs re-promote stored answers in deeper layers, and copy suppression heads (which operate via general suppression, not selective) inadvertently suppress context-derived tokens. The flip phenomenon is a direct observable consequence of this circuit pathology.
+
+Constraints:
+- Compute: ≤200 H100-hours
+- Models: Llama-3.1-8B (primary), Gemma-2-9B (validation)
+- Tools: CD-T, TransformerLens, pyvene, attribution patching
+- Timeline: 10-12 weeks to AAAI August 2026 deadline
+
+Quality Self-Checks:
+- [x] Core insight: In RAG, evidence override is caused by a specific circuit pathology where parametric MLPs in deep layers re-assert stored answers after retrieval heads have already injected context-derived answers — and this pathology can be surgically repaired.
+- [x] Why not obvious: JUICE shows heads are in superposition (not cleanly separable), so you can't just prune memory heads. You need full circuit tracing to find where the parametric signal actually dominates, which requires the promote-suppress-iterate lens applied to RAG specifically.
+- [x] Baseline fear test: Simple baselines (prune top-k memory heads, boost top-k retrieval heads) exist (Jin et al. 2024, IRCAN). Circuit-informed intervention must show that selecting targets via causal analysis yields better targets than statistical/heuristic selection. The multi-point coordination (boost + suppress simultaneously at circuit-identified layers) is what baselines cannot do.
+- [x] Information exploited: The full causal interaction graph between components that existing methods treat in isolation. Specifically, which FFN neurons in which layers re-assert parametric answers AFTER retrieval heads have already injected context, and which copy suppression heads inadvertently suppress context-derived tokens.
+
+Avoid:
+- Replicating ReDeEP at larger scale (component identification without circuit tracing)
+- Assuming clean retrieval-head vs memory-head separation (JUICE refutes this; must account for superposition)
+- Pure interpretability without intervention (AAAI reviewers will ask 'so what?')
+- Ignoring the flip phenomenon as validation (it's the most mechanistically informative empirical finding)
+- Over-claiming circuit completeness (circuits at 7B may be distributed; frame contributions carefully)**
+
+## Your task (Batch 3)
+
+Analyze the following 5 papers. For EACH paper:
+1. Use WebSearch and WebFetch to find and read its abstract, introduction, and method section.
+2. If on OpenReview, also read reviewer comments.
+3. Write a concise analysis focusing on HOW the paper innovates.
+
+## Papers to analyze
+
+[
+  {
+    "title": "Retrieval Head Mechanistically Explains Long-Context Factuality",
+    "authors": "Wenhao Wu et al.",
+    "venue": "ICLR 2025 (Oral)",
+    "url": "https://arxiv.org/abs/2404.15574",
+    "why_important": "ICLR 2025 Oral; discovers that <5% of attention heads (retrieval heads) carry the retrieval signal universally across model families; foundational for identifying the retrieval component of your circuit",
+    "one_line_summary": "Discovers that a sparse, universal set of 'retrieval heads' (<5% of all heads) are responsible for retrieving information from long contexts, and pruning them causes hallucination."
+  },
+  {
+    "title": "CoRect: Context-Aware Logit Contrast for Hidden State Rectification to Resolve Knowledge Conflicts",
+    "authors": "Xuhua Ma, Richong Zhang, Zhijie Nie",
+    "venue": "arXiv 2026",
+    "url": "https://arxiv.org/abs/2602.08221",
+    "why_important": "Identifies the parametric suppression phenomenon (deep FFN layers override context-sensitive representations); key empirical finding your circuit must explain causally",
+    "one_line_summary": "Discovers that deep FFN layers suppress context-grounded representations with memorized priors, and proposes label-free logit contrast between contextualized/non-contextualized passes to identify and rectify affected layers."
+  },
+  {
+    "title": "ParamMute: Suppressing Knowledge-Critical FFNs for Faithful Retrieval-Augmented Generation",
+    "authors": "Pengcheng Huang et al.",
+    "venue": "NeurIPS 2025",
+    "url": "https://arxiv.org/abs/2502.15543",
+    "why_important": "NeurIPS 2025; directly targets FFN suppression for RAG faithfulness; identifies which FFN layers cause unfaithful generation; close competitor/baseline for your proposed approach",
+    "one_line_summary": "Identifies FFN layers most associated with unfaithful RAG generation, suppresses their activation, and applies knowledge preference calibration, achieving substantial reductions in parametric memory reliance."
+  },
+  {
+    "title": "Analysing the Residual Stream of Language Models Under Knowledge Conflicts",
+    "authors": "Yu Zhao et al.",
+    "venue": "NeurIPS 2024 Workshop (Foundation Model Interventions)",
+    "url": "https://arxiv.org/abs/2410.16090",
+    "why_important": "Shows that knowledge conflict signals are detectable in the residual stream at mid-layers; conflicting knowledge coexists without erasure; provides representation-level evidence your circuit must explain",
+    "one_line_summary": "Demonstrates that LLMs internally register knowledge conflict signals in the residual stream at mid-layers, with distinct patterns for contextual vs. parametric knowledge use, enabling 90% accurate conflict detection via probing."
+  },
+  {
+    "title": "A Survey on Sparse Autoencoders: Interpreting the Internal Mechanisms of Large Language Models",
+    "authors": "Dong Shu et al.",
+    "venue": "EMNLP 2025 Findings",
+    "url": "https://arxiv.org/abs/2503.05613",
+    "why_important": "Comprehensive survey of SAE methods (architecture, training, evaluation, applications); essential reference for your SAE/transcoder-based circuit analysis methodology",
+    "one_line_summary": "Comprehensive survey covering SAE architecture designs, training strategies, feature explanation methods, evaluation metrics, and applications in understanding and manipulating LLM behaviors."
+  }
+]
+
+## Analysis requirements
+
+For each paper, analyze:
+- What gap did they identify and HOW?
+- What was the key insight others missed?
+- How did they formulate the problem differently?
+- What existing technique did they adapt/combine/simplify?
+- If reviewer comments are available: what was praised, what was criticized?
+
+## CRITICAL: Length constraint
+
+**Each paper's analysis MUST be under 2000 characters.** Be concise and analytical — no filler, no generic praise, no redundant descriptions. Every sentence must carry information.
+
+## Output format
+
+Output a JSON array. Each element:
+{
+  "title": "Paper title",
+  "venue": "Where published",
+  "problem_identification": "What gap/problem? How found? (1-2 sentences)",
+  "key_insight": "Core intellectual contribution (1 sentence)",
+  "innovation_type": "new_formulation | new_technique | new_benchmark | simplification | cross_domain | combination | scaling | analysis",
+  "method_summary": "Technical approach (2-3 sentences)",
+  "limitations_and_open_questions": "Gaps + follow-up questions (1-2 sentences)",
+  "building_blocks": ["Reusable methods/tools/datasets"],
+  "relevance_to_seed": "Relation to our research area (1 sentence)"
+}
+
+You MUST output exactly 5 analyses in the JSON array. IMPORTANT: End your response with the JSON array.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "98cbd5c6-ab63-46c8-8e8f-c228e192ee75",
+  "type": "user",
+  "uuid": "654500fd-4c82-4b4a-939f-6b92b0c31ab0",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "9caa965a-b7bd-4c0e-9c96-921fcec5e116",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-30T06:19:05.468Z_
+
+```json
+{
+  "parentUuid": "654500fd-4c82-4b4a-939f-6b92b0c31ab0",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "ed220a0c-9bda-48d4-869d-dd96b9893ab0",
+  "timestamp": "2026-05-30T06:19:05.468Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "9caa965a-b7bd-4c0e-9c96-921fcec5e116",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-30T06:19:05.468Z_
+
+```json
+{
+  "parentUuid": "ed220a0c-9bda-48d4-869d-dd96b9893ab0",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "c2ee207d-1c9d-4ee8-949e-3b903eeac39a",
+  "timestamp": "2026-05-30T06:19:05.468Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "9caa965a-b7bd-4c0e-9c96-921fcec5e116",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Trace RAG evidence override circuit in LLMs",
+  "sessionId": "9caa965a-b7bd-4c0e-9c96-921fcec5e116"
+}
+```
+
+---
+
+### Assistant
+
+_source line 7 · 2026-05-30T06:19:08.531Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to analyze 5 papers in detail. Let me search for and read each paper, then provide structured analyses. I'll launch multiple agents to research these papers in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c2ee207d-1c9d-4ee8-949e-3b903eeac39a",
+  "isSidechain": false,
+  "requestId": "req_011CbYGVFyJBJj4GT9PaB4RC",
+  "type": "assistant",
+  "uuid": "c196e62f-1d97-4f7a-92ae-1ce8d9b5d920",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "9caa965a-b7bd-4c0e-9c96-921fcec5e116",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WH4oBKPsmvHFfpo2Xk9Gj3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3986,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 151,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3986,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 151,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 3986,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3986
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-30T06:19:09.658Z_
+
+I'll research all 5 papers in parallel to gather their details efficiently.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c196e62f-1d97-4f7a-92ae-1ce8d9b5d920",
+  "isSidechain": false,
+  "requestId": "req_011CbYGVFyJBJj4GT9PaB4RC",
+  "type": "assistant",
+  "uuid": "610b22ff-c076-4016-9047-c1e99b7a1dc1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "9caa965a-b7bd-4c0e-9c96-921fcec5e116",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WH4oBKPsmvHFfpo2Xk9Gj3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3986,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 151,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3986,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 151,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 3986,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3986
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-30T06:19:10.668Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01KnHVwj9VfziZjtXg7AG3cT`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "610b22ff-c076-4016-9047-c1e99b7a1dc1",
+  "isSidechain": false,
+  "requestId": "req_011CbYGVFyJBJj4GT9PaB4RC",
+  "type": "assistant",
+  "uuid": "d19de65a-f904-45a3-b6de-8fbad2910afd",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "9caa965a-b7bd-4c0e-9c96-921fcec5e116",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WH4oBKPsmvHFfpo2Xk9Gj3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3986,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 151,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3986,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 151,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 3986,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3986
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-30T06:19:10.675Z_
+
+<details><summary>↩ Tool result · `toolu_01KnHVwj9VfziZjtXg7AG3cT`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d19de65a-f904-45a3-b6de-8fbad2910afd",
+  "isSidechain": false,
+  "promptId": "98cbd5c6-ab63-46c8-8e8f-c228e192ee75",
+  "type": "user",
+  "uuid": "769cee43-c98e-4aef-ba18-35dd4f87c4d9",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "d19de65a-f904-45a3-b6de-8fbad2910afd",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "9caa965a-b7bd-4c0e-9c96-921fcec5e116",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11 · 2026-05-30T06:19:13.278Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the WebSearch and WebFetch tools available. Let me research all 5 papers in parallel by launching agents for each one.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "769cee43-c98e-4aef-ba18-35dd4f87c4d9",
+  "isSidechain": false,
+  "requestId": "req_011CbYGVf18wKr4zUJS2cP31",
+  "type": "assistant",
+  "uuid": "a3d77974-0f10-4741-bd8a-db46261ddeaf",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "9caa965a-b7bd-4c0e-9c96-921fcec5e116",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017LjvNBC2oLp4zY9YiJghzt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1171,
+      "cache_read_input_tokens": 15000,
+      "output_tokens": 1780,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1171,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1780,
+          "cache_read_input_tokens": 15000,
+          "cache_creation_input_tokens": 1171,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1171
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-30T06:19:13.792Z_
+
+Now let me research all 5 papers in parallel using agents.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a3d77974-0f10-4741-bd8a-db46261ddeaf",
+  "isSidechain": false,
+  "requestId": "req_011CbYGVf18wKr4zUJS2cP31",
+  "type": "assistant",
+  "uuid": "195487e3-76ef-4dd5-b731-61e9673f005c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "9caa965a-b7bd-4c0e-9c96-921fcec5e116",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017LjvNBC2oLp4zY9YiJghzt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1171,
+      "cache_read_input_tokens": 15000,
+      "output_tokens": 1780,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1171,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1780,
+          "cache_read_input_tokens": 15000,
+          "cache_creation_input_tokens": 1171,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1171
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-30T06:19:22.582Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01VNtapKz6KdGNb1BW4UYeZA`</summary>
+
+```json
+{
+  "description": "Research Paper 1: Retrieval Head",
+  "prompt": "You are researching a paper for deep analysis. Use WebSearch and WebFetch to gather detailed information.\n\nPaper: \"Retrieval Head Mechanistically Explains Long-Context Factuality\" by Wenhao Wu et al., ICLR 2025 (Oral), https://arxiv.org/abs/2404.15574\n\nTasks:\n1. Fetch the arxiv abstract page to get the full abstract.\n2. Search for and fetch the OpenReview page for this paper to get reviewer comments (search \"Retrieval Head Mechanistically Explains Long-Context Factuality openreview ICLR 2025\").\n3. Search for any blog posts or detailed summaries that describe the method in detail.\n\nFor each source, extract:\n- The exact problem/gap they identified\n- Their key technical insight\n- Their methodology (how they discover retrieval heads, what experiments they run)\n- Their main results and claims\n- Any reviewer praise and criticism from OpenReview\n\nReport all findings in detail. Be thorough - I need specifics about their method, not just high-level summaries.",
+  "subagent_type": "general-purpose"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "195487e3-76ef-4dd5-b731-61e9673f005c",
+  "isSidechain": false,
+  "requestId": "req_011CbYGVf18wKr4zUJS2cP31",
+  "type": "assistant",
+  "uuid": "279e17df-bf15-4cd0-8e12-274d19a3d368",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "9caa965a-b7bd-4c0e-9c96-921fcec5e116",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017LjvNBC2oLp4zY9YiJghzt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1171,
+      "cache_read_input_tokens": 15000,
+      "output_tokens": 1780,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1171,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1780,
+          "cache_read_input_tokens": 15000,
+          "cache_creation_input_tokens": 1171,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1171
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-30T06:19:28.700Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01PddRVcMWarGQoArACGWAjt`</summary>
+
+```json
+{
+  "description": "Research Paper 2: CoRect",
+  "prompt": "You are researching a paper for deep analysis. Use WebSearch and WebFetch to gather detailed information.\n\nPaper: \"CoRect: Context-Aware Logit Contrast for Hidden State Rectification to Resolve Knowledge Conflicts\" by Xuhua Ma, Richong Zhang, Zhijie Nie, arXiv 2026, https://arxiv.org/abs/2602.08221\n\nTasks:\n1. Fetch the arxiv abstract page to get the full abstract.\n2. Search for the full paper PDF or HTML version to understand the method section in detail.\n3. Look for any additional information about the \"flip phenomenon\" they discover - where correct answers appear at mid-layers but get suppressed by deep FFN layers.\n\nFor each source, extract:\n- The exact problem/gap they identified\n- Their key technical insight (especially the \"flip phenomenon\" and logit contrast method)\n- Their methodology: how they detect which layers cause suppression, how the rectification works\n- Their main results and baselines compared against\n- The label-free nature of their approach\n\nReport all findings in detail. Be thorough - I need specifics about their method.",
+  "subagent_type": "general-purpose"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "279e17df-bf15-4cd0-8e12-274d19a3d368",
+  "isSidechain": false,
+  "requestId": "req_011CbYGVf18wKr4zUJS2cP31",
+  "type": "assistant",
+  "uuid": "8c2c1bf2-ae5c-41b9-9997-76aa760e10a1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "9caa965a-b7bd-4c0e-9c96-921fcec5e116",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017LjvNBC2oLp4zY9YiJghzt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1171,
+      "cache_read_input_tokens": 15000,
+      "output_tokens": 1780,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1171,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1780,
+          "cache_read_input_tokens": 15000,
+          "cache_creation_input_tokens": 1171,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1171
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-30T06:19:33.426Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01PjXjnX3D1xgDKT1Na4xSh7`</summary>
+
+```json
+{
+  "description": "Research Paper 3: ParamMute",
+  "prompt": "You are researching a paper for deep analysis. Use WebSearch and WebFetch to gather detailed information.\n\nPaper: \"ParamMute: Suppressing Knowledge-Critical FFNs for Faithful Retrieval-Augmented Generation\" by Pengcheng Huang et al., NeurIPS 2025, https://arxiv.org/abs/2502.15543\n\nTasks:\n1. Fetch the arxiv abstract page to get the full abstract.\n2. Search for the OpenReview page for this paper (search \"ParamMute Suppressing Knowledge-Critical FFNs openreview NeurIPS 2025\").\n3. Search for any detailed summaries or blog posts about this paper.\n\nFor each source, extract:\n- The exact problem/gap they identified\n- Their key technical insight about which FFN layers cause unfaithful RAG generation\n- Their methodology: how they identify knowledge-critical FFNs, how suppression works, what \"knowledge preference calibration\" means\n- Their main results and improvements over baselines\n- Any reviewer comments from OpenReview\n\nReport all findings in detail. Be thorough - I need specifics about their method.",
+  "subagent_type": "general-purpose"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8c2c1bf2-ae5c-41b9-9997-76aa760e10a1",
+  "isSidechain": false,
+  "requestId": "req_011CbYGVf18wKr4zUJS2cP31",
+  "type": "assistant",
+  "uuid": "ac51e946-c53e-4430-8f59-8b77f30a3c67",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "9caa965a-b7bd-4c0e-9c96-921fcec5e116",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017LjvNBC2oLp4zY9YiJghzt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1171,
+      "cache_read_input_tokens": 15000,
+      "output_tokens": 1780,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1171,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1780,
+          "cache_read_input_tokens": 15000,
+          "cache_creation_input_tokens": 1171,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1171
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-30T06:19:38.146Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01G1VXQ95tADozzcY69C9nQ1`</summary>
+
+```json
+{
+  "description": "Research Paper 4: Residual Stream",
+  "prompt": "You are researching a paper for deep analysis. Use WebSearch and WebFetch to gather detailed information.\n\nPaper: \"Analysing the Residual Stream of Language Models Under Knowledge Conflicts\" by Yu Zhao et al., NeurIPS 2024 Workshop, https://arxiv.org/abs/2410.16090\n\nTasks:\n1. Fetch the arxiv abstract page to get the full abstract.\n2. Search for the full paper or detailed summaries to understand the method section.\n3. Search for the OpenReview page if available (NeurIPS 2024 Workshop on Foundation Model Interventions).\n\nFor each source, extract:\n- The exact problem/gap they identified\n- Their key technical insight about residual stream analysis under knowledge conflicts\n- Their methodology: how they probe the residual stream, what probing techniques they use, how they detect conflict signals\n- Their main results (90% conflict detection accuracy, mid-layer patterns)\n- The finding that conflicting knowledge \"coexists without erasure\" in the residual stream\n- Any reviewer comments\n\nReport all findings in detail. Be thorough - I need specifics about their method.",
+  "subagent_type": "general-purpose"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ac51e946-c53e-4430-8f59-8b77f30a3c67",
+  "isSidechain": false,
+  "requestId": "req_011CbYGVf18wKr4zUJS2cP31",
+  "type": "assistant",
+  "uuid": "fd595216-db19-46ed-bf6d-903a40ba8e55",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "9caa965a-b7bd-4c0e-9c96-921fcec5e116",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017LjvNBC2oLp4zY9YiJghzt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1171,
+      "cache_read_input_tokens": 15000,
+      "output_tokens": 1780,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1171,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1780,
+          "cache_read_input_tokens": 15000,
+          "cache_creation_input_tokens": 1171,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1171
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-30T06:19:44.168Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_017H65w5L3ckxGV8ZR6Y2k1v`</summary>
+
+```json
+{
+  "description": "Research Paper 5: SAE Survey",
+  "prompt": "You are researching a paper for deep analysis. Use WebSearch and WebFetch to gather detailed information.\n\nPaper: \"A Survey on Sparse Autoencoders: Interpreting the Internal Mechanisms of Large Language Models\" by Dong Shu et al., EMNLP 2025 Findings, https://arxiv.org/abs/2503.05613\n\nTasks:\n1. Fetch the arxiv abstract page to get the full abstract.\n2. Search for the full paper or detailed summaries to understand the survey's scope and taxonomy.\n3. Search for the OpenReview page if available for EMNLP 2025.\n\nFor each source, extract:\n- The scope of the survey: what SAE architectures are covered (vanilla SAE, TopK SAE, Gated SAE, etc.)\n- Their taxonomy/organization of the SAE literature\n- Key findings about SAE training strategies\n- What they say about SAE applications in understanding and manipulating LLM behaviors\n- Their discussion of SAE evaluation metrics and feature quality\n- Any discussion of transcoders or SAE variants for MLP analysis\n- Limitations they identify in current SAE research\n\nReport all findings in detail. Be thorough - I need specifics about their taxonomy and methodology coverage.",
+  "subagent_type": "general-purpose"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fd595216-db19-46ed-bf6d-903a40ba8e55",
+  "isSidechain": false,
+  "requestId": "req_011CbYGVf18wKr4zUJS2cP31",
+  "type": "assistant",
+  "uuid": "f54e5820-97c8-40d6-a2fc-d7eb6739f94d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "9caa965a-b7bd-4c0e-9c96-921fcec5e116",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017LjvNBC2oLp4zY9YiJghzt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1171,
+      "cache_read_input_tokens": 15000,
+      "output_tokens": 1780,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1171,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1780,
+          "cache_read_input_tokens": 15000,
+          "cache_creation_input_tokens": 1171,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1171
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 18_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML researcher performing deep analysis of multiple published papers.  **Today's date: 2026-05-30 (UTC).**  ## Research context  We are generating ideas in the area of: **Target: AAAI…",
+  "leafUuid": "f54e5820-97c8-40d6-a2fc-d7eb6739f94d",
+  "sessionId": "9caa965a-b7bd-4c0e-9c96-921fcec5e116"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 19_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Trace RAG evidence override circuit in LLMs",
+  "sessionId": "9caa965a-b7bd-4c0e-9c96-921fcec5e116"
+}
+```
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-30T06:22:40.096Z_
+
+<details><summary>↩ Tool result · `toolu_01PddRVcMWarGQoArACGWAjt`</summary>
+
+````text
+I now have comprehensive information about this paper. Here is my detailed report.
+
+---
+
+## CoRect: Context-Aware Logit Contrast for Hidden State Rectification to Resolve Knowledge Conflicts
+
+**Authors**: Xuhua Ma, Richong Zhang, Zhijie Nie
+**Published**: February 9, 2026, arXiv:2602.08221
+**License**: CC BY 4.0
+
+---
+
+### 1. Problem and Gap Identified
+
+CoRect addresses **knowledge conflicts in Retrieval-Augmented Generation (RAG)**: when retrieved evidence contradicts the model's parametric prior knowledge, LLMs tend to under-utilize the provided context and favor internally memorized (but incorrect) knowledge, leading to hallucinations and unfaithful outputs.
+
+The authors identify two key limitations of existing approaches:
+
+- **Decoding-time interventions** (e.g., CAD, AdaCAD) treat the model as a black box and only adjust the final token distribution. They "do not prevent intermediate representations from being progressively steered toward the parametric answer" internally. The suppression happens deep inside the model, and these methods only paper over it at the output.
+
+- **Weight-editing methods** (e.g., ROME, MEMIT) can localize and correct knowledge at specific layers but **require the ground-truth target answer** to compute updates -- unrealistic for open-ended RAG scenarios where you do not know the correct answer in advance.
+
+---
+
+### 2. The Flip Phenomenon (Key Discovery)
+
+Through **Logit Lens analysis** (projecting hidden states at each layer into vocabulary space via the unembedding matrix W_U), the authors analyzed 500 sampled Natural Questions cases involving knowledge conflicts and discovered:
+
+- **282 out of 500 cases (56.4%)** exhibited the "flip phenomenon" -- the gold answer reaches Rank 1 at some intermediate layer but is NOT the final prediction.
+
+This decomposes into two distinct patterns:
+
+- **Middle Flip (154 cases)**: The gold answer surfaces and ranks first in intermediate layers but is progressively suppressed and lost in deeper layers. The correct information is present mid-network but gets overwritten.
+
+- **Last Layer Flip (128 cases)**: The gold answer remains dominant through nearly all layers but is suddenly suppressed at the very last projection layer.
+
+The authors attribute both patterns to **"parametric suppression"**: certain deep FFN (feed-forward network) layers overwrite context-sensitive representations with memorized priors. The critical insight is: "the model often possesses correct information internally but fails to manifest it in final generation." This motivates an intervention that surgically removes suppression rather than forcing an answer.
+
+---
+
+### 3. Methodology: CoRect in Detail
+
+CoRect operates in two stages, entirely at inference time, with **no training, no ground-truth labels, and no weight modification**.
+
+#### Stage 1: Trustworthy Token Selection
+
+**Dual forward passes:**
+1. **Contextualized pass**: Full input prompt with retrieved evidence, producing logits `z_l^(ctx)` at each layer l
+2. **Null context pass**: Only instruction tokens (no query context), producing logits `z_l^(null)`
+
+**Contextual Mutual Information (CMI) estimation:**
+For each vocabulary token v at layer l:
+```
+S_info^(l)(v) = log P(v | z_l^(ctx)) - log P(v | z_l^(null))
+```
+This measures how much the context boosts a token's likelihood vs. the model's prior. Scores are aggregated over the last k layers:
+```
+S̃_info(v) = (1/k) * Σ(l=L-k+1 to L) S_info^(l)(v)
+```
+Then sign-preserving max-normalized to produce `S_info^(total)(v)`.
+
+**Attention-Based Verification:**
+The method identifies where token v appears in the input context, then computes a faithfulness score by aggregating attention mass from the final layer toward those positions:
+```
+S̃_attn^(L)(v) = (1/H) * Σ_h Σ_{j ∈ I(v)} A_{L,h}^(curr,j)
+```
+where H is the number of attention heads, I(v) is the set of positions where v appears in context, and A is the attention weight matrix.
+
+**Final target selection** combines both scores over the top-M candidates C:
+```
+t̃* = argmax_{v ∈ C} (S_info^(total)(v) + λ * S_attn^(L)(v))
+```
+
+#### Stage 2: Hidden State Rectification
+
+**Suppressive layer identification:**
+Using the logit decomposition `z_L ≈ W_U h_0 + Σ W_U a_l + Σ W_U u_l` (where u_l is the FFN output at layer l and w_{t̃*} is the unembedding vector for the target token), layers whose FFN outputs actively suppress the target are identified:
+```
+L_supp = {l ∈ {1,...,L} | u_l^T * w_{t̃*} < 0}
+```
+A negative dot product means that layer's FFN is pushing the logit of the target token downward.
+
+**Rectification patch:**
+For each suppressive layer, an additive correction is applied to the FFN output:
+```
+φ_l = -α * (u_l^T * w_{t̃*}) / ||w_{t̃*}||² * w_{t̃*}
+```
+The modified hidden state becomes: `u_l ← u_l + φ_l`
+
+**The alpha parameter controls intervention intensity:**
+- α ∈ (0,1): Partial suppression removal
+- α = 1: Exact neutralization ("disinhibition") -- neutralizes the suppressive component exactly. This is optimal.
+- α > 1: Active promotion (overshoots, causes degradation)
+
+The net logit change is mathematically guaranteed positive:
+```
+Δz_L(t̃*) = -α * Σ_{l ∈ L_supp} u_l^T * w_{t̃*} > 0
+```
+
+**Key design philosophy**: Rather than forcefully steering toward a target, CoRect **removes inhibition** and lets the model's native generation capabilities produce the answer. This preserves fluency and generation quality.
+
+#### Hyperparameters
+
+| Parameter | QA Tasks | Summarization | Purpose |
+|-----------|----------|---------------|---------|
+| k | 10 | 5 | Number of final layers analyzed for CMI |
+| λ | 0.8-1.0 | 0.5 | Balance between CMI and attention grounding |
+| α | 1.0 | 1.0 | Rectification intensity (disinhibition) |
+
+---
+
+### 4. Label-Free Nature
+
+CoRect's label-free claim rests on the fact that it **never needs the ground-truth answer**:
+
+- Stage 1 selects a "trustworthy token" by contrasting the model's own contextualized vs. null-context logits, then verifying via attention. This is entirely self-supervised using the model's internal signals.
+- Stage 2 identifies suppressive layers by checking which FFN outputs negatively project onto the selected token's unembedding vector -- again requiring no oracle.
+
+The authors validate this claim by comparing their layer identification against ROME (which does require the ground-truth target). CoRect achieves **over 70% recall** relative to the critical layers identified by ROME, demonstrating that their unsupervised layer localization closely approximates the supervised gold-standard.
+
+---
+
+### 5. Main Results
+
+#### Question Answering (Exact Match %)
+
+Tested on 4 models across 6 datasets. Key results for **Qwen2.5-7b**:
+
+| Method | NQ | NQ-Swap | HotpotQA | TriviaQA | TabMWP | SQuAD | Avg |
+|--------|-----|---------|----------|----------|--------|-------|-----|
+| Greedy | 69.49 | 70.54 | 43.30 | 76.85 | 59.90 | 81.27 | 66.89 |
+| CAD | 67.28 | 79.37 | 40.31 | 76.75 | 58.90 | 84.43 | 67.84 |
+| COIECD | 59.87 | 78.56 | 41.90 | 80.75 | 64.35 | 88.90 | 69.06 |
+| AdaCAD | 68.54 | 73.14 | 43.82 | 76.90 | 60.00 | 81.20 | 67.27 |
+| **CoRect** | **72.74** | **80.15** | **45.67** | **79.60** | **70.60** | **88.93** | **72.95** |
+
+CoRect achieves the highest average across all four models:
+- Qwen2.5-7b: **72.95%** (vs. next best 69.06%)
+- LLaMA3-8b: **68.50%** (vs. next best 66.62%)
+- Mistral-7b: **59.03%** (vs. next best 51.53%)
+- LLaMA2-13b: **53.51%** (vs. next best 50.80%)
+
+#### Summarization (LLaMA-3-8b)
+
+| Method | CNN-DM AlignScore | XSum AlignScore | TofuEval AlignScore |
+|--------|-------------------|-----------------|---------------------|
+| Greedy | 91.48 | 77.65 | 43.65 |
+| CAD | 76.91 | 67.00 | 50.33 |
+| AdaCAD | 91.87 | 82.02 | 57.11 |
+| **CoRect** | **92.88** | **83.30** | **69.45** |
+
+Notably, CoRect improves AlignScore on TofuEval by **+12.34 points** over AdaCAD while maintaining or improving ROUGE-L and BERTScore-P (generation quality metrics), demonstrating it does not sacrifice fluency for factuality.
+
+#### Baselines Compared
+
+1. **Greedy**: Standard autoregressive decoding
+2. **CAD** (Context-Aware Decoding): Subtracts parametric prior logits from context-augmented logits at output
+3. **COIECD** (Contextual Information-Entropy Constrained Decoding): Uses entropy-based constraints between context-aware and prior distributions
+4. **AdaCAD**: Dynamically adjusts contrastive weights per-token using Jensen-Shannon divergence
+
+---
+
+### 6. Ablation Studies
+
+- **Token selection effectiveness**: Even with k=1 (single intervened layer), CoRect outperforms baselines, validating the robustness of the token selection strategy.
+- **Number of layers (k)**: QA peaks at k=10, summarization at k=5. Too many layers introduce noise.
+- **Attention filter (λ)**: QA benefits from higher λ (strong context grounding); summarization peaks at λ=0.5 (moderate attention avoids over-focusing).
+- **Rectification vs. direct decoding**: Simply selecting the target token t̃* and outputting it (direct decoding) underperforms hidden state rectification. Example: direct decoding produces "Ciff Richard" (typo) while rectification correctly generates "Cliff Richard" -- demonstrating the model's native generation capability is preserved and beneficial.
+- **Alpha sensitivity**: Performance peaks at α=1.0 (pure disinhibition); α>1 causes over-correction and degradation.
+
+---
+
+### 7. Limitations
+
+The authors acknowledge:
+- **Computational overhead**: Multi-pass inference and frequent residual stream access add latency. KV cache reuse mitigates some cost, but overhead remains versus vanilla decoding. No specific latency numbers are provided.
+- **Reasoning-heavy tasks**: Gains on multi-hop reasoning (HotpotQA) and table QA (TabMWP) are more modest than on straightforward factual QA, suggesting parametric suppression may interact differently with complex reasoning chains.
+
+---
+
+### 8. Key Contributions Summary
+
+1. **Discovery of parametric suppression / flip phenomenon**: 56% of knowledge conflict errors contain the correct answer internally but have it suppressed by deep FFN layers.
+2. **Label-free, training-free intervention**: CoRect localizes conflict-inducing layers without needing ground-truth targets, achieving 70%+ recall vs. ROME's supervised identification.
+3. **Mechanistic rather than surface-level correction**: By intervening inside the residual stream rather than at the output distribution, CoRect prevents the internal propagation of incorrect parametric information.
+4. **State-of-the-art results** across 6 QA datasets and 3 summarization datasets on 4 different model architectures.
+
+Sources:
+- [CoRect Abstract - arXiv](https://arxiv.org/abs/2602.08221)
+- [CoRect Full Paper HTML](https://arxiv.org/html/2602.08221)
+- [CoRect PDF](https://arxiv.org/pdf/2602.08221)
+- [AdaCAD: Adaptively Decoding to Balance Conflicts](https://arxiv.org/html/2409.07394v2)
+- [ParamMute: Suppressing Knowledge-Critical FFNs](https://arxiv.org/html/2502.15543)
+- [IRCAN: Mitigating Knowledge Conflicts via Context-Aware Neurons](https://arxiv.org/pdf/2406.18406)
+
+agentId: abc14f0c61e9cc65e (use SendMessage with to: 'abc14f0c61e9cc65e' to continue this agent)
+&lt;usage>total_tokens: 24599
+tool_uses: 9
+duration_ms: 191391&lt;/usage>
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "parentUuid": "8c2c1bf2-ae5c-41b9-9997-76aa760e10a1",
+  "isSidechain": false,
+  "promptId": "98cbd5c6-ab63-46c8-8e8f-c228e192ee75",
+  "type": "user",
+  "uuid": "7c75df8c-da6b-44a1-a7c8-c732b319c978",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "You are researching a paper for deep analysis. Use WebSearch and WebFetch to gather detailed information.\n\nPaper: \"CoRect: Context-Aware Logit Contrast for Hidden State Rectification to Resolve Knowledge Conflicts\" by Xuhua Ma, Richong Zhang, Zhijie Nie, arXiv 2026, https://arxiv.org/abs/2602.08221\n\nTasks:\n1. Fetch the arxiv abstract page to get the full abstract.\n2. Search for the full paper PDF or HTML version to understand the method section in detail.\n3. Look for any additional information about the \"flip phenomenon\" they discover - where correct answers appear at mid-layers but get suppressed by deep FFN layers.\n\nFor each source, extract:\n- The exact problem/gap they identified\n- Their key technical insight (especially the \"flip phenomenon\" and logit contrast method)\n- Their methodology: how they detect which layers cause suppression, how the rectification works\n- Their main results and baselines compared against\n- The label-free nature of their approach\n\nReport all findings in detail. Be thorough - I need specifics about their method.",
+    "agentId": "abc14f0c61e9cc65e",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "I now have comprehensive information about this paper. Here is my detailed report.\n\n---\n\n## CoRect: Context-Aware Logit Contrast for Hidden State Rectification to Resolve Knowledge Conflicts\n\n**Authors**: Xuhua Ma, Richong Zhang, Zhijie Nie\n**Published**: February 9, 2026, arXiv:2602.08221\n**License**: CC BY 4.0\n\n---\n\n### 1. Problem and Gap Identified\n\nCoRect addresses **knowledge conflicts in Retrieval-Augmented Generation (RAG)**: when retrieved evidence contradicts the model's parametric prior knowledge, LLMs tend to under-utilize the provided context and favor internally memorized (but incorrect) knowledge, leading to hallucinations and unfaithful outputs.\n\nThe authors identify two key limitations of existing approaches:\n\n- **Decoding-time interventions** (e.g., CAD, AdaCAD) treat the model as a black box and only adjust the final token distribution. They \"do not prevent intermediate representations from being progressively steered toward the parametric answer\" internally. The suppression happens deep inside the model, and these methods only paper over it at the output.\n\n- **Weight-editing methods** (e.g., ROME, MEMIT) can localize and correct knowledge at specific layers but **require the ground-truth target answer** to compute updates -- unrealistic for open-ended RAG scenarios where you do not know the correct answer in advance.\n\n---\n\n### 2. The Flip Phenomenon (Key Discovery)\n\nThrough **Logit Lens analysis** (projecting hidden states at each layer into vocabulary space via the unembedding matrix W_U), the authors analyzed 500 sampled Natural Questions cases involving knowledge conflicts and discovered:\n\n- **282 out of 500 cases (56.4%)** exhibited the \"flip phenomenon\" -- the gold answer reaches Rank 1 at some intermediate layer but is NOT the final prediction.\n\nThis decomposes into two distinct patterns:\n\n- **Middle Flip (154 cases)**: The gold answer surfaces and ranks first in intermediate layers but is progressively suppressed and lost in deeper layers. The correct information is present mid-network but gets overwritten.\n\n- **Last Layer Flip (128 cases)**: The gold answer remains dominant through nearly all layers but is suddenly suppressed at the very last projection layer.\n\nThe authors attribute both patterns to **\"parametric suppression\"**: certain deep FFN (feed-forward network) layers overwrite context-sensitive representations with memorized priors. The critical insight is: \"the model often possesses correct information internally but fails to manifest it in final generation.\" This motivates an intervention that surgically removes suppression rather than forcing an answer.\n\n---\n\n### 3. Methodology: CoRect in Detail\n\nCoRect operates in two stages, entirely at inference time, with **no training, no ground-truth labels, and no weight modification**.\n\n#### Stage 1: Trustworthy Token Selection\n\n**Dual forward passes:**\n1. **Contextualized pass**: Full input prompt with retrieved evidence, producing logits `z_l^(ctx)` at each layer l\n2. **Null context pass**: Only instruction tokens (no query context), producing logits `z_l^(null)`\n\n**Contextual Mutual Information (CMI) estimation:**\nFor each vocabulary token v at layer l:\n```\nS_info^(l)(v) = log P(v | z_l^(ctx)) - log P(v | z_l^(null))\n```\nThis measures how much the context boosts a token's likelihood vs. the model's prior. Scores are aggregated over the last k layers:\n```\nS̃_info(v) = (1/k) * Σ(l=L-k+1 to L) S_info^(l)(v)\n```\nThen sign-preserving max-normalized to produce `S_info^(total)(v)`.\n\n**Attention-Based Verification:**\nThe method identifies where token v appears in the input context, then computes a faithfulness score by aggregating attention mass from the final layer toward those positions:\n```\nS̃_attn^(L)(v) = (1/H) * Σ_h Σ_{j ∈ I(v)} A_{L,h}^(curr,j)\n```\nwhere H is the number of attention heads, I(v) is the set of positions where v appears in context, and A is the attention weight matrix.\n\n**Final target selection** combines both scores over the top-M candidates C:\n```\nt̃* = argmax_{v ∈ C} (S_info^(total)(v) + λ * S_attn^(L)(v))\n```\n\n#### Stage 2: Hidden State Rectification\n\n**Suppressive layer identification:**\nUsing the logit decomposition `z_L ≈ W_U h_0 + Σ W_U a_l + Σ W_U u_l` (where u_l is the FFN output at layer l and w_{t̃*} is the unembedding vector for the target token), layers whose FFN outputs actively suppress the target are identified:\n```\nL_supp = {l ∈ {1,...,L} | u_l^T * w_{t̃*} < 0}\n```\nA negative dot product means that layer's FFN is pushing the logit of the target token downward.\n\n**Rectification patch:**\nFor each suppressive layer, an additive correction is applied to the FFN output:\n```\nφ_l = -α * (u_l^T * w_{t̃*}) / ||w_{t̃*}||² * w_{t̃*}\n```\nThe modified hidden state becomes: `u_l ← u_l + φ_l`\n\n**The alpha parameter controls intervention intensity:**\n- α ∈ (0,1): Partial suppression removal\n- α = 1: Exact neutralization (\"disinhibition\") -- neutralizes the suppressive component exactly. This is optimal.\n- α > 1: Active promotion (overshoots, causes degradation)\n\nThe net logit change is mathematically guaranteed positive:\n```\nΔz_L(t̃*) = -α * Σ_{l ∈ L_supp} u_l^T * w_{t̃*} > 0\n```\n\n**Key design philosophy**: Rather than forcefully steering toward a target, CoRect **removes inhibition** and lets the model's native generation capabilities produce the answer. This preserves fluency and generation quality.\n\n#### Hyperparameters\n\n| Parameter | QA Tasks | Summarization | Purpose |\n|-----------|----------|---------------|---------|\n| k | 10 | 5 | Number of final layers analyzed for CMI |\n| λ | 0.8-1.0 | 0.5 | Balance between CMI and attention grounding |\n| α | 1.0 | 1.0 | Rectification intensity (disinhibition) |\n\n---\n\n### 4. Label-Free Nature\n\nCoRect's label-free claim rests on the fact that it **never needs the ground-truth answer**:\n\n- Stage 1 selects a \"trustworthy token\" by contrasting the model's own contextualized vs. null-context logits, then verifying via attention. This is entirely self-supervised using the model's internal signals.\n- Stage 2 identifies suppressive layers by checking which FFN outputs negatively project onto the selected token's unembedding vector -- again requiring no oracle.\n\nThe authors validate this claim by comparing their layer identification against ROME (which does require the ground-truth target). CoRect achieves **over 70% recall** relative to the critical layers identified by ROME, demonstrating that their unsupervised layer localization closely approximates the supervised gold-standard.\n\n---\n\n### 5. Main Results\n\n#### Question Answering (Exact Match %)\n\nTested on 4 models across 6 datasets. Key results for **Qwen2.5-7b**:\n\n| Method | NQ | NQ-Swap | HotpotQA | TriviaQA | TabMWP | SQuAD | Avg |\n|--------|-----|---------|----------|----------|--------|-------|-----|\n| Greedy | 69.49 | 70.54 | 43.30 | 76.85 | 59.90 | 81.27 | 66.89 |\n| CAD | 67.28 | 79.37 | 40.31 | 76.75 | 58.90 | 84.43 | 67.84 |\n| COIECD | 59.87 | 78.56 | 41.90 | 80.75 | 64.35 | 88.90 | 69.06 |\n| AdaCAD | 68.54 | 73.14 | 43.82 | 76.90 | 60.00 | 81.20 | 67.27 |\n| **CoRect** | **72.74** | **80.15** | **45.67** | **79.60** | **70.60** | **88.93** | **72.95** |\n\nCoRect achieves the highest average across all four models:\n- Qwen2.5-7b: **72.95%** (vs. next best 69.06%)\n- LLaMA3-8b: **68.50%** (vs. next best 66.62%)\n- Mistral-7b: **59.03%** (vs. next best 51.53%)\n- LLaMA2-13b: **53.51%** (vs. next best 50.80%)\n\n#### Summarization (LLaMA-3-8b)\n\n| Method | CNN-DM AlignScore | XSum AlignScore | TofuEval AlignScore |\n|--------|-------------------|-----------------|---------------------|\n| Greedy | 91.48 | 77.65 | 43.65 |\n| CAD | 76.91 | 67.00 | 50.33 |\n| AdaCAD | 91.87 | 82.02 | 57.11 |\n| **CoRect** | **92.88** | **83.30** | **69.45** |\n\nNotably, CoRect improves AlignScore on TofuEval by **+12.34 points** over AdaCAD while maintaining or improving ROUGE-L and BERTScore-P (generation quality metrics), demonstrating it does not sacrifice fluency for factuality.\n\n#### Baselines Compared\n\n1. **Greedy**: Standard autoregressive decoding\n2. **CAD** (Context-Aware Decoding): Subtracts parametric prior logits from context-augmented logits at output\n3. **COIECD** (Contextual Information-Entropy Constrained Decoding): Uses entropy-based constraints between context-aware and prior distributions\n4. **AdaCAD**: Dynamically adjusts contrastive weights per-token using Jensen-Shannon divergence\n\n---\n\n### 6. Ablation Studies\n\n- **Token selection effectiveness**: Even with k=1 (single intervened layer), CoRect outperforms baselines, validating the robustness of the token selection strategy.\n- **Number of layers (k)**: QA peaks at k=10, summarization at k=5. Too many layers introduce noise.\n- **Attention filter (λ)**: QA benefits from higher λ (strong context grounding); summarization peaks at λ=0.5 (moderate attention avoids over-focusing).\n- **Rectification vs. direct decoding**: Simply selecting the target token t̃* and outputting it (direct decoding) underperforms hidden state rectification. Example: direct decoding produces \"Ciff Richard\" (typo) while rectification correctly generates \"Cliff Richard\" -- demonstrating the model's native generation capability is preserved and beneficial.\n- **Alpha sensitivity**: Performance peaks at α=1.0 (pure disinhibition); α>1 causes over-correction and degradation.\n\n---\n\n### 7. Limitations\n\nThe authors acknowledge:\n- **Computational overhead**: Multi-pass inference and frequent residual stream access add latency. KV cache reuse mitigates some cost, but overhead remains versus vanilla decoding. No specific latency numbers are provided.\n- **Reasoning-heavy tasks**: Gains on multi-hop reasoning (HotpotQA) and table QA (TabMWP) are more modest than on straightforward factual QA, suggesting parametric suppression may interact differently with complex reasoning chains.\n\n---\n\n### 8. Key Contributions Summary\n\n1. **Discovery of parametric suppression / flip phenomenon**: 56% of knowledge conflict errors contain the correct answer internally but have it suppressed by deep FFN layers.\n2. **Label-free, training-free intervention**: CoRect localizes conflict-inducing layers without needing ground-truth targets, achieving 70%+ recall vs. ROME's supervised identification.\n3. **Mechanistic rather than surface-level correction**: By intervening inside the residual stream rather than at the output distribution, CoRect prevents the internal propagation of incorrect parametric information.\n4. **State-of-the-art results** across 6 QA datasets and 3 summarization datasets on 4 different model architectures.\n\nSources:\n- [CoRect Abstract - arXiv](https://arxiv.org/abs/2602.08221)\n- [CoRect Full Paper HTML](https://arxiv.org/html/2602.08221)\n- [CoRect PDF](https://arxiv.org/pdf/2602.08221)\n- [AdaCAD: Adaptively Decoding to Balance Conflicts](https://arxiv.org/html/2409.07394v2)\n- [ParamMute: Suppressing Knowledge-Critical FFNs](https://arxiv.org/html/2502.15543)\n- [IRCAN: Mitigating Knowledge Conflicts via Context-Aware Neurons](https://arxiv.org/pdf/2406.18406)"
+      }
+    ],
+    "totalDurationMs": 191391,
+    "totalTokens": 24599,
+    "totalToolUseCount": 9,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2616,
+      "cache_read_input_tokens": 18649,
+      "output_tokens": 3333,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2616
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3333,
+          "cache_read_input_tokens": 18649,
+          "cache_creation_input_tokens": 2616,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2616,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 9
+    }
+  },
+  "sourceToolAssistantUUID": "8c2c1bf2-ae5c-41b9-9997-76aa760e10a1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "9caa965a-b7bd-4c0e-9c96-921fcec5e116",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-30T06:22:45.601Z_
+
+<details><summary>↩ Tool result · `toolu_01PjXjnX3D1xgDKT1Na4xSh7`</summary>
+
+```text
+I now have comprehensive information including the OpenReview reviews. Let me compile the full report.
+
+---
+
+## Deep Analysis: ParamMute - Suppressing Knowledge-Critical FFNs for Faithful Retrieval-Augmented Generation
+
+**Authors:** Pengcheng Huang, Zhenghao Liu, Yukun Yan, Haiyan Zhao, Xiaoyuan Yi, Hao Chen, Zhiyuan Liu, Maosong Sun, Tong Xiao, Ge Yu, Chenyan Xiong
+**Venue:** NeurIPS 2025 (Accepted as Poster), presented December 5, 2025, San Diego
+**arXiv:** 2502.15543 (v3, June 21, 2025) | **OpenReview:** CyUq9D99vE
+**Code:** https://github.com/OpenBMB/ParamMute | **Models:** ParamMute-8B-SFT and ParamMute-8B-KTO on HuggingFace
+
+---
+
+### 1. Problem and Gap Identified
+
+The paper targets **unfaithful generation in RAG systems** -- the phenomenon where LLMs produce outputs that contradict accurate retrieved evidence, instead relying on their internal parametric knowledge. The key gap they identify is that existing approaches (advanced prompting, context-aware decoding, fine-tuning) focus on enhancing the model's ability to *incorporate* external evidence, but **overlook the persistent influence of internal parametric knowledge** as a root cause. As the authors state: "Recent approaches primarily seek to improve contextual faithfulness by enhancing the model's ability to incorporate external evidence -- either through advanced prompting strategies or context-aware decoding techniques. However, these externally focused methods often overlook the role of internal knowledge in undermining generation faithfulness."
+
+The contribution is to shift from an external-context-enhancement paradigm to an **internal-knowledge-suppression** paradigm.
+
+---
+
+### 2. Key Technical Insight: Which FFN Layers Cause Unfaithful RAG
+
+The central mechanistic finding is that **mid-to-deep FFN layers (at approximately 70-90% of relative model depth, e.g., layers 20-29 in LLaMA3-8B's 32 layers) exhibit disproportionately high activation during unfaithful generation**. These are termed **Unfaithfulness-Associated FFNs (UA-FFNs)**.
+
+The theoretical grounding is that FFNs in Transformer-based LLMs function as **key-value memory mechanisms** that store parametric knowledge. When these specific mid-to-deep FFN layers activate excessively during generation, the model defaults to its memorized internal knowledge rather than following the retrieved context.
+
+Statistical analysis confirmed a positive correlation (p-value < 0.05) between activation ratios in these layers and unfaithfulness. Causal intervention experiments verified that suppressing UA-FFNs increases the negative log-likelihood on unfaithful data, confirming their causal role.
+
+---
+
+### 3. Methodology in Detail
+
+ParamMute has three core components:
+
+#### 3a. Identifying UA-FFNs
+
+The **activation ratio** for layer l is defined as:
+
+R^l(x) = (1/d_m) * sum( I[a_ij^l] )
+
+where a_ij^l = sigma(x_i^l . k_j^l) is the activation of neuron j at layer l, and I[.] is the indicator function (1 if activation > 0). This measures what fraction of neurons fire.
+
+The **activation gap** ranks layers by: Delta_R^l = E[R^l | unfaithful] - E[R^l | faithful]
+
+The top-N layers with the largest gap are selected as UA-FFNs for suppression. In the experiments, N=8 layers were selected.
+
+#### 3b. Activation Suppression
+
+A soft suppression mechanism modifies the FFN computation for identified layers:
+
+FFN^l(x) = (lambda . sigma(K^l x))^T V^l, for l in L_sup
+
+where lambda in [0,1] is the suppression coefficient. When lambda=0, the FFN is fully deactivated; when lambda=1, normal behavior is restored. This is a **plug-and-play mechanism** -- lambda can be dynamically adjusted at inference time to trade off between RAG faithfulness and closed-book performance.
+
+#### 3c. Knowledge-Augmented Adaptation (Knowledge Preference Calibration)
+
+This consists of a two-objective training loss:
+
+**L = alpha * L_KAT + beta * L_KPO**
+
+- **Knowledge-Augmented Training (L_KAT):** Standard supervised fine-tuning loss that maximizes the likelihood of the ground-truth answer given query and context: L_KAT = -log P(y* | q, c)
+
+- **Knowledge Preference Optimization (L_KPO):** A max-margin loss that explicitly encourages the model to prefer contextual answers over parametric answers: L_KPO = [gamma - log P(y* | q, c) + log P(y* | q)]+ where gamma is a margin parameter. This forces a gap between the probability of generating the correct answer *with* context versus *without* context, calibrating the model's knowledge usage preference toward external evidence.
+
+In experiments: alpha=0.5, beta=0.5, lambda=0.0 (full suppression).
+
+---
+
+### 4. CoFaithfulQA Benchmark
+
+The authors created **CoFaithfulQA** (also referred to as CoConflictQA in the GitHub repo), a benchmark specifically designed to evaluate faithfulness when the model's parametric knowledge conflicts with accurate external evidence. Key characteristics:
+
+- **Source:** Six QA datasets (NQ, SQuAD, NewsQA, TriviaQA, SearchQA, HotpotQA)
+- **Size:** 52,682 instances (deduplicated); 23,988 faithful and 8,318 unfaithful samples
+- **Construction pipeline:** Two-stage process using self-consistency filtering to extract parametric knowledge, then multi-model verification (GPT-4o + GLM-4-plus) for conflict detection
+- **Key distinction from ConFiQA:** Uses realistic knowledge conflicts rather than purely synthetic counterfactuals
+
+---
+
+### 5. Main Results and Improvements Over Baselines
+
+**Evaluation Metrics:**
+- **ConR** (Context Recall, higher is better): Alignment with provided context
+- **MemR** (Memory Recall, lower is better): Reliance on parametric knowledge
+- **MR** (Memorization Ratio, lower is better) = MemR / (MemR + ConR)
+
+**Backbone:** LLaMA3-8B-Instruct for all methods.
+
+**Baselines (4 categories):**
+1. Prompt-based: AttrPrompt, O&IPrompt
+2. Decoding-based: COIECD
+3. Fine-tuning: SFT, KAFT
+4. Alignment: C-DPO, DDR
+
+#### CoFaithfulQA Results:
+- **+5% ConR improvement** vs. vanilla RAG
+- **-4% MemR reduction** vs. vanilla RAG
+- Memorization Ratio across datasets: 7.12-10.19 (ParamMute) vs. 8.01-15.66 (vanilla RAG)
+- Example on SearchQA: ConR=78.76, MemR=6.04, MR=7.12 (best across all metrics)
+
+#### ConFiQA Generalization (out-of-domain):
+- Question Answering: ConR=81.20, MemR=3.69, MR=4.35
+- Multi-hop Reasoning: ConR=63.09, MemR=12.82, MR=16.89
+- Multi-Conflicts: ConR=65.20, MemR=9.29, MR=12.47
+- Significant improvements over C-DPO and DDR across all subsets.
+
+#### Ablation Results:
+- **FFN suppression outperforms alternatives:** FFN suppression (ConR=69.54, MR=8.34) vs. MHA suppression (68.35, 9.23) vs. full layer suppression (62.52, 8.92) vs. parameter suppression (68.71, 8.85)
+- **UA-FFN selection matters:** UA-FFNs (ConR=69.54) vs. bottom layers (62.29) vs. mid layers (67.11) vs. random layers (67.65)
+- **Both components contribute:** Without suppression: MemR rises from 6.18 to 7.01; Without adaptation: ConR drops from 69.54 to 68.57
+
+---
+
+### 6. OpenReview Reviews (NeurIPS 2025)
+
+**Decision: Accept (Poster)**
+
+**Reviewer EqkC -- Rating: 5/5:**
+- Praised clear writing and the novel analysis of mid-to-deep FFN layer activation during unfaithful generation
+- Questioned CoFaithfulQA's distinction from the ConFiQA benchmark
+- Asked whether UA-FFN selection remains consistent across datasets and models
+
+**Reviewer MDE9 -- Rating: 4/5:**
+- Requested statistical significance testing for performance gains
+- Requested accuracy metrics alongside faithfulness measures
+- Requested qualitative failure case analysis
+
+**Reviewer 4WNi -- Rating: 4/5:**
+- Concerned about evaluation being limited to perfect retrieval scenarios (what about noisy retrieval?)
+- Asked about performance degradation in non-RAG closed-book settings
+- Requested sensitivity analysis for the suppression coefficient lambda with error bars
+
+**Reviewer iu2z -- Rating: 4/5:**
+- Acknowledged novelty in the FFN identification mechanism
+- Noted the training components (KAT, KPO) are "intuitive rather than novel"
+- Requested analysis of parametric knowledge loss on non-contextual tasks (math, GPQA)
+
+**Key Author Rebuttals:**
+- Demonstrated UA-FFN patterns are consistent across larger models (LLaMA3-70B, Qwen2.5-32B)
+- Provided statistical significance testing showing improvements at p<0.05
+- Evaluated on noisy retrieval (top-2 retrieved passages) successfully
+- Showed flexible lambda parameter enables recovery of performance in non-RAG tasks (addressing the closed-book concern)
+- Added FaithEval benchmark evaluation results
+- Included qualitative failure case categorization
+
+**Ethics flag:** The paper was flagged for ethics review. Authors acknowledged potential misuse risks (fact-hiding, bias reinforcement) and committed to responsible deployment guidelines emphasizing RAG-specific design and transparent usage restrictions.
+
+---
+
+### Summary of Key Contributions
+
+1. **Mechanistic insight:** Mid-to-deep FFNs (70-90% depth) are causally responsible for unfaithful RAG generation due to their role as parametric knowledge repositories
+2. **ParamMute framework:** A three-part method combining (a) data-driven UA-FFN identification, (b) soft activation suppression with tunable lambda, and (c) knowledge preference calibration via KAT+KPO losses
+3. **CoFaithfulQA benchmark:** A realistic evaluation suite with 52K+ instances from 6 QA datasets for measuring faithfulness under knowledge conflicts
+4. **Plug-and-play design:** The suppression coefficient lambda allows dynamic trading off between RAG faithfulness and closed-book capability at inference time
+
+Sources:
+- [arXiv Abstract Page](https://arxiv.org/abs/2502.15543)
+- [Full Paper HTML](https://arxiv.org/html/2502.15543v3)
+- [OpenReview Forum](https://openreview.net/forum?id=CyUq9D99vE)
+- [GitHub Repository (OpenBMB/ParamMute)](https://github.com/OpenBMB/ParamMute)
+- [NeurIPS 2025 Poster Page](https://neurips.cc/virtual/2025/poster/119254)
+- [HuggingFace Model (ParamMute-8B-SFT)](https://huggingface.co/chengpingan/ParamMute-8B-SFT)
+- [Semantic Scholar Entry](https://www.semanticscholar.org/paper/ParamMute:-Suppressing-Knowledge-Critical-FFNs-for-Huang-Liu/b17978c9f60bd857a87ee1967ca4939b8e68c868)
+
+agentId: a417ad0e5bfe25c04 (use SendMessage with to: 'a417ad0e5bfe25c04' to continue this agent)
+&lt;usage>total_tokens: 25753
+tool_uses: 19
+duration_ms: 192171&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ac51e946-c53e-4430-8f59-8b77f30a3c67",
+  "isSidechain": false,
+  "promptId": "98cbd5c6-ab63-46c8-8e8f-c228e192ee75",
+  "type": "user",
+  "uuid": "17b7f5b1-678e-4be1-8756-a551d18243bf",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "You are researching a paper for deep analysis. Use WebSearch and WebFetch to gather detailed information.\n\nPaper: \"ParamMute: Suppressing Knowledge-Critical FFNs for Faithful Retrieval-Augmented Generation\" by Pengcheng Huang et al., NeurIPS 2025, https://arxiv.org/abs/2502.15543\n\nTasks:\n1. Fetch the arxiv abstract page to get the full abstract.\n2. Search for the OpenReview page for this paper (search \"ParamMute Suppressing Knowledge-Critical FFNs openreview NeurIPS 2025\").\n3. Search for any detailed summaries or blog posts about this paper.\n\nFor each source, extract:\n- The exact problem/gap they identified\n- Their key technical insight about which FFN layers cause unfaithful RAG generation\n- Their methodology: how they identify knowledge-critical FFNs, how suppression works, what \"knowledge preference calibration\" means\n- Their main results and improvements over baselines\n- Any reviewer comments from OpenReview\n\nReport all findings in detail. Be thorough - I need specifics about their method.",
+    "agentId": "a417ad0e5bfe25c04",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "I now have comprehensive information including the OpenReview reviews. Let me compile the full report.\n\n---\n\n## Deep Analysis: ParamMute - Suppressing Knowledge-Critical FFNs for Faithful Retrieval-Augmented Generation\n\n**Authors:** Pengcheng Huang, Zhenghao Liu, Yukun Yan, Haiyan Zhao, Xiaoyuan Yi, Hao Chen, Zhiyuan Liu, Maosong Sun, Tong Xiao, Ge Yu, Chenyan Xiong\n**Venue:** NeurIPS 2025 (Accepted as Poster), presented December 5, 2025, San Diego\n**arXiv:** 2502.15543 (v3, June 21, 2025) | **OpenReview:** CyUq9D99vE\n**Code:** https://github.com/OpenBMB/ParamMute | **Models:** ParamMute-8B-SFT and ParamMute-8B-KTO on HuggingFace\n\n---\n\n### 1. Problem and Gap Identified\n\nThe paper targets **unfaithful generation in RAG systems** -- the phenomenon where LLMs produce outputs that contradict accurate retrieved evidence, instead relying on their internal parametric knowledge. The key gap they identify is that existing approaches (advanced prompting, context-aware decoding, fine-tuning) focus on enhancing the model's ability to *incorporate* external evidence, but **overlook the persistent influence of internal parametric knowledge** as a root cause. As the authors state: \"Recent approaches primarily seek to improve contextual faithfulness by enhancing the model's ability to incorporate external evidence -- either through advanced prompting strategies or context-aware decoding techniques. However, these externally focused methods often overlook the role of internal knowledge in undermining generation faithfulness.\"\n\nThe contribution is to shift from an external-context-enhancement paradigm to an **internal-knowledge-suppression** paradigm.\n\n---\n\n### 2. Key Technical Insight: Which FFN Layers Cause Unfaithful RAG\n\nThe central mechanistic finding is that **mid-to-deep FFN layers (at approximately 70-90% of relative model depth, e.g., layers 20-29 in LLaMA3-8B's 32 layers) exhibit disproportionately high activation during unfaithful generation**. These are termed **Unfaithfulness-Associated FFNs (UA-FFNs)**.\n\nThe theoretical grounding is that FFNs in Transformer-based LLMs function as **key-value memory mechanisms** that store parametric knowledge. When these specific mid-to-deep FFN layers activate excessively during generation, the model defaults to its memorized internal knowledge rather than following the retrieved context.\n\nStatistical analysis confirmed a positive correlation (p-value < 0.05) between activation ratios in these layers and unfaithfulness. Causal intervention experiments verified that suppressing UA-FFNs increases the negative log-likelihood on unfaithful data, confirming their causal role.\n\n---\n\n### 3. Methodology in Detail\n\nParamMute has three core components:\n\n#### 3a. Identifying UA-FFNs\n\nThe **activation ratio** for layer l is defined as:\n\nR^l(x) = (1/d_m) * sum( I[a_ij^l] )\n\nwhere a_ij^l = sigma(x_i^l . k_j^l) is the activation of neuron j at layer l, and I[.] is the indicator function (1 if activation > 0). This measures what fraction of neurons fire.\n\nThe **activation gap** ranks layers by: Delta_R^l = E[R^l | unfaithful] - E[R^l | faithful]\n\nThe top-N layers with the largest gap are selected as UA-FFNs for suppression. In the experiments, N=8 layers were selected.\n\n#### 3b. Activation Suppression\n\nA soft suppression mechanism modifies the FFN computation for identified layers:\n\nFFN^l(x) = (lambda . sigma(K^l x))^T V^l, for l in L_sup\n\nwhere lambda in [0,1] is the suppression coefficient. When lambda=0, the FFN is fully deactivated; when lambda=1, normal behavior is restored. This is a **plug-and-play mechanism** -- lambda can be dynamically adjusted at inference time to trade off between RAG faithfulness and closed-book performance.\n\n#### 3c. Knowledge-Augmented Adaptation (Knowledge Preference Calibration)\n\nThis consists of a two-objective training loss:\n\n**L = alpha * L_KAT + beta * L_KPO**\n\n- **Knowledge-Augmented Training (L_KAT):** Standard supervised fine-tuning loss that maximizes the likelihood of the ground-truth answer given query and context: L_KAT = -log P(y* | q, c)\n\n- **Knowledge Preference Optimization (L_KPO):** A max-margin loss that explicitly encourages the model to prefer contextual answers over parametric answers: L_KPO = [gamma - log P(y* | q, c) + log P(y* | q)]+ where gamma is a margin parameter. This forces a gap between the probability of generating the correct answer *with* context versus *without* context, calibrating the model's knowledge usage preference toward external evidence.\n\nIn experiments: alpha=0.5, beta=0.5, lambda=0.0 (full suppression).\n\n---\n\n### 4. CoFaithfulQA Benchmark\n\nThe authors created **CoFaithfulQA** (also referred to as CoConflictQA in the GitHub repo), a benchmark specifically designed to evaluate faithfulness when the model's parametric knowledge conflicts with accurate external evidence. Key characteristics:\n\n- **Source:** Six QA datasets (NQ, SQuAD, NewsQA, TriviaQA, SearchQA, HotpotQA)\n- **Size:** 52,682 instances (deduplicated); 23,988 faithful and 8,318 unfaithful samples\n- **Construction pipeline:** Two-stage process using self-consistency filtering to extract parametric knowledge, then multi-model verification (GPT-4o + GLM-4-plus) for conflict detection\n- **Key distinction from ConFiQA:** Uses realistic knowledge conflicts rather than purely synthetic counterfactuals\n\n---\n\n### 5. Main Results and Improvements Over Baselines\n\n**Evaluation Metrics:**\n- **ConR** (Context Recall, higher is better): Alignment with provided context\n- **MemR** (Memory Recall, lower is better): Reliance on parametric knowledge\n- **MR** (Memorization Ratio, lower is better) = MemR / (MemR + ConR)\n\n**Backbone:** LLaMA3-8B-Instruct for all methods.\n\n**Baselines (4 categories):**\n1. Prompt-based: AttrPrompt, O&IPrompt\n2. Decoding-based: COIECD\n3. Fine-tuning: SFT, KAFT\n4. Alignment: C-DPO, DDR\n\n#### CoFaithfulQA Results:\n- **+5% ConR improvement** vs. vanilla RAG\n- **-4% MemR reduction** vs. vanilla RAG\n- Memorization Ratio across datasets: 7.12-10.19 (ParamMute) vs. 8.01-15.66 (vanilla RAG)\n- Example on SearchQA: ConR=78.76, MemR=6.04, MR=7.12 (best across all metrics)\n\n#### ConFiQA Generalization (out-of-domain):\n- Question Answering: ConR=81.20, MemR=3.69, MR=4.35\n- Multi-hop Reasoning: ConR=63.09, MemR=12.82, MR=16.89\n- Multi-Conflicts: ConR=65.20, MemR=9.29, MR=12.47\n- Significant improvements over C-DPO and DDR across all subsets.\n\n#### Ablation Results:\n- **FFN suppression outperforms alternatives:** FFN suppression (ConR=69.54, MR=8.34) vs. MHA suppression (68.35, 9.23) vs. full layer suppression (62.52, 8.92) vs. parameter suppression (68.71, 8.85)\n- **UA-FFN selection matters:** UA-FFNs (ConR=69.54) vs. bottom layers (62.29) vs. mid layers (67.11) vs. random layers (67.65)\n- **Both components contribute:** Without suppression: MemR rises from 6.18 to 7.01; Without adaptation: ConR drops from 69.54 to 68.57\n\n---\n\n### 6. OpenReview Reviews (NeurIPS 2025)\n\n**Decision: Accept (Poster)**\n\n**Reviewer EqkC -- Rating: 5/5:**\n- Praised clear writing and the novel analysis of mid-to-deep FFN layer activation during unfaithful generation\n- Questioned CoFaithfulQA's distinction from the ConFiQA benchmark\n- Asked whether UA-FFN selection remains consistent across datasets and models\n\n**Reviewer MDE9 -- Rating: 4/5:**\n- Requested statistical significance testing for performance gains\n- Requested accuracy metrics alongside faithfulness measures\n- Requested qualitative failure case analysis\n\n**Reviewer 4WNi -- Rating: 4/5:**\n- Concerned about evaluation being limited to perfect retrieval scenarios (what about noisy retrieval?)\n- Asked about performance degradation in non-RAG closed-book settings\n- Requested sensitivity analysis for the suppression coefficient lambda with error bars\n\n**Reviewer iu2z -- Rating: 4/5:**\n- Acknowledged novelty in the FFN identification mechanism\n- Noted the training components (KAT, KPO) are \"intuitive rather than novel\"\n- Requested analysis of parametric knowledge loss on non-contextual tasks (math, GPQA)\n\n**Key Author Rebuttals:**\n- Demonstrated UA-FFN patterns are consistent across larger models (LLaMA3-70B, Qwen2.5-32B)\n- Provided statistical significance testing showing improvements at p<0.05\n- Evaluated on noisy retrieval (top-2 retrieved passages) successfully\n- Showed flexible lambda parameter enables recovery of performance in non-RAG tasks (addressing the closed-book concern)\n- Added FaithEval benchmark evaluation results\n- Included qualitative failure case categorization\n\n**Ethics flag:** The paper was flagged for ethics review. Authors acknowledged potential misuse risks (fact-hiding, bias reinforcement) and committed to responsible deployment guidelines emphasizing RAG-specific design and transparent usage restrictions.\n\n---\n\n### Summary of Key Contributions\n\n1. **Mechanistic insight:** Mid-to-deep FFNs (70-90% depth) are causally responsible for unfaithful RAG generation due to their role as parametric knowledge repositories\n2. **ParamMute framework:** A three-part method combining (a) data-driven UA-FFN identification, (b) soft activation suppression with tunable lambda, and (c) knowledge preference calibration via KAT+KPO losses\n3. **CoFaithfulQA benchmark:** A realistic evaluation suite with 52K+ instances from 6 QA datasets for measuring faithfulness under knowledge conflicts\n4. **Plug-and-play design:** The suppression coefficient lambda allows dynamic trading off between RAG faithfulness and closed-book capability at inference time\n\nSources:\n- [arXiv Abstract Page](https://arxiv.org/abs/2502.15543)\n- [Full Paper HTML](https://arxiv.org/html/2502.15543v3)\n- [OpenReview Forum](https://openreview.net/forum?id=CyUq9D99vE)\n- [GitHub Repository (OpenBMB/ParamMute)](https://github.com/OpenBMB/ParamMute)\n- [NeurIPS 2025 Poster Page](https://neurips.cc/virtual/2025/poster/119254)\n- [HuggingFace Model (ParamMute-8B-SFT)](https://huggingface.co/chengpingan/ParamMute-8B-SFT)\n- [Semantic Scholar Entry](https://www.semanticscholar.org/paper/ParamMute:-Suppressing-Knowledge-Critical-FFNs-for-Huang-Liu/b17978c9f60bd857a87ee1967ca4939b8e68c868)"
+      }
+    ],
+    "totalDurationMs": 192171,
+    "totalTokens": 25753,
+    "totalToolUseCount": 19,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2559,
+      "cache_read_input_tokens": 20186,
+      "output_tokens": 3007,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2559
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3007,
+          "cache_read_input_tokens": 20186,
+          "cache_creation_input_tokens": 2559,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2559,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 19
+    }
+  },
+  "sourceToolAssistantUUID": "ac51e946-c53e-4430-8f59-8b77f30a3c67",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "9caa965a-b7bd-4c0e-9c96-921fcec5e116",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML researcher performing deep analysis of multiple published papers.  **Today's date: 2026-05-30 (UTC).**  ## Research context  We are generating ideas in the area of: **Target: AAAI…",
+  "leafUuid": "17b7f5b1-678e-4be1-8756-a551d18243bf",
+  "sessionId": "9caa965a-b7bd-4c0e-9c96-921fcec5e116"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Trace RAG evidence override circuit in LLMs",
+  "sessionId": "9caa965a-b7bd-4c0e-9c96-921fcec5e116"
+}
+```
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-30T06:22:52.465Z_
+
+<details><summary>↩ Tool result · `toolu_01VNtapKz6KdGNb1BW4UYeZA`</summary>
+
+```text
+Now I have comprehensive information from multiple sources. Let me compile the full detailed report.
+
+---
+
+# Deep Analysis: "Retrieval Head Mechanistically Explains Long-Context Factuality"
+
+**Authors:** Wenhao Wu, Yizhong Wang, Guangxuan Xiao, Hao Peng, Yao Fu
+**Venue:** ICLR 2025 (Oral), arXiv:2404.15574, submitted April 24, 2024
+
+---
+
+## 1. Problem / Gap Identified
+
+The paper addresses a fundamental open question in mechanistic interpretability: **how do transformer-based LLMs retrieve relevant information from arbitrary positions within a long input context?** Long-context models (128K+ tokens) can perform factual retrieval, but the internal mechanism enabling this was unknown. Prior work on attention heads focused on phenomena like induction heads (for in-context learning) but had not identified the specific attention heads responsible for long-range factual retrieval. There was no mechanistic explanation for why models sometimes hallucinate in long-context settings, nor why certain architectures (e.g., linear attention, state-space models) fail the Needle-in-a-Haystack (NIAH) test. The authors frame this as: we know *that* models retrieve, but not *how* or *which components* are responsible.
+
+---
+
+## 2. Key Technical Insight
+
+The authors discover that a small, sparse subset of attention heads -- which they dub **"retrieval heads"** -- implement a **conditional copy-paste algorithm**. These heads attend to a token in the input context and directly copy it to the output during autoregressive decoding. The core insight is that:
+
+- These heads are **sparse** (fewer than 5% of all attention heads),
+- They are **universal** (present across all model families tested),
+- They are **intrinsic** (already present in short-context pretrained models; long-context fine-tuning does not create new ones but reuses the same set), and
+- They are **causally necessary** (removing them causes hallucination; removing random non-retrieval heads does not).
+
+This marks a significant advance in mechanistic interpretability: for the first time, a specific sub-network implementing the conditional retrieval algorithm was pinpointed.
+
+---
+
+## 3. Methodology in Detail
+
+### 3.1 Retrieval Score Definition
+
+The fundamental metric is the **retrieval score**, which measures the frequency of a head's copy-paste behavior during autoregressive decoding. Formally, a head performs a "copy-paste" operation when two conditions hold simultaneously:
+
+1. The generated token *w* belongs to the target answer set.
+2. The input token receiving the **maximum attention probability** from that head matches *w* and originates from the correct target location in the input.
+
+The retrieval score is then:
+
+**Retrieval Score = |tokens_copied intersect target| / |target|**
+
+This is essentially the **token-level recall rate** of the most-attended tokens by an attention head.
+
+### 3.2 Detection Procedure
+
+1. **Dataset Construction:** Three diverse needle-in-a-haystack datasets are created with unique (question, answer, context) tuples. Critically, the answers are **semantically irrelevant** to the surrounding haystack context and **unanswerable from model knowledge alone**, ensuring that correct generation must come from input retrieval rather than parametric memory. The initial 3 manually-written needles were expanded to 100 synthetic examples spanning 10 topics with 1,200 unique tokens.
+
+2. **Scale of Testing:** Approximately 600 test instances per model:
+   - 20 different context lengths uniformly sampled from 1K to 50K tokens
+   - 10 different needle insertion depths per length
+   - Multiple random position insertions
+
+3. **Score Aggregation:** Retrieval scores are averaged across all instances to obtain the final head ranking. The authors note the score **converges after just a few samples**, confirming stability.
+
+4. **Threshold:** Heads with retrieval score >= 0.1 are classified as retrieval heads (meaning they copy-paste at least 10% of the time).
+
+### 3.3 Models Studied
+
+The study covers **four model families** across **six scales** and **three types of post-training variants**:
+
+- **Families:** LLaMA, Mistral, Yi, Qwen
+- **Scales:** 6B, 7B, 13B, 14B, 34B parameters; 8x7B MoE (Mixtral)
+- **Variants:** Base pretrained models, length-extended versions via continued pretraining (LLaMA-2 7B extended to 80K, Yi-6B extended to 200K), instruction-tuned variants (Mistral-Instruct, Qwen-Chat), sparse upcycled models (Mixtral-8x7B), and the hybrid state-space + attention model **Jamba**
+
+### 3.4 Experiments
+
+**A. Retrieval Head Identification:** Full NIAH pipeline on all models to establish retrieval score distributions. Key finding: 3-6% of heads have scores > 0.1; 45-73% have zero retrieval score.
+
+**B. Ablation/Pruning Studies:** Progressive masking of the top-K retrieval heads vs. K random non-retrieval heads. Masking top 50 retrieval heads (~5% of total) drops NIAH performance below 50%. Masking the top 20 retrieval heads in LLaMA-2 7B drops accuracy to 63.6%, while masking 20 random non-retrieval heads yields 94.7%.
+
+**C. Error Taxonomy under Progressive Masking:**
+- Masking heads with scores > 0.4: **Incomplete retrieval** (partial information captured)
+- Further masking: **Hallucination** (fluent but factually incorrect generation, e.g., "go to the beach," triggered by attention sink to initial tokens)
+- Intermediate: **Wrong extraction** (attending to incorrect context sections)
+
+**D. Downstream Task Evaluation:**
+- *Extractive QA:* Synthesized from recent news articles with GPT-4-generated question-answer pairs. Removing retrieval heads caused **9.2-23.1% F1 reduction**.
+- *Chain-of-thought reasoning:* Tested on MMLU, MuSiQue, GSM8K with and without explicit CoT prompting. **CoT tasks are significantly degraded** by retrieval head masking; answer-only tasks (relying on parametric knowledge in FFN layers) are minimally affected.
+
+**E. Intrinsic Property Analysis (Cross-model correlations):** Pearson correlation between retrieval score distributions of same-family variants exceeds 0.8. Different-family models show < 0.1 correlation. This proves retrieval heads are **intrinsic to the pretraining recipe**, not created by length extension.
+
+**F. Dynamic Activation Analysis:** Two metrics distinguish head types:
+- **Always-Active Heads:** High retrieval score (> 0.5), activation frequency approximately 1.0 across all contexts. In LLaMA-2 7B-80K, exactly 12 heads are always activated.
+- **Context-Sensitive Heads:** Lower activation frequency; activate selectively depending on specific tokens/information needed.
+
+**G. Jamba (Hybrid Architecture) Results:** Masking top retrieval heads causes dramatic drops (100% -> 3.5% accuracy at 100 masked heads), compared to modest decline from masking random heads (100% -> 9.0%). This confirms the phenomenon extends beyond pure transformer architectures.
+
+---
+
+## 4. Main Results and Claims
+
+1. **Universality:** Retrieval heads exist in every long-context-capable model examined, across all four families, all scales, and all training variants.
+
+2. **Sparsity:** Fewer than 5% of attention heads are retrieval heads.
+
+3. **Intrinsicness:** The same heads that retrieve in short-context base models continue to retrieve after long-context fine-tuning. Context extension does not create new retrieval heads.
+
+4. **Causal Necessity:** Ablating retrieval heads causes hallucination and retrieval failure. Ablating equivalent numbers of non-retrieval heads has negligible effect.
+
+5. **CoT Dependency:** Chain-of-thought reasoning depends heavily on retrieval heads (the model must repeatedly refer back to the question and prior context during multi-step reasoning), while direct answer generation using intrinsic/parametric knowledge does not.
+
+6. **Architectural Constraint:** No linear attention or SSM architecture passes the NIAH test, suggesting full attention is a prerequisite for arbitrary-position retrieval. However, hybrid models like Jamba (which include some full-attention layers) do contain retrieval heads.
+
+7. **Implications for KV Cache:** Retrieval heads require access to the entire KV cache; compressing the KV cache of retrieval heads will degrade long-context performance. This has already spawned follow-up work (RazorAttention, DuoAttention).
+
+---
+
+## 5. OpenReview Reviewer Feedback (ICLR 2025)
+
+**Decision:** Accept (Oral)
+
+**Scores:** All four reviewers gave **8/10**.
+
+| Reviewer | Rating | Confidence | Key Assessment |
+|----------|--------|------------|----------------|
+| Br4p | 8 | 4/4 | Well-written with extensive experiments across model families |
+| ZPPp | 8 | 3/4 | Sound methodology; concerns about benchmark diversity addressed |
+| F46b | 8 | 2/4 | Thorough analysis with clear presentation |
+| xfgX | 8 | 4/4 | Original contribution; properties extend to paraphrasing tasks |
+
+**Meta-Review:** "All reviewers agree on accepting this paper based on its soundness and novelty. Concerns have been generally addressed in the rebuttal."
+
+### Reviewer Praise (Strengths)
+- **Clear, well-scoped research question:** "How do transformers acquire long-context capabilities?" is systematically and rigorously addressed.
+- **Extensive experiments:** Coverage across LLaMA, Yi, Qwen, Mistral at scales 6B-56B, including MoE and hybrid architectures, provides strong evidence for universality claims.
+- **Novel methodology:** The retrieval score metric is a simple but effective way to identify copy-paste behavior.
+- **Strong empirical validation:** Properties validated across NIAH, extractive QA, paraphrasing, and chain-of-thought tasks.
+
+### Reviewer Criticisms (Weaknesses)
+
+1. **Missing experimental details:** Reviewers flagged that the needle-haystack pair construction was unclear (dataset sources, evaluation specifics). **Author response:** Expanded from 3 manually-written needles to 100 synthetic examples spanning 10 topics with 1,200 unique tokens; confirmed finding stability.
+
+2. **Limited diversity in evaluation:** Over-reliance on the NIAH task; unclear if findings transfer to paraphrasing/semantic tasks. **Author response:** Provided qualitative examples (Appendix Figure 15) showing retrieval head masking breaks semantic dependency preservation while random masking preserves semantics.
+
+3. **Architectural scope:** Do properties hold for encoder-decoder and non-attention architectures? **Author response:** Confirmed presence in grouped-query attention (Qwen1.5), MoE (Mixtral), and hybrid models (Jamba). Noted encoder-decoder remains unexplored but decoder-only dominates the current landscape.
+
+4. **Lack of theoretical understanding:** No mechanism explaining *when or why* retrieval heads activate dynamically. **Author response:** Acknowledged this resembles broader "physics of LLMs" challenges, suggested future work with synthetic datasets to isolate activation triggers.
+
+### Technical Corrections Made During Review
+- Updated notation (R to R for real numbers)
+- Corrected activation percentage threshold in Figure 3 from 5% to <1%
+- Defined "KV" as key-value in the abstract
+- Committed to open-sourcing code/data
+
+---
+
+## 6. Downstream Impact and Follow-up Work
+
+The retrieval head discovery has already spawned significant follow-up work in KV cache optimization:
+
+- **RazorAttention** (arXiv:2407.15891): A training-free KV cache compression algorithm that maintains full cache for retrieval heads while discarding remote tokens from non-retrieval heads, achieving 70%+ cache reduction with maintained performance.
+
+- **DuoAttention** (arXiv:2410.10819): Distinguishes between "retrieval heads" (needing full KV cache) and "streaming heads" (primarily focusing on recent tokens and attention sinks, needing only constant-length caches). Achieves up to 2.55x memory reduction.
+
+- **"From Interpretability to Performance: Optimizing Retrieval Heads for Long-Context Language Models"** (arXiv:2601.11020): Extends the retrieval head framework directly into performance optimization.
+
+- **"Query-Focused Retrieval Heads Improve Long-Context Reasoning and Re-ranking"** (EMNLP 2025): Extends the concept to query-focused retrieval settings.
+
+---
+
+## Sources
+
+- [arXiv Abstract Page](https://arxiv.org/abs/2404.15574)
+- [arXiv HTML Full Paper](https://arxiv.org/html/2404.15574v1)
+- [OpenReview Forum with Reviews](https://openreview.net/forum?id=EytBpUGB1Z)
+- [ICLR 2025 Oral Presentation Page](https://iclr.cc/virtual/2025/oral/31890)
+- [Liner Quick Review](https://liner.com/review/retrieval-head-mechanistically-explains-longcontext-factuality)
+- [RazorAttention (follow-up)](https://arxiv.org/abs/2407.15891)
+- [DuoAttention (follow-up)](https://arxiv.org/abs/2410.10819)
+- [ICLR 2025 Poster Page](https://iclr.cc/virtual/2025/poster/30373)
+- [Semantic Scholar Entry](https://www.semanticscholar.org/paper/edd705ebe3546272b7fe952e2ed6088200adad76)
+
+agentId: aa67e36489016a3ef (use SendMessage with to: 'aa67e36489016a3ef' to continue this agent)
+&lt;usage>total_tokens: 27532
+tool_uses: 22
+duration_ms: 209879&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "279e17df-bf15-4cd0-8e12-274d19a3d368",
+  "isSidechain": false,
+  "promptId": "98cbd5c6-ab63-46c8-8e8f-c228e192ee75",
+  "type": "user",
+  "uuid": "741f8050-8aea-4e80-8059-cedac08302b7",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "You are researching a paper for deep analysis. Use WebSearch and WebFetch to gather detailed information.\n\nPaper: \"Retrieval Head Mechanistically Explains Long-Context Factuality\" by Wenhao Wu et al., ICLR 2025 (Oral), https://arxiv.org/abs/2404.15574\n\nTasks:\n1. Fetch the arxiv abstract page to get the full abstract.\n2. Search for and fetch the OpenReview page for this paper to get reviewer comments (search \"Retrieval Head Mechanistically Explains Long-Context Factuality openreview ICLR 2025\").\n3. Search for any blog posts or detailed summaries that describe the method in detail.\n\nFor each source, extract:\n- The exact problem/gap they identified\n- Their key technical insight\n- Their methodology (how they discover retrieval heads, what experiments they run)\n- Their main results and claims\n- Any reviewer praise and criticism from OpenReview\n\nReport all findings in detail. Be thorough - I need specifics about their method, not just high-level summaries.",
+    "agentId": "aa67e36489016a3ef",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Now I have comprehensive information from multiple sources. Let me compile the full detailed report.\n\n---\n\n# Deep Analysis: \"Retrieval Head Mechanistically Explains Long-Context Factuality\"\n\n**Authors:** Wenhao Wu, Yizhong Wang, Guangxuan Xiao, Hao Peng, Yao Fu\n**Venue:** ICLR 2025 (Oral), arXiv:2404.15574, submitted April 24, 2024\n\n---\n\n## 1. Problem / Gap Identified\n\nThe paper addresses a fundamental open question in mechanistic interpretability: **how do transformer-based LLMs retrieve relevant information from arbitrary positions within a long input context?** Long-context models (128K+ tokens) can perform factual retrieval, but the internal mechanism enabling this was unknown. Prior work on attention heads focused on phenomena like induction heads (for in-context learning) but had not identified the specific attention heads responsible for long-range factual retrieval. There was no mechanistic explanation for why models sometimes hallucinate in long-context settings, nor why certain architectures (e.g., linear attention, state-space models) fail the Needle-in-a-Haystack (NIAH) test. The authors frame this as: we know *that* models retrieve, but not *how* or *which components* are responsible.\n\n---\n\n## 2. Key Technical Insight\n\nThe authors discover that a small, sparse subset of attention heads -- which they dub **\"retrieval heads\"** -- implement a **conditional copy-paste algorithm**. These heads attend to a token in the input context and directly copy it to the output during autoregressive decoding. The core insight is that:\n\n- These heads are **sparse** (fewer than 5% of all attention heads),\n- They are **universal** (present across all model families tested),\n- They are **intrinsic** (already present in short-context pretrained models; long-context fine-tuning does not create new ones but reuses the same set), and\n- They are **causally necessary** (removing them causes hallucination; removing random non-retrieval heads does not).\n\nThis marks a significant advance in mechanistic interpretability: for the first time, a specific sub-network implementing the conditional retrieval algorithm was pinpointed.\n\n---\n\n## 3. Methodology in Detail\n\n### 3.1 Retrieval Score Definition\n\nThe fundamental metric is the **retrieval score**, which measures the frequency of a head's copy-paste behavior during autoregressive decoding. Formally, a head performs a \"copy-paste\" operation when two conditions hold simultaneously:\n\n1. The generated token *w* belongs to the target answer set.\n2. The input token receiving the **maximum attention probability** from that head matches *w* and originates from the correct target location in the input.\n\nThe retrieval score is then:\n\n**Retrieval Score = |tokens_copied intersect target| / |target|**\n\nThis is essentially the **token-level recall rate** of the most-attended tokens by an attention head.\n\n### 3.2 Detection Procedure\n\n1. **Dataset Construction:** Three diverse needle-in-a-haystack datasets are created with unique (question, answer, context) tuples. Critically, the answers are **semantically irrelevant** to the surrounding haystack context and **unanswerable from model knowledge alone**, ensuring that correct generation must come from input retrieval rather than parametric memory. The initial 3 manually-written needles were expanded to 100 synthetic examples spanning 10 topics with 1,200 unique tokens.\n\n2. **Scale of Testing:** Approximately 600 test instances per model:\n   - 20 different context lengths uniformly sampled from 1K to 50K tokens\n   - 10 different needle insertion depths per length\n   - Multiple random position insertions\n\n3. **Score Aggregation:** Retrieval scores are averaged across all instances to obtain the final head ranking. The authors note the score **converges after just a few samples**, confirming stability.\n\n4. **Threshold:** Heads with retrieval score >= 0.1 are classified as retrieval heads (meaning they copy-paste at least 10% of the time).\n\n### 3.3 Models Studied\n\nThe study covers **four model families** across **six scales** and **three types of post-training variants**:\n\n- **Families:** LLaMA, Mistral, Yi, Qwen\n- **Scales:** 6B, 7B, 13B, 14B, 34B parameters; 8x7B MoE (Mixtral)\n- **Variants:** Base pretrained models, length-extended versions via continued pretraining (LLaMA-2 7B extended to 80K, Yi-6B extended to 200K), instruction-tuned variants (Mistral-Instruct, Qwen-Chat), sparse upcycled models (Mixtral-8x7B), and the hybrid state-space + attention model **Jamba**\n\n### 3.4 Experiments\n\n**A. Retrieval Head Identification:** Full NIAH pipeline on all models to establish retrieval score distributions. Key finding: 3-6% of heads have scores > 0.1; 45-73% have zero retrieval score.\n\n**B. Ablation/Pruning Studies:** Progressive masking of the top-K retrieval heads vs. K random non-retrieval heads. Masking top 50 retrieval heads (~5% of total) drops NIAH performance below 50%. Masking the top 20 retrieval heads in LLaMA-2 7B drops accuracy to 63.6%, while masking 20 random non-retrieval heads yields 94.7%.\n\n**C. Error Taxonomy under Progressive Masking:**\n- Masking heads with scores > 0.4: **Incomplete retrieval** (partial information captured)\n- Further masking: **Hallucination** (fluent but factually incorrect generation, e.g., \"go to the beach,\" triggered by attention sink to initial tokens)\n- Intermediate: **Wrong extraction** (attending to incorrect context sections)\n\n**D. Downstream Task Evaluation:**\n- *Extractive QA:* Synthesized from recent news articles with GPT-4-generated question-answer pairs. Removing retrieval heads caused **9.2-23.1% F1 reduction**.\n- *Chain-of-thought reasoning:* Tested on MMLU, MuSiQue, GSM8K with and without explicit CoT prompting. **CoT tasks are significantly degraded** by retrieval head masking; answer-only tasks (relying on parametric knowledge in FFN layers) are minimally affected.\n\n**E. Intrinsic Property Analysis (Cross-model correlations):** Pearson correlation between retrieval score distributions of same-family variants exceeds 0.8. Different-family models show < 0.1 correlation. This proves retrieval heads are **intrinsic to the pretraining recipe**, not created by length extension.\n\n**F. Dynamic Activation Analysis:** Two metrics distinguish head types:\n- **Always-Active Heads:** High retrieval score (> 0.5), activation frequency approximately 1.0 across all contexts. In LLaMA-2 7B-80K, exactly 12 heads are always activated.\n- **Context-Sensitive Heads:** Lower activation frequency; activate selectively depending on specific tokens/information needed.\n\n**G. Jamba (Hybrid Architecture) Results:** Masking top retrieval heads causes dramatic drops (100% -> 3.5% accuracy at 100 masked heads), compared to modest decline from masking random heads (100% -> 9.0%). This confirms the phenomenon extends beyond pure transformer architectures.\n\n---\n\n## 4. Main Results and Claims\n\n1. **Universality:** Retrieval heads exist in every long-context-capable model examined, across all four families, all scales, and all training variants.\n\n2. **Sparsity:** Fewer than 5% of attention heads are retrieval heads.\n\n3. **Intrinsicness:** The same heads that retrieve in short-context base models continue to retrieve after long-context fine-tuning. Context extension does not create new retrieval heads.\n\n4. **Causal Necessity:** Ablating retrieval heads causes hallucination and retrieval failure. Ablating equivalent numbers of non-retrieval heads has negligible effect.\n\n5. **CoT Dependency:** Chain-of-thought reasoning depends heavily on retrieval heads (the model must repeatedly refer back to the question and prior context during multi-step reasoning), while direct answer generation using intrinsic/parametric knowledge does not.\n\n6. **Architectural Constraint:** No linear attention or SSM architecture passes the NIAH test, suggesting full attention is a prerequisite for arbitrary-position retrieval. However, hybrid models like Jamba (which include some full-attention layers) do contain retrieval heads.\n\n7. **Implications for KV Cache:** Retrieval heads require access to the entire KV cache; compressing the KV cache of retrieval heads will degrade long-context performance. This has already spawned follow-up work (RazorAttention, DuoAttention).\n\n---\n\n## 5. OpenReview Reviewer Feedback (ICLR 2025)\n\n**Decision:** Accept (Oral)\n\n**Scores:** All four reviewers gave **8/10**.\n\n| Reviewer | Rating | Confidence | Key Assessment |\n|----------|--------|------------|----------------|\n| Br4p | 8 | 4/4 | Well-written with extensive experiments across model families |\n| ZPPp | 8 | 3/4 | Sound methodology; concerns about benchmark diversity addressed |\n| F46b | 8 | 2/4 | Thorough analysis with clear presentation |\n| xfgX | 8 | 4/4 | Original contribution; properties extend to paraphrasing tasks |\n\n**Meta-Review:** \"All reviewers agree on accepting this paper based on its soundness and novelty. Concerns have been generally addressed in the rebuttal.\"\n\n### Reviewer Praise (Strengths)\n- **Clear, well-scoped research question:** \"How do transformers acquire long-context capabilities?\" is systematically and rigorously addressed.\n- **Extensive experiments:** Coverage across LLaMA, Yi, Qwen, Mistral at scales 6B-56B, including MoE and hybrid architectures, provides strong evidence for universality claims.\n- **Novel methodology:** The retrieval score metric is a simple but effective way to identify copy-paste behavior.\n- **Strong empirical validation:** Properties validated across NIAH, extractive QA, paraphrasing, and chain-of-thought tasks.\n\n### Reviewer Criticisms (Weaknesses)\n\n1. **Missing experimental details:** Reviewers flagged that the needle-haystack pair construction was unclear (dataset sources, evaluation specifics). **Author response:** Expanded from 3 manually-written needles to 100 synthetic examples spanning 10 topics with 1,200 unique tokens; confirmed finding stability.\n\n2. **Limited diversity in evaluation:** Over-reliance on the NIAH task; unclear if findings transfer to paraphrasing/semantic tasks. **Author response:** Provided qualitative examples (Appendix Figure 15) showing retrieval head masking breaks semantic dependency preservation while random masking preserves semantics.\n\n3. **Architectural scope:** Do properties hold for encoder-decoder and non-attention architectures? **Author response:** Confirmed presence in grouped-query attention (Qwen1.5), MoE (Mixtral), and hybrid models (Jamba). Noted encoder-decoder remains unexplored but decoder-only dominates the current landscape.\n\n4. **Lack of theoretical understanding:** No mechanism explaining *when or why* retrieval heads activate dynamically. **Author response:** Acknowledged this resembles broader \"physics of LLMs\" challenges, suggested future work with synthetic datasets to isolate activation triggers.\n\n### Technical Corrections Made During Review\n- Updated notation (R to R for real numbers)\n- Corrected activation percentage threshold in Figure 3 from 5% to <1%\n- Defined \"KV\" as key-value in the abstract\n- Committed to open-sourcing code/data\n\n---\n\n## 6. Downstream Impact and Follow-up Work\n\nThe retrieval head discovery has already spawned significant follow-up work in KV cache optimization:\n\n- **RazorAttention** (arXiv:2407.15891): A training-free KV cache compression algorithm that maintains full cache for retrieval heads while discarding remote tokens from non-retrieval heads, achieving 70%+ cache reduction with maintained performance.\n\n- **DuoAttention** (arXiv:2410.10819): Distinguishes between \"retrieval heads\" (needing full KV cache) and \"streaming heads\" (primarily focusing on recent tokens and attention sinks, needing only constant-length caches). Achieves up to 2.55x memory reduction.\n\n- **\"From Interpretability to Performance: Optimizing Retrieval Heads for Long-Context Language Models\"** (arXiv:2601.11020): Extends the retrieval head framework directly into performance optimization.\n\n- **\"Query-Focused Retrieval Heads Improve Long-Context Reasoning and Re-ranking\"** (EMNLP 2025): Extends the concept to query-focused retrieval settings.\n\n---\n\n## Sources\n\n- [arXiv Abstract Page](https://arxiv.org/abs/2404.15574)\n- [arXiv HTML Full Paper](https://arxiv.org/html/2404.15574v1)\n- [OpenReview Forum with Reviews](https://openreview.net/forum?id=EytBpUGB1Z)\n- [ICLR 2025 Oral Presentation Page](https://iclr.cc/virtual/2025/oral/31890)\n- [Liner Quick Review](https://liner.com/review/retrieval-head-mechanistically-explains-longcontext-factuality)\n- [RazorAttention (follow-up)](https://arxiv.org/abs/2407.15891)\n- [DuoAttention (follow-up)](https://arxiv.org/abs/2410.10819)\n- [ICLR 2025 Poster Page](https://iclr.cc/virtual/2025/poster/30373)\n- [Semantic Scholar Entry](https://www.semanticscholar.org/paper/edd705ebe3546272b7fe952e2ed6088200adad76)"
+      }
+    ],
+    "totalDurationMs": 209879,
+    "totalTokens": 27532,
+    "totalToolUseCount": 22,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3158,
+      "cache_read_input_tokens": 20989,
+      "output_tokens": 3384,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 3158
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3384,
+          "cache_read_input_tokens": 20989,
+          "cache_creation_input_tokens": 3158,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 3158,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 22
+    }
+  },
+  "sourceToolAssistantUUID": "279e17df-bf15-4cd0-8e12-274d19a3d368",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "9caa965a-b7bd-4c0e-9c96-921fcec5e116",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-30T06:23:11.610Z_
+
+<details><summary>↩ Tool result · `toolu_01G1VXQ95tADozzcY69C9nQ1`</summary>
+
+```text
+Now I have comprehensive information from multiple sources. Here is the full detailed report.
+
+---
+
+## Deep Analysis: "Analysing the Residual Stream of Language Models Under Knowledge Conflicts"
+
+**Authors:** Yu Zhao, Xiaotang Du, Giwon Hong, Aryo Pradipta Gema, Alessio Devoto, Hongru Wang, Xuanli He, Kam-Fai Wong, Pasquale Minervini
+
+**Affiliations:** University of Edinburgh (primary), Chinese University of Hong Kong, Sapienza University of Rome, University College London, Miniml.AI
+
+**Venue:** Foundation Model Interventions (MINT) Workshop @ NeurIPS 2024
+
+**ArXiv:** [2410.16090](https://arxiv.org/abs/2410.16090) (v1: Oct 21, 2024; v2: Feb 9, 2025)
+
+**OpenReview:** [3Y0xm1q58x](https://openreview.net/forum?id=3Y0xm1q58x)
+
+---
+
+### 1. Problem/Gap Identified
+
+The paper identifies a specific gap at the intersection of knowledge conflict detection and mechanistic interpretability:
+
+- LLMs store factual knowledge in parameters ("parametric knowledge"), but this can conflict with information provided in context ("contextual knowledge"), e.g., from retrieval-augmented generation pipelines.
+- Prior approaches to detecting these conflicts relied on **prompting-based strategies** (e.g., Wang et al. 2023's multi-step prompting that asks the LLM to examine conflicts sentence-by-sentence). These methods require additional inference passes, incur high latency, and critically **do not explain how LLMs internally detect and resolve conflicts**.
+- No prior work had systematically analyzed whether **the model's internal representations (residual stream) encode detectable conflict signals** before the model even generates an answer.
+
+The key question: Can we detect (a) whether a knowledge conflict exists, and (b) which knowledge source the model will rely on, by examining intermediate activations -- without modifying inputs or model parameters?
+
+---
+
+### 2. Key Technical Insight
+
+The central insight is that **LLMs internally register knowledge conflicts as a detectable signal in the residual stream at intermediate layers**, and this signal follows a sequential two-phase pattern:
+
+1. **Phase 1 -- Conflict Detection (layers ~8-14):** The model first recognizes that a conflict exists between parametric and contextual knowledge. This signal emerges around layer 8 and peaks at layers 13-14 (in Llama3-8B).
+
+2. **Phase 2 -- Knowledge Selection (layers ~14-17+):** After the conflict is detected, the model makes a "decision" about which knowledge source to use. This selection signal peaks around layer 17, clearly occurring after the conflict detection peak.
+
+This temporal (layer-wise) separation suggests the model processes conflicts in a staged manner: detect first, then resolve.
+
+---
+
+### 3. Methodology in Detail
+
+#### 3a. Residual Stream Framework
+
+The authors adopt the residual stream perspective from Elhage et al. (2021) and Olsson et al. (2022). In this view:
+- Tokens flow through the model with their embeddings modified by vector additions from attention and feed-forward blocks at each layer.
+- At layer l, the hidden state updates as:
+  - h^(l') = LayerNorm(h^(l-1)) + a_i^l  (after self-attention)
+  - h^l = LayerNorm(h^(l')) + m_i^l  (after MLP)
+- They extract three types of activations at each layer: **hidden states (h)**, **self-attention activations (a)**, and **MLP activations (m)**.
+- All probing is done at the **final token position** (last position before answer generation), capturing the model's state right before it produces the first answer token.
+
+#### 3b. Probing Technique: Logistic Regression
+
+For any activation x (which can be h, a, or m), they apply a logistic regression classifier:
+
+**P(y=1|x) = sigmoid(xW)**
+
+where W is in R^(d x 1), a learned linear projection.
+
+Training objective:
+**L = -log P(y = y_i) + lambda * ||W||_1**
+
+with lambda = 3 x 10^(-4) (L1 regularization).
+
+They train 20 runs with different random seeds per probing task and report average and standard deviation. Training and test sets have no overlapping questions.
+
+#### 3c. Two Probing Tasks
+
+**Task 1 -- Knowledge Conflict Detection:**
+- Binary classification: distinguish between D^(e_C) = {(q, e_C)} (conflicting evidence) and D^(e_M) = {(q, e_M)} (non-conflicting evidence).
+- The probe must determine whether the context contains information that conflicts with what the model "knows."
+
+**Task 2 -- Knowledge Selection Prediction:**
+- Given only instances where conflict exists (D^(e_C)), classify whether the model will ultimately use the **contextual answer a_C** (set D_(a_C)^(e_C)) or the **parametric answer a_M** (set D_(a_M)^(e_C)).
+- This predicts the model's behavioral choice before it generates the answer.
+
+#### 3d. Statistical Distribution Analysis
+
+Beyond probing, they measure the **distributional shape** of residual stream activations using three skewness metrics:
+- **Kurtosis** -- measures tail heaviness of the activation distribution
+- **Hoyer sparsity index** -- measures sparsity of activations
+- **Gini coefficient** -- measures inequality/concentration of activation values
+
+They also check **L1 and L2 norms** (which turn out to show no significant difference between the two knowledge sources).
+
+#### 3e. Datasets
+
+Three open-domain QA datasets with knowledge conflicts, each structured as (q, e_M, e_C, a_M, a_C):
+
+1. **NQSwap** (Longpre et al., 2021): Entity-based knowledge conflicts created by swapping entities in Natural Questions passages.
+2. **Macnoise** (Hong et al., 2024): Designed to test robustness against counterfactual noise in retrieval-augmented settings.
+3. **ConflictQA** (Xie et al., 2024): A benchmark evaluating knowledge conflict influence on LLM behavior.
+
+The main paper presents NQSwap + Llama3-8B results; the appendices extend to all dataset-model combinations.
+
+#### 3f. Models
+
+- **Llama3-8B** (Meta, Dubey et al. 2024) -- primary model in main paper (32 layers)
+- **Llama2-7B** (Touvron et al. 2023) -- appendix results (32 layers)
+
+Both are open-weight models, enabling full access to intermediate activations.
+
+#### 3g. Inference Setup
+
+- Greedy decoding strategy
+- Three in-context demonstrations for answer format alignment (same demonstrations across all experiments)
+- Close-book setting (no evidence) used to verify the model's parametric knowledge
+
+---
+
+### 4. Main Results
+
+#### 4a. Knowledge Conflict Detection (Figure 1)
+
+For Llama3-8B on NQSwap:
+- **Layers 1-7:** Probing accuracy is near random (~50%), AUROC and AUPRC are low. The early layers contain no conflict information.
+- **Layers 8-14:** Rapid signal emergence. AUROC and AUPRC increase sharply.
+- **Layer 14:** Peak performance -- probing achieves approximately **90% accuracy**. AUROC and AUPRC also peak here.
+- **Layers 15-32:** Gradual decline in probing accuracy, but it remains well above chance.
+- **Key observation on component activations:** After layer 14, MLP and self-attention activations show **significantly lower probing accuracy** than the full hidden state, suggesting these components stop adding new conflict information after the mid-layers, but the signal persists in the cumulative hidden state (the residual stream itself).
+
+The same trend was confirmed on Llama2-7B across all three datasets (Figures 4-6 in appendix), with conflict detection peaking around layers 13-14.
+
+#### 4b. Skewness Analysis (Figure 2)
+
+When examining how models use different knowledge sources under conflict:
+- **Layers 20-30 in Llama3-8B:** When the model uses **contextual knowledge** (D_(a_C)^(e_C)), the residual stream exhibits a **significantly more skewed distribution** compared to when it uses **parametric knowledge** (D_(a_M)^(e_C)).
+- This divergence is captured by all three metrics (Kurtosis, Hoyer, Gini) for hidden states.
+- **MLP and self-attention activations do NOT show this skewness pattern** (Figures 11-14 in appendix) -- the signal is only in the cumulative hidden state.
+- **L1 and L2 norms show no significant difference** between the two groups (Appendix D, Figures 15-16), meaning the difference is not about magnitude but about distributional shape.
+
+The same pattern appears in Llama2-7B (divergence from layer ~17 onward) and across all three datasets.
+
+#### 4c. Knowledge Selection Probing (Figure 3)
+
+- Probing accuracy for predicting **which knowledge source the model will use** gradually improves from layer 1 to layer 16-17.
+- The peak selection accuracy occurs at approximately **layer 17** in Llama3-8B.
+- This is critically **later** than the conflict detection peak at layer 14, suggesting a sequential process: the model first detects the conflict, then decides which source to use.
+- Appendix E (Figures 17-19) confirms this pattern across Llama2-7B and the Macnoise dataset.
+
+---
+
+### 5. The "Coexistence Without Erasure" Finding
+
+The paper does not use the exact phrase "coexistence without erasure," but its findings strongly support this interpretation:
+
+- The conflict detection signal **persists** in the residual stream well past the mid-layers where it peaks. Even in late layers (20-30), the distinct distributional signatures of both knowledge sources remain detectable.
+- The fact that **MLP and self-attention stop adding conflict information after layer 14**, yet the hidden state retains it, means the conflict signal is **accumulated and preserved** in the residual stream rather than being overwritten.
+- The skewness analysis shows that even when the model has "decided" (by layer 17) which knowledge to use, the residual stream still carries distinguishable patterns from both sources. The model does not simply erase the losing knowledge source.
+- The two-phase processing (detect at 14, select at 17) implies the model maintains representations of both answers during the intermediate layers before resolution.
+
+---
+
+### 6. Figures and Tables Summary
+
+| Figure | Content | Key Takeaway |
+|--------|---------|-------------|
+| Figure 1 (a,b,c) | Accuracy/AUROC/AUPRC of conflict detection probes across layers (Llama3-8B, NQSwap) | Signal rises from layer 8, peaks at 14 at ~90% accuracy |
+| Figure 2 (a,b,c) | Kurtosis/Hoyer/Gini of hidden states when using contextual vs parametric knowledge | Significant skewness divergence from layers 20-30 |
+| Figure 3 (a,b,c) | Accuracy/AUROC/AUPRC for knowledge selection probing | Selection signal peaks at layer 17, after conflict detection |
+| Figures 4-6 | Conflict detection on Llama2-7B (NQSwap, Macnoise, ConflictQA) | Same trend as Llama3-8B |
+| Figures 7-10 | Skewness of hidden states across models and datasets | Consistent skewness pattern across all combinations |
+| Figures 11-14 | Skewness of MLP and Self-Attention activations | No specific skewness pattern found in these components |
+| Figures 15-16 | L1/L2 norms of hidden states | No significant norm difference between knowledge sources |
+| Figures 17-19 | Knowledge selection probing on Llama2-7B and Macnoise | Selection peak at ~layer 17, consistent with main findings |
+
+---
+
+### 7. Limitations
+
+As stated in the paper:
+- Analysis is limited to **English open-domain QA tasks** only.
+- Only two model families/sizes tested (Llama2-7B, Llama3-8B).
+- Only **greedy decoding** tested -- other strategies (beam search, sampling) not explored.
+- Probing requires **access to internal activations** -- not applicable to closed API-only models.
+- Probing captures **correlation, not causation** -- the probe detecting a signal does not prove the model *uses* that signal for its decision.
+- The paper is explicitly described as a "preliminary study" leading to the follow-up work.
+
+---
+
+### 8. Follow-Up Work
+
+The paper states it is the preliminary study for: **"Steering Knowledge Selection Behaviours in LLMs via SAE-Based Representation Engineering"** (Zhao et al., 2024b, arXiv: [2410.15999](https://arxiv.org/abs/2410.15999)). That follow-up paper:
+- Was accepted as an **Oral at NAACL 2025**.
+- Proposes **SpARE**, a training-free inference-time intervention method using pre-trained Sparse Autoencoders (SAEs) to steer knowledge selection behavior.
+- Has a public [GitHub repository](https://github.com/yuzhaouoe/SAE-based-representation-engineering).
+
+---
+
+### 9. Reviewer Comments
+
+Unfortunately, the OpenReview page for this paper ([openreview.net/forum?id=3Y0xm1q58x](https://openreview.net/forum?id=3Y0xm1q58x)) does not expose reviewer comments publicly at this time. The MINT workshop reviews appear to be non-public. I was unable to retrieve reviewer scores, strengths/weaknesses, or meta-reviews despite multiple attempts. The paper was accepted at the workshop, as confirmed by the footnote on the paper itself and the University of Edinburgh research portal.
+
+---
+
+### 10. Key References Cited
+
+- Elhage et al. (2021) -- "A mathematical framework for transformer circuits" (residual stream framework)
+- Olsson et al. (2022) -- "In-context learning and induction heads"
+- Conneau et al. (2018) -- Linear probing methodology
+- Longpre et al. (2021) -- NQSwap dataset
+- Hong et al. (2024) -- Macnoise dataset
+- Xie et al. (2024) -- ConflictQA dataset; "Adaptive chameleon or stubborn sloth" (ICLR 2024)
+- Wang et al. (2023) -- Multi-step prompting for conflict detection
+- Su et al. (2024) -- ConflictBank benchmark
+- Ortu et al. (2024) -- "Competition of mechanisms: Tracing how language models handle facts and counterfactuals"
+
+---
+
+Sources:
+- [ArXiv Abstract Page](https://arxiv.org/abs/2410.16090)
+- [ArXiv HTML Full Paper](https://arxiv.org/html/2410.16090)
+- [OpenReview Submission](https://openreview.net/forum?id=3Y0xm1q58x)
+- [HuggingFace Paper Page](https://huggingface.co/papers/2410.16090)
+- [University of Edinburgh Research Explorer](https://www.research.ed.ac.uk/en/publications/analysing-the-residual-stream-of-language-models-under-knowledge-/)
+- [Follow-up Paper (SpARE) on ArXiv](https://arxiv.org/abs/2410.15999)
+- [SpARE GitHub Repository](https://github.com/yuzhaouoe/SAE-based-representation-engineering)
+- [NeurIPS 2024 Workshop MINT on OpenReview](https://openreview.net/group?id=NeurIPS.cc%2F2024%2FWorkshop%2FMINT)
+
+agentId: a8e157cb887f60fae (use SendMessage with to: 'a8e157cb887f60fae' to continue this agent)
+&lt;usage>total_tokens: 47167
+tool_uses: 21
+duration_ms: 213459&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fd595216-db19-46ed-bf6d-903a40ba8e55",
+  "isSidechain": false,
+  "promptId": "98cbd5c6-ab63-46c8-8e8f-c228e192ee75",
+  "type": "user",
+  "uuid": "43bc8c50-635f-4f5d-b70d-45cf2b29f7e8",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "You are researching a paper for deep analysis. Use WebSearch and WebFetch to gather detailed information.\n\nPaper: \"Analysing the Residual Stream of Language Models Under Knowledge Conflicts\" by Yu Zhao et al., NeurIPS 2024 Workshop, https://arxiv.org/abs/2410.16090\n\nTasks:\n1. Fetch the arxiv abstract page to get the full abstract.\n2. Search for the full paper or detailed summaries to understand the method section.\n3. Search for the OpenReview page if available (NeurIPS 2024 Workshop on Foundation Model Interventions).\n\nFor each source, extract:\n- The exact problem/gap they identified\n- Their key technical insight about residual stream analysis under knowledge conflicts\n- Their methodology: how they probe the residual stream, what probing techniques they use, how they detect conflict signals\n- Their main results (90% conflict detection accuracy, mid-layer patterns)\n- The finding that conflicting knowledge \"coexists without erasure\" in the residual stream\n- Any reviewer comments\n\nReport all findings in detail. Be thorough - I need specifics about their method.",
+    "agentId": "a8e157cb887f60fae",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Now I have comprehensive information from multiple sources. Here is the full detailed report.\n\n---\n\n## Deep Analysis: \"Analysing the Residual Stream of Language Models Under Knowledge Conflicts\"\n\n**Authors:** Yu Zhao, Xiaotang Du, Giwon Hong, Aryo Pradipta Gema, Alessio Devoto, Hongru Wang, Xuanli He, Kam-Fai Wong, Pasquale Minervini\n\n**Affiliations:** University of Edinburgh (primary), Chinese University of Hong Kong, Sapienza University of Rome, University College London, Miniml.AI\n\n**Venue:** Foundation Model Interventions (MINT) Workshop @ NeurIPS 2024\n\n**ArXiv:** [2410.16090](https://arxiv.org/abs/2410.16090) (v1: Oct 21, 2024; v2: Feb 9, 2025)\n\n**OpenReview:** [3Y0xm1q58x](https://openreview.net/forum?id=3Y0xm1q58x)\n\n---\n\n### 1. Problem/Gap Identified\n\nThe paper identifies a specific gap at the intersection of knowledge conflict detection and mechanistic interpretability:\n\n- LLMs store factual knowledge in parameters (\"parametric knowledge\"), but this can conflict with information provided in context (\"contextual knowledge\"), e.g., from retrieval-augmented generation pipelines.\n- Prior approaches to detecting these conflicts relied on **prompting-based strategies** (e.g., Wang et al. 2023's multi-step prompting that asks the LLM to examine conflicts sentence-by-sentence). These methods require additional inference passes, incur high latency, and critically **do not explain how LLMs internally detect and resolve conflicts**.\n- No prior work had systematically analyzed whether **the model's internal representations (residual stream) encode detectable conflict signals** before the model even generates an answer.\n\nThe key question: Can we detect (a) whether a knowledge conflict exists, and (b) which knowledge source the model will rely on, by examining intermediate activations -- without modifying inputs or model parameters?\n\n---\n\n### 2. Key Technical Insight\n\nThe central insight is that **LLMs internally register knowledge conflicts as a detectable signal in the residual stream at intermediate layers**, and this signal follows a sequential two-phase pattern:\n\n1. **Phase 1 -- Conflict Detection (layers ~8-14):** The model first recognizes that a conflict exists between parametric and contextual knowledge. This signal emerges around layer 8 and peaks at layers 13-14 (in Llama3-8B).\n\n2. **Phase 2 -- Knowledge Selection (layers ~14-17+):** After the conflict is detected, the model makes a \"decision\" about which knowledge source to use. This selection signal peaks around layer 17, clearly occurring after the conflict detection peak.\n\nThis temporal (layer-wise) separation suggests the model processes conflicts in a staged manner: detect first, then resolve.\n\n---\n\n### 3. Methodology in Detail\n\n#### 3a. Residual Stream Framework\n\nThe authors adopt the residual stream perspective from Elhage et al. (2021) and Olsson et al. (2022). In this view:\n- Tokens flow through the model with their embeddings modified by vector additions from attention and feed-forward blocks at each layer.\n- At layer l, the hidden state updates as:\n  - h^(l') = LayerNorm(h^(l-1)) + a_i^l  (after self-attention)\n  - h^l = LayerNorm(h^(l')) + m_i^l  (after MLP)\n- They extract three types of activations at each layer: **hidden states (h)**, **self-attention activations (a)**, and **MLP activations (m)**.\n- All probing is done at the **final token position** (last position before answer generation), capturing the model's state right before it produces the first answer token.\n\n#### 3b. Probing Technique: Logistic Regression\n\nFor any activation x (which can be h, a, or m), they apply a logistic regression classifier:\n\n**P(y=1|x) = sigmoid(xW)**\n\nwhere W is in R^(d x 1), a learned linear projection.\n\nTraining objective:\n**L = -log P(y = y_i) + lambda * ||W||_1**\n\nwith lambda = 3 x 10^(-4) (L1 regularization).\n\nThey train 20 runs with different random seeds per probing task and report average and standard deviation. Training and test sets have no overlapping questions.\n\n#### 3c. Two Probing Tasks\n\n**Task 1 -- Knowledge Conflict Detection:**\n- Binary classification: distinguish between D^(e_C) = {(q, e_C)} (conflicting evidence) and D^(e_M) = {(q, e_M)} (non-conflicting evidence).\n- The probe must determine whether the context contains information that conflicts with what the model \"knows.\"\n\n**Task 2 -- Knowledge Selection Prediction:**\n- Given only instances where conflict exists (D^(e_C)), classify whether the model will ultimately use the **contextual answer a_C** (set D_(a_C)^(e_C)) or the **parametric answer a_M** (set D_(a_M)^(e_C)).\n- This predicts the model's behavioral choice before it generates the answer.\n\n#### 3d. Statistical Distribution Analysis\n\nBeyond probing, they measure the **distributional shape** of residual stream activations using three skewness metrics:\n- **Kurtosis** -- measures tail heaviness of the activation distribution\n- **Hoyer sparsity index** -- measures sparsity of activations\n- **Gini coefficient** -- measures inequality/concentration of activation values\n\nThey also check **L1 and L2 norms** (which turn out to show no significant difference between the two knowledge sources).\n\n#### 3e. Datasets\n\nThree open-domain QA datasets with knowledge conflicts, each structured as (q, e_M, e_C, a_M, a_C):\n\n1. **NQSwap** (Longpre et al., 2021): Entity-based knowledge conflicts created by swapping entities in Natural Questions passages.\n2. **Macnoise** (Hong et al., 2024): Designed to test robustness against counterfactual noise in retrieval-augmented settings.\n3. **ConflictQA** (Xie et al., 2024): A benchmark evaluating knowledge conflict influence on LLM behavior.\n\nThe main paper presents NQSwap + Llama3-8B results; the appendices extend to all dataset-model combinations.\n\n#### 3f. Models\n\n- **Llama3-8B** (Meta, Dubey et al. 2024) -- primary model in main paper (32 layers)\n- **Llama2-7B** (Touvron et al. 2023) -- appendix results (32 layers)\n\nBoth are open-weight models, enabling full access to intermediate activations.\n\n#### 3g. Inference Setup\n\n- Greedy decoding strategy\n- Three in-context demonstrations for answer format alignment (same demonstrations across all experiments)\n- Close-book setting (no evidence) used to verify the model's parametric knowledge\n\n---\n\n### 4. Main Results\n\n#### 4a. Knowledge Conflict Detection (Figure 1)\n\nFor Llama3-8B on NQSwap:\n- **Layers 1-7:** Probing accuracy is near random (~50%), AUROC and AUPRC are low. The early layers contain no conflict information.\n- **Layers 8-14:** Rapid signal emergence. AUROC and AUPRC increase sharply.\n- **Layer 14:** Peak performance -- probing achieves approximately **90% accuracy**. AUROC and AUPRC also peak here.\n- **Layers 15-32:** Gradual decline in probing accuracy, but it remains well above chance.\n- **Key observation on component activations:** After layer 14, MLP and self-attention activations show **significantly lower probing accuracy** than the full hidden state, suggesting these components stop adding new conflict information after the mid-layers, but the signal persists in the cumulative hidden state (the residual stream itself).\n\nThe same trend was confirmed on Llama2-7B across all three datasets (Figures 4-6 in appendix), with conflict detection peaking around layers 13-14.\n\n#### 4b. Skewness Analysis (Figure 2)\n\nWhen examining how models use different knowledge sources under conflict:\n- **Layers 20-30 in Llama3-8B:** When the model uses **contextual knowledge** (D_(a_C)^(e_C)), the residual stream exhibits a **significantly more skewed distribution** compared to when it uses **parametric knowledge** (D_(a_M)^(e_C)).\n- This divergence is captured by all three metrics (Kurtosis, Hoyer, Gini) for hidden states.\n- **MLP and self-attention activations do NOT show this skewness pattern** (Figures 11-14 in appendix) -- the signal is only in the cumulative hidden state.\n- **L1 and L2 norms show no significant difference** between the two groups (Appendix D, Figures 15-16), meaning the difference is not about magnitude but about distributional shape.\n\nThe same pattern appears in Llama2-7B (divergence from layer ~17 onward) and across all three datasets.\n\n#### 4c. Knowledge Selection Probing (Figure 3)\n\n- Probing accuracy for predicting **which knowledge source the model will use** gradually improves from layer 1 to layer 16-17.\n- The peak selection accuracy occurs at approximately **layer 17** in Llama3-8B.\n- This is critically **later** than the conflict detection peak at layer 14, suggesting a sequential process: the model first detects the conflict, then decides which source to use.\n- Appendix E (Figures 17-19) confirms this pattern across Llama2-7B and the Macnoise dataset.\n\n---\n\n### 5. The \"Coexistence Without Erasure\" Finding\n\nThe paper does not use the exact phrase \"coexistence without erasure,\" but its findings strongly support this interpretation:\n\n- The conflict detection signal **persists** in the residual stream well past the mid-layers where it peaks. Even in late layers (20-30), the distinct distributional signatures of both knowledge sources remain detectable.\n- The fact that **MLP and self-attention stop adding conflict information after layer 14**, yet the hidden state retains it, means the conflict signal is **accumulated and preserved** in the residual stream rather than being overwritten.\n- The skewness analysis shows that even when the model has \"decided\" (by layer 17) which knowledge to use, the residual stream still carries distinguishable patterns from both sources. The model does not simply erase the losing knowledge source.\n- The two-phase processing (detect at 14, select at 17) implies the model maintains representations of both answers during the intermediate layers before resolution.\n\n---\n\n### 6. Figures and Tables Summary\n\n| Figure | Content | Key Takeaway |\n|--------|---------|-------------|\n| Figure 1 (a,b,c) | Accuracy/AUROC/AUPRC of conflict detection probes across layers (Llama3-8B, NQSwap) | Signal rises from layer 8, peaks at 14 at ~90% accuracy |\n| Figure 2 (a,b,c) | Kurtosis/Hoyer/Gini of hidden states when using contextual vs parametric knowledge | Significant skewness divergence from layers 20-30 |\n| Figure 3 (a,b,c) | Accuracy/AUROC/AUPRC for knowledge selection probing | Selection signal peaks at layer 17, after conflict detection |\n| Figures 4-6 | Conflict detection on Llama2-7B (NQSwap, Macnoise, ConflictQA) | Same trend as Llama3-8B |\n| Figures 7-10 | Skewness of hidden states across models and datasets | Consistent skewness pattern across all combinations |\n| Figures 11-14 | Skewness of MLP and Self-Attention activations | No specific skewness pattern found in these components |\n| Figures 15-16 | L1/L2 norms of hidden states | No significant norm difference between knowledge sources |\n| Figures 17-19 | Knowledge selection probing on Llama2-7B and Macnoise | Selection peak at ~layer 17, consistent with main findings |\n\n---\n\n### 7. Limitations\n\nAs stated in the paper:\n- Analysis is limited to **English open-domain QA tasks** only.\n- Only two model families/sizes tested (Llama2-7B, Llama3-8B).\n- Only **greedy decoding** tested -- other strategies (beam search, sampling) not explored.\n- Probing requires **access to internal activations** -- not applicable to closed API-only models.\n- Probing captures **correlation, not causation** -- the probe detecting a signal does not prove the model *uses* that signal for its decision.\n- The paper is explicitly described as a \"preliminary study\" leading to the follow-up work.\n\n---\n\n### 8. Follow-Up Work\n\nThe paper states it is the preliminary study for: **\"Steering Knowledge Selection Behaviours in LLMs via SAE-Based Representation Engineering\"** (Zhao et al., 2024b, arXiv: [2410.15999](https://arxiv.org/abs/2410.15999)). That follow-up paper:\n- Was accepted as an **Oral at NAACL 2025**.\n- Proposes **SpARE**, a training-free inference-time intervention method using pre-trained Sparse Autoencoders (SAEs) to steer knowledge selection behavior.\n- Has a public [GitHub repository](https://github.com/yuzhaouoe/SAE-based-representation-engineering).\n\n---\n\n### 9. Reviewer Comments\n\nUnfortunately, the OpenReview page for this paper ([openreview.net/forum?id=3Y0xm1q58x](https://openreview.net/forum?id=3Y0xm1q58x)) does not expose reviewer comments publicly at this time. The MINT workshop reviews appear to be non-public. I was unable to retrieve reviewer scores, strengths/weaknesses, or meta-reviews despite multiple attempts. The paper was accepted at the workshop, as confirmed by the footnote on the paper itself and the University of Edinburgh research portal.\n\n---\n\n### 10. Key References Cited\n\n- Elhage et al. (2021) -- \"A mathematical framework for transformer circuits\" (residual stream framework)\n- Olsson et al. (2022) -- \"In-context learning and induction heads\"\n- Conneau et al. (2018) -- Linear probing methodology\n- Longpre et al. (2021) -- NQSwap dataset\n- Hong et al. (2024) -- Macnoise dataset\n- Xie et al. (2024) -- ConflictQA dataset; \"Adaptive chameleon or stubborn sloth\" (ICLR 2024)\n- Wang et al. (2023) -- Multi-step prompting for conflict detection\n- Su et al. (2024) -- ConflictBank benchmark\n- Ortu et al. (2024) -- \"Competition of mechanisms: Tracing how language models handle facts and counterfactuals\"\n\n---\n\nSources:\n- [ArXiv Abstract Page](https://arxiv.org/abs/2410.16090)\n- [ArXiv HTML Full Paper](https://arxiv.org/html/2410.16090)\n- [OpenReview Submission](https://openreview.net/forum?id=3Y0xm1q58x)\n- [HuggingFace Paper Page](https://huggingface.co/papers/2410.16090)\n- [University of Edinburgh Research Explorer](https://www.research.ed.ac.uk/en/publications/analysing-the-residual-stream-of-language-models-under-knowledge-/)\n- [Follow-up Paper (SpARE) on ArXiv](https://arxiv.org/abs/2410.15999)\n- [SpARE GitHub Repository](https://github.com/yuzhaouoe/SAE-based-representation-engineering)\n- [NeurIPS 2024 Workshop MINT on OpenReview](https://openreview.net/group?id=NeurIPS.cc%2F2024%2FWorkshop%2FMINT)"
+      }
+    ],
+    "totalDurationMs": 213459,
+    "totalTokens": 47167,
+    "totalToolUseCount": 21,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 531,
+      "cache_read_input_tokens": 42673,
+      "output_tokens": 3962,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 531
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3962,
+          "cache_read_input_tokens": 42673,
+          "cache_creation_input_tokens": 531,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 531,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 2,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 19
+    }
+  },
+  "sourceToolAssistantUUID": "fd595216-db19-46ed-bf6d-903a40ba8e55",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "9caa965a-b7bd-4c0e-9c96-921fcec5e116",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 26_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML researcher performing deep analysis of multiple published papers.  **Today's date: 2026-05-30 (UTC).**  ## Research context  We are generating ideas in the area of: **Target: AAAI…",
+  "leafUuid": "43bc8c50-635f-4f5d-b70d-45cf2b29f7e8",
+  "sessionId": "9caa965a-b7bd-4c0e-9c96-921fcec5e116"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 27_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Trace RAG evidence override circuit in LLMs",
+  "sessionId": "9caa965a-b7bd-4c0e-9c96-921fcec5e116"
+}
+```
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-30T06:24:26.080Z_
+
+<details><summary>↩ Tool result · `toolu_017H65w5L3ckxGV8ZR6Y2k1v`</summary>
+
+```text
+The OpenReview page for this paper appears to have limited public review information (it may be a post-publication listing rather than the original review forum, as EMNLP 2025 used ARR). I now have comprehensive information to provide a detailed report.
+
+---
+
+Here is the detailed analysis of the survey paper.
+
+## Paper Identification
+
+**Title:** "A Survey on Sparse Autoencoders: Interpreting the Internal Mechanisms of Large Language Models"
+**Authors:** Dong Shu, Xuansheng Wu, Haiyan Zhao, Daking Rai, Ziyu Yao, Ninghao Liu, Mengnan Du
+**Venue:** Findings of the Association for Computational Linguistics: EMNLP 2025, pages 1690-1712, Suzhou, China
+**arXiv:** 2503.05613 (v1: March 7, 2025; v3: September 23, 2025)
+**DOI:** 10.18653/v1/2025.findings-emnlp.89
+**OpenReview:** https://openreview.net/forum?id=dUibfc2dAA (reviews not publicly visible; likely went through ARR)
+
+## Full Abstract
+
+The survey presents a comprehensive examination of SAEs for mechanistic interpretability of LLMs, with four major contributions: (1) exploring the technical framework of SAEs, covering basic architecture, design improvements, and effective training strategies; (2) examining different approaches to explaining SAE features, categorized into input-based and output-based explanation methods; (3) discussing evaluation methods for assessing SAE performance, covering both structural and functional metrics; and (4) investigating real-world applications of SAEs in understanding and manipulating LLM behaviors.
+
+---
+
+## Survey Scope and Section Structure
+
+The paper is organized into:
+- **Main Sections:** Introduction, Technical Framework, Explainability Analysis, Evaluation Metrics, Applications, Conclusions
+- **Appendices A-G:** (A) Why SAEs / historical motivation, (B) Connection to broader interpretability, (C) SAE Variants in detail, (D) Evaluation and comparison across variants, (E) Additional LLM applications, (F) SAE vs. probing-based methods, (G) Research challenges
+
+---
+
+## Taxonomy and Organization
+
+The paper organizes the SAE literature along two primary axes:
+
+**Axis 1 -- By improvement target:**
+- *Improve Architecture* (activation function innovations): Gated SAE, TopK SAE, BatchTopK SAE, JumpReLU SAE, ProLU SAE, Switch SAE
+- *Improve Training Strategy*: Layer Group SAE, Feature Choice SAE, Mutual Choice SAE, Feature Aligned SAE, End-to-End SAE, Formal Languages SAE, Specialized SAE
+- *Basic Framework*: Standard L2-norm SAE with ReLU
+
+**Axis 2 -- By historical stage:**
+- **Stage 1 (2022-2023):** Individual neuron explanation efforts (OpenAI's neuron labeling, Anthropic's toy models showing superposition)
+- **Stage 2 (Late 2023):** SAEs applied to small models (GPT-2, Pythia-70m), foundational work by Cunningham et al. 2023 and Bricken et al. 2023
+- **Stage 3 (2024+):** Scaling to large proprietary models -- Anthropic applied SAEs to Claude 3 Sonnet, OpenAI to GPT-4, Google DeepMind to Gemma 2, plus open-source applications to LLaMA 3.1
+
+The survey also explicitly connects SAE research to its intellectual antecedents: sparse coding (Olshausen & Field 1997), dictionary learning (Gregor & LeCun 2010), distributed representations (Hinton 1984), and disentangled representation learning (Higgins et al. 2018).
+
+---
+
+## SAE Architectures Covered
+
+### Basic SAE Framework
+Three components: encoder, decoder, loss function.
+- **Encoder:** h(z) = sigma(z * W_enc + b_enc), where h is in R^m with m >> d (overcomplete)
+- **Decoder:** z_hat = h(z) * W_dec + b_dec
+- **Loss:** L(z) = ||z - z_hat||^2_2 + alpha * ||h(z)||_1
+
+### Gated SAE (Rajamanoharan et al. 2024a)
+- Addresses **shrinkage bias** from L1 regularization, which systematically underestimates feature activations
+- Separates feature detection (gating) from magnitude estimation via two parallel pathways
+- Formula: h_tilde(z) = 1[pi_gate(z) > 0] * ReLU(pi_mag(z))
+- Uses auxiliary loss on a frozen decoder to guide gate learning
+
+### TopK SAE (Gao et al. 2025)
+- Directly enforces exact sparsity by retaining only the K largest activations
+- Formula: h_tilde(z) = TopK(W_enc(z - b_pre))
+- Eliminates L1 penalty entirely, thus removing shrinkage bias
+- Uses auxiliary loss to prevent dead latents
+
+### BatchTopK SAE (Bussmann et al. 2024)
+- Applies TopK selection across the entire batch rather than per-token
+- Formula: h_tilde(Z) = BatchTopK(W_enc(Z - b_pre))
+- Selects B*K total activations across the batch, allowing flexible per-token sparsity
+
+### JumpReLU SAE (Rajamanoharan et al. 2024b)
+- Custom activation function combining a threshold with a linear component
+- Achieves better reconstruction fidelity than standard ReLU
+
+### ProLU SAE (Taggart 2024)
+- Learnable per-feature thresholds (not fixed at zero)
+- ProLU(m_i, b_i) activates when m_i + b_i > 0 AND m_i > 0
+- Uses Sqrt(L1) penalty for better scaling properties
+
+### Switch SAE (Mudide et al. 2024)
+- Efficient variant using mixture-of-experts-style switching
+- Addresses scalability as dictionary sizes grow
+
+### Multi-TopK SAE
+- Extensions enabling variable sparsity levels
+
+### Layer Group SAE (Ghilardi et al. 2024)
+- Uses JumpReLU activation; trains multiple layers simultaneously with grouped parameters for efficiency
+
+### Feature Choice / Mutual Choice SAE (Ayonrinde 2024)
+- Feature Choice: TopK activation with adaptive sparse allocation mechanisms
+- Mutual Choice: Extends feature choice with bidirectional feature-example relationships
+
+### Feature Aligned SAE (Marks et al. 2024)
+- TopK activation; ensures consistency of learned features across training runs and model layers
+
+### End-to-End SAE (Braun et al. 2025)
+- ReLU activation; trains through the full model pipeline rather than just on local reconstruction
+- Identifies functionally important features by optimizing for downstream task performance rather than just reconstruction loss
+
+### Formal Languages SAE (Menon et al. 2024)
+- ReLU activation; analyzes SAE abilities through controlled formal language tasks
+
+### Specialized SAE (Muhamed et al. 2024)
+- ReLU activation; targets rare concepts in foundation models with domain-specific extraction
+
+---
+
+## Training Strategies
+
+**Sparsity Penalty Control:** The coefficient alpha is a critical hyperparameter. Higher alpha yields stronger sparsity but risks information loss; lower alpha produces denser activations with reduced interpretability.
+
+**Dead Neuron Prevention:** Several mechanisms are discussed:
+- Auxiliary losses (L_aux) to prevent features from never activating (dead latents)
+- The TopK SAE explicitly includes an auxiliary loss "designed to stabilize training and prevent dead latents"
+
+**Pre-normalization:** A bias term b_pre is used in TopK/BatchTopK variants before the selection operation, stabilizing feature selection across different magnitude ranges.
+
+**Shrinkage Bias Mitigation:** The Gated SAE architecture specifically addresses how L1 regularization systematically underestimates feature activations, leading to reduced reconstruction accuracy.
+
+**Decoder Weight Handling:** The Gated SAE uses a decoder with frozen weights in the auxiliary training path.
+
+The paper notes that ghost gradients and dead neuron resampling techniques exist but does not provide extensive methodological detail in the main text (these appear more in the referenced primary literature).
+
+---
+
+## Feature Explanation Methods
+
+### Input-Based Methods
+
+**MaxAct (Bricken et al. 2023):** Identifies the K text spans that maximally activate a given feature. Formula: I_m = argmax over subsets X' of sum of f(x) * w_m^T. Strength: direct activation-based interpretation. Limitation: may include extraneous context that is not causally relevant.
+
+**PruningMaxAct (Gao et al. 2025):** Removes irrelevant tokens from activated spans. Constraint: pruned activation must be >= 50% of original activation. Achieves higher recall but lower precision than MaxAct. Reveals the minimal necessary context for feature activation.
+
+### Output-Based Methods
+
+**VocabProj (standard projection):** Projects feature decoder vectors onto output vocabulary embeddings. Formula: I_m = argmax over vocabulary subsets. Assumes linear correlation in the residual stream. Works for decoder-only architectures.
+
+**MutInfo / Mutual Information (Wu et al. 2025b):** Addresses frequency bias in vocabulary embeddings. Maximizes mutual information MI(V'; C) using formula argmax sum of p(w|w_m) * log p(w_m|w). Normalizes by conditional probability to reduce bias toward common words.
+
+---
+
+## Evaluation Metrics
+
+### Structural Metrics (Training Properties)
+
+**Reconstruction Fidelity:**
+- Mean Squared Error (MSE)
+- Cosine Similarity
+- Fraction of Variance Unexplained (FVU)
+- Explained Variance
+- Cross-Entropy Loss (shift in output distributions)
+- KL Divergence (probability distribution divergence)
+- Delta LM Loss (impact on language model loss when SAE is inserted)
+- L2 Ratio (compares Euclidean norms of original vs reconstructed)
+
+**Sparsity Metrics:**
+- L0 Sparsity (average number of nonzero activations per input)
+- Latent Firing Frequency (how often each feature activates across the dataset)
+- Feature Density Statistics (activation distribution analysis)
+- Sparsity-Fidelity Trade-off curves
+
+### Functional Metrics (Real-World Utility)
+
+**Interpretability:**
+- RAVEL and Automated Interpretability (LLM-generated feature descriptions evaluated for accuracy)
+- Sparse Probing: a linear probe trained on only a small subset of SAE activations; if few features enable strong task performance, the SAE has learned disentangled representations
+- Targeted Probe Perturbation (TPP): measures how much perturbing individual latents impacts probe accuracy
+- Input-Based and Output-Based Evaluation: verify that natural language descriptions match actual feature behavior
+- Feature Absorption: assesses whether a feature captures multiple independent concepts instead of one; tests if adding more features improves representation quality
+- Feature Geometry Analysis: cosine similarity between decoder columns to check for redundancy
+
+**Robustness:**
+- Generalizability: out-of-distribution performance, including length generalization (short to long sequences) and model variant transfer (base to instruction-tuned)
+- Unlearning: selective feature forgetting while preserving overall model utility
+- Spurious Correlation Removal (SCR): bias elimination without harming downstream performance
+
+The paper emphasizes that ground truth labels for features are absent, requiring a diverse set of metrics for assessment. It references SAEBench (Karvonen et al. 2024) as a comprehensive benchmark for systematic SAE evaluation and comparison.
+
+---
+
+## Applications
+
+### Model Steering
+SAE latents produce steering vectors that control model outputs related to toxicity, sycophancy, refusal, and emotions. The mechanism: extract a steering vector by comparing representations with and without a feature active, then add this vector to input activations at inference time. Specific domains:
+- Toxicity control
+- Sycophancy reduction
+- Refusal engineering
+- Emotion manipulation
+- Translation instruction capture (He et al. 2025)
+- Semantic concept steering (O'Neill et al. 2024)
+- Knowledge unlearning (Farrell et al. 2024)
+- Safety-aligned steering (Wu et al. 2025b)
+
+**SAE-TS Enhancement:** Optimizes steering vectors by monitoring SAE feature activation changes during steering.
+
+### Model Behavior Analysis
+- **Hallucination mechanisms:** Entity recognition plays a pivot role; directional features distinguish entity knowledge
+- **In-context learning:** ICL task functions isolated via SAE features; temporal task vectors identified
+- **Reinforcement learning:** LLMs capture temporal difference errors and Q-values (revealed via SAEs)
+- **Instruction following:** Multi-concept composition rather than single concept encoding
+- **Cross-lingual toxicity:** Classification enabled via SAE features (Gallifant et al. 2025)
+- **Anger/refusal/sycophancy vectors:** Reconstructed from specific SAE latent directions (neverix et al. 2024)
+
+### Scaling Results
+Anthropic (Claude 3 Sonnet) and OpenAI (GPT-4) demonstrated that SAEs effectively decompose polysemantic neurons into monosemantic features at scale, revealing high-level concepts such as "sycophantic praise" and "humans have flaws" features. Google DeepMind applied SAEs to Gemma 2, and open-source efforts extended to LLaMA 3.1.
+
+---
+
+## Transcoders and MLP-Specific Analysis
+
+The survey does **not** discuss transcoders in any significant depth. This is a notable gap. Transcoders -- which approximate the input-output function of MLP layers using a sparse bottleneck, rather than decomposing internal activations -- are a parallel line of work (Dunefsky et al. 2024; Lindsey et al. 2025) that the survey largely omits. Subsequent work (e.g., "Transcoders Beat Sparse Autoencoders for Interpretability," arXiv 2501.18823) has argued that transcoder features are more interpretable than SAE features on SAEBench evaluation tasks. The absence of transcoders from this survey is a notable limitation of its coverage.
+
+---
+
+## Limitations Identified
+
+The paper identifies four major challenges in Appendix G:
+
+1. **Incomplete Concept Dictionary:** SAEs may not capture all features present in model activations. The learned dictionary cannot guarantee coverage of every concept the model uses.
+
+2. **Lack of Theoretical Foundations:** Limited formal understanding of why SAEs work, what guarantees they provide, and under what conditions they find "true" features versus artifacts.
+
+3. **Reconstruction Errors:** A persistent and fundamental trade-off between sparsity and fidelity. Strong sparsity constraints necessarily compromise reconstruction accuracy, and vice versa.
+
+4. **Computational Burden:** Substantial computational requirements for training overcomplete dictionaries on large models with billions of parameters. The sheer scale of activations makes training and extracting interpretable features expensive. Feature superposition is more prevalent in larger models, making monosemanticity harder to achieve.
+
+---
+
+## OpenReview Status
+
+The paper is listed on OpenReview at https://openreview.net/forum?id=dUibfc2dAA, but reviewer comments and scores are not publicly visible. This is typical for EMNLP submissions that go through the ACL Rolling Review (ARR) process, where reviews remain on the ARR system rather than the conference OpenReview page. The paper was last modified on January 21, 2026, suggesting post-publication updates.
+
+---
+
+## Key Models Mentioned in the Survey
+
+Proprietary/closed: GPT-4, Claude 3 Sonnet, Claude 3.5 Sonnet, DeepSeek-R1, Grok-3.
+Open-source: GPT-2, Pythia-70m, Gemma 2, LLaMA 3.1. Both base models and instruction-finetuned variants are discussed.
+
+---
+
+## Sources
+
+- [arXiv Abstract Page](https://arxiv.org/abs/2503.05613)
+- [arXiv HTML Full Text (v3)](https://arxiv.org/html/2503.05613v3)
+- [ACL Anthology](https://aclanthology.org/2025.findings-emnlp.89/)
+- [ACL Anthology PDF](https://aclanthology.org/2025.findings-emnlp.89.pdf)
+- [OpenReview](https://openreview.net/forum?id=dUibfc2dAA)
+- [Moonlight Review Summary](https://www.themoonlight.io/en/review/a-survey-on-sparse-autoencoders-interpreting-the-internal-mechanisms-of-large-language-models)
+- [alphaXiv Overview](https://www.alphaxiv.org/overview/2503.05613v2)
+- [ResearchGate](https://www.researchgate.net/publication/389694381_A_Survey_on_Sparse_Autoencoders_Interpreting_the_Internal_Mechanisms_of_Large_Language_Models)
+
+agentId: a539ffc66b829a755 (use SendMessage with to: 'a539ffc66b829a755' to continue this agent)
+&lt;usage>total_tokens: 31184
+tool_uses: 19
+duration_ms: 281908&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f54e5820-97c8-40d6-a2fc-d7eb6739f94d",
+  "isSidechain": false,
+  "promptId": "98cbd5c6-ab63-46c8-8e8f-c228e192ee75",
+  "type": "user",
+  "uuid": "298b3cbf-0f73-48a3-82ff-9df3ffdd55a3",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "You are researching a paper for deep analysis. Use WebSearch and WebFetch to gather detailed information.\n\nPaper: \"A Survey on Sparse Autoencoders: Interpreting the Internal Mechanisms of Large Language Models\" by Dong Shu et al., EMNLP 2025 Findings, https://arxiv.org/abs/2503.05613\n\nTasks:\n1. Fetch the arxiv abstract page to get the full abstract.\n2. Search for the full paper or detailed summaries to understand the survey's scope and taxonomy.\n3. Search for the OpenReview page if available for EMNLP 2025.\n\nFor each source, extract:\n- The scope of the survey: what SAE architectures are covered (vanilla SAE, TopK SAE, Gated SAE, etc.)\n- Their taxonomy/organization of the SAE literature\n- Key findings about SAE training strategies\n- What they say about SAE applications in understanding and manipulating LLM behaviors\n- Their discussion of SAE evaluation metrics and feature quality\n- Any discussion of transcoders or SAE variants for MLP analysis\n- Limitations they identify in current SAE research\n\nReport all findings in detail. Be thorough - I need specifics about their taxonomy and methodology coverage.",
+    "agentId": "a539ffc66b829a755",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "The OpenReview page for this paper appears to have limited public review information (it may be a post-publication listing rather than the original review forum, as EMNLP 2025 used ARR). I now have comprehensive information to provide a detailed report.\n\n---\n\nHere is the detailed analysis of the survey paper.\n\n## Paper Identification\n\n**Title:** \"A Survey on Sparse Autoencoders: Interpreting the Internal Mechanisms of Large Language Models\"\n**Authors:** Dong Shu, Xuansheng Wu, Haiyan Zhao, Daking Rai, Ziyu Yao, Ninghao Liu, Mengnan Du\n**Venue:** Findings of the Association for Computational Linguistics: EMNLP 2025, pages 1690-1712, Suzhou, China\n**arXiv:** 2503.05613 (v1: March 7, 2025; v3: September 23, 2025)\n**DOI:** 10.18653/v1/2025.findings-emnlp.89\n**OpenReview:** https://openreview.net/forum?id=dUibfc2dAA (reviews not publicly visible; likely went through ARR)\n\n## Full Abstract\n\nThe survey presents a comprehensive examination of SAEs for mechanistic interpretability of LLMs, with four major contributions: (1) exploring the technical framework of SAEs, covering basic architecture, design improvements, and effective training strategies; (2) examining different approaches to explaining SAE features, categorized into input-based and output-based explanation methods; (3) discussing evaluation methods for assessing SAE performance, covering both structural and functional metrics; and (4) investigating real-world applications of SAEs in understanding and manipulating LLM behaviors.\n\n---\n\n## Survey Scope and Section Structure\n\nThe paper is organized into:\n- **Main Sections:** Introduction, Technical Framework, Explainability Analysis, Evaluation Metrics, Applications, Conclusions\n- **Appendices A-G:** (A) Why SAEs / historical motivation, (B) Connection to broader interpretability, (C) SAE Variants in detail, (D) Evaluation and comparison across variants, (E) Additional LLM applications, (F) SAE vs. probing-based methods, (G) Research challenges\n\n---\n\n## Taxonomy and Organization\n\nThe paper organizes the SAE literature along two primary axes:\n\n**Axis 1 -- By improvement target:**\n- *Improve Architecture* (activation function innovations): Gated SAE, TopK SAE, BatchTopK SAE, JumpReLU SAE, ProLU SAE, Switch SAE\n- *Improve Training Strategy*: Layer Group SAE, Feature Choice SAE, Mutual Choice SAE, Feature Aligned SAE, End-to-End SAE, Formal Languages SAE, Specialized SAE\n- *Basic Framework*: Standard L2-norm SAE with ReLU\n\n**Axis 2 -- By historical stage:**\n- **Stage 1 (2022-2023):** Individual neuron explanation efforts (OpenAI's neuron labeling, Anthropic's toy models showing superposition)\n- **Stage 2 (Late 2023):** SAEs applied to small models (GPT-2, Pythia-70m), foundational work by Cunningham et al. 2023 and Bricken et al. 2023\n- **Stage 3 (2024+):** Scaling to large proprietary models -- Anthropic applied SAEs to Claude 3 Sonnet, OpenAI to GPT-4, Google DeepMind to Gemma 2, plus open-source applications to LLaMA 3.1\n\nThe survey also explicitly connects SAE research to its intellectual antecedents: sparse coding (Olshausen & Field 1997), dictionary learning (Gregor & LeCun 2010), distributed representations (Hinton 1984), and disentangled representation learning (Higgins et al. 2018).\n\n---\n\n## SAE Architectures Covered\n\n### Basic SAE Framework\nThree components: encoder, decoder, loss function.\n- **Encoder:** h(z) = sigma(z * W_enc + b_enc), where h is in R^m with m >> d (overcomplete)\n- **Decoder:** z_hat = h(z) * W_dec + b_dec\n- **Loss:** L(z) = ||z - z_hat||^2_2 + alpha * ||h(z)||_1\n\n### Gated SAE (Rajamanoharan et al. 2024a)\n- Addresses **shrinkage bias** from L1 regularization, which systematically underestimates feature activations\n- Separates feature detection (gating) from magnitude estimation via two parallel pathways\n- Formula: h_tilde(z) = 1[pi_gate(z) > 0] * ReLU(pi_mag(z))\n- Uses auxiliary loss on a frozen decoder to guide gate learning\n\n### TopK SAE (Gao et al. 2025)\n- Directly enforces exact sparsity by retaining only the K largest activations\n- Formula: h_tilde(z) = TopK(W_enc(z - b_pre))\n- Eliminates L1 penalty entirely, thus removing shrinkage bias\n- Uses auxiliary loss to prevent dead latents\n\n### BatchTopK SAE (Bussmann et al. 2024)\n- Applies TopK selection across the entire batch rather than per-token\n- Formula: h_tilde(Z) = BatchTopK(W_enc(Z - b_pre))\n- Selects B*K total activations across the batch, allowing flexible per-token sparsity\n\n### JumpReLU SAE (Rajamanoharan et al. 2024b)\n- Custom activation function combining a threshold with a linear component\n- Achieves better reconstruction fidelity than standard ReLU\n\n### ProLU SAE (Taggart 2024)\n- Learnable per-feature thresholds (not fixed at zero)\n- ProLU(m_i, b_i) activates when m_i + b_i > 0 AND m_i > 0\n- Uses Sqrt(L1) penalty for better scaling properties\n\n### Switch SAE (Mudide et al. 2024)\n- Efficient variant using mixture-of-experts-style switching\n- Addresses scalability as dictionary sizes grow\n\n### Multi-TopK SAE\n- Extensions enabling variable sparsity levels\n\n### Layer Group SAE (Ghilardi et al. 2024)\n- Uses JumpReLU activation; trains multiple layers simultaneously with grouped parameters for efficiency\n\n### Feature Choice / Mutual Choice SAE (Ayonrinde 2024)\n- Feature Choice: TopK activation with adaptive sparse allocation mechanisms\n- Mutual Choice: Extends feature choice with bidirectional feature-example relationships\n\n### Feature Aligned SAE (Marks et al. 2024)\n- TopK activation; ensures consistency of learned features across training runs and model layers\n\n### End-to-End SAE (Braun et al. 2025)\n- ReLU activation; trains through the full model pipeline rather than just on local reconstruction\n- Identifies functionally important features by optimizing for downstream task performance rather than just reconstruction loss\n\n### Formal Languages SAE (Menon et al. 2024)\n- ReLU activation; analyzes SAE abilities through controlled formal language tasks\n\n### Specialized SAE (Muhamed et al. 2024)\n- ReLU activation; targets rare concepts in foundation models with domain-specific extraction\n\n---\n\n## Training Strategies\n\n**Sparsity Penalty Control:** The coefficient alpha is a critical hyperparameter. Higher alpha yields stronger sparsity but risks information loss; lower alpha produces denser activations with reduced interpretability.\n\n**Dead Neuron Prevention:** Several mechanisms are discussed:\n- Auxiliary losses (L_aux) to prevent features from never activating (dead latents)\n- The TopK SAE explicitly includes an auxiliary loss \"designed to stabilize training and prevent dead latents\"\n\n**Pre-normalization:** A bias term b_pre is used in TopK/BatchTopK variants before the selection operation, stabilizing feature selection across different magnitude ranges.\n\n**Shrinkage Bias Mitigation:** The Gated SAE architecture specifically addresses how L1 regularization systematically underestimates feature activations, leading to reduced reconstruction accuracy.\n\n**Decoder Weight Handling:** The Gated SAE uses a decoder with frozen weights in the auxiliary training path.\n\nThe paper notes that ghost gradients and dead neuron resampling techniques exist but does not provide extensive methodological detail in the main text (these appear more in the referenced primary literature).\n\n---\n\n## Feature Explanation Methods\n\n### Input-Based Methods\n\n**MaxAct (Bricken et al. 2023):** Identifies the K text spans that maximally activate a given feature. Formula: I_m = argmax over subsets X' of sum of f(x) * w_m^T. Strength: direct activation-based interpretation. Limitation: may include extraneous context that is not causally relevant.\n\n**PruningMaxAct (Gao et al. 2025):** Removes irrelevant tokens from activated spans. Constraint: pruned activation must be >= 50% of original activation. Achieves higher recall but lower precision than MaxAct. Reveals the minimal necessary context for feature activation.\n\n### Output-Based Methods\n\n**VocabProj (standard projection):** Projects feature decoder vectors onto output vocabulary embeddings. Formula: I_m = argmax over vocabulary subsets. Assumes linear correlation in the residual stream. Works for decoder-only architectures.\n\n**MutInfo / Mutual Information (Wu et al. 2025b):** Addresses frequency bias in vocabulary embeddings. Maximizes mutual information MI(V'; C) using formula argmax sum of p(w|w_m) * log p(w_m|w). Normalizes by conditional probability to reduce bias toward common words.\n\n---\n\n## Evaluation Metrics\n\n### Structural Metrics (Training Properties)\n\n**Reconstruction Fidelity:**\n- Mean Squared Error (MSE)\n- Cosine Similarity\n- Fraction of Variance Unexplained (FVU)\n- Explained Variance\n- Cross-Entropy Loss (shift in output distributions)\n- KL Divergence (probability distribution divergence)\n- Delta LM Loss (impact on language model loss when SAE is inserted)\n- L2 Ratio (compares Euclidean norms of original vs reconstructed)\n\n**Sparsity Metrics:**\n- L0 Sparsity (average number of nonzero activations per input)\n- Latent Firing Frequency (how often each feature activates across the dataset)\n- Feature Density Statistics (activation distribution analysis)\n- Sparsity-Fidelity Trade-off curves\n\n### Functional Metrics (Real-World Utility)\n\n**Interpretability:**\n- RAVEL and Automated Interpretability (LLM-generated feature descriptions evaluated for accuracy)\n- Sparse Probing: a linear probe trained on only a small subset of SAE activations; if few features enable strong task performance, the SAE has learned disentangled representations\n- Targeted Probe Perturbation (TPP): measures how much perturbing individual latents impacts probe accuracy\n- Input-Based and Output-Based Evaluation: verify that natural language descriptions match actual feature behavior\n- Feature Absorption: assesses whether a feature captures multiple independent concepts instead of one; tests if adding more features improves representation quality\n- Feature Geometry Analysis: cosine similarity between decoder columns to check for redundancy\n\n**Robustness:**\n- Generalizability: out-of-distribution performance, including length generalization (short to long sequences) and model variant transfer (base to instruction-tuned)\n- Unlearning: selective feature forgetting while preserving overall model utility\n- Spurious Correlation Removal (SCR): bias elimination without harming downstream performance\n\nThe paper emphasizes that ground truth labels for features are absent, requiring a diverse set of metrics for assessment. It references SAEBench (Karvonen et al. 2024) as a comprehensive benchmark for systematic SAE evaluation and comparison.\n\n---\n\n## Applications\n\n### Model Steering\nSAE latents produce steering vectors that control model outputs related to toxicity, sycophancy, refusal, and emotions. The mechanism: extract a steering vector by comparing representations with and without a feature active, then add this vector to input activations at inference time. Specific domains:\n- Toxicity control\n- Sycophancy reduction\n- Refusal engineering\n- Emotion manipulation\n- Translation instruction capture (He et al. 2025)\n- Semantic concept steering (O'Neill et al. 2024)\n- Knowledge unlearning (Farrell et al. 2024)\n- Safety-aligned steering (Wu et al. 2025b)\n\n**SAE-TS Enhancement:** Optimizes steering vectors by monitoring SAE feature activation changes during steering.\n\n### Model Behavior Analysis\n- **Hallucination mechanisms:** Entity recognition plays a pivot role; directional features distinguish entity knowledge\n- **In-context learning:** ICL task functions isolated via SAE features; temporal task vectors identified\n- **Reinforcement learning:** LLMs capture temporal difference errors and Q-values (revealed via SAEs)\n- **Instruction following:** Multi-concept composition rather than single concept encoding\n- **Cross-lingual toxicity:** Classification enabled via SAE features (Gallifant et al. 2025)\n- **Anger/refusal/sycophancy vectors:** Reconstructed from specific SAE latent directions (neverix et al. 2024)\n\n### Scaling Results\nAnthropic (Claude 3 Sonnet) and OpenAI (GPT-4) demonstrated that SAEs effectively decompose polysemantic neurons into monosemantic features at scale, revealing high-level concepts such as \"sycophantic praise\" and \"humans have flaws\" features. Google DeepMind applied SAEs to Gemma 2, and open-source efforts extended to LLaMA 3.1.\n\n---\n\n## Transcoders and MLP-Specific Analysis\n\nThe survey does **not** discuss transcoders in any significant depth. This is a notable gap. Transcoders -- which approximate the input-output function of MLP layers using a sparse bottleneck, rather than decomposing internal activations -- are a parallel line of work (Dunefsky et al. 2024; Lindsey et al. 2025) that the survey largely omits. Subsequent work (e.g., \"Transcoders Beat Sparse Autoencoders for Interpretability,\" arXiv 2501.18823) has argued that transcoder features are more interpretable than SAE features on SAEBench evaluation tasks. The absence of transcoders from this survey is a notable limitation of its coverage.\n\n---\n\n## Limitations Identified\n\nThe paper identifies four major challenges in Appendix G:\n\n1. **Incomplete Concept Dictionary:** SAEs may not capture all features present in model activations. The learned dictionary cannot guarantee coverage of every concept the model uses.\n\n2. **Lack of Theoretical Foundations:** Limited formal understanding of why SAEs work, what guarantees they provide, and under what conditions they find \"true\" features versus artifacts.\n\n3. **Reconstruction Errors:** A persistent and fundamental trade-off between sparsity and fidelity. Strong sparsity constraints necessarily compromise reconstruction accuracy, and vice versa.\n\n4. **Computational Burden:** Substantial computational requirements for training overcomplete dictionaries on large models with billions of parameters. The sheer scale of activations makes training and extracting interpretable features expensive. Feature superposition is more prevalent in larger models, making monosemanticity harder to achieve.\n\n---\n\n## OpenReview Status\n\nThe paper is listed on OpenReview at https://openreview.net/forum?id=dUibfc2dAA, but reviewer comments and scores are not publicly visible. This is typical for EMNLP submissions that go through the ACL Rolling Review (ARR) process, where reviews remain on the ARR system rather than the conference OpenReview page. The paper was last modified on January 21, 2026, suggesting post-publication updates.\n\n---\n\n## Key Models Mentioned in the Survey\n\nProprietary/closed: GPT-4, Claude 3 Sonnet, Claude 3.5 Sonnet, DeepSeek-R1, Grok-3.\nOpen-source: GPT-2, Pythia-70m, Gemma 2, LLaMA 3.1. Both base models and instruction-finetuned variants are discussed.\n\n---\n\n## Sources\n\n- [arXiv Abstract Page](https://arxiv.org/abs/2503.05613)\n- [arXiv HTML Full Text (v3)](https://arxiv.org/html/2503.05613v3)\n- [ACL Anthology](https://aclanthology.org/2025.findings-emnlp.89/)\n- [ACL Anthology PDF](https://aclanthology.org/2025.findings-emnlp.89.pdf)\n- [OpenReview](https://openreview.net/forum?id=dUibfc2dAA)\n- [Moonlight Review Summary](https://www.themoonlight.io/en/review/a-survey-on-sparse-autoencoders-interpreting-the-internal-mechanisms-of-large-language-models)\n- [alphaXiv Overview](https://www.alphaxiv.org/overview/2503.05613v2)\n- [ResearchGate](https://www.researchgate.net/publication/389694381_A_Survey_on_Sparse_Autoencoders_Interpreting_the_Internal_Mechanisms_of_Large_Language_Models)"
+      }
+    ],
+    "totalDurationMs": 281908,
+    "totalTokens": 31184,
+    "totalToolUseCount": 19,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1068,
+      "cache_read_input_tokens": 25941,
+      "output_tokens": 4174,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1068
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4174,
+          "cache_read_input_tokens": 25941,
+          "cache_creation_input_tokens": 1068,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1068,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 19
+    }
+  },
+  "sourceToolAssistantUUID": "f54e5820-97c8-40d6-a2fc-d7eb6739f94d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "9caa965a-b7bd-4c0e-9c96-921fcec5e116",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 29_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML researcher performing deep analysis of multiple published papers.  **Today's date: 2026-05-30 (UTC).**  ## Research context  We are generating ideas in the area of: **Target: AAAI…",
+  "leafUuid": "298b3cbf-0f73-48a3-82ff-9df3ffdd55a3",
+  "sessionId": "9caa965a-b7bd-4c0e-9c96-921fcec5e116"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 30_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Trace RAG evidence override circuit in LLMs",
+  "sessionId": "9caa965a-b7bd-4c0e-9c96-921fcec5e116"
+}
+```
+
+---
+
+### Assistant
+
+_source line 31 · 2026-05-30T06:24:33.205Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have comprehensive information about all 5 papers. Let me synthesize the analyses into the required JSON format, keeping each under 2000 characters.
+
+Let me compose the JSON array with concise, analytical entries for each paper.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "298b3cbf-0f73-48a3-82ff-9df3ffdd55a3",
+  "isSidechain": false,
+  "requestId": "req_011CbYGttgJLuazvmbempjnZ",
+  "type": "assistant",
+  "uuid": "119831d7-8c36-4049-9d35-11f37a86f261",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "9caa965a-b7bd-4c0e-9c96-921fcec5e116",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DtTfniAajo1Sc7xGbtPaHY",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 20121,
+      "cache_read_input_tokens": 16171,
+      "output_tokens": 2921,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20121,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2921,
+          "cache_read_input_tokens": 16171,
+          "cache_creation_input_tokens": 20121,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20121
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32 · 2026-05-30T06:25:53.117Z_
+
+I now have detailed research on all 5 papers. Let me synthesize the findings into the required JSON format, keeping each analysis under 2000 characters.
+
+```json
+[
+  {
+    "title": "Retrieval Head Mechanistically Explains Long-Context Factuality",
+    "venue": "ICLR 2025 (Oral)",
+    "problem_identification": "No mechanistic explanation existed for how transformers retrieve information from arbitrary positions in long contexts, nor why models hallucinate under long-context settings. The authors framed this as identifying the minimal sub-network implementing conditional copy-paste retrieval.",
+    "key_insight": "Fewer than 5% of attention heads ('retrieval heads') implement a conditional copy-paste algorithm, are universal across model families, intrinsic to pretraining (not created by context extension), and causally necessary — ablating them causes hallucination while ablating equal numbers of non-retrieval heads has negligible effect.",
+    "innovation_type": "analysis",
+    "method_summary": "Defines a 'retrieval score' measuring per-head token-level recall of copy-paste behavior on needle-in-a-haystack tasks with semantically irrelevant, unmemorizable answers. Scores converge after few samples. Progressive head masking causally validates necessity: top-50 retrieval heads (~5%) drop NIAH below 50%, while masking random heads preserves 95% accuracy. Tested across LLaMA/Mistral/Yi/Qwen at 6B-56B scales, MoE (Mixtral), and hybrid SSM (Jamba).",
+    "limitations_and_open_questions": "No mechanism explaining *when/why* retrieval heads dynamically activate. Limited to copy-paste retrieval — does not address semantic paraphrasing retrieval or interaction with parametric knowledge circuits. No circuit tracing beyond individual head identification.",
+    "building_blocks": ["Retrieval score metric for head classification", "Progressive head masking protocol", "NIAH-based detection datasets with unmemorizable answers", "Taxonomy: always-active vs context-sensitive retrieval heads"],
+    "relevance_to_seed": "Provides the foundational retrieval-side component of our circuit — the <5% of heads whose output must be traced through FFN layers and copy-suppression mechanisms to understand evidence integration vs. override."
+  },
+  {
+    "title": "CoRect: Context-Aware Logit Contrast for Hidden State Rectification to Resolve Knowledge Conflicts",
+    "venue": "arXiv 2026",
+    "problem_identification": "Decoding-time methods (CAD, AdaCAD) only adjust final token distributions without preventing intermediate representations from being steered toward parametric answers, while weight-editing methods (ROME) require ground-truth targets. The authors used Logit Lens analysis across 500 NQ conflict cases to discover the 'flip phenomenon.'",
+    "key_insight": "In 56% of knowledge-conflict cases, the correct context-derived answer reaches Rank-1 at intermediate layers but gets suppressed by deep FFN layers before output — the model 'knows' the right answer internally but fails to produce it, motivating surgical disinhibition rather than forced steering.",
+    "innovation_type": "new_technique",
+    "method_summary": "Two-stage label-free inference-time intervention. Stage 1: dual forward passes (contextualized vs. null-context) compute Contextual Mutual Information per token, verified by attention grounding scores, to select a trustworthy target token without labels. Stage 2: identifies suppressive FFN layers where u_l^T · w_target < 0 (FFN output negatively projects onto target's unembedding), then applies additive patches φ_l = -α·(u_l^T·w_target/||w_target||²)·w_target to neutralize suppression. α=1 achieves exact disinhibition.",
+    "limitations_and_open_questions": "Computational overhead from dual forward passes unquantified. Modest gains on multi-hop reasoning suggest parametric suppression interacts differently with complex reasoning chains. No circuit-level causal explanation for *why* specific FFN layers suppress — treatment is statistical, not mechanistic.",
+    "building_blocks": ["Flip phenomenon empirics (56% of conflict cases)", "Logit Lens layer-wise analysis of answer rank trajectories", "Label-free trustworthy token selection via CMI + attention verification", "Suppressive layer identification via unembedding projection sign"],
+    "relevance_to_seed": "The flip phenomenon is the key empirical observable our circuit must causally explain; CoRect's layer identification method (unembedding projection) provides a baseline for circuit-informed suppressive layer detection."
+  },
+  {
+    "title": "ParamMute: Suppressing Knowledge-Critical FFNs for Faithful Retrieval-Augmented Generation",
+    "venue": "NeurIPS 2025",
+    "problem_identification": "Existing RAG faithfulness methods focus on enhancing context utilization but overlook that internal parametric knowledge stored in FFN layers actively undermines faithfulness. The authors measured activation ratios across layers during faithful vs. unfaithful generation to locate the source.",
+    "key_insight": "Mid-to-deep FFN layers (70-90% of model depth) exhibit disproportionately high activation during unfaithful RAG generation, functioning as parametric memory repositories that override context — and soft suppression with a tunable coefficient enables plug-and-play control.",
+    "innovation_type": "combination",
+    "method_summary": "Three components: (1) UA-FFN identification via activation gap ΔR^l = E[R^l|unfaithful] - E[R^l|faithful], selecting top-N layers; (2) soft suppression scaling FFN activations by λ∈[0,1]; (3) knowledge preference calibration combining supervised fine-tuning (KAT) with a max-margin loss (KPO) that forces P(y*|q,c) >> P(y*|q). Evaluated on CoFaithfulQA (52K instances from 6 QA datasets) and ConFiQA. Achieves +5% ConR, -4% MemR vs. vanilla RAG.",
+    "limitations_and_open_questions": "Requires training data for KAT/KPO — not purely inference-time. UA-FFN identification is statistical (activation ratios), not causal-circuit-based. Reviewers questioned performance under noisy retrieval and closed-book degradation. FFN suppression is uniform across neurons within selected layers — no neuron-level granularity.",
+    "building_blocks": ["Activation ratio metric for FFN layer ranking", "Soft suppression coefficient λ for plug-and-play control", "KPO max-margin loss for knowledge preference calibration", "CoFaithfulQA benchmark (52K instances)"],
+    "relevance_to_seed": "Direct competitor/baseline — identifies the same mid-to-deep FFN layers our circuit must explain, but uses statistical activation gaps rather than causal circuit tracing, and applies uniform layer-level suppression rather than neuron/feature-level surgical intervention."
+  },
+  {
+    "title": "Analysing the Residual Stream of Language Models Under Knowledge Conflicts",
+    "venue": "NeurIPS 2024 Workshop (MINT)",
+    "problem_identification": "Prior conflict detection relied on prompting-based strategies requiring extra inference passes. No work had examined whether LLMs' internal representations encode detectable conflict signals before answer generation. The authors applied linear probing across all layers to map the temporal structure of conflict processing.",
+    "key_insight": "Knowledge conflicts are processed in two sequential phases in the residual stream: conflict detection peaks at mid-layers (~layer 14 in Llama3-8B), followed by knowledge selection peaking later (~layer 17) — and both signals coexist without erasure, with contextual-knowledge use producing distinctly more skewed activation distributions in deep layers.",
+    "innovation_type": "analysis",
+    "method_summary": "Layer-wise logistic regression probes (with L1 regularization) on hidden states, attention outputs, and MLP outputs at the final token position, trained on two binary tasks: conflict detection (conflicting vs. non-conflicting context) and knowledge selection (will model use contextual vs. parametric answer). Complemented by distributional shape analysis (Kurtosis, Hoyer sparsity, Gini coefficient) showing significant skewness divergence in layers 20-30. Tested on NQSwap/Macnoise/ConflictQA across Llama2-7B and Llama3-8B.",
+    "limitations_and_open_questions": "Probing captures correlation, not causation — detecting a signal doesn't prove the model uses it. Limited to English QA, greedy decoding, two model families. No intervention experiments. The paper is explicitly a preliminary study leading to SpARE (NAACL 2025).",
+    "building_blocks": ["Two-phase conflict processing timeline (detect → select)", "Distributional skewness metrics for knowledge-source discrimination", "Layer-wise probing protocol for conflict signals", "Evidence that MLP/attention stop adding conflict info after mid-layers while residual stream retains it"],
+    "relevance_to_seed": "Provides representation-level evidence our circuit must explain: conflict detection at mid-layers and selection at later layers maps directly onto the promote-suppress-iterate framework, and the coexistence finding constrains circuit hypotheses about when/where parametric vs. contextual signals compete."
+  },
+  {
+    "title": "A Survey on Sparse Autoencoders: Interpreting the Internal Mechanisms of Large Language Models",
+    "venue": "EMNLP 2025 Findings",
+    "problem_identification": "SAE research had fragmented across architectures (Gated, TopK, JumpReLU, etc.), training strategies, evaluation metrics, and applications without a unifying survey. No comprehensive resource organized the design space or identified open challenges systematically.",
+    "key_insight": "SAE variants primarily address a single core tension — the sparsity-fidelity tradeoff — through either architectural innovations (separating gating from magnitude estimation) or training innovations (end-to-end optimization through the full model), with shrinkage bias from L1 regularization being the key technical obstacle most variants attempt to resolve.",
+    "innovation_type": "analysis",
+    "method_summary": "Taxonomizes SAE literature along two axes: improvement target (architecture vs. training strategy) and historical stage (individual neurons → small models → scaled deployment). Covers 15+ SAE variants with formal specifications. Categorizes feature explanation into input-based (MaxAct, PruningMaxAct) and output-based (VocabProj, MutInfo) methods. Evaluates metrics across structural (MSE, FVU, L0, delta LM loss) and functional (sparse probing, TPP, feature absorption, SCR) dimensions. References SAEBench as standardized evaluation.",
+    "limitations_and_open_questions": "Notable omission of transcoders (Dunefsky et al. 2024), which approximate MLP input-output functions via sparse bottlenecks and have been argued to outperform SAEs on interpretability benchmarks. No discussion of SAE application to circuit discovery specifically. Four open challenges identified: incomplete concept dictionaries, lack of theoretical foundations, reconstruction errors, and computational burden at scale.",
+    "building_blocks": ["Taxonomy of SAE architectures with formal specifications", "Evaluation framework: structural vs. functional metrics", "Feature explanation methods (MaxAct, PruningMaxAct, VocabProj, MutInfo)", "SAEBench reference for standardized comparison", "Model steering via SAE-derived steering vectors"],
+    "relevance_to_seed": "Essential methodological reference for our SAE/transcoder-based circuit analysis — the taxonomy guides architecture selection (TopK or Gated SAE for sparsity without shrinkage bias), and the evaluation framework (sparse probing, TPP) provides metrics for validating that discovered circuit features are genuinely monosemantic."
+  }
+]
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "119831d7-8c36-4049-9d35-11f37a86f261",
+  "isSidechain": false,
+  "requestId": "req_011CbYGttgJLuazvmbempjnZ",
+  "type": "assistant",
+  "uuid": "969536c1-3ed9-494a-bbac-fb617028c2bc",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "9caa965a-b7bd-4c0e-9c96-921fcec5e116",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DtTfniAajo1Sc7xGbtPaHY",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 20121,
+      "cache_read_input_tokens": 16171,
+      "output_tokens": 2921,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20121,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2921,
+          "cache_read_input_tokens": 16171,
+          "cache_creation_input_tokens": 20121,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20121
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 33_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a senior ML researcher performing deep analysis of multiple published papers.  **Today's date: 2026-05-30 (UTC).**  ## Research context  We are generating ideas in the area of: **Target: AAAI…",
+  "leafUuid": "969536c1-3ed9-494a-bbac-fb617028c2bc",
+  "sessionId": "9caa965a-b7bd-4c0e-9c96-921fcec5e116"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 34_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Trace RAG evidence override circuit in LLMs",
+  "sessionId": "9caa965a-b7bd-4c0e-9c96-921fcec5e116"
+}
+```
+
+---

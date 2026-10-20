@@ -1,0 +1,2468 @@
+{
+  "schema_version": "1.0",
+  "id": "0b86b54aa9a19fc471be",
+  "project": "nlp_variance_gtheory--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: 【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。 【proposal】: # Calibration as a Shield: How PRM ",
+  "task_key": "d49c158e-b604-4ae3-b6af-a58036d403c2",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/d49c158e-b604-4ae3-b6af-a58036d403c2.jsonl",
+    "occurrence": 1,
+    "bytes": 130239,
+    "sha256": "6e0394d01909beff9fc58d72c4ea8ad6b2949dfcc9a2467127927a7d58c9bc9e"
+  },
+  "statistics": {
+    "messages": 45,
+    "user_turns": 1,
+    "tool_calls": 12,
+    "roles": {
+      "record": 14,
+      "user": 1,
+      "assistant": 6,
+      "tool_call": 12,
+      "tool_result": 12
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T03:17:35.749Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-20T03:17:35.749Z",
+                "sessionId": "d49c158e-b604-4ae3-b6af-a58036d403c2",
+                "content": "【任务】: 请评估以下 proposal 的客观中稿概率。\n必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。\n\n【proposal】:\n# Calibration as a Shield: How PRM Calibration Quality Causally Determines Reward Hacking Resistance, and a Step-Level Defense\n\n## Description\nWe present the first causally rigorous study connecting PRM calibration quality to adversarial exploitability, and propose Calibration-Gated Step-Level Pessimism (CGSP), a novel defense that transforms calibrated uncertainty into adaptive reward hacking resistance during RL training. Our work bridges two mature but isolated research threads (PRM calibration and PRM hackability) through four contributions. First, an expanded correlation study across 48 configurations (8 PRMs × 6 calibration methods) provides sufficient statistical power (n=48, detecting r≥0.29 at p<0.05) to establish whether calibration quality predicts hackability metrics under gradient attacks, RL-induced hacking (GRPO on AIME), and BoN overoptimization (MATH-500), stratified by problem difficulty. Second, causal isolation experiments separate calibration's true effect from representation change artifacts: we compare post-hoc calibration methods (temperature scaling, Platt scaling, isotonic regression, conformal prediction) that provably preserve model representations against fine-tuning-based methods, with CKA verification and matched-representation-change controls. Third, step-level Hessian spectral analysis goes beyond Ackermann et al.'s outcome-level gradient norm analysis (which applies only to single-scalar reward models) to reveal how calibration affects the multi-reward compositional geometry of PRMs — analyzing how step-level flatness compounds across trajectories. Fourth, CGSP replaces raw PRM rewards during RL training with r̃_t = μ_t − α·σ_t/√c_t, where calibrated uncertainty σ_t and calibration quality c_t adaptively modulate pessimism per-step — trusted when calibration is tight, pessimistic when uncertainty is high — with a Calibration Drift Detector that monitors ECE on current-policy rollouts to flag distribution-shift-induced reward hacking in real time. CGSP differs from existing defenses (Caution uses prediction error, PET uses global pessimism, ensemble methods are uncalibrated) by being step-level, calibration-grounded, and adaptive. We evaluate CGSP against 5 baselines (uncalibrated GRPO, APRM, Caution, ensemble-min, gradient regularization) on MATH-500 and AIME, measuring both reward-accuracy alignment and downstream task accuracy.\n"
+              }
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T03:17:35.751Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-20T03:17:35.751Z",
+                "sessionId": "d49c158e-b604-4ae3-b6af-a58036d403c2"
+              }
+            }
+          ],
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T03:17:35.761Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "【任务】: 请评估以下 proposal 的客观中稿概率。\n必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。\n\n【proposal】:\n# Calibration as a Shield: How PRM Calibration Quality Causally Determines Reward Hacking Resistance, and a Step-Level Defense\n\n## Description\nWe present the first causally rigorous study connecting PRM calibration quality to adversarial exploitability, and propose Calibration-Gated Step-Level Pessimism (CGSP), a novel defense that transforms calibrated uncertainty into adaptive reward hacking resistance during RL training. Our work bridges two mature but isolated research threads (PRM calibration and PRM hackability) through four contributions. First, an expanded correlation study across 48 configurations (8 PRMs × 6 calibration methods) provides sufficient statistical power (n=48, detecting r≥0.29 at p<0.05) to establish whether calibration quality predicts hackability metrics under gradient attacks, RL-induced hacking (GRPO on AIME), and BoN overoptimization (MATH-500), stratified by problem difficulty. Second, causal isolation experiments separate calibration's true effect from representation change artifacts: we compare post-hoc calibration methods (temperature scaling, Platt scaling, isotonic regression, conformal prediction) that provably preserve model representations against fine-tuning-based methods, with CKA verification and matched-representation-change controls. Third, step-level Hessian spectral analysis goes beyond Ackermann et al.'s outcome-level gradient norm analysis (which applies only to single-scalar reward models) to reveal how calibration affects the multi-reward compositional geometry of PRMs — analyzing how step-level flatness compounds across trajectories. Fourth, CGSP replaces raw PRM rewards during RL training with r̃_t = μ_t − α·σ_t/√c_t, where calibrated uncertainty σ_t and calibration quality c_t adaptively modulate pessimism per-step — trusted when calibration is tight, pessimistic when uncertainty is high — with a Calibration Drift Detector that monitors ECE on current-policy rollouts to flag distribution-shift-induced reward hacking in real time. CGSP differs from existing defenses (Caution uses prediction error, PET uses global pessimism, ensemble methods are uncalibrated) by being step-level, calibration-grounded, and adaptive. We evaluate CGSP against 5 baselines (uncalibrated GRPO, APRM, Caution, ensemble-min, gradient regularization) on MATH-500 and AIME, measuring both reward-accuracy alignment and downstream task accuracy.\n"
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": false,
+            "promptId": "b9d512ad-717b-4bfb-bf6b-e902bd9ea417",
+            "type": "user",
+            "uuid": "1b48d47f-4225-40dc-8628-554f2acc126d",
+            "permissionMode": "default",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "d49c158e-b604-4ae3-b6af-a58036d403c2",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T03:17:35.761Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "1b48d47f-4225-40dc-8628-554f2acc126d",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskCreate",
+                    "TaskGet",
+                    "TaskList",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TaskUpdate",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskCreate",
+                    "TaskGet",
+                    "TaskList",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TaskUpdate",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "removedNames": [],
+                  "readdedNames": [],
+                  "pendingMcpServers": []
+                },
+                "type": "attachment",
+                "uuid": "94746e5f-9e9e-4878-8b8b-810b6198485b",
+                "timestamp": "2026-05-20T03:17:35.761Z",
+                "userType": "external",
+                "entrypoint": "sdk-py",
+                "cwd": "/home/ubuntu/idea_review",
+                "sessionId": "d49c158e-b604-4ae3-b6af-a58036d403c2",
+                "version": "2.1.142",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T03:17:35.761Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "94746e5f-9e9e-4878-8b8b-810b6198485b",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "skill_listing",
+                  "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+                  "skillCount": 10,
+                  "isInitial": true
+                },
+                "type": "attachment",
+                "uuid": "2462af0d-d25b-4741-845e-0cf324a4d124",
+                "timestamp": "2026-05-20T03:17:35.761Z",
+                "userType": "external",
+                "entrypoint": "sdk-py",
+                "cwd": "/home/ubuntu/idea_review",
+                "sessionId": "d49c158e-b604-4ae3-b6af-a58036d403c2",
+                "version": "2.1.142",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "PRM calibration and reward hacking resistance defense",
+                "sessionId": "d49c158e-b604-4ae3-b6af-a58036d403c2"
+              }
+            }
+          ],
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T03:17:47.917Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user wants me to evaluate a research proposal for CoRL 2026. Let me first carefully read the proposal, then do web searches to understand the current landscape before making my assessment.\n\nWait - the proposal is about PRM (Process Reward Model) calibration and reward hacking resistance. This is an NLP/ML topic, not robotics. CoRL is Conference on Robot Learning. Let me re-read... The user said \"CoRL 2026 主会\" but the proposal is about PRM calibration, reward hacking in RL training for math reasoning. This seems more suited for NeurIPS, ICML, or ICLR rather than CoRL. \n\nI'll set aside the venue mismatch and focus on evaluating the core idea quality as requested. Let me search for what's currently being done in PRM calibration, reward hacking in RLHF systems, and process reward models to understand where this proposal fits in the research landscape.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2462af0d-d25b-4741-845e-0cf324a4d124",
+            "isSidechain": false,
+            "requestId": "req_011CbD6ZNcXGmHdWfFBDnXkf",
+            "type": "assistant",
+            "uuid": "cf5a6a0d-dbd4-47af-a1e5-d52294553db4",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "d49c158e-b604-4ae3-b6af-a58036d403c2",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01E6PT9we4UTRzhi8eDgJPjj",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 15988,
+                "output_tokens": 450,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2,
+                    "output_tokens": 450,
+                    "cache_read_input_tokens": 15988,
+                    "cache_creation_input_tokens": 0,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T03:17:47.918Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "我需要先对这个 proposal 所在领域进行详细调研，然后再进行评估。让我先搜索相关文献。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cf5a6a0d-dbd4-47af-a1e5-d52294553db4",
+            "isSidechain": false,
+            "requestId": "req_011CbD6ZNcXGmHdWfFBDnXkf",
+            "type": "assistant",
+            "uuid": "ebab5312-4948-4b5b-a506-99154082aa40",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "d49c158e-b604-4ae3-b6af-a58036d403c2",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01E6PT9we4UTRzhi8eDgJPjj",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 15988,
+                "output_tokens": 450,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2,
+                    "output_tokens": 450,
+                    "cache_read_input_tokens": 15988,
+                    "cache_creation_input_tokens": 0,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T03:17:48.072Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01G2WBGhj5z1psfnNMXVVfSX",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ebab5312-4948-4b5b-a506-99154082aa40",
+            "isSidechain": false,
+            "requestId": "req_011CbD6ZNcXGmHdWfFBDnXkf",
+            "type": "assistant",
+            "uuid": "04d9d6e0-7806-4ff5-8acc-4c02052b3410",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "d49c158e-b604-4ae3-b6af-a58036d403c2",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01E6PT9we4UTRzhi8eDgJPjj",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 15988,
+                "output_tokens": 450,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2,
+                    "output_tokens": 450,
+                    "cache_read_input_tokens": 15988,
+                    "cache_creation_input_tokens": 0,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T03:17:48.079Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01G2WBGhj5z1psfnNMXVVfSX",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "04d9d6e0-7806-4ff5-8acc-4c02052b3410",
+            "isSidechain": false,
+            "promptId": "b9d512ad-717b-4bfb-bf6b-e902bd9ea417",
+            "type": "user",
+            "uuid": "b2a5cca0-8c3f-4057-878d-42eace70c006",
+            "toolUseResult": {
+              "matches": [
+                "WebSearch"
+              ],
+              "query": "select:WebSearch",
+              "total_deferred_tools": 19
+            },
+            "sourceToolAssistantUUID": "04d9d6e0-7806-4ff5-8acc-4c02052b3410",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "d49c158e-b604-4ae3-b6af-a58036d403c2",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T03:17:51.953Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "现在让我进行多轮搜索来了解这个领域的现状。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b2a5cca0-8c3f-4057-878d-42eace70c006",
+            "isSidechain": false,
+            "requestId": "req_011CbD6aHG67Za1w6rmtDqGm",
+            "type": "assistant",
+            "uuid": "62d1c4c0-b153-4d93-a8e1-3dcce33c0445",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "d49c158e-b604-4ae3-b6af-a58036d403c2",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Yb3QRbu1HqUnE3Zeu81mAH",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 976,
+                "cache_read_input_tokens": 15988,
+                "output_tokens": 189,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 976,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 189,
+                    "cache_read_input_tokens": 15988,
+                    "cache_creation_input_tokens": 976,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 976
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T03:17:52.109Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BnuoioVF8tCNWfpGK1RM4f",
+              "name": "WebSearch",
+              "input": {
+                "query": "PRM process reward model calibration reward hacking 2025 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "62d1c4c0-b153-4d93-a8e1-3dcce33c0445",
+            "isSidechain": false,
+            "requestId": "req_011CbD6aHG67Za1w6rmtDqGm",
+            "type": "assistant",
+            "uuid": "27768622-1622-44cf-a264-cd447acf6e9a",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "d49c158e-b604-4ae3-b6af-a58036d403c2",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Yb3QRbu1HqUnE3Zeu81mAH",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 976,
+                "cache_read_input_tokens": 15988,
+                "output_tokens": 189,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 976,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 189,
+                    "cache_read_input_tokens": 15988,
+                    "cache_creation_input_tokens": 976,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 976
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T03:17:52.654Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016H2wRk71QtRD7DQFXVZ7ub",
+              "name": "WebSearch",
+              "input": {
+                "query": "reward hacking overoptimization defense process reward model 2025"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "27768622-1622-44cf-a264-cd447acf6e9a",
+            "isSidechain": false,
+            "requestId": "req_011CbD6aHG67Za1w6rmtDqGm",
+            "type": "assistant",
+            "uuid": "fd43ef9d-ea11-4b7c-b6e9-788cce5b957f",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "d49c158e-b604-4ae3-b6af-a58036d403c2",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Yb3QRbu1HqUnE3Zeu81mAH",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 976,
+                "cache_read_input_tokens": 15988,
+                "output_tokens": 189,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 976,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 189,
+                    "cache_read_input_tokens": 15988,
+                    "cache_creation_input_tokens": 976,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 976
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T03:17:53.292Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WTRSj4Mu4KBhwdzaK4rssC",
+              "name": "WebSearch",
+              "input": {
+                "query": "Ackermann reward model hacking gradient analysis PRM exploitability"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fd43ef9d-ea11-4b7c-b6e9-788cce5b957f",
+            "isSidechain": false,
+            "requestId": "req_011CbD6aHG67Za1w6rmtDqGm",
+            "type": "assistant",
+            "uuid": "9c513ccf-5709-4c9c-8d5d-343fe40ada26",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "d49c158e-b604-4ae3-b6af-a58036d403c2",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Yb3QRbu1HqUnE3Zeu81mAH",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 976,
+                "cache_read_input_tokens": 15988,
+                "output_tokens": 189,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 976,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 189,
+                    "cache_read_input_tokens": 15988,
+                    "cache_creation_input_tokens": 976,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 976
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T03:18:00.532Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BnuoioVF8tCNWfpGK1RM4f",
+              "type": "tool_result",
+              "content": "Web search results for query: \"PRM process reward model calibration reward hacking 2025 2026\"\n\nLinks: [{\"title\":\"Daily Papers - Hugging Face\",\"url\":\"https://huggingface.co/papers?q=Process+Reward+Models+(PRMs)\"},{\"title\":\"Process-supervised Reward Models (PRMs)\",\"url\":\"https://www.emergentmind.com/topics/process-supervised-reward-models-prm\"},{\"title\":\"A Survey of Process Reward Models: From Outcome Signals to Process Supervisions for Large Language Models\",\"url\":\"https://arxiv.org/html/2510.08049v3\"},{\"title\":\"Reward Modeling for Reinforcement Learning-Based LLM ...\",\"url\":\"https://openreview.net/pdf?id=TDfrN1TbGH\"},{\"title\":\"Reward Under Attack: Evaluating the Sensitivity of Process Reward Models\",\"url\":\"https://openreview.net/pdf?id=Hw24VOppus\"},{\"title\":\"Stop Summation: Min-Form Credit Assignment Is All Process Reward Model Needs for Reasoning\",\"url\":\"https://arxiv.org/pdf/2504.15275\"},{\"title\":\"Process Reward Models for LLM Agents: Practical Framework and Directions\",\"url\":\"https://arxiv.org/html/2502.10325v1\"},{\"title\":\"Linking Process to Outcome: Conditional Reward Modeling for LLM Reasoning\",\"url\":\"https://arxiv.org/pdf/2509.26578\"},{\"title\":\"Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models\",\"url\":\"https://arxiv.org/pdf/2603.06621\"}]\n\nI found comprehensive search results on process reward models (PRMs), calibration, and reward hacking challenges in 2025-2026. Here are the key findings:\n\n## PRM Calibration\n\nProcess reward models have proven effective for test-time scaling of LLMs on challenging reasoning tasks, with calibration methods successfully achieving small calibration errors and outperforming baseline methods. PPR trains a PRM that grounds step-wise judgments in interpretable principles instead of ad-hoc heuristics, with reward calibrated to unify the scales of sparse outcome and dense process rewards before advantage estimation.\n\n## Reward Hacking Issues\n\nReward hacking issues with PRMs limit their successful application in reinforcement fine-tuning, with the main cause being the canonical summation-form credit assignment in RL which easily induces LLMs to hack steps with high rewards. PRMs are more susceptible to length hacking or verbosity bias due to high variance in step-wise optimization.\n\nReward hacking often arises through superficial heuristics, with numerous studies documenting length bias where longer outputs receive inflated rewards irrespective of content quality.\n\n## Recent Solutions (2025-2026)\n\nA proposed approach called PURE uses min-form credit assignment that formulates the value function as the minimum of future rewards, significantly alleviating reward hacking by limiting the value function range and distributing advantages more reasonably.\n\nData-efficient strategies such as active learning, entropy-guided selection, and consistency filtering have dramatically reduced the barrier to large-scale process supervision, though reward hacking and balancing local/global signals in dynamic settings remain ongoing challenges.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "27768622-1622-44cf-a264-cd447acf6e9a",
+            "isSidechain": false,
+            "promptId": "b9d512ad-717b-4bfb-bf6b-e902bd9ea417",
+            "type": "user",
+            "uuid": "2838620f-af28-4a47-b117-7fd76a3b6114",
+            "toolUseResult": {
+              "query": "PRM process reward model calibration reward hacking 2025 2026",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01WggptqjX4VNppXwR4uGuo7",
+                  "content": [
+                    {
+                      "title": "Daily Papers - Hugging Face",
+                      "url": "https://huggingface.co/papers?q=Process+Reward+Models+(PRMs)"
+                    },
+                    {
+                      "title": "Process-supervised Reward Models (PRMs)",
+                      "url": "https://www.emergentmind.com/topics/process-supervised-reward-models-prm"
+                    },
+                    {
+                      "title": "A Survey of Process Reward Models: From Outcome Signals to Process Supervisions for Large Language Models",
+                      "url": "https://arxiv.org/html/2510.08049v3"
+                    },
+                    {
+                      "title": "Reward Modeling for Reinforcement Learning-Based LLM ...",
+                      "url": "https://openreview.net/pdf?id=TDfrN1TbGH"
+                    },
+                    {
+                      "title": "Reward Under Attack: Evaluating the Sensitivity of Process Reward Models",
+                      "url": "https://openreview.net/pdf?id=Hw24VOppus"
+                    },
+                    {
+                      "title": "Stop Summation: Min-Form Credit Assignment Is All Process Reward Model Needs for Reasoning",
+                      "url": "https://arxiv.org/pdf/2504.15275"
+                    },
+                    {
+                      "title": "Process Reward Models for LLM Agents: Practical Framework and Directions",
+                      "url": "https://arxiv.org/html/2502.10325v1"
+                    },
+                    {
+                      "title": "Linking Process to Outcome: Conditional Reward Modeling for LLM Reasoning",
+                      "url": "https://arxiv.org/pdf/2509.26578"
+                    },
+                    {
+                      "title": "Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models",
+                      "url": "https://arxiv.org/pdf/2603.06621"
+                    }
+                  ]
+                },
+                "I found comprehensive search results on process reward models (PRMs), calibration, and reward hacking challenges in 2025-2026. Here are the key findings:\n\n## PRM Calibration\n\nProcess reward models have proven effective for test-time scaling of LLMs on challenging reasoning tasks, with calibration methods successfully achieving small calibration errors and outperforming baseline methods. PPR trains a PRM that grounds step-wise judgments in interpretable principles instead of ad-hoc heuristics, with reward calibrated to unify the scales of sparse outcome and dense process rewards before advantage estimation.\n\n## Reward Hacking Issues\n\nReward hacking issues with PRMs limit their successful application in reinforcement fine-tuning, with the main cause being the canonical summation-form credit assignment in RL which easily induces LLMs to hack steps with high rewards. PRMs are more susceptible to length hacking or verbosity bias due to high variance in step-wise optimization.\n\nReward hacking often arises through superficial heuristics, with numerous studies documenting length bias where longer outputs receive inflated rewards irrespective of content quality.\n\n## Recent Solutions (2025-2026)\n\nA proposed approach called PURE uses min-form credit assignment that formulates the value function as the minimum of future rewards, significantly alleviating reward hacking by limiting the value function range and distributing advantages more reasonably.\n\nData-efficient strategies such as active learning, entropy-guided selection, and consistency filtering have dramatically reduced the barrier to large-scale process supervision, though reward hacking and balancing local/global signals in dynamic settings remain ongoing challenges."
+              ],
+              "durationSeconds": 8.399159606000001,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "27768622-1622-44cf-a264-cd447acf6e9a",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "d49c158e-b604-4ae3-b6af-a58036d403c2",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T03:18:00.969Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016H2wRk71QtRD7DQFXVZ7ub",
+              "type": "tool_result",
+              "content": "Web search results for query: \"reward hacking overoptimization defense process reward model 2025\"\n\nLinks: [{\"title\":\"Reward Hacking Defense Rubric\",\"url\":\"https://www.emergentmind.com/topics/reward-hacking-defense-rubric\"},{\"title\":\"Reward hacking - Wikipedia\",\"url\":\"https://en.wikipedia.org/wiki/Reward_hacking\"},{\"title\":\"GitHub - xhwang22/Awesome-Reward-Hacking: A curated list of papers and resources on Reward Hacking, Emergent Misalignment, and Proxy Exploitation in Large Models · GitHub\",\"url\":\"https://github.com/xhwang22/Awesome-Reward-Hacking\"},{\"title\":\"Reward Shaping to Mitigate Reward Hacking in RLHF\",\"url\":\"https://arxiv.org/html/2502.18770v3\"},{\"title\":\"Mitigating Reward Hacking in RLHF via Bayesian Non-negative Reward Modeling\",\"url\":\"https://arxiv.org/pdf/2602.10623\"},{\"title\":\"Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models\",\"url\":\"https://arxiv.org/pdf/2603.06621\"},{\"title\":\"Reward Model Ensembles Help Mitigate Overoptimization\",\"url\":\"https://arxiv.org/pdf/2310.02743\"}]\n\nBased on the search results, here's what I found about reward hacking, overoptimization, and defense mechanisms for process reward models in 2025:\n\n## Key Findings on Reward Hacking and Overoptimization\n\n**The Problem:**\nReward hacking occurs when the policy exploits spurious correlations encoded in the proxy reward model, yielding behavior that scores highly under the learned reward but deviates from true human objectives. Reward misgeneralization is a primary source, where reward models extrapolate incorrectly beyond the training distribution due to noisy human annotations and the tendency of deep neural networks to exploit shortcut features, often overemphasizing superficial cues like response length or stylistic artifacts.\n\n## Defense Mechanisms (2025)\n\nSeveral approaches have emerged to defend against reward hacking:\n\n1. **Reward Shaping:** The RL reward should be bounded, and benefits from rapid initial growth followed by gradual convergence.\n\n2. **Pessimistic Reward Modeling:** Pessimistic reward modeling embeds pessimism so that even \"greedy\" policy optimization under the learned reward is robust to overestimation.\n\n3. **Uncertainty Quantification:** The Probabilistic Uncertain Reward Model (PURM) generalizes scalar reward outputs to Gaussian distributions and penalizes learning in regions of high uncertainty to prevent overoptimization.\n\n4. **Robust Evaluation:** New evaluation datasets minimize representational gaps through normalized, style-matched ground truth comparisons with diverse incorrect solutions.\n\n5. **Process Reward Model Analysis:** Recent work in 2025 has examined whether PRMs rely on shallow consistency cues rather than causal reasoning structures through controlled perturbations, adversarial optimization, and closed-loop RL evaluation.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fd43ef9d-ea11-4b7c-b6e9-788cce5b957f",
+            "isSidechain": false,
+            "promptId": "b9d512ad-717b-4bfb-bf6b-e902bd9ea417",
+            "type": "user",
+            "uuid": "4dcc8a1e-bdeb-42a1-9c89-5be9fdd13868",
+            "toolUseResult": {
+              "query": "reward hacking overoptimization defense process reward model 2025",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_0174TdLQj6tCdf47sApG2CjM",
+                  "content": [
+                    {
+                      "title": "Reward Hacking Defense Rubric",
+                      "url": "https://www.emergentmind.com/topics/reward-hacking-defense-rubric"
+                    },
+                    {
+                      "title": "Reward hacking - Wikipedia",
+                      "url": "https://en.wikipedia.org/wiki/Reward_hacking"
+                    },
+                    {
+                      "title": "GitHub - xhwang22/Awesome-Reward-Hacking: A curated list of papers and resources on Reward Hacking, Emergent Misalignment, and Proxy Exploitation in Large Models · GitHub",
+                      "url": "https://github.com/xhwang22/Awesome-Reward-Hacking"
+                    },
+                    {
+                      "title": "Reward Shaping to Mitigate Reward Hacking in RLHF",
+                      "url": "https://arxiv.org/html/2502.18770v3"
+                    },
+                    {
+                      "title": "Mitigating Reward Hacking in RLHF via Bayesian Non-negative Reward Modeling",
+                      "url": "https://arxiv.org/pdf/2602.10623"
+                    },
+                    {
+                      "title": "Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models",
+                      "url": "https://arxiv.org/pdf/2603.06621"
+                    },
+                    {
+                      "title": "Reward Model Ensembles Help Mitigate Overoptimization",
+                      "url": "https://arxiv.org/pdf/2310.02743"
+                    }
+                  ]
+                },
+                "Based on the search results, here's what I found about reward hacking, overoptimization, and defense mechanisms for process reward models in 2025:\n\n## Key Findings on Reward Hacking and Overoptimization\n\n**The Problem:**\nReward hacking occurs when the policy exploits spurious correlations encoded in the proxy reward model, yielding behavior that scores highly under the learned reward but deviates from true human objectives. Reward misgeneralization is a primary source, where reward models extrapolate incorrectly beyond the training distribution due to noisy human annotations and the tendency of deep neural networks to exploit shortcut features, often overemphasizing superficial cues like response length or stylistic artifacts.\n\n## Defense Mechanisms (2025)\n\nSeveral approaches have emerged to defend against reward hacking:\n\n1. **Reward Shaping:** The RL reward should be bounded, and benefits from rapid initial growth followed by gradual convergence.\n\n2. **Pessimistic Reward Modeling:** Pessimistic reward modeling embeds pessimism so that even \"greedy\" policy optimization under the learned reward is robust to overestimation.\n\n3. **Uncertainty Quantification:** The Probabilistic Uncertain Reward Model (PURM) generalizes scalar reward outputs to Gaussian distributions and penalizes learning in regions of high uncertainty to prevent overoptimization.\n\n4. **Robust Evaluation:** New evaluation datasets minimize representational gaps through normalized, style-matched ground truth comparisons with diverse incorrect solutions.\n\n5. **Process Reward Model Analysis:** Recent work in 2025 has examined whether PRMs rely on shallow consistency cues rather than causal reasoning structures through controlled perturbations, adversarial optimization, and closed-loop RL evaluation."
+              ],
+              "durationSeconds": 8.312484230000003,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "fd43ef9d-ea11-4b7c-b6e9-788cce5b957f",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "d49c158e-b604-4ae3-b6af-a58036d403c2",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Calibration as a Shield: How PRM Calibration Quality Causally Determines Reward Hacking Resistance, and a Step-L…",
+                "leafUuid": "4dcc8a1e-bdeb-42a1-9c89-5be9fdd13868",
+                "sessionId": "d49c158e-b604-4ae3-b6af-a58036d403c2"
+              }
+            }
+          ],
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "PRM calibration and reward hacking resistance defense",
+                "sessionId": "d49c158e-b604-4ae3-b6af-a58036d403c2"
+              }
+            }
+          ],
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T03:18:01.563Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WTRSj4Mu4KBhwdzaK4rssC",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Ackermann reward model hacking gradient analysis PRM exploitability\"\n\nLinks: [{\"title\":\"1 Introduction\",\"url\":\"https://arxiv.org/html/2603.06621\"},{\"title\":\"[2602.18037] Gradient Regularization Prevents Reward Hacking in Reinforcement Learning from Human Feedback and Verifiable Rewards\",\"url\":\"https://arxiv.org/abs/2602.18037\"},{\"title\":\"Detecting and Suppressing Reward Hacking with Gradient Fingerprints\",\"url\":\"https://arxiv.org/html/2604.16242v1\"},{\"title\":\"[2603.06621] Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models\",\"url\":\"https://arxiv.org/abs/2603.06621\"},{\"title\":\"Reward Under Attack: Analyzing the Robustness and Hackability of\",\"url\":\"https://arxiv.org/pdf/2603.06621\"},{\"title\":\"Daily Papers - Hugging Face\",\"url\":\"https://huggingface.co/papers?q=reward+hacking\"},{\"title\":\"Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges\",\"url\":\"https://arxiv.org/html/2604.13602v1\"}]\n\nBased on the search results, here's what I found on this topic:\n\n## Key Research Areas\n\nProcess Reward Models (PRMs) are rapidly becoming the backbone of LLM reasoning pipelines, yet state-of-the-art PRMs are systematically exploitable under adversarial optimization pressure.\n\n### Gradient-Based Analysis and Exploitability\n\nGradient-based adversarial probing for PRMs demonstrates that short token sequences can universally inflate rewards on invalid trajectories, and the reward landscape geometry shows that adversarial optima lie in wide, exploitable peaks. More specifically, gradient-based attacks inflate rewards on invalid trajectories, with reward landscapes exhibiting wide, exploitable peaks.\n\n### Ackermann's Approach on Reward Hacking Prevention\n\nRelated to Ackermann's work, there is a theoretical connection between the accuracy of a reward model and the flatness of an optimum at convergence, and gradient regularization can be used to bias training to flatter regions and thereby maintain reward model accuracy.\n\n### Three-Tiered Diagnostic Framework\n\nA three-tiered diagnostic framework applies increasing adversarial pressure to quantify vulnerabilities, and static perturbation analysis uncovers a fluency-logic dissociation: high invariance to surface-level style changes, yet inconsistent detection of logically-corrupted reasoning, with different models failing on different attack types.\n\n### RL-Induced Reward Hacking\n\nPolicies trained with PRM feedback exhibit reward-accuracy divergence: near-perfect PRM scores coincide with stagnant ground-truth accuracy.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9c513ccf-5709-4c9c-8d5d-343fe40ada26",
+            "isSidechain": false,
+            "promptId": "b9d512ad-717b-4bfb-bf6b-e902bd9ea417",
+            "type": "user",
+            "uuid": "a9528fc7-18f9-45e4-bf29-11e1ce0b2031",
+            "toolUseResult": {
+              "query": "Ackermann reward model hacking gradient analysis PRM exploitability",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01FqwcUzhEsnUZNmsAk9RghV",
+                  "content": [
+                    {
+                      "title": "1 Introduction",
+                      "url": "https://arxiv.org/html/2603.06621"
+                    },
+                    {
+                      "title": "[2602.18037] Gradient Regularization Prevents Reward Hacking in Reinforcement Learning from Human Feedback and Verifiable Rewards",
+                      "url": "https://arxiv.org/abs/2602.18037"
+                    },
+                    {
+                      "title": "Detecting and Suppressing Reward Hacking with Gradient Fingerprints",
+                      "url": "https://arxiv.org/html/2604.16242v1"
+                    },
+                    {
+                      "title": "[2603.06621] Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models",
+                      "url": "https://arxiv.org/abs/2603.06621"
+                    },
+                    {
+                      "title": "Reward Under Attack: Analyzing the Robustness and Hackability of",
+                      "url": "https://arxiv.org/pdf/2603.06621"
+                    },
+                    {
+                      "title": "Daily Papers - Hugging Face",
+                      "url": "https://huggingface.co/papers?q=reward+hacking"
+                    },
+                    {
+                      "title": "Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges",
+                      "url": "https://arxiv.org/html/2604.13602v1"
+                    }
+                  ]
+                },
+                "Based on the search results, here's what I found on this topic:\n\n## Key Research Areas\n\nProcess Reward Models (PRMs) are rapidly becoming the backbone of LLM reasoning pipelines, yet state-of-the-art PRMs are systematically exploitable under adversarial optimization pressure.\n\n### Gradient-Based Analysis and Exploitability\n\nGradient-based adversarial probing for PRMs demonstrates that short token sequences can universally inflate rewards on invalid trajectories, and the reward landscape geometry shows that adversarial optima lie in wide, exploitable peaks. More specifically, gradient-based attacks inflate rewards on invalid trajectories, with reward landscapes exhibiting wide, exploitable peaks.\n\n### Ackermann's Approach on Reward Hacking Prevention\n\nRelated to Ackermann's work, there is a theoretical connection between the accuracy of a reward model and the flatness of an optimum at convergence, and gradient regularization can be used to bias training to flatter regions and thereby maintain reward model accuracy.\n\n### Three-Tiered Diagnostic Framework\n\nA three-tiered diagnostic framework applies increasing adversarial pressure to quantify vulnerabilities, and static perturbation analysis uncovers a fluency-logic dissociation: high invariance to surface-level style changes, yet inconsistent detection of logically-corrupted reasoning, with different models failing on different attack types.\n\n### RL-Induced Reward Hacking\n\nPolicies trained with PRM feedback exhibit reward-accuracy divergence: near-perfect PRM scores coincide with stagnant ground-truth accuracy."
+              ],
+              "durationSeconds": 8.269389712999997,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "9c513ccf-5709-4c9c-8d5d-343fe40ada26",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "d49c158e-b604-4ae3-b6af-a58036d403c2",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T03:18:04.419Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AdMYGp5y7BaS2Mfn9N3XnC",
+              "name": "WebSearch",
+              "input": {
+                "query": "CGSP calibration-gated step-level pessimism reward model defense"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a9528fc7-18f9-45e4-bf29-11e1ce0b2031",
+            "isSidechain": false,
+            "requestId": "req_011CbD6bGrJd8FVHn1TeaVCa",
+            "type": "assistant",
+            "uuid": "996e0379-00d7-48f0-a4d5-5058883d5929",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "d49c158e-b604-4ae3-b6af-a58036d403c2",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014TzVgGcPawz3tiavTHFmrP",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2481,
+                "cache_read_input_tokens": 16964,
+                "output_tokens": 124,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2481,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 124,
+                    "cache_read_input_tokens": 16964,
+                    "cache_creation_input_tokens": 2481,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2481
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-20T03:18:04.990Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FUh44EfebHgnTzoT85jJSg",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"Caution\" reward model prediction error pessimism PET ensemble reward hacking defense 2025"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "996e0379-00d7-48f0-a4d5-5058883d5929",
+            "isSidechain": false,
+            "requestId": "req_011CbD6bGrJd8FVHn1TeaVCa",
+            "type": "assistant",
+            "uuid": "d06e9d4a-3660-4e0d-b4de-b5ffb35203b3",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "d49c158e-b604-4ae3-b6af-a58036d403c2",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014TzVgGcPawz3tiavTHFmrP",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2481,
+                "cache_read_input_tokens": 16964,
+                "output_tokens": 124,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2481,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 124,
+                    "cache_read_input_tokens": 16964,
+                    "cache_creation_input_tokens": 2481,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2481
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-20T03:18:11.195Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AdMYGp5y7BaS2Mfn9N3XnC",
+              "type": "tool_result",
+              "content": "Web search results for query: \"CGSP calibration-gated step-level pessimism reward model defense\"\n\nLinks: [{\"title\":\"From Curiosity to Caution: Mitigating Reward Hacking for Best-of-N with Pessimism\",\"url\":\"https://arxiv.org/pdf/2604.04648\"},{\"title\":\"Learning a Pessimistic Reward Model in RLHF\",\"url\":\"https://arxiv.org/pdf/2505.20556\"},{\"title\":\"Learning a Pessimistic Reward Model in RLHF\",\"url\":\"https://arxiv.org/html/2505.20556\"},{\"title\":\"C$^2$GSPG: Confidence-calibrated Group Sequence Policy Gradient towards Self-aware Reasoning\",\"url\":\"https://arxiv.org/pdf/2509.23129\"},{\"title\":\"The Price of Pessimism for Automated Defense\",\"url\":\"https://arxiv.org/pdf/2409.19237\"},{\"title\":\"Cyber Game Simulation Platform (CGSP) In our simulation platform,... | Download Scientific Diagram\",\"url\":\"https://www.researchgate.net/figure/Cyber-Game-Simulation-Platform-CGSP-In-our-simulation-platform-network-attacks-and_fig5_221787722\"}]\n\nBased on the search results, I found relevant information about pessimism in reward models and related concepts, though the exact acronym \"CGSP\" with all those specific terms together doesn't appear in the results.\n\nThe most relevant results relate to:\n\n**C²GSPG (Confidence-calibrated Group Sequence Policy Gradient)**: A method for post-training large language models in reasoning tasks that yields robust reasoning models with calibrated confidence. The framework uses normalized sequence-level probability to define model confidence for each reasoning problem and applies a cross-entropy regularizer to calibrate the model confidence to the sequence's reward.\n\nThere's also research on **pessimism in reward models** more broadly: PET is a novel pessimistic reward fine-tuning method designed to learn a pessimistic reward model robust against reward hacking in offline reinforcement learning from human feedback (RLHF).\n\nAdditionally, pessimism in RL uses lower confidence bounds on value estimates to avoid out-of-distribution actions with uncertain reward estimates, functioning as the reverse of curiosity.\n\nThe search results don't contain a paper or resource that uses the exact acronym \"CGSP calibration-gated step-level pessimism\" together. If you're looking for a specific paper or method with that exact terminology, you may want to try a more specific search or check if there's a different phrasing for the concept you're interested in.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "996e0379-00d7-48f0-a4d5-5058883d5929",
+            "isSidechain": false,
+            "promptId": "b9d512ad-717b-4bfb-bf6b-e902bd9ea417",
+            "type": "user",
+            "uuid": "679abce9-fc1d-4637-8f96-40f408362d08",
+            "toolUseResult": {
+              "query": "CGSP calibration-gated step-level pessimism reward model defense",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01LTpXUu1uS8w24K6mQJWnpG",
+                  "content": [
+                    {
+                      "title": "From Curiosity to Caution: Mitigating Reward Hacking for Best-of-N with Pessimism",
+                      "url": "https://arxiv.org/pdf/2604.04648"
+                    },
+                    {
+                      "title": "Learning a Pessimistic Reward Model in RLHF",
+                      "url": "https://arxiv.org/pdf/2505.20556"
+                    },
+                    {
+                      "title": "Learning a Pessimistic Reward Model in RLHF",
+                      "url": "https://arxiv.org/html/2505.20556"
+                    },
+                    {
+                      "title": "C$^2$GSPG: Confidence-calibrated Group Sequence Policy Gradient towards Self-aware Reasoning",
+                      "url": "https://arxiv.org/pdf/2509.23129"
+                    },
+                    {
+                      "title": "The Price of Pessimism for Automated Defense",
+                      "url": "https://arxiv.org/pdf/2409.19237"
+                    },
+                    {
+                      "title": "Cyber Game Simulation Platform (CGSP) In our simulation platform,... | Download Scientific Diagram",
+                      "url": "https://www.researchgate.net/figure/Cyber-Game-Simulation-Platform-CGSP-In-our-simulation-platform-network-attacks-and_fig5_221787722"
+                    }
+                  ]
+                },
+                "Based on the search results, I found relevant information about pessimism in reward models and related concepts, though the exact acronym \"CGSP\" with all those specific terms together doesn't appear in the results.\n\nThe most relevant results relate to:\n\n**C²GSPG (Confidence-calibrated Group Sequence Policy Gradient)**: A method for post-training large language models in reasoning tasks that yields robust reasoning models with calibrated confidence. The framework uses normalized sequence-level probability to define model confidence for each reasoning problem and applies a cross-entropy regularizer to calibrate the model confidence to the sequence's reward.\n\nThere's also research on **pessimism in reward models** more broadly: PET is a novel pessimistic reward fine-tuning method designed to learn a pessimistic reward model robust against reward hacking in offline reinforcement learning from human feedback (RLHF).\n\nAdditionally, pessimism in RL uses lower confidence bounds on value estimates to avoid out-of-distribution actions with uncertain reward estimates, functioning as the reverse of curiosity.\n\nThe search results don't contain a paper or resource that uses the exact acronym \"CGSP calibration-gated step-level pessimism\" together. If you're looking for a specific paper or method with that exact terminology, you may want to try a more specific search or check if there's a different phrasing for the concept you're interested in."
+              ],
+              "durationSeconds": 6.772323370999999,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "996e0379-00d7-48f0-a4d5-5058883d5929",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "d49c158e-b604-4ae3-b6af-a58036d403c2",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-20T03:18:11.856Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FUh44EfebHgnTzoT85jJSg",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"Caution\" reward model prediction error pessimism PET ensemble reward hacking defense 2025\"\n\nLinks: [{\"title\":\"Pessimistic Reward Tuning (PET) in RLHF\",\"url\":\"https://www.emergentmind.com/topics/pessimistic-reward-tuning-pet\"},{\"title\":\"Learning a Pessimistic Reward Model in RLHF\",\"url\":\"https://arxiv.org/pdf/2505.20556\"},{\"title\":\"From Curiosity to Caution: Mitigating Reward Hacking for Best-of-𝑁 with Pessimism\",\"url\":\"https://arxiv.org/html/2604.04648\"},{\"title\":\"Helping or Herding? Reward Model Ensembles Mitigate but do not Eliminate   Reward Hacking\",\"url\":\"https://arxiv.org/pdf/2312.09244\"},{\"title\":\"[2604.04648] From Curiosity to Caution: Mitigating Reward Hacking for Best-of-N with Pessimism\",\"url\":\"https://arxiv.org/abs/2604.04648\"},{\"title\":\"From Curiosity to Caution: Mitigating Reward Hacking for Best-of-N with Pessimism\",\"url\":\"https://arxiv.org/pdf/2604.04648\"},{\"title\":\"Published as a conference paper at ICLR 2025\",\"url\":\"https://proceedings.iclr.cc/paper_files/paper/2025/file/c78f81a878a72566422f37279bca0fd0-Paper-Conference.pdf\"},{\"title\":\"Learning a Pessimistic Reward Model in RLHF\",\"url\":\"https://arxiv.org/html/2505.20556v1\"}]\n\nBased on the search results, I found relevant information about the \"Caution\" approach and related pessimism-based methods for defending against reward hacking.\n\n## Key Findings:\n\n**The Caution Approach:**\nCaution can be seen as the reverse of curiosity: where curiosity rewards prediction error as a signal of novelty, caution penalizes prediction error as a signal of distributional uncertainty. Practically, caution trains an error model on typical responses and uses its prediction error to lower reward estimates for atypical ones.\n\n**Pessimistic Reward Tuning (PET) Framework:**\nThe search results also discuss related work on Pessimistic Reward Tuning (PET) as a defense mechanism. A reward model fine-tuned by PET is pessimistic and robust against reward hacking. Ensemble PET in BoN sampling improves final true reward by up to 75% under 25% label noise and eliminates or plateaus the gold reward, with gains robust to reward model or data scale.\n\n**Reward Hacking Problem:**\nBoN sampling is vulnerable to reward hacking, where performance degrades as N increases due to the selection of responses that exploit imperfections in the reward model instead of genuinely improving generation quality.\n\nThese approaches address a critical challenge in reinforcement learning from human feedback (RLHF) by using prediction error and pessimism to avoid out-of-distribution actions that could exploit reward model vulnerabilities.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d06e9d4a-3660-4e0d-b4de-b5ffb35203b3",
+            "isSidechain": false,
+            "promptId": "b9d512ad-717b-4bfb-bf6b-e902bd9ea417",
+            "type": "user",
+            "uuid": "b9b571eb-2d46-4ae9-a89a-94cae14b1973",
+            "toolUseResult": {
+              "query": "\"Caution\" reward model prediction error pessimism PET ensemble reward hacking defense 2025",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_013674gtohLByRpbfpRoQ6DM",
+                  "content": [
+                    {
+                      "title": "Pessimistic Reward Tuning (PET) in RLHF",
+                      "url": "https://www.emergentmind.com/topics/pessimistic-reward-tuning-pet"
+                    },
+                    {
+                      "title": "Learning a Pessimistic Reward Model in RLHF",
+                      "url": "https://arxiv.org/pdf/2505.20556"
+                    },
+                    {
+                      "title": "From Curiosity to Caution: Mitigating Reward Hacking for Best-of-𝑁 with Pessimism",
+                      "url": "https://arxiv.org/html/2604.04648"
+                    },
+                    {
+                      "title": "Helping or Herding? Reward Model Ensembles Mitigate but do not Eliminate   Reward Hacking",
+                      "url": "https://arxiv.org/pdf/2312.09244"
+                    },
+                    {
+                      "title": "[2604.04648] From Curiosity to Caution: Mitigating Reward Hacking for Best-of-N with Pessimism",
+                      "url": "https://arxiv.org/abs/2604.04648"
+                    },
+                    {
+                      "title": "From Curiosity to Caution: Mitigating Reward Hacking for Best-of-N with Pessimism",
+                      "url": "https://arxiv.org/pdf/2604.04648"
+                    },
+                    {
+                      "title": "Published as a conference paper at ICLR 2025",
+                      "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/c78f81a878a72566422f37279bca0fd0-Paper-Conference.pdf"
+                    },
+                    {
+                      "title": "Learning a Pessimistic Reward Model in RLHF",
+                      "url": "https://arxiv.org/html/2505.20556v1"
+                    }
+                  ]
+                },
+                "Based on the search results, I found relevant information about the \"Caution\" approach and related pessimism-based methods for defending against reward hacking.\n\n## Key Findings:\n\n**The Caution Approach:**\nCaution can be seen as the reverse of curiosity: where curiosity rewards prediction error as a signal of novelty, caution penalizes prediction error as a signal of distributional uncertainty. Practically, caution trains an error model on typical responses and uses its prediction error to lower reward estimates for atypical ones.\n\n**Pessimistic Reward Tuning (PET) Framework:**\nThe search results also discuss related work on Pessimistic Reward Tuning (PET) as a defense mechanism. A reward model fine-tuned by PET is pessimistic and robust against reward hacking. Ensemble PET in BoN sampling improves final true reward by up to 75% under 25% label noise and eliminates or plateaus the gold reward, with gains robust to reward model or data scale.\n\n**Reward Hacking Problem:**\nBoN sampling is vulnerable to reward hacking, where performance degrades as N increases due to the selection of responses that exploit imperfections in the reward model instead of genuinely improving generation quality.\n\nThese approaches address a critical challenge in reinforcement learning from human feedback (RLHF) by using prediction error and pessimism to avoid out-of-distribution actions that could exploit reward model vulnerabilities."
+              ],
+              "durationSeconds": 6.862962421000004,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "d06e9d4a-3660-4e0d-b4de-b5ffb35203b3",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "d49c158e-b604-4ae3-b6af-a58036d403c2",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-20T03:18:14.594Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015DTPXFQ5ACyUbS8NP1GHPD",
+              "name": "WebSearch",
+              "input": {
+                "query": "reward model calibration ECE expected calibration error LLM reasoning 2025 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b9b571eb-2d46-4ae9-a89a-94cae14b1973",
+            "isSidechain": false,
+            "requestId": "req_011CbD6c2rUB1EVYafbY5NcM",
+            "type": "assistant",
+            "uuid": "c62b2d2b-5ed1-406a-82aa-11fbd400c6b0",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "d49c158e-b604-4ae3-b6af-a58036d403c2",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RfKojDaB61bGdkwoq336FF",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1599,
+                "cache_read_input_tokens": 19445,
+                "output_tokens": 126,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1599,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 126,
+                    "cache_read_input_tokens": 19445,
+                    "cache_creation_input_tokens": 1599,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1599
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-20T03:18:14.932Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016pCMCpGPQ7R6GdcNXYDGzw",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"reward under attack\" PRM hackability robustness process reward model arXiv 2603"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c62b2d2b-5ed1-406a-82aa-11fbd400c6b0",
+            "isSidechain": false,
+            "requestId": "req_011CbD6c2rUB1EVYafbY5NcM",
+            "type": "assistant",
+            "uuid": "6c22bc01-68a9-4ba2-b087-aa4950baf419",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "d49c158e-b604-4ae3-b6af-a58036d403c2",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RfKojDaB61bGdkwoq336FF",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1599,
+                "cache_read_input_tokens": 19445,
+                "output_tokens": 126,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1599,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 126,
+                    "cache_read_input_tokens": 19445,
+                    "cache_creation_input_tokens": 1599,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1599
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-20T03:18:22.635Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015DTPXFQ5ACyUbS8NP1GHPD",
+              "type": "tool_result",
+              "content": "Web search results for query: \"reward model calibration ECE expected calibration error LLM reasoning 2025 2026\"\n\nLinks: [{\"title\":\"Calibrated Reasoning Signals\",\"url\":\"https://www.emergentmind.com/topics/calibrated-reasoning-signals\"},{\"title\":\"Confidence Calibration in LLMs\",\"url\":\"https://www.emergentmind.com/topics/confidence-calibration-in-llms\"},{\"title\":\"Know What You Don’t Know: Uncertainty Calibration of Process Reward Models\",\"url\":\"https://arxiv.org/pdf/2506.09338\"},{\"title\":\"Calibration Across Layers: Understanding Calibration Evolution in LLMs\",\"url\":\"https://arxiv.org/html/2511.00280v1\"},{\"title\":\"Know What You Don't Know: Uncertainty Calibration of Process Reward Models | OpenReview\",\"url\":\"https://openreview.net/forum?id=hzMkfIrdDT\"},{\"title\":\"Assessing Model Calibration in LLMs\",\"url\":\"https://apxml.com/courses/fine-tuning-adapting-large-language-models/chapter-6-evaluation-analysis-fine-tuned-models/model-calibration-assessment\"},{\"title\":\"Expected Calibration Error in ML\",\"url\":\"https://www.emergentmind.com/topics/expected-calibration-error\"},{\"title\":\"Expected Calibration Error (ECE) Overview\",\"url\":\"https://www.emergentmind.com/topics/expected-calibration-error-ece\"},{\"title\":\"Restoring Calibration for Aligned Large Language Models: A Calibration-Aware Fine-Tuning Approach\",\"url\":\"https://arxiv.org/pdf/2505.01997\"}]\n\nBased on the search results, I found several recent developments in reward model calibration and Expected Calibration Error (ECE) for LLM reasoning in 2025-2026:\n\n## Process Reward Models and Calibration\n\nState-of-the-art process reward models (PRMs) can be poorly calibrated, tending to overestimate the success probability that a partial reasoning step will lead to a correct final answer, particularly when smaller LLMs are used to complete the reasoning trajectory. A quantile-regression calibration approach has been introduced to align PRM outputs with success probabilities.\n\n## Calibration-Aware Reinforcement Learning\n\nCalibration-aware RL mitigates reward-induced overconfidence on decision tokens from RLHF/RLVR by adding a calibration loss term, preserving accuracy gains and reducing ECE by up to 9 points. Reinforcement learning with proper scoring rule rewards (such as log-scoring or tokenized Brier score) provably aligns expressed confidence with empirical accuracy, achieving state-of-the-art calibration and robust out-of-distribution generalization.\n\n## Advanced Calibration Approaches\n\nCritique-based calibration using natural language critique prompts and supervised critique calibration (CritiCal) teaches LLMs patterns of over-/under-confidence, yielding significant ECE reduction even out-of-domain. Double-calibration (DoublyCal) calibrates both knowledge graph evidence and final LLM reasoning confidence, providing traceable provenance of uncertainty across reasoning chains.\n\n## Fine-Tuning for Calibration\n\nIn the calibratable regime, calibration-aware fine-tuning can achieve proper calibration without compromising LLM performance, while an EM-algorithm-based ECE regularization can maintain low calibration error during further fine-tuning for better performance.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c62b2d2b-5ed1-406a-82aa-11fbd400c6b0",
+            "isSidechain": false,
+            "promptId": "b9d512ad-717b-4bfb-bf6b-e902bd9ea417",
+            "type": "user",
+            "uuid": "cd66a5d7-bc47-44ba-a0d0-9972cb6b1894",
+            "toolUseResult": {
+              "query": "reward model calibration ECE expected calibration error LLM reasoning 2025 2026",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01VSxaq2BiYVFwrJabzNWmhh",
+                  "content": [
+                    {
+                      "title": "Calibrated Reasoning Signals",
+                      "url": "https://www.emergentmind.com/topics/calibrated-reasoning-signals"
+                    },
+                    {
+                      "title": "Confidence Calibration in LLMs",
+                      "url": "https://www.emergentmind.com/topics/confidence-calibration-in-llms"
+                    },
+                    {
+                      "title": "Know What You Don’t Know: Uncertainty Calibration of Process Reward Models",
+                      "url": "https://arxiv.org/pdf/2506.09338"
+                    },
+                    {
+                      "title": "Calibration Across Layers: Understanding Calibration Evolution in LLMs",
+                      "url": "https://arxiv.org/html/2511.00280v1"
+                    },
+                    {
+                      "title": "Know What You Don't Know: Uncertainty Calibration of Process Reward Models | OpenReview",
+                      "url": "https://openreview.net/forum?id=hzMkfIrdDT"
+                    },
+                    {
+                      "title": "Assessing Model Calibration in LLMs",
+                      "url": "https://apxml.com/courses/fine-tuning-adapting-large-language-models/chapter-6-evaluation-analysis-fine-tuned-models/model-calibration-assessment"
+                    },
+                    {
+                      "title": "Expected Calibration Error in ML",
+                      "url": "https://www.emergentmind.com/topics/expected-calibration-error"
+                    },
+                    {
+                      "title": "Expected Calibration Error (ECE) Overview",
+                      "url": "https://www.emergentmind.com/topics/expected-calibration-error-ece"
+                    },
+                    {
+                      "title": "Restoring Calibration for Aligned Large Language Models: A Calibration-Aware Fine-Tuning Approach",
+                      "url": "https://arxiv.org/pdf/2505.01997"
+                    }
+                  ]
+                },
+                "Based on the search results, I found several recent developments in reward model calibration and Expected Calibration Error (ECE) for LLM reasoning in 2025-2026:\n\n## Process Reward Models and Calibration\n\nState-of-the-art process reward models (PRMs) can be poorly calibrated, tending to overestimate the success probability that a partial reasoning step will lead to a correct final answer, particularly when smaller LLMs are used to complete the reasoning trajectory. A quantile-regression calibration approach has been introduced to align PRM outputs with success probabilities.\n\n## Calibration-Aware Reinforcement Learning\n\nCalibration-aware RL mitigates reward-induced overconfidence on decision tokens from RLHF/RLVR by adding a calibration loss term, preserving accuracy gains and reducing ECE by up to 9 points. Reinforcement learning with proper scoring rule rewards (such as log-scoring or tokenized Brier score) provably aligns expressed confidence with empirical accuracy, achieving state-of-the-art calibration and robust out-of-distribution generalization.\n\n## Advanced Calibration Approaches\n\nCritique-based calibration using natural language critique prompts and supervised critique calibration (CritiCal) teaches LLMs patterns of over-/under-confidence, yielding significant ECE reduction even out-of-domain. Double-calibration (DoublyCal) calibrates both knowledge graph evidence and final LLM reasoning confidence, providing traceable provenance of uncertainty across reasoning chains.\n\n## Fine-Tuning for Calibration\n\nIn the calibratable regime, calibration-aware fine-tuning can achieve proper calibration without compromising LLM performance, while an EM-algorithm-based ECE regularization can maintain low calibration error during further fine-tuning for better performance."
+              ],
+              "durationSeconds": 8.036991997999998,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "c62b2d2b-5ed1-406a-82aa-11fbd400c6b0",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "d49c158e-b604-4ae3-b6af-a58036d403c2",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-20T03:18:23.454Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016pCMCpGPQ7R6GdcNXYDGzw",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"reward under attack\" PRM hackability robustness process reward model arXiv 2603\"\n\nLinks: [{\"title\":\"[2603.06621] Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models\",\"url\":\"https://arxiv.org/abs/2603.06621\"},{\"title\":\"1 Introduction\",\"url\":\"https://arxiv.org/html/2603.06621\"},{\"title\":\"Reward Under Attack: Analyzing the Robustness and Hackability of\",\"url\":\"https://arxiv.org/pdf/2603.06621\"},{\"title\":\"Reward Under Attack: Evaluating the Sensitivity of Process Reward Models\",\"url\":\"https://openreview.net/pdf?id=Hw24VOppus\"},{\"title\":\"GitHub - xhwang22/Awesome-Reward-Hacking: A curated list of papers and resources on Reward Hacking, Emergent Misalignment, and Proxy Exploitation in Large Models · GitHub\",\"url\":\"https://github.com/xhwang22/Awesome-Reward-Hacking\"},{\"title\":\"Mitigating Reward Hacking in RLHF via Bayesian Non-negative Reward Modeling\",\"url\":\"https://arxiv.org/pdf/2602.10623\"},{\"title\":\"Robust Reward Modeling via Causal Rubrics\",\"url\":\"https://arxiv.org/pdf/2506.16507\"}]\n\nI found the paper you're looking for! Here are the details:\n\n**Title:** Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models\n\n**Authors:** Rishabh Tiwari, Aditya Tomar, Udbhav Bamba, Monishwaran Maheswaran, Heng Yang, Michael W. Mahoney, Kurt Keutzer, and Amir Gholami\n\n**Key Findings:**\n\nProcess Reward Models (PRMs) are rapidly becoming the backbone of LLM reasoning pipelines, yet state-of-the-art PRMs are systematically exploitable under adversarial optimization pressure.\n\nThe paper introduces a three-tiered diagnostic framework that applies increasing adversarial pressure to quantify these vulnerabilities. The three tiers reveal:\n\n1. Static perturbation analysis uncovers a fluency-logic dissociation: high invariance to surface-level style changes, yet inconsistent detection of logically-corrupted reasoning\n\n2. Adversarial optimization demonstrates that gradient-based attacks inflate rewards on invalid trajectories, with reward landscapes exhibiting wide, exploitable peaks\n\n3. RL-induced reward hacking exposes the critical failure mode: policies trained on AIME problems achieve near-perfect PRM rewards, while ground-truth accuracy remains low\n\n**Main Conclusion:** Current PRMs function as fluency detectors rather than reasoning verifiers, creating systematic blind spots that undermine their use as training signals.\n\nThe authors release PRM-BiasBench and a diagnostic toolkit, with code and dataset available at https://github.com/SqueezeAILab/reward-under-attack\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6c22bc01-68a9-4ba2-b087-aa4950baf419",
+            "isSidechain": false,
+            "promptId": "b9d512ad-717b-4bfb-bf6b-e902bd9ea417",
+            "type": "user",
+            "uuid": "4f0685a0-7f16-4b90-806b-8cb9bca706ab",
+            "toolUseResult": {
+              "query": "\"reward under attack\" PRM hackability robustness process reward model arXiv 2603",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01R1RYrv1p8iwPSFFYovkgQW",
+                  "content": [
+                    {
+                      "title": "[2603.06621] Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models",
+                      "url": "https://arxiv.org/abs/2603.06621"
+                    },
+                    {
+                      "title": "1 Introduction",
+                      "url": "https://arxiv.org/html/2603.06621"
+                    },
+                    {
+                      "title": "Reward Under Attack: Analyzing the Robustness and Hackability of",
+                      "url": "https://arxiv.org/pdf/2603.06621"
+                    },
+                    {
+                      "title": "Reward Under Attack: Evaluating the Sensitivity of Process Reward Models",
+                      "url": "https://openreview.net/pdf?id=Hw24VOppus"
+                    },
+                    {
+                      "title": "GitHub - xhwang22/Awesome-Reward-Hacking: A curated list of papers and resources on Reward Hacking, Emergent Misalignment, and Proxy Exploitation in Large Models · GitHub",
+                      "url": "https://github.com/xhwang22/Awesome-Reward-Hacking"
+                    },
+                    {
+                      "title": "Mitigating Reward Hacking in RLHF via Bayesian Non-negative Reward Modeling",
+                      "url": "https://arxiv.org/pdf/2602.10623"
+                    },
+                    {
+                      "title": "Robust Reward Modeling via Causal Rubrics",
+                      "url": "https://arxiv.org/pdf/2506.16507"
+                    }
+                  ]
+                },
+                "I found the paper you're looking for! Here are the details:\n\n**Title:** Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models\n\n**Authors:** Rishabh Tiwari, Aditya Tomar, Udbhav Bamba, Monishwaran Maheswaran, Heng Yang, Michael W. Mahoney, Kurt Keutzer, and Amir Gholami\n\n**Key Findings:**\n\nProcess Reward Models (PRMs) are rapidly becoming the backbone of LLM reasoning pipelines, yet state-of-the-art PRMs are systematically exploitable under adversarial optimization pressure.\n\nThe paper introduces a three-tiered diagnostic framework that applies increasing adversarial pressure to quantify these vulnerabilities. The three tiers reveal:\n\n1. Static perturbation analysis uncovers a fluency-logic dissociation: high invariance to surface-level style changes, yet inconsistent detection of logically-corrupted reasoning\n\n2. Adversarial optimization demonstrates that gradient-based attacks inflate rewards on invalid trajectories, with reward landscapes exhibiting wide, exploitable peaks\n\n3. RL-induced reward hacking exposes the critical failure mode: policies trained on AIME problems achieve near-perfect PRM rewards, while ground-truth accuracy remains low\n\n**Main Conclusion:** Current PRMs function as fluency detectors rather than reasoning verifiers, creating systematic blind spots that undermine their use as training signals.\n\nThe authors release PRM-BiasBench and a diagnostic toolkit, with code and dataset available at https://github.com/SqueezeAILab/reward-under-attack"
+              ],
+              "durationSeconds": 8.519507158,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "6c22bc01-68a9-4ba2-b087-aa4950baf419",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "d49c158e-b604-4ae3-b6af-a58036d403c2",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-20T03:18:23.458Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "4f0685a0-7f16-4b90-806b-8cb9bca706ab",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "task_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "223b1c8e-fea1-460e-9fa0-77c8629b2b50",
+                "timestamp": "2026-05-20T03:18:23.458Z",
+                "userType": "external",
+                "entrypoint": "sdk-py",
+                "cwd": "/home/ubuntu/idea_review",
+                "sessionId": "d49c158e-b604-4ae3-b6af-a58036d403c2",
+                "version": "2.1.142",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Calibration as a Shield: How PRM Calibration Quality Causally Determines Reward Hacking Resistance, and a Step-L…",
+                "leafUuid": "223b1c8e-fea1-460e-9fa0-77c8629b2b50",
+                "sessionId": "d49c158e-b604-4ae3-b6af-a58036d403c2"
+              }
+            }
+          ],
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "PRM calibration and reward hacking resistance defense",
+                "sessionId": "d49c158e-b604-4ae3-b6af-a58036d403c2"
+              }
+            }
+          ],
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-20T03:18:26.475Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Rx8J4Yg7BtkMVRaoBMSFSP",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"Know What You Don't Know\" uncertainty calibration process reward models PRM 2025"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "223b1c8e-fea1-460e-9fa0-77c8629b2b50",
+            "isSidechain": false,
+            "requestId": "req_011CbD6ctUiQWhyknxXYgSat",
+            "type": "assistant",
+            "uuid": "826d4a9d-1773-4076-97cb-378a311c0987",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "d49c158e-b604-4ae3-b6af-a58036d403c2",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CHm6LXWtJeGQwNwK8aq9AH",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1873,
+                "cache_read_input_tokens": 21044,
+                "output_tokens": 126,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1873,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 126,
+                    "cache_read_input_tokens": 21044,
+                    "cache_creation_input_tokens": 1873,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1873
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-20T03:18:26.834Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015DngFa25d3xxujT6L4VSCX",
+              "name": "WebSearch",
+              "input": {
+                "query": "gradient regularization prevents reward hacking RLHF verifiable rewards 2025 arXiv"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "826d4a9d-1773-4076-97cb-378a311c0987",
+            "isSidechain": false,
+            "requestId": "req_011CbD6ctUiQWhyknxXYgSat",
+            "type": "assistant",
+            "uuid": "6ed88f49-9ac8-4258-8ed6-10b5ef115cc1",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "d49c158e-b604-4ae3-b6af-a58036d403c2",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CHm6LXWtJeGQwNwK8aq9AH",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1873,
+                "cache_read_input_tokens": 21044,
+                "output_tokens": 126,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1873,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 126,
+                    "cache_read_input_tokens": 21044,
+                    "cache_creation_input_tokens": 1873,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1873
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-20T03:18:33.261Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Rx8J4Yg7BtkMVRaoBMSFSP",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"Know What You Don't Know\" uncertainty calibration process reward models PRM 2025\"\n\nLinks: [{\"title\":\"[2506.09338] Know What You Don't Know: Uncertainty Calibration of Process Reward Models\",\"url\":\"https://arxiv.org/abs/2506.09338\"},{\"title\":\"Know What You Don't Know: Uncertainty Calibration of Process Reward Models | OpenReview\",\"url\":\"https://openreview.net/forum?id=hzMkfIrdDT\"},{\"title\":\"Know What You Don't Know | PRM Calibration\",\"url\":\"https://young-j-park.github.io/know-what-you-dont-know/\"},{\"title\":\"Know What You Don’t Know: Uncertainty Calibration of Process Reward Models for NeurIPS 2025 - IBM Research\",\"url\":\"https://research.ibm.com/publications/know-what-you-dont-know-uncertainty-calibration-of-process-reward-models\"},{\"title\":\"(PDF) Know What You Don't Know: Uncertainty Calibration of Process Reward Models\",\"url\":\"https://www.researchgate.net/publication/392597872_Know_What_You_Don't_Know_Uncertainty_Calibration_of_Process_Reward_Models\"},{\"title\":\"Know What You Don’t Know: Uncertainty Calibration of Process Reward Models\",\"url\":\"https://openreview.net/pdf?id=hzMkfIrdDT\"},{\"title\":\"Know What You Don’t Know: Uncertainty Calibration of Process Reward Models\",\"url\":\"https://arxiv.org/html/2506.09338v1\"},{\"title\":\"Know What You Don't Know: Uncertainty Calibration of Process Reward Models\",\"url\":\"https://arxiv.org/pdf/2506.09338\"}]\n\nBased on the search results, here's what I found about \"Know What You Don't Know: Uncertainty Calibration of Process Reward Models\":\n\n## Overview\n\nProcess reward models (PRMs) play a central role in guiding inference-time scaling algorithms for large language models (LLMs). However, even state-of-the-art PRMs can be poorly calibrated, tending to overestimate the success probability that a partial reasoning step will lead to a correct final answer, particularly when smaller LLMs are used to complete the reasoning trajectory.\n\n## The Solution\n\nThe paper presents a calibration approach—performed via quantile regression—that adjusts PRM outputs to better align with true success probabilities. Leveraging these calibrated success estimates and their associated confidence bounds, the researchers introduce an instance-adaptive scaling (IAS) framework that dynamically adjusts the compute budget based on the estimated likelihood that a partial reasoning trajectory will yield a correct final answer.\n\n## Key Results\n\nExperiments on mathematical reasoning benchmarks show that the PRM calibration method achieves small calibration error outperforming baseline methods, calibration is crucial for enabling effective IAS, and the proposed IAS strategy reduces inference costs while maintaining final answer accuracy.\n\n## Publication\n\nThe paper was published at NeurIPS 2025. The work was authored by Young-Jin Park and colleagues and is available on arXiv (paper 2506.09338).\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "826d4a9d-1773-4076-97cb-378a311c0987",
+            "isSidechain": false,
+            "promptId": "b9d512ad-717b-4bfb-bf6b-e902bd9ea417",
+            "type": "user",
+            "uuid": "3c89d2ec-665e-44b8-879b-9f46313b415f",
+            "toolUseResult": {
+              "query": "\"Know What You Don't Know\" uncertainty calibration process reward models PRM 2025",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01Pf1yv8ihGDBTyXBBQUFm3g",
+                  "content": [
+                    {
+                      "title": "[2506.09338] Know What You Don't Know: Uncertainty Calibration of Process Reward Models",
+                      "url": "https://arxiv.org/abs/2506.09338"
+                    },
+                    {
+                      "title": "Know What You Don't Know: Uncertainty Calibration of Process Reward Models | OpenReview",
+                      "url": "https://openreview.net/forum?id=hzMkfIrdDT"
+                    },
+                    {
+                      "title": "Know What You Don't Know | PRM Calibration",
+                      "url": "https://young-j-park.github.io/know-what-you-dont-know/"
+                    },
+                    {
+                      "title": "Know What You Don’t Know: Uncertainty Calibration of Process Reward Models for NeurIPS 2025 - IBM Research",
+                      "url": "https://research.ibm.com/publications/know-what-you-dont-know-uncertainty-calibration-of-process-reward-models"
+                    },
+                    {
+                      "title": "(PDF) Know What You Don't Know: Uncertainty Calibration of Process Reward Models",
+                      "url": "https://www.researchgate.net/publication/392597872_Know_What_You_Don't_Know_Uncertainty_Calibration_of_Process_Reward_Models"
+                    },
+                    {
+                      "title": "Know What You Don’t Know: Uncertainty Calibration of Process Reward Models",
+                      "url": "https://openreview.net/pdf?id=hzMkfIrdDT"
+                    },
+                    {
+                      "title": "Know What You Don’t Know: Uncertainty Calibration of Process Reward Models",
+                      "url": "https://arxiv.org/html/2506.09338v1"
+                    },
+                    {
+                      "title": "Know What You Don't Know: Uncertainty Calibration of Process Reward Models",
+                      "url": "https://arxiv.org/pdf/2506.09338"
+                    }
+                  ]
+                },
+                "Based on the search results, here's what I found about \"Know What You Don't Know: Uncertainty Calibration of Process Reward Models\":\n\n## Overview\n\nProcess reward models (PRMs) play a central role in guiding inference-time scaling algorithms for large language models (LLMs). However, even state-of-the-art PRMs can be poorly calibrated, tending to overestimate the success probability that a partial reasoning step will lead to a correct final answer, particularly when smaller LLMs are used to complete the reasoning trajectory.\n\n## The Solution\n\nThe paper presents a calibration approach—performed via quantile regression—that adjusts PRM outputs to better align with true success probabilities. Leveraging these calibrated success estimates and their associated confidence bounds, the researchers introduce an instance-adaptive scaling (IAS) framework that dynamically adjusts the compute budget based on the estimated likelihood that a partial reasoning trajectory will yield a correct final answer.\n\n## Key Results\n\nExperiments on mathematical reasoning benchmarks show that the PRM calibration method achieves small calibration error outperforming baseline methods, calibration is crucial for enabling effective IAS, and the proposed IAS strategy reduces inference costs while maintaining final answer accuracy.\n\n## Publication\n\nThe paper was published at NeurIPS 2025. The work was authored by Young-Jin Park and colleagues and is available on arXiv (paper 2506.09338)."
+              ],
+              "durationSeconds": 6.781134625999999,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "826d4a9d-1773-4076-97cb-378a311c0987",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "d49c158e-b604-4ae3-b6af-a58036d403c2",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-20T03:18:33.307Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015DngFa25d3xxujT6L4VSCX",
+              "type": "tool_result",
+              "content": "Web search results for query: \"gradient regularization prevents reward hacking RLHF verifiable rewards 2025 arXiv\"\n\nLinks: [{\"title\":\"[2602.18037] Gradient Regularization Prevents Reward Hacking in Reinforcement Learning from Human Feedback and Verifiable Rewards\",\"url\":\"https://arxiv.org/abs/2602.18037\"},{\"title\":\"Gradient Regularization Prevents Reward Hacking in ...\",\"url\":\"https://arxiv.org/pdf/2602.18037\"},{\"title\":\"Detecting and Suppressing Reward Hacking with Gradient Fingerprints\",\"url\":\"https://arxiv.org/html/2604.16242\"},{\"title\":\"Reward Hacking Mitigation using Verifiable Composite Rewards\",\"url\":\"https://arxiv.org/html/2509.15557v1\"},{\"title\":\"Mitigating Reward Hacking in RLHF via Advantage Sign Robustness\",\"url\":\"https://arxiv.org/html/2604.02986\"},{\"title\":\"Reward Shaping to Mitigate Reward Hacking in RLHF\",\"url\":\"https://arxiv.org/html/2502.18770v3\"},{\"title\":\"Mitigating Reward Hacking in RLHF via Advantage Sign Robustness\",\"url\":\"https://arxiv.org/pdf/2604.02986\"},{\"title\":\"Mitigating Reward Over-Optimization in RLHF via Behavior-Supported Regularization\",\"url\":\"https://arxiv.org/html/2503.18130v1\"}]\n\nGreat! I found the paper you're looking for. Here are the key results:\n\n## Paper Details\n\nThe paper \"Gradient Regularization Prevents Reward Hacking in Reinforcement Learning from Human Feedback and Verifiable Rewards\" addresses reward hacking in both RLHF and RLVR during language model post-training.\n\n## Main Problem and Approach\n\nReward hacking occurs when the policy exploits inaccuracies of the reward and learns unintended behavior. While most previous works address this by limiting policy updates with a Kullback-Leibler (KL) penalty, the authors propose a different framing: training the language model to bias policy updates towards regions where the reward is more accurate.\n\n## Key Contribution\n\nThe authors derive a theoretical connection between the accuracy of a reward model and the flatness of an optimum at convergence, showing that gradient regularization can be used to bias training to flatter regions and thereby maintain reward model accuracy.\n\n## Empirical Results\n\nThey confirm these results by showing that the gradient norm and reward accuracy are empirically correlated in RLHF.\n\nThe paper was published on arXiv on February 20, 2026 (arXiv ID: 2602.18037).\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6ed88f49-9ac8-4258-8ed6-10b5ef115cc1",
+            "isSidechain": false,
+            "promptId": "b9d512ad-717b-4bfb-bf6b-e902bd9ea417",
+            "type": "user",
+            "uuid": "fd990770-a983-4529-bfba-ea73b5d28134",
+            "toolUseResult": {
+              "query": "gradient regularization prevents reward hacking RLHF verifiable rewards 2025 arXiv",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01LbWu1uEzehqA9JrbM8Aq3u",
+                  "content": [
+                    {
+                      "title": "[2602.18037] Gradient Regularization Prevents Reward Hacking in Reinforcement Learning from Human Feedback and Verifiable Rewards",
+                      "url": "https://arxiv.org/abs/2602.18037"
+                    },
+                    {
+                      "title": "Gradient Regularization Prevents Reward Hacking in ...",
+                      "url": "https://arxiv.org/pdf/2602.18037"
+                    },
+                    {
+                      "title": "Detecting and Suppressing Reward Hacking with Gradient Fingerprints",
+                      "url": "https://arxiv.org/html/2604.16242"
+                    },
+                    {
+                      "title": "Reward Hacking Mitigation using Verifiable Composite Rewards",
+                      "url": "https://arxiv.org/html/2509.15557v1"
+                    },
+                    {
+                      "title": "Mitigating Reward Hacking in RLHF via Advantage Sign Robustness",
+                      "url": "https://arxiv.org/html/2604.02986"
+                    },
+                    {
+                      "title": "Reward Shaping to Mitigate Reward Hacking in RLHF",
+                      "url": "https://arxiv.org/html/2502.18770v3"
+                    },
+                    {
+                      "title": "Mitigating Reward Hacking in RLHF via Advantage Sign Robustness",
+                      "url": "https://arxiv.org/pdf/2604.02986"
+                    },
+                    {
+                      "title": "Mitigating Reward Over-Optimization in RLHF via Behavior-Supported Regularization",
+                      "url": "https://arxiv.org/html/2503.18130v1"
+                    }
+                  ]
+                },
+                "Great! I found the paper you're looking for. Here are the key results:\n\n## Paper Details\n\nThe paper \"Gradient Regularization Prevents Reward Hacking in Reinforcement Learning from Human Feedback and Verifiable Rewards\" addresses reward hacking in both RLHF and RLVR during language model post-training.\n\n## Main Problem and Approach\n\nReward hacking occurs when the policy exploits inaccuracies of the reward and learns unintended behavior. While most previous works address this by limiting policy updates with a Kullback-Leibler (KL) penalty, the authors propose a different framing: training the language model to bias policy updates towards regions where the reward is more accurate.\n\n## Key Contribution\n\nThe authors derive a theoretical connection between the accuracy of a reward model and the flatness of an optimum at convergence, showing that gradient regularization can be used to bias training to flatter regions and thereby maintain reward model accuracy.\n\n## Empirical Results\n\nThey confirm these results by showing that the gradient norm and reward accuracy are empirically correlated in RLHF.\n\nThe paper was published on arXiv on February 20, 2026 (arXiv ID: 2602.18037)."
+              ],
+              "durationSeconds": 6.4709694709999965,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "6ed88f49-9ac8-4258-8ed6-10b5ef115cc1",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "d49c158e-b604-4ae3-b6af-a58036d403c2",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-20T03:18:36.602Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now let me also search for the specific methods mentioned in the proposal - APRM, conformal prediction for reward models, and Hessian spectral analysis for reward models.",
+              "signature": "EuYCClkIDRgCKkCLoend2JflsMWi5uvmlNAMgXgaFeM92aLelWOjdB/fWl6nPzO8nA+yVGiqsrXiok29FCsqSm+R0YGcee+F0+mkMg9jbGF1ZGUtb3B1cy00LTY4ABIMvyqW/k+5o9YcYAKuGgw0XXKhxMDuIjokfIEiMGRXK1T3j1lTdjfcPnbdD8pHv1hM2k0ue9qdjA/fUwB6DML2Z+R1H6oRmSrcGkHsnSq6AQ8zjTrdi2OfHwY1Diga3nG4nLnxCdyf7xGii+GDkQmfB4OcHqQM9wB/6Q2oo6rcZw6KAJQ07gKtVLVn27CDB1INV3k1/Rmmv+bK5x6ykxtp9zBA7KVnNBu10lsewrjEYvRU8WiwyDK27nBuaUW3obwtIgx6RGy6052pcRKZr3rtKNfNSj/P/keFoGP7OU80i2L1emINtz6yfs5dE9wmxd9Zufq9jtrSUjPAC8ufOgmpMHH7RSGiyDyRsRgB"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fd990770-a983-4529-bfba-ea73b5d28134",
+            "isSidechain": false,
+            "requestId": "req_011CbD6dcZ2ffR8NdCm1GS2p",
+            "type": "assistant",
+            "uuid": "c8267c41-9a0a-441a-8fc5-861ace383aab",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "d49c158e-b604-4ae3-b6af-a58036d403c2",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0136Wof5XJnuLmT1qSmgXFXD",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1622,
+                "cache_read_input_tokens": 22917,
+                "output_tokens": 175,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1622,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 175,
+                    "cache_read_input_tokens": 22917,
+                    "cache_creation_input_tokens": 1622,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1622
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-20T03:18:37.093Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012mFouFiwarbZxfrD848GZn",
+              "name": "WebSearch",
+              "input": {
+                "query": "APRM adaptive process reward model calibration uncertainty RL training 2025 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c8267c41-9a0a-441a-8fc5-861ace383aab",
+            "isSidechain": false,
+            "requestId": "req_011CbD6dcZ2ffR8NdCm1GS2p",
+            "type": "assistant",
+            "uuid": "5e6d36a0-fdc1-46ce-9771-d6791eaa8954",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "d49c158e-b604-4ae3-b6af-a58036d403c2",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0136Wof5XJnuLmT1qSmgXFXD",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1622,
+                "cache_read_input_tokens": 22917,
+                "output_tokens": 175,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1622,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 175,
+                    "cache_read_input_tokens": 22917,
+                    "cache_creation_input_tokens": 1622,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1622
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-20T03:18:37.805Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CDa95iYaHkrS9Wz4ewhpAJ",
+              "name": "WebSearch",
+              "input": {
+                "query": "calibration reward hacking causal connection correlation study PRM overoptimization 2025"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5e6d36a0-fdc1-46ce-9771-d6791eaa8954",
+            "isSidechain": false,
+            "requestId": "req_011CbD6dcZ2ffR8NdCm1GS2p",
+            "type": "assistant",
+            "uuid": "ce3c493a-9ef0-4032-88f3-2bb366e7926f",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "d49c158e-b604-4ae3-b6af-a58036d403c2",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0136Wof5XJnuLmT1qSmgXFXD",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1622,
+                "cache_read_input_tokens": 22917,
+                "output_tokens": 175,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1622,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 175,
+                    "cache_read_input_tokens": 22917,
+                    "cache_creation_input_tokens": 1622,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1622
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-20T03:18:44.341Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012mFouFiwarbZxfrD848GZn",
+              "type": "tool_result",
+              "content": "Web search results for query: \"APRM adaptive process reward model calibration uncertainty RL training 2025 2026\"\n\nLinks: [{\"title\":\"Adversarial Training for Process Reward Models\",\"url\":\"https://arxiv.org/pdf/2511.22888\"},{\"title\":\"Reward Model Ensembles\",\"url\":\"https://www.emergentmind.com/topics/reward-model-ensembles\"},{\"title\":\"Process Reward Models (PRMs): Calibration & Scaling\",\"url\":\"https://www.emergentmind.com/topics/process-reward-models-prms\"},{\"title\":\"Adversarial Training for Process Reward Models\",\"url\":\"https://arxiv.org/html/2511.22888\"},{\"title\":\"Beyond Binary Rewards: Training LMs to Reason About Their Uncertainty\",\"url\":\"https://arxiv.org/pdf/2507.16806\"},{\"title\":\"Probabilistic Uncertain Reward Model\",\"url\":\"https://arxiv.org/pdf/2503.22480\"}]\n\nBased on the search results, here's what I found about APRM and related topics in adaptive process reward model training:\n\n## APRM (Adversarially Trained Process Reward Models)\n\nAPRM introduces a system where a Generator learns to produce reasoning errors to deceive a PRM (Reward Model), while the PRM concurrently learns to detect them. This interaction yields progressively harder negatives, improving robustness and generalization to novel errors without requiring manual step-level labels.\n\nOn diverse mathematical reasoning benchmarks, APRM improves solver accuracy by +3.4 percentage points over the strongest PRM baseline. Adversarial training enables robust PRMs that remain effective even as solver models become stronger.\n\n## Calibration and Uncertainty in Process Reward Models\n\nRecent work has focused on calibrating uncertainty in process reward models. Adaptive scaling guided by calibrated uncertainty aligns compute investment with problem difficulty, and lower confidence bounds from quantile regression enable PRMs to know \"what they don't know,\" reducing overconfidence. These calibration strategies can be readily integrated with RL-based LLM training.\n\n## Related Approaches\n\nRLCR (Reinforcement Learning with Calibration Rewards) trains reasoning models to optimize a reward function that augments a binary correctness score with a Brier score—a scoring rule for confidence estimates that incentivizes calibrated prediction.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5e6d36a0-fdc1-46ce-9771-d6791eaa8954",
+            "isSidechain": false,
+            "promptId": "b9d512ad-717b-4bfb-bf6b-e902bd9ea417",
+            "type": "user",
+            "uuid": "14fbeb97-6b79-40c7-a9c4-1276462ca97a",
+            "toolUseResult": {
+              "query": "APRM adaptive process reward model calibration uncertainty RL training 2025 2026",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01YU6pet87Jrj3pvarVuLCZx",
+                  "content": [
+                    {
+                      "title": "Adversarial Training for Process Reward Models",
+                      "url": "https://arxiv.org/pdf/2511.22888"
+                    },
+                    {
+                      "title": "Reward Model Ensembles",
+                      "url": "https://www.emergentmind.com/topics/reward-model-ensembles"
+                    },
+                    {
+                      "title": "Process Reward Models (PRMs): Calibration & Scaling",
+                      "url": "https://www.emergentmind.com/topics/process-reward-models-prms"
+                    },
+                    {
+                      "title": "Adversarial Training for Process Reward Models",
+                      "url": "https://arxiv.org/html/2511.22888"
+                    },
+                    {
+                      "title": "Beyond Binary Rewards: Training LMs to Reason About Their Uncertainty",
+                      "url": "https://arxiv.org/pdf/2507.16806"
+                    },
+                    {
+                      "title": "Probabilistic Uncertain Reward Model",
+                      "url": "https://arxiv.org/pdf/2503.22480"
+                    }
+                  ]
+                },
+                "Based on the search results, here's what I found about APRM and related topics in adaptive process reward model training:\n\n## APRM (Adversarially Trained Process Reward Models)\n\nAPRM introduces a system where a Generator learns to produce reasoning errors to deceive a PRM (Reward Model), while the PRM concurrently learns to detect them. This interaction yields progressively harder negatives, improving robustness and generalization to novel errors without requiring manual step-level labels.\n\nOn diverse mathematical reasoning benchmarks, APRM improves solver accuracy by +3.4 percentage points over the strongest PRM baseline. Adversarial training enables robust PRMs that remain effective even as solver models become stronger.\n\n## Calibration and Uncertainty in Process Reward Models\n\nRecent work has focused on calibrating uncertainty in process reward models. Adaptive scaling guided by calibrated uncertainty aligns compute investment with problem difficulty, and lower confidence bounds from quantile regression enable PRMs to know \"what they don't know,\" reducing overconfidence. These calibration strategies can be readily integrated with RL-based LLM training.\n\n## Related Approaches\n\nRLCR (Reinforcement Learning with Calibration Rewards) trains reasoning models to optimize a reward function that augments a binary correctness score with a Brier score—a scoring rule for confidence estimates that incentivizes calibrated prediction."
+              ],
+              "durationSeconds": 7.244393526999993,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "5e6d36a0-fdc1-46ce-9771-d6791eaa8954",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "d49c158e-b604-4ae3-b6af-a58036d403c2",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-20T03:18:46.793Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CDa95iYaHkrS9Wz4ewhpAJ",
+              "type": "tool_result",
+              "content": "Web search results for query: \"calibration reward hacking causal connection correlation study PRM overoptimization 2025\"\n\nLinks: [{\"title\":\"Reward Under Attack: Analyzing the Robustness and Hackability of\",\"url\":\"https://arxiv.org/pdf/2603.06621\"},{\"title\":\"Reward Hacking Defense Rubric\",\"url\":\"https://www.emergentmind.com/topics/reward-hacking-defense-rubric\"},{\"title\":\"Causal Reward Adjustment: Mitigating Reward Hacking in External Reasoning via Backdoor Correction\",\"url\":\"https://arxiv.org/html/2508.04216v1\"},{\"title\":\"Causal Rewards for Large Language Model Alignment\",\"url\":\"https://arxiv.org/pdf/2501.09620\"},{\"title\":\"A Comprehensive Survey of Reward Models: Taxonomy, Applications, Challenges, and Future\",\"url\":\"https://arxiv.org/html/2504.12328v1\"},{\"title\":\"Published as a conference paper at ICLR 2025\",\"url\":\"https://proceedings.iclr.cc/paper_files/paper/2025/file/c78f81a878a72566422f37279bca0fd0-Paper-Conference.pdf\"},{\"title\":\"Beyond Reward Hacking: Causal Rewards for Large Language Model Alignment\",\"url\":\"https://arxiv.org/html/2501.09620v1\"},{\"title\":\"Correlated Proxies: A New Definition and Improved Mitigation for Reward   Hacking\",\"url\":\"https://arxiv.org/pdf/2403.03185\"}]\n\nI found several relevant research papers and resources on the topics you're interested in. Here are the key findings:\n\n## Process Reward Models (PRMs) and Shallow Consistency Cues\n\nPRMs often rely on shallow consistency cues rather than causal reasoning structures, according to research from 2025. This suggests limitations in how PRMs evaluate reasoning steps.\n\n## Correlation vs. Causal Connection\n\nThe research emphasizes the importance of distinguishing correlation from causation in reward modeling. A novel approach integrates causality into reward modeling to mitigate the impact of spurious correlations and prevent reward hacking in RLHF, developing a causal reward model (CRM) that is robust to spurious correlations and captures the true causal relationship of responses on human preferences.\n\n## Overoptimization and Reward Hacking\n\nLarger reward models delay but do not prevent degradation from overoptimization, and overoptimization correlates with distributional shift from the reward model's training data.\n\nOveroptimization, also called reward hacking, occurs where reward models could be excessively optimized to narrow evaluation metrics, with causes including reward tampering, misleading, and sycophancy.\n\n## Mitigation Approaches\n\nResearch directions such as reward model ensembles, data augmentation, and robust training have demonstrated potential in mitigating overoptimization. Additionally, causal reward modeling approaches integrate causal inference to mitigate spurious correlations, enforcing counterfactual invariance to ensure reward predictions remain consistent when irrelevant variables are altered.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ce3c493a-9ef0-4032-88f3-2bb366e7926f",
+            "isSidechain": false,
+            "promptId": "b9d512ad-717b-4bfb-bf6b-e902bd9ea417",
+            "type": "user",
+            "uuid": "f725043f-f524-48cf-8cce-6f69037d4b2c",
+            "toolUseResult": {
+              "query": "calibration reward hacking causal connection correlation study PRM overoptimization 2025",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01LN68hbnJ3tswRSV2dmGzCr",
+                  "content": [
+                    {
+                      "title": "Reward Under Attack: Analyzing the Robustness and Hackability of",
+                      "url": "https://arxiv.org/pdf/2603.06621"
+                    },
+                    {
+                      "title": "Reward Hacking Defense Rubric",
+                      "url": "https://www.emergentmind.com/topics/reward-hacking-defense-rubric"
+                    },
+                    {
+                      "title": "Causal Reward Adjustment: Mitigating Reward Hacking in External Reasoning via Backdoor Correction",
+                      "url": "https://arxiv.org/html/2508.04216v1"
+                    },
+                    {
+                      "title": "Causal Rewards for Large Language Model Alignment",
+                      "url": "https://arxiv.org/pdf/2501.09620"
+                    },
+                    {
+                      "title": "A Comprehensive Survey of Reward Models: Taxonomy, Applications, Challenges, and Future",
+                      "url": "https://arxiv.org/html/2504.12328v1"
+                    },
+                    {
+                      "title": "Published as a conference paper at ICLR 2025",
+                      "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/c78f81a878a72566422f37279bca0fd0-Paper-Conference.pdf"
+                    },
+                    {
+                      "title": "Beyond Reward Hacking: Causal Rewards for Large Language Model Alignment",
+                      "url": "https://arxiv.org/html/2501.09620v1"
+                    },
+                    {
+                      "title": "Correlated Proxies: A New Definition and Improved Mitigation for Reward   Hacking",
+                      "url": "https://arxiv.org/pdf/2403.03185"
+                    }
+                  ]
+                },
+                "I found several relevant research papers and resources on the topics you're interested in. Here are the key findings:\n\n## Process Reward Models (PRMs) and Shallow Consistency Cues\n\nPRMs often rely on shallow consistency cues rather than causal reasoning structures, according to research from 2025. This suggests limitations in how PRMs evaluate reasoning steps.\n\n## Correlation vs. Causal Connection\n\nThe research emphasizes the importance of distinguishing correlation from causation in reward modeling. A novel approach integrates causality into reward modeling to mitigate the impact of spurious correlations and prevent reward hacking in RLHF, developing a causal reward model (CRM) that is robust to spurious correlations and captures the true causal relationship of responses on human preferences.\n\n## Overoptimization and Reward Hacking\n\nLarger reward models delay but do not prevent degradation from overoptimization, and overoptimization correlates with distributional shift from the reward model's training data.\n\nOveroptimization, also called reward hacking, occurs where reward models could be excessively optimized to narrow evaluation metrics, with causes including reward tampering, misleading, and sycophancy.\n\n## Mitigation Approaches\n\nResearch directions such as reward model ensembles, data augmentation, and robust training have demonstrated potential in mitigating overoptimization. Additionally, causal reward modeling approaches integrate causal inference to mitigate spurious correlations, enforcing counterfactual invariance to ensure reward predictions remain consistent when irrelevant variables are altered."
+              ],
+              "durationSeconds": 8.985355582999997,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "ce3c493a-9ef0-4032-88f3-2bb366e7926f",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "d49c158e-b604-4ae3-b6af-a58036d403c2",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-20T03:19:57.264Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have a comprehensive picture of the field. Let me synthesize what I've found and evaluate this proposal.\n\n## Summary of the Proposal\n\nThe proposal claims four contributions:\n1. An expanded correlation study across 48 configurations (8 PRMs × 6 calibration methods) to establish whether calibration quality predicts hackability metrics\n2. Causal isolation experiments separating calibration's true effect from representation change artifacts (post-hoc vs. fine-tuning methods, with CKA verification)\n3. Step-level Hessian spectral analysis extending Ackermann et al.'s outcome-level gradient norm analysis to the multi-reward compositional geometry of PRMs\n\n\n4. CGSP (Calibration-Gated Step-Level Pessimism): a defense mechanism that gates PRM rewards using calibration uncertainty to reduce exploitability\n\n## Key Papers I Found:\n\nI'm looking at directly relevant work on PRM vulnerabilities, particularly a paper that establishes a three-tiered diagnostic framework for how process reward models can be attacked—through static perturbations, gradient-based adversarial methods, and RL-induced hacking—and demonstrates that PRMs are systematically exploitable across these attack vectors.\n\nThere's also foundational work on PRM calibration showing they're poorly calibrated out of the box, introducing quantile regression approaches and instance-adaptive scaling to fix this. Another key paper derives the theoretical connection between reward accuracy and gradient flatness, establishing that flatter reward landscapes correlate with more robust rewards. I'm also tracking down a paper on mitigating reward hacking through caution mechanisms. Looking at the C²GSPG method, I'm wondering whether the calibration-gated component actually adds meaningful value beyond standard uncertainty penalization. PURM already handles Gaussian rewards with uncertainty penalties, and ensemble-min provides a simpler baseline—so the real question is whether the calibration quality metric c_t meaningfully improves on just using raw uncertainty σ_t, especially since the formula scales penalties down when calibration is poor.\n\nThe central claim hinges on calibration quality causally driving reward hacking resistance, but there's a confounding explanation: better-calibrated PRMs might simply be better models overall, and it's that general quality driving hackability rather than calibration specifically. The post-hoc calibration isolation design is clever here—if post-hoc methods that preserve representations but improve calibration reduce hackability, that would support the causal claim. But I need to think through whether post-hoc calibration actually isolates the effect cleanly.\n\nPost-hoc methods like temperature scaling change output distributions without altering reward rankings, which matters for BoN since only relative ordering determines selection. For RL training where actual reward magnitudes feed into optimization, calibration could matter more, but this distinction isn't fully explored. The step-level flatness compounding claim is intriguing but lacks clear mechanistic explanation—whether it's a trivial product of local properties or requires deeper justification remains unclear.\n\nOn novelty, prior work like \"Know What You Don't Know\" already examined PRM calibration's role in inference-time scaling, so I need to identify what's genuinely new here beyond existing calibration research. Under Attack\" (March 2026) already studied PRM hackability with gradient attacks and RL-induced hacking\n- Gradient Regularization paper (Feb 2026) already connected reward accuracy to flatness and proposed gradient-based defense\n- PURM already proposed uncertainty-penalized rewards (Gaussian distribution + penalization)\n- Caution already proposed pessimism-based defense using uncertainty\n- PET already proposed pessimistic reward modeling\n\nWhat this proposal claims to add:\n1. The causal link between calibration and hackability (bridging calibration + hackability literature)\n2. The specific CGSP mechanism with calibration quality weighting\n3. Step-level Hessian analysis extending the gradient regularization work\n4. Calibration Drift Detector for real-time monitoring\n\nThe \"bridging\" aspect is the most novel part - connecting calibration quality to hackability in a causal framework. But the individual components like calibration, hackability analysis, pessimism, and uncertainty are all well-established, and the CGSP formula itself is essentially an incremental variation on existing uncertainty-penalized approaches with a calibration scaling factor. The correlation study with 48 configurations is solid execution but doesn't represent conceptual novelty.\n\nThe core research question matters—understanding why PRMs get hacked and what structural properties determine hackability is genuinely important. The causal hypothesis that calibration quality predicts hackability could be useful if true, though there's a risk it's intuitive enough that better-calibrated models naturally produce more accurate signals and thus resist hacking. The real test would be whether calibration actually helps or whether the effect is weaker than expected.\n\nThe related work section acknowledges relevant papers but misses or underemphasizes several critical predecessors that already explored similar territory—particularly the recent work on PRM hackability analysis, gradient-based defenses, and uncertainty-penalized rewards. The proposal is competent and the experimental design shows thoughtfulness, especially the post-hoc calibration approach for causal isolation, but the novelty is primarily in the bridging concept rather than in fundamentally new mechanisms or insights.\n\nThe core claim that better-calibrated reward models resist exploitation more effectively feels somewhat intuitive—more accurate signals should naturally be harder to game—and while the causal mechanism and specific defense approach add value, they don't feel sufficiently novel for a top venue. The CGSP defense itself is incremental over existing uncertainty and pessimism-based approaches, and the field is moving rapidly with multiple closely related papers already published. I'd estimate this at around 20-30% acceptance probability: the direction is sound and execution could push it over the line, but it faces stiff competition from more novel or impactful recent work in this space.\n\nWait, I'm realizing there's a fundamental issue here—this proposal is about PRM calibration for language model math reasoning, but it's being submitted to CoRL 2026, which is the Conference on Robot Learning. That's a complete venue mismatch. The work has nothing to do with robotics or robot learning, which is CoRL's core focus. Even if the idea itself has merit, submitting to the wrong conference is a critical problem that would likely result in desk rejection.\n\nThat said, the system prompt mentions evaluating for \"NLP/CL 领域\" and treating this as a general idea review, so maybe there's confusion about the venue or it's being used as a placeholder. Let me evaluate the idea quality as if it were being submitted to a mainstream ML conference like NeurIPS or ICML instead, since the content is fundamentally about machine learning and NLP.\n\nI should note this venue mismatch in my assessment, though my main focus is evaluating the idea itself rather than venue appropriateness. Looking at the core contributions: the novelty is moderate—connecting calibration quality to hackability is a reasonable research direction, but the individual pieces (PRM calibration, PRM hackability, pessimistic defenses) are already well-explored, and CGSP feels incremental compared to existing uncertainty-penalized approaches like PURM or Caution. The significance is similarly medium—it's worth investigating whether calibration predicts hackability, but the answer probably won't be surprising, and the proposed defense enters an already crowded space.\n\nThe related work section has some gaps though. There are critical predecessors I should have flagged more clearly, like \"Know What You Don't Know\" and PURM, plus \"Reward Under Attack\" does very similar hackability analysis. The claim about being the \"first causally rigorous study\" doesn't adequately account for existing causal reward modeling work. Weighing everything together—the reasonable but unsurprising direction, primarily combinatorial novelty, expected core findings, and competition from recently published similar work—I'd estimate this around 18-28%, with a median of 22%.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f725043f-f524-48cf-8cce-6f69037d4b2c",
+            "isSidechain": false,
+            "requestId": "req_011CbD6ecExWgBaJY9QhpzyQ",
+            "type": "assistant",
+            "uuid": "b1e877b8-f798-47aa-a9db-9c6bef72dde6",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "d49c158e-b604-4ae3-b6af-a58036d403c2",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MJmpmuqzxiDDVcB2B2feic",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1541,
+                "cache_read_input_tokens": 24539,
+                "output_tokens": 8087,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1541,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 8087,
+                    "cache_read_input_tokens": 24539,
+                    "cache_creation_input_tokens": 1541,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1541
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-20T03:21:31.863Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "调研完成，现在我已经有足够的信息来进行评估。让我整合所有发现。\n\n---\n\n```\n【阶段】: Triage\n\n【领域调研】:\n\n1. \"Know What You Don't Know: Uncertainty Calibration of Process Reward Models\" (NeurIPS 2025, arXiv 2506.09338):\n   - 与本 proposal 关系：**极为直接的前驱工作**。已经证明 PRM 存在严重的校准不良问题（倾向高估部分推理步骤导向正确答案的成功概率），提出了基于分位数回归的校准方法，并展示校准后的 PRM 可实现 instance-adaptive scaling (IAS)，在数学推理 benchmark 上减少推理开销同时维持准确率。\n   - 关键发现：PRM 校准是可行的且对下游任务有实际影响；但该工作聚焦于推理效率，**未探讨校准与 hackability 的关系**。\n\n2. \"Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models\" (arXiv 2603.06621, March 2026):\n   - 与本 proposal 关系：**最直接的竞争工作**。提出了三层诊断框架（静态扰动分析、梯度对抗优化、RL-induced hacking），在 AIME 上展示 PRM 训练的 policy 获得近乎完美的 PRM reward 但 ground-truth accuracy 停滞。发现当前 PRM 本质上是 fluency detector 而非 reasoning verifier。\n   - 关键发现：PRM hackability 已经被系统性地分析过，本 proposal 的 hackability 分析部分（贡献 1、2）与该工作高度重叠。\n\n3. \"Gradient Regularization Prevents Reward Hacking in RLHF and Verifiable Rewards\" (arXiv 2602.18037, Feb 2026):\n   - 与本 proposal 关系：即 proposal 引用的 \"Ackermann et al.\"。建立了 reward accuracy 与 loss landscape flatness 的理论联系，提出梯度正则化使训练偏向更平坦区域。\n   - 关键发现：reward accuracy 与梯度范数经验性相关。本 proposal 的 Hessian 谱分析（贡献 3）声称将此扩展到 step-level multi-reward 几何。\n\n4. \"From Curiosity to Caution: Mitigating Reward Hacking for Best-of-N with Pessimism\" (arXiv 2604.04648, April 2026):\n   - 与本 proposal 关系：proposal 明确将 Caution 列为 baseline。Caution 将 prediction error 作为分布外不确定性信号来降低 reward 估计。\n   - 关键发现：概念上与 CGSP 相似（都是 uncertainty-based pessimism），但 Caution 使用预测误差而非校准质量作为不确定性来源。\n\n5. \"Learning a Pessimistic Reward Model in RLHF\" (PET, arXiv 2505.20556):\n   - 与本 proposal 关系：proposal 明确将 PET 列为 baseline。PET 在 offline RLHF 中学习悲观 reward model，在 BoN sampling 中有效缓解 reward hacking。\n   - 关键发现：全局悲观策略在 25% label noise 下提升 true reward 达 75%。\n\n6. \"Probabilistic Uncertain Reward Model (PURM)\" (arXiv 2503.22480, March 2025):\n   - 与本 proposal 关系：**proposal 未提及但高度相关**。PURM 将标量 reward 泛化为高斯分布，在高不确定性区域施加惩罚以防止过优化。这在概念上与 CGSP 的 r̃_t = μ_t − α·σ_t/√c_t 非常接近——区别仅在 CGSP 多了一个校准质量权重 c_t。\n   - 关键发现：uncertainty-penalized reward 的范式已经存在，CGSP 的增量在于引入 calibration quality 作为额外调制因子。\n\n7. \"APRM: Adversarial Training for Process Reward Models\" (arXiv 2511.22888):\n   - 与本 proposal 关系：proposal 将其列为 baseline。通过对抗训练提升 PRM 鲁棒性。\n\n8. \"C²GSPG: Confidence-calibrated Group Sequence Policy Gradient\" (arXiv 2509.23129):\n   - 与本 proposal 关系：使用归一化序列概率定义模型置信度并施加交叉熵正则化进行校准，在 RL 训练中整合校准信息。概念上与本 proposal 的\"将校准信息融入 RL 训练\"思路部分重叠。\n\n- **调研总结**：PRM 校准和 PRM hackability 是 2025-2026 年的两个活跃研究方向，但已有大量独立工作分别深入探讨了两者。本 proposal 试图成为\"桥接\"二者的第一项因果研究，但 (a) hackability 诊断部分已被 \"Reward Under Attack\" 大幅覆盖；(b) calibration 部分已被 NeurIPS 2025 的 \"Know What You Don't Know\" 系统探索；(c) uncertainty-penalized reward 范式已被 PURM、Caution、PET 等多种方法覆盖。本 proposal 的真正增量在于\"因果隔离\"实验设计和 calibration quality 作为 adaptive 调制因子，但该增量相对于已有工作来说较薄。\n\n\n【Trivial Alternative 检验】:\n\n存在明显的 trivial alternative 威胁：\n\n1. **PURM (uncertainty-penalized reward) + 简单温度缩放**：CGSP 的公式 r̃_t = μ_t − α·σ_t/√c_t 本质上是 uncertainty-penalized reward 加上一个 calibration quality 权重。如果简单地对 PRM 做 temperature scaling（使其校准良好，即 c_t ≈ 1），然后使用标准的 μ − α·σ 悲观策略，效果可能接近 CGSP。CGSP 相对于此的增量价值在于 **自适应地基于 calibration quality 调节悲观程度**——但这个增量是否实质性地优于固定悲观系数 + 良好校准，需要实证验证。\n\n2. **Ensemble-min（已是 baseline）**：多个 PRM 取最小值本身就是一种不需要显式校准的悲观策略。如果 ensemble-min 已经表现良好，CGSP 的额外复杂性是否 justified 存疑。\n\n3. **对于因果分析部分**：如果研究者只是想知道\"校准是否影响 hackability\"，最直接的方法是：对同一个 PRM 分别做 post-hoc calibration 和不做，然后跑 RL training 比较 reward-accuracy alignment。这不需要 48 个配置和复杂的 CKA 验证。更大的实验矩阵提供了统计功效，但核心 insight 可能从更简单的设计中就能获得。\n\n**增量价值判断**：CGSP 的增量价值（相对于 \"已校准的 PRM + 标准 uncertainty penalization\"）取决于 c_t 这个校准质量因子在实践中是否提供了有意义的额外信号。如果 post-hoc calibration 通常都能把 PRM 校准到相当好的水平（即 c_t 变化不大），那么 CGSP 退化为标准的 uncertainty penalization。\n\n\n【前提假设检验】:\n\n核心 claim 的逻辑链条中，以下环节是未经验证的假设：\n\n1. **\"校准质量因果决定 reward hacking resistance\"**：这是最核心的假设。但有一个强混淆因素：更好的 PRM（更好的表示、更好的训练数据）可能同时具有更好的校准和更强的 hacking resistance，而两者之间并非因果关系，而是共同果（common effect of model quality）。Post-hoc calibration 实验设计试图解决这个问题——如果 post-hoc calibration（不改变表示）就能降低 hackability，则支持因果 claim。但这里有微妙之处：**post-hoc calibration 改变了 reward 的绝对数值分布，这本身就可能改变 RL 训练的优化动态**，而不一定是通过\"校准\"这个机制。例如，temperature scaling 拉平了 reward distribution，这可能降低了 RL 的有效 reward signal 强度，从而\"偶然地\"减少了 overoptimization——这不是校准在起作用，而是 reward signal 衰减在起作用。\n\n2. **\"step-level flatness 在 trajectory 上 compound\"**：这个假设缺乏理论支撑。在什么意义上 compound？乘性的？加性的？如果每步的 Hessian 特征值独立，trajectory-level 的 landscape 几何不一定是局部几何的简单聚合。这个 claim 需要明确的数学形式化，目前是 hand-waving。\n\n3. **\"ECE 是校准质量的有效度量，且可在 current-policy rollouts 上实时计算\"**：ECE 本身有已知缺陷（bin 依赖、对类别不平衡敏感）。在 RL 训练过程中，policy 不断变化，rollout distribution 也在变化。在非平稳分布上计算 ECE 并将其作为 drift detector 是否可靠，是一个未经验证的假设。\n\n4. **隐含假设：σ_t（不确定性）在校准后是可信的**：CGSP 公式中 σ_t 被用作\"校准后的不确定性\"，但如果 PRM 本身是确定性模型，σ_t 从何而来？如果来自 ensemble，那与 ensemble-min 方法的区别进一步模糊。如果来自单个模型的输出分布，其是否是 epistemic uncertainty 的可靠估计也存疑。\n\n\n【3 维度打分】:\n\n1. **Novelty: 弱-中** — \n   本 proposal 的核心叙事是\"桥接 PRM 校准和 PRM hackability 两条成熟研究线\"，提供因果证据和基于此的防御。但：\n   - \"Reward Under Attack\" (2603.06621) 已经系统分析了 PRM hackability，包括梯度攻击、RL-induced hacking、三层诊断框架，覆盖了 proposal 贡献 1 和部分贡献 2 的空间。\n   - \"Know What You Don't Know\" (NeurIPS 2025) 已经研究了 PRM 校准并展示其对下游任务的影响。\n   - PURM (2503.22480) 已经实现了 uncertainty-penalized reward，CGSP 相对于它的增量仅是 calibration quality weighting factor c_t。\n   - Caution (2604.04648) 和 PET (2505.20556) 已经从不同角度实现了 uncertainty-based pessimism。\n   - 因果隔离实验设计（post-hoc calibration 对比 fine-tuning）是相对新颖的方法论贡献，但这是实验设计层面的 novelty，不是概念层面的突破。\n   - Hessian 谱分析扩展 Ackermann et al. 到 step-level 是合理的延伸，但属于技术增量而非新范式。\n   \n   **总结**：组合性 novelty 存在但各组件已被充分探索，核心增量（c_t 因子 + 因果隔离设计）较薄。\n\n2. **Significance: 中** — \n   \"PRM 的什么结构性质决定其 hackability？\" 是一个有价值的研究问题，理解因果机制有助于指导更好的 PRM 训练和防御设计。然而：\n   - 核心发现若为 positive（\"校准更好的 PRM 更难 hack\"），审稿人很可能反应是 **\"I would have guessed this\"**——更准确的 reward signal 自然更难被利用，这在直觉上是 expected 的。\n   - 如果发现是 negative 或 nuanced（校准不影响 hackability，或只在特定条件下影响），反而更有价值，但 proposal 的叙事和 CGSP 设计都预设了 positive 结果。\n   - CGSP 作为防御方法进入了一个已经拥挤的空间（Caution、PET、PURM、ensemble-min、gradient regularization），其实际影响力取决于是否显著优于这些方法。\n   - 对领域的推广性有限：findings 主要适用于 math reasoning 上的 PRM，对更广泛的 RLHF/reward hacking 问题的推广需要额外论证。\n\n3. **Related Work: 弱** — \n   - **PURM (2503.22480) 未被提及**，这是一个关键遗漏——PURM 的 uncertainty-penalized Gaussian reward 在概念上与 CGSP 高度相似。\n   - \"Know What You Don't Know\" (NeurIPS 2025) 虽然可能在 proposal 的完整版本中被引用，但从描述来看未充分讨论其作为直接前驱的定位。\n   - \"Reward Under Attack\" (2603.06621) 的三层诊断框架与 proposal 的贡献 1（hackability 分析）高度重叠，proposal 需要更清楚地说明增量。\n   - C²GSPG (2509.23129) 的 confidence-calibrated policy gradient 思路与本 proposal 部分重叠但未讨论。\n   - Proposal 声称 \"first causally rigorous study connecting PRM calibration to exploitability\"，但 causal reward modeling 的相关工作（如 \"Beyond Reward Hacking: Causal Rewards for LLM Alignment\", 2501.09620）也在探索 causal 框架下的 reward robustness，未被讨论。\n\n\n【概率估计】: [15% - 28%] 中位 20%\n\n【估计理由】: \n三个维度综合来看：Novelty 处于弱-中之间，核心增量（c_t 调制 + 因果隔离设计）相对于已有工作（PURM、Caution、PET、\"Reward Under Attack\"、\"Know What You Don't Know\"）较薄；Significance 为中，研究问题有价值但核心发现若 positive 不够 surprising（\"更好校准 → 更难 hack\" 是直觉预期）；Related Work 为弱，存在关键遗漏（PURM、C²GSPG）且与 \"Reward Under Attack\" 的 overlap 定位不清。**上界主要受限于 Novelty**——在 PRM 校准、hackability 分析、uncertainty-based pessimism 三个子领域都已有充分的近期工作的情况下，本 proposal 的组合性 novelty 可能不足以说服审稿人。下界受限于 Related Work 遗漏可能招致审稿人质疑 \"awareness of concurrent work\"。\n\n【主要风险】: \n1. **Novelty 被质疑**：审稿人熟悉 PURM + \"Reward Under Attack\" + \"Know What You Don't Know\" 后，可能认为 CGSP 只是已有 uncertainty-penalized reward 的微小变体（多了一个 c_t），而因果分析部分与 \"Reward Under Attack\" 的诊断框架高度重叠。\n2. **核心 claim 的 \"So what?\" 风险**：如果因果分析证实\"校准好 → 更难 hack\"，审稿人可能认为这是 expected finding（better reward signal → harder to exploit），缺乏 surprising insight，从而质疑研究的知识贡献。\n```\n\nSources:\n- [Know What You Don't Know: Uncertainty Calibration of Process Reward Models (NeurIPS 2025)](https://arxiv.org/abs/2506.09338)\n- [Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models](https://arxiv.org/abs/2603.06621)\n- [Gradient Regularization Prevents Reward Hacking in RLHF and Verifiable Rewards](https://arxiv.org/abs/2602.18037)\n- [From Curiosity to Caution: Mitigating Reward Hacking for Best-of-N with Pessimism](https://arxiv.org/abs/2604.04648)\n- [Learning a Pessimistic Reward Model in RLHF (PET)](https://arxiv.org/abs/2505.20556)\n- [Probabilistic Uncertain Reward Model (PURM)](https://arxiv.org/pdf/2503.22480)\n- [APRM: Adversarial Training for Process Reward Models](https://arxiv.org/abs/2511.22888)\n- [C²GSPG: Confidence-calibrated Group Sequence Policy Gradient](https://arxiv.org/abs/2509.23129)\n- [Beyond Reward Hacking: Causal Rewards for LLM Alignment](https://arxiv.org/abs/2501.09620)\n- [A Survey of Process Reward Models](https://arxiv.org/html/2510.08049v3)\n- [Reward Hacking in the Era of Large Models](https://arxiv.org/html/2604.13602v1)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b1e877b8-f798-47aa-a9db-9c6bef72dde6",
+            "isSidechain": false,
+            "requestId": "req_011CbD6ecExWgBaJY9QhpzyQ",
+            "type": "assistant",
+            "uuid": "410509b3-7ec8-4c21-8e71-bbd4fddfb586",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "d49c158e-b604-4ae3-b6af-a58036d403c2",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MJmpmuqzxiDDVcB2B2feic",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1541,
+                "cache_read_input_tokens": 24539,
+                "output_tokens": 8087,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1541,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 8087,
+                    "cache_read_input_tokens": 24539,
+                    "cache_creation_input_tokens": 1541,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1541
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Calibration as a Shield: How PRM Calibration Quality Causally Determines Reward Hacking Resistance, and a Step-L…",
+                "leafUuid": "410509b3-7ec8-4c21-8e71-bbd4fddfb586",
+                "sessionId": "d49c158e-b604-4ae3-b6af-a58036d403c2"
+              }
+            }
+          ],
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "PRM calibration and reward hacking resistance defense",
+                "sessionId": "d49c158e-b604-4ae3-b6af-a58036d403c2"
+              }
+            }
+          ],
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Calibration as a Shield: How PRM Calibration Quality Causally Determines Reward Hacking Resistance, and a Step-L…",
+                "leafUuid": "410509b3-7ec8-4c21-8e71-bbd4fddfb586",
+                "sessionId": "d49c158e-b604-4ae3-b6af-a58036d403c2"
+              }
+            }
+          ],
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "PRM calibration and reward hacking resistance defense",
+                "sessionId": "d49c158e-b604-4ae3-b6af-a58036d403c2"
+              }
+            }
+          ],
+          "id": "event-000045"
+        }
+      ],
+      "message_count": 43
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-proposal-rubric-go-kill-proposal-calibration-as-a-shield-how-prm-copy-4.md"
+}

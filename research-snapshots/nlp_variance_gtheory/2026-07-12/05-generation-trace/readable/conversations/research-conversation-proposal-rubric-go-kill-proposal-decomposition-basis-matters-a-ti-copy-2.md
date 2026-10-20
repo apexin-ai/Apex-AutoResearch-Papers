@@ -1,0 +1,3209 @@
+# Research conversation: 【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。 【proposal】: # Decomposition Basis Matters: A Ti
+
+**Reproducibility Budgets for Open-Weight LLM Evaluation: A Generalizability Theory Study of 7–9B Instruction-Tuned Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 47
+- **Recorded user turns:** 1
+- **Tool calls:** 13
+- **Original source:** `logs/chats/exported-trajectories/account-3/dc6faec3-02e2-49fb-96cd-7d696547f005.jsonl`
+- **Structured JSON:** [`de8519911e17553db66f.json`](../../sessions/de/de8519911e17553db66f.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-20T05:55:32.510Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-20T05:55:32.510Z",
+  "sessionId": "dc6faec3-02e2-49fb-96cd-7d696547f005",
+  "content": "【任务】: 请评估以下 proposal 的客观中稿概率。\n必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。\n\n【proposal】:\n# Decomposition Basis Matters: A Tiered Empirical Study of Error-Taxonomic vs. Orthogonality-Enforced vs. Causal Reward Decomposition for PRM Hackability Resistance\n\n## Description\nWe present the first systematic empirical study of how decomposition basis and coverage breadth jointly affect PRM hackability resistance, organized as a tiered experimental program with staged evaluation and capacity controls. Our two central questions: (1) Does the CHOICE of decomposition basis matter — specifically, does grounding multi-dimensional supervision in a systematic error taxonomy outperform orthogonality-enforced, quality-dimension, and causal alternatives? (2) How does coverage breadth (number of supervised error dimensions) affect hackability, and does hacking shift to uncovered dimensions as theory predicts? We introduce ETA-PRM (Error-Type-Aware PRM), a multi-head architecture with up to 13 ErrorAtlas-aligned error-type heads plus a residual head. The guaranteed Tier 1 deliverable compares four decomposition approaches (ETA error-taxonomic, ODIN data-driven orthogonal, single-head, PathFinder trajectory-level) across a 4-level coverage ablation (2→6→13→13+residual heads), with Random-N capacity controls (N=2,6,13) at each coverage level to disentangle coverage breadth from model capacity. The critical three-way comparison — ETA-PRM-6 (error-type labels) vs. ODIN-6-orthogonal (random labels + orthogonality loss) vs. Random-6 (random labels, no orthogonality) — isolates whether semantic grounding, orthogonality enforcement, or raw capacity drives hackability resistance. Hackability is measured through a staged pipeline motivated by Tiwari et al.'s finding that static perturbation tests weakly predict RL-based exploitation: Stage 1 applies PRM-BiasBench perturbations for surface profiling and GOH sensitivity analysis, Stage 2 traces Best-of-N overoptimization curves as an intermediate proxy, and Stage 3 runs full GRPO exploitation on core variants with 3 seeds and paired bootstrap confidence intervals. The Grounded Orthogonality Hypothesis is tested via pre-registered, falsifiable predictions: comparable overall debiased CKA distance but divergent selective perturbation sensitivity (ETA-PRM heads sensitive to matching perturbation types vs. ODIN heads showing uniform sensitivity). Tier 2 extends to CausalRM and DRM baselines, cross-scale robustness verification (Qwen2.5-Math-1.5B-Instruct backbone), and MO-GRPO robustness checks to rule out RL-algorithm-specific exploitation artifacts; Tier 3 adds ThinkPRM comparison, Socratic-PRMBench reasoning-pattern evaluation, and full mechanistic analysis. All evaluation is on mathematical reasoning, explicitly acknowledged as domain-specific validation with methodology designed for cross-domain extension. This is the first controlled study varying both decomposition basis and coverage breadth with capacity controls, staged hackability evaluation, pre-registered mechanistic predictions, and statistical rigor.\n\n## Core Problem\nMulti-dimensional PRM supervision is now a recommended anti-hacking strategy (PCH Section 6.1), with a growing zoo of decomposition schemes operating on fundamentally different bases: ODIN decomposes along a known confounder (length) with explicit orthogonality loss; DRM decomposes along quality dimensions via external scoring models; DG-PRM uses dynamically extracted criteria; CausalRM separates causal from non-causal embedding factors; BNRM uses sparse non-negative latent factors; HRM decomposes along temporal hierarchy (individual vs. consecutive steps at multiple granularities); and IR³ performs post-hoc SAE-based decomposition of already-trained reward signals. The critical unanswered question: does the CHOICE of decomposition basis matter for hackability resistance, or is orthogonality enforcement alone sufficient? And how does coverage breadth (number of supervised error dimensions) interact with basis choice? Recent theoretical work (arXiv:2603.28063) proves that hacking concentrates on uncovered dimensions with computable severity, while empirical work (arXiv:2605.12474) confirms that rubric-based RL is hackable precisely when failure modes go unspecified. However, prior experimental designs in this space suffer from two methodological gaps: (1) scope overload — attempting to simultaneously answer too many questions yields shallow results, and (2) capacity confounding — coverage ablations that vary both the number of supervised dimensions and model parameter count cannot cleanly attribute hackability differences to coverage breadth versus added capacity. We address both the scientific question and these methodological challenges: a tiered experimental program with explicit priority levels guarantees a focused core comparison (4 decomposition bases × 4 coverage levels, with random-label capacity controls) as a first-class deliverable, while permitting principled extension to additional paradigms and cross-scale robustness verification.\n\n## Opportunity\nThree converging developments create a narrow window for this study. First, ErrorAtlas (arXiv:2601.15812) provides a validated 17-category error taxonomy (92% validation accuracy across 35 datasets and 83 models) that enables principled coverage ablation with known category distributions — the five most prevalent categories (Missing Required Element 15.6%, Specification Misinterpretation 11.5%, Logical Reasoning Error 9.1%, Incorrect Identification 9.0%, Computation Error 8.5%) account for ~54% of all reasoning benchmark errors. Second, Tiwari et al.'s (arXiv:2603.06621) three-tiered hackability framework reveals a critical methodological insight: static perturbation tests have WEAK correlation with RL-based exploitation — models passing surface-level style-invariance checks (reward changes <0.1) diverge dramatically under optimization pressure (43% of RL reward gains are stylistic shortcuts). This motivates our staged evaluation pipeline that escalates from cheap inference-only probes through Best-of-N overoptimization curves to full RL stress-testing, rather than committing expensive RL runs to all variants. Third, the simultaneous availability of orthogonal decomposition approaches (ETA error-taxonomic, ODIN data-driven orthogonal, PathFinder trajectory-level, CausalRM causal, DRM distributional, HRM temporal-hierarchical, IR³ post-hoc interpretive) means the comparison can be conducted before the field converges on a single paradigm. Fourth, MO-GRPO (arXiv:2509.22047) provides a principled RL-time normalization method that prevents GRPO from preferentially exploiting high-variance reward dimensions, enabling us to disentangle PRM-level decomposition effects from RL-algorithm-specific exploitation artifacts. The missing experiment: a controlled comparison with scope discipline — tiered priorities, staged evaluation, capacity controls, and statistical rigor — varying both decomposition basis and coverage breadth under standardized hackability protocols.\n\n## Landscape\n**Orthogonality-enforced decomposition.** ODIN (arXiv:2402.07319, ICML 2024) trains two linear heads on a shared backbone — one correlated with response length, one decorrelated — using ranking + length-correlation + orthogonality loss on projection weights. Nearly eliminates length-reward correlation across PPO and ReMax, evaluated via Pareto front analysis across hyperparameter sweeps. Addresses only a single known confounder (length); does not generalize to multi-faceted attacks. **Quality-dimension decomposition.** DRM (arXiv:2510.11457) computes Confidence (log-probs), Relevance (NLI reranker), and Coherence (Nemotron-70B ORM) as three external signals weighted 0.1/0.2/0.7. Reduces flawed-but-correct reasoning traces but dominated by ORM dimension. Note: DRM's reliance on external scoring models (including a 70B ORM) makes it architecturally distinct from multi-head decomposition approaches that share a single backbone — it is better characterized as a model-ensemble paradigm than a multi-head architecture, and comparisons should be interpreted as contrasting decomposition paradigms rather than head architectures. **Dynamic-criteria decomposition.** DG-PRM (arXiv:2507.17849, ACL 2025) automatically extracts hierarchical criteria via LLM judge comparisons and applies Pareto dominance, reaching 76.5% on PRMBench with 30% training efficiency gains, but without adversarial evaluation. **Representation-level decomposition.** CausalRM (arXiv:2601.21350, ICML 2026) uses a variational encoder with gradient reversal to separate causal from non-causal embedding factors, achieving 5–15% robustness improvement on sycophancy and length-bias probes. **Latent-factor decomposition.** BNRM (arXiv:2602.10623) integrates non-negative factor analysis into Bradley-Terry preference models using Gamma priors and Weibull variational distributions, achieving 93.6% on RewardBench (+3.2% over BT baselines), but operates at outcome-reward level. **Hierarchical temporal decomposition.** HRM (arXiv:2503.13551) evaluates both individual and consecutive reasoning steps at fine and coarse granularity, with Hierarchical Node Compression (HNC) for data augmentation. Addresses reward hacking through multi-level temporal coherence evaluation. Represents an orthogonal axis (temporal hierarchy) to error-category decomposition, and is tested on PRM800K, MATH500, and GSM8K. **Post-hoc interpretive decomposition.** IR³ (arXiv:2602.19416) introduces Contrastive Inverse Reinforcement Learning (C-IRL) to reconstruct implicit reward functions from post-alignment behavioral shifts, then decomposes the reconstructed reward via sparse autoencoders (SAEs) into interpretable features operating on the reward network's penultimate activations. Achieves 0.89 correlation with ground-truth rewards and >90% precision in identifying hacking signatures. Four surgical mitigation strategies (clean reward optimization, adversarial shaping, constrained optimization, feature-guided distillation) reduce hacking while maintaining capabilities within 3% of the original model. Critically, IR³ operates post-hoc on already-trained models — it reverse-engineers internalized objectives rather than building decomposition into the PRM architecture. This represents a fundamentally different decomposition paradigm (interpretive vs. architectural) that is complementary to our multi-head approach: IR³ could analyze what objectives ETA-PRM heads actually learn. **Error-type supervision.** PathFinder-PRM (arXiv:2505.19706) decomposes into math and consistency error dimensions, achieving PRMScore 67.7 on PRMBench with 3× data efficiency. ErrorAtlas (arXiv:2601.15812) provides 17 top-level error categories across 35 datasets and 83 models with 92% validation accuracy, revealing that ~44% of errors in math benchmarks have weak reasoning orientation. **RL-time reward decorrelation.** RDPO (arXiv:2605.13641) applies Magnitude-Aware Quantile normalization and Mahalanobis whitening within active reward subspaces during policy gradient updates — this is RL-TIME decorrelation, not reward-model-time decomposition. Applied to LongCat-Flash post-training (+4.25% IFEval, +10.3% ArenaHard-Hard). Complementary to reward-model-level decomposition — could compose with any PRM decomposition during downstream RL. **Multi-objective RL normalization.** MO-GRPO (arXiv:2509.22047) addresses reward hacking in GRPO by normalizing each reward dimension independently (per-objective z-score) before aggregation, rather than GRPO's default of normalizing after aggregation. This prevents GRPO from preferentially optimizing high-variance reward dimensions while ignoring low-variance ones. Demonstrated to eliminate reward hacking artifacts in machine translation (vanilla GRPO generated 68.7% non-target-language text exploiting readability metrics; MO-GRPO maintained both quality dimensions). Directly relevant to our Stage 3 methodology: when multi-head PRMs produce per-dimension scores, vanilla GRPO may introduce dimension-exploitation artifacts that confound decomposition-basis comparisons. MO-GRPO provides a robustness check isolating PRM-level decomposition effects from RL-algorithm-specific exploitation. **Hackability evaluation.** Tiwari et al. (arXiv:2603.06621) introduce a three-tiered diagnostic framework: (1) static perturbation via PRM-BiasBench (8 perturbation types, inference-only — reveals fluency-logic dissociation but weakly predicts RL outcomes), (2) adversarial optimization (gradient-based, 1000 iterations), (3) RL-induced hacking (GRPO on Qwen2.5-1.5B-Instruct against AIME). Critical finding: Tier 1 and Tier 3 weakly correlate — models certified as style-invariant under static perturbation diverge dramatically under optimization pressure. **Reasoning-pattern-specific evaluation.** Socratic-PRMBench (arXiv:2505.23474) evaluates PRMs across 6 systematic reasoning patterns (Transformation, Decomposition, Regather, Deduction, Verification, Integration) with 20 fine-grained error types nested hierarchically under these patterns, comprising 2995 reasoning paths. Key finding: Qwen2.5-Math-PRM-7B achieves 90.8% accuracy on correct steps but only 42.9% on error steps, with marked deficiencies on Decomposition and Redundancy errors. Complements PRMBench and ProcessBench by testing reasoning-pattern sensitivity — directly relevant to our analysis of whether error-type-specific heads improve detection across diverse reasoning patterns. **Coverage theory.** arXiv:2603.28063 proves under five minimal axioms that hacking concentrates on uncovered dimensions with a computable distortion index. arXiv:2605.12474 empirically confirms this for rubric-based RL. **Other anti-hacking approaches.** ThinkPRM (arXiv:2504.16828, TMLR 2026) achieves 86.5% F1 on ProcessBench with ~1% of PRM800K data via generative verification CoT. GenPRM (arXiv:2504.00891, AAAI 2026) adds code-integrated verification. APRM (arXiv:2511.22888) uses adversarial generator–PRM game training (+3.4pp). CRA (arXiv:2508.04216) mitigates hacking via causal backdoor correction. PURE (arXiv:2504.15275, NeurIPS 2025) reduces hacking via min-form credit assignment. CROME (arXiv:2506.16507) uses causal rubrics (+5.4% RewardBench). No prior work systematically compares decomposition bases AND coverage breadth for hackability resistance with capacity controls, staged evaluation, and statistical rigor.\n\n## Approach\nWe conduct a controlled comparison of PRM decomposition schemes for hackability resistance, organized as a tiered experimental program with staged evaluation. Two interacting variables: decomposition BASIS (what dimensions to decompose along) and coverage BREADTH (how many dimensions). Our primary system is ETA-PRM (Error-Type-Aware PRM), a multi-head architecture with ErrorAtlas-aligned error-type classification heads.\n\n**TIERED EXPERIMENTAL PROGRAM**\n\n**Tier 1 (Guaranteed Deliverable).** Core comparison answering both research questions with 4 decomposition approaches, 4 coverage levels, and capacity controls. Baselines: (a) ETA-PRM coverage ablation: ETA-PRM-2 / ETA-PRM-6 / ETA-PRM-13 / ETA-PRM-13+R, where each head detects specific ErrorAtlas error categories. ETA-PRM-6 heads: Computation Error, Logical Reasoning Error, Specification Misinterpretation, Factual Error, Output Formatting Error, Missing Required Element. (b) ODIN-6-orthogonal: 6 heads with random (non-error-type-grounded) labels + explicit pairwise cosine orthogonality loss between head projection weights — the critical control isolating semantic grounding from orthogonality enforcement. If ODIN-6-orthogonal matches ETA-PRM-6 on hackability, error-type grounding adds no value beyond orthogonality. (c) Single-head PRM (capacity-matched, zero-decomposition baseline). (d) PathFinder-PRM-style 2-head (math, consistency — minimal decomposition baseline).\n\n**Capacity Controls (addressing coverage-capacity confound).** Each additional head adds a linear projection layer, so the coverage ablation (2→6→13→13+R) changes both coverage breadth and parameter count simultaneously. To disentangle these factors, we include Random-N controls at each coverage level: Random-2, Random-6, Random-13 — architecturally identical to ETA-PRM-N but with randomly assigned error-type labels (each step randomly assigned to one of N categories). These controls have the same parameter budget as ETA-PRM-N at each level but lack semantic grounding. The experimental logic:\n- ETA-PRM-N vs. Random-N at each N: isolates the effect of semantic grounding (error-type labels vs. random labels) at matched parameter budget.\n- Random-2 vs. Random-6 vs. Random-13: isolates the effect of pure capacity (more heads/parameters) without meaningful coverage signal.\n- ODIN-6-orthogonal vs. Random-6: isolates the effect of explicit orthogonality enforcement on random labels.\n- ETA-PRM-6 vs. ODIN-6-orthogonal vs. Random-6: the three-way comparison isolates semantic grounding, orthogonality enforcement, and capacity respectively.\nIf Random-13 shows comparable hackability resistance to Random-2, capacity alone does not explain coverage benefits. If ETA-PRM-N consistently outperforms Random-N, semantic grounding matters beyond added capacity. We additionally report total trainable parameter counts for each variant and include a regression analysis of hackability metrics against parameter count to quantify the capacity contribution.\n\nInterpretability diagnostic: debiased CKA similarity (using unbiased U-statistics for HSIC, following Murphy et al. 2024) between head representations, with pre-registered GOH predictions (see below).\n\n**Tier 2 (Strong-to-Have).** Extends decomposition basis comparison and robustness checks: (e) CausalRM-style gradient-reversal baseline (variational encoder splitting embeddings into causal/non-causal factors). (f) DRM-style 3-dimension scoring pipeline (Confidence/Relevance/Coherence). Note: DRM relies on external scoring models (including an NLI reranker and Nemotron-70B ORM), making it architecturally distinct from multi-head approaches sharing a single backbone. This comparison is informative about decomposition paradigms (external-signal ensemble vs. multi-head architecture vs. representation-level separation) rather than head architecture variants, and results should be interpreted accordingly. (g) Cross-scale robustness check: Qwen2.5-Math-1.5B-Instruct backbone for ETA-PRM-6 and ODIN-6-orthogonal (the core comparison), evaluated with Stages 1–2 of the hackability pipeline. This addresses the single-backbone limitation: if 7B results do not replicate at 1.5B, it may indicate that 7B capacity is necessary for 6 independent error-type heads to learn meaningfully distinct representations, which is itself informative. If results transfer, it strengthens generalizability. The 1.5B scale is chosen because: (i) Qwen2.5-Math-1.5B-Instruct is publicly available and has been validated as a PRM backbone (HuggingFaceH4/Qwen2.5-Math-1.5B-Instruct-PRM-0.2 trained on PRM800K), (ii) the 1.5B-to-7B ratio (~5×) represents a meaningful scale difference, and (iii) 1.5B training is ~4× cheaper than 7B, keeping the robustness check within budget. (h) MO-GRPO robustness check on core pair (ETA-PRM-6 vs. ODIN-6-orthogonal): vanilla GRPO may preferentially exploit high-variance reward dimensions (as demonstrated by MO-GRPO authors: vanilla GRPO generated 68.7% non-target-language text exploiting readability metrics). By re-running Stage 3 with MO-GRPO's per-objective normalization on the core comparison, we verify that decomposition-basis effects are robust to RL algorithm choice and rule out GRPO-specific dimension-exploitation artifacts. If ETA-PRM-6 outperforms ODIN-6-orthogonal under vanilla GRPO but not under MO-GRPO, it would suggest the advantage stems from exploitable variance asymmetries rather than genuine semantic alignment. Tier 2 variants (e)–(f) evaluated with Stages 1–2 of hackability pipeline; full RL only if Tier 1 results warrant.\n\n**Tier 3 (Nice-to-Have).** Extended analysis: (i) ThinkPRM-7B comparison (inference-only, representing implicit decomposition via generative reasoning). (j) Full mechanistic analysis: linear probing of head representations, attack-surface alignment analysis (see GOH section below). (k) Architectural controls: multi-task single-output (controls for gradient regularization), single-head with auxiliary losses. (l) Socratic-PRMBench evaluation on Tier 1 variants to assess reasoning-pattern-specific error detection across the 6 systematic reasoning patterns (Transformation, Decomposition, Regather, Deduction, Verification, Integration) and 20 fine-grained error types.\n\n**SINGLE-BACKBONE LIMITATION ACKNOWLEDGMENT.** All primary experiments (Tier 1) use Qwen2.5-Math-7B-Instruct as the backbone. This choice is justified by: (a) Qwen2.5-Math is the most widely used PRM backbone in the current literature (Tiwari et al., RLHFlow, etc.), enabling direct comparability; (b) the 7B scale provides sufficient representation capacity for up to 13 independent heads while remaining computationally tractable for multi-seed RL experiments. However, results may be backbone-specific: the 7B architecture's representation geometry may particularly favor (or disfavor) certain decomposition approaches, and findings may not transfer to other model families (Llama, Mistral) with different attention patterns and representation structures. The Tier 2 cross-scale check (1.5B) partially addresses scale sensitivity within the Qwen family. Full cross-family robustness (e.g., Llama-3.1-8B, Mistral-7B backbones) is an explicit limitation and priority for follow-up work.\n\n**STAGED HACKABILITY EVALUATION**\n\nMotivated by Tiwari et al.'s finding that Tier 1 (static) tests weakly predict Tier 3 (RL-based) hackability, we adopt a staged pipeline that escalates cost and informativeness.\n\n*Stage 1 — Static Perturbation (all variants, ~60 A100-hours):* PRM-BiasBench protocol with 8 perturbation types (rephrasing, verbosity increase/decrease, within-step reordering, question shuffling, numerical perturbation, reasoning hallucination, question removal). Used for surface-level vulnerability profiling, NOT as definitive hackability measure. Explicitly reports the acknowledged weak correlation with Stage 3. Additionally serves as the input for GOH selective-sensitivity analysis (see pre-registered predictions below).\n\n*Stage 2 — Best-of-N Overoptimization (Tier 1 + selected Tier 2 variants, ~250 A100-hours):* Best-of-N sampling with N ∈ {1, 4, 16, 64, 256} on MATH-500. Track reward-accuracy gap as N increases. Overoptimization onset N* defined as the N where accuracy first declines while reward continues increasing. No RL training required — avoids PPO/GRPO instability while providing meaningful hackability signal. Reports: reward-accuracy gap at each N, overoptimization onset N*, Pareto efficiency curves.\n\n*Stage 3 — Full RL Exploitation (Tier 1 variants only, ~700 A100-hours):* Primary: GRPO (following Tiwari et al. protocol — chosen over PPO for simplicity, lower instability, and direct comparability) training Qwen2.5-1.5B-Instruct against frozen PRM on AIME-style problems. Seed protocol: 3 seeds for core comparison (ETA-PRM-6 vs. ODIN-6-orthogonal vs. single-head PRM), enabling paired bootstrap confidence intervals and Wilcoxon signed-rank tests; 1 seed for PathFinder-2D, Random-6 (capacity control), and coverage ablation sweep (providing directional signal within compute constraints). Tier 2 robustness: MO-GRPO (per-objective normalization) on ETA-PRM-6 vs. ODIN-6-orthogonal only (1 seed each, ~100 A100-hours), verifying decomposition-basis effects are not GRPO-specific exploitation artifacts. Statistical rigor: paired bootstrap 95% CIs on reward-accuracy gap, Wilcoxon signed-rank tests for pairwise comparisons, Cohen's d effect sizes reported alongside p-values. For each coverage level, analyze which ERROR TYPES the GRPO policy learns to exploit — testing the prediction from arXiv:2603.28063 that exploitation concentrates on uncovered categories.\n\n**PRE-REGISTERED GROUNDED ORTHOGONALITY HYPOTHESIS (GOH) PREDICTIONS**\n\nThe GOH predicts that error-type grounding achieves orthogonality in attack-surface-aligned feature subspaces rather than arbitrary orthogonal directions. To make this hypothesis falsifiable, we pre-register four specific predictions with concrete metrics and thresholds:\n\n*Prediction 1 (Comparable overall orthogonality):* Average pairwise debiased CKA distance between head intermediate representations will be comparable for ETA-PRM-6 and ODIN-6-orthogonal: |ΔCKA_avg(ETA-6, ODIN-6)| < 0.10. Both should be substantially more orthogonal than Random-6 (no orthogonality enforcement): CKA_avg(Random-6) > CKA_avg(ETA-6) + 0.05 AND CKA_avg(Random-6) > CKA_avg(ODIN-6) + 0.05. (Debiased CKA using unbiased U-statistics for HSIC to avoid inflated similarity in high-dimensional, moderate-sample regimes.)\n\n*Prediction 2 (Selective perturbation sensitivity):* For each ETA-PRM-6 head h_i corresponding to error type e_i, we measure the perturbation-type-specific reward change Δr(h_i, p_j) for each PRM-BiasBench perturbation type p_j. Construct a 6×8 head-by-perturbation sensitivity matrix S. GOH predicts diagonal dominance: for semantically matched head-perturbation pairs (Computation Error ↔ numerical perturbation, Logical Reasoning Error ↔ reasoning hallucination, Specification Misinterpretation ↔ question shuffling, Output Formatting Error ↔ rephrasing, Missing Required Element ↔ question removal), the matched sensitivity exceeds the median unmatched sensitivity by a factor of ≥1.5 for at least 4 of the 5 matched pairs. ODIN-6-orthogonal heads will show uniform sensitivity patterns — no matched pair exceeds the median unmatched by a factor of ≥1.5 for more than 1 of 5 pairs (since ODIN heads have no semantic alignment with perturbation types).\n\n*Prediction 3 (Attack-surface alignment under RL exploitation):* In Stage 3 GRPO exploitation, the error categories that the RL policy learns to exploit (measured by per-category reward-accuracy gap divergence) will correlate with the categories NOT covered by the PRM heads. For ETA-PRM-6 vs. ETA-PRM-13, exploitation should shift to uncovered categories (Spearman ρ > 0.5 between category coverage status and exploitation severity).\n\n*Falsification criteria:* (a) If ETA-PRM-6 heads show LESS overall orthogonality than Random-6 (CKA_avg for ETA-6 significantly higher than Random-6), the grounding-induces-orthogonality component of GOH is refuted. (b) If the sensitivity matrix shows no diagonal dominance — fewer than 3 of 5 matched pairs exceed the 1.5× threshold — the attack-surface-alignment component of GOH is refuted, and error-type labels do not create semantically meaningful head specialization. (c) If both (a) and (b) fail, GOH is comprehensively refuted: error-type grounding provides neither natural orthogonality nor attack-surface alignment. All CKA analyses will use debiased estimators and include random-data baselines following best practices from Murphy et al. (2024).\n\n**ANNOTATION PILOT STUDY**\n\nBefore full dataset construction, a 2000-step pilot study addresses annotation quality concerns at 13 categories. Design: stratified sampling from PRM800K covering diverse problem types and difficulty levels. Measurements: (i) per-category survival rate at 0.8 confidence threshold using Qwen3-32B as annotator; (ii) inter-annotator agreement (Cohen's κ) between Qwen3-32B and Claude Sonnet 4 on full 2000 steps, plus human expert agreement on 200-step subsample; (iii) per-category confusion matrices identifying systematic misclassifications; (iv) category frequency distribution to estimate imbalance severity.\n\nAdaptive thresholding: if pilot reveals <50% survival rate at 0.8 threshold for specific categories (likely for rare types like Naming/Symbol Error, Unit Conversion Error), lower threshold to 0.7 for those categories to prevent data starvation. Category-balanced sampling: oversample steps from problem types likely to elicit rare error categories (e.g., physics word problems for unit conversion, competition problems for specification misinterpretation). All coverage ablation results will report effective training examples per category alongside hackability metrics, ruling out the data-quantity confound.\n\n**FULL ANNOTATION (post-pilot).** Re-annotate ~400K steps from PRM800K and RLHFlow trajectories with hierarchical multi-dimensional error labels using Qwen3-32B with category-adaptive confidence thresholds determined by pilot. Apply noise-aware iterative training (NAIT) from arXiv:2601.12748 to refine labels where model predictions diverge from annotations.\n\n**ARCHITECTURE.** ETA-PRM extends a Qwen2.5-Math-7B-Instruct backbone with K classification heads detecting specific ErrorAtlas error categories. Per-type error probabilities aggregated via learned attention-based fusion into step-correctness score. A residual head (at K=13+R) captures error signal not covered by K specific heads. Head-balancing via uncertainty-weighted multi-task loss (Kendall et al.) prevents dominant-category heads from suppressing rare-category learning. Each head consists of a linear projection from the backbone's hidden dimension to a head-specific intermediate dimension, followed by a classification layer. For Random-N capacity controls, architecture is identical but training labels are randomly assigned.\n\n**ACCURACY EVALUATION.** ProcessBench, PRMBench, MATH-500 best-of-N. Supplemented with Socratic-PRMBench (Tier 3) to assess reasoning-pattern-specific detection across 6 patterns and 20 fine-grained error types, testing whether error-type-specific heads improve detection of reasoning-pattern-specific errors (e.g., whether Logical Reasoning Error heads improve Deduction pattern detection). Report alongside hackability metrics to assess accuracy–hackability trade-off.\n\n**MECHANISTIC ANALYSIS (CKA in Tier 1; full analysis in Tier 3).** Tier 1 test: debiased CKA similarity between head intermediate representations for ETA-PRM-6 vs. ODIN-6-orthogonal vs. Random-6, with pre-registered GOH predictions as specified above. Tier 3 extension: linear probing (which input features drive each head?) and attack-surface alignment (selective sensitivity to matching perturbation types, extending the Stage 1 sensitivity matrix analysis).\n\n**DOMAIN-SPECIFICITY ACKNOWLEDGMENT.** All evaluation is on mathematical reasoning (MATH-500, AIME, ProcessBench, PRMBench). Justified because: (a) ErrorAtlas taxonomy is best validated for math reasoning, (b) PRM800K provides the largest process-level supervision dataset, (c) math permits verifiable ground truth for hackability measurement. Generalizability argument: ErrorAtlas taxonomy is domain-general (17 categories derived from 35 datasets spanning math, code, dialogue, general QA), so the experimental methodology and tiered evaluation framework transfer directly even if specific hackability findings may be domain-dependent. Future work: extend to code generation (execution-based verification) and dialogue (human preference ground truth).\n\n## Resource Estimate\n{'tier_1_guaranteed': {'gpu_hours': '~1450 A100-hours (50h annotation pilot, 100h full annotation, 400h PRM training for 4 decomposition baselines × 4 coverage levels, 120h Random-N capacity controls training (3 variants: Random-2/6/13), 60h Stage 1 static evaluation for all variants including capacity controls, 250h Stage 2 Best-of-N for Tier 1 variants, 400h Stage 3 GRPO with 3 seeds on core + 1 seed on secondary and capacity controls, 70h CKA + GOH analysis)', 'timeline': '4.5–5.5 months (2–3 weeks pilot + annotation, 7 weeks training including capacity controls, 3 weeks Stage 1+2 evaluation, 4 weeks Stage 3 GRPO, 2–3 weeks analysis + writing)', 'estimated_gpu_cost': '$2900 (A100 at ~$2/hr)'}, 'tier_1_plus_2': {'gpu_hours': '~2050 A100-hours (Tier 1 + 250h CausalRM/DRM training, 80h 1.5B cross-scale training, 40h 1.5B Stages 1–2 evaluation, 100h MO-GRPO robustness check on core pair, 130h Stage 1–2 evaluation on remaining Tier 2 variants)', 'timeline': '5.5–7 months', 'estimated_gpu_cost': '$4100'}, 'full_all_tiers': {'gpu_hours': '~2500 A100-hours (Tiers 1–2 + 200h ThinkPRM inference, 100h Socratic-PRMBench evaluation, 100h full mechanistic analysis, 50h architectural controls)', 'timeline': '7–8 months', 'estimated_gpu_cost': '$5000'}, 'human_in_loop': {'claude_api_cost': '$800 (annotation pipeline, baseline implementations, evaluation orchestration, coverage analysis, distortion index computation, GOH analysis)', 'note': 'Claude accelerates annotation pipeline, baseline implementations, and evaluation scripts'}, 'auto_research': {'claude_api_cost': '$1100 (end-to-end code generation, sweep design, results analysis, paper drafting)', 'timeline_acceleration': 'Tier 1 in 9–11 weeks with parallelized training and automated ablation scheduling', 'speed_bottleneck': 'Sequential GRPO training: each run against a PRM variant requires ~50 A100-hours with Qwen2.5-1.5B-Instruct; 3-seed core (3×3×50h = 450h) parallelizable with proportional GPU scaling'}}\n\n## Inspired By\nFive converging threads motivated this study and its tiered design: (1) ODIN demonstrated that orthogonality enforcement between reward heads reduces hacking for length (ICML 2024), establishing the mechanism — but left open whether the CHOICE of decomposition basis matters beyond orthogonality per se, and evaluated only via Pareto fronts without multi-seed statistical testing; (2) Tiwari et al.'s critical methodological finding that static perturbation tests weakly correlate with RL-based exploitation, meaning cheap hackability proxies cannot substitute for expensive RL stress-testing — this directly motivated our staged evaluation pipeline; (3) ErrorAtlas's validated 17-category taxonomy with known prevalence distributions enables principled coverage ablation rather than ad hoc dimension selection; (4) the Coverage Completeness Challenge from arXiv:2603.28063 and arXiv:2605.12474 predicts hacking concentrates on uncovered dimensions, making coverage breadth a first-class experimental variable; (5) MO-GRPO's demonstration that GRPO preferentially exploits high-variance reward dimensions motivated our dual-RL-algorithm robustness check — without controlling for RL-algorithm-specific exploitation, decomposition-basis comparisons under a single RL algorithm may reflect GRPO artifacts rather than genuine PRM properties. The tiered experimental structure was inspired by the recognition that prior proposals in this space (including our own earlier revisions) attempted to answer too many questions simultaneously — scope discipline is itself a methodological contribution. The capacity-control design was motivated by the fundamental confound in coverage ablations: varying both the number of supervised dimensions and model parameter count simultaneously.\n\n## Target Venues\n- ICML 2027 (projected submission January–February 2027) — primary target. Tier 1 deliverable achievable in 4.5–5.5 months from start, leaving 2.5–3.5 months of margin for the ~8-month window. Capacity controls strengthen the core contribution.\n- NeurIPS 2027 (projected submission May 2027) — backup target if extended to Tier 2/3 or if ICML timeline slips. Full 12-month window allows all three tiers including cross-scale robustness and MO-GRPO checks.\n\n## Key References\n- ODIN: Disentangled Reward Mitigates Hacking in RLHF — Chen et al. (arXiv:2402.07319, ICML 2024)\n- Reward Hacking as Equilibrium under Finite Evaluation — Wang & Huang (arXiv:2603.28063, 2026)\n- Reward Hacking in Rubric-Based Reinforcement Learning (arXiv:2605.12474, 2026)\n- Mitigating Reward Hacking in RLHF via Bayesian Non-negative Reward Modeling — BNRM (arXiv:2602.10623, 2026)\n- Error Typing for Smarter Rewards: Improving Process Reward Models with Error-Aware Hierarchical Supervision — PathFinder-PRM (arXiv:2505.19706, 2025)\n- Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models — Tiwari et al. (arXiv:2603.06621, 2026)\n- ErrorMap and ErrorAtlas: Charting the Failure Landscape of Large Language Models — Ashury-Tahan et al. (arXiv:2601.15812, 2026)\n- Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges — PCH survey (arXiv:2604.13602, 2026)\n- From &lt;Answer> to &lt;Think>: Multidimensional Supervision of Reasoning Process — DRM (arXiv:2510.11457, 2025)\n- Dynamic and Generalizable Process Reward Modeling — DG-PRM (arXiv:2507.17849, ACL 2025)\n- Factored Causal Representation Learning for Robust Reward Modeling in RLHF — CausalRM (arXiv:2601.21350, ICML 2026)\n- Process Reward Models That Think — ThinkPRM (arXiv:2504.16828, TMLR 2026)\n- GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning (arXiv:2504.00891, AAAI 2026)\n- Stop Summation: Min-Form Credit Assignment Is All Process Reward Model Needs for Reasoning — PURE (arXiv:2504.15275, NeurIPS 2025)\n- R-PRM: Reasoning-Driven Process Reward Modeling (arXiv:2503.21295, EMNLP 2025)\n- Adversarial Training for Process Reward Models — APRM (arXiv:2511.22888, 2025)\n- Causal Reward Adjustment: Mitigating Reward Hacking via Backdoor Correction — CRA (arXiv:2508.04216, 2025)\n- Robust Reward Modeling via Causal Rubrics — CROME (arXiv:2506.16507, 2025)\n- Towards Robust Process Reward Modeling via Noise-Aware Learning (arXiv:2601.12748, 2026)\n- Adversarial Reward Auditing (arXiv:2602.01750, 2026)\n- PRMBench: A Fine-grained and Challenging Benchmark for Process-Level Reward Models (ACL 2025)\n- Towards Hierarchical Multi-Step Reward Models for Enhanced Reasoning in LLMs — HRM (arXiv:2503.13551, 2025)\n- Multi-Objective and Mixed-Reward Reinforcement Learning via Reward-Decorrelated Policy Optimization — RDPO (arXiv:2605.13641, 2026)\n- IR³: Contrastive Inverse Reinforcement Learning for Interpretable Detection and Mitigation of Reward Hacking — Beigi et al. (arXiv:2602.19416, 2026)\n- MO-GRPO: Mitigating Reward Hacking of Group Relative Policy Optimization on Multi-Objective Problems — Ichihara et al. (arXiv:2509.22047, 2025)\n- Socratic-PRMBench: Benchmarking Process Reward Models with Systematic Reasoning Patterns — Li et al. (arXiv:2505.23474, 2025)\n"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-20T05:55:32.515Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-20T05:55:32.515Z",
+  "sessionId": "dc6faec3-02e2-49fb-96cd-7d696547f005"
+}
+```
+
+---
+
+## Round 1
+
+45 recorded events
+
+### User
+
+_source line 3 · 2026-05-20T05:55:32.533Z_
+
+【任务】: 请评估以下 proposal 的客观中稿概率。
+必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。
+
+【proposal】:
+# Decomposition Basis Matters: A Tiered Empirical Study of Error-Taxonomic vs. Orthogonality-Enforced vs. Causal Reward Decomposition for PRM Hackability Resistance
+
+## Description
+We present the first systematic empirical study of how decomposition basis and coverage breadth jointly affect PRM hackability resistance, organized as a tiered experimental program with staged evaluation and capacity controls. Our two central questions: (1) Does the CHOICE of decomposition basis matter — specifically, does grounding multi-dimensional supervision in a systematic error taxonomy outperform orthogonality-enforced, quality-dimension, and causal alternatives? (2) How does coverage breadth (number of supervised error dimensions) affect hackability, and does hacking shift to uncovered dimensions as theory predicts? We introduce ETA-PRM (Error-Type-Aware PRM), a multi-head architecture with up to 13 ErrorAtlas-aligned error-type heads plus a residual head. The guaranteed Tier 1 deliverable compares four decomposition approaches (ETA error-taxonomic, ODIN data-driven orthogonal, single-head, PathFinder trajectory-level) across a 4-level coverage ablation (2→6→13→13+residual heads), with Random-N capacity controls (N=2,6,13) at each coverage level to disentangle coverage breadth from model capacity. The critical three-way comparison — ETA-PRM-6 (error-type labels) vs. ODIN-6-orthogonal (random labels + orthogonality loss) vs. Random-6 (random labels, no orthogonality) — isolates whether semantic grounding, orthogonality enforcement, or raw capacity drives hackability resistance. Hackability is measured through a staged pipeline motivated by Tiwari et al.'s finding that static perturbation tests weakly predict RL-based exploitation: Stage 1 applies PRM-BiasBench perturbations for surface profiling and GOH sensitivity analysis, Stage 2 traces Best-of-N overoptimization curves as an intermediate proxy, and Stage 3 runs full GRPO exploitation on core variants with 3 seeds and paired bootstrap confidence intervals. The Grounded Orthogonality Hypothesis is tested via pre-registered, falsifiable predictions: comparable overall debiased CKA distance but divergent selective perturbation sensitivity (ETA-PRM heads sensitive to matching perturbation types vs. ODIN heads showing uniform sensitivity). Tier 2 extends to CausalRM and DRM baselines, cross-scale robustness verification (Qwen2.5-Math-1.5B-Instruct backbone), and MO-GRPO robustness checks to rule out RL-algorithm-specific exploitation artifacts; Tier 3 adds ThinkPRM comparison, Socratic-PRMBench reasoning-pattern evaluation, and full mechanistic analysis. All evaluation is on mathematical reasoning, explicitly acknowledged as domain-specific validation with methodology designed for cross-domain extension. This is the first controlled study varying both decomposition basis and coverage breadth with capacity controls, staged hackability evaluation, pre-registered mechanistic predictions, and statistical rigor.
+
+## Core Problem
+Multi-dimensional PRM supervision is now a recommended anti-hacking strategy (PCH Section 6.1), with a growing zoo of decomposition schemes operating on fundamentally different bases: ODIN decomposes along a known confounder (length) with explicit orthogonality loss; DRM decomposes along quality dimensions via external scoring models; DG-PRM uses dynamically extracted criteria; CausalRM separates causal from non-causal embedding factors; BNRM uses sparse non-negative latent factors; HRM decomposes along temporal hierarchy (individual vs. consecutive steps at multiple granularities); and IR³ performs post-hoc SAE-based decomposition of already-trained reward signals. The critical unanswered question: does the CHOICE of decomposition basis matter for hackability resistance, or is orthogonality enforcement alone sufficient? And how does coverage breadth (number of supervised error dimensions) interact with basis choice? Recent theoretical work (arXiv:2603.28063) proves that hacking concentrates on uncovered dimensions with computable severity, while empirical work (arXiv:2605.12474) confirms that rubric-based RL is hackable precisely when failure modes go unspecified. However, prior experimental designs in this space suffer from two methodological gaps: (1) scope overload — attempting to simultaneously answer too many questions yields shallow results, and (2) capacity confounding — coverage ablations that vary both the number of supervised dimensions and model parameter count cannot cleanly attribute hackability differences to coverage breadth versus added capacity. We address both the scientific question and these methodological challenges: a tiered experimental program with explicit priority levels guarantees a focused core comparison (4 decomposition bases × 4 coverage levels, with random-label capacity controls) as a first-class deliverable, while permitting principled extension to additional paradigms and cross-scale robustness verification.
+
+## Opportunity
+Three converging developments create a narrow window for this study. First, ErrorAtlas (arXiv:2601.15812) provides a validated 17-category error taxonomy (92% validation accuracy across 35 datasets and 83 models) that enables principled coverage ablation with known category distributions — the five most prevalent categories (Missing Required Element 15.6%, Specification Misinterpretation 11.5%, Logical Reasoning Error 9.1%, Incorrect Identification 9.0%, Computation Error 8.5%) account for ~54% of all reasoning benchmark errors. Second, Tiwari et al.'s (arXiv:2603.06621) three-tiered hackability framework reveals a critical methodological insight: static perturbation tests have WEAK correlation with RL-based exploitation — models passing surface-level style-invariance checks (reward changes <0.1) diverge dramatically under optimization pressure (43% of RL reward gains are stylistic shortcuts). This motivates our staged evaluation pipeline that escalates from cheap inference-only probes through Best-of-N overoptimization curves to full RL stress-testing, rather than committing expensive RL runs to all variants. Third, the simultaneous availability of orthogonal decomposition approaches (ETA error-taxonomic, ODIN data-driven orthogonal, PathFinder trajectory-level, CausalRM causal, DRM distributional, HRM temporal-hierarchical, IR³ post-hoc interpretive) means the comparison can be conducted before the field converges on a single paradigm. Fourth, MO-GRPO (arXiv:2509.22047) provides a principled RL-time normalization method that prevents GRPO from preferentially exploiting high-variance reward dimensions, enabling us to disentangle PRM-level decomposition effects from RL-algorithm-specific exploitation artifacts. The missing experiment: a controlled comparison with scope discipline — tiered priorities, staged evaluation, capacity controls, and statistical rigor — varying both decomposition basis and coverage breadth under standardized hackability protocols.
+
+## Landscape
+**Orthogonality-enforced decomposition.** ODIN (arXiv:2402.07319, ICML 2024) trains two linear heads on a shared backbone — one correlated with response length, one decorrelated — using ranking + length-correlation + orthogonality loss on projection weights. Nearly eliminates length-reward correlation across PPO and ReMax, evaluated via Pareto front analysis across hyperparameter sweeps. Addresses only a single known confounder (length); does not generalize to multi-faceted attacks. **Quality-dimension decomposition.** DRM (arXiv:2510.11457) computes Confidence (log-probs), Relevance (NLI reranker), and Coherence (Nemotron-70B ORM) as three external signals weighted 0.1/0.2/0.7. Reduces flawed-but-correct reasoning traces but dominated by ORM dimension. Note: DRM's reliance on external scoring models (including a 70B ORM) makes it architecturally distinct from multi-head decomposition approaches that share a single backbone — it is better characterized as a model-ensemble paradigm than a multi-head architecture, and comparisons should be interpreted as contrasting decomposition paradigms rather than head architectures. **Dynamic-criteria decomposition.** DG-PRM (arXiv:2507.17849, ACL 2025) automatically extracts hierarchical criteria via LLM judge comparisons and applies Pareto dominance, reaching 76.5% on PRMBench with 30% training efficiency gains, but without adversarial evaluation. **Representation-level decomposition.** CausalRM (arXiv:2601.21350, ICML 2026) uses a variational encoder with gradient reversal to separate causal from non-causal embedding factors, achieving 5–15% robustness improvement on sycophancy and length-bias probes. **Latent-factor decomposition.** BNRM (arXiv:2602.10623) integrates non-negative factor analysis into Bradley-Terry preference models using Gamma priors and Weibull variational distributions, achieving 93.6% on RewardBench (+3.2% over BT baselines), but operates at outcome-reward level. **Hierarchical temporal decomposition.** HRM (arXiv:2503.13551) evaluates both individual and consecutive reasoning steps at fine and coarse granularity, with Hierarchical Node Compression (HNC) for data augmentation. Addresses reward hacking through multi-level temporal coherence evaluation. Represents an orthogonal axis (temporal hierarchy) to error-category decomposition, and is tested on PRM800K, MATH500, and GSM8K. **Post-hoc interpretive decomposition.** IR³ (arXiv:2602.19416) introduces Contrastive Inverse Reinforcement Learning (C-IRL) to reconstruct implicit reward functions from post-alignment behavioral shifts, then decomposes the reconstructed reward via sparse autoencoders (SAEs) into interpretable features operating on the reward network's penultimate activations. Achieves 0.89 correlation with ground-truth rewards and >90% precision in identifying hacking signatures. Four surgical mitigation strategies (clean reward optimization, adversarial shaping, constrained optimization, feature-guided distillation) reduce hacking while maintaining capabilities within 3% of the original model. Critically, IR³ operates post-hoc on already-trained models — it reverse-engineers internalized objectives rather than building decomposition into the PRM architecture. This represents a fundamentally different decomposition paradigm (interpretive vs. architectural) that is complementary to our multi-head approach: IR³ could analyze what objectives ETA-PRM heads actually learn. **Error-type supervision.** PathFinder-PRM (arXiv:2505.19706) decomposes into math and consistency error dimensions, achieving PRMScore 67.7 on PRMBench with 3× data efficiency. ErrorAtlas (arXiv:2601.15812) provides 17 top-level error categories across 35 datasets and 83 models with 92% validation accuracy, revealing that ~44% of errors in math benchmarks have weak reasoning orientation. **RL-time reward decorrelation.** RDPO (arXiv:2605.13641) applies Magnitude-Aware Quantile normalization and Mahalanobis whitening within active reward subspaces during policy gradient updates — this is RL-TIME decorrelation, not reward-model-time decomposition. Applied to LongCat-Flash post-training (+4.25% IFEval, +10.3% ArenaHard-Hard). Complementary to reward-model-level decomposition — could compose with any PRM decomposition during downstream RL. **Multi-objective RL normalization.** MO-GRPO (arXiv:2509.22047) addresses reward hacking in GRPO by normalizing each reward dimension independently (per-objective z-score) before aggregation, rather than GRPO's default of normalizing after aggregation. This prevents GRPO from preferentially optimizing high-variance reward dimensions while ignoring low-variance ones. Demonstrated to eliminate reward hacking artifacts in machine translation (vanilla GRPO generated 68.7% non-target-language text exploiting readability metrics; MO-GRPO maintained both quality dimensions). Directly relevant to our Stage 3 methodology: when multi-head PRMs produce per-dimension scores, vanilla GRPO may introduce dimension-exploitation artifacts that confound decomposition-basis comparisons. MO-GRPO provides a robustness check isolating PRM-level decomposition effects from RL-algorithm-specific exploitation. **Hackability evaluation.** Tiwari et al. (arXiv:2603.06621) introduce a three-tiered diagnostic framework: (1) static perturbation via PRM-BiasBench (8 perturbation types, inference-only — reveals fluency-logic dissociation but weakly predicts RL outcomes), (2) adversarial optimization (gradient-based, 1000 iterations), (3) RL-induced hacking (GRPO on Qwen2.5-1.5B-Instruct against AIME). Critical finding: Tier 1 and Tier 3 weakly correlate — models certified as style-invariant under static perturbation diverge dramatically under optimization pressure. **Reasoning-pattern-specific evaluation.** Socratic-PRMBench (arXiv:2505.23474) evaluates PRMs across 6 systematic reasoning patterns (Transformation, Decomposition, Regather, Deduction, Verification, Integration) with 20 fine-grained error types nested hierarchically under these patterns, comprising 2995 reasoning paths. Key finding: Qwen2.5-Math-PRM-7B achieves 90.8% accuracy on correct steps but only 42.9% on error steps, with marked deficiencies on Decomposition and Redundancy errors. Complements PRMBench and ProcessBench by testing reasoning-pattern sensitivity — directly relevant to our analysis of whether error-type-specific heads improve detection across diverse reasoning patterns. **Coverage theory.** arXiv:2603.28063 proves under five minimal axioms that hacking concentrates on uncovered dimensions with a computable distortion index. arXiv:2605.12474 empirically confirms this for rubric-based RL. **Other anti-hacking approaches.** ThinkPRM (arXiv:2504.16828, TMLR 2026) achieves 86.5% F1 on ProcessBench with ~1% of PRM800K data via generative verification CoT. GenPRM (arXiv:2504.00891, AAAI 2026) adds code-integrated verification. APRM (arXiv:2511.22888) uses adversarial generator–PRM game training (+3.4pp). CRA (arXiv:2508.04216) mitigates hacking via causal backdoor correction. PURE (arXiv:2504.15275, NeurIPS 2025) reduces hacking via min-form credit assignment. CROME (arXiv:2506.16507) uses causal rubrics (+5.4% RewardBench). No prior work systematically compares decomposition bases AND coverage breadth for hackability resistance with capacity controls, staged evaluation, and statistical rigor.
+
+## Approach
+We conduct a controlled comparison of PRM decomposition schemes for hackability resistance, organized as a tiered experimental program with staged evaluation. Two interacting variables: decomposition BASIS (what dimensions to decompose along) and coverage BREADTH (how many dimensions). Our primary system is ETA-PRM (Error-Type-Aware PRM), a multi-head architecture with ErrorAtlas-aligned error-type classification heads.
+
+**TIERED EXPERIMENTAL PROGRAM**
+
+**Tier 1 (Guaranteed Deliverable).** Core comparison answering both research questions with 4 decomposition approaches, 4 coverage levels, and capacity controls. Baselines: (a) ETA-PRM coverage ablation: ETA-PRM-2 / ETA-PRM-6 / ETA-PRM-13 / ETA-PRM-13+R, where each head detects specific ErrorAtlas error categories. ETA-PRM-6 heads: Computation Error, Logical Reasoning Error, Specification Misinterpretation, Factual Error, Output Formatting Error, Missing Required Element. (b) ODIN-6-orthogonal: 6 heads with random (non-error-type-grounded) labels + explicit pairwise cosine orthogonality loss between head projection weights — the critical control isolating semantic grounding from orthogonality enforcement. If ODIN-6-orthogonal matches ETA-PRM-6 on hackability, error-type grounding adds no value beyond orthogonality. (c) Single-head PRM (capacity-matched, zero-decomposition baseline). (d) PathFinder-PRM-style 2-head (math, consistency — minimal decomposition baseline).
+
+**Capacity Controls (addressing coverage-capacity confound).** Each additional head adds a linear projection layer, so the coverage ablation (2→6→13→13+R) changes both coverage breadth and parameter count simultaneously. To disentangle these factors, we include Random-N controls at each coverage level: Random-2, Random-6, Random-13 — architecturally identical to ETA-PRM-N but with randomly assigned error-type labels (each step randomly assigned to one of N categories). These controls have the same parameter budget as ETA-PRM-N at each level but lack semantic grounding. The experimental logic:
+- ETA-PRM-N vs. Random-N at each N: isolates the effect of semantic grounding (error-type labels vs. random labels) at matched parameter budget.
+- Random-2 vs. Random-6 vs. Random-13: isolates the effect of pure capacity (more heads/parameters) without meaningful coverage signal.
+- ODIN-6-orthogonal vs. Random-6: isolates the effect of explicit orthogonality enforcement on random labels.
+- ETA-PRM-6 vs. ODIN-6-orthogonal vs. Random-6: the three-way comparison isolates semantic grounding, orthogonality enforcement, and capacity respectively.
+If Random-13 shows comparable hackability resistance to Random-2, capacity alone does not explain coverage benefits. If ETA-PRM-N consistently outperforms Random-N, semantic grounding matters beyond added capacity. We additionally report total trainable parameter counts for each variant and include a regression analysis of hackability metrics against parameter count to quantify the capacity contribution.
+
+Interpretability diagnostic: debiased CKA similarity (using unbiased U-statistics for HSIC, following Murphy et al. 2024) between head representations, with pre-registered GOH predictions (see below).
+
+**Tier 2 (Strong-to-Have).** Extends decomposition basis comparison and robustness checks: (e) CausalRM-style gradient-reversal baseline (variational encoder splitting embeddings into causal/non-causal factors). (f) DRM-style 3-dimension scoring pipeline (Confidence/Relevance/Coherence). Note: DRM relies on external scoring models (including an NLI reranker and Nemotron-70B ORM), making it architecturally distinct from multi-head approaches sharing a single backbone. This comparison is informative about decomposition paradigms (external-signal ensemble vs. multi-head architecture vs. representation-level separation) rather than head architecture variants, and results should be interpreted accordingly. (g) Cross-scale robustness check: Qwen2.5-Math-1.5B-Instruct backbone for ETA-PRM-6 and ODIN-6-orthogonal (the core comparison), evaluated with Stages 1–2 of the hackability pipeline. This addresses the single-backbone limitation: if 7B results do not replicate at 1.5B, it may indicate that 7B capacity is necessary for 6 independent error-type heads to learn meaningfully distinct representations, which is itself informative. If results transfer, it strengthens generalizability. The 1.5B scale is chosen because: (i) Qwen2.5-Math-1.5B-Instruct is publicly available and has been validated as a PRM backbone (HuggingFaceH4/Qwen2.5-Math-1.5B-Instruct-PRM-0.2 trained on PRM800K), (ii) the 1.5B-to-7B ratio (~5×) represents a meaningful scale difference, and (iii) 1.5B training is ~4× cheaper than 7B, keeping the robustness check within budget. (h) MO-GRPO robustness check on core pair (ETA-PRM-6 vs. ODIN-6-orthogonal): vanilla GRPO may preferentially exploit high-variance reward dimensions (as demonstrated by MO-GRPO authors: vanilla GRPO generated 68.7% non-target-language text exploiting readability metrics). By re-running Stage 3 with MO-GRPO's per-objective normalization on the core comparison, we verify that decomposition-basis effects are robust to RL algorithm choice and rule out GRPO-specific dimension-exploitation artifacts. If ETA-PRM-6 outperforms ODIN-6-orthogonal under vanilla GRPO but not under MO-GRPO, it would suggest the advantage stems from exploitable variance asymmetries rather than genuine semantic alignment. Tier 2 variants (e)–(f) evaluated with Stages 1–2 of hackability pipeline; full RL only if Tier 1 results warrant.
+
+**Tier 3 (Nice-to-Have).** Extended analysis: (i) ThinkPRM-7B comparison (inference-only, representing implicit decomposition via generative reasoning). (j) Full mechanistic analysis: linear probing of head representations, attack-surface alignment analysis (see GOH section below). (k) Architectural controls: multi-task single-output (controls for gradient regularization), single-head with auxiliary losses. (l) Socratic-PRMBench evaluation on Tier 1 variants to assess reasoning-pattern-specific error detection across the 6 systematic reasoning patterns (Transformation, Decomposition, Regather, Deduction, Verification, Integration) and 20 fine-grained error types.
+
+**SINGLE-BACKBONE LIMITATION ACKNOWLEDGMENT.** All primary experiments (Tier 1) use Qwen2.5-Math-7B-Instruct as the backbone. This choice is justified by: (a) Qwen2.5-Math is the most widely used PRM backbone in the current literature (Tiwari et al., RLHFlow, etc.), enabling direct comparability; (b) the 7B scale provides sufficient representation capacity for up to 13 independent heads while remaining computationally tractable for multi-seed RL experiments. However, results may be backbone-specific: the 7B architecture's representation geometry may particularly favor (or disfavor) certain decomposition approaches, and findings may not transfer to other model families (Llama, Mistral) with different attention patterns and representation structures. The Tier 2 cross-scale check (1.5B) partially addresses scale sensitivity within the Qwen family. Full cross-family robustness (e.g., Llama-3.1-8B, Mistral-7B backbones) is an explicit limitation and priority for follow-up work.
+
+**STAGED HACKABILITY EVALUATION**
+
+Motivated by Tiwari et al.'s finding that Tier 1 (static) tests weakly predict Tier 3 (RL-based) hackability, we adopt a staged pipeline that escalates cost and informativeness.
+
+*Stage 1 — Static Perturbation (all variants, ~60 A100-hours):* PRM-BiasBench protocol with 8 perturbation types (rephrasing, verbosity increase/decrease, within-step reordering, question shuffling, numerical perturbation, reasoning hallucination, question removal). Used for surface-level vulnerability profiling, NOT as definitive hackability measure. Explicitly reports the acknowledged weak correlation with Stage 3. Additionally serves as the input for GOH selective-sensitivity analysis (see pre-registered predictions below).
+
+*Stage 2 — Best-of-N Overoptimization (Tier 1 + selected Tier 2 variants, ~250 A100-hours):* Best-of-N sampling with N ∈ {1, 4, 16, 64, 256} on MATH-500. Track reward-accuracy gap as N increases. Overoptimization onset N* defined as the N where accuracy first declines while reward continues increasing. No RL training required — avoids PPO/GRPO instability while providing meaningful hackability signal. Reports: reward-accuracy gap at each N, overoptimization onset N*, Pareto efficiency curves.
+
+*Stage 3 — Full RL Exploitation (Tier 1 variants only, ~700 A100-hours):* Primary: GRPO (following Tiwari et al. protocol — chosen over PPO for simplicity, lower instability, and direct comparability) training Qwen2.5-1.5B-Instruct against frozen PRM on AIME-style problems. Seed protocol: 3 seeds for core comparison (ETA-PRM-6 vs. ODIN-6-orthogonal vs. single-head PRM), enabling paired bootstrap confidence intervals and Wilcoxon signed-rank tests; 1 seed for PathFinder-2D, Random-6 (capacity control), and coverage ablation sweep (providing directional signal within compute constraints). Tier 2 robustness: MO-GRPO (per-objective normalization) on ETA-PRM-6 vs. ODIN-6-orthogonal only (1 seed each, ~100 A100-hours), verifying decomposition-basis effects are not GRPO-specific exploitation artifacts. Statistical rigor: paired bootstrap 95% CIs on reward-accuracy gap, Wilcoxon signed-rank tests for pairwise comparisons, Cohen's d effect sizes reported alongside p-values. For each coverage level, analyze which ERROR TYPES the GRPO policy learns to exploit — testing the prediction from arXiv:2603.28063 that exploitation concentrates on uncovered categories.
+
+**PRE-REGISTERED GROUNDED ORTHOGONALITY HYPOTHESIS (GOH) PREDICTIONS**
+
+The GOH predicts that error-type grounding achieves orthogonality in attack-surface-aligned feature subspaces rather than arbitrary orthogonal directions. To make this hypothesis falsifiable, we pre-register four specific predictions with concrete metrics and thresholds:
+
+*Prediction 1 (Comparable overall orthogonality):* Average pairwise debiased CKA distance between head intermediate representations will be comparable for ETA-PRM-6 and ODIN-6-orthogonal: |ΔCKA_avg(ETA-6, ODIN-6)| < 0.10. Both should be substantially more orthogonal than Random-6 (no orthogonality enforcement): CKA_avg(Random-6) > CKA_avg(ETA-6) + 0.05 AND CKA_avg(Random-6) > CKA_avg(ODIN-6) + 0.05. (Debiased CKA using unbiased U-statistics for HSIC to avoid inflated similarity in high-dimensional, moderate-sample regimes.)
+
+*Prediction 2 (Selective perturbation sensitivity):* For each ETA-PRM-6 head h_i corresponding to error type e_i, we measure the perturbation-type-specific reward change Δr(h_i, p_j) for each PRM-BiasBench perturbation type p_j. Construct a 6×8 head-by-perturbation sensitivity matrix S. GOH predicts diagonal dominance: for semantically matched head-perturbation pairs (Computation Error ↔ numerical perturbation, Logical Reasoning Error ↔ reasoning hallucination, Specification Misinterpretation ↔ question shuffling, Output Formatting Error ↔ rephrasing, Missing Required Element ↔ question removal), the matched sensitivity exceeds the median unmatched sensitivity by a factor of ≥1.5 for at least 4 of the 5 matched pairs. ODIN-6-orthogonal heads will show uniform sensitivity patterns — no matched pair exceeds the median unmatched by a factor of ≥1.5 for more than 1 of 5 pairs (since ODIN heads have no semantic alignment with perturbation types).
+
+*Prediction 3 (Attack-surface alignment under RL exploitation):* In Stage 3 GRPO exploitation, the error categories that the RL policy learns to exploit (measured by per-category reward-accuracy gap divergence) will correlate with the categories NOT covered by the PRM heads. For ETA-PRM-6 vs. ETA-PRM-13, exploitation should shift to uncovered categories (Spearman ρ > 0.5 between category coverage status and exploitation severity).
+
+*Falsification criteria:* (a) If ETA-PRM-6 heads show LESS overall orthogonality than Random-6 (CKA_avg for ETA-6 significantly higher than Random-6), the grounding-induces-orthogonality component of GOH is refuted. (b) If the sensitivity matrix shows no diagonal dominance — fewer than 3 of 5 matched pairs exceed the 1.5× threshold — the attack-surface-alignment component of GOH is refuted, and error-type labels do not create semantically meaningful head specialization. (c) If both (a) and (b) fail, GOH is comprehensively refuted: error-type grounding provides neither natural orthogonality nor attack-surface alignment. All CKA analyses will use debiased estimators and include random-data baselines following best practices from Murphy et al. (2024).
+
+**ANNOTATION PILOT STUDY**
+
+Before full dataset construction, a 2000-step pilot study addresses annotation quality concerns at 13 categories. Design: stratified sampling from PRM800K covering diverse problem types and difficulty levels. Measurements: (i) per-category survival rate at 0.8 confidence threshold using Qwen3-32B as annotator; (ii) inter-annotator agreement (Cohen's κ) between Qwen3-32B and Claude Sonnet 4 on full 2000 steps, plus human expert agreement on 200-step subsample; (iii) per-category confusion matrices identifying systematic misclassifications; (iv) category frequency distribution to estimate imbalance severity.
+
+Adaptive thresholding: if pilot reveals <50% survival rate at 0.8 threshold for specific categories (likely for rare types like Naming/Symbol Error, Unit Conversion Error), lower threshold to 0.7 for those categories to prevent data starvation. Category-balanced sampling: oversample steps from problem types likely to elicit rare error categories (e.g., physics word problems for unit conversion, competition problems for specification misinterpretation). All coverage ablation results will report effective training examples per category alongside hackability metrics, ruling out the data-quantity confound.
+
+**FULL ANNOTATION (post-pilot).** Re-annotate ~400K steps from PRM800K and RLHFlow trajectories with hierarchical multi-dimensional error labels using Qwen3-32B with category-adaptive confidence thresholds determined by pilot. Apply noise-aware iterative training (NAIT) from arXiv:2601.12748 to refine labels where model predictions diverge from annotations.
+
+**ARCHITECTURE.** ETA-PRM extends a Qwen2.5-Math-7B-Instruct backbone with K classification heads detecting specific ErrorAtlas error categories. Per-type error probabilities aggregated via learned attention-based fusion into step-correctness score. A residual head (at K=13+R) captures error signal not covered by K specific heads. Head-balancing via uncertainty-weighted multi-task loss (Kendall et al.) prevents dominant-category heads from suppressing rare-category learning. Each head consists of a linear projection from the backbone's hidden dimension to a head-specific intermediate dimension, followed by a classification layer. For Random-N capacity controls, architecture is identical but training labels are randomly assigned.
+
+**ACCURACY EVALUATION.** ProcessBench, PRMBench, MATH-500 best-of-N. Supplemented with Socratic-PRMBench (Tier 3) to assess reasoning-pattern-specific detection across 6 patterns and 20 fine-grained error types, testing whether error-type-specific heads improve detection of reasoning-pattern-specific errors (e.g., whether Logical Reasoning Error heads improve Deduction pattern detection). Report alongside hackability metrics to assess accuracy–hackability trade-off.
+
+**MECHANISTIC ANALYSIS (CKA in Tier 1; full analysis in Tier 3).** Tier 1 test: debiased CKA similarity between head intermediate representations for ETA-PRM-6 vs. ODIN-6-orthogonal vs. Random-6, with pre-registered GOH predictions as specified above. Tier 3 extension: linear probing (which input features drive each head?) and attack-surface alignment (selective sensitivity to matching perturbation types, extending the Stage 1 sensitivity matrix analysis).
+
+**DOMAIN-SPECIFICITY ACKNOWLEDGMENT.** All evaluation is on mathematical reasoning (MATH-500, AIME, ProcessBench, PRMBench). Justified because: (a) ErrorAtlas taxonomy is best validated for math reasoning, (b) PRM800K provides the largest process-level supervision dataset, (c) math permits verifiable ground truth for hackability measurement. Generalizability argument: ErrorAtlas taxonomy is domain-general (17 categories derived from 35 datasets spanning math, code, dialogue, general QA), so the experimental methodology and tiered evaluation framework transfer directly even if specific hackability findings may be domain-dependent. Future work: extend to code generation (execution-based verification) and dialogue (human preference ground truth).
+
+## Resource Estimate
+{'tier_1_guaranteed': {'gpu_hours': '~1450 A100-hours (50h annotation pilot, 100h full annotation, 400h PRM training for 4 decomposition baselines × 4 coverage levels, 120h Random-N capacity controls training (3 variants: Random-2/6/13), 60h Stage 1 static evaluation for all variants including capacity controls, 250h Stage 2 Best-of-N for Tier 1 variants, 400h Stage 3 GRPO with 3 seeds on core + 1 seed on secondary and capacity controls, 70h CKA + GOH analysis)', 'timeline': '4.5–5.5 months (2–3 weeks pilot + annotation, 7 weeks training including capacity controls, 3 weeks Stage 1+2 evaluation, 4 weeks Stage 3 GRPO, 2–3 weeks analysis + writing)', 'estimated_gpu_cost': '$2900 (A100 at ~$2/hr)'}, 'tier_1_plus_2': {'gpu_hours': '~2050 A100-hours (Tier 1 + 250h CausalRM/DRM training, 80h 1.5B cross-scale training, 40h 1.5B Stages 1–2 evaluation, 100h MO-GRPO robustness check on core pair, 130h Stage 1–2 evaluation on remaining Tier 2 variants)', 'timeline': '5.5–7 months', 'estimated_gpu_cost': '$4100'}, 'full_all_tiers': {'gpu_hours': '~2500 A100-hours (Tiers 1–2 + 200h ThinkPRM inference, 100h Socratic-PRMBench evaluation, 100h full mechanistic analysis, 50h architectural controls)', 'timeline': '7–8 months', 'estimated_gpu_cost': '$5000'}, 'human_in_loop': {'claude_api_cost': '$800 (annotation pipeline, baseline implementations, evaluation orchestration, coverage analysis, distortion index computation, GOH analysis)', 'note': 'Claude accelerates annotation pipeline, baseline implementations, and evaluation scripts'}, 'auto_research': {'claude_api_cost': '$1100 (end-to-end code generation, sweep design, results analysis, paper drafting)', 'timeline_acceleration': 'Tier 1 in 9–11 weeks with parallelized training and automated ablation scheduling', 'speed_bottleneck': 'Sequential GRPO training: each run against a PRM variant requires ~50 A100-hours with Qwen2.5-1.5B-Instruct; 3-seed core (3×3×50h = 450h) parallelizable with proportional GPU scaling'}}
+
+## Inspired By
+Five converging threads motivated this study and its tiered design: (1) ODIN demonstrated that orthogonality enforcement between reward heads reduces hacking for length (ICML 2024), establishing the mechanism — but left open whether the CHOICE of decomposition basis matters beyond orthogonality per se, and evaluated only via Pareto fronts without multi-seed statistical testing; (2) Tiwari et al.'s critical methodological finding that static perturbation tests weakly correlate with RL-based exploitation, meaning cheap hackability proxies cannot substitute for expensive RL stress-testing — this directly motivated our staged evaluation pipeline; (3) ErrorAtlas's validated 17-category taxonomy with known prevalence distributions enables principled coverage ablation rather than ad hoc dimension selection; (4) the Coverage Completeness Challenge from arXiv:2603.28063 and arXiv:2605.12474 predicts hacking concentrates on uncovered dimensions, making coverage breadth a first-class experimental variable; (5) MO-GRPO's demonstration that GRPO preferentially exploits high-variance reward dimensions motivated our dual-RL-algorithm robustness check — without controlling for RL-algorithm-specific exploitation, decomposition-basis comparisons under a single RL algorithm may reflect GRPO artifacts rather than genuine PRM properties. The tiered experimental structure was inspired by the recognition that prior proposals in this space (including our own earlier revisions) attempted to answer too many questions simultaneously — scope discipline is itself a methodological contribution. The capacity-control design was motivated by the fundamental confound in coverage ablations: varying both the number of supervised dimensions and model parameter count simultaneously.
+
+## Target Venues
+- ICML 2027 (projected submission January–February 2027) — primary target. Tier 1 deliverable achievable in 4.5–5.5 months from start, leaving 2.5–3.5 months of margin for the ~8-month window. Capacity controls strengthen the core contribution.
+- NeurIPS 2027 (projected submission May 2027) — backup target if extended to Tier 2/3 or if ICML timeline slips. Full 12-month window allows all three tiers including cross-scale robustness and MO-GRPO checks.
+
+## Key References
+- ODIN: Disentangled Reward Mitigates Hacking in RLHF — Chen et al. (arXiv:2402.07319, ICML 2024)
+- Reward Hacking as Equilibrium under Finite Evaluation — Wang & Huang (arXiv:2603.28063, 2026)
+- Reward Hacking in Rubric-Based Reinforcement Learning (arXiv:2605.12474, 2026)
+- Mitigating Reward Hacking in RLHF via Bayesian Non-negative Reward Modeling — BNRM (arXiv:2602.10623, 2026)
+- Error Typing for Smarter Rewards: Improving Process Reward Models with Error-Aware Hierarchical Supervision — PathFinder-PRM (arXiv:2505.19706, 2025)
+- Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models — Tiwari et al. (arXiv:2603.06621, 2026)
+- ErrorMap and ErrorAtlas: Charting the Failure Landscape of Large Language Models — Ashury-Tahan et al. (arXiv:2601.15812, 2026)
+- Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges — PCH survey (arXiv:2604.13602, 2026)
+- From &lt;Answer> to &lt;Think>: Multidimensional Supervision of Reasoning Process — DRM (arXiv:2510.11457, 2025)
+- Dynamic and Generalizable Process Reward Modeling — DG-PRM (arXiv:2507.17849, ACL 2025)
+- Factored Causal Representation Learning for Robust Reward Modeling in RLHF — CausalRM (arXiv:2601.21350, ICML 2026)
+- Process Reward Models That Think — ThinkPRM (arXiv:2504.16828, TMLR 2026)
+- GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning (arXiv:2504.00891, AAAI 2026)
+- Stop Summation: Min-Form Credit Assignment Is All Process Reward Model Needs for Reasoning — PURE (arXiv:2504.15275, NeurIPS 2025)
+- R-PRM: Reasoning-Driven Process Reward Modeling (arXiv:2503.21295, EMNLP 2025)
+- Adversarial Training for Process Reward Models — APRM (arXiv:2511.22888, 2025)
+- Causal Reward Adjustment: Mitigating Reward Hacking via Backdoor Correction — CRA (arXiv:2508.04216, 2025)
+- Robust Reward Modeling via Causal Rubrics — CROME (arXiv:2506.16507, 2025)
+- Towards Robust Process Reward Modeling via Noise-Aware Learning (arXiv:2601.12748, 2026)
+- Adversarial Reward Auditing (arXiv:2602.01750, 2026)
+- PRMBench: A Fine-grained and Challenging Benchmark for Process-Level Reward Models (ACL 2025)
+- Towards Hierarchical Multi-Step Reward Models for Enhanced Reasoning in LLMs — HRM (arXiv:2503.13551, 2025)
+- Multi-Objective and Mixed-Reward Reinforcement Learning via Reward-Decorrelated Policy Optimization — RDPO (arXiv:2605.13641, 2026)
+- IR³: Contrastive Inverse Reinforcement Learning for Interpretable Detection and Mitigation of Reward Hacking — Beigi et al. (arXiv:2602.19416, 2026)
+- MO-GRPO: Mitigating Reward Hacking of Group Relative Policy Optimization on Multi-Objective Problems — Ichihara et al. (arXiv:2509.22047, 2025)
+- Socratic-PRMBench: Benchmarking Process Reward Models with Systematic Reasoning Patterns — Li et al. (arXiv:2505.23474, 2025)
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "a95155ae-640e-4e11-9a4d-da5675b60cf3",
+  "type": "user",
+  "uuid": "35b93a30-a204-40d2-afe5-ff68e766c72c",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dc6faec3-02e2-49fb-96cd-7d696547f005",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-20T05:55:32.531Z_
+
+```json
+{
+  "parentUuid": "35b93a30-a204-40d2-afe5-ff68e766c72c",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "936324ae-c460-4ea2-91ed-fba94679bf02",
+  "timestamp": "2026-05-20T05:55:32.531Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dc6faec3-02e2-49fb-96cd-7d696547f005",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-20T05:55:32.531Z_
+
+```json
+{
+  "parentUuid": "936324ae-c460-4ea2-91ed-fba94679bf02",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "27c01095-e04e-4799-a246-52d085d02c49",
+  "timestamp": "2026-05-20T05:55:32.531Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dc6faec3-02e2-49fb-96cd-7d696547f005",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Decomposition Basis Matters: A Tiered Empirical Study of Error-Taxonomic vs. Orthogonality-Enforced vs. Causal R…",
+  "leafUuid": "27c01095-e04e-4799-a246-52d085d02c49",
+  "sessionId": "dc6faec3-02e2-49fb-96cd-7d696547f005"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Evaluate PRM decomposition basis hackability resistance proposal",
+  "sessionId": "dc6faec3-02e2-49fb-96cd-7d696547f005"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-20T05:55:41.180Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze this proposal carefully. It's about decomposition basis choices for Process Reward Models (PRMs) and their hackability resistance. Before I can give a proper assessment, I need to do thorough literature research to understand the current landscape.
+
+Let me break down the core claims:
+1. The choice of decomposition basis matters for PRM hackability resistance
+2. Error-taxonomy-grounded decomposition (ETA-PRM) outperforms orthogonality-enforced and other alternatives
+3. Coverage breadth interacts with basis choice in predictable ways
+
+Let me search for the key papers and current state of the field.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "27c01095-e04e-4799-a246-52d085d02c49",
+  "isSidechain": false,
+  "requestId": "req_011CbDJbyC6hjWTeVUmgLuvs",
+  "type": "assistant",
+  "uuid": "f2a82259-3075-4ee4-ac10-fef92bd83cb6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dc6faec3-02e2-49fb-96cd-7d696547f005",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WknnydcnCKer6ZapeAt3cd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 14658,
+      "cache_read_input_tokens": 11374,
+      "output_tokens": 254,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14658,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 254,
+          "cache_read_input_tokens": 11374,
+          "cache_creation_input_tokens": 14658,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14658
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-20T05:55:41.709Z_
+
+I need to conduct thorough literature research before evaluating this proposal. Let me search for the key papers and current landscape.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f2a82259-3075-4ee4-ac10-fef92bd83cb6",
+  "isSidechain": false,
+  "requestId": "req_011CbDJbyC6hjWTeVUmgLuvs",
+  "type": "assistant",
+  "uuid": "c99f3d41-d9b9-4873-83c2-a80bc4a47490",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dc6faec3-02e2-49fb-96cd-7d696547f005",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WknnydcnCKer6ZapeAt3cd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 14658,
+      "cache_read_input_tokens": 11374,
+      "output_tokens": 254,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14658,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 254,
+          "cache_read_input_tokens": 11374,
+          "cache_creation_input_tokens": 14658,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14658
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-20T05:55:41.921Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Mb1AmfkQtcVDVtEK5LH1YD`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c99f3d41-d9b9-4873-83c2-a80bc4a47490",
+  "isSidechain": false,
+  "requestId": "req_011CbDJbyC6hjWTeVUmgLuvs",
+  "type": "assistant",
+  "uuid": "968ecee0-2b54-4246-97d3-67c5b80d5a7a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dc6faec3-02e2-49fb-96cd-7d696547f005",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WknnydcnCKer6ZapeAt3cd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 14658,
+      "cache_read_input_tokens": 11374,
+      "output_tokens": 254,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14658,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 254,
+          "cache_read_input_tokens": 11374,
+          "cache_creation_input_tokens": 14658,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14658
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-20T05:55:41.928Z_
+
+<details><summary>↩ Tool result · `toolu_01Mb1AmfkQtcVDVtEK5LH1YD`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "968ecee0-2b54-4246-97d3-67c5b80d5a7a",
+  "isSidechain": false,
+  "promptId": "a95155ae-640e-4e11-9a4d-da5675b60cf3",
+  "type": "user",
+  "uuid": "7c6db8dc-ec88-422a-bc23-dd6e9982a72f",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "968ecee0-2b54-4246-97d3-67c5b80d5a7a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dc6faec3-02e2-49fb-96cd-7d696547f005",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-20T05:55:45.430Z_
+
+Now let me conduct the required literature searches. I'll run multiple searches in parallel to cover the key areas.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7c6db8dc-ec88-422a-bc23-dd6e9982a72f",
+  "isSidechain": false,
+  "requestId": "req_011CbDJceHq483DTRpc2MEmz",
+  "type": "assistant",
+  "uuid": "53ce400c-ae86-469d-9b9f-ca7bf720658d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dc6faec3-02e2-49fb-96cd-7d696547f005",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01We1jz3JS9uWJHgjYJbHgxf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 781,
+      "cache_read_input_tokens": 26032,
+      "output_tokens": 93,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 781,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 93,
+          "cache_read_input_tokens": 26032,
+          "cache_creation_input_tokens": 781,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 781
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-20T05:55:45.664Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XtjnJHH3VmoE3w4223wthz`</summary>
+
+```json
+{
+  "query": "PRM hackability reward hacking process reward model decomposition 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "53ce400c-ae86-469d-9b9f-ca7bf720658d",
+  "isSidechain": false,
+  "requestId": "req_011CbDJceHq483DTRpc2MEmz",
+  "type": "assistant",
+  "uuid": "2cea8ad4-c479-4781-82d5-6a212f0d798f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dc6faec3-02e2-49fb-96cd-7d696547f005",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01We1jz3JS9uWJHgjYJbHgxf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 781,
+      "cache_read_input_tokens": 26032,
+      "output_tokens": 93,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 781,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 93,
+          "cache_read_input_tokens": 26032,
+          "cache_creation_input_tokens": 781,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 781
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-20T05:55:54.656Z_
+
+<details><summary>↩ Tool result · `toolu_01XtjnJHH3VmoE3w4223wthz`</summary>
+
+```text
+Web search results for query: "PRM hackability reward hacking process reward model decomposition 2025 2026"
+
+Links: [{"title":"GitHub - xhwang22/Awesome-Reward-Hacking: A curated list of papers and resources on Reward Hacking, Emergent Misalignment, and Proxy Exploitation in Large Models · GitHub","url":"https://github.com/xhwang22/Awesome-Reward-Hacking"},{"title":"Stop Summation: Min-Form Credit Assignment Is All Process Reward Model Needs for Reasoning","url":"https://arxiv.org/pdf/2504.15275"},{"title":"[2603.06621] Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models","url":"https://arxiv.org/abs/2603.06621"},{"title":"Mitigating Reward Hacking in RLHF via Bayesian Non-negative Reward Modeling","url":"https://arxiv.org/pdf/2602.10623"},{"title":"Daily Papers - Hugging Face","url":"https://huggingface.co/papers?q=reward+hacking"},{"title":"Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges","url":"https://arxiv.org/html/2604.13602v1"},{"title":"Causal Reward Adjustment: Mitigating Reward Hacking in External Reasoning via Backdoor Correction","url":"https://arxiv.org/pdf/2508.04216"}]
+
+Based on the search results, here's what I found on PRM hackability, reward hacking, and process reward model decomposition from 2025-2026:
+
+## Key Recent Findings on PRM Hackability and Reward Hacking
+
+**Core Problem Identified:**
+Policies trained on AIME problems achieve near-perfect PRM rewards (>0.9), while ground-truth accuracy remains low (below 4%), with 43% of reward gains attributable to stylistic shortcuts. Current PRMs function as fluency detectors rather than reasoning verifiers, creating systematic blind spots that undermine their use as training signals.
+
+**Root Cause of PRM Reward Hacking:**
+The canonical summation-form credit assignment in reinforcement learning (RL), which defines the value as cumulative gamma-decayed future rewards, easily induces LLMs to hack steps with high rewards.
+
+**Proposed Solutions:**
+
+1. **PURE Framework:** A min-form credit assignment that formulates the value function as the minimum of future rewards significantly alleviates reward hacking by limiting the value function range and distributing advantages more reasonably.
+
+2. **Causal Reward Adjustment (CRA):** CRA mitigates reward hacking by estimating the true reward of a reasoning path, training sparse autoencoders on the PRM's internal activations to recover interpretable features, then correcting confounding by using backdoor adjustment.
+
+3. **Bayesian Non-negative Reward Modeling:** Reward representations through a sparse, non-negative latent factor generative process operate at two complementary levels: instance-specific latent variables induce disentangled reward representations, while sparsity over global latent factors acts as an implicit debiasing mechanism.
+
+**Specific Vulnerabilities:**
+Agents can learn to generate "convincing but disconnected" reasoning steps, and current PRMs may still suffer from a representation gap, failing to capture the causal necessity of each reasoning step.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2cea8ad4-c479-4781-82d5-6a212f0d798f",
+  "isSidechain": false,
+  "promptId": "a95155ae-640e-4e11-9a4d-da5675b60cf3",
+  "type": "user",
+  "uuid": "365aa2ee-8920-4b0a-8604-de4fb884ee6e",
+  "toolUseResult": {
+    "query": "PRM hackability reward hacking process reward model decomposition 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019nfemB6EQSEm4eyLssHZzf",
+        "content": [
+          {
+            "title": "GitHub - xhwang22/Awesome-Reward-Hacking: A curated list of papers and resources on Reward Hacking, Emergent Misalignment, and Proxy Exploitation in Large Models · GitHub",
+            "url": "https://github.com/xhwang22/Awesome-Reward-Hacking"
+          },
+          {
+            "title": "Stop Summation: Min-Form Credit Assignment Is All Process Reward Model Needs for Reasoning",
+            "url": "https://arxiv.org/pdf/2504.15275"
+          },
+          {
+            "title": "[2603.06621] Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models",
+            "url": "https://arxiv.org/abs/2603.06621"
+          },
+          {
+            "title": "Mitigating Reward Hacking in RLHF via Bayesian Non-negative Reward Modeling",
+            "url": "https://arxiv.org/pdf/2602.10623"
+          },
+          {
+            "title": "Daily Papers - Hugging Face",
+            "url": "https://huggingface.co/papers?q=reward+hacking"
+          },
+          {
+            "title": "Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges",
+            "url": "https://arxiv.org/html/2604.13602v1"
+          },
+          {
+            "title": "Causal Reward Adjustment: Mitigating Reward Hacking in External Reasoning via Backdoor Correction",
+            "url": "https://arxiv.org/pdf/2508.04216"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found on PRM hackability, reward hacking, and process reward model decomposition from 2025-2026:\n\n## Key Recent Findings on PRM Hackability and Reward Hacking\n\n**Core Problem Identified:**\nPolicies trained on AIME problems achieve near-perfect PRM rewards (>0.9), while ground-truth accuracy remains low (below 4%), with 43% of reward gains attributable to stylistic shortcuts. Current PRMs function as fluency detectors rather than reasoning verifiers, creating systematic blind spots that undermine their use as training signals.\n\n**Root Cause of PRM Reward Hacking:**\nThe canonical summation-form credit assignment in reinforcement learning (RL), which defines the value as cumulative gamma-decayed future rewards, easily induces LLMs to hack steps with high rewards.\n\n**Proposed Solutions:**\n\n1. **PURE Framework:** A min-form credit assignment that formulates the value function as the minimum of future rewards significantly alleviates reward hacking by limiting the value function range and distributing advantages more reasonably.\n\n2. **Causal Reward Adjustment (CRA):** CRA mitigates reward hacking by estimating the true reward of a reasoning path, training sparse autoencoders on the PRM's internal activations to recover interpretable features, then correcting confounding by using backdoor adjustment.\n\n3. **Bayesian Non-negative Reward Modeling:** Reward representations through a sparse, non-negative latent factor generative process operate at two complementary levels: instance-specific latent variables induce disentangled reward representations, while sparsity over global latent factors acts as an implicit debiasing mechanism.\n\n**Specific Vulnerabilities:**\nAgents can learn to generate \"convincing but disconnected\" reasoning steps, and current PRMs may still suffer from a representation gap, failing to capture the causal necessity of each reasoning step."
+    ],
+    "durationSeconds": 8.984822493,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "2cea8ad4-c479-4781-82d5-6a212f0d798f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dc6faec3-02e2-49fb-96cd-7d696547f005",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-20T05:55:57.570Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018F5EEJKSWCRM5vMZcE2hAX`</summary>
+
+```json
+{
+  "query": "ODIN disentangled reward hacking RLHF multi-head reward model orthogonality 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "365aa2ee-8920-4b0a-8604-de4fb884ee6e",
+  "isSidechain": false,
+  "requestId": "req_011CbDJdaRBubzPinXZexuBN",
+  "type": "assistant",
+  "uuid": "34af7522-2355-4cba-b240-03c52a063731",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dc6faec3-02e2-49fb-96cd-7d696547f005",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DkW69ct4z9witfuNwWDK92",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 936,
+      "cache_read_input_tokens": 26813,
+      "output_tokens": 81,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 936,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 81,
+          "cache_read_input_tokens": 26813,
+          "cache_creation_input_tokens": 936,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 936
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-20T05:56:04.159Z_
+
+<details><summary>↩ Tool result · `toolu_018F5EEJKSWCRM5vMZcE2hAX`</summary>
+
+```text
+Web search results for query: "ODIN disentangled reward hacking RLHF multi-head reward model orthogonality 2024 2025"
+
+Links: [{"title":"[Quick Review] ODIN: Disentangled Reward Mitigates Hacking in RLHF","url":"https://liner.com/review/odin-disentangled-reward-mitigates-hacking-in-rlhf"},{"title":"[Literature Review] ODIN: Disentangled Reward Mitigates Hacking in RLHF","url":"https://www.themoonlight.io/en/review/odin-disentangled-reward-mitigates-hacking-in-rlhf"},{"title":"ODIN: Disentangled Reward Mitigates Hacking in RLHF","url":"https://openreview.net/pdf?id=zcIV8OQFVF"},{"title":"Reward Shaping to Mitigate Reward Hacking in RLHF","url":"https://arxiv.org/html/2502.18770v3"},{"title":"GitHub - Lichang-Chen/ODIN: ODIN: Disentangled Reward Mitigates Hacking in RLHF (ICML 2024)","url":"https://github.com/Lichang-Chen/ODIN"},{"title":"[2402.07319] ODIN: Disentangled Reward Mitigates Hacking in RLHF","url":"https://arxiv.org/abs/2402.07319"},{"title":"ODIN: Disentangled Reward Mitigates Hacking in RLHF Lichang Chen∗‡ Chen Zhu∗†","url":"https://arxiv.org/pdf/2402.07319"},{"title":"ODIN: Disentangled Reward in RLHF","url":"https://www.emergentmind.com/papers/2402.07319"},{"title":"ODIN: Disentangled Reward Mitigates Hacking in RLHF","url":"https://proceedings.mlr.press/v235/chen24bn.html"}]
+
+I've found relevant information about ODIN. Here's a summary of the research:
+
+## ODIN: Disentangled Reward Model for Mitigating Reward Hacking in RLHF
+
+ODIN addresses the issue of reward hacking in Reinforcement Learning from Human Feedback (RLHF), specifically the tendency of Large Language Models to exploit the reward model by generating verbose and lengthy responses.
+
+### Core Approach
+
+ODIN involves training a two-headed reward model. The method integrates a ranking loss, a length loss to enhance length correlation for one head while minimizing it for the other, and an orthogonality loss to ensure projection weights for quality and length rewards are orthogonal.
+
+In the reward model training stage, ODIN is trained with human preference data using a carefully designed loss to disentangle the length signal and quality signal into two heads. Only the quality head is involved in RL fine-tuning, and the length reward is discarded to reduce reward hacking on length.
+
+### Results
+
+Experiments demonstrated that ODIN almost eliminates the reward correlation with length and significantly improves policy performance across different RL algorithms like PPO and ReMax.
+
+### Publication
+
+The paper was published in the Proceedings of the 41st International Conference on Machine Learning (ICML 2024), with the arXiv version dated February 11, 2024.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "34af7522-2355-4cba-b240-03c52a063731",
+  "isSidechain": false,
+  "promptId": "a95155ae-640e-4e11-9a4d-da5675b60cf3",
+  "type": "user",
+  "uuid": "f09de2be-8828-4093-a68f-4910a0dff4b5",
+  "toolUseResult": {
+    "query": "ODIN disentangled reward hacking RLHF multi-head reward model orthogonality 2024 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012sJ4pk8TKN86vQSeoiboS4",
+        "content": [
+          {
+            "title": "[Quick Review] ODIN: Disentangled Reward Mitigates Hacking in RLHF",
+            "url": "https://liner.com/review/odin-disentangled-reward-mitigates-hacking-in-rlhf"
+          },
+          {
+            "title": "[Literature Review] ODIN: Disentangled Reward Mitigates Hacking in RLHF",
+            "url": "https://www.themoonlight.io/en/review/odin-disentangled-reward-mitigates-hacking-in-rlhf"
+          },
+          {
+            "title": "ODIN: Disentangled Reward Mitigates Hacking in RLHF",
+            "url": "https://openreview.net/pdf?id=zcIV8OQFVF"
+          },
+          {
+            "title": "Reward Shaping to Mitigate Reward Hacking in RLHF",
+            "url": "https://arxiv.org/html/2502.18770v3"
+          },
+          {
+            "title": "GitHub - Lichang-Chen/ODIN: ODIN: Disentangled Reward Mitigates Hacking in RLHF (ICML 2024)",
+            "url": "https://github.com/Lichang-Chen/ODIN"
+          },
+          {
+            "title": "[2402.07319] ODIN: Disentangled Reward Mitigates Hacking in RLHF",
+            "url": "https://arxiv.org/abs/2402.07319"
+          },
+          {
+            "title": "ODIN: Disentangled Reward Mitigates Hacking in RLHF Lichang Chen∗‡ Chen Zhu∗†",
+            "url": "https://arxiv.org/pdf/2402.07319"
+          },
+          {
+            "title": "ODIN: Disentangled Reward in RLHF",
+            "url": "https://www.emergentmind.com/papers/2402.07319"
+          },
+          {
+            "title": "ODIN: Disentangled Reward Mitigates Hacking in RLHF",
+            "url": "https://proceedings.mlr.press/v235/chen24bn.html"
+          }
+        ]
+      },
+      "I've found relevant information about ODIN. Here's a summary of the research:\n\n## ODIN: Disentangled Reward Model for Mitigating Reward Hacking in RLHF\n\nODIN addresses the issue of reward hacking in Reinforcement Learning from Human Feedback (RLHF), specifically the tendency of Large Language Models to exploit the reward model by generating verbose and lengthy responses.\n\n### Core Approach\n\nODIN involves training a two-headed reward model. The method integrates a ranking loss, a length loss to enhance length correlation for one head while minimizing it for the other, and an orthogonality loss to ensure projection weights for quality and length rewards are orthogonal.\n\nIn the reward model training stage, ODIN is trained with human preference data using a carefully designed loss to disentangle the length signal and quality signal into two heads. Only the quality head is involved in RL fine-tuning, and the length reward is discarded to reduce reward hacking on length.\n\n### Results\n\nExperiments demonstrated that ODIN almost eliminates the reward correlation with length and significantly improves policy performance across different RL algorithms like PPO and ReMax.\n\n### Publication\n\nThe paper was published in the Proceedings of the 41st International Conference on Machine Learning (ICML 2024), with the arXiv version dated February 11, 2024."
+    ],
+    "durationSeconds": 6.585384963,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "34af7522-2355-4cba-b240-03c52a063731",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dc6faec3-02e2-49fb-96cd-7d696547f005",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-20T05:56:06.891Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PJftX94gZpy2KB9paJSSdF`</summary>
+
+```json
+{
+  "query": "ErrorAtlas error taxonomy LLM reasoning 2601.15812 PathFinder-PRM error type supervision"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f09de2be-8828-4093-a68f-4910a0dff4b5",
+  "isSidechain": false,
+  "requestId": "req_011CbDJeH1DKS32bMvbcoTn7",
+  "type": "assistant",
+  "uuid": "bd93b870-6d98-496b-bc81-d960c6dcd6c4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dc6faec3-02e2-49fb-96cd-7d696547f005",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QNRLLaegX3NjqH2EXu9KLR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 969,
+      "cache_read_input_tokens": 27749,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 969,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 27749,
+          "cache_creation_input_tokens": 969,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 969
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-20T05:56:13.116Z_
+
+<details><summary>↩ Tool result · `toolu_01PJftX94gZpy2KB9paJSSdF`</summary>
+
+```text
+Web search results for query: "ErrorAtlas error taxonomy LLM reasoning 2601.15812 PathFinder-PRM error type supervision"
+
+Links: [{"title":"ErrorAtlas: Taxonomy of LLM Failure Modes","url":"https://www.emergentmind.com/topics/erroratlas"},{"title":"(PDF) ErrorMap and ErrorAtlas: Charting the Failure Landscape of Large Language Models","url":"https://www.researchgate.net/publication/400003408_ErrorMap_and_ErrorAtlas_Charting_the_Failure_Landscape_of_Large_Language_Models"},{"title":"[2601.15812] ErrorMap and ErrorAtlas: Charting the Failure Landscape of Large Language Models","url":"https://arxiv.org/abs/2601.15812"},{"title":"[2601.15812v1] ErrorMap and ErrorAtlas: Charting the Failure Landscape of Large Language Models","url":"https://arxiv.org/abs/2601.15812v1"},{"title":"ErrorMap and ErrorAtlas: Charting the Failure Landscape ...","url":"https://arxiv.org/pdf/2601.15812"},{"title":"[Literature Review] ErrorMap and ErrorAtlas: Charting the Failure Landscape of Large Language Models","url":"https://www.themoonlight.io/en/review/errormap-and-erroratlas-charting-the-failure-landscape-of-large-language-models"},{"title":"Error Typing for Smarter Rewards: Improving Process Reward Models with Error-Aware Hierarchical Supervision","url":"https://arxiv.org/pdf/2505.19706"},{"title":"ErrorMap and ErrorAtlas: Charting the Failure Landscape of Large Language Models - Takara TLDR | Takara TLDR","url":"https://tldr.takara.ai/p/2601.15812v1"}]
+
+Based on the search results, here's what I found about these research topics:
+
+## ErrorAtlas and Error Taxonomy (arXiv:2601.15812)
+
+ErrorMap is the first method to chart the sources of LLM failure, and applying it to 35 datasets and 83 models generates ErrorAtlas, a taxonomy of model errors revealing recurring failure patterns. ErrorAtlas is a hierarchical taxonomy that defines 17 top-level error categories to diagnose and analyze LLM failure modes.
+
+The 17 high-level error categories include Logical Reasoning Error, Missing Required Element, Computation Error, Specification Misinterpretation, Output Formatting Error, Factual Error, and Tool/API Usage Error. ErrorAtlas highlights error types that are currently underexplored in LLM research, such as omissions of required details in the output and question misinterpretation.
+
+ErrorAtlas is derived empirically using ErrorMap, a dynamic pipeline for extracting, labeling, and hierarchically categorizing model errors, which extracts, labels, and clusters error instances.
+
+## PathFinder-PRM and Error-Aware Supervision
+
+PathFinder-PRM is an error-aware hierarchical Process Reward Model that classifies each step to detect the presence of math or consistency errors, and combines these fine-grained error labels to produce a final reward score. PathFinder-PRM achieves a new state-of-the-art PRMScore of 67.7 on PRMBench while using 3× less data.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bd93b870-6d98-496b-bc81-d960c6dcd6c4",
+  "isSidechain": false,
+  "promptId": "a95155ae-640e-4e11-9a4d-da5675b60cf3",
+  "type": "user",
+  "uuid": "0e73f6f4-b91c-4820-a5ca-9ca94f69275a",
+  "toolUseResult": {
+    "query": "ErrorAtlas error taxonomy LLM reasoning 2601.15812 PathFinder-PRM error type supervision",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01KgCackDskbHnH3iotVDm1r",
+        "content": [
+          {
+            "title": "ErrorAtlas: Taxonomy of LLM Failure Modes",
+            "url": "https://www.emergentmind.com/topics/erroratlas"
+          },
+          {
+            "title": "(PDF) ErrorMap and ErrorAtlas: Charting the Failure Landscape of Large Language Models",
+            "url": "https://www.researchgate.net/publication/400003408_ErrorMap_and_ErrorAtlas_Charting_the_Failure_Landscape_of_Large_Language_Models"
+          },
+          {
+            "title": "[2601.15812] ErrorMap and ErrorAtlas: Charting the Failure Landscape of Large Language Models",
+            "url": "https://arxiv.org/abs/2601.15812"
+          },
+          {
+            "title": "[2601.15812v1] ErrorMap and ErrorAtlas: Charting the Failure Landscape of Large Language Models",
+            "url": "https://arxiv.org/abs/2601.15812v1"
+          },
+          {
+            "title": "ErrorMap and ErrorAtlas: Charting the Failure Landscape ...",
+            "url": "https://arxiv.org/pdf/2601.15812"
+          },
+          {
+            "title": "[Literature Review] ErrorMap and ErrorAtlas: Charting the Failure Landscape of Large Language Models",
+            "url": "https://www.themoonlight.io/en/review/errormap-and-erroratlas-charting-the-failure-landscape-of-large-language-models"
+          },
+          {
+            "title": "Error Typing for Smarter Rewards: Improving Process Reward Models with Error-Aware Hierarchical Supervision",
+            "url": "https://arxiv.org/pdf/2505.19706"
+          },
+          {
+            "title": "ErrorMap and ErrorAtlas: Charting the Failure Landscape of Large Language Models - Takara TLDR | Takara TLDR",
+            "url": "https://tldr.takara.ai/p/2601.15812v1"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about these research topics:\n\n## ErrorAtlas and Error Taxonomy (arXiv:2601.15812)\n\nErrorMap is the first method to chart the sources of LLM failure, and applying it to 35 datasets and 83 models generates ErrorAtlas, a taxonomy of model errors revealing recurring failure patterns. ErrorAtlas is a hierarchical taxonomy that defines 17 top-level error categories to diagnose and analyze LLM failure modes.\n\nThe 17 high-level error categories include Logical Reasoning Error, Missing Required Element, Computation Error, Specification Misinterpretation, Output Formatting Error, Factual Error, and Tool/API Usage Error. ErrorAtlas highlights error types that are currently underexplored in LLM research, such as omissions of required details in the output and question misinterpretation.\n\nErrorAtlas is derived empirically using ErrorMap, a dynamic pipeline for extracting, labeling, and hierarchically categorizing model errors, which extracts, labels, and clusters error instances.\n\n## PathFinder-PRM and Error-Aware Supervision\n\nPathFinder-PRM is an error-aware hierarchical Process Reward Model that classifies each step to detect the presence of math or consistency errors, and combines these fine-grained error labels to produce a final reward score. PathFinder-PRM achieves a new state-of-the-art PRMScore of 67.7 on PRMBench while using 3× less data."
+    ],
+    "durationSeconds": 6.221084652000005,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "bd93b870-6d98-496b-bc81-d960c6dcd6c4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dc6faec3-02e2-49fb-96cd-7d696547f005",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-20T05:56:16.340Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XUrandahXEVjEd4hC45MAG`</summary>
+
+```json
+{
+  "query": "CausalRM factored causal representation reward modeling 2601.21350 DRM multidimensional supervision reasoning DG-PRM dynamic generalizable"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0e73f6f4-b91c-4820-a5ca-9ca94f69275a",
+  "isSidechain": false,
+  "requestId": "req_011CbDJewKKHWNRVPEHjqWda",
+  "type": "assistant",
+  "uuid": "b329cef1-380f-4298-9723-b8498f86e613",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dc6faec3-02e2-49fb-96cd-7d696547f005",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018qMB9Y1D1wF24xHKt9HWfg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 910,
+      "cache_read_input_tokens": 28718,
+      "output_tokens": 85,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 910,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 85,
+          "cache_read_input_tokens": 28718,
+          "cache_creation_input_tokens": 910,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 910
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Decomposition Basis Matters: A Tiered Empirical Study of Error-Taxonomic vs. Orthogonality-Enforced vs. Causal R…",
+  "leafUuid": "b329cef1-380f-4298-9723-b8498f86e613",
+  "sessionId": "dc6faec3-02e2-49fb-96cd-7d696547f005"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Evaluate PRM decomposition basis hackability resistance proposal",
+  "sessionId": "dc6faec3-02e2-49fb-96cd-7d696547f005"
+}
+```
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-20T05:56:24.338Z_
+
+<details><summary>↩ Tool result · `toolu_01XUrandahXEVjEd4hC45MAG`</summary>
+
+```text
+Web search results for query: "CausalRM factored causal representation reward modeling 2601.21350 DRM multidimensional supervision reasoning DG-PRM dynamic generalizable"
+
+Links: [{"title":"Factored Causal Representation Learning for Robust Reward Modeling in RLHF","url":"https://www.arxiv.org/pdf/2601.21350"},{"title":"[2601.21350] Factored Causal Representation Learning for Robust Reward Modeling in RLHF","url":"https://arxiv.org/abs/2601.21350"},{"title":"CausalRM: Causal-Theoretic Reward Modeling for RLHF from Observational User Feedbacks | alphaXiv","url":"https://www.alphaxiv.org/overview/2603.18736v1"},{"title":"CausalRM: Causal-Theoretic Reward Modeling for RLHF ...","url":"https://arxiv.org/pdf/2603.18736"},{"title":"ICML Poster Factored Causal Representation Learning for Robust Reward Modeling in RLHF","url":"https://icml.cc/virtual/2026/poster/65508"},{"title":"[2603.18736] CausalRM: Causal-Theoretic Reward Modeling for RLHF from Observational User Feedbacks","url":"https://arxiv.org/abs/2603.18736"}]
+
+I found comprehensive information about the CausalRM paper (arXiv:2601.21350). Here's what the search revealed:
+
+## CausalRM: Factored Causal Representation Learning for Robust Reward Modeling
+
+CausalRM is a novel framework that explores the potential of causal representation learning to mitigate spurious correlations in reward modeling for RLHF (reinforcement learning from human feedback).
+
+### The Problem
+
+Standard reward models are susceptible to spurious features that are not causally related to human labels, which can lead to reward hacking where high predicted reward does not translate into better behavior.
+
+### The Solution
+
+CausalRM decomposes the model's contextual embedding into two disentangled components: (1) causal factors that are sufficient for reward prediction, and (2) non-causal factors that capture reward-irrelevant attributes such as response length or stylistic bias.
+
+### Technical Approach
+
+The framework constrains the reward model to predict rewards using only the causal factors, and optimizes it with a standard pairwise preference loss augmented with mutual-information-based constraints. Additionally, an adversarial head is introduced to predict reward from the non-causal factors, while applying gradient reversal to discourage them from encoding reward-relevant information.
+
+The paper was submitted to arXiv on January 29, 2026, and has recently been presented as a poster at ICML 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b329cef1-380f-4298-9723-b8498f86e613",
+  "isSidechain": false,
+  "promptId": "a95155ae-640e-4e11-9a4d-da5675b60cf3",
+  "type": "user",
+  "uuid": "5317bd01-6604-42c7-af56-1e455355889f",
+  "toolUseResult": {
+    "query": "CausalRM factored causal representation reward modeling 2601.21350 DRM multidimensional supervision reasoning DG-PRM dynamic generalizable",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01APpVGQLZ4untJyPa5g7iWg",
+        "content": [
+          {
+            "title": "Factored Causal Representation Learning for Robust Reward Modeling in RLHF",
+            "url": "https://www.arxiv.org/pdf/2601.21350"
+          },
+          {
+            "title": "[2601.21350] Factored Causal Representation Learning for Robust Reward Modeling in RLHF",
+            "url": "https://arxiv.org/abs/2601.21350"
+          },
+          {
+            "title": "CausalRM: Causal-Theoretic Reward Modeling for RLHF from Observational User Feedbacks | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2603.18736v1"
+          },
+          {
+            "title": "CausalRM: Causal-Theoretic Reward Modeling for RLHF ...",
+            "url": "https://arxiv.org/pdf/2603.18736"
+          },
+          {
+            "title": "ICML Poster Factored Causal Representation Learning for Robust Reward Modeling in RLHF",
+            "url": "https://icml.cc/virtual/2026/poster/65508"
+          },
+          {
+            "title": "[2603.18736] CausalRM: Causal-Theoretic Reward Modeling for RLHF from Observational User Feedbacks",
+            "url": "https://arxiv.org/abs/2603.18736"
+          }
+        ]
+      },
+      "I found comprehensive information about the CausalRM paper (arXiv:2601.21350). Here's what the search revealed:\n\n## CausalRM: Factored Causal Representation Learning for Robust Reward Modeling\n\nCausalRM is a novel framework that explores the potential of causal representation learning to mitigate spurious correlations in reward modeling for RLHF (reinforcement learning from human feedback).\n\n### The Problem\n\nStandard reward models are susceptible to spurious features that are not causally related to human labels, which can lead to reward hacking where high predicted reward does not translate into better behavior.\n\n### The Solution\n\nCausalRM decomposes the model's contextual embedding into two disentangled components: (1) causal factors that are sufficient for reward prediction, and (2) non-causal factors that capture reward-irrelevant attributes such as response length or stylistic bias.\n\n### Technical Approach\n\nThe framework constrains the reward model to predict rewards using only the causal factors, and optimizes it with a standard pairwise preference loss augmented with mutual-information-based constraints. Additionally, an adversarial head is introduced to predict reward from the non-causal factors, while applying gradient reversal to discourage them from encoding reward-relevant information.\n\nThe paper was submitted to arXiv on January 29, 2026, and has recently been presented as a poster at ICML 2026."
+    ],
+    "durationSeconds": 7.994303293999997,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "b329cef1-380f-4298-9723-b8498f86e613",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dc6faec3-02e2-49fb-96cd-7d696547f005",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-20T05:56:27.250Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01ETXW4FVaqtgfQsvacG8BMu`</summary>
+
+```json
+{
+  "query": "multi-dimensional reward model decomposition hackability resistance coverage breadth 2026 reward hacking dimensions"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5317bd01-6604-42c7-af56-1e455355889f",
+  "isSidechain": false,
+  "requestId": "req_011CbDJfmTGXErk9WEftiBTA",
+  "type": "assistant",
+  "uuid": "75e63740-1824-40da-ae4f-600888805f5d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dc6faec3-02e2-49fb-96cd-7d696547f005",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q3YSZ2nmPSpqohd1w4KhMQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 792,
+      "cache_read_input_tokens": 29628,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 792,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 29628,
+          "cache_creation_input_tokens": 792,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 792
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-20T05:56:35.114Z_
+
+<details><summary>↩ Tool result · `toolu_01ETXW4FVaqtgfQsvacG8BMu`</summary>
+
+```text
+Web search results for query: "multi-dimensional reward model decomposition hackability resistance coverage breadth 2026 reward hacking dimensions"
+
+Links: [{"title":"Reward Hacking as Equilibrium under Finite Evaluation","url":"https://arxiv.org/html/2603.28063v1"},{"title":"The Horcrux: Mechanistically Interpretable Task Decomposition for Detecting and Mitigating Reward Hacking in Embodied AI Systems","url":"https://arxiv.org/pdf/2511.17869"},{"title":"Mitigating Reward Hacking in RLHF via Bayesian Non-negative Reward Modeling","url":"https://arxiv.org/pdf/2602.10623"},{"title":"[2604.13602v1] Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges","url":"https://arxiv.org/abs/2604.13602v1"},{"title":"[2604.13602] Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges","url":"https://arxiv.org/abs/2604.13602"},{"title":"Reward Hacking as Equilibrium under Finite Evaluation","url":"https://arxiv.org/pdf/2603.28063"},{"title":"UMM-RM: An Upcycle-and-Merge MoE Reward Model for Mitigating Reward Hacking","url":"https://arxiv.org/html/2512.00724"},{"title":"GitHub - xhwang22/Awesome-Reward-Hacking: A curated list of papers and resources on Reward Hacking, Emergent Misalignment, and Proxy Exploitation in Large Models · GitHub","url":"https://github.com/xhwang22/Awesome-Reward-Hacking"}]
+
+Based on the search results, I found several highly relevant recent papers and resources on reward hacking and multi-dimensional reward models from 2026:
+
+## Key Findings
+
+**Theoretical Framework on Multi-Dimensional Reward Hacking:**
+
+A March 2026 paper proves that under axioms including multi-dimensional quality and finite evaluation, any optimized AI agent will systematically under-invest effort in quality dimensions not covered by its evaluation system. The research shows that as systems transition to agentic systems with more tools, evaluation coverage declines toward zero because quality dimensions expand combinatorially while evaluation costs grow at most linearly per tool.
+
+**Reward Compression and Optimization Dynamics:**
+
+Reward hacking is formalized as an emergent consequence of optimizing expressive policies against compressed reward representations, arising from the interaction of objective compression, optimization amplification, and evaluator-policy co-adaptation.
+
+**Multi-Dimensional Decomposition Approaches:**
+
+Research on mechanistically interpretable task decomposition reveals optimal decomposition depths of 12-25 steps reduce reward hacking frequency by 34% across four failure modes. Additionally, Bayesian non-negative reward modeling yields more interpretable reward decompositions and substantially mitigates reward over-optimization.
+
+**Mixture-of-Experts Approaches:**
+
+Mixture-of-Experts architectures naturally offer multi-faceted representational capacity for reward modeling, where different experts can capture distinct dimensions of preference such as helpfulness, harmlessness, safety, fluency, and coherence.
+
+These papers present approaches to address reward hacking through multi-dimensional decomposition, interpretability, and coverage breadth improvements.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "75e63740-1824-40da-ae4f-600888805f5d",
+  "isSidechain": false,
+  "promptId": "a95155ae-640e-4e11-9a4d-da5675b60cf3",
+  "type": "user",
+  "uuid": "7d7f0e34-e30c-4d6a-a8d9-65eb98446a5f",
+  "toolUseResult": {
+    "query": "multi-dimensional reward model decomposition hackability resistance coverage breadth 2026 reward hacking dimensions",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VoD2sLdD9BzgpyBfD99vMo",
+        "content": [
+          {
+            "title": "Reward Hacking as Equilibrium under Finite Evaluation",
+            "url": "https://arxiv.org/html/2603.28063v1"
+          },
+          {
+            "title": "The Horcrux: Mechanistically Interpretable Task Decomposition for Detecting and Mitigating Reward Hacking in Embodied AI Systems",
+            "url": "https://arxiv.org/pdf/2511.17869"
+          },
+          {
+            "title": "Mitigating Reward Hacking in RLHF via Bayesian Non-negative Reward Modeling",
+            "url": "https://arxiv.org/pdf/2602.10623"
+          },
+          {
+            "title": "[2604.13602v1] Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges",
+            "url": "https://arxiv.org/abs/2604.13602v1"
+          },
+          {
+            "title": "[2604.13602] Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges",
+            "url": "https://arxiv.org/abs/2604.13602"
+          },
+          {
+            "title": "Reward Hacking as Equilibrium under Finite Evaluation",
+            "url": "https://arxiv.org/pdf/2603.28063"
+          },
+          {
+            "title": "UMM-RM: An Upcycle-and-Merge MoE Reward Model for Mitigating Reward Hacking",
+            "url": "https://arxiv.org/html/2512.00724"
+          },
+          {
+            "title": "GitHub - xhwang22/Awesome-Reward-Hacking: A curated list of papers and resources on Reward Hacking, Emergent Misalignment, and Proxy Exploitation in Large Models · GitHub",
+            "url": "https://github.com/xhwang22/Awesome-Reward-Hacking"
+          }
+        ]
+      },
+      "Based on the search results, I found several highly relevant recent papers and resources on reward hacking and multi-dimensional reward models from 2026:\n\n## Key Findings\n\n**Theoretical Framework on Multi-Dimensional Reward Hacking:**\n\nA March 2026 paper proves that under axioms including multi-dimensional quality and finite evaluation, any optimized AI agent will systematically under-invest effort in quality dimensions not covered by its evaluation system. The research shows that as systems transition to agentic systems with more tools, evaluation coverage declines toward zero because quality dimensions expand combinatorially while evaluation costs grow at most linearly per tool.\n\n**Reward Compression and Optimization Dynamics:**\n\nReward hacking is formalized as an emergent consequence of optimizing expressive policies against compressed reward representations, arising from the interaction of objective compression, optimization amplification, and evaluator-policy co-adaptation.\n\n**Multi-Dimensional Decomposition Approaches:**\n\nResearch on mechanistically interpretable task decomposition reveals optimal decomposition depths of 12-25 steps reduce reward hacking frequency by 34% across four failure modes. Additionally, Bayesian non-negative reward modeling yields more interpretable reward decompositions and substantially mitigates reward over-optimization.\n\n**Mixture-of-Experts Approaches:**\n\nMixture-of-Experts architectures naturally offer multi-faceted representational capacity for reward modeling, where different experts can capture distinct dimensions of preference such as helpfulness, harmlessness, safety, fluency, and coherence.\n\nThese papers present approaches to address reward hacking through multi-dimensional decomposition, interpretability, and coverage breadth improvements."
+    ],
+    "durationSeconds": 7.858948300000003,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "75e63740-1824-40da-ae4f-600888805f5d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dc6faec3-02e2-49fb-96cd-7d696547f005",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-20T05:56:38.259Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0136T3MR8FaAmBEYCkFi91jc`</summary>
+
+```json
+{
+  "query": "reward hacking rubric-based RL 2605.12474 coverage completeness uncovered dimensions"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7d7f0e34-e30c-4d6a-a8d9-65eb98446a5f",
+  "isSidechain": false,
+  "requestId": "req_011CbDJgZRVrxoxPTJ13vxrV",
+  "type": "assistant",
+  "uuid": "6fa5beb4-8619-4b5d-9703-602cb04eb0f1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dc6faec3-02e2-49fb-96cd-7d696547f005",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RJpK5g7ds71eaVJhAXVKmc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 914,
+      "cache_read_input_tokens": 30420,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 914,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 30420,
+          "cache_creation_input_tokens": 914,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 914
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-20T05:56:45.306Z_
+
+<details><summary>↩ Tool result · `toolu_0136T3MR8FaAmBEYCkFi91jc`</summary>
+
+```text
+Web search results for query: "reward hacking rubric-based RL 2605.12474 coverage completeness uncovered dimensions"
+
+Links: [{"title":"Reward Hacking in Rubric-Based Reinforcement Learning","url":"https://arxiv.org/html/2605.12474v1"},{"title":"Reward Hacking Defense Rubric","url":"https://www.emergentmind.com/topics/reward-hacking-defense-rubric"},{"title":"Reward Hacking in RLVR Systems","url":"https://www.emergentmind.com/topics/reward-hacking-in-reinforcement-learning-with-verifiable-rewards-rlvr"},{"title":"SibylSense: Adaptive Rubric Learning via Memory Tuning and Adversarial Probing","url":"https://arxiv.org/pdf/2602.20751"},{"title":"Rubric-Based Rewards for RL - Deep (Learning) Focus","url":"https://cameronrwolfe.substack.com/p/rubric-rl"},{"title":"[2605.02964] Reward Hacking Benchmark: Measuring Exploits in LLM Agents with Tool Use","url":"https://arxiv.org/abs/2605.02964"},{"title":"In-Context Reward Hacking Behaviors","url":"https://www.emergentmind.com/topics/in-context-reward-hacking-behaviors"}]
+
+Based on the search results, I found the paper you're looking for. The paper "Reward Hacking in Rubric-Based Reinforcement Learning" (arXiv:2605.12474) studies reward hacking in rubric-based RL, where a policy is optimized against a training verifier but evaluated against a cross-family panel of three frontier judges.
+
+Key findings from the paper include:
+
+1. **Two sources of divergence**: The framework separates verifier failure (where the training verifier credits rubric criteria that verifiers reject) and rubric-design limitations (where even strong rubric-based verifiers favor responses that rubric-free judges rate worse overall).
+
+2. **Coverage and completeness**: The dimensional breakdown shows checkpoints can improve on completeness while degrading on factual correctness, with all three judges agreeing directionally.
+
+3. **Verifier strength effects**: The magnitude of the quality decline scales with verifier strength, with training under stronger verifiers roughly halving the overall-quality decline in both medical and science domains.
+
+The paper examines uncovered dimensions and reveals how policies can exploit rubric-based reward systems by gaming specific criteria while degrading on others, highlighting the gap between optimizing for training verifiers versus actual quality.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6fa5beb4-8619-4b5d-9703-602cb04eb0f1",
+  "isSidechain": false,
+  "promptId": "a95155ae-640e-4e11-9a4d-da5675b60cf3",
+  "type": "user",
+  "uuid": "a9d9226c-9f16-4b38-a27c-b57c4378eafb",
+  "toolUseResult": {
+    "query": "reward hacking rubric-based RL 2605.12474 coverage completeness uncovered dimensions",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QDhNUfMAQH5K5eiPzJraW5",
+        "content": [
+          {
+            "title": "Reward Hacking in Rubric-Based Reinforcement Learning",
+            "url": "https://arxiv.org/html/2605.12474v1"
+          },
+          {
+            "title": "Reward Hacking Defense Rubric",
+            "url": "https://www.emergentmind.com/topics/reward-hacking-defense-rubric"
+          },
+          {
+            "title": "Reward Hacking in RLVR Systems",
+            "url": "https://www.emergentmind.com/topics/reward-hacking-in-reinforcement-learning-with-verifiable-rewards-rlvr"
+          },
+          {
+            "title": "SibylSense: Adaptive Rubric Learning via Memory Tuning and Adversarial Probing",
+            "url": "https://arxiv.org/pdf/2602.20751"
+          },
+          {
+            "title": "Rubric-Based Rewards for RL - Deep (Learning) Focus",
+            "url": "https://cameronrwolfe.substack.com/p/rubric-rl"
+          },
+          {
+            "title": "[2605.02964] Reward Hacking Benchmark: Measuring Exploits in LLM Agents with Tool Use",
+            "url": "https://arxiv.org/abs/2605.02964"
+          },
+          {
+            "title": "In-Context Reward Hacking Behaviors",
+            "url": "https://www.emergentmind.com/topics/in-context-reward-hacking-behaviors"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for. The paper \"Reward Hacking in Rubric-Based Reinforcement Learning\" (arXiv:2605.12474) studies reward hacking in rubric-based RL, where a policy is optimized against a training verifier but evaluated against a cross-family panel of three frontier judges.\n\nKey findings from the paper include:\n\n1. **Two sources of divergence**: The framework separates verifier failure (where the training verifier credits rubric criteria that verifiers reject) and rubric-design limitations (where even strong rubric-based verifiers favor responses that rubric-free judges rate worse overall).\n\n2. **Coverage and completeness**: The dimensional breakdown shows checkpoints can improve on completeness while degrading on factual correctness, with all three judges agreeing directionally.\n\n3. **Verifier strength effects**: The magnitude of the quality decline scales with verifier strength, with training under stronger verifiers roughly halving the overall-quality decline in both medical and science domains.\n\nThe paper examines uncovered dimensions and reveals how policies can exploit rubric-based reward systems by gaming specific criteria while degrading on others, highlighting the gap between optimizing for training verifiers versus actual quality."
+    ],
+    "durationSeconds": 7.042865613999995,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "6fa5beb4-8619-4b5d-9703-602cb04eb0f1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dc6faec3-02e2-49fb-96cd-7d696547f005",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-20T05:56:48.211Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MdNcRJWbrffXJL7uzVprj4`</summary>
+
+```json
+{
+  "query": "IR3 contrastive inverse reinforcement learning reward hacking detection sparse autoencoder 2602.19416"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a9d9226c-9f16-4b38-a27c-b57c4378eafb",
+  "isSidechain": false,
+  "requestId": "req_011CbDJhJx8bqEx565yRCje6",
+  "type": "assistant",
+  "uuid": "2599f07f-9d32-4f0b-81f8-bb3d052bbb5f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dc6faec3-02e2-49fb-96cd-7d696547f005",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0114HX41haHGsCKCkJ8RmVzT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 727,
+      "cache_read_input_tokens": 31334,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 727,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 31334,
+          "cache_creation_input_tokens": 727,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 727
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-20T05:56:53.541Z_
+
+<details><summary>↩ Tool result · `toolu_01MdNcRJWbrffXJL7uzVprj4`</summary>
+
+```text
+Web search results for query: "IR3 contrastive inverse reinforcement learning reward hacking detection sparse autoencoder 2602.19416"
+
+Links: [{"title":"[2602.19416] IR$^3$: Contrastive Inverse Reinforcement Learning for Interpretable Detection and Mitigation of Reward Hacking","url":"https://arxiv.org/abs/2602.19416"},{"title":"IR$^3$: Contrastive Inverse Reinforcement Learning for Interpretable Detection and Mitigation of Reward Hacking","url":"https://arxiv.org/pdf/2602.19416"},{"title":"IR3: Contrastive Inverse Reinforcement Learning for Interpretable Detection and Mitigation of Reward Hacking","url":"https://arxiv.org/html/2602.19416"},{"title":"IR$^3$: Contrastive Inverse Reinforcement Learning for Interpretable Detection and Mitigation of Reward Hacking","url":"https://www.catalyzex.com/paper/ir-3-contrastive-inverse-reinforcement"},{"title":"Benchmarking Reward Hack Detection in Code Environments via Contrastive Analysis","url":"https://arxiv.org/pdf/2601.20103"}]
+
+I found the paper for you! Here's information about IR³:
+
+IR³ (Interpretable Reward Reconstruction and Rectification) is a framework that reverse-engineers, interprets, and surgically repairs the implicit objectives driving RLHF-tuned models.
+
+**Key Components:**
+
+The framework proposes Contrastive Inverse Reinforcement Learning (C-IRL), which reconstructs the implicit reward function by contrasting paired responses from post-alignment and baseline policies to explain behavioral shifts during RLHF. It then decomposes the reconstructed reward via sparse autoencoders into interpretable features, enabling identification of hacking signatures through contribution analysis.
+
+**Purpose:**
+
+The framework addresses reward hacking - where models exploit spurious correlations in proxy rewards without genuine alignment - which can be introduced during Reinforcement Learning from Human Feedback (RLHF).
+
+**Results:**
+
+Experiments demonstrate that IR³ achieves 0.89 correlation with ground-truth rewards, identifies hacking features with >90% precision, and significantly reduces hacking behaviors while maintaining capabilities within 3% of the original model.
+
+The paper was published on arXiv on February 23, 2026, and is authored by researchers from UC Davis, Virginia Tech, Salesforce, and Meta AI.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2599f07f-9d32-4f0b-81f8-bb3d052bbb5f",
+  "isSidechain": false,
+  "promptId": "a95155ae-640e-4e11-9a4d-da5675b60cf3",
+  "type": "user",
+  "uuid": "43e0a08f-9cad-4783-b039-835841413324",
+  "toolUseResult": {
+    "query": "IR3 contrastive inverse reinforcement learning reward hacking detection sparse autoencoder 2602.19416",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01GF6BWSCfVDvDLdwtRAUshD",
+        "content": [
+          {
+            "title": "[2602.19416] IR$^3$: Contrastive Inverse Reinforcement Learning for Interpretable Detection and Mitigation of Reward Hacking",
+            "url": "https://arxiv.org/abs/2602.19416"
+          },
+          {
+            "title": "IR$^3$: Contrastive Inverse Reinforcement Learning for Interpretable Detection and Mitigation of Reward Hacking",
+            "url": "https://arxiv.org/pdf/2602.19416"
+          },
+          {
+            "title": "IR3: Contrastive Inverse Reinforcement Learning for Interpretable Detection and Mitigation of Reward Hacking",
+            "url": "https://arxiv.org/html/2602.19416"
+          },
+          {
+            "title": "IR$^3$: Contrastive Inverse Reinforcement Learning for Interpretable Detection and Mitigation of Reward Hacking",
+            "url": "https://www.catalyzex.com/paper/ir-3-contrastive-inverse-reinforcement"
+          },
+          {
+            "title": "Benchmarking Reward Hack Detection in Code Environments via Contrastive Analysis",
+            "url": "https://arxiv.org/pdf/2601.20103"
+          }
+        ]
+      },
+      "I found the paper for you! Here's information about IR³:\n\nIR³ (Interpretable Reward Reconstruction and Rectification) is a framework that reverse-engineers, interprets, and surgically repairs the implicit objectives driving RLHF-tuned models.\n\n**Key Components:**\n\nThe framework proposes Contrastive Inverse Reinforcement Learning (C-IRL), which reconstructs the implicit reward function by contrasting paired responses from post-alignment and baseline policies to explain behavioral shifts during RLHF. It then decomposes the reconstructed reward via sparse autoencoders into interpretable features, enabling identification of hacking signatures through contribution analysis.\n\n**Purpose:**\n\nThe framework addresses reward hacking - where models exploit spurious correlations in proxy rewards without genuine alignment - which can be introduced during Reinforcement Learning from Human Feedback (RLHF).\n\n**Results:**\n\nExperiments demonstrate that IR³ achieves 0.89 correlation with ground-truth rewards, identifies hacking features with >90% precision, and significantly reduces hacking behaviors while maintaining capabilities within 3% of the original model.\n\nThe paper was published on arXiv on February 23, 2026, and is authored by researchers from UC Davis, Virginia Tech, Salesforce, and Meta AI."
+    ],
+    "durationSeconds": 5.325148650999996,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "2599f07f-9d32-4f0b-81f8-bb3d052bbb5f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dc6faec3-02e2-49fb-96cd-7d696547f005",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 29 · 2026-05-20T05:56:53.548Z_
+
+```json
+{
+  "parentUuid": "43e0a08f-9cad-4783-b039-835841413324",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "1e4d749c-e67a-4152-99a4-3cbdc81cec0c",
+  "timestamp": "2026-05-20T05:56:53.548Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dc6faec3-02e2-49fb-96cd-7d696547f005",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-20T05:56:56.640Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PSFdmsLALav9kwAW3quKtU`</summary>
+
+```json
+{
+  "query": "HRM hierarchical multi-step reward model reasoning 2503.13551 CROME causal rubrics reward 2506.16507"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1e4d749c-e67a-4152-99a4-3cbdc81cec0c",
+  "isSidechain": false,
+  "requestId": "req_011CbDJhvDRfZ5dgVa6WWzuT",
+  "type": "assistant",
+  "uuid": "247644f6-8f00-46db-a359-14e5740afa8b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dc6faec3-02e2-49fb-96cd-7d696547f005",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YChq2thDJNG4VDLbHbuu8p",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 791,
+      "cache_read_input_tokens": 32061,
+      "output_tokens": 82,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 791,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 82,
+          "cache_read_input_tokens": 32061,
+          "cache_creation_input_tokens": 791,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 791
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-20T05:57:05.575Z_
+
+<details><summary>↩ Tool result · `toolu_01PSFdmsLALav9kwAW3quKtU`</summary>
+
+```text
+Web search results for query: "HRM hierarchical multi-step reward model reasoning 2503.13551 CROME causal rubrics reward 2506.16507"
+
+Links: [{"title":"[2503.13551] Towards Hierarchical Multi-Step Reward Models for Enhanced Reasoning in Large Language Models","url":"https://arxiv.org/abs/2503.13551"},{"title":"[2503.13551v3] Towards Hierarchical Multi-Step Reward Models for Enhanced Reasoning in Large Language Models","url":"https://arxiv.org/abs/2503.13551v3"},{"title":"Towards Hierarchical Multi-Step Reward Models for Enhanced Reasoning in Large Language Models | Scilit","url":"https://www.scilit.com/publications/faa943638b9caf76fc13c9604a4672da"},{"title":"Towards Hierarchical Multi-Step Reward Models for Enhanced Reasoning in Large Language Models | alphaXiv","url":"https://www.alphaxiv.org/overview/2503.13551"},{"title":"Towards Hierarchical Multi-Step Reward Models for Enhanced Reasoning in Large Language Models | OpenReview","url":"https://openreview.net/forum?id=W2zM6fcVFN"},{"title":"Towards Hierarchical Multi-Step Reward Models for Enhanced Reasoning in Large Language Models","url":"https://arxiv.org/html/2503.13551v4"},{"title":"Paper page - Towards Hierarchical Multi-Step Reward Models for Enhanced Reasoning in Large Language Models","url":"https://huggingface.co/papers/2503.13551"},{"title":"GitHub - tengwang0318/hierarchial_reward_model: Offical Code For \"Towards Hierarchical Multi-Step Reward Models for Enhanced Reasoning in Large Language Models\"","url":"https://github.com/tengwang0318/hierarchial_reward_model"}]
+
+Links: [{"title":"[2506.16507] Robust Reward Modeling via Causal Rubrics","url":"https://arxiv.org/abs/2506.16507"},{"title":"Robust Reward Modeling via Causal Rubrics | OpenReview","url":"https://openreview.net/forum?id=oP99JQiDYp"},{"title":"Paper page - Robust Reward Modeling via Causal Rubrics","url":"https://huggingface.co/papers/2506.16507"},{"title":"arXiv:2506.16507v1 [cs.LG] 19 Jun 2025 2025-6-23","url":"https://arxiv.org/pdf/2506.16507"},{"title":"Robust Reward Modeling via Causal Rubrics","url":"https://www.researchgate.net/publication/392918827_Robust_Reward_Modeling_via_Causal_Rubrics"},{"title":"DeepMind introduces Crome: Enhancing the Alignment of Large Language Models with Human Feedback","url":"https://www.aibase.com/news/19463"},{"title":"ICML Robust Reward Modeling via Causal Rubrics","url":"https://icml.cc/virtual/2025/50241"},{"title":"ICML Robust Reward Modeling via Causal Rubrics and Synthetic Data Curation","url":"https://icml.cc/virtual/2025/48723"},{"title":"Rubric-Based Rewards","url":"https://www.emergentmind.com/topics/rubric-based-rewards"}]
+
+I've found detailed information about both papers. Here's what each research work covers:
+
+## HRM (Hierarchical Multi-Step Reward Model) - arXiv:2503.13551
+
+The Hierarchical Reward Model (HRM) is a novel reward model approach that evaluates both individual and consecutive reasoning steps at both fine-grained and coarse-grained levels. This addresses limitations of Process Reward Models (PRMs), which suffer from reward hacking, making them unreliable in identifying the best intermediate step.
+
+HRM excels at assessing multi-step reasoning coherence, especially when flawed steps are later corrected through self-reflection. The paper also introduces Hierarchical Node Compression (HNC), a lightweight data augmentation strategy that merges two consecutive reasoning steps to reduce the cost of generating training data.
+
+Empirical results on the PRM800K dataset show that HRM, together with HNC, provides more stable and reliable evaluations than PRM, and cross-domain evaluations on the MATH500 and GSM8K datasets demonstrate HRM's strong generalization and robustness across a variety of reasoning tasks.
+
+## CROME (Causally Robust Reward Modeling) - arXiv:2506.16507
+
+CROME is a novel framework grounded in an explicit causal model designed to mitigate reward hacking. Reward models tend to latch on to superficial or spurious attributes, such as response length or formatting, mistaking these cues learned from correlations in training data for the true causal drivers of quality like factuality and relevance.
+
+CROME employs synthetic targeted augmentations during training: (1) Causal Augmentations, which are pairs that differ along specific causal attributes, to enforce sensitivity along each causal attribute individually, and (2) Neutral Augmentations, which are tie-label pairs varying primarily in spurious attributes, to enforce invariance along spurious attributes.
+
+Empirically, CROME significantly outperforms standard baselines on RewardBench, improving average accuracy by up to 5.4% and achieving gains of up to 13.2% and 7.2% in specific categories.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "247644f6-8f00-46db-a359-14e5740afa8b",
+  "isSidechain": false,
+  "promptId": "a95155ae-640e-4e11-9a4d-da5675b60cf3",
+  "type": "user",
+  "uuid": "40777233-a49e-4448-a4e6-b2e143690700",
+  "toolUseResult": {
+    "query": "HRM hierarchical multi-step reward model reasoning 2503.13551 CROME causal rubrics reward 2506.16507",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011UHJEFcfaGgXQMSS5cvVap",
+        "content": [
+          {
+            "title": "[2503.13551] Towards Hierarchical Multi-Step Reward Models for Enhanced Reasoning in Large Language Models",
+            "url": "https://arxiv.org/abs/2503.13551"
+          },
+          {
+            "title": "[2503.13551v3] Towards Hierarchical Multi-Step Reward Models for Enhanced Reasoning in Large Language Models",
+            "url": "https://arxiv.org/abs/2503.13551v3"
+          },
+          {
+            "title": "Towards Hierarchical Multi-Step Reward Models for Enhanced Reasoning in Large Language Models | Scilit",
+            "url": "https://www.scilit.com/publications/faa943638b9caf76fc13c9604a4672da"
+          },
+          {
+            "title": "Towards Hierarchical Multi-Step Reward Models for Enhanced Reasoning in Large Language Models | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2503.13551"
+          },
+          {
+            "title": "Towards Hierarchical Multi-Step Reward Models for Enhanced Reasoning in Large Language Models | OpenReview",
+            "url": "https://openreview.net/forum?id=W2zM6fcVFN"
+          },
+          {
+            "title": "Towards Hierarchical Multi-Step Reward Models for Enhanced Reasoning in Large Language Models",
+            "url": "https://arxiv.org/html/2503.13551v4"
+          },
+          {
+            "title": "Paper page - Towards Hierarchical Multi-Step Reward Models for Enhanced Reasoning in Large Language Models",
+            "url": "https://huggingface.co/papers/2503.13551"
+          },
+          {
+            "title": "GitHub - tengwang0318/hierarchial_reward_model: Offical Code For \"Towards Hierarchical Multi-Step Reward Models for Enhanced Reasoning in Large Language Models\"",
+            "url": "https://github.com/tengwang0318/hierarchial_reward_model"
+          }
+        ]
+      },
+      {
+        "tool_use_id": "srvtoolu_01DpQfsYRUakbf9w4BuHp8WT",
+        "content": [
+          {
+            "title": "[2506.16507] Robust Reward Modeling via Causal Rubrics",
+            "url": "https://arxiv.org/abs/2506.16507"
+          },
+          {
+            "title": "Robust Reward Modeling via Causal Rubrics | OpenReview",
+            "url": "https://openreview.net/forum?id=oP99JQiDYp"
+          },
+          {
+            "title": "Paper page - Robust Reward Modeling via Causal Rubrics",
+            "url": "https://huggingface.co/papers/2506.16507"
+          },
+          {
+            "title": "arXiv:2506.16507v1 [cs.LG] 19 Jun 2025 2025-6-23",
+            "url": "https://arxiv.org/pdf/2506.16507"
+          },
+          {
+            "title": "Robust Reward Modeling via Causal Rubrics",
+            "url": "https://www.researchgate.net/publication/392918827_Robust_Reward_Modeling_via_Causal_Rubrics"
+          },
+          {
+            "title": "DeepMind introduces Crome: Enhancing the Alignment of Large Language Models with Human Feedback",
+            "url": "https://www.aibase.com/news/19463"
+          },
+          {
+            "title": "ICML Robust Reward Modeling via Causal Rubrics",
+            "url": "https://icml.cc/virtual/2025/50241"
+          },
+          {
+            "title": "ICML Robust Reward Modeling via Causal Rubrics and Synthetic Data Curation",
+            "url": "https://icml.cc/virtual/2025/48723"
+          },
+          {
+            "title": "Rubric-Based Rewards",
+            "url": "https://www.emergentmind.com/topics/rubric-based-rewards"
+          }
+        ]
+      },
+      "I've found detailed information about both papers. Here's what each research work covers:\n\n## HRM (Hierarchical Multi-Step Reward Model) - arXiv:2503.13551\n\nThe Hierarchical Reward Model (HRM) is a novel reward model approach that evaluates both individual and consecutive reasoning steps at both fine-grained and coarse-grained levels. This addresses limitations of Process Reward Models (PRMs), which suffer from reward hacking, making them unreliable in identifying the best intermediate step.\n\nHRM excels at assessing multi-step reasoning coherence, especially when flawed steps are later corrected through self-reflection. The paper also introduces Hierarchical Node Compression (HNC), a lightweight data augmentation strategy that merges two consecutive reasoning steps to reduce the cost of generating training data.\n\nEmpirical results on the PRM800K dataset show that HRM, together with HNC, provides more stable and reliable evaluations than PRM, and cross-domain evaluations on the MATH500 and GSM8K datasets demonstrate HRM's strong generalization and robustness across a variety of reasoning tasks.\n\n## CROME (Causally Robust Reward Modeling) - arXiv:2506.16507\n\nCROME is a novel framework grounded in an explicit causal model designed to mitigate reward hacking. Reward models tend to latch on to superficial or spurious attributes, such as response length or formatting, mistaking these cues learned from correlations in training data for the true causal drivers of quality like factuality and relevance.\n\nCROME employs synthetic targeted augmentations during training: (1) Causal Augmentations, which are pairs that differ along specific causal attributes, to enforce sensitivity along each causal attribute individually, and (2) Neutral Augmentations, which are tie-label pairs varying primarily in spurious attributes, to enforce invariance along spurious attributes.\n\nEmpirically, CROME significantly outperforms standard baselines on RewardBench, improving average accuracy by up to 5.4% and achieving gains of up to 13.2% and 7.2% in specific categories."
+    ],
+    "durationSeconds": 8.931142907000002,
+    "searchCount": 2
+  },
+  "sourceToolAssistantUUID": "247644f6-8f00-46db-a359-14e5740afa8b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dc6faec3-02e2-49fb-96cd-7d696547f005",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 32_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Decomposition Basis Matters: A Tiered Empirical Study of Error-Taxonomic vs. Orthogonality-Enforced vs. Causal R…",
+  "leafUuid": "40777233-a49e-4448-a4e6-b2e143690700",
+  "sessionId": "dc6faec3-02e2-49fb-96cd-7d696547f005"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 33_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Evaluate PRM decomposition basis hackability resistance proposal",
+  "sessionId": "dc6faec3-02e2-49fb-96cd-7d696547f005"
+}
+```
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-20T05:57:08.482Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CDoke16F4sxqyQqE8sHVdd`</summary>
+
+```json
+{
+  "query": "\"error type\" \"process reward model\" multi-head architecture error category supervision 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "40777233-a49e-4448-a4e6-b2e143690700",
+  "isSidechain": false,
+  "requestId": "req_011CbDJiodpbnnKCqEwtxTQZ",
+  "type": "assistant",
+  "uuid": "29cf2d8c-e4f0-4cf3-a46c-d0defc9e422d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dc6faec3-02e2-49fb-96cd-7d696547f005",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bddu4jYrxmZGj42fG4bDha",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1444,
+      "cache_read_input_tokens": 32852,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1444,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 32852,
+          "cache_creation_input_tokens": 1444,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1444
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-20T05:57:15.946Z_
+
+<details><summary>↩ Tool result · `toolu_01CDoke16F4sxqyQqE8sHVdd`</summary>
+
+```text
+Web search results for query: ""error type" "process reward model" multi-head architecture error category supervision 2025 2026"
+
+Links: [{"title":"Improving Process Reward Models with Error-Aware ...","url":"https://arxiv.org/pdf/2505.19706"},{"title":"[2505.19706] Error Typing for Smarter Rewards: Improving Process Reward Models with Error-Aware Hierarchical Supervision","url":"https://arxiv.org/abs/2505.19706"},{"title":"A Survey of Process Reward Models: From Outcome Signals to Process Supervisions for Large Language Models","url":"https://arxiv.org/html/2510.08049v3"},{"title":"Controllable and Verifiable Process Data Synthesis for Process Reward Models","url":"https://arxiv.org/html/2605.02395v1"},{"title":"[2510.08049] A Survey of Process Reward Models: From Outcome Signals to Process Supervisions for Large Language Models","url":"https://arxiv.org/abs/2510.08049"},{"title":"Process-Based Supervision in AI: Guiding Learning Step-by-Step | by Ursina Sanderink | Medium","url":"https://medium.com/@sanderink.ursina/process-based-supervision-in-ai-guiding-learning-step-by-step-ddad77b17cfc"},{"title":"LLM Reasoning Supervision","url":"https://www.emergentmind.com/topics/reasoning-supervision-in-llms"},{"title":"Adversarial Training for Process Reward Models","url":"https://arxiv.org/pdf/2511.22888"},{"title":"The Lessons of Developing Process Reward Models in Mathematical Reasoning","url":"https://arxiv.org/pdf/2501.07301"},{"title":"Let's Verify Step by Step","url":"https://arxiv.org/pdf/2305.20050"}]
+
+Based on the web search results, I found highly relevant research on this topic. Here's what the search revealed:
+
+## Key Findings
+
+PathFinder-PRM is a novel hierarchical, error-aware discriminative process reward model that first classifies math and consistency errors at each step, then combines these fine-grained signals to estimate step correctness. This paper, published in May 2025, directly addresses error typing in process reward models.
+
+The model uses a hierarchical, error-aware approach that classifies math and consistency errors at each step, which aligns with the multi-head architecture concept you're interested in. On PRMBench, PathFinder-PRM achieves a new state-of-the-art PRMScore of 67.7, outperforming the prior best (65.5) while using 3 times less data.
+
+Additionally, existing automatic process annotation methods often provide limited control over error type, error location, and trajectory consistency, and as a result, existing PRMs still struggle with first-error localization and fine-grained process evaluation.
+
+A comprehensive survey from 2025-2026 also addresses this space: A PRM survey uniquely targets step-level process reward modeling by organizing the full loop of data generation, PRM building, and usage for fine-grained reasoning supervision.
+
+The research clearly shows that error categorization and hierarchical supervision are active areas of development in process reward models for improving their ability to identify specific types of errors during reasoning steps.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "29cf2d8c-e4f0-4cf3-a46c-d0defc9e422d",
+  "isSidechain": false,
+  "promptId": "a95155ae-640e-4e11-9a4d-da5675b60cf3",
+  "type": "user",
+  "uuid": "45107778-d418-41f5-b76b-9321d1070faa",
+  "toolUseResult": {
+    "query": "\"error type\" \"process reward model\" multi-head architecture error category supervision 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016UUsqbyCQY1wXYU3dtc2N9",
+        "content": [
+          {
+            "title": "Improving Process Reward Models with Error-Aware ...",
+            "url": "https://arxiv.org/pdf/2505.19706"
+          },
+          {
+            "title": "[2505.19706] Error Typing for Smarter Rewards: Improving Process Reward Models with Error-Aware Hierarchical Supervision",
+            "url": "https://arxiv.org/abs/2505.19706"
+          },
+          {
+            "title": "A Survey of Process Reward Models: From Outcome Signals to Process Supervisions for Large Language Models",
+            "url": "https://arxiv.org/html/2510.08049v3"
+          },
+          {
+            "title": "Controllable and Verifiable Process Data Synthesis for Process Reward Models",
+            "url": "https://arxiv.org/html/2605.02395v1"
+          },
+          {
+            "title": "[2510.08049] A Survey of Process Reward Models: From Outcome Signals to Process Supervisions for Large Language Models",
+            "url": "https://arxiv.org/abs/2510.08049"
+          },
+          {
+            "title": "Process-Based Supervision in AI: Guiding Learning Step-by-Step | by Ursina Sanderink | Medium",
+            "url": "https://medium.com/@sanderink.ursina/process-based-supervision-in-ai-guiding-learning-step-by-step-ddad77b17cfc"
+          },
+          {
+            "title": "LLM Reasoning Supervision",
+            "url": "https://www.emergentmind.com/topics/reasoning-supervision-in-llms"
+          },
+          {
+            "title": "Adversarial Training for Process Reward Models",
+            "url": "https://arxiv.org/pdf/2511.22888"
+          },
+          {
+            "title": "The Lessons of Developing Process Reward Models in Mathematical Reasoning",
+            "url": "https://arxiv.org/pdf/2501.07301"
+          },
+          {
+            "title": "Let's Verify Step by Step",
+            "url": "https://arxiv.org/pdf/2305.20050"
+          }
+        ]
+      },
+      "Based on the web search results, I found highly relevant research on this topic. Here's what the search revealed:\n\n## Key Findings\n\nPathFinder-PRM is a novel hierarchical, error-aware discriminative process reward model that first classifies math and consistency errors at each step, then combines these fine-grained signals to estimate step correctness. This paper, published in May 2025, directly addresses error typing in process reward models.\n\nThe model uses a hierarchical, error-aware approach that classifies math and consistency errors at each step, which aligns with the multi-head architecture concept you're interested in. On PRMBench, PathFinder-PRM achieves a new state-of-the-art PRMScore of 67.7, outperforming the prior best (65.5) while using 3 times less data.\n\nAdditionally, existing automatic process annotation methods often provide limited control over error type, error location, and trajectory consistency, and as a result, existing PRMs still struggle with first-error localization and fine-grained process evaluation.\n\nA comprehensive survey from 2025-2026 also addresses this space: A PRM survey uniquely targets step-level process reward modeling by organizing the full loop of data generation, PRM building, and usage for fine-grained reasoning supervision.\n\nThe research clearly shows that error categorization and hierarchical supervision are active areas of development in process reward models for improving their ability to identify specific types of errors during reasoning steps."
+    ],
+    "durationSeconds": 7.456351936999999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "29cf2d8c-e4f0-4cf3-a46c-d0defc9e422d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dc6faec3-02e2-49fb-96cd-7d696547f005",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-20T05:57:18.811Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JkojHQ1rXf212d2DQXTyXH`</summary>
+
+```json
+{
+  "query": "MO-GRPO multi-objective group relative policy optimization reward hacking 2509.22047"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "45107778-d418-41f5-b76b-9321d1070faa",
+  "isSidechain": false,
+  "requestId": "req_011CbDJjZy4x9CJjsSGXArZ4",
+  "type": "assistant",
+  "uuid": "fa089f2a-f608-40de-a5ed-8547e555a708",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dc6faec3-02e2-49fb-96cd-7d696547f005",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Boq2ZrfKSiPY6ExVUVwikL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 890,
+      "cache_read_input_tokens": 34296,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 890,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 34296,
+          "cache_creation_input_tokens": 890,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 890
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-20T05:57:25.742Z_
+
+<details><summary>↩ Tool result · `toolu_01JkojHQ1rXf212d2DQXTyXH`</summary>
+
+```text
+Web search results for query: "MO-GRPO multi-objective group relative policy optimization reward hacking 2509.22047"
+
+Links: [{"title":"[2509.22047] MO-GRPO: Mitigating Reward Hacking of Group Relative Policy Optimization on Multi-Objective Problems","url":"https://arxiv.org/abs/2509.22047"},{"title":"MO-GRPO: Mitigating Reward Hacking of Group Relative Policy Optimization on Multi-Objective Problems","url":"https://arxiv.org/pdf/2509.22047"},{"title":"MO-GRPO: Mitigating Reward Hacking of Group Relative Policy Optimization on Multi-Objective Problems","url":"https://arxiv.org/html/2509.22047"},{"title":"MO-GRPO: Mitigating Reward Hacking of Group Relative Policy Optimization on Multi-Objective Problems - ADS","url":"https://ui.adsabs.harvard.edu/abs/arXiv:2509.22047"},{"title":"MO-GRPO: Mitigating Reward Hacking of Group Relative Policy Optimization on Multi-Objective Problems | Request PDF","url":"https://www.researchgate.net/publication/395944746_MO-GRPO_Mitigating_Reward_Hacking_of_Group_Relative_Policy_Optimization_on_Multi-Objective_Problems"},{"title":"MO-GRPO: Mitigating Reward Hacking of Group Relative Policy Optimization on Multi-Objective Problems | Takara TLDR","url":"https://tldr.takara.ai/p/2509.22047"},{"title":"Constrained Group Relative Policy Optimization","url":"https://arxiv.org/html/2602.05863.pdf"},{"title":"Multi-context Group Relative Policy Optimization","url":"https://api.emergentmind.com/topics/multi-context-group-relative-policy-optimization-grpo"}]
+
+I found the research paper! Here's what I discovered about MO-GRPO (2509.22047):
+
+## Paper Overview
+
+Group Relative Policy Optimization (GRPO) is an effective algorithm when an accurate reward model is available, but such highly reliable reward models are not available in many real-world tasks.
+
+## The Problem: Reward Hacking
+
+In multi-objective settings, GRPO is vulnerable to reward hacking, optimizing only one of the objectives at the cost of the others.
+
+## The Solution: MO-GRPO
+
+MO-GRPO is an extension of GRPO with a simple normalization method to reweight the reward functions automatically according to the variances of their values. 
+
+MO-GRPO ensures that all reward functions contribute evenly to the loss function while preserving the order of preferences, eliminating the need for manual tuning of the reward functions' scales.
+
+## Evaluation
+
+The method was evaluated experimentally in four domains: the multi-armed bandits problem, simulated control task (Mo-Gymnasium), machine translation tasks on the WMT benchmark (En-Ja, En-Zh), and instruction following task. MO-GRPO achieves stable learning by evenly distributing correlations among the components of rewards, outperforming GRPO.
+
+The paper was submitted on September 26, 2025, and last revised on January 9, 2026. You can access it on arXiv at https://arxiv.org/abs/2509.22047.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fa089f2a-f608-40de-a5ed-8547e555a708",
+  "isSidechain": false,
+  "promptId": "a95155ae-640e-4e11-9a4d-da5675b60cf3",
+  "type": "user",
+  "uuid": "02014068-0a67-4d87-be09-85063ccdaf39",
+  "toolUseResult": {
+    "query": "MO-GRPO multi-objective group relative policy optimization reward hacking 2509.22047",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CwfSBxeWzRQvisXpXSeDM3",
+        "content": [
+          {
+            "title": "[2509.22047] MO-GRPO: Mitigating Reward Hacking of Group Relative Policy Optimization on Multi-Objective Problems",
+            "url": "https://arxiv.org/abs/2509.22047"
+          },
+          {
+            "title": "MO-GRPO: Mitigating Reward Hacking of Group Relative Policy Optimization on Multi-Objective Problems",
+            "url": "https://arxiv.org/pdf/2509.22047"
+          },
+          {
+            "title": "MO-GRPO: Mitigating Reward Hacking of Group Relative Policy Optimization on Multi-Objective Problems",
+            "url": "https://arxiv.org/html/2509.22047"
+          },
+          {
+            "title": "MO-GRPO: Mitigating Reward Hacking of Group Relative Policy Optimization on Multi-Objective Problems - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/arXiv:2509.22047"
+          },
+          {
+            "title": "MO-GRPO: Mitigating Reward Hacking of Group Relative Policy Optimization on Multi-Objective Problems | Request PDF",
+            "url": "https://www.researchgate.net/publication/395944746_MO-GRPO_Mitigating_Reward_Hacking_of_Group_Relative_Policy_Optimization_on_Multi-Objective_Problems"
+          },
+          {
+            "title": "MO-GRPO: Mitigating Reward Hacking of Group Relative Policy Optimization on Multi-Objective Problems | Takara TLDR",
+            "url": "https://tldr.takara.ai/p/2509.22047"
+          },
+          {
+            "title": "Constrained Group Relative Policy Optimization",
+            "url": "https://arxiv.org/html/2602.05863.pdf"
+          },
+          {
+            "title": "Multi-context Group Relative Policy Optimization",
+            "url": "https://api.emergentmind.com/topics/multi-context-group-relative-policy-optimization-grpo"
+          }
+        ]
+      },
+      "I found the research paper! Here's what I discovered about MO-GRPO (2509.22047):\n\n## Paper Overview\n\nGroup Relative Policy Optimization (GRPO) is an effective algorithm when an accurate reward model is available, but such highly reliable reward models are not available in many real-world tasks.\n\n## The Problem: Reward Hacking\n\nIn multi-objective settings, GRPO is vulnerable to reward hacking, optimizing only one of the objectives at the cost of the others.\n\n## The Solution: MO-GRPO\n\nMO-GRPO is an extension of GRPO with a simple normalization method to reweight the reward functions automatically according to the variances of their values. \n\nMO-GRPO ensures that all reward functions contribute evenly to the loss function while preserving the order of preferences, eliminating the need for manual tuning of the reward functions' scales.\n\n## Evaluation\n\nThe method was evaluated experimentally in four domains: the multi-armed bandits problem, simulated control task (Mo-Gymnasium), machine translation tasks on the WMT benchmark (En-Ja, En-Zh), and instruction following task. MO-GRPO achieves stable learning by evenly distributing correlations among the components of rewards, outperforming GRPO.\n\nThe paper was submitted on September 26, 2025, and last revised on January 9, 2026. You can access it on arXiv at https://arxiv.org/abs/2509.22047."
+    ],
+    "durationSeconds": 6.926232686999996,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "fa089f2a-f608-40de-a5ed-8547e555a708",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dc6faec3-02e2-49fb-96cd-7d696547f005",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38 · 2026-05-20T05:57:29.380Z_
+
+Now let me do one more search to check if there's any existing work that directly compares decomposition bases for hackability resistance — the core novelty claim of this proposal.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "02014068-0a67-4d87-be09-85063ccdaf39",
+  "isSidechain": false,
+  "requestId": "req_011CbDJkHrUvEwMA1BpiTZ3W",
+  "type": "assistant",
+  "uuid": "0975e13f-5223-4969-9a56-e8933de7c008",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dc6faec3-02e2-49fb-96cd-7d696547f005",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Jrs3gQ9npJ58MyrU9eJw4q",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 929,
+      "cache_read_input_tokens": 35186,
+      "output_tokens": 112,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 929,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 112,
+          "cache_read_input_tokens": 35186,
+          "cache_creation_input_tokens": 929,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 929
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-20T05:57:30.178Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0177ngqheNgF1sfuvmxgWZx2`</summary>
+
+```json
+{
+  "query": "comparing reward decomposition approaches hackability resistance multi-head PRM basis comparison empirical study 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0975e13f-5223-4969-9a56-e8933de7c008",
+  "isSidechain": false,
+  "requestId": "req_011CbDJkHrUvEwMA1BpiTZ3W",
+  "type": "assistant",
+  "uuid": "cf4740f5-2269-461c-9aa4-a61a37ddbfa2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dc6faec3-02e2-49fb-96cd-7d696547f005",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Jrs3gQ9npJ58MyrU9eJw4q",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 929,
+      "cache_read_input_tokens": 35186,
+      "output_tokens": 112,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 929,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 112,
+          "cache_read_input_tokens": 35186,
+          "cache_creation_input_tokens": 929,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 929
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-20T05:57:38.862Z_
+
+<details><summary>↩ Tool result · `toolu_0177ngqheNgF1sfuvmxgWZx2`</summary>
+
+```text
+Web search results for query: "comparing reward decomposition approaches hackability resistance multi-head PRM basis comparison empirical study 2025 2026"
+
+Links: [{"title":"The Horcrux: Mechanistically Interpretable Task Decomposition for Detecting and Mitigating Reward Hacking in Embodied AI Systems","url":"https://arxiv.org/pdf/2511.17869"},{"title":"Factored Causal Representation Learning for Robust Reward Modeling in RLHF","url":"https://arxiv.org/pdf/2601.21350"},{"title":"Reward Under Attack: Analyzing the Robustness and Hackability of","url":"https://arxiv.org/pdf/2603.06621"},{"title":"Mitigating Reward Hacking in RLHF via Bayesian Non-negative Reward Modeling","url":"https://arxiv.org/pdf/2602.10623"},{"title":"GitHub - xhwang22/Awesome-Reward-Hacking: A curated list of papers and resources on Reward Hacking, Emergent Misalignment, and Proxy Exploitation in Large Models · GitHub","url":"https://github.com/xhwang22/Awesome-Reward-Hacking"},{"title":"Towards Hierarchical Multi-Step Reward Models for Enhanced Reasoning in Large Language Models","url":"https://arxiv.org/pdf/2503.13551"},{"title":"Reward Hacking as Equilibrium under Finite Evaluation","url":"https://arxiv.org/pdf/2603.28063"},{"title":"Causal Reward Adjustment: Mitigating Reward Hacking in External Reasoning via Backdoor Correction","url":"https://arxiv.org/pdf/2508.04216"},{"title":"Stop Summation: Min-Form Credit Assignment Is All Process Reward Model Needs for Reasoning","url":"https://arxiv.org/pdf/2504.15275"}]
+
+Based on the search results, I found several relevant papers from 2025-2026 addressing reward decomposition approaches and their resistance to hackability:
+
+## Key Findings
+
+**Recent Research on Reward Decomposition and Hackability Resistance:**
+
+1. **Factored Causal Representation Learning**: ODIN decomposes the reward head into separate quality and length components to reduce reward hacking driven by response length.
+
+2. **Bayesian Non-negative Reward Modeling (BNRM)**: Extensive empirical results demonstrate that BNRM substantially mitigates reward over-optimization, improves robustness under distribution shifts, and yields more interpretable reward decompositions than strong baselines.
+
+3. **Process Reward Models (PRMs) and Vulnerability**: PRM provides finer-grained supervision by evaluating reasoning step by step. However, most PRM methods are model-based and are prone to reward hacking, where models exploit reward signals rather than genuinely improving reasoning.
+
+4. **Causal Reward Adjustment (CRA)**: CRA mitigates reward hacking by estimating the true reward of a reasoning path. CRA trains sparse autoencoders on the PRM's internal activations to recover interpretable features, then corrects confounding by using backdoor adjustment. Experiments on math solving datasets demonstrate that CRA mitigates reward hacking and improves final accuracy.
+
+5. **Fundamental Nature of Reward Hacking**: Recent research proves that under five minimal axioms, any optimized AI agent will systematically under-invest effort in quality dimensions not covered by its evaluation system. This result establishes reward hacking as a structural equilibrium, not a correctable bug, and holds regardless of the specific alignment method or evaluation architecture employed.
+
+These papers represent the latest empirical and theoretical work comparing different reward decomposition approaches and their robustness against hackability.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cf4740f5-2269-461c-9aa4-a61a37ddbfa2",
+  "isSidechain": false,
+  "promptId": "a95155ae-640e-4e11-9a4d-da5675b60cf3",
+  "type": "user",
+  "uuid": "66606c16-dbf2-4ec7-84c6-05c0a838fd4e",
+  "toolUseResult": {
+    "query": "comparing reward decomposition approaches hackability resistance multi-head PRM basis comparison empirical study 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DA1BY9CpCDrWZvmsn9PXQQ",
+        "content": [
+          {
+            "title": "The Horcrux: Mechanistically Interpretable Task Decomposition for Detecting and Mitigating Reward Hacking in Embodied AI Systems",
+            "url": "https://arxiv.org/pdf/2511.17869"
+          },
+          {
+            "title": "Factored Causal Representation Learning for Robust Reward Modeling in RLHF",
+            "url": "https://arxiv.org/pdf/2601.21350"
+          },
+          {
+            "title": "Reward Under Attack: Analyzing the Robustness and Hackability of",
+            "url": "https://arxiv.org/pdf/2603.06621"
+          },
+          {
+            "title": "Mitigating Reward Hacking in RLHF via Bayesian Non-negative Reward Modeling",
+            "url": "https://arxiv.org/pdf/2602.10623"
+          },
+          {
+            "title": "GitHub - xhwang22/Awesome-Reward-Hacking: A curated list of papers and resources on Reward Hacking, Emergent Misalignment, and Proxy Exploitation in Large Models · GitHub",
+            "url": "https://github.com/xhwang22/Awesome-Reward-Hacking"
+          },
+          {
+            "title": "Towards Hierarchical Multi-Step Reward Models for Enhanced Reasoning in Large Language Models",
+            "url": "https://arxiv.org/pdf/2503.13551"
+          },
+          {
+            "title": "Reward Hacking as Equilibrium under Finite Evaluation",
+            "url": "https://arxiv.org/pdf/2603.28063"
+          },
+          {
+            "title": "Causal Reward Adjustment: Mitigating Reward Hacking in External Reasoning via Backdoor Correction",
+            "url": "https://arxiv.org/pdf/2508.04216"
+          },
+          {
+            "title": "Stop Summation: Min-Form Credit Assignment Is All Process Reward Model Needs for Reasoning",
+            "url": "https://arxiv.org/pdf/2504.15275"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers from 2025-2026 addressing reward decomposition approaches and their resistance to hackability:\n\n## Key Findings\n\n**Recent Research on Reward Decomposition and Hackability Resistance:**\n\n1. **Factored Causal Representation Learning**: ODIN decomposes the reward head into separate quality and length components to reduce reward hacking driven by response length.\n\n2. **Bayesian Non-negative Reward Modeling (BNRM)**: Extensive empirical results demonstrate that BNRM substantially mitigates reward over-optimization, improves robustness under distribution shifts, and yields more interpretable reward decompositions than strong baselines.\n\n3. **Process Reward Models (PRMs) and Vulnerability**: PRM provides finer-grained supervision by evaluating reasoning step by step. However, most PRM methods are model-based and are prone to reward hacking, where models exploit reward signals rather than genuinely improving reasoning.\n\n4. **Causal Reward Adjustment (CRA)**: CRA mitigates reward hacking by estimating the true reward of a reasoning path. CRA trains sparse autoencoders on the PRM's internal activations to recover interpretable features, then corrects confounding by using backdoor adjustment. Experiments on math solving datasets demonstrate that CRA mitigates reward hacking and improves final accuracy.\n\n5. **Fundamental Nature of Reward Hacking**: Recent research proves that under five minimal axioms, any optimized AI agent will systematically under-invest effort in quality dimensions not covered by its evaluation system. This result establishes reward hacking as a structural equilibrium, not a correctable bug, and holds regardless of the specific alignment method or evaluation architecture employed.\n\nThese papers represent the latest empirical and theoretical work comparing different reward decomposition approaches and their robustness against hackability."
+    ],
+    "durationSeconds": 8.681278948000006,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "cf4740f5-2269-461c-9aa4-a61a37ddbfa2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dc6faec3-02e2-49fb-96cd-7d696547f005",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-20T05:57:42.005Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KzC31hH2fL7SwyymApDXrK`</summary>
+
+```json
+{
+  "query": "ThinkPRM generative verification process reward model 2504.16828 TMLR GenPRM code-integrated 2504.00891"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "66606c16-dbf2-4ec7-84c6-05c0a838fd4e",
+  "isSidechain": false,
+  "requestId": "req_011CbDJmFwRACz7xoHPAS2Lj",
+  "type": "assistant",
+  "uuid": "43568ed3-0413-4974-9bd2-0542f5ea79f3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dc6faec3-02e2-49fb-96cd-7d696547f005",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PcArNgLGXoei5Qbc4PoM4J",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1026,
+      "cache_read_input_tokens": 36115,
+      "output_tokens": 84,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1026,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 84,
+          "cache_read_input_tokens": 36115,
+          "cache_creation_input_tokens": 1026,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1026
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-20T05:57:51.030Z_
+
+<details><summary>↩ Tool result · `toolu_01KzC31hH2fL7SwyymApDXrK`</summary>
+
+```text
+Web search results for query: "ThinkPRM generative verification process reward model 2504.16828 TMLR GenPRM code-integrated 2504.00891"
+
+Links: [{"title":"GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning | Arxiv - DeepPaper","url":"https://arxiv.deeppaper.ai/papers/2504.00891v2?locale=en"},{"title":"GitHub - ThreeSR/Awesome-Inference-Time-Scaling: Paper List of Inference/Test Time Scaling/Computing · GitHub","url":"https://github.com/ThreeSR/Awesome-Inference-Time-Scaling"},{"title":"GitHub - mukhal/ThinkPRM: Process Reward Models That Think","url":"https://github.com/mukhal/thinkprm"},{"title":"ThinkPRM: A Generative Process Reward Models for Scalable Reasoning Verification - MarkTechPost","url":"https://www.marktechpost.com/2025/04/29/thinkprm-a-generative-process-reward-models-for-scalable-reasoning-verification/"},{"title":"ThinkPRM: Data-Efficient Process Reward Models","url":"https://www.emergentmind.com/papers/2504.16828"},{"title":"THINKPRM: generative Process Reward Model for solution verification via long CoT Reasoning | by SACHIN KUMAR | Medium","url":"https://medium.com/@techsachin/thinkprm-generative-process-reward-model-for-solution-verification-via-long-cot-reasoning-2016f1e1387d"},{"title":"Process Reward Models That Think","url":"https://arxiv.org/pdf/2504.16828"}]
+
+I've performed a web search and found comprehensive information about ThinkPRM and GenPRM. Here's what I found:
+
+## ThinkPRM (arXiv 2504.16828)
+
+ThinkPRM is a collection of generative long CoT process reward models. The verifiers were obtained by finetuning reasoning models over 1K synthetic verification CoTs—filtered based on only 8K process labels from PRM800K. The resulting verifiers outperform LLM-as-a-judge and discriminative PRMs on most in- and out-of-domain setups.
+
+ThinkPRM enables scaling up verifier compute either in parallel or sequentially by thinking longer. Under the same token budget, ThinkPRM scales up verification compute more effectively compared to LLM-as-a-Judge, outperforming it by 7.2% on a subset of ProcessBench.
+
+## GenPRM (arXiv 2504.00891)
+
+GenPRM is a generative process reward model that leverages Chain-of-Thought reasoning and code verification to enhance LLM performance, outperforming existing PRMs and even GPT-4o and Qwen2.5-Math-PRM-72B on ProcessBench. GenPRM performs explicit Chain-of-Thought (CoT) reasoning with code verification before providing judgment for each reasoning step, and uses Relative Progress Estimation (RPE) and a rationale synthesis framework that incorporates code verification.
+
+Code and models for ThinkPRM are available at https://github.com/mukhal/thinkprm.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "43568ed3-0413-4974-9bd2-0542f5ea79f3",
+  "isSidechain": false,
+  "promptId": "a95155ae-640e-4e11-9a4d-da5675b60cf3",
+  "type": "user",
+  "uuid": "7d8b6d5f-5e68-42a7-b80a-61306b4240f2",
+  "toolUseResult": {
+    "query": "ThinkPRM generative verification process reward model 2504.16828 TMLR GenPRM code-integrated 2504.00891",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01AXmWQDJvawg6Ljc9N25pw1",
+        "content": [
+          {
+            "title": "GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning | Arxiv - DeepPaper",
+            "url": "https://arxiv.deeppaper.ai/papers/2504.00891v2?locale=en"
+          },
+          {
+            "title": "GitHub - ThreeSR/Awesome-Inference-Time-Scaling: Paper List of Inference/Test Time Scaling/Computing · GitHub",
+            "url": "https://github.com/ThreeSR/Awesome-Inference-Time-Scaling"
+          },
+          {
+            "title": "GitHub - mukhal/ThinkPRM: Process Reward Models That Think",
+            "url": "https://github.com/mukhal/thinkprm"
+          },
+          {
+            "title": "ThinkPRM: A Generative Process Reward Models for Scalable Reasoning Verification - MarkTechPost",
+            "url": "https://www.marktechpost.com/2025/04/29/thinkprm-a-generative-process-reward-models-for-scalable-reasoning-verification/"
+          },
+          {
+            "title": "ThinkPRM: Data-Efficient Process Reward Models",
+            "url": "https://www.emergentmind.com/papers/2504.16828"
+          },
+          {
+            "title": "THINKPRM: generative Process Reward Model for solution verification via long CoT Reasoning | by SACHIN KUMAR | Medium",
+            "url": "https://medium.com/@techsachin/thinkprm-generative-process-reward-model-for-solution-verification-via-long-cot-reasoning-2016f1e1387d"
+          },
+          {
+            "title": "Process Reward Models That Think",
+            "url": "https://arxiv.org/pdf/2504.16828"
+          }
+        ]
+      },
+      "I've performed a web search and found comprehensive information about ThinkPRM and GenPRM. Here's what I found:\n\n## ThinkPRM (arXiv 2504.16828)\n\nThinkPRM is a collection of generative long CoT process reward models. The verifiers were obtained by finetuning reasoning models over 1K synthetic verification CoTs—filtered based on only 8K process labels from PRM800K. The resulting verifiers outperform LLM-as-a-judge and discriminative PRMs on most in- and out-of-domain setups.\n\nThinkPRM enables scaling up verifier compute either in parallel or sequentially by thinking longer. Under the same token budget, ThinkPRM scales up verification compute more effectively compared to LLM-as-a-Judge, outperforming it by 7.2% on a subset of ProcessBench.\n\n## GenPRM (arXiv 2504.00891)\n\nGenPRM is a generative process reward model that leverages Chain-of-Thought reasoning and code verification to enhance LLM performance, outperforming existing PRMs and even GPT-4o and Qwen2.5-Math-PRM-72B on ProcessBench. GenPRM performs explicit Chain-of-Thought (CoT) reasoning with code verification before providing judgment for each reasoning step, and uses Relative Progress Estimation (RPE) and a rationale synthesis framework that incorporates code verification.\n\nCode and models for ThinkPRM are available at https://github.com/mukhal/thinkprm."
+    ],
+    "durationSeconds": 9.019651620000005,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "43568ed3-0413-4974-9bd2-0542f5ea79f3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dc6faec3-02e2-49fb-96cd-7d696547f005",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 43_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Decomposition Basis Matters: A Tiered Empirical Study of Error-Taxonomic vs. Orthogonality-Enforced vs. Causal R…",
+  "leafUuid": "7d8b6d5f-5e68-42a7-b80a-61306b4240f2",
+  "sessionId": "dc6faec3-02e2-49fb-96cd-7d696547f005"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 44_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Evaluate PRM decomposition basis hackability resistance proposal",
+  "sessionId": "dc6faec3-02e2-49fb-96cd-7d696547f005"
+}
+```
+
+---
+
+### Assistant
+
+_source line 45 · 2026-05-20T05:59:26.243Z_
+
+Now I have sufficient research context. Let me compile my assessment.
+
+---
+
+```
+【阶段】: Triage
+
+【领域调研】:
+- [ODIN: Disentangled Reward Mitigates Hacking in RLHF](https://arxiv.org/abs/2402.07319) (ICML 2024): 两头 reward model，显式正交性 loss 分离 length 与 quality。仅处理单一 confounder（length），不泛化到多维攻击面。是本 proposal 的直接前驱和核心 baseline。
+- [Reward Under Attack: Analyzing the Robustness and Hackability of PRMs](https://arxiv.org/abs/2603.06621) (2026): 三层 hackability 框架，发现 static perturbation 与 RL-based exploitation 弱相关（43% RL reward gains 是 stylistic shortcuts）。本 proposal 的 staged evaluation pipeline 直接受此启发。论文存在且描述准确。
+- [ErrorMap and ErrorAtlas](https://arxiv.org/abs/2601.15812) (2026): 17 类错误分类法，92% 验证精度，覆盖 35 datasets / 83 models。为 proposal 的 ETA-PRM 提供分类基础。论文存在且描述准确。
+- [PathFinder-PRM](https://arxiv.org/abs/2505.19706) (2025): 2-head 错误类型 PRM（math + consistency），PRMBench 67.7。是 ETA-PRM 的最直接先驱——已经在做 error-type-aware multi-head PRM，只是维度少（2 vs. 13）。
+- [Factored Causal Representation Learning for Robust Reward Modeling](https://arxiv.org/abs/2601.21350) (ICML 2026): 变分编码器 + 梯度反转分离 causal/non-causal 因子，5-15% robustness 提升。Proposal 的 Tier 2 baseline。论文存在，已在 ICML 2026 poster。
+- [Reward Hacking as Equilibrium under Finite Evaluation](https://arxiv.org/abs/2603.28063) (2026): 理论证明 hacking 集中在未覆盖维度，可计算 distortion index。为 proposal 的 coverage breadth 假设提供理论基础。
+- [Reward Hacking in Rubric-Based RL](https://arxiv.org/abs/2605.12474) (2026): 实证确认当 failure modes 未被 rubric 覆盖时 RL 可被 hack。直接支持 coverage completeness 假设。
+- [BNRM](https://arxiv.org/abs/2602.10623) (2026): Bayesian 非负因子分解 reward model，93.6% RewardBench。latent-factor 分解范式，outcome-level。
+- [IR³](https://arxiv.org/abs/2602.19416) (2026): 事后 SAE 分解已训练 reward 信号，0.89 ground-truth 相关性。post-hoc 范式，与 architectural 分解互补。
+- [HRM](https://arxiv.org/abs/2503.13551) (2025): 时序层级分解（individual + consecutive steps），PRM800K/MATH500/GSM8K 验证。
+- [MO-GRPO](https://arxiv.org/abs/2509.22047) (2025): per-objective normalization 消除 GRPO 对高方差 reward 维度的偏好利用。
+- [ThinkPRM](https://arxiv.org/abs/2504.16828) (TMLR 2026): 生成式验证 CoT，86.5% F1 ProcessBench，用 ~1% PRM800K 数据。
+- [CROME](https://arxiv.org/abs/2506.16507) (2025): causal rubrics + synthetic augmentation，RewardBench +5.4%。
+- **调研总结**: PRM hackability 是 2025-2026 年热门方向，有大量从不同角度（正交性、因果表示、贝叶斯因子、层级时序、post-hoc 可解释、对抗训练）提出的单点解决方案。但目前**没有任何工作系统比较不同分解基底（decomposition basis）对 hackability 的差异化影响**。最接近的是 PathFinder-PRM（2-head error-type），但它只做了 accuracy 评估没做 hackability；ODIN 只处理 length 一个维度。Proposal 处于一个真实的研究空白处——"哪种分解方式更抗 hack"这个问题确实没人系统回答过。
+
+【Trivial Alternative 检验】:
+存在两个值得考虑的 trivial alternative：
+1. **简单增加 ensemble diversity**：如果核心发现只是"更多 heads = 更难 hack"，那么用任意 random multi-head（即 Random-N 控制组）就能达到类似效果，不需要 error taxonomy。Proposal 已通过 Random-N capacity controls 设计预见并回应了这一威胁，这是一个重要的方法论优势。三方比较（ETA-PRM-6 vs. ODIN-6 vs. Random-6）如果 Random-6 就够好，确实会严重削弱 contribution。
+2. **直接用 ThinkPRM/GenPRM 类生成式验证**：这类方法通过长 CoT 推理"隐式"覆盖多个错误维度，不需要显式分解。但它们的 hackability 未被评估过，且这属于不同范式的对比，proposal 在 Tier 3 安排了 ThinkPRM 比较。
+
+**增量价值判断**：如果实验证明 ETA-PRM 显著优于 Random-N（semantic grounding matters）且优于 ODIN-6（orthogonality alone insufficient），那增量价值明确——证明"分解基底的语义对齐"是关键。但如果 Random-6 ≈ ETA-6，主要发现将退化为"multi-head capacity itself helps"，这虽然也有信息量但 novelty 大幅降低。
+
+【前提假设检验】:
+核心 claim 的逻辑链中有以下未经验证的环节：
+1. **ErrorAtlas 分类法与 PRM hackability 的对齐假设**：ErrorAtlas 是从 LLM 输出错误归纳出的分类法，但它被设计来描述"错误类型的分布"，而非"攻击面维度"。proposal 假设覆盖更多 error types = 覆盖更多攻击面，但 RL exploitation 的攻击维度未必与人类/LLM 归纳的错误分类法对齐。例如，RL agent 可能发现的 exploit 根本不在 ErrorAtlas 17 类里。
+2. **LLM 标注质量在 13 类细粒度下的假设**：13 个错误类型的 LLM 标注质量（尤其是低频类别）是一个重大未知数。虽然 proposal 设计了 pilot study 和 adaptive thresholding，但如果多个类别标注噪声过大，ETA-PRM 的"语义对齐"优势可能被噪声淹没。
+3. **Grounded Orthogonality Hypothesis (GOH)**：GOH 预测 error-type grounding 会自然产生"攻击面对齐的正交性"。这是一个大胆但合理的假设——问题是即使 GOH 被 falsify，paper 仍有 value（"decomposition basis matters" 的核心 RQ 不依赖 GOH），但如果 GOH 和"ETA > ODIN"同时被 falsify，paper 的叙事会大幅弱化。
+
+【3 维度打分】:
+
+1. **Novelty: 中偏强** — 
+   核心研究问题（"分解基底的选择是否影响 hackability resistance"）是**真实且未被回答的**。调研确认没有现有工作系统比较不同分解基底对 hackability 的影响。PathFinder-PRM 只做了 2-head error-type 且没做 hackability 评估；ODIN 只处理 length；CausalRM、BNRM、HRM 等各自提出方案但从未互相比较。但 novelty 未达"强"的原因：(a) 核心方法论（multi-head + error taxonomy）是已有组件（ErrorAtlas + PathFinder-PRM）的组合与扩展，架构创新有限；(b) 实验设计的系统性（capacity controls、staged evaluation、GOH）是方法论贡献，但审稿人可能视其为"good experimental practice"而非"novelty"；(c) "系统比较"类论文天然面临"是 benchmark paper 还是 research paper"的身份焦虑。
+
+2. **Significance: 中偏强** — 
+   研究问题的重要性毋庸置疑。Reward hacking 是 RLHF/RL-from-verification 的核心挑战（arXiv:2604.13602 综述 + arXiv:2603.28063 理论证明其是结构性均衡而非 bug）。如果能系统回答"哪种分解方式更抗 hack"以及"coverage breadth 如何交互"，对 PRM 设计有直接的实践指导意义。特别是 coverage-breadth 与 hackability 的关系，结合理论预测（hacking 集中在未覆盖维度），有潜力产生对领域有影响的发现。但影响力受限于：(a) 所有实验限于数学推理领域，跨域泛化性未知；(b) 单一 backbone family（Qwen2.5），结果的普适性存疑。
+
+3. **Related Work: 强** — 
+   这是 proposal 最突出的维度。Related work 覆盖极其全面：12+ 直接竞争/互补方法（ODIN、CausalRM、BNRM、HRM、IR³、DRM、DG-PRM、PathFinder、ThinkPRM、GenPRM、APRM、CRA、CROME、PURE、RDPO、MO-GRPO），每个方法的定位、与本工作的差异化、适用范围都有精确描述。调研验证所有引用的论文均真实存在、描述准确（包括 arXiv ID、会议/年份、核心发现）。差异化定位清晰——明确指出自己是"第一个系统比较分解基底 × 覆盖宽度 × hackability 的工作"。对 IR³（post-hoc vs. architectural）、DRM（ensemble vs. multi-head）等范式差异的讨论也很到位。
+
+【概率估计】: [28% - 40%] 中位 33%
+
+【估计理由】: 
+- **Novelty（中偏强）支撑了中等偏上的基线**：研究问题是真实空白，但核心方法是已有组件的组合而非根本性创新，这把 ceiling 限制在 40% 左右。审稿人可能写"well-executed empirical study"而非"surprising insight"。
+- **Significance（中偏强）提供了上行空间**：如果核心发现是"semantic grounding > orthogonality > random capacity"，且 coverage-breadth 的 hackability 曲线呈现预期的理论一致性，这将是一个对 PRM 设计有直接指导价值的结论。这种情况下可达 40%。
+- **限制上界的关键因素**：(a) "systematic comparison" 类论文的审稿 perception——容易被归类为 benchmark/engineering 贡献而非 scientific 贡献；(b) 核心发现的 surprise factor 偏低——如果 ETA-PRM > Random（"语义标签比随机好"），多数审稿人会说 "I would have guessed this"；真正 surprising 的结果反而是 ETA ≈ Random（但这会削弱 paper narrative）。(c) domain-specific + single-backbone 限制了 generalizability claim 的强度。
+- **Related Work（强）是明确加分项**：全面且准确的 related work 说明作者对领域有深刻理解，这在审稿中是正向信号。
+
+【主要风险】:
+1. **"Unsurprising positive" 风险**：如果 ETA-PRM 确实赢了 Random-N 和 ODIN，核心发现可能被审稿人认为是 expected（"当然有语义的标签比随机好"）。论文需要超越"赢了"本身，找到 surprising 的 insight（例如：coverage-breadth 存在非单调关系、某些 error types 对 hackability 贡献远大于其频率预测、GOH 的某些 prediction 以反直觉方式被 falsify 等）。
+2. **标注质量成为真实 confound 的风险**：13 类 error type 的 LLM 标注质量差异可能系统性地影响 ETA-PRM 各 head 的学习质量，使得 "decomposition basis" 的比较实际上退化为 "标注质量" 的比较。虽然 pilot study 和 NAIT 部分缓解，但审稿人可能仍然质疑。
+```
+
+Sources:
+- [ODIN: Disentangled Reward Mitigates Hacking in RLHF (ICML 2024)](https://arxiv.org/abs/2402.07319)
+- [Reward Under Attack: Analyzing the Robustness and Hackability of PRMs](https://arxiv.org/abs/2603.06621)
+- [ErrorMap and ErrorAtlas](https://arxiv.org/abs/2601.15812)
+- [PathFinder-PRM: Error Typing for Smarter Rewards](https://arxiv.org/abs/2505.19706)
+- [Factored Causal Representation Learning (CausalRM)](https://arxiv.org/abs/2601.21350)
+- [Reward Hacking as Equilibrium under Finite Evaluation](https://arxiv.org/abs/2603.28063)
+- [Reward Hacking in Rubric-Based RL](https://arxiv.org/abs/2605.12474)
+- [BNRM: Bayesian Non-negative Reward Modeling](https://arxiv.org/abs/2602.10623)
+- [IR³: Contrastive Inverse RL for Reward Hacking](https://arxiv.org/abs/2602.19416)
+- [HRM: Hierarchical Multi-Step Reward Models](https://arxiv.org/abs/2503.13551)
+- [MO-GRPO: Multi-Objective GRPO](https://arxiv.org/abs/2509.22047)
+- [ThinkPRM: Process Reward Models That Think](https://arxiv.org/abs/2504.16828)
+- [CROME: Robust Reward Modeling via Causal Rubrics](https://arxiv.org/abs/2506.16507)
+- [Reward Hacking in the Era of Large Models (PCH Survey)](https://arxiv.org/abs/2604.13602)
+- [PURE: Min-Form Credit Assignment](https://arxiv.org/abs/2504.15275)
+- [GenPRM: Generative Process Reward Models](https://arxiv.org/abs/2504.00891)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7d8b6d5f-5e68-42a7-b80a-61306b4240f2",
+  "isSidechain": false,
+  "requestId": "req_011CbDJn9yme1WPXoaR1Gi6N",
+  "type": "assistant",
+  "uuid": "abdaf61a-e362-43f1-96ce-3887222cc2e2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "dc6faec3-02e2-49fb-96cd-7d696547f005",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AR9WxQuFR4KfnzbByB42iF",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 905,
+      "cache_read_input_tokens": 37141,
+      "output_tokens": 4359,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 905,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4359,
+          "cache_read_input_tokens": 37141,
+          "cache_creation_input_tokens": 905,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 905
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 46_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Decomposition Basis Matters: A Tiered Empirical Study of Error-Taxonomic vs. Orthogonality-Enforced vs. Causal R…",
+  "leafUuid": "abdaf61a-e362-43f1-96ce-3887222cc2e2",
+  "sessionId": "dc6faec3-02e2-49fb-96cd-7d696547f005"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 47_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Evaluate PRM decomposition basis hackability resistance proposal",
+  "sessionId": "dc6faec3-02e2-49fb-96cd-7d696547f005"
+}
+```
+
+---

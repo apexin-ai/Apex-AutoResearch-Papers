@@ -1,0 +1,1602 @@
+# Research conversation: I need to verify details for several specific papers for a literature survey on domain-adaptive autoformalization. For e
+
+**Reproducibility Budgets for Open-Weight LLM Evaluation: A Generalizability Theory Study of 7–9B Instruction-Tuned Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 26
+- **Recorded user turns:** 1
+- **Tool calls:** 10
+- **Original source:** `logs/chats/exported-trajectories/account-2/agent-ac237670d36601de5.jsonl`
+- **Structured JSON:** [`dedc57a8a04b2c5b1898.json`](../../sessions/de/dedc57a8a04b2c5b1898.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+26 recorded events
+
+### User
+
+_source line 1 · 2026-05-28T10:23:04.590Z_
+
+I need to verify details for several specific papers for a literature survey on domain-adaptive autoformalization. For each paper below, use WebFetch on its arXiv/venue page to confirm: exact title, authors, date, venue (if published), and get the abstract.
+
+1. https://arxiv.org/abs/2502.05567 (ATLAS autoformalization)
+2. https://arxiv.org/abs/2510.24592 (ReForm autoformalization)
+3. https://arxiv.org/abs/2508.18914 (FormaRL)
+4. https://arxiv.org/abs/2508.06931 (CRAMF retrieval-augmented autoformalization)
+5. https://arxiv.org/abs/2604.25031 (Faithful Autoformalization via Roundtrip)
+6. https://arxiv.org/abs/2510.00732 (EvolProver cross-domain)
+7. https://arxiv.org/abs/2602.01365 (When Domains Interact)
+8. https://arxiv.org/abs/2406.01940 (FormL4 / Process-Driven autoformalization)
+9. https://arxiv.org/abs/2504.21801 (DeepSeek-Prover-V2)
+
+For each paper, extract:
+- Full title
+- First author + "et al."
+- Venue if published (e.g., "ICLR 2026", "NeurIPS 2025") or "arXiv preprint" with year
+- The key contribution in one sentence
+- Any mentions of domain-specific analysis, cross-domain evaluation, or per-domain error analysis
+
+Report all findings in a structured format.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": true,
+  "promptId": "949fce33-07bd-4a5e-9cb4-aa8ea38faeec",
+  "agentId": "ac237670d36601de5",
+  "type": "user",
+  "uuid": "3429c4e7-e405-49f9-8f3f-0a53b584fa8e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "6add041d-94c4-4ef6-b86d-e64a189e2047",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-28T10:23:04.593Z_
+
+```json
+{
+  "parentUuid": "3429c4e7-e405-49f9-8f3f-0a53b584fa8e",
+  "isSidechain": true,
+  "agentId": "ac237670d36601de5",
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": []
+  },
+  "type": "attachment",
+  "uuid": "1a779fa3-940e-47cb-8694-469e52d36c99",
+  "timestamp": "2026-05-28T10:23:04.593Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "6add041d-94c4-4ef6-b86d-e64a189e2047",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3 · 2026-05-28T10:23:04.594Z_
+
+```json
+{
+  "parentUuid": "1a779fa3-940e-47cb-8694-469e52d36c99",
+  "isSidechain": true,
+  "agentId": "ac237670d36601de5",
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "bea48bcd-f965-4efe-8491-b70fb1b0684e",
+  "timestamp": "2026-05-28T10:23:04.594Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "6add041d-94c4-4ef6-b86d-e64a189e2047",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4 · 2026-05-28T10:23:06.852Z_
+
+
+
+I'll fetch all the arXiv pages in parallel to gather the details.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bea48bcd-f965-4efe-8491-b70fb1b0684e",
+  "isSidechain": true,
+  "agentId": "ac237670d36601de5",
+  "requestId": "req_011CbUoUY9CgpB66Qcj7v3Ht",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "e5a8dbec-53da-42ff-a3ef-7c134780f4c0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "6add041d-94c4-4ef6-b86d-e64a189e2047",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L6NmFpw9vs37eLJ7QooL3S",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1748,
+      "cache_read_input_tokens": 7407,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1748,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-28T10:23:07.371Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Wsyed3My2RPuqi5mVaRn4c`</summary>
+
+```json
+{
+  "query": "select:WebFetch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e5a8dbec-53da-42ff-a3ef-7c134780f4c0",
+  "isSidechain": true,
+  "agentId": "ac237670d36601de5",
+  "requestId": "req_011CbUoUY9CgpB66Qcj7v3Ht",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "e4972ada-0fa3-440d-bd40-71910dbed4a9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "6add041d-94c4-4ef6-b86d-e64a189e2047",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L6NmFpw9vs37eLJ7QooL3S",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1748,
+      "cache_read_input_tokens": 7407,
+      "output_tokens": 94,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1748
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 94,
+          "cache_read_input_tokens": 7407,
+          "cache_creation_input_tokens": 1748,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1748,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-28T10:23:07.375Z_
+
+<details><summary>↩ Tool result · `toolu_01Wsyed3My2RPuqi5mVaRn4c`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e4972ada-0fa3-440d-bd40-71910dbed4a9",
+  "isSidechain": true,
+  "promptId": "949fce33-07bd-4a5e-9cb4-aa8ea38faeec",
+  "agentId": "ac237670d36601de5",
+  "type": "user",
+  "uuid": "e6af8e40-0142-4b3e-ac02-fe44f01c4890",
+  "sourceToolAssistantUUID": "e4972ada-0fa3-440d-bd40-71910dbed4a9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "6add041d-94c4-4ef6-b86d-e64a189e2047",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7 · 2026-05-28T10:23:11.146Z_
+
+
+
+Now let me fetch all 9 papers in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e6af8e40-0142-4b3e-ac02-fe44f01c4890",
+  "isSidechain": true,
+  "agentId": "ac237670d36601de5",
+  "requestId": "req_011CbUoUkEyBM2Hq4aRedvb1",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "19ece31b-3dbf-4bf0-a3c5-0f7f6e8d8ed1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "6add041d-94c4-4ef6-b86d-e64a189e2047",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01StrpoSAGhf8aF3kNcNR4zi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 616,
+      "cache_read_input_tokens": 9155,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 616,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-28T10:23:13.567Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01AFt1AaWaG7ZAqTx8ZvHtQt`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2502.05567",
+  "prompt": "Extract the following details from this arXiv page: 1) Full exact title, 2) All authors listed, 3) Submission date or publication date, 4) Venue if published (conference/journal) or if it's an arXiv preprint, 5) The full abstract text, 6) Any mentions of domain-specific analysis, cross-domain evaluation, or per-domain error analysis in the abstract."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "19ece31b-3dbf-4bf0-a3c5-0f7f6e8d8ed1",
+  "isSidechain": true,
+  "agentId": "ac237670d36601de5",
+  "requestId": "req_011CbUoUkEyBM2Hq4aRedvb1",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "2e87afca-491f-41aa-978c-be2ea8b3ce95",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "6add041d-94c4-4ef6-b86d-e64a189e2047",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01StrpoSAGhf8aF3kNcNR4zi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 616,
+      "cache_read_input_tokens": 9155,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 616,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-28T10:23:14.970Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01DqtPNJ25WnsEhEB1nPnnsa`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2510.24592",
+  "prompt": "Extract the following details from this arXiv page: 1) Full exact title, 2) All authors listed, 3) Submission date or publication date, 4) Venue if published (conference/journal) or if it's an arXiv preprint, 5) The full abstract text, 6) Any mentions of domain-specific analysis, cross-domain evaluation, or per-domain error analysis in the abstract."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2e87afca-491f-41aa-978c-be2ea8b3ce95",
+  "isSidechain": true,
+  "agentId": "ac237670d36601de5",
+  "requestId": "req_011CbUoUkEyBM2Hq4aRedvb1",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "fa41b99e-7072-4813-aed4-7a1a1171536d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "6add041d-94c4-4ef6-b86d-e64a189e2047",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01StrpoSAGhf8aF3kNcNR4zi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 616,
+      "cache_read_input_tokens": 9155,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 616,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-28T10:23:16.063Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01Ho3VxQMgQpcA3b48SFGUwK`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2508.18914",
+  "prompt": "Extract the following details from this arXiv page: 1) Full exact title, 2) All authors listed, 3) Submission date or publication date, 4) Venue if published (conference/journal) or if it's an arXiv preprint, 5) The full abstract text, 6) Any mentions of domain-specific analysis, cross-domain evaluation, or per-domain error analysis in the abstract."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fa41b99e-7072-4813-aed4-7a1a1171536d",
+  "isSidechain": true,
+  "agentId": "ac237670d36601de5",
+  "requestId": "req_011CbUoUkEyBM2Hq4aRedvb1",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "e9c7b00a-0ce2-4bc6-b3d6-a2114f530ffb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "6add041d-94c4-4ef6-b86d-e64a189e2047",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01StrpoSAGhf8aF3kNcNR4zi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 616,
+      "cache_read_input_tokens": 9155,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 616,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-28T10:23:16.835Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_015wGr4ubW3GN5CMELGWkFLU`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2508.06931",
+  "prompt": "Extract the following details from this arXiv page: 1) Full exact title, 2) All authors listed, 3) Submission date or publication date, 4) Venue if published (conference/journal) or if it's an arXiv preprint, 5) The full abstract text, 6) Any mentions of domain-specific analysis, cross-domain evaluation, or per-domain error analysis in the abstract."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e9c7b00a-0ce2-4bc6-b3d6-a2114f530ffb",
+  "isSidechain": true,
+  "agentId": "ac237670d36601de5",
+  "requestId": "req_011CbUoUkEyBM2Hq4aRedvb1",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "ed759f48-fc08-4831-a42c-ca285ce5d7dc",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "6add041d-94c4-4ef6-b86d-e64a189e2047",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01StrpoSAGhf8aF3kNcNR4zi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 616,
+      "cache_read_input_tokens": 9155,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 616,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-28T10:23:18.266Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01Y74fiD1E9o3uEXXTe5sfnG`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2604.25031",
+  "prompt": "Extract the following details from this arXiv page: 1) Full exact title, 2) All authors listed, 3) Submission date or publication date, 4) Venue if published (conference/journal) or if it's an arXiv preprint, 5) The full abstract text, 6) Any mentions of domain-specific analysis, cross-domain evaluation, or per-domain error analysis in the abstract."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ed759f48-fc08-4831-a42c-ca285ce5d7dc",
+  "isSidechain": true,
+  "agentId": "ac237670d36601de5",
+  "requestId": "req_011CbUoUkEyBM2Hq4aRedvb1",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "14e9b767-c93c-4499-b663-66feaf9f6718",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "6add041d-94c4-4ef6-b86d-e64a189e2047",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01StrpoSAGhf8aF3kNcNR4zi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 616,
+      "cache_read_input_tokens": 9155,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 616,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-28T10:23:19.207Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_016ERwJVZZ4dzKcWDS7GmNkA`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2510.00732",
+  "prompt": "Extract the following details from this arXiv page: 1) Full exact title, 2) All authors listed, 3) Submission date or publication date, 4) Venue if published (conference/journal) or if it's an arXiv preprint, 5) The full abstract text, 6) Any mentions of domain-specific analysis, cross-domain evaluation, or per-domain error analysis in the abstract."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "14e9b767-c93c-4499-b663-66feaf9f6718",
+  "isSidechain": true,
+  "agentId": "ac237670d36601de5",
+  "requestId": "req_011CbUoUkEyBM2Hq4aRedvb1",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "3a485b60-71cc-4333-80d6-7991c459d7a3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "6add041d-94c4-4ef6-b86d-e64a189e2047",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01StrpoSAGhf8aF3kNcNR4zi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 616,
+      "cache_read_input_tokens": 9155,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 616,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-28T10:23:20.621Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01TJ1K9Xa9qmhDknopKihSNH`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2602.01365",
+  "prompt": "Extract the following details from this arXiv page: 1) Full exact title, 2) All authors listed, 3) Submission date or publication date, 4) Venue if published (conference/journal) or if it's an arXiv preprint, 5) The full abstract text, 6) Any mentions of domain-specific analysis, cross-domain evaluation, or per-domain error analysis in the abstract."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3a485b60-71cc-4333-80d6-7991c459d7a3",
+  "isSidechain": true,
+  "agentId": "ac237670d36601de5",
+  "requestId": "req_011CbUoUkEyBM2Hq4aRedvb1",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "259f93ae-430e-4214-ad5f-0dc639b62936",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "6add041d-94c4-4ef6-b86d-e64a189e2047",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01StrpoSAGhf8aF3kNcNR4zi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 616,
+      "cache_read_input_tokens": 9155,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 616,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-28T10:23:20.871Z_
+
+<details><summary>↩ Tool result · `toolu_01AFt1AaWaG7ZAqTx8ZvHtQt`</summary>
+
+```text
+# ATLAS Paper Details
+
+**1) Full Exact Title:**
+"ATLAS: Autoformalizing Theorems through Lifting, Augmentation, and Synthesis of Data"
+
+**2) All Authors Listed:**
+Xiaoyang Liu, Kangjie Bao, Jiashuo Zhang, Yunqi Liu, Yu Chen, Yuntian Liu, Yang Jiao, Tao Luo
+
+**3) Submission/Publication Date:**
+Submitted February 8, 2025; last revised October 1, 2025 (v3)
+
+**4) Venue:**
+Accepted to NeurIPS 2025 (conference proceedings)
+
+**5) Full Abstract:**
+"Autoformalization, the automatic translation of mathematical content from natural language into machine-verifiable formal languages, has seen significant progress driven by advances in large language models (LLMs). Nonetheless, a primary barrier to further improvements is the limited availability of parallel corpora that map informal mathematical text to its formal counterpart. To address this limitation, we propose ATLAS (Autoformalizing Theorems through Lifting, Augmentation, and Synthesis of Data), a novel data generation framework designed to produce large-scale, high-quality parallel corpora of theorem statements. Distinct from prior approaches, ATLAS begins with a concept repository, accelerates the improvement of the student model through expert iteration combined with knowledge distillation, and introduces two novel augmentation strategies that exploit the structural characteristics of formal languages. Running the proposed ATLAS framework for 10 iterations, we construct an undergraduate-level dataset of 117k theorem statements and develop the ATLAS Translator by fine-tuning Llama3.1-8B-Instruct with LoRA. This model establishes a new state of the art, demonstrating statistically significant improvements over both the Herald Translator and the Kimina-Autoformalizer across all benchmarks (p<0.05, two-sided t-test). Furthermore, we demonstrate that the full-parameter fine-tuning of a stronger base model on the ATLAS dataset leads to superior performance. The datasets, model, and code are available at [this https URL](https://github.com/XiaoyangLiu-sjtu/ATLAS)."
+
+**6) Domain-Specific Analysis Mentions:**
+None. The abstract does not mention domain-specific analysis, cross-domain evaluation, or per-domain error analysis.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2e87afca-491f-41aa-978c-be2ea8b3ce95",
+  "isSidechain": true,
+  "promptId": "949fce33-07bd-4a5e-9cb4-aa8ea38faeec",
+  "agentId": "ac237670d36601de5",
+  "type": "user",
+  "uuid": "3b7ba7d5-241c-4303-8298-36732424d09a",
+  "sourceToolAssistantUUID": "2e87afca-491f-41aa-978c-be2ea8b3ce95",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "6add041d-94c4-4ef6-b86d-e64a189e2047",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-28T10:23:21.563Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_017vN6LNFcanyeVaQDKQ2rR9`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2406.01940",
+  "prompt": "Extract the following details from this arXiv page: 1) Full exact title, 2) All authors listed, 3) Submission date or publication date, 4) Venue if published (conference/journal) or if it's an arXiv preprint, 5) The full abstract text, 6) Any mentions of domain-specific analysis, cross-domain evaluation, or per-domain error analysis in the abstract."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3b7ba7d5-241c-4303-8298-36732424d09a",
+  "isSidechain": true,
+  "agentId": "ac237670d36601de5",
+  "requestId": "req_011CbUoUkEyBM2Hq4aRedvb1",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "2ea8089d-8679-4a4b-8974-553759b4ef52",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "6add041d-94c4-4ef6-b86d-e64a189e2047",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01StrpoSAGhf8aF3kNcNR4zi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 616,
+      "cache_read_input_tokens": 9155,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 616,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-28T10:23:22.065Z_
+
+<details><summary>↩ Tool result · `toolu_01Ho3VxQMgQpcA3b48SFGUwK`</summary>
+
+```text
+# FormaRL Paper Details
+
+**1) Full Exact Title:**
+"FormaRL: Enhancing Autoformalization with no Labeled Data"
+
+**2) All Authors Listed:**
+- Yanxing Huang
+- Xinling Jin
+- Sijie Liang
+- Peng Li
+- Yang Liu
+
+**3) Submission Date:**
+August 26, 2025
+
+**4) Venue:**
+Conference paper at COLM2025 (Conference on Language Modeling)
+
+**5) Full Abstract Text:**
+Autoformalization presents challenges due to limited datasets and inefficient approaches. The researchers introduce a reinforcement learning framework requiring minimal unlabeled data. Their method combines syntax validation via Lean compiler with consistency evaluation using large language models to compute rewards, employing the GRPO algorithm for model updates. They also created "uproof," a mathematics dataset from undergraduate materials. Results demonstrate substantial gains: increasing pass@1 accuracy from 4.04% to 26.15% on ProofNet and 2.4% to 9.6% on uproof using only 859 unlabeled examples. The approach also shows improved out-of-distribution performance on uproof.
+
+**6) Domain-Specific Analysis Mentions:**
+The abstract does not explicitly mention domain-specific analysis, cross-domain evaluation, or per-domain error analysis. It references performance on two datasets (ProofNet and uproof) but does not frame this as systematic domain analysis.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e9c7b00a-0ce2-4bc6-b3d6-a2114f530ffb",
+  "isSidechain": true,
+  "promptId": "949fce33-07bd-4a5e-9cb4-aa8ea38faeec",
+  "agentId": "ac237670d36601de5",
+  "type": "user",
+  "uuid": "17c41768-dbdb-4e0f-9075-519859bcf8d0",
+  "sourceToolAssistantUUID": "e9c7b00a-0ce2-4bc6-b3d6-a2114f530ffb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "6add041d-94c4-4ef6-b86d-e64a189e2047",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-28T10:23:22.554Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01RwJsQvzyuMxMVBcEysxEM5`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2504.21801",
+  "prompt": "Extract the following details from this arXiv page: 1) Full exact title, 2) All authors listed, 3) Submission date or publication date, 4) Venue if published (conference/journal) or if it's an arXiv preprint, 5) The full abstract text, 6) Any mentions of domain-specific analysis, cross-domain evaluation, or per-domain error analysis in the abstract."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "17c41768-dbdb-4e0f-9075-519859bcf8d0",
+  "isSidechain": true,
+  "agentId": "ac237670d36601de5",
+  "requestId": "req_011CbUoUkEyBM2Hq4aRedvb1",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "70f6956b-d3e9-4c69-8942-89b29a76e7af",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "6add041d-94c4-4ef6-b86d-e64a189e2047",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01StrpoSAGhf8aF3kNcNR4zi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 616,
+      "cache_read_input_tokens": 9155,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 616,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-28T10:23:23.272Z_
+
+<details><summary>↩ Tool result · `toolu_01DqtPNJ25WnsEhEB1nPnnsa`</summary>
+
+```text
+# ReForm Paper Details
+
+**1) Full Exact Title:**
+"ReForm: Reflective Autoformalization with Prospective Bounded Sequence Optimization"
+
+**2) All Authors Listed:**
+Guoxin Chen, Jing Wu, Xinjie Chen, Wayne Xin Zhao, Ruihua Song, Chengxi Li, Kai Fan, Dayiheng Liu, Minpeng Liao
+
+**3) Submission/Publication Date:**
+Submitted October 28, 2025; camera-ready version for ICLR 2026 (last revised February 10, 2026)
+
+**4) Venue:**
+ICLR 2026 (International Conference on Learning Representations 2026)
+
+**5) Full Abstract:**
+"Autoformalization, which translates natural language mathematics into machine-verifiable formal statements, is critical for using formal mathematical reasoning to solve math problems stated in natural language. While Large Language Models can generate syntactically correct formal statements, they often fail to preserve the original problem's semantic intent. This limitation arises from the LLM approaches' treating autoformalization as a simplistic translation task which lacks mechanisms for self-reflection and iterative refinement that human experts naturally employ. To address these issues, we propose ReForm, a Reflective Autoformalization method that tightly integrates semantic consistency evaluation into the autoformalization process. This enables the model to iteratively generate formal statements, assess its semantic fidelity, and self-correct identified errors through progressive refinement. To effectively train this reflective model, we introduce Prospective Bounded Sequence Optimization (PBSO), which employs different rewards at different sequence positions to ensure that the model develops both accurate autoformalization and correct semantic validations, preventing superficial critiques that would undermine the purpose of reflection. Extensive experiments across four autoformalization benchmarks demonstrate that ReForm achieves an average improvement of 22.6 percentage points over the strongest baselines. To further ensure evaluation reliability, we introduce ConsistencyCheck, a benchmark of 859 expert-annotated items that not only validates LLMs as judges but also reveals that autoformalization is inherently difficult: even human experts produce semantic errors in up to 38.5% of cases."
+
+**6) Domain-Specific Analysis Mentions:**
+The abstract mentions "four autoformalization benchmarks" for evaluation but does not specify per-domain breakdowns or cross-domain comparative analysis within the abstract itself.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fa41b99e-7072-4813-aed4-7a1a1171536d",
+  "isSidechain": true,
+  "promptId": "949fce33-07bd-4a5e-9cb4-aa8ea38faeec",
+  "agentId": "ac237670d36601de5",
+  "type": "user",
+  "uuid": "039464f9-7bec-47b8-b5a6-c53f50a6f03b",
+  "sourceToolAssistantUUID": "fa41b99e-7072-4813-aed4-7a1a1171536d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "6add041d-94c4-4ef6-b86d-e64a189e2047",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-28T10:23:24.451Z_
+
+<details><summary>↩ Tool result · `toolu_01Y74fiD1E9o3uEXXTe5sfnG`</summary>
+
+```text
+# Paper Details Extraction
+
+**1) Full Exact Title:**
+"Faithful Autoformalization via Roundtrip Verification and Repair"
+
+**2) All Authors Listed:**
+- Daneshvar Amrollahi
+- Jerry Lopez
+- Clark Barrett
+
+**3) Submission/Publication Date:**
+Submitted April 27, 2026; last revised May 9, 2026 (version 2)
+
+**4) Venue:**
+arXiv preprint (Computer Science > Computation and Language)
+
+**5) Full Abstract Text:**
+"When an LLM formalizes natural language, how do we know the output is faithful? We propose a roundtrip verification approach which does not require ground-truth annotations: formalize a statement, translate the result back to natural language, re-formalize, and use a formal tool to check logical equivalence. When the two formalizations agree, this provides evidence of a faithful formalization. When they disagree, a stage-level diagnosis localizes the error to a specific translation step, and a scoped repair operator attempts to correct that step. We evaluate the framework on two statutory domains (the Texas Transportation Code and the Texas Parks and Wildlife Code) using two LLMs (Claude Opus~4.6 and GPT-5.2) with three repair baselines. Diagnosis-guided scoped repair is the most effective method, with effectiveness contingent on the reliability of the diagnosis function. Across both domains and both models, under our full repair system, rules that fail the equivalence check show 1.4x-2.5x more NLI drift than rules that pass it."
+
+**6) Domain-Specific Analysis Mentions:**
+The abstract specifies evaluation across "two statutory domains" and reports comparative metrics for "both domains and both models," indicating per-domain analysis of the repair system's effectiveness.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "14e9b767-c93c-4499-b663-66feaf9f6718",
+  "isSidechain": true,
+  "promptId": "949fce33-07bd-4a5e-9cb4-aa8ea38faeec",
+  "agentId": "ac237670d36601de5",
+  "type": "user",
+  "uuid": "f4cdcafe-ea1b-4b04-8383-62f6ab01d226",
+  "sourceToolAssistantUUID": "14e9b767-c93c-4499-b663-66feaf9f6718",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "6add041d-94c4-4ef6-b86d-e64a189e2047",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-28T10:23:25.691Z_
+
+<details><summary>↩ Tool result · `toolu_015wGr4ubW3GN5CMELGWkFLU`</summary>
+
+```text
+# arXiv Paper Details
+
+**1) Full Exact Title:**
+"Automated Formalization via Conceptual Retrieval-Augmented LLMs"
+
+**2) All Authors Listed:**
+Wangyue Lu, Lun Du, Sirui Li, Ke Weng, Haozhe Sun, Hengyu Liu, Minghe Yu, Tiancheng Zhang, Ge Yu
+
+**3) Submission/Publication Date:**
+Submitted August 9, 2025; last revised March 21, 2026 (v2)
+
+**4) Venue:**
+arXiv preprint (arXiv:2508.06931 [cs.AI])
+
+**5) Full Abstract:**
+"Interactive theorem provers (ITPs) require manual formalization, which is labor-intensive and demands expert knowledge. While automated formalization offers a potential solution, it faces two major challenges: model hallucination (e.g., undefined predicates, symbol misuse, and version incompatibility) and the semantic gap caused by ambiguous or missing premises in natural language descriptions. To address these issues, we propose CRAMF, a Concept-driven Retrieval-Augmented Mathematical Formalization framework. CRAMF enhances LLM-based autoformalization by retrieving formal definitions of core mathematical concepts, providing contextual grounding during code generation. However, applying retrieval-augmented generation (RAG) in this setting is non-trivial due to the lack of structured knowledge bases, the polymorphic nature of mathematical concepts, and the high precision required in formal retrieval. We introduce a framework for automatically constructing a concept-definition knowledge base from Mathlib4, the standard mathematical library for the Lean 4 theorem prover, indexing over 26,000 formal definitions and 1,000+ core mathematical concepts. To address conceptual polymorphism, we propose contextual query augmentation with domain- and application-level signals. In addition, we design a dual-channel hybrid retrieval strategy with reranking to ensure accurate and relevant definition retrieval. Experiments on miniF2F, ProofNet, and our newly proposed AdvancedMath benchmark show that CRAMF can be seamlessly integrated into LLM-based autoformalizers, yielding consistent improvements in translation accuracy, achieving up to 62.1% and an average of 29.9% relative improvement."
+
+**6) Domain-Specific Analysis Mentions:**
+The abstract mentions "domain- and application-level signals" as part of their contextual query augmentation approach, and evaluates performance across multiple benchmarks (miniF2F, ProofNet, AdvancedMath).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ed759f48-fc08-4831-a42c-ca285ce5d7dc",
+  "isSidechain": true,
+  "promptId": "949fce33-07bd-4a5e-9cb4-aa8ea38faeec",
+  "agentId": "ac237670d36601de5",
+  "type": "user",
+  "uuid": "94a9d69c-b825-422c-8060-51a5d7727311",
+  "sourceToolAssistantUUID": "ed759f48-fc08-4831-a42c-ca285ce5d7dc",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "6add041d-94c4-4ef6-b86d-e64a189e2047",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-28T10:23:26.231Z_
+
+<details><summary>↩ Tool result · `toolu_017vN6LNFcanyeVaQDKQ2rR9`</summary>
+
+```text
+# Paper Details Extraction
+
+**1) Full Exact Title:**
+"Process-Driven Autoformalization in Lean 4"
+
+**2) All Authors Listed:**
+Jianqiao Lu, Yingjia Wan, Zhengying Liu, Yinya Huang, Jing Xiong, Chengwu Liu, Jianhao Shen, Hui Jin, Jipeng Zhang, Haiming Wang, Zhicheng Yang, Jing Tang, Zhijiang Guo
+
+**3) Submission/Publication Date:**
+Submitted June 4, 2024; Last revised October 14, 2024 (v2)
+
+**4) Venue:**
+arXiv preprint (arXiv:2406.01940)
+
+**5) Full Abstract:**
+The authors present research on converting natural language mathematics into formal languages. They introduce a benchmark called FormL4 for evaluating language models' autoformalization capabilities in Lean 4, along with a Process-Supervised Verifier model. The work demonstrates that their PSV approach improves formalization accuracy with less filtered training data, showing stronger gains when trained on data with detailed process information.
+
+**6) Domain-Specific Analysis:**
+The abstract contains no mentions of domain-specific analysis, cross-domain evaluation, or per-domain error analysis. The focus remains on Lean 4 formalization capabilities and the PSV methodology.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2ea8089d-8679-4a4b-8974-553759b4ef52",
+  "isSidechain": true,
+  "promptId": "949fce33-07bd-4a5e-9cb4-aa8ea38faeec",
+  "agentId": "ac237670d36601de5",
+  "type": "user",
+  "uuid": "c1ce3447-0324-4aa9-8556-59f3b26b58f3",
+  "sourceToolAssistantUUID": "2ea8089d-8679-4a4b-8974-553759b4ef52",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "6add041d-94c4-4ef6-b86d-e64a189e2047",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-28T10:23:26.259Z_
+
+<details><summary>↩ Tool result · `toolu_01TJ1K9Xa9qmhDknopKihSNH`</summary>
+
+```text
+# arXiv Paper Details
+
+**1) Full Title:**
+"When Domains Interact: Asymmetric and Order-Sensitive Cross-Domain Effects in Reinforcement Learning for Reasoning"
+
+**2) Authors:**
+Wang Yang, Shouren Wang, Chaoda Song, Chuang Ma, Xinpeng Li, Nengbo Wang, Kaixiong Zhou, Vipin Chaudhary, Xiaotian Han
+
+**3) Submission Date:**
+February 1, 2026
+
+**4) Venue:**
+arXiv preprint (cs.LG - Computer Science, Machine Learning)
+
+**5) Full Abstract:**
+The paper examines how "Group Relative Policy Optimization (GRPO) has become a key technique for improving reasoning abilities in large language models, yet its behavior under different domain sequencing strategies is poorly understood." The researchers systematically analyzed training-order effects across math, science, logic, and puzzle reasoning tasks. Key findings include: single-domain generalization showing asymmetry (math reasoning improves ~25% from other domains while logic and puzzle show negligible transfer); cross-domain interactions exhibiting order-dependence (math→science achieves 83%/41% versus science→math at 77%/25%); and no universally optimal multi-domain strategy, with performance gaps ranging from 70% to 56%.
+
+**6) Domain-Specific Analysis Mentions:**
+The abstract extensively discusses per-domain analysis, comparing performance across math, science, logic, and puzzle domains, and emphasizes that findings demonstrate "pronounced asymmetry, order sensitivity, and strategy dependence, highlighting the necessity of domain-aware and order-aware training design."
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "259f93ae-430e-4214-ad5f-0dc639b62936",
+  "isSidechain": true,
+  "promptId": "949fce33-07bd-4a5e-9cb4-aa8ea38faeec",
+  "agentId": "ac237670d36601de5",
+  "type": "user",
+  "uuid": "9ee9610e-b4cb-4fc0-9435-9233820a02fb",
+  "sourceToolAssistantUUID": "259f93ae-430e-4214-ad5f-0dc639b62936",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "6add041d-94c4-4ef6-b86d-e64a189e2047",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-28T10:23:27.024Z_
+
+<details><summary>↩ Tool result · `toolu_016ERwJVZZ4dzKcWDS7GmNkA`</summary>
+
+```text
+# EvolProver Paper Details
+
+**1) Full Exact Title:**
+"EvolProver: Advancing Automated Theorem Proving by Evolving Formalized Problems via Symmetry and Difficulty"
+
+**2) All Authors Listed:**
+Yuchen Tian, Ruiyuan Huang, Xuanwu Wang, Jing Ma, Zengfeng Huang, Ziyang Luo, Hongzhan Lin, Da Zheng, Lun Du
+
+**3) Submission Date:**
+October 1, 2025
+
+**4) Venue:**
+arXiv preprint (not published in a conference or journal at time of submission)
+
+**5) Full Abstract:**
+"Large Language Models (LLMs) for formal theorem proving have shown significant promise, yet they often lack generalizability and are fragile to even minor transformations of problem statements. To address this limitation, we introduce a novel data augmentation pipeline designed to enhance model robustness from two perspectives: symmetry and difficulty. From the symmetry perspective, we propose two complementary methods: EvolAST, an Abstract Syntax Tree (AST) based approach that targets syntactic symmetry to generate semantically equivalent problem variants, and EvolDomain, which leverages LLMs to address semantic symmetry by translating theorems across mathematical domains. From the difficulty perspective, we propose EvolDifficulty, which uses carefully designed evolutionary instructions to guide LLMs in generating new theorems with a wider range of difficulty. We then use the evolved data to train EvolProver, a 7B-parameter non-reasoning theorem prover. EvolProver establishes a new state-of-the-art (SOTA) on FormalMATH-Lite with a 53.8% pass@32 rate, surpassing all models of comparable size, including reasoning-based models. It also sets new SOTA records for non-reasoning models on MiniF2F-Test (69.8% pass@32), Ineq-Comp-Seed (52.2% pass@32), and Ineq-Comp-Transformed (34.0% pass@32). Ablation studies further confirm our data augmentation pipeline's effectiveness across multiple benchmarks."
+
+**6) Domain-Specific Analysis Mentions:**
+The abstract mentions "translating theorems across mathematical domains" and evaluates performance on multiple benchmarks with varying difficulty levels, suggesting cross-domain evaluation of theorem-proving capabilities.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3a485b60-71cc-4333-80d6-7991c459d7a3",
+  "isSidechain": true,
+  "promptId": "949fce33-07bd-4a5e-9cb4-aa8ea38faeec",
+  "agentId": "ac237670d36601de5",
+  "type": "user",
+  "uuid": "12a13e25-86ef-4d96-96e9-56e4058ac231",
+  "sourceToolAssistantUUID": "3a485b60-71cc-4333-80d6-7991c459d7a3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "6add041d-94c4-4ef6-b86d-e64a189e2047",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-28T10:23:31.409Z_
+
+<details><summary>↩ Tool result · `toolu_01RwJsQvzyuMxMVBcEysxEM5`</summary>
+
+```text
+# Paper Details Extraction
+
+**1) Full Exact Title:**
+"DeepSeek-Prover-V2: Advancing Formal Mathematical Reasoning via Reinforcement Learning for Subgoal Decomposition"
+
+**2) All Authors Listed:**
+Z.Z. Ren, Zhihong Shao, Junxiao Song, Huajian Xin, Haocheng Wang, Wanjia Zhao, Liyue Zhang, Zhe Fu, Qihao Zhu, Dejian Yang, Z.F. Wu, Zhibin Gou, Shirong Ma, Hongxuan Tang, Yuxuan Liu, Wenjun Gao, Daya Guo, Chong Ruan
+
+**3) Submission/Publication Date:**
+Submitted April 30, 2025; last revised July 18, 2025
+
+**4) Venue:**
+arXiv preprint (arXiv:2504.21801); categorized under Computer Science > Computation and Language (cs.CL) and Artificial Intelligence (cs.AI)
+
+**5) Full Abstract:**
+"We introduce DeepSeek-Prover-V2, an open-source large language model designed for formal theorem proving in Lean 4, with initialization data collected through a recursive theorem proving pipeline powered by DeepSeek-V3. The cold-start training procedure begins by prompting DeepSeek-V3 to decompose complex problems into a series of subgoals. The proofs of resolved subgoals are synthesized into a chain-of-thought process, combined with DeepSeek-V3's step-by-step reasoning, to create an initial cold start for reinforcement learning. This process enables us to integrate both informal and formal mathematical reasoning into a unified model. The resulting model, DeepSeek-Prover-V2-671B, achieves state-of-the-art performance in neural theorem proving, reaching 88.9% pass ratio on the MiniF2F-test and solving 49 out of 658 problems from PutnamBench. In addition to standard benchmarks, we introduce ProverBench, a collection of 325 formalized problems, to enrich our evaluation, including 15 selected problems from the recent AIME competitions (years 24-25). Further evaluation on these 15 AIME problems shows that the model successfully solves 6 of them. In comparison, DeepSeek-V3 solves 8 of these problems using majority voting, highlighting that the gap between formal and informal mathematical reasoning in large language models is substantially narrowing."
+
+**6) Domain-Specific Analysis Mentions:**
+The abstract does not contain mentions of domain-specific analysis, cross-domain evaluation, or per-domain error analysis. It focuses on benchmark performance across unified mathematical reasoning tasks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "70f6956b-d3e9-4c69-8942-89b29a76e7af",
+  "isSidechain": true,
+  "promptId": "949fce33-07bd-4a5e-9cb4-aa8ea38faeec",
+  "agentId": "ac237670d36601de5",
+  "type": "user",
+  "uuid": "1cc4018a-e798-4efb-b506-e68bd1ed7aca",
+  "sourceToolAssistantUUID": "70f6956b-d3e9-4c69-8942-89b29a76e7af",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "6add041d-94c4-4ef6-b86d-e64a189e2047",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26 · 2026-05-28T10:28:32.687Z_
+
+Here are the structured findings for all 9 papers:
+
+---
+
+## Paper 1: ATLAS
+
+- **Full Title:** "ATLAS: Autoformalizing Theorems through Lifting, Augmentation, and Synthesis of Data"
+- **Authors:** Xiaoyang Liu et al. (8 authors)
+- **Date / Venue:** Submitted Feb 2025; accepted at **NeurIPS 2025**
+- **Key Contribution:** Proposes a data generation framework using expert iteration, knowledge distillation, and two novel augmentation strategies exploiting structural characteristics of formal languages to build a 117k-statement parallel corpus, achieving new SOTA on autoformalization benchmarks.
+- **Domain-Specific Analysis:** None mentioned in the abstract. No cross-domain or per-domain error analysis.
+
+---
+
+## Paper 2: ReForm
+
+- **Full Title:** "ReForm: Reflective Autoformalization with Prospective Bounded Sequence Optimization"
+- **Authors:** Guoxin Chen et al. (9 authors)
+- **Date / Venue:** Submitted Oct 2025; accepted at **ICLR 2026**
+- **Key Contribution:** Introduces a reflective autoformalization method that integrates semantic consistency evaluation into the generation loop, enabling iterative self-correction, achieving +22.6 percentage point average improvement over strongest baselines across four benchmarks.
+- **Domain-Specific Analysis:** Evaluates on four autoformalization benchmarks but no explicit per-domain breakdown or cross-domain analysis is described in the abstract.
+
+---
+
+## Paper 3: FormaRL
+
+- **Full Title:** "FormaRL: Enhancing Autoformalization with no Labeled Data"
+- **Authors:** Yanxing Huang et al. (5 authors)
+- **Date / Venue:** Submitted Aug 2025; conference paper at **COLM 2025**
+- **Key Contribution:** Proposes a reinforcement learning framework requiring only unlabeled data, combining Lean compiler syntax validation with LLM-based consistency evaluation as rewards (using GRPO), improving pass@1 from 4.04% to 26.15% on ProofNet with only 859 unlabeled examples.
+- **Domain-Specific Analysis:** Evaluates on ProofNet and a new undergraduate-level "uproof" dataset and reports improved out-of-distribution performance, but no systematic per-domain error analysis is mentioned.
+
+---
+
+## Paper 4: CRAMF
+
+- **Full Title:** "Automated Formalization via Conceptual Retrieval-Augmented LLMs"
+- **Authors:** Wangyue Lu et al. (9 authors)
+- **Date / Venue:** Submitted Aug 2025, revised Mar 2026; **arXiv preprint 2025**
+- **Key Contribution:** Proposes CRAMF, a retrieval-augmented framework that retrieves formal definitions of core mathematical concepts from a knowledge base automatically constructed from Mathlib4 (26,000+ definitions), using dual-channel hybrid retrieval with reranking to ground autoformalization and achieving up to 62.1% relative improvement.
+- **Domain-Specific Analysis:** Explicitly mentions "domain- and application-level signals" for contextual query augmentation and evaluates across three benchmarks (miniF2F, ProofNet, AdvancedMath), suggesting some domain-aware design, though per-domain error analysis is not detailed in the abstract.
+
+---
+
+## Paper 5: Faithful Autoformalization via Roundtrip
+
+- **Full Title:** "Faithful Autoformalization via Roundtrip Verification and Repair"
+- **Authors:** Daneshvar Amrollahi et al. (3 authors: Amrollahi, Lopez, Barrett)
+- **Date / Venue:** Submitted Apr 2026; **arXiv preprint 2026**
+- **Key Contribution:** Proposes a roundtrip verification approach (formalize -> back-translate -> re-formalize -> check logical equivalence) that requires no ground-truth annotations, with diagnosis-guided scoped repair localizing errors to specific translation steps, showing 1.4x-2.5x more NLI drift in failing rules.
+- **Domain-Specific Analysis:** **Yes -- explicitly domain-focused.** Evaluates on two statutory domains (Texas Transportation Code and Texas Parks and Wildlife Code) and reports per-domain, per-model results, providing direct cross-domain comparison in a non-mathematical (legal/statutory) setting.
+
+---
+
+## Paper 6: EvolProver
+
+- **Full Title:** "EvolProver: Advancing Automated Theorem Proving by Evolving Formalized Problems via Symmetry and Difficulty"
+- **Authors:** Yuchen Tian et al. (9 authors)
+- **Date / Venue:** Submitted Oct 2025; **arXiv preprint 2025**
+- **Key Contribution:** Introduces a data augmentation pipeline for theorem proving with three strategies -- EvolAST (syntactic symmetry via AST transformations), EvolDomain (cross-domain translation of theorems), and EvolDifficulty (difficulty-graded evolution) -- achieving 53.8% pass@32 SOTA on FormalMATH-Lite for non-reasoning 7B models.
+- **Domain-Specific Analysis:** **Yes -- directly relevant.** EvolDomain explicitly translates theorems *across mathematical domains* as a core augmentation strategy, making cross-domain transfer a key design component. Ablation studies confirm effectiveness across multiple benchmarks.
+
+---
+
+## Paper 7: When Domains Interact
+
+- **Full Title:** "When Domains Interact: Asymmetric and Order-Sensitive Cross-Domain Effects in Reinforcement Learning for Reasoning"
+- **Authors:** Wang Yang et al. (10 authors)
+- **Date / Venue:** Submitted Feb 2026; **arXiv preprint 2026**
+- **Key Contribution:** Systematically analyzes training-order effects in GRPO across math, science, logic, and puzzle domains, finding pronounced asymmetry (math benefits ~25% from other domains while logic/puzzle show negligible transfer) and order sensitivity (math->science at 83%/41% vs. science->math at 77%/25%).
+- **Domain-Specific Analysis:** **Yes -- this is the central focus.** The entire paper is a per-domain analysis of cross-domain transfer effects in RL for reasoning, with detailed asymmetric transfer matrices, order-sensitivity findings, and domain-aware training design recommendations.
+
+---
+
+## Paper 8: FormL4 / Process-Driven Autoformalization
+
+- **Full Title:** "Process-Driven Autoformalization in Lean 4"
+- **Authors:** Jianqiao Lu et al. (13 authors)
+- **Date / Venue:** Submitted Jun 2024, revised Oct 2024; **arXiv preprint 2024**
+- **Key Contribution:** Introduces FormL4, a benchmark for evaluating autoformalization in Lean 4, along with a Process-Supervised Verifier (PSV) model that improves formalization accuracy by training on data with detailed process-level supervision information.
+- **Domain-Specific Analysis:** None mentioned in the abstract. No cross-domain evaluation or per-domain error analysis.
+
+---
+
+## Paper 9: DeepSeek-Prover-V2
+
+- **Full Title:** "DeepSeek-Prover-V2: Advancing Formal Mathematical Reasoning via Reinforcement Learning for Subgoal Decomposition"
+- **Authors:** Z.Z. Ren et al. (18 authors)
+- **Date / Venue:** Submitted Apr 2025, revised Jul 2025; **arXiv preprint 2025**
+- **Key Contribution:** An open-source 671B LLM for Lean 4 theorem proving that uses recursive subgoal decomposition with DeepSeek-V3 and RL to unify informal and formal reasoning, achieving 88.9% on MiniF2F-test and solving 49/658 PutnamBench problems.
+- **Domain-Specific Analysis:** None mentioned in the abstract. Evaluation focuses on unified mathematical reasoning benchmarks (MiniF2F, PutnamBench, ProverBench with AIME problems) without per-domain breakdown.
+
+---
+
+## Summary of Accessibility Issues
+
+- **Paper 2 (2510.24592)** and **Paper 7 (2602.01365)** have arXiv IDs from late 2025 / early 2026 which are unusual numbering; both pages were accessible and returned content.
+- All 9 papers were successfully fetched and verified.
+
+## Papers Most Relevant to Domain-Adaptive Autoformalization
+
+Three papers have significant domain-analysis content:
+1. **Paper 5 (Faithful Autoformalization via Roundtrip)** -- per-domain evaluation on two legal/statutory domains
+2. **Paper 6 (EvolProver)** -- EvolDomain explicitly translates theorems across mathematical domains as augmentation
+3. **Paper 7 (When Domains Interact)** -- entirely focused on cross-domain transfer asymmetry and order sensitivity in RL for reasoning
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1cc4018a-e798-4efb-b506-e68bd1ed7aca",
+  "isSidechain": true,
+  "agentId": "ac237670d36601de5",
+  "requestId": "req_011CbUoWZrh7MKgh1xzP8ojm",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "94921eb6-f4a8-4e29-a7a5-71882de2f58b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "6add041d-94c4-4ef6-b86d-e64a189e2047",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Vq2mDAox71h7LRb7u9255",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6062,
+      "cache_read_input_tokens": 9771,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 6062,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---

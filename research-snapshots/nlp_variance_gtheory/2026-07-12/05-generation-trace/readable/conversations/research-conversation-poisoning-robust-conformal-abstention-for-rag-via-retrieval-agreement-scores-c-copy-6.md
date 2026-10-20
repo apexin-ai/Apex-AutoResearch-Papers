@@ -1,0 +1,3882 @@
+# Research conversation: Poisoning-Robust Conformal Abstention for RAG via Retrieval-Agreement Scores ## Core Problem How can RAG systems abstain
+
+**Reproducibility Budgets for Open-Weight LLM Evaluation: A Generalizability Theory Study of 7–9B Instruction-Tuned Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 56
+- **Recorded user turns:** 1
+- **Tool calls:** 17
+- **Original source:** `logs/chats/exported-trajectories/account-3/6510f1d9-2d0b-4255-86e5-3824feb471a8.jsonl`
+- **Structured JSON:** [`4eeb53644a934977203a.json`](../../sessions/4e/4eeb53644a934977203a.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-30T07:14:19.549Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-30T07:14:19.549Z",
+  "sessionId": "6510f1d9-2d0b-4255-86e5-3824feb471a8",
+  "content": "# Poisoning-Robust Conformal Abstention for RAG via Retrieval-Agreement Scores\n\n## Core Problem\n\nHow can RAG systems abstain from answering with distribution-free correctness guarantees when the retrieval corpus is adversarially poisoned? Corpus poisoning breaks the exchangeability assumption that underlies all existing conformal prediction methods for RAG (TRAQ, C-RAG, Conformal-RAG), yet existing poisoning-robust CP (RPS) addresses calibration-set poisoning—a fundamentally different threat model from test-time retrieval corruption where adversarial documents are injected into the corpus a...\n\n## Research Opportunity\n\nChen et al. (arXiv, Mar 2026) rigorously demonstrated that conformal factuality guarantees for RAG break under distribution shift and produce vacuous outputs at high confidence levels—but proposed no solution, creating a named, citable gap. Simultaneously, the building blocks for a solution have only recently become available: RobustRAG's partition-and-aggregate architecture (SaTML 2026) provides the isolation mechanism, CRC's monotone-loss framework (ICLR 2024) provides the calibration tool, and RPS's majority-vote robustness (ICLR 2025 Spotlight) provides the template for poisoning certificates. The key untried combination is adapting partition-and-vote from calibration poisoning to retrieval corruption: under k-document poisoning, partitioning retrieved passages into K groups ensures at...\n\n## Research Landscape\n\nTRAQ (NAACL 2024) and C-RAG (ICML 2024) established conformal prediction for RAG but assume benign retrieval—Chen et al. (Mar 2026) showed guarantees break under distribution shift with vacuous prediction sets. RobustRAG (SaTML 2026) and ReliabilityRAG (NeurIPS 2025) provide certified RAG defenses via isolate-then-aggregate and NLI-based MIS but offer no abstention fallback. RPS (ICLR 2025 Spotlight) provides poisoning-robust CP via smoothed scores and majority voting but assumes calibration-set poisoning, not test-time retrieval corruption—certificates do not transfer. Conformal-RAG (SIGIR 2025) provides group-conditional coverage but assumes benign retrieval. RSB benchmark (May 2025) found current defenses fail; CorruptRAG (arXiv 2025) achieved high attack success with a single poisoned document. No concurrent work combines conformal abstention with retrieval-poisoning robustness; RAGPart (arXiv 2025) uses passage partitioning for defense but lacks conformal guarantees; Online Confor...\n\n## Proposed Approach\n\nPartition top-n passages into K disjoint groups; generate per-group answers using Qwen3.5-72B via isolated LLM calls; compute inter-group agreement nonconformity scores. Under k-poisoning, at most ceil(k/floor(n/K)) corrupted groups bound TV distance between clean/poisoned score CDFs. Calibrate CRC abstention threshold with TV-inflated quantile for formal coverage certificates. Evaluate on NQ, HotpotQA, MS-MARCO under PoisonedRAG/CorruptRAG attacks against TRAQ, C-RAG, RobustRAG baselines.\n\n## Detailed Description\n\nWe propose PRCA, providing RAG systems distribution-free coverage under adversarial corpus poisoning—filling the gap from Chen et al. (2026) showing conformal RAG methods break under distribution shift. RPS handles calibration poisoning and RobustRAG provides certified defense without abstention; neither bridges to test-time retrieval corruption. PRCA partitions passages into K groups, generates per-group answers via isolated LLM calls (Qwen3.5-72B), and computes agreement nonconformity scores. Under k-poisoning, at most ceil(k/floor(n/K)) groups are corrupted, bounding TV distance between clean and poisoned distributions. CRC with TV-inflated quantile calibrates an abstention threshold with formal certificates. Evaluated on NQ, HotpotQA, MS-MARCO under PoisonedRAG/CorruptRAG attacks against TRAQ, C-RAG, RobustRAG baselines. Key metric: certified coverage at non-vacuous abstention rates under varying poisoning budgets k. Open-source implementations of RobustRAG and RPS exist, reducing engineering risk.\n\n## Key References\n\n- TRAQ: Trustworthy Retrieval Augmented QA via Conformal Prediction (NAACL 2024)\n- C-RAG: Certified Generation Risks for RAG (ICML 2024)\n- Conformal Risk Control (ICLR 2024)\n- Provably Reliable Conformal Prediction Sets under Poisoning (ICLR 2025)\n- Certifiably Robust RAG against Retrieval Corruption (SaTML 2026)\n- ReliabilityRAG (NeurIPS 2025)\n- Is Conformal Factuality for RAG-based LLMs Robust? (arXiv 2026)\n- Conformal-RAG: Conditional Conformal Factuality (SIGIR 2025)\n- CorruptRAG: Practical Poisoning Attacks against RAG (arXiv 2025)\n"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-30T07:14:19.555Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-30T07:14:19.555Z",
+  "sessionId": "6510f1d9-2d0b-4255-86e5-3824feb471a8"
+}
+```
+
+---
+
+## Round 1
+
+54 recorded events
+
+### User
+
+_source line 3 · 2026-05-30T07:14:19.577Z_
+
+# Poisoning-Robust Conformal Abstention for RAG via Retrieval-Agreement Scores
+
+## Core Problem
+
+How can RAG systems abstain from answering with distribution-free correctness guarantees when the retrieval corpus is adversarially poisoned? Corpus poisoning breaks the exchangeability assumption that underlies all existing conformal prediction methods for RAG (TRAQ, C-RAG, Conformal-RAG), yet existing poisoning-robust CP (RPS) addresses calibration-set poisoning—a fundamentally different threat model from test-time retrieval corruption where adversarial documents are injected into the corpus a...
+
+## Research Opportunity
+
+Chen et al. (arXiv, Mar 2026) rigorously demonstrated that conformal factuality guarantees for RAG break under distribution shift and produce vacuous outputs at high confidence levels—but proposed no solution, creating a named, citable gap. Simultaneously, the building blocks for a solution have only recently become available: RobustRAG's partition-and-aggregate architecture (SaTML 2026) provides the isolation mechanism, CRC's monotone-loss framework (ICLR 2024) provides the calibration tool, and RPS's majority-vote robustness (ICLR 2025 Spotlight) provides the template for poisoning certificates. The key untried combination is adapting partition-and-vote from calibration poisoning to retrieval corruption: under k-document poisoning, partitioning retrieved passages into K groups ensures at...
+
+## Research Landscape
+
+TRAQ (NAACL 2024) and C-RAG (ICML 2024) established conformal prediction for RAG but assume benign retrieval—Chen et al. (Mar 2026) showed guarantees break under distribution shift with vacuous prediction sets. RobustRAG (SaTML 2026) and ReliabilityRAG (NeurIPS 2025) provide certified RAG defenses via isolate-then-aggregate and NLI-based MIS but offer no abstention fallback. RPS (ICLR 2025 Spotlight) provides poisoning-robust CP via smoothed scores and majority voting but assumes calibration-set poisoning, not test-time retrieval corruption—certificates do not transfer. Conformal-RAG (SIGIR 2025) provides group-conditional coverage but assumes benign retrieval. RSB benchmark (May 2025) found current defenses fail; CorruptRAG (arXiv 2025) achieved high attack success with a single poisoned document. No concurrent work combines conformal abstention with retrieval-poisoning robustness; RAGPart (arXiv 2025) uses passage partitioning for defense but lacks conformal guarantees; Online Confor...
+
+## Proposed Approach
+
+Partition top-n passages into K disjoint groups; generate per-group answers using Qwen3.5-72B via isolated LLM calls; compute inter-group agreement nonconformity scores. Under k-poisoning, at most ceil(k/floor(n/K)) corrupted groups bound TV distance between clean/poisoned score CDFs. Calibrate CRC abstention threshold with TV-inflated quantile for formal coverage certificates. Evaluate on NQ, HotpotQA, MS-MARCO under PoisonedRAG/CorruptRAG attacks against TRAQ, C-RAG, RobustRAG baselines.
+
+## Detailed Description
+
+We propose PRCA, providing RAG systems distribution-free coverage under adversarial corpus poisoning—filling the gap from Chen et al. (2026) showing conformal RAG methods break under distribution shift. RPS handles calibration poisoning and RobustRAG provides certified defense without abstention; neither bridges to test-time retrieval corruption. PRCA partitions passages into K groups, generates per-group answers via isolated LLM calls (Qwen3.5-72B), and computes agreement nonconformity scores. Under k-poisoning, at most ceil(k/floor(n/K)) groups are corrupted, bounding TV distance between clean and poisoned distributions. CRC with TV-inflated quantile calibrates an abstention threshold with formal certificates. Evaluated on NQ, HotpotQA, MS-MARCO under PoisonedRAG/CorruptRAG attacks against TRAQ, C-RAG, RobustRAG baselines. Key metric: certified coverage at non-vacuous abstention rates under varying poisoning budgets k. Open-source implementations of RobustRAG and RPS exist, reducing engineering risk.
+
+## Key References
+
+- TRAQ: Trustworthy Retrieval Augmented QA via Conformal Prediction (NAACL 2024)
+- C-RAG: Certified Generation Risks for RAG (ICML 2024)
+- Conformal Risk Control (ICLR 2024)
+- Provably Reliable Conformal Prediction Sets under Poisoning (ICLR 2025)
+- Certifiably Robust RAG against Retrieval Corruption (SaTML 2026)
+- ReliabilityRAG (NeurIPS 2025)
+- Is Conformal Factuality for RAG-based LLMs Robust? (arXiv 2026)
+- Conformal-RAG: Conditional Conformal Factuality (SIGIR 2025)
+- CorruptRAG: Practical Poisoning Attacks against RAG (arXiv 2025)
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "3f0512d1-eebd-4e5d-a2ea-3fb317b2870b",
+  "type": "user",
+  "uuid": "850b63eb-e9d9-40fc-8a2b-0fda005adc67",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "6510f1d9-2d0b-4255-86e5-3824feb471a8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-30T07:14:19.576Z_
+
+```json
+{
+  "parentUuid": "850b63eb-e9d9-40fc-8a2b-0fda005adc67",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "80cd2cc2-b684-4878-8b9c-d1c0f3945da2",
+  "timestamp": "2026-05-30T07:14:19.576Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "6510f1d9-2d0b-4255-86e5-3824feb471a8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-30T07:14:19.576Z_
+
+```json
+{
+  "parentUuid": "80cd2cc2-b684-4878-8b9c-d1c0f3945da2",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "39ba3d83-120a-41dd-9a15-e9b2aa5313bc",
+  "timestamp": "2026-05-30T07:14:19.576Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "6510f1d9-2d0b-4255-86e5-3824feb471a8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Poisoning-robust conformal abstention for RAG",
+  "sessionId": "6510f1d9-2d0b-4255-86e5-3824feb471a8"
+}
+```
+
+---
+
+### Assistant
+
+_source line 7 · 2026-05-30T07:14:23.789Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze this proposal as the 补救 agent (remediation agent), focusing exclusively on experimental design and technical execution. I need to first do thorough literature research to understand the current experimental standards in this area before giving any suggestions.
+
+Let me start by searching for the key papers mentioned and understanding what baselines, metrics, and experimental designs are standard in this field.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "39ba3d83-120a-41dd-9a15-e9b2aa5313bc",
+  "isSidechain": false,
+  "requestId": "req_011CbYLhZG9kLYaKFLJAXvfa",
+  "type": "assistant",
+  "uuid": "644a096a-fdbb-4958-90e9-b103ae4f6573",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "6510f1d9-2d0b-4255-86e5-3824feb471a8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NdAoHFy9npHTathAYie9eE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 5695,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 201,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5695,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 201,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 5695,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5695
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-30T07:14:25.320Z_
+
+I need to do thorough pre-research before giving any experimental design feedback. Let me search for the key papers and understand current experimental standards in this area.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "644a096a-fdbb-4958-90e9-b103ae4f6573",
+  "isSidechain": false,
+  "requestId": "req_011CbYLhZG9kLYaKFLJAXvfa",
+  "type": "assistant",
+  "uuid": "3b8f292f-0191-4779-892b-daf00e44d2a8",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "6510f1d9-2d0b-4255-86e5-3824feb471a8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NdAoHFy9npHTathAYie9eE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 5695,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 201,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5695,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 201,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 5695,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5695
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-30T07:14:25.832Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01EVZtkCiTFkRrPYfzjQ6BzH`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3b8f292f-0191-4779-892b-daf00e44d2a8",
+  "isSidechain": false,
+  "requestId": "req_011CbYLhZG9kLYaKFLJAXvfa",
+  "type": "assistant",
+  "uuid": "d26d1986-25ac-4c8d-9c5c-d0a811ad8775",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "6510f1d9-2d0b-4255-86e5-3824feb471a8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NdAoHFy9npHTathAYie9eE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 5695,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 201,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5695,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 201,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 5695,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5695
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-30T07:14:25.838Z_
+
+<details><summary>↩ Tool result · `toolu_01EVZtkCiTFkRrPYfzjQ6BzH`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d26d1986-25ac-4c8d-9c5c-d0a811ad8775",
+  "isSidechain": false,
+  "promptId": "3f0512d1-eebd-4e5d-a2ea-3fb317b2870b",
+  "type": "user",
+  "uuid": "24a0b290-5051-4b70-81f7-4c2b13ea3918",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "d26d1986-25ac-4c8d-9c5c-d0a811ad8775",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "6510f1d9-2d0b-4255-86e5-3824feb471a8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11 · 2026-05-30T07:14:28.527Z_
+
+Now let me conduct my pre-research. I'll search for the key papers and experimental standards in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "24a0b290-5051-4b70-81f7-4c2b13ea3918",
+  "isSidechain": false,
+  "requestId": "req_011CbYLi28Rj9JJxerdU1jhu",
+  "type": "assistant",
+  "uuid": "73a7486a-2efc-4178-b536-d2a01d21aeec",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "6510f1d9-2d0b-4255-86e5-3824feb471a8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PCFsqaWTf3zfhTL81yWet8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 728,
+      "cache_read_input_tokens": 16709,
+      "output_tokens": 95,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 728,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 95,
+          "cache_read_input_tokens": 16709,
+          "cache_creation_input_tokens": 728,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 728
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-30T07:14:28.962Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GQogSFocTZH5TavjGVJBos`</summary>
+
+```json
+{
+  "query": "TRAQ conformal prediction RAG experimental setup baselines metrics NAACL 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "73a7486a-2efc-4178-b536-d2a01d21aeec",
+  "isSidechain": false,
+  "requestId": "req_011CbYLi28Rj9JJxerdU1jhu",
+  "type": "assistant",
+  "uuid": "9875df59-9127-4e55-9410-d7752ef4c9bf",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "6510f1d9-2d0b-4255-86e5-3824feb471a8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PCFsqaWTf3zfhTL81yWet8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 728,
+      "cache_read_input_tokens": 16709,
+      "output_tokens": 95,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 728,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 95,
+          "cache_read_input_tokens": 16709,
+          "cache_creation_input_tokens": 728,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 728
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-30T07:14:34.955Z_
+
+<details><summary>↩ Tool result · `toolu_01GQogSFocTZH5TavjGVJBos`</summary>
+
+```text
+Web search results for query: "TRAQ conformal prediction RAG experimental setup baselines metrics NAACL 2024"
+
+Links: [{"title":"TRAQ: Trustworthy Retrieval Augmented Question Answering via Conformal Prediction - ACL Anthology","url":"https://aclanthology.org/2024.naacl-long.210/"},{"title":"TRAQ: Trustworthy Retrieval Augmented Question Answering via Conformal Prediction","url":"https://arxiv.org/html/2307.04642v2"},{"title":"[PDF] TRAQ: Trustworthy Retrieval Augmented Question Answering via Conformal Prediction | Semantic Scholar","url":"https://www.semanticscholar.org/paper/28e078b52a761cf3fe5941d3428acb7bbf608f21"},{"title":"TRAQ: Trustworthy Retrieval Augmented Question Answering via Conformal Prediction - ADS","url":"https://ui.adsabs.harvard.edu/abs/arXiv:2307.04642"},{"title":"[Quick Review] TRAQ: Trustworthy Retrieval Augmented Question Answering via Conformal Prediction","url":"https://liner.com/review/traq-trustworthy-retrieval-augmented-question-answering-via-conformal-prediction"},{"title":"[2307.04642] TRAQ: Trustworthy Retrieval Augmented Question Answering via Conformal Prediction","url":"https://arxiv.org/abs/2307.04642"},{"title":"Accepted Papers - NAACL-HLT 2024","url":"https://2024.naacl.org/program/accepted_papers/"},{"title":"TRAQ: Trustworthy Retrieval Augmented Question Answering via Conformal   Prediction","url":"https://arxiv.org/pdf/2307.04642"},{"title":"TRAQ: Trustworthy Retrieval Augmented Question Answering via Conformal Prediction | OpenReview","url":"https://openreview.net/forum?id=N-FM_cf9BBXM"}]
+
+I found comprehensive information about the TRAQ paper from NAACL 2024. Here's what I found:
+
+## Overview
+TRAQ: Trustworthy Retrieval Augmented Question Answering via Conformal Prediction was published in the Proceedings of the 2024 Conference of the North American Chapter of the Association for Computational Linguistics (NAACL).
+
+## Core Method
+TRAQ uses conformal prediction, a statistical technique for constructing prediction sets that are guaranteed to contain the semantically correct response with high probability. Additionally, TRAQ leverages Bayesian optimization to minimize the size of the constructed sets.
+
+## Experimental Results
+In an extensive experimental evaluation, TRAQ demonstrates the desired correctness guarantee while reducing prediction set size by 16.2% on average compared to an ablation. TRAQ and TRAQ-P consistently yield smaller prediction sets compared to their ablation counterparts (Bonf and Bonf-P) without Bayesian optimization, especially at higher desired coverage levels (80% and 90%).
+
+## Key Contributions
+TRAQ introduces a novel nonconformity measure that estimates the uncertainty for each semantically distinct meaning and obtains a coverage guarantee at the semantic level.
+
+For detailed information about specific baselines and metrics used in the experimental setup, you can access the full paper at the ACL Anthology link.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9875df59-9127-4e55-9410-d7752ef4c9bf",
+  "isSidechain": false,
+  "promptId": "3f0512d1-eebd-4e5d-a2ea-3fb317b2870b",
+  "type": "user",
+  "uuid": "3776331f-37c7-43f7-bd00-b4af0fe7cc65",
+  "toolUseResult": {
+    "query": "TRAQ conformal prediction RAG experimental setup baselines metrics NAACL 2024",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VbwAPAy3PdRdmWNjDJbXKw",
+        "content": [
+          {
+            "title": "TRAQ: Trustworthy Retrieval Augmented Question Answering via Conformal Prediction - ACL Anthology",
+            "url": "https://aclanthology.org/2024.naacl-long.210/"
+          },
+          {
+            "title": "TRAQ: Trustworthy Retrieval Augmented Question Answering via Conformal Prediction",
+            "url": "https://arxiv.org/html/2307.04642v2"
+          },
+          {
+            "title": "[PDF] TRAQ: Trustworthy Retrieval Augmented Question Answering via Conformal Prediction | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/28e078b52a761cf3fe5941d3428acb7bbf608f21"
+          },
+          {
+            "title": "TRAQ: Trustworthy Retrieval Augmented Question Answering via Conformal Prediction - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/arXiv:2307.04642"
+          },
+          {
+            "title": "[Quick Review] TRAQ: Trustworthy Retrieval Augmented Question Answering via Conformal Prediction",
+            "url": "https://liner.com/review/traq-trustworthy-retrieval-augmented-question-answering-via-conformal-prediction"
+          },
+          {
+            "title": "[2307.04642] TRAQ: Trustworthy Retrieval Augmented Question Answering via Conformal Prediction",
+            "url": "https://arxiv.org/abs/2307.04642"
+          },
+          {
+            "title": "Accepted Papers - NAACL-HLT 2024",
+            "url": "https://2024.naacl.org/program/accepted_papers/"
+          },
+          {
+            "title": "TRAQ: Trustworthy Retrieval Augmented Question Answering via Conformal   Prediction",
+            "url": "https://arxiv.org/pdf/2307.04642"
+          },
+          {
+            "title": "TRAQ: Trustworthy Retrieval Augmented Question Answering via Conformal Prediction | OpenReview",
+            "url": "https://openreview.net/forum?id=N-FM_cf9BBXM"
+          }
+        ]
+      },
+      "I found comprehensive information about the TRAQ paper from NAACL 2024. Here's what I found:\n\n## Overview\nTRAQ: Trustworthy Retrieval Augmented Question Answering via Conformal Prediction was published in the Proceedings of the 2024 Conference of the North American Chapter of the Association for Computational Linguistics (NAACL).\n\n## Core Method\nTRAQ uses conformal prediction, a statistical technique for constructing prediction sets that are guaranteed to contain the semantically correct response with high probability. Additionally, TRAQ leverages Bayesian optimization to minimize the size of the constructed sets.\n\n## Experimental Results\nIn an extensive experimental evaluation, TRAQ demonstrates the desired correctness guarantee while reducing prediction set size by 16.2% on average compared to an ablation. TRAQ and TRAQ-P consistently yield smaller prediction sets compared to their ablation counterparts (Bonf and Bonf-P) without Bayesian optimization, especially at higher desired coverage levels (80% and 90%).\n\n## Key Contributions\nTRAQ introduces a novel nonconformity measure that estimates the uncertainty for each semantically distinct meaning and obtains a coverage guarantee at the semantic level.\n\nFor detailed information about specific baselines and metrics used in the experimental setup, you can access the full paper at the ACL Anthology link."
+    ],
+    "durationSeconds": 5.988185534,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "9875df59-9127-4e55-9410-d7752ef4c9bf",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "6510f1d9-2d0b-4255-86e5-3824feb471a8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-30T07:14:42.346Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019ktD5pHG415abjrBmyWK1a`</summary>
+
+```json
+{
+  "query": "C-RAG certified generation risks RAG ICML 2024 experiments datasets evaluation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3776331f-37c7-43f7-bd00-b4af0fe7cc65",
+  "isSidechain": false,
+  "requestId": "req_011CbYLigorjazASVoQ6EBXi",
+  "type": "assistant",
+  "uuid": "11ff2c9b-e730-4443-a883-30b8997128bc",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "6510f1d9-2d0b-4255-86e5-3824feb471a8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FpAa4XgMcVhrEDx7twmas8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 957,
+      "cache_read_input_tokens": 17437,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 957,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 17437,
+          "cache_creation_input_tokens": 957,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 957
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-30T07:14:50.685Z_
+
+<details><summary>↩ Tool result · `toolu_019ktD5pHG415abjrBmyWK1a`</summary>
+
+```text
+Web search results for query: "C-RAG certified generation risks RAG ICML 2024 experiments datasets evaluation"
+
+Links: [{"title":"GitHub - kangmintong/C-RAG: [ICML 2024] Codes for C-RAG: Certified Generation Risks for Retrieval-Augmented Language Models · GitHub","url":"https://github.com/kangmintong/C-RAG"},{"title":"C-RAG: Certified Generation Risks for Retrieval-Augmented Language Models | OpenReview","url":"https://openreview.net/forum?id=FMa4c5NhOe"},{"title":"C-RAG: Certified Generation Risks for Retrieval-Augmented Language Models - ADS","url":"https://ui.adsabs.harvard.edu/abs/2024arXiv240203181K/abstract"},{"title":"C-RAG: Certified Generation Risks for Retrieval-Augmented Language Models | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/c-rag-certified-generation-risks-retrieval-augmented"},{"title":"C-RAG: Certified Generation Risks for Retrieval-Augmented Language   Models","url":"https://arxiv.org/pdf/2402.03181"},{"title":"C-RAG: Certified Generation Risks for Retrieval-Augmented Language Models - Virtue AI","url":"https://blog.virtueai.com/2024/07/29/c-rag-certified-generation-risks-for-retrieval-augmented-language-models/"},{"title":"ICML Poster C-RAG: Certified Generation Risks for Retrieval-Augmented Language Models","url":"https://icml.cc/virtual/2024/poster/34539"},{"title":"[2402.03181] C-RAG: Certified Generation Risks for Retrieval-Augmented Language Models","url":"https://arxiv.org/abs/2402.03181"},{"title":"C-RAG: certified generation risks for retrieval-augmented ...","url":"https://dl.acm.org/doi/10.5555/3692070.3692994"}]
+
+I've found comprehensive information about C-RAG, which was presented at ICML 2024. Here are the key details:
+
+## Overview
+
+C-RAG is the first framework to certify generation risks for RAG models, providing conformal risk analysis for RAG models and certifying an upper confidence bound of generation risks, referred to as conformal generation risk.
+
+## Key Findings
+
+C-RAG proves that RAG achieves a lower conformal generation risk than that of a single LLM when the quality of the retrieval model and transformer is non-trivial. The framework also provides theoretical guarantees on conformal generation risks for general bounded risk functions under test distribution shifts.
+
+## Evaluation and Datasets
+
+The empirical results demonstrate the soundness and tightness of the conformal generation risk guarantees across four widely-used NLP datasets on four state-of-the-art retrieval models. More specifically, the evaluation includes four widely used NLP datasets: AESLC, CommonGen, DART, and E2E.
+
+## Research Question
+
+The paper addresses whether RAG can indeed lead to low generation risks, how to provide provable guarantees on the generation risks of RAG and vanilla LLMs, and what sufficient conditions enable RAG models to reduce generation risks.
+
+The work was authored by Mintong Kang, Nezihe Merve Gürel, Ning Yu, Dawn Song, and Bo Li, and is available on arXiv and GitHub for reproducibility.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "11ff2c9b-e730-4443-a883-30b8997128bc",
+  "isSidechain": false,
+  "promptId": "3f0512d1-eebd-4e5d-a2ea-3fb317b2870b",
+  "type": "user",
+  "uuid": "ee8bf487-245a-4b20-bfb1-d3ef41525b90",
+  "toolUseResult": {
+    "query": "C-RAG certified generation risks RAG ICML 2024 experiments datasets evaluation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01SiR7YNYBecWRALCY45te13",
+        "content": [
+          {
+            "title": "GitHub - kangmintong/C-RAG: [ICML 2024] Codes for C-RAG: Certified Generation Risks for Retrieval-Augmented Language Models · GitHub",
+            "url": "https://github.com/kangmintong/C-RAG"
+          },
+          {
+            "title": "C-RAG: Certified Generation Risks for Retrieval-Augmented Language Models | OpenReview",
+            "url": "https://openreview.net/forum?id=FMa4c5NhOe"
+          },
+          {
+            "title": "C-RAG: Certified Generation Risks for Retrieval-Augmented Language Models - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2024arXiv240203181K/abstract"
+          },
+          {
+            "title": "C-RAG: Certified Generation Risks for Retrieval-Augmented Language Models | AI Research Paper Details",
+            "url": "https://www.aimodels.fyi/papers/arxiv/c-rag-certified-generation-risks-retrieval-augmented"
+          },
+          {
+            "title": "C-RAG: Certified Generation Risks for Retrieval-Augmented Language   Models",
+            "url": "https://arxiv.org/pdf/2402.03181"
+          },
+          {
+            "title": "C-RAG: Certified Generation Risks for Retrieval-Augmented Language Models - Virtue AI",
+            "url": "https://blog.virtueai.com/2024/07/29/c-rag-certified-generation-risks-for-retrieval-augmented-language-models/"
+          },
+          {
+            "title": "ICML Poster C-RAG: Certified Generation Risks for Retrieval-Augmented Language Models",
+            "url": "https://icml.cc/virtual/2024/poster/34539"
+          },
+          {
+            "title": "[2402.03181] C-RAG: Certified Generation Risks for Retrieval-Augmented Language Models",
+            "url": "https://arxiv.org/abs/2402.03181"
+          },
+          {
+            "title": "C-RAG: certified generation risks for retrieval-augmented ...",
+            "url": "https://dl.acm.org/doi/10.5555/3692070.3692994"
+          }
+        ]
+      },
+      "I've found comprehensive information about C-RAG, which was presented at ICML 2024. Here are the key details:\n\n## Overview\n\nC-RAG is the first framework to certify generation risks for RAG models, providing conformal risk analysis for RAG models and certifying an upper confidence bound of generation risks, referred to as conformal generation risk.\n\n## Key Findings\n\nC-RAG proves that RAG achieves a lower conformal generation risk than that of a single LLM when the quality of the retrieval model and transformer is non-trivial. The framework also provides theoretical guarantees on conformal generation risks for general bounded risk functions under test distribution shifts.\n\n## Evaluation and Datasets\n\nThe empirical results demonstrate the soundness and tightness of the conformal generation risk guarantees across four widely-used NLP datasets on four state-of-the-art retrieval models. More specifically, the evaluation includes four widely used NLP datasets: AESLC, CommonGen, DART, and E2E.\n\n## Research Question\n\nThe paper addresses whether RAG can indeed lead to low generation risks, how to provide provable guarantees on the generation risks of RAG and vanilla LLMs, and what sufficient conditions enable RAG models to reduce generation risks.\n\nThe work was authored by Mintong Kang, Nezihe Merve Gürel, Ning Yu, Dawn Song, and Bo Li, and is available on arXiv and GitHub for reproducibility."
+    ],
+    "durationSeconds": 8.333676152999997,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "11ff2c9b-e730-4443-a883-30b8997128bc",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "6510f1d9-2d0b-4255-86e5-3824feb471a8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 16_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Poisoning-Robust Conformal Abstention for RAG via Retrieval-Agreement Scores  ## Core Problem  How can RAG systems abstain from answering with distribution-free correctness guarantees when the retri…",
+  "leafUuid": "ee8bf487-245a-4b20-bfb1-d3ef41525b90",
+  "sessionId": "6510f1d9-2d0b-4255-86e5-3824feb471a8"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 17_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Poisoning-robust conformal abstention for RAG",
+  "sessionId": "6510f1d9-2d0b-4255-86e5-3824feb471a8"
+}
+```
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-30T07:14:53.595Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FyNjmcdJMUxmaa4GFTfWJg`</summary>
+
+```json
+{
+  "query": "RobustRAG certifiably robust retrieval corruption SaTML 2026 experimental setup baselines PoisonedRAG"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ee8bf487-245a-4b20-bfb1-d3ef41525b90",
+  "isSidechain": false,
+  "requestId": "req_011CbYLjr5zXuuQFM3mXr5Xx",
+  "type": "assistant",
+  "uuid": "50af32ba-03c1-4622-816e-857ec3a404e7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "6510f1d9-2d0b-4255-86e5-3824feb471a8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WmNVnvJU2nMYghfvjp1N7Y",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 953,
+      "cache_read_input_tokens": 18394,
+      "output_tokens": 80,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 953,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 80,
+          "cache_read_input_tokens": 18394,
+          "cache_creation_input_tokens": 953,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 953
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-30T07:14:59.874Z_
+
+<details><summary>↩ Tool result · `toolu_01FyNjmcdJMUxmaa4GFTfWJg`</summary>
+
+```text
+Web search results for query: "RobustRAG certifiably robust retrieval corruption SaTML 2026 experimental setup baselines PoisonedRAG"
+
+Links: [{"title":"IEEE SaTML 2026 · Accepted Papers","url":"https://satml.org/accepted-papers/"},{"title":"Certifiably Robust RAG against Retrieval Corruption","url":"https://arxiv.org/pdf/2405.15556"},{"title":"Certifiably Robust RAG against Retrieval Corruption - ADS","url":"https://ui.adsabs.harvard.edu/abs/2024arXiv240515556X/abstract"},{"title":"[2405.15556] Certifiably Robust RAG against Retrieval Corruption","url":"https://arxiv.org/abs/2405.15556"},{"title":"Certifiably Robust RAG against Retrieval Corruption","url":"https://arxiv.org/html/2405.15556v2"},{"title":"Certifiably Robust RAG against Retrieval Corruption Attacks | OpenReview","url":"https://openreview.net/forum?id=cU6ZdN87p3"},{"title":"Tong Wu - Homepage - Princeton","url":"https://tongwu2020.github.io/tongwu/"},{"title":"Certifiably Robust RAG against Retrieval Corruption","url":"https://openreview.net/pdf?id=qsEeACAJjD"},{"title":"ICML Certifiably Robust RAG against Retrieval Corruption","url":"https://icml.cc/virtual/2024/37487"}]
+
+Based on the search results, I found comprehensive information about RobustRAG and can provide details about the experimental setup and baselines:
+
+## RobustRAG Overview
+
+Retrieval-augmented generation (RAG) is susceptible to retrieval corruption attacks, where malicious passages injected into retrieval results can lead to inaccurate model responses. RobustRAG is the first defense framework with certifiable robustness against retrieval corruption attacks.
+
+## Methodology
+
+The key insight of RobustRAG is an isolate-then-aggregate strategy: passages are isolated into disjoint groups, LLM responses are generated based on the concatenated passages from each isolated group, and then responses are securely aggregated for a robust output. RobustRAG uses keyword-based and decoding-based algorithms for securely aggregating unstructured text responses.
+
+## Experimental Setup
+
+The paper experiments with four datasets: RealtimeQA-MC (RQA-MC) for multiple-choice open-domain QA, RealtimeQA (RQA) and Natural Questions (NQ) for short-answer open-domain QA, and the Biography generation dataset (Bio) for long-form text generation. 100 queries were sampled from each dataset for experiments.
+
+RobustRAG was evaluated using Mistral-7B-Instruct, Llama2-7B-Chat, and GPT-3.5-turbo.
+
+## Results
+
+RobustRAG achieved 69.0–71.0% certifiable robust accuracy for RQA-MC, 24.0–49.0% for RQA, 27.0–47.0% for NQ, and 24.0–51.2% certifiable LLM-judge score for the biography generation task.
+
+The paper was accepted at SaTML 2026 and the authors are affiliated with NVIDIA, Princeton University, and UC Berkeley.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "50af32ba-03c1-4622-816e-857ec3a404e7",
+  "isSidechain": false,
+  "promptId": "3f0512d1-eebd-4e5d-a2ea-3fb317b2870b",
+  "type": "user",
+  "uuid": "9fffc104-7a2d-484a-abdd-ab03dba4184c",
+  "toolUseResult": {
+    "query": "RobustRAG certifiably robust retrieval corruption SaTML 2026 experimental setup baselines PoisonedRAG",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01RGM6rm2Eq6Cgd1BCt3cKeG",
+        "content": [
+          {
+            "title": "IEEE SaTML 2026 · Accepted Papers",
+            "url": "https://satml.org/accepted-papers/"
+          },
+          {
+            "title": "Certifiably Robust RAG against Retrieval Corruption",
+            "url": "https://arxiv.org/pdf/2405.15556"
+          },
+          {
+            "title": "Certifiably Robust RAG against Retrieval Corruption - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2024arXiv240515556X/abstract"
+          },
+          {
+            "title": "[2405.15556] Certifiably Robust RAG against Retrieval Corruption",
+            "url": "https://arxiv.org/abs/2405.15556"
+          },
+          {
+            "title": "Certifiably Robust RAG against Retrieval Corruption",
+            "url": "https://arxiv.org/html/2405.15556v2"
+          },
+          {
+            "title": "Certifiably Robust RAG against Retrieval Corruption Attacks | OpenReview",
+            "url": "https://openreview.net/forum?id=cU6ZdN87p3"
+          },
+          {
+            "title": "Tong Wu - Homepage - Princeton",
+            "url": "https://tongwu2020.github.io/tongwu/"
+          },
+          {
+            "title": "Certifiably Robust RAG against Retrieval Corruption",
+            "url": "https://openreview.net/pdf?id=qsEeACAJjD"
+          },
+          {
+            "title": "ICML Certifiably Robust RAG against Retrieval Corruption",
+            "url": "https://icml.cc/virtual/2024/37487"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about RobustRAG and can provide details about the experimental setup and baselines:\n\n## RobustRAG Overview\n\nRetrieval-augmented generation (RAG) is susceptible to retrieval corruption attacks, where malicious passages injected into retrieval results can lead to inaccurate model responses. RobustRAG is the first defense framework with certifiable robustness against retrieval corruption attacks.\n\n## Methodology\n\nThe key insight of RobustRAG is an isolate-then-aggregate strategy: passages are isolated into disjoint groups, LLM responses are generated based on the concatenated passages from each isolated group, and then responses are securely aggregated for a robust output. RobustRAG uses keyword-based and decoding-based algorithms for securely aggregating unstructured text responses.\n\n## Experimental Setup\n\nThe paper experiments with four datasets: RealtimeQA-MC (RQA-MC) for multiple-choice open-domain QA, RealtimeQA (RQA) and Natural Questions (NQ) for short-answer open-domain QA, and the Biography generation dataset (Bio) for long-form text generation. 100 queries were sampled from each dataset for experiments.\n\nRobustRAG was evaluated using Mistral-7B-Instruct, Llama2-7B-Chat, and GPT-3.5-turbo.\n\n## Results\n\nRobustRAG achieved 69.0–71.0% certifiable robust accuracy for RQA-MC, 24.0–49.0% for RQA, 27.0–47.0% for NQ, and 24.0–51.2% certifiable LLM-judge score for the biography generation task.\n\nThe paper was accepted at SaTML 2026 and the authors are affiliated with NVIDIA, Princeton University, and UC Berkeley."
+    ],
+    "durationSeconds": 6.275081994,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "50af32ba-03c1-4622-816e-857ec3a404e7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "6510f1d9-2d0b-4255-86e5-3824feb471a8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-30T07:15:03.236Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016sCy7cQtiiSGcZHxt78D3R`</summary>
+
+```json
+{
+  "query": "PoisonedRAG CorruptRAG corpus poisoning attack RAG evaluation metrics attack success rate 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9fffc104-7a2d-484a-abdd-ab03dba4184c",
+  "isSidechain": false,
+  "requestId": "req_011CbYLkXMPxQBSPx57Knj5v",
+  "type": "assistant",
+  "uuid": "e687231e-c081-410e-9800-75ca1fc31d77",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "6510f1d9-2d0b-4255-86e5-3824feb471a8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Je4XV5HX1G3WQK5NLTcwjT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 939,
+      "cache_read_input_tokens": 19347,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 939,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 19347,
+          "cache_creation_input_tokens": 939,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 939
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-30T07:15:11.959Z_
+
+<details><summary>↩ Tool result · `toolu_016sCy7cQtiiSGcZHxt78D3R`</summary>
+
+```text
+Web search results for query: "PoisonedRAG CorruptRAG corpus poisoning attack RAG evaluation metrics attack success rate 2025"
+
+Links: [{"title":"RAG Poisoning: Contaminating the AI’s “Source of Truth” | by InstaTunnel | Medium","url":"https://medium.com/@instatunnel/rag-poisoning-contaminating-the-ais-source-of-truth-082dcbdeea7c"},{"title":"Semantic Chameleon: Corpus-Dependent Poisoning Attacks and Defenses in RAG Systems","url":"https://arxiv.org/html/2603.18034v1"},{"title":"[PDF] Benchmarking Poisoning Attacks against Retrieval-Augmented Generation | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Benchmarking-Poisoning-Attacks-against-Generation-Zhang-Xin/ccf24f7db7680562628545beaa26fca9d3745e1e"},{"title":"RAG Poisoning: How Attackers Corrupt Your AI's Knowledge Base | Amine Raji, PhD","url":"https://aminrj.com/posts/rag-document-poisoning/"},{"title":"PoisonedRAG | Proceedings of the 34th USENIX Conference on Security Symposium","url":"https://dl.acm.org/doi/10.5555/3766078.3766275"},{"title":"PoisonedRAG: Knowledge Corruption Attacks to Retrieval-Augmented Generation of Large Language Models | USENIX","url":"https://www.usenix.org/conference/usenixsecurity25/presentation/zou-poisonedrag"},{"title":"Semantic Chameleon: Corpus-Dependent Poisoning Attacks and Defenses in RAG Systems","url":"https://arxiv.org/pdf/2603.18034"},{"title":"PoisonedRAG: Knowledge Corruption Attacks to Retrieval-Augmented   Generation of Large Language Models","url":"https://arxiv.org/pdf/2402.07867"},{"title":"Addressing Corpus Knowledge Poisoning Attacks on RAG Using Sparse Attention","url":"https://arxiv.org/pdf/2602.04711"},{"title":"PoisonedRAG: Knowledge Poisoning Attacks to Retrieval-Augmented Generation of Large Language Models","url":"https://arxiv.org/html/2402.07867v1"}]
+
+Based on the search results, here's comprehensive information about PoisonedRAG, CorruptRAG, and related corpus poisoning attacks on RAG systems:
+
+## PoisonedRAG
+
+PoisonedRAG (Zou et al., 2025) formulates knowledge corruption as an optimization problem with retrieval and generation conditions, achieving 90% attack success on standard QA benchmarks. More specifically, PoisonedRAG could achieve a 90% attack success rate when injecting five malicious texts for each target question into a knowledge database with millions of texts.
+
+Attack Success Rate (ASR) is used as the evaluation metric, which measures the fraction of target questions whose answers are attacker-desired target answers under attacks. On the NQ dataset, PoisonedRAG could achieve a 97% ASR by injecting 5 poisoned texts for each target question (the poisoning rate per target question is approximately 0.0002%) in the black-box setting.
+
+## CorruptRAG
+
+CorruptRAG demonstrates that real-world constraints — limited access, audit trails, monitoring systems — can be overcome with sophisticated single-document attacks that achieve higher success rates than multi-document approaches. CorruptRAG is a practical poisoning attack against RAG systems in which the attacker injects only a single poisoned text, enhancing both feasibility and stealth and achieves higher attack success rates compared to existing baselines.
+
+## Severe Attack Statistics
+
+Poisoning merely 0.04% of a corpus can lead to a 98.2% attack success rate and 74.6% system failure.
+
+## Evaluation and Related Work
+
+RAG Security Bench (Wang et al., 2025) provides the most comprehensive evaluation to date, testing 13 poisoning methods across 5 datasets with 7 defense mechanisms and finding that hybrid defenses outperform single-mechanism approaches but still leave residual risk.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e687231e-c081-410e-9800-75ca1fc31d77",
+  "isSidechain": false,
+  "promptId": "3f0512d1-eebd-4e5d-a2ea-3fb317b2870b",
+  "type": "user",
+  "uuid": "8595b04f-d877-4da8-b89f-d4b9c4c91cd5",
+  "toolUseResult": {
+    "query": "PoisonedRAG CorruptRAG corpus poisoning attack RAG evaluation metrics attack success rate 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0144Vtf4qPTHENTJaC8sBoZy",
+        "content": [
+          {
+            "title": "RAG Poisoning: Contaminating the AI’s “Source of Truth” | by InstaTunnel | Medium",
+            "url": "https://medium.com/@instatunnel/rag-poisoning-contaminating-the-ais-source-of-truth-082dcbdeea7c"
+          },
+          {
+            "title": "Semantic Chameleon: Corpus-Dependent Poisoning Attacks and Defenses in RAG Systems",
+            "url": "https://arxiv.org/html/2603.18034v1"
+          },
+          {
+            "title": "[PDF] Benchmarking Poisoning Attacks against Retrieval-Augmented Generation | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Benchmarking-Poisoning-Attacks-against-Generation-Zhang-Xin/ccf24f7db7680562628545beaa26fca9d3745e1e"
+          },
+          {
+            "title": "RAG Poisoning: How Attackers Corrupt Your AI's Knowledge Base | Amine Raji, PhD",
+            "url": "https://aminrj.com/posts/rag-document-poisoning/"
+          },
+          {
+            "title": "PoisonedRAG | Proceedings of the 34th USENIX Conference on Security Symposium",
+            "url": "https://dl.acm.org/doi/10.5555/3766078.3766275"
+          },
+          {
+            "title": "PoisonedRAG: Knowledge Corruption Attacks to Retrieval-Augmented Generation of Large Language Models | USENIX",
+            "url": "https://www.usenix.org/conference/usenixsecurity25/presentation/zou-poisonedrag"
+          },
+          {
+            "title": "Semantic Chameleon: Corpus-Dependent Poisoning Attacks and Defenses in RAG Systems",
+            "url": "https://arxiv.org/pdf/2603.18034"
+          },
+          {
+            "title": "PoisonedRAG: Knowledge Corruption Attacks to Retrieval-Augmented   Generation of Large Language Models",
+            "url": "https://arxiv.org/pdf/2402.07867"
+          },
+          {
+            "title": "Addressing Corpus Knowledge Poisoning Attacks on RAG Using Sparse Attention",
+            "url": "https://arxiv.org/pdf/2602.04711"
+          },
+          {
+            "title": "PoisonedRAG: Knowledge Poisoning Attacks to Retrieval-Augmented Generation of Large Language Models",
+            "url": "https://arxiv.org/html/2402.07867v1"
+          }
+        ]
+      },
+      "Based on the search results, here's comprehensive information about PoisonedRAG, CorruptRAG, and related corpus poisoning attacks on RAG systems:\n\n## PoisonedRAG\n\nPoisonedRAG (Zou et al., 2025) formulates knowledge corruption as an optimization problem with retrieval and generation conditions, achieving 90% attack success on standard QA benchmarks. More specifically, PoisonedRAG could achieve a 90% attack success rate when injecting five malicious texts for each target question into a knowledge database with millions of texts.\n\nAttack Success Rate (ASR) is used as the evaluation metric, which measures the fraction of target questions whose answers are attacker-desired target answers under attacks. On the NQ dataset, PoisonedRAG could achieve a 97% ASR by injecting 5 poisoned texts for each target question (the poisoning rate per target question is approximately 0.0002%) in the black-box setting.\n\n## CorruptRAG\n\nCorruptRAG demonstrates that real-world constraints — limited access, audit trails, monitoring systems — can be overcome with sophisticated single-document attacks that achieve higher success rates than multi-document approaches. CorruptRAG is a practical poisoning attack against RAG systems in which the attacker injects only a single poisoned text, enhancing both feasibility and stealth and achieves higher attack success rates compared to existing baselines.\n\n## Severe Attack Statistics\n\nPoisoning merely 0.04% of a corpus can lead to a 98.2% attack success rate and 74.6% system failure.\n\n## Evaluation and Related Work\n\nRAG Security Bench (Wang et al., 2025) provides the most comprehensive evaluation to date, testing 13 poisoning methods across 5 datasets with 7 defense mechanisms and finding that hybrid defenses outperform single-mechanism approaches but still leave residual risk."
+    ],
+    "durationSeconds": 8.717921310000005,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "e687231e-c081-410e-9800-75ca1fc31d77",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "6510f1d9-2d0b-4255-86e5-3824feb471a8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-30T07:15:14.809Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Dm8nHLVkhjkL4NprrKFoqh`</summary>
+
+```json
+{
+  "query": "RPS provably reliable conformal prediction poisoning ICLR 2025 experimental setup majority vote smoothed scores"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8595b04f-d877-4da8-b89f-d4b9c4c91cd5",
+  "isSidechain": false,
+  "requestId": "req_011CbYLmR3Qb4PYZY2RER2jx",
+  "type": "assistant",
+  "uuid": "ddf89a34-8da8-4ac7-baf9-a241517bd623",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "6510f1d9-2d0b-4255-86e5-3824feb471a8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HzdApQgTPvv6WQEBLBkWgR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1129,
+      "cache_read_input_tokens": 20286,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1129,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 20286,
+          "cache_creation_input_tokens": 1129,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1129
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-30T07:15:19.853Z_
+
+<details><summary>↩ Tool result · `toolu_01Dm8nHLVkhjkL4NprrKFoqh`</summary>
+
+```text
+Web search results for query: "RPS provably reliable conformal prediction poisoning ICLR 2025 experimental setup majority vote smoothed scores"
+
+Links: [{"title":"Provably Reliable Conformal Prediction Sets in the Presence of Data Poisoning | OpenReview","url":"https://openreview.net/forum?id=ofuLWn8DFZ"},{"title":"PROVABLY RELIABLE CONFORMAL PREDICTION SETS IN THE PRESENCE OF DATA POISONING - Technical University of Munich","url":"https://portal.fis.tum.de/en/publications/provably-reliable-conformal-prediction-sets-in-the-presence-of-da/"},{"title":"GitHub - yascho/reliable_conformal_prediction: Implementation of the reliable conformal prediction sets introduced in the paper: \"Provably Reliable Conformal Prediction Sets in the Presence of Data Poisoning\" accepted at ICLR 2025 (Spotlight).","url":"https://github.com/yascho/reliable_conformal_prediction"},{"title":"Provably Reliable Conformal Prediction Sets in the Presence of Data   Poisoning","url":"https://arxiv.org/pdf/2410.09878"},{"title":"Nine papers accepted at ICLR 2025, one at KAIS 2025 - Data Analytics and Machine Learning","url":"https://www.cs.cit.tum.de/en/daml/all-news/article/nine-papers-accepted-at-iclr-2025/"},{"title":"ICLR Poster Provably Reliable Conformal Prediction Sets in the Presence of Data Poisoning","url":"https://iclr.cc/virtual/2025/poster/28340"},{"title":"provably reliable conformal prediction sets","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/8c4d21a4b33361c40c2142db9511c126-Paper-Conference.pdf"},{"title":"[2410.09878] Provably Reliable Conformal Prediction Sets in the Presence of Data Poisoning","url":"https://arxiv.org/abs/2410.09878"}]
+
+Based on the search results, I found information about the RPS (Reliable Prediction Sets) paper from ICLR 2025. Here are the key details about the experimental setup:
+
+## Experimental Setup Overview
+
+RPS is the first efficient method for constructing conformal prediction sets with provable reliability guarantees under poisoning.
+
+## Key Components
+
+**Smoothed Score Functions:** To ensure reliability under training poisoning, the method introduces smoothed score functions that reliably aggregate predictions of classifiers trained on distinct partitions of the training data.
+
+**Majority Vote Mechanism:** To ensure reliability under calibration poisoning, the approach constructs multiple prediction sets, each calibrated on distinct subsets of the calibration data, then aggregates them into a majority prediction set, which includes a class only if it appears in a majority of the individual sets.
+
+## Experimental Validation
+
+The approach was experimentally validated on image classification tasks, achieving strong reliability while maintaining utility and preserving coverage on clean data.
+
+The paper also notes that all hyperparameters and experimental setups are documented in Appendix A to ensure reproducibility.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ddf89a34-8da8-4ac7-baf9-a241517bd623",
+  "isSidechain": false,
+  "promptId": "3f0512d1-eebd-4e5d-a2ea-3fb317b2870b",
+  "type": "user",
+  "uuid": "2bab100e-3589-409c-ad34-334bac0e43a1",
+  "toolUseResult": {
+    "query": "RPS provably reliable conformal prediction poisoning ICLR 2025 experimental setup majority vote smoothed scores",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CdsuVzvtbZtAGMaJuQ6DFC",
+        "content": [
+          {
+            "title": "Provably Reliable Conformal Prediction Sets in the Presence of Data Poisoning | OpenReview",
+            "url": "https://openreview.net/forum?id=ofuLWn8DFZ"
+          },
+          {
+            "title": "PROVABLY RELIABLE CONFORMAL PREDICTION SETS IN THE PRESENCE OF DATA POISONING - Technical University of Munich",
+            "url": "https://portal.fis.tum.de/en/publications/provably-reliable-conformal-prediction-sets-in-the-presence-of-da/"
+          },
+          {
+            "title": "GitHub - yascho/reliable_conformal_prediction: Implementation of the reliable conformal prediction sets introduced in the paper: \"Provably Reliable Conformal Prediction Sets in the Presence of Data Poisoning\" accepted at ICLR 2025 (Spotlight).",
+            "url": "https://github.com/yascho/reliable_conformal_prediction"
+          },
+          {
+            "title": "Provably Reliable Conformal Prediction Sets in the Presence of Data   Poisoning",
+            "url": "https://arxiv.org/pdf/2410.09878"
+          },
+          {
+            "title": "Nine papers accepted at ICLR 2025, one at KAIS 2025 - Data Analytics and Machine Learning",
+            "url": "https://www.cs.cit.tum.de/en/daml/all-news/article/nine-papers-accepted-at-iclr-2025/"
+          },
+          {
+            "title": "ICLR Poster Provably Reliable Conformal Prediction Sets in the Presence of Data Poisoning",
+            "url": "https://iclr.cc/virtual/2025/poster/28340"
+          },
+          {
+            "title": "provably reliable conformal prediction sets",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/8c4d21a4b33361c40c2142db9511c126-Paper-Conference.pdf"
+          },
+          {
+            "title": "[2410.09878] Provably Reliable Conformal Prediction Sets in the Presence of Data Poisoning",
+            "url": "https://arxiv.org/abs/2410.09878"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the RPS (Reliable Prediction Sets) paper from ICLR 2025. Here are the key details about the experimental setup:\n\n## Experimental Setup Overview\n\nRPS is the first efficient method for constructing conformal prediction sets with provable reliability guarantees under poisoning.\n\n## Key Components\n\n**Smoothed Score Functions:** To ensure reliability under training poisoning, the method introduces smoothed score functions that reliably aggregate predictions of classifiers trained on distinct partitions of the training data.\n\n**Majority Vote Mechanism:** To ensure reliability under calibration poisoning, the approach constructs multiple prediction sets, each calibrated on distinct subsets of the calibration data, then aggregates them into a majority prediction set, which includes a class only if it appears in a majority of the individual sets.\n\n## Experimental Validation\n\nThe approach was experimentally validated on image classification tasks, achieving strong reliability while maintaining utility and preserving coverage on clean data.\n\nThe paper also notes that all hyperparameters and experimental setups are documented in Appendix A to ensure reproducibility."
+    ],
+    "durationSeconds": 5.038465079000002,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "ddf89a34-8da8-4ac7-baf9-a241517bd623",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "6510f1d9-2d0b-4255-86e5-3824feb471a8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-30T07:15:23.281Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016Khzom1jQc4iVyip1MwEdn`</summary>
+
+```json
+{
+  "query": "\"conformal prediction\" RAG abstention evaluation metrics coverage prediction set size 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2bab100e-3589-409c-ad34-334bac0e43a1",
+  "isSidechain": false,
+  "requestId": "req_011CbYLmzoRMdep4pBkupndr",
+  "type": "assistant",
+  "uuid": "c8a75285-64fa-4a49-b5c4-8673457fe781",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "6510f1d9-2d0b-4255-86e5-3824feb471a8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PNbr9zBcX5mPZc38E9hvDx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 868,
+      "cache_read_input_tokens": 21415,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 868,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 21415,
+          "cache_creation_input_tokens": 868,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 868
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-30T07:15:33.512Z_
+
+<details><summary>↩ Tool result · `toolu_016Khzom1jQc4iVyip1MwEdn`</summary>
+
+```text
+Web search results for query: ""conformal prediction" RAG abstention evaluation metrics coverage prediction set size 2025 2026"
+
+Links: [{"title":"Learning Conformal Abstention Policies for Adaptive Risk Management in   Large Language and Vision-Language Models","url":"https://arxiv.org/pdf/2502.06884"},{"title":"Backward Conformal Prediction","url":"https://arxiv.org/pdf/2505.13732"},{"title":"Quantifying and Improving Adaptivity in Conformal Prediction through Input Transformations","url":"https://arxiv.org/pdf/2511.11472"},{"title":"Aggregating Conformal Prediction Sets via {\\alpha}-Allocation","url":"https://arxiv.org/pdf/2511.12065"},{"title":"1 INTRODUCTION","url":"https://arxiv.org/html/2510.04318"},{"title":"Conformal Prediction for Deep Classifier via Label Ranking","url":"https://arxiv.org/pdf/2310.06430"},{"title":"Principled Context Engineering for RAG:","url":"https://www.arxiv.org/pdf/2511.17908"},{"title":"Post-selection Inference for Conformal Prediction: Trading off Coverage   for Precision","url":"https://arxiv.org/pdf/2304.06158"},{"title":"Conformal Prediction Sets with Improved Conditional Coverage using Trust   Scores","url":"https://arxiv.org/pdf/2501.10139"}]
+
+Based on the search results, here are relevant findings about conformal prediction with focus on evaluation metrics, coverage, prediction set size, and abstention, from recent 2025-2026 research:
+
+## Learnable Conformal Abstention
+
+A recent approach integrates reinforcement learning with conformal prediction to optimize abstention thresholds dynamically, balancing multiple objectives and minimizing prediction set size while maintaining reliable coverage. Extensive evaluations show improvements including boosting AUROC for hallucination detection by 22.19%, enhancing uncertainty-guided selective generation (AUARC) by 21.17%, and reducing calibration error by 70%-85%. The learned policy sustains at least 90% coverage while reducing the average prediction set size.
+
+## Prediction Set Size Control
+
+A key limitation of conformal prediction is that prediction set size is entirely data-driven and cannot be controlled in advance, with overly large prediction sets being too ambiguous to be useful in high-stakes or resource-constrained settings. Recent work aims to reduce the size of conformal sets while maintaining valid coverage guarantees.
+
+## Adaptive Prediction Set Evaluation Metrics
+
+A key challenge in developing adaptive prediction sets is precise evaluation of adaptiveness, with common approaches involving comparing coverage rate violation or average set size across subgroups of examples. Recent work proposes metrics for evaluating adaptiveness that provide better assessment compared to existing metrics.
+
+## RAG Applications with Conformal Prediction
+
+Split conformal prediction methods applied to RAG systems meet or slightly exceed theoretical coverage guarantees, confirming finite-sample validity. Conformal prediction serves as a practical tool for context engineering, enabling robust, coverage-aware filtering before generation.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c8a75285-64fa-4a49-b5c4-8673457fe781",
+  "isSidechain": false,
+  "promptId": "3f0512d1-eebd-4e5d-a2ea-3fb317b2870b",
+  "type": "user",
+  "uuid": "377007a2-e7e9-476f-a24e-2fedb52546dc",
+  "toolUseResult": {
+    "query": "\"conformal prediction\" RAG abstention evaluation metrics coverage prediction set size 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Ft3EzxmYFAmqVuJkJ86BQp",
+        "content": [
+          {
+            "title": "Learning Conformal Abstention Policies for Adaptive Risk Management in   Large Language and Vision-Language Models",
+            "url": "https://arxiv.org/pdf/2502.06884"
+          },
+          {
+            "title": "Backward Conformal Prediction",
+            "url": "https://arxiv.org/pdf/2505.13732"
+          },
+          {
+            "title": "Quantifying and Improving Adaptivity in Conformal Prediction through Input Transformations",
+            "url": "https://arxiv.org/pdf/2511.11472"
+          },
+          {
+            "title": "Aggregating Conformal Prediction Sets via {\\alpha}-Allocation",
+            "url": "https://arxiv.org/pdf/2511.12065"
+          },
+          {
+            "title": "1 INTRODUCTION",
+            "url": "https://arxiv.org/html/2510.04318"
+          },
+          {
+            "title": "Conformal Prediction for Deep Classifier via Label Ranking",
+            "url": "https://arxiv.org/pdf/2310.06430"
+          },
+          {
+            "title": "Principled Context Engineering for RAG:",
+            "url": "https://www.arxiv.org/pdf/2511.17908"
+          },
+          {
+            "title": "Post-selection Inference for Conformal Prediction: Trading off Coverage   for Precision",
+            "url": "https://arxiv.org/pdf/2304.06158"
+          },
+          {
+            "title": "Conformal Prediction Sets with Improved Conditional Coverage using Trust   Scores",
+            "url": "https://arxiv.org/pdf/2501.10139"
+          }
+        ]
+      },
+      "Based on the search results, here are relevant findings about conformal prediction with focus on evaluation metrics, coverage, prediction set size, and abstention, from recent 2025-2026 research:\n\n## Learnable Conformal Abstention\n\nA recent approach integrates reinforcement learning with conformal prediction to optimize abstention thresholds dynamically, balancing multiple objectives and minimizing prediction set size while maintaining reliable coverage. Extensive evaluations show improvements including boosting AUROC for hallucination detection by 22.19%, enhancing uncertainty-guided selective generation (AUARC) by 21.17%, and reducing calibration error by 70%-85%. The learned policy sustains at least 90% coverage while reducing the average prediction set size.\n\n## Prediction Set Size Control\n\nA key limitation of conformal prediction is that prediction set size is entirely data-driven and cannot be controlled in advance, with overly large prediction sets being too ambiguous to be useful in high-stakes or resource-constrained settings. Recent work aims to reduce the size of conformal sets while maintaining valid coverage guarantees.\n\n## Adaptive Prediction Set Evaluation Metrics\n\nA key challenge in developing adaptive prediction sets is precise evaluation of adaptiveness, with common approaches involving comparing coverage rate violation or average set size across subgroups of examples. Recent work proposes metrics for evaluating adaptiveness that provide better assessment compared to existing metrics.\n\n## RAG Applications with Conformal Prediction\n\nSplit conformal prediction methods applied to RAG systems meet or slightly exceed theoretical coverage guarantees, confirming finite-sample validity. Conformal prediction serves as a practical tool for context engineering, enabling robust, coverage-aware filtering before generation."
+    ],
+    "durationSeconds": 10.225401879999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "c8a75285-64fa-4a49-b5c4-8673457fe781",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "6510f1d9-2d0b-4255-86e5-3824feb471a8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 26_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Poisoning-Robust Conformal Abstention for RAG via Retrieval-Agreement Scores  ## Core Problem  How can RAG systems abstain from answering with distribution-free correctness guarantees when the retri…",
+  "leafUuid": "377007a2-e7e9-476f-a24e-2fedb52546dc",
+  "sessionId": "6510f1d9-2d0b-4255-86e5-3824feb471a8"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 27_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Poisoning-robust conformal abstention for RAG",
+  "sessionId": "6510f1d9-2d0b-4255-86e5-3824feb471a8"
+}
+```
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-30T07:15:36.050Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01T7y7nSjrMoVzyXeAncxhYU`</summary>
+
+```json
+{
+  "query": "Conformal-RAG SIGIR 2025 group-conditional coverage experiments NQ HotpotQA baselines"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "377007a2-e7e9-476f-a24e-2fedb52546dc",
+  "isSidechain": false,
+  "requestId": "req_011CbYLo1FUw7QTu1xZoYnnp",
+  "type": "assistant",
+  "uuid": "3084f125-e051-46e4-a1fc-51fda831e0e7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "6510f1d9-2d0b-4255-86e5-3824feb471a8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011ah7hnB8nmq4RMdFg7tzzW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 820,
+      "cache_read_input_tokens": 22283,
+      "output_tokens": 79,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 820,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 79,
+          "cache_read_input_tokens": 22283,
+          "cache_creation_input_tokens": 820,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 820
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-30T07:15:43.266Z_
+
+<details><summary>↩ Tool result · `toolu_01T7y7nSjrMoVzyXeAncxhYU`</summary>
+
+```text
+Web search results for query: "Conformal-RAG SIGIR 2025 group-conditional coverage experiments NQ HotpotQA baselines"
+
+Links: [{"title":"Response Quality Assessment for Retrieval-Augmented Generation via Conditional Conformal Factuality","url":"https://arxiv.org/html/2506.20978"},{"title":"GitHub - n4feng/ResponseQualityAssessment: Code Base for Paper \"Response Quality Assessment for Retrieval-Augmented Generation via Conditional Conformal Factuality\" accepted by SIGIR 2025","url":"https://github.com/n4feng/ResponseQualityAssessment"},{"title":"[2506.20978] Response Quality Assessment for Retrieval-Augmented Generation via Conditional Conformal Factuality","url":"https://arxiv.org/abs/2506.20978"},{"title":"[2506.20978v1] Response Quality Assessment for Retrieval-Augmented Generation via Conditional Conformal Factuality","url":"https://arxiv.org/abs/2506.20978v1"},{"title":"Response Quality Assessment for Retrieval-Augmented Generation via Conditional Conformal Factuality | Proceedings of the 48th International ACM SIGIR Conference on Research and Development in Information Retrieval","url":"https://dl.acm.org/doi/10.1145/3726302.3730244"},{"title":"Conformal Prediction Sets with Improved Conditional Coverage using Trust   Scores","url":"https://arxiv.org/pdf/2501.10139"}]
+
+Based on the search results, I found information about Conformal-RAG and its SIGIR 2025 publication:
+
+Conformal-RAG is a novel framework that leverages conformal prediction (CP) and internal information from the RAG mechanism to offer statistical guarantees on response quality, ensuring group-conditional coverage spanning multiple sub-domains without requiring manual labelling of conformal sets.
+
+The research demonstrates that by leveraging information from the RAG system, Conformal-RAG retains up to 60% more high-quality sub-claims from the response compared to direct applications of CP to LLMs, while maintaining the same reliability guarantee.
+
+The paper was accepted by SIGIR 2025. While the search results reference HotpotQA as one of the datasets (mentioned in the bibliography), and indicate that the repository supports conditional conformal testing on multiple datasets including hotpot_qa, the specific details about group-conditional coverage experiments on NQ and HotpotQA baselines are not fully detailed in these search results. The full paper and implementation details are available on arXiv (2506.20978) and GitHub (n4feng/ResponseQualityAssessment) if you need more specific experimental details.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3084f125-e051-46e4-a1fc-51fda831e0e7",
+  "isSidechain": false,
+  "promptId": "3f0512d1-eebd-4e5d-a2ea-3fb317b2870b",
+  "type": "user",
+  "uuid": "17f76de7-606f-4dcb-8fd9-2bfb9f1d1d0d",
+  "toolUseResult": {
+    "query": "Conformal-RAG SIGIR 2025 group-conditional coverage experiments NQ HotpotQA baselines",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01KEugH6ezqkTRtb26Uch6YK",
+        "content": [
+          {
+            "title": "Response Quality Assessment for Retrieval-Augmented Generation via Conditional Conformal Factuality",
+            "url": "https://arxiv.org/html/2506.20978"
+          },
+          {
+            "title": "GitHub - n4feng/ResponseQualityAssessment: Code Base for Paper \"Response Quality Assessment for Retrieval-Augmented Generation via Conditional Conformal Factuality\" accepted by SIGIR 2025",
+            "url": "https://github.com/n4feng/ResponseQualityAssessment"
+          },
+          {
+            "title": "[2506.20978] Response Quality Assessment for Retrieval-Augmented Generation via Conditional Conformal Factuality",
+            "url": "https://arxiv.org/abs/2506.20978"
+          },
+          {
+            "title": "[2506.20978v1] Response Quality Assessment for Retrieval-Augmented Generation via Conditional Conformal Factuality",
+            "url": "https://arxiv.org/abs/2506.20978v1"
+          },
+          {
+            "title": "Response Quality Assessment for Retrieval-Augmented Generation via Conditional Conformal Factuality | Proceedings of the 48th International ACM SIGIR Conference on Research and Development in Information Retrieval",
+            "url": "https://dl.acm.org/doi/10.1145/3726302.3730244"
+          },
+          {
+            "title": "Conformal Prediction Sets with Improved Conditional Coverage using Trust   Scores",
+            "url": "https://arxiv.org/pdf/2501.10139"
+          }
+        ]
+      },
+      "Based on the search results, I found information about Conformal-RAG and its SIGIR 2025 publication:\n\nConformal-RAG is a novel framework that leverages conformal prediction (CP) and internal information from the RAG mechanism to offer statistical guarantees on response quality, ensuring group-conditional coverage spanning multiple sub-domains without requiring manual labelling of conformal sets.\n\nThe research demonstrates that by leveraging information from the RAG system, Conformal-RAG retains up to 60% more high-quality sub-claims from the response compared to direct applications of CP to LLMs, while maintaining the same reliability guarantee.\n\nThe paper was accepted by SIGIR 2025. While the search results reference HotpotQA as one of the datasets (mentioned in the bibliography), and indicate that the repository supports conditional conformal testing on multiple datasets including hotpot_qa, the specific details about group-conditional coverage experiments on NQ and HotpotQA baselines are not fully detailed in these search results. The full paper and implementation details are available on arXiv (2506.20978) and GitHub (n4feng/ResponseQualityAssessment) if you need more specific experimental details."
+    ],
+    "durationSeconds": 7.211242119000002,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "3084f125-e051-46e4-a1fc-51fda831e0e7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "6510f1d9-2d0b-4255-86e5-3824feb471a8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 30 · 2026-05-30T07:15:43.269Z_
+
+```json
+{
+  "parentUuid": "17f76de7-606f-4dcb-8fd9-2bfb9f1d1d0d",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "06939eb2-d82f-4179-89b1-8f72de7de552",
+  "timestamp": "2026-05-30T07:15:43.269Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "6510f1d9-2d0b-4255-86e5-3824feb471a8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-30T07:15:46.147Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01W7Ly4W1fyR6cUQa1whi2f2`</summary>
+
+```json
+{
+  "query": "Chen et al 2026 \"conformal factuality\" RAG robust distribution shift arXiv experiments vacuous"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "06939eb2-d82f-4179-89b1-8f72de7de552",
+  "isSidechain": false,
+  "requestId": "req_011CbYLoj7QfwTfZNX2EAmbD",
+  "type": "assistant",
+  "uuid": "bdde134d-3f79-4075-a4ce-5e2835b5a02d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "6510f1d9-2d0b-4255-86e5-3824feb471a8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MumcBoGvQ8giNJLEfCDvRe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 850,
+      "cache_read_input_tokens": 23103,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 850,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 23103,
+          "cache_creation_input_tokens": 850,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 850
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-30T07:15:54.194Z_
+
+<details><summary>↩ Tool result · `toolu_01W7Ly4W1fyR6cUQa1whi2f2`</summary>
+
+```text
+Web search results for query: "Chen et al 2026 "conformal factuality" RAG robust distribution shift arXiv experiments vacuous"
+
+Links: [{"title":"[2603.16817] Is Conformal Factuality for RAG-based LLMs Robust? Novel Metrics and Systematic Insights","url":"https://arxiv.org/abs/2603.16817"},{"title":"Is Conformal Factuality for RAG-based LLMs Robust? Novel Metrics and Systematic Insights","url":"https://arxiv.org/pdf/2603.16817"},{"title":"Proceedings of Machine Learning Research vol vvv:1–25, 2026","url":"https://arxiv.org/pdf/2602.12616"},{"title":"Not all distributional shifts are equal: Fine-grained robust conformal inference","url":"https://arxiv.org/pdf/2402.13042"},{"title":"Conformal Prediction under Lévy–Prokhorov Distribution Shifts: Robustness to Local and Global Perturbations","url":"https://arxiv.org/html/2502.14105v2"},{"title":"Response Quality Assessment for Retrieval-Augmented Generation via Conditional Conformal Factuality","url":"https://arxiv.org/html/2506.20978"}]
+
+I found the paper you're looking for! Here's information about the Chen et al. 2026 paper on conformal factuality for RAG-based LLMs:
+
+**Title:** "Is Conformal Factuality for RAG-based LLMs Robust? Novel Metrics and Systematic Insights"
+
+**Authors:** Yi Chen, Daiwei Chen, Sukrut Madhay Chikodikar, Caitlyn Heqi Yin, and Ramya Korlakai Vinavak from University of Wisconsin-Madison
+
+**Key Findings:**
+
+The paper evaluates conformal factuality filtering for retrieval-augmented generation (RAG) systems across multiple benchmarks and finds three main issues:
+
+1. Conformal filtering suffers from low usefulness at high factuality levels due to vacuous outputs
+
+2. Conformal factuality guarantee is not robust to distribution shifts and distractors, highlighting the limitation that requires calibration data to closely match deployment conditions
+
+3. Lightweight entailment-based verifiers match or outperform LLM-based model confidence scorers while requiring over 100× fewer FLOPs
+
+**Date:** March 17, 2026
+
+**Availability:** The paper is available on arXiv at https://arxiv.org/abs/2603.16817
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bdde134d-3f79-4075-a4ce-5e2835b5a02d",
+  "isSidechain": false,
+  "promptId": "3f0512d1-eebd-4e5d-a2ea-3fb317b2870b",
+  "type": "user",
+  "uuid": "563c5034-318b-42e4-a5c1-b4a0aa711a9c",
+  "toolUseResult": {
+    "query": "Chen et al 2026 \"conformal factuality\" RAG robust distribution shift arXiv experiments vacuous",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TYK9CmxALmigsdn51cE48Z",
+        "content": [
+          {
+            "title": "[2603.16817] Is Conformal Factuality for RAG-based LLMs Robust? Novel Metrics and Systematic Insights",
+            "url": "https://arxiv.org/abs/2603.16817"
+          },
+          {
+            "title": "Is Conformal Factuality for RAG-based LLMs Robust? Novel Metrics and Systematic Insights",
+            "url": "https://arxiv.org/pdf/2603.16817"
+          },
+          {
+            "title": "Proceedings of Machine Learning Research vol vvv:1–25, 2026",
+            "url": "https://arxiv.org/pdf/2602.12616"
+          },
+          {
+            "title": "Not all distributional shifts are equal: Fine-grained robust conformal inference",
+            "url": "https://arxiv.org/pdf/2402.13042"
+          },
+          {
+            "title": "Conformal Prediction under Lévy–Prokhorov Distribution Shifts: Robustness to Local and Global Perturbations",
+            "url": "https://arxiv.org/html/2502.14105v2"
+          },
+          {
+            "title": "Response Quality Assessment for Retrieval-Augmented Generation via Conditional Conformal Factuality",
+            "url": "https://arxiv.org/html/2506.20978"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's information about the Chen et al. 2026 paper on conformal factuality for RAG-based LLMs:\n\n**Title:** \"Is Conformal Factuality for RAG-based LLMs Robust? Novel Metrics and Systematic Insights\"\n\n**Authors:** Yi Chen, Daiwei Chen, Sukrut Madhay Chikodikar, Caitlyn Heqi Yin, and Ramya Korlakai Vinavak from University of Wisconsin-Madison\n\n**Key Findings:**\n\nThe paper evaluates conformal factuality filtering for retrieval-augmented generation (RAG) systems across multiple benchmarks and finds three main issues:\n\n1. Conformal filtering suffers from low usefulness at high factuality levels due to vacuous outputs\n\n2. Conformal factuality guarantee is not robust to distribution shifts and distractors, highlighting the limitation that requires calibration data to closely match deployment conditions\n\n3. Lightweight entailment-based verifiers match or outperform LLM-based model confidence scorers while requiring over 100× fewer FLOPs\n\n**Date:** March 17, 2026\n\n**Availability:** The paper is available on arXiv at https://arxiv.org/abs/2603.16817"
+    ],
+    "durationSeconds": 8.041060379000003,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "bdde134d-3f79-4075-a4ce-5e2835b5a02d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "6510f1d9-2d0b-4255-86e5-3824feb471a8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-30T07:15:56.694Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Mw42xekSv8865n57Wxi9ch`</summary>
+
+```json
+{
+  "query": "RAG Security Bench RSB benchmark 2025 defense evaluation poisoning attacks comprehensive"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "563c5034-318b-42e4-a5c1-b4a0aa711a9c",
+  "isSidechain": false,
+  "requestId": "req_011CbYLpXc8wUKjULAtLt8aH",
+  "type": "assistant",
+  "uuid": "e6d3efd6-e472-44d5-aafb-32c5ddd2e4c3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "6510f1d9-2d0b-4255-86e5-3824feb471a8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0148SCpMGyTg5p5zY91oB33N",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 712,
+      "cache_read_input_tokens": 23953,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 712,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 23953,
+          "cache_creation_input_tokens": 712,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 712
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-30T07:16:04.598Z_
+
+<details><summary>↩ Tool result · `toolu_01Mw42xekSv8865n57Wxi9ch`</summary>
+
+```text
+Web search results for query: "RAG Security Bench RSB benchmark 2025 defense evaluation poisoning attacks comprehensive"
+
+Links: [{"title":"(PDF) Benchmarking Poisoning Attacks against Retrieval-Augmented Generation","url":"https://www.researchgate.net/publication/392105526_Benchmarking_Poisoning_Attacks_against_Retrieval-Augmented_Generation"},{"title":"Semantic Chameleon: Corpus-Dependent Poisoning Attacks and Defenses in RAG Systems","url":"https://arxiv.org/html/2603.18034v1"},{"title":"Benchmarking Poisoning Attacks against Retrieval-Augmented Generation","url":"https://arxiv.org/pdf/2505.18543"},{"title":"[2505.18543] Benchmarking Poisoning Attacks against Retrieval-Augmented Generation","url":"https://arxiv.org/abs/2505.18543"},{"title":"Semantic Chameleon: Corpus-Dependent Poisoning Attacks and Defenses in RAG Systems","url":"https://arxiv.org/pdf/2603.18034"},{"title":"Securing Retrieval-Augmented Generation: A Taxonomy of Attacks, Defenses, and Future Directions","url":"https://arxiv.org/html/2604.08304v1"},{"title":"RAGShield: Provenance-Verified Defense-in-Depth Against Knowledge Base Poisoning in Government Retrieval-Augmented Generation Systems","url":"https://arxiv.org/html/2604.00387v1"},{"title":"RAGPart & RAGMask: Retrieval-Stage Defenses Against Corpus Poisoning in Retrieval-Augmented Generation","url":"https://arxiv.org/pdf/2512.24268"}]
+
+Based on the search results, here's comprehensive information about the RAG Security Bench (RSB) benchmark:
+
+## Overview
+
+RAG Security Bench (RSB) is a unified benchmark that systematically evaluates a broad range of poisoning attacks and defense mechanisms across diverse RAG architectures.
+
+## Attack Coverage
+
+The RSB benchmark includes 13 representative poisoning attacks, classified into three categories based on their adversarial objectives: targeted poisoning, denial-of-service (DoS), and trigger-based DoS.
+
+## Defense Mechanisms
+
+On the defense side, RSB incorporates 7 representative methods, organized into three categories. The benchmark tests 13 poisoning methods across 5 datasets with 7 defense mechanisms and finds that hybrid defenses outperform single-mechanism approaches but still leave residual risk.
+
+## Scope and Evaluation
+
+RSB evaluates 6 advanced RAG frameworks spanning four categories: sequential RAG with fixed retrieval-generation pipelines, branching RAG that explores multiple retrieval paths, conditional RAG that adapts retrieval based on the query content, and loop RAG that performs iterative refinement through repeated retrieval and generation cycles. It also encompasses evaluations of advanced architectures, including multi-turn conversational RAG, multimodal RAG systems, and RAG-based LLM agent systems.
+
+## Key Findings
+
+While existing attacks perform well on standard QA datasets, their effectiveness drops significantly on expanded versions. Various advanced RAG architectures remain susceptible to poisoning attacks, and current defense techniques fail to provide robust protection.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e6d3efd6-e472-44d5-aafb-32c5ddd2e4c3",
+  "isSidechain": false,
+  "promptId": "3f0512d1-eebd-4e5d-a2ea-3fb317b2870b",
+  "type": "user",
+  "uuid": "592608eb-9ce9-4977-9b97-6996c01067f2",
+  "toolUseResult": {
+    "query": "RAG Security Bench RSB benchmark 2025 defense evaluation poisoning attacks comprehensive",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QhqBMcaQdLruJHAKpZEiK9",
+        "content": [
+          {
+            "title": "(PDF) Benchmarking Poisoning Attacks against Retrieval-Augmented Generation",
+            "url": "https://www.researchgate.net/publication/392105526_Benchmarking_Poisoning_Attacks_against_Retrieval-Augmented_Generation"
+          },
+          {
+            "title": "Semantic Chameleon: Corpus-Dependent Poisoning Attacks and Defenses in RAG Systems",
+            "url": "https://arxiv.org/html/2603.18034v1"
+          },
+          {
+            "title": "Benchmarking Poisoning Attacks against Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/pdf/2505.18543"
+          },
+          {
+            "title": "[2505.18543] Benchmarking Poisoning Attacks against Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/abs/2505.18543"
+          },
+          {
+            "title": "Semantic Chameleon: Corpus-Dependent Poisoning Attacks and Defenses in RAG Systems",
+            "url": "https://arxiv.org/pdf/2603.18034"
+          },
+          {
+            "title": "Securing Retrieval-Augmented Generation: A Taxonomy of Attacks, Defenses, and Future Directions",
+            "url": "https://arxiv.org/html/2604.08304v1"
+          },
+          {
+            "title": "RAGShield: Provenance-Verified Defense-in-Depth Against Knowledge Base Poisoning in Government Retrieval-Augmented Generation Systems",
+            "url": "https://arxiv.org/html/2604.00387v1"
+          },
+          {
+            "title": "RAGPart & RAGMask: Retrieval-Stage Defenses Against Corpus Poisoning in Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/pdf/2512.24268"
+          }
+        ]
+      },
+      "Based on the search results, here's comprehensive information about the RAG Security Bench (RSB) benchmark:\n\n## Overview\n\nRAG Security Bench (RSB) is a unified benchmark that systematically evaluates a broad range of poisoning attacks and defense mechanisms across diverse RAG architectures.\n\n## Attack Coverage\n\nThe RSB benchmark includes 13 representative poisoning attacks, classified into three categories based on their adversarial objectives: targeted poisoning, denial-of-service (DoS), and trigger-based DoS.\n\n## Defense Mechanisms\n\nOn the defense side, RSB incorporates 7 representative methods, organized into three categories. The benchmark tests 13 poisoning methods across 5 datasets with 7 defense mechanisms and finds that hybrid defenses outperform single-mechanism approaches but still leave residual risk.\n\n## Scope and Evaluation\n\nRSB evaluates 6 advanced RAG frameworks spanning four categories: sequential RAG with fixed retrieval-generation pipelines, branching RAG that explores multiple retrieval paths, conditional RAG that adapts retrieval based on the query content, and loop RAG that performs iterative refinement through repeated retrieval and generation cycles. It also encompasses evaluations of advanced architectures, including multi-turn conversational RAG, multimodal RAG systems, and RAG-based LLM agent systems.\n\n## Key Findings\n\nWhile existing attacks perform well on standard QA datasets, their effectiveness drops significantly on expanded versions. Various advanced RAG architectures remain susceptible to poisoning attacks, and current defense techniques fail to provide robust protection."
+    ],
+    "durationSeconds": 7.897912665999989,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "e6d3efd6-e472-44d5-aafb-32c5ddd2e4c3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "6510f1d9-2d0b-4255-86e5-3824feb471a8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-30T07:16:07.022Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01R7mitNdabvJsokuRSHHH2N`</summary>
+
+```json
+{
+  "query": "RAGPart passage partitioning defense corpus poisoning RAG 2025 experiments ablation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "592608eb-9ce9-4977-9b97-6996c01067f2",
+  "isSidechain": false,
+  "requestId": "req_011CbYLqJ8njxCctcoUB7E15",
+  "type": "assistant",
+  "uuid": "951f72d3-5191-44a0-b406-0f9608b64853",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "6510f1d9-2d0b-4255-86e5-3824feb471a8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gq71sqm2xE58YCZLHUZBE4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 882,
+      "cache_read_input_tokens": 24665,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 882,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 24665,
+          "cache_creation_input_tokens": 882,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 882
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-30T07:16:14.287Z_
+
+<details><summary>↩ Tool result · `toolu_01R7mitNdabvJsokuRSHHH2N`</summary>
+
+```text
+Web search results for query: "RAGPart passage partitioning defense corpus poisoning RAG 2025 experiments ablation"
+
+Links: [{"title":"RAGPart & RAGMask: Retrieval-Stage Defenses Against Corpus Poisoning in Retrieval-Augmented Generation","url":"https://arxiv.org/pdf/2512.24268"},{"title":"[2512.24268] RAGPart & RAGMask: Retrieval-Stage Defenses Against Corpus Poisoning in Retrieval-Augmented Generation","url":"https://arxiv.org/abs/2512.24268"},{"title":"RAG Poisoning: Threats and Defenses","url":"https://www.emergentmind.com/topics/retrieval-augmented-generation-rag-poisoning"},{"title":"Advances LLM Security, RAGPart And RAGMask Mitigates Corpus Poisoning In Generation Pipelines","url":"https://quantumzeitgeist.com/security-advances-llm-ragpart-ragmask-mitigates/"},{"title":"(PDF) RAGPart & RAGMask: Retrieval-Stage Defenses Against Corpus Poisoning in Retrieval-Augmented Generation","url":"https://www.researchgate.net/publication/399277254_RAGPart_RAGMask_Retrieval-Stage_Defenses_Against_Corpus_Poisoning_in_Retrieval-Augmented_Generation"},{"title":"Semantic Chameleon: Corpus-Dependent Poisoning Attacks and Defenses in RAG Systems","url":"https://arxiv.org/html/2603.18034v1"}]
+
+I found comprehensive information about RAGPart and RAG corpus poisoning defenses. Here's what the research shows:
+
+## RAGPart: Passage Partitioning Defense
+
+RAGPart leverages the inherent training dynamics of dense retrievers, exploiting document partitioning to mitigate the effect of poisoned points. More specifically, RAGPart dilutes the impact of malicious content through document partitioning and mean pooling of fragment embeddings.
+
+## Defense Mechanism and Results
+
+RAGPart and RAGMask are complementary retrieval-stage defenses that operate directly on the retriever, making them computationally lightweight and requiring no modification to the generation model. RAGMask identifies suspicious tokens based on significant similarity shifts under targeted token masking.
+
+Experiments show RAGPart can prevent poisoned documents from appearing among the top retrieved results. More broadly, across two benchmarks, four poisoning strategies, and four state-of-the-art retrievers, the defenses consistently reduce attack success rates while preserving utility under benign conditions.
+
+## Ablation Study Findings
+
+Increasing the number of document fragments in RAGPart generally improves defense, though it can reduce utility. Additionally, for RAGMask, higher masking ratios increase defense, while larger masking sizes are more effective at reducing the impact of poisoned content.
+
+The research was published on arxiv on December 30, 2025 by Pathmanathan et al.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "951f72d3-5191-44a0-b406-0f9608b64853",
+  "isSidechain": false,
+  "promptId": "3f0512d1-eebd-4e5d-a2ea-3fb317b2870b",
+  "type": "user",
+  "uuid": "18029836-d8e6-4fa2-be59-4192df322a78",
+  "toolUseResult": {
+    "query": "RAGPart passage partitioning defense corpus poisoning RAG 2025 experiments ablation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01M9bpS5UtQaNxhrcmj5Soqs",
+        "content": [
+          {
+            "title": "RAGPart & RAGMask: Retrieval-Stage Defenses Against Corpus Poisoning in Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/pdf/2512.24268"
+          },
+          {
+            "title": "[2512.24268] RAGPart & RAGMask: Retrieval-Stage Defenses Against Corpus Poisoning in Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/abs/2512.24268"
+          },
+          {
+            "title": "RAG Poisoning: Threats and Defenses",
+            "url": "https://www.emergentmind.com/topics/retrieval-augmented-generation-rag-poisoning"
+          },
+          {
+            "title": "Advances LLM Security, RAGPart And RAGMask Mitigates Corpus Poisoning In Generation Pipelines",
+            "url": "https://quantumzeitgeist.com/security-advances-llm-ragpart-ragmask-mitigates/"
+          },
+          {
+            "title": "(PDF) RAGPart & RAGMask: Retrieval-Stage Defenses Against Corpus Poisoning in Retrieval-Augmented Generation",
+            "url": "https://www.researchgate.net/publication/399277254_RAGPart_RAGMask_Retrieval-Stage_Defenses_Against_Corpus_Poisoning_in_Retrieval-Augmented_Generation"
+          },
+          {
+            "title": "Semantic Chameleon: Corpus-Dependent Poisoning Attacks and Defenses in RAG Systems",
+            "url": "https://arxiv.org/html/2603.18034v1"
+          }
+        ]
+      },
+      "I found comprehensive information about RAGPart and RAG corpus poisoning defenses. Here's what the research shows:\n\n## RAGPart: Passage Partitioning Defense\n\nRAGPart leverages the inherent training dynamics of dense retrievers, exploiting document partitioning to mitigate the effect of poisoned points. More specifically, RAGPart dilutes the impact of malicious content through document partitioning and mean pooling of fragment embeddings.\n\n## Defense Mechanism and Results\n\nRAGPart and RAGMask are complementary retrieval-stage defenses that operate directly on the retriever, making them computationally lightweight and requiring no modification to the generation model. RAGMask identifies suspicious tokens based on significant similarity shifts under targeted token masking.\n\nExperiments show RAGPart can prevent poisoned documents from appearing among the top retrieved results. More broadly, across two benchmarks, four poisoning strategies, and four state-of-the-art retrievers, the defenses consistently reduce attack success rates while preserving utility under benign conditions.\n\n## Ablation Study Findings\n\nIncreasing the number of document fragments in RAGPart generally improves defense, though it can reduce utility. Additionally, for RAGMask, higher masking ratios increase defense, while larger masking sizes are more effective at reducing the impact of poisoned content.\n\nThe research was published on arxiv on December 30, 2025 by Pathmanathan et al."
+    ],
+    "durationSeconds": 7.260036626999994,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "951f72d3-5191-44a0-b406-0f9608b64853",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "6510f1d9-2d0b-4255-86e5-3824feb471a8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-30T07:16:23.557Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GPK95iiQzDyd7QG6nPJt8e`</summary>
+
+```json
+{
+  "query": "conformal risk control CRC monotone loss ICLR 2024 experimental setup calibration evaluation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "18029836-d8e6-4fa2-be59-4192df322a78",
+  "isSidechain": false,
+  "requestId": "req_011CbYLr1WSkWTyMfWBtK5bo",
+  "type": "assistant",
+  "uuid": "c9ecd8ed-d8b9-4159-bd5b-d05fb113ba56",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "6510f1d9-2d0b-4255-86e5-3824feb471a8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017hDSBr3sXGPqd2yK7CRTBU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 835,
+      "cache_read_input_tokens": 25547,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 835,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 25547,
+          "cache_creation_input_tokens": 835,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 835
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-30T07:16:30.879Z_
+
+<details><summary>↩ Tool result · `toolu_01GPK95iiQzDyd7QG6nPJt8e`</summary>
+
+```text
+Web search results for query: "conformal risk control CRC monotone loss ICLR 2024 experimental setup calibration evaluation"
+
+Links: [{"title":"Conformal Risk Control","url":"https://proceedings.iclr.cc/paper_files/paper/2024/hash/f3549ef9b5ff520a7e41ff3cc306ab2b-Abstract-Conference.html"},{"title":"Conformal Risk Control under Non-Monotone Losses: Theory and Finite-Sample Guarantees","url":"https://arxiv.org/html/2604.01502"},{"title":"Conformal Risk Control","url":"https://research.google/pubs/conformal-risk-control/"},{"title":"Conformal Risk Control | OpenReview","url":"https://openreview.net/forum?id=33XGfHLtZg"},{"title":"Published as a conference paper at ICLR 2024 CONFORMAL RISK CONTROL","url":"https://proceedings.iclr.cc/paper_files/paper/2024/file/f3549ef9b5ff520a7e41ff3cc306ab2b-Paper-Conference.pdf"},{"title":"Non-monotonicity in Conformal Risk Control","url":"https://arxiv.org/pdf/2604.01502"},{"title":"Conformal Policy Control","url":"https://arxiv.org/html/2603.02196v1"},{"title":"Conformal Risk Control for Non-Monotonic Losses","url":"https://arxiv.org/pdf/2602.20151"},{"title":"(PDF) Anytime-Valid Conformal Risk Control","url":"https://www.researchgate.net/publication/400459549_Anytime-Valid_Conformal_Risk_Control"}]
+
+Based on the search results, I found comprehensive information about Conformal Risk Control (CRC) from ICLR 2024:
+
+## Core Contribution
+
+The paper extends conformal prediction to control the expected value of any monotone loss function, and the algorithm generalizes split conformal prediction together with its coverage guarantee.
+
+## Key Properties
+
+The conformal risk control procedure is tight up to an O(1/n) factor, similar to standard conformal prediction methods.
+
+## Experimental Applications
+
+The paper includes worked examples from computer vision and natural language processing that demonstrate the usage of the algorithm to bound the false negative rate, graph distance, and token-level F1-score.
+
+## Extensions
+
+The paper also introduces extensions of the idea to distribution shift, quantile risk control, multiple and adversarial risk control, and expectations of U-statistics.
+
+## Monotonicity Assumption
+
+It's important to note that the existing theory assumes that the loss decreases monotonically with a tuning parameter that governs the size of the prediction set, though this assumption is often violated in practice where losses may behave non-monotonically due to competing objectives such as coverage and efficiency.
+
+The full paper is available at the ICLR 2024 proceedings and on arXiv, which would contain the detailed experimental setup and calibration evaluation methodology.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c9ecd8ed-d8b9-4159-bd5b-d05fb113ba56",
+  "isSidechain": false,
+  "promptId": "3f0512d1-eebd-4e5d-a2ea-3fb317b2870b",
+  "type": "user",
+  "uuid": "666fe4f9-dce1-45c0-913b-0b00da1e4790",
+  "toolUseResult": {
+    "query": "conformal risk control CRC monotone loss ICLR 2024 experimental setup calibration evaluation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0137shduiKjReXJ8TP9386pr",
+        "content": [
+          {
+            "title": "Conformal Risk Control",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2024/hash/f3549ef9b5ff520a7e41ff3cc306ab2b-Abstract-Conference.html"
+          },
+          {
+            "title": "Conformal Risk Control under Non-Monotone Losses: Theory and Finite-Sample Guarantees",
+            "url": "https://arxiv.org/html/2604.01502"
+          },
+          {
+            "title": "Conformal Risk Control",
+            "url": "https://research.google/pubs/conformal-risk-control/"
+          },
+          {
+            "title": "Conformal Risk Control | OpenReview",
+            "url": "https://openreview.net/forum?id=33XGfHLtZg"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2024 CONFORMAL RISK CONTROL",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2024/file/f3549ef9b5ff520a7e41ff3cc306ab2b-Paper-Conference.pdf"
+          },
+          {
+            "title": "Non-monotonicity in Conformal Risk Control",
+            "url": "https://arxiv.org/pdf/2604.01502"
+          },
+          {
+            "title": "Conformal Policy Control",
+            "url": "https://arxiv.org/html/2603.02196v1"
+          },
+          {
+            "title": "Conformal Risk Control for Non-Monotonic Losses",
+            "url": "https://arxiv.org/pdf/2602.20151"
+          },
+          {
+            "title": "(PDF) Anytime-Valid Conformal Risk Control",
+            "url": "https://www.researchgate.net/publication/400459549_Anytime-Valid_Conformal_Risk_Control"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about Conformal Risk Control (CRC) from ICLR 2024:\n\n## Core Contribution\n\nThe paper extends conformal prediction to control the expected value of any monotone loss function, and the algorithm generalizes split conformal prediction together with its coverage guarantee.\n\n## Key Properties\n\nThe conformal risk control procedure is tight up to an O(1/n) factor, similar to standard conformal prediction methods.\n\n## Experimental Applications\n\nThe paper includes worked examples from computer vision and natural language processing that demonstrate the usage of the algorithm to bound the false negative rate, graph distance, and token-level F1-score.\n\n## Extensions\n\nThe paper also introduces extensions of the idea to distribution shift, quantile risk control, multiple and adversarial risk control, and expectations of U-statistics.\n\n## Monotonicity Assumption\n\nIt's important to note that the existing theory assumes that the loss decreases monotonically with a tuning parameter that governs the size of the prediction set, though this assumption is often violated in practice where losses may behave non-monotonically due to competing objectives such as coverage and efficiency.\n\nThe full paper is available at the ICLR 2024 proceedings and on arXiv, which would contain the detailed experimental setup and calibration evaluation methodology."
+    ],
+    "durationSeconds": 7.317510475999981,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "c9ecd8ed-d8b9-4159-bd5b-d05fb113ba56",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "6510f1d9-2d0b-4255-86e5-3824feb471a8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 39_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Poisoning-Robust Conformal Abstention for RAG via Retrieval-Agreement Scores  ## Core Problem  How can RAG systems abstain from answering with distribution-free correctness guarantees when the retri…",
+  "leafUuid": "666fe4f9-dce1-45c0-913b-0b00da1e4790",
+  "sessionId": "6510f1d9-2d0b-4255-86e5-3824feb471a8"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 40_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Poisoning-robust conformal abstention for RAG",
+  "sessionId": "6510f1d9-2d0b-4255-86e5-3824feb471a8"
+}
+```
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-30T07:16:33.867Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01P3Ax8WeiT4NtQPKntiokvY`</summary>
+
+```json
+{
+  "query": "ReliabilityRAG NeurIPS 2025 NLI MIS certified defense RAG experiments baselines"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "666fe4f9-dce1-45c0-913b-0b00da1e4790",
+  "isSidechain": false,
+  "requestId": "req_011CbYLsETqaVJaeoLBvAAz1",
+  "type": "assistant",
+  "uuid": "302e1026-5ce8-41d1-8437-322f8b217bad",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "6510f1d9-2d0b-4255-86e5-3824feb471a8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GHFmYdeNYHtrAjqurV4nwV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 814,
+      "cache_read_input_tokens": 26382,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 814,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 26382,
+          "cache_creation_input_tokens": 814,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 814
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-30T07:16:41.956Z_
+
+<details><summary>↩ Tool result · `toolu_01P3Ax8WeiT4NtQPKntiokvY`</summary>
+
+```text
+Web search results for query: "ReliabilityRAG NeurIPS 2025 NLI MIS certified defense RAG experiments baselines"
+
+Links: [{"title":"Certified Defenses for RAG Systems","url":"https://www.emergentmind.com/topics/certified-defenses-for-rag-systems"},{"title":"NeurIPS Poster ReliabilityRAG: Effective and Provably Robust Defense for RAG-based Web-Search","url":"https://neurips.cc/virtual/2025/poster/119236"},{"title":"ReliabilityRAG: Effective and Provably Robust Defense for RAG-based Web-Search | OpenReview","url":"https://openreview.net/forum?id=D9JeNTs5Bu"},{"title":"[2509.23519] ReliabilityRAG: Effective and Provably Robust Defense for RAG-based Web-Search","url":"https://arxiv.org/abs/2509.23519"},{"title":"ReliabilityRAG: Effective and Provably Robust Defense for RAG-based Web-Search","url":"https://arxiv.org/pdf/2509.23519"},{"title":"RAGShield: Provenance-Verified Defense-in-Depth Against Knowledge Base Poisoning in Government Retrieval-Augmented Generation Systems","url":"https://arxiv.org/html/2604.00387v1"}]
+
+I found relevant information about ReliabilityRAG. Here are the key findings:
+
+## Overview
+
+ReliabilityRAG is a framework for adversarial robustness that explicitly leverages reliability information of retrieved documents. It was presented as a NeurIPS 2025 poster.
+
+## Key Contributions
+
+The work introduces a graph-theoretic perspective to identify a "consistent majority" among retrieved documents to filter out malicious ones, using a novel algorithm based on finding a Maximum Independent Set (MIS) on a document graph where edges encode contradiction.
+
+The MIS variant explicitly prioritizes higher-reliability documents and provides provable robustness guarantees against bounded adversarial corruption under natural assumptions. A scalable weighted sample and aggregate framework was developed to address the computational cost of exact MIS for large retrieval sets while preserving some robustness guarantees.
+
+## NLI and Experiments
+
+The work uses DeBERTa-v3-large-mnli-fever-anli-ling-wanli as the NLI model, which achieves state-of-the-art 91.2% / 90.8% accuracy on the MNLI-M/MM test splits and 70.2% on the ANLI test set.
+
+## Results and Baselines
+
+Empirical results show ReliabilityRAG provides superior robustness against adversarial attacks compared to prior methods, maintains high benign accuracy, and excels in long-form generation tasks. The work was evaluated on the Natural Questions benchmark against five adversary tiers, compared against RobustRAG and RAGDefender baselines.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "302e1026-5ce8-41d1-8437-322f8b217bad",
+  "isSidechain": false,
+  "promptId": "3f0512d1-eebd-4e5d-a2ea-3fb317b2870b",
+  "type": "user",
+  "uuid": "c42f3b6e-152d-40d5-8320-dc819ad78e6b",
+  "toolUseResult": {
+    "query": "ReliabilityRAG NeurIPS 2025 NLI MIS certified defense RAG experiments baselines",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Bf661hEkF5zhUhsYHg7HRx",
+        "content": [
+          {
+            "title": "Certified Defenses for RAG Systems",
+            "url": "https://www.emergentmind.com/topics/certified-defenses-for-rag-systems"
+          },
+          {
+            "title": "NeurIPS Poster ReliabilityRAG: Effective and Provably Robust Defense for RAG-based Web-Search",
+            "url": "https://neurips.cc/virtual/2025/poster/119236"
+          },
+          {
+            "title": "ReliabilityRAG: Effective and Provably Robust Defense for RAG-based Web-Search | OpenReview",
+            "url": "https://openreview.net/forum?id=D9JeNTs5Bu"
+          },
+          {
+            "title": "[2509.23519] ReliabilityRAG: Effective and Provably Robust Defense for RAG-based Web-Search",
+            "url": "https://arxiv.org/abs/2509.23519"
+          },
+          {
+            "title": "ReliabilityRAG: Effective and Provably Robust Defense for RAG-based Web-Search",
+            "url": "https://arxiv.org/pdf/2509.23519"
+          },
+          {
+            "title": "RAGShield: Provenance-Verified Defense-in-Depth Against Knowledge Base Poisoning in Government Retrieval-Augmented Generation Systems",
+            "url": "https://arxiv.org/html/2604.00387v1"
+          }
+        ]
+      },
+      "I found relevant information about ReliabilityRAG. Here are the key findings:\n\n## Overview\n\nReliabilityRAG is a framework for adversarial robustness that explicitly leverages reliability information of retrieved documents. It was presented as a NeurIPS 2025 poster.\n\n## Key Contributions\n\nThe work introduces a graph-theoretic perspective to identify a \"consistent majority\" among retrieved documents to filter out malicious ones, using a novel algorithm based on finding a Maximum Independent Set (MIS) on a document graph where edges encode contradiction.\n\nThe MIS variant explicitly prioritizes higher-reliability documents and provides provable robustness guarantees against bounded adversarial corruption under natural assumptions. A scalable weighted sample and aggregate framework was developed to address the computational cost of exact MIS for large retrieval sets while preserving some robustness guarantees.\n\n## NLI and Experiments\n\nThe work uses DeBERTa-v3-large-mnli-fever-anli-ling-wanli as the NLI model, which achieves state-of-the-art 91.2% / 90.8% accuracy on the MNLI-M/MM test splits and 70.2% on the ANLI test set.\n\n## Results and Baselines\n\nEmpirical results show ReliabilityRAG provides superior robustness against adversarial attacks compared to prior methods, maintains high benign accuracy, and excels in long-form generation tasks. The work was evaluated on the Natural Questions benchmark against five adversary tiers, compared against RobustRAG and RAGDefender baselines."
+    ],
+    "durationSeconds": 8.084653897000011,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "302e1026-5ce8-41d1-8437-322f8b217bad",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "6510f1d9-2d0b-4255-86e5-3824feb471a8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-30T07:16:44.985Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011ghd94cUX1vXuQQJyhGFzj`</summary>
+
+```json
+{
+  "query": "Qwen3.5 72B model availability open source 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c42f3b6e-152d-40d5-8320-dc819ad78e6b",
+  "isSidechain": false,
+  "requestId": "req_011CbYLt3qeT85ZAFb7EDP6h",
+  "type": "assistant",
+  "uuid": "96030530-fb51-432a-9861-ee75af9f1346",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "6510f1d9-2d0b-4255-86e5-3824feb471a8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LFM1mXfjLNjDbpdkZZaT8U",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 808,
+      "cache_read_input_tokens": 27196,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 808,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 27196,
+          "cache_creation_input_tokens": 808,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 808
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-30T07:16:52.777Z_
+
+<details><summary>↩ Tool result · `toolu_011ghd94cUX1vXuQQJyhGFzj`</summary>
+
+```text
+Web search results for query: "Qwen3.5 72B model availability open source 2026"
+
+Links: [{"title":"Qwen 3 Release Date: AI Performance Analysis and Model Timeline - H3sync","url":"https://h3sync.com/blog/qwen-3-release-date/"},{"title":"Qwen - Wikipedia","url":"https://en.wikipedia.org/wiki/Qwen"},{"title":"GitHub - QwenLM/Qwen3.6: Qwen3.6 is the large language model series developed by Qwen team, Alibaba Group. · GitHub","url":"https://github.com/QwenLM/Qwen3.6"},{"title":"GitHub - QwenLM/Qwen3: Qwen3 is the large language model series developed by Qwen team, Alibaba Cloud. · GitHub","url":"https://github.com/QwenLM/qwen3"},{"title":"Qwen/Qwen3.6-35B-A3B · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3.6-35B-A3B"},{"title":"What Is Qwen 3.5? Alibaba's Open-Weight Model That Runs on Your Phone | MindStudio","url":"https://www.mindstudio.ai/blog/what-is-qwen-3-5-alibaba-open-weight-model"},{"title":"Qwen 3.7-Max: Release Date, Features, Open Source Status, and How to Access (2026) | Yotta Labs","url":"https://www.yottalabs.ai/post/qwen-3-7-max-release-date-features-open-source-status-and-how-to-access-2026"},{"title":"Qwen3.5","url":"https://qwen.ai/research"}]
+
+Based on the search results, here's what I found about Qwen3.5 72B model availability and open-source status in 2026:
+
+## Qwen3.5 Release and Availability
+
+Qwen3.5 was released on February 16, 2026, and is open-weights. On February 24, 2026, Qwen3.5-122B-A10B, Qwen3.5-35B-A3B, and Qwen3.5-27B were released, followed by Qwen3.5-9B, Qwen3.5-4B, Qwen3.5-2B, and Qwen3.5-0.8B on March 2, 2026.
+
+## 72B Model Specifics
+
+Regarding the 72B variant specifically, Alibaba is expected to maintain its commitment to the open-source community by releasing the weights for the 7B, 14B, and 72B versions. Additionally, Qwen 3.5 is available in 0.5B, 1.5B, 3B, 7B, 14B, 32B, and 72B parameter sizes.
+
+## Open-Source Status
+
+Open-weight is not the same as fully open-source. With Qwen 3.5, Alibaba releases the trained model weights publicly and you can download and run them, but the training data and training code may not be fully disclosed.
+
+The models are available for download on platforms like Hugging Face and ModelScope.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "96030530-fb51-432a-9861-ee75af9f1346",
+  "isSidechain": false,
+  "promptId": "3f0512d1-eebd-4e5d-a2ea-3fb317b2870b",
+  "type": "user",
+  "uuid": "44685424-448e-4784-889a-ade317a55ef2",
+  "toolUseResult": {
+    "query": "Qwen3.5 72B model availability open source 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Ff9KcVdS4PzrFhuaf2zenQ",
+        "content": [
+          {
+            "title": "Qwen 3 Release Date: AI Performance Analysis and Model Timeline - H3sync",
+            "url": "https://h3sync.com/blog/qwen-3-release-date/"
+          },
+          {
+            "title": "Qwen - Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/Qwen"
+          },
+          {
+            "title": "GitHub - QwenLM/Qwen3.6: Qwen3.6 is the large language model series developed by Qwen team, Alibaba Group. · GitHub",
+            "url": "https://github.com/QwenLM/Qwen3.6"
+          },
+          {
+            "title": "GitHub - QwenLM/Qwen3: Qwen3 is the large language model series developed by Qwen team, Alibaba Cloud. · GitHub",
+            "url": "https://github.com/QwenLM/qwen3"
+          },
+          {
+            "title": "Qwen/Qwen3.6-35B-A3B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B"
+          },
+          {
+            "title": "What Is Qwen 3.5? Alibaba's Open-Weight Model That Runs on Your Phone | MindStudio",
+            "url": "https://www.mindstudio.ai/blog/what-is-qwen-3-5-alibaba-open-weight-model"
+          },
+          {
+            "title": "Qwen 3.7-Max: Release Date, Features, Open Source Status, and How to Access (2026) | Yotta Labs",
+            "url": "https://www.yottalabs.ai/post/qwen-3-7-max-release-date-features-open-source-status-and-how-to-access-2026"
+          },
+          {
+            "title": "Qwen3.5",
+            "url": "https://qwen.ai/research"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about Qwen3.5 72B model availability and open-source status in 2026:\n\n## Qwen3.5 Release and Availability\n\nQwen3.5 was released on February 16, 2026, and is open-weights. On February 24, 2026, Qwen3.5-122B-A10B, Qwen3.5-35B-A3B, and Qwen3.5-27B were released, followed by Qwen3.5-9B, Qwen3.5-4B, Qwen3.5-2B, and Qwen3.5-0.8B on March 2, 2026.\n\n## 72B Model Specifics\n\nRegarding the 72B variant specifically, Alibaba is expected to maintain its commitment to the open-source community by releasing the weights for the 7B, 14B, and 72B versions. Additionally, Qwen 3.5 is available in 0.5B, 1.5B, 3B, 7B, 14B, 32B, and 72B parameter sizes.\n\n## Open-Source Status\n\nOpen-weight is not the same as fully open-source. With Qwen 3.5, Alibaba releases the trained model weights publicly and you can download and run them, but the training data and training code may not be fully disclosed.\n\nThe models are available for download on platforms like Hugging Face and ModelScope."
+    ],
+    "durationSeconds": 7.787431638000009,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "96030530-fb51-432a-9861-ee75af9f1346",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "6510f1d9-2d0b-4255-86e5-3824feb471a8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-30T07:16:55.483Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XJAh3xsNUx9eWoFSiQK1xp`</summary>
+
+```json
+{
+  "query": "\"Semantic Chameleon\" RAGShield RAG poisoning defense 2026 latest baselines experiments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "44685424-448e-4784-889a-ade317a55ef2",
+  "isSidechain": false,
+  "requestId": "req_011CbYLtr5VX16U1E9DKaV1h",
+  "type": "assistant",
+  "uuid": "48f410ba-e398-439f-b982-2ba1f0b2fcd3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "6510f1d9-2d0b-4255-86e5-3824feb471a8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JoNHVebXCD6z4x98bn1fiF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 906,
+      "cache_read_input_tokens": 28004,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 906,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 28004,
+          "cache_creation_input_tokens": 906,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 906
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-30T07:17:06.140Z_
+
+<details><summary>↩ Tool result · `toolu_01XJAh3xsNUx9eWoFSiQK1xp`</summary>
+
+```text
+Web search results for query: ""Semantic Chameleon" RAGShield RAG poisoning defense 2026 latest baselines experiments"
+
+Links: [{"title":"Semantic Chameleon: Corpus-Dependent Poisoning Attacks and Defenses in RAG Systems","url":"https://arxiv.org/html/2603.18034v1"},{"title":"Semantic Chameleon: Corpus-Dependent Poisoning Attacks and","url":"https://arxiv.org/pdf/2603.18034"},{"title":"[2603.18034] Semantic Chameleon: Corpus-Dependent Poisoning Attacks and Defenses in RAG Systems","url":"https://arxiv.org/abs/2603.18034"},{"title":"RAGShield: Provenance-Verified Defense-in-Depth Against Knowledge Base Poisoning in Government Retrieval-Augmented Generation Systems","url":"https://arxiv.org/html/2604.00387v1"},{"title":"RAGPart & RAGMask: Retrieval-Stage Defenses Against Corpus Poisoning in Retrieval-Augmented Generation","url":"https://arxiv.org/pdf/2512.24268"},{"title":"[2604.00387] RAGShield: Provenance-Verified Defense-in-Depth Against Knowledge Base Poisoning in Government Retrieval-Augmented Generation Systems","url":"https://arxiv.org/abs/2604.00387"},{"title":"RAG Poisoning: Threats and Defenses","url":"https://www.emergentmind.com/topics/retrieval-augmented-generation-rag-poisoning"},{"title":"May 2026: RAG Poisoning Challenge | redteams.ai","url":"https://redteams.ai/topics/community-challenges/challenge-may-2026"}]
+
+I found comprehensive search results on both "Semantic Chameleon" and "RAGShield" regarding RAG poisoning defenses. Here's what the latest 2026 research shows:
+
+## Semantic Chameleon
+
+Semantic Chameleon studies gradient-guided corpus poisoning attacks against modern RAG pipelines and evaluates retrieval-layer defenses that require no modification to the underlying LLM. The research implements dual-document poisoning attacks consisting of a sleeper document and a trigger document optimized using Greedy Coordinate Gradient (GCG).
+
+In a large-scale evaluation on the Security Stack Exchange corpus (67,941 documents) with 50 attack attempts, gradient-guided poisoning achieves a 38% success rate. The research shows that a simple hybrid BM25 + vector retriever provides an effective architectural defense against gradient-guided RAG poisoning, and presents exploratory evidence that corpus composition affects defenses.
+
+## RAGShield
+
+RAGShield is a five-layer defense-in-depth framework applying supply chain provenance verification to the RAG knowledge pipeline, observing that RAG knowledge base poisoning is structurally analogous to software supply chain attacks.
+
+The comprehensive evaluation compares RAGShield against RobustRAG and RAGDefender baselines on the Natural Questions benchmark against five adversary tiers including T5 (adaptive RAGShield-aware adversary). RAGShield-Full blocks adaptive attacks through the contradiction detector, which identifies that modified passages diverge from established authoritative sources even when corroboration is artificially inflated.
+
+Both papers represent the latest 2026 research on practical and theoretical defenses against RAG poisoning attacks, with artifacts available at https://github.com/scthornton/semantic-chameleon.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "48f410ba-e398-439f-b982-2ba1f0b2fcd3",
+  "isSidechain": false,
+  "promptId": "3f0512d1-eebd-4e5d-a2ea-3fb317b2870b",
+  "type": "user",
+  "uuid": "65f8b730-054d-4c83-bde1-2fa2dfdde383",
+  "toolUseResult": {
+    "query": "\"Semantic Chameleon\" RAGShield RAG poisoning defense 2026 latest baselines experiments",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FUoduy4xLmsFSBxhq18MhU",
+        "content": [
+          {
+            "title": "Semantic Chameleon: Corpus-Dependent Poisoning Attacks and Defenses in RAG Systems",
+            "url": "https://arxiv.org/html/2603.18034v1"
+          },
+          {
+            "title": "Semantic Chameleon: Corpus-Dependent Poisoning Attacks and",
+            "url": "https://arxiv.org/pdf/2603.18034"
+          },
+          {
+            "title": "[2603.18034] Semantic Chameleon: Corpus-Dependent Poisoning Attacks and Defenses in RAG Systems",
+            "url": "https://arxiv.org/abs/2603.18034"
+          },
+          {
+            "title": "RAGShield: Provenance-Verified Defense-in-Depth Against Knowledge Base Poisoning in Government Retrieval-Augmented Generation Systems",
+            "url": "https://arxiv.org/html/2604.00387v1"
+          },
+          {
+            "title": "RAGPart & RAGMask: Retrieval-Stage Defenses Against Corpus Poisoning in Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/pdf/2512.24268"
+          },
+          {
+            "title": "[2604.00387] RAGShield: Provenance-Verified Defense-in-Depth Against Knowledge Base Poisoning in Government Retrieval-Augmented Generation Systems",
+            "url": "https://arxiv.org/abs/2604.00387"
+          },
+          {
+            "title": "RAG Poisoning: Threats and Defenses",
+            "url": "https://www.emergentmind.com/topics/retrieval-augmented-generation-rag-poisoning"
+          },
+          {
+            "title": "May 2026: RAG Poisoning Challenge | redteams.ai",
+            "url": "https://redteams.ai/topics/community-challenges/challenge-may-2026"
+          }
+        ]
+      },
+      "I found comprehensive search results on both \"Semantic Chameleon\" and \"RAGShield\" regarding RAG poisoning defenses. Here's what the latest 2026 research shows:\n\n## Semantic Chameleon\n\nSemantic Chameleon studies gradient-guided corpus poisoning attacks against modern RAG pipelines and evaluates retrieval-layer defenses that require no modification to the underlying LLM. The research implements dual-document poisoning attacks consisting of a sleeper document and a trigger document optimized using Greedy Coordinate Gradient (GCG).\n\nIn a large-scale evaluation on the Security Stack Exchange corpus (67,941 documents) with 50 attack attempts, gradient-guided poisoning achieves a 38% success rate. The research shows that a simple hybrid BM25 + vector retriever provides an effective architectural defense against gradient-guided RAG poisoning, and presents exploratory evidence that corpus composition affects defenses.\n\n## RAGShield\n\nRAGShield is a five-layer defense-in-depth framework applying supply chain provenance verification to the RAG knowledge pipeline, observing that RAG knowledge base poisoning is structurally analogous to software supply chain attacks.\n\nThe comprehensive evaluation compares RAGShield against RobustRAG and RAGDefender baselines on the Natural Questions benchmark against five adversary tiers including T5 (adaptive RAGShield-aware adversary). RAGShield-Full blocks adaptive attacks through the contradiction detector, which identifies that modified passages diverge from established authoritative sources even when corroboration is artificially inflated.\n\nBoth papers represent the latest 2026 research on practical and theoretical defenses against RAG poisoning attacks, with artifacts available at https://github.com/scthornton/semantic-chameleon."
+    ],
+    "durationSeconds": 10.651653021000005,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "48f410ba-e398-439f-b982-2ba1f0b2fcd3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "6510f1d9-2d0b-4255-86e5-3824feb471a8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-30T07:17:09.043Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Fjh2nj7hBwMbTfBEyBduL1`</summary>
+
+```json
+{
+  "query": "compute cost inference Qwen 72B partition aggregate RAG multiple LLM calls latency practical"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "65f8b730-054d-4c83-bde1-2fa2dfdde383",
+  "isSidechain": false,
+  "requestId": "req_011CbYLuqJ9YEHUakmLrzvxi",
+  "type": "assistant",
+  "uuid": "d35f4bb9-f903-4693-b898-5572d3c290d5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "6510f1d9-2d0b-4255-86e5-3824feb471a8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U7UGnoYWcFpsUfYoFkmUix",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 943,
+      "cache_read_input_tokens": 28910,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 943,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 28910,
+          "cache_creation_input_tokens": 943,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 943
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-30T07:17:22.578Z_
+
+<details><summary>↩ Tool result · `toolu_01Fjh2nj7hBwMbTfBEyBduL1`</summary>
+
+```text
+Web search results for query: "compute cost inference Qwen 72B partition aggregate RAG multiple LLM calls latency practical"
+
+Links: [{"title":"LLM Caching Strategies for Cost Optimization: Prompt, Semantic, and KV Caching | CallSphere Blog","url":"https://callsphere.ai/blog/llm-caching-strategies-cost-optimization-2026"},{"title":"Prompt Compression in the Wild: Measuring Latency, Rate Adherence, and Quality for Faster LLM Inference","url":"https://arxiv.org/pdf/2604.02985"},{"title":"Beyond Tokens-per-Second: How to Balance Speed, Cost, and Quality in LLM Inference","url":"https://www.bentoml.com/blog/beyond-tokens-per-second-how-to-balance-speed-cost-and-quality-in-llm-inference"},{"title":"The LLM inference optimization playbook: architecting for latency, throughput, and cost","url":"https://www.runpod.io/articles/guides/llm-inference-optimization-playbook"},{"title":"LIR$^3$AG: A Lightweight Rerank Reasoning Strategy Framework for Retrieval-Augmented Generation","url":"https://arxiv.org/pdf/2512.18329"},{"title":"Latency and Token-Aware Test-Time Compute","url":"https://arxiv.org/pdf/2509.09864"},{"title":"TeleRAG: Efficient Retrieval-Augmented Generation Inference with Lookahead Retrieval","url":"https://arxiv.org/pdf/2502.20969"},{"title":"Shared Disk KV Cache Management for Efficient Multi-Instance Inference   in RAG-Powered LLMs","url":"https://arxiv.org/pdf/2504.11765"}]
+
+I found several relevant results on LLM inference optimization, RAG systems, and cost-latency trade-offs. Here's what the search uncovered:
+
+## Key Findings
+
+**Cost Optimization for LLM Inference:**
+Practical techniques can reduce LLM inference costs by 40-80 percent through prompt caching, semantic caching, and KV cache optimization in production systems.
+
+**RAG and Multiple LLM Calls:**
+RAG applications are built as modular pipelines where a single query undergoes multiple rounds of LLM calls and retrievals, each serving different functions. SGLang is recommended when your workflow runs multiple sequential LLM calls, requires guaranteed JSON schemas, or has long shared prefixes.
+
+**Latency Considerations:**
+With RAG systems, the latency of the underlying LLM becomes a crucial bottleneck since long contexts from retrieved passages lead to large prompts and increased compute, making prompt compression a cost-effective and low-latency method for accelerating inference.
+
+**Multi-Instance RAG Optimization:**
+Shared RAG-DCache achieved a 15-71% increase in throughput and up to a 12-65% reduction in latency depending on resource configuration.
+
+**Inference-Time Scaling:**
+Modern approaches explicitly incorporate both token cost and wall-clock latency, which is particularly critical for agentic workflows where models must issue multiple queries efficiently.
+
+The results don't contain specific information about Qwen 72B partitioning or aggregate strategies, but they cover the broader ecosystem of practical techniques for optimizing compute costs and latency in RAG systems with multiple LLM calls.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d35f4bb9-f903-4693-b898-5572d3c290d5",
+  "isSidechain": false,
+  "promptId": "3f0512d1-eebd-4e5d-a2ea-3fb317b2870b",
+  "type": "user",
+  "uuid": "df51648d-1d4d-4167-a222-58dea96b1f19",
+  "toolUseResult": {
+    "query": "compute cost inference Qwen 72B partition aggregate RAG multiple LLM calls latency practical",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WVwUafjJZAzBXiNSxWYMi3",
+        "content": [
+          {
+            "title": "LLM Caching Strategies for Cost Optimization: Prompt, Semantic, and KV Caching | CallSphere Blog",
+            "url": "https://callsphere.ai/blog/llm-caching-strategies-cost-optimization-2026"
+          },
+          {
+            "title": "Prompt Compression in the Wild: Measuring Latency, Rate Adherence, and Quality for Faster LLM Inference",
+            "url": "https://arxiv.org/pdf/2604.02985"
+          },
+          {
+            "title": "Beyond Tokens-per-Second: How to Balance Speed, Cost, and Quality in LLM Inference",
+            "url": "https://www.bentoml.com/blog/beyond-tokens-per-second-how-to-balance-speed-cost-and-quality-in-llm-inference"
+          },
+          {
+            "title": "The LLM inference optimization playbook: architecting for latency, throughput, and cost",
+            "url": "https://www.runpod.io/articles/guides/llm-inference-optimization-playbook"
+          },
+          {
+            "title": "LIR$^3$AG: A Lightweight Rerank Reasoning Strategy Framework for Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/pdf/2512.18329"
+          },
+          {
+            "title": "Latency and Token-Aware Test-Time Compute",
+            "url": "https://arxiv.org/pdf/2509.09864"
+          },
+          {
+            "title": "TeleRAG: Efficient Retrieval-Augmented Generation Inference with Lookahead Retrieval",
+            "url": "https://arxiv.org/pdf/2502.20969"
+          },
+          {
+            "title": "Shared Disk KV Cache Management for Efficient Multi-Instance Inference   in RAG-Powered LLMs",
+            "url": "https://arxiv.org/pdf/2504.11765"
+          }
+        ]
+      },
+      "I found several relevant results on LLM inference optimization, RAG systems, and cost-latency trade-offs. Here's what the search uncovered:\n\n## Key Findings\n\n**Cost Optimization for LLM Inference:**\nPractical techniques can reduce LLM inference costs by 40-80 percent through prompt caching, semantic caching, and KV cache optimization in production systems.\n\n**RAG and Multiple LLM Calls:**\nRAG applications are built as modular pipelines where a single query undergoes multiple rounds of LLM calls and retrievals, each serving different functions. SGLang is recommended when your workflow runs multiple sequential LLM calls, requires guaranteed JSON schemas, or has long shared prefixes.\n\n**Latency Considerations:**\nWith RAG systems, the latency of the underlying LLM becomes a crucial bottleneck since long contexts from retrieved passages lead to large prompts and increased compute, making prompt compression a cost-effective and low-latency method for accelerating inference.\n\n**Multi-Instance RAG Optimization:**\nShared RAG-DCache achieved a 15-71% increase in throughput and up to a 12-65% reduction in latency depending on resource configuration.\n\n**Inference-Time Scaling:**\nModern approaches explicitly incorporate both token cost and wall-clock latency, which is particularly critical for agentic workflows where models must issue multiple queries efficiently.\n\nThe results don't contain specific information about Qwen 72B partitioning or aggregate strategies, but they cover the broader ecosystem of practical techniques for optimizing compute costs and latency in RAG systems with multiple LLM calls."
+    ],
+    "durationSeconds": 13.530439224000002,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "d35f4bb9-f903-4693-b898-5572d3c290d5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "6510f1d9-2d0b-4255-86e5-3824feb471a8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-30T07:17:26.949Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TUMF9HyQDaxGXTbmLToCEw`</summary>
+
+```json
+{
+  "query": "NQ HotpotQA MS-MARCO benchmark RAG defense evaluation standard datasets 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "df51648d-1d4d-4167-a222-58dea96b1f19",
+  "isSidechain": false,
+  "requestId": "req_011CbYLw3hYoxTcaHsmZE4Cc",
+  "type": "assistant",
+  "uuid": "6a880986-69cd-4a41-943a-eb2dac171d47",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "6510f1d9-2d0b-4255-86e5-3824feb471a8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01By89B3ye2vCcd9dPmYj8gh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 906,
+      "cache_read_input_tokens": 29853,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 906,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 29853,
+          "cache_creation_input_tokens": 906,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 906
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-30T07:17:34.606Z_
+
+<details><summary>↩ Tool result · `toolu_01TUMF9HyQDaxGXTbmLToCEw`</summary>
+
+```text
+Web search results for query: "NQ HotpotQA MS-MARCO benchmark RAG defense evaluation standard datasets 2025 2026"
+
+Links: [{"title":"RAGShield: Provenance-Verified Defense-in-Depth Against Knowledge Base Poisoning in Government Retrieval-Augmented Generation Systems","url":"https://arxiv.org/html/2604.00387v1"},{"title":"TrustRAG: RAG Defense framework to counter attacks from malicious injected docs | by SACHIN KUMAR | Medium","url":"https://medium.com/@techsachin/trustrag-rag-defense-framework-to-counter-attacks-from-malicious-injected-docs-996f5cd4af21"},{"title":"Benchmarking Poisoning Attacks against Retrieval-Augmented Generation","url":"https://arxiv.org/pdf/2505.18543"},{"title":"PoisonedRAG: Knowledge Corruption Attacks to Retrieval- ...","url":"https://www.usenix.org/system/files/usenixsecurity25-zou-poisonedrag.pdf"},{"title":"RAG Benchmarks Leaderboard: Retrieval Rankings 2026 | Awesome Agents","url":"https://awesomeagents.ai/leaderboards/rag-benchmarks-leaderboard/"},{"title":"RAGPart & RAGMask: Retrieval-Stage Defenses Against Corpus Poisoning in Retrieval-Augmented Generation","url":"https://arxiv.org/pdf/2512.24268"},{"title":"Rescuing the Unpoisoned: Efficient Defense against Knowledge Corruption Attacks","url":"https://kevinkoo001.github.io/assets/pdf/acsac25-ragdefender.pdf"}]
+
+Based on the search results, here's what I found regarding NQ, HotpotQA, and MS-MARCO benchmarks in RAG defense evaluation:
+
+## Standard Benchmark Datasets for RAG Evaluation
+
+Natural Questions (NQ), HotpotQA, and MS-MARCO are established benchmark datasets used in RAG evaluation, along with SQuAD and BoolQ. NQ uses real Google search queries against Wikipedia, while HotpotQA requires retrieving evidence from multiple documents and connecting it to answer questions that can't be answered from any single passage.
+
+## RAG Defense Evaluation Context (2025-2026)
+
+These datasets have become standard evaluation platforms for RAG defense research. Zou et al. demonstrated in PoisonedRAG that injecting just 5 malicious texts into a knowledge base with millions of documents achieves over 90% attack success rate on NQ, HotpotQA, and MS-MARCO. Multiple defense frameworks use these three benchmark question-answering datasets where each dataset has a knowledge database.
+
+## Recent Defense Evaluation Studies (2025-2026)
+
+A comprehensive benchmark uses fifteen QA datasets, including five established ones: Natural Questions (NQ), HotpotQA, MS-MARCO, SQuAD, and BoolQ. Additionally, rankings of top embedding and RAG systems across various benchmarks including MS MARCO, HotpotQA were compiled as of April 2026.
+
+Recent defense comparisons evaluate attack success rates and accuracies across different generators on NQ, HotpotQA, and MS MARCO datasets under poisoning attacks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6a880986-69cd-4a41-943a-eb2dac171d47",
+  "isSidechain": false,
+  "promptId": "3f0512d1-eebd-4e5d-a2ea-3fb317b2870b",
+  "type": "user",
+  "uuid": "6e8fb5e0-02e2-4a36-a7f0-f29379ece4b5",
+  "toolUseResult": {
+    "query": "NQ HotpotQA MS-MARCO benchmark RAG defense evaluation standard datasets 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JtG8Kit2o1hD99hTJPE2pB",
+        "content": [
+          {
+            "title": "RAGShield: Provenance-Verified Defense-in-Depth Against Knowledge Base Poisoning in Government Retrieval-Augmented Generation Systems",
+            "url": "https://arxiv.org/html/2604.00387v1"
+          },
+          {
+            "title": "TrustRAG: RAG Defense framework to counter attacks from malicious injected docs | by SACHIN KUMAR | Medium",
+            "url": "https://medium.com/@techsachin/trustrag-rag-defense-framework-to-counter-attacks-from-malicious-injected-docs-996f5cd4af21"
+          },
+          {
+            "title": "Benchmarking Poisoning Attacks against Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/pdf/2505.18543"
+          },
+          {
+            "title": "PoisonedRAG: Knowledge Corruption Attacks to Retrieval- ...",
+            "url": "https://www.usenix.org/system/files/usenixsecurity25-zou-poisonedrag.pdf"
+          },
+          {
+            "title": "RAG Benchmarks Leaderboard: Retrieval Rankings 2026 | Awesome Agents",
+            "url": "https://awesomeagents.ai/leaderboards/rag-benchmarks-leaderboard/"
+          },
+          {
+            "title": "RAGPart & RAGMask: Retrieval-Stage Defenses Against Corpus Poisoning in Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/pdf/2512.24268"
+          },
+          {
+            "title": "Rescuing the Unpoisoned: Efficient Defense against Knowledge Corruption Attacks",
+            "url": "https://kevinkoo001.github.io/assets/pdf/acsac25-ragdefender.pdf"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found regarding NQ, HotpotQA, and MS-MARCO benchmarks in RAG defense evaluation:\n\n## Standard Benchmark Datasets for RAG Evaluation\n\nNatural Questions (NQ), HotpotQA, and MS-MARCO are established benchmark datasets used in RAG evaluation, along with SQuAD and BoolQ. NQ uses real Google search queries against Wikipedia, while HotpotQA requires retrieving evidence from multiple documents and connecting it to answer questions that can't be answered from any single passage.\n\n## RAG Defense Evaluation Context (2025-2026)\n\nThese datasets have become standard evaluation platforms for RAG defense research. Zou et al. demonstrated in PoisonedRAG that injecting just 5 malicious texts into a knowledge base with millions of documents achieves over 90% attack success rate on NQ, HotpotQA, and MS-MARCO. Multiple defense frameworks use these three benchmark question-answering datasets where each dataset has a knowledge database.\n\n## Recent Defense Evaluation Studies (2025-2026)\n\nA comprehensive benchmark uses fifteen QA datasets, including five established ones: Natural Questions (NQ), HotpotQA, MS-MARCO, SQuAD, and BoolQ. Additionally, rankings of top embedding and RAG systems across various benchmarks including MS MARCO, HotpotQA were compiled as of April 2026.\n\nRecent defense comparisons evaluate attack success rates and accuracies across different generators on NQ, HotpotQA, and MS MARCO datasets under poisoning attacks."
+    ],
+    "durationSeconds": 7.650767653999996,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "6a880986-69cd-4a41-943a-eb2dac171d47",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "6510f1d9-2d0b-4255-86e5-3824feb471a8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 51_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Poisoning-Robust Conformal Abstention for RAG via Retrieval-Agreement Scores  ## Core Problem  How can RAG systems abstain from answering with distribution-free correctness guarantees when the retri…",
+  "leafUuid": "6e8fb5e0-02e2-4a36-a7f0-f29379ece4b5",
+  "sessionId": "6510f1d9-2d0b-4255-86e5-3824feb471a8"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 52_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Poisoning-robust conformal abstention for RAG",
+  "sessionId": "6510f1d9-2d0b-4255-86e5-3824feb471a8"
+}
+```
+
+---
+
+### Assistant
+
+_source line 53 · 2026-05-30T07:18:22.222Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have enough context from my research to provide a thorough analysis. Let me synthesize everything I've learned and evaluate the experimental design of this proposal.
+
+Key findings from my research:
+
+1. **TRAQ (NAACL 2024)**: Uses conformal prediction for RAG with semantic nonconformity measures. Evaluated on QA datasets with coverage guarantees and prediction set size as key metrics.
+
+2. **C-RAG (ICML 2024)**: Conformal risk analysis for RAG. Evaluated on AESLC, CommonGen, DART, E2E datasets - notably NOT on NQ/HotpotQA. Uses bounded risk functions.
+
+
+3. **RobustRAG (SaTML 2026)** employs an isolate-then-aggregate approach across RealtimeQA-MC, RealtimeQA, NQ, and Biography generation tasks using multiple model sizes with 100 queries per dataset. **RPS (ICLR 2025 Spotlight)** applies smoothed score functions and majority voting for conformal prediction under poisoning attacks, though it's validated on image classification rather than NLP tasks. **PoisonedRAG** demonstrates concerning vulnerability with 90%+ attack success rates using just 5 poisoned documents on standard QA benchmarks.
+
+**CorruptRAG** achieves high success with single-document poisoning attacks. **ReliabilityRAG (NeurIPS 2025)** counters this with a mutual information-based defense using DeBERTa-v3-large for NLI, tested against multiple adversary tiers on NQ. **RAGPart (arXiv 2025)** partitions passages at retrieval time and evaluates across multiple poisoning strategies and retrievers. The **RSB Benchmark (May 2025)** comprehensively tests 13 poisoning methods against 7 defenses across 5 datasets, finding that hybrid approaches work best but still leave residual vulnerabilities. **Semantic Chameleon (arXiv 2026)** uses gradient-guided corpus manipulation...
+
+Now looking at the proposed experimental setup, I'm seeing the datasets (NQ, HotpotQA, MS-MARCO), attack methods (PoisonedRAG, CorruptRAG), baseline defenses (TRAQ, C-RAG, RobustRAG), and the focus on certified coverage under varying poisoning budgets with Qwen3.5-72B. But there's a critical gap—**ReliabilityRAG** from NeurIPS 2025 should be included as a baseline since it's directly relevant to the certified defense approach being proposed.
+
+Beyond that, the experimental design has two major weaknesses: the baseline selection is incomplete (missing Conformal-RAG from SIGIR 2025, RAGPart, and RAGDefender), and relying solely on Qwen3.5-72B undermines generalizability claims when prior work like RobustRAG evaluates across multiple model scales and families. I need to push back on both the missing baselines and the single-model limitation.
+
+The compute cost is also a real concern—running K partition groups times N queries with a 72B model gets expensive fast, especially compared to the smaller models and GPT-3.5 that RobustRAG used. I should flag this feasibility issue and request inference latency and cost comparisons against baselines. The ablation studies are underspecified too—I need to see ablations on the number of groups K, the number of retrieved passages n, the agreement score function, and how CRC compares to vanilla conformal calibration.
+
+For evaluation, certified coverage at non-vacuous abstention rates is the right primary metric, but I also need to track clean accuracy, abstention rates, prediction set sizes, coverage-efficiency tradeoffs, certified robust accuracy across different k values, and vacuousness comparisons between methods. On the attack side, testing only PoisonedRAG and CorruptRAG feels limited when RSB identifies 13 attack types and newer work like Semantic Chameleon introduces gradient-guided attacks—I should either test more variants or justify why two suffices. The datasets (NQ, HotpotQA, MS-MARCO) are solid choices, though it's worth considering whether other benchmarks like those used in C-RAG would strengthen the evaluation.
+
+I also need to clarify the calibration protocol—specifically how the calibration set is constructed, its size, and how TV-inflated quantiles affect size requirements. There's a fairness issue with compute: PRCA requires K LLM calls per query while TRAQ and C-RAG need just one, so I should either give TRAQ a K-times compute budget for comparison or at least report wall-clock time and FLOPs alongside accuracy metrics. Finally, RobustRAG only used 100 queries per dataset, so I need to specify the number of queries and runs for statistical rigor.
+
+Now I'm organizing these findings into major issues and severity levels. The proposal mentions Qwen3.5-72B which is a real, available model, so that's feasible. But since this is a proposal for AAAI submission, the experimental plan needs to be much more concrete. The core problems are missing key baselines like ReliabilityRAG and Conformal-RAG, single-model evaluation when I need multi-model assessment, no specified ablation plan, missing compute-normalized comparisons, incomplete metrics, and limited attack diversity.
+
+I should also check whether the computational cost of running K times 72B model calls is actually feasible given typical conference constraints.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6e8fb5e0-02e2-4a36-a7f0-f29379ece4b5",
+  "isSidechain": false,
+  "requestId": "req_011CbYLwvvXnngZJpRyJSNyt",
+  "type": "assistant",
+  "uuid": "d6626b0d-59b8-4780-819b-1a18e1d38b75",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "6510f1d9-2d0b-4255-86e5-3824feb471a8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HgRaJpuKfk4huS8bnvE7cg",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 896,
+      "cache_read_input_tokens": 30759,
+      "output_tokens": 7622,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 896,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 7622,
+          "cache_read_input_tokens": 30759,
+          "cache_creation_input_tokens": 896,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 896
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 54 · 2026-05-30T07:20:13.747Z_
+
+Now I have sufficient research context. Let me compile my analysis.
+
+【状态】: 有缺陷待补救
+
+【前置调研发现】
+- **TRAQ (NAACL 2024)**: 使用语义级非一致性度量做 conformal prediction set，核心指标为 coverage guarantee + prediction set size。通过 Bayesian optimization 缩减集合大小。评估在 QA 数据集上进行。
+- **C-RAG (ICML 2024)**: Conformal generation risk 上界，评估在 AESLC、CommonGen、DART、E2E 四个 NLP 数据集上（注意：并非 NQ/HotpotQA），使用四种 SOTA 检索模型。
+- **RobustRAG (SaTML 2026)**: Isolate-then-aggregate 策略，评估在 RealtimeQA-MC、RealtimeQA、NQ、Biography generation 四个数据集上，**使用三种不同规模模型（Mistral-7B、Llama2-7B、GPT-3.5-turbo）**，每个数据集采样 100 个 query。
+- **RPS (ICLR 2025 Spotlight)**: Smoothed score + majority vote，在**图像分类**任务上验证（非 NLP），详细记录了超参数和实验设置。
+- **ReliabilityRAG (NeurIPS 2025)**: MIS-based 防御，使用 DeBERTa-v3 NLI 模型，在 NQ 上对比 RobustRAG 和 RAGDefender，设置了 5 个对抗等级。
+- **PoisonedRAG (USENIX Security 2025)**: 在 NQ、HotpotQA、MS-MARCO 上评估，ASR 为核心指标，5 篇毒化文档即可达 90%+ ASR。
+- **RSB Benchmark (arXiv May 2025)**: 13 种攻击方法 × 5 数据集 × 7 防御机制的系统性评估，发现 hybrid defense 最优但仍有残余风险。
+- **RAGPart (arXiv Dec 2025)**: 使用段落分区稀释毒化文档影响，在 2 个 benchmark × 4 种攻击 × 4 种检索器上评估，包含 fragment 数量的消融实验。
+- **Semantic Chameleon (arXiv Mar 2026)**: 梯度引导的 corpus-dependent 攻击 + hybrid BM25+vector 防御，在 Security Stack Exchange 67K 文档语料上评估。
+- **调研总结**: 该领域当前的实验设计标准要求：(1) 至少 2-3 种 LLM 以验证方法的模型无关性（RobustRAG 用了三种）；(2) 多种攻击方法而非仅 1-2 种；(3) 与所有同期 certified defense 方法对比（ReliabilityRAG、RAGPart 是近期必选 baseline）；(4) 详细的消融实验（分区数 K、检索数 n 等关键超参数）；(5) compute-normalized 公平比较。审稿人普遍期望看到防御方法在 clean 场景下的性能保持、certified vs. empirical robustness 的对比、以及计算开销分析。
+
+---
+
+【缺陷 1】
+- 类别: baseline 不足或过时
+- 问题: Proposal 仅列出 TRAQ、C-RAG、RobustRAG 作为 baseline，但遗漏了三个关键对照方法：(1) **ReliabilityRAG (NeurIPS 2025)**——proposal 自己在 Research Landscape 中提到了它，但未将其列入 baseline，而它是目前唯一同时具备 certified robustness 且在 NQ 上有实验的防御方法；(2) **Conformal-RAG (SIGIR 2025)**——proposal 也提到了它，它是唯一提供 group-conditional coverage 的 conformal RAG 方法；(3) **RAGPart (arXiv 2025)**——proposal 提到它使用 passage partitioning 但缺少 conformal guarantees，这恰恰使其成为理想的 ablation baseline（相同分区策略，无 conformal 校准）。缺少这三个方法会被审稿人视为 cherry-picking baseline 或对领域现状不够了解。
+- 严重度: 可补救
+- 补救方案: 将实验 baseline 扩展为：(1) Conformal 类：TRAQ、C-RAG、Conformal-RAG；(2) Certified defense 类：RobustRAG、ReliabilityRAG；(3) Partition-based 类：RAGPart（不含 conformal，作为 ablation 基线）。若 ReliabilityRAG 无开源代码，至少需在论文中讨论为何未对比，并从其论文中引用数值做间接比较。
+- 调研依据: ReliabilityRAG (NeurIPS 2025) 在 NQ 上对比了 RobustRAG 和 RAGDefender；RAGPart (arXiv 2025) 使用与 PRCA 高度相似的 passage partitioning 策略但无 conformal guarantee。
+
+【缺陷 2】
+- 类别: 实验设计不足
+- 问题: Proposal 仅使用 **Qwen3.5-72B 一种 LLM** 进行实验。而 RobustRAG 使用了三种不同规模的模型（Mistral-7B、Llama2-7B、GPT-3.5-turbo）来验证方法的模型无关性。PRCA 的核心 claim（partition-and-vote 提供 certified coverage）理论上应该与底层 LLM 无关，但如果仅用一个模型验证，审稿人会合理质疑：(1) 方法对不同 LLM 的生成特性是否鲁棒？(2) agreement score 是否在弱模型上同样有效？(3) 仅用最大模型是否在刻意选择对方法有利的设置？
+- 严重度: 可补救
+- 补救方案: 至少使用 3 种模型：(1) 一个大模型（Qwen3.5-72B 或同级别）；(2) 一个中等模型（如 Qwen3.5-32B 或 Llama-3-8B）；(3) 一个小模型或 API 模型（如 Qwen3.5-7B 或 GPT-4o-mini）。在主实验中用一个模型，在 generalizability 实验中展示其余模型的结果。这也能解决下面的计算可行性问题——小模型的 K 次推理成本显著降低。
+- 调研依据: RobustRAG (SaTML 2026) 使用三种不同规模 LLM（7B 到 API 模型）验证方法通用性，这是该领域的标准做法。
+
+【缺陷 3】
+- 类别: ablation 不完整
+- 问题: Proposal 未明确描述任何 ablation 实验设计。该方法有多个关键超参数和组件，每一个都需要隔离其贡献：(1) 分区数 K 的影响；(2) 检索文档数 n 的影响；(3) agreement nonconformity score 的具体定义和替代方案（例如 exact match agreement vs. semantic similarity vs. NLI-based）；(4) CRC TV-inflated quantile 校准 vs. 原始 CRC 校准 vs. vanilla conformal 的对比（隔离 TV inflation 的贡献）；(5) 分区策略（随机分区 vs. 按检索分数分区 vs. 按文档来源分区）的影响。
+- 严重度: 可补救
+- 补救方案: 明确规划以下 ablation 实验矩阵：
+  - **K 消融**: K ∈ {3, 5, 7, 10}，固定 n，展示 coverage vs. abstention rate tradeoff
+  - **n 消融**: n ∈ {10, 20, 30, 50}，固定 K，展示检索量对 certificate 严格度的影响
+  - **Score function 消融**: 至少对比 2-3 种 agreement score（EM、ROUGE-L、NLI entailment probability）
+  - **Calibration 消融**: CRC + TV inflation vs. CRC without TV inflation vs. standard split conformal
+  - **Partition 策略消融**: random partition vs. round-robin by retrieval score
+- 调研依据: RAGPart (arXiv 2025) 包含 fragment 数量消融实验；RPS (ICLR 2025) 详细记录了所有超参数设置。Ablation 的完整性是 AAAI 实验评审的基本要求。
+
+【缺陷 4】
+- 类别: compute 公平性问题
+- 问题: PRCA 需要 **K 次独立 LLM 推理调用** per query（每个 partition group 一次），而 baseline 如 TRAQ 和 C-RAG 仅需 1 次。在未做 compute-normalized comparison 的情况下，PRCA 的性能优势可能仅仅来自使用了 K 倍的计算资源。具体来说：若 K=5 且使用 72B 模型，每个 query 的推理成本是 baseline 的约 5 倍。审稿人会直接问："如果给 TRAQ 同样 5 倍的计算预算（例如通过 self-consistency 采样 5 次），性能差距是否仍然存在？"
+- 严重度: 可补救
+- 补救方案: (1) 在所有实验中报告每种方法的 **wall-clock inference time** 和 **FLOPs/tokens consumed per query**；(2) 增加一组 compute-normalized baseline：给 TRAQ 和 C-RAG 同等计算预算的变体（例如 TRAQ + 5× self-consistency voting），验证 PRCA 的优势不仅仅来自额外计算；(3) 分析 K 与计算开销的 tradeoff 曲线，找到 cost-performance 最优点。
+- 调研依据: 基于领域实验规范判断——isolate-then-aggregate 方法的计算开销是审稿人的常见 concern，RobustRAG 论文中也讨论了这一点。
+
+【缺陷 5】
+- 类别: 评估方案缺陷
+- 问题: Proposal 将 key metric 定义为 "certified coverage at non-vacuous abstention rates under varying poisoning budgets k"——方向正确，但指标体系不完整。缺少以下关键评估维度：(1) **Clean performance**（无攻击时的准确率和 coverage），证明防御不以牺牲正常性能为代价；(2) **Coverage-efficiency tradeoff 曲线**（不同 α 下的 coverage vs. abstention rate），这是 conformal prediction 论文的标准图表；(3) **Certified vs. empirical robustness gap**（理论 certificate 与实际攻击下表现的差距）；(4) **Prediction set size**（conformal prediction 核心指标，TRAQ 重点优化的）；(5) **Vacuousness rate 的量化对比**（Chen et al. 2026 指出的核心问题）。
+- 严重度: 可补救
+- 补救方案: 构建完整的指标体系：
+  - **Primary**: Certified coverage rate, Empirical coverage rate under attack, Abstention rate
+  - **Secondary**: Clean accuracy (no attack), Prediction set size, Vacuousness rate
+  - **Tradeoff curves**: Coverage vs. abstention rate at varying α; Coverage vs. poisoning budget k; Certified coverage vs. K (partition count)
+  - **Efficiency**: Wall-clock time per query, Token consumption per query
+  - 绘制 Chen et al. (2026) 展示的那种 "coverage vs. confidence level" 图表，直接对比 PRCA 与 TRAQ/C-RAG 在 poisoning 下的 vacuousness
+- 调研依据: TRAQ (NAACL 2024) 以 prediction set size 为核心指标；Chen et al. (arXiv 2026) 以 vacuousness 作为评估 conformal RAG 方法失效的核心指标；RPS (ICLR 2025) 同时报告 clean coverage 和 poisoned coverage。
+
+【缺陷 6】
+- 类别: 实验设计不足
+- 问题: Proposal 仅评估 **PoisonedRAG 和 CorruptRAG 两种攻击**。RSB Benchmark (May 2025) 系统性地评估了 13 种攻击方法，并将其分为 targeted poisoning、denial-of-service、trigger-based DoS 三类。Semantic Chameleon (Mar 2026) 引入了 gradient-guided corpus-dependent 攻击。仅用两种攻击（且都属于 targeted poisoning 类）可能导致结论泛化性不足。审稿人可能会问：PRCA 对 DoS 类攻击（旨在让系统完全拒答而非给出错误答案）是否同样有效？
+- 严重度: 可补救
+- 补救方案: (1) 保持 PoisonedRAG 和 CorruptRAG 为主攻击；(2) 增加至少 1-2 种不同类型的攻击：一种 DoS 类攻击（如 trigger-based DoS）和一种 adaptive/gradient-based 攻击（如 Semantic Chameleon 的 GCG 攻击）；(3) 若实现成本太高，至少在 Discussion 中分析 PRCA 理论 certificate 对不同攻击类型的适用性，指出 k-poisoning 假设在不同攻击模式下的有效性边界。
+- 调研依据: RSB Benchmark (arXiv May 2025) 将攻击分为三类并发现防御效果因攻击类型差异显著；ReliabilityRAG (NeurIPS 2025) 设置了 5 个对抗等级从弱到强评估。
+
+【缺陷 7】
+- 类别: 可行性问题
+- 问题: 使用 Qwen3.5-72B 做 K 次独立推理的计算成本需要仔细评估。假设 K=5, n=20（每组 4 篇文档），在 NQ + HotpotQA + MS-MARCO 三个数据集上，若每个数据集取 500 个 test query，需要 3 × 500 × 5 = 7,500 次 72B 模型推理——仅 test 阶段。加上 calibration set（至少 500-1000 样本）、多种攻击设置（PoisonedRAG + CorruptRAG × 不同 k）、消融实验，总推理次数可能达到 **50,000-100,000 次 72B 推理**。这需要估计：(1) 总 GPU 时间；(2) API 成本（若用 API）；(3) 是否有足够的 GPU 资源（至少需要 2×A100-80G 或等效的 vLLM 部署）。
+- 严重度: 可补救
+- 补救方案: (1) 明确计算预算上限和可用资源；(2) 考虑将主实验模型改为中等规模（如 32B 或 8B），72B 仅作为 scaling experiment；(3) 利用 vLLM/SGLang 的 batch inference 降低实际延迟；(4) 减少 test set 规模至 200-300 queries/dataset（RobustRAG 仅用 100 queries/dataset），但需报告 confidence interval；(5) 如果使用 API（如 Qwen API），估算总 token 成本。合理的方案是：7B/8B 模型做完整实验 + 32B/72B 做验证实验。
+- 调研依据: RobustRAG (SaTML 2026) 每个数据集仅用 100 queries 且使用 7B-class 模型为主，说明该领域接受较小规模的实验。
+
+【缺陷 8】
+- 类别: 实验设计不足
+- 问题: Proposal 未说明 **calibration set 的构建协议**。CRC 和 conformal prediction 方法的核心前提是 calibration set 与 test set 的可交换性（exchangeability），而 proposal 的核心 claim 之一是在 poisoning 下维持 coverage guarantee。关键未回答的问题：(1) Calibration set 是在 clean corpus 上构建还是在可能已被 poisoning 的 corpus 上构建？(2) Calibration set 的大小是多少？（这直接影响 coverage guarantee 的松紧度——CRC 的 guarantee 松紧度为 O(1/n_cal)）；(3) TV-inflated quantile 需要知道 poisoning budget k 的上界，这是否现实？(4) 如果 calibration set 也可能被 poisoning，PRCA 的理论 guarantee 是否仍然成立？
+- 严重度: 可补救
+- 补救方案: (1) 明确 calibration 协议：建议假设 calibration set 在 clean setting 下构建（这是 RPS 的标准假设），并明确说明这一假设；(2) 指定 calibration set 大小（建议 n_cal ≥ 500）并分析 n_cal 对 certificate 松紧度的影响；(3) 对 k 的敏感性做实验：展示当实际 poisoning budget 超过假设的 k 上界时，coverage 如何降解；(4) 可选地讨论 calibration set 也被 poisoning 的情况，引用 RPS 的 majority-vote calibration 作为潜在解决方案。
+- 调研依据: RPS (ICLR 2025) 详细讨论了 calibration-set poisoning 的处理；CRC (ICLR 2024) 指出 guarantee 松紧度为 O(1/n)。
+
+Sources:
+- [TRAQ: Trustworthy Retrieval Augmented Question Answering via Conformal Prediction](https://aclanthology.org/2024.naacl-long.210/)
+- [C-RAG: Certified Generation Risks for Retrieval-Augmented Language Models](https://openreview.net/forum?id=FMa4c5NhOe)
+- [Certifiably Robust RAG against Retrieval Corruption](https://arxiv.org/abs/2405.15556)
+- [Provably Reliable Conformal Prediction Sets in the Presence of Data Poisoning](https://openreview.net/forum?id=ofuLWn8DFZ)
+- [ReliabilityRAG: Effective and Provably Robust Defense for RAG-based Web-Search](https://openreview.net/forum?id=D9JeNTs5Bu)
+- [PoisonedRAG: Knowledge Corruption Attacks to Retrieval-Augmented Generation](https://www.usenix.org/conference/usenixsecurity25/presentation/zou-poisonedrag)
+- [Is Conformal Factuality for RAG-based LLMs Robust?](https://arxiv.org/abs/2603.16817)
+- [Benchmarking Poisoning Attacks against Retrieval-Augmented Generation](https://arxiv.org/abs/2505.18543)
+- [RAGPart & RAGMask: Retrieval-Stage Defenses Against Corpus Poisoning](https://arxiv.org/abs/2512.24268)
+- [Semantic Chameleon: Corpus-Dependent Poisoning Attacks and Defenses in RAG Systems](https://arxiv.org/abs/2603.18034)
+- [Conformal Risk Control](https://openreview.net/forum?id=33XGfHLtZg)
+- [Response Quality Assessment for RAG via Conditional Conformal Factuality](https://arxiv.org/abs/2506.20978)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d6626b0d-59b8-4780-819b-1a18e1d38b75",
+  "isSidechain": false,
+  "requestId": "req_011CbYLwvvXnngZJpRyJSNyt",
+  "type": "assistant",
+  "uuid": "104fd1df-2471-4b22-8efd-d1db0dde0255",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_adversarial",
+  "sessionId": "6510f1d9-2d0b-4255-86e5-3824feb471a8",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HgRaJpuKfk4huS8bnvE7cg",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 896,
+      "cache_read_input_tokens": 30759,
+      "output_tokens": 7622,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 896,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 7622,
+          "cache_read_input_tokens": 30759,
+          "cache_creation_input_tokens": 896,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 896
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 55_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Poisoning-Robust Conformal Abstention for RAG via Retrieval-Agreement Scores  ## Core Problem  How can RAG systems abstain from answering with distribution-free correctness guarantees when the retri…",
+  "leafUuid": "104fd1df-2471-4b22-8efd-d1db0dde0255",
+  "sessionId": "6510f1d9-2d0b-4255-86e5-3824feb471a8"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 56_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Poisoning-robust conformal abstention for RAG",
+  "sessionId": "6510f1d9-2d0b-4255-86e5-3824feb471a8"
+}
+```
+
+---

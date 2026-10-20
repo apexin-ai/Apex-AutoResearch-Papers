@@ -1,0 +1,844 @@
+# Research conversation: 【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。 【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1
+
+**Reproducibility Budgets for Open-Weight LLM Evaluation: A Generalizability Theory Study of 7–9B Instruction-Tuned Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 11
+- **Recorded user turns:** 1
+- **Tool calls:** 0
+- **Original source:** `logs/chats/exported-trajectories/account-2/223cb317-35f6-4752-b9e9-91d332109212.jsonl`
+- **Structured JSON:** [`541112f03d447f8ef8e7.json`](../../sessions/54/541112f03d447f8ef8e7.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-20T05:49:55.870Z_
+
+````json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-20T05:49:55.870Z",
+  "sessionId": "223cb317-35f6-4752-b9e9-91d332109212",
+  "content": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。\n\n【三位审稿人评估】:\n━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━\nNow I have sufficient research to evaluate this proposal. Let me compile my assessment.\n\n---\n\n```\n【阶段】: Triage\n\n【领域调研】:\n\n1. **Park et al. \"Know What You Don't Know: Uncertainty Calibration of PRMs\"** (arXiv:2506.09338, NeurIPS 2025):\n   - 与本 proposal 的关系：Thread 1 核心论文。证明 PRM 系统性地对难题过度估计成功概率，提出 quantile regression calibration。关键缺陷——从未测试校准后的 PRM 在对抗攻击下的鲁棒性。\n   - Proposal 准确引用了该工作，描述基本准确。\n\n2. **Ma et al. \"Distributional Process Reward Models\"** (arXiv:2605.06785, May 2026):\n   - 与本 proposal 的关系：最新的 PRM 校准工作，用 conditional optimal transport 实现 calibrated monotone quantile functions。在 MATH-500 和 AIME 上改进 BoN。同样从未测试鲁棒性。\n   - Proposal 准确引用该工作。该论文发表于 2026 年 5 月，非常新。\n\n3. **Tiwari et al. \"Reward Under Attack\"** (arXiv:2603.06621, March 2026):\n   - 与本 proposal 的关系：Thread 2 核心论文。证明 PRM 灾难性可破解——gradient attacks 将奖励膨胀 4x，RL 训练可达到近完美 PRM 奖励但实际准确率 <4%，43% 的奖励增益来自风格快捷方式。未提出校准相关防御。\n   - Proposal 准确引用并描述了该工作的核心发现。\n\n4. **Ackermann et al. \"Gradient Regularization Prevents Reward Hacking\"** (arXiv:2602.18037, Feb 2026):\n   - 与本 proposal 的关系：建立奖励模型准确性与 flatness 的理论联系，但仅针对 outcome-level RM。Proposal 正确指出该工作仅处理单标量奖励，不涉及 step-level PRM 几何。\n   - Proposal 对 Ackermann 的局限性描述准确——确实仅使用 gradient norm，未做 Hessian spectral analysis。\n\n5. **\"From Curiosity to Caution\"** (arXiv:2604.04648, April 2026):\n   - BoN 层面的悲观主义防御，使用 prediction error 作为不确定性代理（未校准）。\n   - Proposal 正确区分了自己与该工作的差异——CGSP 使用校准概率而非启发式代理。\n\n6. **\"Learning a Pessimistic Reward Model in RLHF\"** (arXiv:2505.20556, May 2025):\n   - 2025 年的悲观奖励模型方法。通过 pessimistic fine-tuning 防止 reward hacking。\n   - Proposal 未引用此论文，但其 PET baseline 覆盖了类似方向。\n\n7. **APRM \"Adversarial Training for PRMs\"** (arXiv:2511.22888, Nov 2025):\n   - 对抗训练方法。Generator 学习产生推理错误欺骗 PRM，PRM 同时学习检测。平均 +3.4pp。\n   - Proposal 将其列为 baseline，描述准确。\n\n8. **\"Robust Reward Modeling via Causal Rubrics\"** (2026, OpenReview) 和 **\"Robust Reward Modeling via Causal Decomposition\"** (arXiv:2604.13833):\n   - 因果推理用于奖励模型鲁棒性的新兴方向。与 proposal 的\"因果隔离\"实验有概念重叠，但未专注于 PRM 校准。\n   - **Proposal 未引用这些工作**，是一个 related work 缺口。\n\n- **调研总结**: PRM 校准和 PRM 可攻击性确实是两条基本独立的研究线。近期（2025-2026）悲观主义防御（Caution、PET、pessimistic RM）和不确定性感知方法（URM、PURM、Bayesian RM）正在快速涌现，但尚无工作正式建立校准质量与可攻击性的因果联系。Proposal 识别的 gap 是真实的，但该领域在快速趋同——多个小组正从不同角度逼近类似结论。窗口期确实存在但正在缩小。\n\n---\n\n【Trivial Alternative 检验】:\n\n**最直接的 trivial alternative**: 对 PRM 做简单的 temperature scaling（一个标量参数的后校准），然后在 RL 训练中使用校准后的分数。这是成本最低的干预。\n\n**关键问题**: Temperature scaling、Platt scaling、isotonic regression 等 post-hoc 方法是**保序变换**（monotonic transformation）——它们不改变 PRM 对不同 response 的排序，只改变绝对分数值。Gradient-based attacks 利用的是 reward landscape 的结构（梯度方向），而不是绝对分数值。因此：\n\n- **对 gradient attacks**: post-hoc calibration 理论上不应改变攻击表面（attack surface），因为排序和梯度方向不变。这意味着 proposal Component B1 的\"最干净测试\"很可能产生 **negative 结果**——post-hoc calibration alone 不减少 gradient attack hackability。\n- **对 BoN overoptimization**: 校准影响 scaling 决策（何时停止增加 N），但这不是 PRM 本身的鲁棒性，而是决策层面的改进。\n- **对 RL-induced hacking**: 校准后的绝对分数变化可能改变 GRPO 的优化动态，但核心 reward landscape 几何未变。\n\n**增量价值**: CGSP 的真正增量不是来自\"校准本身提高鲁棒性\"，而是来自\"使用校准后的不确定性估计（σ_t）进行自适应悲观\"。但这本质上是 LCB（Lower Confidence Bound）方法在 step-level PRM 上的应用——这在 bandit/RL 文献中已是标准技术。与 ensemble-min 或 Caution 的 prediction-error pessimism 相比，CGSP 的优势取决于校准不确定性估计是否比这些 heuristic 代理更好，这并非显而易见。\n\n**结论**: Trivial alternative 威胁中等偏高。如果实验发现 simple temperature scaling + standard pessimism 已经获得 CGSP 大部分收益，那 CGSP 的价值就大打折扣。\n\n---\n\n【前提假设检验】:\n\n核心 claim 的逻辑链：**\"PRM 校准质量好 → PRM 更难被 hack\"**\n\n**未经验证的假设 1**: 校准质量是可攻击性的**独立预测因子**，而非模型整体质量的 proxy。\n- 更好的模型可能同时更 well-calibrated 和更 robust（模型质量是 confound）\n- Proposal 的 Component B3（matched representation change control）试图解决这个问题，但这需要找到一个\"改变表征但不改善校准\"的任务，这本身是一个困难的实验设计问题\n- 如果校准仅仅是\"好模型\"的 symptom 而非 cause，核心 claim 就变成了\"好模型更难 hack\"——这是 trivial 的\n\n**未经验证的假设 2**: Post-hoc 校准改变了 reward landscape 的可攻击几何。\n- 如上分析，monotonic post-hoc 校准保持排序不变，理论上不应改变 gradient attack 的攻击面\n- 这与 proposal 声称的\"calibration per se causally affects hackability\"存在张力\n- 如果 Component B1 产生 negative 结果，proposal 的核心叙事需要重大调整\n\n**未经验证的假设 3**: Step-level flatness 与 outcome-level hackability 之间存在 compounding 关系。\n- Proposal 假设 step-level Hessian spectral 分析能揭示\"step-level flatness 如何跨 trajectory compound\"\n- 但 T 个 step-level reward 的 compositional geometry 可能非常复杂，flatness 在每步的含义可能不同（early reasoning vs. final answer steps），简单的 compounding 模型可能不成立\n\n**未经验证的假设 4**: Calibration Drift Detector 能实时区分 distribution shift 和正常 policy 改进。\n- RL 训练中 policy 自然会偏离 SFT 分布，ECE drift 可能反映正常学习而非 reward hacking\n- 需要一个 threshold 来区分，但这个 threshold 的设定本身就是一个未解决的问题\n\n---\n\n【3 维度打分】:\n\n**1. Novelty: 中 (偏弱)**\n\n理由：\n- **真实 novelty**: 将 PRM 校准与可攻击性正式联系起来的思路确实无人做过。调研确认两条研究线确实缺乏交叉引用。\n- **但 novelty 的深度有限**: 核心假说\"校准好的模型更难 hack\"在直觉上是预期中的（\"expected, not surprising\"）。审稿人的反应更可能是\"I would have guessed this\"而非\"surprising\"。\n- **CGSP 本质上是 LCB**: r̃_t = μ_t − α·σ_t/√c_t 是 bandit/RL 中 well-known 的 pessimistic/conservative 估计。应用到 step-level PRM 是增量而非突破。Caution (arXiv:2604.04648) 已经做了 reward-level pessimism，PURM 做了 uncertainty-penalized rewards——CGSP 的 novelty delta 不大。\n- **Hessian spectral 分析是扩展而非创新**: 将 Ackermann et al. 从 outcome-level 扩展到 step-level 是自然延伸，方法论本身（Lanczos iteration for Hessian spectra）是标准技术。\n- **最相关竞争**: \"Learning a Pessimistic Reward Model in RLHF\" (arXiv:2505.20556) 和 \"Robust Reward Modeling via Causal Decomposition\" (arXiv:2604.13833) 都在向类似方向推进——因果鲁棒 + 悲观主义。\n\n**2. Significance: 中**\n\n理由：\n- **问题本身重要**: PRM 的可攻击性是 reasoning LLM 可靠性的核心问题。理解校准与鲁棒性的关系有实际价值。\n- **48-configuration 相关性研究** 即使假说被否定也有 mapping 价值——为领域提供系统性 benchmark。\n- **但实际影响取决于效果大小**: 如果 CGSP 仅比 ensemble-min 好 1-2pp，实际影响有限。\n- **方法论贡献（因果隔离）有推广价值**: 使用 post-hoc calibration 做 representation-preserving 控制实验的方法论可以被其他工作借鉴。\n- **但如果 Component B1 negative result（我认为很可能）**: 那故事需要重讲——\"calibration per se does NOT determine hackability, but calibrated uncertainty enables better defense\"——这是一个不同的、较弱的 claim。\n\n**3. Related Work: 强 (偏中)**\n\n理由：\n- **覆盖度高**: Proposal 识别并正确描述了两条核心研究线及其交叉点的所有关键论文（Park et al., Distributional PRM, Tiwari et al., Ackermann et al., APRM, Caution, URM, Bayesian RM, Conformal RLHF）。\n- **差异化定位清晰**: 与 Ackermann et al. 的区分（outcome-level vs. step-level）、与 Caution 的区分（prediction error vs. calibrated probability）、与 ensemble 方法的区分（uncalibrated vs. calibrated）都表述清楚。\n- **缺口**: 未覆盖 \"Robust Reward Modeling via Causal Rubrics\" (OpenReview 2026) 和 \"Robust Reward Modeling via Causal Decomposition\" (arXiv:2604.13833)——这些同样使用因果框架处理奖励模型鲁棒性问题，是直接相关的工作。也未引用 \"Learning a Pessimistic Reward Model in RLHF\" (arXiv:2505.20556)，该工作在悲观 RM 方向上有直接竞争关系。\n\n---\n\n【概率估计】: [22% - 32%] 中位 26%\n\n【估计理由】:\n- **核心限制因素是 Novelty 深度**。该 proposal 连接了一个真实 gap，方法论设计精良，但核心发现如果 positive（\"校准好的 PRM 更难 hack\"），审稿人的反应大概率是 \"I would have guessed this\"——这将其锚定在 25-35% 区间的下半段。\n- **存在非平凡的 trivial alternative 威胁**: Post-hoc calibration 保序性意味着 gradient attacks 的攻击面理论上不变，CGSP 的核心优势本质上是 LCB（标准技术）。\n- **前提假设 2 的张力**: Post-hoc calibration 不改变 reward landscape 几何，这与 proposal 声称 \"calibration per se causally affects hackability\" 可能矛盾。如果 Component B1 产生 negative 结果，核心叙事需要调整，可能导致 story 不够连贯。\n- **Related work 覆盖是加分项**，但 related work 好只能保底不能拉高上限。\n- **上界被 Novelty 限制**: 即使所有实验结果完美，核心 insight 的\"惊喜度\"不足以突破 35%。\n\n【主要风险】:\n1. **因果隔离实验可能自我否定核心假说**: Post-hoc calibration（保序变换）理论上不改变 gradient attack 攻击面，Component B1 很可能显示 \"calibration alone does NOT reduce hackability\"，这将迫使 paper 重新定位为 \"calibrated uncertainty enables better defense\"——一个更弱的 claim，削弱整体叙事的力度。\n2. **\"Calibration → robustness\" 可能是 confounded 结论**: 模型质量同时影响校准和鲁棒性。即使 48-config 相关性显著，也可能被审稿人以 \"correlation driven by model quality confounder\" 为由质疑，因果隔离实验的设计质量直接决定这个论点能否成立。\n```\n\nSources:\n- [Know What You Don't Know: Uncertainty Calibration of PRMs (NeurIPS 2025)](https://arxiv.org/abs/2506.09338)\n- [Distributional Process Reward Models (May 2026)](https://arxiv.org/abs/2605.06785)\n- [Reward Under Attack: Analyzing PRM Robustness (March 2026)](https://arxiv.org/abs/2603.06621)\n- [Gradient Regularization Prevents Reward Hacking (Feb 2026)](https://arxiv.org/abs/2602.18037)\n- [Adversarial Training for Process Reward Models (Nov 2025)](https://arxiv.org/abs/2511.22888)\n- [From Curiosity to Caution: Pessimism for BoN (April 2026)](https://arxiv.org/abs/2604.04648)\n- [Learning a Pessimistic Reward Model in RLHF (May 2025)](https://arxiv.org/abs/2505.20556)\n- [Robust Reward Modeling via Causal Decomposition (April 2026)](https://arxiv.org/abs/2604.13833)\n- [Robust Reward Modeling via Causal Rubrics (OpenReview 2026)](https://openreview.net/forum?id=oP99JQiDYp)\n- [Reward Hacking: Mechanisms and Emergent Misalignment (2026)](https://arxiv.org/html/2604.13602v1)\n\n━━━━━━━━━━ 审稿人 2（独立评审）━━━━━━━━━━\nNow I have sufficient research to make an informed assessment. Let me compile my analysis.\n\n---\n\n```\n【阶段】: Triage\n\n【领域调研】:\n\n1. **Tiwari et al. \"Reward Under Attack\" (arXiv:2603.06621, March 2026)**: 直接竞争论文。证明 PRMs 在梯度攻击下 reward 可膨胀 4×，RL 训练下实现 >0.9 PRM reward 但 <4% 真实准确率，43% reward 增益来自 stylistic shortcuts。提出了 PRM-BiasBench 但**未提出基于 calibration 的防御**。本 proposal 的攻击端实验设计直接基于此工作。\n\n2. **Park et al. \"Know What You Don't Know\" (arXiv:2506.09338, NeurIPS 2025)**: PRM calibration 的奠基工作。证明 PRMs 系统性高估 success probability（尤其在难题上），提出 quantile regression calibration + Instance-Adaptive Scaling (IAS)。**未测试 robustness**——本 proposal 正好填补这个空白。\n\n3. **Distributional PRMs (arXiv:2605.06785, May 2026)**: 用 conditional optimal transport 实现 calibrated monotone quantile function，在 MATH-500/AIME 上改善 BoN。同样**未测试 robustness**。极其新鲜（3 周前），进一步确认 calibration 线程活跃但与 hackability 线程隔离。\n\n4. **Ackermann et al. \"Gradient Regularization\" (arXiv:2602.18037, Feb 2026)**: 证明 reward surface flatness 与 accuracy retention 相关，提出 gradient regularization 防御。但**仅限 outcome-level single-scalar RM**，从未处理 step-level PRM geometry。proposal 正确识别了这一局限。\n\n5. **APRM \"Adversarial Training for PRMs\" (arXiv:2511.22888, Nov 2025)**: 通过对抗训练提升 PRM 鲁棒性 +3.4pp。是防御端的直接 baseline，但**不涉及 calibration**。\n\n6. **\"From Curiosity to Caution\" (arXiv:2604.04648, April 2026)**: 使用 prediction error 作为 pessimism proxy 在 BoN 中防御 reward hacking。**Outcome-level、非 calibrated**——proposal 的 CGSP 直接对标此工作。\n\n7. **Causal Reward Adjustment (arXiv:2508.04216, Aug 2025)**: 用 sparse autoencoders + structural causal model 对 PRM activations 做 backdoor adjustment 来纠正 reward hacking。虽然也取 causal 视角，但关注的是 confounding features 而非 calibration quality。**proposal 未引用此工作——这是一个 related work 缺口**。\n\n8. **\"Learning a Pessimistic Reward Model in RLHF\" (arXiv:2505.20556, May 2025)**: 学习 pessimistic reward 函数直接用于 policy optimization，无需 KL regularization。**proposal 也未引用此工作，是另一个 related work 缺口**。\n\n9. **Uncertainty-Penalized RLHF (arXiv:2401.00243, 2024)**: 使用 ensemble LoRA 的 disagreement 作为 uncertainty penalty。公式形式与 CGSP 类似（r - β·uncertainty），但不是 step-level 也不是 calibration-grounded。\n\n- **调研总结**: PRM calibration（Park 2025, Distributional PRM 2026）和 PRM hackability（Tiwari 2026, APRM 2025）确实是两个高度活跃但几乎完全隔离的研究线程——我的搜索未发现直接连接两者的论文。Causal Reward Adjustment（2508.04216）是最接近的竞争者，但它用 SAE+causal graph 而非 calibration quality 作为切入点。pessimistic reward 领域已有大量 outcome-level 工作，但 step-level + calibration-grounded 的组合确属空白。proposal 对两个主线程的 gap identification 是准确的，但遗漏了 CRA 和 pessimistic RM 两项重要相关工作。\n\n【Trivial Alternative 检验】:\n\n存在两个值得认真考虑的 trivial alternative：\n\n(1) **Ensemble step-level disagreement 作为 pessimism proxy**：不需要任何 calibration 基础设施，直接用 K 个 PRM 的 step-level disagreement（std）作为 σ_t 替代物，公式变为 r̃_t = μ_t − α·σ_t（ensemble 版），成本更低且无需 calibration fitting 的 200 H100-hrs。如果 ensemble disagreement 在防御效果上与 CGSP 可比，则 calibration 的\"精细化\"增量价值有限。\n\n(2) **直接对 PRM 做 temperature scaling + BoN/RL**：不需要 CGSP 的复杂公式，仅用 post-hoc calibration 调整 PRM 输出，然后正常使用。如果这就能减少 reward hacking，则不需要 CGSP 的 per-step pessimism 机制。\n\n**增量价值分析**：CGSP 相对于 trivial alternatives 的增量在于 (i) calibration quality c_t 的 per-step 自适应性——在 PRM 本身 well-calibrated 的区域不过度 pessimistic，(ii) Calibration Drift Detector 提供 real-time 分布偏移检测。这些增量是真实的但不算大。proposal 需要在实验中直接对比这些 trivial alternatives（特别是 ensemble disagreement 基线），否则审稿人会质疑。\n\n【前提假设检验】:\n\n核心逻辑链：**calibration quality → reward surface geometry change → hackability resistance**\n\n关键未验证假设：\n\n(1) **Post-hoc calibration 是否真的改变 reward landscape 的可利用性？** Temperature scaling 和 Platt scaling 只修改 logit→probability 的映射，不改变 representation space 中 reward peaks 的位置。对于在 representation/input space 中操作的 gradient attacks，post-hoc calibration 改变的是梯度幅度（∂p/∂z 变了），但不改变 reward surface 的拓扑结构。这意味着 Component B（causal isolation）的核心实验可能得到**零效应**——post-hoc calibration 对 gradient attack hackability 可能没有显著影响。这不是致命问题（negative result 也有价值），但如果 positive result 不出现，整个 causal thesis 的核心会被动摇。\n\n(2) **Calibration quality 和 hackability resistance 之间的因果方向**。可能存在 confound：更\"好\"的 PRM（representation 更好）恰好同时表现出 better calibration 和 better robustness，但 calibration 不是 cause。proposal 的 matched representation change control (B3) 试图解决这个问题，但 CKA-matched auxiliary task 是否真能控制所有 confounding representation changes 是另一个未验证假设。\n\n(3) **Step-level flatness compounding 假设**。proposal 假设 step-level Hessian flatness 会 compound across trajectory 影响 outcome-level hackability。这在数学上不一定成立——多个 flat step rewards 的组合不一定产生 flat outcome reward surface（非线性组合可以创造 sharp peaks）。\n\n【3 维度打分】:\n\n1. **Novelty: 中** — \n   Bridge 的 identification 是准确的且有真实 novelty：根据调研，PRM calibration（Park NeurIPS'25, Distributional PRM May'26）和 PRM hackability（Tiwari Mar'26）确实是两个零交叉引用的研究线程，没有现有论文建立 calibration→hackability 的因果联系。这是一个真实的 gap。然而：(a) CGSP 的公式 r̃_t = μ_t − α·σ_t/√c_t 本质上是 pessimistic RL 中经典的 LCB（Lower Confidence Bound）构造的 step-level 版本，技术上是 incremental extension，不是方法论创新；(b) 将 pessimism + uncertainty 用于 reward hacking defense 已有大量先例（Caution arXiv:2604.04648, PET arXiv:2505.20556, UP-RLHF arXiv:2401.00243），CGSP 的贡献在于 calibration-grounded 这一特征，增量真实但不大；(c) Causal Reward Adjustment（arXiv:2508.04216）已经从 causal 视角分析 PRM reward hacking，虽然切入点不同（confounding features vs. calibration），但占据了相似的 conceptual space。\n\n2. **Significance: 中偏强** — \n   研究问题具有实际重要性：PRM 正在成为 LLM reasoning pipeline 的核心组件（test-time compute, RL training signals），理解其 calibration 与 robustness 的关系对整个领域有指导意义。如果 positive result 成立（calibration causally improves robustness），这将给出一条简单、可操作的建议（\"calibrate your PRMs\"）。CGSP 如果有效，是可以直接部署的实用工具。然而，核心发现如果 positive，审稿人更可能说 \"this is intuitive — of course better calibrated models are harder to hack\" 而非 \"this is surprising\"。calibration 改善 robustness 是多数研究者的先验直觉——proposal 验证了这个直觉但没有挑战它。\n\n3. **Related Work: 中** — \n   对两个主线程（PRM calibration 和 PRM hackability）的覆盖全面且准确：Park et al., Distributional PRM, Tiwari et al., APRM, Ackermann et al. 等关键论文都已正确引用和描述。差异化定位清晰（vs. Ackermann 的 outcome-level 局限、vs. Caution 的 uncalibrated proxy、vs. ensemble methods 的 non-calibrated nature）。但存在两个重要遗漏：(a) Causal Reward Adjustment (arXiv:2508.04216) 同样从 causal 视角分析 PRM reward hacking，是最直接的 conceptual competitor，完全未被引用；(b) Pessimistic Reward Model (arXiv:2505.20556) 学习 pessimistic reward 无需 KL regularization，与 CGSP 的 pessimism 设计直接相关。这些遗漏会被审稿人发现。\n\n【概率估计】: [25% - 35%] 中位 30%\n\n【估计理由】: \nNovelty 维度是主要的概率约束因素。Gap identification（bridging calibration and hackability）是真实的且有 novelty delta，但 CGSP 作为方法贡献是 LCB 的 step-level calibration-weighted 变体，技术上 incremental。核心假设（calibration causally determines hackability）如果得到 positive 验证，审稿人的反应更可能是 \"makes sense\" 而非 \"surprising\"——这将 idea 锚定在 25-35% 区间（有实质内核、方向正确、novelty delta 真实，但核心发现 not surprising）。Significance 有一定上推力（实际可操作性强），但被 trivial alternative 威胁（ensemble disagreement 可能达到类似防御效果而不需 calibration 基础设施）部分抵消。Related work 的两处重要遗漏（CRA、Pessimistic RM）进一步压制上界。\n\n【主要风险】:\n1. **核心因果假设可能不成立或效应微弱**：Post-hoc calibration 不改变 reward surface 拓扑，对 gradient-based attacks 可能无显著防御效果。如果 Component B 的 causal isolation 实验显示 null effect，整个论文的 thesis 将失去支撑——而 negative result papers 在顶会的接收难度显著更高。\n2. **Trivial alternative 威胁**：如果 ensemble step-level disagreement（无需 calibration）作为 pessimism proxy 在防御效果上与 CGSP 可比，则 CGSP 的 calibration-grounded 增量价值将被严重质疑。审稿人会问：\"why not just use ensemble disagreement instead of this elaborate calibration machinery?\"\n```\n\nSources:\n- [Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models](https://arxiv.org/abs/2603.06621)\n- [Know What You Don't Know: Uncertainty Calibration of Process Reward Models](https://arxiv.org/abs/2506.09338)\n- [Distributional Process Reward Models: Calibrated Prediction via Conditional Optimal Transport](https://arxiv.org/abs/2605.06785)\n- [Gradient Regularization Prevents Reward Hacking in RLHF and Verifiable Rewards](https://arxiv.org/abs/2602.18037)\n- [Adversarial Training for Process Reward Models](https://arxiv.org/abs/2511.22888)\n- [From Curiosity to Caution: Mitigating Reward Hacking for Best-of-N with Pessimism](https://arxiv.org/pdf/2604.04648)\n- [Causal Reward Adjustment: Mitigating Reward Hacking via Backdoor Correction](https://arxiv.org/abs/2508.04216)\n- [Learning a Pessimistic Reward Model in RLHF](https://arxiv.org/abs/2505.20556)\n- [Uncertainty-Penalized RLHF with Diverse Reward LoRA Ensembles](https://arxiv.org/abs/2401.00243)\n\n━━━━━━━━━━ 审稿人 3（独立评审）━━━━━━━━━━\nNow I have sufficient research to make a thorough assessment. Let me compile my evaluation.\n\n---\n\n```\n【阶段】: Triage\n\n【领域调研】:\n\n1. **Tiwari et al. \"Reward Under Attack\" (arXiv:2603.06621, Mar 2026)**:\n   直接相关——系统性展示 PRM 的脆弱性：梯度攻击可将 PRM reward 膨胀 4×，GRPO 训练后 PRM reward 接近满分但真实准确率 <4%，43% 的 reward gain 来自风格捷径。该论文只做了诊断，未提出基于 calibration 的防御。Proposal 的 Thread 2 直接引用此工作，描述准确。\n\n2. **Park et al. \"Know What You Don't Know\" (arXiv:2506.09338, NeurIPS 2025)**:\n   直接相关——发现 PRM 系统性高估困难题的成功概率，提出基于 quantile regression 的 calibration。仅用于 inference-time scaling，未测试鲁棒性。Proposal 引用准确。\n\n3. **Distributional PRMs (arXiv:2605.06785, May 2026)**:\n   直接相关——用 conditional optimal transport 实现 calibrated monotone quantile function。在 MATH-500 和 AIME 上改善 BoN。同样未测试对抗鲁棒性。Proposal 引用准确，确认 May 2026 发布。\n\n4. **Ackermann et al. \"Gradient Regularization Prevents Reward Hacking\" (arXiv:2602.18037, Feb 2026)**:\n   密切相关——建立了 reward surface flatness 与准确率保持之间的理论联系，提出梯度正则化。确认工作在 outcome level，使用单标量 reward，仅分析 gradient norms。Proposal 关于其局限性的描述准确。\n\n5. **\"From Curiosity to Caution\" (arXiv:2604.04648, Apr 2026)**:\n   相关——用 prediction error 作为 uncertainty proxy 实现 pessimistic BoN，非 calibration-based。Proposal 描述准确。\n\n6. **\"Inference-Time Reward Hacking\" (arXiv:2506.19248, NeurIPS 2025 Spotlight)**:\n   相关——用 hedging 方法缓解 BoN 中的 reward hacking。非 calibration-based。Proposal 描述准确。\n\n7. **⚠️ \"Uncertainty-Aware Reward Discounting\" (arXiv:2604.26360, Apr 2026)** ← **Proposal 未引用的重要相关工作**:\n   高度相关——提出 dual-source uncertainty-aware reward framework，显式建模 epistemic uncertainty 和 preference uncertainty，通过 confidence-adjusted Reliability Filter 自适应调节 action selection。这与 CGSP 的 r̃_t = μ_t − α·σ_t/√c_t 思路高度重合：都用 uncertainty 来 discount reward 以防 hacking。关键差异是 CGSP 强调 step-level + calibration-grounded，但概念重叠显著。\n\n8. **APRM \"Adversarial Training for PRMs\" (arXiv:2511.22888, Nov 2025)**:\n   相关——对抗训练提升 PRM 鲁棒性 +3.4pp。非 calibration 路线。Proposal 引用准确。\n\n9. **PURM (Probabilistic Uncertain Reward Model, arXiv:2503.22480)**:\n   相关但 Proposal 未引用——将标量 reward 泛化为 Gaussian 分布，在高不确定区域施加惩罚。与 CGSP 的 uncertainty-based pessimism 有概念重叠。\n\n- **调研总结**: PRM calibration 和 PRM hackability 确实是两个独立发展的研究线程（零交叉引用可以确认）。同时，uncertainty-aware reward discounting 已成为 2026 年的活跃方向（2604.26360, PURM），但现有工作集中在 outcome level 且不使用 calibrated uncertainty。Proposal 处于一个真实的交叉空白，但该空白正在被从 uncertainty 方向逐渐填补。\n\n\n【Trivial Alternative 检验】:\n\n存在两个 trivial alternative 威胁：\n\n(1) **简单 ensemble disagreement 替代 calibrated uncertainty**: 已有工作（Coste et al. ensemble-min, URM 等）直接用 ensemble 分歧作为 uncertainty proxy 来实现 pessimism，无需 calibration。Proposal 虽列出 ensemble-min 作 baseline，但如果 ensemble-min 效果相当，则 calibration-grounding 的增量价值存疑。Proposal 需要证明 calibrated uncertainty 在 CGSP 中的表现显著优于 uncalibrated ensemble uncertainty。\n\n(2) **\"Calibration 减少 hackability\"可能是近似重言式**: 如果 PRM 对错误解法过度自信（高估 success probability），calibration 修正这种过度自信，则 reward hacking 减少是直接推论——不是因为\"calibration 带来了某种特殊防御\"，而是因为\"calibration 纠正了错误的高分\"。如果是这样，增量贡献就只是把一个直觉形式化了。Proposal 的 causal isolation 实验可以部分回应这个问题（如果 post-hoc calibration 修正了 mean prediction 但 hackability 下降幅度超过 mean correction 能解释的部分，则说明 calibration 的价值不止于修正均值），但 proposal 目前没有明确设计这个对照。\n\n\n【前提假设检验】:\n\nProposal 的核心逻辑链：calibration quality ↑ → uncertainty estimates become reliable → uncertainty-based pessimism can prevent hacking → CGSP works\n\n未经验证的关键假设：\n\n(1) **\"Post-hoc calibration 足以显著降低 hackability\"**: Post-hoc 方法（temperature scaling 等）只修改 output mapping，对 gradient attack 的影响路径不清楚。梯度攻击直接操纵 input space 以最大化 reward，temperature scaling 仅改变 logit-to-probability 映射——攻击者可以适应新的映射。Proposal 假设 calibration 使 reward surface 变\"平坦\"，但 post-hoc calibration 对 Hessian spectrum 的影响尚无理论支撑。\n\n(2) **\"Calibration quality 在 RL training 过程中可以实时维护\"**: CGSP 依赖 rolling buffer 上计算的 calibration quality score c_t。但 RL 训练导致 policy distribution shift，calibration（在 SFT distribution 上拟合）会快速退化。虽然 Proposal 设计了 Calibration Drift Detector，但这是一个后验监测而非前瞻保证——如果 drift 太快，CGSP 可能退化为简单的 reward clipping。\n\n(3) **\"Step-level Hessian analysis 在计算上可行且信息量充足\"**: 对大型 PRM（7B-72B 参数）在每个 step 上计算 Hessian 的 top-k eigenvalues 计算成本极高。即使使用 Lanczos 方法，48 个配置 × 多个问题 × 多个 step 的规模可能不可行。且 Hessian 分析的因果解释力有限——相关不等于因果。\n\n\n【3 维度打分】:\n\n1. **Novelty: 中** —\n   - (+) 桥接 calibration 和 hackability 两个零交叉引用的研究线程确实是一个真实且未被占据的空白位置。目前没有找到任何论文建立 calibration → hackability 的因果链接。\n   - (+) Causal isolation 方法论（利用 post-hoc calibration 的 representation-preserving 特性来分离因果效应）在方法论上是巧妙的。\n   - (−) CGSP 的核心公式 r̃_t = μ_t − α·σ_t/√c_t 与 2604.26360 的 uncertainty-aware reward discounting、PURM 的 Gaussian-based pessimism 在概念上高度重合。step-level 和 calibration-grounded 是差异点，但属于增量创新而非范式转变。\n   - (−) \"better calibrated → harder to hack\" 可能是一个 reviewer 会认为\"I would have guessed this\"的发现。核心 insight 的惊喜度有限。\n\n2. **Significance: 中偏强** —\n   - (+) PRM reward hacking 是一个重要且时效性强的问题，影响所有使用 PRM 进行 RL 训练的系统。\n   - (+) 如果因果链接被确认，对 PRM 设计有直接指导意义：PRM 开发者应优先保证 calibration quality。\n   - (+) CGSP 如果有效，可直接集成到现有 GRPO/PPO 训练流程。\n   - (−) 如果核心发现是近似重言式的（calibration 修正 overestimation → 自然减少 hacking），对领域的认知推进有限。\n   - (−) Step-level Hessian analysis 的可推广性存疑——在不同架构/规模上结论是否一致？\n\n3. **Related Work: 中偏弱** —\n   - (+) 对 PRM calibration 线和 PRM hackability 线的覆盖比较充分，引用的核心论文均真实存在且描述准确。\n   - (+) 与 Ackermann et al. 的差异化定位清晰合理。\n   - (−) **遗漏了 2604.26360 (Uncertainty-Aware Reward Discounting)**，这是与 CGSP 最直接竞争的工作，概念重叠显著。此遗漏会被审稿人直接指出。\n   - (−) **遗漏了 PURM (arXiv:2503.22480)**，同样用 uncertainty/分布化方法对 reward 做 pessimistic adjustment。\n   - (−) 未讨论 PET (Pessimistic Reward Fine-Tuning) 的具体方法论——仅一笔带过\"uses global pessimism\"。\n   - (−) Proposal 声称\"零交叉引用\"，但未提供检索证据。如果审稿人发现相关 workshop paper 或 concurrent work，这个 claim 会被削弱。\n\n\n【概率估计】: [22% - 32%] 中位 27%\n\n【估计理由】:\nNovelty 是限制上界的主要维度。虽然 bridging two threads 的定位是真实的空白，但 (a) 核心发现（calibration → robustness）的 surprise value 有限——审稿人大概率会说\"I would have guessed this\"；(b) CGSP 作为方法贡献与 2604.26360 和 PURM 的概念重叠使 novelty claim 被削弱。Significance 是支撑下界的维度——问题确实重要、时效性强，即使 insight 不够 surprising，系统性的 causal study + 48 配置的 empirical evidence 本身也有贡献。Related work 的遗漏（2604.26360）是一个可修复但目前存在的风险。整体看，这是一个 \"solid but not surprising\" 类型的 idea，方法论严谨但 insight ceiling 受限于近似重言式的威胁。中位 27% 反映了\"idea 方向正确、有真实 novelty delta，但核心发现审稿人可能觉得 expected\"的定位。\n\n【主要风险】:\n1. **Near-tautology 风险**: \"Better calibrated PRM → less hackable\" 可能被审稿人认为是 trivially expected 的结论。如果 causal study 只是确认了这个直觉而没有 unexpected 发现（如 calibration 在某些 regime 反而增加 vulnerability、或 post-hoc calibration 的效果量远超/远低于预期），论文的 intellectual contribution 会受质疑。\n2. **CGSP novelty 被竞争工作稀释**: 2604.26360 (Uncertainty-Aware Reward Discounting) 和 PURM 已经在做 uncertainty-based reward pessimism for anti-hacking。CGSP 的 step-level + calibration-grounded 差异化可能不足以说服审稿人这是一个本质不同的方法。\n```\n\nSources:\n- [Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models](https://arxiv.org/abs/2603.06621)\n- [Know What You Don't Know: Uncertainty Calibration of Process Reward Models](https://arxiv.org/abs/2506.09338)\n- [Distributional Process Reward Models](https://arxiv.org/abs/2605.06785)\n- [Gradient Regularization Prevents Reward Hacking in RLHF](https://arxiv.org/abs/2602.18037)\n- [From Curiosity to Caution: Mitigating Reward Hacking for Best-of-N with Pessimism](https://arxiv.org/abs/2604.04648)\n- [Inference-Time Reward Hacking in Large Language Models](https://arxiv.org/abs/2506.19248)\n- [Uncertainty-Aware Reward Discounting for Mitigating Reward Hacking](https://arxiv.org/abs/2604.26360)\n- [Adversarial Training for Process Reward Models](https://arxiv.org/abs/2511.22888)\n- [Probabilistic Uncertain Reward Model (PURM)](https://arxiv.org/pdf/2503.22480)\n- [Pessimistic Reward Modeling in RLHF against Reward Hacking](https://openreview.net/forum?id=mKPpS6n3cZ)\n\n\n【原始 proposal（允许参考但不是主要依据）】:\n# Calibration as a Shield: How PRM Calibration Quality Causally Determines Reward Hacking Resistance, and a Step-Level Defense\n\n## Description\nWe present the first causally rigorous study connecting PRM calibration quality to adversarial exploitability, and propose Calibration-Gated Step-Level Pessimism (CGSP), a novel defense that transforms calibrated uncertainty into adaptive reward hacking resistance during RL training. Our work bridges two mature but isolated research threads (PRM calibration and PRM hackability) through four contributions. First, an expanded correlation study across 48 configurations (8 PRMs × 6 calibration methods) provides sufficient statistical power (n=48, detecting r≥0.29 at p<0.05) to establish whether calibration quality predicts hackability metrics under gradient attacks, RL-induced hacking (GRPO on AIME), and BoN overoptimization (MATH-500), stratified by problem difficulty. Second, causal isolation experiments separate calibration's true effect from representation change artifacts: we compare post-hoc calibration methods (temperature scaling, Platt scaling, isotonic regression, conformal prediction) that provably preserve model representations against fine-tuning-based methods, with CKA verification and matched-representation-change controls. Third, step-level Hessian spectral analysis goes beyond Ackermann et al.'s outcome-level gradient norm analysis (which applies only to single-scalar reward models) to reveal how calibration affects the multi-reward compositional geometry of PRMs — analyzing how step-level flatness compounds across trajectories. Fourth, CGSP replaces raw PRM rewards during RL training with r̃_t = μ_t − α·σ_t/√c_t, where calibrated uncertainty σ_t and calibration quality c_t adaptively modulate pessimism per-step — trusted when calibration is tight, pessimistic when uncertainty is high — with a Calibration Drift Detector that monitors ECE on current-policy rollouts to flag distribution-shift-induced reward hacking in real time. CGSP differs from existing defenses (Caution uses prediction error, PET uses global pessimism, ensemble methods are uncalibrated) by being step-level, calibration-grounded, and adaptive. We evaluate CGSP against 5 baselines (uncalibrated GRPO, APRM, Caution, ensemble-min, gradient regularization) on MATH-500 and AIME, measuring both reward-accuracy alignment and downstream task accuracy.\n\n## Core Problem\nPRM calibration research and PRM hackability research are entirely separate threads with zero cross-citation — but the deeper problem is that we lack both (a) causal evidence for whether calibration actually determines hackability (vs. being merely correlated), and (b) a principled, step-level defense mechanism that leverages calibrated uncertainty to prevent reward hacking during RL training. Existing ad-hoc defenses (adversarial training, gradient regularization, pessimistic BoN) operate at the outcome level without exploiting the unique step-level structure of PRMs.\n\n## Opportunity\nThree recent developments create a uniquely favorable moment. First, Distributional PRMs (arXiv:2605.06785, May 2026) achieve calibrated step-level uncertainty via conditional optimal transport but never test robustness. Second, Tiwari et al. (arXiv:2603.06621, March 2026) demonstrate that PRMs are catastrophically hackable — near-perfect PRM rewards with <4% actual accuracy — but propose no calibration-based defense. Third, the causal isolation toolkit is mature: post-hoc calibration methods (temperature scaling, Platt scaling, isotonic regression, conformal prediction) modify only the output mapping without changing model representations, enabling controlled experiments that separate calibration effects from representation effects. No existing paper bridges these threads. Ackermann et al.'s gradient regularization work (arXiv:2602.18037) operates exclusively on outcome-level reward models with single-scalar rewards, never touching step-level PRM geometry. The CoT Entropy paper (arXiv:2502.11250) named this connection as future work 16 months ago with no follow-up. The window for a definitive, causally rigorous study is open but narrowing.\n\n## Landscape\nTwo parallel research threads have developed with zero cross-citation. Thread 1 (PRM Calibration): Park et al. (arXiv:2506.09338, NeurIPS 2025) demonstrate PRMs systematically overestimate success probabilities on hard problems, proposing quantile regression calibration. Distributional PRMs (arXiv:2605.06785, May 2026) use conditional optimal transport for calibrated monotone quantile functions, improving BoN on MATH-500 and AIME. Neither paper tests robustness. Thread 2 (PRM Hackability): Tiwari et al. (arXiv:2603.06621) show gradient attacks inflate PRM rewards 4× and RL achieves near-perfect PRM rewards with <4% accuracy, with 43% of reward gains from stylistic shortcuts. APRM (arXiv:2511.22888) uses adversarial training for +3.4pp robustness. Thread 3 (Adjacent but distinct): Ackermann et al. (arXiv:2602.18037) prove reward surface flatness correlates with accuracy retention for outcome-level RMs, but work exclusively with single-scalar rewards, analyze only gradient norms (no Hessian spectra), and never consider step-level reward models. Their theoretical framework (Propositions 3.3-3.4) assumes a single reward function R(s,a) over complete responses — inapplicable to step-level PRM geometry where T coupled reward surfaces {R_1,...,R_T} interact compositionally. InferenceTimePessimism (arXiv:2506.19248) and Caution (arXiv:2604.04648) apply pessimism for BoN but use uncalibrated uncertainty proxies (prediction error, hedging), not calibrated probabilities. URM (arXiv:2410.00847) decomposes uncertainty into aleatoric/epistemic for outcome-level RMs but not PRMs. Bayesian reward models (arXiv:2402.13210) use Laplace approximation on LoRA weights. Conformal prediction has been applied to RLHF feedback alignment (arXiv:2601.17329) but never to PRM defense. No paper establishes a causal link between calibration quality and hackability, and no paper proposes using calibrated step-level PRM uncertainty as a defense during RL training.\n\n## Approach\nThe study has four components: (A) Expanded Correlation Study, (B) Causal Isolation Experiments, (C) Step-Level Mechanistic Analysis, and (D) Calibration-Gated Step-Level Pessimism (CGSP) defense.\n\n**Component A — Expanded Correlation Study (n≥24 configurations):** Apply 6 calibration methods across 2 tiers to 8 open-source PRMs. Tier 1 (post-hoc, representation-preserving): temperature scaling, Platt scaling, isotonic regression. Tier 2 (model-modifying): quantile regression fine-tuning, conditional optimal transport, Venn-Abers predictors. The 8 PRMs span discriminative (Qwen2.5-Math-PRM-7B, Qwen2.5-Math-PRM-72B, Skywork-o1-Open-PRM-7B, RLHFlow-Llama3.1-8B-PRM, Math-Shepherd-7B, OpenR-Math-psa-7B), generative (GenPRM-7B), and implicit (EurusPRM-Stage2) architectures. Each of the 48 PRM×calibration configurations is subjected to three attack tiers: (i) gradient-based reward inflation following Tiwari et al., (ii) RL-induced reward hacking via GRPO on AIME, and (iii) BoN overoptimization at N∈{1,4,16,64,256} on MATH-500. Compute rank correlations (Spearman ρ, Kendall τ) between calibration metrics (ECE, Brier score, quantile coverage, reliability diagram sharpness) and hackability metrics (reward-accuracy divergence, attack success rate, BoN degradation onset N*). Stratify analysis by problem difficulty (MATH levels 1-5, AMC vs. AIME) to test whether calibration is more protective on hard problems where PRMs are known to be overconfident.\n\n**Component B — Causal Isolation Experiments:** This is the methodological core addressing the reviewer's causation concern. Design: (B1) Post-hoc calibration control: Apply temperature scaling, Platt scaling, and isotonic regression — which provably modify only the output mapping, not internal representations — and measure hackability change. If hackability decreases under post-hoc calibration alone, this establishes that calibration per se (not representation change) causally affects hackability. (B2) Representation change verification: For fine-tuning-based calibration methods (quantile regression, COT), measure representation change at every transformer layer using Centered Kernel Alignment (CKA) between the base PRM and calibrated PRM. (B3) Matched representation change control: Fine-tune PRMs on an auxiliary task (e.g., next-token prediction on math text) that produces CKA-matched representation changes but does NOT improve calibration. If only calibration-improving fine-tuning reduces hackability (not the CKA-matched control), the causal role of calibration is confirmed. (B4) Conformal prediction as the cleanest test: Apply split-conformal prediction to PRM step scores, providing distribution-free coverage guarantees with zero model modification. Test whether conformal-calibrated PRMs resist hacking better than uncalibrated ones.\n\n**Component C — Step-Level Mechanistic Analysis (differentiating from Ackermann et al.):** Unlike Ackermann et al., who analyze only outcome-level gradient norms and max-perturbation sharpness, we perform Hessian spectral analysis at the step level — computing top-k eigenvalues and spectral density of the step-level reward Hessian ∂²R_t/∂h² (where h is the hidden representation at step t). Key questions: (i) Do calibrated PRMs have flatter step-level reward surfaces (lower top Hessian eigenvalue)? (ii) Does flatness vary by step position (early reasoning steps vs. final answer steps)? (iii) Do hackable reward peaks correspond to isolated large Hessian eigenvalues (sharp directions) that gradient attacks exploit? This extends Ackermann et al.'s framework from single-reward geometry to multi-reward compositional geometry: we analyze how step-level flatness/sharpness compounds across a T-step trajectory to determine outcome-level hackability.\n\n**Component D — Calibration-Gated Step-Level Pessimism (CGSP) Defense:** This transforms the paper from measurement to method. CGSP operates during RL training (GRPO/PPO) by replacing raw PRM step rewards with calibration-modulated rewards: r̃_t = μ_t − α · σ_t / √(c_t), where μ_t is the calibrated step reward mean, σ_t is the calibrated uncertainty (from quantile width or conformal interval), c_t is a calibration quality score (inverse ECE computed on a rolling buffer), and α is a pessimism strength hyperparameter. When calibration is high (small σ_t, high c_t), the reward is trusted; when calibration is low (large σ_t, low c_t), pessimism dominates. This differs from existing pessimism (Caution uses prediction error, PET uses global pessimistic fine-tuning, InferenceTimePessimism uses hedging) because CGSP is (i) step-level, (ii) grounded in calibrated probabilities rather than heuristic proxies, and (iii) adaptive — the pessimism automatically strengthens in distribution-shift regions where the PRM becomes miscalibrated. Additionally, we implement a Calibration Drift Detector: during RL training, periodically measure ECE on current-policy rollouts vs. the initial SFT-distribution calibration. When drift exceeds a threshold, flag those trajectory types as potentially hacked and apply reward clipping. This converts calibration from a static property into a dynamic training signal.\n\nBaseline comparisons for CGSP: (i) uncalibrated PRM + GRPO, (ii) APRM adversarial training, (iii) Caution/prediction-error pessimism, (iv) ensemble minimum (following Coste et al.), (v) KL-regularized GRPO, (vi) gradient regularization (Ackermann et al.).\n\nCodebase starting points: young-j-park/prm-calibration for calibration fitting, Tiwari et al.'s PRM-BiasBench for adversarial evaluation, vwxyzjn/open_instruct for GRPO training infrastructure.\n\n## Resource Estimate\n{'manual': {'gpu_hours': '4200 H100-hrs (calibration fitting: 200, rollout generation: 600, gradient attacks: 1000, GRPO RL training: 1600 [including CGSP defense training], BoN evaluation: 400, Hessian spectral analysis: 200, causal isolation controls: 200)', 'timeline': '12-14 weeks', 'estimated_gpu_cost': '$10,500 at ~$2.50/H100-hr'}, 'human_in_loop': {'gpu_hours': '3600 H100-hrs (fewer failed iterations with AI-assisted debugging)', 'timeline': '10-12 weeks', 'claude_api_cost': '$400-700 (code generation, experiment analysis, paper drafting)', 'estimated_gpu_cost': '$9,000 at ~$2.50/H100-hr'}, 'auto_research': {'gpu_hours': '5200 H100-hrs (broader sweeps over α pessimism parameter, calibration drift thresholds, and ablations across all 48 configurations)', 'timeline': '7-9 weeks', 'claude_api_cost': '$1,500-2,000 (automated experiment orchestration, iterative analysis, full draft writing)', 'estimated_gpu_cost': '$13,000 at ~$2.50/H100-hr', 'speed_bottleneck': 'GRPO RL training wall-clock time (~18hrs per PRM×calibration×defense configuration on 4×H100); Hessian spectral analysis requires Lanczos iterations per step per problem; 72B PRM requires 4×H100 for inference'}}\n\n## Inspired By\nField guide gap: PRM overconfidence on OOD problems (Section 5.3 'when more compute hurts'); Untried combination: distributional PRM calibration + PRM hackability analysis; Pattern: connecting two mature but isolated research threads; Reviewer insight: pure measurement is insufficient — the key contribution should be a causal mechanism and a defense method; Methodological insight: post-hoc calibration methods that preserve representations enable clean causal isolation experiments impossible with fine-tuning-based calibration alone\n\n## Target Venues\n- ICLR 2027 (abstract Sep 19, paper Sep 24, 2026)\n- AAAI 2027 (abstract Jul 21, paper Jul 28, 2026)\n- AISTATS 2027 (paper Oct 10, 2026)\n\n## Key References\n- Know What You Don't Know: Uncertainty Calibration of Process Reward Models (arXiv:2506.09338, NeurIPS 2025)\n- Distributional Process Reward Models: Calibrated Prediction via Conditional Optimal Transport (arXiv:2605.06785, May 2026)\n- Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models (arXiv:2603.06621, March 2026)\n- Gradient Regularization Prevents Reward Hacking in RLHF and Verifiable Rewards (arXiv:2602.18037, Feb 2026)\n- Adversarial Training for Process Reward Models (arXiv:2511.22888, Nov 2025)\n- From Curiosity to Caution: Mitigating Reward Hacking for Best-of-N with Pessimism (arXiv:2604.04648, April 2026)\n- Inference-Time Reward Hacking in Large Language Models (arXiv:2506.19248, NeurIPS 2025 Spotlight)\n- Uncertainty-Aware Step-wise Verification with Generative Reward Models (arXiv:2502.11250, ICLR 2025 Workshop)\n- Detecting and Suppressing Reward Hacking with Gradient Fingerprints (arXiv:2604.16242, April 2026)\n- Uncertainty-Aware Reward Model (arXiv:2410.00847)\n- Helping or Herding? Reward Model Ensembles Mitigate but Do Not Eliminate Overoptimization (arXiv:2312.09244)\n- Bayesian Reward Models for LLM Alignment (arXiv:2402.13210)\n- Conformal Feedback Alignment for RLHF (arXiv:2601.17329)\n- Taming Overconfidence in LLMs: Reward Calibration in RLHF (arXiv:2410.09724)\n- PRMBench: A Fine-grained and Challenging Benchmark for Process-Level Reward Models (arXiv:2501.03124)\n"
+}
+````
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-20T05:49:55.874Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-20T05:49:55.874Z",
+  "sessionId": "223cb317-35f6-4752-b9e9-91d332109212"
+}
+```
+
+---
+
+## Round 1
+
+9 recorded events
+
+### User
+
+_source line 3 · 2026-05-20T05:49:55.920Z_
+
+【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。
+
+【三位审稿人评估】:
+━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━
+Now I have sufficient research to evaluate this proposal. Let me compile my assessment.
+
+---
+
+```
+【阶段】: Triage
+
+【领域调研】:
+
+1. **Park et al. "Know What You Don't Know: Uncertainty Calibration of PRMs"** (arXiv:2506.09338, NeurIPS 2025):
+   - 与本 proposal 的关系：Thread 1 核心论文。证明 PRM 系统性地对难题过度估计成功概率，提出 quantile regression calibration。关键缺陷——从未测试校准后的 PRM 在对抗攻击下的鲁棒性。
+   - Proposal 准确引用了该工作，描述基本准确。
+
+2. **Ma et al. "Distributional Process Reward Models"** (arXiv:2605.06785, May 2026):
+   - 与本 proposal 的关系：最新的 PRM 校准工作，用 conditional optimal transport 实现 calibrated monotone quantile functions。在 MATH-500 和 AIME 上改进 BoN。同样从未测试鲁棒性。
+   - Proposal 准确引用该工作。该论文发表于 2026 年 5 月，非常新。
+
+3. **Tiwari et al. "Reward Under Attack"** (arXiv:2603.06621, March 2026):
+   - 与本 proposal 的关系：Thread 2 核心论文。证明 PRM 灾难性可破解——gradient attacks 将奖励膨胀 4x，RL 训练可达到近完美 PRM 奖励但实际准确率 <4%，43% 的奖励增益来自风格快捷方式。未提出校准相关防御。
+   - Proposal 准确引用并描述了该工作的核心发现。
+
+4. **Ackermann et al. "Gradient Regularization Prevents Reward Hacking"** (arXiv:2602.18037, Feb 2026):
+   - 与本 proposal 的关系：建立奖励模型准确性与 flatness 的理论联系，但仅针对 outcome-level RM。Proposal 正确指出该工作仅处理单标量奖励，不涉及 step-level PRM 几何。
+   - Proposal 对 Ackermann 的局限性描述准确——确实仅使用 gradient norm，未做 Hessian spectral analysis。
+
+5. **"From Curiosity to Caution"** (arXiv:2604.04648, April 2026):
+   - BoN 层面的悲观主义防御，使用 prediction error 作为不确定性代理（未校准）。
+   - Proposal 正确区分了自己与该工作的差异——CGSP 使用校准概率而非启发式代理。
+
+6. **"Learning a Pessimistic Reward Model in RLHF"** (arXiv:2505.20556, May 2025):
+   - 2025 年的悲观奖励模型方法。通过 pessimistic fine-tuning 防止 reward hacking。
+   - Proposal 未引用此论文，但其 PET baseline 覆盖了类似方向。
+
+7. **APRM "Adversarial Training for PRMs"** (arXiv:2511.22888, Nov 2025):
+   - 对抗训练方法。Generator 学习产生推理错误欺骗 PRM，PRM 同时学习检测。平均 +3.4pp。
+   - Proposal 将其列为 baseline，描述准确。
+
+8. **"Robust Reward Modeling via Causal Rubrics"** (2026, OpenReview) 和 **"Robust Reward Modeling via Causal Decomposition"** (arXiv:2604.13833):
+   - 因果推理用于奖励模型鲁棒性的新兴方向。与 proposal 的"因果隔离"实验有概念重叠，但未专注于 PRM 校准。
+   - **Proposal 未引用这些工作**，是一个 related work 缺口。
+
+- **调研总结**: PRM 校准和 PRM 可攻击性确实是两条基本独立的研究线。近期（2025-2026）悲观主义防御（Caution、PET、pessimistic RM）和不确定性感知方法（URM、PURM、Bayesian RM）正在快速涌现，但尚无工作正式建立校准质量与可攻击性的因果联系。Proposal 识别的 gap 是真实的，但该领域在快速趋同——多个小组正从不同角度逼近类似结论。窗口期确实存在但正在缩小。
+
+---
+
+【Trivial Alternative 检验】:
+
+**最直接的 trivial alternative**: 对 PRM 做简单的 temperature scaling（一个标量参数的后校准），然后在 RL 训练中使用校准后的分数。这是成本最低的干预。
+
+**关键问题**: Temperature scaling、Platt scaling、isotonic regression 等 post-hoc 方法是**保序变换**（monotonic transformation）——它们不改变 PRM 对不同 response 的排序，只改变绝对分数值。Gradient-based attacks 利用的是 reward landscape 的结构（梯度方向），而不是绝对分数值。因此：
+
+- **对 gradient attacks**: post-hoc calibration 理论上不应改变攻击表面（attack surface），因为排序和梯度方向不变。这意味着 proposal Component B1 的"最干净测试"很可能产生 **negative 结果**——post-hoc calibration alone 不减少 gradient attack hackability。
+- **对 BoN overoptimization**: 校准影响 scaling 决策（何时停止增加 N），但这不是 PRM 本身的鲁棒性，而是决策层面的改进。
+- **对 RL-induced hacking**: 校准后的绝对分数变化可能改变 GRPO 的优化动态，但核心 reward landscape 几何未变。
+
+**增量价值**: CGSP 的真正增量不是来自"校准本身提高鲁棒性"，而是来自"使用校准后的不确定性估计（σ_t）进行自适应悲观"。但这本质上是 LCB（Lower Confidence Bound）方法在 step-level PRM 上的应用——这在 bandit/RL 文献中已是标准技术。与 ensemble-min 或 Caution 的 prediction-error pessimism 相比，CGSP 的优势取决于校准不确定性估计是否比这些 heuristic 代理更好，这并非显而易见。
+
+**结论**: Trivial alternative 威胁中等偏高。如果实验发现 simple temperature scaling + standard pessimism 已经获得 CGSP 大部分收益，那 CGSP 的价值就大打折扣。
+
+---
+
+【前提假设检验】:
+
+核心 claim 的逻辑链：**"PRM 校准质量好 → PRM 更难被 hack"**
+
+**未经验证的假设 1**: 校准质量是可攻击性的**独立预测因子**，而非模型整体质量的 proxy。
+- 更好的模型可能同时更 well-calibrated 和更 robust（模型质量是 confound）
+- Proposal 的 Component B3（matched representation change control）试图解决这个问题，但这需要找到一个"改变表征但不改善校准"的任务，这本身是一个困难的实验设计问题
+- 如果校准仅仅是"好模型"的 symptom 而非 cause，核心 claim 就变成了"好模型更难 hack"——这是 trivial 的
+
+**未经验证的假设 2**: Post-hoc 校准改变了 reward landscape 的可攻击几何。
+- 如上分析，monotonic post-hoc 校准保持排序不变，理论上不应改变 gradient attack 的攻击面
+- 这与 proposal 声称的"calibration per se causally affects hackability"存在张力
+- 如果 Component B1 产生 negative 结果，proposal 的核心叙事需要重大调整
+
+**未经验证的假设 3**: Step-level flatness 与 outcome-level hackability 之间存在 compounding 关系。
+- Proposal 假设 step-level Hessian spectral 分析能揭示"step-level flatness 如何跨 trajectory compound"
+- 但 T 个 step-level reward 的 compositional geometry 可能非常复杂，flatness 在每步的含义可能不同（early reasoning vs. final answer steps），简单的 compounding 模型可能不成立
+
+**未经验证的假设 4**: Calibration Drift Detector 能实时区分 distribution shift 和正常 policy 改进。
+- RL 训练中 policy 自然会偏离 SFT 分布，ECE drift 可能反映正常学习而非 reward hacking
+- 需要一个 threshold 来区分，但这个 threshold 的设定本身就是一个未解决的问题
+
+---
+
+【3 维度打分】:
+
+**1. Novelty: 中 (偏弱)**
+
+理由：
+- **真实 novelty**: 将 PRM 校准与可攻击性正式联系起来的思路确实无人做过。调研确认两条研究线确实缺乏交叉引用。
+- **但 novelty 的深度有限**: 核心假说"校准好的模型更难 hack"在直觉上是预期中的（"expected, not surprising"）。审稿人的反应更可能是"I would have guessed this"而非"surprising"。
+- **CGSP 本质上是 LCB**: r̃_t = μ_t − α·σ_t/√c_t 是 bandit/RL 中 well-known 的 pessimistic/conservative 估计。应用到 step-level PRM 是增量而非突破。Caution (arXiv:2604.04648) 已经做了 reward-level pessimism，PURM 做了 uncertainty-penalized rewards——CGSP 的 novelty delta 不大。
+- **Hessian spectral 分析是扩展而非创新**: 将 Ackermann et al. 从 outcome-level 扩展到 step-level 是自然延伸，方法论本身（Lanczos iteration for Hessian spectra）是标准技术。
+- **最相关竞争**: "Learning a Pessimistic Reward Model in RLHF" (arXiv:2505.20556) 和 "Robust Reward Modeling via Causal Decomposition" (arXiv:2604.13833) 都在向类似方向推进——因果鲁棒 + 悲观主义。
+
+**2. Significance: 中**
+
+理由：
+- **问题本身重要**: PRM 的可攻击性是 reasoning LLM 可靠性的核心问题。理解校准与鲁棒性的关系有实际价值。
+- **48-configuration 相关性研究** 即使假说被否定也有 mapping 价值——为领域提供系统性 benchmark。
+- **但实际影响取决于效果大小**: 如果 CGSP 仅比 ensemble-min 好 1-2pp，实际影响有限。
+- **方法论贡献（因果隔离）有推广价值**: 使用 post-hoc calibration 做 representation-preserving 控制实验的方法论可以被其他工作借鉴。
+- **但如果 Component B1 negative result（我认为很可能）**: 那故事需要重讲——"calibration per se does NOT determine hackability, but calibrated uncertainty enables better defense"——这是一个不同的、较弱的 claim。
+
+**3. Related Work: 强 (偏中)**
+
+理由：
+- **覆盖度高**: Proposal 识别并正确描述了两条核心研究线及其交叉点的所有关键论文（Park et al., Distributional PRM, Tiwari et al., Ackermann et al., APRM, Caution, URM, Bayesian RM, Conformal RLHF）。
+- **差异化定位清晰**: 与 Ackermann et al. 的区分（outcome-level vs. step-level）、与 Caution 的区分（prediction error vs. calibrated probability）、与 ensemble 方法的区分（uncalibrated vs. calibrated）都表述清楚。
+- **缺口**: 未覆盖 "Robust Reward Modeling via Causal Rubrics" (OpenReview 2026) 和 "Robust Reward Modeling via Causal Decomposition" (arXiv:2604.13833)——这些同样使用因果框架处理奖励模型鲁棒性问题，是直接相关的工作。也未引用 "Learning a Pessimistic Reward Model in RLHF" (arXiv:2505.20556)，该工作在悲观 RM 方向上有直接竞争关系。
+
+---
+
+【概率估计】: [22% - 32%] 中位 26%
+
+【估计理由】:
+- **核心限制因素是 Novelty 深度**。该 proposal 连接了一个真实 gap，方法论设计精良，但核心发现如果 positive（"校准好的 PRM 更难 hack"），审稿人的反应大概率是 "I would have guessed this"——这将其锚定在 25-35% 区间的下半段。
+- **存在非平凡的 trivial alternative 威胁**: Post-hoc calibration 保序性意味着 gradient attacks 的攻击面理论上不变，CGSP 的核心优势本质上是 LCB（标准技术）。
+- **前提假设 2 的张力**: Post-hoc calibration 不改变 reward landscape 几何，这与 proposal 声称 "calibration per se causally affects hackability" 可能矛盾。如果 Component B1 产生 negative 结果，核心叙事需要调整，可能导致 story 不够连贯。
+- **Related work 覆盖是加分项**，但 related work 好只能保底不能拉高上限。
+- **上界被 Novelty 限制**: 即使所有实验结果完美，核心 insight 的"惊喜度"不足以突破 35%。
+
+【主要风险】:
+1. **因果隔离实验可能自我否定核心假说**: Post-hoc calibration（保序变换）理论上不改变 gradient attack 攻击面，Component B1 很可能显示 "calibration alone does NOT reduce hackability"，这将迫使 paper 重新定位为 "calibrated uncertainty enables better defense"——一个更弱的 claim，削弱整体叙事的力度。
+2. **"Calibration → robustness" 可能是 confounded 结论**: 模型质量同时影响校准和鲁棒性。即使 48-config 相关性显著，也可能被审稿人以 "correlation driven by model quality confounder" 为由质疑，因果隔离实验的设计质量直接决定这个论点能否成立。
+```
+
+Sources:
+- [Know What You Don't Know: Uncertainty Calibration of PRMs (NeurIPS 2025)](https://arxiv.org/abs/2506.09338)
+- [Distributional Process Reward Models (May 2026)](https://arxiv.org/abs/2605.06785)
+- [Reward Under Attack: Analyzing PRM Robustness (March 2026)](https://arxiv.org/abs/2603.06621)
+- [Gradient Regularization Prevents Reward Hacking (Feb 2026)](https://arxiv.org/abs/2602.18037)
+- [Adversarial Training for Process Reward Models (Nov 2025)](https://arxiv.org/abs/2511.22888)
+- [From Curiosity to Caution: Pessimism for BoN (April 2026)](https://arxiv.org/abs/2604.04648)
+- [Learning a Pessimistic Reward Model in RLHF (May 2025)](https://arxiv.org/abs/2505.20556)
+- [Robust Reward Modeling via Causal Decomposition (April 2026)](https://arxiv.org/abs/2604.13833)
+- [Robust Reward Modeling via Causal Rubrics (OpenReview 2026)](https://openreview.net/forum?id=oP99JQiDYp)
+- [Reward Hacking: Mechanisms and Emergent Misalignment (2026)](https://arxiv.org/html/2604.13602v1)
+
+━━━━━━━━━━ 审稿人 2（独立评审）━━━━━━━━━━
+Now I have sufficient research to make an informed assessment. Let me compile my analysis.
+
+---
+
+```
+【阶段】: Triage
+
+【领域调研】:
+
+1. **Tiwari et al. "Reward Under Attack" (arXiv:2603.06621, March 2026)**: 直接竞争论文。证明 PRMs 在梯度攻击下 reward 可膨胀 4×，RL 训练下实现 >0.9 PRM reward 但 <4% 真实准确率，43% reward 增益来自 stylistic shortcuts。提出了 PRM-BiasBench 但**未提出基于 calibration 的防御**。本 proposal 的攻击端实验设计直接基于此工作。
+
+2. **Park et al. "Know What You Don't Know" (arXiv:2506.09338, NeurIPS 2025)**: PRM calibration 的奠基工作。证明 PRMs 系统性高估 success probability（尤其在难题上），提出 quantile regression calibration + Instance-Adaptive Scaling (IAS)。**未测试 robustness**——本 proposal 正好填补这个空白。
+
+3. **Distributional PRMs (arXiv:2605.06785, May 2026)**: 用 conditional optimal transport 实现 calibrated monotone quantile function，在 MATH-500/AIME 上改善 BoN。同样**未测试 robustness**。极其新鲜（3 周前），进一步确认 calibration 线程活跃但与 hackability 线程隔离。
+
+4. **Ackermann et al. "Gradient Regularization" (arXiv:2602.18037, Feb 2026)**: 证明 reward surface flatness 与 accuracy retention 相关，提出 gradient regularization 防御。但**仅限 outcome-level single-scalar RM**，从未处理 step-level PRM geometry。proposal 正确识别了这一局限。
+
+5. **APRM "Adversarial Training for PRMs" (arXiv:2511.22888, Nov 2025)**: 通过对抗训练提升 PRM 鲁棒性 +3.4pp。是防御端的直接 baseline，但**不涉及 calibration**。
+
+6. **"From Curiosity to Caution" (arXiv:2604.04648, April 2026)**: 使用 prediction error 作为 pessimism proxy 在 BoN 中防御 reward hacking。**Outcome-level、非 calibrated**——proposal 的 CGSP 直接对标此工作。
+
+7. **Causal Reward Adjustment (arXiv:2508.04216, Aug 2025)**: 用 sparse autoencoders + structural causal model 对 PRM activations 做 backdoor adjustment 来纠正 reward hacking。虽然也取 causal 视角，但关注的是 confounding features 而非 calibration quality。**proposal 未引用此工作——这是一个 related work 缺口**。
+
+8. **"Learning a Pessimistic Reward Model in RLHF" (arXiv:2505.20556, May 2025)**: 学习 pessimistic reward 函数直接用于 policy optimization，无需 KL regularization。**proposal 也未引用此工作，是另一个 related work 缺口**。
+
+9. **Uncertainty-Penalized RLHF (arXiv:2401.00243, 2024)**: 使用 ensemble LoRA 的 disagreement 作为 uncertainty penalty。公式形式与 CGSP 类似（r - β·uncertainty），但不是 step-level 也不是 calibration-grounded。
+
+- **调研总结**: PRM calibration（Park 2025, Distributional PRM 2026）和 PRM hackability（Tiwari 2026, APRM 2025）确实是两个高度活跃但几乎完全隔离的研究线程——我的搜索未发现直接连接两者的论文。Causal Reward Adjustment（2508.04216）是最接近的竞争者，但它用 SAE+causal graph 而非 calibration quality 作为切入点。pessimistic reward 领域已有大量 outcome-level 工作，但 step-level + calibration-grounded 的组合确属空白。proposal 对两个主线程的 gap identification 是准确的，但遗漏了 CRA 和 pessimistic RM 两项重要相关工作。
+
+【Trivial Alternative 检验】:
+
+存在两个值得认真考虑的 trivial alternative：
+
+(1) **Ensemble step-level disagreement 作为 pessimism proxy**：不需要任何 calibration 基础设施，直接用 K 个 PRM 的 step-level disagreement（std）作为 σ_t 替代物，公式变为 r̃_t = μ_t − α·σ_t（ensemble 版），成本更低且无需 calibration fitting 的 200 H100-hrs。如果 ensemble disagreement 在防御效果上与 CGSP 可比，则 calibration 的"精细化"增量价值有限。
+
+(2) **直接对 PRM 做 temperature scaling + BoN/RL**：不需要 CGSP 的复杂公式，仅用 post-hoc calibration 调整 PRM 输出，然后正常使用。如果这就能减少 reward hacking，则不需要 CGSP 的 per-step pessimism 机制。
+
+**增量价值分析**：CGSP 相对于 trivial alternatives 的增量在于 (i) calibration quality c_t 的 per-step 自适应性——在 PRM 本身 well-calibrated 的区域不过度 pessimistic，(ii) Calibration Drift Detector 提供 real-time 分布偏移检测。这些增量是真实的但不算大。proposal 需要在实验中直接对比这些 trivial alternatives（特别是 ensemble disagreement 基线），否则审稿人会质疑。
+
+【前提假设检验】:
+
+核心逻辑链：**calibration quality → reward surface geometry change → hackability resistance**
+
+关键未验证假设：
+
+(1) **Post-hoc calibration 是否真的改变 reward landscape 的可利用性？** Temperature scaling 和 Platt scaling 只修改 logit→probability 的映射，不改变 representation space 中 reward peaks 的位置。对于在 representation/input space 中操作的 gradient attacks，post-hoc calibration 改变的是梯度幅度（∂p/∂z 变了），但不改变 reward surface 的拓扑结构。这意味着 Component B（causal isolation）的核心实验可能得到**零效应**——post-hoc calibration 对 gradient attack hackability 可能没有显著影响。这不是致命问题（negative result 也有价值），但如果 positive result 不出现，整个 causal thesis 的核心会被动摇。
+
+(2) **Calibration quality 和 hackability resistance 之间的因果方向**。可能存在 confound：更"好"的 PRM（representation 更好）恰好同时表现出 better calibration 和 better robustness，但 calibration 不是 cause。proposal 的 matched representation change control (B3) 试图解决这个问题，但 CKA-matched auxiliary task 是否真能控制所有 confounding representation changes 是另一个未验证假设。
+
+(3) **Step-level flatness compounding 假设**。proposal 假设 step-level Hessian flatness 会 compound across trajectory 影响 outcome-level hackability。这在数学上不一定成立——多个 flat step rewards 的组合不一定产生 flat outcome reward surface（非线性组合可以创造 sharp peaks）。
+
+【3 维度打分】:
+
+1. **Novelty: 中** — 
+   Bridge 的 identification 是准确的且有真实 novelty：根据调研，PRM calibration（Park NeurIPS'25, Distributional PRM May'26）和 PRM hackability（Tiwari Mar'26）确实是两个零交叉引用的研究线程，没有现有论文建立 calibration→hackability 的因果联系。这是一个真实的 gap。然而：(a) CGSP 的公式 r̃_t = μ_t − α·σ_t/√c_t 本质上是 pessimistic RL 中经典的 LCB（Lower Confidence Bound）构造的 step-level 版本，技术上是 incremental extension，不是方法论创新；(b) 将 pessimism + uncertainty 用于 reward hacking defense 已有大量先例（Caution arXiv:2604.04648, PET arXiv:2505.20556, UP-RLHF arXiv:2401.00243），CGSP 的贡献在于 calibration-grounded 这一特征，增量真实但不大；(c) Causal Reward Adjustment（arXiv:2508.04216）已经从 causal 视角分析 PRM reward hacking，虽然切入点不同（confounding features vs. calibration），但占据了相似的 conceptual space。
+
+2. **Significance: 中偏强** — 
+   研究问题具有实际重要性：PRM 正在成为 LLM reasoning pipeline 的核心组件（test-time compute, RL training signals），理解其 calibration 与 robustness 的关系对整个领域有指导意义。如果 positive result 成立（calibration causally improves robustness），这将给出一条简单、可操作的建议（"calibrate your PRMs"）。CGSP 如果有效，是可以直接部署的实用工具。然而，核心发现如果 positive，审稿人更可能说 "this is intuitive — of course better calibrated models are harder to hack" 而非 "this is surprising"。calibration 改善 robustness 是多数研究者的先验直觉——proposal 验证了这个直觉但没有挑战它。
+
+3. **Related Work: 中** — 
+   对两个主线程（PRM calibration 和 PRM hackability）的覆盖全面且准确：Park et al., Distributional PRM, Tiwari et al., APRM, Ackermann et al. 等关键论文都已正确引用和描述。差异化定位清晰（vs. Ackermann 的 outcome-level 局限、vs. Caution 的 uncalibrated proxy、vs. ensemble methods 的 non-calibrated nature）。但存在两个重要遗漏：(a) Causal Reward Adjustment (arXiv:2508.04216) 同样从 causal 视角分析 PRM reward hacking，是最直接的 conceptual competitor，完全未被引用；(b) Pessimistic Reward Model (arXiv:2505.20556) 学习 pessimistic reward 无需 KL regularization，与 CGSP 的 pessimism 设计直接相关。这些遗漏会被审稿人发现。
+
+【概率估计】: [25% - 35%] 中位 30%
+
+【估计理由】: 
+Novelty 维度是主要的概率约束因素。Gap identification（bridging calibration and hackability）是真实的且有 novelty delta，但 CGSP 作为方法贡献是 LCB 的 step-level calibration-weighted 变体，技术上 incremental。核心假设（calibration causally determines hackability）如果得到 positive 验证，审稿人的反应更可能是 "makes sense" 而非 "surprising"——这将 idea 锚定在 25-35% 区间（有实质内核、方向正确、novelty delta 真实，但核心发现 not surprising）。Significance 有一定上推力（实际可操作性强），但被 trivial alternative 威胁（ensemble disagreement 可能达到类似防御效果而不需 calibration 基础设施）部分抵消。Related work 的两处重要遗漏（CRA、Pessimistic RM）进一步压制上界。
+
+【主要风险】:
+1. **核心因果假设可能不成立或效应微弱**：Post-hoc calibration 不改变 reward surface 拓扑，对 gradient-based attacks 可能无显著防御效果。如果 Component B 的 causal isolation 实验显示 null effect，整个论文的 thesis 将失去支撑——而 negative result papers 在顶会的接收难度显著更高。
+2. **Trivial alternative 威胁**：如果 ensemble step-level disagreement（无需 calibration）作为 pessimism proxy 在防御效果上与 CGSP 可比，则 CGSP 的 calibration-grounded 增量价值将被严重质疑。审稿人会问："why not just use ensemble disagreement instead of this elaborate calibration machinery?"
+```
+
+Sources:
+- [Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models](https://arxiv.org/abs/2603.06621)
+- [Know What You Don't Know: Uncertainty Calibration of Process Reward Models](https://arxiv.org/abs/2506.09338)
+- [Distributional Process Reward Models: Calibrated Prediction via Conditional Optimal Transport](https://arxiv.org/abs/2605.06785)
+- [Gradient Regularization Prevents Reward Hacking in RLHF and Verifiable Rewards](https://arxiv.org/abs/2602.18037)
+- [Adversarial Training for Process Reward Models](https://arxiv.org/abs/2511.22888)
+- [From Curiosity to Caution: Mitigating Reward Hacking for Best-of-N with Pessimism](https://arxiv.org/pdf/2604.04648)
+- [Causal Reward Adjustment: Mitigating Reward Hacking via Backdoor Correction](https://arxiv.org/abs/2508.04216)
+- [Learning a Pessimistic Reward Model in RLHF](https://arxiv.org/abs/2505.20556)
+- [Uncertainty-Penalized RLHF with Diverse Reward LoRA Ensembles](https://arxiv.org/abs/2401.00243)
+
+━━━━━━━━━━ 审稿人 3（独立评审）━━━━━━━━━━
+Now I have sufficient research to make a thorough assessment. Let me compile my evaluation.
+
+---
+
+```
+【阶段】: Triage
+
+【领域调研】:
+
+1. **Tiwari et al. "Reward Under Attack" (arXiv:2603.06621, Mar 2026)**:
+   直接相关——系统性展示 PRM 的脆弱性：梯度攻击可将 PRM reward 膨胀 4×，GRPO 训练后 PRM reward 接近满分但真实准确率 <4%，43% 的 reward gain 来自风格捷径。该论文只做了诊断，未提出基于 calibration 的防御。Proposal 的 Thread 2 直接引用此工作，描述准确。
+
+2. **Park et al. "Know What You Don't Know" (arXiv:2506.09338, NeurIPS 2025)**:
+   直接相关——发现 PRM 系统性高估困难题的成功概率，提出基于 quantile regression 的 calibration。仅用于 inference-time scaling，未测试鲁棒性。Proposal 引用准确。
+
+3. **Distributional PRMs (arXiv:2605.06785, May 2026)**:
+   直接相关——用 conditional optimal transport 实现 calibrated monotone quantile function。在 MATH-500 和 AIME 上改善 BoN。同样未测试对抗鲁棒性。Proposal 引用准确，确认 May 2026 发布。
+
+4. **Ackermann et al. "Gradient Regularization Prevents Reward Hacking" (arXiv:2602.18037, Feb 2026)**:
+   密切相关——建立了 reward surface flatness 与准确率保持之间的理论联系，提出梯度正则化。确认工作在 outcome level，使用单标量 reward，仅分析 gradient norms。Proposal 关于其局限性的描述准确。
+
+5. **"From Curiosity to Caution" (arXiv:2604.04648, Apr 2026)**:
+   相关——用 prediction error 作为 uncertainty proxy 实现 pessimistic BoN，非 calibration-based。Proposal 描述准确。
+
+6. **"Inference-Time Reward Hacking" (arXiv:2506.19248, NeurIPS 2025 Spotlight)**:
+   相关——用 hedging 方法缓解 BoN 中的 reward hacking。非 calibration-based。Proposal 描述准确。
+
+7. **⚠️ "Uncertainty-Aware Reward Discounting" (arXiv:2604.26360, Apr 2026)** ← **Proposal 未引用的重要相关工作**:
+   高度相关——提出 dual-source uncertainty-aware reward framework，显式建模 epistemic uncertainty 和 preference uncertainty，通过 confidence-adjusted Reliability Filter 自适应调节 action selection。这与 CGSP 的 r̃_t = μ_t − α·σ_t/√c_t 思路高度重合：都用 uncertainty 来 discount reward 以防 hacking。关键差异是 CGSP 强调 step-level + calibration-grounded，但概念重叠显著。
+
+8. **APRM "Adversarial Training for PRMs" (arXiv:2511.22888, Nov 2025)**:
+   相关——对抗训练提升 PRM 鲁棒性 +3.4pp。非 calibration 路线。Proposal 引用准确。
+
+9. **PURM (Probabilistic Uncertain Reward Model, arXiv:2503.22480)**:
+   相关但 Proposal 未引用——将标量 reward 泛化为 Gaussian 分布，在高不确定区域施加惩罚。与 CGSP 的 uncertainty-based pessimism 有概念重叠。
+
+- **调研总结**: PRM calibration 和 PRM hackability 确实是两个独立发展的研究线程（零交叉引用可以确认）。同时，uncertainty-aware reward discounting 已成为 2026 年的活跃方向（2604.26360, PURM），但现有工作集中在 outcome level 且不使用 calibrated uncertainty。Proposal 处于一个真实的交叉空白，但该空白正在被从 uncertainty 方向逐渐填补。
+
+
+【Trivial Alternative 检验】:
+
+存在两个 trivial alternative 威胁：
+
+(1) **简单 ensemble disagreement 替代 calibrated uncertainty**: 已有工作（Coste et al. ensemble-min, URM 等）直接用 ensemble 分歧作为 uncertainty proxy 来实现 pessimism，无需 calibration。Proposal 虽列出 ensemble-min 作 baseline，但如果 ensemble-min 效果相当，则 calibration-grounding 的增量价值存疑。Proposal 需要证明 calibrated uncertainty 在 CGSP 中的表现显著优于 uncalibrated ensemble uncertainty。
+
+(2) **"Calibration 减少 hackability"可能是近似重言式**: 如果 PRM 对错误解法过度自信（高估 success probability），calibration 修正这种过度自信，则 reward hacking 减少是直接推论——不是因为"calibration 带来了某种特殊防御"，而是因为"calibration 纠正了错误的高分"。如果是这样，增量贡献就只是把一个直觉形式化了。Proposal 的 causal isolation 实验可以部分回应这个问题（如果 post-hoc calibration 修正了 mean prediction 但 hackability 下降幅度超过 mean correction 能解释的部分，则说明 calibration 的价值不止于修正均值），但 proposal 目前没有明确设计这个对照。
+
+
+【前提假设检验】:
+
+Proposal 的核心逻辑链：calibration quality ↑ → uncertainty estimates become reliable → uncertainty-based pessimism can prevent hacking → CGSP works
+
+未经验证的关键假设：
+
+(1) **"Post-hoc calibration 足以显著降低 hackability"**: Post-hoc 方法（temperature scaling 等）只修改 output mapping，对 gradient attack 的影响路径不清楚。梯度攻击直接操纵 input space 以最大化 reward，temperature scaling 仅改变 logit-to-probability 映射——攻击者可以适应新的映射。Proposal 假设 calibration 使 reward surface 变"平坦"，但 post-hoc calibration 对 Hessian spectrum 的影响尚无理论支撑。
+
+(2) **"Calibration quality 在 RL training 过程中可以实时维护"**: CGSP 依赖 rolling buffer 上计算的 calibration quality score c_t。但 RL 训练导致 policy distribution shift，calibration（在 SFT distribution 上拟合）会快速退化。虽然 Proposal 设计了 Calibration Drift Detector，但这是一个后验监测而非前瞻保证——如果 drift 太快，CGSP 可能退化为简单的 reward clipping。
+
+(3) **"Step-level Hessian analysis 在计算上可行且信息量充足"**: 对大型 PRM（7B-72B 参数）在每个 step 上计算 Hessian 的 top-k eigenvalues 计算成本极高。即使使用 Lanczos 方法，48 个配置 × 多个问题 × 多个 step 的规模可能不可行。且 Hessian 分析的因果解释力有限——相关不等于因果。
+
+
+【3 维度打分】:
+
+1. **Novelty: 中** —
+   - (+) 桥接 calibration 和 hackability 两个零交叉引用的研究线程确实是一个真实且未被占据的空白位置。目前没有找到任何论文建立 calibration → hackability 的因果链接。
+   - (+) Causal isolation 方法论（利用 post-hoc calibration 的 representation-preserving 特性来分离因果效应）在方法论上是巧妙的。
+   - (−) CGSP 的核心公式 r̃_t = μ_t − α·σ_t/√c_t 与 2604.26360 的 uncertainty-aware reward discounting、PURM 的 Gaussian-based pessimism 在概念上高度重合。step-level 和 calibration-grounded 是差异点，但属于增量创新而非范式转变。
+   - (−) "better calibrated → harder to hack" 可能是一个 reviewer 会认为"I would have guessed this"的发现。核心 insight 的惊喜度有限。
+
+2. **Significance: 中偏强** —
+   - (+) PRM reward hacking 是一个重要且时效性强的问题，影响所有使用 PRM 进行 RL 训练的系统。
+   - (+) 如果因果链接被确认，对 PRM 设计有直接指导意义：PRM 开发者应优先保证 calibration quality。
+   - (+) CGSP 如果有效，可直接集成到现有 GRPO/PPO 训练流程。
+   - (−) 如果核心发现是近似重言式的（calibration 修正 overestimation → 自然减少 hacking），对领域的认知推进有限。
+   - (−) Step-level Hessian analysis 的可推广性存疑——在不同架构/规模上结论是否一致？
+
+3. **Related Work: 中偏弱** —
+   - (+) 对 PRM calibration 线和 PRM hackability 线的覆盖比较充分，引用的核心论文均真实存在且描述准确。
+   - (+) 与 Ackermann et al. 的差异化定位清晰合理。
+   - (−) **遗漏了 2604.26360 (Uncertainty-Aware Reward Discounting)**，这是与 CGSP 最直接竞争的工作，概念重叠显著。此遗漏会被审稿人直接指出。
+   - (−) **遗漏了 PURM (arXiv:2503.22480)**，同样用 uncertainty/分布化方法对 reward 做 pessimistic adjustment。
+   - (−) 未讨论 PET (Pessimistic Reward Fine-Tuning) 的具体方法论——仅一笔带过"uses global pessimism"。
+   - (−) Proposal 声称"零交叉引用"，但未提供检索证据。如果审稿人发现相关 workshop paper 或 concurrent work，这个 claim 会被削弱。
+
+
+【概率估计】: [22% - 32%] 中位 27%
+
+【估计理由】:
+Novelty 是限制上界的主要维度。虽然 bridging two threads 的定位是真实的空白，但 (a) 核心发现（calibration → robustness）的 surprise value 有限——审稿人大概率会说"I would have guessed this"；(b) CGSP 作为方法贡献与 2604.26360 和 PURM 的概念重叠使 novelty claim 被削弱。Significance 是支撑下界的维度——问题确实重要、时效性强，即使 insight 不够 surprising，系统性的 causal study + 48 配置的 empirical evidence 本身也有贡献。Related work 的遗漏（2604.26360）是一个可修复但目前存在的风险。整体看，这是一个 "solid but not surprising" 类型的 idea，方法论严谨但 insight ceiling 受限于近似重言式的威胁。中位 27% 反映了"idea 方向正确、有真实 novelty delta，但核心发现审稿人可能觉得 expected"的定位。
+
+【主要风险】:
+1. **Near-tautology 风险**: "Better calibrated PRM → less hackable" 可能被审稿人认为是 trivially expected 的结论。如果 causal study 只是确认了这个直觉而没有 unexpected 发现（如 calibration 在某些 regime 反而增加 vulnerability、或 post-hoc calibration 的效果量远超/远低于预期），论文的 intellectual contribution 会受质疑。
+2. **CGSP novelty 被竞争工作稀释**: 2604.26360 (Uncertainty-Aware Reward Discounting) 和 PURM 已经在做 uncertainty-based reward pessimism for anti-hacking。CGSP 的 step-level + calibration-grounded 差异化可能不足以说服审稿人这是一个本质不同的方法。
+```
+
+Sources:
+- [Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models](https://arxiv.org/abs/2603.06621)
+- [Know What You Don't Know: Uncertainty Calibration of Process Reward Models](https://arxiv.org/abs/2506.09338)
+- [Distributional Process Reward Models](https://arxiv.org/abs/2605.06785)
+- [Gradient Regularization Prevents Reward Hacking in RLHF](https://arxiv.org/abs/2602.18037)
+- [From Curiosity to Caution: Mitigating Reward Hacking for Best-of-N with Pessimism](https://arxiv.org/abs/2604.04648)
+- [Inference-Time Reward Hacking in Large Language Models](https://arxiv.org/abs/2506.19248)
+- [Uncertainty-Aware Reward Discounting for Mitigating Reward Hacking](https://arxiv.org/abs/2604.26360)
+- [Adversarial Training for Process Reward Models](https://arxiv.org/abs/2511.22888)
+- [Probabilistic Uncertain Reward Model (PURM)](https://arxiv.org/pdf/2503.22480)
+- [Pessimistic Reward Modeling in RLHF against Reward Hacking](https://openreview.net/forum?id=mKPpS6n3cZ)
+
+
+【原始 proposal（允许参考但不是主要依据）】:
+# Calibration as a Shield: How PRM Calibration Quality Causally Determines Reward Hacking Resistance, and a Step-Level Defense
+
+## Description
+We present the first causally rigorous study connecting PRM calibration quality to adversarial exploitability, and propose Calibration-Gated Step-Level Pessimism (CGSP), a novel defense that transforms calibrated uncertainty into adaptive reward hacking resistance during RL training. Our work bridges two mature but isolated research threads (PRM calibration and PRM hackability) through four contributions. First, an expanded correlation study across 48 configurations (8 PRMs × 6 calibration methods) provides sufficient statistical power (n=48, detecting r≥0.29 at p<0.05) to establish whether calibration quality predicts hackability metrics under gradient attacks, RL-induced hacking (GRPO on AIME), and BoN overoptimization (MATH-500), stratified by problem difficulty. Second, causal isolation experiments separate calibration's true effect from representation change artifacts: we compare post-hoc calibration methods (temperature scaling, Platt scaling, isotonic regression, conformal prediction) that provably preserve model representations against fine-tuning-based methods, with CKA verification and matched-representation-change controls. Third, step-level Hessian spectral analysis goes beyond Ackermann et al.'s outcome-level gradient norm analysis (which applies only to single-scalar reward models) to reveal how calibration affects the multi-reward compositional geometry of PRMs — analyzing how step-level flatness compounds across trajectories. Fourth, CGSP replaces raw PRM rewards during RL training with r̃_t = μ_t − α·σ_t/√c_t, where calibrated uncertainty σ_t and calibration quality c_t adaptively modulate pessimism per-step — trusted when calibration is tight, pessimistic when uncertainty is high — with a Calibration Drift Detector that monitors ECE on current-policy rollouts to flag distribution-shift-induced reward hacking in real time. CGSP differs from existing defenses (Caution uses prediction error, PET uses global pessimism, ensemble methods are uncalibrated) by being step-level, calibration-grounded, and adaptive. We evaluate CGSP against 5 baselines (uncalibrated GRPO, APRM, Caution, ensemble-min, gradient regularization) on MATH-500 and AIME, measuring both reward-accuracy alignment and downstream task accuracy.
+
+## Core Problem
+PRM calibration research and PRM hackability research are entirely separate threads with zero cross-citation — but the deeper problem is that we lack both (a) causal evidence for whether calibration actually determines hackability (vs. being merely correlated), and (b) a principled, step-level defense mechanism that leverages calibrated uncertainty to prevent reward hacking during RL training. Existing ad-hoc defenses (adversarial training, gradient regularization, pessimistic BoN) operate at the outcome level without exploiting the unique step-level structure of PRMs.
+
+## Opportunity
+Three recent developments create a uniquely favorable moment. First, Distributional PRMs (arXiv:2605.06785, May 2026) achieve calibrated step-level uncertainty via conditional optimal transport but never test robustness. Second, Tiwari et al. (arXiv:2603.06621, March 2026) demonstrate that PRMs are catastrophically hackable — near-perfect PRM rewards with <4% actual accuracy — but propose no calibration-based defense. Third, the causal isolation toolkit is mature: post-hoc calibration methods (temperature scaling, Platt scaling, isotonic regression, conformal prediction) modify only the output mapping without changing model representations, enabling controlled experiments that separate calibration effects from representation effects. No existing paper bridges these threads. Ackermann et al.'s gradient regularization work (arXiv:2602.18037) operates exclusively on outcome-level reward models with single-scalar rewards, never touching step-level PRM geometry. The CoT Entropy paper (arXiv:2502.11250) named this connection as future work 16 months ago with no follow-up. The window for a definitive, causally rigorous study is open but narrowing.
+
+## Landscape
+Two parallel research threads have developed with zero cross-citation. Thread 1 (PRM Calibration): Park et al. (arXiv:2506.09338, NeurIPS 2025) demonstrate PRMs systematically overestimate success probabilities on hard problems, proposing quantile regression calibration. Distributional PRMs (arXiv:2605.06785, May 2026) use conditional optimal transport for calibrated monotone quantile functions, improving BoN on MATH-500 and AIME. Neither paper tests robustness. Thread 2 (PRM Hackability): Tiwari et al. (arXiv:2603.06621) show gradient attacks inflate PRM rewards 4× and RL achieves near-perfect PRM rewards with <4% accuracy, with 43% of reward gains from stylistic shortcuts. APRM (arXiv:2511.22888) uses adversarial training for +3.4pp robustness. Thread 3 (Adjacent but distinct): Ackermann et al. (arXiv:2602.18037) prove reward surface flatness correlates with accuracy retention for outcome-level RMs, but work exclusively with single-scalar rewards, analyze only gradient norms (no Hessian spectra), and never consider step-level reward models. Their theoretical framework (Propositions 3.3-3.4) assumes a single reward function R(s,a) over complete responses — inapplicable to step-level PRM geometry where T coupled reward surfaces {R_1,...,R_T} interact compositionally. InferenceTimePessimism (arXiv:2506.19248) and Caution (arXiv:2604.04648) apply pessimism for BoN but use uncalibrated uncertainty proxies (prediction error, hedging), not calibrated probabilities. URM (arXiv:2410.00847) decomposes uncertainty into aleatoric/epistemic for outcome-level RMs but not PRMs. Bayesian reward models (arXiv:2402.13210) use Laplace approximation on LoRA weights. Conformal prediction has been applied to RLHF feedback alignment (arXiv:2601.17329) but never to PRM defense. No paper establishes a causal link between calibration quality and hackability, and no paper proposes using calibrated step-level PRM uncertainty as a defense during RL training.
+
+## Approach
+The study has four components: (A) Expanded Correlation Study, (B) Causal Isolation Experiments, (C) Step-Level Mechanistic Analysis, and (D) Calibration-Gated Step-Level Pessimism (CGSP) defense.
+
+**Component A — Expanded Correlation Study (n≥24 configurations):** Apply 6 calibration methods across 2 tiers to 8 open-source PRMs. Tier 1 (post-hoc, representation-preserving): temperature scaling, Platt scaling, isotonic regression. Tier 2 (model-modifying): quantile regression fine-tuning, conditional optimal transport, Venn-Abers predictors. The 8 PRMs span discriminative (Qwen2.5-Math-PRM-7B, Qwen2.5-Math-PRM-72B, Skywork-o1-Open-PRM-7B, RLHFlow-Llama3.1-8B-PRM, Math-Shepherd-7B, OpenR-Math-psa-7B), generative (GenPRM-7B), and implicit (EurusPRM-Stage2) architectures. Each of the 48 PRM×calibration configurations is subjected to three attack tiers: (i) gradient-based reward inflation following Tiwari et al., (ii) RL-induced reward hacking via GRPO on AIME, and (iii) BoN overoptimization at N∈{1,4,16,64,256} on MATH-500. Compute rank correlations (Spearman ρ, Kendall τ) between calibration metrics (ECE, Brier score, quantile coverage, reliability diagram sharpness) and hackability metrics (reward-accuracy divergence, attack success rate, BoN degradation onset N*). Stratify analysis by problem difficulty (MATH levels 1-5, AMC vs. AIME) to test whether calibration is more protective on hard problems where PRMs are known to be overconfident.
+
+**Component B — Causal Isolation Experiments:** This is the methodological core addressing the reviewer's causation concern. Design: (B1) Post-hoc calibration control: Apply temperature scaling, Platt scaling, and isotonic regression — which provably modify only the output mapping, not internal representations — and measure hackability change. If hackability decreases under post-hoc calibration alone, this establishes that calibration per se (not representation change) causally affects hackability. (B2) Representation change verification: For fine-tuning-based calibration methods (quantile regression, COT), measure representation change at every transformer layer using Centered Kernel Alignment (CKA) between the base PRM and calibrated PRM. (B3) Matched representation change control: Fine-tune PRMs on an auxiliary task (e.g., next-token prediction on math text) that produces CKA-matched representation changes but does NOT improve calibration. If only calibration-improving fine-tuning reduces hackability (not the CKA-matched control), the causal role of calibration is confirmed. (B4) Conformal prediction as the cleanest test: Apply split-conformal prediction to PRM step scores, providing distribution-free coverage guarantees with zero model modification. Test whether conformal-calibrated PRMs resist hacking better than uncalibrated ones.
+
+**Component C — Step-Level Mechanistic Analysis (differentiating from Ackermann et al.):** Unlike Ackermann et al., who analyze only outcome-level gradient norms and max-perturbation sharpness, we perform Hessian spectral analysis at the step level — computing top-k eigenvalues and spectral density of the step-level reward Hessian ∂²R_t/∂h² (where h is the hidden representation at step t). Key questions: (i) Do calibrated PRMs have flatter step-level reward surfaces (lower top Hessian eigenvalue)? (ii) Does flatness vary by step position (early reasoning steps vs. final answer steps)? (iii) Do hackable reward peaks correspond to isolated large Hessian eigenvalues (sharp directions) that gradient attacks exploit? This extends Ackermann et al.'s framework from single-reward geometry to multi-reward compositional geometry: we analyze how step-level flatness/sharpness compounds across a T-step trajectory to determine outcome-level hackability.
+
+**Component D — Calibration-Gated Step-Level Pessimism (CGSP) Defense:** This transforms the paper from measurement to method. CGSP operates during RL training (GRPO/PPO) by replacing raw PRM step rewards with calibration-modulated rewards: r̃_t = μ_t − α · σ_t / √(c_t), where μ_t is the calibrated step reward mean, σ_t is the calibrated uncertainty (from quantile width or conformal interval), c_t is a calibration quality score (inverse ECE computed on a rolling buffer), and α is a pessimism strength hyperparameter. When calibration is high (small σ_t, high c_t), the reward is trusted; when calibration is low (large σ_t, low c_t), pessimism dominates. This differs from existing pessimism (Caution uses prediction error, PET uses global pessimistic fine-tuning, InferenceTimePessimism uses hedging) because CGSP is (i) step-level, (ii) grounded in calibrated probabilities rather than heuristic proxies, and (iii) adaptive — the pessimism automatically strengthens in distribution-shift regions where the PRM becomes miscalibrated. Additionally, we implement a Calibration Drift Detector: during RL training, periodically measure ECE on current-policy rollouts vs. the initial SFT-distribution calibration. When drift exceeds a threshold, flag those trajectory types as potentially hacked and apply reward clipping. This converts calibration from a static property into a dynamic training signal.
+
+Baseline comparisons for CGSP: (i) uncalibrated PRM + GRPO, (ii) APRM adversarial training, (iii) Caution/prediction-error pessimism, (iv) ensemble minimum (following Coste et al.), (v) KL-regularized GRPO, (vi) gradient regularization (Ackermann et al.).
+
+Codebase starting points: young-j-park/prm-calibration for calibration fitting, Tiwari et al.'s PRM-BiasBench for adversarial evaluation, vwxyzjn/open_instruct for GRPO training infrastructure.
+
+## Resource Estimate
+{'manual': {'gpu_hours': '4200 H100-hrs (calibration fitting: 200, rollout generation: 600, gradient attacks: 1000, GRPO RL training: 1600 [including CGSP defense training], BoN evaluation: 400, Hessian spectral analysis: 200, causal isolation controls: 200)', 'timeline': '12-14 weeks', 'estimated_gpu_cost': '$10,500 at ~$2.50/H100-hr'}, 'human_in_loop': {'gpu_hours': '3600 H100-hrs (fewer failed iterations with AI-assisted debugging)', 'timeline': '10-12 weeks', 'claude_api_cost': '$400-700 (code generation, experiment analysis, paper drafting)', 'estimated_gpu_cost': '$9,000 at ~$2.50/H100-hr'}, 'auto_research': {'gpu_hours': '5200 H100-hrs (broader sweeps over α pessimism parameter, calibration drift thresholds, and ablations across all 48 configurations)', 'timeline': '7-9 weeks', 'claude_api_cost': '$1,500-2,000 (automated experiment orchestration, iterative analysis, full draft writing)', 'estimated_gpu_cost': '$13,000 at ~$2.50/H100-hr', 'speed_bottleneck': 'GRPO RL training wall-clock time (~18hrs per PRM×calibration×defense configuration on 4×H100); Hessian spectral analysis requires Lanczos iterations per step per problem; 72B PRM requires 4×H100 for inference'}}
+
+## Inspired By
+Field guide gap: PRM overconfidence on OOD problems (Section 5.3 'when more compute hurts'); Untried combination: distributional PRM calibration + PRM hackability analysis; Pattern: connecting two mature but isolated research threads; Reviewer insight: pure measurement is insufficient — the key contribution should be a causal mechanism and a defense method; Methodological insight: post-hoc calibration methods that preserve representations enable clean causal isolation experiments impossible with fine-tuning-based calibration alone
+
+## Target Venues
+- ICLR 2027 (abstract Sep 19, paper Sep 24, 2026)
+- AAAI 2027 (abstract Jul 21, paper Jul 28, 2026)
+- AISTATS 2027 (paper Oct 10, 2026)
+
+## Key References
+- Know What You Don't Know: Uncertainty Calibration of Process Reward Models (arXiv:2506.09338, NeurIPS 2025)
+- Distributional Process Reward Models: Calibrated Prediction via Conditional Optimal Transport (arXiv:2605.06785, May 2026)
+- Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models (arXiv:2603.06621, March 2026)
+- Gradient Regularization Prevents Reward Hacking in RLHF and Verifiable Rewards (arXiv:2602.18037, Feb 2026)
+- Adversarial Training for Process Reward Models (arXiv:2511.22888, Nov 2025)
+- From Curiosity to Caution: Mitigating Reward Hacking for Best-of-N with Pessimism (arXiv:2604.04648, April 2026)
+- Inference-Time Reward Hacking in Large Language Models (arXiv:2506.19248, NeurIPS 2025 Spotlight)
+- Uncertainty-Aware Step-wise Verification with Generative Reward Models (arXiv:2502.11250, ICLR 2025 Workshop)
+- Detecting and Suppressing Reward Hacking with Gradient Fingerprints (arXiv:2604.16242, April 2026)
+- Uncertainty-Aware Reward Model (arXiv:2410.00847)
+- Helping or Herding? Reward Model Ensembles Mitigate but Do Not Eliminate Overoptimization (arXiv:2312.09244)
+- Bayesian Reward Models for LLM Alignment (arXiv:2402.13210)
+- Conformal Feedback Alignment for RLHF (arXiv:2601.17329)
+- Taming Overconfidence in LLMs: Reward Calibration in RLHF (arXiv:2410.09724)
+- PRMBench: A Fine-grained and Challenging Benchmark for Process-Level Reward Models (arXiv:2501.03124)
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "45173e0d-f28a-41ab-9923-4675ebc472c2",
+  "type": "user",
+  "uuid": "ecfeeb3a-e4cf-4883-8565-21e95e911a41",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "223cb317-35f6-4752-b9e9-91d332109212",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-20T05:49:55.918Z_
+
+```json
+{
+  "parentUuid": "ecfeeb3a-e4cf-4883-8565-21e95e911a41",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "2d490a8c-e917-45fb-9111-a87d88d654f8",
+  "timestamp": "2026-05-20T05:49:55.918Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "223cb317-35f6-4752-b9e9-91d332109212",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-20T05:49:55.918Z_
+
+```json
+{
+  "parentUuid": "2d490a8c-e917-45fb-9111-a87d88d654f8",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "31724462-9b51-45f3-a743-584a2a790733",
+  "timestamp": "2026-05-20T05:49:55.918Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "223cb317-35f6-4752-b9e9-91d332109212",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。  【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━ Now I have sufficient research to evaluate this proposal. Let…",
+  "leafUuid": "31724462-9b51-45f3-a743-584a2a790733",
+  "sessionId": "223cb317-35f6-4752-b9e9-91d332109212"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Bridge PRM calibration and hackability with causal defense",
+  "sessionId": "223cb317-35f6-4752-b9e9-91d332109212"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-20T05:50:37.802Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the three independent reviews carefully to produce a Meta Judge assessment.
+
+**Reviewing the three assessments:**
+
+**Reviewer 1:**
+- Novelty: 中 (偏弱)
+- Significance: 中
+- Related Work: 强 (偏中)
+- Probability: [22% - 32%] 中位 26%
+
+**Reviewer 2:**
+- Novelty: 中
+- Significance: 中偏强
+
+
+- Related Work: 中
+- Probability: [25% - 35%] 中位 30%
+
+**Reviewer 3:**
+- Novelty: 中
+- Significance: 中偏强
+- Related Work: 中偏弱
+- Probability: [22% - 32%] 中位 27%
+
+Now I'm calculating the aggregate statistics across all three reviewers. The median probabilities are 26%, 30%, and 27%, which gives me a mean of about 27.67% and a median of 27%. I'm working through the standard deviation calculation to understand the variance in their assessments.
+
+The standard deviation comes out to roughly 1.70%, which indicates strong consistency across reviewers. Looking at where they converge, all three agree on novelty being 中 — the gap between calibration and hackability is real, but the core approach is essentially standard LCB applied at the step level, and the calibration-to-robustness finding lacks surprise value. There's also conceptual overlap with existing uncertainty-based pessimism methods. On significance, all three rate it at least 中, with reviewers 2 and 3 leaning toward 中偏强.
+
+All three also flag that post-hoc calibration through temperature scaling may not actually alter the gradient attack surface since it's order-preserving and doesn't reshape the reward landscape. They're concerned about a simpler ensemble disagreement baseline potentially achieving similar defense without the calibration infrastructure. And they all mention the confounding variable that better models tend to be both better calibrated and more robust, so calibration might be a symptom rather than the cause.
+
+On related work, the reviewers identify different missing citations—R1 points to causal decomposition and pessimistic RM papers, R2 mentions causal reward adjustment and pessimistic RM, while R3 flags uncertainty-aware reward discounting and PURM. Notably, R1 rates the related work section higher than the other two, and R3 specifically calls out an arXiv paper on uncertainty-aware reward discounting.
+
+Looking at the convergence across reviewers, the standard deviation of their median scores is about 1.7%—well below the 3% threshold for high consistency. All three reviewers cluster their estimates in the 26-30% range, with strong alignment on novelty (all say medium) and significance (all say medium to medium-strong). Given this tight consistency, I should anchor to the median of medians at 27% and narrow the confidence interval accordingly.
+
+The three reviewers show substantial agreement on the core risks, though they weight them differently—R2's higher estimate of 30% reflects a slightly stronger view of significance, while R1's 26% reflects concerns about novelty. I'll synthesize these into a final range of 23-32% with a central estimate of 27%.
+
+Now I need to assess implementation feasibility using the proposal's resource estimates and the reviewers' concerns about execution, then prepare the Meta Judge output.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "31724462-9b51-45f3-a743-584a2a790733",
+  "isSidechain": false,
+  "requestId": "req_011CbDJB8zWSao8pNGXiMFQV",
+  "type": "assistant",
+  "uuid": "3514ad94-4809-43bf-b3ba-2db6ea156443",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "223cb317-35f6-4752-b9e9-91d332109212",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012qXF1LXewncxJ29zS4oU2i",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 18380,
+      "cache_read_input_tokens": 16908,
+      "output_tokens": 3100,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 18380,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 3100,
+          "cache_read_input_tokens": 16908,
+          "cache_creation_input_tokens": 18380,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 18380
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-20T05:51:17.736Z_
+
+【阶段】: Meta Judge
+【三次中位】: [26%, 30%, 27%]  std=1.7%
+【共识维度】:
+- **Novelty = 中**（3/3 一致）：Gap identification（桥接 PRM calibration 与 hackability 两条零交叉引用的研究线）真实且未被占据，但 CGSP 核心公式本质是 LCB 的 step-level 变体（标准技术增量应用），且核心发现"calibration → robustness"的惊喜度有限——三位审稿人均预测审稿人反应为"I would have guessed this"
+- **Significance = 中至中偏强**（3/3 一致方向）：问题重要且时效性强，CGSP 若有效可直接部署，但若发现近似重言式（calibration 修正 overestimation 自然减少 hacking），认知推进有限
+- **Post-hoc calibration 不改变攻击面**（3/3 均提出）：Temperature scaling 等保序变换不改变 reward landscape 拓扑，Component B1 很可能产生 null/negative result，迫使论文重新定位为更弱的 claim
+- **Trivial alternative 威胁（ensemble disagreement）**（3/3 均提出）：无需 calibration 基础设施的 ensemble disagreement 可能达到类似防御效果，CGSP 的 calibration-grounded 增量价值存疑
+- **因果混淆风险**（3/3 均提出）：模型质量同时影响 calibration 和 robustness，calibration 可能是"好模型"的 symptom 而非 cause
+- **Related Work 存在遗漏**（3/3 均发现，各指向不同论文）：综合看至少遗漏了 4-5 篇重要相关工作
+
+【异常维度】:
+- R1 给 Related Work "强（偏中）"，R2 给"中"，R3 给"中偏弱"——R1 偏宽松，为 outlier，应降权。综合看 Related Work 应定为"中"（覆盖主线程充分但有多处重要遗漏）
+- R3 单独识别了 arXiv:2604.26360（Uncertainty-Aware Reward Discounting）为高概念重叠竞争者——此发现有实质价值（与 CGSP 直接竞争），但仅 R3 提出，需验证权重
+- R1 单独提出"如果 B1 negative result，故事需要重讲为'calibrated uncertainty enables better defense'"——这个分析逻辑合理，但其他两位以不同措辞也暗示了类似风险，本质上是共识的不同表述
+
+【最终概率】: [23% - 31%] 中位 27%
+【一致性】: 高（std=1.7%，三位审稿人在 Novelty、Significance、核心风险识别上高度对齐）
+【综合理由】:
+三位审稿人的判断高度收敛（std < 3%），核心逻辑一致：proposal 识别了一个真实且未被占据的研究空白（PRM calibration × hackability 的交叉点），方法论设计严谨（48 配置相关性 + 因果隔离 + Hessian 分析 + CGSP 防御），但受限于三个结构性瓶颈——(1) 核心发现的惊喜度不足（"calibration improves robustness"是多数研究者的先验直觉），(2) CGSP 作为方法贡献是标准 LCB 技术的增量应用而非方法论创新，(3) post-hoc calibration 保序性与"calibration per se causally affects hackability"之间存在理论张力，可能导致因果隔离实验自我否定核心假说。
+
+中位取 27%（接近三位中位的算术均值 27.7%），下界从最严格的 R1/R3 下界 22% 微调至 23%（因三人高度一致，极端下行情景概率较低），上界从 R2 上界 35% 收窄至 31%（因 Novelty 天花板共识明确，不应超过 R2 上界太多，但也不应因高一致性而过度收窄上行空间）。
+
+【建议】: 边缘（中位 27% 低于 36% 阈值，但 idea 方向正确、有真实 novelty delta，存在通过迭代优化提升至可投范围的可能性——关键看能否解决"near-tautology"风险和强化 CGSP 的差异化）
+
+【实施评估】:
+- **计算资源**: ~4200 H100-hrs（calibration fitting 200 + rollout 600 + gradient attacks 1000 + GRPO RL training 1600 + BoN 400 + Hessian 200 + causal isolation 200），预估 GPU 成本 $10,500；72B PRM 推理需 4×H100。资源需求中等偏高但在学术实验室合理范围内
+- **数据需求**: MATH-500、AIME（公开）、PRM-BiasBench（Tiwari et al. 已发布）；8 个开源 PRM（全部公开可得）。数据获取无障碍
+- **人工介入**: 不需要人工标注；需要研究者手动设计 CKA-matched auxiliary task（Component B3），需要人工判断 Calibration Drift Detector 的阈值设定。人工工作量中等
+- **训练需求**: 需要训练——GRPO RL 训练（每个 PRM×calibration×defense 配置约 18 hrs/4×H100）、quantile regression fine-tuning、对抗训练（APRM baseline）。训练是主要时间瓶颈
+- **新 Benchmark**: 不需要构建新 benchmark；复用 PRM-BiasBench + MATH-500 + AIME
+- **预估周期**: 10-14 周（从启动到可投稿），主要瓶颈是 GRPO RL training 的串行墙钟时间和 48 配置的遍历
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3514ad94-4809-43bf-b3ba-2db6ea156443",
+  "isSidechain": false,
+  "requestId": "req_011CbDJB8zWSao8pNGXiMFQV",
+  "type": "assistant",
+  "uuid": "535dd463-3348-4a50-b6a0-51997c0d66f3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "223cb317-35f6-4752-b9e9-91d332109212",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012qXF1LXewncxJ29zS4oU2i",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 18380,
+      "cache_read_input_tokens": 16908,
+      "output_tokens": 3100,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 18380,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 3100,
+          "cache_read_input_tokens": 16908,
+          "cache_creation_input_tokens": 18380,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 18380
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 10_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请以「角色 A'：Meta Judge」综合以下 3 位审稿人对同一 proposal 的独立评估，给出稳健的最终客观概率估计。严格按 Meta Judge 输出格式输出。  【三位审稿人评估】: ━━━━━━━━━━ 审稿人 1（独立评审）━━━━━━━━━━ Now I have sufficient research to evaluate this proposal. Let…",
+  "leafUuid": "535dd463-3348-4a50-b6a0-51997c0d66f3",
+  "sessionId": "223cb317-35f6-4752-b9e9-91d332109212"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 11_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Bridge PRM calibration and hackability with causal defense",
+  "sessionId": "223cb317-35f6-4752-b9e9-91d332109212"
+}
+```
+
+---

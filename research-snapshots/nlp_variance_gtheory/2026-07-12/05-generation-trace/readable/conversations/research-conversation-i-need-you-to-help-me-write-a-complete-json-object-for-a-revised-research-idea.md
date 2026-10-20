@@ -1,0 +1,381 @@
+# Research conversation: I need you to help me write a complete JSON object for a revised research idea. I'll provide all the context and the exa
+
+**Reproducibility Budgets for Open-Weight LLM Evaluation: A Generalizability Theory Study of 7–9B Instruction-Tuned Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 4
+- **Recorded user turns:** 1
+- **Tool calls:** 0
+- **Original source:** `logs/chats/exported-trajectories/account-3/agent-aaa9f0c5dbacaacf4.jsonl`
+- **Structured JSON:** [`cf1788fe7bb3d4db7b40.json`](../../sessions/cf/cf1788fe7bb3d4db7b40.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+4 recorded events
+
+### User
+
+_source line 1 · 2026-05-19T11:58:34.657Z_
+
+I need you to help me write a complete JSON object for a revised research idea. I'll provide all the context and the exact content. Your job is simply to format it correctly as valid JSON. Output ONLY the JSON, no surrounding text.
+
+Here is the complete revised research idea JSON:
+
+```json
+{
+  "title": "When Does Formal Verification Help? A Diagnostic Study of SMT Detection Coverage for Temporal Chain-of-Thought Extraction Errors",
+  "core_problem": "Multiple verification paradigms — formal (SMT), probabilistic (credal intervals + EDL), and neural (abductive reflection) — have been proposed for catching temporal extraction errors in neuro-symbolic QA, but a fundamental empirical question remains unanswered: what fraction of extraction errors actually produce detectable inconsistencies, and under what conditions? Eirew et al. (EMNLP 2025) provide an important empirical observation — global consistency enforcement via ILP improves results on exhaustively-annotated datasets (NT-6: +4.7 F1; OmniTemp: +4.6) but global-pipeline approaches underperform pairwise CoT on sparsely-annotated data (MATRES: 66.4 vs. 70.3) — but they offer no formal explanation for WHY this density-dependent pattern exists. The answer requires understanding three poorly-characterized factors: (1) composition tightness — what fraction of Allen composition table entries yield unique relations (enabling detection) vs. disjunctions of 3-13 relations (masking errors); (2) the interaction between constraint graph density and detection probability — formally, P_detect ≈ 1-(1-d²·t)^(n-2) where d is density, t is average composition tightness, and n is event count; and (3) how different error types (omission, misclassification, hallucination) interact differently with graph structure. Additionally, a prerequisite question — whether LLMs can reliably formalize temporal statements into Allen's vocabulary at all — remains open: LLM-as-formalizer underperforms LLM-as-solver in 15/24 CSP combinations (arXiv 2505.13252), though Allen's fixed 13-relation vocabulary may be more tractable than general CSPs.",
+  "opportunity": "The extraction bottleneck for temporal QA is well-established (TMLR 2025; NeSTR, AAAI 2026), and several verification approaches exist (abductive reflection, probabilistic signals, SMT constraints). Converging evidence raises serious questions about formal verification's value, but existing analyses remain purely empirical, leaving the field without a principled framework for deciding WHEN to invest in verification.\n\nEirew et al. (EMNLP 2025) provide the key empirical observation: their GlobalConsistency method (global graph generation + ILP with Allen transitivity constraints) achieves 64.1 F1 on exhaustively-annotated NT-6 vs. 57.9 for pairwise CoT (+6.2), but only 66.4 vs. 70.3 on sparsely-annotated MATRES (-3.9). CRITICALLY, this comparison conflates two effects: (a) paradigm choice (global vs. pairwise extraction) and (b) consistency enforcement (ILP constraints). Within the global paradigm, ILP always helps (ZSL-Timeline 59.0 → GlobalConsistency 66.4 on MATRES, +7.4). The density-dependent pattern emerges from the paradigm comparison, not from consistency alone. Separately, Kougia et al. (BioNLP 2024) show a genuine case where ILP hurts PAIRWISE predictions: Llama CoT drops from 0.615 to 0.549 F1 on clinical temporal data.\n\nWhat's MISSING from both studies — and what our work provides — is the formal framework that EXPLAINS these empirical patterns. Allen's composition table has a specific structure: of the 169 basic-relation compositions, only certain entries yield tight (single-relation) results that enable error detection, while others yield disjunctions of 3, 5, 9, or all 13 relations that mask errors entirely. By analyzing composition tightness as a function of relation type distribution and graph density, we can derive a detection probability formula that predicts exactly when verification crosses the cost-benefit threshold. Neither Eirew et al. nor Kougia et al. provide this analysis.\n\nFurther supporting evidence: (a) 'A Reality Check of LMs as Formalizers' (arXiv 2505.13252) shows LLM-as-formalizer underperforms LLM-as-solver in 15/24 CSP combinations, though Allen's interval algebra (fixed 13-relation vocabulary) was not specifically tested, and the follow-up (arXiv 2603.23844) shows formalizers scale in structured domains; (b) TIME 2025 shows LLMs achieve only 52-82% on interval temporal logic validity recognition with no sensitivity to complexity class; (c) GraFT (ICML 2025) achieves 99%+ accuracy on NL-to-temporal-logic with grammar-constrained decoding, suggesting constrained output formats can dramatically improve formalization; (d) ChronoSense (ACL 2025) shows GPT-4o achieves 0.86 accuracy on Allen relation classification WITH explicit intervals given — but extraction from natural language text is fundamentally harder (no existing study measures this gap).",
+  "landscape": "NeSTR (AAAI 2026) uses symbolic temporal predicates with neural abductive reflection, achieving 85.2 EM (macro avg, GPT-4o-mini) and 88.8 F1 (Qwen3-14B) zero-shot on TGQA/TempReason/TimeQA — no formal verification. TISER (ACL 2025) achieves 91.1 EM macro average but requires fine-tuning on GPT-4-generated data; zero-shot Qwen2.5-7B achieves only 52.3 EM. arXiv:2605.04243 (May 2026; UNREVIEWED single-author preprint from a non-research-institution affiliation, no code released) introduces a PIS framework with per-step dual-stream verification — reporting 100% on synthetic benchmarks but only 75.1% on TimeX-NLI and ~50% on TRACIE. AdapTime (ACL 2026 Findings) uses adaptive prompt-based temporal reasoning achieving 85.4 EM on TimeQA-Easy with DeepSeek-V3. TempCoT (SIGIR 2025) uses point algebra with semantic fact retrieval. 'Unreasonable effectiveness' (TMLR 2025) found Allen's interval algebra neuro-symbolic pipeline produced NO improvement over neural baselines — extraction is the bottleneck.\n\nOn temporal relation extraction specifically: Eirew et al. (EMNLP 2025) test five zero-shot paradigms with DeepSeek-R1 on MATRES: pairwise CoT (70.3 F1), ZSL-Global (61.0), ZSL-Timeline (59.0), SelfConsistency via majority vote (61.2), and GlobalConsistency via ILP (66.4). On exhaustively-annotated datasets, GlobalConsistency matches supervised methods: 64.1 on NT-6, 79.2 on OmniTemp. They attribute the sparse-vs-dense gap to 'annotation distance restriction' and event count sensitivity, but provide no formal framework for the density-dependent effect. Their ILP uses Allen transitivity constraints but without analyzing composition tightness or detection coverage by error type. MATRES has 79% missing relations; OmniTemp has 0% (exhaustive annotation). Kougia et al. (BioNLP 2024) show ILP hurts Llama pairwise predictions on clinical data (0.615 → 0.549 F1), a distinct phenomenon from Eirew et al.'s paradigm comparison.\n\nOn formalization: VeriCoT (arXiv 2025) reports 15-45% verification pass rates formalizing general CoT to FOL. Amonkar et al. (arXiv 2505.13252, v4 March 2026) show LLM-as-formalizer underperforms LLM-as-solver in 15/24 CSP combinations — but tested scheduling, trip planning, and logic puzzles, NOT Allen relation formalization. The follow-up (arXiv 2603.23844) shows formalizers scale dramatically in structured planning (100% at 100 blocks). GraFT (ICML 2025, PMLR vol. 267) achieves 99%+ accuracy on NL-to-temporal-logic via grammar-constrained decoding. TIME 2025 shows 52-82% accuracy on Halpern-Shoham interval temporal logic validity recognition. ChronoSense (ACL 2025) shows GPT-4o achieves 0.86 accuracy classifying Allen relations with explicit intervals given — but no study measures performance on extraction from natural language text without given intervals.\n\nVERGE (arXiv 2026) shows Z3+MCS correction converges monotonically in ~6 iterations. 'Empirical Characterization of Temporal Constraint Processing in LLMs' (arXiv 2511.10654) finds bimodal performance and extreme prompt brittleness.\n\nKey gap: Eirew et al. observe density-dependent effects empirically; our contribution is the FORMAL FRAMEWORK (composition table tightness analysis, detection probability formula, error type decomposition) that explains WHY and provides actionable decision boundaries. Additionally, no study tests formalization feasibility specifically for Allen relations from temporal QA text, and no study decomposes detection coverage by error type (omission vs. misclassification vs. hallucination).",
+  "inspired_by": "Convergence of empirical observations LACKING formal explanation: (1) Eirew et al. (EMNLP 2025) show density-dependent effects across MATRES/NT-6/OmniTemp but provide no formal framework — just the observation that 'models encoding global information are more sensitive to event count'; (2) Kougia et al. (BioNLP 2024) show ILP hurts pairwise predictions on clinical data (0.615→0.549) but don't explain why; (3) CSP formalization literature (arXiv 2505.13252) shows formalization can fail but didn't test Allen's interval algebra specifically; (4) TIME 2025 shows LLMs reason poorly about interval temporal logic. The key realization: Allen's composition table has a known mathematical structure — compositions yield result sets of exactly 1, 3, 5, 9, or 13 relations — and this structure DIRECTLY determines detection probability as a function of graph density. This formal analysis fills the gap between 'we observe density matters' (Eirew et al.) and 'here's exactly why, and here's the threshold formula a practitioner can use.' Pattern: analogous to how 'Right for the Wrong Reasons' (McCoy et al., ACL 2019) provided diagnostic insight into NLI beyond mere accuracy numbers.",
+  "approach": "We propose a diagnostic study — TemporalCoT-Verify — that answers 'When does formal SMT verification help temporal QA extraction?' through four contributions: a formalization feasibility pilot, constraint graph density characterization, a formal detection coverage framework based on Allen's composition table tightness, and systematic empirical validation. The pipeline is a research vehicle for this analysis, not a SOTA-seeking system.\n\n**Stage 0 (Formalization Feasibility Pilot — Prerequisite Validation):** We conduct a pilot measuring whether LLMs can reliably formalize temporal statements from QA text into Allen's 13-relation vocabulary. Amonkar et al. (arXiv 2505.13252) show formalization challenges on general CSPs, but Allen's fixed 13-way vocabulary is substantially more constrained. ChronoSense (ACL 2025) shows GPT-4o achieves 0.86 accuracy classifying Allen relations WITH explicit intervals given; we estimate extraction from natural language text (without explicit intervals) will yield 0.55-0.70 accuracy with structured-output constraints and 0.40-0.60 unconstrained, based on: (a) the gap between structured classification and open-ended extraction observed across NLU tasks; (b) the additional difficulty of identifying implicit temporal boundaries; (c) VeriCoT's 15-45% pass rate on the harder task of general CoT→FOL formalization (Allen classification is substantially easier). We test on 100 temporal statements sampled from TGQA/TempReason/TimeQA with three decoding strategies: (a) unconstrained LLM output (GPT-4o-mini, Qwen3-14B); (b) structured-output JSON schema constraints (13 relations as enum); (c) grammar-constrained decoding (GraFT-style, motivated by GraFT's 99%+ on NL→LTL at ICML 2025). We also catalog failure modes specific to temporal formalization: implicit relations, vague temporal references ('around that time'), relative expressions ('shortly after'), and missing event instantiation. If formalization success is <60% even with constrained decoding, this is itself a key finding that quantifies the formalization gap for Allen's relations specifically.\n\n**Stage 1 (Constraint Graph Density Characterization):** We measure the density of temporal constraint graphs extractable from standard QA benchmarks (TGQA, TempReason L2/L3, TimeQA Easy/Hard), reporting: (a) average number of temporal entities per question; (b) average extractable Allen relations; (c) graph density ratio (edges / max possible edges); (d) constraint redundancy via transitivity. We connect our measurements to Eirew et al.'s finding that MATRES has 79% missing relations vs. OmniTemp's 0%, showing that temporal QA benchmarks likely have density profiles closer to MATRES than OmniTemp — which has direct implications for verification utility via our detection probability formula.\n\n**Stage 2 (Detection Coverage Framework — Primary Novel Contribution):** We provide the first formal analysis of SMT detection coverage for temporal extraction errors, grounded in the mathematical structure of Allen's composition table.\n\n(a) **Composition tightness analysis**: Allen's 169 basic-relation compositions yield result sets of exactly 1, 3, 5, 9, or 13 relations (a known mathematical property). We compute the average composition tightness τ = Σ(1 - |C(r_i,r_j)|/13) / 169 across all entries, weighted by the relation type distribution observed in our benchmark data. Tight compositions (single-relation results, ~44-50% of entries) guarantee detection of any wrong relation; loose compositions (all 13 relations) provide zero detection capability.\n\n(b) **Detection probability formula**: For N events, graph density d, and average composition tightness τ, the probability of detecting a wrong relation R(A,C) via at least one triangle A-B-C is: P_detect ≈ 1 - (1 - d²·τ)^(N-2). This formula explains the Eirew et al. results quantitatively: for sparse MATRES-like graphs (N≈22, d≈0.21 given 79% missing), P_detect is moderate but corrupted by annotation noise; for dense OmniTemp-like graphs (N≈16, d≈1.0), P_detect approaches 1-((1-τ))^14 ≈ 1.0. For typical temporal QA (N≈4, d≈0.3), P_detect ≈ 1-(1-0.09·τ)^2 ≈ 0.09 — meaning ~91% of errors go undetected, explaining why verification adds little value for sparse QA.\n\n(c) **Concrete practitioner decision boundary**: A practitioner building a temporal QA system can estimate N and d for their data, then compute P_detect. We identify the threshold where verification's expected benefit (P_detect × accuracy_gain_per_detected_error) exceeds its cost (formalization errors × accuracy_loss_per_false_correction + compute overhead). Our preliminary estimate: verification becomes cost-effective when P_detect > 0.3, corresponding to d > ~0.5 for N=6 — well above typical temporal QA density.\n\n(d) **Synthetic corruption experiment**: Inject controlled errors (relation misclassification, entity swaps, omissions) into gold temporal graphs at 10/20/30/40% corruption rates across varying graph densities. Measure detection rates by Z3, validating the theoretical formula against empirical results.\n\n(e) **Detection coverage by error type**: Omission errors (expected: ~0% detection — removing a constraint cannot create inconsistency); relation misclassification (expected: density-dependent, governed by composition tightness of the triangle); hallucinated relations (expected: moderate detection — adding a wrong relation to an existing consistent graph may create new triangles). This decomposition is absent from both Eirew et al. and Kougia et al.\n\n(f) **Comparison across verification paradigms**: Compare SMT detection coverage against (i) LLM-based abductive reflection (NeSTR-style), (ii) simple heuristic checks (range validation, symmetry checking), and (iii) redundant cross-step extraction (re-extracting previously established relations from new CoT contexts to create multiple constraint paths — tested as an ablation to measure whether redundancy boosts P_detect by increasing effective density). The key question: does SMT's formal guarantees provide meaningfully higher detection than simpler alternatives?\n\n**Stage 3 (Pipeline Implementation — Research Vehicle):** Per-step temporal assertion extraction → incremental Z3 encoding with confidence-weighted soft/hard constraints → verify-and-correct loop with MCS feedback (max 5 iterations). This pipeline serves as the vehicle for measuring detection coverage and formalization feasibility in context, not as a claimed SOTA system. We explicitly measure both per-step and full-context extraction and report the comparison without claiming either is superior a priori.\n\n**Stage 4 (Standard Benchmark Evaluation — Contextualized):** Evaluate on TGQA, TempReason (L2/L3), TimeQA (Easy/Hard), TCP — NOT to claim SOTA but to measure verification uplift (or deficit) against no-verification baselines using the same backbone. We compare against NeSTR's abductive reflection (85.2 EM) to contextualize. If verification hurts on sparse QA graphs (as our formula predicts), this validates the formal analysis.\n\n**Key Ablations:** (1) Z3 SMT verification vs. NeSTR-style abductive reflection vs. no verification vs. simple heuristic checks — isolating formal solving's marginal value; (2) Unconstrained vs. structured-output vs. grammar-constrained formalization — measuring formalization technique impact; (3) Single-path vs. redundant cross-step extraction — measuring whether redundancy boosts effective density and detection coverage (this tests whether redundancy is a viable technique for overcoming sparse-graph limitations); (4) Sparse (standard QA) vs. dense (document-level) constraint graphs — validating the detection probability formula across the density spectrum.\n\n**Negative Result Contingency (Explicit):** If detection coverage is low (<30% on standard QA's sparse graphs) and verification provides no significant uplift over no-verification baselines, the paper reframes as a definitive cautionary finding — analogous to 'Right for the Wrong Reasons' (McCoy et al., ACL 2019). Specifically: (a) the first FORMAL evidence (not just empirical observation) that formal verification is not justified for temporal QA with sparse constraint graphs; (b) a quantitative density threshold formula practitioners can use; (c) a recommendation to invest in improved extraction rather than verification overhead for standard QA tasks, with verification reserved for document-level tasks with dense temporal annotations.\n\n**Critical Differentiation from Eirew et al. (EMNLP 2025):** Our work differs on five dimensions: (1) TASK: we study temporal QA verification (checking extracted facts during CoT reasoning), not temporal relation extraction (classifying all event pairs in documents) — different error distributions and graph structures; (2) ANALYSIS TYPE: we provide a formal framework (composition tightness, detection probability formula P_detect ≈ 1-(1-d²·τ)^(N-2)) that EXPLAINS why density matters, vs. their empirical observation; (3) ERROR TYPE DECOMPOSITION: we decompose detection by omission/misclassification/hallucination — they don't; (4) FORMALIZATION FEASIBILITY: we address whether LLMs can formalize temporal NL into Allen's vocabulary (Stage 0) — they assume extraction works; (5) DECISION BOUNDARY: we provide a quantitative threshold formula for practitioners — they don't.\n\n**Risk Discussion — arXiv:2605.04243:** This preprint (single author, high school affiliation, no code released, unreviewed) is cited only for two independently verifiable observations: (1) verification fails on omission errors (a logical consequence of any consistency-based approach); (2) extraction quality bounds system performance (consistent with TMLR 2025). Our analysis stands entirely independently.\n\nBackbone models: GPT-4o-mini (for NeSTR comparison) and Qwen3-14B. Zero-shot throughout; no fine-tuning required.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "300-450 (A100-equivalent: LLM inference across benchmarks with 2 backbones; Z3 solving is CPU-only; Stage 0 pilot is lightweight; synthetic corruption experiments are efficient; Stage 4 demoted to ablation reduces overhead)",
+      "timeline": "7-9 weeks (1 wk Stage 0 formalization pilot + density characterization in parallel, 1.5 wks Allen composition tightness analysis + Z3 encoding + detection coverage formal derivation, 1.5 wks synthetic corruption experiments, 2 wks standard benchmark evaluation across 2 backbones, 1-2 wks ablation + writing + negative result framing)",
+      "estimated_gpu_cost": "$600-900 at ~$2/GPU-hr"
+    },
+    "human_in_loop": {
+      "gpu_hours": "250-380",
+      "timeline": "5-7 weeks",
+      "claude_api_cost": "$200-400 (code generation, annotation assistance, analysis, paper drafting)",
+      "estimated_gpu_cost": "$500-760"
+    },
+    "auto_research": {
+      "gpu_hours": "350-550",
+      "timeline": "3-4.5 weeks",
+      "claude_api_cost": "$600-1200 (iterative pipeline design, automated ablation sweeps, detection coverage analysis, result interpretation, negative result framing)",
+      "estimated_gpu_cost": "$700-1100",
+      "speed_bottleneck": "Stage 0 pilot annotation (50-100 gold formalization labels, ~15 person-hours — streamlined by using ChronoSense-style annotation protocol); Z3 solver throughput on multi-step constraint sets"
+    }
+  },
+  "target_venues": [
+    "EACL 2027 (ARR submission: Aug 3, 2026 — primary target; 10.5 weeks available; commitment deadline Oct 11, 2026; diagnostic/analytical papers well-suited for *CL venues)",
+    "AAAI 2027 (abstract: Jul 21, full paper: Jul 28, 2026 — stretch target; 9 weeks; feasible only with human_in_loop or auto_research timeline)",
+    "TACL (rolling submission — suitable for comprehensive analytical study; ~46-day first decision turnaround; no deadline pressure)",
+    "ACL/EMNLP Insights from Negative Results Workshop (if core findings are negative — co-located with main conferences; rolling with main conference deadlines)"
+  ],
+  "level": "solid-to-good",
+  "key_references": [
+    "Unreasonable effectiveness of LLM reasoning: a doubly cautionary tale of temporal question-answering (TMLR 2025)",
+    "Temporal Reasoning Is Not the Bottleneck: A Probabilistic Inconsistency Framework for Neuro-Symbolic QA (arXiv:2605.04243, May 2026) [UNREVIEWED PREPRINT — single author, non-research-institution affiliation, no code released; cited for specific observations only]",
+    "Beyond Pairwise: Global Zero-shot Temporal Graph Generation (Eirew et al., EMNLP 2025) [KEY RELATED WORK — provides empirical density-dependent observations; our formal framework explains their findings]",
+    "A Reality Check of Language Models as Formalizers on Constraint Satisfaction Problems (arXiv 2505.13252, v4 March 2026)",
+    "Language Model Planners do not Scale, but do Formalizers? (arXiv 2603.23844, March 2026)",
+    "On the Limit of Language Models as Planning Formalizers (ACL 2025)",
+    "Language Model as Planner and Formalizer under Constraints [CoPE] (ACL 2026)",
+    "GraFT: Grammar-Forced Translation of Natural Language to Temporal Logic (ICML 2025, PMLR vol. 267)",
+    "Assessing the (In)Ability of LLMs to Reason in Interval Temporal Logic (TIME 2025)",
+    "Enforcing Temporal Constraints for LLM Agents [AGENT-C] (arXiv 2025)",
+    "NeSTR: A Neuro-Symbolic Abductive Framework for Temporal Reasoning in LLMs (AAAI 2026)",
+    "AdapTime: Enabling Adaptive Temporal Reasoning in LLMs (ACL 2026 Findings)",
+    "Bridging Time Gaps: Temporal Logic Relations for Enhancing Temporal Reasoning in LLMs [TempCoT] (SIGIR 2025)",
+    "Learning to Reason Over Time: Timeline Self-Reflection [TISER] (ACL 2025)",
+    "VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning (arXiv 2026)",
+    "VeriCoT: Neuro-symbolic Chain-of-Thought Validation via Logical Consistency Checks (arXiv 2025)",
+    "ChronoSense: Exploring Temporal Understanding in LLMs with Time Intervals of Events (ACL 2025)",
+    "TCP: a Benchmark for Temporal Constraint-Based Planning (EMNLP 2025)",
+    "Time-R1: Towards Comprehensive Temporal Reasoning in LLMs (arXiv:2505.13508, May 2025)",
+    "Consistent Discourse-level Temporal Relation Extraction Using Large Language Models (EMNLP 2025 Findings)",
+    "Analysing Zero-shot Temporal Relation Extraction on Clinical Notes Using Temporal Consistency (Kougia et al., BioNLP 2024)",
+    "Empirical Characterization of Temporal Constraint Processing in LLMs (arXiv 2511.10654, 2025)",
+    "Large Language Models Can Learn Temporal Reasoning [TG-LLM] (ACL 2024)",
+    "Right for the Wrong Reasons: Diagnosing Syntactic Heuristics in NLI (McCoy et al., ACL 2019) [methodological model for diagnostic negative-result papers]",
+    "Reasoning about Temporal Relations: A Maximal Tractable Subclass of Allen's Interval Algebra (Nebel & Bürckert, JACM 1995) [theoretical foundation for ORD-Horn tractability and path-consistency completeness]"
+  ],
+  "description": "We present a diagnostic study — TemporalCoT-Verify — that answers: 'When does formal SMT verification help catch temporal extraction errors in LLM chain-of-thought reasoning?' Our primary contribution is ANALYTICAL, not a pipeline. Eirew et al. (EMNLP 2025) demonstrate a density-dependent empirical pattern: their global+ILP approach improves on exhaustively-annotated data (NT-6: +6.2 F1 vs. pairwise CoT) but underperforms on sparsely-annotated data (MATRES: -3.9 F1). Separately, Kougia et al. (BioNLP 2024) show ILP hurts pairwise predictions on clinical data (0.615→0.549). We provide the FORMAL FRAMEWORK that explains these empirical observations and enables actionable decisions. Our four contributions: (1) A formalization feasibility pilot measuring whether LLMs can translate temporal QA text into Allen's 13-relation vocabulary, testing unconstrained, structured-output, and grammar-constrained decoding — estimating a drop from ChronoSense's 0.86 accuracy (given explicit intervals) to 0.55-0.70 (from NL text). (2) Constraint graph density characterization across TGQA/TempReason/TimeQA, connecting QA benchmark density profiles to the formal detection analysis. (3) The first formal detection coverage framework based on Allen's composition table tightness: of the 169 basic compositions, entries yield result sets of exactly 1, 3, 5, 9, or 13 relations — we compute average tightness τ and derive P_detect ≈ 1-(1-d²·τ)^(N-2), providing a quantitative decision boundary. For typical QA (N=4, d=0.3), P_detect ≈ 0.09 (91% of errors undetected); for dense extraction (N=16, d=1.0), P_detect approaches 1.0. We validate via synthetic corruption experiments and decompose detection by error type (omission: ~0%; misclassification: density-dependent; hallucination: moderate). (4) Systematic evaluation of verification uplift/deficit on standard temporal QA benchmarks, including comparison with NeSTR's abductive reflection. We differ from Eirew et al. on five dimensions: task (QA verification vs. relation extraction), analysis type (formal framework vs. empirical observation), error decomposition, formalization feasibility, and practitioner decision boundary. If coverage is low (<30%), this is a valuable cautionary finding — analogous to 'Right for the Wrong Reasons' (McCoy et al., 2019) — providing formal evidence for when verification is not justified. Zero-shot with GPT-4o-mini and Qwen3-14B.",
+  "project_name": "smt_temporal_cot_verify",
+  "source": "web_research",
+  "revision_notes": {
+    "change_type": "major",
+    "issues_addressed": {
+      "1_GraFT_venue_fixed": "FIXED: GraFT venue corrected from 'ICLR 2025 / MLPR' to 'ICML 2025, PMLR vol. 267' (verified via proceedings.mlr.press/v267/english25a.html and icml.cc/virtual/2025/poster/44027).",
+      "2_Eirew_preemption_addressed": "CRITICAL REVISION: Deep reading of Eirew et al. (EMNLP 2025) revealed the original framing was misleading. The 70.3→66.4 comparison on MATRES is between pairwise CoT (70.3) and GlobalConsistency (global extraction + ILP, 66.4) — two DIFFERENT paradigms, not adding consistency to the same method. Within the global paradigm, ILP ALWAYS helps: ZSL-Timeline 59.0 → GlobalConsistency 66.4 on MATRES (+7.4); 59.4 → 64.1 on NT-6 (+4.7). The density-dependent pattern emerges from the paradigm comparison, not consistency alone. We now correctly present this nuance and explicitly differentiate on 5 dimensions: (a) TASK — temporal QA verification vs. temporal relation extraction; (b) ANALYSIS TYPE — formal composition tightness framework explaining WHY density matters vs. empirical observation; (c) ERROR TYPE DECOMPOSITION — omission/misclassification/hallucination, absent from Eirew et al.; (d) FORMALIZATION FEASIBILITY — Stage 0, not addressed by Eirew et al.; (e) DECISION BOUNDARY — quantitative P_detect formula for practitioners, not provided by Eirew et al. Separately, Kougia et al. (BioNLP 2024) remains a genuine case where ILP hurts pairwise predictions (0.615→0.549), correctly cited as a distinct phenomenon.",
+      "3_timeline_and_venue_adjusted": "EACL 2027 (ARR Aug 3) now primary target with 10.5 weeks available. AAAI 2027 (Jul 21/28) downgraded to stretch target. Timeline estimate tightened to 7-9 weeks by parallelizing Stage 0 and Stage 1, and by demoting Stage 4 (redundant extraction) to an ablation. Stage 0 gold annotation streamlined to ~15 person-hours using ChronoSense-style annotation protocol.",
+      "4_impact_argument_strengthened": "MAJOR ADDITION: Concrete detection probability formula P_detect ≈ 1-(1-d²·τ)^(N-2) where d is density, τ is composition tightness (~0.5), N is event count. Concrete examples: typical QA (N=4, d=0.3) → P_detect≈0.09; dense extraction (N=16, d=1.0) → P_detect→1.0. Practitioner decision boundary: verification cost-effective when P_detect > 0.3, corresponding to d > ~0.5 for N=6. This goes beyond 'don't use verification for sparse graphs' to provide a QUANTITATIVE threshold derived from Allen's composition table structure. The composition table's result-set sizes (1, 3, 5, 9, or 13 — a known mathematical property) make the tightness analysis precise, not heuristic.",
+      "5_ChronoSense_formalization_gap_estimated": "ADDED: Explicit estimate of formalization accuracy drop from ChronoSense setting (0.86 with explicit intervals) to extraction from NL text (estimated 0.55-0.70 with structured-output, 0.40-0.60 unconstrained). Rationale: (a) explicit intervals → NL text adds NLU difficulty of identifying implicit temporal boundaries; (b) fixed 13-way vocabulary is easier than FOL formalization (VeriCoT's 15-45%); (c) analogous gaps observed in structured-vs-unstructured extraction across NLU tasks. ChronoSense accuracy confirmed as 0.86 (Table 2 in original paper), not 0.87.",
+      "6_redundant_extraction_demoted": "Stage 4 (redundant cross-step extraction) demoted from standalone contribution to an ablation variable within Stage 2's comparison of verification paradigms, per reviewer recommendation. Now tested as one of four comparison conditions: SMT, abductive reflection, heuristic checks, and redundant extraction. This makes it a technique we test rather than a contribution we claim, appropriately reflecting its engineering-level novelty."
+    },
+    "key_insight": "Deep reading of Eirew et al. revealed the original framing was factually misleading — the 70.3→66.4 drop is a paradigm comparison (pairwise vs. global), not a consistency-hurts result. Correcting this actually STRENGTHENS our paper: the nuanced reality (consistency always helps within a paradigm, but paradigm choice depends on density) demands the formal framework we provide. Allen's composition table has a precise mathematical structure (result sets of size 1, 3, 5, 9, or 13) that enables rigorous detection probability analysis — this is the genuine novel contribution that no prior work provides.",
+    "what_changed_from_round4": "Corrected Eirew et al. framing from misleading 'consistency hurts' to accurate 'paradigm choice depends on density'; added 5-dimension explicit differentiation; introduced detection probability formula P_detect with concrete numerical examples; demoted redundant extraction to ablation; shifted to EACL 2027 as primary venue; added formalization accuracy drop estimate; fixed GraFT venue; added Nebel & Bürckert (JACM 1995) reference for ORD-Horn tractability."
+  }
+}
+```
+
+Output only this JSON. Make sure it's valid.
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": true,
+  "promptId": "a714399e-f2d2-47de-bf14-555527dca2de",
+  "agentId": "aaa9f0c5dbacaacf4",
+  "type": "user",
+  "uuid": "dc6c3e76-a8ad-4049-8438-13311bcac09b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "d899d542-ed77-4dc7-9194-eb51a3244a0a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-19T11:58:34.663Z_
+
+```json
+{
+  "parentUuid": "dc6c3e76-a8ad-4049-8438-13311bcac09b",
+  "isSidechain": true,
+  "agentId": "aaa9f0c5dbacaacf4",
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": []
+  },
+  "type": "attachment",
+  "uuid": "1ad4735c-90cf-40f5-ad97-0c3dc6af41c1",
+  "timestamp": "2026-05-19T11:58:34.663Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "d899d542-ed77-4dc7-9194-eb51a3244a0a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3 · 2026-05-19T11:58:34.664Z_
+
+```json
+{
+  "parentUuid": "1ad4735c-90cf-40f5-ad97-0c3dc6af41c1",
+  "isSidechain": true,
+  "agentId": "aaa9f0c5dbacaacf4",
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "be3af0bf-e218-4479-86bc-ee854bb866af",
+  "timestamp": "2026-05-19T11:58:34.664Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "d899d542-ed77-4dc7-9194-eb51a3244a0a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4 · 2026-05-19T12:02:11.866Z_
+
+
+
+```json
+{
+  "title": "When Does Formal Verification Help? A Diagnostic Study of SMT Detection Coverage for Temporal Chain-of-Thought Extraction Errors",
+  "core_problem": "Multiple verification paradigms — formal (SMT), probabilistic (credal intervals + EDL), and neural (abductive reflection) — have been proposed for catching temporal extraction errors in neuro-symbolic QA, but a fundamental empirical question remains unanswered: what fraction of extraction errors actually produce detectable inconsistencies, and under what conditions? Eirew et al. (EMNLP 2025) provide an important empirical observation — global consistency enforcement via ILP improves results on exhaustively-annotated datasets (NT-6: +4.7 F1; OmniTemp: +4.6) but global-pipeline approaches underperform pairwise CoT on sparsely-annotated data (MATRES: 66.4 vs. 70.3) — but they offer no formal explanation for WHY this density-dependent pattern exists. The answer requires understanding three poorly-characterized factors: (1) composition tightness — what fraction of Allen composition table entries yield unique relations (enabling detection) vs. disjunctions of 3-13 relations (masking errors); (2) the interaction between constraint graph density and detection probability — formally, P_detect ≈ 1-(1-d²·t)^(n-2) where d is density, t is average composition tightness, and n is event count; and (3) how different error types (omission, misclassification, hallucination) interact differently with graph structure. Additionally, a prerequisite question — whether LLMs can reliably formalize temporal statements into Allen's vocabulary at all — remains open: LLM-as-formalizer underperforms LLM-as-solver in 15/24 CSP combinations (arXiv 2505.13252), though Allen's fixed 13-relation vocabulary may be more tractable than general CSPs.",
+  "opportunity": "The extraction bottleneck for temporal QA is well-established (TMLR 2025; NeSTR, AAAI 2026), and several verification approaches exist (abductive reflection, probabilistic signals, SMT constraints). Converging evidence raises serious questions about formal verification's value, but existing analyses remain purely empirical, leaving the field without a principled framework for deciding WHEN to invest in verification.\n\nEirew et al. (EMNLP 2025) provide the key empirical observation: their GlobalConsistency method (global graph generation + ILP with Allen transitivity constraints) achieves 64.1 F1 on exhaustively-annotated NT-6 vs. 57.9 for pairwise CoT (+6.2), but only 66.4 vs. 70.3 on sparsely-annotated MATRES (-3.9). CRITICALLY, this comparison conflates two effects: (a) paradigm choice (global vs. pairwise extraction) and (b) consistency enforcement (ILP constraints). Within the global paradigm, ILP always helps (ZSL-Timeline 59.0 → GlobalConsistency 66.4 on MATRES, +7.4). The density-dependent pattern emerges from the paradigm comparison, not from consistency alone. Separately, Kougia et al. (BioNLP 2024) show a genuine case where ILP hurts PAIRWISE predictions: Llama CoT drops from 0.615 to 0.549 F1 on clinical temporal data.\n\nWhat's MISSING from both studies — and what our work provides — is the formal framework that EXPLAINS these empirical patterns. Allen's composition table has a specific structure: of the 169 basic-relation compositions, only certain entries yield tight (single-relation) results that enable error detection, while others yield disjunctions of 3, 5, 9, or all 13 relations that mask errors entirely. By analyzing composition tightness as a function of relation type distribution and graph density, we can derive a detection probability formula that predicts exactly when verification crosses the cost-benefit threshold. Neither Eirew et al. nor Kougia et al. provide this analysis.\n\nFurther supporting evidence: (a) 'A Reality Check of LMs as Formalizers' (arXiv 2505.13252) shows LLM-as-formalizer underperforms LLM-as-solver in 15/24 CSP combinations, though Allen's interval algebra (fixed 13-relation vocabulary) was not specifically tested, and the follow-up (arXiv 2603.23844) shows formalizers scale in structured domains; (b) TIME 2025 shows LLMs achieve only 52-82% on interval temporal logic validity recognition with no sensitivity to complexity class; (c) GraFT (ICML 2025) achieves 99%+ accuracy on NL-to-temporal-logic with grammar-constrained decoding, suggesting constrained output formats can dramatically improve formalization; (d) ChronoSense (ACL 2025) shows GPT-4o achieves 0.86 accuracy on Allen relation classification WITH explicit intervals given — but extraction from natural language text is fundamentally harder (no existing study measures this gap).",
+  "landscape": "NeSTR (AAAI 2026) uses symbolic temporal predicates with neural abductive reflection, achieving 85.2 EM (macro avg, GPT-4o-mini) and 88.8 F1 (Qwen3-14B) zero-shot on TGQA/TempReason/TimeQA — no formal verification. TISER (ACL 2025) achieves 91.1 EM macro average but requires fine-tuning on GPT-4-generated data; zero-shot Qwen2.5-7B achieves only 52.3 EM. arXiv:2605.04243 (May 2026; UNREVIEWED single-author preprint from a non-research-institution affiliation, no code released) introduces a PIS framework with per-step dual-stream verification — reporting 100% on synthetic benchmarks but only 75.1% on TimeX-NLI and ~50% on TRACIE. AdapTime (ACL 2026 Findings) uses adaptive prompt-based temporal reasoning achieving 85.4 EM on TimeQA-Easy with DeepSeek-V3. TempCoT (SIGIR 2025) uses point algebra with semantic fact retrieval. 'Unreasonable effectiveness' (TMLR 2025) found Allen's interval algebra neuro-symbolic pipeline produced NO improvement over neural baselines — extraction is the bottleneck.\n\nOn temporal relation extraction specifically: Eirew et al. (EMNLP 2025) test five zero-shot paradigms with DeepSeek-R1 on MATRES: pairwise CoT (70.3 F1), ZSL-Global (61.0), ZSL-Timeline (59.0), SelfConsistency via majority vote (61.2), and GlobalConsistency via ILP (66.4). On exhaustively-annotated datasets, GlobalConsistency matches supervised methods: 64.1 on NT-6, 79.2 on OmniTemp. They attribute the sparse-vs-dense gap to 'annotation distance restriction' and event count sensitivity, but provide no formal framework for the density-dependent effect. Their ILP uses Allen transitivity constraints but without analyzing composition tightness or detection coverage by error type. MATRES has 79% missing relations; OmniTemp has 0% (exhaustive annotation). Kougia et al. (BioNLP 2024) show ILP hurts Llama pairwise predictions on clinical data (0.615 → 0.549 F1), a distinct phenomenon from Eirew et al.'s paradigm comparison.\n\nOn formalization: VeriCoT (arXiv 2025) reports 15-45% verification pass rates formalizing general CoT to FOL. Amonkar et al. (arXiv 2505.13252, v4 March 2026) show LLM-as-formalizer underperforms LLM-as-solver in 15/24 CSP combinations — but tested scheduling, trip planning, and logic puzzles, NOT Allen relation formalization. The follow-up (arXiv 2603.23844) shows formalizers scale dramatically in structured planning (100% at 100 blocks). GraFT (ICML 2025, PMLR vol. 267) achieves 99%+ accuracy on NL-to-temporal-logic via grammar-constrained decoding. TIME 2025 shows 52-82% accuracy on Halpern-Shoham interval temporal logic validity recognition. ChronoSense (ACL 2025) shows GPT-4o achieves 0.86 accuracy classifying Allen relations with explicit intervals given — but no study measures performance on extraction from natural language text without given intervals.\n\nVERGE (arXiv 2026) shows Z3+MCS correction converges monotonically in ~6 iterations. 'Empirical Characterization of Temporal Constraint Processing in LLMs' (arXiv 2511.10654) finds bimodal performance and extreme prompt brittleness.\n\nKey gap: Eirew et al. observe density-dependent effects empirically; our contribution is the FORMAL FRAMEWORK (composition table tightness analysis, detection probability formula, error type decomposition) that explains WHY and provides actionable decision boundaries. Additionally, no study tests formalization feasibility specifically for Allen relations from temporal QA text, and no study decomposes detection coverage by error type (omission vs. misclassification vs. hallucination).",
+  "inspired_by": "Convergence of empirical observations LACKING formal explanation: (1) Eirew et al. (EMNLP 2025) show density-dependent effects across MATRES/NT-6/OmniTemp but provide no formal framework — just the observation that 'models encoding global information are more sensitive to event count'; (2) Kougia et al. (BioNLP 2024) show ILP hurts pairwise predictions on clinical data (0.615→0.549) but don't explain why; (3) CSP formalization literature (arXiv 2505.13252) shows formalization can fail but didn't test Allen's interval algebra specifically; (4) TIME 2025 shows LLMs reason poorly about interval temporal logic. The key realization: Allen's composition table has a known mathematical structure — compositions yield result sets of exactly 1, 3, 5, 9, or 13 relations — and this structure DIRECTLY determines detection probability as a function of graph density. This formal analysis fills the gap between 'we observe density matters' (Eirew et al.) and 'here's exactly why, and here's the threshold formula a practitioner can use.' Pattern: analogous to how 'Right for the Wrong Reasons' (McCoy et al., ACL 2019) provided diagnostic insight into NLI beyond mere accuracy numbers.",
+  "approach": "We propose a diagnostic study — TemporalCoT-Verify — that answers 'When does formal SMT verification help temporal QA extraction?' through four contributions: a formalization feasibility pilot, constraint graph density characterization, a formal detection coverage framework based on Allen's composition table tightness, and systematic empirical validation. The pipeline is a research vehicle for this analysis, not a SOTA-seeking system.\n\n**Stage 0 (Formalization Feasibility Pilot — Prerequisite Validation):** We conduct a pilot measuring whether LLMs can reliably formalize temporal statements from QA text into Allen's 13-relation vocabulary. Amonkar et al. (arXiv 2505.13252) show formalization challenges on general CSPs, but Allen's fixed 13-way vocabulary is substantially more constrained. ChronoSense (ACL 2025) shows GPT-4o achieves 0.86 accuracy classifying Allen relations WITH explicit intervals given; we estimate extraction from natural language text (without explicit intervals) will yield 0.55-0.70 accuracy with structured-output constraints and 0.40-0.60 unconstrained, based on: (a) the gap between structured classification and open-ended extraction observed across NLU tasks; (b) the additional difficulty of identifying implicit temporal boundaries; (c) VeriCoT's 15-45% pass rate on the harder task of general CoT→FOL formalization (Allen classification is substantially easier). We test on 100 temporal statements sampled from TGQA/TempReason/TimeQA with three decoding strategies: (a) unconstrained LLM output (GPT-4o-mini, Qwen3-14B); (b) structured-output JSON schema constraints (13 relations as enum); (c) grammar-constrained decoding (GraFT-style, motivated by GraFT's 99%+ on NL→LTL at ICML 2025). We also catalog failure modes specific to temporal formalization: implicit relations, vague temporal references ('around that time'), relative expressions ('shortly after'), and missing event instantiation. If formalization success is <60% even with constrained decoding, this is itself a key finding that quantifies the formalization gap for Allen's relations specifically.\n\n**Stage 1 (Constraint Graph Density Characterization):** We measure the density of temporal constraint graphs extractable from standard QA benchmarks (TGQA, TempReason L2/L3, TimeQA Easy/Hard), reporting: (a) average number of temporal entities per question; (b) average extractable Allen relations; (c) graph density ratio (edges / max possible edges); (d) constraint redundancy via transitivity. We connect our measurements to Eirew et al.'s finding that MATRES has 79% missing relations vs. OmniTemp's 0%, showing that temporal QA benchmarks likely have density profiles closer to MATRES than OmniTemp — which has direct implications for verification utility via our detection probability formula.\n\n**Stage 2 (Detection Coverage Framework — Primary Novel Contribution):** We provide the first formal analysis of SMT detection coverage for temporal extraction errors, grounded in the mathematical structure of Allen's composition table.\n\n(a) **Composition tightness analysis**: Allen's 169 basic-relation compositions yield result sets of exactly 1, 3, 5, 9, or 13 relations (a known mathematical property). We compute the average composition tightness τ = Σ(1 - |C(r_i,r_j)|/13) / 169 across all entries, weighted by the relation type distribution observed in our benchmark data. Tight compositions (single-relation results, ~44-50% of entries) guarantee detection of any wrong relation; loose compositions (all 13 relations) provide zero detection capability.\n\n(b) **Detection probability formula**: For N events, graph density d, and average composition tightness τ, the probability of detecting a wrong relation R(A,C) via at least one triangle A-B-C is: P_detect ≈ 1 - (1 - d²·τ)^(N-2). This formula explains the Eirew et al. results quantitatively: for sparse MATRES-like graphs (N≈22, d≈0.21 given 79% missing), P_detect is moderate but corrupted by annotation noise; for dense OmniTemp-like graphs (N≈16, d≈1.0), P_detect approaches 1-((1-τ))^14 ≈ 1.0. For typical temporal QA (N≈4, d≈0.3), P_detect ≈ 1-(1-0.09·τ)^2 ≈ 0.09 — meaning ~91% of errors go undetected, explaining why verification adds little value for sparse QA.\n\n(c) **Concrete practitioner decision boundary**: A practitioner building a temporal QA system can estimate N and d for their data, then compute P_detect. We identify the threshold where verification's expected benefit (P_detect × accuracy_gain_per_detected_error) exceeds its cost (formalization errors × accuracy_loss_per_false_correction + compute overhead). Our preliminary estimate: verification becomes cost-effective when P_detect > 0.3, corresponding to d > ~0.5 for N=6 — well above typical temporal QA density.\n\n(d) **Synthetic corruption experiment**: Inject controlled errors (relation misclassification, entity swaps, omissions) into gold temporal graphs at 10/20/30/40% corruption rates across varying graph densities. Measure detection rates by Z3, validating the theoretical formula against empirical results.\n\n(e) **Detection coverage by error type**: Omission errors (expected: ~0% detection — removing a constraint cannot create inconsistency); relation misclassification (expected: density-dependent, governed by composition tightness of the triangle); hallucinated relations (expected: moderate detection — adding a wrong relation to an existing consistent graph may create new triangles). This decomposition is absent from both Eirew et al. and Kougia et al.\n\n(f) **Comparison across verification paradigms**: Compare SMT detection coverage against (i) LLM-based abductive reflection (NeSTR-style), (ii) simple heuristic checks (range validation, symmetry checking), and (iii) redundant cross-step extraction (re-extracting previously established relations from new CoT contexts to create multiple constraint paths — tested as an ablation to measure whether redundancy boosts P_detect by increasing effective density). The key question: does SMT's formal guarantees provide meaningfully higher detection than simpler alternatives?\n\n**Stage 3 (Pipeline Implementation — Research Vehicle):** Per-step temporal assertion extraction → incremental Z3 encoding with confidence-weighted soft/hard constraints → verify-and-correct loop with MCS feedback (max 5 iterations). This pipeline serves as the vehicle for measuring detection coverage and formalization feasibility in context, not as a claimed SOTA system. We explicitly measure both per-step and full-context extraction and report the comparison without claiming either is superior a priori.\n\n**Stage 4 (Standard Benchmark Evaluation — Contextualized):** Evaluate on TGQA, TempReason (L2/L3), TimeQA (Easy/Hard), TCP — NOT to claim SOTA but to measure verification uplift (or deficit) against no-verification baselines using the same backbone. We compare against NeSTR's abductive reflection (85.2 EM) to contextualize. If verification hurts on sparse QA graphs (as our formula predicts), this validates the formal analysis.\n\n**Key Ablations:** (1) Z3 SMT verification vs. NeSTR-style abductive reflection vs. no verification vs. simple heuristic checks — isolating formal solving's marginal value; (2) Unconstrained vs. structured-output vs. grammar-constrained formalization — measuring formalization technique impact; (3) Single-path vs. redundant cross-step extraction — measuring whether redundancy boosts effective density and detection coverage (this tests whether redundancy is a viable technique for overcoming sparse-graph limitations); (4) Sparse (standard QA) vs. dense (document-level) constraint graphs — validating the detection probability formula across the density spectrum.\n\n**Negative Result Contingency (Explicit):** If detection coverage is low (<30% on standard QA's sparse graphs) and verification provides no significant uplift over no-verification baselines, the paper reframes as a definitive cautionary finding — analogous to 'Right for the Wrong Reasons' (McCoy et al., ACL 2019). Specifically: (a) the first FORMAL evidence (not just empirical observation) that formal verification is not justified for temporal QA with sparse constraint graphs; (b) a quantitative density threshold formula practitioners can use; (c) a recommendation to invest in improved extraction rather than verification overhead for standard QA tasks, with verification reserved for document-level tasks with dense temporal annotations.\n\n**Critical Differentiation from Eirew et al. (EMNLP 2025):** Our work differs on five dimensions: (1) TASK: we study temporal QA verification (checking extracted facts during CoT reasoning), not temporal relation extraction (classifying all event pairs in documents) — different error distributions and graph structures; (2) ANALYSIS TYPE: we provide a formal framework (composition tightness, detection probability formula P_detect ≈ 1-(1-d²·τ)^(N-2)) that EXPLAINS why density matters, vs. their empirical observation; (3) ERROR TYPE DECOMPOSITION: we decompose detection by omission/misclassification/hallucination — they don't; (4) FORMALIZATION FEASIBILITY: we address whether LLMs can formalize temporal NL into Allen's vocabulary (Stage 0) — they assume extraction works; (5) DECISION BOUNDARY: we provide a quantitative threshold formula for practitioners — they don't.\n\n**Risk Discussion — arXiv:2605.04243:** This preprint (single author, high school affiliation, no code released, unreviewed) is cited only for two independently verifiable observations: (1) verification fails on omission errors (a logical consequence of any consistency-based approach); (2) extraction quality bounds system performance (consistent with TMLR 2025). Our analysis stands entirely independently.\n\nBackbone models: GPT-4o-mini (for NeSTR comparison) and Qwen3-14B. Zero-shot throughout; no fine-tuning required.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "300-450 (A100-equivalent: LLM inference across benchmarks with 2 backbones; Z3 solving is CPU-only; Stage 0 pilot is lightweight; synthetic corruption experiments are efficient; Stage 4 demoted to ablation reduces overhead)",
+      "timeline": "7-9 weeks (1 wk Stage 0 formalization pilot + density characterization in parallel, 1.5 wks Allen composition tightness analysis + Z3 encoding + detection coverage formal derivation, 1.5 wks synthetic corruption experiments, 2 wks standard benchmark evaluation across 2 backbones, 1-2 wks ablation + writing + negative result framing)",
+      "estimated_gpu_cost": "$600-900 at ~$2/GPU-hr"
+    },
+    "human_in_loop": {
+      "gpu_hours": "250-380",
+      "timeline": "5-7 weeks",
+      "claude_api_cost": "$200-400 (code generation, annotation assistance, analysis, paper drafting)",
+      "estimated_gpu_cost": "$500-760"
+    },
+    "auto_research": {
+      "gpu_hours": "350-550",
+      "timeline": "3-4.5 weeks",
+      "claude_api_cost": "$600-1200 (iterative pipeline design, automated ablation sweeps, detection coverage analysis, result interpretation, negative result framing)",
+      "estimated_gpu_cost": "$700-1100",
+      "speed_bottleneck": "Stage 0 pilot annotation (50-100 gold formalization labels, ~15 person-hours — streamlined by using ChronoSense-style annotation protocol); Z3 solver throughput on multi-step constraint sets"
+    }
+  },
+  "target_venues": [
+    "EACL 2027 (ARR submission: Aug 3, 2026 — primary target; 10.5 weeks available; commitment deadline Oct 11, 2026; diagnostic/analytical papers well-suited for *CL venues)",
+    "AAAI 2027 (abstract: Jul 21, full paper: Jul 28, 2026 — stretch target; 9 weeks; feasible only with human_in_loop or auto_research timeline)",
+    "TACL (rolling submission — suitable for comprehensive analytical study; ~46-day first decision turnaround; no deadline pressure)",
+    "ACL/EMNLP Insights from Negative Results Workshop (if core findings are negative — co-located with main conferences; rolling with main conference deadlines)"
+  ],
+  "level": "solid-to-good",
+  "key_references": [
+    "Unreasonable effectiveness of LLM reasoning: a doubly cautionary tale of temporal question-answering (TMLR 2025)",
+    "Temporal Reasoning Is Not the Bottleneck: A Probabilistic Inconsistency Framework for Neuro-Symbolic QA (arXiv:2605.04243, May 2026) [UNREVIEWED PREPRINT — single author, non-research-institution affiliation, no code released; cited for specific observations only]",
+    "Beyond Pairwise: Global Zero-shot Temporal Graph Generation (Eirew et al., EMNLP 2025) [KEY RELATED WORK — provides empirical density-dependent observations; our formal framework explains their findings]",
+    "A Reality Check of Language Models as Formalizers on Constraint Satisfaction Problems (arXiv 2505.13252, v4 March 2026)",
+    "Language Model Planners do not Scale, but do Formalizers? (arXiv 2603.23844, March 2026)",
+    "On the Limit of Language Models as Planning Formalizers (ACL 2025)",
+    "Language Model as Planner and Formalizer under Constraints [CoPE] (ACL 2026)",
+    "GraFT: Grammar-Forced Translation of Natural Language to Temporal Logic (ICML 2025, PMLR vol. 267)",
+    "Assessing the (In)Ability of LLMs to Reason in Interval Temporal Logic (TIME 2025)",
+    "Enforcing Temporal Constraints for LLM Agents [AGENT-C] (arXiv 2025)",
+    "NeSTR: A Neuro-Symbolic Abductive Framework for Temporal Reasoning in LLMs (AAAI 2026)",
+    "AdapTime: Enabling Adaptive Temporal Reasoning in LLMs (ACL 2026 Findings)",
+    "Bridging Time Gaps: Temporal Logic Relations for Enhancing Temporal Reasoning in LLMs [TempCoT] (SIGIR 2025)",
+    "Learning to Reason Over Time: Timeline Self-Reflection [TISER] (ACL 2025)",
+    "VERGE: Formal Refinement and Guidance Engine for Verifiable LLM Reasoning (arXiv 2026)",
+    "VeriCoT: Neuro-symbolic Chain-of-Thought Validation via Logical Consistency Checks (arXiv 2025)",
+    "ChronoSense: Exploring Temporal Understanding in LLMs with Time Intervals of Events (ACL 2025)",
+    "TCP: a Benchmark for Temporal Constraint-Based Planning (EMNLP 2025)",
+    "Time-R1: Towards Comprehensive Temporal Reasoning in LLMs (arXiv:2505.13508, May 2025)",
+    "Consistent Discourse-level Temporal Relation Extraction Using Large Language Models (EMNLP 2025 Findings)",
+    "Analysing Zero-shot Temporal Relation Extraction on Clinical Notes Using Temporal Consistency (Kougia et al., BioNLP 2024)",
+    "Empirical Characterization of Temporal Constraint Processing in LLMs (arXiv 2511.10654, 2025)",
+    "Large Language Models Can Learn Temporal Reasoning [TG-LLM] (ACL 2024)",
+    "Right for the Wrong Reasons: Diagnosing Syntactic Heuristics in NLI (McCoy et al., ACL 2019) [methodological model for diagnostic negative-result papers]",
+    "Reasoning about Temporal Relations: A Maximal Tractable Subclass of Allen's Interval Algebra (Nebel & Bürckert, JACM 1995) [theoretical foundation for ORD-Horn tractability and path-consistency completeness]"
+  ],
+  "description": "We present a diagnostic study — TemporalCoT-Verify — that answers: 'When does formal SMT verification help catch temporal extraction errors in LLM chain-of-thought reasoning?' Our primary contribution is ANALYTICAL, not a pipeline. Eirew et al. (EMNLP 2025) demonstrate a density-dependent empirical pattern: their global+ILP approach improves on exhaustively-annotated data (NT-6: +6.2 F1 vs. pairwise CoT) but underperforms on sparsely-annotated data (MATRES: -3.9 F1). Separately, Kougia et al. (BioNLP 2024) show ILP hurts pairwise predictions on clinical data (0.615→0.549). We provide the FORMAL FRAMEWORK that explains these empirical observations and enables actionable decisions. Our four contributions: (1) A formalization feasibility pilot measuring whether LLMs can translate temporal QA text into Allen's 13-relation vocabulary, testing unconstrained, structured-output, and grammar-constrained decoding — estimating a drop from ChronoSense's 0.86 accuracy (given explicit intervals) to 0.55-0.70 (from NL text). (2) Constraint graph density characterization across TGQA/TempReason/TimeQA, connecting QA benchmark density profiles to the formal detection analysis. (3) The first formal detection coverage framework based on Allen's composition table tightness: of the 169 basic compositions, entries yield result sets of exactly 1, 3, 5, 9, or 13 relations — we compute average tightness τ and derive P_detect ≈ 1-(1-d²·τ)^(N-2), providing a quantitative decision boundary. For typical QA (N=4, d=0.3), P_detect ≈ 0.09 (91% of errors undetected); for dense extraction (N=16, d=1.0), P_detect approaches 1.0. We validate via synthetic corruption experiments and decompose detection by error type (omission: ~0%; misclassification: density-dependent; hallucination: moderate). (4) Systematic evaluation of verification uplift/deficit on standard temporal QA benchmarks, including comparison with NeSTR's abductive reflection. We differ from Eirew et al. on five dimensions: task (QA verification vs. relation extraction), analysis type (formal framework vs. empirical observation), error decomposition, formalization feasibility, and practitioner decision boundary. If coverage is low (<30%), this is a valuable cautionary finding — analogous to 'Right for the Wrong Reasons' (McCoy et al., 2019) — providing formal evidence for when verification is not justified. Zero-shot with GPT-4o-mini and Qwen3-14B.",
+  "project_name": "smt_temporal_cot_verify",
+  "source": "web_research",
+  "revision_notes": {
+    "change_type": "major",
+    "issues_addressed": {
+      "1_GraFT_venue_fixed": "FIXED: GraFT venue corrected from 'ICLR 2025 / MLPR' to 'ICML 2025, PMLR vol. 267' (verified via proceedings.mlr.press/v267/english25a.html and icml.cc/virtual/2025/poster/44027).",
+      "2_Eirew_preemption_addressed": "CRITICAL REVISION: Deep reading of Eirew et al. (EMNLP 2025) revealed the original framing was misleading. The 70.3→66.4 comparison on MATRES is between pairwise CoT (70.3) and GlobalConsistency (global extraction + ILP, 66.4) — two DIFFERENT paradigms, not adding consistency to the same method. Within the global paradigm, ILP ALWAYS helps: ZSL-Timeline 59.0 → GlobalConsistency 66.4 on MATRES (+7.4); 59.4 → 64.1 on NT-6 (+4.7). The density-dependent pattern emerges from the paradigm comparison, not consistency alone. We now correctly present this nuance and explicitly differentiate on 5 dimensions: (a) TASK — temporal QA verification vs. temporal relation extraction; (b) ANALYSIS TYPE — formal composition tightness framework explaining WHY density matters vs. empirical observation; (c) ERROR TYPE DECOMPOSITION — omission/misclassification/hallucination, absent from Eirew et al.; (d) FORMALIZATION FEASIBILITY — Stage 0, not addressed by Eirew et al.; (e) DECISION BOUNDARY — quantitative P_detect formula for practitioners, not provided by Eirew et al. Separately, Kougia et al. (BioNLP 2024) remains a genuine case where ILP hurts pairwise predictions (0.615→0.549), correctly cited as a distinct phenomenon.",
+      "3_timeline_and_venue_adjusted": "EACL 2027 (ARR Aug 3) now primary target with 10.5 weeks available. AAAI 2027 (Jul 21/28) downgraded to stretch target. Timeline estimate tightened to 7-9 weeks by parallelizing Stage 0 and Stage 1, and by demoting Stage 4 (redundant extraction) to an ablation. Stage 0 gold annotation streamlined to ~15 person-hours using ChronoSense-style annotation protocol.",
+      "4_impact_argument_strengthened": "MAJOR ADDITION: Concrete detection probability formula P_detect ≈ 1-(1-d²·τ)^(N-2) where d is density, τ is composition tightness (~0.5), N is event count. Concrete examples: typical QA (N=4, d=0.3) → P_detect≈0.09; dense extraction (N=16, d=1.0) → P_detect→1.0. Practitioner decision boundary: verification cost-effective when P_detect > 0.3, corresponding to d > ~0.5 for N=6. This goes beyond 'don't use verification for sparse graphs' to provide a QUANTITATIVE threshold derived from Allen's composition table structure. The composition table's result-set sizes (1, 3, 5, 9, or 13 — a known mathematical property) make the tightness analysis precise, not heuristic.",
+      "5_ChronoSense_formalization_gap_estimated": "ADDED: Explicit estimate of formalization accuracy drop from ChronoSense setting (0.86 with explicit intervals) to extraction from NL text (estimated 0.55-0.70 with structured-output, 0.40-0.60 unconstrained). Rationale: (a) explicit intervals → NL text adds NLU difficulty of identifying implicit temporal boundaries; (b) fixed 13-way vocabulary is easier than FOL formalization (VeriCoT's 15-45%); (c) analogous gaps observed in structured-vs-unstructured extraction across NLU tasks. ChronoSense accuracy confirmed as 0.86 (Table 2 in original paper), not 0.87.",
+      "6_redundant_extraction_demoted": "Stage 4 (redundant cross-step extraction) demoted from standalone contribution to an ablation variable within Stage 2's comparison of verification paradigms, per reviewer recommendation. Now tested as one of four comparison conditions: SMT, abductive reflection, heuristic checks, and redundant extraction. This makes it a technique we test rather than a contribution we claim, appropriately reflecting its engineering-level novelty."
+    },
+    "key_insight": "Deep reading of Eirew et al. revealed the original framing was factually misleading — the 70.3→66.4 drop is a paradigm comparison (pairwise vs. global), not a consistency-hurts result. Correcting this actually STRENGTHENS our paper: the nuanced reality (consistency always helps within a paradigm, but paradigm choice depends on density) demands the formal framework we provide. Allen's composition table has a precise mathematical structure (result sets of size 1, 3, 5, 9, or 13) that enables rigorous detection probability analysis — this is the genuine novel contribution that no prior work provides.",
+    "what_changed_from_round4": "Corrected Eirew et al. framing from misleading 'consistency hurts' to accurate 'paradigm choice depends on density'; added 5-dimension explicit differentiation; introduced detection probability formula P_detect with concrete numerical examples; demoted redundant extraction to ablation; shifted to EACL 2027 as primary venue; added formalization accuracy drop estimate; fixed GraFT venue; added Nebel & Bürckert (JACM 1995) reference for ORD-Horn tractability."
+  }
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "be3af0bf-e218-4479-86bc-ee854bb866af",
+  "isSidechain": true,
+  "agentId": "aaa9f0c5dbacaacf4",
+  "requestId": "req_011CbBtUggBRyrw3ByDaVjUs",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "dccbd48f-5263-49d6-8988-8e2ab91ec5d4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea-gen-pipeline",
+  "sessionId": "d899d542-ed77-4dc7-9194-eb51a3244a0a",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mm5h6hjvihsP9uTHytxUFB",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 17959,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 8771,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 17959
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 8771,
+          "cache_read_input_tokens": 0,
+          "cache_creation_input_tokens": 17959,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 17959,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---

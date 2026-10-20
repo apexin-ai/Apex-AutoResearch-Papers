@@ -1,0 +1,9807 @@
+# Research conversation: You are a strict ML research reviewer conducting adversarial review. **Today's date: 2026-05-28 (UTC).** Your job: indep
+
+**Reproducibility Budgets for Open-Weight LLM Evaluation: A Generalizability Theory Study of 7–9B Instruction-Tuned Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 139
+- **Recorded user turns:** 1
+- **Tool calls:** 47
+- **Original source:** `logs/chats/exported-trajectories/account-2/2791be44-ab0b-4df4-8f73-1548822ffd8b.jsonl`
+- **Structured JSON:** [`b77d47cbaedb49d00db3.json`](../../sessions/b7/b77d47cbaedb49d00db3.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-28T15:33:54.444Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-28T15:33:54.444Z",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "content": "You are a strict ML research reviewer conducting adversarial review.\n\n**Today's date: 2026-05-28 (UTC).**\n\nYour job: independently verify this idea's claims via web_search, then issue a verdict.\n\n## User requirements\nThe user asked for: **Target: AAAI 2026\nTrack: AI for Science / Knowledge Representation and Reasoning\n\nDirection: Build the first domain-adaptive autoformalization pipeline that conditions formalization, retrieval, and repair strategies on mathematical subdomain (algebra, topology, analysis, number theory). The core insight is that autoformalization errors are not uniform — topology formalizations fail on typeclass instances while algebra formalizations fail on coercion chains — and domain-aware systems can exploit these patterns. Evaluate on cross-domain generalization: train on 3 domains, test on the held-out 4th.\n\nSeed Papers:\n- VeriSoftBench (arXiv 2602.18307, Feb 2026) — Proves Mathlib-trained provers fail on out-of-domain verification; motivates domain adaptation\n- APRIL (arXiv 2602.02990, Feb 2026) — 260k repair tuples enabling domain-stratified error analysis; no existing stratification\n- Herald (ICLR 2025) — 580k NL-formal pairs with Mathlib4 module provenance; enables domain labeling via module hierarchy\n- Autoformalizer with Tool Feedback (arXiv 2510.06857, Oct 2025) — Integrates repair into training but domain-agnostic; our domain-aware version is the delta\n- StepFun-Formalizer (AAAI 2026) — Current SOTA single-shot autoformalization; general-purpose baseline to beat on per-domain metrics\n- 130k Topology (arXiv 2601.03298, Jan 2026) — Domain-specific success via manual effort; motivates systematic domain adaptation\n- REAL-Prover (arXiv 2505.20613, May 2025) — Domain-aware retrieval helps proving; we extend retrieval to formalization\n- DDR (arXiv 2511.11990, Nov 2025) — Retrieval-augmented autoformalization via dependency generation; domain-agnostic baseline\n\nKnown Gaps:\n- No autoformalization system adapts its pipeline to mathematical subdomain; all treat algebra and topology identically despite different error distributions\n- APRIL's 260k repair tuples have never been stratified by domain — the domain-specific error taxonomy is uncharacterized\n- Retrieval-augmented autoformalization (DDR) retrieves domain-agnostic dependencies; domain-conditioned retrieval (Mathlib module-aware) is untested\n\nTheoretical Anchor: Domain shift theory from transfer learning — the distribution of formal language constructs (typeclasses, coercions, tactic vocabularies) differs measurably across Mathlib4 module hierarchies, creating a domain adaptation problem that standard domain-agnostic models underperform on. VeriSoftBench empirically confirms this for software domains; we extend the analysis to mathematical subdomains.\n\nConstraints:\n- Compute: ≤200 H100-hours (estimated ~70-80 H100-hours)\n- Must use open-source models only (Qwen2.5-7B or Goedel-Prover-V2-8B as base)\n- Evaluate on ≥3 benchmarks: miniF2F v2, ProofNet (domain-stratified), VeriSoftBench\n- Release all artifacts: model weights, domain-stratified APRIL analysis, evaluation scripts\n\nQuality Self-Checks:\n- [x] Core insight: Autoformalization errors cluster by mathematical domain, and domain-conditioned pipelines can exploit this structure.\n- [x] Why not obvious: Prior work treats autoformalization as domain-agnostic; domain adaptation requires Mathlib module hierarchy knowledge and domain-stratified training data that only became available with Herald (2025) and APRIL (2026).\n- [ ] Baseline fear test: RISK — a domain-agnostic model with more repair iterations could match 80% of the gain. Mitigation: the cross-domain generalization experiment (train on 3, test on 4th) specifically isolates domain adaptation's contribution vs. more compute.\n- [x] Information exploited: Mathlib4's module hierarchy as domain labels + APRIL's repair tuples stratified by error type and domain — information that exists in the data but no system currently uses.\n\nAvoid:\n- Framing as 'proof search improvement' — this is about formalization quality, not proving power\n- Competing on miniF2F leaderboard numbers — the contribution is per-domain reliability, not aggregate SOTA\n- Simple cycle consistency (claimed by 3 papers in 2025-2026)\n- Pure data scaling (diminishing returns per Goedel-Prover-V2)\n- Ignoring Autoformalizer with Tool Feedback as prior art — must clearly differentiate via domain-awareness**\nEvaluate whether this idea actually meets the user's requirements. An idea that doesn't match should be \"revise\" or \"fail\".\n\n## 核心要求：非常仔细地调研，非常仔细地思考\n\n你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证。\n\n### 调研要求\n\n1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。\n   每个验证维度建议用 2-3 种不同的搜索查询。\n\n2. **可行性深度检查**：\n   - 搜索类似实验的实际成本/周期\n   - 检查 claimed baselines 是否可复现\n   - 验证所需的 datasets/models 是否真的可以获取\n\n3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：\n   - 尝试不同的关键词组合\n   - 同时检查 arXiv 和 conference proceedings\n   - 寻找相邻领域的并行/concurrent 工作\n\n4. **深入阅读**：用 WebFetch 实际阅读相关论文的 abstract 和关键章节。\n\n### 思考要求\n\n5. **独立判断**：\n   - 不要因为 Generator 说得有道理就轻易 pass\n   - 思考这个 idea 在实际执行中会遇到什么困难\n   - 考虑这个 idea 对领域的真实贡献\n\n6. **评分诚实**：\n   - 4 分意味着\"确实很好\"，5 分意味着\"令人兴奋\"\n   - Agent 评分经常虚高，你的职责就是纠正这种偏差\n\n\n## 论文搜索策略\n\n你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。\n\n### 搜索源（推荐每个维度使用 2 个不同来源）\n\n1. **arXiv 预印本**（最新工作）:\n   - `site:arxiv.org {topic} 2026` — 按主题搜索最新论文\n   - `site:arxiv.org {method_name}` — 按具体方法名搜索\n   - `arxiv {topic} {month} 2026` — 精确到月份，找最近 3 个月的工作\n\n2. **Google Scholar**（引用关系 + 综合覆盖）:\n   - `{topic} 2026 site:scholar.google.com`\n   - `\"{exact paper title}\"` — 验证论文是否真实存在\n   - `\"{author name}\" {topic} 2026` — 按活跃作者追踪\n\n3. **Papers With Code**（SOTA 排行 + 代码可用性）:\n   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜\n   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局\n\n4. **OpenReview**（会议审稿 + 同行评价）:\n   - `site:openreview.net {topic} 2026` — 搜索会议提交的论文\n   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价\n\n5. **Semantic Scholar**（语义搜索 + 引用图谱）:\n   - `semantic scholar {topic} survey 2026` — 找综述论文\n\n6. **GitHub**（实现验证）:\n   - `site:github.com {method_name} {task}` — 验证开源实现是否存在\n\n### 搜索维度\n\n1. **正向搜索**：直接搜索主题相关论文\n2. **竞争论文搜索**（最关键！）：有没有人在解决同样的问题？用类似方法？\n3. **相邻领域搜索**：其他领域是否已解决类似问题\n4. **反面搜索**：找到反对你 idea 的证据\n5. **引用链追踪**：找到核心论文后，查看 cited-by 发现 concurrent work\n\n\n## 竞争论文专项搜索（Reviewer 独有）\n\n1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题\n2. **知名团队追踪**：搜索相关团队最近的论文\n3. **会议最新录用**：搜索 `site:openreview.net {topic} 2026`\n4. **arXiv 近 3 个月密集搜索**\n\n## Review checklist\n1. **SOTA freshness**: Are baselines actually current SOTA?\n2. **Reference verification**: Do cited papers actually exist?\n3. **Gap validity**: Does the claimed gap still exist?\n4. **Venue validity**: Are target venue deadlines after 2026-05-28?\n5. **Feasibility**: Is the resource estimate realistic?\n6. **Novelty**: Is this sufficiently different from existing work?\n7. **Cost realism**: Are the three mode estimates internally consistent?\n\n## Idea under review (round 9/10)\n{\n  \"title\": \"Domain-Adaptive Autoformalization via Subdomain-Conditioned Retrieval and Error Taxonomy\",\n  \"core_problem\": \"Current autoformalization systems treat all mathematical subdomains identically, yet empirical evidence from MSC-180 (CV values 4–6× above high-variability thresholds across 60 mathematical branches) and FormalMATH (0% on discrete math vs. 50% on algebra for Goedel-Prover) reveals severe, systematic domain bias. Aria (ICLR 2026) independently confirms this: 42.9% on homological conjectures while all baselines (Gemini-2.5-Pro, Goedel-Formalizer-V2-32B, Kimina-Autoformalizer-7B) achieve 0% — demonstrating that certain specialized domains are catastrophically underserved even by SOTA systems. Shebzukhov (2026; arXiv 2603.24372) provides complementary evidence via cycle consistency fine-tuning on FineLeanCorpus: number theory achieves 0.722 cycle consistency vs. calculus at 0.516, confirming domain-dependent performance variation — but this observational analysis reports only aggregate performance per domain without analyzing how error types differ across subdomains. IndiMathBench (Biyani et al., 2025; arXiv 2512.00997) provides further corroboration: static category-specific Mathlib context boosts syntactic compilation rates dramatically (e.g., Claude Opus 4: 4.1% → 77.9%) but BEq semantic correctness is only 17.3% (54/312 problems) and deeply domain-biased — only 12 of 98 geometry problems achieve BEq success among top models vs. far higher rates for algebra and number theory — demonstrating that even rudimentary domain awareness improves compilation but the harder semantic correctness gap persists with clear domain structure. Meanwhile, retrieval-augmented approaches address retrieval quality through increasingly sophisticated methods — CRAMF uses contextual query augmentation for concept-level disambiguation, DRIFT (ICLR 2026) decomposes statements into ~5.8 atomic sub-queries for targeted concept-level retrieval, LeanSearch v2 (May 2026) achieves SOTA premise retrieval (nDCG@10 = 0.623) without any domain-specific fine-tuning via hierarchy-informed informalization, and LeanPremise/LeanHammer (ICLR 2026; arXiv 2506.07477) achieves 79.4% relative proof rate on OOD benchmarks via neural premise selection for Lean proving — but none conditions retrieval ranking on the inferred mathematical subdomain of the input problem in a dynamic, per-problem fashion for autoformalization. The 260k repair tuples in APRIL contain an explicit 'error_type' field encoding mutation categories (lme: line mutation errors, mlme: multi-line mutation errors, thme: theorem substitution errors, tme: tactic mutation errors) and an 'error' field with raw Lean compiler messages (e.g., 'type mismatch', 'unknown constant', 'tactic rewrite failed', 'unsolved goals'), but these have never been cross-tabulated by mathematical subdomain despite the dataset containing explicit Mathlib module paths in each tuple's 'path' field. Can we build the first autoformalization pipeline that systematically conditions its dynamic retrieval ranking and prompting signals on inferred mathematical subdomain — beyond both static category context (IndiMathBench) and concept-level disambiguation/decomposition (CRAMF/DRIFT) — and can we provide the first domain-stratified cross-tabulation of APRIL's existing error categories plus a finer-grained error taxonomy extracted from raw Lean compiler messages, characterizing how autoformalization error TYPES distribute across mathematical subdomains with statistical rigor, going beyond observational domain-stratified scores (Shebzukhov, 2026)?\",\n  \"opportunity\": \"Six critical resources and findings converged in 2025–2026 that make domain-adaptive autoformalization both feasible and necessary, each containing underexploited domain metadata: (1) Herald (ICLR 2025) provides 580k NL-formal pairs where Mathlib4 module paths can be recovered by parsing qualified theorem names from formal statements (e.g., extracting 'Topology.Basic' from theorem names like 'Topology.Basic.isOpen_compl') — the released HuggingFace dataset (FrenzyMath/Herald_statements) contains id, informal_statement, and formal_statement fields without an explicit module path column, requiring parsing or re-running the Lean-Jixia extraction pipeline; (2) FineLeanCorpus/CriticLean (2025) provides 286k verified entries (509k total) with hierarchical problem-level domain labels and difficulty scores — but these capture mathematical topic, not formalization-level structure; (3) APRIL (Feb 2026) provides 260k repair tuples (59.5% theorem substitution errors, plus tactic, multi-line, and line mutations) with an explicit 'path' field encoding Mathlib module paths per tuple AND an existing 'error_type' field classifying mutation categories (lme/mlme/thme/tme) plus a raw 'error' field containing Lean compiler messages — making it the most immediately usable source for domain-stratified error analysis, as module paths can be directly mapped to mathematical subdomains without additional parsing, and our taxonomy contribution builds on APRIL's existing error categorization by cross-tabulating these mutation categories with mathematical subdomain and constructing a finer-grained taxonomy from the raw compiler error messages (parsing semantic categories such as typeclass resolution failures, coercion mismatches, tactic incompatibilities from raw strings like 'type mismatch', 'unknown constant', 'unsolved goals'); (4) CRAMF's 26k-definition knowledge base stores module paths (θ_p) per definition and uses LLM-generated contextual query augmentation to disambiguate polysemous concepts, but never conditions its retrieval reranking (bge-reranker-v2-m3) on the mathematical subdomain of the input problem; (5) MathAtlas (May 2026) provides 52k entities across 87 math areas with 178k dependency relations, using domain labels only for evaluation not pipeline conditioning; (6) LeanSearch v2 (May 2026) achieves SOTA domain-agnostic premise retrieval via hierarchy-informed Mathlib informalization — but its success demonstrates that retrieval quality alone does not address the domain bias problem documented by MSC-180 and FormalMATH, because domain bias manifests in formalization accuracy, not retrieval recall; and (7) IndiMathBench (Biyani et al., 2025; arXiv 2512.00997) demonstrates that static category-specific Mathlib context dramatically improves compilation rates for 4 mathematical domains — proving domain awareness helps — but uses one-time static context blocks with human-labeled categories rather than dynamic per-problem conditioning, and its BEq results (17.3% for Claude Opus 4, 54/312) reveal a persistent syntactic-vs-semantic gap with strong domain bias (geometry: 12/98 BEq among top models), leaving the semantic correctness challenge unaddressed. Note: IndiMathBench is an arXiv preprint (desk-rejected from ICLR 2026); its compilation and domain-bias patterns are corroborated by peer-reviewed evidence from MSC-180, FormalMATH, and Aria. Crucially, MSC-180 (Dec 2025) quantified domain bias with coefficient of variation metrics across 60 mathematical branches showing best models achieve only 18.89% overall with maximum 41.7% domain coverage, FormalMATH (2025) showed Goedel-Prover achieving 50% on algebra but 0% on discrete math, and Aria's homological conjectures results (42.9% vs. 0% for all baselines) provide the strongest peer-reviewed evidence that domain-specialized problems require fundamentally different handling. Shebzukhov (2026; arXiv 2603.24372) corroborates domain performance variation via cycle consistency fine-tuning — number theory at 0.722 vs. calculus at 0.516 — but performs only post-hoc observational analysis with no domain conditioning or error type classification. LeanPremise/LeanHammer (ICLR 2026; arXiv 2506.07477) provides further evidence of domain-dependent difficulty in the Lean ecosystem: its neural premise selection achieves strong average OOD performance (20.7% on miniCTX-v2) but with dramatic project-level variation (Carleson 0%, Foundation 38%, ConNF 16%, FLT 36.4%), confirming that domain-specific challenges persist even for state-of-the-art retrieval/selection systems — though LeanHammer targets proving (premise selection for tactic-based proof search) rather than autoformalization. KELPS (ICML 2025 AI4Math Workshop; arXiv 2507.08665) achieves 88.9% syntactic accuracy (pass@1) on MiniF2F via Knowledge Equations as intermediate representation, outperforming DeepSeek-V3 (81%) and Herald (81.3%) — but is entirely domain-agnostic with no subdomain conditioning, operating across 6 math topics without analyzing domain-specific error patterns. The ICML 2026 AI4Math Workshop validates growing community interest in domain-aware autoformalization evaluation through two complementary challenge tracks: Track 4 (ShadowBench) evaluates end-to-end autoformalization across 8 mathematical areas with semantic alignment pass rate metrics; Track 1 (FormalRx) evaluates semantic alignment preservation using the FormalRx-Test dataset built on a 28-category SCI Error Taxonomy that classifies errors by type. ConNF (DDR, ICLR 2025 Spotlight) tested OOD generalization to a single held-out domain (New Foundations set theory, 961 pairs), but no work has performed systematic multi-domain rotation evaluation across ≥4 mathematical subdomain categories. We hypothesize that Mathlib module paths (formalization-level structure) and problem-level domain labels (mathematical topic) capture complementary information — a number theory problem may require analysis-level typeclasses — and combining both signals for dynamic retrieval conditioning can close the semantic correctness domain gap that static category context alone cannot address.\",\n  \"landscape\": \"Current SOTA autoformalization systems — StepFun-Formalizer (40.5% BEq@1 on FormalMATH-Lite, AAAI 2026), ATLAS (NeurIPS 2025), FormaRL (COLM 2025), ProofBridge (+31.14% semantic correctness, ICLR 2026) — all report aggregate metrics with no domain conditioning. Retrieval-augmented approaches are sophisticated but domain-agnostic: DDR (ICLR 2025 Spotlight) introduced ConNF (961 OOD pairs from one domain); CRAMF (ICLR 2026) disambiguates polysemous concepts via contextual query augmentation (concept-level); DRIFT (ICLR 2026) decomposes statements into ~5.8 atomic sub-queries (concept-level decomposition); LeanSearch v2 (May 2026) achieves SOTA premise retrieval (nDCG@10 = 0.623) via hierarchy-informed informalization. None conditions retrieval ranking on the inferred mathematical subdomain of the input problem. In the broader Lean proving ecosystem, LeanPremise/LeanHammer (ICLR 2026; arXiv 2506.07477) provides the first end-to-end domain-general hammer for Lean, achieving strong average OOD performance (20.7% proof rate on miniCTX-v2, 79.4% relative to 26.1% upper bound) via an 82M-parameter neural premise selector with dynamic user-context adaptation — substantially outperforming ReProver (218M params). However, LeanHammer reveals significant project-level variation: Carleson 0%, ConNF 16%, Foundation 38%, FLT 36.4% — confirming that domain-specific challenges persist even in state-of-the-art systems. Critically, LeanHammer targets premise selection for tactic-based PROVING, not autoformalization retrieval, and uses no mathematical subdomain conditioning. KELPS (ICML 2025 AI4Math Workshop; arXiv 2507.08665) achieves 88.9% syntactic accuracy (pass@1) on MiniF2F — outperforming DeepSeek-V3 (81%) and Herald (81.3%) — via Knowledge Equations as an intermediate representation enabling verified multi-language autoformalization (NL → KE → Lean/Coq/Isabelle) across 60k+ NL-FL pairs spanning 6 math topics. KELPS is entirely domain-agnostic with no subdomain conditioning. Aria (ICLR 2026) achieves 42.9% on homological conjectures while all baselines score 0% — the strongest peer-reviewed evidence that domain-agnostic approaches catastrophically fail on specialized subdomains — yet Aria itself uses no domain conditioning. Domain bias is well-documented: MSC-180 found CV values 4–6× above high-variability thresholds across 60 branches; FormalMATH showed 50% algebra vs. 0% discrete math for Goedel-Prover. Domain-stratified performance has been observed: Shebzukhov (2026; arXiv 2603.24372) reports cycle consistency scores ranging from 0.722 (number theory) to 0.516 (calculus) on FineLeanCorpus and 0.641 (abstract algebra) to 0.493 (analysis) on PutnamBench — confirming domain-dependent variation in autoformalization quality — but performs only observational analysis with no domain conditioning, no error type classification, and concludes that 'improvement is general rather than domain-specific.' Limited domain awareness exists in prior work: IndiMathBench (Biyani et al., 2025; arXiv 2512.00997) uses static category-specific Mathlib context blocks achieving 77.9% compilation for Claude Opus 4 but only 17.3% BEq (54/312) with persistent geometry bias (12/98 BEq among top models) — demonstrating that static domain awareness helps compilation but not semantic correctness. SITA (AAAI 2026) applies structure-to-instance formalization for a single domain (optimization). M2F (Feb 2026) and Gloeckle et al. (Apr 2026) formalize entire textbooks in specific domains but use uniform methods. Repair approaches (APRIL, ReForm) apply uniform strategies regardless of domain; notably, APRIL's dataset already contains an 'error_type' field with mutation categories (lme/mlme/thme/tme) and a raw 'error' field with Lean compiler messages, but neither APRIL nor any subsequent work has cross-tabulated these error categories by mathematical subdomain using the dataset's own 'path' field. The community is converging on domain-stratified evaluation: the ICML 2026 AI4Math Workshop offers both ShadowBench (Track 4: end-to-end autoformalization across 8 mathematical areas with semantic alignment pass rate) and FormalRx (Track 1: semantic alignment evaluation using the 28-category SCI Error Taxonomy); Mensfelt et al. (AAAI 2026) propose a common autoformalization framework spanning math, planning, and logic. No prior work provides a systematic domain-stratified cross-tabulation of existing error categories (like APRIL's lme/mlme/thme/tme) combined with a finer-grained error taxonomy extracted from raw compiler messages, characterizing how autoformalization failure types (typeclass failures, coercion mismatches, tactic incompatibilities) distribute differently across mathematical subdomains, nor performs systematic multi-domain rotation evaluation (leave-one-domain-out across ≥5 categories).\",\n  \"inspired_by\": \"Field gaps #1 (no system conditions dynamic retrieval ranking on inferred mathematical subdomain — IndiMathBench uses static category context, CRAMF disambiguates polysemous concepts, DRIFT decomposes statements into concept-level sub-queries, LeanSearch v2 achieves SOTA domain-agnostic retrieval, LeanPremise/LeanHammer achieves strong domain-general premise selection for proving but with significant project-level variation (Carleson 0% to Foundation 38%) and no subdomain conditioning, but none dynamically conditions reranking on per-problem inferred subdomain for autoformalization), #2 (APRIL 260k tuples with explicit module paths and existing error_type field (lme/mlme/thme/tme) plus raw compiler error messages never cross-tabulated by mathematical subdomain — Shebzukhov (2026) shows domain-stratified aggregate scores but no domain-stratified error type analysis exists), #3 (CRAMF module paths and FineLeanCorpus topic labels never combined for subdomain-conditioned retrieval), #4 (ConNF tests single-domain OOD but no systematic multi-domain rotation exists); innovation patterns 'Retrieval at the Right Abstraction Level' (concept-level decomposition vs. problem-level domain signals) and 'Complementary Label Fusion'; untried combinations #1 (problem-level domain-conditioned retrieval extending CRAMF with APRIL module paths + FineLeanCorpus topic labels) and #2 (domain-stratified cross-tabulation of APRIL's existing error_type categories + finer-grained taxonomy from raw compiler errors as hypothesis-driven analysis); peer-reviewed evidence from Aria (42.9% vs. 0% homological conjectures, ICLR 2026) and MSC-180 (CV 4–6× thresholds across 60 branches) as primary motivation that domain-agnostic approaches systematically fail; LeanPremise/LeanHammer (ICLR 2026) as evidence that domain-dependent difficulty persists even in SOTA Lean premise selection (project variation: 0%–38%), relevant as domain-general retrieval/selection approach in the Lean ecosystem; KELPS (ICML 2025 AI4Math Workshop) as strong domain-agnostic MiniF2F baseline (88.9% pass@1) demonstrating high syntactic accuracy is achievable without domain conditioning, raising the bar for our domain-conditioned approach to demonstrate semantic correctness gains beyond syntactic compilation; Shebzukhov (2026) as corroborating observational evidence of domain-dependent autoformalization quality; IndiMathBench's syntactic-vs-semantic gap (77.9% compilation but 17.3% BEq with persistent geometry bias) as evidence that static domain context solves compilation but not semantic correctness; ShadowBench (ICML 2026 AI4Math Track 4) validating community interest in multi-domain autoformalization evaluation and FormalRx (Track 1) with its SCI Error Taxonomy validating interest in error characterization; contrast with single-domain approaches (SITA, M2F, 130k Topology, Gloeckle et al.) demonstrating domain-specific formalization is tractable but offering no systematic multi-domain conditioning; reviewer preferences for surgical ablations including IndiMathBench-style naive domain prompting baseline, compute-efficient designs, and LeanSearch v2 as strong domain-agnostic retrieval baseline.\",\n  \"approach\": \"We build a three-stage domain-adaptive autoformalization pipeline on a Goedel-Formalizer-V2-8B backbone (fine-tuned from Qwen3-8B; chosen over the user-specified Qwen2.5-7B because Goedel-Formalizer-V2 is the current SOTA open-source formalizer at this scale, specifically trained for NL→Lean4 translation, and Qwen3-8B provides improved reasoning over Qwen2.5 at comparable parameter count; Qwen2.5-Coder-7B-Instruct retained as additional baseline for FormaRL comparison). **Stage 1 — Domain-Stratified Error Taxonomy (PRIMARY CONTRIBUTION)**: We leverage APRIL's 260k repair tuples, which include an explicit 'path' field encoding Mathlib module paths per tuple, an existing 'error_type' field with mutation categories (lme: line mutation errors, mlme: multi-line mutation errors, thme: theorem substitution errors comprising 59.5% of the dataset, tme: tactic mutation errors), and a raw 'error' field containing Lean compiler messages (e.g., 'type mismatch', 'unknown constant', 'tactic rewrite failed', 'unsolved goals', 'application type mismatch'). We cluster the 'path' values into 5 major subdomain categories (algebra/ring theory, topology/order, analysis/calculus, number theory/combinatorics, logic/foundations). Our taxonomy contribution is twofold and builds on APRIL's existing categorization rather than constructing error categories from scratch: (i) a domain-stratified cross-tabulation of APRIL's existing error_type categories (lme/mlme/thme/tme) by mathematical subdomain, testing whether mutation category distributions vary significantly across domains (e.g., whether topology has disproportionately more tactic mutation errors while algebra has more line mutation errors); (ii) a finer-grained error taxonomy extracted from the raw 'error' field by parsing Lean compiler messages into semantic categories — typeclass resolution failures, coercion mismatches, tactic incompatibilities, unknown identifier errors, type unification failures, etc. — also stratified by subdomain. The novelty is in the domain stratification and statistical analysis (JSD, predictive power), not in inventing error categories de novo. We cross-reference with FineLeanCorpus's 286k verified entries (which provide hierarchical problem-level domain labels) and Herald's 580k NL-formal pairs (where module paths are recovered by parsing qualified theorem names from formal statements, e.g., extracting 'Topology.Basic' from 'Topology.Basic.isOpen_compl' — an engineering step requiring ~1 additional week beyond direct field access) to measure correlation and divergence between mathematical topic labels, formalization-level module paths, and error patterns. This goes beyond Shebzukhov (2026; arXiv 2603.24372), who reports domain-stratified aggregate cycle consistency scores (number theory 0.722 vs. calculus 0.516) but performs only observational analysis without classifying error categories per domain. **Quantitative success criteria for the error taxonomy** (testable hypotheses that define what constitutes a meaningful finding): (a) **Inter-domain error distribution divergence** — we hypothesize that Jensen-Shannon divergence between error-type distributions across domain pairs will exceed 0.3 (on a [0,1] scale) for at least 3 of 10 domain pairs (e.g., topology vs. algebra, analysis vs. logic), vs. JSD < 0.1 under random domain assignment permutation tests (1000 permutations). Rationale: topology formalizations disproportionately encounter typeclass instance resolution failures (Lean's typeclass system is heavily used for topological spaces, filters, and uniform structures) while algebra formalizations disproportionately encounter coercion chain incompleteness — if these patterns hold, the distributions will diverge substantially. (b) **Predictive power** — we hypothesize that a simple classifier trained on domain → error-type distributions will achieve ≥70% accuracy in predicting the dominant error type for held-out formalizations from a given domain, vs. ~20% baseline (assuming ~5 major error categories). This would demonstrate that knowing a problem's mathematical subdomain provides actionable information about likely failure modes — a qualitative step beyond the aggregate performance differences shown in Shebzukhov (2026). (c) **Actionable recommendations per domain** — for each of the 5 subdomain clusters, we produce a ranked list of the top-5 most frequent error types with concrete mitigation strategies (e.g., 'topology formalizations: prioritize typeclass instance search depth; algebra formalizations: check coercion chain completeness'), evaluated by whether prompting with these recommendations improves formalization accuracy by ≥5 percentage points on held-out examples from that domain vs. prompting without domain-specific error context. If hypotheses (a) and (b) hold, the taxonomy provides the first empirical evidence that autoformalization error types are systematically structured by mathematical subdomain — a finding valuable independent of any downstream pipeline delta, offering actionable guidance for all future domain-specific approaches. The FormalRx challenge (ICML 2026 AI4Math Workshop Track 1) provides a complementary 28-category SCI Error Taxonomy that classifies errors by type alone; our taxonomy is orthogonal in that it stratifies errors by mathematical subdomain, and the two taxonomies can be cross-referenced to test whether certain SCI error categories correlate with specific subdomains. ShadowBench (Track 4 of the same workshop) evaluates end-to-end autoformalization across 8 mathematical areas but does not classify error types. If the hypotheses do not hold (JSD < 0.15 across all domain pairs, prediction accuracy < 40%), we report this as a meaningful negative result: autoformalization errors are domain-invariant, and domain-adaptive approaches should focus on retrieval rather than error-aware prompting. **Stage 2 — Domain-Conditioned Retrieval**: We extend CRAMF's dual-channel hybrid retrieval with a domain-aware reranking layer that boosts same-subdomain definitions. This operates at a fundamentally different level than existing retrieval innovations: CRAMF disambiguates polysemous concepts (concept-level); DRIFT decomposes statements into atomic sub-queries (concept-level decomposition); LeanSearch v2 achieves SOTA domain-agnostic retrieval (retrieval quality); LeanPremise/LeanHammer achieves strong domain-general premise selection for proving (not autoformalization); IndiMathBench provides static category context (static domain awareness). Our reranker adds an orthogonal signal: given that the input problem is dynamically classified as topology, boost ALL topology-related definitions in retrieval, not just disambiguate individual concepts, decompose the statement, or apply a static category context block. The reranker operates per-problem (not per-category), using the inferred subdomain to weight retrieval results dynamically. The domain classifier for retrieval conditioning uses APRIL's explicit path field as primary training signal, supplemented by Herald's parsed module paths and FineLeanCorpus topic labels. The reranker is trained on this combined data with domain match as an additional feature alongside the existing semantic similarity score. We compare domain-conditioned retrieval vs. domain-agnostic retrieval at matched retrieval budget (same Top-K, same compute) to isolate the domain signal's contribution. We additionally compare against LeanSearch v2's standard mode as a strong domain-agnostic retrieval baseline. **Stage 3 — Domain-Aware Autoformalization**: Using Goedel-Formalizer-V2-8B, we apply domain-prefixed prompting: the input is augmented with predicted subdomain label, top domain-specific error patterns from Stage 1, and domain-conditioned retrieved definitions from Stage 2. We perform LoRA fine-tuning (rank 32) on domain-enriched data combining Herald and FineLeanCorpus, where each training example includes its domain context. No complex LoRA routing or domain-specific adapters — a single adapter learns to use domain context from the prompt. **Evaluation**: We introduce the first systematic multi-domain rotation evaluation protocol for autoformalization — leave-one-domain-out across our 5 subdomain categories, extending ConNF's single-domain OOD paradigm to systematic cross-domain generalization testing. Evaluated on FormalMATH-categorized problems and MathAtlas's 87-area benchmark. MSC-180's 60-branch classification serves as cross-domain generalization test. ConNF serves as an additional single-domain OOD test (New Foundations set theory). We position our evaluation protocol relative to ShadowBench (Track 4): while ShadowBench evaluates across 8 mathematical areas with fixed splits, our leave-one-domain-out rotation provides systematic cross-domain generalization measurement that fixed-split evaluation cannot. Surgical ablations isolate: (a) domain-conditioned retrieval alone (Stage 2 only), (b) domain-prefixed prompting alone (subdomain label in prompt, no retrieval change), (c) domain error context alone (error patterns in prompt, no retrieval change), (d) full combination (Stages 1+2+3), (e) **IndiMathBench-style naive domain prompting baseline** — prepending static category-specific Mathlib context to the input, replicating IndiMathBench's category-based retrieval approach at inference time; this tests whether the simple static approach that dramatically improves compilation also closes the semantic correctness gap, and (f) **LeanSearch v2 retrieval baseline** — replacing our domain-conditioned retrieval with LeanSearch v2's standard mode to test whether superior domain-agnostic retrieval subsumes domain conditioning. If ablation (e) captures 80%+ of semantic correctness gains, we report this honestly as evidence that the simple approach extends to semantic correctness — a valuable finding in itself; if the full pipeline significantly outperforms, it validates the engineering investment in dynamic conditioning and error taxonomy. A domain-agnostic matched-compute baseline (same LoRA budget, same retrieval budget, no domain conditioning) serves as control. Per-domain improvement analysis focuses on whether currently weak domains (analysis, discrete math, topology, geometry) show disproportionate gains. Domain-conditioned retrieval HitRate@K metrics provide pipeline-internal evaluation independent of downstream formalization accuracy.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~200 H100-hours (domain classifier from APRIL paths: 10h; APRIL cross-tabulation of error_type by subdomain + finer-grained taxonomy from raw error field: 8h; Herald module path parsing: 5h; domain reranker training: 15h; LoRA fine-tuning Goedel-Formalizer-V2-8B: 80h; evaluation across 5 domains × 3 benchmarks with Lean4 compilation: 50h; ablation experiments including IndiMathBench-style baseline + LeanSearch v2 comparison: 32h)\",\n      \"timeline\": \"17 weeks (1w Herald module path parsing + APRIL path field extraction, 3w domain taxonomy + APRIL error cross-tabulation + finer-grained taxonomy from raw errors + error taxonomy evaluation, 3w domain-conditioned retrieval + LeanSearch v2 baseline integration, 4w LoRA fine-tuning + training, 3w evaluation + leave-one-domain-out + ablations + ConNF, 3w writing + revision)\",\n      \"estimated_gpu_cost\": \"$500 (H100 at ~$2.50/hr average via RunPod/Lambda)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~200 H100-hours\",\n      \"timeline\": \"13 weeks (Claude accelerates Herald path parsing, domain taxonomy design, APRIL error pattern cross-tabulation and raw error parsing, retrieval pipeline code, and ablation analysis)\",\n      \"claude_api_cost\": \"$300 (domain taxonomy extraction from APRIL path fields + error_type cross-tabulation + raw error field parsing + Herald parsed module paths + FineLeanCorpus metadata, error clustering analysis across 260k APRIL tuples, evaluation script scaffolding, ablation result analysis)\",\n      \"estimated_gpu_cost\": \"$500\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~200 H100-hours (domain classifier from APRIL paths: 10h; APRIL cross-tabulation + finer-grained taxonomy: 8h; Herald path parsing: 5h; domain reranker training: 15h; LoRA fine-tuning: 78h; evaluation across 5 domains × 3 benchmarks + ConNF: 48h; ablation experiments including IndiMathBench-style baseline + LeanSearch v2 baseline: 30h; hyperparameter sweeps over domain granularity 3–7 clusters: 6h)\",\n      \"timeline\": \"11 weeks\",\n      \"claude_api_cost\": \"$450 (automated Herald path parsing, domain taxonomy iteration, APRIL error_type cross-tabulation and raw error parsing, repair pattern mining, hyperparameter selection, result analysis and paper drafting)\",\n      \"estimated_gpu_cost\": \"$500\",\n      \"speed_bottleneck\": \"Lean4 type-checking latency (~3–10s per statement) gates evaluation throughput; each leave-one-domain-out fold requires full Lean4 compilation across ~2k–5k statements; domain-conditioned retrieval index must be rebuilt when domain granularity changes\"\n    }\n  },\n  \"target_venues\": [\n    \"ICLR 2027 (estimated abstract: Sep 19, 2026; paper: Sep 24, 2026 — projected from historical pattern, NOT officially announced; ~16 weeks from today, PRIMARY TARGET; contingency: if actual deadline is earlier, submit Stage 1 error taxonomy + Stage 2 retrieval results without full Stage 3 ablations)\",\n    \"AAAI 2027 (abstract: Jul 21, 2026; paper: Jul 28, 2026 — confirmed; only ~8 weeks from today; INFEASIBLE for full pipeline given minimum 11-week auto_research timeline. A partial submission targeting error taxonomy (Stage 1) + initial domain-conditioned retrieval results (Stage 2) without full Stage 3 LoRA fine-tuning and ablation suite could be viable if Stage 1 yields strong early results within the first 6 weeks, but this requires aggressive prioritization and would omit key ablations)\",\n    \"NeurIPS 2026 MATH-AI Workshop (workshop paper deadline estimated ~Sep 2026 — contingent on workshop acceptance; workshop proposals due Jun 6, 2026)\",\n    \"ICML 2026 AI4Math Workshop — paper submission deadline May 25, 2026 has PASSED (3 days ago as of May 28, 2026); paper submission is no longer possible. Only challenge track participation remains viable: ShadowBench Track 4 (challenge deadline Jun 15, 2026) for complementary multi-domain evaluation; FormalRx Track 1 (challenge deadline Jun 15, 2026) to cross-reference our subdomain-stratified error taxonomy with the SCI Error Taxonomy\"\n  ],\n  \"level\": \"solid\",\n  \"key_references\": [\n    \"Herald: A Natural Language Annotated Lean 4 Dataset (ICLR 2025)\",\n    \"Rethinking and Improving Autoformalization: Towards a Faithful Metric and a Dependency Retrieval-based Approach / DDR + ConNF benchmark (ICLR 2025 Spotlight)\",\n    \"ATLAS: Autoformalizing Theorems through Lifting, Augmentation, and Synthesis of Data (NeurIPS 2025)\",\n    \"FormaRL: Enhancing Autoformalization with no Labeled Data (COLM 2025)\",\n    \"CriticLean: Critic-Guided Reinforcement Learning for Mathematical Formalization + FineLeanCorpus 286k verified entries (arXiv 2025)\",\n    \"FormalMATH: Benchmarking Formal Mathematical Reasoning of Large Language Models (arXiv 2025)\",\n    \"Goedel-Prover-V2: Scaling Formal Theorem Proving with Scaffolded Data Synthesis and Self-Correction (arXiv 2025)\",\n    \"MSC-180: A Benchmark for Automated Formal Theorem Proving from Mathematical Subject Classification (arXiv 2025)\",\n    \"Autoformalization in the Era of Large Language Models: A Survey (arXiv 2025)\",\n    \"StepFun-Formalizer: Unlocking the Autoformalization Potential of LLMs through Knowledge-Reasoning Fusion (AAAI 2026)\",\n    \"SITA: A Framework for Structure-to-Instance Theorem Autoformalization (AAAI 2026)\",\n    \"Towards a Common Framework for Autoformalization (Mensfelt et al., AAAI 2026)\",\n    \"Automated Formalization via Conceptual Retrieval-Augmented LLMs / CRAMF (ICLR 2026)\",\n    \"ProofBridge: Auto-Formalization of Natural Language Proofs in Lean via Joint Embeddings (ICLR 2026)\",\n    \"ReForm: Reflective Autoformalization with Prospective Bounded Sequence Optimization (ICLR 2026)\",\n    \"Aria: An Agent for Retrieval and Iterative Auto-Formalization via Dependency Graph (ICLR 2026)\",\n    \"DRIFT: Decompose, Retrieve, Illustrate, then Formalize Theorems (ICLR 2026 Poster)\",\n    \"Premise Selection for a Lean Hammer / LeanPremise + LeanHammer (ICLR 2026; arXiv 2506.07477)\",\n    \"IndiMathBench: Autoformalizing Mathematical Reasoning Problems with a Human Touch (Biyani et al., 2025; arXiv 2512.00997)\",\n    \"Improving Lean4 Autoformalization via Cycle Consistency Fine-tuning (Shebzukhov, 2026; arXiv 2603.24372)\",\n    \"Learning to Repair Lean Proofs from Compiler Feedback / APRIL (arXiv 2026)\",\n    \"M2F: Automated Formalization of Mathematical Literature at Scale (arXiv 2026)\",\n    \"Automatic Textbook Formalization / RepoProver (Gloeckle et al., arXiv 2026)\",\n    \"130k Lines of Formal Topology in Two Weeks: Simple and Cheap Autoformalization for Everyone? (arXiv 2026)\",\n    \"MathAtlas: A Benchmark for Autoformalization in the Wild (arXiv 2026)\",\n    \"LeanSearch v2: Global Premise Retrieval for Lean 4 Theorem Proving (arXiv 2026)\",\n    \"KELPS: A Framework for Verified Multi-Language Autoformalization via Semantic-Syntactic Alignment (ICML 2025 AI4Math Workshop; arXiv 2507.08665)\",\n    \"ShadowBench: End-to-End Autoformalization & Proof Generation Challenge (ICML 2026 AI4Math Workshop Track 4)\",\n    \"FormalRx: Semantic Alignment Evaluation with SCI Error Taxonomy (ICML 2026 AI4Math Workshop Track 1)\"\n  ],\n  \"description\": \"We propose the first autoformalization pipeline that systematically conditions dynamic retrieval ranking and prompting signals on inferred mathematical subdomain, and the first domain-stratified error taxonomy for autoformalization — built as a cross-tabulation of APRIL's existing error_type categories (lme/mlme/thme/tme) by mathematical subdomain plus a finer-grained taxonomy extracted from APRIL's raw Lean compiler error messages (parsing semantic categories: typeclass resolution failures, coercion mismatches, tactic incompatibilities, etc.), both stratified by subdomain via APRIL's explicit 'path' field. The novelty is in domain stratification and statistical analysis (JSD, predictive power), not in constructing error categories from scratch. Current SOTA systems (StepFun-Formalizer, ATLAS, FormaRL, ProofBridge, Aria, DRIFT, KELPS) treat all domains identically, yet peer-reviewed evidence demonstrates severe domain bias: MSC-180 reveals CV values 4–6× above statistical high-variability thresholds across 60 mathematical branches, FormalMATH shows Goedel-Prover at 50% on algebra but 0% on discrete math, and Aria (ICLR 2026) achieves 42.9% on homological conjectures while all baselines score 0%. LeanPremise/LeanHammer (ICLR 2026) further confirms domain-dependent difficulty with OOD project variation from 0% (Carleson) to 38% (Foundation) in Lean premise selection. Shebzukhov (2026; arXiv 2603.24372) corroborates this with cycle consistency scores ranging from 0.722 (number theory) to 0.516 (calculus), but performs only observational analysis without error type classification or domain conditioning. IndiMathBench (Biyani et al., 2025; arXiv 2512.00997) provides further evidence: static category-specific Mathlib context improves compilation dramatically but BEq semantic correctness remains only 17.3% (54/312 for Claude Opus 4) and deeply domain-biased (geometry: 12/98 BEq among top models). Existing retrieval innovations address different aspects: CRAMF disambiguates polysemous concepts (concept-level); DRIFT decomposes statements into atomic sub-queries (concept-level decomposition); LeanSearch v2 achieves SOTA domain-agnostic retrieval (nDCG@10 = 0.623); LeanPremise achieves strong premise selection for proving but not autoformalization. None dynamically conditions retrieval on the inferred subdomain of each input problem. We contribute two primary results: (1) **The first domain-stratified error taxonomy for autoformalization** — leveraging APRIL's 260k repair tuples (which include explicit Mathlib module paths in a 'path' field, existing error_type mutation categories, and raw Lean compiler errors) to cross-tabulate and stratify errors across 5 mathematical subdomain clusters, with pre-registered quantitative hypotheses: inter-domain JSD exceeding 0.3 for ≥3 domain pairs (vs. <0.1 under random assignment), domain-specific error prediction accuracy ≥70% (vs. ~20% random baseline), and ≥5 percentage point formalization improvement from domain-specific mitigation recommendations — complementing the FormalRx challenge's SCI Error Taxonomy (ICML 2026 AI4Math Track 1; 28 categories organized by error type) with subdomain-stratified analysis. (2) **Problem-level dynamic domain-conditioned retrieval and prompting** — extending CRAMF with a domain-aware reranker that boosts same-subdomain definitions per-problem, orthogonal to concept-level disambiguation (CRAMF), concept-level decomposition (DRIFT), domain-agnostic retrieval quality (LeanSearch v2), domain-general premise selection for proving (LeanPremise), and static category context (IndiMathBench). We introduce the first systematic multi-domain rotation evaluation protocol (leave-one-domain-out across ≥5 categories), more rigorous than ShadowBench's (Track 4) fixed-split 8-area evaluation. Six surgical ablations include an IndiMathBench-style static domain context baseline and LeanSearch v2 retrieval replacement. The entire pipeline fits within 200 H100-hours.\",\n  \"project_name\": \"domain_adapt_autoformal\",\n  \"source\": \"web_research\",\n  \"revision_notes\": {\n    \"round1_issue_1_compute_budget\": \"RESOLVED (Round 1): Reduced from ~600 A100-hours to ~200 H100-hours by dropping domain-routed LoRA adapters and GRPO.\",\n    \"round1_issue_2_venue_mismatch\": \"RESOLVED (Round 1): Primary target ICLR 2027, AAAI 2027 as stretch.\",\n    \"round1_issue_3_model_choice\": \"RESOLVED (Round 1): Goedel-Formalizer-V2-8B backbone with Qwen2.5-Coder-7B-Instruct as FormaRL comparison baseline.\",\n    \"round1_issue_4_FineLeanCorpus\": \"RESOLVED (Round 1): Added FineLeanCorpus with problem-level vs. formalization-level label distinction.\",\n    \"round1_issue_5_MSC180\": \"RESOLVED (Round 1): Added MSC-180 as motivation and evaluation benchmark.\",\n    \"round1_issue_6_circular_reasoning\": \"RESOLVED (Round 1): Error pattern claims reframed as hypotheses.\",\n    \"round1_issue_7_VeriSoftBench\": \"RESOLVED (Round 1): Replaced with MSC-180 and MathAtlas.\",\n    \"round1_issue_8_pipeline_complexity\": \"RESOLVED (Round 1): Simplified to 3 stages, 5 clusters, single LoRA.\",\n    \"round1_issue_9_baseline_fear_test\": \"RESOLVED (Round 1): Matched-compute baseline, per-domain analysis, error taxonomy as standalone contribution.\",\n    \"round2_issue_1_CRAMF_differentiation\": \"RESOLVED (Round 2): Deep-dived into CRAMF's actual technical implementation — concept-level disambiguation (CRAMF) vs. problem-level subdomain conditioning (ours) explicitly distinguished.\",\n    \"round2_issue_2_SITA\": \"RESOLVED (Round 2): Added SITA to landscape with explicit differentiation.\",\n    \"round2_issue_3_impact_argument\": \"RESOLVED (Round 2): Added naive domain prompting baseline and elevated error taxonomy.\",\n    \"round2_issue_4_FineLeanCorpus_size\": \"RESOLVED (Round 2): Corrected to '286k verified entries (509k total)' throughout.\",\n    \"round2_issue_5_ICLR2027_deadline\": \"MITIGATED (Round 2): Estimated Sep 19/24 with contingency.\",\n    \"round2_issue_6_M2F_RepoProver\": \"RESOLVED (Round 2): Added M2F and Automatic Textbook Formalization to landscape.\",\n    \"round3_issue_1_DRIFT_Aria\": \"RESOLVED: Added DRIFT (ICLR 2026 Poster) and Aria (ICLR 2026) with full technical differentiation.\",\n    \"round3_issue_2_ConNF_claim\": \"RESOLVED: Narrowed to 'first systematic multi-domain rotation evaluation protocol across ≥5 categories.'\",\n    \"round3_issue_3_error_taxonomy_elevation\": \"RESOLVED: Error taxonomy elevated to primary contribution with standalone evaluation criteria.\",\n    \"round3_issue_4_compute_trim\": \"RESOLVED: All three modes ≤200 H100-hours.\",\n    \"round3_issue_5_LeanSearch_v2\": \"RESOLVED: Added LeanSearch v2 comprehensively with ablation (f).\",\n    \"round4_issue_1_IndiMathBench\": \"RESOLVED: IndiMathBench cited comprehensively with three-axis differentiation (static vs. dynamic, syntactic vs. semantic, no error analysis).\",\n    \"round4_issue_2_quantitative_hypotheses\": \"RESOLVED: Added three pre-registered quantitative success criteria for the error taxonomy.\",\n    \"round4_issue_3_model_architecture\": \"RESOLVED: Goedel-Formalizer-V2-8B based on Qwen3-8B explicitly stated.\",\n    \"round5_issue_1_IndiMathBench_citation\": \"RESOLVED: Changed ALL 'ICLR 2026' citations for IndiMathBench to 'Biyani et al., 2025; arXiv 2512.00997' throughout.\",\n    \"round5_issue_2_BEq_correction\": \"RESOLVED: Corrected ALL instances of '~21.5%' to '17.3% (54/312 problems)' throughout.\",\n    \"round5_issue_3_ShadowBench\": \"RESOLVED: Added ShadowBench and SCI Error Taxonomy.\",\n    \"round5_issue_4_Mensfelt_framework\": \"RESOLVED: Added Mensfelt et al. (AAAI 2026) to landscape.\",\n    \"round5_issue_5_landscape_condensation\": \"RESOLVED: Condensed landscape to argument-driven organization.\",\n    \"round6_issue_1_cycle_consistency_paper\": \"RESOLVED: Cited Shebzukhov (2026; arXiv 2603.24372) throughout. Narrowed ALL novelty claims to 'first systematic domain-specific error TAXONOMY characterizing how autoformalization error TYPES distribute across subdomains.'\",\n    \"round6_issue_2_ShadowBench_SCI_conflation\": \"RESOLVED: Separated Track 1 (FormalRx) from Track 4 (ShadowBench) throughout.\",\n    \"round6_issue_3_Herald_data_engineering\": \"RESOLVED: Acknowledged Herald's limited schema; APRIL as primary domain signal.\",\n    \"round7_issue_1_APRIL_error_type_field\": \"RESOLVED: Acknowledged APRIL's existing 'error_type' field (mutation categories: lme, mlme, thme, tme) and 'error' field (raw Lean compiler messages) throughout core_problem, opportunity, landscape, approach, inspired_by, and description. Clarified that our error taxonomy contribution is a domain-stratified cross-tabulation of APRIL's existing error_type categories PLUS a finer-grained taxonomy extracted from the raw 'error' field (parsing Lean compiler messages into semantic categories: typeclass resolution failures, coercion mismatches, tactic incompatibilities, etc.), both stratified by mathematical subdomain from the 'path' field. The novelty is explicitly stated as being in domain stratification and statistical analysis (JSD, predictive power), not in constructing error categories from scratch. This prevents overclaiming while preserving the genuine novelty of domain-stratified error analysis.\",\n    \"round7_issue_2_LeanPremise_LeanHammer\": \"RESOLVED: Added LeanPremise/LeanHammer (ICLR 2026; arXiv 2506.07477) to core_problem, opportunity, landscape, approach, inspired_by, description, and key_references. Characterized as first end-to-end domain-general hammer for Lean with 82M-param neural premise selector, 79.4% relative proof rate OOD on miniCTX-v2 (20.7% absolute vs. 26.1% upper bound), significant project variation (Carleson 0%, Foundation 38%, ConNF 16%, FLT 36.4%), dynamic user-context adaptation. Explicitly differentiated: targets premise selection for tactic-based proving (not autoformalization retrieval); uses no mathematical subdomain conditioning; outperforms ReProver (218M). Its project-level variation provides additional evidence of domain-dependent difficulty in the Lean ecosystem.\",\n    \"round7_issue_3_KELPS\": \"RESOLVED: Added KELPS (ICML 2025 AI4Math Workshop; arXiv 2507.08665) to opportunity, landscape, inspired_by, description, and key_references. Characterized as achieving 88.9% syntactic accuracy (pass@1) on MiniF2F via Knowledge Equations intermediate representation (NL → KE → Lean/Coq/Isabelle), outperforming DeepSeek-V3 (81%) and Herald (81.3%), covering 60k+ NL-FL pairs across 6 math topics. Entirely domain-agnostic. Noted as ICML 2025 AI4Math Workshop paper (not main conference). Added to inspired_by as strong domain-agnostic baseline raising the bar for our approach to demonstrate semantic correctness gains beyond syntactic compilation.\",\n    \"round7_issue_4_venue_timeline_fixes\": \"RESOLVED: AAAI 2027 changed from 'STRETCH' to explicitly 'INFEASIBLE for full pipeline given minimum 11-week auto_research timeline' (~8 weeks available), with explicit description of what a partial submission could target (error taxonomy Stage 1 + initial retrieval Stage 2, without full LoRA fine-tuning and ablation suite). ICML 2026 AI4Math Workshop updated to note paper submission deadline May 25, 2026 has PASSED (3 days ago as of May 28, 2026); only challenge track participation (ShadowBench Track 4, FormalRx Track 1) with June 15 deadline remains viable.\"\n  }\n}\n\n\n## Previous review history\n### Round 1 review\nVerdict: revise\nIssues: [\"CRITICAL: Compute budget violation — estimates ~600 A100-hours (~300-400 H100-equivalent), 1.5-2x over user's hard constraint of ≤200 H100-hours\", \"CRITICAL: Venue mismatch — user requested 'AAAI 2026' (deadline August 2025, already past); Generator silently shifted to AAAI 2027 (July 2026). With today's date May 28, 2026, the July 28 deadline is only 8 weeks away, making even the 6-week auto_research timeline razor-thin\", \"CRITICAL: Model choice violation — user specified 'Qwen2.5-7B or Goedel-Prover-V2-8B' but Generator uses 'Qwen3-8B'\", \"Missing critical reference: CriticLean + FineLeanCorpus (509k entries with hierarchical domain labels like 'Algebra -> Intermediate Algebra -> Functional Equations' and difficulty scores) — this dataset already provides domain-stratified autoformalization data, undermining the claim that 'domain-specific error taxonomy is uncharacterized'\", \"Missing reference: MSC-180 benchmark (arXiv 2512.18256) evaluates theorem provers across 60 mathematical branches via MSC2020 classification with coefficient of variation metrics — directly relevant to domain bias analysis\", \"Circular reasoning in motivation: specific error patterns ('topology fails on typeclass instances, algebra fails on coercion chains') are stated as known facts to motivate the work, but discovering these patterns is actually a claimed contribution of the work\", \"VeriSoftBench evaluates software verification proofs, not mathematical autoformalization — including it as an autoformalization benchmark is misleading and doesn't match the paper's scope\", \"The 4-stage pipeline (classifier + APRIL stratification + domain retrieval + domain-conditioned GRPO with 15-subdomain LoRA routing) has excessive engineering complexity for the compute and timeline constraints\", \"Baseline fear test risk: acknowledged but not adequately mitigated — the leave-one-domain-out experiment isolates domain adaptation contribution, but if the delta is small (e.g., 2-3 percentage points), the paper's contribution becomes marginal\"]\nFeedback: To revise into a passable submission: (1) **Drastically simplify the pipeline** to fit within 200 H100-hours — drop domain-routed LoRA adapters (the most compute-hungry component) and focus on domain-conditioned retrieval + domain-stratified error analysis as the core contributions, which are cheaper and more novel; (2) **Use the user-specified models** (Qwen2.5-7B or Goedel-Prover-V2-8B); (3) **Cite and differentiate from FineLeanCorpus** — acknowledge its domain labels exist but argue your Mathlib module-path-based domain taxonomy captures formalization-specific structure (typeclass/coercion patterns) that FineLeanCorpus's problem-level labels do not; (4) **Reframe error pattern claims as hypotheses** to be empirically validated, not established facts; (5) **Replace VeriSoftBench** with FormalMATH-stratified evaluation or MathAtlas — both are mathematical benchmarks with domain structure; (6) **Target ICLR 2027** (estimated September 2026) instead of AAAI 2027 to get an extra ~8 weeks of development time; (7) **Reduce subdomain granularity** from 15 to 4-5 major domains (algebra, topology, analysis, number theory, combinatorics) to keep the experimental matrix manageable within budget; (8) **Strengthen the baseline comparison** by including a domain-agnostic model with matched compute (same number of repair iterations) as a control to convincingly demonstrate domain-conditioning adds value beyond more compute.\n\n### Round 2 review\nVerdict: revise\nIssues: [\"MODERATE: CRAMF differentiation insufficient — CRAMF explicitly mentions 'contextual query augmentation with domain- and application-level signals' and stores Mathlib module paths (θ_p) per definition. The proposal claims CRAMF 'never conditions retrieval reranking on mathematical subdomain' but doesn't directly acknowledge or rebut CRAMF's existing domain signals. A reviewer familiar with CRAMF will ask: 'How is your domain conditioning different from CRAMF's domain-level contextual query augmentation?'\", \"MODERATE: SITA (AAAI 2026) not cited — SITA demonstrates domain-specific autoformalization via structure-to-instance approach using Lean's typeclass mechanism, evaluated on 42 optimization problems. While a different paradigm (abstract structure instantiation vs. subdomain conditioning), it contradicts the 'first domain-specific autoformalization' framing and should be discussed as related work.\", \"MODERATE: Impact uncertainty — the matched-compute baseline mitigates the baseline fear test but doesn't address it: if domain-agnostic models with domain context in the prompt (a trivially simpler approach than the full pipeline) capture 80%+ of the gain, the multi-stage pipeline adds marginal value. The paper needs a stronger argument for why the full pipeline (classifier + domain reranking + domain error context) is necessary vs. simply adding 'This is a topology problem' to the prompt.\", \"MINOR: FineLeanCorpus size inaccuracy — claims '509k entries' but verified data shows 285,957 fully verified entries. The 509k figure may include unverified entries, but using it without qualification is misleading.\", \"MINOR: ICLR 2027 primary target is speculative — deadline not officially announced. If the actual deadline is earlier (e.g., August 2026), the 16-week timeline becomes infeasible.\", \"MINOR: M2F (Feb 2026) and RepoProver (Apr 2026) not cited — both perform domain-specific autoformalization at textbook scale (real analysis, convex analysis, algebraic combinatorics), providing evidence that different mathematical domains require different formalization strategies, supporting the proposal's motivation.\"]\nFeedback: The proposal has addressed all Round 1 critical issues well (compute, venue, model, VeriSoftBench, circular reasoning, pipeline simplification). The remaining issues are moderate rather than critical. To reach pass threshold: (1) **Sharpen CRAMF differentiation**: Explicitly acknowledge CRAMF's 'domain- and application-level signals' in contextual query augmentation and its stored module paths (θ_p), then argue precisely why this falls short of systematic subdomain conditioning — e.g., CRAMF's domain signals are used for disambiguating polysemous concepts, not for conditioning the retrieval ranking on the input's mathematical subdomain. (2) **Cite and differentiate from SITA (AAAI 2026)**: Acknowledge it as domain-specific autoformalization via structure-to-instance approach, but clarify your work conditions the general-purpose pipeline on subdomain identity, whereas SITA targets a specific mathematical pattern (abstract-to-concrete instantiation) in a single domain. (3) **Strengthen the impact argument**: Add an explicit ablation comparing 'naive domain prompting' (just prepending domain label to input, zero engineering) vs. full pipeline with domain-conditioned retrieval and error context. If the full pipeline doesn't significantly outperform naive domain prompting, the paper's contribution is weaker. Frame the error taxonomy as a co-equal contribution, not a byproduct. (4) **Fix FineLeanCorpus size**: Use '286k fully verified entries (509k total)' for accuracy. (5) **Add M2F and SITA to landscape discussion** as evidence that domain-specific approaches exist but are either single-domain (SITA, M2F) or manual (130k Topology), motivating your systematic multi-domain approach.\n\n### Round 3 review\nVerdict: revise\nIssues: [\"MODERATE: Several relevant ICLR 2026 systems missing from landscape — DRIFT (ICLR 2026 Poster) performs concept-level decomposition for targeted retrieval and nearly doubles F1 on ProofNet; its sub-query decomposition is conceptually related to domain-conditioned retrieval and must be differentiated. Aria (ICLR 2026) achieves 68.5% on ProofNet and 42.9% on homological conjectures (all other baselines 0%) but is domain-agnostic — these per-domain results directly support the proposal's domain bias motivation and should appear in the landscape analysis.\", \"MODERATE: ConNF benchmark (961 OOD informal-formal pairs, from DDR/ICLR 2025 Spotlight) specifically tests cross-domain generalization in autoformalization. The proposal claims to introduce 'the first leave-one-domain-out evaluation protocol for autoformalization' but does not cite ConNF. While ConNF tests a single OOD domain (New Foundations set theory) rather than systematic multi-domain rotation, the claim needs to be narrowed or ConNF explicitly differentiated.\", \"MODERATE: Impact argument remains the weakest link — the proposal correctly identifies the risk that naive domain prompting captures 80%+ of gains, but the framing still positions the multi-stage pipeline as the main system contribution. If the error taxonomy is the safety net, it should be promoted to unambiguous primary contribution with clearer standalone evaluation criteria (e.g., inter-domain error pattern correlation metrics, actionable recommendations per domain).\", \"MINOR: Compute budget slightly exceeds constraint — auto_research mode estimates 210 H100-hours vs. the user's hard ≤200 H100-hour cap. Need to either trim 10 hours (e.g., reduce ablation sweep scope) or justify the overage.\", \"MINOR: LeanSearch v2 (May 2026) achieves SOTA premise retrieval 'without domain-specific fine-tuning' — this is directly relevant since it suggests domain-agnostic retrieval can be very strong, potentially challenging the motivation for domain-conditioned retrieval. Should be cited and its implications discussed.\"]\nFeedback: The proposal has matured significantly across three rounds and is close to passing. All Round 2 issues were addressed well, particularly the CRAMF differentiation (now technically precise and verified accurate). To reach pass threshold: (1) **Add DRIFT, ConNF, LeanSearch v2, and Aria's per-domain results** to the landscape — DRIFT and LeanSearch v2 are recent strong retrieval baselines; ConNF is the existing OOD autoformalization benchmark; Aria's per-domain gaps (42.9% on homological conjectures vs. 0% for all baselines) directly support the domain bias motivation. (2) **Narrow the 'first leave-one-domain-out' claim** — ConNF already tests OOD generalization, so specify 'first systematic multi-domain rotation evaluation' across ≥4 mathematical subdomain categories. (3) **Elevate the error taxonomy to unambiguous primary contribution** — define standalone evaluation criteria: (a) inter-domain error pattern clustering metrics (e.g., how distinct are topology vs. algebra error distributions?), (b) predictive power of domain-specific error patterns (can the taxonomy predict which errors a new formalization will encounter?), (c) actionable recommendations per domain. This makes the paper valuable even if the downstream delta is modest. (4) **Trim 10 H100-hours** from the auto_research estimate to fit within the ≤200 constraint. (5) **Discuss LeanSearch v2's domain-agnostic SOTA** — if domain-agnostic retrieval is already very strong, what specifically does domain conditioning add beyond what scale/engineering can achieve?\n\n### Round 4 review\nVerdict: revise\nIssues: [\"MODERATE: IndiMathBench (ICLR 2026, arXiv 2512.00997) not cited — uses category-specific static Mathlib context for 4 mathematical domains (Geometry, Algebra, Number Theory, Set Theory & Combinatorics) to condition autoformalization prompts. While IndiMathBench uses static context blocks (not dynamic retrieval conditioning) and does not claim novelty in domain awareness, it IS a form of domain-conditioned autoformalization. The proposal's claim of being 'the first autoformalization pipeline that conditions on inferred mathematical subdomain' must acknowledge and differentiate from IndiMathBench. IndiMathBench's approach is essentially the 'naive domain prompting' ablation the proposal already plans — this connection should be made explicit.\", \"MODERATE: Impact argument remains below the 4.0 threshold — IndiMathBench achieves 95.3% syntactic validity with simple category-specific static context, suggesting that even rudimentary domain awareness is powerful. This strengthens the proposal's motivation (domain information helps) but weakens the pipeline contribution (maybe simple approaches suffice). The error taxonomy needs to be framed even more forcefully as the primary contribution — with quantitative hypotheses about expected inter-domain JSD values and prediction accuracy thresholds that would constitute a meaningful finding.\", \"MINOR: Goedel-Formalizer-V2-8B is fine-tuned from Qwen3-8B, not Qwen2.5. The user specified 'Qwen2.5-7B or Goedel-Prover-V2-8B' — using the Formalizer variant is reasonable (same family, specialized for formalization) but should be explicitly justified since the base architecture differs from user's Qwen2.5 specification.\"]\nFeedback: The proposal is very close to passing (avg 3.875/5.0) after 4 strong revision rounds. Two targeted fixes should clear the threshold: (1) **Cite IndiMathBench and make it your 'naive domain prompting' reference implementation**: IndiMathBench's category-specific static context is essentially the simple baseline your ablation (e) already plans. Explicitly map your ablation to IndiMathBench's approach: 'Our naive domain prompting baseline (ablation e) replicates IndiMathBench's category-specific context approach; our full pipeline adds dynamic domain-conditioned retrieval reranking and error-taxonomy-driven prompting on top.' This transforms a missing reference into a strengthened experimental design. Narrow the novelty claim to: 'first system to condition dynamic retrieval ranking on inferred mathematical subdomain and provide systematic domain-specific error characterization.' (2) **Set quantitative success criteria for the error taxonomy to strengthen impact**: State concrete hypotheses — e.g., 'We hypothesize JSD between topology and algebra error distributions exceeds 0.3 (vs. <0.1 for random domain assignments)' and 'domain-specific error prediction accuracy exceeds 70% on held-out formalizations.' This transforms the error taxonomy from 'we'll analyze and see what we find' into a testable scientific claim that reviewers can evaluate. If these hypotheses hold, the paper has clear value regardless of pipeline delta.\n\n### Round 5 review\nVerdict: revise\nIssues: [\"MODERATE: IndiMathBench was DESK REJECTED at ICLR 2026 — cited as 'ICLR 2026' throughout the proposal (core_problem, opportunity, landscape, approach, description), falsely implying acceptance. Must be cited as 'arXiv 2512.00997' or 'IndiMathBench (Biyani et al., 2025)'. A desk-rejected paper's experimental claims carry less weight than peer-reviewed results, and reviewers who know its status will question the proposal's due diligence.\", \"MINOR: IndiMathBench Claude Opus 4 BEq is 17.3% (54/312 problems), not '~21.5%' as claimed in multiple sections. The 21.5% figure does not correspond to any metric in the paper. This numerical error appears in core_problem, opportunity, and description — undermining trust in the proposal's data verification.\", \"MINOR: ICML 2026 AI4Math Workshop (Jul 11, 2026) features ShadowBench — 126 problems across 8 mathematical areas with domain-tiered evaluation and Semantic Alignment metrics. This workshop challenge directly overlaps with the proposal's domain-stratified evaluation contribution and should be cited. Concurrent community interest in domain-stratified autoformalization evaluation both validates the proposal's direction and signals competition.\", \"MINOR: 'Towards a Common Framework for Autoformalization' (AAAI 2026) discusses cross-domain autoformalization challenges and the need for methods that 'transfer reasoning patterns and formalization strategies across different areas' — tangentially relevant and should be acknowledged, though it focuses on cross-formalism domains (math vs. planning vs. logic) rather than mathematical subdomain adaptation.\"]\nFeedback: The proposal is very close to the pass threshold (avg 3.75/5.0) after 5 strong revision rounds. Two targeted fixes should clear 4.0: (1) **Fix IndiMathBench citation**: Change 'ICLR 2026' to 'arXiv 2512.00997' or 'IndiMathBench (Biyani et al., 2025, desk-rejected ICLR 2026 submission)' throughout. The paper's results remain usable as empirical evidence, but its desk-rejection status means reviewers will scrutinize claims derived from it more carefully — consider reducing reliance on IndiMathBench-specific numbers and strengthening the argument with peer-reviewed evidence (MSC-180, FormalMATH, Aria's homological results are all stronger references). Fix the BEq number to 17.3% (54/312). (2) **Cite and position relative to ICML 2026 ShadowBench**: The AI4Math Workshop's ShadowBench evaluates autoformalization across 8 mathematical areas with SA metrics — this validates community interest in domain-stratified evaluation but also means you're not the only ones thinking about it. Cite it and argue your evaluation protocol (leave-one-domain-out rotation across 5+ categories with systematic ablations) is more rigorous than ShadowBench's fixed-split evaluation. (3) **Consider condensing the landscape section** — at its current length, it reads like a survey rather than a research proposal. The core contribution can be stated in 1/3 the space.\n\n### Round 6 review\nVerdict: revise\nIssues: [\"MODERATE: Missing reference — Cycle Consistency Fine-tuning (arXiv:2603.24372, Shebzukhov, March 2026) provides domain-stratified autoformalization results using FineLeanCorpus domain labels, showing number theory at 0.722 cycle consistency vs. calculus at 0.516. While it performs only post-hoc observational analysis (no domain conditioning), it partially pre-empts claims of providing 'the first empirical characterization of how autoformalization errors distribute across mathematical subdomains.' The proposal's novelty claim must be narrowed to 'first domain-specific error TAXONOMY characterizing error TYPES by subdomain' (not just aggregate performance by domain).\", \"MINOR: ShadowBench/SCI Error Taxonomy conflation — the proposal repeatedly states 'ShadowBench challenge (126 problems across 8 mathematical areas with Semantic Alignment metrics and a 28-category SCI Error Taxonomy)' but the 28-category SCI Error Taxonomy belongs to Track 1 (FormalRx challenge), not Track 4 (ShadowBench). These are separate challenge tracks within the same ICML 2026 AI4Math Workshop. The conflation appears in core_problem, approach, and description.\", \"MINOR: Herald module path claim overstated — the proposal states Herald provides '580k NL-formal pairs tagged with Mathlib4 module paths enabling automatic formalization-level domain labeling' but the released HuggingFace dataset (FrenzyMath/Herald_statements) contains only id, informal_statement, and formal_statement fields with no explicit module path column. Domain info must be parsed from qualified theorem names embedded in formal statements or recovered via re-running the Lean-Jixia extraction pipeline. This is feasible but adds unacknowledged engineering effort.\"]\nFeedback: The proposal is very close to passing (avg 3.5/5.0 → needs 4.0). Three targeted fixes for Round 7: (1) **Cite the cycle consistency paper (arXiv:2603.24372)** and narrow the novelty claim: this paper already shows autoformalization performance varies by domain (number theory > calculus), so you cannot claim to be 'the first to show domain variation exists.' Narrow to: 'first systematic domain-specific error TAXONOMY that characterizes how autoformalization failure TYPES (not just aggregate accuracy) distribute across subdomains — going beyond the observational domain-stratified scores in Shebzukhov (2026) to classify error categories (typeclass failures, coercion mismatches, tactic incompatibilities) per subdomain with statistical rigor.' (2) **Fix the ShadowBench/SCI conflation**: Separate the two tracks — ShadowBench (Track 4) uses Semantic Alignment metrics for end-to-end autoformalization; the SCI Error Taxonomy (28 categories) belongs to Track 1 (FormalRx) for semantic alignment evaluation. Both are relevant but distinct. Your error taxonomy complements the SCI taxonomy (which categorizes by error type alone) by adding subdomain stratification. (3) **Acknowledge Herald data engineering**: Note that Herald's module paths must be parsed from qualified names in formal statements (e.g., extracting 'Topology.Basic' from 'Topology.Basic.isOpen_compl') rather than read from a dedicated field, and account for this in the timeline (~1 additional week). Alternatively, note that APRIL's HuggingFace dataset includes an explicit 'path' field that directly encodes Mathlib module paths, making it the more immediately usable source for domain labeling.\n\n### Round 7 review\nVerdict: revise\nIssues: [\"MINOR: LeanPremise/LeanHammer (ICLR 2026, arXiv 2506.07477) not cited — the first end-to-end domain-general hammer for Lean with dynamic user-context adaptation and strong out-of-distribution generalization (79.4% relative to upper bound on miniCTX-v2). While targeting premise selection for proving (not autoformalization retrieval) and not conditioning on mathematical subdomain per se, it demonstrates a relevant domain-generalization approach in the Lean ecosystem that should be acknowledged in the landscape.\", \"MINOR: AAAI 2027 (July 28, 2026) is listed as a target venue but is mathematically infeasible — 8 weeks from today vs. minimum 11-week auto_research timeline. Should be downgraded from 'STRETCH' to explicitly infeasible, or the timeline should explain what partial submission (e.g., error taxonomy only) could be ready in 8 weeks.\", \"MINOR: ICML 2026 AI4Math Workshop paper submission deadline was May 25, 2026 (already passed 3 days ago). The target_venues entry correctly identifies challenge track participation (June 15 deadline) but should note that paper submission is no longer possible.\", \"MINOR: The APRIL dataset's HuggingFace schema includes an 'error_type' field already classifying errors into categories (theorem substitution, tactic errors, multi-line errors, line mutations). The proposal's 'domain-specific error taxonomy' contribution is more precisely a domain-stratified cross-tabulation of APRIL's existing error types — this should be stated explicitly to avoid overclaiming. The novelty is in the domain stratification and statistical analysis (JSD, predictive power), not in constructing a new error classification.\", \"MINOR: KELPS (arXiv 2507.08665) achieves 88.9% syntactic accuracy on MiniF2F via Knowledge Equations and multi-language autoformalization — a strong baseline not currently cited that outperforms several referenced systems.\"]\nFeedback: The proposal has matured substantially across 6 revision rounds and all critical/moderate issues are resolved. Remaining issues are all minor. To clear the 4.0 threshold: (1) **Acknowledge APRIL's existing error_type field** and precisely describe the taxonomy contribution as domain-stratified cross-tabulation with statistical rigor (JSD, prediction), not a new error classification — this prevents overclaiming while preserving the genuine novelty of domain stratification. (2) **Fix venue timeline accuracy**: mark AAAI 2027 as infeasible (not 'stretch'), note ICML 2026 paper deadline has passed, and specify what partial submission could target AAAI 2027 if desired (e.g., error taxonomy + initial retrieval results without full ablations). (3) **Add LeanPremise/LeanHammer** to landscape as a strong domain-general retrieval baseline in the Lean ecosystem, differentiating by target task (premise selection for proving vs. retrieval for autoformalization). (4) **Consider adding KELPS** as a strong MiniF2F baseline. These four fixes are all straightforward and should be completable in one revision round.\n\n### Round 8 review\nVerdict: revise\nIssues: [\"MINOR: Goedel-Formalizer-V2-8B characterized as 'current SOTA open-source formalizer at this scale' but evidence shows it TIES with Kimina-formalizer-8B (161/300 on Omni-MATH internal eval) and StepFun-Formalizer-7B achieves 38.3% BEq@1 on FormalMATH-Lite — the 'SOTA' claim should be softened to 'competitive open-source formalizer at this scale' or 'among the strongest open-source formalizers'\", \"MINOR: 'Do LLMs Game Formalization?' (arXiv 2604.19459, VerifAI-2 Workshop at ICLR 2026) introduces a complementary formalization error taxonomy (semantic faithfulness: mistranslation, fabrication, omission, contradiction) operating at the post-compilation layer. While fundamentally different from the proposal's compiler-error-based taxonomy (no overlap in scope), citing it as complementary work strengthens the argument that error characterization is under-explored and positions the two taxonomies as addressing different layers of the error stack (pre-compilation vs. post-compilation)\", \"MINOR: CAM-Bench (arXiv 2605.17255, May 2026) — 1,000 Lean proof targets in optimization, numerical linear algebra, and numerical analysis — is a relevant concurrent domain-specific benchmark supporting the motivation that domain-specific evaluation matters, but is not cited\", \"MINOR: Impact argument remains the binding constraint — the baseline fear test is honestly acknowledged but not resolved. The proposal correctly notes that if ablation (e) captures 80%+ of gains, 'we report this honestly as evidence that the simple approach extends to semantic correctness,' but this outcome would significantly weaken the paper's system contribution, leaving the error taxonomy as the primary value. The proposal would benefit from a stronger argument for why domain-conditioned retrieval should outperform static context (e.g., problems that span multiple domains, problems whose domain classification is non-obvious, retrieval precision at high K values)\"]\nFeedback: The proposal has matured exceptionally across 7 revision rounds — all reference claims independently verified accurate, novelty claims appropriately narrowed, and prior issues comprehensively addressed. Average score is 3.875, just below the 4.0 threshold, with impact (3.5) as the binding constraint. Three small fixes for Round 9: (1) **Soften the Goedel-Formalizer-V2-8B 'SOTA' claim** — it ties with Kimina-8B and StepFun-7B may outperform on BEq@1; say 'competitive at this scale' instead. (2) **Cite 'Do LLMs Game Formalization?' (arXiv 2604.19459) as complementary** — its semantic faithfulness taxonomy (post-compilation errors) vs. your compiler error taxonomy (pre-compilation errors) together demonstrate that error characterization at BOTH layers is under-explored, strengthening your argument for the taxonomy contribution. (3) **Strengthen the impact argument for domain-conditioned retrieval over static context**: articulate specific scenarios where dynamic per-problem conditioning should outperform IndiMathBench-style static context — e.g., cross-domain problems (a number theory result requiring analysis-level typeclasses), ambiguous domain assignment (problems at domain boundaries), and retrieval precision degradation at higher K values where domain filtering reduces noise. If you can make a convincing case that these scenarios are common enough to matter, the pipeline contribution gains weight beyond the taxonomy.\n\n\n## Output format\nOutput ONLY a JSON object:\n{\n  \"verdict\": \"pass | revise | fail\",\n  \"scores\": {\n    \"novelty\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"feasibility\": {\"score\": 0-5, \"rationale\": \"...\"},\n    \"clarity\": {\"score\": 0-5, \"rationale\": \"...\"},\n    \"impact\": {\"score\": 0-5, \"rationale\": \"...\"}\n  },\n  \"issues\": [\"specific issue 1\", ...],\n  \"feedback\": \"Actionable feedback (if verdict=revise)\",\n  \"reason\": \"One-line summary of verdict rationale\"\n}\n\nRules:\n- \"pass\": sound AND high quality — avg score >= 4.0, no critical issues\n- \"revise\": fixable issues OR scores below threshold\n- \"fail\": fundamental flaw (gap doesn't exist, approach provably wrong)\n- Threshold is HIGH (4.0/5.0): only truly outstanding ideas should pass.\n- Round 10 only: if still \"revise\", you MUST choose \"pass\" or \"fail\"."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-28T15:33:54.447Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-28T15:33:54.447Z",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b"
+}
+```
+
+---
+
+## Round 1
+
+137 recorded events
+
+### User
+
+_source line 3 · 2026-05-28T15:33:54.486Z_
+
+You are a strict ML research reviewer conducting adversarial review.
+
+**Today's date: 2026-05-28 (UTC).**
+
+Your job: independently verify this idea's claims via web_search, then issue a verdict.
+
+## User requirements
+The user asked for: **Target: AAAI 2026
+Track: AI for Science / Knowledge Representation and Reasoning
+
+Direction: Build the first domain-adaptive autoformalization pipeline that conditions formalization, retrieval, and repair strategies on mathematical subdomain (algebra, topology, analysis, number theory). The core insight is that autoformalization errors are not uniform — topology formalizations fail on typeclass instances while algebra formalizations fail on coercion chains — and domain-aware systems can exploit these patterns. Evaluate on cross-domain generalization: train on 3 domains, test on the held-out 4th.
+
+Seed Papers:
+- VeriSoftBench (arXiv 2602.18307, Feb 2026) — Proves Mathlib-trained provers fail on out-of-domain verification; motivates domain adaptation
+- APRIL (arXiv 2602.02990, Feb 2026) — 260k repair tuples enabling domain-stratified error analysis; no existing stratification
+- Herald (ICLR 2025) — 580k NL-formal pairs with Mathlib4 module provenance; enables domain labeling via module hierarchy
+- Autoformalizer with Tool Feedback (arXiv 2510.06857, Oct 2025) — Integrates repair into training but domain-agnostic; our domain-aware version is the delta
+- StepFun-Formalizer (AAAI 2026) — Current SOTA single-shot autoformalization; general-purpose baseline to beat on per-domain metrics
+- 130k Topology (arXiv 2601.03298, Jan 2026) — Domain-specific success via manual effort; motivates systematic domain adaptation
+- REAL-Prover (arXiv 2505.20613, May 2025) — Domain-aware retrieval helps proving; we extend retrieval to formalization
+- DDR (arXiv 2511.11990, Nov 2025) — Retrieval-augmented autoformalization via dependency generation; domain-agnostic baseline
+
+Known Gaps:
+- No autoformalization system adapts its pipeline to mathematical subdomain; all treat algebra and topology identically despite different error distributions
+- APRIL's 260k repair tuples have never been stratified by domain — the domain-specific error taxonomy is uncharacterized
+- Retrieval-augmented autoformalization (DDR) retrieves domain-agnostic dependencies; domain-conditioned retrieval (Mathlib module-aware) is untested
+
+Theoretical Anchor: Domain shift theory from transfer learning — the distribution of formal language constructs (typeclasses, coercions, tactic vocabularies) differs measurably across Mathlib4 module hierarchies, creating a domain adaptation problem that standard domain-agnostic models underperform on. VeriSoftBench empirically confirms this for software domains; we extend the analysis to mathematical subdomains.
+
+Constraints:
+- Compute: ≤200 H100-hours (estimated ~70-80 H100-hours)
+- Must use open-source models only (Qwen2.5-7B or Goedel-Prover-V2-8B as base)
+- Evaluate on ≥3 benchmarks: miniF2F v2, ProofNet (domain-stratified), VeriSoftBench
+- Release all artifacts: model weights, domain-stratified APRIL analysis, evaluation scripts
+
+Quality Self-Checks:
+- [x] Core insight: Autoformalization errors cluster by mathematical domain, and domain-conditioned pipelines can exploit this structure.
+- [x] Why not obvious: Prior work treats autoformalization as domain-agnostic; domain adaptation requires Mathlib module hierarchy knowledge and domain-stratified training data that only became available with Herald (2025) and APRIL (2026).
+- [ ] Baseline fear test: RISK — a domain-agnostic model with more repair iterations could match 80% of the gain. Mitigation: the cross-domain generalization experiment (train on 3, test on 4th) specifically isolates domain adaptation's contribution vs. more compute.
+- [x] Information exploited: Mathlib4's module hierarchy as domain labels + APRIL's repair tuples stratified by error type and domain — information that exists in the data but no system currently uses.
+
+Avoid:
+- Framing as 'proof search improvement' — this is about formalization quality, not proving power
+- Competing on miniF2F leaderboard numbers — the contribution is per-domain reliability, not aggregate SOTA
+- Simple cycle consistency (claimed by 3 papers in 2025-2026)
+- Pure data scaling (diminishing returns per Goedel-Prover-V2)
+- Ignoring Autoformalizer with Tool Feedback as prior art — must clearly differentiate via domain-awareness**
+Evaluate whether this idea actually meets the user's requirements. An idea that doesn't match should be "revise" or "fail".
+
+## 核心要求：非常仔细地调研，非常仔细地思考
+
+你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证。
+
+### 调研要求
+
+1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。
+   每个验证维度建议用 2-3 种不同的搜索查询。
+
+2. **可行性深度检查**：
+   - 搜索类似实验的实际成本/周期
+   - 检查 claimed baselines 是否可复现
+   - 验证所需的 datasets/models 是否真的可以获取
+
+3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：
+   - 尝试不同的关键词组合
+   - 同时检查 arXiv 和 conference proceedings
+   - 寻找相邻领域的并行/concurrent 工作
+
+4. **深入阅读**：用 WebFetch 实际阅读相关论文的 abstract 和关键章节。
+
+### 思考要求
+
+5. **独立判断**：
+   - 不要因为 Generator 说得有道理就轻易 pass
+   - 思考这个 idea 在实际执行中会遇到什么困难
+   - 考虑这个 idea 对领域的真实贡献
+
+6. **评分诚实**：
+   - 4 分意味着"确实很好"，5 分意味着"令人兴奋"
+   - Agent 评分经常虚高，你的职责就是纠正这种偏差
+
+
+## 论文搜索策略
+
+你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。
+
+### 搜索源（推荐每个维度使用 2 个不同来源）
+
+1. **arXiv 预印本**（最新工作）:
+   - `site:arxiv.org {topic} 2026` — 按主题搜索最新论文
+   - `site:arxiv.org {method_name}` — 按具体方法名搜索
+   - `arxiv {topic} {month} 2026` — 精确到月份，找最近 3 个月的工作
+
+2. **Google Scholar**（引用关系 + 综合覆盖）:
+   - `{topic} 2026 site:scholar.google.com`
+   - `"{exact paper title}"` — 验证论文是否真实存在
+   - `"{author name}" {topic} 2026` — 按活跃作者追踪
+
+3. **Papers With Code**（SOTA 排行 + 代码可用性）:
+   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜
+   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局
+
+4. **OpenReview**（会议审稿 + 同行评价）:
+   - `site:openreview.net {topic} 2026` — 搜索会议提交的论文
+   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价
+
+5. **Semantic Scholar**（语义搜索 + 引用图谱）:
+   - `semantic scholar {topic} survey 2026` — 找综述论文
+
+6. **GitHub**（实现验证）:
+   - `site:github.com {method_name} {task}` — 验证开源实现是否存在
+
+### 搜索维度
+
+1. **正向搜索**：直接搜索主题相关论文
+2. **竞争论文搜索**（最关键！）：有没有人在解决同样的问题？用类似方法？
+3. **相邻领域搜索**：其他领域是否已解决类似问题
+4. **反面搜索**：找到反对你 idea 的证据
+5. **引用链追踪**：找到核心论文后，查看 cited-by 发现 concurrent work
+
+
+## 竞争论文专项搜索（Reviewer 独有）
+
+1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题
+2. **知名团队追踪**：搜索相关团队最近的论文
+3. **会议最新录用**：搜索 `site:openreview.net {topic} 2026`
+4. **arXiv 近 3 个月密集搜索**
+
+## Review checklist
+1. **SOTA freshness**: Are baselines actually current SOTA?
+2. **Reference verification**: Do cited papers actually exist?
+3. **Gap validity**: Does the claimed gap still exist?
+4. **Venue validity**: Are target venue deadlines after 2026-05-28?
+5. **Feasibility**: Is the resource estimate realistic?
+6. **Novelty**: Is this sufficiently different from existing work?
+7. **Cost realism**: Are the three mode estimates internally consistent?
+
+## Idea under review (round 9/10)
+{
+  "title": "Domain-Adaptive Autoformalization via Subdomain-Conditioned Retrieval and Error Taxonomy",
+  "core_problem": "Current autoformalization systems treat all mathematical subdomains identically, yet empirical evidence from MSC-180 (CV values 4–6× above high-variability thresholds across 60 mathematical branches) and FormalMATH (0% on discrete math vs. 50% on algebra for Goedel-Prover) reveals severe, systematic domain bias. Aria (ICLR 2026) independently confirms this: 42.9% on homological conjectures while all baselines (Gemini-2.5-Pro, Goedel-Formalizer-V2-32B, Kimina-Autoformalizer-7B) achieve 0% — demonstrating that certain specialized domains are catastrophically underserved even by SOTA systems. Shebzukhov (2026; arXiv 2603.24372) provides complementary evidence via cycle consistency fine-tuning on FineLeanCorpus: number theory achieves 0.722 cycle consistency vs. calculus at 0.516, confirming domain-dependent performance variation — but this observational analysis reports only aggregate performance per domain without analyzing how error types differ across subdomains. IndiMathBench (Biyani et al., 2025; arXiv 2512.00997) provides further corroboration: static category-specific Mathlib context boosts syntactic compilation rates dramatically (e.g., Claude Opus 4: 4.1% → 77.9%) but BEq semantic correctness is only 17.3% (54/312 problems) and deeply domain-biased — only 12 of 98 geometry problems achieve BEq success among top models vs. far higher rates for algebra and number theory — demonstrating that even rudimentary domain awareness improves compilation but the harder semantic correctness gap persists with clear domain structure. Meanwhile, retrieval-augmented approaches address retrieval quality through increasingly sophisticated methods — CRAMF uses contextual query augmentation for concept-level disambiguation, DRIFT (ICLR 2026) decomposes statements into ~5.8 atomic sub-queries for targeted concept-level retrieval, LeanSearch v2 (May 2026) achieves SOTA premise retrieval (nDCG@10 = 0.623) without any domain-specific fine-tuning via hierarchy-informed informalization, and LeanPremise/LeanHammer (ICLR 2026; arXiv 2506.07477) achieves 79.4% relative proof rate on OOD benchmarks via neural premise selection for Lean proving — but none conditions retrieval ranking on the inferred mathematical subdomain of the input problem in a dynamic, per-problem fashion for autoformalization. The 260k repair tuples in APRIL contain an explicit 'error_type' field encoding mutation categories (lme: line mutation errors, mlme: multi-line mutation errors, thme: theorem substitution errors, tme: tactic mutation errors) and an 'error' field with raw Lean compiler messages (e.g., 'type mismatch', 'unknown constant', 'tactic rewrite failed', 'unsolved goals'), but these have never been cross-tabulated by mathematical subdomain despite the dataset containing explicit Mathlib module paths in each tuple's 'path' field. Can we build the first autoformalization pipeline that systematically conditions its dynamic retrieval ranking and prompting signals on inferred mathematical subdomain — beyond both static category context (IndiMathBench) and concept-level disambiguation/decomposition (CRAMF/DRIFT) — and can we provide the first domain-stratified cross-tabulation of APRIL's existing error categories plus a finer-grained error taxonomy extracted from raw Lean compiler messages, characterizing how autoformalization error TYPES distribute across mathematical subdomains with statistical rigor, going beyond observational domain-stratified scores (Shebzukhov, 2026)?",
+  "opportunity": "Six critical resources and findings converged in 2025–2026 that make domain-adaptive autoformalization both feasible and necessary, each containing underexploited domain metadata: (1) Herald (ICLR 2025) provides 580k NL-formal pairs where Mathlib4 module paths can be recovered by parsing qualified theorem names from formal statements (e.g., extracting 'Topology.Basic' from theorem names like 'Topology.Basic.isOpen_compl') — the released HuggingFace dataset (FrenzyMath/Herald_statements) contains id, informal_statement, and formal_statement fields without an explicit module path column, requiring parsing or re-running the Lean-Jixia extraction pipeline; (2) FineLeanCorpus/CriticLean (2025) provides 286k verified entries (509k total) with hierarchical problem-level domain labels and difficulty scores — but these capture mathematical topic, not formalization-level structure; (3) APRIL (Feb 2026) provides 260k repair tuples (59.5% theorem substitution errors, plus tactic, multi-line, and line mutations) with an explicit 'path' field encoding Mathlib module paths per tuple AND an existing 'error_type' field classifying mutation categories (lme/mlme/thme/tme) plus a raw 'error' field containing Lean compiler messages — making it the most immediately usable source for domain-stratified error analysis, as module paths can be directly mapped to mathematical subdomains without additional parsing, and our taxonomy contribution builds on APRIL's existing error categorization by cross-tabulating these mutation categories with mathematical subdomain and constructing a finer-grained taxonomy from the raw compiler error messages (parsing semantic categories such as typeclass resolution failures, coercion mismatches, tactic incompatibilities from raw strings like 'type mismatch', 'unknown constant', 'unsolved goals'); (4) CRAMF's 26k-definition knowledge base stores module paths (θ_p) per definition and uses LLM-generated contextual query augmentation to disambiguate polysemous concepts, but never conditions its retrieval reranking (bge-reranker-v2-m3) on the mathematical subdomain of the input problem; (5) MathAtlas (May 2026) provides 52k entities across 87 math areas with 178k dependency relations, using domain labels only for evaluation not pipeline conditioning; (6) LeanSearch v2 (May 2026) achieves SOTA domain-agnostic premise retrieval via hierarchy-informed Mathlib informalization — but its success demonstrates that retrieval quality alone does not address the domain bias problem documented by MSC-180 and FormalMATH, because domain bias manifests in formalization accuracy, not retrieval recall; and (7) IndiMathBench (Biyani et al., 2025; arXiv 2512.00997) demonstrates that static category-specific Mathlib context dramatically improves compilation rates for 4 mathematical domains — proving domain awareness helps — but uses one-time static context blocks with human-labeled categories rather than dynamic per-problem conditioning, and its BEq results (17.3% for Claude Opus 4, 54/312) reveal a persistent syntactic-vs-semantic gap with strong domain bias (geometry: 12/98 BEq among top models), leaving the semantic correctness challenge unaddressed. Note: IndiMathBench is an arXiv preprint (desk-rejected from ICLR 2026); its compilation and domain-bias patterns are corroborated by peer-reviewed evidence from MSC-180, FormalMATH, and Aria. Crucially, MSC-180 (Dec 2025) quantified domain bias with coefficient of variation metrics across 60 mathematical branches showing best models achieve only 18.89% overall with maximum 41.7% domain coverage, FormalMATH (2025) showed Goedel-Prover achieving 50% on algebra but 0% on discrete math, and Aria's homological conjectures results (42.9% vs. 0% for all baselines) provide the strongest peer-reviewed evidence that domain-specialized problems require fundamentally different handling. Shebzukhov (2026; arXiv 2603.24372) corroborates domain performance variation via cycle consistency fine-tuning — number theory at 0.722 vs. calculus at 0.516 — but performs only post-hoc observational analysis with no domain conditioning or error type classification. LeanPremise/LeanHammer (ICLR 2026; arXiv 2506.07477) provides further evidence of domain-dependent difficulty in the Lean ecosystem: its neural premise selection achieves strong average OOD performance (20.7% on miniCTX-v2) but with dramatic project-level variation (Carleson 0%, Foundation 38%, ConNF 16%, FLT 36.4%), confirming that domain-specific challenges persist even for state-of-the-art retrieval/selection systems — though LeanHammer targets proving (premise selection for tactic-based proof search) rather than autoformalization. KELPS (ICML 2025 AI4Math Workshop; arXiv 2507.08665) achieves 88.9% syntactic accuracy (pass@1) on MiniF2F via Knowledge Equations as intermediate representation, outperforming DeepSeek-V3 (81%) and Herald (81.3%) — but is entirely domain-agnostic with no subdomain conditioning, operating across 6 math topics without analyzing domain-specific error patterns. The ICML 2026 AI4Math Workshop validates growing community interest in domain-aware autoformalization evaluation through two complementary challenge tracks: Track 4 (ShadowBench) evaluates end-to-end autoformalization across 8 mathematical areas with semantic alignment pass rate metrics; Track 1 (FormalRx) evaluates semantic alignment preservation using the FormalRx-Test dataset built on a 28-category SCI Error Taxonomy that classifies errors by type. ConNF (DDR, ICLR 2025 Spotlight) tested OOD generalization to a single held-out domain (New Foundations set theory, 961 pairs), but no work has performed systematic multi-domain rotation evaluation across ≥4 mathematical subdomain categories. We hypothesize that Mathlib module paths (formalization-level structure) and problem-level domain labels (mathematical topic) capture complementary information — a number theory problem may require analysis-level typeclasses — and combining both signals for dynamic retrieval conditioning can close the semantic correctness domain gap that static category context alone cannot address.",
+  "landscape": "Current SOTA autoformalization systems — StepFun-Formalizer (40.5% BEq@1 on FormalMATH-Lite, AAAI 2026), ATLAS (NeurIPS 2025), FormaRL (COLM 2025), ProofBridge (+31.14% semantic correctness, ICLR 2026) — all report aggregate metrics with no domain conditioning. Retrieval-augmented approaches are sophisticated but domain-agnostic: DDR (ICLR 2025 Spotlight) introduced ConNF (961 OOD pairs from one domain); CRAMF (ICLR 2026) disambiguates polysemous concepts via contextual query augmentation (concept-level); DRIFT (ICLR 2026) decomposes statements into ~5.8 atomic sub-queries (concept-level decomposition); LeanSearch v2 (May 2026) achieves SOTA premise retrieval (nDCG@10 = 0.623) via hierarchy-informed informalization. None conditions retrieval ranking on the inferred mathematical subdomain of the input problem. In the broader Lean proving ecosystem, LeanPremise/LeanHammer (ICLR 2026; arXiv 2506.07477) provides the first end-to-end domain-general hammer for Lean, achieving strong average OOD performance (20.7% proof rate on miniCTX-v2, 79.4% relative to 26.1% upper bound) via an 82M-parameter neural premise selector with dynamic user-context adaptation — substantially outperforming ReProver (218M params). However, LeanHammer reveals significant project-level variation: Carleson 0%, ConNF 16%, Foundation 38%, FLT 36.4% — confirming that domain-specific challenges persist even in state-of-the-art systems. Critically, LeanHammer targets premise selection for tactic-based PROVING, not autoformalization retrieval, and uses no mathematical subdomain conditioning. KELPS (ICML 2025 AI4Math Workshop; arXiv 2507.08665) achieves 88.9% syntactic accuracy (pass@1) on MiniF2F — outperforming DeepSeek-V3 (81%) and Herald (81.3%) — via Knowledge Equations as an intermediate representation enabling verified multi-language autoformalization (NL → KE → Lean/Coq/Isabelle) across 60k+ NL-FL pairs spanning 6 math topics. KELPS is entirely domain-agnostic with no subdomain conditioning. Aria (ICLR 2026) achieves 42.9% on homological conjectures while all baselines score 0% — the strongest peer-reviewed evidence that domain-agnostic approaches catastrophically fail on specialized subdomains — yet Aria itself uses no domain conditioning. Domain bias is well-documented: MSC-180 found CV values 4–6× above high-variability thresholds across 60 branches; FormalMATH showed 50% algebra vs. 0% discrete math for Goedel-Prover. Domain-stratified performance has been observed: Shebzukhov (2026; arXiv 2603.24372) reports cycle consistency scores ranging from 0.722 (number theory) to 0.516 (calculus) on FineLeanCorpus and 0.641 (abstract algebra) to 0.493 (analysis) on PutnamBench — confirming domain-dependent variation in autoformalization quality — but performs only observational analysis with no domain conditioning, no error type classification, and concludes that 'improvement is general rather than domain-specific.' Limited domain awareness exists in prior work: IndiMathBench (Biyani et al., 2025; arXiv 2512.00997) uses static category-specific Mathlib context blocks achieving 77.9% compilation for Claude Opus 4 but only 17.3% BEq (54/312) with persistent geometry bias (12/98 BEq among top models) — demonstrating that static domain awareness helps compilation but not semantic correctness. SITA (AAAI 2026) applies structure-to-instance formalization for a single domain (optimization). M2F (Feb 2026) and Gloeckle et al. (Apr 2026) formalize entire textbooks in specific domains but use uniform methods. Repair approaches (APRIL, ReForm) apply uniform strategies regardless of domain; notably, APRIL's dataset already contains an 'error_type' field with mutation categories (lme/mlme/thme/tme) and a raw 'error' field with Lean compiler messages, but neither APRIL nor any subsequent work has cross-tabulated these error categories by mathematical subdomain using the dataset's own 'path' field. The community is converging on domain-stratified evaluation: the ICML 2026 AI4Math Workshop offers both ShadowBench (Track 4: end-to-end autoformalization across 8 mathematical areas with semantic alignment pass rate) and FormalRx (Track 1: semantic alignment evaluation using the 28-category SCI Error Taxonomy); Mensfelt et al. (AAAI 2026) propose a common autoformalization framework spanning math, planning, and logic. No prior work provides a systematic domain-stratified cross-tabulation of existing error categories (like APRIL's lme/mlme/thme/tme) combined with a finer-grained error taxonomy extracted from raw compiler messages, characterizing how autoformalization failure types (typeclass failures, coercion mismatches, tactic incompatibilities) distribute differently across mathematical subdomains, nor performs systematic multi-domain rotation evaluation (leave-one-domain-out across ≥5 categories).",
+  "inspired_by": "Field gaps #1 (no system conditions dynamic retrieval ranking on inferred mathematical subdomain — IndiMathBench uses static category context, CRAMF disambiguates polysemous concepts, DRIFT decomposes statements into concept-level sub-queries, LeanSearch v2 achieves SOTA domain-agnostic retrieval, LeanPremise/LeanHammer achieves strong domain-general premise selection for proving but with significant project-level variation (Carleson 0% to Foundation 38%) and no subdomain conditioning, but none dynamically conditions reranking on per-problem inferred subdomain for autoformalization), #2 (APRIL 260k tuples with explicit module paths and existing error_type field (lme/mlme/thme/tme) plus raw compiler error messages never cross-tabulated by mathematical subdomain — Shebzukhov (2026) shows domain-stratified aggregate scores but no domain-stratified error type analysis exists), #3 (CRAMF module paths and FineLeanCorpus topic labels never combined for subdomain-conditioned retrieval), #4 (ConNF tests single-domain OOD but no systematic multi-domain rotation exists); innovation patterns 'Retrieval at the Right Abstraction Level' (concept-level decomposition vs. problem-level domain signals) and 'Complementary Label Fusion'; untried combinations #1 (problem-level domain-conditioned retrieval extending CRAMF with APRIL module paths + FineLeanCorpus topic labels) and #2 (domain-stratified cross-tabulation of APRIL's existing error_type categories + finer-grained taxonomy from raw compiler errors as hypothesis-driven analysis); peer-reviewed evidence from Aria (42.9% vs. 0% homological conjectures, ICLR 2026) and MSC-180 (CV 4–6× thresholds across 60 branches) as primary motivation that domain-agnostic approaches systematically fail; LeanPremise/LeanHammer (ICLR 2026) as evidence that domain-dependent difficulty persists even in SOTA Lean premise selection (project variation: 0%–38%), relevant as domain-general retrieval/selection approach in the Lean ecosystem; KELPS (ICML 2025 AI4Math Workshop) as strong domain-agnostic MiniF2F baseline (88.9% pass@1) demonstrating high syntactic accuracy is achievable without domain conditioning, raising the bar for our domain-conditioned approach to demonstrate semantic correctness gains beyond syntactic compilation; Shebzukhov (2026) as corroborating observational evidence of domain-dependent autoformalization quality; IndiMathBench's syntactic-vs-semantic gap (77.9% compilation but 17.3% BEq with persistent geometry bias) as evidence that static domain context solves compilation but not semantic correctness; ShadowBench (ICML 2026 AI4Math Track 4) validating community interest in multi-domain autoformalization evaluation and FormalRx (Track 1) with its SCI Error Taxonomy validating interest in error characterization; contrast with single-domain approaches (SITA, M2F, 130k Topology, Gloeckle et al.) demonstrating domain-specific formalization is tractable but offering no systematic multi-domain conditioning; reviewer preferences for surgical ablations including IndiMathBench-style naive domain prompting baseline, compute-efficient designs, and LeanSearch v2 as strong domain-agnostic retrieval baseline.",
+  "approach": "We build a three-stage domain-adaptive autoformalization pipeline on a Goedel-Formalizer-V2-8B backbone (fine-tuned from Qwen3-8B; chosen over the user-specified Qwen2.5-7B because Goedel-Formalizer-V2 is the current SOTA open-source formalizer at this scale, specifically trained for NL→Lean4 translation, and Qwen3-8B provides improved reasoning over Qwen2.5 at comparable parameter count; Qwen2.5-Coder-7B-Instruct retained as additional baseline for FormaRL comparison). **Stage 1 — Domain-Stratified Error Taxonomy (PRIMARY CONTRIBUTION)**: We leverage APRIL's 260k repair tuples, which include an explicit 'path' field encoding Mathlib module paths per tuple, an existing 'error_type' field with mutation categories (lme: line mutation errors, mlme: multi-line mutation errors, thme: theorem substitution errors comprising 59.5% of the dataset, tme: tactic mutation errors), and a raw 'error' field containing Lean compiler messages (e.g., 'type mismatch', 'unknown constant', 'tactic rewrite failed', 'unsolved goals', 'application type mismatch'). We cluster the 'path' values into 5 major subdomain categories (algebra/ring theory, topology/order, analysis/calculus, number theory/combinatorics, logic/foundations). Our taxonomy contribution is twofold and builds on APRIL's existing categorization rather than constructing error categories from scratch: (i) a domain-stratified cross-tabulation of APRIL's existing error_type categories (lme/mlme/thme/tme) by mathematical subdomain, testing whether mutation category distributions vary significantly across domains (e.g., whether topology has disproportionately more tactic mutation errors while algebra has more line mutation errors); (ii) a finer-grained error taxonomy extracted from the raw 'error' field by parsing Lean compiler messages into semantic categories — typeclass resolution failures, coercion mismatches, tactic incompatibilities, unknown identifier errors, type unification failures, etc. — also stratified by subdomain. The novelty is in the domain stratification and statistical analysis (JSD, predictive power), not in inventing error categories de novo. We cross-reference with FineLeanCorpus's 286k verified entries (which provide hierarchical problem-level domain labels) and Herald's 580k NL-formal pairs (where module paths are recovered by parsing qualified theorem names from formal statements, e.g., extracting 'Topology.Basic' from 'Topology.Basic.isOpen_compl' — an engineering step requiring ~1 additional week beyond direct field access) to measure correlation and divergence between mathematical topic labels, formalization-level module paths, and error patterns. This goes beyond Shebzukhov (2026; arXiv 2603.24372), who reports domain-stratified aggregate cycle consistency scores (number theory 0.722 vs. calculus 0.516) but performs only observational analysis without classifying error categories per domain. **Quantitative success criteria for the error taxonomy** (testable hypotheses that define what constitutes a meaningful finding): (a) **Inter-domain error distribution divergence** — we hypothesize that Jensen-Shannon divergence between error-type distributions across domain pairs will exceed 0.3 (on a [0,1] scale) for at least 3 of 10 domain pairs (e.g., topology vs. algebra, analysis vs. logic), vs. JSD < 0.1 under random domain assignment permutation tests (1000 permutations). Rationale: topology formalizations disproportionately encounter typeclass instance resolution failures (Lean's typeclass system is heavily used for topological spaces, filters, and uniform structures) while algebra formalizations disproportionately encounter coercion chain incompleteness — if these patterns hold, the distributions will diverge substantially. (b) **Predictive power** — we hypothesize that a simple classifier trained on domain → error-type distributions will achieve ≥70% accuracy in predicting the dominant error type for held-out formalizations from a given domain, vs. ~20% baseline (assuming ~5 major error categories). This would demonstrate that knowing a problem's mathematical subdomain provides actionable information about likely failure modes — a qualitative step beyond the aggregate performance differences shown in Shebzukhov (2026). (c) **Actionable recommendations per domain** — for each of the 5 subdomain clusters, we produce a ranked list of the top-5 most frequent error types with concrete mitigation strategies (e.g., 'topology formalizations: prioritize typeclass instance search depth; algebra formalizations: check coercion chain completeness'), evaluated by whether prompting with these recommendations improves formalization accuracy by ≥5 percentage points on held-out examples from that domain vs. prompting without domain-specific error context. If hypotheses (a) and (b) hold, the taxonomy provides the first empirical evidence that autoformalization error types are systematically structured by mathematical subdomain — a finding valuable independent of any downstream pipeline delta, offering actionable guidance for all future domain-specific approaches. The FormalRx challenge (ICML 2026 AI4Math Workshop Track 1) provides a complementary 28-category SCI Error Taxonomy that classifies errors by type alone; our taxonomy is orthogonal in that it stratifies errors by mathematical subdomain, and the two taxonomies can be cross-referenced to test whether certain SCI error categories correlate with specific subdomains. ShadowBench (Track 4 of the same workshop) evaluates end-to-end autoformalization across 8 mathematical areas but does not classify error types. If the hypotheses do not hold (JSD < 0.15 across all domain pairs, prediction accuracy < 40%), we report this as a meaningful negative result: autoformalization errors are domain-invariant, and domain-adaptive approaches should focus on retrieval rather than error-aware prompting. **Stage 2 — Domain-Conditioned Retrieval**: We extend CRAMF's dual-channel hybrid retrieval with a domain-aware reranking layer that boosts same-subdomain definitions. This operates at a fundamentally different level than existing retrieval innovations: CRAMF disambiguates polysemous concepts (concept-level); DRIFT decomposes statements into atomic sub-queries (concept-level decomposition); LeanSearch v2 achieves SOTA domain-agnostic retrieval (retrieval quality); LeanPremise/LeanHammer achieves strong domain-general premise selection for proving (not autoformalization); IndiMathBench provides static category context (static domain awareness). Our reranker adds an orthogonal signal: given that the input problem is dynamically classified as topology, boost ALL topology-related definitions in retrieval, not just disambiguate individual concepts, decompose the statement, or apply a static category context block. The reranker operates per-problem (not per-category), using the inferred subdomain to weight retrieval results dynamically. The domain classifier for retrieval conditioning uses APRIL's explicit path field as primary training signal, supplemented by Herald's parsed module paths and FineLeanCorpus topic labels. The reranker is trained on this combined data with domain match as an additional feature alongside the existing semantic similarity score. We compare domain-conditioned retrieval vs. domain-agnostic retrieval at matched retrieval budget (same Top-K, same compute) to isolate the domain signal's contribution. We additionally compare against LeanSearch v2's standard mode as a strong domain-agnostic retrieval baseline. **Stage 3 — Domain-Aware Autoformalization**: Using Goedel-Formalizer-V2-8B, we apply domain-prefixed prompting: the input is augmented with predicted subdomain label, top domain-specific error patterns from Stage 1, and domain-conditioned retrieved definitions from Stage 2. We perform LoRA fine-tuning (rank 32) on domain-enriched data combining Herald and FineLeanCorpus, where each training example includes its domain context. No complex LoRA routing or domain-specific adapters — a single adapter learns to use domain context from the prompt. **Evaluation**: We introduce the first systematic multi-domain rotation evaluation protocol for autoformalization — leave-one-domain-out across our 5 subdomain categories, extending ConNF's single-domain OOD paradigm to systematic cross-domain generalization testing. Evaluated on FormalMATH-categorized problems and MathAtlas's 87-area benchmark. MSC-180's 60-branch classification serves as cross-domain generalization test. ConNF serves as an additional single-domain OOD test (New Foundations set theory). We position our evaluation protocol relative to ShadowBench (Track 4): while ShadowBench evaluates across 8 mathematical areas with fixed splits, our leave-one-domain-out rotation provides systematic cross-domain generalization measurement that fixed-split evaluation cannot. Surgical ablations isolate: (a) domain-conditioned retrieval alone (Stage 2 only), (b) domain-prefixed prompting alone (subdomain label in prompt, no retrieval change), (c) domain error context alone (error patterns in prompt, no retrieval change), (d) full combination (Stages 1+2+3), (e) **IndiMathBench-style naive domain prompting baseline** — prepending static category-specific Mathlib context to the input, replicating IndiMathBench's category-based retrieval approach at inference time; this tests whether the simple static approach that dramatically improves compilation also closes the semantic correctness gap, and (f) **LeanSearch v2 retrieval baseline** — replacing our domain-conditioned retrieval with LeanSearch v2's standard mode to test whether superior domain-agnostic retrieval subsumes domain conditioning. If ablation (e) captures 80%+ of semantic correctness gains, we report this honestly as evidence that the simple approach extends to semantic correctness — a valuable finding in itself; if the full pipeline significantly outperforms, it validates the engineering investment in dynamic conditioning and error taxonomy. A domain-agnostic matched-compute baseline (same LoRA budget, same retrieval budget, no domain conditioning) serves as control. Per-domain improvement analysis focuses on whether currently weak domains (analysis, discrete math, topology, geometry) show disproportionate gains. Domain-conditioned retrieval HitRate@K metrics provide pipeline-internal evaluation independent of downstream formalization accuracy.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~200 H100-hours (domain classifier from APRIL paths: 10h; APRIL cross-tabulation of error_type by subdomain + finer-grained taxonomy from raw error field: 8h; Herald module path parsing: 5h; domain reranker training: 15h; LoRA fine-tuning Goedel-Formalizer-V2-8B: 80h; evaluation across 5 domains × 3 benchmarks with Lean4 compilation: 50h; ablation experiments including IndiMathBench-style baseline + LeanSearch v2 comparison: 32h)",
+      "timeline": "17 weeks (1w Herald module path parsing + APRIL path field extraction, 3w domain taxonomy + APRIL error cross-tabulation + finer-grained taxonomy from raw errors + error taxonomy evaluation, 3w domain-conditioned retrieval + LeanSearch v2 baseline integration, 4w LoRA fine-tuning + training, 3w evaluation + leave-one-domain-out + ablations + ConNF, 3w writing + revision)",
+      "estimated_gpu_cost": "$500 (H100 at ~$2.50/hr average via RunPod/Lambda)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~200 H100-hours",
+      "timeline": "13 weeks (Claude accelerates Herald path parsing, domain taxonomy design, APRIL error pattern cross-tabulation and raw error parsing, retrieval pipeline code, and ablation analysis)",
+      "claude_api_cost": "$300 (domain taxonomy extraction from APRIL path fields + error_type cross-tabulation + raw error field parsing + Herald parsed module paths + FineLeanCorpus metadata, error clustering analysis across 260k APRIL tuples, evaluation script scaffolding, ablation result analysis)",
+      "estimated_gpu_cost": "$500"
+    },
+    "auto_research": {
+      "gpu_hours": "~200 H100-hours (domain classifier from APRIL paths: 10h; APRIL cross-tabulation + finer-grained taxonomy: 8h; Herald path parsing: 5h; domain reranker training: 15h; LoRA fine-tuning: 78h; evaluation across 5 domains × 3 benchmarks + ConNF: 48h; ablation experiments including IndiMathBench-style baseline + LeanSearch v2 baseline: 30h; hyperparameter sweeps over domain granularity 3–7 clusters: 6h)",
+      "timeline": "11 weeks",
+      "claude_api_cost": "$450 (automated Herald path parsing, domain taxonomy iteration, APRIL error_type cross-tabulation and raw error parsing, repair pattern mining, hyperparameter selection, result analysis and paper drafting)",
+      "estimated_gpu_cost": "$500",
+      "speed_bottleneck": "Lean4 type-checking latency (~3–10s per statement) gates evaluation throughput; each leave-one-domain-out fold requires full Lean4 compilation across ~2k–5k statements; domain-conditioned retrieval index must be rebuilt when domain granularity changes"
+    }
+  },
+  "target_venues": [
+    "ICLR 2027 (estimated abstract: Sep 19, 2026; paper: Sep 24, 2026 — projected from historical pattern, NOT officially announced; ~16 weeks from today, PRIMARY TARGET; contingency: if actual deadline is earlier, submit Stage 1 error taxonomy + Stage 2 retrieval results without full Stage 3 ablations)",
+    "AAAI 2027 (abstract: Jul 21, 2026; paper: Jul 28, 2026 — confirmed; only ~8 weeks from today; INFEASIBLE for full pipeline given minimum 11-week auto_research timeline. A partial submission targeting error taxonomy (Stage 1) + initial domain-conditioned retrieval results (Stage 2) without full Stage 3 LoRA fine-tuning and ablation suite could be viable if Stage 1 yields strong early results within the first 6 weeks, but this requires aggressive prioritization and would omit key ablations)",
+    "NeurIPS 2026 MATH-AI Workshop (workshop paper deadline estimated ~Sep 2026 — contingent on workshop acceptance; workshop proposals due Jun 6, 2026)",
+    "ICML 2026 AI4Math Workshop — paper submission deadline May 25, 2026 has PASSED (3 days ago as of May 28, 2026); paper submission is no longer possible. Only challenge track participation remains viable: ShadowBench Track 4 (challenge deadline Jun 15, 2026) for complementary multi-domain evaluation; FormalRx Track 1 (challenge deadline Jun 15, 2026) to cross-reference our subdomain-stratified error taxonomy with the SCI Error Taxonomy"
+  ],
+  "level": "solid",
+  "key_references": [
+    "Herald: A Natural Language Annotated Lean 4 Dataset (ICLR 2025)",
+    "Rethinking and Improving Autoformalization: Towards a Faithful Metric and a Dependency Retrieval-based Approach / DDR + ConNF benchmark (ICLR 2025 Spotlight)",
+    "ATLAS: Autoformalizing Theorems through Lifting, Augmentation, and Synthesis of Data (NeurIPS 2025)",
+    "FormaRL: Enhancing Autoformalization with no Labeled Data (COLM 2025)",
+    "CriticLean: Critic-Guided Reinforcement Learning for Mathematical Formalization + FineLeanCorpus 286k verified entries (arXiv 2025)",
+    "FormalMATH: Benchmarking Formal Mathematical Reasoning of Large Language Models (arXiv 2025)",
+    "Goedel-Prover-V2: Scaling Formal Theorem Proving with Scaffolded Data Synthesis and Self-Correction (arXiv 2025)",
+    "MSC-180: A Benchmark for Automated Formal Theorem Proving from Mathematical Subject Classification (arXiv 2025)",
+    "Autoformalization in the Era of Large Language Models: A Survey (arXiv 2025)",
+    "StepFun-Formalizer: Unlocking the Autoformalization Potential of LLMs through Knowledge-Reasoning Fusion (AAAI 2026)",
+    "SITA: A Framework for Structure-to-Instance Theorem Autoformalization (AAAI 2026)",
+    "Towards a Common Framework for Autoformalization (Mensfelt et al., AAAI 2026)",
+    "Automated Formalization via Conceptual Retrieval-Augmented LLMs / CRAMF (ICLR 2026)",
+    "ProofBridge: Auto-Formalization of Natural Language Proofs in Lean via Joint Embeddings (ICLR 2026)",
+    "ReForm: Reflective Autoformalization with Prospective Bounded Sequence Optimization (ICLR 2026)",
+    "Aria: An Agent for Retrieval and Iterative Auto-Formalization via Dependency Graph (ICLR 2026)",
+    "DRIFT: Decompose, Retrieve, Illustrate, then Formalize Theorems (ICLR 2026 Poster)",
+    "Premise Selection for a Lean Hammer / LeanPremise + LeanHammer (ICLR 2026; arXiv 2506.07477)",
+    "IndiMathBench: Autoformalizing Mathematical Reasoning Problems with a Human Touch (Biyani et al., 2025; arXiv 2512.00997)",
+    "Improving Lean4 Autoformalization via Cycle Consistency Fine-tuning (Shebzukhov, 2026; arXiv 2603.24372)",
+    "Learning to Repair Lean Proofs from Compiler Feedback / APRIL (arXiv 2026)",
+    "M2F: Automated Formalization of Mathematical Literature at Scale (arXiv 2026)",
+    "Automatic Textbook Formalization / RepoProver (Gloeckle et al., arXiv 2026)",
+    "130k Lines of Formal Topology in Two Weeks: Simple and Cheap Autoformalization for Everyone? (arXiv 2026)",
+    "MathAtlas: A Benchmark for Autoformalization in the Wild (arXiv 2026)",
+    "LeanSearch v2: Global Premise Retrieval for Lean 4 Theorem Proving (arXiv 2026)",
+    "KELPS: A Framework for Verified Multi-Language Autoformalization via Semantic-Syntactic Alignment (ICML 2025 AI4Math Workshop; arXiv 2507.08665)",
+    "ShadowBench: End-to-End Autoformalization & Proof Generation Challenge (ICML 2026 AI4Math Workshop Track 4)",
+    "FormalRx: Semantic Alignment Evaluation with SCI Error Taxonomy (ICML 2026 AI4Math Workshop Track 1)"
+  ],
+  "description": "We propose the first autoformalization pipeline that systematically conditions dynamic retrieval ranking and prompting signals on inferred mathematical subdomain, and the first domain-stratified error taxonomy for autoformalization — built as a cross-tabulation of APRIL's existing error_type categories (lme/mlme/thme/tme) by mathematical subdomain plus a finer-grained taxonomy extracted from APRIL's raw Lean compiler error messages (parsing semantic categories: typeclass resolution failures, coercion mismatches, tactic incompatibilities, etc.), both stratified by subdomain via APRIL's explicit 'path' field. The novelty is in domain stratification and statistical analysis (JSD, predictive power), not in constructing error categories from scratch. Current SOTA systems (StepFun-Formalizer, ATLAS, FormaRL, ProofBridge, Aria, DRIFT, KELPS) treat all domains identically, yet peer-reviewed evidence demonstrates severe domain bias: MSC-180 reveals CV values 4–6× above statistical high-variability thresholds across 60 mathematical branches, FormalMATH shows Goedel-Prover at 50% on algebra but 0% on discrete math, and Aria (ICLR 2026) achieves 42.9% on homological conjectures while all baselines score 0%. LeanPremise/LeanHammer (ICLR 2026) further confirms domain-dependent difficulty with OOD project variation from 0% (Carleson) to 38% (Foundation) in Lean premise selection. Shebzukhov (2026; arXiv 2603.24372) corroborates this with cycle consistency scores ranging from 0.722 (number theory) to 0.516 (calculus), but performs only observational analysis without error type classification or domain conditioning. IndiMathBench (Biyani et al., 2025; arXiv 2512.00997) provides further evidence: static category-specific Mathlib context improves compilation dramatically but BEq semantic correctness remains only 17.3% (54/312 for Claude Opus 4) and deeply domain-biased (geometry: 12/98 BEq among top models). Existing retrieval innovations address different aspects: CRAMF disambiguates polysemous concepts (concept-level); DRIFT decomposes statements into atomic sub-queries (concept-level decomposition); LeanSearch v2 achieves SOTA domain-agnostic retrieval (nDCG@10 = 0.623); LeanPremise achieves strong premise selection for proving but not autoformalization. None dynamically conditions retrieval on the inferred subdomain of each input problem. We contribute two primary results: (1) **The first domain-stratified error taxonomy for autoformalization** — leveraging APRIL's 260k repair tuples (which include explicit Mathlib module paths in a 'path' field, existing error_type mutation categories, and raw Lean compiler errors) to cross-tabulate and stratify errors across 5 mathematical subdomain clusters, with pre-registered quantitative hypotheses: inter-domain JSD exceeding 0.3 for ≥3 domain pairs (vs. <0.1 under random assignment), domain-specific error prediction accuracy ≥70% (vs. ~20% random baseline), and ≥5 percentage point formalization improvement from domain-specific mitigation recommendations — complementing the FormalRx challenge's SCI Error Taxonomy (ICML 2026 AI4Math Track 1; 28 categories organized by error type) with subdomain-stratified analysis. (2) **Problem-level dynamic domain-conditioned retrieval and prompting** — extending CRAMF with a domain-aware reranker that boosts same-subdomain definitions per-problem, orthogonal to concept-level disambiguation (CRAMF), concept-level decomposition (DRIFT), domain-agnostic retrieval quality (LeanSearch v2), domain-general premise selection for proving (LeanPremise), and static category context (IndiMathBench). We introduce the first systematic multi-domain rotation evaluation protocol (leave-one-domain-out across ≥5 categories), more rigorous than ShadowBench's (Track 4) fixed-split 8-area evaluation. Six surgical ablations include an IndiMathBench-style static domain context baseline and LeanSearch v2 retrieval replacement. The entire pipeline fits within 200 H100-hours.",
+  "project_name": "domain_adapt_autoformal",
+  "source": "web_research",
+  "revision_notes": {
+    "round1_issue_1_compute_budget": "RESOLVED (Round 1): Reduced from ~600 A100-hours to ~200 H100-hours by dropping domain-routed LoRA adapters and GRPO.",
+    "round1_issue_2_venue_mismatch": "RESOLVED (Round 1): Primary target ICLR 2027, AAAI 2027 as stretch.",
+    "round1_issue_3_model_choice": "RESOLVED (Round 1): Goedel-Formalizer-V2-8B backbone with Qwen2.5-Coder-7B-Instruct as FormaRL comparison baseline.",
+    "round1_issue_4_FineLeanCorpus": "RESOLVED (Round 1): Added FineLeanCorpus with problem-level vs. formalization-level label distinction.",
+    "round1_issue_5_MSC180": "RESOLVED (Round 1): Added MSC-180 as motivation and evaluation benchmark.",
+    "round1_issue_6_circular_reasoning": "RESOLVED (Round 1): Error pattern claims reframed as hypotheses.",
+    "round1_issue_7_VeriSoftBench": "RESOLVED (Round 1): Replaced with MSC-180 and MathAtlas.",
+    "round1_issue_8_pipeline_complexity": "RESOLVED (Round 1): Simplified to 3 stages, 5 clusters, single LoRA.",
+    "round1_issue_9_baseline_fear_test": "RESOLVED (Round 1): Matched-compute baseline, per-domain analysis, error taxonomy as standalone contribution.",
+    "round2_issue_1_CRAMF_differentiation": "RESOLVED (Round 2): Deep-dived into CRAMF's actual technical implementation — concept-level disambiguation (CRAMF) vs. problem-level subdomain conditioning (ours) explicitly distinguished.",
+    "round2_issue_2_SITA": "RESOLVED (Round 2): Added SITA to landscape with explicit differentiation.",
+    "round2_issue_3_impact_argument": "RESOLVED (Round 2): Added naive domain prompting baseline and elevated error taxonomy.",
+    "round2_issue_4_FineLeanCorpus_size": "RESOLVED (Round 2): Corrected to '286k verified entries (509k total)' throughout.",
+    "round2_issue_5_ICLR2027_deadline": "MITIGATED (Round 2): Estimated Sep 19/24 with contingency.",
+    "round2_issue_6_M2F_RepoProver": "RESOLVED (Round 2): Added M2F and Automatic Textbook Formalization to landscape.",
+    "round3_issue_1_DRIFT_Aria": "RESOLVED: Added DRIFT (ICLR 2026 Poster) and Aria (ICLR 2026) with full technical differentiation.",
+    "round3_issue_2_ConNF_claim": "RESOLVED: Narrowed to 'first systematic multi-domain rotation evaluation protocol across ≥5 categories.'",
+    "round3_issue_3_error_taxonomy_elevation": "RESOLVED: Error taxonomy elevated to primary contribution with standalone evaluation criteria.",
+    "round3_issue_4_compute_trim": "RESOLVED: All three modes ≤200 H100-hours.",
+    "round3_issue_5_LeanSearch_v2": "RESOLVED: Added LeanSearch v2 comprehensively with ablation (f).",
+    "round4_issue_1_IndiMathBench": "RESOLVED: IndiMathBench cited comprehensively with three-axis differentiation (static vs. dynamic, syntactic vs. semantic, no error analysis).",
+    "round4_issue_2_quantitative_hypotheses": "RESOLVED: Added three pre-registered quantitative success criteria for the error taxonomy.",
+    "round4_issue_3_model_architecture": "RESOLVED: Goedel-Formalizer-V2-8B based on Qwen3-8B explicitly stated.",
+    "round5_issue_1_IndiMathBench_citation": "RESOLVED: Changed ALL 'ICLR 2026' citations for IndiMathBench to 'Biyani et al., 2025; arXiv 2512.00997' throughout.",
+    "round5_issue_2_BEq_correction": "RESOLVED: Corrected ALL instances of '~21.5%' to '17.3% (54/312 problems)' throughout.",
+    "round5_issue_3_ShadowBench": "RESOLVED: Added ShadowBench and SCI Error Taxonomy.",
+    "round5_issue_4_Mensfelt_framework": "RESOLVED: Added Mensfelt et al. (AAAI 2026) to landscape.",
+    "round5_issue_5_landscape_condensation": "RESOLVED: Condensed landscape to argument-driven organization.",
+    "round6_issue_1_cycle_consistency_paper": "RESOLVED: Cited Shebzukhov (2026; arXiv 2603.24372) throughout. Narrowed ALL novelty claims to 'first systematic domain-specific error TAXONOMY characterizing how autoformalization error TYPES distribute across subdomains.'",
+    "round6_issue_2_ShadowBench_SCI_conflation": "RESOLVED: Separated Track 1 (FormalRx) from Track 4 (ShadowBench) throughout.",
+    "round6_issue_3_Herald_data_engineering": "RESOLVED: Acknowledged Herald's limited schema; APRIL as primary domain signal.",
+    "round7_issue_1_APRIL_error_type_field": "RESOLVED: Acknowledged APRIL's existing 'error_type' field (mutation categories: lme, mlme, thme, tme) and 'error' field (raw Lean compiler messages) throughout core_problem, opportunity, landscape, approach, inspired_by, and description. Clarified that our error taxonomy contribution is a domain-stratified cross-tabulation of APRIL's existing error_type categories PLUS a finer-grained taxonomy extracted from the raw 'error' field (parsing Lean compiler messages into semantic categories: typeclass resolution failures, coercion mismatches, tactic incompatibilities, etc.), both stratified by mathematical subdomain from the 'path' field. The novelty is explicitly stated as being in domain stratification and statistical analysis (JSD, predictive power), not in constructing error categories from scratch. This prevents overclaiming while preserving the genuine novelty of domain-stratified error analysis.",
+    "round7_issue_2_LeanPremise_LeanHammer": "RESOLVED: Added LeanPremise/LeanHammer (ICLR 2026; arXiv 2506.07477) to core_problem, opportunity, landscape, approach, inspired_by, description, and key_references. Characterized as first end-to-end domain-general hammer for Lean with 82M-param neural premise selector, 79.4% relative proof rate OOD on miniCTX-v2 (20.7% absolute vs. 26.1% upper bound), significant project variation (Carleson 0%, Foundation 38%, ConNF 16%, FLT 36.4%), dynamic user-context adaptation. Explicitly differentiated: targets premise selection for tactic-based proving (not autoformalization retrieval); uses no mathematical subdomain conditioning; outperforms ReProver (218M). Its project-level variation provides additional evidence of domain-dependent difficulty in the Lean ecosystem.",
+    "round7_issue_3_KELPS": "RESOLVED: Added KELPS (ICML 2025 AI4Math Workshop; arXiv 2507.08665) to opportunity, landscape, inspired_by, description, and key_references. Characterized as achieving 88.9% syntactic accuracy (pass@1) on MiniF2F via Knowledge Equations intermediate representation (NL → KE → Lean/Coq/Isabelle), outperforming DeepSeek-V3 (81%) and Herald (81.3%), covering 60k+ NL-FL pairs across 6 math topics. Entirely domain-agnostic. Noted as ICML 2025 AI4Math Workshop paper (not main conference). Added to inspired_by as strong domain-agnostic baseline raising the bar for our approach to demonstrate semantic correctness gains beyond syntactic compilation.",
+    "round7_issue_4_venue_timeline_fixes": "RESOLVED: AAAI 2027 changed from 'STRETCH' to explicitly 'INFEASIBLE for full pipeline given minimum 11-week auto_research timeline' (~8 weeks available), with explicit description of what a partial submission could target (error taxonomy Stage 1 + initial retrieval Stage 2, without full LoRA fine-tuning and ablation suite). ICML 2026 AI4Math Workshop updated to note paper submission deadline May 25, 2026 has PASSED (3 days ago as of May 28, 2026); only challenge track participation (ShadowBench Track 4, FormalRx Track 1) with June 15 deadline remains viable."
+  }
+}
+
+
+## Previous review history
+### Round 1 review
+Verdict: revise
+Issues: ["CRITICAL: Compute budget violation — estimates ~600 A100-hours (~300-400 H100-equivalent), 1.5-2x over user's hard constraint of ≤200 H100-hours", "CRITICAL: Venue mismatch — user requested 'AAAI 2026' (deadline August 2025, already past); Generator silently shifted to AAAI 2027 (July 2026). With today's date May 28, 2026, the July 28 deadline is only 8 weeks away, making even the 6-week auto_research timeline razor-thin", "CRITICAL: Model choice violation — user specified 'Qwen2.5-7B or Goedel-Prover-V2-8B' but Generator uses 'Qwen3-8B'", "Missing critical reference: CriticLean + FineLeanCorpus (509k entries with hierarchical domain labels like 'Algebra -> Intermediate Algebra -> Functional Equations' and difficulty scores) — this dataset already provides domain-stratified autoformalization data, undermining the claim that 'domain-specific error taxonomy is uncharacterized'", "Missing reference: MSC-180 benchmark (arXiv 2512.18256) evaluates theorem provers across 60 mathematical branches via MSC2020 classification with coefficient of variation metrics — directly relevant to domain bias analysis", "Circular reasoning in motivation: specific error patterns ('topology fails on typeclass instances, algebra fails on coercion chains') are stated as known facts to motivate the work, but discovering these patterns is actually a claimed contribution of the work", "VeriSoftBench evaluates software verification proofs, not mathematical autoformalization — including it as an autoformalization benchmark is misleading and doesn't match the paper's scope", "The 4-stage pipeline (classifier + APRIL stratification + domain retrieval + domain-conditioned GRPO with 15-subdomain LoRA routing) has excessive engineering complexity for the compute and timeline constraints", "Baseline fear test risk: acknowledged but not adequately mitigated — the leave-one-domain-out experiment isolates domain adaptation contribution, but if the delta is small (e.g., 2-3 percentage points), the paper's contribution becomes marginal"]
+Feedback: To revise into a passable submission: (1) **Drastically simplify the pipeline** to fit within 200 H100-hours — drop domain-routed LoRA adapters (the most compute-hungry component) and focus on domain-conditioned retrieval + domain-stratified error analysis as the core contributions, which are cheaper and more novel; (2) **Use the user-specified models** (Qwen2.5-7B or Goedel-Prover-V2-8B); (3) **Cite and differentiate from FineLeanCorpus** — acknowledge its domain labels exist but argue your Mathlib module-path-based domain taxonomy captures formalization-specific structure (typeclass/coercion patterns) that FineLeanCorpus's problem-level labels do not; (4) **Reframe error pattern claims as hypotheses** to be empirically validated, not established facts; (5) **Replace VeriSoftBench** with FormalMATH-stratified evaluation or MathAtlas — both are mathematical benchmarks with domain structure; (6) **Target ICLR 2027** (estimated September 2026) instead of AAAI 2027 to get an extra ~8 weeks of development time; (7) **Reduce subdomain granularity** from 15 to 4-5 major domains (algebra, topology, analysis, number theory, combinatorics) to keep the experimental matrix manageable within budget; (8) **Strengthen the baseline comparison** by including a domain-agnostic model with matched compute (same number of repair iterations) as a control to convincingly demonstrate domain-conditioning adds value beyond more compute.
+
+### Round 2 review
+Verdict: revise
+Issues: ["MODERATE: CRAMF differentiation insufficient — CRAMF explicitly mentions 'contextual query augmentation with domain- and application-level signals' and stores Mathlib module paths (θ_p) per definition. The proposal claims CRAMF 'never conditions retrieval reranking on mathematical subdomain' but doesn't directly acknowledge or rebut CRAMF's existing domain signals. A reviewer familiar with CRAMF will ask: 'How is your domain conditioning different from CRAMF's domain-level contextual query augmentation?'", "MODERATE: SITA (AAAI 2026) not cited — SITA demonstrates domain-specific autoformalization via structure-to-instance approach using Lean's typeclass mechanism, evaluated on 42 optimization problems. While a different paradigm (abstract structure instantiation vs. subdomain conditioning), it contradicts the 'first domain-specific autoformalization' framing and should be discussed as related work.", "MODERATE: Impact uncertainty — the matched-compute baseline mitigates the baseline fear test but doesn't address it: if domain-agnostic models with domain context in the prompt (a trivially simpler approach than the full pipeline) capture 80%+ of the gain, the multi-stage pipeline adds marginal value. The paper needs a stronger argument for why the full pipeline (classifier + domain reranking + domain error context) is necessary vs. simply adding 'This is a topology problem' to the prompt.", "MINOR: FineLeanCorpus size inaccuracy — claims '509k entries' but verified data shows 285,957 fully verified entries. The 509k figure may include unverified entries, but using it without qualification is misleading.", "MINOR: ICLR 2027 primary target is speculative — deadline not officially announced. If the actual deadline is earlier (e.g., August 2026), the 16-week timeline becomes infeasible.", "MINOR: M2F (Feb 2026) and RepoProver (Apr 2026) not cited — both perform domain-specific autoformalization at textbook scale (real analysis, convex analysis, algebraic combinatorics), providing evidence that different mathematical domains require different formalization strategies, supporting the proposal's motivation."]
+Feedback: The proposal has addressed all Round 1 critical issues well (compute, venue, model, VeriSoftBench, circular reasoning, pipeline simplification). The remaining issues are moderate rather than critical. To reach pass threshold: (1) **Sharpen CRAMF differentiation**: Explicitly acknowledge CRAMF's 'domain- and application-level signals' in contextual query augmentation and its stored module paths (θ_p), then argue precisely why this falls short of systematic subdomain conditioning — e.g., CRAMF's domain signals are used for disambiguating polysemous concepts, not for conditioning the retrieval ranking on the input's mathematical subdomain. (2) **Cite and differentiate from SITA (AAAI 2026)**: Acknowledge it as domain-specific autoformalization via structure-to-instance approach, but clarify your work conditions the general-purpose pipeline on subdomain identity, whereas SITA targets a specific mathematical pattern (abstract-to-concrete instantiation) in a single domain. (3) **Strengthen the impact argument**: Add an explicit ablation comparing 'naive domain prompting' (just prepending domain label to input, zero engineering) vs. full pipeline with domain-conditioned retrieval and error context. If the full pipeline doesn't significantly outperform naive domain prompting, the paper's contribution is weaker. Frame the error taxonomy as a co-equal contribution, not a byproduct. (4) **Fix FineLeanCorpus size**: Use '286k fully verified entries (509k total)' for accuracy. (5) **Add M2F and SITA to landscape discussion** as evidence that domain-specific approaches exist but are either single-domain (SITA, M2F) or manual (130k Topology), motivating your systematic multi-domain approach.
+
+### Round 3 review
+Verdict: revise
+Issues: ["MODERATE: Several relevant ICLR 2026 systems missing from landscape — DRIFT (ICLR 2026 Poster) performs concept-level decomposition for targeted retrieval and nearly doubles F1 on ProofNet; its sub-query decomposition is conceptually related to domain-conditioned retrieval and must be differentiated. Aria (ICLR 2026) achieves 68.5% on ProofNet and 42.9% on homological conjectures (all other baselines 0%) but is domain-agnostic — these per-domain results directly support the proposal's domain bias motivation and should appear in the landscape analysis.", "MODERATE: ConNF benchmark (961 OOD informal-formal pairs, from DDR/ICLR 2025 Spotlight) specifically tests cross-domain generalization in autoformalization. The proposal claims to introduce 'the first leave-one-domain-out evaluation protocol for autoformalization' but does not cite ConNF. While ConNF tests a single OOD domain (New Foundations set theory) rather than systematic multi-domain rotation, the claim needs to be narrowed or ConNF explicitly differentiated.", "MODERATE: Impact argument remains the weakest link — the proposal correctly identifies the risk that naive domain prompting captures 80%+ of gains, but the framing still positions the multi-stage pipeline as the main system contribution. If the error taxonomy is the safety net, it should be promoted to unambiguous primary contribution with clearer standalone evaluation criteria (e.g., inter-domain error pattern correlation metrics, actionable recommendations per domain).", "MINOR: Compute budget slightly exceeds constraint — auto_research mode estimates 210 H100-hours vs. the user's hard ≤200 H100-hour cap. Need to either trim 10 hours (e.g., reduce ablation sweep scope) or justify the overage.", "MINOR: LeanSearch v2 (May 2026) achieves SOTA premise retrieval 'without domain-specific fine-tuning' — this is directly relevant since it suggests domain-agnostic retrieval can be very strong, potentially challenging the motivation for domain-conditioned retrieval. Should be cited and its implications discussed."]
+Feedback: The proposal has matured significantly across three rounds and is close to passing. All Round 2 issues were addressed well, particularly the CRAMF differentiation (now technically precise and verified accurate). To reach pass threshold: (1) **Add DRIFT, ConNF, LeanSearch v2, and Aria's per-domain results** to the landscape — DRIFT and LeanSearch v2 are recent strong retrieval baselines; ConNF is the existing OOD autoformalization benchmark; Aria's per-domain gaps (42.9% on homological conjectures vs. 0% for all baselines) directly support the domain bias motivation. (2) **Narrow the 'first leave-one-domain-out' claim** — ConNF already tests OOD generalization, so specify 'first systematic multi-domain rotation evaluation' across ≥4 mathematical subdomain categories. (3) **Elevate the error taxonomy to unambiguous primary contribution** — define standalone evaluation criteria: (a) inter-domain error pattern clustering metrics (e.g., how distinct are topology vs. algebra error distributions?), (b) predictive power of domain-specific error patterns (can the taxonomy predict which errors a new formalization will encounter?), (c) actionable recommendations per domain. This makes the paper valuable even if the downstream delta is modest. (4) **Trim 10 H100-hours** from the auto_research estimate to fit within the ≤200 constraint. (5) **Discuss LeanSearch v2's domain-agnostic SOTA** — if domain-agnostic retrieval is already very strong, what specifically does domain conditioning add beyond what scale/engineering can achieve?
+
+### Round 4 review
+Verdict: revise
+Issues: ["MODERATE: IndiMathBench (ICLR 2026, arXiv 2512.00997) not cited — uses category-specific static Mathlib context for 4 mathematical domains (Geometry, Algebra, Number Theory, Set Theory & Combinatorics) to condition autoformalization prompts. While IndiMathBench uses static context blocks (not dynamic retrieval conditioning) and does not claim novelty in domain awareness, it IS a form of domain-conditioned autoformalization. The proposal's claim of being 'the first autoformalization pipeline that conditions on inferred mathematical subdomain' must acknowledge and differentiate from IndiMathBench. IndiMathBench's approach is essentially the 'naive domain prompting' ablation the proposal already plans — this connection should be made explicit.", "MODERATE: Impact argument remains below the 4.0 threshold — IndiMathBench achieves 95.3% syntactic validity with simple category-specific static context, suggesting that even rudimentary domain awareness is powerful. This strengthens the proposal's motivation (domain information helps) but weakens the pipeline contribution (maybe simple approaches suffice). The error taxonomy needs to be framed even more forcefully as the primary contribution — with quantitative hypotheses about expected inter-domain JSD values and prediction accuracy thresholds that would constitute a meaningful finding.", "MINOR: Goedel-Formalizer-V2-8B is fine-tuned from Qwen3-8B, not Qwen2.5. The user specified 'Qwen2.5-7B or Goedel-Prover-V2-8B' — using the Formalizer variant is reasonable (same family, specialized for formalization) but should be explicitly justified since the base architecture differs from user's Qwen2.5 specification."]
+Feedback: The proposal is very close to passing (avg 3.875/5.0) after 4 strong revision rounds. Two targeted fixes should clear the threshold: (1) **Cite IndiMathBench and make it your 'naive domain prompting' reference implementation**: IndiMathBench's category-specific static context is essentially the simple baseline your ablation (e) already plans. Explicitly map your ablation to IndiMathBench's approach: 'Our naive domain prompting baseline (ablation e) replicates IndiMathBench's category-specific context approach; our full pipeline adds dynamic domain-conditioned retrieval reranking and error-taxonomy-driven prompting on top.' This transforms a missing reference into a strengthened experimental design. Narrow the novelty claim to: 'first system to condition dynamic retrieval ranking on inferred mathematical subdomain and provide systematic domain-specific error characterization.' (2) **Set quantitative success criteria for the error taxonomy to strengthen impact**: State concrete hypotheses — e.g., 'We hypothesize JSD between topology and algebra error distributions exceeds 0.3 (vs. <0.1 for random domain assignments)' and 'domain-specific error prediction accuracy exceeds 70% on held-out formalizations.' This transforms the error taxonomy from 'we'll analyze and see what we find' into a testable scientific claim that reviewers can evaluate. If these hypotheses hold, the paper has clear value regardless of pipeline delta.
+
+### Round 5 review
+Verdict: revise
+Issues: ["MODERATE: IndiMathBench was DESK REJECTED at ICLR 2026 — cited as 'ICLR 2026' throughout the proposal (core_problem, opportunity, landscape, approach, description), falsely implying acceptance. Must be cited as 'arXiv 2512.00997' or 'IndiMathBench (Biyani et al., 2025)'. A desk-rejected paper's experimental claims carry less weight than peer-reviewed results, and reviewers who know its status will question the proposal's due diligence.", "MINOR: IndiMathBench Claude Opus 4 BEq is 17.3% (54/312 problems), not '~21.5%' as claimed in multiple sections. The 21.5% figure does not correspond to any metric in the paper. This numerical error appears in core_problem, opportunity, and description — undermining trust in the proposal's data verification.", "MINOR: ICML 2026 AI4Math Workshop (Jul 11, 2026) features ShadowBench — 126 problems across 8 mathematical areas with domain-tiered evaluation and Semantic Alignment metrics. This workshop challenge directly overlaps with the proposal's domain-stratified evaluation contribution and should be cited. Concurrent community interest in domain-stratified autoformalization evaluation both validates the proposal's direction and signals competition.", "MINOR: 'Towards a Common Framework for Autoformalization' (AAAI 2026) discusses cross-domain autoformalization challenges and the need for methods that 'transfer reasoning patterns and formalization strategies across different areas' — tangentially relevant and should be acknowledged, though it focuses on cross-formalism domains (math vs. planning vs. logic) rather than mathematical subdomain adaptation."]
+Feedback: The proposal is very close to the pass threshold (avg 3.75/5.0) after 5 strong revision rounds. Two targeted fixes should clear 4.0: (1) **Fix IndiMathBench citation**: Change 'ICLR 2026' to 'arXiv 2512.00997' or 'IndiMathBench (Biyani et al., 2025, desk-rejected ICLR 2026 submission)' throughout. The paper's results remain usable as empirical evidence, but its desk-rejection status means reviewers will scrutinize claims derived from it more carefully — consider reducing reliance on IndiMathBench-specific numbers and strengthening the argument with peer-reviewed evidence (MSC-180, FormalMATH, Aria's homological results are all stronger references). Fix the BEq number to 17.3% (54/312). (2) **Cite and position relative to ICML 2026 ShadowBench**: The AI4Math Workshop's ShadowBench evaluates autoformalization across 8 mathematical areas with SA metrics — this validates community interest in domain-stratified evaluation but also means you're not the only ones thinking about it. Cite it and argue your evaluation protocol (leave-one-domain-out rotation across 5+ categories with systematic ablations) is more rigorous than ShadowBench's fixed-split evaluation. (3) **Consider condensing the landscape section** — at its current length, it reads like a survey rather than a research proposal. The core contribution can be stated in 1/3 the space.
+
+### Round 6 review
+Verdict: revise
+Issues: ["MODERATE: Missing reference — Cycle Consistency Fine-tuning (arXiv:2603.24372, Shebzukhov, March 2026) provides domain-stratified autoformalization results using FineLeanCorpus domain labels, showing number theory at 0.722 cycle consistency vs. calculus at 0.516. While it performs only post-hoc observational analysis (no domain conditioning), it partially pre-empts claims of providing 'the first empirical characterization of how autoformalization errors distribute across mathematical subdomains.' The proposal's novelty claim must be narrowed to 'first domain-specific error TAXONOMY characterizing error TYPES by subdomain' (not just aggregate performance by domain).", "MINOR: ShadowBench/SCI Error Taxonomy conflation — the proposal repeatedly states 'ShadowBench challenge (126 problems across 8 mathematical areas with Semantic Alignment metrics and a 28-category SCI Error Taxonomy)' but the 28-category SCI Error Taxonomy belongs to Track 1 (FormalRx challenge), not Track 4 (ShadowBench). These are separate challenge tracks within the same ICML 2026 AI4Math Workshop. The conflation appears in core_problem, approach, and description.", "MINOR: Herald module path claim overstated — the proposal states Herald provides '580k NL-formal pairs tagged with Mathlib4 module paths enabling automatic formalization-level domain labeling' but the released HuggingFace dataset (FrenzyMath/Herald_statements) contains only id, informal_statement, and formal_statement fields with no explicit module path column. Domain info must be parsed from qualified theorem names embedded in formal statements or recovered via re-running the Lean-Jixia extraction pipeline. This is feasible but adds unacknowledged engineering effort."]
+Feedback: The proposal is very close to passing (avg 3.5/5.0 → needs 4.0). Three targeted fixes for Round 7: (1) **Cite the cycle consistency paper (arXiv:2603.24372)** and narrow the novelty claim: this paper already shows autoformalization performance varies by domain (number theory > calculus), so you cannot claim to be 'the first to show domain variation exists.' Narrow to: 'first systematic domain-specific error TAXONOMY that characterizes how autoformalization failure TYPES (not just aggregate accuracy) distribute across subdomains — going beyond the observational domain-stratified scores in Shebzukhov (2026) to classify error categories (typeclass failures, coercion mismatches, tactic incompatibilities) per subdomain with statistical rigor.' (2) **Fix the ShadowBench/SCI conflation**: Separate the two tracks — ShadowBench (Track 4) uses Semantic Alignment metrics for end-to-end autoformalization; the SCI Error Taxonomy (28 categories) belongs to Track 1 (FormalRx) for semantic alignment evaluation. Both are relevant but distinct. Your error taxonomy complements the SCI taxonomy (which categorizes by error type alone) by adding subdomain stratification. (3) **Acknowledge Herald data engineering**: Note that Herald's module paths must be parsed from qualified names in formal statements (e.g., extracting 'Topology.Basic' from 'Topology.Basic.isOpen_compl') rather than read from a dedicated field, and account for this in the timeline (~1 additional week). Alternatively, note that APRIL's HuggingFace dataset includes an explicit 'path' field that directly encodes Mathlib module paths, making it the more immediately usable source for domain labeling.
+
+### Round 7 review
+Verdict: revise
+Issues: ["MINOR: LeanPremise/LeanHammer (ICLR 2026, arXiv 2506.07477) not cited — the first end-to-end domain-general hammer for Lean with dynamic user-context adaptation and strong out-of-distribution generalization (79.4% relative to upper bound on miniCTX-v2). While targeting premise selection for proving (not autoformalization retrieval) and not conditioning on mathematical subdomain per se, it demonstrates a relevant domain-generalization approach in the Lean ecosystem that should be acknowledged in the landscape.", "MINOR: AAAI 2027 (July 28, 2026) is listed as a target venue but is mathematically infeasible — 8 weeks from today vs. minimum 11-week auto_research timeline. Should be downgraded from 'STRETCH' to explicitly infeasible, or the timeline should explain what partial submission (e.g., error taxonomy only) could be ready in 8 weeks.", "MINOR: ICML 2026 AI4Math Workshop paper submission deadline was May 25, 2026 (already passed 3 days ago). The target_venues entry correctly identifies challenge track participation (June 15 deadline) but should note that paper submission is no longer possible.", "MINOR: The APRIL dataset's HuggingFace schema includes an 'error_type' field already classifying errors into categories (theorem substitution, tactic errors, multi-line errors, line mutations). The proposal's 'domain-specific error taxonomy' contribution is more precisely a domain-stratified cross-tabulation of APRIL's existing error types — this should be stated explicitly to avoid overclaiming. The novelty is in the domain stratification and statistical analysis (JSD, predictive power), not in constructing a new error classification.", "MINOR: KELPS (arXiv 2507.08665) achieves 88.9% syntactic accuracy on MiniF2F via Knowledge Equations and multi-language autoformalization — a strong baseline not currently cited that outperforms several referenced systems."]
+Feedback: The proposal has matured substantially across 6 revision rounds and all critical/moderate issues are resolved. Remaining issues are all minor. To clear the 4.0 threshold: (1) **Acknowledge APRIL's existing error_type field** and precisely describe the taxonomy contribution as domain-stratified cross-tabulation with statistical rigor (JSD, prediction), not a new error classification — this prevents overclaiming while preserving the genuine novelty of domain stratification. (2) **Fix venue timeline accuracy**: mark AAAI 2027 as infeasible (not 'stretch'), note ICML 2026 paper deadline has passed, and specify what partial submission could target AAAI 2027 if desired (e.g., error taxonomy + initial retrieval results without full ablations). (3) **Add LeanPremise/LeanHammer** to landscape as a strong domain-general retrieval baseline in the Lean ecosystem, differentiating by target task (premise selection for proving vs. retrieval for autoformalization). (4) **Consider adding KELPS** as a strong MiniF2F baseline. These four fixes are all straightforward and should be completable in one revision round.
+
+### Round 8 review
+Verdict: revise
+Issues: ["MINOR: Goedel-Formalizer-V2-8B characterized as 'current SOTA open-source formalizer at this scale' but evidence shows it TIES with Kimina-formalizer-8B (161/300 on Omni-MATH internal eval) and StepFun-Formalizer-7B achieves 38.3% BEq@1 on FormalMATH-Lite — the 'SOTA' claim should be softened to 'competitive open-source formalizer at this scale' or 'among the strongest open-source formalizers'", "MINOR: 'Do LLMs Game Formalization?' (arXiv 2604.19459, VerifAI-2 Workshop at ICLR 2026) introduces a complementary formalization error taxonomy (semantic faithfulness: mistranslation, fabrication, omission, contradiction) operating at the post-compilation layer. While fundamentally different from the proposal's compiler-error-based taxonomy (no overlap in scope), citing it as complementary work strengthens the argument that error characterization is under-explored and positions the two taxonomies as addressing different layers of the error stack (pre-compilation vs. post-compilation)", "MINOR: CAM-Bench (arXiv 2605.17255, May 2026) — 1,000 Lean proof targets in optimization, numerical linear algebra, and numerical analysis — is a relevant concurrent domain-specific benchmark supporting the motivation that domain-specific evaluation matters, but is not cited", "MINOR: Impact argument remains the binding constraint — the baseline fear test is honestly acknowledged but not resolved. The proposal correctly notes that if ablation (e) captures 80%+ of gains, 'we report this honestly as evidence that the simple approach extends to semantic correctness,' but this outcome would significantly weaken the paper's system contribution, leaving the error taxonomy as the primary value. The proposal would benefit from a stronger argument for why domain-conditioned retrieval should outperform static context (e.g., problems that span multiple domains, problems whose domain classification is non-obvious, retrieval precision at high K values)"]
+Feedback: The proposal has matured exceptionally across 7 revision rounds — all reference claims independently verified accurate, novelty claims appropriately narrowed, and prior issues comprehensively addressed. Average score is 3.875, just below the 4.0 threshold, with impact (3.5) as the binding constraint. Three small fixes for Round 9: (1) **Soften the Goedel-Formalizer-V2-8B 'SOTA' claim** — it ties with Kimina-8B and StepFun-7B may outperform on BEq@1; say 'competitive at this scale' instead. (2) **Cite 'Do LLMs Game Formalization?' (arXiv 2604.19459) as complementary** — its semantic faithfulness taxonomy (post-compilation errors) vs. your compiler error taxonomy (pre-compilation errors) together demonstrate that error characterization at BOTH layers is under-explored, strengthening your argument for the taxonomy contribution. (3) **Strengthen the impact argument for domain-conditioned retrieval over static context**: articulate specific scenarios where dynamic per-problem conditioning should outperform IndiMathBench-style static context — e.g., cross-domain problems (a number theory result requiring analysis-level typeclasses), ambiguous domain assignment (problems at domain boundaries), and retrieval precision degradation at higher K values where domain filtering reduces noise. If you can make a convincing case that these scenarios are common enough to matter, the pipeline contribution gains weight beyond the taxonomy.
+
+
+## Output format
+Output ONLY a JSON object:
+{
+  "verdict": "pass | revise | fail",
+  "scores": {
+    "novelty": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "feasibility": {"score": 0-5, "rationale": "..."},
+    "clarity": {"score": 0-5, "rationale": "..."},
+    "impact": {"score": 0-5, "rationale": "..."}
+  },
+  "issues": ["specific issue 1", ...],
+  "feedback": "Actionable feedback (if verdict=revise)",
+  "reason": "One-line summary of verdict rationale"
+}
+
+Rules:
+- "pass": sound AND high quality — avg score >= 4.0, no critical issues
+- "revise": fixable issues OR scores below threshold
+- "fail": fundamental flaw (gap doesn't exist, approach provably wrong)
+- Threshold is HIGH (4.0/5.0): only truly outstanding ideas should pass.
+- Round 10 only: if still "revise", you MUST choose "pass" or "fail".
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "b9b6653c-77d6-45f7-b143-1d26cd86e692",
+  "type": "user",
+  "uuid": "fb8bbc35-03d8-4061-8e68-419f9f9e58d3",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-28T15:33:54.484Z_
+
+```json
+{
+  "parentUuid": "fb8bbc35-03d8-4061-8e68-419f9f9e58d3",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "9be82369-7fe3-47ce-86f6-d869227e71f8",
+  "timestamp": "2026-05-28T15:33:54.484Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-28T15:33:54.484Z_
+
+```json
+{
+  "parentUuid": "9be82369-7fe3-47ce-86f6-d869227e71f8",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "2aa40700-7608-4071-bbec-44911beb01b0",
+  "timestamp": "2026-05-28T15:33:54.484Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-28 (UTC).**  Your job: independently verify this idea's claims via web_search, then issue a verdict.  ## U…",
+  "leafUuid": "2aa40700-7608-4071-bbec-44911beb01b0",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review domain-adaptive autoformalization pipeline",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-28T15:34:02.874Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This is round 9 of 10 for reviewing this autoformalization research proposal. Let me carefully conduct my independent verification of the claims and assess the current state of the proposal.
+
+Let me start by searching for the specific issues raised in the Round 8 review and verify the current state of the field.
+
+Key things to verify:
+1. Goedel-Formalizer-V2-8B SOTA status
+2. "Do LLMs Game Formalization?" paper (arXiv 2604.19459)
+
+
+3. CAM-Bench (arXiv 2605.17255)
+4. The impact argument - whether domain-conditioned retrieval meaningfully outperforms static context
+5. Any new concurrent work since Round 8
+6. Overall assessment of whether this is ready to pass
+
+Let me search for these systematically.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2aa40700-7608-4071-bbec-44911beb01b0",
+  "isSidechain": false,
+  "requestId": "req_011CbVDBJgQGCsx5XJTe9UoU",
+  "type": "assistant",
+  "uuid": "e6ae00d1-a449-4fed-a74c-fd2623c5f313",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K3xDQJUMVV5sHauK3K6oUZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 23616,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 315,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 23616,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 315,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 23616,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 23616
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-28T15:34:02.876Z_
+
+I'll conduct a thorough independent review of this Round 9 submission. Let me verify the key claims and search for any new concurrent work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e6ae00d1-a449-4fed-a74c-fd2623c5f313",
+  "isSidechain": false,
+  "requestId": "req_011CbVDBJgQGCsx5XJTe9UoU",
+  "type": "assistant",
+  "uuid": "adddfb34-6ae4-4ca4-bf80-ae1dd5af4c4f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K3xDQJUMVV5sHauK3K6oUZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 23616,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 315,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 23616,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 315,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 23616,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 23616
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-28T15:34:02.895Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01FqgMwUPLBsFBgQ4NEMjJxh`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "adddfb34-6ae4-4ca4-bf80-ae1dd5af4c4f",
+  "isSidechain": false,
+  "requestId": "req_011CbVDBJgQGCsx5XJTe9UoU",
+  "type": "assistant",
+  "uuid": "ff728d7b-5d35-4058-82db-25ce77784c07",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K3xDQJUMVV5sHauK3K6oUZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 23616,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 315,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 23616,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 315,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 23616,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 23616
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-28T15:34:02.902Z_
+
+<details><summary>↩ Tool result · `toolu_01FqgMwUPLBsFBgQ4NEMjJxh`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ff728d7b-5d35-4058-82db-25ce77784c07",
+  "isSidechain": false,
+  "promptId": "b9b6653c-77d6-45f7-b143-1d26cd86e692",
+  "type": "user",
+  "uuid": "930b9db5-0a67-4afd-922b-b6ddc17baf73",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "ff728d7b-5d35-4058-82db-25ce77784c07",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-28T15:34:05.929Z_
+
+Now let me conduct systematic searches to verify the key claims and check for new concurrent work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "930b9db5-0a67-4afd-922b-b6ddc17baf73",
+  "isSidechain": false,
+  "requestId": "req_011CbVDBvszz3pE9to7AadcW",
+  "type": "assistant",
+  "uuid": "7dc036b2-9c5b-476a-be13-5e01702cbd0a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NLsJiP1nuU3vAdpeECyRVk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1335,
+      "cache_read_input_tokens": 34630,
+      "output_tokens": 103,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1335,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 103,
+          "cache_read_input_tokens": 34630,
+          "cache_creation_input_tokens": 1335,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1335
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-28T15:34:06.278Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012YiUCybZ8irkqAqJS5r369`</summary>
+
+```json
+{
+  "query": "Goedel-Formalizer-V2-8B autoformalization SOTA 2026 comparison Kimina StepFun"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7dc036b2-9c5b-476a-be13-5e01702cbd0a",
+  "isSidechain": false,
+  "requestId": "req_011CbVDBvszz3pE9to7AadcW",
+  "type": "assistant",
+  "uuid": "bb8a6f32-7a30-4348-8e45-6b0c1c56c5c4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NLsJiP1nuU3vAdpeECyRVk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1335,
+      "cache_read_input_tokens": 34630,
+      "output_tokens": 103,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1335,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 103,
+          "cache_read_input_tokens": 34630,
+          "cache_creation_input_tokens": 1335,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1335
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-28T15:34:13.718Z_
+
+<details><summary>↩ Tool result · `toolu_012YiUCybZ8irkqAqJS5r369`</summary>
+
+```text
+Web search results for query: "Goedel-Formalizer-V2-8B autoformalization SOTA 2026 comparison Kimina StepFun"
+
+Links: [{"title":"StepFun-Formalizer: Unlocking the Autoformalization Potential","url":"https://www.arxiv.org/pdf/2508.04440"},{"title":"StepFun-Formalizer: Unlocking the Autoformalization Potential of LLMs Through Knowledge-Reasoning Fusion","url":"https://arxiv.org/html/2508.04440v2"},{"title":"arXiv preprint AUTOFORMALIZER WITH TOOL FEEDBACK","url":"https://arxiv.org/pdf/2510.06857"},{"title":"Goedel-LM/Goedel-Formalizer-V2-8B · Hugging Face","url":"https://huggingface.co/Goedel-LM/Goedel-Formalizer-V2-8B"},{"title":"Autoformalizer with Tool Feedback","url":"https://arxiv.org/html/2510.06857v1"},{"title":"Goedel-LM/Goedel-Prover-V2-8B · Hugging Face","url":"https://huggingface.co/Goedel-LM/Goedel-Prover-V2-8B"},{"title":"StepFun-Formalizer: Unlocking the Autoformalization Potential of LLMs Through Knowledge-Reasoning Fusion | Proceedings of the AAAI Conference on Artificial Intelligence","url":"https://ojs.aaai.org/index.php/AAAI/article/view/40691"},{"title":"Technical Report GOEDEL-PROVER-V2: SCALING FORMAL THEOREM","url":"https://arxiv.org/pdf/2508.03613"}]
+
+Based on the search results, here's what I found regarding autoformalization models and their state-of-the-art comparisons in 2026:
+
+## Key Models and Performance
+
+The main specialized autoformalization models being compared include Goedel-Formalizer, Kimina-Autoformalizer, and StepFun-Formalizer.
+
+### StepFun-Formalizer SOTA Status
+
+StepFun-Formalizer established new state-of-the-art results on both FormalMATH-Lite (in-domain) and ProverBench (out-of-distribution).
+
+### Goedel-Formalizer-V2 Performance
+
+In internal evaluation on 300 informal statements from Omni-MATH, Kimina-formalizer-8B successfully translates 161/300 statements, while Goedel-Formalizer-V2-32B succeeded in 228 statements.
+
+### Benchmark Comparisons
+
+For baseline comparisons among the most performant formalizer models, researchers evaluate Kimina-Autoformalizer-7B, StepFun-Formalizer-7B/32B, and Goedel-V2-Formalizer-8B/32B.
+
+The search results indicate that as of 2026, these models represent the leading approaches in autoformalization, with StepFun-Formalizer currently holding the state-of-the-art position on standard benchmarks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bb8a6f32-7a30-4348-8e45-6b0c1c56c5c4",
+  "isSidechain": false,
+  "promptId": "b9b6653c-77d6-45f7-b143-1d26cd86e692",
+  "type": "user",
+  "uuid": "9c71b073-3b43-4c3f-91d2-15c9ea89e83d",
+  "toolUseResult": {
+    "query": "Goedel-Formalizer-V2-8B autoformalization SOTA 2026 comparison Kimina StepFun",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019Nzfjs3SgAshjntpUCejDb",
+        "content": [
+          {
+            "title": "StepFun-Formalizer: Unlocking the Autoformalization Potential",
+            "url": "https://www.arxiv.org/pdf/2508.04440"
+          },
+          {
+            "title": "StepFun-Formalizer: Unlocking the Autoformalization Potential of LLMs Through Knowledge-Reasoning Fusion",
+            "url": "https://arxiv.org/html/2508.04440v2"
+          },
+          {
+            "title": "arXiv preprint AUTOFORMALIZER WITH TOOL FEEDBACK",
+            "url": "https://arxiv.org/pdf/2510.06857"
+          },
+          {
+            "title": "Goedel-LM/Goedel-Formalizer-V2-8B · Hugging Face",
+            "url": "https://huggingface.co/Goedel-LM/Goedel-Formalizer-V2-8B"
+          },
+          {
+            "title": "Autoformalizer with Tool Feedback",
+            "url": "https://arxiv.org/html/2510.06857v1"
+          },
+          {
+            "title": "Goedel-LM/Goedel-Prover-V2-8B · Hugging Face",
+            "url": "https://huggingface.co/Goedel-LM/Goedel-Prover-V2-8B"
+          },
+          {
+            "title": "StepFun-Formalizer: Unlocking the Autoformalization Potential of LLMs Through Knowledge-Reasoning Fusion | Proceedings of the AAAI Conference on Artificial Intelligence",
+            "url": "https://ojs.aaai.org/index.php/AAAI/article/view/40691"
+          },
+          {
+            "title": "Technical Report GOEDEL-PROVER-V2: SCALING FORMAL THEOREM",
+            "url": "https://arxiv.org/pdf/2508.03613"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found regarding autoformalization models and their state-of-the-art comparisons in 2026:\n\n## Key Models and Performance\n\nThe main specialized autoformalization models being compared include Goedel-Formalizer, Kimina-Autoformalizer, and StepFun-Formalizer.\n\n### StepFun-Formalizer SOTA Status\n\nStepFun-Formalizer established new state-of-the-art results on both FormalMATH-Lite (in-domain) and ProverBench (out-of-distribution).\n\n### Goedel-Formalizer-V2 Performance\n\nIn internal evaluation on 300 informal statements from Omni-MATH, Kimina-formalizer-8B successfully translates 161/300 statements, while Goedel-Formalizer-V2-32B succeeded in 228 statements.\n\n### Benchmark Comparisons\n\nFor baseline comparisons among the most performant formalizer models, researchers evaluate Kimina-Autoformalizer-7B, StepFun-Formalizer-7B/32B, and Goedel-V2-Formalizer-8B/32B.\n\nThe search results indicate that as of 2026, these models represent the leading approaches in autoformalization, with StepFun-Formalizer currently holding the state-of-the-art position on standard benchmarks."
+    ],
+    "durationSeconds": 7.436095353999999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "bb8a6f32-7a30-4348-8e45-6b0c1c56c5c4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-28T15:34:16.141Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01U1GGUoKn3EyULaTXqWmMkX`</summary>
+
+```json
+{
+  "query": "\"Do LLMs Game Formalization\" arXiv 2604.19459 semantic faithfulness taxonomy"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9c71b073-3b43-4c3f-91d2-15c9ea89e83d",
+  "isSidechain": false,
+  "requestId": "req_011CbVDCigZ6qpC5pp8p8TwE",
+  "type": "assistant",
+  "uuid": "db2f5e03-c187-417e-82d8-34423d04f26f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0195rnQN4AuAiLcuT6sGbNha",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 939,
+      "cache_read_input_tokens": 35965,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 939,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 35965,
+          "cache_creation_input_tokens": 939,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 939
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-28T15:34:24.374Z_
+
+<details><summary>↩ Tool result · `toolu_01U1GGUoKn3EyULaTXqWmMkX`</summary>
+
+```text
+Web search results for query: ""Do LLMs Game Formalization" arXiv 2604.19459 semantic faithfulness taxonomy"
+
+Links: [{"title":"Do LLMs Game Formalization? Evaluating Faithfulness in Logical Reasoning","url":"https://arxiv.org/html/2604.19459"},{"title":"[2604.19459] Do LLMs Game Formalization? Evaluating Faithfulness in Logical Reasoning","url":"https://arxiv.org/abs/2604.19459"},{"title":"Autoformalization of Game Descriptions using Large Language Models","url":"https://arxiv.org/pdf/2409.12300"},{"title":"Can LLMs effectively provide game-theoretic-based scenarios for cybersecurity?","url":"https://arxiv.org/html/2508.05670v1"},{"title":"Semantic Faithfulness and Entropy Production Measures to Tame Your LLM Demons and Manage Hallucinations","url":"https://arxiv.org/html/2512.05156v1"},{"title":"Evaluating Autoformalization Robustness via Semantically Similar Paraphrasing","url":"https://arxiv.org/pdf/2511.12784"},{"title":"Reasoning Capabilities of Large Language Models. Lessons Learned from General Game Playing","url":"https://arxiv.org/pdf/2602.19160"},{"title":"Grammars of Formal Uncertainty: When to Trust LLMs in Automated Reasoning Tasks","url":"https://arxiv.org/pdf/2505.20047"},{"title":"Large Language Models as Agents in Two-Player Games","url":"https://arxiv.org/pdf/2402.08078"}]
+
+Based on the search results, I found the paper you're looking for. Here's information about the arXiv paper 2604.19459:
+
+## Paper Overview
+
+The paper is titled "Do LLMs Game Formalization? Evaluating Faithfulness in Logical Reasoning" by Kyuhee Kim, Auguste Poiroux, and Antoine Bosselut from EPFL.
+
+## Key Concepts
+
+A formalization is faithful if the formal axioms preserve the semantic content of the natural language premises. The properties of validity and faithfulness are independent, and a valid proof may rest on an unfaithful formalization.
+
+## Research Focus
+
+The paper investigates whether frontier models exploit the gap between valid proofs and faithful translations when generating Lean 4 proofs, a behavior termed "formalization gaming."
+
+## Methodology and Findings
+
+The researchers evaluated GPT-5 and DeepSeek-R1 on 303 first-order logic problems (203 from FOLIO, 100 from Multi-LogiEval), comparing unified generation against a two-stage pipeline that separates formalization from proving.
+
+Despite compilation rates of 87–99%, they found no evidence of systematic gaming in unified generation: models prefer reporting failure over forcing proofs, even under prompting designed to encourage it. However, the two-stage pipeline revealed two distinct modes of unfaithfulness: GPT-5 fabricates axioms during proof generation, while DeepSeek-R1 mistranslates premises during formalization, producing internally consistent outputs that evade detection entirely.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "db2f5e03-c187-417e-82d8-34423d04f26f",
+  "isSidechain": false,
+  "promptId": "b9b6653c-77d6-45f7-b143-1d26cd86e692",
+  "type": "user",
+  "uuid": "3e8c438d-e8e4-4a50-be38-35c8d8e73a41",
+  "toolUseResult": {
+    "query": "\"Do LLMs Game Formalization\" arXiv 2604.19459 semantic faithfulness taxonomy",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01MUEmqfxHpQFusGtRzKmYzd",
+        "content": [
+          {
+            "title": "Do LLMs Game Formalization? Evaluating Faithfulness in Logical Reasoning",
+            "url": "https://arxiv.org/html/2604.19459"
+          },
+          {
+            "title": "[2604.19459] Do LLMs Game Formalization? Evaluating Faithfulness in Logical Reasoning",
+            "url": "https://arxiv.org/abs/2604.19459"
+          },
+          {
+            "title": "Autoformalization of Game Descriptions using Large Language Models",
+            "url": "https://arxiv.org/pdf/2409.12300"
+          },
+          {
+            "title": "Can LLMs effectively provide game-theoretic-based scenarios for cybersecurity?",
+            "url": "https://arxiv.org/html/2508.05670v1"
+          },
+          {
+            "title": "Semantic Faithfulness and Entropy Production Measures to Tame Your LLM Demons and Manage Hallucinations",
+            "url": "https://arxiv.org/html/2512.05156v1"
+          },
+          {
+            "title": "Evaluating Autoformalization Robustness via Semantically Similar Paraphrasing",
+            "url": "https://arxiv.org/pdf/2511.12784"
+          },
+          {
+            "title": "Reasoning Capabilities of Large Language Models. Lessons Learned from General Game Playing",
+            "url": "https://arxiv.org/pdf/2602.19160"
+          },
+          {
+            "title": "Grammars of Formal Uncertainty: When to Trust LLMs in Automated Reasoning Tasks",
+            "url": "https://arxiv.org/pdf/2505.20047"
+          },
+          {
+            "title": "Large Language Models as Agents in Two-Player Games",
+            "url": "https://arxiv.org/pdf/2402.08078"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for. Here's information about the arXiv paper 2604.19459:\n\n## Paper Overview\n\nThe paper is titled \"Do LLMs Game Formalization? Evaluating Faithfulness in Logical Reasoning\" by Kyuhee Kim, Auguste Poiroux, and Antoine Bosselut from EPFL.\n\n## Key Concepts\n\nA formalization is faithful if the formal axioms preserve the semantic content of the natural language premises. The properties of validity and faithfulness are independent, and a valid proof may rest on an unfaithful formalization.\n\n## Research Focus\n\nThe paper investigates whether frontier models exploit the gap between valid proofs and faithful translations when generating Lean 4 proofs, a behavior termed \"formalization gaming.\"\n\n## Methodology and Findings\n\nThe researchers evaluated GPT-5 and DeepSeek-R1 on 303 first-order logic problems (203 from FOLIO, 100 from Multi-LogiEval), comparing unified generation against a two-stage pipeline that separates formalization from proving.\n\nDespite compilation rates of 87–99%, they found no evidence of systematic gaming in unified generation: models prefer reporting failure over forcing proofs, even under prompting designed to encourage it. However, the two-stage pipeline revealed two distinct modes of unfaithfulness: GPT-5 fabricates axioms during proof generation, while DeepSeek-R1 mistranslates premises during formalization, producing internally consistent outputs that evade detection entirely."
+    ],
+    "durationSeconds": 8.229256860000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "db2f5e03-c187-417e-82d8-34423d04f26f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-28T15:34:27.324Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016t7A38KndPbTyoXWYgN6Eo`</summary>
+
+```json
+{
+  "query": "CAM-Bench arXiv 2605.17255 optimization numerical linear algebra Lean autoformalization benchmark 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3e8c438d-e8e4-4a50-be38-35c8d8e73a41",
+  "isSidechain": false,
+  "requestId": "req_011CbVDDWFUH1wF2t2FCS56L",
+  "type": "assistant",
+  "uuid": "a663c63f-a189-4cfe-8bcf-5ed1a4df5ff1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VjLxjw31yDsZQ7EY3qftQy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 858,
+      "cache_read_input_tokens": 36904,
+      "output_tokens": 79,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 858,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 79,
+          "cache_read_input_tokens": 36904,
+          "cache_creation_input_tokens": 858,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 858
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-28T15:34:33.556Z_
+
+<details><summary>↩ Tool result · `toolu_016t7A38KndPbTyoXWYgN6Eo`</summary>
+
+```text
+Web search results for query: "CAM-Bench arXiv 2605.17255 optimization numerical linear algebra Lean autoformalization benchmark 2026"
+
+Links: [{"title":"[2605.17255] CAM-Bench: A Benchmark for Computational and Applied Mathematics in Lean","url":"https://arxiv.org/abs/2605.17255"},{"title":"CAM-Bench: A Benchmark for Computational and Applied Mathematics in Lean","url":"https://arxiv.org/html/2605.17255"},{"title":"An Evaluation Benchmark for Autoformalization in Lean4","url":"https://arxiv.org/pdf/2406.06555"},{"title":"An Evaluation Benchmark for Autoformalization in Lean4","url":"https://arxiv.org/html/2406.06555v1"},{"title":"Process-Driven Autoformalization in Lean 4","url":"https://arxiv.org/pdf/2406.01940"},{"title":"Improving Lean4 Autoformalization via Cycle Consistency Fine-tuning","url":"https://arxiv.org/pdf/2603.24372"}]
+
+Based on the search results, I found information about CAM-Bench arXiv paper 2605.17255:
+
+CAM-Bench is a Lean 4 theorem-proving benchmark of 1,000 Lean proof targets in computational and applied mathematics, with coverage spanning optimization, numerical linear algebra, and numerical analysis.
+
+The problems are adapted from textbook exercises and often depend on locally introduced definitions, notation, algorithms, and elementary results. To construct CAM-Bench, a dependency-recovery pipeline reconstructs the local textbook context needed to state each problem faithfully, and then normalizes each problem into a standalone informal theorem and translates it into a Lean target.
+
+Existing benchmarks mainly focus on Olympiad-style problems and algebraic domains, leaving computational and applied mathematics underrepresented. CAM-Bench was developed to address this gap in the field of formal theorem-proving benchmarks for evaluating mathematical reasoning in large language models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a663c63f-a189-4cfe-8bcf-5ed1a4df5ff1",
+  "isSidechain": false,
+  "promptId": "b9b6653c-77d6-45f7-b143-1d26cd86e692",
+  "type": "user",
+  "uuid": "09044548-3d04-42b3-babc-47fc256e6a8d",
+  "toolUseResult": {
+    "query": "CAM-Bench arXiv 2605.17255 optimization numerical linear algebra Lean autoformalization benchmark 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LXxopd3xp8b134vNehaMWg",
+        "content": [
+          {
+            "title": "[2605.17255] CAM-Bench: A Benchmark for Computational and Applied Mathematics in Lean",
+            "url": "https://arxiv.org/abs/2605.17255"
+          },
+          {
+            "title": "CAM-Bench: A Benchmark for Computational and Applied Mathematics in Lean",
+            "url": "https://arxiv.org/html/2605.17255"
+          },
+          {
+            "title": "An Evaluation Benchmark for Autoformalization in Lean4",
+            "url": "https://arxiv.org/pdf/2406.06555"
+          },
+          {
+            "title": "An Evaluation Benchmark for Autoformalization in Lean4",
+            "url": "https://arxiv.org/html/2406.06555v1"
+          },
+          {
+            "title": "Process-Driven Autoformalization in Lean 4",
+            "url": "https://arxiv.org/pdf/2406.01940"
+          },
+          {
+            "title": "Improving Lean4 Autoformalization via Cycle Consistency Fine-tuning",
+            "url": "https://arxiv.org/pdf/2603.24372"
+          }
+        ]
+      },
+      "Based on the search results, I found information about CAM-Bench arXiv paper 2605.17255:\n\nCAM-Bench is a Lean 4 theorem-proving benchmark of 1,000 Lean proof targets in computational and applied mathematics, with coverage spanning optimization, numerical linear algebra, and numerical analysis.\n\nThe problems are adapted from textbook exercises and often depend on locally introduced definitions, notation, algorithms, and elementary results. To construct CAM-Bench, a dependency-recovery pipeline reconstructs the local textbook context needed to state each problem faithfully, and then normalizes each problem into a standalone informal theorem and translates it into a Lean target.\n\nExisting benchmarks mainly focus on Olympiad-style problems and algebraic domains, leaving computational and applied mathematics underrepresented. CAM-Bench was developed to address this gap in the field of formal theorem-proving benchmarks for evaluating mathematical reasoning in large language models."
+    ],
+    "durationSeconds": 6.228584815000002,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "a663c63f-a189-4cfe-8bcf-5ed1a4df5ff1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-28T15:34:36.533Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RdEZSyBEWJnTwmS2dkRfa3`</summary>
+
+```json
+{
+  "query": "domain-adaptive autoformalization mathematical subdomain conditioning 2026 Lean"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "09044548-3d04-42b3-babc-47fc256e6a8d",
+  "isSidechain": false,
+  "requestId": "req_011CbVDEBVdpPW3vJ83HR6rf",
+  "type": "assistant",
+  "uuid": "2db634f4-bf08-4366-83a7-e8d452953793",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CyspGNn8mpnivHDVXJnsff",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 591,
+      "cache_read_input_tokens": 37762,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 591,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 37762,
+          "cache_creation_input_tokens": 591,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 591
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-28T15:34:44.572Z_
+
+<details><summary>↩ Tool result · `toolu_01RdEZSyBEWJnTwmS2dkRfa3`</summary>
+
+```text
+Web search results for query: "domain-adaptive autoformalization mathematical subdomain conditioning 2026 Lean"
+
+Links: [{"title":"Process-Driven Autoformalization in Lean 4 | OpenReview","url":"https://openreview.net/forum?id=k8KsI84Ds7"},{"title":"Formalization and autoformalization 2026-2027","url":"https://web.math.utk.edu/~yqing/lean.html"},{"title":"Major Breakthroughs in Lean 4-Based Auto-Formalized Mathematics","url":"https://www.cs.virginia.edu/~rmw7my/Courses/AgenticAISpring2026/Major%20Breakthroughs%20in%20Lean%204-Based%20Auto-Formalized%20Mathematics.html"},{"title":"M2F: Automated Formalization of Mathematical Literature at Scale","url":"https://arxiv.org/pdf/2602.17016"},{"title":"Improving Lean4 Autoformalization via Cycle Consistency Fine-tuning Stanford CS224N Custom Project","url":"https://arxiv.org/html/2603.24372"},{"title":"IndiMathBench: Autoformalizing Mathematical Reasoning ...","url":"https://arxiv.org/pdf/2512.00997"},{"title":"130k Lines of Formal Topology in Two Weeks: Simple and Cheap Autoformalization for Everyone?","url":"https://arxiv.org/pdf/2601.03298"},{"title":"Improving Lean4 Autoformalization via Cycle Consistency Fine-tuning","url":"https://arxiv.org/pdf/2603.24372"},{"title":"A New Approach Towards Autoformalization Nilay Patel","url":"https://arxiv.org/pdf/2310.07957"}]
+
+Based on the search results, here's what I found related to autoformalization in Lean with domain considerations:
+
+## Key Findings
+
+Autoformalization, the conversion of natural language mathematics into formal languages, offers significant potential for advancing mathematical reasoning. Recent work in 2026 has been focused on addressing domain-specific challenges in this area.
+
+**Domain-Specific Challenges:**
+Current methods struggle to preserve precise semantic details when translating natural-language problems into Lean, particularly in advanced domains, and continue to struggle with semantic consistency, complex mathematical reasoning, and the domain gap between natural language and formal specifications.
+
+**Recent Approaches:**
+Recent work has involved fine-tuning language models for natural language to Lean4 formalization using FineLeanCorpus, considering multiple training regimes including supervised fine-tuning with curriculum learning and reinforcement learning using group relative policy optimization.
+
+FineLeanCorpus provides 509k NL/Lean4 pairs with difficulty ratings and domain labels, which suggests that domain labels are already being used in recent datasets to enable domain-aware training approaches.
+
+**2026 Developments:**
+FormaRL, a reinforcement learning framework for autoformalization, requires only a small amount of unlabeled data and shows 4-6× improvement in pass@1 autoformalization accuracy.
+
+The search results indicate active research into domain-adaptive approaches for autoformalization in Lean, though the specific technique of mathematical subdomain conditioning appears to be an emerging area within this broader field.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2db634f4-bf08-4366-83a7-e8d452953793",
+  "isSidechain": false,
+  "promptId": "b9b6653c-77d6-45f7-b143-1d26cd86e692",
+  "type": "user",
+  "uuid": "31285687-3580-4726-b8c8-aa8dc71f5ab4",
+  "toolUseResult": {
+    "query": "domain-adaptive autoformalization mathematical subdomain conditioning 2026 Lean",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019PN72BMpcGXvVCYRvpDfUF",
+        "content": [
+          {
+            "title": "Process-Driven Autoformalization in Lean 4 | OpenReview",
+            "url": "https://openreview.net/forum?id=k8KsI84Ds7"
+          },
+          {
+            "title": "Formalization and autoformalization 2026-2027",
+            "url": "https://web.math.utk.edu/~yqing/lean.html"
+          },
+          {
+            "title": "Major Breakthroughs in Lean 4-Based Auto-Formalized Mathematics",
+            "url": "https://www.cs.virginia.edu/~rmw7my/Courses/AgenticAISpring2026/Major%20Breakthroughs%20in%20Lean%204-Based%20Auto-Formalized%20Mathematics.html"
+          },
+          {
+            "title": "M2F: Automated Formalization of Mathematical Literature at Scale",
+            "url": "https://arxiv.org/pdf/2602.17016"
+          },
+          {
+            "title": "Improving Lean4 Autoformalization via Cycle Consistency Fine-tuning Stanford CS224N Custom Project",
+            "url": "https://arxiv.org/html/2603.24372"
+          },
+          {
+            "title": "IndiMathBench: Autoformalizing Mathematical Reasoning ...",
+            "url": "https://arxiv.org/pdf/2512.00997"
+          },
+          {
+            "title": "130k Lines of Formal Topology in Two Weeks: Simple and Cheap Autoformalization for Everyone?",
+            "url": "https://arxiv.org/pdf/2601.03298"
+          },
+          {
+            "title": "Improving Lean4 Autoformalization via Cycle Consistency Fine-tuning",
+            "url": "https://arxiv.org/pdf/2603.24372"
+          },
+          {
+            "title": "A New Approach Towards Autoformalization Nilay Patel",
+            "url": "https://arxiv.org/pdf/2310.07957"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found related to autoformalization in Lean with domain considerations:\n\n## Key Findings\n\nAutoformalization, the conversion of natural language mathematics into formal languages, offers significant potential for advancing mathematical reasoning. Recent work in 2026 has been focused on addressing domain-specific challenges in this area.\n\n**Domain-Specific Challenges:**\nCurrent methods struggle to preserve precise semantic details when translating natural-language problems into Lean, particularly in advanced domains, and continue to struggle with semantic consistency, complex mathematical reasoning, and the domain gap between natural language and formal specifications.\n\n**Recent Approaches:**\nRecent work has involved fine-tuning language models for natural language to Lean4 formalization using FineLeanCorpus, considering multiple training regimes including supervised fine-tuning with curriculum learning and reinforcement learning using group relative policy optimization.\n\nFineLeanCorpus provides 509k NL/Lean4 pairs with difficulty ratings and domain labels, which suggests that domain labels are already being used in recent datasets to enable domain-aware training approaches.\n\n**2026 Developments:**\nFormaRL, a reinforcement learning framework for autoformalization, requires only a small amount of unlabeled data and shows 4-6× improvement in pass@1 autoformalization accuracy.\n\nThe search results indicate active research into domain-adaptive approaches for autoformalization in Lean, though the specific technique of mathematical subdomain conditioning appears to be an emerging area within this broader field."
+    ],
+    "durationSeconds": 8.035923060000002,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "2db634f4-bf08-4366-83a7-e8d452953793",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-28 (UTC).**  Your job: independently verify this idea's claims via web_search, then issue a verdict.  ## U…",
+  "leafUuid": "31285687-3580-4726-b8c8-aa8dc71f5ab4",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review domain-adaptive autoformalization pipeline",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b"
+}
+```
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-28T15:34:47.114Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Tek3wrUZAsg57cDVD4TgmL`</summary>
+
+```json
+{
+  "query": "autoformalization error taxonomy domain-specific Lean Mathlib 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "31285687-3580-4726-b8c8-aa8dc71f5ab4",
+  "isSidechain": false,
+  "requestId": "req_011CbVDEzbaLRNoSvfsaDFXp",
+  "type": "assistant",
+  "uuid": "fbec6d29-9e15-44c0-ba9a-48a4dbd2e003",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CeAcrTybGom26uH4m5FNaN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 867,
+      "cache_read_input_tokens": 38353,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 867,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 38353,
+          "cache_creation_input_tokens": 867,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 867
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-28T15:34:54.496Z_
+
+<details><summary>↩ Tool result · `toolu_01Tek3wrUZAsg57cDVD4TgmL`</summary>
+
+```text
+Web search results for query: "autoformalization error taxonomy domain-specific Lean Mathlib 2026"
+
+Links: [{"title":"Winter 2026 Math AI Lab Projects","url":"https://sites.math.washington.edu/ai/winter2026.html"},{"title":"IndiMathBench: Autoformalizing Mathematical Reasoning Problems with a Human Touch","url":"https://arxiv.org/html/2512.00997"},{"title":"Automated Formalization via Conceptual Retrieval-Augmented LLMs","url":"https://arxiv.org/html/2508.06931"},{"title":"IndiMathBench: Autoformalizing Mathematical Reasoning ...","url":"https://arxiv.org/pdf/2512.00997"},{"title":"ATLAS: Autoformalizing Theorems through Lifting, ...","url":"https://openreview.net/pdf?id=MlJyAvQaxp"},{"title":"GitHub - loganrjmurphy/LeanEuclid: LeanEuclid is a benchmark for autoformalization in the domain of Euclidean geometry, targeting the proof assistant Lean.","url":"https://github.com/loganrjmurphy/LeanEuclid"},{"title":"FMC: Formalization of Natural Language Mathematical Competition Problems","url":"https://arxiv.org/pdf/2507.11275"},{"title":"Consistent Autoformalization for Constructing Mathematical Libraries","url":"https://arxiv.org/pdf/2410.04194"},{"title":"GFLean: An Autoformalisation Framework for Lean via GF","url":"https://arxiv.org/pdf/2404.01234"}]
+
+I found several relevant sources about autoformalization with Lean and Mathlib from 2026. Here are the key findings:
+
+## Error Types in Autoformalization
+
+Common failure modes include fabricating undefined concepts in Mathlib, misusing symbols due to informal reasoning, and producing outdated definitions incompatible with the latest Mathlib version.
+
+## Domain-Specific Approaches
+
+Recent research has emphasized domain-specific strategies for autoformalization. A category-specific process constructs static context once per domain, which is then reused for all problems in that category to provide consistent access to relevant Mathlib definitions, with this context anchoring the model with domain knowledge within each category to prevent hallucinations and syntax errors.
+
+The semantic gap stems from the mismatch between the ambiguity of natural language and the precision of formal languages, with a key difficulty being conceptual polymorphism, where identical expressions correspond to different formal definitions depending on context, domain, or abstraction level.
+
+## Iterative Refinement
+
+Parse or type errors are extracted and fed back to the model for correction, with this refinement continuing for up to six iterations, yielding syntactically valid Lean formalizations for 95.3% of problems.
+
+The search results show active 2026 research in this area, including projects from the University of Washington Math AI Lab and multiple arxiv papers from March 2026 specifically addressing autoformalization challenges.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fbec6d29-9e15-44c0-ba9a-48a4dbd2e003",
+  "isSidechain": false,
+  "promptId": "b9b6653c-77d6-45f7-b143-1d26cd86e692",
+  "type": "user",
+  "uuid": "7e9a4179-d4cd-4e41-af11-ae36dc8c1230",
+  "toolUseResult": {
+    "query": "autoformalization error taxonomy domain-specific Lean Mathlib 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FwaPuvccf5k1CE5KgTYNd9",
+        "content": [
+          {
+            "title": "Winter 2026 Math AI Lab Projects",
+            "url": "https://sites.math.washington.edu/ai/winter2026.html"
+          },
+          {
+            "title": "IndiMathBench: Autoformalizing Mathematical Reasoning Problems with a Human Touch",
+            "url": "https://arxiv.org/html/2512.00997"
+          },
+          {
+            "title": "Automated Formalization via Conceptual Retrieval-Augmented LLMs",
+            "url": "https://arxiv.org/html/2508.06931"
+          },
+          {
+            "title": "IndiMathBench: Autoformalizing Mathematical Reasoning ...",
+            "url": "https://arxiv.org/pdf/2512.00997"
+          },
+          {
+            "title": "ATLAS: Autoformalizing Theorems through Lifting, ...",
+            "url": "https://openreview.net/pdf?id=MlJyAvQaxp"
+          },
+          {
+            "title": "GitHub - loganrjmurphy/LeanEuclid: LeanEuclid is a benchmark for autoformalization in the domain of Euclidean geometry, targeting the proof assistant Lean.",
+            "url": "https://github.com/loganrjmurphy/LeanEuclid"
+          },
+          {
+            "title": "FMC: Formalization of Natural Language Mathematical Competition Problems",
+            "url": "https://arxiv.org/pdf/2507.11275"
+          },
+          {
+            "title": "Consistent Autoformalization for Constructing Mathematical Libraries",
+            "url": "https://arxiv.org/pdf/2410.04194"
+          },
+          {
+            "title": "GFLean: An Autoformalisation Framework for Lean via GF",
+            "url": "https://arxiv.org/pdf/2404.01234"
+          }
+        ]
+      },
+      "I found several relevant sources about autoformalization with Lean and Mathlib from 2026. Here are the key findings:\n\n## Error Types in Autoformalization\n\nCommon failure modes include fabricating undefined concepts in Mathlib, misusing symbols due to informal reasoning, and producing outdated definitions incompatible with the latest Mathlib version.\n\n## Domain-Specific Approaches\n\nRecent research has emphasized domain-specific strategies for autoformalization. A category-specific process constructs static context once per domain, which is then reused for all problems in that category to provide consistent access to relevant Mathlib definitions, with this context anchoring the model with domain knowledge within each category to prevent hallucinations and syntax errors.\n\nThe semantic gap stems from the mismatch between the ambiguity of natural language and the precision of formal languages, with a key difficulty being conceptual polymorphism, where identical expressions correspond to different formal definitions depending on context, domain, or abstraction level.\n\n## Iterative Refinement\n\nParse or type errors are extracted and fed back to the model for correction, with this refinement continuing for up to six iterations, yielding syntactically valid Lean formalizations for 95.3% of problems.\n\nThe search results show active 2026 research in this area, including projects from the University of Washington Math AI Lab and multiple arxiv papers from March 2026 specifically addressing autoformalization challenges."
+    ],
+    "durationSeconds": 7.376393522000006,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "fbec6d29-9e15-44c0-ba9a-48a4dbd2e003",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-28T15:34:58.119Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NY1CMBgKnyCBJMSMaNsCZr`</summary>
+
+```json
+{
+  "query": "APRIL repair tuples autoformalization error_type field Mathlib module path domain stratification"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7e9a4179-d4cd-4e41-af11-ae36dc8c1230",
+  "isSidechain": false,
+  "requestId": "req_011CbVDFj3igbhhbU6XBZrxD",
+  "type": "assistant",
+  "uuid": "ee254a19-d429-4e26-a97b-7fab4932f0fc",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BsiKtpJ7jtggAxyAqH9vwr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 810,
+      "cache_read_input_tokens": 39220,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 810,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 39220,
+          "cache_creation_input_tokens": 810,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 810
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-28T15:35:05.547Z_
+
+<details><summary>↩ Tool result · `toolu_01NY1CMBgKnyCBJMSMaNsCZr`</summary>
+
+```text
+Web search results for query: "APRIL repair tuples autoformalization error_type field Mathlib module path domain stratification"
+
+Links: [{"title":"A New Approach Towards Autoformalization","url":"https://arxiv.org/html/2310.07957"},{"title":"Learning to Repair Lean Proofs from Compiler Feedback","url":"https://arxiv.org/pdf/2602.02990"},{"title":"IndiMathBench: Autoformalizing Mathematical Reasoning ...","url":"https://arxiv.org/pdf/2512.00997"},{"title":"INDIMATHBENCH: AUTOFORMALIZING MATHEMATI-","url":"https://www.microsoft.com/en-us/research/wp-content/uploads/2025/10/IndiMathBench_MS_hosting.pdf"},{"title":"ATLAS: Autoformalizing Theorems through Lifting, ...","url":"https://openreview.net/pdf?id=MlJyAvQaxp"},{"title":"An Agent For Retrieval and Iterative Auto-Formalization via ...","url":"https://arxiv.org/pdf/2510.04520"},{"title":"towards a faithful metric and a dependency retrieval","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/d630537fc4402cfa3ebbc7450a0cac91-Paper-Conference.pdf"},{"title":"A New Approach Towards Autoformalization Nilay Patel","url":"https://arxiv.org/pdf/2310.07957"}]
+
+Based on the search results, I found relevant information about APRIL and autoformalization:
+
+APRIL (Automated Proof Repair in Lean) is a dataset of 260,000 supervised tuples pairing systematically generated proof failures with compiler diagnostics and aligned repair and explanation targets. Training language models on APRIL substantially improves repair accuracy and feedback-conditioned reasoning; in their single-shot repair evaluation setting, a finetuned 4B-parameter model outperformed the strongest open-source baseline.
+
+The dataset is specifically designed to address proof repair in the Lean theorem prover. The resulting dataset pairs erroneous proofs and error information with structured labels containing the error interpretation from an LLM and the corresponding correct proofs.
+
+Regarding autoformalization more broadly, the search results show that managing Mathlib module paths and handling domain-specific concepts like stratification are common challenges. For instance, if a theorem references a vector space without specifying the field, but it's linked to mathlib's module definition which requires a specified field, the field argument would need to be added to correct the types.
+
+The APRIL dataset appears to be particularly valuable for improving how language models handle compiler feedback and error correction in formal mathematics, which relates to the error_type field and repair mechanisms you're asking about.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ee254a19-d429-4e26-a97b-7fab4932f0fc",
+  "isSidechain": false,
+  "promptId": "b9b6653c-77d6-45f7-b143-1d26cd86e692",
+  "type": "user",
+  "uuid": "4de512e5-eb41-4fba-937a-3185b90d3393",
+  "toolUseResult": {
+    "query": "APRIL repair tuples autoformalization error_type field Mathlib module path domain stratification",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01SYx4dR3ZLhxeTpwYV1rHFw",
+        "content": [
+          {
+            "title": "A New Approach Towards Autoformalization",
+            "url": "https://arxiv.org/html/2310.07957"
+          },
+          {
+            "title": "Learning to Repair Lean Proofs from Compiler Feedback",
+            "url": "https://arxiv.org/pdf/2602.02990"
+          },
+          {
+            "title": "IndiMathBench: Autoformalizing Mathematical Reasoning ...",
+            "url": "https://arxiv.org/pdf/2512.00997"
+          },
+          {
+            "title": "INDIMATHBENCH: AUTOFORMALIZING MATHEMATI-",
+            "url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2025/10/IndiMathBench_MS_hosting.pdf"
+          },
+          {
+            "title": "ATLAS: Autoformalizing Theorems through Lifting, ...",
+            "url": "https://openreview.net/pdf?id=MlJyAvQaxp"
+          },
+          {
+            "title": "An Agent For Retrieval and Iterative Auto-Formalization via ...",
+            "url": "https://arxiv.org/pdf/2510.04520"
+          },
+          {
+            "title": "towards a faithful metric and a dependency retrieval",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/d630537fc4402cfa3ebbc7450a0cac91-Paper-Conference.pdf"
+          },
+          {
+            "title": "A New Approach Towards Autoformalization Nilay Patel",
+            "url": "https://arxiv.org/pdf/2310.07957"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about APRIL and autoformalization:\n\nAPRIL (Automated Proof Repair in Lean) is a dataset of 260,000 supervised tuples pairing systematically generated proof failures with compiler diagnostics and aligned repair and explanation targets. Training language models on APRIL substantially improves repair accuracy and feedback-conditioned reasoning; in their single-shot repair evaluation setting, a finetuned 4B-parameter model outperformed the strongest open-source baseline.\n\nThe dataset is specifically designed to address proof repair in the Lean theorem prover. The resulting dataset pairs erroneous proofs and error information with structured labels containing the error interpretation from an LLM and the corresponding correct proofs.\n\nRegarding autoformalization more broadly, the search results show that managing Mathlib module paths and handling domain-specific concepts like stratification are common challenges. For instance, if a theorem references a vector space without specifying the field, but it's linked to mathlib's module definition which requires a specified field, the field argument would need to be added to correct the types.\n\nThe APRIL dataset appears to be particularly valuable for improving how language models handle compiler feedback and error correction in formal mathematics, which relates to the error_type field and repair mechanisms you're asking about."
+    ],
+    "durationSeconds": 7.4230839070000005,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "ee254a19-d429-4e26-a97b-7fab4932f0fc",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-28T15:35:07.959Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01A1scrM1jXiSR91XxSivQHu`</summary>
+
+```json
+{
+  "query": "site:arxiv.org autoformalization domain adaptation mathematical subdomain 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4de512e5-eb41-4fba-937a-3185b90d3393",
+  "isSidechain": false,
+  "requestId": "req_011CbVDGYHqujkTRjETN9u8g",
+  "type": "assistant",
+  "uuid": "9e0ebea7-361c-4545-8ed4-5385595bf422",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MyE3qkCPfDwUZvuNKKRPcE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 758,
+      "cache_read_input_tokens": 40030,
+      "output_tokens": 68,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 758,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 68,
+          "cache_read_input_tokens": 40030,
+          "cache_creation_input_tokens": 758,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 758
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-28T15:35:15.324Z_
+
+<details><summary>↩ Tool result · `toolu_01A1scrM1jXiSR91XxSivQHu`</summary>
+
+```text
+Web search results for query: "site:arxiv.org autoformalization domain adaptation mathematical subdomain 2026"
+
+Links: [{"title":"Autoformalization in the Era of Large Language Models: A Survey","url":"https://arxiv.org/html/2505.23486v1"},{"title":"130k Lines of Formal Topology in Two Weeks: Simple and Cheap Autoformalization for Everyone?","url":"https://arxiv.org/pdf/2601.03298"},{"title":"Autoformalize Mathematical Statements by Symbolic Equivalence and   Semantic Consistency","url":"https://arxiv.org/pdf/2410.20936"},{"title":"Consistent Autoformalization for Constructing Mathematical Libraries","url":"https://arxiv.org/pdf/2410.04194"},{"title":"Towards a Common Framework for Autoformalization","url":"https://arxiv.org/html/2509.09810v2"},{"title":"[2301.02195] Towards Autoformalization of Mathematics and Code Correctness: Experiments with Elementary Proofs","url":"https://ar5iv.labs.arxiv.org/html/2301.02195"},{"title":"ReForm: Reflective Autoformalization with Prospective Bounded Sequence Optimization","url":"https://arxiv.org/pdf/2510.24592"},{"title":"Autoformalizing Euclidean Geometry","url":"https://arxiv.org/pdf/2405.17216"}]
+
+I found several relevant papers on arxiv.org about autoformalization and mathematical subdomains. Here are the key results:
+
+1. **"Autoformalization in the Era of Large Language Models: A Survey"** (May 2025) - This paper discusses the diversity and challenges of autoformalization across mathematical domains, noting that each domain has unique characteristics such as graphical reasoning in geometry and symbolic manipulation in algebra, and that autoformalization must adapt to different semantic structures, input modalities, and reasoning paradigms.
+
+2. **"Towards a Common Framework for Autoformalization"** (October 2025) - This paper highlights that current autoformalization approaches are often domain-specific, with systems designed separately for areas such as mathematical reasoning, planning, logic, etc. A major challenge is developing methods that can transfer reasoning patterns and formalization strategies across domains.
+
+3. **"Consistent Autoformalization for Constructing Mathematical Libraries"** (October 2024) - This paper addresses the need to improve syntactic, terminological and semantic control in autoformalization, proposing coordinated use of most-similar retrieval augmented generation (MS-RAG), denoising steps, and autocorrection with syntax error feedback to improve autoformalization quality.
+
+4. **"Autoformalizing Euclidean Geometry"** (May 2024) - This work constructs LeanEuclid, an autoformalization benchmark for Euclid's Elements and the UniGeo dataset, with experiments using GPT-4 to demonstrate the capability and limitations of state-of-the-art LLMs on autoformalizing geometry problems.
+
+These papers demonstrate active research in autoformalization across different mathematical subdomains with a focus on domain adaptation challenges.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9e0ebea7-361c-4545-8ed4-5385595bf422",
+  "isSidechain": false,
+  "promptId": "b9b6653c-77d6-45f7-b143-1d26cd86e692",
+  "type": "user",
+  "uuid": "8a2c6da5-0ecc-43bc-a1c1-e10c891f2f63",
+  "toolUseResult": {
+    "query": "site:arxiv.org autoformalization domain adaptation mathematical subdomain 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WqeUr64SrXcoaaKCxezRxg",
+        "content": [
+          {
+            "title": "Autoformalization in the Era of Large Language Models: A Survey",
+            "url": "https://arxiv.org/html/2505.23486v1"
+          },
+          {
+            "title": "130k Lines of Formal Topology in Two Weeks: Simple and Cheap Autoformalization for Everyone?",
+            "url": "https://arxiv.org/pdf/2601.03298"
+          },
+          {
+            "title": "Autoformalize Mathematical Statements by Symbolic Equivalence and   Semantic Consistency",
+            "url": "https://arxiv.org/pdf/2410.20936"
+          },
+          {
+            "title": "Consistent Autoformalization for Constructing Mathematical Libraries",
+            "url": "https://arxiv.org/pdf/2410.04194"
+          },
+          {
+            "title": "Towards a Common Framework for Autoformalization",
+            "url": "https://arxiv.org/html/2509.09810v2"
+          },
+          {
+            "title": "[2301.02195] Towards Autoformalization of Mathematics and Code Correctness: Experiments with Elementary Proofs",
+            "url": "https://ar5iv.labs.arxiv.org/html/2301.02195"
+          },
+          {
+            "title": "ReForm: Reflective Autoformalization with Prospective Bounded Sequence Optimization",
+            "url": "https://arxiv.org/pdf/2510.24592"
+          },
+          {
+            "title": "Autoformalizing Euclidean Geometry",
+            "url": "https://arxiv.org/pdf/2405.17216"
+          }
+        ]
+      },
+      "I found several relevant papers on arxiv.org about autoformalization and mathematical subdomains. Here are the key results:\n\n1. **\"Autoformalization in the Era of Large Language Models: A Survey\"** (May 2025) - This paper discusses the diversity and challenges of autoformalization across mathematical domains, noting that each domain has unique characteristics such as graphical reasoning in geometry and symbolic manipulation in algebra, and that autoformalization must adapt to different semantic structures, input modalities, and reasoning paradigms.\n\n2. **\"Towards a Common Framework for Autoformalization\"** (October 2025) - This paper highlights that current autoformalization approaches are often domain-specific, with systems designed separately for areas such as mathematical reasoning, planning, logic, etc. A major challenge is developing methods that can transfer reasoning patterns and formalization strategies across domains.\n\n3. **\"Consistent Autoformalization for Constructing Mathematical Libraries\"** (October 2024) - This paper addresses the need to improve syntactic, terminological and semantic control in autoformalization, proposing coordinated use of most-similar retrieval augmented generation (MS-RAG), denoising steps, and autocorrection with syntax error feedback to improve autoformalization quality.\n\n4. **\"Autoformalizing Euclidean Geometry\"** (May 2024) - This work constructs LeanEuclid, an autoformalization benchmark for Euclid's Elements and the UniGeo dataset, with experiments using GPT-4 to demonstrate the capability and limitations of state-of-the-art LLMs on autoformalizing geometry problems.\n\nThese papers demonstrate active research in autoformalization across different mathematical subdomains with a focus on domain adaptation challenges."
+    ],
+    "durationSeconds": 7.360611816000004,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "9e0ebea7-361c-4545-8ed4-5385595bf422",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 29 · 2026-05-28T15:35:15.326Z_
+
+```json
+{
+  "parentUuid": "8a2c6da5-0ecc-43bc-a1c1-e10c891f2f63",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "0fea1cb9-5805-4dcf-98f7-959b5168130a",
+  "timestamp": "2026-05-28T15:35:15.326Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-28T15:35:18.324Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GgJPmKQUpNTqNHFm3ibKEP`</summary>
+
+```json
+{
+  "query": "domain-conditioned retrieval autoformalization Lean4 mathematical subdomain-aware 2026 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0fea1cb9-5805-4dcf-98f7-959b5168130a",
+  "isSidechain": false,
+  "requestId": "req_011CbVDHG6J4AaWn4ETsAopv",
+  "type": "assistant",
+  "uuid": "1fd3036a-179c-4100-bcff-89f8ac2adfd7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EjscaaJvJu8GSRZuJnwHR3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 929,
+      "cache_read_input_tokens": 40788,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 929,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 40788,
+          "cache_creation_input_tokens": 929,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 929
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-28T15:35:25.782Z_
+
+<details><summary>↩ Tool result · `toolu_01GgJPmKQUpNTqNHFm3ibKEP`</summary>
+
+```text
+Web search results for query: "domain-conditioned retrieval autoformalization Lean4 mathematical subdomain-aware 2026 arXiv"
+
+Links: [{"title":"[2603.24372] Improving Lean4 Autoformalization via Cycle Consistency Fine-tuning","url":"https://arxiv.org/abs/2603.24372"},{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2510.15940"},{"title":"Automated Formalization via Conceptual Retrieval-Augmented LLMs","url":"https://arxiv.org/html/2508.06931"},{"title":"Improving Lean4 Autoformalization via Cycle Consistency Fine-tuning Stanford CS224N Custom Project","url":"https://arxiv.org/html/2603.24372"},{"title":"Process-Driven Autoformalization in Lean 4","url":"https://arxiv.org/pdf/2406.01940"},{"title":"An Evaluation Benchmark for Autoformalization in Lean4","url":"https://arxiv.org/pdf/2406.06555"},{"title":"REAL-Prover: Retrieval Augmented Lean ...","url":"https://arxiv.org/pdf/2505.20613"}]
+
+I found several relevant papers on arXiv related to autoformalization in Lean4 from 2026. Here are the key results:
+
+## Recent Autoformalization Research (2026)
+
+Autoformalization - automatically translating natural language mathematical texts into formal proof language such as Lean4 - can help accelerate AI-assisted mathematical research, be it via proof verification or proof search.
+
+### Domain-Aware Retrieval Approach
+
+One framework introduces a concept-definition knowledge base from Mathlib4, indexing over 26,000 formal definitions and 1,000+ core mathematical concepts, proposing contextual query augmentation with domain- and application-level signals to address conceptual polymorphism. A dual-channel hybrid retrieval strategy with reranking is designed to ensure accurate and relevant definition retrieval.
+
+### Cycle Consistency Fine-tuning
+
+One challenge is transcribing natural mathematical language into formal Lean4 statements, and autoformalization is the automatization of this process. A recent paper from March 25, 2026 (arXiv:2603.24372) addresses improving Lean4 autoformalization via cycle consistency fine-tuning.
+
+The search results show active research in 2026 focused on improving retrieval-augmented approaches for mathematical autoformalization in Lean4, with emphasis on handling domain-specific concepts and semantic accuracy.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1fd3036a-179c-4100-bcff-89f8ac2adfd7",
+  "isSidechain": false,
+  "promptId": "b9b6653c-77d6-45f7-b143-1d26cd86e692",
+  "type": "user",
+  "uuid": "4160b3db-9e7c-4fca-8f80-39516f89a3ab",
+  "toolUseResult": {
+    "query": "domain-conditioned retrieval autoformalization Lean4 mathematical subdomain-aware 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01KYNFT9Ai8NuszUj91vCq17",
+        "content": [
+          {
+            "title": "[2603.24372] Improving Lean4 Autoformalization via Cycle Consistency Fine-tuning",
+            "url": "https://arxiv.org/abs/2603.24372"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2510.15940"
+          },
+          {
+            "title": "Automated Formalization via Conceptual Retrieval-Augmented LLMs",
+            "url": "https://arxiv.org/html/2508.06931"
+          },
+          {
+            "title": "Improving Lean4 Autoformalization via Cycle Consistency Fine-tuning Stanford CS224N Custom Project",
+            "url": "https://arxiv.org/html/2603.24372"
+          },
+          {
+            "title": "Process-Driven Autoformalization in Lean 4",
+            "url": "https://arxiv.org/pdf/2406.01940"
+          },
+          {
+            "title": "An Evaluation Benchmark for Autoformalization in Lean4",
+            "url": "https://arxiv.org/pdf/2406.06555"
+          },
+          {
+            "title": "REAL-Prover: Retrieval Augmented Lean ...",
+            "url": "https://arxiv.org/pdf/2505.20613"
+          }
+        ]
+      },
+      "I found several relevant papers on arXiv related to autoformalization in Lean4 from 2026. Here are the key results:\n\n## Recent Autoformalization Research (2026)\n\nAutoformalization - automatically translating natural language mathematical texts into formal proof language such as Lean4 - can help accelerate AI-assisted mathematical research, be it via proof verification or proof search.\n\n### Domain-Aware Retrieval Approach\n\nOne framework introduces a concept-definition knowledge base from Mathlib4, indexing over 26,000 formal definitions and 1,000+ core mathematical concepts, proposing contextual query augmentation with domain- and application-level signals to address conceptual polymorphism. A dual-channel hybrid retrieval strategy with reranking is designed to ensure accurate and relevant definition retrieval.\n\n### Cycle Consistency Fine-tuning\n\nOne challenge is transcribing natural mathematical language into formal Lean4 statements, and autoformalization is the automatization of this process. A recent paper from March 25, 2026 (arXiv:2603.24372) addresses improving Lean4 autoformalization via cycle consistency fine-tuning.\n\nThe search results show active research in 2026 focused on improving retrieval-augmented approaches for mathematical autoformalization in Lean4, with emphasis on handling domain-specific concepts and semantic accuracy."
+    ],
+    "durationSeconds": 7.4540284320000065,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "1fd3036a-179c-4100-bcff-89f8ac2adfd7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-28T15:35:29.581Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01SkzeW6F6XRnGhdsFczC3SG`</summary>
+
+```json
+{
+  "query": "LeanPremise LeanHammer ICLR 2026 premise selection Lean arXiv 2506.07477"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4160b3db-9e7c-4fca-8f80-39516f89a3ab",
+  "isSidechain": false,
+  "requestId": "req_011CbVDJ2nd665couUBPsHEc",
+  "type": "assistant",
+  "uuid": "9b1094bf-572c-475b-b4e9-965da1d861af",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XZigsLVfj3vXUMNnpJ4guj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 722,
+      "cache_read_input_tokens": 41717,
+      "output_tokens": 81,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 722,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 81,
+          "cache_read_input_tokens": 41717,
+          "cache_creation_input_tokens": 722,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 722
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-28T15:35:41.426Z_
+
+<details><summary>↩ Tool result · `toolu_01SkzeW6F6XRnGhdsFczC3SG`</summary>
+
+```text
+Web search results for query: "LeanPremise LeanHammer ICLR 2026 premise selection Lean arXiv 2506.07477"
+
+Links: [{"title":"Premise Selection for a Lean Hammer [Quick Review]","url":"https://liner.com/review/premise-selection-for-a-lean-hammer"},{"title":"[2506.07477] Premise Selection for a Lean Hammer","url":"https://arxiv.org/abs/2506.07477"},{"title":"Premise Selection for a Lean Hammer","url":"https://arxiv.org/pdf/2506.07477"},{"title":"Premise Selection for a Lean Hammer - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250607477Z/abstract"},{"title":"Premise Selection for a Lean Hammer | Scilit","url":"https://www.scilit.com/publications/51876c76e2ad40b70dc05583678f62e7"},{"title":"PREMISE SELECTION FOR A LEAN HAMMER","url":"https://openreview.net/pdf/0d32353ccfa85cbf700389ec2d98a2c40fa4b640.pdf"},{"title":"Premise Selection for a Lean Hammer","url":"https://arxiv.org/html/2506.07477v1"},{"title":"LeanHammer","url":"https://cmu-l3.github.io/lean-hammer/"},{"title":"1 Introduction","url":"https://arxiv.org/html/2601.22554"}]
+
+Based on the search results, I found comprehensive information about this research:
+
+## Overview
+
+This ICLR 2026 paper presents LEANHAMMER, a novel neural premise selection system for Lean, improving theorem proving.
+
+## What is LeanPremise and LeanHammer?
+
+LeanPremise is a novel neural premise selection system, which is combined with existing translation and proof reconstruction components to create LeanHammer, the first end-to-end domain general hammer for the Lean proof assistant.
+
+A hammer is a tool that integrates premise selection, translation to external automatic theorem provers, and proof reconstruction into one overarching tool to automate tedious reasoning steps.
+
+## Key Features
+
+LeanPremise is specifically trained for use with a hammer in dependent type theory and dynamically adapts to user-specific contexts, enabling it to effectively recommend premises from libraries outside LeanPremise's training data as well as lemmas defined by the user locally.
+
+## Performance
+
+LeanPremise enables LeanHammer to solve 21% more goals than existing premise selectors and generalizes well to diverse domains.
+
+The paper is available at arXiv under the identifier 2506.07477, and the code for both LeanPremise and LeanHammer is publicly available on GitHub.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9b1094bf-572c-475b-b4e9-965da1d861af",
+  "isSidechain": false,
+  "promptId": "b9b6653c-77d6-45f7-b143-1d26cd86e692",
+  "type": "user",
+  "uuid": "7692c446-9bfb-4f08-bf92-5b8955fcea7e",
+  "toolUseResult": {
+    "query": "LeanPremise LeanHammer ICLR 2026 premise selection Lean arXiv 2506.07477",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NqSDh45f4fGmPiGMeWxoMW",
+        "content": [
+          {
+            "title": "Premise Selection for a Lean Hammer [Quick Review]",
+            "url": "https://liner.com/review/premise-selection-for-a-lean-hammer"
+          },
+          {
+            "title": "[2506.07477] Premise Selection for a Lean Hammer",
+            "url": "https://arxiv.org/abs/2506.07477"
+          },
+          {
+            "title": "Premise Selection for a Lean Hammer",
+            "url": "https://arxiv.org/pdf/2506.07477"
+          },
+          {
+            "title": "Premise Selection for a Lean Hammer - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2025arXiv250607477Z/abstract"
+          },
+          {
+            "title": "Premise Selection for a Lean Hammer | Scilit",
+            "url": "https://www.scilit.com/publications/51876c76e2ad40b70dc05583678f62e7"
+          },
+          {
+            "title": "PREMISE SELECTION FOR A LEAN HAMMER",
+            "url": "https://openreview.net/pdf/0d32353ccfa85cbf700389ec2d98a2c40fa4b640.pdf"
+          },
+          {
+            "title": "Premise Selection for a Lean Hammer",
+            "url": "https://arxiv.org/html/2506.07477v1"
+          },
+          {
+            "title": "LeanHammer",
+            "url": "https://cmu-l3.github.io/lean-hammer/"
+          },
+          {
+            "title": "1 Introduction",
+            "url": "https://arxiv.org/html/2601.22554"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about this research:\n\n## Overview\n\nThis ICLR 2026 paper presents LEANHAMMER, a novel neural premise selection system for Lean, improving theorem proving.\n\n## What is LeanPremise and LeanHammer?\n\nLeanPremise is a novel neural premise selection system, which is combined with existing translation and proof reconstruction components to create LeanHammer, the first end-to-end domain general hammer for the Lean proof assistant.\n\nA hammer is a tool that integrates premise selection, translation to external automatic theorem provers, and proof reconstruction into one overarching tool to automate tedious reasoning steps.\n\n## Key Features\n\nLeanPremise is specifically trained for use with a hammer in dependent type theory and dynamically adapts to user-specific contexts, enabling it to effectively recommend premises from libraries outside LeanPremise's training data as well as lemmas defined by the user locally.\n\n## Performance\n\nLeanPremise enables LeanHammer to solve 21% more goals than existing premise selectors and generalizes well to diverse domains.\n\nThe paper is available at arXiv under the identifier 2506.07477, and the code for both LeanPremise and LeanHammer is publicly available on GitHub."
+    ],
+    "durationSeconds": 11.839299666000006,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "9b1094bf-572c-475b-b4e9-965da1d861af",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 34_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-28 (UTC).**  Your job: independently verify this idea's claims via web_search, then issue a verdict.  ## U…",
+  "leafUuid": "7692c446-9bfb-4f08-bf92-5b8955fcea7e",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 35_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review domain-adaptive autoformalization pipeline",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b"
+}
+```
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-28T15:35:44.430Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014yWv4rbzw56QeKBh4SpzJa`</summary>
+
+```json
+{
+  "query": "KELPS Knowledge Equations autoformalization MiniF2F arXiv 2507.08665"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7692c446-9bfb-4f08-bf92-5b8955fcea7e",
+  "isSidechain": false,
+  "requestId": "req_011CbVDKBhBPwUQPSzwLvCUW",
+  "type": "assistant",
+  "uuid": "d424bf74-7de1-4b32-9b65-97ce39b09690",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CC1FWrsxWR1LvTgB6VHGN8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 775,
+      "cache_read_input_tokens": 42439,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 775,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 42439,
+          "cache_creation_input_tokens": 775,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 775
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-28T15:35:51.505Z_
+
+<details><summary>↩ Tool result · `toolu_014yWv4rbzw56QeKBh4SpzJa`</summary>
+
+```text
+Web search results for query: "KELPS Knowledge Equations autoformalization MiniF2F arXiv 2507.08665"
+
+Links: [{"title":"[2507.08665] KELPS: A Framework for Verified Multi-Language Autoformalization via Semantic-Syntactic Alignment","url":"https://arxiv.org/abs/2507.08665"},{"title":"KELPS: A Framework for Verified Multi-Language Autoformalization via Semantic-Syntactic Alignment","url":"https://arxiv.org/html/2507.08665"},{"title":"KELPS: A Framework for Verified Multi-Language Autoformalization via","url":"https://arxiv.org/pdf/2507.08665"},{"title":"KELPS: A Framework for Verified Multi-Language Autoformalization via Semantic-Syntactic Alignment","url":"https://www.researchgate.net/publication/393656136_KELPS_A_Framework_for_Verified_Multi-Language_Autoformalization_via_Semantic-Syntactic_Alignment"},{"title":"miniF2F-Lean Revisited: Reviewing Limitations and Charting a Path Forward","url":"https://arxiv.org/html/2511.03108v1"},{"title":"Autoformalization with Large Language Models","url":"https://arxiv.org/pdf/2205.12615"},{"title":"miniF2F-Lean Revisited: Reviewing Limitations and Charting a Path Forward","url":"https://arxiv.org/pdf/2511.03108"}]
+
+Based on the search results, here's what I found about the KELPS paper (arXiv 2507.08665):
+
+## Overview
+
+KELPS is a novel neuro-symbolic framework (Knowledge-Equation based Logical Processing System) designed to address problems in autoformalization.
+
+## Key Components
+
+KELPS is an iterative framework for translating, synthesizing, and filtering informal data into multiple formal languages (Lean, Coq, and Isabelle). The method introduces an intermediate representation—Knowledge Equation, which translates natural language into multiple formal languages.
+
+## Performance Results
+
+The framework achieves 88.9% syntactic accuracy (pass@1) on MiniF2F, outperforming SOTA models such as Deepseek-V3 (81%) and Herald (81.3%) across multiple datasets.
+
+## Contributions
+
+The work makes three contributions: the design of Knowledge Equations as a novel formal language, including its complete BNF specification and parser implementation; the release of KELPS Dataset, a large-scale multilingual formal language dataset; and the development of a high-performance model that achieves new SOTA accuracy.
+
+## Dataset
+
+The process yielded a parallel corpus of over 60,000 problems.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d424bf74-7de1-4b32-9b65-97ce39b09690",
+  "isSidechain": false,
+  "promptId": "b9b6653c-77d6-45f7-b143-1d26cd86e692",
+  "type": "user",
+  "uuid": "39a8b644-acfd-4f18-b2a4-926b0b238dd0",
+  "toolUseResult": {
+    "query": "KELPS Knowledge Equations autoformalization MiniF2F arXiv 2507.08665",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017FfAeocNZ9gPnRmhUo8baq",
+        "content": [
+          {
+            "title": "[2507.08665] KELPS: A Framework for Verified Multi-Language Autoformalization via Semantic-Syntactic Alignment",
+            "url": "https://arxiv.org/abs/2507.08665"
+          },
+          {
+            "title": "KELPS: A Framework for Verified Multi-Language Autoformalization via Semantic-Syntactic Alignment",
+            "url": "https://arxiv.org/html/2507.08665"
+          },
+          {
+            "title": "KELPS: A Framework for Verified Multi-Language Autoformalization via",
+            "url": "https://arxiv.org/pdf/2507.08665"
+          },
+          {
+            "title": "KELPS: A Framework for Verified Multi-Language Autoformalization via Semantic-Syntactic Alignment",
+            "url": "https://www.researchgate.net/publication/393656136_KELPS_A_Framework_for_Verified_Multi-Language_Autoformalization_via_Semantic-Syntactic_Alignment"
+          },
+          {
+            "title": "miniF2F-Lean Revisited: Reviewing Limitations and Charting a Path Forward",
+            "url": "https://arxiv.org/html/2511.03108v1"
+          },
+          {
+            "title": "Autoformalization with Large Language Models",
+            "url": "https://arxiv.org/pdf/2205.12615"
+          },
+          {
+            "title": "miniF2F-Lean Revisited: Reviewing Limitations and Charting a Path Forward",
+            "url": "https://arxiv.org/pdf/2511.03108"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the KELPS paper (arXiv 2507.08665):\n\n## Overview\n\nKELPS is a novel neuro-symbolic framework (Knowledge-Equation based Logical Processing System) designed to address problems in autoformalization.\n\n## Key Components\n\nKELPS is an iterative framework for translating, synthesizing, and filtering informal data into multiple formal languages (Lean, Coq, and Isabelle). The method introduces an intermediate representation—Knowledge Equation, which translates natural language into multiple formal languages.\n\n## Performance Results\n\nThe framework achieves 88.9% syntactic accuracy (pass@1) on MiniF2F, outperforming SOTA models such as Deepseek-V3 (81%) and Herald (81.3%) across multiple datasets.\n\n## Contributions\n\nThe work makes three contributions: the design of Knowledge Equations as a novel formal language, including its complete BNF specification and parser implementation; the release of KELPS Dataset, a large-scale multilingual formal language dataset; and the development of a high-performance model that achieves new SOTA accuracy.\n\n## Dataset\n\nThe process yielded a parallel corpus of over 60,000 problems."
+    ],
+    "durationSeconds": 7.0596773680000044,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "d424bf74-7de1-4b32-9b65-97ce39b09690",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38 · 2026-05-28T15:35:54.444Z_
+
+Now let me search for any very recent concurrent work that might have appeared since the last review round:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "39a8b644-acfd-4f18-b2a4-926b0b238dd0",
+  "isSidechain": false,
+  "requestId": "req_011CbVDKvo27Z2c98viDuc99",
+  "type": "assistant",
+  "uuid": "6d846f31-1267-4aea-a4de-f943024c2e27",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Yc1mTeXfBNq35X4WeqcU6j",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 753,
+      "cache_read_input_tokens": 43214,
+      "output_tokens": 91,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 753,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 91,
+          "cache_read_input_tokens": 43214,
+          "cache_creation_input_tokens": 753,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 753
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-28T15:35:55.137Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01B46PcGJRQ8rjqBzwBy6xph`</summary>
+
+```json
+{
+  "query": "autoformalization domain-aware pipeline Lean 2026 May June arXiv new"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6d846f31-1267-4aea-a4de-f943024c2e27",
+  "isSidechain": false,
+  "requestId": "req_011CbVDKvo27Z2c98viDuc99",
+  "type": "assistant",
+  "uuid": "ae3d4fa4-f4bf-4543-9957-772f177a13bf",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Yc1mTeXfBNq35X4WeqcU6j",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 753,
+      "cache_read_input_tokens": 43214,
+      "output_tokens": 91,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 753,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 91,
+          "cache_read_input_tokens": 43214,
+          "cache_creation_input_tokens": 753,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 753
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-28T15:36:03.073Z_
+
+<details><summary>↩ Tool result · `toolu_01B46PcGJRQ8rjqBzwBy6xph`</summary>
+
+```text
+Web search results for query: "autoformalization domain-aware pipeline Lean 2026 May June arXiv new"
+
+Links: [{"title":"Improving Lean4 Autoformalization via Cycle Consistency Fine-tuning","url":"https://arxiv.org/pdf/2603.24372"},{"title":"Autoformalization Framework","url":"https://www.emergentmind.com/topics/autoformalization-framework"},{"title":"StepFun-Formalizer: Unlocking the Autoformalization Potential","url":"https://www.arxiv.org/pdf/2508.04440"},{"title":"Autoformalization in the Era of Large Language Models: A Survey","url":"https://arxiv.org/html/2505.23486v1"},{"title":"M2F: Automated Formalization of Mathematical Literature at Scale","url":"https://arxiv.org/pdf/2602.17016"},{"title":"FMC: Formalization of Natural Language Mathematical Competition Problems","url":"https://arxiv.org/pdf/2507.11275"},{"title":"[2510.15681] ProofBridge: Auto-Formalization of Natural Language Proofs in Lean via Joint Embeddings","url":"https://arxiv.org/abs/2510.15681"},{"title":"Autoformalizing Euclidean Geometry","url":"https://arxiv.org/pdf/2405.17216"},{"title":"A New Approach Towards Autoformalization Nilay Patel","url":"https://arxiv.org/pdf/2310.07957"}]
+
+I found several recent papers on autoformalization and Lean. Here are the most relevant results:
+
+## Recent Autoformalization Research on arXiv (2025-2026)
+
+**Key papers from May-June 2026 timeframe:**
+
+1. **ProofBridge: Auto-Formalization of Natural Language Proofs in Lean via Joint Embeddings** - Last updated March 29, 2026. Presents ProofBridge, a unified framework for automatically translating entire NL theorems and proofs into Lean 4.
+
+2. **Improving Lean4 Autoformalization via Cycle Consistency Fine-tuning** (arXiv:2603.24372) - Posted March 25, 2026. Features GRPO-based RL fine-tuning using cycle consistency as a reward, showing 0.156 improvement in mean cycle consistency.
+
+3. **Domain-Aware Approaches:** The search results show several domain-aware pipelines including:
+   - SITA framework, evaluated on domains requiring instantiation of high-level abstract results to concrete settings, notably in convex optimization
+   - Structure-to-instance theorem autoformalization (SITA) and retrieval with dependency-graph driven iterative autoformalization (Aria)
+
+4. **Survey on Autoformalization** (arXiv:2505.23486) - Analyzes the typical autoformalization pipeline, including data preprocessing, modeling approaches, post-processing methods, and evaluation strategies.
+
+These papers represent the latest research in automated formalization of mathematical content into Lean proof code.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ae3d4fa4-f4bf-4543-9957-772f177a13bf",
+  "isSidechain": false,
+  "promptId": "b9b6653c-77d6-45f7-b143-1d26cd86e692",
+  "type": "user",
+  "uuid": "e23d78db-bef1-4b12-9a62-5f661608c183",
+  "toolUseResult": {
+    "query": "autoformalization domain-aware pipeline Lean 2026 May June arXiv new",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017KmDrvnPzpvPkQSiXWqC3o",
+        "content": [
+          {
+            "title": "Improving Lean4 Autoformalization via Cycle Consistency Fine-tuning",
+            "url": "https://arxiv.org/pdf/2603.24372"
+          },
+          {
+            "title": "Autoformalization Framework",
+            "url": "https://www.emergentmind.com/topics/autoformalization-framework"
+          },
+          {
+            "title": "StepFun-Formalizer: Unlocking the Autoformalization Potential",
+            "url": "https://www.arxiv.org/pdf/2508.04440"
+          },
+          {
+            "title": "Autoformalization in the Era of Large Language Models: A Survey",
+            "url": "https://arxiv.org/html/2505.23486v1"
+          },
+          {
+            "title": "M2F: Automated Formalization of Mathematical Literature at Scale",
+            "url": "https://arxiv.org/pdf/2602.17016"
+          },
+          {
+            "title": "FMC: Formalization of Natural Language Mathematical Competition Problems",
+            "url": "https://arxiv.org/pdf/2507.11275"
+          },
+          {
+            "title": "[2510.15681] ProofBridge: Auto-Formalization of Natural Language Proofs in Lean via Joint Embeddings",
+            "url": "https://arxiv.org/abs/2510.15681"
+          },
+          {
+            "title": "Autoformalizing Euclidean Geometry",
+            "url": "https://arxiv.org/pdf/2405.17216"
+          },
+          {
+            "title": "A New Approach Towards Autoformalization Nilay Patel",
+            "url": "https://arxiv.org/pdf/2310.07957"
+          }
+        ]
+      },
+      "I found several recent papers on autoformalization and Lean. Here are the most relevant results:\n\n## Recent Autoformalization Research on arXiv (2025-2026)\n\n**Key papers from May-June 2026 timeframe:**\n\n1. **ProofBridge: Auto-Formalization of Natural Language Proofs in Lean via Joint Embeddings** - Last updated March 29, 2026. Presents ProofBridge, a unified framework for automatically translating entire NL theorems and proofs into Lean 4.\n\n2. **Improving Lean4 Autoformalization via Cycle Consistency Fine-tuning** (arXiv:2603.24372) - Posted March 25, 2026. Features GRPO-based RL fine-tuning using cycle consistency as a reward, showing 0.156 improvement in mean cycle consistency.\n\n3. **Domain-Aware Approaches:** The search results show several domain-aware pipelines including:\n   - SITA framework, evaluated on domains requiring instantiation of high-level abstract results to concrete settings, notably in convex optimization\n   - Structure-to-instance theorem autoformalization (SITA) and retrieval with dependency-graph driven iterative autoformalization (Aria)\n\n4. **Survey on Autoformalization** (arXiv:2505.23486) - Analyzes the typical autoformalization pipeline, including data preprocessing, modeling approaches, post-processing methods, and evaluation strategies.\n\nThese papers represent the latest research in automated formalization of mathematical content into Lean proof code."
+    ],
+    "durationSeconds": 7.932044253999993,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "ae3d4fa4-f4bf-4543-9957-772f177a13bf",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-28T15:36:05.840Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TCNV9nDST9JaPVwNdJHFUs`</summary>
+
+```json
+{
+  "query": "autoformalization retrieval subdomain conditioning error analysis mathematical May 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e23d78db-bef1-4b12-9a62-5f661608c183",
+  "isSidechain": false,
+  "requestId": "req_011CbVDLnDrRG8Qpr8faJWeX",
+  "type": "assistant",
+  "uuid": "25058319-2893-4a2f-9678-aedc78ab96e2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019RsJ7QxD3LZpYBH2Z7pdSx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 850,
+      "cache_read_input_tokens": 43967,
+      "output_tokens": 66,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 850,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 66,
+          "cache_read_input_tokens": 43967,
+          "cache_creation_input_tokens": 850,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 850
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-28T15:36:12.007Z_
+
+<details><summary>↩ Tool result · `toolu_01TCNV9nDST9JaPVwNdJHFUs`</summary>
+
+```text
+Web search results for query: "autoformalization retrieval subdomain conditioning error analysis mathematical May 2026"
+
+Links: [{"title":"Autoformalization: Bridging Informal and Formal Math","url":"https://www.emergentmind.com/topics/autoformalization"},{"title":"Consistent Autoformalization for Constructing Mathematical Libraries","url":"https://arxiv.org/pdf/2410.04194"},{"title":"[2410.04194] Consistent Autoformalization for Constructing Mathematical Libraries","url":"https://arxiv.org/abs/2410.04194"},{"title":"Autoformalization in the Era of Large Language Models: A Survey","url":"https://arxiv.org/html/2505.23486v1"},{"title":"Autoformalization in the Era of Large Language Models: A Survey","url":"https://arxiv.org/pdf/2505.23486"},{"title":"ReForm: Reflective Autoformalization with Prospective Bounded Sequence Optimization","url":"https://arxiv.org/html/2510.24592v1"},{"title":"A New Approach Towards Autoformalization Nilay Patel","url":"https://arxiv.org/pdf/2310.07957"},{"title":"ReForm: Reflective Autoformalization with Prospective Bounded Sequence Optimization","url":"https://arxiv.org/pdf/2510.24592"},{"title":"DRIFT: Decompose, Retrieve, Illustrate, then Formalize Theorems","url":"https://arxiv.org/pdf/2510.10815"}]
+
+I found relevant search results about autoformalization and related techniques. Here's what the search uncovered:
+
+## Key Findings
+
+As the field evolves toward systematically applying autoformalization to large mathematical libraries, the need to improve syntactic, terminological and semantic control increases. Researchers propose the coordinated use of three mechanisms: most-similar retrieval augmented generation (MS-RAG), denoising steps, and autocorrection with syntax error feedback (Auto-SEF) to improve autoformalization quality.
+
+One approach involves conditioning prompts on both failure cases and their diagnoses to guide models to generate targeted corrections that directly address identified issues rather than producing entirely new attempts that might introduce different errors.
+
+Analysis shows that retrieval effectiveness in mathematical autoformalization depends heavily on model-specific knowledge boundaries, highlighting the need for adaptive retrieval strategies aligned with each model's capabilities.
+
+Research reveals that human experts themselves face challenges in autoformalization, with 16.4% of miniF2F and 38.5% of ProofNet's human-written formal statements containing semantic errors.
+
+The search results include several recent papers from 2024-2025 on autoformalization techniques, including retrieval-augmented approaches and error analysis methods for improving the quality of translating natural language mathematics into formal representations.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "25058319-2893-4a2f-9678-aedc78ab96e2",
+  "isSidechain": false,
+  "promptId": "b9b6653c-77d6-45f7-b143-1d26cd86e692",
+  "type": "user",
+  "uuid": "bd654ee2-3dee-4663-8258-dfc200b70902",
+  "toolUseResult": {
+    "query": "autoformalization retrieval subdomain conditioning error analysis mathematical May 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XKxdBNSngSkA5SaX89fipe",
+        "content": [
+          {
+            "title": "Autoformalization: Bridging Informal and Formal Math",
+            "url": "https://www.emergentmind.com/topics/autoformalization"
+          },
+          {
+            "title": "Consistent Autoformalization for Constructing Mathematical Libraries",
+            "url": "https://arxiv.org/pdf/2410.04194"
+          },
+          {
+            "title": "[2410.04194] Consistent Autoformalization for Constructing Mathematical Libraries",
+            "url": "https://arxiv.org/abs/2410.04194"
+          },
+          {
+            "title": "Autoformalization in the Era of Large Language Models: A Survey",
+            "url": "https://arxiv.org/html/2505.23486v1"
+          },
+          {
+            "title": "Autoformalization in the Era of Large Language Models: A Survey",
+            "url": "https://arxiv.org/pdf/2505.23486"
+          },
+          {
+            "title": "ReForm: Reflective Autoformalization with Prospective Bounded Sequence Optimization",
+            "url": "https://arxiv.org/html/2510.24592v1"
+          },
+          {
+            "title": "A New Approach Towards Autoformalization Nilay Patel",
+            "url": "https://arxiv.org/pdf/2310.07957"
+          },
+          {
+            "title": "ReForm: Reflective Autoformalization with Prospective Bounded Sequence Optimization",
+            "url": "https://arxiv.org/pdf/2510.24592"
+          },
+          {
+            "title": "DRIFT: Decompose, Retrieve, Illustrate, then Formalize Theorems",
+            "url": "https://arxiv.org/pdf/2510.10815"
+          }
+        ]
+      },
+      "I found relevant search results about autoformalization and related techniques. Here's what the search uncovered:\n\n## Key Findings\n\nAs the field evolves toward systematically applying autoformalization to large mathematical libraries, the need to improve syntactic, terminological and semantic control increases. Researchers propose the coordinated use of three mechanisms: most-similar retrieval augmented generation (MS-RAG), denoising steps, and autocorrection with syntax error feedback (Auto-SEF) to improve autoformalization quality.\n\nOne approach involves conditioning prompts on both failure cases and their diagnoses to guide models to generate targeted corrections that directly address identified issues rather than producing entirely new attempts that might introduce different errors.\n\nAnalysis shows that retrieval effectiveness in mathematical autoformalization depends heavily on model-specific knowledge boundaries, highlighting the need for adaptive retrieval strategies aligned with each model's capabilities.\n\nResearch reveals that human experts themselves face challenges in autoformalization, with 16.4% of miniF2F and 38.5% of ProofNet's human-written formal statements containing semantic errors.\n\nThe search results include several recent papers from 2024-2025 on autoformalization techniques, including retrieval-augmented approaches and error analysis methods for improving the quality of translating natural language mathematics into formal representations."
+    ],
+    "durationSeconds": 6.16347109799998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "25058319-2893-4a2f-9678-aedc78ab96e2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-28T15:36:14.667Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Biukj1DbGumbs8o6by6KWH`</summary>
+
+```json
+{
+  "query": "ICLR 2027 deadline dates call for papers announced"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bd654ee2-3dee-4663-8258-dfc200b70902",
+  "isSidechain": false,
+  "requestId": "req_011CbVDMSRWgJfDxCZsbhFiY",
+  "type": "assistant",
+  "uuid": "586ce132-5de4-4361-9cb4-0237ae3e7eaf",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ef86NqB25WzCqFVpTbMvZc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 749,
+      "cache_read_input_tokens": 44817,
+      "output_tokens": 65,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 749,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 65,
+          "cache_read_input_tokens": 44817,
+          "cache_creation_input_tokens": 749,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 749
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-28T15:36:19.060Z_
+
+<details><summary>↩ Tool result · `toolu_01Biukj1DbGumbs8o6by6KWH`</summary>
+
+```text
+Web search results for query: "ICLR 2027 deadline dates call for papers announced"
+
+Links: [{"title":"2026 Dates and Deadlines","url":"https://iclr.cc/Conferences/2026/Dates"},{"title":"ICLR 2026","url":"https://iclr.cc/"},{"title":"ICLR 2026 Call for Papers","url":"https://iclr.cc/Conferences/2026/CallForPapers"},{"title":"International Conference on Learning Representations ICLR in August 2027 in Sydney","url":"https://waset.org/learning-representations-conference-in-august-2027-in-sydney"},{"title":"Year-Round Deadlines - Imranur Rahman","url":"https://imranur-rahman.github.io/deadlines/"},{"title":"AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML","url":"https://mlciv.com/ai-deadlines/"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"Key deadlines in AI and ML conferences","url":"https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"},{"title":"AI Deadlines – AI Conference Call For Paper Deadlines","url":"http://aideadlines.org/"},{"title":"Call for Papers","url":"https://iclr.cc/Conferences/2025/CallForPapers"}]
+
+Based on the search results, I found information about ICLR 2026, but the search did not return specific information about ICLR 2027 deadline dates. The search results show information for ICLR 2026, which is currently ongoing (as of May 2026). 
+
+One result mentions ICLR 2027 is scheduled for May 16-21, 2027 in Toronto, Canada, but the specific submission deadline dates for ICLR 2027 have not yet been officially announced, as the call for papers typically isn't released until several months before the conference.
+
+If you're looking for the official ICLR 2027 call for papers with deadline dates, I recommend checking the official ICLR website directly at iclr.cc, as they typically announce submission deadlines several months in advance.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "586ce132-5de4-4361-9cb4-0237ae3e7eaf",
+  "isSidechain": false,
+  "promptId": "b9b6653c-77d6-45f7-b143-1d26cd86e692",
+  "type": "user",
+  "uuid": "2ba5bdde-d78c-4e03-aaea-9b9192397598",
+  "toolUseResult": {
+    "query": "ICLR 2027 deadline dates call for papers announced",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018KHjXVHgpWigDHRuTdB2GB",
+        "content": [
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://iclr.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "ICLR 2026",
+            "url": "https://iclr.cc/"
+          },
+          {
+            "title": "ICLR 2026 Call for Papers",
+            "url": "https://iclr.cc/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "International Conference on Learning Representations ICLR in August 2027 in Sydney",
+            "url": "https://waset.org/learning-representations-conference-in-august-2027-in-sydney"
+          },
+          {
+            "title": "Year-Round Deadlines - Imranur Rahman",
+            "url": "https://imranur-rahman.github.io/deadlines/"
+          },
+          {
+            "title": "AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "Key deadlines in AI and ML conferences",
+            "url": "https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"
+          },
+          {
+            "title": "AI Deadlines – AI Conference Call For Paper Deadlines",
+            "url": "http://aideadlines.org/"
+          },
+          {
+            "title": "Call for Papers",
+            "url": "https://iclr.cc/Conferences/2025/CallForPapers"
+          }
+        ]
+      },
+      "Based on the search results, I found information about ICLR 2026, but the search did not return specific information about ICLR 2027 deadline dates. The search results show information for ICLR 2026, which is currently ongoing (as of May 2026). \n\nOne result mentions ICLR 2027 is scheduled for May 16-21, 2027 in Toronto, Canada, but the specific submission deadline dates for ICLR 2027 have not yet been officially announced, as the call for papers typically isn't released until several months before the conference.\n\nIf you're looking for the official ICLR 2027 call for papers with deadline dates, I recommend checking the official ICLR website directly at iclr.cc, as they typically announce submission deadlines several months in advance."
+    ],
+    "durationSeconds": 4.391004099000012,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "586ce132-5de4-4361-9cb4-0237ae3e7eaf",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-28T15:36:22.217Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01R5fbAaMG6Zrvzojz8xtNkS`</summary>
+
+```json
+{
+  "query": "AAAI 2027 deadline paper submission July 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2ba5bdde-d78c-4e03-aaea-9b9192397598",
+  "isSidechain": false,
+  "requestId": "req_011CbVDMxYzSRyQwoqbtYY89",
+  "type": "assistant",
+  "uuid": "c6d85a9c-e96b-416e-82f4-9906e1891287",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015AsT8eGtUGo6sbTrLf99pM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 668,
+      "cache_read_input_tokens": 45566,
+      "output_tokens": 66,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 668,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 66,
+          "cache_read_input_tokens": 45566,
+          "cache_creation_input_tokens": 668,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 668
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-28T15:36:28.326Z_
+
+<details><summary>↩ Tool result · `toolu_01R5fbAaMG6Zrvzojz8xtNkS`</summary>
+
+```text
+Web search results for query: "AAAI 2027 deadline paper submission July 2026"
+
+Links: [{"title":"AAAI-27 - AAAI","url":"https://aaai.org/conference/aaai/aaai-27/"},{"title":"AAAI-27 Main Technical Track - AAAI","url":"https://aaai.org/conference/aaai/aaai-27/call/main-technical-track/"},{"title":"AAAI 2027 LaTeX Template | Author Kit & Overleaf | Underleaf","url":"https://www.underleaf.ai/templates/aaai"},{"title":"AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML","url":"https://mlciv.com/ai-deadlines/"},{"title":"AI/ML Conference Timeline | NIU AI","url":"https://www.niuai.org/resources/conference-timeline/"},{"title":"AI Deadlines – AI Conference Call For Paper Deadlines","url":"http://aideadlines.org/"},{"title":"Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32"}]
+
+Based on the search results, here are the AAAI 2027 paper submission deadlines for July 2026:
+
+The abstract submission deadline is July 21, 2026 at 11:59 PM UTC-12, and the full paper submission deadline is July 28, 2026 at 11:59 PM UTC-12. Additionally, supplementary material and code are due by July 31, 2026 at 11:59 PM UTC-12.
+
+The Open Review submission site opens for author registration on June 17, 2026, and opens for paper submission on June 24, 2026.
+
+The Forty-First AAAI Conference on Artificial Intelligence (AAAI-27) will be held in Montréal, Canada, from February 16 to February 23, 2027.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c6d85a9c-e96b-416e-82f4-9906e1891287",
+  "isSidechain": false,
+  "promptId": "b9b6653c-77d6-45f7-b143-1d26cd86e692",
+  "type": "user",
+  "uuid": "f86481e2-cac7-4af0-be25-3ebbaf6ffbad",
+  "toolUseResult": {
+    "query": "AAAI 2027 deadline paper submission July 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HDUX4MtgJzwYJEVJGHsjLC",
+        "content": [
+          {
+            "title": "AAAI-27 - AAAI",
+            "url": "https://aaai.org/conference/aaai/aaai-27/"
+          },
+          {
+            "title": "AAAI-27 Main Technical Track - AAAI",
+            "url": "https://aaai.org/conference/aaai/aaai-27/call/main-technical-track/"
+          },
+          {
+            "title": "AAAI 2027 LaTeX Template | Author Kit & Overleaf | Underleaf",
+            "url": "https://www.underleaf.ai/templates/aaai"
+          },
+          {
+            "title": "AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "AI/ML Conference Timeline | NIU AI",
+            "url": "https://www.niuai.org/resources/conference-timeline/"
+          },
+          {
+            "title": "AI Deadlines – AI Conference Call For Paper Deadlines",
+            "url": "http://aideadlines.org/"
+          },
+          {
+            "title": "Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32"
+          }
+        ]
+      },
+      "Based on the search results, here are the AAAI 2027 paper submission deadlines for July 2026:\n\nThe abstract submission deadline is July 21, 2026 at 11:59 PM UTC-12, and the full paper submission deadline is July 28, 2026 at 11:59 PM UTC-12. Additionally, supplementary material and code are due by July 31, 2026 at 11:59 PM UTC-12.\n\nThe Open Review submission site opens for author registration on June 17, 2026, and opens for paper submission on June 24, 2026.\n\nThe Forty-First AAAI Conference on Artificial Intelligence (AAAI-27) will be held in Montréal, Canada, from February 16 to February 23, 2027."
+    ],
+    "durationSeconds": 6.104852593999996,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "c6d85a9c-e96b-416e-82f4-9906e1891287",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 47_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-28 (UTC).**  Your job: independently verify this idea's claims via web_search, then issue a verdict.  ## U…",
+  "leafUuid": "f86481e2-cac7-4af0-be25-3ebbaf6ffbad",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 48_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review domain-adaptive autoformalization pipeline",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b"
+}
+```
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-28T15:36:32.604Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0171dN34rW8NyJVZVpAMypCX`</summary>
+
+```json
+{
+  "query": "Goedel-Formalizer-V2-8B Kimina-formalizer-8B comparison FormalMATH BEq performance"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f86481e2-cac7-4af0-be25-3ebbaf6ffbad",
+  "isSidechain": false,
+  "requestId": "req_011CbVDNeBxumDVBxpnhXJ4H",
+  "type": "assistant",
+  "uuid": "e11f6bac-9900-4286-9fe9-5e67f881bf0f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UqbjsvSSonFtFMnh3L7yYQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 626,
+      "cache_read_input_tokens": 46234,
+      "output_tokens": 86,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 626,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 86,
+          "cache_read_input_tokens": 46234,
+          "cache_creation_input_tokens": 626,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 626
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-28T15:36:40.061Z_
+
+<details><summary>↩ Tool result · `toolu_0171dN34rW8NyJVZVpAMypCX`</summary>
+
+```text
+Web search results for query: "Goedel-Formalizer-V2-8B Kimina-formalizer-8B comparison FormalMATH BEq performance"
+
+Links: [{"title":"Goedel-LM/Goedel-Formalizer-V2-8B · Hugging Face","url":"https://huggingface.co/Goedel-LM/Goedel-Formalizer-V2-8B"},{"title":"StepFun-Formalizer: Unlocking the Autoformalization Potential of LLMs Through Knowledge-Reasoning Fusion","url":"https://arxiv.org/html/2508.04440v2"},{"title":"StepFun-Formalizer: Unlocking the Autoformalization Potential","url":"https://www.arxiv.org/pdf/2508.04440"},{"title":"arXiv preprint AUTOFORMALIZER WITH TOOL FEEDBACK","url":"https://arxiv.org/pdf/2510.06857"},{"title":"GitHub - Goedel-LM/Goedel-Prover-V2 · GitHub","url":"https://github.com/Goedel-LM/Goedel-Prover-V2"},{"title":"Goedel-LM/Goedel-Prover-V2-8B · Hugging Face","url":"https://huggingface.co/Goedel-LM/Goedel-Prover-V2-8B"},{"title":"Technical Report GOEDEL-PROVER-V2: SCALING FORMAL THEOREM","url":"https://arxiv.org/pdf/2508.03613"},{"title":"Autoformalizer with Tool Feedback","url":"https://arxiv.org/html/2510.06857v1"},{"title":"Goedel-Prover","url":"https://goedel-lm.github.io/"}]
+
+Based on the search results, here's what I found regarding the comparison of these formalizer models:
+
+## Direct Comparison
+
+On an internal evaluation with 300 informal statements from Omni-MATH, Kimina-formalizer-8B successfully translates 161 statements, while Goedel-Formalizer-V2-32B succeeds in 228 statements.
+
+## BEq Performance
+
+BEq@1 is used to measure the accuracy of the model's single-shot generation, and BEq@16 to evaluate the upper bound of the autoformalization capability. 
+
+These models (Kimina-Autoformalizer-7B, StepFun-Formalizer, and Goedel-V2-Formalizer) are evaluated against FormalMath-Lite and ProverBench datasets, along with CombiBench as an out-of-distribution dataset.
+
+## Key Features
+
+Different from all previous open-source formalizers, Goedel-Formalizer has the ability to think before generating Lean 4 statements, which significantly increases the accuracy of the translation.
+
+The search results show these are different-sized variants of similar models, with the formalizer being designed for translating informal math problems into formal statements in Lean 4.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e11f6bac-9900-4286-9fe9-5e67f881bf0f",
+  "isSidechain": false,
+  "promptId": "b9b6653c-77d6-45f7-b143-1d26cd86e692",
+  "type": "user",
+  "uuid": "8a058f6c-4073-4220-b3ff-36bc87dd6145",
+  "toolUseResult": {
+    "query": "Goedel-Formalizer-V2-8B Kimina-formalizer-8B comparison FormalMATH BEq performance",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0196FnEUBKw5uYp2JBw5XDKq",
+        "content": [
+          {
+            "title": "Goedel-LM/Goedel-Formalizer-V2-8B · Hugging Face",
+            "url": "https://huggingface.co/Goedel-LM/Goedel-Formalizer-V2-8B"
+          },
+          {
+            "title": "StepFun-Formalizer: Unlocking the Autoformalization Potential of LLMs Through Knowledge-Reasoning Fusion",
+            "url": "https://arxiv.org/html/2508.04440v2"
+          },
+          {
+            "title": "StepFun-Formalizer: Unlocking the Autoformalization Potential",
+            "url": "https://www.arxiv.org/pdf/2508.04440"
+          },
+          {
+            "title": "arXiv preprint AUTOFORMALIZER WITH TOOL FEEDBACK",
+            "url": "https://arxiv.org/pdf/2510.06857"
+          },
+          {
+            "title": "GitHub - Goedel-LM/Goedel-Prover-V2 · GitHub",
+            "url": "https://github.com/Goedel-LM/Goedel-Prover-V2"
+          },
+          {
+            "title": "Goedel-LM/Goedel-Prover-V2-8B · Hugging Face",
+            "url": "https://huggingface.co/Goedel-LM/Goedel-Prover-V2-8B"
+          },
+          {
+            "title": "Technical Report GOEDEL-PROVER-V2: SCALING FORMAL THEOREM",
+            "url": "https://arxiv.org/pdf/2508.03613"
+          },
+          {
+            "title": "Autoformalizer with Tool Feedback",
+            "url": "https://arxiv.org/html/2510.06857v1"
+          },
+          {
+            "title": "Goedel-Prover",
+            "url": "https://goedel-lm.github.io/"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found regarding the comparison of these formalizer models:\n\n## Direct Comparison\n\nOn an internal evaluation with 300 informal statements from Omni-MATH, Kimina-formalizer-8B successfully translates 161 statements, while Goedel-Formalizer-V2-32B succeeds in 228 statements.\n\n## BEq Performance\n\nBEq@1 is used to measure the accuracy of the model's single-shot generation, and BEq@16 to evaluate the upper bound of the autoformalization capability. \n\nThese models (Kimina-Autoformalizer-7B, StepFun-Formalizer, and Goedel-V2-Formalizer) are evaluated against FormalMath-Lite and ProverBench datasets, along with CombiBench as an out-of-distribution dataset.\n\n## Key Features\n\nDifferent from all previous open-source formalizers, Goedel-Formalizer has the ability to think before generating Lean 4 statements, which significantly increases the accuracy of the translation.\n\nThe search results show these are different-sized variants of similar models, with the formalizer being designed for translating informal math problems into formal statements in Lean 4."
+    ],
+    "durationSeconds": 7.453041557000018,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "e11f6bac-9900-4286-9fe9-5e67f881bf0f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51 · 2026-05-28T15:36:43.256Z_
+
+Now let me read the Goedel-Formalizer-V2-8B HuggingFace page and the APRIL paper more closely:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8a058f6c-4073-4220-b3ff-36bc87dd6145",
+  "isSidechain": false,
+  "requestId": "req_011CbVDPWMTX2TGuS6hhU3RT",
+  "type": "assistant",
+  "uuid": "9e74a679-3dd4-4c53-8803-105b4abbfbaf",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PvA5ARt9rFRhYoxZx6trms",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 883,
+      "cache_read_input_tokens": 46860,
+      "output_tokens": 222,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 883,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 222,
+          "cache_read_input_tokens": 46860,
+          "cache_creation_input_tokens": 883,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 883
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-28T15:36:44.964Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01ArECSzsdWeBK7vfruZwvWD`</summary>
+
+```json
+{
+  "url": "https://huggingface.co/Goedel-LM/Goedel-Formalizer-V2-8B",
+  "prompt": "What are the exact performance numbers for Goedel-Formalizer-V2-8B on FormalMATH-Lite, ProverBench, and any other benchmarks? How does it compare with Kimina-formalizer-8B and StepFun-Formalizer-7B at the 8B parameter scale? Is it described as SOTA?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9e74a679-3dd4-4c53-8803-105b4abbfbaf",
+  "isSidechain": false,
+  "requestId": "req_011CbVDPWMTX2TGuS6hhU3RT",
+  "type": "assistant",
+  "uuid": "d8897522-d69f-4bce-8cdd-028c18e1d329",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PvA5ARt9rFRhYoxZx6trms",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 883,
+      "cache_read_input_tokens": 46860,
+      "output_tokens": 222,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 883,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 222,
+          "cache_read_input_tokens": 46860,
+          "cache_creation_input_tokens": 883,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 883
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-28T15:36:49.969Z_
+
+<details><summary>↩ Tool result · `toolu_01ArECSzsdWeBK7vfruZwvWD`</summary>
+
+```text
+# Performance Numbers for Goedel-Formalizer-V2-8B
+
+Based on the provided content, here are the exact performance numbers available:
+
+## Documented Performance
+
+**Internal Evaluation (Omni-MATH eval set with 300 informal statements):**
+- **Goedel-Formalizer-V2-8B**: 161/300 statements successfully translated (53.7%)
+- **Kimina-formalizer-8B**: Not explicitly stated for this model
+- **Goedel-Formalizer-V2-32B**: 228/300 statements successfully translated (76%)
+
+## Limitations
+
+The webpage content **does not provide**:
+- Performance metrics on FormalMATH-Lite or ProverBench benchmarks
+- Direct comparisons with StepFun-Formalizer-7B
+- SOTA (State-of-the-Art) claims or certifications
+- Detailed breakdown of Kimina-formalizer-8B's performance on the same eval set
+
+## Key Capability
+
+The model is noted for having **"the ability to think before generating the lean4 statements, which significantly increases the accuracy of the translation"** — suggesting an advantage over previous open-source formalizers, but without specific comparative benchmark data provided in this documentation.
+
+For comprehensive benchmark comparisons and SOTA status, you would need to consult additional documentation, research papers, or the model's full model card on Hugging Face.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d8897522-d69f-4bce-8cdd-028c18e1d329",
+  "isSidechain": false,
+  "promptId": "b9b6653c-77d6-45f7-b143-1d26cd86e692",
+  "type": "user",
+  "uuid": "ef38c3ad-0f51-41a0-a03c-2a1f4ae95236",
+  "toolUseResult": {
+    "bytes": 131804,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Performance Numbers for Goedel-Formalizer-V2-8B\n\nBased on the provided content, here are the exact performance numbers available:\n\n## Documented Performance\n\n**Internal Evaluation (Omni-MATH eval set with 300 informal statements):**\n- **Goedel-Formalizer-V2-8B**: 161/300 statements successfully translated (53.7%)\n- **Kimina-formalizer-8B**: Not explicitly stated for this model\n- **Goedel-Formalizer-V2-32B**: 228/300 statements successfully translated (76%)\n\n## Limitations\n\nThe webpage content **does not provide**:\n- Performance metrics on FormalMATH-Lite or ProverBench benchmarks\n- Direct comparisons with StepFun-Formalizer-7B\n- SOTA (State-of-the-Art) claims or certifications\n- Detailed breakdown of Kimina-formalizer-8B's performance on the same eval set\n\n## Key Capability\n\nThe model is noted for having **\"the ability to think before generating the lean4 statements, which significantly increases the accuracy of the translation\"** — suggesting an advantage over previous open-source formalizers, but without specific comparative benchmark data provided in this documentation.\n\nFor comprehensive benchmark comparisons and SOTA status, you would need to consult additional documentation, research papers, or the model's full model card on Hugging Face.",
+    "durationMs": 5001,
+    "url": "https://huggingface.co/Goedel-LM/Goedel-Formalizer-V2-8B"
+  },
+  "sourceToolAssistantUUID": "d8897522-d69f-4bce-8cdd-028c18e1d329",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 54 · 2026-05-28T15:36:49.972Z_
+
+```json
+{
+  "parentUuid": "ef38c3ad-0f51-41a0-a03c-2a1f4ae95236",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "02523c11-687f-47f3-80c6-2f411a276881",
+  "timestamp": "2026-05-28T15:36:49.972Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-28T15:36:54.680Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01SzCjHtPTFQYtfsNeRzg9vt`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2604.19459",
+  "prompt": "What is the exact error taxonomy proposed in this paper? What categories of unfaithfulness or formalization errors do they identify? How is it different from a compiler-error-based taxonomy? Does it target pre-compilation or post-compilation errors?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "02523c11-687f-47f3-80c6-2f411a276881",
+  "isSidechain": false,
+  "requestId": "req_011CbVDQEit7F1mLByoMAprj",
+  "type": "assistant",
+  "uuid": "1230f1dc-6984-4c01-8774-7b733338c6ec",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HJHN9x3wFQEHweaPrSnJmr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 662,
+      "cache_read_input_tokens": 47743,
+      "output_tokens": 133,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 662,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 133,
+          "cache_read_input_tokens": 47743,
+          "cache_creation_input_tokens": 662,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 662
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-28T15:37:00.100Z_
+
+<details><summary>↩ Tool result · `toolu_01SzCjHtPTFQYtfsNeRzg9vt`</summary>
+
+```text
+# Error Taxonomy in the Paper
+
+Based on the available content, the paper does not explicitly present a formal error taxonomy in the abstract or provided sections. However, it does identify **two distinct modes of unfaithfulness**:
+
+1. **GPT-5's approach**: "fabricates axioms during proof generation, a reactive fallback detectable via cross-stage comparison"
+
+2. **DeepSeek-R1's approach**: "mistranslates premises during formalization, producing internally consistent outputs that evade detection entirely"
+
+## Key Distinction from Compiler-Based Approaches
+
+The paper's framework differs fundamentally from compiler-error taxonomies because it distinguishes between:
+- **Valid compilation** (87-99% success rates)
+- **Faithful formalization** (the actual gap being investigated)
+
+This addresses "the gap between valid proofs and faithful translations," suggesting their taxonomy operates at a **semantic/faithfulness level rather than syntactic/compiler-level**.
+
+## Pre vs. Post-Compilation
+
+The two-stage pipeline suggests they examine **both pre and post-compilation errors**—the separation of formalization from proving allows detection of unfaithfulness that compilation alone would mask. As noted, some unfaithful outputs "evade detection entirely," indicating their taxonomy captures errors that don't surface through standard compiler feedback.
+
+The full error taxonomy details would require access to the complete paper.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1230f1dc-6984-4c01-8774-7b733338c6ec",
+  "isSidechain": false,
+  "promptId": "b9b6653c-77d6-45f7-b143-1d26cd86e692",
+  "type": "user",
+  "uuid": "856f974e-4bd3-4617-8d1e-92fa1220dc6f",
+  "toolUseResult": {
+    "bytes": 47382,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Error Taxonomy in the Paper\n\nBased on the available content, the paper does not explicitly present a formal error taxonomy in the abstract or provided sections. However, it does identify **two distinct modes of unfaithfulness**:\n\n1. **GPT-5's approach**: \"fabricates axioms during proof generation, a reactive fallback detectable via cross-stage comparison\"\n\n2. **DeepSeek-R1's approach**: \"mistranslates premises during formalization, producing internally consistent outputs that evade detection entirely\"\n\n## Key Distinction from Compiler-Based Approaches\n\nThe paper's framework differs fundamentally from compiler-error taxonomies because it distinguishes between:\n- **Valid compilation** (87-99% success rates)\n- **Faithful formalization** (the actual gap being investigated)\n\nThis addresses \"the gap between valid proofs and faithful translations,\" suggesting their taxonomy operates at a **semantic/faithfulness level rather than syntactic/compiler-level**.\n\n## Pre vs. Post-Compilation\n\nThe two-stage pipeline suggests they examine **both pre and post-compilation errors**—the separation of formalization from proving allows detection of unfaithfulness that compilation alone would mask. As noted, some unfaithful outputs \"evade detection entirely,\" indicating their taxonomy captures errors that don't surface through standard compiler feedback.\n\nThe full error taxonomy details would require access to the complete paper.",
+    "durationMs": 5415,
+    "url": "https://arxiv.org/abs/2604.19459"
+  },
+  "sourceToolAssistantUUID": "1230f1dc-6984-4c01-8774-7b733338c6ec",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-28T15:37:03.170Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GJpaegPKfAokKVWjprnTS5`</summary>
+
+```json
+{
+  "query": "\"Do LLMs Game Formalization\" faithfulness taxonomy mistranslation fabrication omission contradiction categories"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "856f974e-4bd3-4617-8d1e-92fa1220dc6f",
+  "isSidechain": false,
+  "requestId": "req_011CbVDQz4N1ZbEqorUPw6pB",
+  "type": "assistant",
+  "uuid": "af21ba08-6cb4-42fe-a301-8489748cf2d1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qvxxz2aZsNgDzYtgvjkBxk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 443,
+      "cache_read_input_tokens": 48405,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 443,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 48405,
+          "cache_creation_input_tokens": 443,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 443
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-28T15:37:09.961Z_
+
+<details><summary>↩ Tool result · `toolu_01GJpaegPKfAokKVWjprnTS5`</summary>
+
+```text
+Web search results for query: ""Do LLMs Game Formalization" faithfulness taxonomy mistranslation fabrication omission contradiction categories"
+
+Links: [{"title":"Do LLMs Game Formalization? Evaluating Faithfulness in Logical Reasoning","url":"https://arxiv.org/html/2604.19459"},{"title":"[2604.19459] Do LLMs Game Formalization? Evaluating Faithfulness in Logical Reasoning","url":"https://arxiv.org/abs/2604.19459"},{"title":"From Hallucination to Scheming: A Unified Taxonomy and Benchmark Analysis for LLM Deception","url":"https://arxiv.org/pdf/2604.04788"},{"title":"Grammars of Formal Uncertainty: When to Trust LLMs in Automated Reasoning Tasks","url":"https://arxiv.org/pdf/2505.20047"},{"title":"1 A Survey on Hallucination in Large Language Models:","url":"https://arxiv.org/pdf/2311.05232"},{"title":"Game Theory Meets Large Language Models: A Systematic Survey with Taxonomy and New Frontiers","url":"https://arxiv.org/html/2502.09053v2"},{"title":"Lying to Win: Assessing LLM Deception through Human-AI Games and Parallel-World Probing","url":"https://arxiv.org/pdf/2603.07202"},{"title":"Full article: LLM Hallucinations in Conversational AI for Customer Service: Framework and End-User Perceptions","url":"https://www.tandfonline.com/doi/full/10.1080/10447318.2025.2580540"}]
+
+Based on the search results, I found relevant information about the "Do LLMs Game Formalization?" research paper and its taxonomy.
+
+The taxonomy includes error categories where models may fabricate axioms absent from premises, omit premises entirely, or induce contradictions that prove anything via explosion. 
+
+The research shows that GPT-5 fabricates axioms during proving, while DeepSeek-R1 mistranslates premises during formalization. The taxonomy of formalization errors accounts for gaming possibilities, where errors serve proof compilation rather than hinder it.
+
+More specifically, the research investigates whether frontier models exploit the gap between valid proofs and faithful translations when generating Lean 4 proofs, a behavior termed formalization gaming, evaluating GPT-5 and DeepSeek-R1 on 303 first-order logic problems.
+
+The taxonomy thus organizes formalization errors into these key categories:
+- **Fabrication** - making up axioms not present in the original premises
+- **Omission** - leaving out premises entirely
+- **Mistranslation** - incorrectly translating premises during the formalization process
+- **Contradiction** - inducing logical contradictions that allow anything to be proven through explosion
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "af21ba08-6cb4-42fe-a301-8489748cf2d1",
+  "isSidechain": false,
+  "promptId": "b9b6653c-77d6-45f7-b143-1d26cd86e692",
+  "type": "user",
+  "uuid": "0722905e-70c0-4dc4-a5e1-ac640c16000a",
+  "toolUseResult": {
+    "query": "\"Do LLMs Game Formalization\" faithfulness taxonomy mistranslation fabrication omission contradiction categories",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0119dHPvuTWMuC36wr2pUPVN",
+        "content": [
+          {
+            "title": "Do LLMs Game Formalization? Evaluating Faithfulness in Logical Reasoning",
+            "url": "https://arxiv.org/html/2604.19459"
+          },
+          {
+            "title": "[2604.19459] Do LLMs Game Formalization? Evaluating Faithfulness in Logical Reasoning",
+            "url": "https://arxiv.org/abs/2604.19459"
+          },
+          {
+            "title": "From Hallucination to Scheming: A Unified Taxonomy and Benchmark Analysis for LLM Deception",
+            "url": "https://arxiv.org/pdf/2604.04788"
+          },
+          {
+            "title": "Grammars of Formal Uncertainty: When to Trust LLMs in Automated Reasoning Tasks",
+            "url": "https://arxiv.org/pdf/2505.20047"
+          },
+          {
+            "title": "1 A Survey on Hallucination in Large Language Models:",
+            "url": "https://arxiv.org/pdf/2311.05232"
+          },
+          {
+            "title": "Game Theory Meets Large Language Models: A Systematic Survey with Taxonomy and New Frontiers",
+            "url": "https://arxiv.org/html/2502.09053v2"
+          },
+          {
+            "title": "Lying to Win: Assessing LLM Deception through Human-AI Games and Parallel-World Probing",
+            "url": "https://arxiv.org/pdf/2603.07202"
+          },
+          {
+            "title": "Full article: LLM Hallucinations in Conversational AI for Customer Service: Framework and End-User Perceptions",
+            "url": "https://www.tandfonline.com/doi/full/10.1080/10447318.2025.2580540"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about the \"Do LLMs Game Formalization?\" research paper and its taxonomy.\n\nThe taxonomy includes error categories where models may fabricate axioms absent from premises, omit premises entirely, or induce contradictions that prove anything via explosion. \n\nThe research shows that GPT-5 fabricates axioms during proving, while DeepSeek-R1 mistranslates premises during formalization. The taxonomy of formalization errors accounts for gaming possibilities, where errors serve proof compilation rather than hinder it.\n\nMore specifically, the research investigates whether frontier models exploit the gap between valid proofs and faithful translations when generating Lean 4 proofs, a behavior termed formalization gaming, evaluating GPT-5 and DeepSeek-R1 on 303 first-order logic problems.\n\nThe taxonomy thus organizes formalization errors into these key categories:\n- **Fabrication** - making up axioms not present in the original premises\n- **Omission** - leaving out premises entirely\n- **Mistranslation** - incorrectly translating premises during the formalization process\n- **Contradiction** - inducing logical contradictions that allow anything to be proven through explosion"
+    ],
+    "durationSeconds": 6.786631939000014,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "af21ba08-6cb4-42fe-a301-8489748cf2d1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-28T15:37:14.685Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TKm5k7LsoPDqyQWsGcMkcb`</summary>
+
+```json
+{
+  "query": "site:arxiv.org autoformalization Lean error analysis domain-specific 2026 new paper"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0722905e-70c0-4dc4-a5e1-ac640c16000a",
+  "isSidechain": false,
+  "requestId": "req_011CbVDRiBQUNVHVfoXzRwNQ",
+  "type": "assistant",
+  "uuid": "d4f4d4f6-6742-476e-a93c-cc1f89231ca1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LXPS6s7k17Ks1tustzfLEg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 779,
+      "cache_read_input_tokens": 48848,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 779,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 48848,
+          "cache_creation_input_tokens": 779,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 779
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-28T15:37:21.749Z_
+
+<details><summary>↩ Tool result · `toolu_01TKm5k7LsoPDqyQWsGcMkcb`</summary>
+
+```text
+Web search results for query: "site:arxiv.org autoformalization Lean error analysis domain-specific 2026 new paper"
+
+Links: [{"title":"A New Approach Towards Autoformalization Nilay Patel","url":"https://arxiv.org/pdf/2310.07957"},{"title":"An Evaluation Benchmark for Autoformalization in Lean4","url":"https://arxiv.org/html/2406.06555v1"},{"title":"[2510.15681] ProofBridge: Auto-Formalization of Natural Language Proofs in Lean via Joint Embeddings","url":"https://arxiv.org/abs/2510.15681"},{"title":"MerLean: An Agentic Framework For Autoformalization in Quantum Computation","url":"https://arxiv.org/html/2602.16554v1"},{"title":"CktFormalizer: Autoformalization of Natural Language into Circuit Representations","url":"https://arxiv.org/html/2605.07782"},{"title":"A New Approach Towards Autoformalization","url":"https://arxiv.org/html/2310.07957"},{"title":"FMC: Formalization of Natural Language Mathematical Competition Problems","url":"https://arxiv.org/pdf/2507.11275"},{"title":"An Evaluation Benchmark for Autoformalization in Lean4","url":"https://arxiv.org/pdf/2406.06555"},{"title":"130k Lines of Formal Topology in Two Weeks: Simple and Cheap Autoformalization for Everyone?","url":"https://arxiv.org/pdf/2601.03298"}]
+
+I found several recent papers on arXiv related to autoformalization in Lean. Here are some of the most relevant 2026 papers:
+
+**Recent 2026 Papers:**
+
+1. **ProofBridge: Auto-Formalization of Natural Language Proofs in Lean via Joint Embeddings** - Updated March 29, 2026, this paper focuses on auto-formalization of natural language proofs into Lean.
+
+2. **MerLean: An Agentic Framework For Autoformalization in Quantum Computation** - An ICLR 2026 paper that uses Claude (Opus 4.5) as its core reasoning engine. MerLean achieves full-paper and fully automated end-to-end formalization without human guidance on the domain tested.
+
+3. **130k Lines of Formal Topology in Two Weeks: Simple and Cheap Autoformalization for Everyone?** - A recent work that achieved about 130k lines of code through automated formalization.
+
+**Other Recent Papers:**
+
+- **CktFormalizer: Autoformalization of Natural Language into Circuit Representations** - Lean serves three roles including as a type checker with dependent types encoding constraints, a correctness firewall, and a proof assistant.
+
+- **FMC: Formalization of Natural Language Mathematical Competition Problems** - Autoformalization is a key research direction that involves converting natural language mathematical problems into formal theorems or proofs.
+
+These papers cover various aspects of autoformalization, error analysis through type checking feedback, and domain-specific applications including quantum computation and circuit design.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d4f4d4f6-6742-476e-a93c-cc1f89231ca1",
+  "isSidechain": false,
+  "promptId": "b9b6653c-77d6-45f7-b143-1d26cd86e692",
+  "type": "user",
+  "uuid": "74243919-6267-49cc-891c-c279f4686d1d",
+  "toolUseResult": {
+    "query": "site:arxiv.org autoformalization Lean error analysis domain-specific 2026 new paper",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EvNFvJcPhJxgsPTZLn8TLc",
+        "content": [
+          {
+            "title": "A New Approach Towards Autoformalization Nilay Patel",
+            "url": "https://arxiv.org/pdf/2310.07957"
+          },
+          {
+            "title": "An Evaluation Benchmark for Autoformalization in Lean4",
+            "url": "https://arxiv.org/html/2406.06555v1"
+          },
+          {
+            "title": "[2510.15681] ProofBridge: Auto-Formalization of Natural Language Proofs in Lean via Joint Embeddings",
+            "url": "https://arxiv.org/abs/2510.15681"
+          },
+          {
+            "title": "MerLean: An Agentic Framework For Autoformalization in Quantum Computation",
+            "url": "https://arxiv.org/html/2602.16554v1"
+          },
+          {
+            "title": "CktFormalizer: Autoformalization of Natural Language into Circuit Representations",
+            "url": "https://arxiv.org/html/2605.07782"
+          },
+          {
+            "title": "A New Approach Towards Autoformalization",
+            "url": "https://arxiv.org/html/2310.07957"
+          },
+          {
+            "title": "FMC: Formalization of Natural Language Mathematical Competition Problems",
+            "url": "https://arxiv.org/pdf/2507.11275"
+          },
+          {
+            "title": "An Evaluation Benchmark for Autoformalization in Lean4",
+            "url": "https://arxiv.org/pdf/2406.06555"
+          },
+          {
+            "title": "130k Lines of Formal Topology in Two Weeks: Simple and Cheap Autoformalization for Everyone?",
+            "url": "https://arxiv.org/pdf/2601.03298"
+          }
+        ]
+      },
+      "I found several recent papers on arXiv related to autoformalization in Lean. Here are some of the most relevant 2026 papers:\n\n**Recent 2026 Papers:**\n\n1. **ProofBridge: Auto-Formalization of Natural Language Proofs in Lean via Joint Embeddings** - Updated March 29, 2026, this paper focuses on auto-formalization of natural language proofs into Lean.\n\n2. **MerLean: An Agentic Framework For Autoformalization in Quantum Computation** - An ICLR 2026 paper that uses Claude (Opus 4.5) as its core reasoning engine. MerLean achieves full-paper and fully automated end-to-end formalization without human guidance on the domain tested.\n\n3. **130k Lines of Formal Topology in Two Weeks: Simple and Cheap Autoformalization for Everyone?** - A recent work that achieved about 130k lines of code through automated formalization.\n\n**Other Recent Papers:**\n\n- **CktFormalizer: Autoformalization of Natural Language into Circuit Representations** - Lean serves three roles including as a type checker with dependent types encoding constraints, a correctness firewall, and a proof assistant.\n\n- **FMC: Formalization of Natural Language Mathematical Competition Problems** - Autoformalization is a key research direction that involves converting natural language mathematical problems into formal theorems or proofs.\n\nThese papers cover various aspects of autoformalization, error analysis through type checking feedback, and domain-specific applications including quantum computation and circuit design."
+    ],
+    "durationSeconds": 7.0598205209999865,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "d4f4d4f6-6742-476e-a93c-cc1f89231ca1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 61_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-28 (UTC).**  Your job: independently verify this idea's claims via web_search, then issue a verdict.  ## U…",
+  "leafUuid": "74243919-6267-49cc-891c-c279f4686d1d",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 62_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review domain-adaptive autoformalization pipeline",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b"
+}
+```
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-28T15:37:24.432Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MWJ6jKxv1WNVwKJCwVtA8Q`</summary>
+
+```json
+{
+  "query": "AAAI 2026 autoformalization domain-specific accepted paper knowledge representation reasoning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "74243919-6267-49cc-891c-c279f4686d1d",
+  "isSidechain": false,
+  "requestId": "req_011CbVDSaanUcUUSuosecYCv",
+  "type": "assistant",
+  "uuid": "d584372f-d321-4323-a077-44d7bff12563",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015UuvWNf9BgQAyG3etC5iG3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 846,
+      "cache_read_input_tokens": 49627,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 846,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 49627,
+          "cache_creation_input_tokens": 846,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 846
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-28T15:37:31.640Z_
+
+<details><summary>↩ Tool result · `toolu_01MWJ6jKxv1WNVwKJCwVtA8Q`</summary>
+
+```text
+Web search results for query: "AAAI 2026 autoformalization domain-specific accepted paper knowledge representation reasoning"
+
+Links: [{"title":"Machine Learning and Knowledge Engineering for Knowledge-Grounded Semantic Agents (MAKE 2026) • AAAI-MAKE","url":"https://www.aaai-make.info/"},{"title":"StepFun-Formalizer: Unlocking the Autoformalization Potential of LLMs Through Knowledge-Reasoning Fusion | Proceedings of the AAAI Conference on Artificial Intelligence","url":"https://ojs.aaai.org/index.php/AAAI/article/view/40691"},{"title":"Autoformalizing Euclidean Geometry","url":"https://arxiv.org/pdf/2405.17216"},{"title":"Consistent Autoformalization for Constructing Mathematical Libraries","url":"https://arxiv.org/pdf/2410.04194"},{"title":"StepFun-Formalizer: Unlocking the Autoformalization Potential of LLMs through Knowledge-Reasoning Fusion","url":"https://arxiv.org/pdf/2508.04440"},{"title":"A New Approach Towards Autoformalization","url":"https://arxiv.org/pdf/2310.07957"},{"title":"Evaluating Autoformalization Robustness via Semantically Similar Paraphrasing","url":"https://arxiv.org/pdf/2511.12784"}]
+
+Based on the search results, I found relevant information about autoformalization research accepted at AAAI 2026:
+
+## Key Autoformalization Paper at AAAI 2026
+
+**StepFun-Formalizer: Unlocking the Autoformalization Potential of LLMs Through Knowledge-Reasoning Fusion** is an accepted paper at AAAI 2026, appearing in the AAAI-26 Technical Tracks.
+
+### Paper Overview
+
+The paper addresses autoformalization, which aims to translate natural-language mathematical statements into a formal language. It identifies two key abilities for effective autoformalization: comprehensive mastery of formal-language domain knowledge, and reasoning capability of natural language problem understanding and informal-formal alignment.
+
+### Approach
+
+The paper introduces ThinkingF, a data synthesis and training pipeline that constructs datasets by distilling large-scale examples rich in formal knowledge and generating informal-to-formal reasoning trajectories guided by expert-designed templates.
+
+### Results
+
+StepFun-Formalizer-32B achieves state-of-the-art BEq@1 scores of 40.5% on FormalMATH-Lite and 26.7% on ProverBench, surpassing all prior general-purpose and specialized models.
+
+This work represents significant progress in domain-specific autoformalization research combining knowledge representation and reasoning techniques.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d584372f-d321-4323-a077-44d7bff12563",
+  "isSidechain": false,
+  "promptId": "b9b6653c-77d6-45f7-b143-1d26cd86e692",
+  "type": "user",
+  "uuid": "4a4a6759-534c-4c09-ac14-d490c2b88d98",
+  "toolUseResult": {
+    "query": "AAAI 2026 autoformalization domain-specific accepted paper knowledge representation reasoning",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Fd1eYsde3ALW7CNfxgtwZu",
+        "content": [
+          {
+            "title": "Machine Learning and Knowledge Engineering for Knowledge-Grounded Semantic Agents (MAKE 2026) • AAAI-MAKE",
+            "url": "https://www.aaai-make.info/"
+          },
+          {
+            "title": "StepFun-Formalizer: Unlocking the Autoformalization Potential of LLMs Through Knowledge-Reasoning Fusion | Proceedings of the AAAI Conference on Artificial Intelligence",
+            "url": "https://ojs.aaai.org/index.php/AAAI/article/view/40691"
+          },
+          {
+            "title": "Autoformalizing Euclidean Geometry",
+            "url": "https://arxiv.org/pdf/2405.17216"
+          },
+          {
+            "title": "Consistent Autoformalization for Constructing Mathematical Libraries",
+            "url": "https://arxiv.org/pdf/2410.04194"
+          },
+          {
+            "title": "StepFun-Formalizer: Unlocking the Autoformalization Potential of LLMs through Knowledge-Reasoning Fusion",
+            "url": "https://arxiv.org/pdf/2508.04440"
+          },
+          {
+            "title": "A New Approach Towards Autoformalization",
+            "url": "https://arxiv.org/pdf/2310.07957"
+          },
+          {
+            "title": "Evaluating Autoformalization Robustness via Semantically Similar Paraphrasing",
+            "url": "https://arxiv.org/pdf/2511.12784"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about autoformalization research accepted at AAAI 2026:\n\n## Key Autoformalization Paper at AAAI 2026\n\n**StepFun-Formalizer: Unlocking the Autoformalization Potential of LLMs Through Knowledge-Reasoning Fusion** is an accepted paper at AAAI 2026, appearing in the AAAI-26 Technical Tracks.\n\n### Paper Overview\n\nThe paper addresses autoformalization, which aims to translate natural-language mathematical statements into a formal language. It identifies two key abilities for effective autoformalization: comprehensive mastery of formal-language domain knowledge, and reasoning capability of natural language problem understanding and informal-formal alignment.\n\n### Approach\n\nThe paper introduces ThinkingF, a data synthesis and training pipeline that constructs datasets by distilling large-scale examples rich in formal knowledge and generating informal-to-formal reasoning trajectories guided by expert-designed templates.\n\n### Results\n\nStepFun-Formalizer-32B achieves state-of-the-art BEq@1 scores of 40.5% on FormalMATH-Lite and 26.7% on ProverBench, surpassing all prior general-purpose and specialized models.\n\nThis work represents significant progress in domain-specific autoformalization research combining knowledge representation and reasoning techniques."
+    ],
+    "durationSeconds": 7.202506733999995,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "d584372f-d321-4323-a077-44d7bff12563",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-28T15:37:34.718Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UnLcbf7b3MjLh2isNpyJJr`</summary>
+
+```json
+{
+  "query": "Goedel-Formalizer-V2-8B FormalMATH-Lite BEq score performance number"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4a4a6759-534c-4c09-ac14-d490c2b88d98",
+  "isSidechain": false,
+  "requestId": "req_011CbVDTJzCX1hFRx3459t6E",
+  "type": "assistant",
+  "uuid": "b0452332-f25b-4734-9115-176a896b8fe1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019USeDHktvAa611z5bBu827",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 759,
+      "cache_read_input_tokens": 50473,
+      "output_tokens": 80,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 759,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 80,
+          "cache_read_input_tokens": 50473,
+          "cache_creation_input_tokens": 759,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 759
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-28T15:37:40.715Z_
+
+<details><summary>↩ Tool result · `toolu_01UnLcbf7b3MjLh2isNpyJJr`</summary>
+
+```text
+Web search results for query: "Goedel-Formalizer-V2-8B FormalMATH-Lite BEq score performance number"
+
+Links: [{"title":"StepFun-Formalizer: Unlocking the Autoformalization Potential","url":"https://www.arxiv.org/pdf/2508.04440"},{"title":"StepFun-Formalizer: Unlocking the Autoformalization Potential of LLMs Through Knowledge-Reasoning Fusion","url":"https://arxiv.org/html/2508.04440v2"},{"title":"Goedel-LM/Goedel-Formalizer-V2-8B · Hugging Face","url":"https://huggingface.co/Goedel-LM/Goedel-Formalizer-V2-8B"},{"title":"README.md · Goedel-LM/Goedel-Prover-V2-32B at main","url":"https://huggingface.co/Goedel-LM/Goedel-Prover-V2-32B/blob/main/README.md"},{"title":"FormalMATH: Benchmarking Formal Mathematical Reasoning of Large Language   Models","url":"https://arxiv.org/pdf/2505.02735"},{"title":"Autoformalizer with Tool Feedback","url":"https://arxiv.org/html/2510.06857v1"},{"title":"GitHub - Goedel-LM/Goedel-Prover-V2 · GitHub","url":"https://github.com/Goedel-LM/Goedel-Prover-V2"},{"title":"Goedel-Prover","url":"https://goedel-lm.github.io/"},{"title":"GitHub - stepfun-ai/StepFun-Formalizer: StepFun-Formalizer: Unlocking the Autoformalization Potential of LLMs through Knowledge-Reasoning Fusion · GitHub","url":"https://github.com/stepfun-ai/StepFun-Formalizer"}]
+
+Based on the search results, I found relevant information about the Goedel-Formalizer-V2-8B model's performance on FormalMATH-Lite using BEq score metrics.
+
+On an internal evaluation set of 300 informal statements from Omni-MATH, Goedel-Formalizer-V2-8B successfully translates 161 out of 300 statements, which corresponds to approximately 53.7% accuracy on that specific test set.
+
+Additionally, Goedel-V2-Formalizer-32B achieves Pass@1 consistency scores of 85.41% on FormalMath-Lite (calculated from the reported margin comparison with ATF-32B's 94.51%).
+
+However, I should note that the search results indicate Goedel-Formalizer-V2's training prompt does not include headers required in BEq, which causes difficulties for evaluation, which may affect the reported performance numbers.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b0452332-f25b-4734-9115-176a896b8fe1",
+  "isSidechain": false,
+  "promptId": "b9b6653c-77d6-45f7-b143-1d26cd86e692",
+  "type": "user",
+  "uuid": "0f65cc06-405a-4138-93f9-346a231ace00",
+  "toolUseResult": {
+    "query": "Goedel-Formalizer-V2-8B FormalMATH-Lite BEq score performance number",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01ByNWFwz2NBWqMs2TT4bcR7",
+        "content": [
+          {
+            "title": "StepFun-Formalizer: Unlocking the Autoformalization Potential",
+            "url": "https://www.arxiv.org/pdf/2508.04440"
+          },
+          {
+            "title": "StepFun-Formalizer: Unlocking the Autoformalization Potential of LLMs Through Knowledge-Reasoning Fusion",
+            "url": "https://arxiv.org/html/2508.04440v2"
+          },
+          {
+            "title": "Goedel-LM/Goedel-Formalizer-V2-8B · Hugging Face",
+            "url": "https://huggingface.co/Goedel-LM/Goedel-Formalizer-V2-8B"
+          },
+          {
+            "title": "README.md · Goedel-LM/Goedel-Prover-V2-32B at main",
+            "url": "https://huggingface.co/Goedel-LM/Goedel-Prover-V2-32B/blob/main/README.md"
+          },
+          {
+            "title": "FormalMATH: Benchmarking Formal Mathematical Reasoning of Large Language   Models",
+            "url": "https://arxiv.org/pdf/2505.02735"
+          },
+          {
+            "title": "Autoformalizer with Tool Feedback",
+            "url": "https://arxiv.org/html/2510.06857v1"
+          },
+          {
+            "title": "GitHub - Goedel-LM/Goedel-Prover-V2 · GitHub",
+            "url": "https://github.com/Goedel-LM/Goedel-Prover-V2"
+          },
+          {
+            "title": "Goedel-Prover",
+            "url": "https://goedel-lm.github.io/"
+          },
+          {
+            "title": "GitHub - stepfun-ai/StepFun-Formalizer: StepFun-Formalizer: Unlocking the Autoformalization Potential of LLMs through Knowledge-Reasoning Fusion · GitHub",
+            "url": "https://github.com/stepfun-ai/StepFun-Formalizer"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about the Goedel-Formalizer-V2-8B model's performance on FormalMATH-Lite using BEq score metrics.\n\nOn an internal evaluation set of 300 informal statements from Omni-MATH, Goedel-Formalizer-V2-8B successfully translates 161 out of 300 statements, which corresponds to approximately 53.7% accuracy on that specific test set.\n\nAdditionally, Goedel-V2-Formalizer-32B achieves Pass@1 consistency scores of 85.41% on FormalMath-Lite (calculated from the reported margin comparison with ATF-32B's 94.51%).\n\nHowever, I should note that the search results indicate Goedel-Formalizer-V2's training prompt does not include headers required in BEq, which causes difficulties for evaluation, which may affect the reported performance numbers."
+    ],
+    "durationSeconds": 5.993686939999985,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "b0452332-f25b-4734-9115-176a896b8fe1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-28T15:37:44.792Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01EQWWKc4akTDw6tWsiGuP8L`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2508.04440v2",
+  "prompt": "What are the exact BEq@1 scores for Goedel-Formalizer-V2-8B, Kimina-Autoformalizer-7B, and StepFun-Formalizer-7B on FormalMATH-Lite and ProverBench? Provide the exact numbers from the comparison table. Is Goedel-Formalizer-V2-8B described as SOTA at the 8B scale?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0f65cc06-405a-4138-93f9-346a231ace00",
+  "isSidechain": false,
+  "requestId": "req_011CbVDTygd3MPyTuSDTMMw7",
+  "type": "assistant",
+  "uuid": "451f376d-9444-4e46-b237-f54bdfcbf4fc",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ToGeuqwSRomHeB96PSAnyf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 849,
+      "cache_read_input_tokens": 51232,
+      "output_tokens": 190,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 849,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 190,
+          "cache_read_input_tokens": 51232,
+          "cache_creation_input_tokens": 849,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 849
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-28T15:37:48.689Z_
+
+<details><summary>↩ Tool result · `toolu_01EQWWKc4akTDw6tWsiGuP8L`</summary>
+
+```text
+# BEq@1 Score Comparison
+
+Based on Table 3 in the document:
+
+**FormalMATH-Lite BEq@1:**
+- Kimina-Autoformalizer-7B: 35.1%
+- StepFun-Formalizer-7B: 38.3%
+- Goedel-Formalizer-V2-8B: Not evaluated on this benchmark
+
+**ProverBench BEq@1:**
+- Kimina-Autoformalizer-7B: 13.3%
+- StepFun-Formalizer-7B: 25.1%
+- Goedel-Formalizer-V2-8B: 16.3% (from Table 10)
+
+## SOTA Status
+
+Goedel-Formalizer-V2-8B is **not** described as state-of-the-art. The paper explicitly states that "StepFun-Formalizer-32B achieves SOTA BEq@1 scores of 40.5% on FormalMATH-Lite and 26.7% on ProverBench." Even at the 7B scale, StepFun-Formalizer outperforms Goedel-Formalizer-V2-8B on ProverBench (25.1% vs. 16.3%).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "451f376d-9444-4e46-b237-f54bdfcbf4fc",
+  "isSidechain": false,
+  "promptId": "b9b6653c-77d6-45f7-b143-1d26cd86e692",
+  "type": "user",
+  "uuid": "a1655247-0923-4200-a9b0-68e4b0c960c1",
+  "toolUseResult": {
+    "bytes": 489284,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# BEq@1 Score Comparison\n\nBased on Table 3 in the document:\n\n**FormalMATH-Lite BEq@1:**\n- Kimina-Autoformalizer-7B: 35.1%\n- StepFun-Formalizer-7B: 38.3%\n- Goedel-Formalizer-V2-8B: Not evaluated on this benchmark\n\n**ProverBench BEq@1:**\n- Kimina-Autoformalizer-7B: 13.3%\n- StepFun-Formalizer-7B: 25.1%\n- Goedel-Formalizer-V2-8B: 16.3% (from Table 10)\n\n## SOTA Status\n\nGoedel-Formalizer-V2-8B is **not** described as state-of-the-art. The paper explicitly states that \"StepFun-Formalizer-32B achieves SOTA BEq@1 scores of 40.5% on FormalMATH-Lite and 26.7% on ProverBench.\" Even at the 7B scale, StepFun-Formalizer outperforms Goedel-Formalizer-V2-8B on ProverBench (25.1% vs. 16.3%).",
+    "durationMs": 3893,
+    "url": "https://arxiv.org/html/2508.04440v2"
+  },
+  "sourceToolAssistantUUID": "451f376d-9444-4e46-b237-f54bdfcbf4fc",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-28T15:37:51.530Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011LqAYmgG3nYKZCFkF3z31B`</summary>
+
+```json
+{
+  "query": "Kimina-formalizer-8B FormalMATH-Lite BEq performance comparison open source formalizer 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a1655247-0923-4200-a9b0-68e4b0c960c1",
+  "isSidechain": false,
+  "requestId": "req_011CbVDUZkjZrsVvRgsdjc2R",
+  "type": "assistant",
+  "uuid": "dab6b1c4-2320-4487-b06c-8fa650b86378",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T3NJm5ewfGGJ32Aw34Gjfz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 525,
+      "cache_read_input_tokens": 52081,
+      "output_tokens": 82,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 525,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 82,
+          "cache_read_input_tokens": 52081,
+          "cache_creation_input_tokens": 525,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 525
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-28T15:37:59.773Z_
+
+<details><summary>↩ Tool result · `toolu_011LqAYmgG3nYKZCFkF3z31B`</summary>
+
+```text
+Web search results for query: "Kimina-formalizer-8B FormalMATH-Lite BEq performance comparison open source formalizer 2026"
+
+Links: [{"title":"𝚐𝔪𝟾𝚡𝚡𝟾 on X: \"StepFun-Formalizer: Unlocking the Autoformalization Potential of LLMs through Knowledge-Reasoning Fusion ThinkingF pipeline - Formal knowledge distillation: 183K Lean4-aligned pairs via majority voting + BEq filtering - Template-guided reasoning: 5.8K trajectories (Claude 3.7) - https://t.co/9AEztEHWPv\" / X","url":"https://x.com/gm8xx8/status/1953483273985757559"},{"title":"StepFun-Formalizer: Unlocking the Autoformalization Potential of LLMs Through Knowledge-Reasoning Fusion","url":"https://arxiv.org/html/2508.04440v2"},{"title":"StepFun-Formalizer: Unlocking the Autoformalization Potential","url":"https://www.arxiv.org/pdf/2508.04440"},{"title":"arXiv preprint AUTOFORMALIZER WITH TOOL FEEDBACK","url":"https://arxiv.org/pdf/2510.06857"},{"title":"Daily Papers - Hugging Face","url":"https://api-inference.huggingface.co/papers?q=formalizer+model"},{"title":"SphereLab M-A-P FormalMATH: Benchmarking Formal Mathematical","url":"https://arxiv.org/pdf/2505.02735"},{"title":"stepfun-ai/StepFun-Formalizer-32B · Hugging Face","url":"https://huggingface.co/stepfun-ai/StepFun-Formalizer-32B"},{"title":"StepFun-Formalizer/README.md at master · stepfun-ai/StepFun-Formalizer","url":"https://github.com/stepfun-ai/StepFun-Formalizer/blob/master/README.md"},{"title":"GitHub - stepfun-ai/StepFun-Formalizer: StepFun-Formalizer: Unlocking the Autoformalization Potential of LLMs through Knowledge-Reasoning Fusion · GitHub","url":"https://github.com/stepfun-ai/StepFun-Formalizer"}]
+
+Based on the search results, here's a performance comparison of open-source formalizer models:
+
+## Performance Comparison
+
+On FormalMATH-Lite (BEq@1), Kimina-7B achieved 35.1%, while StepFun-7B achieved 38.3% and StepFun-32B achieved 40.5%.
+
+On ProverBench (OOD), Kimina-7B achieved 13.3%, StepFun-7B achieved 25.1%, and StepFun-32B achieved 26.7%.
+
+On CombiBench (real-world), Kimina-7B achieved 2.6%, StepFun-7B achieved 5.2%, and StepFun-32B achieved 6.9%.
+
+## Key Findings
+
+StepFun-Formalizer-32B achieves SOTA BEq@1 scores of 40.5% on FormalMATH-Lite and 26.7% on ProverBench, surpassing all prior general-purpose and specialized models.
+
+StepFun-Formalizer uses a Knowledge-Reasoning Fusion pipeline with 183K Lean4-aligned pairs via majority voting and BEq filtering, along with 5.8K template-guided reasoning trajectories.
+
+Note: The search results do not contain specific information about a "Kimina-formalizer-8B" model; they reference Kimina-7B instead. The results focus on comparisons between Kimina, StepFun, and other formalizer models released in 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "dab6b1c4-2320-4487-b06c-8fa650b86378",
+  "isSidechain": false,
+  "promptId": "b9b6653c-77d6-45f7-b143-1d26cd86e692",
+  "type": "user",
+  "uuid": "faf45b0c-4b3d-4a13-9c60-4c7cf0d19c88",
+  "toolUseResult": {
+    "query": "Kimina-formalizer-8B FormalMATH-Lite BEq performance comparison open source formalizer 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BTGvBJPUrpTRQa3hfamCFv",
+        "content": [
+          {
+            "title": "𝚐𝔪𝟾𝚡𝚡𝟾 on X: \"StepFun-Formalizer: Unlocking the Autoformalization Potential of LLMs through Knowledge-Reasoning Fusion ThinkingF pipeline - Formal knowledge distillation: 183K Lean4-aligned pairs via majority voting + BEq filtering - Template-guided reasoning: 5.8K trajectories (Claude 3.7) - https://t.co/9AEztEHWPv\" / X",
+            "url": "https://x.com/gm8xx8/status/1953483273985757559"
+          },
+          {
+            "title": "StepFun-Formalizer: Unlocking the Autoformalization Potential of LLMs Through Knowledge-Reasoning Fusion",
+            "url": "https://arxiv.org/html/2508.04440v2"
+          },
+          {
+            "title": "StepFun-Formalizer: Unlocking the Autoformalization Potential",
+            "url": "https://www.arxiv.org/pdf/2508.04440"
+          },
+          {
+            "title": "arXiv preprint AUTOFORMALIZER WITH TOOL FEEDBACK",
+            "url": "https://arxiv.org/pdf/2510.06857"
+          },
+          {
+            "title": "Daily Papers - Hugging Face",
+            "url": "https://api-inference.huggingface.co/papers?q=formalizer+model"
+          },
+          {
+            "title": "SphereLab M-A-P FormalMATH: Benchmarking Formal Mathematical",
+            "url": "https://arxiv.org/pdf/2505.02735"
+          },
+          {
+            "title": "stepfun-ai/StepFun-Formalizer-32B · Hugging Face",
+            "url": "https://huggingface.co/stepfun-ai/StepFun-Formalizer-32B"
+          },
+          {
+            "title": "StepFun-Formalizer/README.md at master · stepfun-ai/StepFun-Formalizer",
+            "url": "https://github.com/stepfun-ai/StepFun-Formalizer/blob/master/README.md"
+          },
+          {
+            "title": "GitHub - stepfun-ai/StepFun-Formalizer: StepFun-Formalizer: Unlocking the Autoformalization Potential of LLMs through Knowledge-Reasoning Fusion · GitHub",
+            "url": "https://github.com/stepfun-ai/StepFun-Formalizer"
+          }
+        ]
+      },
+      "Based on the search results, here's a performance comparison of open-source formalizer models:\n\n## Performance Comparison\n\nOn FormalMATH-Lite (BEq@1), Kimina-7B achieved 35.1%, while StepFun-7B achieved 38.3% and StepFun-32B achieved 40.5%.\n\nOn ProverBench (OOD), Kimina-7B achieved 13.3%, StepFun-7B achieved 25.1%, and StepFun-32B achieved 26.7%.\n\nOn CombiBench (real-world), Kimina-7B achieved 2.6%, StepFun-7B achieved 5.2%, and StepFun-32B achieved 6.9%.\n\n## Key Findings\n\nStepFun-Formalizer-32B achieves SOTA BEq@1 scores of 40.5% on FormalMATH-Lite and 26.7% on ProverBench, surpassing all prior general-purpose and specialized models.\n\nStepFun-Formalizer uses a Knowledge-Reasoning Fusion pipeline with 183K Lean4-aligned pairs via majority voting and BEq filtering, along with 5.8K template-guided reasoning trajectories.\n\nNote: The search results do not contain specific information about a \"Kimina-formalizer-8B\" model; they reference Kimina-7B instead. The results focus on comparisons between Kimina, StepFun, and other formalizer models released in 2025."
+    ],
+    "durationSeconds": 8.239699664999993,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "dab6b1c4-2320-4487-b06c-8fa650b86378",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-28T15:38:02.987Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Lrmc9wS43tYNyZhHQYhqZt`</summary>
+
+```json
+{
+  "query": "ICML 2026 AI4Math workshop ShadowBench FormalRx challenge deadline June 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "faf45b0c-4b3d-4a13-9c60-4c7cf0d19c88",
+  "isSidechain": false,
+  "requestId": "req_011CbVDVPAH3o2uQxK8pw6cS",
+  "type": "assistant",
+  "uuid": "16db6590-c1bb-499d-bd89-8111c53c08db",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017LC21Lp7TuVQnteGAUszqG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1099,
+      "cache_read_input_tokens": 52606,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1099,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 52606,
+          "cache_creation_input_tokens": 1099,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1099
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-28T15:38:09.293Z_
+
+<details><summary>↩ Tool result · `toolu_01Lrmc9wS43tYNyZhHQYhqZt`</summary>
+
+```text
+Web search results for query: "ICML 2026 AI4Math workshop ShadowBench FormalRx challenge deadline June 2026"
+
+Links: [{"title":"AI for Math Workshop @ ICML 2026 on X: \"The paper submission deadline is within 1 week: June 21st, 2025, AoE The challenge deadline is in 2 weeks: July 1st, 2025, AoE 📢Call for Papers: https://t.co/vEW4IASzVn 🎯Challenge 1, File-level Automated Proof Engineering (APE) of Formal Math Libraries (APE-Bench I): https://t.co/WIQ4AzuhDl\" / X","url":"https://x.com/ai4mathworkshop/status/1934991398471684096"},{"title":"3rd AI for Math Workshop @ ICML 2026","url":"https://ai4math2026.github.io/"},{"title":"ICML 2026 AI for Math Workshop & Challenge 4 - ShadowBench - Codabench","url":"https://www.codabench.org/competitions/16295/"},{"title":"ICML 2026 AI for Math Workshop & Challenge 1 - FormalRx - Codabench","url":"https://www.codabench.org/competitions/16104/"},{"title":"AI as a Tool for Mathematics, Computer Science, and Machine Learning | ICML 2026 Workshop","url":"https://ai4research-icml-workshop.github.io"},{"title":"ICML 2026 Workshop AI4Math | OpenReview","url":"https://openreview.net/group?id=ICML.cc%2F2026%2FWorkshop%2FAI4Math"},{"title":"2026 Dates and Deadlines","url":"https://icml.cc/Conferences/2026/Dates"},{"title":"Announcing the ICML 2026 Workshops and Affinity Workshops – ICML Blog","url":"https://blog.icml.cc/2026/04/06/announcing-the-icml-2026-workshops-and-affinity-workshops/"},{"title":"Formal Mathematical Reasoning: A New Frontier in AI","url":"https://arxiv.org/pdf/2412.16075"},{"title":"Conjecturing: An Overlooked Step in Formal Mathematical Reasoning","url":"https://arxiv.org/pdf/2510.11986"}]
+
+Based on the search results, I found relevant information about the ICML 2026 AI4Math workshop and its challenges:
+
+## Workshop Information
+The 3rd AI for Math Workshop is scheduled for Saturday, July 11, 2026, at ICML 2026, from 7:00 a.m. to 4:00 p.m.
+
+## ShadowBench and FormalRx Challenges
+The workshop features multiple challenges:
+
+- **ShadowBench**: A full autoformalization pipeline using the ShadowBench with 126 problems across 8 mathematical areas, tiered L2/L3/L4, where given a natural language informal proof, participants generate the formal proof in Lean 4.
+
+- **FormalRx**: Participants evaluate whether autoformalization preserves mathematical intent, using the FormalRx-Test dataset built on the SCI Error Taxonomy (28 error categories), with the verdict being whether the formalization is semantically aligned.
+
+The search results indicate these challenges are live on Codabench, though the specific June 2026 deadline mentioned in your query was not explicitly detailed in the search results. For the most current deadline information, I recommend visiting the official workshop website at ai4math2026.github.io or the Codabench competition pages.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "16db6590-c1bb-499d-bd89-8111c53c08db",
+  "isSidechain": false,
+  "promptId": "b9b6653c-77d6-45f7-b143-1d26cd86e692",
+  "type": "user",
+  "uuid": "50438354-7a17-48f8-b71b-36674770c994",
+  "toolUseResult": {
+    "query": "ICML 2026 AI4Math workshop ShadowBench FormalRx challenge deadline June 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LDxB1FwRJntXCCdB17j2Xu",
+        "content": [
+          {
+            "title": "AI for Math Workshop @ ICML 2026 on X: \"The paper submission deadline is within 1 week: June 21st, 2025, AoE The challenge deadline is in 2 weeks: July 1st, 2025, AoE 📢Call for Papers: https://t.co/vEW4IASzVn 🎯Challenge 1, File-level Automated Proof Engineering (APE) of Formal Math Libraries (APE-Bench I): https://t.co/WIQ4AzuhDl\" / X",
+            "url": "https://x.com/ai4mathworkshop/status/1934991398471684096"
+          },
+          {
+            "title": "3rd AI for Math Workshop @ ICML 2026",
+            "url": "https://ai4math2026.github.io/"
+          },
+          {
+            "title": "ICML 2026 AI for Math Workshop & Challenge 4 - ShadowBench - Codabench",
+            "url": "https://www.codabench.org/competitions/16295/"
+          },
+          {
+            "title": "ICML 2026 AI for Math Workshop & Challenge 1 - FormalRx - Codabench",
+            "url": "https://www.codabench.org/competitions/16104/"
+          },
+          {
+            "title": "AI as a Tool for Mathematics, Computer Science, and Machine Learning | ICML 2026 Workshop",
+            "url": "https://ai4research-icml-workshop.github.io"
+          },
+          {
+            "title": "ICML 2026 Workshop AI4Math | OpenReview",
+            "url": "https://openreview.net/group?id=ICML.cc%2F2026%2FWorkshop%2FAI4Math"
+          },
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://icml.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "Announcing the ICML 2026 Workshops and Affinity Workshops – ICML Blog",
+            "url": "https://blog.icml.cc/2026/04/06/announcing-the-icml-2026-workshops-and-affinity-workshops/"
+          },
+          {
+            "title": "Formal Mathematical Reasoning: A New Frontier in AI",
+            "url": "https://arxiv.org/pdf/2412.16075"
+          },
+          {
+            "title": "Conjecturing: An Overlooked Step in Formal Mathematical Reasoning",
+            "url": "https://arxiv.org/pdf/2510.11986"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about the ICML 2026 AI4Math workshop and its challenges:\n\n## Workshop Information\nThe 3rd AI for Math Workshop is scheduled for Saturday, July 11, 2026, at ICML 2026, from 7:00 a.m. to 4:00 p.m.\n\n## ShadowBench and FormalRx Challenges\nThe workshop features multiple challenges:\n\n- **ShadowBench**: A full autoformalization pipeline using the ShadowBench with 126 problems across 8 mathematical areas, tiered L2/L3/L4, where given a natural language informal proof, participants generate the formal proof in Lean 4.\n\n- **FormalRx**: Participants evaluate whether autoformalization preserves mathematical intent, using the FormalRx-Test dataset built on the SCI Error Taxonomy (28 error categories), with the verdict being whether the formalization is semantically aligned.\n\nThe search results indicate these challenges are live on Codabench, though the specific June 2026 deadline mentioned in your query was not explicitly detailed in the search results. For the most current deadline information, I recommend visiting the official workshop website at ai4math2026.github.io or the Codabench competition pages."
+    ],
+    "durationSeconds": 6.299949246999982,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "16db6590-c1bb-499d-bd89-8111c53c08db",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-28T15:38:12.668Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01BATuHs2bTtxR4g56eHaLQM`</summary>
+
+```json
+{
+  "url": "https://ai4math2026.github.io/",
+  "prompt": "What are the exact deadlines for paper submission and challenge tracks (ShadowBench, FormalRx)? What is the paper submission deadline? Has it passed?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "50438354-7a17-48f8-b71b-36674770c994",
+  "isSidechain": false,
+  "requestId": "req_011CbVDW5uygxCfnN1gnYD2i",
+  "type": "assistant",
+  "uuid": "1864cd6a-6313-4506-bb9a-6605e934cd46",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014ctkX4nk46ycSbgHmJtB7b",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 999,
+      "cache_read_input_tokens": 53705,
+      "output_tokens": 116,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 999,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 116,
+          "cache_read_input_tokens": 53705,
+          "cache_creation_input_tokens": 999,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 999
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 74_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-28 (UTC).**  Your job: independently verify this idea's claims via web_search, then issue a verdict.  ## U…",
+  "leafUuid": "1864cd6a-6313-4506-bb9a-6605e934cd46",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 75_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review domain-adaptive autoformalization pipeline",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b"
+}
+```
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-28T15:38:15.521Z_
+
+<details><summary>↩ Tool result · `toolu_01BATuHs2bTtxR4g56eHaLQM`</summary>
+
+```text
+# Paper Submission and Challenge Deadlines
+
+## Paper Submission Deadline
+The paper submission deadline is **May 25, 2026**. According to the webpage, "Paper Submission Deadline May 25, 2026." This deadline has not yet passed as of the current date.
+
+## Challenge Track Deadline
+Both the ShadowBench and FormalRx challenge tracks share the same deadline: **June 15, 2026**. The site states "Challenge period: May 1 – June 15, 2026."
+
+## Timeline Summary
+- Paper submissions open: April 1, 2026
+- Paper submissions close: May 25, 2026
+- Decisions announced: June 15, 2026
+- Challenge tracks close: June 15, 2026
+- Workshop date: July 11, 2026
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1864cd6a-6313-4506-bb9a-6605e934cd46",
+  "isSidechain": false,
+  "promptId": "b9b6653c-77d6-45f7-b143-1d26cd86e692",
+  "type": "user",
+  "uuid": "1c6de408-2871-495a-bf38-8eaed276a992",
+  "toolUseResult": {
+    "bytes": 60915,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Paper Submission and Challenge Deadlines\n\n## Paper Submission Deadline\nThe paper submission deadline is **May 25, 2026**. According to the webpage, \"Paper Submission Deadline May 25, 2026.\" This deadline has not yet passed as of the current date.\n\n## Challenge Track Deadline\nBoth the ShadowBench and FormalRx challenge tracks share the same deadline: **June 15, 2026**. The site states \"Challenge period: May 1 – June 15, 2026.\"\n\n## Timeline Summary\n- Paper submissions open: April 1, 2026\n- Paper submissions close: May 25, 2026\n- Decisions announced: June 15, 2026\n- Challenge tracks close: June 15, 2026\n- Workshop date: July 11, 2026",
+    "durationMs": 2850,
+    "url": "https://ai4math2026.github.io/"
+  },
+  "sourceToolAssistantUUID": "1864cd6a-6313-4506-bb9a-6605e934cd46",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-28T15:38:18.618Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XbfmfaWJfGMnuYSXzuqHs8`</summary>
+
+```json
+{
+  "query": "autoformalization Lean4 mathematical domain error pattern typeclass coercion topology algebra analysis 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1c6de408-2871-495a-bf38-8eaed276a992",
+  "isSidechain": false,
+  "requestId": "req_011CbVDWYVt6RX13fzrDEXE7",
+  "type": "assistant",
+  "uuid": "f4cf9ead-a007-456c-8fcf-e619de45009f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T4EaYfFWe62Reejne2NbCy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 314,
+      "cache_read_input_tokens": 54704,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 314,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 54704,
+          "cache_creation_input_tokens": 314,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 314
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-28T15:38:25.905Z_
+
+<details><summary>↩ Tool result · `toolu_01XbfmfaWJfGMnuYSXzuqHs8`</summary>
+
+```text
+Web search results for query: "autoformalization Lean4 mathematical domain error pattern typeclass coercion topology algebra analysis 2026"
+
+Links: [{"title":"An Evaluation Benchmark for Autoformalization in Lean4","url":"https://arxiv.org/html/2406.06555v1"},{"title":"M-A-P CriticLean: Critic-Guided Reinforcement Learning for","url":"https://arxiv.org/pdf/2507.06181"},{"title":"Zulip Chat Archive","url":"https://leanprover-community.github.io/archive/stream/270676-lean4/topic/Guidelines.20on.20coercion.20instances.html"},{"title":"PROCESS-DRIVEN AUTOFORMALIZATION IN LEAN 4","url":"https://openreview.net/pdf?id=k8KsI84Ds7"},{"title":"Process-Driven Autoformalization in Lean 4 | OpenReview","url":"https://openreview.net/forum?id=k8KsI84Ds7"},{"title":"Work in progress PROCESS-DRIVEN AUTOFORMALIZATION IN LEAN 4","url":"https://arxiv.org/pdf/2406.01940"},{"title":"Process-Driven Autoformalization in Lean 4","url":"https://arxiv.org/html/2406.01940v1"},{"title":"Reliable Evaluation and Benchmarks for Statement Autoformalization","url":"https://arxiv.org/pdf/2406.07222"}]
+
+Based on the web search results, here's what I found about autoformalization in Lean4 and related topics:
+
+## Autoformalization in Lean4
+
+Autoformalization refers to the process by which AI systems parse natural language contents and translate them into machine-verifiable formal representations, such as those in theorem provers like Lean4.
+
+## Domain and Error Patterns
+
+Domain-related issues include Premise Translation Errors (such as incorrect domains or missing conditions), Mathematical Representation Errors (such as faulty expressions or definitions), and Goal Translation Errors. A common failure mode is the inability to generate formalizations that type-check in Lean 4, which requires respecting syntax, applying operations to arguments in their domain, and valid use of formal math libraries.
+
+## Typeclass and Coercion Challenges
+
+Coercions are handled by the typeclass mechanism in Lean4, and improper coercion instances can cause timeouts or nontermination issues. Issues with transitive coercions from Lean 3 are still present and require similar workarounds.
+
+## Recent Research (2024-2026)
+
+Recent benchmarks like FormL4 have been designed to evaluate LLM autoformalization capabilities in Lean4, and leverage Process-Supervised Verifiers that use precise feedback from Lean4 compilers to enhance autoformalization. The rapid evolution of Lean 4 poses significant challenges for autoformalization due to its complex syntax and extensive lemma corpora, underscoring the need for methods that focus on semantic aspects of mathematical theorems.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f4cf9ead-a007-456c-8fcf-e619de45009f",
+  "isSidechain": false,
+  "promptId": "b9b6653c-77d6-45f7-b143-1d26cd86e692",
+  "type": "user",
+  "uuid": "1da4bf53-b5b5-4558-b43b-a1fc250ece8e",
+  "toolUseResult": {
+    "query": "autoformalization Lean4 mathematical domain error pattern typeclass coercion topology algebra analysis 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01L7xsm7Cx2TBiZYVnxoc9zt",
+        "content": [
+          {
+            "title": "An Evaluation Benchmark for Autoformalization in Lean4",
+            "url": "https://arxiv.org/html/2406.06555v1"
+          },
+          {
+            "title": "M-A-P CriticLean: Critic-Guided Reinforcement Learning for",
+            "url": "https://arxiv.org/pdf/2507.06181"
+          },
+          {
+            "title": "Zulip Chat Archive",
+            "url": "https://leanprover-community.github.io/archive/stream/270676-lean4/topic/Guidelines.20on.20coercion.20instances.html"
+          },
+          {
+            "title": "PROCESS-DRIVEN AUTOFORMALIZATION IN LEAN 4",
+            "url": "https://openreview.net/pdf?id=k8KsI84Ds7"
+          },
+          {
+            "title": "Process-Driven Autoformalization in Lean 4 | OpenReview",
+            "url": "https://openreview.net/forum?id=k8KsI84Ds7"
+          },
+          {
+            "title": "Work in progress PROCESS-DRIVEN AUTOFORMALIZATION IN LEAN 4",
+            "url": "https://arxiv.org/pdf/2406.01940"
+          },
+          {
+            "title": "Process-Driven Autoformalization in Lean 4",
+            "url": "https://arxiv.org/html/2406.01940v1"
+          },
+          {
+            "title": "Reliable Evaluation and Benchmarks for Statement Autoformalization",
+            "url": "https://arxiv.org/pdf/2406.07222"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found about autoformalization in Lean4 and related topics:\n\n## Autoformalization in Lean4\n\nAutoformalization refers to the process by which AI systems parse natural language contents and translate them into machine-verifiable formal representations, such as those in theorem provers like Lean4.\n\n## Domain and Error Patterns\n\nDomain-related issues include Premise Translation Errors (such as incorrect domains or missing conditions), Mathematical Representation Errors (such as faulty expressions or definitions), and Goal Translation Errors. A common failure mode is the inability to generate formalizations that type-check in Lean 4, which requires respecting syntax, applying operations to arguments in their domain, and valid use of formal math libraries.\n\n## Typeclass and Coercion Challenges\n\nCoercions are handled by the typeclass mechanism in Lean4, and improper coercion instances can cause timeouts or nontermination issues. Issues with transitive coercions from Lean 3 are still present and require similar workarounds.\n\n## Recent Research (2024-2026)\n\nRecent benchmarks like FormL4 have been designed to evaluate LLM autoformalization capabilities in Lean4, and leverage Process-Supervised Verifiers that use precise feedback from Lean4 compilers to enhance autoformalization. The rapid evolution of Lean 4 poses significant challenges for autoformalization due to its complex syntax and extensive lemma corpora, underscoring the need for methods that focus on semantic aspects of mathematical theorems."
+    ],
+    "durationSeconds": 7.282336532999994,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "f4cf9ead-a007-456c-8fcf-e619de45009f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 79 · 2026-05-28T15:38:25.909Z_
+
+```json
+{
+  "parentUuid": "1da4bf53-b5b5-4558-b43b-a1fc250ece8e",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "a030a8d8-d753-4896-967d-19c2b8ed2be8",
+  "timestamp": "2026-05-28T15:38:25.909Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 80 · 2026-05-28T15:38:29.161Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015EtoBSXVs2zqYhWELrwj6q`</summary>
+
+```json
+{
+  "query": "APRIL dataset HuggingFace error_type field lme mlme thme tme Lean repair 260k tuples"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a030a8d8-d753-4896-967d-19c2b8ed2be8",
+  "isSidechain": false,
+  "requestId": "req_011CbVDXJzJofpTUmAG4W2BU",
+  "type": "assistant",
+  "uuid": "781cb00a-e159-4a71-8805-deef7681feb2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015joCKfrWEbtCwd63nnJLjH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 913,
+      "cache_read_input_tokens": 55018,
+      "output_tokens": 80,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 913,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 80,
+          "cache_read_input_tokens": 55018,
+          "cache_creation_input_tokens": 913,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 913
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-28T15:38:36.622Z_
+
+<details><summary>↩ Tool result · `toolu_015EtoBSXVs2zqYhWELrwj6q`</summary>
+
+```text
+Web search results for query: "APRIL dataset HuggingFace error_type field lme mlme thme tme Lean repair 260k tuples"
+
+Links: [{"title":"Learning to Repair Lean Proofs from Compiler Feedback","url":"https://arxiv.org/pdf/2602.02990"},{"title":"While tokenizing the dataset I'm getting this type of error - Beginners - Hugging Face Forums","url":"https://discuss.huggingface.co/t/while-tokenizing-the-dataset-im-getting-this-type-of-error/24779"},{"title":"DatasetGenerationError: An error occurred while generating the dataset - 🤗Datasets - Hugging Face Forums","url":"https://discuss.huggingface.co/t/datasetgenerationerror-an-error-occurred-while-generating-the-dataset/42130"},{"title":"Dataset formats and types · Hugging Face","url":"https://huggingface.co/docs/trl/en/dataset_formats"},{"title":"HoloClean: Holistic Data Repairs with Probabilistic Inference","url":"https://arxiv.org/pdf/1702.00820"}]
+
+Based on the search results, I found information about the APRIL dataset you're asking about:
+
+APRIL (Automated Proof Repair in Lean) is a dataset of 260,000 supervised tuples pairing systematically generated proof failures with compiler diagnostics and aligned repair and explanation targets. The dataset addresses Lean proof repair as a supervised learning problem: given an erroneous proof and compiler feedback, it pairs corrected proofs with natural-language diagnoses grounded in the same feedback.
+
+The search result indicates this dataset comes from an academic paper on learning to repair Lean proofs from compiler feedback. However, the specific details about the error_type field categories you mentioned (lme, mlme, thme, tme) and the HuggingFace dataset hosting weren't explicitly detailed in the search results returned. For more detailed technical specifications about the dataset fields and error categories, you may want to check the paper directly or look for the dataset's official HuggingFace repository page.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "781cb00a-e159-4a71-8805-deef7681feb2",
+  "isSidechain": false,
+  "promptId": "b9b6653c-77d6-45f7-b143-1d26cd86e692",
+  "type": "user",
+  "uuid": "bd47afb2-c8b0-4d8e-a89e-71b01a6ed96b",
+  "toolUseResult": {
+    "query": "APRIL dataset HuggingFace error_type field lme mlme thme tme Lean repair 260k tuples",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VpYaBEyg7Hg16dVRnmkZAD",
+        "content": [
+          {
+            "title": "Learning to Repair Lean Proofs from Compiler Feedback",
+            "url": "https://arxiv.org/pdf/2602.02990"
+          },
+          {
+            "title": "While tokenizing the dataset I'm getting this type of error - Beginners - Hugging Face Forums",
+            "url": "https://discuss.huggingface.co/t/while-tokenizing-the-dataset-im-getting-this-type-of-error/24779"
+          },
+          {
+            "title": "DatasetGenerationError: An error occurred while generating the dataset - 🤗Datasets - Hugging Face Forums",
+            "url": "https://discuss.huggingface.co/t/datasetgenerationerror-an-error-occurred-while-generating-the-dataset/42130"
+          },
+          {
+            "title": "Dataset formats and types · Hugging Face",
+            "url": "https://huggingface.co/docs/trl/en/dataset_formats"
+          },
+          {
+            "title": "HoloClean: Holistic Data Repairs with Probabilistic Inference",
+            "url": "https://arxiv.org/pdf/1702.00820"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the APRIL dataset you're asking about:\n\nAPRIL (Automated Proof Repair in Lean) is a dataset of 260,000 supervised tuples pairing systematically generated proof failures with compiler diagnostics and aligned repair and explanation targets. The dataset addresses Lean proof repair as a supervised learning problem: given an erroneous proof and compiler feedback, it pairs corrected proofs with natural-language diagnoses grounded in the same feedback.\n\nThe search result indicates this dataset comes from an academic paper on learning to repair Lean proofs from compiler feedback. However, the specific details about the error_type field categories you mentioned (lme, mlme, thme, tme) and the HuggingFace dataset hosting weren't explicitly detailed in the search results returned. For more detailed technical specifications about the dataset fields and error categories, you may want to check the paper directly or look for the dataset's official HuggingFace repository page."
+    ],
+    "durationSeconds": 7.455923144000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "781cb00a-e159-4a71-8805-deef7681feb2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 82 · 2026-05-28T15:38:40.472Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01Pa7XqNtcZ58pJkVqhxN7Ws`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2602.02990",
+  "prompt": "What error types or mutation categories does the APRIL dataset define? Does it have an error_type field? What are the categories (lme, mlme, thme, tme)? Does it include Mathlib module paths? What fields does the dataset contain?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bd47afb2-c8b0-4d8e-a89e-71b01a6ed96b",
+  "isSidechain": false,
+  "requestId": "req_011CbVDY6hQqx2TrYs2nMxxC",
+  "type": "assistant",
+  "uuid": "6b3d0549-7357-48f5-92f5-02828020ade3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01611GrMfYpp2NUoo7PP9Bog",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 613,
+      "cache_read_input_tokens": 55931,
+      "output_tokens": 138,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 613,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 138,
+          "cache_read_input_tokens": 55931,
+          "cache_creation_input_tokens": 613,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 613
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-28T15:38:43.840Z_
+
+<details><summary>↩ Tool result · `toolu_01Pa7XqNtcZ58pJkVqhxN7Ws`</summary>
+
+```text
+# APRIL Dataset Structure
+
+Based on the provided web page content, I cannot provide specific details about error types, mutation categories, the `error_type` field, or the dataset's field structure.
+
+The abstract mentions that APRIL is "a dataset of 260,000 supervised tuples pairing systematically generated proof failures with compiler diagnostics and aligned repair and explanation targets," but it does not specify:
+
+- Error type classifications or mutation categories
+- Whether an `error_type` field exists
+- The categories you referenced (lme, mlme, thme, tme)
+- Whether Mathlib module paths are included
+- The complete field names in the dataset
+
+The page notes the dataset is "available at" a Hugging Face URL, suggesting you would need to access the actual dataset repository or the full paper PDF to find these technical specifications.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6b3d0549-7357-48f5-92f5-02828020ade3",
+  "isSidechain": false,
+  "promptId": "b9b6653c-77d6-45f7-b143-1d26cd86e692",
+  "type": "user",
+  "uuid": "27391fb7-80ac-4f2f-8368-ea858c7ce2f0",
+  "toolUseResult": {
+    "bytes": 47349,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# APRIL Dataset Structure\n\nBased on the provided web page content, I cannot provide specific details about error types, mutation categories, the `error_type` field, or the dataset's field structure.\n\nThe abstract mentions that APRIL is \"a dataset of 260,000 supervised tuples pairing systematically generated proof failures with compiler diagnostics and aligned repair and explanation targets,\" but it does not specify:\n\n- Error type classifications or mutation categories\n- Whether an `error_type` field exists\n- The categories you referenced (lme, mlme, thme, tme)\n- Whether Mathlib module paths are included\n- The complete field names in the dataset\n\nThe page notes the dataset is \"available at\" a Hugging Face URL, suggesting you would need to access the actual dataset repository or the full paper PDF to find these technical specifications.",
+    "durationMs": 3365,
+    "url": "https://arxiv.org/abs/2602.02990"
+  },
+  "sourceToolAssistantUUID": "6b3d0549-7357-48f5-92f5-02828020ade3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 84 · 2026-05-28T15:38:51.995Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01XEBG9c9iVwyU2f94ekJ7Pf`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2602.02990",
+  "prompt": "What are the mutation types or error categories in the APRIL dataset? Look for terms like lme, mlme, thme, tme, line mutation, multi-line mutation, theorem substitution, tactic mutation. Does the dataset include a 'path' field with Mathlib module paths? What is the data schema? What percentage of the data is each mutation type?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "27391fb7-80ac-4f2f-8368-ea858c7ce2f0",
+  "isSidechain": false,
+  "requestId": "req_011CbVDYdZHqSWAE45mRdYUi",
+  "type": "assistant",
+  "uuid": "71da9bbd-d1d3-4885-bcfc-03af62427d4c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SKYh9w91onM6H83JcnXsMT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 329,
+      "cache_read_input_tokens": 56544,
+      "output_tokens": 161,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 329,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 161,
+          "cache_read_input_tokens": 56544,
+          "cache_creation_input_tokens": 329,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 329
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 85 · 2026-05-28T15:38:52.013Z_
+
+<details><summary>↩ Tool result · `toolu_01XEBG9c9iVwyU2f94ekJ7Pf`</summary>
+
+```text
+The server returned HTTP 404 Not Found.
+
+The response body was not retrieved. If this URL requires authentication, use an authenticated tool (e.g. `gh` for GitHub, or an MCP-provided fetch tool) instead of WebFetch.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "71da9bbd-d1d3-4885-bcfc-03af62427d4c",
+  "isSidechain": false,
+  "promptId": "b9b6653c-77d6-45f7-b143-1d26cd86e692",
+  "type": "user",
+  "uuid": "89e3d4eb-31fd-4c10-920b-2d5cc8442da3",
+  "toolUseResult": {
+    "bytes": 0,
+    "code": 404,
+    "codeText": "Not Found",
+    "result": "The server returned HTTP 404 Not Found.\n\nThe response body was not retrieved. If this URL requires authentication, use an authenticated tool (e.g. `gh` for GitHub, or an MCP-provided fetch tool) instead of WebFetch.",
+    "durationMs": 12,
+    "url": "https://arxiv.org/html/2602.02990"
+  },
+  "sourceToolAssistantUUID": "71da9bbd-d1d3-4885-bcfc-03af62427d4c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 86 · 2026-05-28T15:38:55.812Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_019STG7XcSVxd9vqNXkv5DGY`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/pdf/2602.02990",
+  "prompt": "What are the mutation types or error categories in the APRIL dataset? Look for terms like lme, mlme, thme, tme, line mutation, multi-line mutation, theorem substitution, tactic mutation. Does the dataset include a 'path' field with Mathlib module paths? What percentage of the data is each mutation type? What is the full schema of each tuple?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "89e3d4eb-31fd-4c10-920b-2d5cc8442da3",
+  "isSidechain": false,
+  "requestId": "req_011CbVDZGmuw3CfNEU3bckrR",
+  "type": "assistant",
+  "uuid": "cb8f9b66-7f3e-4af0-a860-f921082c7ac9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LqFZk4UFhzaivrGN9YPahD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 226,
+      "cache_read_input_tokens": 56873,
+      "output_tokens": 164,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 226,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 164,
+          "cache_read_input_tokens": 56873,
+          "cache_creation_input_tokens": 226,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 226
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 87 · 2026-05-28T15:39:00.307Z_
+
+<details><summary>↩ Tool result · `toolu_019STG7XcSVxd9vqNXkv5DGY`</summary>
+
+```text
+# APRIL Dataset Mutation Types and Schema
+
+Based on the PDF content provided, I cannot locate specific information about mutation type categories (such as lme, mlme, thme, tme) or their percentage distributions in the APRIL dataset.
+
+The document appears to be a research paper titled "Learning to Repair Lean Proofs from Compiler Feedback" by Wang et al., but the extracted content does not contain detailed schema documentation or mutation type breakdowns for the APRIL dataset.
+
+## What I Can Confirm
+
+The paper references the APRIL dataset with links to HuggingFace repositories:
+- `https://huggingface.co/datasets/uw-math-ai/APRIL`
+- Model variants: `gAPRIL-w-exp` and `gAPRIL-wo-exp`
+
+## Recommendation
+
+To obtain precise information about:
+- Mutation type categories and their frequencies
+- Complete tuple schema including any 'path' fields
+- Mathlib module path inclusion
+
+You would need to consult the actual dataset documentation on HuggingFace or the paper's appendices, which may not be fully extracted in the PDF text provided.
+
+[Binary content (application/pdf, 1.7MB) also saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu/2791be44-ab0b-4df4-8f73-1548822ffd8b/tool-results/webfetch-1779982735829-geskzn.pdf]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cb8f9b66-7f3e-4af0-a860-f921082c7ac9",
+  "isSidechain": false,
+  "promptId": "b9b6653c-77d6-45f7-b143-1d26cd86e692",
+  "type": "user",
+  "uuid": "1ada4509-f1aa-4693-b5a3-657809c50270",
+  "toolUseResult": {
+    "bytes": 1757129,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# APRIL Dataset Mutation Types and Schema\n\nBased on the PDF content provided, I cannot locate specific information about mutation type categories (such as lme, mlme, thme, tme) or their percentage distributions in the APRIL dataset.\n\nThe document appears to be a research paper titled \"Learning to Repair Lean Proofs from Compiler Feedback\" by Wang et al., but the extracted content does not contain detailed schema documentation or mutation type breakdowns for the APRIL dataset.\n\n## What I Can Confirm\n\nThe paper references the APRIL dataset with links to HuggingFace repositories:\n- `https://huggingface.co/datasets/uw-math-ai/APRIL`\n- Model variants: `gAPRIL-w-exp` and `gAPRIL-wo-exp`\n\n## Recommendation\n\nTo obtain precise information about:\n- Mutation type categories and their frequencies\n- Complete tuple schema including any 'path' fields\n- Mathlib module path inclusion\n\nYou would need to consult the actual dataset documentation on HuggingFace or the paper's appendices, which may not be fully extracted in the PDF text provided.\n\n[Binary content (application/pdf, 1.7MB) also saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu/2791be44-ab0b-4df4-8f73-1548822ffd8b/tool-results/webfetch-1779982735829-geskzn.pdf]",
+    "durationMs": 4493,
+    "url": "https://arxiv.org/pdf/2602.02990"
+  },
+  "sourceToolAssistantUUID": "cb8f9b66-7f3e-4af0-a860-f921082c7ac9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 88 · 2026-05-28T15:39:03.257Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01G1LQt4tHcedYdRQyBX2K7c`</summary>
+
+```json
+{
+  "query": "site:huggingface.co uw-math-ai APRIL dataset schema fields error_type path"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1ada4509-f1aa-4693-b5a3-657809c50270",
+  "isSidechain": false,
+  "requestId": "req_011CbVDZr1vJhiL2VHoiNqdy",
+  "type": "assistant",
+  "uuid": "a2f2d7c7-d80d-42e4-9fb6-0b6bb79b98b1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016cUdJM6tttVEKEnLLSkVRC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 514,
+      "cache_read_input_tokens": 57099,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 514,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 57099,
+          "cache_creation_input_tokens": 514,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 514
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 89 · 2026-05-28T15:39:08.593Z_
+
+<details><summary>↩ Tool result · `toolu_01G1LQt4tHcedYdRQyBX2K7c`</summary>
+
+```text
+Web search results for query: "site:huggingface.co uw-math-ai APRIL dataset schema fields error_type path"
+
+Links: [{"title":"uw-math-ai/APRIL · Datasets at Hugging Face","url":"https://huggingface.co/datasets/uw-math-ai/APRIL"},{"title":"uw-math-ai (University of Washington Math AI Lab)","url":"https://huggingface.co/uw-math-ai"},{"title":"uw-math-ai/gAPRIL-w-exp · Hugging Face","url":"https://huggingface.co/uw-math-ai/gAPRIL-w-exp"},{"title":"uw-math-ai/theorem-search · Apply for community grant: Academic project (gpu and storage)","url":"https://huggingface.co/spaces/uw-math-ai/theorem-search/discussions/1"},{"title":"uw-math-ai/theorem-search-dataset · Datasets at Hugging Face","url":"https://huggingface.co/datasets/uw-math-ai/theorem-search-dataset"},{"title":"HuggingFaceH4/MATH-500 · Datasets at Hugging Face","url":"https://huggingface.co/datasets/HuggingFaceH4/MATH-500"},{"title":"deepmind/math_dataset · Datasets at Hugging Face","url":"https://huggingface.co/datasets/deepmind/math_dataset"},{"title":"camel-ai/math · Datasets at Hugging Face","url":"https://huggingface.co/datasets/camel-ai/math"},{"title":"Datasets – Hugging Face","url":"https://huggingface.co/datasets"},{"title":"math-ai/AutoMathText · Datasets at Hugging Face","url":"https://huggingface.co/datasets/math-ai/AutoMathText"}]
+
+Based on the search results, I found information about the APRIL dataset from the University of Washington Math AI Lab hosted on Hugging Face.
+
+The APRIL dataset is experiencing a DatasetGenerationCastError, where "all the data files must have the same columns, but at some point there are 4 new columns ('state_after', 'state_before', 'annotation_status', 'metadata')". This error is occurring during the JSON dataset building process, specifically when processing the training files.
+
+The APRIL dataset contains 260K paired erroneous/correct Lean proofs with compiler diagnostics and LLM-generated explanations, and appears to be used for Lean 4 proof repair tasks.
+
+However, the search results do not contain detailed information about the complete schema fields, the specific `error_type` field, or the file paths beyond what was shown in the error message. The primary issue appears to be related to schema inconsistency across different training data files in the dataset.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a2f2d7c7-d80d-42e4-9fb6-0b6bb79b98b1",
+  "isSidechain": false,
+  "promptId": "b9b6653c-77d6-45f7-b143-1d26cd86e692",
+  "type": "user",
+  "uuid": "8530f028-4fa6-4d30-ac8a-d8f89ee947c3",
+  "toolUseResult": {
+    "query": "site:huggingface.co uw-math-ai APRIL dataset schema fields error_type path",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014T3haDGKPfwMEKgVo4RRsL",
+        "content": [
+          {
+            "title": "uw-math-ai/APRIL · Datasets at Hugging Face",
+            "url": "https://huggingface.co/datasets/uw-math-ai/APRIL"
+          },
+          {
+            "title": "uw-math-ai (University of Washington Math AI Lab)",
+            "url": "https://huggingface.co/uw-math-ai"
+          },
+          {
+            "title": "uw-math-ai/gAPRIL-w-exp · Hugging Face",
+            "url": "https://huggingface.co/uw-math-ai/gAPRIL-w-exp"
+          },
+          {
+            "title": "uw-math-ai/theorem-search · Apply for community grant: Academic project (gpu and storage)",
+            "url": "https://huggingface.co/spaces/uw-math-ai/theorem-search/discussions/1"
+          },
+          {
+            "title": "uw-math-ai/theorem-search-dataset · Datasets at Hugging Face",
+            "url": "https://huggingface.co/datasets/uw-math-ai/theorem-search-dataset"
+          },
+          {
+            "title": "HuggingFaceH4/MATH-500 · Datasets at Hugging Face",
+            "url": "https://huggingface.co/datasets/HuggingFaceH4/MATH-500"
+          },
+          {
+            "title": "deepmind/math_dataset · Datasets at Hugging Face",
+            "url": "https://huggingface.co/datasets/deepmind/math_dataset"
+          },
+          {
+            "title": "camel-ai/math · Datasets at Hugging Face",
+            "url": "https://huggingface.co/datasets/camel-ai/math"
+          },
+          {
+            "title": "Datasets – Hugging Face",
+            "url": "https://huggingface.co/datasets"
+          },
+          {
+            "title": "math-ai/AutoMathText · Datasets at Hugging Face",
+            "url": "https://huggingface.co/datasets/math-ai/AutoMathText"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the APRIL dataset from the University of Washington Math AI Lab hosted on Hugging Face.\n\nThe APRIL dataset is experiencing a DatasetGenerationCastError, where \"all the data files must have the same columns, but at some point there are 4 new columns ('state_after', 'state_before', 'annotation_status', 'metadata')\". This error is occurring during the JSON dataset building process, specifically when processing the training files.\n\nThe APRIL dataset contains 260K paired erroneous/correct Lean proofs with compiler diagnostics and LLM-generated explanations, and appears to be used for Lean 4 proof repair tasks.\n\nHowever, the search results do not contain detailed information about the complete schema fields, the specific `error_type` field, or the file paths beyond what was shown in the error message. The primary issue appears to be related to schema inconsistency across different training data files in the dataset."
+    ],
+    "durationSeconds": 5.332674024000007,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "a2f2d7c7-d80d-42e4-9fb6-0b6bb79b98b1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 90_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-28 (UTC).**  Your job: independently verify this idea's claims via web_search, then issue a verdict.  ## U…",
+  "leafUuid": "8530f028-4fa6-4d30-ac8a-d8f89ee947c3",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 91_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review domain-adaptive autoformalization pipeline",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b"
+}
+```
+
+---
+
+### Tool call
+
+_source line 92 · 2026-05-28T15:39:12.524Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01XxF2notwgUgvhZjP28XNgt`</summary>
+
+```json
+{
+  "url": "https://huggingface.co/datasets/uw-math-ai/APRIL",
+  "prompt": "What are the fields/columns in this dataset? Does it contain 'error_type', 'path', 'error' fields? What mutation types are defined (lme, mlme, thme, tme)? What is the full schema? What is the data card description?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8530f028-4fa6-4d30-ac8a-d8f89ee947c3",
+  "isSidechain": false,
+  "requestId": "req_011CbVDaTReLiUSHGkRLvNFB",
+  "type": "assistant",
+  "uuid": "a31f7139-0cf5-4d24-a66a-27c34320a938",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KZeEygWdBYTGAxzP1ie95p",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 794,
+      "cache_read_input_tokens": 57613,
+      "output_tokens": 149,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 794,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 149,
+          "cache_read_input_tokens": 57613,
+          "cache_creation_input_tokens": 794,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 794
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 93 · 2026-05-28T15:39:22.162Z_
+
+<details><summary>↩ Tool result · `toolu_01XxF2notwgUgvhZjP28XNgt`</summary>
+
+```text
+# APRIL Dataset Analysis
+
+Based on the error message and content displayed, here's what I can determine about the dataset:
+
+## Dataset Issues
+
+The dataset has a **critical schema mismatch error**. The error indicates:
+
+> "All the data files must have the same columns, but at some point there are 4 new columns ({'state_after', 'state_before', 'annotation_status', 'metadata'})"
+
+This occurs when trying to combine multiple training files with inconsistent schemas.
+
+## Fields/Columns Present
+
+From the error traceback and visible data, the dataset contains these fields:
+
+**Common fields across files:**
+- `path` (string)
+- `correct_proof` (string)
+- `incorrect_proof` (string)
+- `theorem` (null)
+- `src_hash` (string)
+- `correct_name` (null)
+- `incorrect_name` (null)
+- `correct_formal` (null)
+- `incorrect_formal` (null)
+- `correct_informal` (null)
+- `incorrect_informal` (null)
+- `line` (int64)
+- `col` (int64)
+- `error` (string)
+- `line_at_error` (string)
+- `state_at_error` (string)
+- `explanation` (string)
+- `fix_suggestion` (string)
+- `source` (string)
+- `error_type` (string)
+- `split` (string)
+
+**Inconsistent fields (only in some files):**
+- `metadata` (null) ❌
+- `annotation_status` (null) ❌
+- `state_before` (null) ❌
+- `state_after` (null) ❌
+
+## Mutation Types (4 variants)
+
+The dataset has **four distinct subtypes**, each with their own training file:
+
+1. **`lme`** - `lme_train.jsonl` (Lean Mutation Example)
+2. **`mlme`** - `mlme_train.jsonl` (Multi-Lean Mutation Example)
+3. **`thme`** - `thme_train.jsonl` (Theorem-Hypothesis Mutation Example)
+4. **`tme`** - `tme_train.jsonl` (Theorem Mutation Example)
+
+Each file has a different schema, preventing unified dataset viewing.
+
+## Dataset Metadata
+
+- **Source:** University of Washington Math AI Lab
+- **Size:** 100K < n < 1M
+- **Language:** English
+- **License:** Apache 2.0
+- **ArXiv:** 2602.02990
+- **Tags:** lean, formal-verification, theorem-proving, code, math
+- **Task:** Text Generation
+- **Splits:** train, validation, test
+
+## Resolution Required
+
+To fix the dataset viewer, either:
+1. **Edit data files** to have matching columns across all four mutation types
+2. **Create separate configurations** for each mutation type (lme, mlme, thme, tme) as per [Hugging Face documentation](https://hf.co/docs/hub/datasets-manual-configuration#multiple-configurations)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a31f7139-0cf5-4d24-a66a-27c34320a938",
+  "isSidechain": false,
+  "promptId": "b9b6653c-77d6-45f7-b143-1d26cd86e692",
+  "type": "user",
+  "uuid": "fdf60d85-9297-4fb3-b4ca-d2e21e1fa2e8",
+  "toolUseResult": {
+    "bytes": 1119192,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# APRIL Dataset Analysis\n\nBased on the error message and content displayed, here's what I can determine about the dataset:\n\n## Dataset Issues\n\nThe dataset has a **critical schema mismatch error**. The error indicates:\n\n> \"All the data files must have the same columns, but at some point there are 4 new columns ({'state_after', 'state_before', 'annotation_status', 'metadata'})\"\n\nThis occurs when trying to combine multiple training files with inconsistent schemas.\n\n## Fields/Columns Present\n\nFrom the error traceback and visible data, the dataset contains these fields:\n\n**Common fields across files:**\n- `path` (string)\n- `correct_proof` (string)\n- `incorrect_proof` (string)\n- `theorem` (null)\n- `src_hash` (string)\n- `correct_name` (null)\n- `incorrect_name` (null)\n- `correct_formal` (null)\n- `incorrect_formal` (null)\n- `correct_informal` (null)\n- `incorrect_informal` (null)\n- `line` (int64)\n- `col` (int64)\n- `error` (string)\n- `line_at_error` (string)\n- `state_at_error` (string)\n- `explanation` (string)\n- `fix_suggestion` (string)\n- `source` (string)\n- `error_type` (string)\n- `split` (string)\n\n**Inconsistent fields (only in some files):**\n- `metadata` (null) ❌\n- `annotation_status` (null) ❌\n- `state_before` (null) ❌\n- `state_after` (null) ❌\n\n## Mutation Types (4 variants)\n\nThe dataset has **four distinct subtypes**, each with their own training file:\n\n1. **`lme`** - `lme_train.jsonl` (Lean Mutation Example)\n2. **`mlme`** - `mlme_train.jsonl` (Multi-Lean Mutation Example)\n3. **`thme`** - `thme_train.jsonl` (Theorem-Hypothesis Mutation Example)\n4. **`tme`** - `tme_train.jsonl` (Theorem Mutation Example)\n\nEach file has a different schema, preventing unified dataset viewing.\n\n## Dataset Metadata\n\n- **Source:** University of Washington Math AI Lab\n- **Size:** 100K < n < 1M\n- **Language:** English\n- **License:** Apache 2.0\n- **ArXiv:** 2602.02990\n- **Tags:** lean, formal-verification, theorem-proving, code, math\n- **Task:** Text Generation\n- **Splits:** train, validation, test\n\n## Resolution Required\n\nTo fix the dataset viewer, either:\n1. **Edit data files** to have matching columns across all four mutation types\n2. **Create separate configurations** for each mutation type (lme, mlme, thme, tme) as per [Hugging Face documentation](https://hf.co/docs/hub/datasets-manual-configuration#multiple-configurations)",
+    "durationMs": 9633,
+    "url": "https://huggingface.co/datasets/uw-math-ai/APRIL"
+  },
+  "sourceToolAssistantUUID": "a31f7139-0cf5-4d24-a66a-27c34320a938",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 94 · 2026-05-28T15:39:25.204Z_
+
+This is very valuable - I can now confirm the APRIL dataset schema. Let me do a few more targeted searches:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fdf60d85-9297-4fb3-b4ca-d2e21e1fa2e8",
+  "isSidechain": false,
+  "requestId": "req_011CbVDbTRvfzqBUC1p453Cq",
+  "type": "assistant",
+  "uuid": "a08cdde3-3062-40c4-901a-9fe1229475e2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WteqZu1ibt5PzyH4m7cQyz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 890,
+      "cache_read_input_tokens": 58407,
+      "output_tokens": 101,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 890,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 101,
+          "cache_read_input_tokens": 58407,
+          "cache_creation_input_tokens": 890,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 890
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95 · 2026-05-28T15:39:26.106Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KgExPKBqf2xVLpYm1fTMU5`</summary>
+
+```json
+{
+  "query": "\"domain-adaptive\" OR \"domain-conditioned\" autoformalization pipeline mathematical subdomain arXiv 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a08cdde3-3062-40c4-901a-9fe1229475e2",
+  "isSidechain": false,
+  "requestId": "req_011CbVDbTRvfzqBUC1p453Cq",
+  "type": "assistant",
+  "uuid": "d0c1873c-8675-449e-b57a-3892cecaac0c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WteqZu1ibt5PzyH4m7cQyz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 890,
+      "cache_read_input_tokens": 58407,
+      "output_tokens": 101,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 890,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 101,
+          "cache_read_input_tokens": 58407,
+          "cache_creation_input_tokens": 890,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 890
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-28T15:39:32.904Z_
+
+<details><summary>↩ Tool result · `toolu_01KgExPKBqf2xVLpYm1fTMU5`</summary>
+
+```text
+Web search results for query: ""domain-adaptive" OR "domain-conditioned" autoformalization pipeline mathematical subdomain arXiv 2026"
+
+Links: [{"title":"Autoformalization in the Era of Large Language Models: A Survey","url":"https://arxiv.org/html/2505.23486v1"},{"title":"Autoformalize Mathematical Statements by Symbolic Equivalence and   Semantic Consistency","url":"https://arxiv.org/pdf/2410.20936"},{"title":"Autoformalizing Euclidean Geometry","url":"https://arxiv.org/pdf/2405.17216"},{"title":"Consistent Autoformalization for Constructing Mathematical Libraries","url":"https://arxiv.org/pdf/2410.04194"},{"title":"A New Approach Towards Autoformalization","url":"https://arxiv.org/pdf/2310.07957"},{"title":"Autoformalization in the Era of Large Language Models","url":"https://arxiv.org/pdf/2505.23486"},{"title":"StepFun-Formalizer: Unlocking the Autoformalization Potential of LLMs through Knowledge-Reasoning Fusion","url":"https://arxiv.org/pdf/2508.04440"},{"title":"Towards a Common Framework for Autoformalization","url":"https://arxiv.org/html/2509.09810v1"}]
+
+Based on the web search results, I found several relevant papers on autoformalization from arXiv in 2025-2026:
+
+## Key Findings:
+
+Recent work has delved into the diversity and challenges of autoformalization across mathematical domains, showing how autoformalization must adapt to different semantic structures, input modalities, and reasoning paradigms.
+
+Current autoformalization approaches are often domain-specific, with systems designed separately for areas such as mathematical reasoning, planning, and logic, and a major challenge is developing methods that can transfer reasoning patterns and formalization strategies across these different areas.
+
+Notable recent papers include:
+
+1. **"Autoformalization in the Era of Large Language Models: A Survey"** (arXiv 2505.23486, May 2025) - This presents a benchmark of 5,560 formally verified mathematical statements spanning diverse subdomains, which is 22.8× larger than the widely used MiniF2F benchmark.
+
+2. **"Towards a Common Framework for Autoformalization"** (arXiv 2509.09810, September 2025) - This paper suggests that underlying formal structures and reasoning patterns across different areas share commonalities that could be exploited for more general autoformalization systems, and success in this area would enable more robust autoformalization tools that could adapt to new domains with minimal additional training.
+
+3. **"StepFun-Formalizer: Unlocking the Autoformalization Potential of LLMs through Knowledge-Reasoning Fusion"** (arXiv 2508.04440) - This achieves state-of-the-art BEq@1 scores of 40.5% on FormalMATH-Lite and 26.7% on ProverBench.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d0c1873c-8675-449e-b57a-3892cecaac0c",
+  "isSidechain": false,
+  "promptId": "b9b6653c-77d6-45f7-b143-1d26cd86e692",
+  "type": "user",
+  "uuid": "c013011e-aaaa-4020-981f-6ad447acd171",
+  "toolUseResult": {
+    "query": "\"domain-adaptive\" OR \"domain-conditioned\" autoformalization pipeline mathematical subdomain arXiv 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014nD6aUF5f31PFcBwLB2wDZ",
+        "content": [
+          {
+            "title": "Autoformalization in the Era of Large Language Models: A Survey",
+            "url": "https://arxiv.org/html/2505.23486v1"
+          },
+          {
+            "title": "Autoformalize Mathematical Statements by Symbolic Equivalence and   Semantic Consistency",
+            "url": "https://arxiv.org/pdf/2410.20936"
+          },
+          {
+            "title": "Autoformalizing Euclidean Geometry",
+            "url": "https://arxiv.org/pdf/2405.17216"
+          },
+          {
+            "title": "Consistent Autoformalization for Constructing Mathematical Libraries",
+            "url": "https://arxiv.org/pdf/2410.04194"
+          },
+          {
+            "title": "A New Approach Towards Autoformalization",
+            "url": "https://arxiv.org/pdf/2310.07957"
+          },
+          {
+            "title": "Autoformalization in the Era of Large Language Models",
+            "url": "https://arxiv.org/pdf/2505.23486"
+          },
+          {
+            "title": "StepFun-Formalizer: Unlocking the Autoformalization Potential of LLMs through Knowledge-Reasoning Fusion",
+            "url": "https://arxiv.org/pdf/2508.04440"
+          },
+          {
+            "title": "Towards a Common Framework for Autoformalization",
+            "url": "https://arxiv.org/html/2509.09810v1"
+          }
+        ]
+      },
+      "Based on the web search results, I found several relevant papers on autoformalization from arXiv in 2025-2026:\n\n## Key Findings:\n\nRecent work has delved into the diversity and challenges of autoformalization across mathematical domains, showing how autoformalization must adapt to different semantic structures, input modalities, and reasoning paradigms.\n\nCurrent autoformalization approaches are often domain-specific, with systems designed separately for areas such as mathematical reasoning, planning, and logic, and a major challenge is developing methods that can transfer reasoning patterns and formalization strategies across these different areas.\n\nNotable recent papers include:\n\n1. **\"Autoformalization in the Era of Large Language Models: A Survey\"** (arXiv 2505.23486, May 2025) - This presents a benchmark of 5,560 formally verified mathematical statements spanning diverse subdomains, which is 22.8× larger than the widely used MiniF2F benchmark.\n\n2. **\"Towards a Common Framework for Autoformalization\"** (arXiv 2509.09810, September 2025) - This paper suggests that underlying formal structures and reasoning patterns across different areas share commonalities that could be exploited for more general autoformalization systems, and success in this area would enable more robust autoformalization tools that could adapt to new domains with minimal additional training.\n\n3. **\"StepFun-Formalizer: Unlocking the Autoformalization Potential of LLMs through Knowledge-Reasoning Fusion\"** (arXiv 2508.04440) - This achieves state-of-the-art BEq@1 scores of 40.5% on FormalMATH-Lite and 26.7% on ProverBench."
+    ],
+    "durationSeconds": 6.79244322700001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "d0c1873c-8675-449e-b57a-3892cecaac0c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97 · 2026-05-28T15:39:36.123Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015jBpTZ5cskzgzRsUhqy9Af`</summary>
+
+```json
+{
+  "query": "CAM-Bench 2605.17255 domain-specific Lean benchmark computational applied mathematics autoformalization evaluation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c013011e-aaaa-4020-981f-6ad447acd171",
+  "isSidechain": false,
+  "requestId": "req_011CbVDcFLvoaEe4WkRUUGex",
+  "type": "assistant",
+  "uuid": "25ee22b3-a85e-4fb6-88e7-01b9c6dbddb0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0166RHpV9TcwRb3rUVr697jr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 849,
+      "cache_read_input_tokens": 59297,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 849,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 59297,
+          "cache_creation_input_tokens": 849,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 849
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-28T15:39:44.934Z_
+
+<details><summary>↩ Tool result · `toolu_015jBpTZ5cskzgzRsUhqy9Af`</summary>
+
+```text
+Web search results for query: "CAM-Bench 2605.17255 domain-specific Lean benchmark computational applied mathematics autoformalization evaluation"
+
+Links: [{"title":"[2605.17255] CAM-Bench: A Benchmark for Computational and Applied Mathematics in Lean","url":"https://arxiv.org/abs/2605.17255"},{"title":"CAM-Bench: A Benchmark for Computational and Applied Mathematics in Lean","url":"https://arxiv.org/html/2605.17255"},{"title":"A Benchmark for Applied Mathematics in Lean 4","url":"https://arxiv.org/pdf/2602.01291"},{"title":"Construction–Verification: A Benchmark for Formalizing Applied Mathematics in Lean 4","url":"https://arxiv.org/html/2602.01291v1"},{"title":"LeanGeo: Formalizing Competitional Geometry problems in Lean","url":"https://arxiv.org/html/2508.14644v1"},{"title":"FormalMATH: Benchmarking Formal Mathematical Reasoning of Large Language   Models","url":"https://arxiv.org/pdf/2505.02735"}]
+
+Based on the search results, I found information about CAM-Bench:
+
+CAM-Bench is a Lean 4 theorem-proving benchmark of 1,000 Lean proof targets in computational and applied mathematics, with coverage spanning optimization, numerical linear algebra, and numerical analysis.
+
+Existing benchmarks mainly focus on Olympiad-style problems and algebraic domains, leaving computational and applied mathematics underrepresented. The problems are adapted from textbook exercises and often depend on locally introduced definitions, notation, algorithms, and elementary results. To construct CAM-Bench, the authors develop a dependency-recovery pipeline that reconstructs the local textbook context needed to state each problem faithfully, then normalizes each problem into a standalone informal theorem and translates it into a Lean target.
+
+Textbook exercises in optimization, numerical linear algebra, and numerical analysis often depend on locally introduced definitions, notation, algorithms, chapter conventions, and elementary results, which may determine not only the meaning of the problem, but also the assumptions and proof structure needed for a faithful formal statement. The benchmark therefore evaluates whether models can track local assumptions, perform proof decomposition, and produce valid formal proofs.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "25ee22b3-a85e-4fb6-88e7-01b9c6dbddb0",
+  "isSidechain": false,
+  "promptId": "b9b6653c-77d6-45f7-b143-1d26cd86e692",
+  "type": "user",
+  "uuid": "c1121458-c7b6-4196-b337-22baf7367e88",
+  "toolUseResult": {
+    "query": "CAM-Bench 2605.17255 domain-specific Lean benchmark computational applied mathematics autoformalization evaluation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01UWdZQ6mSzz6wTpmC8s4kVa",
+        "content": [
+          {
+            "title": "[2605.17255] CAM-Bench: A Benchmark for Computational and Applied Mathematics in Lean",
+            "url": "https://arxiv.org/abs/2605.17255"
+          },
+          {
+            "title": "CAM-Bench: A Benchmark for Computational and Applied Mathematics in Lean",
+            "url": "https://arxiv.org/html/2605.17255"
+          },
+          {
+            "title": "A Benchmark for Applied Mathematics in Lean 4",
+            "url": "https://arxiv.org/pdf/2602.01291"
+          },
+          {
+            "title": "Construction–Verification: A Benchmark for Formalizing Applied Mathematics in Lean 4",
+            "url": "https://arxiv.org/html/2602.01291v1"
+          },
+          {
+            "title": "LeanGeo: Formalizing Competitional Geometry problems in Lean",
+            "url": "https://arxiv.org/html/2508.14644v1"
+          },
+          {
+            "title": "FormalMATH: Benchmarking Formal Mathematical Reasoning of Large Language   Models",
+            "url": "https://arxiv.org/pdf/2505.02735"
+          }
+        ]
+      },
+      "Based on the search results, I found information about CAM-Bench:\n\nCAM-Bench is a Lean 4 theorem-proving benchmark of 1,000 Lean proof targets in computational and applied mathematics, with coverage spanning optimization, numerical linear algebra, and numerical analysis.\n\nExisting benchmarks mainly focus on Olympiad-style problems and algebraic domains, leaving computational and applied mathematics underrepresented. The problems are adapted from textbook exercises and often depend on locally introduced definitions, notation, algorithms, and elementary results. To construct CAM-Bench, the authors develop a dependency-recovery pipeline that reconstructs the local textbook context needed to state each problem faithfully, then normalizes each problem into a standalone informal theorem and translates it into a Lean target.\n\nTextbook exercises in optimization, numerical linear algebra, and numerical analysis often depend on locally introduced definitions, notation, algorithms, chapter conventions, and elementary results, which may determine not only the meaning of the problem, but also the assumptions and proof structure needed for a faithful formal statement. The benchmark therefore evaluates whether models can track local assumptions, perform proof decomposition, and produce valid formal proofs."
+    ],
+    "durationSeconds": 8.806996035000019,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "25ee22b3-a85e-4fb6-88e7-01b9c6dbddb0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 99 · 2026-05-28T15:39:47.767Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XAr4Gs6dV6UevkB8Uxw9ds`</summary>
+
+```json
+{
+  "query": "autoformalization error cross-tabulation domain subdomain Mathlib module path error type analysis 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c1121458-c7b6-4196-b337-22baf7367e88",
+  "isSidechain": false,
+  "requestId": "req_011CbVDd8mKivxpokUe45A91",
+  "type": "assistant",
+  "uuid": "ad3383f1-bf48-4290-b801-f3436dfa1fee",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PPt4pWxMTEbFMLgYR3M6nE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 640,
+      "cache_read_input_tokens": 60146,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 640,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 60146,
+          "cache_creation_input_tokens": 640,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 640
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-28T15:39:56.044Z_
+
+<details><summary>↩ Tool result · `toolu_01XAr4Gs6dV6UevkB8Uxw9ds`</summary>
+
+```text
+Web search results for query: "autoformalization error cross-tabulation domain subdomain Mathlib module path error type analysis 2025 2026"
+
+Links: [{"title":"ATLAS: Autoformalizing Theorems through Lifting, ...","url":"https://openreview.net/pdf?id=MlJyAvQaxp"},{"title":"Autoformalization: Bridging Informal and Formal Math","url":"https://www.emergentmind.com/topics/autoformalization"},{"title":"IndiMathBench: Autoformalizing Mathematical Reasoning Problems with a Human Touch","url":"https://arxiv.org/html/2512.00997"},{"title":"INDIMATHBENCH: AUTOFORMALIZING MATHEMATI-","url":"https://www.microsoft.com/en-us/research/wp-content/uploads/2025/10/IndiMathBench_MS_hosting.pdf"},{"title":"IndiMathBench: Autoformalizing Mathematical Reasoning ...","url":"https://arxiv.org/pdf/2512.00997"},{"title":"Freedom Math Dance: Autoformalization of mathematical theorems? No shit!","url":"https://freedommathdance.blogspot.com/2025/07/autoformalization-of-mathematical.html"},{"title":"Consistent Autoformalization for Constructing Mathematical Libraries","url":"https://arxiv.org/pdf/2410.04194"}]
+
+Based on my web search, I found relevant information about autoformalization research involving Mathlib and error analysis:
+
+## Key Findings
+
+**Error Types in Autoformalization:**
+Models often hallucinate non-existent imports, mix syntax from other theorem provers (including Lean 3), and produce ill-formed code. Parse or type errors are extracted and fed back to the model for correction, with syntactically valid Lean formalizations achieved for 95.3% of problems through iterative refinement.
+
+**Domain and Subdomain Organization:**
+Mathlib's organization comprises 13 domains, 55 topics, and 350 concepts. Static context is constructed once per domain and reused for all problems in that category to provide consistent access to relevant Mathlib definitions and prevent hallucinations and syntax errors.
+
+**Module Path and Dependency Challenges:**
+LLMs often fail to import correct modules or use proper notation in Lean. Providing access to library snippets and documentation as feedback notably improves formula correctness, especially for geometry problems where mathlib lacks many competition-level constructs.
+
+**Cross-Domain Generalization:**
+LLMs tend to underperform on long, compositionally complex inputs or less represented mathematical subdisciplines.
+
+Recent research (2025-2026) has focused on error correction mechanisms and domain-specific knowledge bases to improve autoformalization accuracy across different Mathlib subdomains.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ad3383f1-bf48-4290-b801-f3436dfa1fee",
+  "isSidechain": false,
+  "promptId": "b9b6653c-77d6-45f7-b143-1d26cd86e692",
+  "type": "user",
+  "uuid": "26734e3f-a684-438a-8240-e24e3eea815e",
+  "toolUseResult": {
+    "query": "autoformalization error cross-tabulation domain subdomain Mathlib module path error type analysis 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01E9xwjB8CFPBncrV5p5guNM",
+        "content": [
+          {
+            "title": "ATLAS: Autoformalizing Theorems through Lifting, ...",
+            "url": "https://openreview.net/pdf?id=MlJyAvQaxp"
+          },
+          {
+            "title": "Autoformalization: Bridging Informal and Formal Math",
+            "url": "https://www.emergentmind.com/topics/autoformalization"
+          },
+          {
+            "title": "IndiMathBench: Autoformalizing Mathematical Reasoning Problems with a Human Touch",
+            "url": "https://arxiv.org/html/2512.00997"
+          },
+          {
+            "title": "INDIMATHBENCH: AUTOFORMALIZING MATHEMATI-",
+            "url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2025/10/IndiMathBench_MS_hosting.pdf"
+          },
+          {
+            "title": "IndiMathBench: Autoformalizing Mathematical Reasoning ...",
+            "url": "https://arxiv.org/pdf/2512.00997"
+          },
+          {
+            "title": "Freedom Math Dance: Autoformalization of mathematical theorems? No shit!",
+            "url": "https://freedommathdance.blogspot.com/2025/07/autoformalization-of-mathematical.html"
+          },
+          {
+            "title": "Consistent Autoformalization for Constructing Mathematical Libraries",
+            "url": "https://arxiv.org/pdf/2410.04194"
+          }
+        ]
+      },
+      "Based on my web search, I found relevant information about autoformalization research involving Mathlib and error analysis:\n\n## Key Findings\n\n**Error Types in Autoformalization:**\nModels often hallucinate non-existent imports, mix syntax from other theorem provers (including Lean 3), and produce ill-formed code. Parse or type errors are extracted and fed back to the model for correction, with syntactically valid Lean formalizations achieved for 95.3% of problems through iterative refinement.\n\n**Domain and Subdomain Organization:**\nMathlib's organization comprises 13 domains, 55 topics, and 350 concepts. Static context is constructed once per domain and reused for all problems in that category to provide consistent access to relevant Mathlib definitions and prevent hallucinations and syntax errors.\n\n**Module Path and Dependency Challenges:**\nLLMs often fail to import correct modules or use proper notation in Lean. Providing access to library snippets and documentation as feedback notably improves formula correctness, especially for geometry problems where mathlib lacks many competition-level constructs.\n\n**Cross-Domain Generalization:**\nLLMs tend to underperform on long, compositionally complex inputs or less represented mathematical subdisciplines.\n\nRecent research (2025-2026) has focused on error correction mechanisms and domain-specific knowledge bases to improve autoformalization accuracy across different Mathlib subdomains."
+    ],
+    "durationSeconds": 8.272869722000031,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "ad3383f1-bf48-4290-b801-f3436dfa1fee",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 101 · 2026-05-28T15:39:56.048Z_
+
+```json
+{
+  "parentUuid": "26734e3f-a684-438a-8240-e24e3eea815e",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "f742c3ad-b606-49ce-9474-3ac11876c31d",
+  "timestamp": "2026-05-28T15:39:56.048Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 102 · 2026-05-28T15:39:59.060Z_
+
+Now let me verify the Round 8 issues and check if they were addressed:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f742c3ad-b606-49ce-9474-3ac11876c31d",
+  "isSidechain": false,
+  "requestId": "req_011CbVDdxHKCB6EyPTT3b241",
+  "type": "assistant",
+  "uuid": "aaf5ad34-73f9-40a4-a593-0702e0b97e43",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0148mX6EUosNtKrkJyoyUcAV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 857,
+      "cache_read_input_tokens": 60786,
+      "output_tokens": 98,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 857,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 98,
+          "cache_read_input_tokens": 60786,
+          "cache_creation_input_tokens": 857,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 857
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 103 · 2026-05-28T15:39:59.877Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013ARthUM1EGLdhMJh788EwK`</summary>
+
+```json
+{
+  "query": "\"Do LLMs Game Formalization\" VerifAI workshop ICLR 2026 error taxonomy post-compilation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "aaf5ad34-73f9-40a4-a593-0702e0b97e43",
+  "isSidechain": false,
+  "requestId": "req_011CbVDdxHKCB6EyPTT3b241",
+  "type": "assistant",
+  "uuid": "73688289-2baf-4ed9-a3e0-b689e071d142",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0148mX6EUosNtKrkJyoyUcAV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 857,
+      "cache_read_input_tokens": 60786,
+      "output_tokens": 98,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 857,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 98,
+          "cache_read_input_tokens": 60786,
+          "cache_creation_input_tokens": 857,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 857
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 104_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-28 (UTC).**  Your job: independently verify this idea's claims via web_search, then issue a verdict.  ## U…",
+  "leafUuid": "73688289-2baf-4ed9-a3e0-b689e071d142",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 105_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review domain-adaptive autoformalization pipeline",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b"
+}
+```
+
+---
+
+### Tool result
+
+_source line 106 · 2026-05-28T15:40:05.238Z_
+
+<details><summary>↩ Tool result · `toolu_013ARthUM1EGLdhMJh788EwK`</summary>
+
+```text
+Web search results for query: ""Do LLMs Game Formalization" VerifAI workshop ICLR 2026 error taxonomy post-compilation"
+
+Links: [{"title":"The VerifAI Workshop @ ICLR'26 - VerifAI","url":"https://verifai-workshop.github.io/papers/"},{"title":"Published at the VerifAI-2 Workshop, ICLR 2026 DO LLMS GAME FORMALIZATION?","url":"https://arxiv.org/pdf/2604.19459"},{"title":"ICLR 2026 Workshops","url":"https://iclr.cc/virtual/2026/events/workshop"},{"title":"ICLR 2026 Workshop on Logical Reasoning of Large Language Models","url":"https://arxiv.org/pdf/2603.17169"},{"title":"[2604.19459] Do LLMs Game Formalization? Evaluating Faithfulness in Logical Reasoning","url":"https://arxiv.org/abs/2604.19459"},{"title":"van der Schaar Lab @ ICLR Workshops 2026 // van der Schaar Lab","url":"https://www.vanderschaar-lab.com/iclr-workshops-2026/"}]
+
+I found the paper! Here are the key details about "Do LLMs Game Formalization?" from the VerifAI workshop at ICLR 2026:
+
+**Paper Details:**
+The paper is by Kyuhee Kim, Auguste Poiroux, and Antoine Bosselut from EPFL, published at the VerifAI-2 Workshop, ICLR 2026.
+
+**Main Topic:**
+The paper addresses formal verification which guarantees proof validity but not formalization faithfulness, and this gap is especially acute for natural-language logical reasoning where models construct axiom systems from scratch without library constraints.
+
+**Research Focus:**
+The researchers investigate whether frontier models exploit this gap when generating Lean 4 proofs, a behavior they term formalization gaming.
+
+**Methodology:**
+They evaluate GPT-5 and DeepSeek-R1 on 303 first-order logic problems (203 from FOLIO, 100 from Multi-LogiEval), comparing unified generation against a two-stage pipeline that separates formalization from proving.
+
+**Key Findings:**
+The two-stage pipeline reveals two distinct modes of unfaithfulness: GPT-5 fabricates axioms during proof generation, a reactive fallback detectable via cross-stage comparison, while DeepSeek-R1 mistranslates premises during formalization, producing internally consistent outputs that evade detection entirely.
+
+The paper is available on arXiv (2604.19459) with code and data provided by the authors.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "73688289-2baf-4ed9-a3e0-b689e071d142",
+  "isSidechain": false,
+  "promptId": "b9b6653c-77d6-45f7-b143-1d26cd86e692",
+  "type": "user",
+  "uuid": "8bec9c38-1040-4bd9-b51b-8f3584c442d9",
+  "toolUseResult": {
+    "query": "\"Do LLMs Game Formalization\" VerifAI workshop ICLR 2026 error taxonomy post-compilation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01P2YKdVmbDqKsguGshr1chu",
+        "content": [
+          {
+            "title": "The VerifAI Workshop @ ICLR'26 - VerifAI",
+            "url": "https://verifai-workshop.github.io/papers/"
+          },
+          {
+            "title": "Published at the VerifAI-2 Workshop, ICLR 2026 DO LLMS GAME FORMALIZATION?",
+            "url": "https://arxiv.org/pdf/2604.19459"
+          },
+          {
+            "title": "ICLR 2026 Workshops",
+            "url": "https://iclr.cc/virtual/2026/events/workshop"
+          },
+          {
+            "title": "ICLR 2026 Workshop on Logical Reasoning of Large Language Models",
+            "url": "https://arxiv.org/pdf/2603.17169"
+          },
+          {
+            "title": "[2604.19459] Do LLMs Game Formalization? Evaluating Faithfulness in Logical Reasoning",
+            "url": "https://arxiv.org/abs/2604.19459"
+          },
+          {
+            "title": "van der Schaar Lab @ ICLR Workshops 2026 // van der Schaar Lab",
+            "url": "https://www.vanderschaar-lab.com/iclr-workshops-2026/"
+          }
+        ]
+      },
+      "I found the paper! Here are the key details about \"Do LLMs Game Formalization?\" from the VerifAI workshop at ICLR 2026:\n\n**Paper Details:**\nThe paper is by Kyuhee Kim, Auguste Poiroux, and Antoine Bosselut from EPFL, published at the VerifAI-2 Workshop, ICLR 2026.\n\n**Main Topic:**\nThe paper addresses formal verification which guarantees proof validity but not formalization faithfulness, and this gap is especially acute for natural-language logical reasoning where models construct axiom systems from scratch without library constraints.\n\n**Research Focus:**\nThe researchers investigate whether frontier models exploit this gap when generating Lean 4 proofs, a behavior they term formalization gaming.\n\n**Methodology:**\nThey evaluate GPT-5 and DeepSeek-R1 on 303 first-order logic problems (203 from FOLIO, 100 from Multi-LogiEval), comparing unified generation against a two-stage pipeline that separates formalization from proving.\n\n**Key Findings:**\nThe two-stage pipeline reveals two distinct modes of unfaithfulness: GPT-5 fabricates axioms during proof generation, a reactive fallback detectable via cross-stage comparison, while DeepSeek-R1 mistranslates premises during formalization, producing internally consistent outputs that evade detection entirely.\n\nThe paper is available on arXiv (2604.19459) with code and data provided by the authors."
+    ],
+    "durationSeconds": 5.357260639000044,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "73688289-2baf-4ed9-a3e0-b689e071d142",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 107 · 2026-05-28T15:40:10.027Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QvYcVdtozrexnNjyScHks9`</summary>
+
+```json
+{
+  "query": "Lean4 autoformalization new paper May 2026 arXiv formalization domain"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8bec9c38-1040-4bd9-b51b-8f3584c442d9",
+  "isSidechain": false,
+  "requestId": "req_011CbVDedbh3qdw1jwLBtGqq",
+  "type": "assistant",
+  "uuid": "ee7e5305-f10e-4c91-824d-c4b8f92d8601",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015FgYmp5SCoc59YEEMFv4SL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 778,
+      "cache_read_input_tokens": 61643,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 778,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 61643,
+          "cache_creation_input_tokens": 778,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 778
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 108 · 2026-05-28T15:40:16.466Z_
+
+<details><summary>↩ Tool result · `toolu_01QvYcVdtozrexnNjyScHks9`</summary>
+
+```text
+Web search results for query: "Lean4 autoformalization new paper May 2026 arXiv formalization domain"
+
+Links: [{"title":"An Evaluation Benchmark for Autoformalization in Lean4","url":"https://arxiv.org/pdf/2406.06555"},{"title":"[2603.24372] Improving Lean4 Autoformalization via Cycle Consistency Fine-tuning","url":"https://arxiv.org/abs/2603.24372"},{"title":"An Evaluation Benchmark for Autoformalization in Lean4","url":"https://arxiv.org/html/2406.06555v1"},{"title":"[2406.01940] Process-Driven Autoformalization in Lean 4","url":"https://arxiv.org/abs/2406.01940"},{"title":"[2406.06555] An Evaluation Benchmark for Autoformalization in Lean4","url":"https://arxiv.org/abs/2406.06555"},{"title":"Reliable Evaluation and Benchmarks for Statement Autoformalization","url":"https://arxiv.org/pdf/2406.07222"},{"title":"Improving Lean4 Autoformalization via Cycle Consistency Fine-tuning Stanford CS224N Custom Project","url":"https://arxiv.org/html/2603.24372"}]
+
+Based on the search results, here are recent papers on Lean4 autoformalization from arXiv:
+
+## Recent Papers (May 2026)
+
+A paper titled "Improving Lean4 Autoformalization via Cycle Consistency Fine-tuning" was submitted on March 25, 2026. The paper focuses on autoformalization—automatically translating natural language mathematical texts into formal proof language such as Lean4—and fine-tunes Qwen3.5-2B with LoRA for natural language to Lean4 formalization on FineLeanCorpus, considering three training regimes: supervised fine-tuning with curriculum learning, SFT without curriculum ordering, and reinforcement learning using group relative policy optimization with a cycle consistency reward.
+
+## Related Autoformalization Papers
+
+There are also other recent papers on this topic:
+
+- An evaluation benchmark paper proposes a benchmark of 101 pairs of mathematical formal-informal statements across 17 different topics in math, which manually evaluated three different state-of-the-art LLMs (GPT-3.5, GPT-4, and Gemini Pro).
+
+- A paper on "Process-Driven Autoformalization in Lean 4" addresses the conversion of natural language mathematics into formal languages.
+
+These papers represent the latest research addressing the challenges of automatically formalizing mathematical statements in Lean4.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ee7e5305-f10e-4c91-824d-c4b8f92d8601",
+  "isSidechain": false,
+  "promptId": "b9b6653c-77d6-45f7-b143-1d26cd86e692",
+  "type": "user",
+  "uuid": "0e7576df-1242-4513-8535-45f3f60ab2d0",
+  "toolUseResult": {
+    "query": "Lean4 autoformalization new paper May 2026 arXiv formalization domain",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Qtp7DGYj3B6XUTT6kQz2g2",
+        "content": [
+          {
+            "title": "An Evaluation Benchmark for Autoformalization in Lean4",
+            "url": "https://arxiv.org/pdf/2406.06555"
+          },
+          {
+            "title": "[2603.24372] Improving Lean4 Autoformalization via Cycle Consistency Fine-tuning",
+            "url": "https://arxiv.org/abs/2603.24372"
+          },
+          {
+            "title": "An Evaluation Benchmark for Autoformalization in Lean4",
+            "url": "https://arxiv.org/html/2406.06555v1"
+          },
+          {
+            "title": "[2406.01940] Process-Driven Autoformalization in Lean 4",
+            "url": "https://arxiv.org/abs/2406.01940"
+          },
+          {
+            "title": "[2406.06555] An Evaluation Benchmark for Autoformalization in Lean4",
+            "url": "https://arxiv.org/abs/2406.06555"
+          },
+          {
+            "title": "Reliable Evaluation and Benchmarks for Statement Autoformalization",
+            "url": "https://arxiv.org/pdf/2406.07222"
+          },
+          {
+            "title": "Improving Lean4 Autoformalization via Cycle Consistency Fine-tuning Stanford CS224N Custom Project",
+            "url": "https://arxiv.org/html/2603.24372"
+          }
+        ]
+      },
+      "Based on the search results, here are recent papers on Lean4 autoformalization from arXiv:\n\n## Recent Papers (May 2026)\n\nA paper titled \"Improving Lean4 Autoformalization via Cycle Consistency Fine-tuning\" was submitted on March 25, 2026. The paper focuses on autoformalization—automatically translating natural language mathematical texts into formal proof language such as Lean4—and fine-tunes Qwen3.5-2B with LoRA for natural language to Lean4 formalization on FineLeanCorpus, considering three training regimes: supervised fine-tuning with curriculum learning, SFT without curriculum ordering, and reinforcement learning using group relative policy optimization with a cycle consistency reward.\n\n## Related Autoformalization Papers\n\nThere are also other recent papers on this topic:\n\n- An evaluation benchmark paper proposes a benchmark of 101 pairs of mathematical formal-informal statements across 17 different topics in math, which manually evaluated three different state-of-the-art LLMs (GPT-3.5, GPT-4, and Gemini Pro).\n\n- A paper on \"Process-Driven Autoformalization in Lean 4\" addresses the conversion of natural language mathematics into formal languages.\n\nThese papers represent the latest research addressing the challenges of automatically formalizing mathematical statements in Lean4."
+    ],
+    "durationSeconds": 6.434678658000019,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "ee7e5305-f10e-4c91-824d-c4b8f92d8601",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 109 · 2026-05-28T15:40:20.326Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017pebq8ieGabvr2BS98MqBf`</summary>
+
+```json
+{
+  "query": "autoformalization Lean domain retrieval error analysis new work 2026 May June concurrent"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0e7576df-1242-4513-8535-45f3f60ab2d0",
+  "isSidechain": false,
+  "requestId": "req_011CbVDfTiu6reVaANm688EZ",
+  "type": "assistant",
+  "uuid": "e0bb0600-66ad-4c57-abfc-f82c810fdfc9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DsjUWfU1UZeCysL6bN9vTD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 725,
+      "cache_read_input_tokens": 62421,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 725,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 62421,
+          "cache_creation_input_tokens": 725,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 725
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 110 · 2026-05-28T15:40:58.563Z_
+
+<details><summary>↩ Tool result · `toolu_017pebq8ieGabvr2BS98MqBf`</summary>
+
+```text
+Web search results for query: "autoformalization Lean domain retrieval error analysis new work 2026 May June concurrent"
+
+Links: [{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2510.15940"},{"title":"Risk-Controlled Lean-as-Judge for Natural-Language Mathematical Reasoning","url":"https://arxiv.org/html/2605.28365"},{"title":"[2510.15681] ProofBridge: Auto-Formalization of Natural Language Proofs in Lean via Joint Embeddings","url":"https://arxiv.org/abs/2510.15681"},{"title":"Improving Lean4 Autoformalization via Cycle Consistency Fine-tuning Stanford CS224N Custom Project","url":"https://arxiv.org/html/2603.24372v1"},{"title":"Formalization and autoformalization 2026-2027","url":"https://web.math.utk.edu/~yqing/lean.html"},{"title":"Automated Formalization via Conceptual Retrieval-Augmented LLMs","url":"https://arxiv.org/html/2508.06931"},{"title":"IndiMathBench: Autoformalizing Mathematical Reasoning ...","url":"https://arxiv.org/pdf/2512.00997"},{"title":"A New Approach Towards Autoformalization Nilay Patel","url":"https://arxiv.org/pdf/2310.07957"}]
+
+Based on the web search results, I found several recent research papers on autoformalization with Lean that include work on domain retrieval and error analysis from 2026:
+
+## Key Recent Work (May-June 2026 timeframe):
+
+A recent paper from an ICLR 2026 publication tackles the complementary challenge of autoformalization by synthesizing intent-rich, user-style queries from formal Lean statements, explicitly modeling user intent and query phrasing to improve retrieval performance on real user queries.
+
+LLM autoformalization and Lean/Isabelle theorem proving remain sensitive to domain, library context, and dependency retrieval, which is a key challenge identified in concurrent research.
+
+## Other Notable Recent Works:
+
+ProofBridge integrates retrieval-augmented fine-tuning with iterative proof repair, leveraging Lean's type checker and semantic equivalence feedback, with experiments showing substantial improvements in proof auto-formalization (updated March 29, 2026).
+
+Common failure modes include fabricating undefined concepts in Mathlib, and a key difficulty is conceptual polymorphism where identical expressions correspond to different formal definitions depending on context, domain, or abstraction level, often leading to inaccurate formalizations especially in applied fields.
+
+These papers collectively address error analysis and domain-specific challenges in autoformalization systems, with multiple concurrent efforts focusing on improving retrieval quality and reducing formalization errors.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e0bb0600-66ad-4c57-abfc-f82c810fdfc9",
+  "isSidechain": false,
+  "promptId": "b9b6653c-77d6-45f7-b143-1d26cd86e692",
+  "type": "user",
+  "uuid": "54c7bd13-0d38-4140-b5a2-deb46fd956e3",
+  "toolUseResult": {
+    "query": "autoformalization Lean domain retrieval error analysis new work 2026 May June concurrent",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01GQ661QjG6VFCn467GNmaa2",
+        "content": [
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2510.15940"
+          },
+          {
+            "title": "Risk-Controlled Lean-as-Judge for Natural-Language Mathematical Reasoning",
+            "url": "https://arxiv.org/html/2605.28365"
+          },
+          {
+            "title": "[2510.15681] ProofBridge: Auto-Formalization of Natural Language Proofs in Lean via Joint Embeddings",
+            "url": "https://arxiv.org/abs/2510.15681"
+          },
+          {
+            "title": "Improving Lean4 Autoformalization via Cycle Consistency Fine-tuning Stanford CS224N Custom Project",
+            "url": "https://arxiv.org/html/2603.24372v1"
+          },
+          {
+            "title": "Formalization and autoformalization 2026-2027",
+            "url": "https://web.math.utk.edu/~yqing/lean.html"
+          },
+          {
+            "title": "Automated Formalization via Conceptual Retrieval-Augmented LLMs",
+            "url": "https://arxiv.org/html/2508.06931"
+          },
+          {
+            "title": "IndiMathBench: Autoformalizing Mathematical Reasoning ...",
+            "url": "https://arxiv.org/pdf/2512.00997"
+          },
+          {
+            "title": "A New Approach Towards Autoformalization Nilay Patel",
+            "url": "https://arxiv.org/pdf/2310.07957"
+          }
+        ]
+      },
+      "Based on the web search results, I found several recent research papers on autoformalization with Lean that include work on domain retrieval and error analysis from 2026:\n\n## Key Recent Work (May-June 2026 timeframe):\n\nA recent paper from an ICLR 2026 publication tackles the complementary challenge of autoformalization by synthesizing intent-rich, user-style queries from formal Lean statements, explicitly modeling user intent and query phrasing to improve retrieval performance on real user queries.\n\nLLM autoformalization and Lean/Isabelle theorem proving remain sensitive to domain, library context, and dependency retrieval, which is a key challenge identified in concurrent research.\n\n## Other Notable Recent Works:\n\nProofBridge integrates retrieval-augmented fine-tuning with iterative proof repair, leveraging Lean's type checker and semantic equivalence feedback, with experiments showing substantial improvements in proof auto-formalization (updated March 29, 2026).\n\nCommon failure modes include fabricating undefined concepts in Mathlib, and a key difficulty is conceptual polymorphism where identical expressions correspond to different formal definitions depending on context, domain, or abstraction level, often leading to inaccurate formalizations especially in applied fields.\n\nThese papers collectively address error analysis and domain-specific challenges in autoformalization systems, with multiple concurrent efforts focusing on improving retrieval quality and reducing formalization errors."
+    ],
+    "durationSeconds": 38.230447652,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "e0bb0600-66ad-4c57-abfc-f82c810fdfc9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 111 · 2026-05-28T15:41:01.668Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NA6vwAQsgiYSQYwpfrZPLC`</summary>
+
+```json
+{
+  "query": "Lean autoformalization domain-stratified error type classification typeclass coercion topology algebra new paper 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "54c7bd13-0d38-4140-b5a2-deb46fd956e3",
+  "isSidechain": false,
+  "requestId": "req_011CbVDiZaTXiMpzAEBvoyne",
+  "type": "assistant",
+  "uuid": "3ded5eab-0704-4197-8e24-606cbf78e6fa",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P1bWSh45JJrg37sykP1FnN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 766,
+      "cache_read_input_tokens": 63146,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 766,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 63146,
+          "cache_creation_input_tokens": 766,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 766
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 112 · 2026-05-28T15:41:08.908Z_
+
+<details><summary>↩ Tool result · `toolu_01NA6vwAQsgiYSQYwpfrZPLC`</summary>
+
+```text
+Web search results for query: "Lean autoformalization domain-stratified error type classification typeclass coercion topology algebra new paper 2026"
+
+Links: [{"title":"10. Type Classes","url":"https://lean-lang.org/theorem_proving_in_lean4/Type-Classes/"},{"title":"Mathematics in Lean Release v4.19.0 Jeremy Avigad Patrick Massot May 14, 2026","url":"https://leanprover-community.github.io/mathematics_in_lean/mathematics_in_lean.pdf"},{"title":"130k Lines of Formal Topology in Two Weeks: Simple and Cheap Autoformalization for Everyone?","url":"https://arxiv.org/pdf/2601.03298"},{"title":"10. Type Classes — Theorem Proving in Lean 3 (outdated) 3.23.0 documentation","url":"https://leanprover.github.io/theorem_proving_in_lean/type_classes.html"},{"title":"Exploring the capabilities of the Lean interactive theorem prover","url":"https://webhomes.maths.ed.ac.uk/~adona/files/honours_project.pdf"},{"title":"Formalization and autoformalization 2026-2027","url":"https://web.math.utk.edu/~yqing/lean.html"},{"title":"Use and abuse of instance parameters in the Lean mathematical library","url":"https://arxiv.org/pdf/2202.01629"},{"title":"SITA: A Framework for Structure-to-Instance Theorem Autoformalization","url":"https://arxiv.org/pdf/2511.10356"},{"title":"Use and Abuse of Instance Parameters in the Lean Mathematical Library | Journal of Automated Reasoning | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s10817-024-09712-7"},{"title":"Lean Workbook: Autoformalized Math Problems","url":"https://www.emergentmind.com/topics/lean-workbook"}]
+
+I've performed the web search for your query about Lean autoformalization with domain-stratified error type classification, typeclass coercion, and topology/algebra in 2026. 
+
+The search results show several relevant topics in the Lean theorem prover ecosystem:
+
+**Autoformalization Work**: Recent setup has been used for (almost) automated formalization resulting in about 130k lines of code, including work on topology formalization. Additionally, formalized abstract structures are treated as modular templates containing definitions, assumptions, operations, and theorems that serve as reusable guides for formalization of concrete instances, with Lean definitions and instance declarations integrated using Lean's typeclass mechanism.
+
+**Typeclass Coercion in Lean**: Lean supports dependent coercions using the type class CoeDep, and Lean uses classes to implement implicit coercions whereby the elaborator replaces a term of unexpected type with a coercion function.
+
+**Mathematical Domains**: The algebraic hierarchy in Mathlib is built using typeclasses, with similar class-based hierarchies existing for topics including orders, topology and analysis, all connected throughout.
+
+However, I didn't find specific papers matching the exact phrase "domain-stratified error type classification" in the 2026 timeframe. The results show active research in autoformalization and typeclass systems, but may not include the specific paper you're looking for.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3ded5eab-0704-4197-8e24-606cbf78e6fa",
+  "isSidechain": false,
+  "promptId": "b9b6653c-77d6-45f7-b143-1d26cd86e692",
+  "type": "user",
+  "uuid": "3771a78e-86ce-4290-a8f9-a084cb08eef4",
+  "toolUseResult": {
+    "query": "Lean autoformalization domain-stratified error type classification typeclass coercion topology algebra new paper 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0188HXq7gvcADb8hA4mUNrjd",
+        "content": [
+          {
+            "title": "10. Type Classes",
+            "url": "https://lean-lang.org/theorem_proving_in_lean4/Type-Classes/"
+          },
+          {
+            "title": "Mathematics in Lean Release v4.19.0 Jeremy Avigad Patrick Massot May 14, 2026",
+            "url": "https://leanprover-community.github.io/mathematics_in_lean/mathematics_in_lean.pdf"
+          },
+          {
+            "title": "130k Lines of Formal Topology in Two Weeks: Simple and Cheap Autoformalization for Everyone?",
+            "url": "https://arxiv.org/pdf/2601.03298"
+          },
+          {
+            "title": "10. Type Classes — Theorem Proving in Lean 3 (outdated) 3.23.0 documentation",
+            "url": "https://leanprover.github.io/theorem_proving_in_lean/type_classes.html"
+          },
+          {
+            "title": "Exploring the capabilities of the Lean interactive theorem prover",
+            "url": "https://webhomes.maths.ed.ac.uk/~adona/files/honours_project.pdf"
+          },
+          {
+            "title": "Formalization and autoformalization 2026-2027",
+            "url": "https://web.math.utk.edu/~yqing/lean.html"
+          },
+          {
+            "title": "Use and abuse of instance parameters in the Lean mathematical library",
+            "url": "https://arxiv.org/pdf/2202.01629"
+          },
+          {
+            "title": "SITA: A Framework for Structure-to-Instance Theorem Autoformalization",
+            "url": "https://arxiv.org/pdf/2511.10356"
+          },
+          {
+            "title": "Use and Abuse of Instance Parameters in the Lean Mathematical Library | Journal of Automated Reasoning | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s10817-024-09712-7"
+          },
+          {
+            "title": "Lean Workbook: Autoformalized Math Problems",
+            "url": "https://www.emergentmind.com/topics/lean-workbook"
+          }
+        ]
+      },
+      "I've performed the web search for your query about Lean autoformalization with domain-stratified error type classification, typeclass coercion, and topology/algebra in 2026. \n\nThe search results show several relevant topics in the Lean theorem prover ecosystem:\n\n**Autoformalization Work**: Recent setup has been used for (almost) automated formalization resulting in about 130k lines of code, including work on topology formalization. Additionally, formalized abstract structures are treated as modular templates containing definitions, assumptions, operations, and theorems that serve as reusable guides for formalization of concrete instances, with Lean definitions and instance declarations integrated using Lean's typeclass mechanism.\n\n**Typeclass Coercion in Lean**: Lean supports dependent coercions using the type class CoeDep, and Lean uses classes to implement implicit coercions whereby the elaborator replaces a term of unexpected type with a coercion function.\n\n**Mathematical Domains**: The algebraic hierarchy in Mathlib is built using typeclasses, with similar class-based hierarchies existing for topics including orders, topology and analysis, all connected throughout.\n\nHowever, I didn't find specific papers matching the exact phrase \"domain-stratified error type classification\" in the 2026 timeframe. The results show active research in autoformalization and typeclass systems, but may not include the specific paper you're looking for."
+    ],
+    "durationSeconds": 7.235984781999956,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "3ded5eab-0704-4197-8e24-606cbf78e6fa",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 113 · 2026-05-28T15:41:11.752Z_
+
+Now let me check the specific Round 8 issues to verify they've been addressed:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3771a78e-86ce-4290-a8f9-a084cb08eef4",
+  "isSidechain": false,
+  "requestId": "req_011CbVDjKo1jNxzzZ6T2VMSi",
+  "type": "assistant",
+  "uuid": "697e9070-24ba-471b-b3e5-bc8012c833fe",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017yhRBejXJxrHf5KrtapAoy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 892,
+      "cache_read_input_tokens": 63912,
+      "output_tokens": 107,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 892,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 107,
+          "cache_read_input_tokens": 63912,
+          "cache_creation_input_tokens": 892,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 892
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 114 · 2026-05-28T15:41:12.889Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KuBkE75LGpXQw7wAr9tqQn`</summary>
+
+```json
+{
+  "query": "Goedel-Formalizer-V2 \"competitive\" OR \"among the strongest\" OR \"ties with\" Kimina formalizer 8B scale"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "697e9070-24ba-471b-b3e5-bc8012c833fe",
+  "isSidechain": false,
+  "requestId": "req_011CbVDjKo1jNxzzZ6T2VMSi",
+  "type": "assistant",
+  "uuid": "7e7bc318-057b-468c-907e-c45c6a69d079",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017yhRBejXJxrHf5KrtapAoy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 892,
+      "cache_read_input_tokens": 63912,
+      "output_tokens": 107,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 892,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 107,
+          "cache_read_input_tokens": 63912,
+          "cache_creation_input_tokens": 892,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 892
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 115 · 2026-05-28T15:41:18.835Z_
+
+<details><summary>↩ Tool result · `toolu_01KuBkE75LGpXQw7wAr9tqQn`</summary>
+
+```text
+Web search results for query: "Goedel-Formalizer-V2 "competitive" OR "among the strongest" OR "ties with" Kimina formalizer 8B scale"
+
+Links: [{"title":"Goedel-LM/Goedel-Formalizer-V2-8B · Hugging Face","url":"https://huggingface.co/Goedel-LM/Goedel-Formalizer-V2-8B"},{"title":"Technical Report GOEDEL-PROVER-V2: SCALING FORMAL THEOREM","url":"https://arxiv.org/pdf/2508.03613"},{"title":"arXiv preprint AUTOFORMALIZER WITH TOOL FEEDBACK","url":"https://arxiv.org/pdf/2510.06857"},{"title":"Autoformalizer with Tool Feedback","url":"https://arxiv.org/html/2510.06857v1"},{"title":"(PDF) Goedel-Prover-V2: Scaling Formal Theorem Proving with Scaffolded Data Synthesis and Self-Correction","url":"https://www.researchgate.net/publication/394323255_Goedel-Prover-V2_Scaling_Formal_Theorem_Proving_with_Scaffolded_Data_Synthesis_and_Self-Correction"},{"title":"[Quick Review] Goedel-Prover-V2: Scaling Formal Theorem Proving with Scaffolded Data\\n Synthesis and Self-Correction","url":"https://liner.com/review/goedelproverv2-scaling-formal-theorem-proving-with-scaffolded-data-synthesis-and"},{"title":"Goedel-LM/Goedel-Prover-V2-8B · Hugging Face","url":"https://huggingface.co/Goedel-LM/Goedel-Prover-V2-8B"},{"title":"README.md · Goedel-LM/Goedel-Prover-V2-32B at main","url":"https://huggingface.co/Goedel-LM/Goedel-Prover-V2-32B/blob/main/README.md"},{"title":"[2508.03613] Goedel-Prover-V2: Scaling Formal Theorem Proving with Scaffolded Data Synthesis and Self-Correction","url":"https://arxiv.org/abs/2508.03613"}]
+
+Based on the search results, I found information about Goedel-Formalizer-V2 and its comparison to Kimina formalizer:
+
+In internal evaluation on 300 informal statements from Omni-MATH, Kimina-formalizer-8B successfully translates 161/300 statements, while Goedel-Formalizer-V2-32B succeeds in 228 statements.
+
+The search results do not contain explicit language about Goedel-Formalizer-V2 being "competitive," "among the strongest," or "ties with" Kimina formalizer at the 8B scale. However, the evaluation data shows that the 32B variant of Goedel-Formalizer-V2 significantly outperforms Kimina-formalizer-8B.
+
+For context on the broader model comparisons, on MiniF2F, the 8B model matches the performance of DeepSeek-Prover-V2-671B while being 100 times smaller in model size.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7e7bc318-057b-468c-907e-c45c6a69d079",
+  "isSidechain": false,
+  "promptId": "b9b6653c-77d6-45f7-b143-1d26cd86e692",
+  "type": "user",
+  "uuid": "78c96403-01da-46c7-a2a1-70c44bc4786b",
+  "toolUseResult": {
+    "query": "Goedel-Formalizer-V2 \"competitive\" OR \"among the strongest\" OR \"ties with\" Kimina formalizer 8B scale",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01UvbJNUpsjMU8mqDpbhMKNt",
+        "content": [
+          {
+            "title": "Goedel-LM/Goedel-Formalizer-V2-8B · Hugging Face",
+            "url": "https://huggingface.co/Goedel-LM/Goedel-Formalizer-V2-8B"
+          },
+          {
+            "title": "Technical Report GOEDEL-PROVER-V2: SCALING FORMAL THEOREM",
+            "url": "https://arxiv.org/pdf/2508.03613"
+          },
+          {
+            "title": "arXiv preprint AUTOFORMALIZER WITH TOOL FEEDBACK",
+            "url": "https://arxiv.org/pdf/2510.06857"
+          },
+          {
+            "title": "Autoformalizer with Tool Feedback",
+            "url": "https://arxiv.org/html/2510.06857v1"
+          },
+          {
+            "title": "(PDF) Goedel-Prover-V2: Scaling Formal Theorem Proving with Scaffolded Data Synthesis and Self-Correction",
+            "url": "https://www.researchgate.net/publication/394323255_Goedel-Prover-V2_Scaling_Formal_Theorem_Proving_with_Scaffolded_Data_Synthesis_and_Self-Correction"
+          },
+          {
+            "title": "[Quick Review] Goedel-Prover-V2: Scaling Formal Theorem Proving with Scaffolded Data\\n Synthesis and Self-Correction",
+            "url": "https://liner.com/review/goedelproverv2-scaling-formal-theorem-proving-with-scaffolded-data-synthesis-and"
+          },
+          {
+            "title": "Goedel-LM/Goedel-Prover-V2-8B · Hugging Face",
+            "url": "https://huggingface.co/Goedel-LM/Goedel-Prover-V2-8B"
+          },
+          {
+            "title": "README.md · Goedel-LM/Goedel-Prover-V2-32B at main",
+            "url": "https://huggingface.co/Goedel-LM/Goedel-Prover-V2-32B/blob/main/README.md"
+          },
+          {
+            "title": "[2508.03613] Goedel-Prover-V2: Scaling Formal Theorem Proving with Scaffolded Data Synthesis and Self-Correction",
+            "url": "https://arxiv.org/abs/2508.03613"
+          }
+        ]
+      },
+      "Based on the search results, I found information about Goedel-Formalizer-V2 and its comparison to Kimina formalizer:\n\nIn internal evaluation on 300 informal statements from Omni-MATH, Kimina-formalizer-8B successfully translates 161/300 statements, while Goedel-Formalizer-V2-32B succeeds in 228 statements.\n\nThe search results do not contain explicit language about Goedel-Formalizer-V2 being \"competitive,\" \"among the strongest,\" or \"ties with\" Kimina formalizer at the 8B scale. However, the evaluation data shows that the 32B variant of Goedel-Formalizer-V2 significantly outperforms Kimina-formalizer-8B.\n\nFor context on the broader model comparisons, on MiniF2F, the 8B model matches the performance of DeepSeek-Prover-V2-671B while being 100 times smaller in model size."
+    ],
+    "durationSeconds": 5.940357357000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "7e7bc318-057b-468c-907e-c45c6a69d079",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 116_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-28 (UTC).**  Your job: independently verify this idea's claims via web_search, then issue a verdict.  ## U…",
+  "leafUuid": "78c96403-01da-46c7-a2a1-70c44bc4786b",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 117_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review domain-adaptive autoformalization pipeline",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b"
+}
+```
+
+---
+
+### Tool call
+
+_source line 118 · 2026-05-28T15:41:22.902Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Kr4s9kzfsTb8u5z2T3gvNP`</summary>
+
+```json
+{
+  "query": "NeurIPS 2026 MATH-AI workshop call for papers deadline 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "78c96403-01da-46c7-a2a1-70c44bc4786b",
+  "isSidechain": false,
+  "requestId": "req_011CbVDk6QdhQi7z1dZRfAsS",
+  "type": "assistant",
+  "uuid": "dc9bbd3c-cb28-42c3-ae26-2d6e0b763c57",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SUHSNs8TtbkjdEcsEpUpUF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 986,
+      "cache_read_input_tokens": 64804,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 986,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 64804,
+          "cache_creation_input_tokens": 986,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 986
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 119 · 2026-05-28T15:41:30.180Z_
+
+<details><summary>↩ Tool result · `toolu_01Kr4s9kzfsTb8u5z2T3gvNP`</summary>
+
+```text
+Web search results for query: "NeurIPS 2026 MATH-AI workshop call for papers deadline 2026"
+
+Links: [{"title":"NeurIPS 2026","url":"https://neurips.cc/"},{"title":"Call for Papers 2026","url":"https://neurips.cc/Conferences/2026/CallForPapers"},{"title":"NeurIPS 2026 Call for Workshops","url":"https://neurips.cc/Conferences/2026/CallForWorkshops"},{"title":"NeurIPS 2026 Call for Papers — Official Deadlines & Important Dates | PaperPilot","url":"https://www.getpaperpilot.com/deadlines/neurips-2026.html"},{"title":"NeurIPS 2026 Evaluations & Datasets Track Call for Papers","url":"https://neurips.cc/Conferences/2026/CallForEvaluationsDatasets"},{"title":"Update NeurIPS 2025 and 2026 conference data · huggingface/ai-deadlines at 99f16a7","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/99f16a754ac0ed468034709b8cd393e594791a01"},{"title":"2026 Dates and Deadlines","url":"https://neurips.cc/Conferences/2026/Dates"},{"title":"2026 Conference","url":"https://neurips.cc/Conferences/2026"},{"title":"NeurIPS Newsletter – April 2026 – NeurIPS Blog","url":"https://blog.neurips.cc/2026/04/22/neurips-newsletter-april-2026/"},{"title":"NeurIPS 2026 Call For Competitions","url":"https://neurips.cc/Conferences/2026/CallForCompetitions"}]
+
+I found information about NeurIPS 2026 workshops in general. The workshop application deadline for NeurIPS 2026 is June 6, 2026 (Anywhere on Earth).
+
+However, the search results don't contain specific information about a MATH-AI workshop's call for papers deadline. The results show the general workshop application deadline, but individual workshops at NeurIPS may have their own separate deadlines for paper submissions within the workshop. 
+
+If you're looking for the specific MATH-AI workshop deadline, I'd recommend:
+1. Checking the official NeurIPS 2026 workshops page at neurips.cc/Conferences/2026/CallForWorkshops
+2. Looking for the MATH-AI workshop announcement directly once it's approved and organizers post their call for papers
+
+Would you like me to search more specifically for information about the MATH-AI workshop at NeurIPS 2026?
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "dc9bbd3c-cb28-42c3-ae26-2d6e0b763c57",
+  "isSidechain": false,
+  "promptId": "b9b6653c-77d6-45f7-b143-1d26cd86e692",
+  "type": "user",
+  "uuid": "7bfc6faa-ab0b-4670-b3a7-d20adb2de630",
+  "toolUseResult": {
+    "query": "NeurIPS 2026 MATH-AI workshop call for papers deadline 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01H5g3eH3v9wmA2h1JPdsyF9",
+        "content": [
+          {
+            "title": "NeurIPS 2026",
+            "url": "https://neurips.cc/"
+          },
+          {
+            "title": "Call for Papers 2026",
+            "url": "https://neurips.cc/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "NeurIPS 2026 Call for Workshops",
+            "url": "https://neurips.cc/Conferences/2026/CallForWorkshops"
+          },
+          {
+            "title": "NeurIPS 2026 Call for Papers — Official Deadlines & Important Dates | PaperPilot",
+            "url": "https://www.getpaperpilot.com/deadlines/neurips-2026.html"
+          },
+          {
+            "title": "NeurIPS 2026 Evaluations & Datasets Track Call for Papers",
+            "url": "https://neurips.cc/Conferences/2026/CallForEvaluationsDatasets"
+          },
+          {
+            "title": "Update NeurIPS 2025 and 2026 conference data · huggingface/ai-deadlines at 99f16a7",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/99f16a754ac0ed468034709b8cd393e594791a01"
+          },
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://neurips.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "2026 Conference",
+            "url": "https://neurips.cc/Conferences/2026"
+          },
+          {
+            "title": "NeurIPS Newsletter – April 2026 – NeurIPS Blog",
+            "url": "https://blog.neurips.cc/2026/04/22/neurips-newsletter-april-2026/"
+          },
+          {
+            "title": "NeurIPS 2026 Call For Competitions",
+            "url": "https://neurips.cc/Conferences/2026/CallForCompetitions"
+          }
+        ]
+      },
+      "I found information about NeurIPS 2026 workshops in general. The workshop application deadline for NeurIPS 2026 is June 6, 2026 (Anywhere on Earth).\n\nHowever, the search results don't contain specific information about a MATH-AI workshop's call for papers deadline. The results show the general workshop application deadline, but individual workshops at NeurIPS may have their own separate deadlines for paper submissions within the workshop. \n\nIf you're looking for the specific MATH-AI workshop deadline, I'd recommend:\n1. Checking the official NeurIPS 2026 workshops page at neurips.cc/Conferences/2026/CallForWorkshops\n2. Looking for the MATH-AI workshop announcement directly once it's approved and organizers post their call for papers\n\nWould you like me to search more specifically for information about the MATH-AI workshop at NeurIPS 2026?"
+    ],
+    "durationSeconds": 7.27353762800002,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "dc9bbd3c-cb28-42c3-ae26-2d6e0b763c57",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 120 · 2026-05-28T15:41:32.742Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VKhb4RfHtvPi5JjgKmjUKy`</summary>
+
+```json
+{
+  "query": "ICLR 2027 submission deadline September October 2026 estimated"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7bfc6faa-ab0b-4670-b3a7-d20adb2de630",
+  "isSidechain": false,
+  "requestId": "req_011CbVDktjvzWJVfDPoftK3d",
+  "type": "assistant",
+  "uuid": "3ba0f11f-2fe6-4dc1-bf63-4ade26ef487b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012XhytyairoDsTRDX2sCKs2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 759,
+      "cache_read_input_tokens": 65790,
+      "output_tokens": 68,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 759,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 68,
+          "cache_read_input_tokens": 65790,
+          "cache_creation_input_tokens": 759,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 759
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 121 · 2026-05-28T15:41:40.536Z_
+
+<details><summary>↩ Tool result · `toolu_01VKhb4RfHtvPi5JjgKmjUKy`</summary>
+
+```text
+Web search results for query: "ICLR 2027 submission deadline September October 2026 estimated"
+
+Links: [{"title":"2026 Dates and Deadlines","url":"https://iclr.cc/Conferences/2026/Dates"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"AI Deadlines – AI Conference Call For Paper Deadlines","url":"http://aideadlines.org/"},{"title":"ICLR 2026 Call for Papers","url":"https://iclr.cc/Conferences/2026/CallForPapers"},{"title":"Year-Round Deadlines - Imranur Rahman","url":"https://imranur-rahman.github.io/deadlines/"},{"title":"Key deadlines in AI and ML conferences","url":"https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"},{"title":"ICLR 2026","url":"https://iclr.cc/"},{"title":"ICLR on X: \"Reminder - ICLR abstract deadline is Sept 27 at 11:59pm AoE.\" / X","url":"https://x.com/iclr_conf/status/1838950256731459835"},{"title":"International Conference on Learning Representations ICLR in August 2027 in Sydney","url":"https://waset.org/learning-representations-conference-in-august-2027-in-sydney"}]
+
+Based on the search results, I found information about ICLR submission deadlines, though not specifically for ICLR 2027 yet. Here's what I found:
+
+For **ICLR 2025**, abstract submission was September 27 at 11:59pm (AoE) and the full submission date was October 1 at 11:59pm (AoE).
+
+The search results indicate that ICLR has historically held its submission deadlines in late September/early October. Based on this pattern, it's reasonable to estimate that ICLR 2027 will likely follow a similar timeline, with submission deadlines expected in September-October 2026. However, the official ICLR 2027 call for papers and exact submission deadlines have not yet been announced in these search results. 
+
+For the most current and official information about ICLR 2027 deadlines, I recommend checking the official ICLR website (iclr.cc) or their social media channels, as they typically announce the call for papers several months before the submission deadline.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3ba0f11f-2fe6-4dc1-bf63-4ade26ef487b",
+  "isSidechain": false,
+  "promptId": "b9b6653c-77d6-45f7-b143-1d26cd86e692",
+  "type": "user",
+  "uuid": "f08cc072-f59f-4f49-b339-a02e18fc451d",
+  "toolUseResult": {
+    "query": "ICLR 2027 submission deadline September October 2026 estimated",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Sz5ccLESFZP3CujWy3NdwX",
+        "content": [
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://iclr.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "AI Deadlines – AI Conference Call For Paper Deadlines",
+            "url": "http://aideadlines.org/"
+          },
+          {
+            "title": "ICLR 2026 Call for Papers",
+            "url": "https://iclr.cc/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "Year-Round Deadlines - Imranur Rahman",
+            "url": "https://imranur-rahman.github.io/deadlines/"
+          },
+          {
+            "title": "Key deadlines in AI and ML conferences",
+            "url": "https://scouts.yutori.com/inbox/53e01f0f-2f7a-4f63-9b38-22358e5386ac"
+          },
+          {
+            "title": "ICLR 2026",
+            "url": "https://iclr.cc/"
+          },
+          {
+            "title": "ICLR on X: \"Reminder - ICLR abstract deadline is Sept 27 at 11:59pm AoE.\" / X",
+            "url": "https://x.com/iclr_conf/status/1838950256731459835"
+          },
+          {
+            "title": "International Conference on Learning Representations ICLR in August 2027 in Sydney",
+            "url": "https://waset.org/learning-representations-conference-in-august-2027-in-sydney"
+          }
+        ]
+      },
+      "Based on the search results, I found information about ICLR submission deadlines, though not specifically for ICLR 2027 yet. Here's what I found:\n\nFor **ICLR 2025**, abstract submission was September 27 at 11:59pm (AoE) and the full submission date was October 1 at 11:59pm (AoE).\n\nThe search results indicate that ICLR has historically held its submission deadlines in late September/early October. Based on this pattern, it's reasonable to estimate that ICLR 2027 will likely follow a similar timeline, with submission deadlines expected in September-October 2026. However, the official ICLR 2027 call for papers and exact submission deadlines have not yet been announced in these search results. \n\nFor the most current and official information about ICLR 2027 deadlines, I recommend checking the official ICLR website (iclr.cc) or their social media channels, as they typically announce the call for papers several months before the submission deadline."
+    ],
+    "durationSeconds": 7.791446675999963,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "3ba0f11f-2fe6-4dc1-bf63-4ade26ef487b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 122 · 2026-05-28T15:41:43.772Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01P4xgV9q7BHXponRcgrHgdL`</summary>
+
+```json
+{
+  "url": "https://trybibby.com/conference-deadlines",
+  "prompt": "What is the ICLR 2027 submission deadline? When is it estimated? Is September 2026 correct for the abstract/paper deadline?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f08cc072-f59f-4f49-b339-a02e18fc451d",
+  "isSidechain": false,
+  "requestId": "req_011CbVDmfAthdjSKTneo9t3U",
+  "type": "assistant",
+  "uuid": "254581ef-2301-4ed9-a851-12169d5bb92a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RFHf8aP2YZVWkThCvDFAjD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 723,
+      "cache_read_input_tokens": 66549,
+      "output_tokens": 114,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 723,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 114,
+          "cache_read_input_tokens": 66549,
+          "cache_creation_input_tokens": 723,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 723
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 123 · 2026-05-28T15:41:48.687Z_
+
+<details><summary>↩ Tool result · `toolu_01P4xgV9q7BHXponRcgrHgdL`</summary>
+
+```text
+# ICLR 2027 Submission Deadlines
+
+According to the conference deadlines page, ICLR 2027 has **two separate deadlines**:
+
+1. **Abstract deadline**: "Abstract in 113d:20h:18m:14s" with a deadline of **September 19, 2026, 11:59 AM UTC**
+
+2. **Full Paper deadline**: "Full Paper in 118d:20h:18m:14s" with a deadline of **September 24, 2026, 11:59 AM UTC**
+
+Both deadlines are marked with **[EST.]**, indicating these are estimated dates projected from prior-year schedules since the official call for papers has not yet been posted.
+
+So yes, September 2026 is correct for both the abstract and paper submission periods, though these are provisional estimates rather than confirmed dates. The page advises to "verify against the official CFP before submitting."
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "254581ef-2301-4ed9-a851-12169d5bb92a",
+  "isSidechain": false,
+  "promptId": "b9b6653c-77d6-45f7-b143-1d26cd86e692",
+  "type": "user",
+  "uuid": "96815e16-bf31-403e-95e5-accc1c1202a6",
+  "toolUseResult": {
+    "bytes": 444028,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# ICLR 2027 Submission Deadlines\n\nAccording to the conference deadlines page, ICLR 2027 has **two separate deadlines**:\n\n1. **Abstract deadline**: \"Abstract in 113d:20h:18m:14s\" with a deadline of **September 19, 2026, 11:59 AM UTC**\n\n2. **Full Paper deadline**: \"Full Paper in 118d:20h:18m:14s\" with a deadline of **September 24, 2026, 11:59 AM UTC**\n\nBoth deadlines are marked with **[EST.]**, indicating these are estimated dates projected from prior-year schedules since the official call for papers has not yet been posted.\n\nSo yes, September 2026 is correct for both the abstract and paper submission periods, though these are provisional estimates rather than confirmed dates. The page advises to \"verify against the official CFP before submitting.\"",
+    "durationMs": 4913,
+    "url": "https://trybibby.com/conference-deadlines"
+  },
+  "sourceToolAssistantUUID": "254581ef-2301-4ed9-a851-12169d5bb92a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 124 · 2026-05-28T15:41:48.689Z_
+
+```json
+{
+  "parentUuid": "96815e16-bf31-403e-95e5-accc1c1202a6",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "8dfb50c0-d4a2-4fc5-b79e-c2a81bdd3ed9",
+  "timestamp": "2026-05-28T15:41:48.689Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 125 · 2026-05-28T15:41:51.560Z_
+
+Now let me do a final round of searches to check for any very recent concurrent work that might scoop this proposal:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8dfb50c0-d4a2-4fc5-b79e-c2a81bdd3ed9",
+  "isSidechain": false,
+  "requestId": "req_011CbVDnFsxCWpZ4YPCntAtF",
+  "type": "assistant",
+  "uuid": "70493b6c-1734-478b-888e-4115c13877b9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NuchFHeYP7VLBu1sSLGBQr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 434,
+      "cache_read_input_tokens": 67272,
+      "output_tokens": 95,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 434,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 95,
+          "cache_read_input_tokens": 67272,
+          "cache_creation_input_tokens": 434,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 434
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 126 · 2026-05-28T15:41:52.198Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FfVGm4iZ53KuACA23btxz2`</summary>
+
+```json
+{
+  "query": "mathematical autoformalization domain-specific error taxonomy repair strategy Mathlib 2026 new"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "70493b6c-1734-478b-888e-4115c13877b9",
+  "isSidechain": false,
+  "requestId": "req_011CbVDnFsxCWpZ4YPCntAtF",
+  "type": "assistant",
+  "uuid": "14fe29da-bd91-46f9-9c9f-420e55d595fd",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NuchFHeYP7VLBu1sSLGBQr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 434,
+      "cache_read_input_tokens": 67272,
+      "output_tokens": 95,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 434,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 95,
+          "cache_read_input_tokens": 67272,
+          "cache_creation_input_tokens": 434,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 434
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 127 · 2026-05-28T15:41:59.773Z_
+
+<details><summary>↩ Tool result · `toolu_01FfVGm4iZ53KuACA23btxz2`</summary>
+
+```text
+Web search results for query: "mathematical autoformalization domain-specific error taxonomy repair strategy Mathlib 2026 new"
+
+Links: [{"title":"IndiMathBench: Autoformalizing Mathematical Reasoning Problems with a Human Touch","url":"https://arxiv.org/html/2512.00997"},{"title":"ReForm: Reflective Autoformalization with Prospective Bounded Sequence Optimization","url":"https://arxiv.org/pdf/2510.24592"},{"title":"Autoformalize Mathematical Statements by Symbolic Equivalence and   Semantic Consistency","url":"https://arxiv.org/pdf/2410.20936"},{"title":"Consistent Autoformalization for Constructing Mathematical Libraries","url":"https://arxiv.org/pdf/2410.04194"},{"title":"FormalEvolve: Neuro-Symbolic Evolutionary Search for Diverse and Prover-Effective Autoformalization","url":"https://arxiv.org/pdf/2603.19828"},{"title":"Consistent Autoformalization for Constructing Mathematical ...","url":"https://aclanthology.org/2024.emnlp-main.233.pdf"},{"title":"M2F: Automated Formalization of Mathematical Literature at Scale","url":"https://arxiv.org/html/2602.17016v1"},{"title":"Automated Formalization via Conceptual Retrieval-Augmented LLMs","url":"https://arxiv.org/html/2508.06931"}]
+
+Based on the search results, I found several relevant papers on mathematical autoformalization. Here are the key findings:
+
+## Recent Autoformalization Research (2026)
+
+Recent work on autoformalization uses domain-specific static context that is constructed once per domain and reused across problems, providing consistent access to relevant Mathlib definitions while anchoring models with domain knowledge to prevent hallucinations and syntax errors.
+
+## Error Handling and Repair Strategies
+
+One approach involves compiling output in Lean 4, extracting parse or type errors, and feeding them back to the model for correction, with refinement continuing for up to six iterations to yield syntactically valid Lean formalizations for 95.3% of problems.
+
+Methodologically, diagnostic-conditioned program repair strategies propose candidate edits and validate them by executing a checker and inspecting diagnostics, with proof assistants adding structure through type-theoretic elaboration under a pinned snapshot.
+
+## Domain-Specific Challenges
+
+Common failure modes include fabricating undefined concepts in Mathlib, misusing symbols due to informal reasoning, and producing outdated definitions; conceptual polymorphism where identical expressions correspond to different formal definitions depending on context is particularly problematic in applied fields like combinatorics.
+
+These limitations call for domain-specific retrieval augmentation tailored to the needs of formal reasoning systems.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "14fe29da-bd91-46f9-9c9f-420e55d595fd",
+  "isSidechain": false,
+  "promptId": "b9b6653c-77d6-45f7-b143-1d26cd86e692",
+  "type": "user",
+  "uuid": "374686c3-c2ae-4c42-94ff-f631d06ebd11",
+  "toolUseResult": {
+    "query": "mathematical autoformalization domain-specific error taxonomy repair strategy Mathlib 2026 new",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NV9u3J9XYYH4M7FGGMoAba",
+        "content": [
+          {
+            "title": "IndiMathBench: Autoformalizing Mathematical Reasoning Problems with a Human Touch",
+            "url": "https://arxiv.org/html/2512.00997"
+          },
+          {
+            "title": "ReForm: Reflective Autoformalization with Prospective Bounded Sequence Optimization",
+            "url": "https://arxiv.org/pdf/2510.24592"
+          },
+          {
+            "title": "Autoformalize Mathematical Statements by Symbolic Equivalence and   Semantic Consistency",
+            "url": "https://arxiv.org/pdf/2410.20936"
+          },
+          {
+            "title": "Consistent Autoformalization for Constructing Mathematical Libraries",
+            "url": "https://arxiv.org/pdf/2410.04194"
+          },
+          {
+            "title": "FormalEvolve: Neuro-Symbolic Evolutionary Search for Diverse and Prover-Effective Autoformalization",
+            "url": "https://arxiv.org/pdf/2603.19828"
+          },
+          {
+            "title": "Consistent Autoformalization for Constructing Mathematical ...",
+            "url": "https://aclanthology.org/2024.emnlp-main.233.pdf"
+          },
+          {
+            "title": "M2F: Automated Formalization of Mathematical Literature at Scale",
+            "url": "https://arxiv.org/html/2602.17016v1"
+          },
+          {
+            "title": "Automated Formalization via Conceptual Retrieval-Augmented LLMs",
+            "url": "https://arxiv.org/html/2508.06931"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers on mathematical autoformalization. Here are the key findings:\n\n## Recent Autoformalization Research (2026)\n\nRecent work on autoformalization uses domain-specific static context that is constructed once per domain and reused across problems, providing consistent access to relevant Mathlib definitions while anchoring models with domain knowledge to prevent hallucinations and syntax errors.\n\n## Error Handling and Repair Strategies\n\nOne approach involves compiling output in Lean 4, extracting parse or type errors, and feeding them back to the model for correction, with refinement continuing for up to six iterations to yield syntactically valid Lean formalizations for 95.3% of problems.\n\nMethodologically, diagnostic-conditioned program repair strategies propose candidate edits and validate them by executing a checker and inspecting diagnostics, with proof assistants adding structure through type-theoretic elaboration under a pinned snapshot.\n\n## Domain-Specific Challenges\n\nCommon failure modes include fabricating undefined concepts in Mathlib, misusing symbols due to informal reasoning, and producing outdated definitions; conceptual polymorphism where identical expressions correspond to different formal definitions depending on context is particularly problematic in applied fields like combinatorics.\n\nThese limitations call for domain-specific retrieval augmentation tailored to the needs of formal reasoning systems."
+    ],
+    "durationSeconds": 7.571884713000036,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "14fe29da-bd91-46f9-9c9f-420e55d595fd",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 128 · 2026-05-28T15:42:02.580Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012NUuHainUjJcnuTZs5PpoF`</summary>
+
+```json
+{
+  "query": "FormalEvolve arXiv 2603.19828 autoformalization neuro-symbolic 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "374686c3-c2ae-4c42-94ff-f631d06ebd11",
+  "isSidechain": false,
+  "requestId": "req_011CbVDo5JEpgd3GBTcknnad",
+  "type": "assistant",
+  "uuid": "e8d0e131-bcde-4d5f-bf75-77499bc3874f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G9eVKZxHhugrWHU3rYjZf8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 772,
+      "cache_read_input_tokens": 67706,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 772,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 67706,
+          "cache_creation_input_tokens": 772,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 772
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 129 · 2026-05-28T15:42:09.919Z_
+
+<details><summary>↩ Tool result · `toolu_012NUuHainUjJcnuTZs5PpoF`</summary>
+
+```text
+Web search results for query: "FormalEvolve arXiv 2603.19828 autoformalization neuro-symbolic 2026"
+
+Links: [{"title":"[2603.19828] FormalEvolve: Neuro-Symbolic Evolutionary Search for Diverse and Prover-Effective Autoformalization","url":"https://arxiv.org/abs/2603.19828"},{"title":"FormalEvolve: Neuro-Symbolic Evolutionary Search for Diverse and Prover-Effective Autoformalization","url":"https://arxiv.org/pdf/2603.19828"},{"title":"Neuro-Symbolic Autoformalization Framework","url":"https://www.emergentmind.com/topics/neuro-symbolic-autoformalization-framework"},{"title":"Autoformalization: Bridging Informal and Formal Math","url":"https://www.emergentmind.com/topics/autoformalization"},{"title":"Neuro-Symbolic Artificial Intelligence: Towards Improving the Reasoning Abilities of Large Language Models","url":"https://arxiv.org/html/2508.13678v1"}]
+
+Based on the search results, here's what I found about FormalEvolve (arXiv 2603.19828):
+
+## Overview
+
+FormalEvolve formulates autoformalization as a budgeted, test-time search for semantically consistent repertoires, and proposes a compilation-gated neuro-symbolic evolutionary framework.
+
+## Problem Statement
+
+Autoformalization aims to translate natural-language mathematics into compilable, machine-checkable statements. However, semantic consistency does not imply prover effectiveness: even semantically consistent formalizations can differ substantially in proof-search cost and success rate.
+
+## Approach
+
+FormalEvolve generates diverse candidates via LLM-driven mutation and crossover with bounded patch repair, while symbolic Abstract Syntax Tree (AST) rewrite operations further inject structural diversity.
+
+## Results
+
+On CombiBench and ProofNet, under a strict generator-call budget of T = 100, FormalEvolve reaches semantic hit rates (SH@100) of 58.0% and 84.9%, and reduces cross-problem concentration of semantic successes (lower Gini).
+
+The paper was submitted on March 20, 2026 (v1), with a last revision on March 23, 2026 (v2).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e8d0e131-bcde-4d5f-bf75-77499bc3874f",
+  "isSidechain": false,
+  "promptId": "b9b6653c-77d6-45f7-b143-1d26cd86e692",
+  "type": "user",
+  "uuid": "5da472a4-4dc5-4ef5-bcf5-1da301d1f6cd",
+  "toolUseResult": {
+    "query": "FormalEvolve arXiv 2603.19828 autoformalization neuro-symbolic 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01C59cPa8RcPR7pxV8AEVtei",
+        "content": [
+          {
+            "title": "[2603.19828] FormalEvolve: Neuro-Symbolic Evolutionary Search for Diverse and Prover-Effective Autoformalization",
+            "url": "https://arxiv.org/abs/2603.19828"
+          },
+          {
+            "title": "FormalEvolve: Neuro-Symbolic Evolutionary Search for Diverse and Prover-Effective Autoformalization",
+            "url": "https://arxiv.org/pdf/2603.19828"
+          },
+          {
+            "title": "Neuro-Symbolic Autoformalization Framework",
+            "url": "https://www.emergentmind.com/topics/neuro-symbolic-autoformalization-framework"
+          },
+          {
+            "title": "Autoformalization: Bridging Informal and Formal Math",
+            "url": "https://www.emergentmind.com/topics/autoformalization"
+          },
+          {
+            "title": "Neuro-Symbolic Artificial Intelligence: Towards Improving the Reasoning Abilities of Large Language Models",
+            "url": "https://arxiv.org/html/2508.13678v1"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about FormalEvolve (arXiv 2603.19828):\n\n## Overview\n\nFormalEvolve formulates autoformalization as a budgeted, test-time search for semantically consistent repertoires, and proposes a compilation-gated neuro-symbolic evolutionary framework.\n\n## Problem Statement\n\nAutoformalization aims to translate natural-language mathematics into compilable, machine-checkable statements. However, semantic consistency does not imply prover effectiveness: even semantically consistent formalizations can differ substantially in proof-search cost and success rate.\n\n## Approach\n\nFormalEvolve generates diverse candidates via LLM-driven mutation and crossover with bounded patch repair, while symbolic Abstract Syntax Tree (AST) rewrite operations further inject structural diversity.\n\n## Results\n\nOn CombiBench and ProofNet, under a strict generator-call budget of T = 100, FormalEvolve reaches semantic hit rates (SH@100) of 58.0% and 84.9%, and reduces cross-problem concentration of semantic successes (lower Gini).\n\nThe paper was submitted on March 20, 2026 (v1), with a last revision on March 23, 2026 (v2)."
+    ],
+    "durationSeconds": 7.334951737999974,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "e8d0e131-bcde-4d5f-bf75-77499bc3874f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 130 · 2026-05-28T15:42:12.975Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Qp1xJA5kdmTLFB1MEk62wC`</summary>
+
+```json
+{
+  "query": "Lean autoformalization APRIL error_type cross-tabulation domain mathematical subdomain study analysis"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5da472a4-4dc5-4ef5-bcf5-1da301d1f6cd",
+  "isSidechain": false,
+  "requestId": "req_011CbVDopcyDUbRAa2eWSXEh",
+  "type": "assistant",
+  "uuid": "bf3b66ad-104f-4dbb-a92b-5843fa03fff1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AeRXCiBtqsG14cKwySCGRh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 661,
+      "cache_read_input_tokens": 68478,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 661,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 68478,
+          "cache_creation_input_tokens": 661,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 661
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 131_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-28 (UTC).**  Your job: independently verify this idea's claims via web_search, then issue a verdict.  ## U…",
+  "leafUuid": "bf3b66ad-104f-4dbb-a92b-5843fa03fff1",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 132_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review domain-adaptive autoformalization pipeline",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b"
+}
+```
+
+---
+
+### Tool result
+
+_source line 133 · 2026-05-28T15:42:20.572Z_
+
+<details><summary>↩ Tool result · `toolu_01Qp1xJA5kdmTLFB1MEk62wC`</summary>
+
+```text
+Web search results for query: "Lean autoformalization APRIL error_type cross-tabulation domain mathematical subdomain study analysis"
+
+Links: [{"title":"M-A-P CriticLean: Critic-Guided Reinforcement Learning for","url":"https://arxiv.org/pdf/2507.06181"},{"title":"miniF2F-Lean Revisited: Reviewing Limitations and Charting a Path Forward","url":"https://arxiv.org/html/2511.03108v1"},{"title":"An Evaluation Benchmark for Autoformalization in Lean4","url":"https://arxiv.org/pdf/2406.06555"},{"title":"FMC: Formalization of Natural Language Mathematical Competition Problems","url":"https://arxiv.org/pdf/2507.11275"},{"title":"IndiMathBench: Autoformalizing Mathematical Reasoning ...","url":"https://arxiv.org/pdf/2512.00997"},{"title":"A New Approach Towards Autoformalization","url":"https://arxiv.org/pdf/2310.07957"},{"title":"Improving Lean4 Autoformalization via Cycle Consistency Fine-tuning","url":"https://arxiv.org/pdf/2603.24372"}]
+
+Based on the search results, I found several relevant research papers on Lean autoformalization. Here are the key findings:
+
+## Research on Lean Autoformalization
+
+The search results reveal several comprehensive studies analyzing autoformalization in Lean:
+
+**Error Analysis and Domain-Specific Studies:**
+
+Research presents the failure modes of autoformalization models by topic, highlighting the types of mathematical domains where current autoformalizers struggle the most, providing guidance for future works.
+
+**Mathematical Domain Analysis:**
+
+Studies split statements into math topics, extending evaluation beyond accuracy metrics and providing a fine-grained understanding of how LLMs autoformalize and where more work is needed.
+
+**Domain Gap Challenges:**
+
+Current methods struggle with semantic consistency, complex mathematical reasoning, and the domain gap between natural language and formal specifications, particularly in advanced domains.
+
+**Underrepresented Subdomains:**
+
+Olympiad-style geometry and combinatorics remain underrepresented across existing Lean 4 benchmarks, despite being among the hardest domains for both automated theorem provers and LLM-guided provers.
+
+**Dataset Development:**
+
+The FineLeanCorpus provides 509k natural language and Lean4 pairs annotated with difficulty scores and mathematical domain labels.
+
+These studies collectively demonstrate a systematic approach to analyzing autoformalization across different mathematical domains and error types in Lean.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bf3b66ad-104f-4dbb-a92b-5843fa03fff1",
+  "isSidechain": false,
+  "promptId": "b9b6653c-77d6-45f7-b143-1d26cd86e692",
+  "type": "user",
+  "uuid": "ac5099aa-a01a-44d0-8257-8e19d32ea403",
+  "toolUseResult": {
+    "query": "Lean autoformalization APRIL error_type cross-tabulation domain mathematical subdomain study analysis",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01X3XENPwknjdGDs6RMLdg1Y",
+        "content": [
+          {
+            "title": "M-A-P CriticLean: Critic-Guided Reinforcement Learning for",
+            "url": "https://arxiv.org/pdf/2507.06181"
+          },
+          {
+            "title": "miniF2F-Lean Revisited: Reviewing Limitations and Charting a Path Forward",
+            "url": "https://arxiv.org/html/2511.03108v1"
+          },
+          {
+            "title": "An Evaluation Benchmark for Autoformalization in Lean4",
+            "url": "https://arxiv.org/pdf/2406.06555"
+          },
+          {
+            "title": "FMC: Formalization of Natural Language Mathematical Competition Problems",
+            "url": "https://arxiv.org/pdf/2507.11275"
+          },
+          {
+            "title": "IndiMathBench: Autoformalizing Mathematical Reasoning ...",
+            "url": "https://arxiv.org/pdf/2512.00997"
+          },
+          {
+            "title": "A New Approach Towards Autoformalization",
+            "url": "https://arxiv.org/pdf/2310.07957"
+          },
+          {
+            "title": "Improving Lean4 Autoformalization via Cycle Consistency Fine-tuning",
+            "url": "https://arxiv.org/pdf/2603.24372"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant research papers on Lean autoformalization. Here are the key findings:\n\n## Research on Lean Autoformalization\n\nThe search results reveal several comprehensive studies analyzing autoformalization in Lean:\n\n**Error Analysis and Domain-Specific Studies:**\n\nResearch presents the failure modes of autoformalization models by topic, highlighting the types of mathematical domains where current autoformalizers struggle the most, providing guidance for future works.\n\n**Mathematical Domain Analysis:**\n\nStudies split statements into math topics, extending evaluation beyond accuracy metrics and providing a fine-grained understanding of how LLMs autoformalize and where more work is needed.\n\n**Domain Gap Challenges:**\n\nCurrent methods struggle with semantic consistency, complex mathematical reasoning, and the domain gap between natural language and formal specifications, particularly in advanced domains.\n\n**Underrepresented Subdomains:**\n\nOlympiad-style geometry and combinatorics remain underrepresented across existing Lean 4 benchmarks, despite being among the hardest domains for both automated theorem provers and LLM-guided provers.\n\n**Dataset Development:**\n\nThe FineLeanCorpus provides 509k natural language and Lean4 pairs annotated with difficulty scores and mathematical domain labels.\n\nThese studies collectively demonstrate a systematic approach to analyzing autoformalization across different mathematical domains and error types in Lean."
+    ],
+    "durationSeconds": 7.594384529000032,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "bf3b66ad-104f-4dbb-a92b-5843fa03fff1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 134 · 2026-05-28T15:43:49.426Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now carefully analyze the proposal against the Round 8 feedback and assess whether the three requested fixes have been made.
+
+**Round 8 issues to verify:**
+
+1. **MINOR: Goedel-Formalizer-V2-8B "SOTA" claim** — The proposal should say "competitive" not "SOTA"
+   - Looking at the proposal text in approach: "Goedel-Formalizer-V2-8B backbone (fine-tuned from Qwen3-8B; chosen over the user-specified Qwen2.5-7B because Goedel-Formalizer-V2 is the current SOTA open-source formalizer at this scale"
+   - This **has NOT been fixed** — still says "current SOTA open-source formalizer at this scale". The evidence shows Goedel-Formalizer-V2-8B ties with Kimina-formalizer-8B on Omni-MATH 300 (both at 161/300) and actually underperforms StepFun-7B on ProverBench BEq@1 (16.3% vs 25.1%), so the SOTA claim doesn't hold up.
+
+2. **MINOR: "Do LLMs Game Form Formalization?" (arXiv 2604.19459)** — Should be cited as complementary but I can't find it anywhere in the proposal text, not in core_problem, landscape, approach, key_references, or description. This **has NOT been addressed**.
+
+3. **MINOR: CAM-Bench (arXiv 2605.17255)** — Domain-specific benchmark that's also missing from the proposal entirely. This **has NOT been addressed**.
+
+4. **MINOR: Impact argument** — The proposal needs to strengthen why domain-conditioned retrieval should outperform static context. Looking at the approach section, it mentions that Mathlib module paths and problem-level domain labels capture complementary information, but the argument feels incomplete.
+
+The example about number theory problems requiring analysis-level typeclasses is a start, and there's an honest acknowledgment about ablation results, but neither makes a compelling case for the pipeline's overall value. I should also check what was actually resolved in the Round 8 revisions to see if this was already addressed.
+
+Looking at the revision notes, the earlier issues from Round 7 were handled, but the Round 8 feedback items—the Goedel SOTA claim, the missing citations on LLM gaming and CAM-Bench, and the impact argument—don't appear to have made it into the text yet. The impact section has some strengthening, but it's incomplete.
+
+Since this is Round 9 of 10, I need to make a final call on whether these gaps are acceptable. Let me evaluate the novelty score: the domain-stratified error analysis is genuinely original work I haven't seen elsewhere, and the domain-conditioned retrieval approach is also novel compared to existing systems. The narrowed claims are appropriate, and Shebzukhov 2026 is properly distinguished. That said, the core pipeline uses standard techniques—domain-prefixed prompting with LoRA—and the error taxonomy's validity hinges on whether the hypothesized patterns actually hold.
+
+For feasibility, the computational budget of 200 H100-hours is realistic, and I've confirmed APRIL has the necessary fields. The timeline works out to roughly 17 weeks, which fits before ICLR 2027, though the Lean4 compilation is a real bottleneck. The main uncertainty is whether the JSD threshold of 0.3 will be met, but that's properly pre-registered as a hypothesis.
+
+The clarity issue is the sticking point—the proposal buries its actual technical contribution under layers of survey-like background and differentiation from prior work. The core idea gets lost in verbosity.
+
+On impact, the error taxonomy is a solid contribution, but the real payoff depends on whether the JSD results are interesting enough. The leave-one-domain-out evaluation is a nice methodological touch, and CAM-Bench's upcoming release suggests the community is moving toward domain-specific evaluation, which validates the direction. Still, this remains the weakest dimension of the proposal, bringing the overall score down to around 3.75.
+
+But stepping back, the remaining issues are actually quite minor—just rewording the Goedel claim from "SOTA" to "competitive," and the core idea is sound with rigorous methodology and pre-registered hypotheses. Since this is Round 9 of 10, I should focus on giving clear, actionable feedback that could push this toward a pass in the final round.
+
+The real question is whether this meets the 4.0 threshold. The strengths are compelling: a genuinely novel gap in domain-stratified error taxonomy for autoformalization, well-supported motivation across multiple prior works, verified APRIL data with the necessary fields, thorough evaluation design with leave-one-domain-out testing and surgical ablations, pre-registered hypotheses, and feasibility within the computational budget. The weaknesses—particularly around the pipeline contribution—are still being weighed.
+
+Looking at this holistically, the novelty and feasibility feel like solid 4s, while clarity and impact hover around 3.5-3.75, averaging around 3.8. Since this is Round 9 and the remaining issues are genuinely minor and fixable, I'll issue one final "revise" with very specific, minimal fixes that should push it over 4.0. If those three small changes are made in Round 10, it should pass.
+
+The issues I need to flag are all minor: the SOTA claim about Goedel-Formalizer-V2-8B needs softening since it actually ties with Kimina-8B on some benchmarks and underperforms StepFun-7B on others; there's a missing citation to "Do LLMs Game Formalization?" whose error taxonomy at the post-compilation layer complements this work's pre-compilation approach; CAM-Bench is a concurrent domain-specific benchmark that should be acknowledged as supporting the motivation; and the impact argument for domain-conditioned retrieval over static context remains underdeveloped, with cross-domain problems mentioned only in passing.
+
+Actually, looking back at the proposal more carefully, there is some argumentation here. The opportunity section does explain the hypothesis about combining Mathlib module paths with problem-level domain labels to capture complementary information, and the approach section honestly frames the ablation study outcomes. But it's still not making a strong affirmative case for why this matters — the Round 8 feedback specifically wanted concrete scenarios like cross-domain problems or retrieval degradation at higher K values, and those aren't systematically laid out.
+
+Now I'm settling on my scores. Novelty gets a 4.0 because the domain-stratified error analysis is genuinely new and no one's done dynamic retrieval conditioning on inferred subdomains before. Feasibility is also 4.0 — the data's there in APRIL, the compute is realistic, and the timeline works for ICLR 2027.
+
+But clarity drops to 3.5 because the proposal is dense and verbose, plus I'm still mischaracterizing Goedel's SOTA and haven't addressed three pieces of Round 8 feedback. Impact is also 3.5 — the error taxonomy could be valuable if my hypotheses pan out, but I haven't made a convincing case that domain-conditioned retrieval actually beats static context, and the pipeline improvement remains speculative.
+
+That averages to 3.75, which falls short of the 4.0 bar. One more revision round could push clarity and impact up enough to hit 3.94, though that's still below threshold. I'm second-guessing whether I'm being too harsh on impact though — the error taxonomy itself has real value if the hypotheses hold.
+
+Actually, the evaluation protocol is genuinely novel, and the evidence for domain bias across five different benchmarks is compelling. If the pipeline delivers even modest gains, the combination of taxonomy, evaluation design, and pipeline improvements makes this a solid multi-contribution paper. Let me bump impact to 3.75. That gives an average of 3.8125, still below 4.0.
+
+But maybe I'm underrating clarity too. The proposal is thorough and technically sound, the ablation design is rigorous, and the pre-registered hypotheses show strong methodology. Perhaps 3.75 is more fair there.
+
+That brings the average to 3.875, matching Round 8. The three minor fixes weren't addressed, so the score hasn't budged. I'll request revisions again, but keep them minimal and specific—things that should take minutes to fix.
+
+Wait, let me double-check the Goedel SOTA claim to make sure it wasn't already softened in the approach section.
+
+Reading through it again: the proposal still explicitly states "current SOTA open-source formalizer at this scale." That's factually wrong—StepFun-7B outperforms it on ProverBench (25.1% vs. 16.3%) and FormalMATH-Lite (38.3% vs. lower/unevaluated).
+
+So my decision is "revise" with three specific, minimal fixes. The proposal is close to passing; these are just the final blocking issues.
+
+One more thing to consider: the FormalEvolve paper from March 2026 uses neuro-symbolic evolutionary search for autoformalization, hitting 58% SH@100 on CombiBench and 84.9% on ProofNet. It generates diverse candidates without domain conditioning, so it's not directly relevant here.
+
+Wrapping up the review now.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ac5099aa-a01a-44d0-8257-8e19d32ea403",
+  "isSidechain": false,
+  "requestId": "req_011CbVDpcB9HShSvAcJfTok2",
+  "type": "assistant",
+  "uuid": "2001ced0-78d2-4b4f-a596-3de1b53334fc",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W3x2kBe3HQvVtHBL1QjXvj",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 697,
+      "cache_read_input_tokens": 69139,
+      "output_tokens": 5610,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 697,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5610,
+          "cache_read_input_tokens": 69139,
+          "cache_creation_input_tokens": 697,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 697
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 135 · 2026-05-28T15:44:22.423Z_
+
+Now I have sufficient evidence to render my assessment. Let me synthesize all findings.
+
+**Key verification results:**
+
+1. **APRIL dataset schema confirmed**: The HuggingFace dataset (`uw-math-ai/APRIL`) contains `path` (string), `error_type` (string), `error` (string), `correct_proof`, `incorrect_proof` fields. Four mutation types: `lme`, `mlme`, `thme`, `tme` with separate JSONL files. The proposal's description of APRIL's schema is accurate.
+
+2. **Goedel-Formalizer-V2-8B SOTA claim**: From StepFun-Formalizer paper (Table 3/10), on ProverBench BEq@1: StepFun-7B = 25.1%, Goedel-V2-8B = 16.3%, Kimina-7B = 13.3%. On Omni-MATH internal eval: Goedel-V2-8B and Kimina-8B both get 161/300 (tie). **The "current SOTA" claim is factually incorrect** — StepFun-7B substantially outperforms on BEq@1 (25.1% vs 16.3%).
+
+3. **Gap verification**: Extensive search found NO existing work performing domain-stratified cross-tabulation of APRIL's error types by mathematical subdomain. No system dynamically conditions autoformalization retrieval on inferred subdomain. The claimed gap remains valid.
+
+4. **Concurrent work check**: No new scooping papers found. FormalEvolve (March 2026) is domain-agnostic evolutionary search. No domain-adaptive autoformalization pipeline found.
+
+5. **Venue deadlines confirmed**: AAAI 2027 = Jul 21/28 (confirmed). ICLR 2027 = ~Sep 19/24 (estimated). ICML 2026 AI4Math paper deadline May 25 (passed).
+
+6. **Round 8 feedback items**: Three of four Round 8 issues appear NOT addressed in this revision — (a) Goedel "SOTA" not softened, (b) "Do LLMs Game Formalization?" not cited, (c) CAM-Bench not cited. The impact argument received minimal strengthening.
+
+```json
+{
+  "verdict": "revise",
+  "scores": {
+    "novelty": {"score": 4, "rationale": "Verified no prior work performs domain-stratified cross-tabulation of APRIL error types or dynamically conditions autoformalization retrieval on inferred mathematical subdomain. Claims appropriately narrowed after 8 rounds. Genuine gap confirmed through extensive search."},
+    "feasibility": {"score": 4, "rationale": "APRIL schema verified to contain path, error_type, error fields needed. 200 H100-hours is realistic. ICLR 2027 estimated deadline (~Sep 24) gives ~17 weeks, fitting the timeline. Open-source models available. AAAI 2027 correctly marked infeasible."},
+    "clarity": {"score": 3.5, "rationale": "Extremely thorough but excessively verbose — core_problem and opportunity read like a survey. The Goedel-Formalizer-V2-8B 'current SOTA' claim persists despite Round 8 feedback showing it's factually wrong (StepFun-7B: 25.1% BEq@1 vs Goedel-V2-8B: 16.3% on ProverBench). Three Round 8 minor issues not addressed."},
+    "impact": {"score": 3.5, "rationale": "Error taxonomy is valuable if pre-registered hypotheses hold (JSD > 0.3, prediction accuracy > 70%), but pipeline delta over naive domain prompting remains uncertain. The honest acknowledgment of ablation risk is commendable, but the affirmative case for domain-conditioned retrieval over static context lacks specific, convincing scenarios beyond one example."}
+  },
+  "issues": [
+    "MINOR (REPEATED from Round 8): Goedel-Formalizer-V2-8B still described as 'current SOTA open-source formalizer at this scale' in the approach section — verified factually incorrect: StepFun-Formalizer-7B achieves 25.1% BEq@1 on ProverBench vs. Goedel-V2-8B's 16.3%; on Omni-MATH 300, Goedel-V2-8B ties with Kimina-8B at 161/300. Must be changed to 'competitive open-source formalizer' or 'among the leading open-source formalizers'.",
+    "MINOR (REPEATED from Round 8): 'Do LLMs Game Formalization?' (arXiv 2604.19459, VerifAI-2 Workshop @ ICLR 2026) still not cited — its semantic faithfulness taxonomy (fabrication, mistranslation, omission, contradiction) operates at the post-compilation semantic layer, complementary to the proposal's pre-compilation compiler-error taxonomy. Citing it strengthens the argument that error characterization is under-explored at BOTH layers of the formalization stack.",
+    "MINOR (REPEATED from Round 8): CAM-Bench (arXiv 2605.17255, May 2026) — 1,000 Lean proof targets across optimization, numerical linear algebra, numerical analysis — still not cited. Concurrent domain-specific benchmark supporting the motivation that domain-specific evaluation matters.",
+    "MINOR: Impact argument for domain-conditioned retrieval over static context remains insufficiently developed — the proposal mentions one example ('a number theory problem may require analysis-level typeclasses') but Round 8 feedback specifically requested articulation of multiple scenarios (cross-domain problems, ambiguous domain assignment, retrieval precision degradation at higher K values). These additional scenarios would strengthen the case that the full pipeline adds meaningful value over IndiMathBench-style static context."
+  ],
+  "feedback": "This is Round 9 of 10 — Round 10 requires a final pass/fail decision. The proposal is very close to the pass threshold (avg 3.75/5.0) but three Round 8 issues were not addressed, preventing score improvement. All remaining issues are trivial fixes: (1) **Change ONE phrase**: 'current SOTA open-source formalizer at this scale' → 'a competitive open-source formalizer at this scale, chosen for its Lean4-specific training' — this is a 5-word edit fixing a factual error. (2) **Add TWO sentences** citing 'Do LLMs Game Formalization?' (arXiv 2604.19459) and CAM-Bench (arXiv 2605.17255) — the first provides a complementary post-compilation error taxonomy (fabrication, mistranslation, omission, contradiction) that together with your pre-compilation taxonomy demonstrates error characterization is under-explored at multiple layers; the second is a concurrent domain-specific benchmark validating community interest. (3) **Add 2-3 sentences** to the approach articulating specific scenarios where dynamic domain conditioning outperforms static context: (a) cross-domain problems where a number theory result depends on analysis-level typeclasses and needs retrieval from multiple Mathlib modules, (b) problems at domain boundaries where the correct subdomain classification is ambiguous and static context picks the wrong category, (c) retrieval precision at K=20+ where domain filtering reduces noise that static context cannot address. These three fixes are collectively ~150 words of text changes. Without them, the proposal will likely receive a borderline-fail in Round 10 due to persistent factual inaccuracy and insufficient impact argumentation.",
+  "reason": "Three minor issues from Round 8 not addressed — factual error in model characterization persists, two complementary references missing, impact argument for pipeline over static baseline insufficiently developed. All trivially fixable but block the 4.0 threshold."
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2001ced0-78d2-4b4f-a596-3de1b53334fc",
+  "isSidechain": false,
+  "requestId": "req_011CbVDpcB9HShSvAcJfTok2",
+  "type": "assistant",
+  "uuid": "30ee6ae0-74d6-49be-8c3d-18ccaf2dd056",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W3x2kBe3HQvVtHBL1QjXvj",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 697,
+      "cache_read_input_tokens": 69139,
+      "output_tokens": 5610,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 697,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5610,
+          "cache_read_input_tokens": 69139,
+          "cache_creation_input_tokens": 697,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 697
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 136_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-28 (UTC).**  Your job: independently verify this idea's claims via web_search, then issue a verdict.  ## U…",
+  "leafUuid": "30ee6ae0-74d6-49be-8c3d-18ccaf2dd056",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 137_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review domain-adaptive autoformalization pipeline",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 138_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-28 (UTC).**  Your job: independently verify this idea's claims via web_search, then issue a verdict.  ## U…",
+  "leafUuid": "30ee6ae0-74d6-49be-8c3d-18ccaf2dd056",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 139_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review domain-adaptive autoformalization pipeline",
+  "sessionId": "2791be44-ab0b-4df4-8f73-1548822ffd8b"
+}
+```
+
+---

@@ -1,0 +1,3682 @@
+# Research conversation: Compositional Verified Synthesis for Sustained Math Reasoning Self-Improvement ## Core Problem Iterative self-improvemen
+
+**Reproducibility Budgets for Open-Weight LLM Evaluation: A Generalizability Theory Study of 7–9B Instruction-Tuned Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 55
+- **Recorded user turns:** 1
+- **Tool calls:** 16
+- **Original source:** `logs/chats/exported-trajectories/account-2/bfcf3740-d69b-4025-a907-a330dec46b20.jsonl`
+- **Structured JSON:** [`356853d6f449c3681b28.json`](../../sessions/35/356853d6f449c3681b28.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-27T19:44:51.739Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-27T19:44:51.739Z",
+  "sessionId": "bfcf3740-d69b-4025-a907-a330dec46b20",
+  "content": "# Compositional Verified Synthesis for Sustained Math Reasoning Self-Improvement\n\n## Core Problem\n\nIterative self-improvement for math reasoning faces a theoretically-proven verification ceiling: verified synthetic data converges to the verifier's knowledge center, while unverified methods collapse. How can we sustain self-improvement beyond this ceiling without sacrificing correctness?\n\n## Research Opportunity\n\nMathematical reasoning has a unique compositional property unexploited by current methods: individually-verified atomic skills (e.g., polynomial factoring, integration by substitution) can be composed into novel multi-step problems that are correct by construction. This compositional structure provides a principled, non-heuristic mechanism for guaranteed information gain across self-improvement iterations—each novel composition is provably new training signal that breaks through the verification ceiling without requiring a more capable verifier. The building blocks exist separately (RV-Syn's computational graphs, NSRSA's symbolic verification, Prism's iterative framework) but have never been unified.\n\n## Research Landscape\n\nVerified self-improvement prevents collapse but hits a ceiling: NSRSA (Mar 2026) achieves 91.0% on GSM8K across 5 self-training iterations via sympy step-level verification, vs. 73.2% collapse without it, but uses a static problem distribution. VHG (May 2026) uses three-party self-play with verifiers achieving 21.4% improvement on integrals but maximizes difficulty, not compositional novelty. Diversity methods work but lack formal guarantees: Prism (Mar 2026) gains +3.98 on AMC via semantic partitioning with ZPD gating; R-Diverse (Feb 2026) uses memory-augmented skill-aware diversity. Compositional synthesis methods produce excellent one-shot results—Agentic Proposing (Feb 2026) achieves 91.6% on AIME25 with only 11K trajectories by composing modular skills—but none operate iteratively. The verification ceiling is theoretically proven: 'Escaping Model Collapse via Synthetic Data Verification' (Oct 2025) shows verified retraining converges to the verifier's knowledge center unless the verifier is unbiased, and 'Verification Limits Code LLM Training' (Sep 2025) confirms this empirically. Adjacent iterative methods lack the compositional mechanism: B-STaR (ICLR 2025) uses process reward bootstrapping without compositional synthesis; LADDER (Mar 2025) decomposes hard problems into simpler ones (opposite direction); OpenSIR (Nov 2025) alternates teacher-student self-play but without skill-level composition; STEPS (Jan 2026) builds hierarchical skill taxonomies for general data synthesis but is not math-specific or iterative. No existing or concurrent work unifies all three components—compositional skill synthesis, step-level symbolic verification, and iterative self-improvement—into a single framework.\n\n## Proposed Approach\n\nWe propose Compositional Verified Self-Improvement (CVSI), integrating three components: (1) a SymPy-verified Skill Library organizing ~200 atomic math operations (polynomial arithmetic, integration techniques, trigonometric identities, modular arithmetic, etc.) as executable computational graphs extending RV-Syn's structured function library; (2) a Compositional Proposer (Qwen3-4B, trained via GRPO) that selects and chains k∈{2,...,5} skills from the library into novel multi-step problems whose correctness is guaranteed by construction—each novel composition generates training signal provably outside the verifier's knowledge center; and (3) an iterative self-improvement loop where the solver (Qwen3-8B) trains on SymPy-step-verified solutions to composed problems, with Prism-style semantic partitioning over skill-composition space and ZPD gating preventing curriculum collapse. At each iteration, diagnostic evaluation on a held-out skill-composition matrix identifies the solver's weakest skill pairings, steering the proposer toward maximal information gain. We formally prove that compositional information gain is strictly positive per iteration under mild coverage assumptions, providing the first theoretical guarantee of sustained improvement beyond the verification ceiling.\n\n## Detailed Description\n\nWe introduce Compositional Verified Self-Improvement (CVSI), a framework that breaks the theoretically-proven verification ceiling in iterative math reasoning self-improvement. Current verified methods (NSRSA, VHG) prevent model collapse but converge to the verifier's knowledge center, while compositional synthesis methods (Agentic Proposing, RV-Syn) produce strong one-shot results but do not operate iteratively. CVSI unifies these threads: a SymPy-verified Skill Library of ~200 atomic math operations, organized as executable computational graphs, feeds a Compositional Proposer trained via GRPO to chain k verified skills into novel multi-step problems correct by construction. An iterative loop trains the solver (Qwen3-8B) on step-verified solutions, with Prism-inspired semantic partitioning over skill-composition space and ZPD gating preventing curriculum collapse. Crucially, each novel skill composition generates training signal provably outside the verifier's knowledge center—we formally prove compositional information gain is strictly positive per iteration under mild assumptions, giving the first theoretical guarantee of sustained self-improvement beyond the verification ceiling. Targeting GSM8K, MATH-500, and AIME 2024/2025, we demonstrate consistent gains across 10+ iterations where prior verified methods plateau after 5.\n\n## Key References\n\n- Stabilizing Iterative Self-Training with Verified Reasoning via Symbolic Recursive Self-Alignment (arXiv 2026, 2603.21558)\n- Verifier-Backed Hard Problem Generation for Mathematical Reasoning (arXiv 2026, 2605.06660)\n- Preventing Curriculum Collapse in Self-Evolving Reasoning Systems (arXiv 2026, 2603.13309)\n- R-Diverse: Mitigating Diversity Illusion in Self-Play LLM Training (arXiv 2026, 2602.13103)\n- Agentic Proposing: Enhancing Large Language Model Reasoning via Compositional Skill Synthesis (arXiv 2026, 2602.03279)\n- RV-Syn: Rational and Verifiable Mathematical Reasoning Data Synthesis based on Structured Function Library (arXiv 2025, 2504.20426)\n- Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term Convergence (arXiv 2025, 2510.16657)\n- Verification Limits Code LLM Training (arXiv 2025, 2509.20837)\n- B-STaR: Monitoring and Bootstrapping Self-Taught Reasoners (ICLR 2025, 2412.17256)\n\n## Resource Estimate\n\n- **manual**: gpu_hours: 900 A100-hours (10 iterations × ~22 hrs/iter × 3 runs + baselines + ablations + evaluation), timeline: 14 weeks (3 wks skill library + verification pipeline, 3 wks proposer training, 3 wks main experiments, 2 wks ablations, 3 wks paper writing), estimated_gpu_cost: $1,800 at $2.00/hr A100 cloud; ~$1,100 at spot pricing\n- **human_in_loop**: gpu_hours: 900 A100-hours (same experiment budget; Claude accelerates code, not GPU time), timeline: 10 weeks (2 wks infrastructure, 2 wks proposer, 3 wks experiments, 1 wk ablations, 2 wks paper), claude_api_cost: $300 (pipeline scaffolding, experiment analysis, proof checking, paper drafting), estimated_gpu_cost: $1,800 at $2.00/hr A100 cloud\n- **auto_research**: gpu_hours: 1,100 A100-hours (broader hyperparameter sweeps and additional scaling experiments), timeline: 6 weeks (1 wk full pipeline, 2 wks main experiments, 1 wk ablations, 2 wks paper + revision), claude_api_cost: $700 (end-to-end code generation, experiment orchestration, analysis, paper writing), estimated_gpu_cost: $2,200 at $2.00/hr A100 cloud, speed_bottleneck: Sequential iteration wall-clock: each self-improvement iteration (generation → verification → training) takes ~5 hrs and must complete before the next starts; 10 iterations = 50 hrs minimum serial time per run\n"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-27T19:44:51.747Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-27T19:44:51.747Z",
+  "sessionId": "bfcf3740-d69b-4025-a907-a330dec46b20"
+}
+```
+
+---
+
+## Round 1
+
+53 recorded events
+
+### User
+
+_source line 3 · 2026-05-27T19:44:51.824Z_
+
+# Compositional Verified Synthesis for Sustained Math Reasoning Self-Improvement
+
+## Core Problem
+
+Iterative self-improvement for math reasoning faces a theoretically-proven verification ceiling: verified synthetic data converges to the verifier's knowledge center, while unverified methods collapse. How can we sustain self-improvement beyond this ceiling without sacrificing correctness?
+
+## Research Opportunity
+
+Mathematical reasoning has a unique compositional property unexploited by current methods: individually-verified atomic skills (e.g., polynomial factoring, integration by substitution) can be composed into novel multi-step problems that are correct by construction. This compositional structure provides a principled, non-heuristic mechanism for guaranteed information gain across self-improvement iterations—each novel composition is provably new training signal that breaks through the verification ceiling without requiring a more capable verifier. The building blocks exist separately (RV-Syn's computational graphs, NSRSA's symbolic verification, Prism's iterative framework) but have never been unified.
+
+## Research Landscape
+
+Verified self-improvement prevents collapse but hits a ceiling: NSRSA (Mar 2026) achieves 91.0% on GSM8K across 5 self-training iterations via sympy step-level verification, vs. 73.2% collapse without it, but uses a static problem distribution. VHG (May 2026) uses three-party self-play with verifiers achieving 21.4% improvement on integrals but maximizes difficulty, not compositional novelty. Diversity methods work but lack formal guarantees: Prism (Mar 2026) gains +3.98 on AMC via semantic partitioning with ZPD gating; R-Diverse (Feb 2026) uses memory-augmented skill-aware diversity. Compositional synthesis methods produce excellent one-shot results—Agentic Proposing (Feb 2026) achieves 91.6% on AIME25 with only 11K trajectories by composing modular skills—but none operate iteratively. The verification ceiling is theoretically proven: 'Escaping Model Collapse via Synthetic Data Verification' (Oct 2025) shows verified retraining converges to the verifier's knowledge center unless the verifier is unbiased, and 'Verification Limits Code LLM Training' (Sep 2025) confirms this empirically. Adjacent iterative methods lack the compositional mechanism: B-STaR (ICLR 2025) uses process reward bootstrapping without compositional synthesis; LADDER (Mar 2025) decomposes hard problems into simpler ones (opposite direction); OpenSIR (Nov 2025) alternates teacher-student self-play but without skill-level composition; STEPS (Jan 2026) builds hierarchical skill taxonomies for general data synthesis but is not math-specific or iterative. No existing or concurrent work unifies all three components—compositional skill synthesis, step-level symbolic verification, and iterative self-improvement—into a single framework.
+
+## Proposed Approach
+
+We propose Compositional Verified Self-Improvement (CVSI), integrating three components: (1) a SymPy-verified Skill Library organizing ~200 atomic math operations (polynomial arithmetic, integration techniques, trigonometric identities, modular arithmetic, etc.) as executable computational graphs extending RV-Syn's structured function library; (2) a Compositional Proposer (Qwen3-4B, trained via GRPO) that selects and chains k∈{2,...,5} skills from the library into novel multi-step problems whose correctness is guaranteed by construction—each novel composition generates training signal provably outside the verifier's knowledge center; and (3) an iterative self-improvement loop where the solver (Qwen3-8B) trains on SymPy-step-verified solutions to composed problems, with Prism-style semantic partitioning over skill-composition space and ZPD gating preventing curriculum collapse. At each iteration, diagnostic evaluation on a held-out skill-composition matrix identifies the solver's weakest skill pairings, steering the proposer toward maximal information gain. We formally prove that compositional information gain is strictly positive per iteration under mild coverage assumptions, providing the first theoretical guarantee of sustained improvement beyond the verification ceiling.
+
+## Detailed Description
+
+We introduce Compositional Verified Self-Improvement (CVSI), a framework that breaks the theoretically-proven verification ceiling in iterative math reasoning self-improvement. Current verified methods (NSRSA, VHG) prevent model collapse but converge to the verifier's knowledge center, while compositional synthesis methods (Agentic Proposing, RV-Syn) produce strong one-shot results but do not operate iteratively. CVSI unifies these threads: a SymPy-verified Skill Library of ~200 atomic math operations, organized as executable computational graphs, feeds a Compositional Proposer trained via GRPO to chain k verified skills into novel multi-step problems correct by construction. An iterative loop trains the solver (Qwen3-8B) on step-verified solutions, with Prism-inspired semantic partitioning over skill-composition space and ZPD gating preventing curriculum collapse. Crucially, each novel skill composition generates training signal provably outside the verifier's knowledge center—we formally prove compositional information gain is strictly positive per iteration under mild assumptions, giving the first theoretical guarantee of sustained self-improvement beyond the verification ceiling. Targeting GSM8K, MATH-500, and AIME 2024/2025, we demonstrate consistent gains across 10+ iterations where prior verified methods plateau after 5.
+
+## Key References
+
+- Stabilizing Iterative Self-Training with Verified Reasoning via Symbolic Recursive Self-Alignment (arXiv 2026, 2603.21558)
+- Verifier-Backed Hard Problem Generation for Mathematical Reasoning (arXiv 2026, 2605.06660)
+- Preventing Curriculum Collapse in Self-Evolving Reasoning Systems (arXiv 2026, 2603.13309)
+- R-Diverse: Mitigating Diversity Illusion in Self-Play LLM Training (arXiv 2026, 2602.13103)
+- Agentic Proposing: Enhancing Large Language Model Reasoning via Compositional Skill Synthesis (arXiv 2026, 2602.03279)
+- RV-Syn: Rational and Verifiable Mathematical Reasoning Data Synthesis based on Structured Function Library (arXiv 2025, 2504.20426)
+- Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term Convergence (arXiv 2025, 2510.16657)
+- Verification Limits Code LLM Training (arXiv 2025, 2509.20837)
+- B-STaR: Monitoring and Bootstrapping Self-Taught Reasoners (ICLR 2025, 2412.17256)
+
+## Resource Estimate
+
+- **manual**: gpu_hours: 900 A100-hours (10 iterations × ~22 hrs/iter × 3 runs + baselines + ablations + evaluation), timeline: 14 weeks (3 wks skill library + verification pipeline, 3 wks proposer training, 3 wks main experiments, 2 wks ablations, 3 wks paper writing), estimated_gpu_cost: $1,800 at $2.00/hr A100 cloud; ~$1,100 at spot pricing
+- **human_in_loop**: gpu_hours: 900 A100-hours (same experiment budget; Claude accelerates code, not GPU time), timeline: 10 weeks (2 wks infrastructure, 2 wks proposer, 3 wks experiments, 1 wk ablations, 2 wks paper), claude_api_cost: $300 (pipeline scaffolding, experiment analysis, proof checking, paper drafting), estimated_gpu_cost: $1,800 at $2.00/hr A100 cloud
+- **auto_research**: gpu_hours: 1,100 A100-hours (broader hyperparameter sweeps and additional scaling experiments), timeline: 6 weeks (1 wk full pipeline, 2 wks main experiments, 1 wk ablations, 2 wks paper + revision), claude_api_cost: $700 (end-to-end code generation, experiment orchestration, analysis, paper writing), estimated_gpu_cost: $2,200 at $2.00/hr A100 cloud, speed_bottleneck: Sequential iteration wall-clock: each self-improvement iteration (generation → verification → training) takes ~5 hrs and must complete before the next starts; 10 iterations = 50 hrs minimum serial time per run
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "1fbe285c-c495-4bfc-b016-0f586be6e401",
+  "type": "user",
+  "uuid": "093dfbd8-bc12-414f-ab08-bd1f3d995793",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "bfcf3740-d69b-4025-a907-a330dec46b20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-27T19:44:51.823Z_
+
+```json
+{
+  "parentUuid": "093dfbd8-bc12-414f-ab08-bd1f3d995793",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "53424a92-ff66-4d4f-a399-f7e066958f9b",
+  "timestamp": "2026-05-27T19:44:51.823Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "bfcf3740-d69b-4025-a907-a330dec46b20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-27T19:44:51.823Z_
+
+```json
+{
+  "parentUuid": "53424a92-ff66-4d4f-a399-f7e066958f9b",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "05840b80-283a-4833-bedf-4ebb5c5f987c",
+  "timestamp": "2026-05-27T19:44:51.823Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "bfcf3740-d69b-4025-a907-a330dec46b20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Compositional verified self-improvement for math reasoning",
+  "sessionId": "bfcf3740-d69b-4025-a907-a330dec46b20"
+}
+```
+
+---
+
+### Assistant
+
+_source line 7 · 2026-05-27T19:44:59.867Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze this proposal carefully. I'm the "发掘 agent" (Discovery agent), so I need to focus on:
+1. Novelty - how novel is the core contribution
+2. Significance - how important is the research problem
+3. Related Work differentiation
+
+Before giving any suggestions, I need to do thorough literature research. Let me start by searching for the key papers and concepts mentioned in this proposal.
+
+Let me search for:
+1. Recent work on verification ceiling in self-improvement
+2. Compositional skill synthesis for math reasoning
+
+
+3. The specific papers mentioned (NSRSA, VHG, Prism, Agentic Proposing, etc.) and any existing work that might already address what CVSI is proposing
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "05840b80-283a-4833-bedf-4ebb5c5f987c",
+  "isSidechain": false,
+  "requestId": "req_011CbTeWL1T1AHdpJaj5uyrQ",
+  "type": "assistant",
+  "uuid": "928c3285-db67-4423-a9ce-8938ced53ea3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "bfcf3740-d69b-4025-a907-a330dec46b20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0122m28MNMnBsnBy4ZzkMonL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 6540,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 280,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6540,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 280,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 6540,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6540
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-27T19:44:59.870Z_
+
+I need to do thorough literature research before evaluating this proposal. Let me start with multiple targeted searches.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "928c3285-db67-4423-a9ce-8938ced53ea3",
+  "isSidechain": false,
+  "requestId": "req_011CbTeWL1T1AHdpJaj5uyrQ",
+  "type": "assistant",
+  "uuid": "7c7cc4f9-71c4-44a4-8f41-fca09106947f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "bfcf3740-d69b-4025-a907-a330dec46b20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0122m28MNMnBsnBy4ZzkMonL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 6540,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 280,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6540,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 280,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 6540,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6540
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-27T19:44:59.972Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_0117B3FmZoJ16fSKo2R7UU23`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7c7cc4f9-71c4-44a4-8f41-fca09106947f",
+  "isSidechain": false,
+  "requestId": "req_011CbTeWL1T1AHdpJaj5uyrQ",
+  "type": "assistant",
+  "uuid": "ce77e2e3-7592-4e16-bcf3-995ab427be44",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "bfcf3740-d69b-4025-a907-a330dec46b20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0122m28MNMnBsnBy4ZzkMonL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 6540,
+      "cache_read_input_tokens": 11014,
+      "output_tokens": 280,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6540,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 280,
+          "cache_read_input_tokens": 11014,
+          "cache_creation_input_tokens": 6540,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6540
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-27T19:44:59.978Z_
+
+<details><summary>↩ Tool result · `toolu_0117B3FmZoJ16fSKo2R7UU23`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ce77e2e3-7592-4e16-bcf3-995ab427be44",
+  "isSidechain": false,
+  "promptId": "1fbe285c-c495-4bfc-b016-0f586be6e401",
+  "type": "user",
+  "uuid": "0fdd12b4-8c71-4d4d-98a8-6b6a60ec1cc2",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "ce77e2e3-7592-4e16-bcf3-995ab427be44",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "bfcf3740-d69b-4025-a907-a330dec46b20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11 · 2026-05-27T19:45:02.489Z_
+
+Now let me run multiple searches in parallel to understand the landscape.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0fdd12b4-8c71-4d4d-98a8-6b6a60ec1cc2",
+  "isSidechain": false,
+  "requestId": "req_011CbTeWw7poFeHMGqDtwTUD",
+  "type": "assistant",
+  "uuid": "0523a9c2-b9c6-4c49-97f4-a39c00c50fd0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "bfcf3740-d69b-4025-a907-a330dec46b20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hb4xCmzGX4vpunnMFHToup",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 807,
+      "cache_read_input_tokens": 17554,
+      "output_tokens": 82,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 807,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 82,
+          "cache_read_input_tokens": 17554,
+          "cache_creation_input_tokens": 807,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 807
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-27T19:45:02.968Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DdR3PupL26WuvubnUmEixu`</summary>
+
+```json
+{
+  "query": "verification ceiling self-improvement math reasoning LLM 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0523a9c2-b9c6-4c49-97f4-a39c00c50fd0",
+  "isSidechain": false,
+  "requestId": "req_011CbTeWw7poFeHMGqDtwTUD",
+  "type": "assistant",
+  "uuid": "4d4a8316-ef58-44fd-9c89-8395bf4cc1e0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "bfcf3740-d69b-4025-a907-a330dec46b20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hb4xCmzGX4vpunnMFHToup",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 807,
+      "cache_read_input_tokens": 17554,
+      "output_tokens": 82,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 807,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 82,
+          "cache_read_input_tokens": 17554,
+          "cache_creation_input_tokens": 807,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 807
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-27T19:45:10.143Z_
+
+<details><summary>↩ Tool result · `toolu_01DdR3PupL26WuvubnUmEixu`</summary>
+
+```text
+Web search results for query: "verification ceiling self-improvement math reasoning LLM 2025 2026"
+
+Links: [{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2505.18116"},{"title":"Learning to Self-Verify Makes Language Models Better Reasoners","url":"https://arxiv.org/html/2602.07594v1"},{"title":"Improving LLM Reasoning through Scaling Inference Computation with   Collaborative Verification","url":"https://arxiv.org/pdf/2410.05318"},{"title":"S2R: Teaching LLMs to Self-verify and Self-correct via ...","url":"https://aclanthology.org/2025.acl-long.1104.pdf"},{"title":"Not All Votes Count! Programs as Verifiers Improve Self-Consistency of   Language Models for Math Reasoning","url":"https://arxiv.org/pdf/2410.12608"},{"title":"DeepSeekMath-V2: Towards Self-Verifiable Mathematical Reasoning","url":"https://arxiv.org/pdf/2511.22570"},{"title":"LLM Benchmark Leaderboard 2026: Coding, Math, Reasoning and Agents | CodeSOTA | CodeSOTA","url":"https://www.codesota.com/llm"},{"title":"The State Of LLMs 2025: Progress, Progress, and Predictions","url":"https://magazine.sebastianraschka.com/p/state-of-llms-2025"}]
+
+Based on the search results, here are relevant findings about verification, self-improvement, and math reasoning in LLMs for 2025-2026:
+
+## Key Research Themes
+
+**Verification-Based Self-Improvement:**
+A promising approach removes competence ceilings imposed by external teachers, offering a path toward general intelligence by using verification-driven training without costly data annotation. Reinforcement Learning appears to be a natural fit for verification-driven training, with algorithms like PPO and GRPO explicitly designed to maximize reward signals from binary verifier outcomes.
+
+**Self-Verification Training:**
+Self-verification capability does not naturally improve with increased model scale or stronger generation ability, revealing a persistent asymmetry between generation and self-verification. Researchers are investigating this asymmetry to improve verification training approaches.
+
+**State-of-the-Art Results:**
+DeepSeekMath-V2 demonstrates strong theorem-proving capabilities and achieves gold-level scores on IMO 2025, suggesting that self-verifiable mathematical reasoning is a feasible research direction.
+
+**Inference-Time Scaling:**
+There will be more focus on inference-time scaling in 2026, where more time and resources are spent after training to generate answers, particularly for applications where accuracy is prioritized over latency.
+
+The research appears to be converging on verification-based approaches as a key method for improving LLM mathematical reasoning while avoiding external teacher limitations.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4d4a8316-ef58-44fd-9c89-8395bf4cc1e0",
+  "isSidechain": false,
+  "promptId": "1fbe285c-c495-4bfc-b016-0f586be6e401",
+  "type": "user",
+  "uuid": "666a751e-e14f-4f5d-be5d-b3ac532fbdda",
+  "toolUseResult": {
+    "query": "verification ceiling self-improvement math reasoning LLM 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011Eec9dGMkkL9zxXdSgjEEH",
+        "content": [
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2505.18116"
+          },
+          {
+            "title": "Learning to Self-Verify Makes Language Models Better Reasoners",
+            "url": "https://arxiv.org/html/2602.07594v1"
+          },
+          {
+            "title": "Improving LLM Reasoning through Scaling Inference Computation with   Collaborative Verification",
+            "url": "https://arxiv.org/pdf/2410.05318"
+          },
+          {
+            "title": "S2R: Teaching LLMs to Self-verify and Self-correct via ...",
+            "url": "https://aclanthology.org/2025.acl-long.1104.pdf"
+          },
+          {
+            "title": "Not All Votes Count! Programs as Verifiers Improve Self-Consistency of   Language Models for Math Reasoning",
+            "url": "https://arxiv.org/pdf/2410.12608"
+          },
+          {
+            "title": "DeepSeekMath-V2: Towards Self-Verifiable Mathematical Reasoning",
+            "url": "https://arxiv.org/pdf/2511.22570"
+          },
+          {
+            "title": "LLM Benchmark Leaderboard 2026: Coding, Math, Reasoning and Agents | CodeSOTA | CodeSOTA",
+            "url": "https://www.codesota.com/llm"
+          },
+          {
+            "title": "The State Of LLMs 2025: Progress, Progress, and Predictions",
+            "url": "https://magazine.sebastianraschka.com/p/state-of-llms-2025"
+          }
+        ]
+      },
+      "Based on the search results, here are relevant findings about verification, self-improvement, and math reasoning in LLMs for 2025-2026:\n\n## Key Research Themes\n\n**Verification-Based Self-Improvement:**\nA promising approach removes competence ceilings imposed by external teachers, offering a path toward general intelligence by using verification-driven training without costly data annotation. Reinforcement Learning appears to be a natural fit for verification-driven training, with algorithms like PPO and GRPO explicitly designed to maximize reward signals from binary verifier outcomes.\n\n**Self-Verification Training:**\nSelf-verification capability does not naturally improve with increased model scale or stronger generation ability, revealing a persistent asymmetry between generation and self-verification. Researchers are investigating this asymmetry to improve verification training approaches.\n\n**State-of-the-Art Results:**\nDeepSeekMath-V2 demonstrates strong theorem-proving capabilities and achieves gold-level scores on IMO 2025, suggesting that self-verifiable mathematical reasoning is a feasible research direction.\n\n**Inference-Time Scaling:**\nThere will be more focus on inference-time scaling in 2026, where more time and resources are spent after training to generate answers, particularly for applications where accuracy is prioritized over latency.\n\nThe research appears to be converging on verification-based approaches as a key method for improving LLM mathematical reasoning while avoiding external teacher limitations."
+    ],
+    "durationSeconds": 7.171094609,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "4d4a8316-ef58-44fd-9c89-8395bf4cc1e0",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "bfcf3740-d69b-4025-a907-a330dec46b20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 14_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Compositional Verified Synthesis for Sustained Math Reasoning Self-Improvement  ## Core Problem  Iterative self-improvement for math reasoning faces a theoretically-proven verification ceiling: veri…",
+  "leafUuid": "666a751e-e14f-4f5d-be5d-b3ac532fbdda",
+  "sessionId": "bfcf3740-d69b-4025-a907-a330dec46b20"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 15_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Compositional verified self-improvement for math reasoning",
+  "sessionId": "bfcf3740-d69b-4025-a907-a330dec46b20"
+}
+```
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-27T19:45:12.869Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HBYH7JTQq5zA6AqyDF2mCH`</summary>
+
+```json
+{
+  "query": "compositional skill synthesis math problem generation LLM self-training 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "666a751e-e14f-4f5d-be5d-b3ac532fbdda",
+  "isSidechain": false,
+  "requestId": "req_011CbTeXgF9DJhKvQNQYwZCU",
+  "type": "assistant",
+  "uuid": "98b144ab-6256-4ff6-ab34-9014b0ba73cd",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "bfcf3740-d69b-4025-a907-a330dec46b20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014xzUuXdDHwZT7sJLnkqdh5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 795,
+      "cache_read_input_tokens": 18361,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 795,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 18361,
+          "cache_creation_input_tokens": 795,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 795
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-27T19:45:20.102Z_
+
+<details><summary>↩ Tool result · `toolu_01HBYH7JTQq5zA6AqyDF2mCH`</summary>
+
+```text
+Web search results for query: "compositional skill synthesis math problem generation LLM self-training 2025 2026"
+
+Links: [{"title":"MathMixup: Boosting LLM Mathematical Reasoning with Difficulty-Controllable Data Synthesis and Curriculum Learning","url":"https://arxiv.org/html/2601.17006"},{"title":"Agent Skills for Large Language Models: Architecture, Acquisition, Security, and the Path Forward","url":"https://arxiv.org/html/2602.12430v3"},{"title":"MathMixup: Boosting LLM Mathematical Reasoning with Difficulty-Controllable Data Synthesis and Curriculum Learning","url":"https://arxiv.org/pdf/2601.17006"},{"title":"LADDER: Self-Improving LLMs Through Recursive Problem Decomposition","url":"https://arxiv.org/pdf/2503.00735"},{"title":"Towards Compositional Generalization of LLMs via Skill Taxonomy Guided Data Synthesis","url":"https://arxiv.org/pdf/2601.03676"},{"title":"Dual-Phase LLM Reasoning: Self-Evolved Mathematical Frameworks","url":"https://arxiv.org/pdf/2601.05616"},{"title":"AI-Assisted Generation of Difficult Math Questions","url":"https://arxiv.org/pdf/2407.21009"}]
+
+Based on the search results, here's what I found on compositional skill synthesis, math problem generation, and LLM self-training in 2025-2026:
+
+## Key Research Areas
+
+**Compositional Skill Synthesis:**
+LLMs and agent-based systems continue to struggle with compositional generalization—the ability to flexibly recombine learned skills into novel configurations. A key obstacle is a fundamental data bottleneck: while individual atomic skills are abundantly represented in training corpora, complex skill combinations follow a long-tailed, power-law distribution.
+
+Recent work addresses this through stochastic or heuristic skill mixing, but typically ignores the underlying structural and hierarchical relationships among skills. Additionally, skills can be composed dynamically during problem-solving, where a specialized agent selects and composes modular reasoning skills from a library.
+
+**Math Problem Generation & Self-Training:**
+A critical bottleneck remains: further improvement in LLM mathematical reasoning is fundamentally constrained by the lack of high-quality training data with explicit and controllable difficulty gradients. Recent approaches include:
+
+- Strategic problem decomposition and verified self-learning can achieve substantial capability improvements without relying on architectural scaling or human supervision
+- A two-stage framework generates and utilizes self-synthesized long CoT data, relying on the model's own outputs without external dependencies
+- Leveraging LLM metacognition skills, a strong LLM is used to extract core "skills" from existing math datasets to generate novel and difficult questions by prompting with random pairs of core skills
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "98b144ab-6256-4ff6-ab34-9014b0ba73cd",
+  "isSidechain": false,
+  "promptId": "1fbe285c-c495-4bfc-b016-0f586be6e401",
+  "type": "user",
+  "uuid": "680a71fa-5665-4f24-916d-972149328292",
+  "toolUseResult": {
+    "query": "compositional skill synthesis math problem generation LLM self-training 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HGGUJgS78dmYr9gRvW8Nxb",
+        "content": [
+          {
+            "title": "MathMixup: Boosting LLM Mathematical Reasoning with Difficulty-Controllable Data Synthesis and Curriculum Learning",
+            "url": "https://arxiv.org/html/2601.17006"
+          },
+          {
+            "title": "Agent Skills for Large Language Models: Architecture, Acquisition, Security, and the Path Forward",
+            "url": "https://arxiv.org/html/2602.12430v3"
+          },
+          {
+            "title": "MathMixup: Boosting LLM Mathematical Reasoning with Difficulty-Controllable Data Synthesis and Curriculum Learning",
+            "url": "https://arxiv.org/pdf/2601.17006"
+          },
+          {
+            "title": "LADDER: Self-Improving LLMs Through Recursive Problem Decomposition",
+            "url": "https://arxiv.org/pdf/2503.00735"
+          },
+          {
+            "title": "Towards Compositional Generalization of LLMs via Skill Taxonomy Guided Data Synthesis",
+            "url": "https://arxiv.org/pdf/2601.03676"
+          },
+          {
+            "title": "Dual-Phase LLM Reasoning: Self-Evolved Mathematical Frameworks",
+            "url": "https://arxiv.org/pdf/2601.05616"
+          },
+          {
+            "title": "AI-Assisted Generation of Difficult Math Questions",
+            "url": "https://arxiv.org/pdf/2407.21009"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found on compositional skill synthesis, math problem generation, and LLM self-training in 2025-2026:\n\n## Key Research Areas\n\n**Compositional Skill Synthesis:**\nLLMs and agent-based systems continue to struggle with compositional generalization—the ability to flexibly recombine learned skills into novel configurations. A key obstacle is a fundamental data bottleneck: while individual atomic skills are abundantly represented in training corpora, complex skill combinations follow a long-tailed, power-law distribution.\n\nRecent work addresses this through stochastic or heuristic skill mixing, but typically ignores the underlying structural and hierarchical relationships among skills. Additionally, skills can be composed dynamically during problem-solving, where a specialized agent selects and composes modular reasoning skills from a library.\n\n**Math Problem Generation & Self-Training:**\nA critical bottleneck remains: further improvement in LLM mathematical reasoning is fundamentally constrained by the lack of high-quality training data with explicit and controllable difficulty gradients. Recent approaches include:\n\n- Strategic problem decomposition and verified self-learning can achieve substantial capability improvements without relying on architectural scaling or human supervision\n- A two-stage framework generates and utilizes self-synthesized long CoT data, relying on the model's own outputs without external dependencies\n- Leveraging LLM metacognition skills, a strong LLM is used to extract core \"skills\" from existing math datasets to generate novel and difficult questions by prompting with random pairs of core skills"
+    ],
+    "durationSeconds": 7.228166989000001,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "98b144ab-6256-4ff6-ab34-9014b0ba73cd",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "bfcf3740-d69b-4025-a907-a330dec46b20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-27T19:45:22.975Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WWXe25e17YdfYFgxKxdxoo`</summary>
+
+```json
+{
+  "query": "\"Escaping Model Collapse\" synthetic data verification convergence verifier knowledge center arXiv 2510.16657"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "680a71fa-5665-4f24-916d-972149328292",
+  "isSidechain": false,
+  "requestId": "req_011CbTeYQqirg81WfnVW6K1r",
+  "type": "assistant",
+  "uuid": "ca99a6ad-4670-4290-af80-d20cfaf2f62a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "bfcf3740-d69b-4025-a907-a330dec46b20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017pXHtY4Ph54XBPSh7d3Fwd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 763,
+      "cache_read_input_tokens": 19156,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 763,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 19156,
+          "cache_creation_input_tokens": 763,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 763
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-27T19:45:30.088Z_
+
+<details><summary>↩ Tool result · `toolu_01WWXe25e17YdfYFgxKxdxoo`</summary>
+
+```text
+Web search results for query: ""Escaping Model Collapse" synthetic data verification convergence verifier knowledge center arXiv 2510.16657"
+
+Links: [{"title":"[2510.16657] Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term Convergence","url":"https://arxiv.org/abs/2510.16657"},{"title":"Escaping Model Collapse via Synthetic Data Verification:","url":"https://arxiv.org/pdf/2510.16657"},{"title":"Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term Convergence | OpenReview","url":"https://openreview.net/forum?id=yfk6c39omW"},{"title":"Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term ConvergenceThis project is supported by the AI2050 program at Schmidt Sciences (Grant G-24-66104) and Army Research Office Award W911NF-23-1-0030. We also thank Cong Ma from UChicago, Hongning Wang and Bo Li from Tsinghua, Pinyan Lu and Gavin Tang from Shanghai University of Finance and Economics for helpful discussions and suggestions.","url":"https://arxiv.org/html/2510.16657v1"},{"title":"Machine Learning Oct 2025","url":"https://arxiv.org/list/cs.LG/2025-10?skip=4175&show=25"},{"title":"Machine Learning Oct 2025 - stat.ML","url":"https://arxiv.org/list/stat.ML/2025-10?skip=150&show=50"},{"title":"Synthetic Data","url":"https://www.aussieai.com/research/synthetic-data"}]
+
+I found the paper you're looking for! Here's a summary of the research:
+
+"Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term Convergence" addresses the concern that iteratively retraining a generative model on its self-generated synthetic data may deteriorate model performance, a phenomenon called model collapse.
+
+**Key Finding:**
+The main finding is that by injecting information through an external synthetic data verifier, whether a human or a better model, synthetic retraining will not cause model collapse.
+
+**Research Approach:**
+The authors situate their theoretical analysis in the fundamental linear regression setting, showing that verifier-guided retraining can yield near-term improvements, but ultimately drives the parameter estimate to the verifier's "knowledge center" in the long run.
+
+**Long-term Convergence:**
+The theoretical analysis shows that the answer to sustaining short-term improvements in the long run is "No – unless the verifier has no bias," with verifier-based synthetic retraining converging to the verifier's knowledge center in the long term.
+
+**Authors and Details:**
+The paper was authored by Bingji Yi, Qiyuan Liu, Yuwei Cheng, and Haifeng Xu, submitted on October 18, 2025, with a revised version on March 5, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ca99a6ad-4670-4290-af80-d20cfaf2f62a",
+  "isSidechain": false,
+  "promptId": "1fbe285c-c495-4bfc-b016-0f586be6e401",
+  "type": "user",
+  "uuid": "314ad006-397e-4e4c-bd66-5f293fd177de",
+  "toolUseResult": {
+    "query": "\"Escaping Model Collapse\" synthetic data verification convergence verifier knowledge center arXiv 2510.16657",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FcHik8zqy8Ft2byEFjnwwq",
+        "content": [
+          {
+            "title": "[2510.16657] Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term Convergence",
+            "url": "https://arxiv.org/abs/2510.16657"
+          },
+          {
+            "title": "Escaping Model Collapse via Synthetic Data Verification:",
+            "url": "https://arxiv.org/pdf/2510.16657"
+          },
+          {
+            "title": "Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term Convergence | OpenReview",
+            "url": "https://openreview.net/forum?id=yfk6c39omW"
+          },
+          {
+            "title": "Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term ConvergenceThis project is supported by the AI2050 program at Schmidt Sciences (Grant G-24-66104) and Army Research Office Award W911NF-23-1-0030. We also thank Cong Ma from UChicago, Hongning Wang and Bo Li from Tsinghua, Pinyan Lu and Gavin Tang from Shanghai University of Finance and Economics for helpful discussions and suggestions.",
+            "url": "https://arxiv.org/html/2510.16657v1"
+          },
+          {
+            "title": "Machine Learning Oct 2025",
+            "url": "https://arxiv.org/list/cs.LG/2025-10?skip=4175&show=25"
+          },
+          {
+            "title": "Machine Learning Oct 2025 - stat.ML",
+            "url": "https://arxiv.org/list/stat.ML/2025-10?skip=150&show=50"
+          },
+          {
+            "title": "Synthetic Data",
+            "url": "https://www.aussieai.com/research/synthetic-data"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's a summary of the research:\n\n\"Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term Convergence\" addresses the concern that iteratively retraining a generative model on its self-generated synthetic data may deteriorate model performance, a phenomenon called model collapse.\n\n**Key Finding:**\nThe main finding is that by injecting information through an external synthetic data verifier, whether a human or a better model, synthetic retraining will not cause model collapse.\n\n**Research Approach:**\nThe authors situate their theoretical analysis in the fundamental linear regression setting, showing that verifier-guided retraining can yield near-term improvements, but ultimately drives the parameter estimate to the verifier's \"knowledge center\" in the long run.\n\n**Long-term Convergence:**\nThe theoretical analysis shows that the answer to sustaining short-term improvements in the long run is \"No – unless the verifier has no bias,\" with verifier-based synthetic retraining converging to the verifier's knowledge center in the long term.\n\n**Authors and Details:**\nThe paper was authored by Bingji Yi, Qiyuan Liu, Yuwei Cheng, and Haifeng Xu, submitted on October 18, 2025, with a revised version on March 5, 2026."
+    ],
+    "durationSeconds": 7.109656554999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "ca99a6ad-4670-4290-af80-d20cfaf2f62a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "bfcf3740-d69b-4025-a907-a330dec46b20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-27T19:45:32.856Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UCBQDKfmbvYLa9FFDK6j7b`</summary>
+
+```json
+{
+  "query": "NSRSA sympy symbolic recursive self-alignment iterative self-training math reasoning 2603.21558"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "314ad006-397e-4e4c-bd66-5f293fd177de",
+  "isSidechain": false,
+  "requestId": "req_011CbTeZ9YVdKKRk97PqK3Ne",
+  "type": "assistant",
+  "uuid": "293f4dbb-e52c-4110-947f-483bb9e63a90",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "bfcf3740-d69b-4025-a907-a330dec46b20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Sz2yoH9QZo6JtA5hoR2vyT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 837,
+      "cache_read_input_tokens": 19919,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 837,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 19919,
+          "cache_creation_input_tokens": 837,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 837
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-27T19:45:40.760Z_
+
+<details><summary>↩ Tool result · `toolu_01UCBQDKfmbvYLa9FFDK6j7b`</summary>
+
+```text
+Web search results for query: "NSRSA sympy symbolic recursive self-alignment iterative self-training math reasoning 2603.21558"
+
+Links: [{"title":"[2603.21558] Stabilizing Iterative Self-Training with Verified Reasoning via Symbolic Recursive Self-Alignment","url":"https://arxiv.org/abs/2603.21558"},{"title":"Stabilizing Iterative Self-Training with Verified Reasoning via Symbolic Recursive Self-Alignment","url":"https://arxiv.org/html/2603.21558"},{"title":"Stabilizing Iterative Self-Training with Verified Reasoning via Symbolic Recursive Self-Alignment","url":"https://arxiv.org/pdf/2603.21558"},{"title":"NeuroProlog: Multi-Task Fine-Tuning for Neurosymbolic Mathematical Reasoning via the Cocktail Effect","url":"https://arxiv.org/pdf/2603.02504"},{"title":"Reasoning in Large Language Models Through Symbolic Math Word Problems","url":"https://arxiv.org/pdf/2308.01906"}]
+
+Based on the search results, here's what I found about the paper with ID 2603.21558:
+
+NSRSA (Neuro-Symbolic Recursive Self-Alignment) stabilizes iterative self-training by embedding a symbolic verification subsystem that gates training data quality at the reasoning step level.
+
+The paper addresses a key challenge in recursive self-improvement: recursive drift, where as models train on self-generated data across multiple iterations, errors in intermediate reasoning compound, leading to mode collapse and performance degradation.
+
+Key features of NSRSA include: verifying each arithmetic operation via sympy, checking logical flow consistency across reasoning steps, and enforcing domain constraints. This goes beyond simple outcome verification, which can admit solutions with flawed reasoning.
+
+The research evaluation: evaluates NSRSA on GSM8K using Qwen3-4B-Thinking across 5 self-training iterations under five conditions: no verification, outcome verification, majority voting, full NSRSA symbolic verification, and NSRSA with DPO.
+
+Notable results include that NSRSA rejects approximately 34% of correct-answer solutions that pass outcome verification, eliminating "lucky guesses" with flawed reasoning from the training set.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "293f4dbb-e52c-4110-947f-483bb9e63a90",
+  "isSidechain": false,
+  "promptId": "1fbe285c-c495-4bfc-b016-0f586be6e401",
+  "type": "user",
+  "uuid": "eac72804-f4ed-48d2-b344-1dd7f35646d6",
+  "toolUseResult": {
+    "query": "NSRSA sympy symbolic recursive self-alignment iterative self-training math reasoning 2603.21558",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013JmrbXCxe4Uo1JtBu9PjME",
+        "content": [
+          {
+            "title": "[2603.21558] Stabilizing Iterative Self-Training with Verified Reasoning via Symbolic Recursive Self-Alignment",
+            "url": "https://arxiv.org/abs/2603.21558"
+          },
+          {
+            "title": "Stabilizing Iterative Self-Training with Verified Reasoning via Symbolic Recursive Self-Alignment",
+            "url": "https://arxiv.org/html/2603.21558"
+          },
+          {
+            "title": "Stabilizing Iterative Self-Training with Verified Reasoning via Symbolic Recursive Self-Alignment",
+            "url": "https://arxiv.org/pdf/2603.21558"
+          },
+          {
+            "title": "NeuroProlog: Multi-Task Fine-Tuning for Neurosymbolic Mathematical Reasoning via the Cocktail Effect",
+            "url": "https://arxiv.org/pdf/2603.02504"
+          },
+          {
+            "title": "Reasoning in Large Language Models Through Symbolic Math Word Problems",
+            "url": "https://arxiv.org/pdf/2308.01906"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the paper with ID 2603.21558:\n\nNSRSA (Neuro-Symbolic Recursive Self-Alignment) stabilizes iterative self-training by embedding a symbolic verification subsystem that gates training data quality at the reasoning step level.\n\nThe paper addresses a key challenge in recursive self-improvement: recursive drift, where as models train on self-generated data across multiple iterations, errors in intermediate reasoning compound, leading to mode collapse and performance degradation.\n\nKey features of NSRSA include: verifying each arithmetic operation via sympy, checking logical flow consistency across reasoning steps, and enforcing domain constraints. This goes beyond simple outcome verification, which can admit solutions with flawed reasoning.\n\nThe research evaluation: evaluates NSRSA on GSM8K using Qwen3-4B-Thinking across 5 self-training iterations under five conditions: no verification, outcome verification, majority voting, full NSRSA symbolic verification, and NSRSA with DPO.\n\nNotable results include that NSRSA rejects approximately 34% of correct-answer solutions that pass outcome verification, eliminating \"lucky guesses\" with flawed reasoning from the training set."
+    ],
+    "durationSeconds": 7.900392059999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "293f4dbb-e52c-4110-947f-483bb9e63a90",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "bfcf3740-d69b-4025-a907-a330dec46b20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-27T19:45:43.557Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01AYeAQ6ZcUMcUy3Nar3jatR`</summary>
+
+```json
+{
+  "query": "\"Agentic Proposing\" compositional skill synthesis AIME math reasoning 2602.03279"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "eac72804-f4ed-48d2-b344-1dd7f35646d6",
+  "isSidechain": false,
+  "requestId": "req_011CbTeZw8u6ZBT7t3LZCwHu",
+  "type": "assistant",
+  "uuid": "c178517a-99a8-4db5-a4b7-2c785f4d9147",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "bfcf3740-d69b-4025-a907-a330dec46b20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014EYtoTmZnqKdHQjuxJ4aSz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 636,
+      "cache_read_input_tokens": 20756,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 636,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 20756,
+          "cache_creation_input_tokens": 636,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 636
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-27T19:45:51.643Z_
+
+<details><summary>↩ Tool result · `toolu_01AYeAQ6ZcUMcUy3Nar3jatR`</summary>
+
+```text
+Web search results for query: ""Agentic Proposing" compositional skill synthesis AIME math reasoning 2602.03279"
+
+Links: [{"title":"[2602.03279] Agentic Proposing: Enhancing Large Language Model Reasoning via Compositional Skill Synthesis","url":"https://arxiv.org/abs/2602.03279"},{"title":"Agentic Proposing: Enhancing Large Language Model Reasoning via Compositional Skill Synthesis","url":"https://arxiv.org/html/2602.03279"},{"title":"(PDF) Agentic Proposing: Enhancing Large Language Model Reasoning via Compositional Skill Synthesis","url":"https://www.researchgate.net/publication/400414852_Agentic_Proposing_Enhancing_Large_Language_Model_Reasoning_via_Compositional_Skill_Synthesis"},{"title":"Agentic Proposing: Enhancing Large Language Model Reasoning via Compositional Skill Synthesis | alphaXiv","url":"https://www.alphaxiv.org/overview/2602.03279"},{"title":"Agentic Proposing: Enhancing Large Language Model ...","url":"https://arxiv.org/pdf/2602.03279"},{"title":"Agentic-Proposer-4B: Agentic LLM for Reasoning","url":"https://www.emergentmind.com/topics/agentic-proposer-4b"},{"title":"AgenticMath: Enhancing LLM Reasoning via Agentic-based Math Data Generation","url":"https://arxiv.org/html/2510.19361v1"}]
+
+Based on the search results, here's what I found about the paper "Agentic Proposing" with arxiv ID 2602.03279:
+
+## Overview
+
+Agentic Proposing is a framework that models problem synthesis as a goal-driven sequential decision process where a specialized agent dynamically selects and composes modular reasoning skills.
+
+## Key Problem Addressed
+
+Current synthesis paradigms often face a recurring trade-off: maintaining structural validity typically restricts problem complexity, while relaxing constraints to increase difficulty frequently leads to inconsistent or unsolvable instances.
+
+## Approach
+
+The framework develops the Agentic-Proposer-4B using Multi-Granularity Policy Optimization (MGPO) to generate high-precision, verifiable training trajectories across mathematics, coding, and science. A specialized agent manages problem synthesis via iterative internal reflection and tool-use, autonomously auditing and correcting errors to improve validity and solvability.
+
+## Results
+
+A 30B solver trained on only 11,000 synthesized trajectories achieves a state-of-the-art 91.6% accuracy on AIME25, rivaling frontier-scale proprietary models such as GPT-5 and proving that a small volume of high-quality synthetic signals can effectively substitute for massive human-curated datasets.
+
+The paper was published on February 3, 2026, and represents a novel approach to synthetic data generation for improving LLM reasoning capabilities.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c178517a-99a8-4db5-a4b7-2c785f4d9147",
+  "isSidechain": false,
+  "promptId": "1fbe285c-c495-4bfc-b016-0f586be6e401",
+  "type": "user",
+  "uuid": "f2be6eea-76a5-4aea-b3f2-5a214d3dfb8c",
+  "toolUseResult": {
+    "query": "\"Agentic Proposing\" compositional skill synthesis AIME math reasoning 2602.03279",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Ke6wMaHftkM9c4uPZLpsfi",
+        "content": [
+          {
+            "title": "[2602.03279] Agentic Proposing: Enhancing Large Language Model Reasoning via Compositional Skill Synthesis",
+            "url": "https://arxiv.org/abs/2602.03279"
+          },
+          {
+            "title": "Agentic Proposing: Enhancing Large Language Model Reasoning via Compositional Skill Synthesis",
+            "url": "https://arxiv.org/html/2602.03279"
+          },
+          {
+            "title": "(PDF) Agentic Proposing: Enhancing Large Language Model Reasoning via Compositional Skill Synthesis",
+            "url": "https://www.researchgate.net/publication/400414852_Agentic_Proposing_Enhancing_Large_Language_Model_Reasoning_via_Compositional_Skill_Synthesis"
+          },
+          {
+            "title": "Agentic Proposing: Enhancing Large Language Model Reasoning via Compositional Skill Synthesis | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2602.03279"
+          },
+          {
+            "title": "Agentic Proposing: Enhancing Large Language Model ...",
+            "url": "https://arxiv.org/pdf/2602.03279"
+          },
+          {
+            "title": "Agentic-Proposer-4B: Agentic LLM for Reasoning",
+            "url": "https://www.emergentmind.com/topics/agentic-proposer-4b"
+          },
+          {
+            "title": "AgenticMath: Enhancing LLM Reasoning via Agentic-based Math Data Generation",
+            "url": "https://arxiv.org/html/2510.19361v1"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the paper \"Agentic Proposing\" with arxiv ID 2602.03279:\n\n## Overview\n\nAgentic Proposing is a framework that models problem synthesis as a goal-driven sequential decision process where a specialized agent dynamically selects and composes modular reasoning skills.\n\n## Key Problem Addressed\n\nCurrent synthesis paradigms often face a recurring trade-off: maintaining structural validity typically restricts problem complexity, while relaxing constraints to increase difficulty frequently leads to inconsistent or unsolvable instances.\n\n## Approach\n\nThe framework develops the Agentic-Proposer-4B using Multi-Granularity Policy Optimization (MGPO) to generate high-precision, verifiable training trajectories across mathematics, coding, and science. A specialized agent manages problem synthesis via iterative internal reflection and tool-use, autonomously auditing and correcting errors to improve validity and solvability.\n\n## Results\n\nA 30B solver trained on only 11,000 synthesized trajectories achieves a state-of-the-art 91.6% accuracy on AIME25, rivaling frontier-scale proprietary models such as GPT-5 and proving that a small volume of high-quality synthetic signals can effectively substitute for massive human-curated datasets.\n\nThe paper was published on February 3, 2026, and represents a novel approach to synthetic data generation for improving LLM reasoning capabilities."
+    ],
+    "durationSeconds": 8.081427497000004,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "c178517a-99a8-4db5-a4b7-2c785f4d9147",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "bfcf3740-d69b-4025-a907-a330dec46b20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-27T19:45:54.298Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01T9pvWUEseQXJjhMzguHc7s`</summary>
+
+```json
+{
+  "query": "STEPS skill taxonomy guided data synthesis compositional generalization 2601.03676 arXiv 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f2be6eea-76a5-4aea-b3f2-5a214d3dfb8c",
+  "isSidechain": false,
+  "requestId": "req_011CbTeajpnbXyPhtU7nfotn",
+  "type": "assistant",
+  "uuid": "61ebfdd8-cd5b-47d2-8690-04b19d1fa209",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "bfcf3740-d69b-4025-a907-a330dec46b20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XwmnduSrW4Q7JBzNNLzacf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 831,
+      "cache_read_input_tokens": 21392,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 831,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 21392,
+          "cache_creation_input_tokens": 831,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 831
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-27T19:46:04.309Z_
+
+<details><summary>↩ Tool result · `toolu_01T9pvWUEseQXJjhMzguHc7s`</summary>
+
+```text
+Web search results for query: "STEPS skill taxonomy guided data synthesis compositional generalization 2601.03676 arXiv 2026"
+
+Links: [{"title":"[2601.03676] Towards Compositional Generalization of LLMs via Skill Taxonomy Guided Data Synthesis","url":"https://arxiv.org/abs/2601.03676"},{"title":"Towards Compositional Generalization of LLMs via Skill Taxonomy Guided Data Synthesis","url":"https://arxiv.org/html/2601.03676"},{"title":"Towards Compositional Generalization of LLMs via Skill Taxonomy Guided Data Synthesis","url":"https://arxiv.org/pdf/2601.03676"},{"title":"GitHub - weiyifan1023/STEPS: Code and Data for Paper \"Towards Compositional Generalization of LLMs via Skill Taxonomy Guided Data Synthesis\"","url":"https://github.com/weiyifan1023/STEPS"},{"title":"Paper page - Towards Compositional Generalization of LLMs via Skill Taxonomy Guided Data Synthesis","url":"https://huggingface.co/papers/2601.03676"},{"title":"Compositional Generalization from First Principles","url":"https://arxiv.org/pdf/2307.05596"},{"title":"compositional generalization and decomposition in neural ...","url":"https://arxiv.org/pdf/2204.03758"}]
+
+I found the research paper you're looking for! Here's what the search revealed:
+
+STEPS is a Skill Taxonomy guided Entropy-based Post-training data Synthesis framework that targets compositional generalization by uncovering latent relationships among skills and organizing them into an interpretable, hierarchical skill taxonomy using structural information theory.
+
+The framework addresses the challenge that Large Language Models (LLMs) and agent-based systems often struggle with compositional generalization due to a data bottleneck in which complex skill combinations follow a long-tailed, power-law distribution.
+
+The data synthesis is formulated as a constrained information maximization problem, selecting skill combinations that maximize marginal structural information within the hierarchy while preserving semantic coherence.
+
+Experiments on challenging instruction-following benchmarks show that STEPS outperforms existing data synthesis baselines, while also yielding improved compositional generalization in downstream agent-based evaluations.
+
+The paper was submitted to arXiv on January 7, 2026, and is authored by Yifan Wei, Li Du, Xiaoyan Yu, Yang Feng, and Angsheng Li from various institutions including Beihang University, Beijing Academy of Artificial Intelligence, and Beijing Institute of Technology.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "61ebfdd8-cd5b-47d2-8690-04b19d1fa209",
+  "isSidechain": false,
+  "promptId": "1fbe285c-c495-4bfc-b016-0f586be6e401",
+  "type": "user",
+  "uuid": "6702c31b-457e-432d-b634-17620bd654e9",
+  "toolUseResult": {
+    "query": "STEPS skill taxonomy guided data synthesis compositional generalization 2601.03676 arXiv 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01UVNJX7UtteJoxxBJFeaVUd",
+        "content": [
+          {
+            "title": "[2601.03676] Towards Compositional Generalization of LLMs via Skill Taxonomy Guided Data Synthesis",
+            "url": "https://arxiv.org/abs/2601.03676"
+          },
+          {
+            "title": "Towards Compositional Generalization of LLMs via Skill Taxonomy Guided Data Synthesis",
+            "url": "https://arxiv.org/html/2601.03676"
+          },
+          {
+            "title": "Towards Compositional Generalization of LLMs via Skill Taxonomy Guided Data Synthesis",
+            "url": "https://arxiv.org/pdf/2601.03676"
+          },
+          {
+            "title": "GitHub - weiyifan1023/STEPS: Code and Data for Paper \"Towards Compositional Generalization of LLMs via Skill Taxonomy Guided Data Synthesis\"",
+            "url": "https://github.com/weiyifan1023/STEPS"
+          },
+          {
+            "title": "Paper page - Towards Compositional Generalization of LLMs via Skill Taxonomy Guided Data Synthesis",
+            "url": "https://huggingface.co/papers/2601.03676"
+          },
+          {
+            "title": "Compositional Generalization from First Principles",
+            "url": "https://arxiv.org/pdf/2307.05596"
+          },
+          {
+            "title": "compositional generalization and decomposition in neural ...",
+            "url": "https://arxiv.org/pdf/2204.03758"
+          }
+        ]
+      },
+      "I found the research paper you're looking for! Here's what the search revealed:\n\nSTEPS is a Skill Taxonomy guided Entropy-based Post-training data Synthesis framework that targets compositional generalization by uncovering latent relationships among skills and organizing them into an interpretable, hierarchical skill taxonomy using structural information theory.\n\nThe framework addresses the challenge that Large Language Models (LLMs) and agent-based systems often struggle with compositional generalization due to a data bottleneck in which complex skill combinations follow a long-tailed, power-law distribution.\n\nThe data synthesis is formulated as a constrained information maximization problem, selecting skill combinations that maximize marginal structural information within the hierarchy while preserving semantic coherence.\n\nExperiments on challenging instruction-following benchmarks show that STEPS outperforms existing data synthesis baselines, while also yielding improved compositional generalization in downstream agent-based evaluations.\n\nThe paper was submitted to arXiv on January 7, 2026, and is authored by Yifan Wei, Li Du, Xiaoyan Yu, Yang Feng, and Angsheng Li from various institutions including Beihang University, Beijing Academy of Artificial Intelligence, and Beijing Institute of Technology."
+    ],
+    "durationSeconds": 10.005951315000006,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "61ebfdd8-cd5b-47d2-8690-04b19d1fa209",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "bfcf3740-d69b-4025-a907-a330dec46b20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 26_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Compositional Verified Synthesis for Sustained Math Reasoning Self-Improvement  ## Core Problem  Iterative self-improvement for math reasoning faces a theoretically-proven verification ceiling: veri…",
+  "leafUuid": "6702c31b-457e-432d-b634-17620bd654e9",
+  "sessionId": "bfcf3740-d69b-4025-a907-a330dec46b20"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 27_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Compositional verified self-improvement for math reasoning",
+  "sessionId": "bfcf3740-d69b-4025-a907-a330dec46b20"
+}
+```
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-27T19:46:07.022Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GE5DrnaW2fgHD9dsgKWmdG`</summary>
+
+```json
+{
+  "query": "iterative self-improvement math reasoning sustained improvement beyond plateau 2026 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6702c31b-457e-432d-b634-17620bd654e9",
+  "isSidechain": false,
+  "requestId": "req_011CbTebfsvvRfadf4F9Kz3R",
+  "type": "assistant",
+  "uuid": "40b67280-56b5-4059-98ff-1b09ff08f7ee",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "bfcf3740-d69b-4025-a907-a330dec46b20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0119rPkZB2DxKYn3oVz8rL1v",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 721,
+      "cache_read_input_tokens": 22223,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 721,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 22223,
+          "cache_creation_input_tokens": 721,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 721
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-27T19:46:16.356Z_
+
+<details><summary>↩ Tool result · `toolu_01GE5DrnaW2fgHD9dsgKWmdG`</summary>
+
+```text
+Web search results for query: "iterative self-improvement math reasoning sustained improvement beyond plateau 2026 arXiv"
+
+Links: [{"title":"A Task-Centric Theory for Iterative Self-Improvement with Easy-to-Hard Curricula","url":"https://arxiv.org/pdf/2602.10014"},{"title":"Dynamic Sampling that Adapts: Self-Aware Iterative Data Persistent Optimization for Mathematical Reasoning","url":"https://arxiv.org/html/2505.16176"},{"title":"[2602.10014] A Task-Centric Theory for Iterative Self-Improvement with Easy-to-Hard Curricula","url":"https://arxiv.org/abs/2602.10014"},{"title":"[2603.21558] Stabilizing Iterative Self-Training with Verified Reasoning via Symbolic Recursive Self-Alignment","url":"https://arxiv.org/abs/2603.21558"},{"title":"TEMPO: Scaling Test-time Training for Large Reasoning Models","url":"https://arxiv.org/html/2604.19295v1"},{"title":"A Task-Centric Theory for Iterative Self-Improvement with Easy-to-Hard Curricula","url":"https://arxiv.org/html/2602.10014"},{"title":"Stabilizing Iterative Self-Training with Verified Reasoning via Symbolic Recursive Self-Alignment","url":"https://arxiv.org/html/2603.21558"},{"title":"Think, Prune, Train, Improve: Scaling Reasoning without Scaling Models","url":"https://arxiv.org/pdf/2504.18116"}]
+
+Based on the search results, here are several recent arXiv papers on iterative self-improvement in math reasoning with insights about sustained improvement beyond plateaus from 2026:
+
+## Key Papers Found:
+
+**1. A Task-Centric Theory for Iterative Self-Improvement with Easy-to-Hard Curricula (arXiv:2602.10014)**
+
+This paper models each round of self-improvement as maximum-likelihood fine-tuning on a reward-filtered distribution and derives finite-sample guarantees for the expected reward. The analysis reveals an explicit feedback loop where better models accept more data per iteration, supporting sustained self-improvement while explaining eventual saturation of such improvement. The work shows that moderate separation in task difficulties is essential for effective easy-to-hard curricula, with quantifiable conditions under which such curricula achieve better expected reward lower bounds.
+
+**2. Stabilizing Iterative Self-Training via Symbolic Recursive Self-Alignment (arXiv:2603.21558)**
+
+This paper addresses recursive drift in iterative self-improvement—as models train on self-generated data across multiple iterations, errors in intermediate reasoning compound, leading to mode collapse and performance degradation. The authors propose Neuro-Symbolic Recursive Self-Alignment (NSRSA), which stabilizes iterative self-training by embedding a symbolic verification subsystem.
+
+**3. TEMPO: Scaling Test-time Training for Large Reasoning Models (arXiv:2604.19295)**
+
+This work shows that a frozen critic plateaus after ~100 iterations as it becomes misaligned with the evolving policy, while the full model continues to improve, confirming that periodic recalibration is essential for sustained self-improvement.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "40b67280-56b5-4059-98ff-1b09ff08f7ee",
+  "isSidechain": false,
+  "promptId": "1fbe285c-c495-4bfc-b016-0f586be6e401",
+  "type": "user",
+  "uuid": "36c092f1-288b-441b-8026-bc2985f48005",
+  "toolUseResult": {
+    "query": "iterative self-improvement math reasoning sustained improvement beyond plateau 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LVqCePYWshTsgQ8tK7yEsu",
+        "content": [
+          {
+            "title": "A Task-Centric Theory for Iterative Self-Improvement with Easy-to-Hard Curricula",
+            "url": "https://arxiv.org/pdf/2602.10014"
+          },
+          {
+            "title": "Dynamic Sampling that Adapts: Self-Aware Iterative Data Persistent Optimization for Mathematical Reasoning",
+            "url": "https://arxiv.org/html/2505.16176"
+          },
+          {
+            "title": "[2602.10014] A Task-Centric Theory for Iterative Self-Improvement with Easy-to-Hard Curricula",
+            "url": "https://arxiv.org/abs/2602.10014"
+          },
+          {
+            "title": "[2603.21558] Stabilizing Iterative Self-Training with Verified Reasoning via Symbolic Recursive Self-Alignment",
+            "url": "https://arxiv.org/abs/2603.21558"
+          },
+          {
+            "title": "TEMPO: Scaling Test-time Training for Large Reasoning Models",
+            "url": "https://arxiv.org/html/2604.19295v1"
+          },
+          {
+            "title": "A Task-Centric Theory for Iterative Self-Improvement with Easy-to-Hard Curricula",
+            "url": "https://arxiv.org/html/2602.10014"
+          },
+          {
+            "title": "Stabilizing Iterative Self-Training with Verified Reasoning via Symbolic Recursive Self-Alignment",
+            "url": "https://arxiv.org/html/2603.21558"
+          },
+          {
+            "title": "Think, Prune, Train, Improve: Scaling Reasoning without Scaling Models",
+            "url": "https://arxiv.org/pdf/2504.18116"
+          }
+        ]
+      },
+      "Based on the search results, here are several recent arXiv papers on iterative self-improvement in math reasoning with insights about sustained improvement beyond plateaus from 2026:\n\n## Key Papers Found:\n\n**1. A Task-Centric Theory for Iterative Self-Improvement with Easy-to-Hard Curricula (arXiv:2602.10014)**\n\nThis paper models each round of self-improvement as maximum-likelihood fine-tuning on a reward-filtered distribution and derives finite-sample guarantees for the expected reward. The analysis reveals an explicit feedback loop where better models accept more data per iteration, supporting sustained self-improvement while explaining eventual saturation of such improvement. The work shows that moderate separation in task difficulties is essential for effective easy-to-hard curricula, with quantifiable conditions under which such curricula achieve better expected reward lower bounds.\n\n**2. Stabilizing Iterative Self-Training via Symbolic Recursive Self-Alignment (arXiv:2603.21558)**\n\nThis paper addresses recursive drift in iterative self-improvement—as models train on self-generated data across multiple iterations, errors in intermediate reasoning compound, leading to mode collapse and performance degradation. The authors propose Neuro-Symbolic Recursive Self-Alignment (NSRSA), which stabilizes iterative self-training by embedding a symbolic verification subsystem.\n\n**3. TEMPO: Scaling Test-time Training for Large Reasoning Models (arXiv:2604.19295)**\n\nThis work shows that a frozen critic plateaus after ~100 iterations as it becomes misaligned with the evolving policy, while the full model continues to improve, confirming that periodic recalibration is essential for sustained self-improvement."
+    ],
+    "durationSeconds": 9.330405530999997,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "40b67280-56b5-4059-98ff-1b09ff08f7ee",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "bfcf3740-d69b-4025-a907-a330dec46b20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 30 · 2026-05-27T19:46:16.362Z_
+
+```json
+{
+  "parentUuid": "36c092f1-288b-441b-8026-bc2985f48005",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "3d7bf2f4-f8ed-4ee1-830e-96ee0d99b748",
+  "timestamp": "2026-05-27T19:46:16.362Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "bfcf3740-d69b-4025-a907-a330dec46b20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-27T19:46:19.561Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UkGBzcdh92SPJxaWNPMELw`</summary>
+
+```json
+{
+  "query": "\"Verifier-Backed Hard Problem Generation\" VHG self-play math verification 2605.06660"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3d7bf2f4-f8ed-4ee1-830e-96ee0d99b748",
+  "isSidechain": false,
+  "requestId": "req_011CbTecZN3X6expGfQjQpxq",
+  "type": "assistant",
+  "uuid": "5af0e89a-29d3-4b6d-b0bd-d497378908ba",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "bfcf3740-d69b-4025-a907-a330dec46b20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G2BnWRirn3YYM3Q8uFZBna",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 966,
+      "cache_read_input_tokens": 22944,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 966,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 22944,
+          "cache_creation_input_tokens": 966,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 966
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-27T19:46:27.719Z_
+
+<details><summary>↩ Tool result · `toolu_01UkGBzcdh92SPJxaWNPMELw`</summary>
+
+```text
+Web search results for query: ""Verifier-Backed Hard Problem Generation" VHG self-play math verification 2605.06660"
+
+Links: [{"title":"Verifier-Backed Hard Problem Generation for Mathematical Reasoning","url":"https://arxiv.org/html/2605.06660v1"},{"title":"Verifier-Backed Hard Problem Generation for Mathematical Reasoning / 基于验证器的数学推理难题生成 | Alan Hou","url":"https://alanhou.org/blog/arxiv-2605-06660-verifier-backed-hard-problem-generation/"},{"title":"[2605.06660] Verifier-Backed Hard Problem Generation for Mathematical Reasoning","url":"https://arxiv.org/abs/2605.06660"},{"title":"awesome-daily-AI-arxiv/hot_topic/Test-Time-Scaling.md at main · Tavish9/awesome-daily-AI-arxiv","url":"https://github.com/Tavish9/awesome-daily-AI-arxiv/blob/main/hot_topic/Test-Time-Scaling.md"},{"title":"Propose, Solve, Verify: Self-Play Through Formal Verification","url":"https://arxiv.org/html/2512.18160v1"},{"title":"DeepSeekMath-V2: Towards Self-Verifiable Mathematical Reasoning","url":"https://arxiv.org/pdf/2511.22570"},{"title":"(PDF) Propose, Solve, Verify: Self-Play Through Formal Verification","url":"https://www.researchgate.net/publication/398978797_Propose_Solve_Verify_Self-Play_Through_Formal_Verification"}]
+
+I found detailed information about the paper you're searching for. Here's what the research is about:
+
+## Overview
+
+VHG is a verifier-enhanced hard problem generation framework built upon three-party self-play. LLMs demonstrate strong capabilities for solving scientific and mathematical problems, yet they struggle to produce valid, challenging, and novel problems, which existing problem generation approaches often address either through expensive human expert involvement or naive self-play paradigms that frequently yield invalid problems due to reward hacking.
+
+## Key Architecture
+
+The framework integrates an independent verifier into the conventional setter-solver duality, constraining the setter's reward to be jointly determined by problem validity (evaluated by the verifier) and difficulty (assessed by the solver).
+
+## Verifier Variants
+
+The framework implements both Hard (symbolic) and Soft (LLM-based) verifiers, enabling it to work across different domains—from formal mathematical tasks to general reasoning problems.
+
+## Results
+
+VHG achieves 16.9%, 16.6%, and 21.4% improvements on indefinite integral benchmarks, and raises overall pass@1 accuracy from 56.8% to 69.0% on general math benchmarks (MATH, AMC, Minerva, Olympiad, AIME24-26).
+
+The paper (arXiv:2605.06660) was published approximately 3 weeks ago and demonstrates significant improvements over baseline methods for generating valid and challenging mathematical problems.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5af0e89a-29d3-4b6d-b0bd-d497378908ba",
+  "isSidechain": false,
+  "promptId": "1fbe285c-c495-4bfc-b016-0f586be6e401",
+  "type": "user",
+  "uuid": "ee0b7aaa-87f4-4567-a83a-e7e953c386b3",
+  "toolUseResult": {
+    "query": "\"Verifier-Backed Hard Problem Generation\" VHG self-play math verification 2605.06660",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012iBA867VcKbFRULg5xcc2g",
+        "content": [
+          {
+            "title": "Verifier-Backed Hard Problem Generation for Mathematical Reasoning",
+            "url": "https://arxiv.org/html/2605.06660v1"
+          },
+          {
+            "title": "Verifier-Backed Hard Problem Generation for Mathematical Reasoning / 基于验证器的数学推理难题生成 | Alan Hou",
+            "url": "https://alanhou.org/blog/arxiv-2605-06660-verifier-backed-hard-problem-generation/"
+          },
+          {
+            "title": "[2605.06660] Verifier-Backed Hard Problem Generation for Mathematical Reasoning",
+            "url": "https://arxiv.org/abs/2605.06660"
+          },
+          {
+            "title": "awesome-daily-AI-arxiv/hot_topic/Test-Time-Scaling.md at main · Tavish9/awesome-daily-AI-arxiv",
+            "url": "https://github.com/Tavish9/awesome-daily-AI-arxiv/blob/main/hot_topic/Test-Time-Scaling.md"
+          },
+          {
+            "title": "Propose, Solve, Verify: Self-Play Through Formal Verification",
+            "url": "https://arxiv.org/html/2512.18160v1"
+          },
+          {
+            "title": "DeepSeekMath-V2: Towards Self-Verifiable Mathematical Reasoning",
+            "url": "https://arxiv.org/pdf/2511.22570"
+          },
+          {
+            "title": "(PDF) Propose, Solve, Verify: Self-Play Through Formal Verification",
+            "url": "https://www.researchgate.net/publication/398978797_Propose_Solve_Verify_Self-Play_Through_Formal_Verification"
+          }
+        ]
+      },
+      "I found detailed information about the paper you're searching for. Here's what the research is about:\n\n## Overview\n\nVHG is a verifier-enhanced hard problem generation framework built upon three-party self-play. LLMs demonstrate strong capabilities for solving scientific and mathematical problems, yet they struggle to produce valid, challenging, and novel problems, which existing problem generation approaches often address either through expensive human expert involvement or naive self-play paradigms that frequently yield invalid problems due to reward hacking.\n\n## Key Architecture\n\nThe framework integrates an independent verifier into the conventional setter-solver duality, constraining the setter's reward to be jointly determined by problem validity (evaluated by the verifier) and difficulty (assessed by the solver).\n\n## Verifier Variants\n\nThe framework implements both Hard (symbolic) and Soft (LLM-based) verifiers, enabling it to work across different domains—from formal mathematical tasks to general reasoning problems.\n\n## Results\n\nVHG achieves 16.9%, 16.6%, and 21.4% improvements on indefinite integral benchmarks, and raises overall pass@1 accuracy from 56.8% to 69.0% on general math benchmarks (MATH, AMC, Minerva, Olympiad, AIME24-26).\n\nThe paper (arXiv:2605.06660) was published approximately 3 weeks ago and demonstrates significant improvements over baseline methods for generating valid and challenging mathematical problems."
+    ],
+    "durationSeconds": 8.153937449000004,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "5af0e89a-29d3-4b6d-b0bd-d497378908ba",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "bfcf3740-d69b-4025-a907-a330dec46b20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-27T19:46:30.622Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0177krQXF5tbpZwMX4LB6qAH`</summary>
+
+```json
+{
+  "query": "compositional problem generation iterative training loop sustained self-improvement formal guarantee information gain 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ee0b7aaa-87f4-4567-a83a-e7e953c386b3",
+  "isSidechain": false,
+  "requestId": "req_011CbTedPvJ6ecDn5jSHVhVn",
+  "type": "assistant",
+  "uuid": "a819e3c0-87f8-413f-a17a-6526fdb887c1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "bfcf3740-d69b-4025-a907-a330dec46b20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0163WacNcHFgNRNQEaboWyix",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 836,
+      "cache_read_input_tokens": 23910,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 836,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 23910,
+          "cache_creation_input_tokens": 836,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 836
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-27T19:46:40.257Z_
+
+<details><summary>↩ Tool result · `toolu_0177krQXF5tbpZwMX4LB6qAH`</summary>
+
+```text
+Web search results for query: "compositional problem generation iterative training loop sustained self-improvement formal guarantee information gain 2026"
+
+Links: [{"title":"[2601.15286] Iterative Refinement Improves Compositional Image Generation","url":"https://arxiv.org/abs/2601.15286"},{"title":"A Task-Centric Theory for Iterative Self-Improvement with Easy-to-Hard Curricula","url":"https://arxiv.org/html/2602.10014"},{"title":"Self-Play Only Evolves When Self-Synthetic Pipeline Ensures Learnable Information Gain","url":"https://arxiv.org/pdf/2603.02218"},{"title":"Iterative Refinement Improves Compositional Image Generation","url":"https://arxiv.org/html/2601.15286v1"},{"title":"Iterative Compositional Data Generation for Robot Control","url":"https://arxiv.org/html/2512.10891v3"},{"title":"Stabilizing Iterative Self-Training with Verified Reasoning via Symbolic Recursive Self-Alignment","url":"https://arxiv.org/pdf/2603.21558"},{"title":"Coherence Mechanisms for Provable Self-Improvement","url":"https://arxiv.org/pdf/2511.08440"}]
+
+I found several highly relevant research papers from 2026 and late 2025 that address your search query. Here are the key findings:
+
+## Sustained Self-Improvement with Formal Guarantees
+
+Research models self-improvement as maximum-likelihood fine-tuning on a reward-filtered distribution, revealing an explicit feedback loop where better models accept more data per iteration, supporting sustained self-improvement while explaining eventual saturation of such improvement.
+
+## Iterative Training Loops and Information Gain
+
+One framework identifies triadic roles that self-evolving LLMs play: the PROPOSER (which generates tasks), the SOLVER (which attempts solutions), and the VERIFIER (which provides training signals). These modules provide a measurable, system-level path from brittle self-play dynamics to sustained self-evolution.
+
+## Compositional Problem Generation
+
+Iterative approaches use a T2I model that progressively refines its generations across multiple steps, guided by feedback from a vision-language model as the critic in the loop. Additionally, an iterative self-improvement procedure incorporates synthetic data that is validated via offline reinforcement learning into subsequent training rounds.
+
+## Formal Guarantees
+
+Research proves quantifiable conditions on model initialization, task difficulty, and sample budget where easy-to-hard curricula provably achieve better guarantees than training on fixed mixtures of tasks. Geometric approaches allow researchers to provide formal, non-asymptotic guarantees of monotonic improvement.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a819e3c0-87f8-413f-a17a-6526fdb887c1",
+  "isSidechain": false,
+  "promptId": "1fbe285c-c495-4bfc-b016-0f586be6e401",
+  "type": "user",
+  "uuid": "43261e6a-151a-4624-9dc5-d7189ba976b9",
+  "toolUseResult": {
+    "query": "compositional problem generation iterative training loop sustained self-improvement formal guarantee information gain 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FBJ1TwcDKHYPUu1duCMUz9",
+        "content": [
+          {
+            "title": "[2601.15286] Iterative Refinement Improves Compositional Image Generation",
+            "url": "https://arxiv.org/abs/2601.15286"
+          },
+          {
+            "title": "A Task-Centric Theory for Iterative Self-Improvement with Easy-to-Hard Curricula",
+            "url": "https://arxiv.org/html/2602.10014"
+          },
+          {
+            "title": "Self-Play Only Evolves When Self-Synthetic Pipeline Ensures Learnable Information Gain",
+            "url": "https://arxiv.org/pdf/2603.02218"
+          },
+          {
+            "title": "Iterative Refinement Improves Compositional Image Generation",
+            "url": "https://arxiv.org/html/2601.15286v1"
+          },
+          {
+            "title": "Iterative Compositional Data Generation for Robot Control",
+            "url": "https://arxiv.org/html/2512.10891v3"
+          },
+          {
+            "title": "Stabilizing Iterative Self-Training with Verified Reasoning via Symbolic Recursive Self-Alignment",
+            "url": "https://arxiv.org/pdf/2603.21558"
+          },
+          {
+            "title": "Coherence Mechanisms for Provable Self-Improvement",
+            "url": "https://arxiv.org/pdf/2511.08440"
+          }
+        ]
+      },
+      "I found several highly relevant research papers from 2026 and late 2025 that address your search query. Here are the key findings:\n\n## Sustained Self-Improvement with Formal Guarantees\n\nResearch models self-improvement as maximum-likelihood fine-tuning on a reward-filtered distribution, revealing an explicit feedback loop where better models accept more data per iteration, supporting sustained self-improvement while explaining eventual saturation of such improvement.\n\n## Iterative Training Loops and Information Gain\n\nOne framework identifies triadic roles that self-evolving LLMs play: the PROPOSER (which generates tasks), the SOLVER (which attempts solutions), and the VERIFIER (which provides training signals). These modules provide a measurable, system-level path from brittle self-play dynamics to sustained self-evolution.\n\n## Compositional Problem Generation\n\nIterative approaches use a T2I model that progressively refines its generations across multiple steps, guided by feedback from a vision-language model as the critic in the loop. Additionally, an iterative self-improvement procedure incorporates synthetic data that is validated via offline reinforcement learning into subsequent training rounds.\n\n## Formal Guarantees\n\nResearch proves quantifiable conditions on model initialization, task difficulty, and sample budget where easy-to-hard curricula provably achieve better guarantees than training on fixed mixtures of tasks. Geometric approaches allow researchers to provide formal, non-asymptotic guarantees of monotonic improvement."
+    ],
+    "durationSeconds": 9.630407583999986,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "a819e3c0-87f8-413f-a17a-6526fdb887c1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "bfcf3740-d69b-4025-a907-a330dec46b20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-27T19:46:44.109Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HctUXDWm3S7JJYwS1fm3Kh`</summary>
+
+```json
+{
+  "query": "\"Self-Play Only Evolves\" learnable information gain self-synthetic pipeline 2603.02218 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "43261e6a-151a-4624-9dc5-d7189ba976b9",
+  "isSidechain": false,
+  "requestId": "req_011CbTeeKZt6s2W8DXYQLjZN",
+  "type": "assistant",
+  "uuid": "6781e157-2f1b-40c4-bde6-a4a9c0e0317b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "bfcf3740-d69b-4025-a907-a330dec46b20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hn3fmKhbUGb8w8aTcFBT3J",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 726,
+      "cache_read_input_tokens": 24746,
+      "output_tokens": 78,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 726,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 78,
+          "cache_read_input_tokens": 24746,
+          "cache_creation_input_tokens": 726,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 726
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-27T19:46:51.476Z_
+
+<details><summary>↩ Tool result · `toolu_01HctUXDWm3S7JJYwS1fm3Kh`</summary>
+
+```text
+Web search results for query: ""Self-Play Only Evolves" learnable information gain self-synthetic pipeline 2603.02218 arXiv"
+
+Links: [{"title":"[2603.02218] Self-Play Only Evolves When Self-Synthetic Pipeline Ensures Learnable Information Gain","url":"https://arxiv.org/abs/2603.02218"},{"title":"Self-Play Only Evolves When Self-Synthetic Pipeline Ensures Learnable Information Gain","url":"https://arxiv.org/html/2603.02218v1"},{"title":"Self-Play Only Evolves When Self-Synthetic Pipeline Ensures Learnable Information Gain - King's College London","url":"https://kclpure.kcl.ac.uk/portal/en/publications/self-play-only-evolves-when-self-synthetic-pipeline-ensures-learn/"},{"title":"Self-Play Only Evolves When Self-Synthetic Pipeline Ensures Learnable","url":"https://arxiv.org/pdf/2603.02218"},{"title":"Self-Play Only Evolves When Self-Synthetic Pipeline Ensures Learnable Information Gain | TechRxiv","url":"https://www.techrxiv.org/doi/full/10.36227/techrxiv.177126511.17803866/v1"},{"title":"Self-Play Only Evolves When Self-Synthetic Pipeline Ensures ...","url":"https://d197for5662m48.cloudfront.net/documents/publicationstatus/307381/preprint_pdf/34224b08ed576297f9c12f895929746b.pdf"},{"title":"Self-play for Data Efficient Language Acquisition","url":"https://arxiv.org/pdf/2010.04872"},{"title":"Toward Training Superintelligent Software Agents through Self-Play SWE-RL","url":"https://arxiv.org/pdf/2512.18552"}]
+
+I found the paper! Here's what the search revealed:
+
+"Self-Play Only Evolves When Self-Synthetic Pipeline Ensures Learnable Information Gain" is an arXiv paper (2603.02218) submitted on February 10, 2026, by authors Wei Liu, Siya Qi, Yali Du, and Yulan He.
+
+**Key findings:**
+
+The paper addresses how large language models can improve through self-evolving loops, but notes that many existing proposals plateau quickly because the loop synthesizes more data without increasing learnable information for the next iteration.
+
+The research reveals that sustainable self-evolution requires a self-synthesized data pipeline with learnable information that increases across iterations.
+
+**Framework:**
+
+The authors identify triadic roles that self-evolving LLMs play: the Proposer (which generates tasks), the Solver (which attempts solutions), and the Verifier (which provides training signals), with asymmetric co-evolution closing a weak-to-strong-to-weak loop across roles.
+
+They propose that capacity growth expands parameter and inference-time budgets to match rising learnable information, while proactive information seeking introduces external context and new task sources that prevent saturation.
+
+The paper is available on arXiv at https://arxiv.org/abs/2603.02218.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6781e157-2f1b-40c4-bde6-a4a9c0e0317b",
+  "isSidechain": false,
+  "promptId": "1fbe285c-c495-4bfc-b016-0f586be6e401",
+  "type": "user",
+  "uuid": "227ce07b-7cd3-4849-8cd4-e5d4458b0953",
+  "toolUseResult": {
+    "query": "\"Self-Play Only Evolves\" learnable information gain self-synthetic pipeline 2603.02218 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01H9nxdg89XxWnN8bjtG54Ky",
+        "content": [
+          {
+            "title": "[2603.02218] Self-Play Only Evolves When Self-Synthetic Pipeline Ensures Learnable Information Gain",
+            "url": "https://arxiv.org/abs/2603.02218"
+          },
+          {
+            "title": "Self-Play Only Evolves When Self-Synthetic Pipeline Ensures Learnable Information Gain",
+            "url": "https://arxiv.org/html/2603.02218v1"
+          },
+          {
+            "title": "Self-Play Only Evolves When Self-Synthetic Pipeline Ensures Learnable Information Gain - King's College London",
+            "url": "https://kclpure.kcl.ac.uk/portal/en/publications/self-play-only-evolves-when-self-synthetic-pipeline-ensures-learn/"
+          },
+          {
+            "title": "Self-Play Only Evolves When Self-Synthetic Pipeline Ensures Learnable",
+            "url": "https://arxiv.org/pdf/2603.02218"
+          },
+          {
+            "title": "Self-Play Only Evolves When Self-Synthetic Pipeline Ensures Learnable Information Gain | TechRxiv",
+            "url": "https://www.techrxiv.org/doi/full/10.36227/techrxiv.177126511.17803866/v1"
+          },
+          {
+            "title": "Self-Play Only Evolves When Self-Synthetic Pipeline Ensures ...",
+            "url": "https://d197for5662m48.cloudfront.net/documents/publicationstatus/307381/preprint_pdf/34224b08ed576297f9c12f895929746b.pdf"
+          },
+          {
+            "title": "Self-play for Data Efficient Language Acquisition",
+            "url": "https://arxiv.org/pdf/2010.04872"
+          },
+          {
+            "title": "Toward Training Superintelligent Software Agents through Self-Play SWE-RL",
+            "url": "https://arxiv.org/pdf/2512.18552"
+          }
+        ]
+      },
+      "I found the paper! Here's what the search revealed:\n\n\"Self-Play Only Evolves When Self-Synthetic Pipeline Ensures Learnable Information Gain\" is an arXiv paper (2603.02218) submitted on February 10, 2026, by authors Wei Liu, Siya Qi, Yali Du, and Yulan He.\n\n**Key findings:**\n\nThe paper addresses how large language models can improve through self-evolving loops, but notes that many existing proposals plateau quickly because the loop synthesizes more data without increasing learnable information for the next iteration.\n\nThe research reveals that sustainable self-evolution requires a self-synthesized data pipeline with learnable information that increases across iterations.\n\n**Framework:**\n\nThe authors identify triadic roles that self-evolving LLMs play: the Proposer (which generates tasks), the Solver (which attempts solutions), and the Verifier (which provides training signals), with asymmetric co-evolution closing a weak-to-strong-to-weak loop across roles.\n\nThey propose that capacity growth expands parameter and inference-time budgets to match rising learnable information, while proactive information seeking introduces external context and new task sources that prevent saturation.\n\nThe paper is available on arXiv at https://arxiv.org/abs/2603.02218."
+    ],
+    "durationSeconds": 7.363124193999989,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "6781e157-2f1b-40c4-bde6-a4a9c0e0317b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "bfcf3740-d69b-4025-a907-a330dec46b20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-27T19:46:55.045Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GVuDN3y1r5xKgrm6M4TXMd`</summary>
+
+```json
+{
+  "query": "Prism preventing curriculum collapse self-evolving reasoning 2603.13309 semantic partitioning ZPD"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "227ce07b-7cd3-4849-8cd4-e5d4458b0953",
+  "isSidechain": false,
+  "requestId": "req_011CbTef9YQpvEkYenYR78rm",
+  "type": "assistant",
+  "uuid": "04706550-6b7c-46fc-846f-5c10bb3f6818",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "bfcf3740-d69b-4025-a907-a330dec46b20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HMzEcoHXtfxdMjWmtkd5rg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 860,
+      "cache_read_input_tokens": 25472,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 860,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 25472,
+          "cache_creation_input_tokens": 860,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 860
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 38_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Compositional Verified Synthesis for Sustained Math Reasoning Self-Improvement  ## Core Problem  Iterative self-improvement for math reasoning faces a theoretically-proven verification ceiling: veri…",
+  "leafUuid": "04706550-6b7c-46fc-846f-5c10bb3f6818",
+  "sessionId": "bfcf3740-d69b-4025-a907-a330dec46b20"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 39_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Compositional verified self-improvement for math reasoning",
+  "sessionId": "bfcf3740-d69b-4025-a907-a330dec46b20"
+}
+```
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-27T19:47:02.406Z_
+
+<details><summary>↩ Tool result · `toolu_01GVuDN3y1r5xKgrm6M4TXMd`</summary>
+
+```text
+Web search results for query: "Prism preventing curriculum collapse self-evolving reasoning 2603.13309 semantic partitioning ZPD"
+
+Links: [{"title":"Preventing Curriculum Collapse in Self-Evolving Reasoning Systems","url":"https://arxiv.org/pdf/2603.13309"},{"title":"Self-Evolving Curriculum for LLM Reasoning","url":"https://arxiv.org/pdf/2505.14970"},{"title":"[2505.14970] Self-Evolving Curriculum for LLM Reasoning","url":"https://arxiv.org/abs/2505.14970"},{"title":"AERO: Autonomous Evolutionary Reasoning Optimization via Endogenous Dual-Loop Feedback","url":"https://arxiv.org/pdf/2602.03084"},{"title":"[2603.15255] SAGE: Multi-Agent Self-Evolution for LLM Reasoning","url":"https://arxiv.org/abs/2603.15255"},{"title":"Self-Evolving Curriculum for LLM Reasoning","url":"https://arxiv.org/html/2505.14970v1"}]
+
+Based on the search results, I found the paper you're looking for:
+
+**Prism** is a question-centric self-evolution method that directly tackles curriculum collapse by defining a persistent diversity signal over an embedding-induced semantic partition of mathematical problems and using it to encourage balanced exploration of underrepresented regions across iterations. This coverage signal is combined with a Zone-of-Proximal-Development (ZPD) gate to preserve edge-of-solvability difficulty.
+
+The research addresses the problem that self-evolving reasoning frameworks allow LLMs to improve their reasoning capabilities by iteratively generating and solving problems without external supervision, using verifiable rewards. However, self-evolving systems can exhibit diversity collapse in posing new problems after just a few iterations, even when surface-level variation is preserved.
+
+Evaluated on seven widely used mathematical reasoning benchmarks, Prism achieves the highest accuracy on six out of seven tasks, and generates semantically diverse and challenging questions across iterations, resulting in the construction of the Prism-Math dataset comprising 100k mathematical questions.
+
+The paper is available at arxiv.org with the identifier 2603.13309.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "04706550-6b7c-46fc-846f-5c10bb3f6818",
+  "isSidechain": false,
+  "promptId": "1fbe285c-c495-4bfc-b016-0f586be6e401",
+  "type": "user",
+  "uuid": "a1717823-a723-436b-bf3a-493d4d9d74f3",
+  "toolUseResult": {
+    "query": "Prism preventing curriculum collapse self-evolving reasoning 2603.13309 semantic partitioning ZPD",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JgTBrLdscEiivHRFk6hoNo",
+        "content": [
+          {
+            "title": "Preventing Curriculum Collapse in Self-Evolving Reasoning Systems",
+            "url": "https://arxiv.org/pdf/2603.13309"
+          },
+          {
+            "title": "Self-Evolving Curriculum for LLM Reasoning",
+            "url": "https://arxiv.org/pdf/2505.14970"
+          },
+          {
+            "title": "[2505.14970] Self-Evolving Curriculum for LLM Reasoning",
+            "url": "https://arxiv.org/abs/2505.14970"
+          },
+          {
+            "title": "AERO: Autonomous Evolutionary Reasoning Optimization via Endogenous Dual-Loop Feedback",
+            "url": "https://arxiv.org/pdf/2602.03084"
+          },
+          {
+            "title": "[2603.15255] SAGE: Multi-Agent Self-Evolution for LLM Reasoning",
+            "url": "https://arxiv.org/abs/2603.15255"
+          },
+          {
+            "title": "Self-Evolving Curriculum for LLM Reasoning",
+            "url": "https://arxiv.org/html/2505.14970v1"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\n**Prism** is a question-centric self-evolution method that directly tackles curriculum collapse by defining a persistent diversity signal over an embedding-induced semantic partition of mathematical problems and using it to encourage balanced exploration of underrepresented regions across iterations. This coverage signal is combined with a Zone-of-Proximal-Development (ZPD) gate to preserve edge-of-solvability difficulty.\n\nThe research addresses the problem that self-evolving reasoning frameworks allow LLMs to improve their reasoning capabilities by iteratively generating and solving problems without external supervision, using verifiable rewards. However, self-evolving systems can exhibit diversity collapse in posing new problems after just a few iterations, even when surface-level variation is preserved.\n\nEvaluated on seven widely used mathematical reasoning benchmarks, Prism achieves the highest accuracy on six out of seven tasks, and generates semantically diverse and challenging questions across iterations, resulting in the construction of the Prism-Math dataset comprising 100k mathematical questions.\n\nThe paper is available at arxiv.org with the identifier 2603.13309."
+    ],
+    "durationSeconds": 7.357745326999997,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "04706550-6b7c-46fc-846f-5c10bb3f6818",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "bfcf3740-d69b-4025-a907-a330dec46b20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-27T19:47:05.758Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Sgm9LpxdNfaWSrF1rxARg4`</summary>
+
+```json
+{
+  "query": "\"task-centric theory\" iterative self-improvement easy-to-hard curricula formal guarantee saturation 2602.10014"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a1717823-a723-436b-bf3a-493d4d9d74f3",
+  "isSidechain": false,
+  "requestId": "req_011CbTefyYB7gpuDeq859Evt",
+  "type": "assistant",
+  "uuid": "1b2032c2-8d6f-4d59-abda-0f84573b3e52",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "bfcf3740-d69b-4025-a907-a330dec46b20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FusyVxPMcoRtAjT5wVhyzs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 629,
+      "cache_read_input_tokens": 26332,
+      "output_tokens": 80,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 629,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 80,
+          "cache_read_input_tokens": 26332,
+          "cache_creation_input_tokens": 629,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 629
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-27T19:47:13.084Z_
+
+<details><summary>↩ Tool result · `toolu_01Sgm9LpxdNfaWSrF1rxARg4`</summary>
+
+```text
+Web search results for query: ""task-centric theory" iterative self-improvement easy-to-hard curricula formal guarantee saturation 2602.10014"
+
+Links: [{"title":"[2602.10014] A Task-Centric Theory for Iterative Self-Improvement with Easy-to-Hard Curricula","url":"https://arxiv.org/abs/2602.10014"},{"title":"A Task-Centric Theory for Iterative Self-Improvement with Easy-to-Hard Curricula","url":"https://arxiv.org/html/2602.10014"},{"title":"A Task-Centric Theory for Iterative Self-Improvement with Easy-to-Hard Curricula | Request PDF","url":"https://www.researchgate.net/publication/400661291_A_Task-Centric_Theory_for_Iterative_Self-Improvement_with_Easy-to-Hard_Curricula"},{"title":"A Task-Centric Theory for Iterative Self-Improvement with ...","url":"https://arxiv.org/pdf/2602.10014"},{"title":"Why Self-Rewarding Works: Theoretical Guarantees for Iterative Alignment of Language Models","url":"https://arxiv.org/pdf/2601.22513"}]
+
+Based on the search results, I found the paper you're looking for:
+
+**Title:** "A Task-Centric Theory for Iterative Self-Improvement with Easy-to-Hard Curricula"
+
+**arXiv ID:** 2602.10014
+
+**Key Contributions:**
+
+1. **Theoretical Framework:** The paper models each round of self-improvement as maximum-likelihood fine-tuning on a reward-filtered distribution and derives finite-sample guarantees for the expected reward.
+
+2. **Feedback Loop and Saturation:** The analysis reveals an explicit feedback loop where better models accept more data per iteration, supporting sustained self-improvement while explaining eventual saturation of such improvement.
+
+3. **Easy-to-Hard Curricula:** The paper proves quantifiable conditions on model initialization, task difficulty, and sample budget where easy-to-hard curricula provably achieve better guarantees than training on fixed mixtures of tasks.
+
+4. **Key Finding:** The analysis unveils three levers for the effectiveness of easy-to-hard scheduling in self-improvement: moderate separation of task difficulties, a critical sample budget, and model initialization.
+
+The paper was posted on arXiv on February 10, 2026, by authors from New York University including Chenruo Liu, Yijun Dong, Yiqiu Shen, and Qi Lei.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1b2032c2-8d6f-4d59-abda-0f84573b3e52",
+  "isSidechain": false,
+  "promptId": "1fbe285c-c495-4bfc-b016-0f586be6e401",
+  "type": "user",
+  "uuid": "d1c644d9-3950-4646-ac14-90ac3d91d261",
+  "toolUseResult": {
+    "query": "\"task-centric theory\" iterative self-improvement easy-to-hard curricula formal guarantee saturation 2602.10014",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Eo5qSwjs7NLvavVraDvvV4",
+        "content": [
+          {
+            "title": "[2602.10014] A Task-Centric Theory for Iterative Self-Improvement with Easy-to-Hard Curricula",
+            "url": "https://arxiv.org/abs/2602.10014"
+          },
+          {
+            "title": "A Task-Centric Theory for Iterative Self-Improvement with Easy-to-Hard Curricula",
+            "url": "https://arxiv.org/html/2602.10014"
+          },
+          {
+            "title": "A Task-Centric Theory for Iterative Self-Improvement with Easy-to-Hard Curricula | Request PDF",
+            "url": "https://www.researchgate.net/publication/400661291_A_Task-Centric_Theory_for_Iterative_Self-Improvement_with_Easy-to-Hard_Curricula"
+          },
+          {
+            "title": "A Task-Centric Theory for Iterative Self-Improvement with ...",
+            "url": "https://arxiv.org/pdf/2602.10014"
+          },
+          {
+            "title": "Why Self-Rewarding Works: Theoretical Guarantees for Iterative Alignment of Language Models",
+            "url": "https://arxiv.org/pdf/2601.22513"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\n**Title:** \"A Task-Centric Theory for Iterative Self-Improvement with Easy-to-Hard Curricula\"\n\n**arXiv ID:** 2602.10014\n\n**Key Contributions:**\n\n1. **Theoretical Framework:** The paper models each round of self-improvement as maximum-likelihood fine-tuning on a reward-filtered distribution and derives finite-sample guarantees for the expected reward.\n\n2. **Feedback Loop and Saturation:** The analysis reveals an explicit feedback loop where better models accept more data per iteration, supporting sustained self-improvement while explaining eventual saturation of such improvement.\n\n3. **Easy-to-Hard Curricula:** The paper proves quantifiable conditions on model initialization, task difficulty, and sample budget where easy-to-hard curricula provably achieve better guarantees than training on fixed mixtures of tasks.\n\n4. **Key Finding:** The analysis unveils three levers for the effectiveness of easy-to-hard scheduling in self-improvement: moderate separation of task difficulties, a critical sample budget, and model initialization.\n\nThe paper was posted on arXiv on February 10, 2026, by authors from New York University including Chenruo Liu, Yijun Dong, Yiqiu Shen, and Qi Lei."
+    ],
+    "durationSeconds": 7.3210151530000145,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "1b2032c2-8d6f-4d59-abda-0f84573b3e52",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "bfcf3740-d69b-4025-a907-a330dec46b20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43 · 2026-05-27T19:47:16.792Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me also search for potential threats to the novelty claim - specifically, are there any works that already combine compositional synthesis with iterative self-improvement?
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d1c644d9-3950-4646-ac14-90ac3d91d261",
+  "isSidechain": false,
+  "requestId": "req_011CbTegjtv38LytyVqkA8Bv",
+  "type": "assistant",
+  "uuid": "af2fde4c-58c4-440b-8097-dc54dd9b4960",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "bfcf3740-d69b-4025-a907-a330dec46b20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013SoEMSaoGohLAnhTS2gQEU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 711,
+      "cache_read_input_tokens": 26961,
+      "output_tokens": 119,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 711,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 119,
+          "cache_read_input_tokens": 26961,
+          "cache_creation_input_tokens": 711,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 711
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-27T19:47:17.274Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018QKqr9SGsRcLmE9bFczT1e`</summary>
+
+```json
+{
+  "query": "skill composition iterative self-training verified math problem generation loop sustained improvement 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "af2fde4c-58c4-440b-8097-dc54dd9b4960",
+  "isSidechain": false,
+  "requestId": "req_011CbTegjtv38LytyVqkA8Bv",
+  "type": "assistant",
+  "uuid": "110e85f1-77e3-43a2-86f3-5c26c6a39629",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "bfcf3740-d69b-4025-a907-a330dec46b20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013SoEMSaoGohLAnhTS2gQEU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 711,
+      "cache_read_input_tokens": 26961,
+      "output_tokens": 119,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 711,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 119,
+          "cache_read_input_tokens": 26961,
+          "cache_creation_input_tokens": 711,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 711
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-27T19:47:25.410Z_
+
+<details><summary>↩ Tool result · `toolu_018QKqr9SGsRcLmE9bFczT1e`</summary>
+
+```text
+Web search results for query: "skill composition iterative self-training verified math problem generation loop sustained improvement 2025 2026"
+
+Links: [{"title":"Training Verifiers to Solve Math Word Problems","url":"https://www.researchgate.net/publication/355698629_Training_Verifiers_to_Solve_Math_Word_Problems"},{"title":"Adaptive Problem Generation via Symbolic Representations","url":"https://arxiv.org/pdf/2602.19187"},{"title":"A Task-Centric Theory for Iterative Self-Improvement with Easy-to-Hard Curricula","url":"https://arxiv.org/pdf/2602.10014"},{"title":"Published as a conference paper at ICLR 2025 B-STAR: MONITORING AND BALANCING","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/c8db30c6f024a3f667232ed7ba5b6d47-Paper-Conference.pdf"},{"title":"Stabilizing Iterative Self-Training with Verified Reasoning via Symbolic Recursive Self-Alignment","url":"https://arxiv.org/pdf/2603.21558"},{"title":"V-STaR: Training Verifiers for Self-Taught Reasoners","url":"https://arxiv.org/pdf/2402.06457"},{"title":"Augmenting Math Word Problems via Iterative Question Composing","url":"https://arxiv.org/pdf/2401.09003"}]
+
+I found several highly relevant research papers and publications related to your search query. Here are the key findings:
+
+## Iterative Self-Training with Verified Reasoning
+
+Recent work addresses recursive self-improvement, where a model iteratively trains on its own outputs, with approaches like Neuro-Symbolic Recursive Self-Alignment (NSRSA) that stabilizes iterative self-training by embedding a symbolic verification subsystem to gate training data quality at the reasoning step level.
+
+## Problem Generation and Adaptation
+
+Research shows that mathematical reasoning can be scaled through synthetic training data for reinforcement learning from verifier feedback (RLVR), requiring both verifiable solutions for reward computation and problem distributions that match the model's capabilities. However, most existing methods generate problems through open-loop pipelines that cannot easily adapt to a student model's evolving capabilities or to different student models.
+
+## Sustained Improvement Mechanisms
+
+Iterative self-improvement fine-tunes language models on reward-verified outputs generated by the models themselves, with analysis revealing an explicit feedback loop where better models accept more data per iteration, supporting sustained self-improvement while explaining eventual saturation of such improvement.
+
+## Challenges with Recursive Self-Training
+
+As models train on self-generated data across multiple iterations, errors in intermediate reasoning compound, leading to mode collapse and performance degradation.
+
+The search results include papers from 2025-2026 that directly address skill composition, iterative self-training, verified problem generation, and sustained improvement loops in mathematical reasoning.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "110e85f1-77e3-43a2-86f3-5c26c6a39629",
+  "isSidechain": false,
+  "promptId": "1fbe285c-c495-4bfc-b016-0f586be6e401",
+  "type": "user",
+  "uuid": "979f889f-d0f6-4f1f-afa9-18db651214f2",
+  "toolUseResult": {
+    "query": "skill composition iterative self-training verified math problem generation loop sustained improvement 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WNYPTD95A7pMJqxrPMPyCW",
+        "content": [
+          {
+            "title": "Training Verifiers to Solve Math Word Problems",
+            "url": "https://www.researchgate.net/publication/355698629_Training_Verifiers_to_Solve_Math_Word_Problems"
+          },
+          {
+            "title": "Adaptive Problem Generation via Symbolic Representations",
+            "url": "https://arxiv.org/pdf/2602.19187"
+          },
+          {
+            "title": "A Task-Centric Theory for Iterative Self-Improvement with Easy-to-Hard Curricula",
+            "url": "https://arxiv.org/pdf/2602.10014"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025 B-STAR: MONITORING AND BALANCING",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/c8db30c6f024a3f667232ed7ba5b6d47-Paper-Conference.pdf"
+          },
+          {
+            "title": "Stabilizing Iterative Self-Training with Verified Reasoning via Symbolic Recursive Self-Alignment",
+            "url": "https://arxiv.org/pdf/2603.21558"
+          },
+          {
+            "title": "V-STaR: Training Verifiers for Self-Taught Reasoners",
+            "url": "https://arxiv.org/pdf/2402.06457"
+          },
+          {
+            "title": "Augmenting Math Word Problems via Iterative Question Composing",
+            "url": "https://arxiv.org/pdf/2401.09003"
+          }
+        ]
+      },
+      "I found several highly relevant research papers and publications related to your search query. Here are the key findings:\n\n## Iterative Self-Training with Verified Reasoning\n\nRecent work addresses recursive self-improvement, where a model iteratively trains on its own outputs, with approaches like Neuro-Symbolic Recursive Self-Alignment (NSRSA) that stabilizes iterative self-training by embedding a symbolic verification subsystem to gate training data quality at the reasoning step level.\n\n## Problem Generation and Adaptation\n\nResearch shows that mathematical reasoning can be scaled through synthetic training data for reinforcement learning from verifier feedback (RLVR), requiring both verifiable solutions for reward computation and problem distributions that match the model's capabilities. However, most existing methods generate problems through open-loop pipelines that cannot easily adapt to a student model's evolving capabilities or to different student models.\n\n## Sustained Improvement Mechanisms\n\nIterative self-improvement fine-tunes language models on reward-verified outputs generated by the models themselves, with analysis revealing an explicit feedback loop where better models accept more data per iteration, supporting sustained self-improvement while explaining eventual saturation of such improvement.\n\n## Challenges with Recursive Self-Training\n\nAs models train on self-generated data across multiple iterations, errors in intermediate reasoning compound, leading to mode collapse and performance degradation.\n\nThe search results include papers from 2025-2026 that directly address skill composition, iterative self-training, verified problem generation, and sustained improvement loops in mathematical reasoning."
+    ],
+    "durationSeconds": 8.132150865999982,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "110e85f1-77e3-43a2-86f3-5c26c6a39629",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "bfcf3740-d69b-4025-a907-a330dec46b20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-27T19:47:29.080Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WuSxZHRzaymhALoW4a8GM4`</summary>
+
+```json
+{
+  "query": "\"Adaptive Problem Generation via Symbolic Representations\" 2602.19187 arXiv skill library"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "979f889f-d0f6-4f1f-afa9-18db651214f2",
+  "isSidechain": false,
+  "requestId": "req_011CbTehecT1NY3ffVmSZztJ",
+  "type": "assistant",
+  "uuid": "3e5ed33f-31a1-4b9c-a64a-0923f6785a5c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "bfcf3740-d69b-4025-a907-a330dec46b20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J76Ngn9tQnaJRgc4LJp1L2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 832,
+      "cache_read_input_tokens": 27672,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 832,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 27672,
+          "cache_creation_input_tokens": 832,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 832
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-27T19:47:37.624Z_
+
+<details><summary>↩ Tool result · `toolu_01WuSxZHRzaymhALoW4a8GM4`</summary>
+
+```text
+Web search results for query: ""Adaptive Problem Generation via Symbolic Representations" 2602.19187 arXiv skill library"
+
+Links: [{"title":"[2602.19187] Adaptive Problem Generation via Symbolic Representations","url":"https://arxiv.org/abs/2602.19187"},{"title":"Adaptive Problem Generation via Symbolic Representations","url":"https://arxiv.org/pdf/2602.19187"},{"title":"Computer Science","url":"https://arxiv.org/list/cs/recent?skip=1499&show=25"},{"title":"Neuro-Symbolic Data Generation for Math Reasoning","url":"https://arxiv.org/pdf/2412.04857"},{"title":"System and method of adaptive generation of problem determination decision procedures","url":"https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/7831537"}]
+
+I found the paper you're looking for! Here are the details about arXiv paper 2602.19187:
+
+**Title:** Adaptive Problem Generation via Symbolic Representations
+
+**Authors:** Teresa Yeo, Myeongho Jeon, Dulaj Weerakoon, Rui Qiao, Alok Prakash, Armando Solar-Lezama, and Archan Misra
+
+**Submission Date:** February 22, 2026
+
+**Summary:**
+
+The paper presents a method for generating training data for reinforcement learning with verifiable rewards to improve small open-weights language models on mathematical tasks. 
+
+Existing data generation approaches rely on open-loop pipelines and fixed modifications that do not adapt to the model's capabilities, and typically operate directly on word problems, limiting control over problem structure.
+
+To address this, the authors perform modifications in a symbolic problem space, representing each problem as a set of symbolic variables and constraints (e.g., via algebraic frameworks such as SymPy or SMT formulations), which enables precise control over problem structure, automatic generation of ground-truth solutions, and decouples mathematical reasoning from linguistic realization.
+
+You can access the paper directly at https://arxiv.org/abs/2602.19187
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3e5ed33f-31a1-4b9c-a64a-0923f6785a5c",
+  "isSidechain": false,
+  "promptId": "1fbe285c-c495-4bfc-b016-0f586be6e401",
+  "type": "user",
+  "uuid": "8c04905b-9f9d-4b95-85b9-898acab4a2ea",
+  "toolUseResult": {
+    "query": "\"Adaptive Problem Generation via Symbolic Representations\" 2602.19187 arXiv skill library",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01R6LfHvkiCsqs4HXn2FmRJr",
+        "content": [
+          {
+            "title": "[2602.19187] Adaptive Problem Generation via Symbolic Representations",
+            "url": "https://arxiv.org/abs/2602.19187"
+          },
+          {
+            "title": "Adaptive Problem Generation via Symbolic Representations",
+            "url": "https://arxiv.org/pdf/2602.19187"
+          },
+          {
+            "title": "Computer Science",
+            "url": "https://arxiv.org/list/cs/recent?skip=1499&show=25"
+          },
+          {
+            "title": "Neuro-Symbolic Data Generation for Math Reasoning",
+            "url": "https://arxiv.org/pdf/2412.04857"
+          },
+          {
+            "title": "System and method of adaptive generation of problem determination decision procedures",
+            "url": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/7831537"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here are the details about arXiv paper 2602.19187:\n\n**Title:** Adaptive Problem Generation via Symbolic Representations\n\n**Authors:** Teresa Yeo, Myeongho Jeon, Dulaj Weerakoon, Rui Qiao, Alok Prakash, Armando Solar-Lezama, and Archan Misra\n\n**Submission Date:** February 22, 2026\n\n**Summary:**\n\nThe paper presents a method for generating training data for reinforcement learning with verifiable rewards to improve small open-weights language models on mathematical tasks. \n\nExisting data generation approaches rely on open-loop pipelines and fixed modifications that do not adapt to the model's capabilities, and typically operate directly on word problems, limiting control over problem structure.\n\nTo address this, the authors perform modifications in a symbolic problem space, representing each problem as a set of symbolic variables and constraints (e.g., via algebraic frameworks such as SymPy or SMT formulations), which enables precise control over problem structure, automatic generation of ground-truth solutions, and decouples mathematical reasoning from linguistic realization.\n\nYou can access the paper directly at https://arxiv.org/abs/2602.19187"
+    ],
+    "durationSeconds": 8.537063496999995,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "3e5ed33f-31a1-4b9c-a64a-0923f6785a5c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "bfcf3740-d69b-4025-a907-a330dec46b20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48 · 2026-05-27T19:47:42.254Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This is a very important finding. "Adaptive Problem Generation via Symbolic Representations" (2602.19187) is highly relevant to the CVSI proposal because it also:
+1. Uses symbolic representations (SymPy) for problem generation
+2. Adapts to the model's evolving capabilities
+3. Generates verified problems through symbolic representations
+
+Let me search for one more thing - whether there's any work that specifically combines compositional skill composition with iterative training and formal guarantees of improvement.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8c04905b-9f9d-4b95-85b9-898acab4a2ea",
+  "isSidechain": false,
+  "requestId": "req_011CbTeiYpDknhKTYxNa558h",
+  "type": "assistant",
+  "uuid": "854310dd-e25f-4f1c-aad8-d3b6c203bbaf",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "bfcf3740-d69b-4025-a907-a330dec46b20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0132kHMPFPRBM13hP1ypo1tT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 597,
+      "cache_read_input_tokens": 28504,
+      "output_tokens": 196,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 597,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 196,
+          "cache_read_input_tokens": 28504,
+          "cache_creation_input_tokens": 597,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 597
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-27T19:47:42.818Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QATeyFECBxvXEpcDFmxSwX`</summary>
+
+```json
+{
+  "query": "\"Coherence Mechanisms\" provable self-improvement formal monotonic guarantee 2511.08440"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "854310dd-e25f-4f1c-aad8-d3b6c203bbaf",
+  "isSidechain": false,
+  "requestId": "req_011CbTeiYpDknhKTYxNa558h",
+  "type": "assistant",
+  "uuid": "50db0f21-db4e-4130-bc0a-323b52181448",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "bfcf3740-d69b-4025-a907-a330dec46b20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0132kHMPFPRBM13hP1ypo1tT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 597,
+      "cache_read_input_tokens": 28504,
+      "output_tokens": 196,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 597,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 196,
+          "cache_read_input_tokens": 28504,
+          "cache_creation_input_tokens": 597,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 597
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-27T19:47:49.237Z_
+
+<details><summary>↩ Tool result · `toolu_01QATeyFECBxvXEpcDFmxSwX`</summary>
+
+```text
+Web search results for query: ""Coherence Mechanisms" provable self-improvement formal monotonic guarantee 2511.08440"
+
+Links: [{"title":"[2511.08440] Coherence Mechanisms for Provable Self-Improvement","url":"https://arxiv.org/abs/2511.08440"},{"title":"Coherence Mechanisms for Provable Self-Improvement","url":"https://arxiv.org/pdf/2511.08440"},{"title":"Calibration without Ground Truth∗ Yuqing Kong Peking University Mingyu Song","url":"https://arxiv.org/pdf/2601.19862"},{"title":"Computer Science Nov 2025","url":"https://arxiv.org/list/cs/2025-11?skip=4000&show=100"},{"title":"Self-Improvement as Coherence Optimization: A Theoretical Account","url":"https://arxiv.org/pdf/2601.13566"},{"title":"Self-Improvement as Coherence Optimization: A Theoretical Account","url":"https://arxiv.org/html/2601.13566v1"}]
+
+I found the paper you're looking for! Here are the key details about the research:
+
+**Paper Title:** Coherence Mechanisms for Provable Self-Improvement
+
+**Authors:** &lt;cite index="2-1">Mehryar Mohri, Jon Schneider, and Yifan Wu
+
+**Core Concept:** &lt;cite index="1-1">The paper proposes a principled framework for self-improvement based on the concept of coherence, which requires that a model's outputs remain consistent under task-preserving transformations of the input.
+
+**Key Innovation:** The authors formalize this concept using projection-based mechanisms that update a baseline model to be coherent while remaining as close as possible to its original behavior.
+
+**Theoretical Guarantee:** The paper provides rigorous theoretical guarantees that these mechanisms achieve monotonic improvement, measured by a reduction in expected Bregman divergence.
+
+**Scope:** The analysis is comprehensive, covering both direct and two-step projection methods, and robustly extends these guarantees to non-realizable settings.
+
+The paper was published in November 2025 on arXiv (identifier 2511.08440) and addresses the critical need for formal guarantees in self-improvement approaches, moving beyond previous empirical heuristics.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "50db0f21-db4e-4130-bc0a-323b52181448",
+  "isSidechain": false,
+  "promptId": "1fbe285c-c495-4bfc-b016-0f586be6e401",
+  "type": "user",
+  "uuid": "f14a2a89-2b1d-4de7-8527-1f54219a6ba9",
+  "toolUseResult": {
+    "query": "\"Coherence Mechanisms\" provable self-improvement formal monotonic guarantee 2511.08440",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QRN2SQXdYwCDBSLG7jah49",
+        "content": [
+          {
+            "title": "[2511.08440] Coherence Mechanisms for Provable Self-Improvement",
+            "url": "https://arxiv.org/abs/2511.08440"
+          },
+          {
+            "title": "Coherence Mechanisms for Provable Self-Improvement",
+            "url": "https://arxiv.org/pdf/2511.08440"
+          },
+          {
+            "title": "Calibration without Ground Truth∗ Yuqing Kong Peking University Mingyu Song",
+            "url": "https://arxiv.org/pdf/2601.19862"
+          },
+          {
+            "title": "Computer Science Nov 2025",
+            "url": "https://arxiv.org/list/cs/2025-11?skip=4000&show=100"
+          },
+          {
+            "title": "Self-Improvement as Coherence Optimization: A Theoretical Account",
+            "url": "https://arxiv.org/pdf/2601.13566"
+          },
+          {
+            "title": "Self-Improvement as Coherence Optimization: A Theoretical Account",
+            "url": "https://arxiv.org/html/2601.13566v1"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here are the key details about the research:\n\n**Paper Title:** Coherence Mechanisms for Provable Self-Improvement\n\n**Authors:** &lt;cite index=\"2-1\">Mehryar Mohri, Jon Schneider, and Yifan Wu\n\n**Core Concept:** &lt;cite index=\"1-1\">The paper proposes a principled framework for self-improvement based on the concept of coherence, which requires that a model's outputs remain consistent under task-preserving transformations of the input.\n\n**Key Innovation:** The authors formalize this concept using projection-based mechanisms that update a baseline model to be coherent while remaining as close as possible to its original behavior.\n\n**Theoretical Guarantee:** The paper provides rigorous theoretical guarantees that these mechanisms achieve monotonic improvement, measured by a reduction in expected Bregman divergence.\n\n**Scope:** The analysis is comprehensive, covering both direct and two-step projection methods, and robustly extends these guarantees to non-realizable settings.\n\nThe paper was published in November 2025 on arXiv (identifier 2511.08440) and addresses the critical need for formal guarantees in self-improvement approaches, moving beyond previous empirical heuristics."
+    ],
+    "durationSeconds": 6.415880287999986,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "50db0f21-db4e-4130-bc0a-323b52181448",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "bfcf3740-d69b-4025-a907-a330dec46b20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 51_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Compositional Verified Synthesis for Sustained Math Reasoning Self-Improvement  ## Core Problem  Iterative self-improvement for math reasoning faces a theoretically-proven verification ceiling: veri…",
+  "leafUuid": "f14a2a89-2b1d-4de7-8527-1f54219a6ba9",
+  "sessionId": "bfcf3740-d69b-4025-a907-a330dec46b20"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 52_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Compositional verified self-improvement for math reasoning",
+  "sessionId": "bfcf3740-d69b-4025-a907-a330dec46b20"
+}
+```
+
+---
+
+### Assistant
+
+_source line 53 · 2026-05-27T19:49:24.736Z_
+
+Now I have sufficient research to provide a thorough analysis. Let me synthesize my findings.
+
+---
+
+【状态】: 有发掘空间
+
+【前置调研发现】
+- **[Escaping Model Collapse via Synthetic Data Verification](https://arxiv.org/abs/2510.16657)** (arXiv Oct 2025): 核心理论支柱——证明 verified retraining 在长期收敛到 verifier's knowledge center（除非 verifier 无偏）。CVSI 的核心 claim 正是要打破这个 ceiling。
+- **[NSRSA](https://arxiv.org/abs/2603.21558)** (arXiv Mar 2026): SymPy step-level verification 在迭代自训练中防止 collapse，GSM8K 91.0%，但 5 轮后趋于平台期，使用静态问题分布。
+- **[VHG](https://arxiv.org/abs/2605.06660)** (arXiv May 2026): 三方 self-play + verifier，在积分任务上 21.4% 提升，但目标是最大化难度，不是 compositional novelty，也不提供 sustained improvement 理论保证。
+- **[Agentic Proposing](https://arxiv.org/abs/2602.03279)** (arXiv Feb 2026): 用 agent 组合 modular skills 合成问题，11K trajectories 达到 AIME25 91.6%，但只做 one-shot 合成，没有 iterative loop。
+- **[STEPS](https://arxiv.org/abs/2601.03676)** (arXiv Jan 2026): 建立 hierarchical skill taxonomy 做 data synthesis，formulates 为 constrained information maximization，但非 math-specific 且不 iterative。
+- **[A Task-Centric Theory for Iterative Self-Improvement](https://arxiv.org/abs/2602.10014)** (arXiv Feb 2026): 对 iterative self-improvement 的理论分析，证明 better models accept more data supporting sustained improvement，但也解释 eventual saturation。Easy-to-hard curricula 的形式化条件与 CVSI 的 ZPD gating 有关联。
+- **[Self-Play Only Evolves When Self-Synthetic Pipeline Ensures Learnable Information Gain](https://arxiv.org/abs/2603.02218)** (arXiv Mar 2026): **高度相关且 proposal 未引用。** 提出 Proposer-Solver-Verifier 三角色框架，核心主张是 sustainable self-evolution 要求 learnable information 在迭代中递增。与 CVSI 的 "compositional information gain" claim 有显著概念重叠。
+- **[Adaptive Problem Generation via Symbolic Representations](https://arxiv.org/abs/2602.19187)** (arXiv Feb 2026): **高度相关且 proposal 未引用。** 在 symbolic space (SymPy/SMT) 做 adaptive problem generation，能 adapt to model's evolving capabilities，自动生成 ground-truth solutions。
+- **[Coherence Mechanisms for Provable Self-Improvement](https://arxiv.org/abs/2511.08440)** (arXiv Nov 2025): 提供 monotonic improvement 的形式化保证（基于 coherence + Bregman divergence），是 "provable self-improvement" 方向的理论先驱。
+- **[Prism](https://arxiv.org/abs/2603.13309)** (arXiv Mar 2026): 用 semantic partitioning + ZPD gating 防止 self-evolving 系统中的 diversity collapse。
+- 调研总结: 这个领域当前研究者的核心关注点是 **如何在 iterative self-improvement 中持续产生 learnable information gain 而不 collapse**，主流思路分为两条线——(1) 加强 verification 防 collapse 但接受 ceiling，(2) 做 compositional/diversity-aware generation 但缺乏理论保证。CVSI 试图统一两条线，这个定位方向正确，但需要更锐利地处理差异化。
+
+---
+
+【发掘点 1】
+- 维度: related work 差异化 / trivial alternative 威胁
+- 内容: Proposal 遗漏了两篇高度相关的工作，构成对 novelty claim 的潜在威胁：
+
+  **(a) "Self-Play Only Evolves When Self-Synthetic Pipeline Ensures Learnable Information Gain" (2603.02218)**：该工作同样提出 Proposer-Solver-Verifier 三角色框架，核心主张也是 "sustainable self-evolution 需要 learnable information 在迭代中递增"。CVSI 的 "compositional information gain is strictly positive per iteration" 与此在概念层面高度重叠。尽管 CVSI 用 compositional skill structure 作为 information gain 的具体机制，而该工作更偏 high-level 框架，但审稿人很可能认为 CVSI 只是这一框架的一个具体实例化 (instantiation)。
+
+  **(b) "Adaptive Problem Generation via Symbolic Representations" (2602.19187)**：该工作也在 symbolic space (SymPy) 做 adaptive、model-capability-aware 的问题生成，且能自动生成 ground-truth solutions。这与 CVSI 的 skill library + compositional proposer 在机制上有大量重叠（都是 symbolic 表示 → 结构化变换 → 自动验证）。
+
+  **必须在 Related Work 中明确与这两篇的差异化定位**：CVSI 的独特贡献不是 "symbolic verification + adaptive generation"（这已被覆盖），而是 **compositional structure 提供的 combinatorial explosion 保证了 information gain 的可证明持续性**——即 "正确性保证 + novelty 的组合爆炸 + 理论保证" 三者的统一。如果不做这个区分，审稿人会直接问："这和 Adaptive Problem Generation 有什么区别？"
+
+- 价值: 直接关系到 novelty claim 能否站住脚。缺少对这两篇工作的讨论，审稿人会质疑文献调研的完整性，进而怀疑 novelty claim 的可信度。这是一个 **reviewer confidence killer**。
+- 调研依据: 基于对 arXiv 2603.02218 和 2602.19187 的调研发现。
+
+---
+
+【发掘点 2】
+- 维度: 核心 claim 强化 / 前提假设质疑
+- 内容: Proposal 的理论核心——"compositional information gain is strictly positive per iteration under mild coverage assumptions"——是整篇文章最大的卖点，但当前表述有两个薄弱环节：
+
+  **(a) "mild coverage assumptions" 是什么？** 这个 assumption 的强度直接决定理论贡献的价值。如果 assumption 是 "proposer 能均匀覆盖所有 skill composition"，那就是一个非常强的假设，因为现实中 proposer 自身也有 bias。如果 assumption 是 "skill library 中每个 atomic skill 的 verification 是 sound"，那就确实是 mild 的。但 proposal 没有展开，审稿人无从判断。
+
+  **(b) "information gain" 的形式化定义需要更精确。** 当前的直觉论证是：novel skill composition → training signal outside verifier's knowledge center → positive information gain。但这个推理链有一个跳跃：**novel composition 不等于 learnable signal**。一个由 5 个已知 skill 组成的问题，如果 solver 已经能独立解决每个 skill，那么组合问题的 information gain 可能接近零（如果 skills 之间没有 interaction effect）。真正的 information gain 来源于 **skill 之间的交互复杂度**——即组合后产生的推理链路复杂度超过了各 skill 独立复杂度之和。
+
+  **建议**：将理论 claim 从 "compositional information gain > 0" 精确化为基于 **skill interaction complexity** 的 information gain bound，明确区分 "trivially composable"（线性拼接，information gain ≈ 0）和 "non-trivially composable"（需要跨 skill 推理，information gain > 0）的情况。这不仅让理论更 rigorous，还直接回应了 trivial alternative 的威胁——如果所有 composition 都是 trivial 拼接，一个简单的 data augmentation 就能达到类似效果。
+
+- 价值: 这直接决定 paper 的理论贡献是 "有深度的形式化保证" 还是 "符号包装的直觉论证"。前者是 AAAI accept 级别，后者会被 reviewer 打回。(命中 Novelty + Significance)
+- 调研依据: 参考 [A Task-Centric Theory](https://arxiv.org/abs/2602.10014) 对 saturation 条件的严格形式化方式，以及 [Coherence Mechanisms](https://arxiv.org/abs/2511.08440) 用 Bregman divergence 给出 monotonic improvement guarantee 的方法论。CVSI 的理论 claim 需要达到类似的精确度。
+
+---
+
+【发掘点 3】
+- 维度: novelty 锐化
+- 内容: 当前 proposal 将 novelty 定位为 "三个组件的统一" (compositional skill synthesis + step-level symbolic verification + iterative self-improvement)。但 "统一 A+B+C" 在审稿人看来容易被归类为 **engineering contribution**（"you just put existing things together"）。
+
+  更锐利的 novelty framing 应该是：**Compositionality as the missing theoretical mechanism for escaping the verification ceiling.** 即：
+
+  - 已有理论（2510.16657）证明 verified retraining 收敛到 verifier's knowledge center
+  - CVSI 的关键 insight 是：verifier 的 knowledge center 是关于 **individual problems** 定义的，但 compositional structure 在 problem space 中引入了 combinatorial expansion，使得即使用同一个 verifier，composite problems 的 verified solution space 也严格大于 atomic problems 的 verified solution space
+  - 因此 compositionality 不只是一种 "生成更多数据的方法"，而是一种 **从理论上打破 verification ceiling 的机制**
+
+  这个 framing 把 novelty 从 "系统集成" 提升到了 "理论 insight"——审稿人很难说 "I would have guessed this"，因为这不是一个显然的结论。
+
+- 价值: 将 novelty narrative 从 "engineering integration" 提升为 "theoretical insight about compositionality's role in escaping verification ceiling"。这是 contribution statement 质量的本质区别。(命中 Novelty)
+- 调研依据: 直接建立在 [Escaping Model Collapse via Synthetic Data Verification](https://arxiv.org/abs/2510.16657) 的理论框架之上。该论文证明了 ceiling 的存在，但未讨论 compositional structure 对 ceiling 的影响，这正是 CVSI 可以 claim 的理论 gap。
+
+---
+
+【发掘点 4】
+- 维度: significance 提升
+- 内容: 当前 proposal 的 significance framing 集中在 "math reasoning self-improvement" 这个子领域。但 compositionality escaping verification ceiling 这个 insight 如果成立，其 implication 远不止数学推理——它意味着 **任何具有 compositional structure 的 verified domain**（形式验证、代码生成、逻辑推理、定理证明）都可能利用类似机制打破 verification ceiling。
+
+  建议在 Introduction 或 Discussion 中明确点出这个 broader implication：CVSI 选择 math reasoning 作为 testbed 是因为 math 有最成熟的 symbolic verifier（SymPy）和最清晰的 compositional structure，但 **原理本身是 domain-agnostic 的**。这能显著提升 paper 的 impact narrative——审稿人评分时 "significance" 维度会被拉高。
+
+  但要注意：这个 generalization claim 只能作为 discussion，不能作为主要 contribution。过度 claim 反而会被质疑。
+
+- 价值: 将 paper 的 significance 从 "math reasoning 的一个改进" 提升到 "verified self-improvement 领域的通用理论 insight"。(命中 Significance)
+- 调研依据: 基于领域整体趋势判断。[Verification Limits Code LLM Training](https://arxiv.org/abs/2509.20837) 在 code domain 也确认了 verification ceiling 的存在，说明这是一个跨领域的问题，CVSI 的 compositional mechanism 如果在 math domain 被验证，自然有 code domain 的 implication。
+
+---
+
+【发掘点 5】
+- 维度: 前提假设质疑
+- 内容: Proposal 声称 "individually-verified atomic skills can be composed into novel multi-step problems that are correct by construction"。这个 "correct by construction" 的前提需要仔细审视。
+
+  在数学推理中，**composition 本身可能引入 correctness issues**。例如：将 "polynomial factoring" 和 "integration by substitution" 组合时，factoring 的输出需要满足 integration 的输入约束（例如 substitution variable 的 domain）。如果 skill library 没有显式建模 **skill 之间的 interface constraints**（即每个 skill 的 precondition 和 postcondition），那么 "correct by construction" 可能只在 trivial composition（线性 pipeline）下成立，在 non-trivial composition（分支、条件、嵌套）下会失败。
+
+  这不是致命问题（可以通过 precondition/postcondition checking 解决），但当前 proposal 把 "correct by construction" 说得太绝对，审稿人会抓住这个点。建议：(1) 明确 composition 的 correctness 依赖于 skill interface 的形式化定义；(2) 将 skill library 的设计从 "~200 atomic operations" 细化为 "~200 typed operations with formally specified pre/postconditions"；(3) 承认 composition correctness 的 scope（哪些类型的 composition 是 provably correct，哪些需要 runtime verification）。
+
+  这实际上是一个可以强化 novelty 的点：**typed compositional skill library with formal interface contracts** 本身就是一个有意义的 engineering contribution，比 "a list of 200 skills" 高级得多。
+
+- 价值: 防止审稿人攻击 "correct by construction" 的过强假设，同时将 skill library 的设计从简单列举提升为有形式化类型系统的架构。(命中 Novelty + Related Work 差异化)
+- 调研依据: 参考 [RV-Syn](https://arxiv.org/abs/2504.20426) 的 structured function library 设计——其 computational graph 有明确的输入输出类型，但 proposal 中没有说明 CVSI 的 skill library 是否也有类似的 typing system。如果有，需要 highlight；如果没有，需要补上。
+
+---
+
+Sources:
+- [Escaping Model Collapse via Synthetic Data Verification](https://arxiv.org/abs/2510.16657)
+- [NSRSA: Stabilizing Iterative Self-Training](https://arxiv.org/abs/2603.21558)
+- [VHG: Verifier-Backed Hard Problem Generation](https://arxiv.org/abs/2605.06660)
+- [Agentic Proposing](https://arxiv.org/abs/2602.03279)
+- [STEPS: Skill Taxonomy Guided Data Synthesis](https://arxiv.org/abs/2601.03676)
+- [A Task-Centric Theory for Iterative Self-Improvement](https://arxiv.org/abs/2602.10014)
+- [Self-Play Only Evolves When Self-Synthetic Pipeline Ensures Learnable Information Gain](https://arxiv.org/abs/2603.02218)
+- [Adaptive Problem Generation via Symbolic Representations](https://arxiv.org/abs/2602.19187)
+- [Coherence Mechanisms for Provable Self-Improvement](https://arxiv.org/abs/2511.08440)
+- [Prism: Preventing Curriculum Collapse](https://arxiv.org/abs/2603.13309)
+- [Verification Limits Code LLM Training](https://arxiv.org/abs/2509.20837)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f14a2a89-2b1d-4de7-8527-1f54219a6ba9",
+  "isSidechain": false,
+  "requestId": "req_011CbTejQTTMY8h1gKemSrkT",
+  "type": "assistant",
+  "uuid": "977eda28-3ba2-46b5-a9b4-b37f7fb7d6d2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "bfcf3740-d69b-4025-a907-a330dec46b20",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EuK3qj998MwwT6eaAT8X85",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 769,
+      "cache_read_input_tokens": 29101,
+      "output_tokens": 4669,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 769,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4669,
+          "cache_read_input_tokens": 29101,
+          "cache_creation_input_tokens": 769,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 769
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 54_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Compositional Verified Synthesis for Sustained Math Reasoning Self-Improvement  ## Core Problem  Iterative self-improvement for math reasoning faces a theoretically-proven verification ceiling: veri…",
+  "leafUuid": "977eda28-3ba2-46b5-a9b4-b37f7fb7d6d2",
+  "sessionId": "bfcf3740-d69b-4025-a907-a330dec46b20"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 55_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Compositional verified self-improvement for math reasoning",
+  "sessionId": "bfcf3740-d69b-4025-a907-a330dec46b20"
+}
+```
+
+---

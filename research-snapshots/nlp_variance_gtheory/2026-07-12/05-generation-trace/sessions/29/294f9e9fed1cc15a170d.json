@@ -1,0 +1,2708 @@
+{
+  "schema_version": "1.0",
+  "id": "294f9e9fed1cc15a170d",
+  "project": "nlp_variance_gtheory--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: You are helping verify claims in a research proposal about domain-adaptive autoformalization. I need you to verify that ",
+  "task_key": "agent-aa8f6287647c684b1",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/agent-aa8f6287647c684b1.jsonl",
+    "occurrence": 1,
+    "bytes": 105230,
+    "sha256": "cf73376bf43cd5d9e2dc5887b2a364e90e9d945bc324db6cfd986d4abf8e553b"
+  },
+  "statistics": {
+    "messages": 59,
+    "user_turns": 1,
+    "tool_calls": 24,
+    "roles": {
+      "user": 1,
+      "record": 2,
+      "assistant": 8,
+      "tool_call": 24,
+      "tool_result": 24
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-28T13:02:40.274Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "You are helping verify claims in a research proposal about domain-adaptive autoformalization. I need you to verify that these key papers actually exist and check whether the claims about them are accurate. Use WebSearch and WebFetch to verify each one.\n\nPapers to verify (check title, venue, date, and key claims):\n\n1. **LeanSearch v2** (claimed: May 2026, arXiv 2605.13137) — claimed to achieve SOTA premise retrieval (nDCG@10 = 0.623) without domain-specific fine-tuning via hierarchy-informed Mathlib informalization with Qwen3-Embedding-8B\n2. **DRIFT** (claimed: ICLR 2026 Poster) — claimed to decompose statements into ~5.8 atomic sub-queries, nearly doubling F1 on ProofNet (27.68 vs. 13.77)\n3. **Aria** (claimed: ICLR 2026) — claimed 68.5% on ProofNet and 42.9% on homological conjectures while all baselines score 0%\n4. **MathAtlas** (claimed: May 2026) — claimed 52k entities across 87 math areas with 178k dependency relations\n5. **CRAMF** (claimed: ICLR 2026) — claimed to store module paths (θ_p) per definition and use contextual query augmentation\n6. **MSC-180** (claimed: Dec 2025, arXiv 2512.18256) — claimed CV values 4-6× above high-variability thresholds across 60 mathematical branches\n\nFor each paper, search for it, try to fetch its abstract/details, and report:\n- Does it exist? \n- Are the claimed venue/date correct?\n- Are the specific numerical claims accurate?\n\nBe thorough - try multiple search queries if initial ones don't work."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "f52e040c-c89a-4354-9d36-8828dec412f7",
+            "agentId": "aa8f6287647c684b1",
+            "type": "user",
+            "uuid": "aded9807-19ff-4f0e-bef4-f5cbdafe7edc",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "9c44962f-53ef-4dda-a205-11ae79612bf5",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-28T13:02:40.277Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "aded9807-19ff-4f0e-bef4-f5cbdafe7edc",
+                "isSidechain": true,
+                "agentId": "aa8f6287647c684b1",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskCreate",
+                    "TaskGet",
+                    "TaskList",
+                    "TaskStop",
+                    "TaskUpdate",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskCreate",
+                    "TaskGet",
+                    "TaskList",
+                    "TaskStop",
+                    "TaskUpdate",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "removedNames": [],
+                  "readdedNames": []
+                },
+                "type": "attachment",
+                "uuid": "290b7cf9-764e-469f-9d2a-c0d84e47b374",
+                "timestamp": "2026-05-28T13:02:40.277Z",
+                "userType": "external",
+                "entrypoint": "sdk-py",
+                "cwd": "/home/ubuntu",
+                "sessionId": "9c44962f-53ef-4dda-a205-11ae79612bf5",
+                "version": "2.1.142",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-28T13:02:40.278Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "290b7cf9-764e-469f-9d2a-c0d84e47b374",
+                "isSidechain": true,
+                "agentId": "aa8f6287647c684b1",
+                "attachment": {
+                  "type": "skill_listing",
+                  "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+                  "skillCount": 10,
+                  "isInitial": true
+                },
+                "type": "attachment",
+                "uuid": "a0a2d1c9-723f-4d34-87d4-29cfbad2dbd0",
+                "timestamp": "2026-05-28T13:02:40.278Z",
+                "userType": "external",
+                "entrypoint": "sdk-py",
+                "cwd": "/home/ubuntu",
+                "sessionId": "9c44962f-53ef-4dda-a205-11ae79612bf5",
+                "version": "2.1.142",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-28T13:02:48.166Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nI'll systematically verify each paper. Let me start by loading the WebSearch and WebFetch tools, then search for all papers in parallel."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a0a2d1c9-723f-4d34-87d4-29cfbad2dbd0",
+            "isSidechain": true,
+            "agentId": "aa8f6287647c684b1",
+            "requestId": "req_011CbV1eQPoSjBYNjYLkUbxp",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "db752ff2-bf1f-4c96-b775-2a4ca8ac6d04",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "9c44962f-53ef-4dda-a205-11ae79612bf5",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LbUpBues7ULu1Wr65z3J5D",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 9191,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 9191,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-28T13:02:48.854Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JtgGZ2sLe9bBQHymkejwhh",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch,WebFetch",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "db752ff2-bf1f-4c96-b775-2a4ca8ac6d04",
+            "isSidechain": true,
+            "agentId": "aa8f6287647c684b1",
+            "requestId": "req_011CbV1eQPoSjBYNjYLkUbxp",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "3e100849-17e8-4694-b92a-4f805d125dc8",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "9c44962f-53ef-4dda-a205-11ae79612bf5",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LbUpBues7ULu1Wr65z3J5D",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 9191,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 9191,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-28T13:02:48.859Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01JtgGZ2sLe9bBQHymkejwhh",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebFetch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3e100849-17e8-4694-b92a-4f805d125dc8",
+            "isSidechain": true,
+            "promptId": "f52e040c-c89a-4354-9d36-8828dec412f7",
+            "agentId": "aa8f6287647c684b1",
+            "type": "user",
+            "uuid": "5a0839cd-ee94-44ce-ad66-436c60cdf7bc",
+            "sourceToolAssistantUUID": "3e100849-17e8-4694-b92a-4f805d125dc8",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "9c44962f-53ef-4dda-a205-11ae79612bf5",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-28T13:02:51.571Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nNow let me search for all six papers in parallel."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5a0839cd-ee94-44ce-ad66-436c60cdf7bc",
+            "isSidechain": true,
+            "agentId": "aa8f6287647c684b1",
+            "requestId": "req_011CbV1f3nbAHmHbSKuyjpjv",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "ad52830c-2795-49dd-9c0c-80c269806c04",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "9c44962f-53ef-4dda-a205-11ae79612bf5",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013oV4nn8etCm4wkvm6S1r3F",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1133,
+                "cache_read_input_tokens": 9191,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1133,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-28T13:02:52.696Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GSiwKRNvKeLp6rVTYnGuH9",
+              "name": "WebSearch",
+              "input": {
+                "query": "LeanSearch v2 arXiv 2605.13137 premise retrieval Mathlib"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ad52830c-2795-49dd-9c0c-80c269806c04",
+            "isSidechain": true,
+            "agentId": "aa8f6287647c684b1",
+            "requestId": "req_011CbV1f3nbAHmHbSKuyjpjv",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "55252bd7-7c29-4765-a7ae-64b29cf4cfe4",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "9c44962f-53ef-4dda-a205-11ae79612bf5",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013oV4nn8etCm4wkvm6S1r3F",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1133,
+                "cache_read_input_tokens": 9191,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1133,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-28T13:02:53.582Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FCB8jvxiDAqXE8vmVsrctj",
+              "name": "WebSearch",
+              "input": {
+                "query": "DRIFT ICLR 2026 decompose sub-queries ProofNet autoformalization"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "55252bd7-7c29-4765-a7ae-64b29cf4cfe4",
+            "isSidechain": true,
+            "agentId": "aa8f6287647c684b1",
+            "requestId": "req_011CbV1f3nbAHmHbSKuyjpjv",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "6ecb5235-ccf8-4917-b147-5e4d509f7ddc",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "9c44962f-53ef-4dda-a205-11ae79612bf5",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013oV4nn8etCm4wkvm6S1r3F",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1133,
+                "cache_read_input_tokens": 9191,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1133,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-28T13:02:54.049Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014jSxsEMn1TSuhUEBB6jbSa",
+              "name": "WebSearch",
+              "input": {
+                "query": "Aria ICLR 2026 ProofNet autoformalization homological conjectures"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6ecb5235-ccf8-4917-b147-5e4d509f7ddc",
+            "isSidechain": true,
+            "agentId": "aa8f6287647c684b1",
+            "requestId": "req_011CbV1f3nbAHmHbSKuyjpjv",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b408782a-f842-4f8b-94f8-b0eb86003c04",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "9c44962f-53ef-4dda-a205-11ae79612bf5",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013oV4nn8etCm4wkvm6S1r3F",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1133,
+                "cache_read_input_tokens": 9191,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1133,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-28T13:02:54.989Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MiG8tooddshDqQkk1VBPDy",
+              "name": "WebSearch",
+              "input": {
+                "query": "MathAtlas 52k entities 87 math areas dependency relations 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b408782a-f842-4f8b-94f8-b0eb86003c04",
+            "isSidechain": true,
+            "agentId": "aa8f6287647c684b1",
+            "requestId": "req_011CbV1f3nbAHmHbSKuyjpjv",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "e508c052-1897-44f9-9ae1-b7e5a823b2fb",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "9c44962f-53ef-4dda-a205-11ae79612bf5",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013oV4nn8etCm4wkvm6S1r3F",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1133,
+                "cache_read_input_tokens": 9191,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1133,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-28T13:02:55.988Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RvirwUZkNEpD2tKjJadQbw",
+              "name": "WebSearch",
+              "input": {
+                "query": "CRAMF ICLR 2026 module paths contextual query augmentation autoformalization"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e508c052-1897-44f9-9ae1-b7e5a823b2fb",
+            "isSidechain": true,
+            "agentId": "aa8f6287647c684b1",
+            "requestId": "req_011CbV1f3nbAHmHbSKuyjpjv",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "5b81c5a2-1220-4c91-8ff3-ea382eb94f9b",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "9c44962f-53ef-4dda-a205-11ae79612bf5",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013oV4nn8etCm4wkvm6S1r3F",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1133,
+                "cache_read_input_tokens": 9191,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1133,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-28T13:02:56.683Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Fawy6TowCHoe7bYoqC6G7f",
+              "name": "WebSearch",
+              "input": {
+                "query": "MSC-180 arXiv 2512.18256 mathematical branches variability"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5b81c5a2-1220-4c91-8ff3-ea382eb94f9b",
+            "isSidechain": true,
+            "agentId": "aa8f6287647c684b1",
+            "requestId": "req_011CbV1f3nbAHmHbSKuyjpjv",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b236fb9b-e222-41ac-8a59-7205a64cc1ca",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "9c44962f-53ef-4dda-a205-11ae79612bf5",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013oV4nn8etCm4wkvm6S1r3F",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1133,
+                "cache_read_input_tokens": 9191,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1133,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-28T13:02:59.116Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014jSxsEMn1TSuhUEBB6jbSa",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Aria ICLR 2026 ProofNet autoformalization homological conjectures\"\n\nLinks: [{\"title\":\"ICLR Poster Aria: an Agent for Retrieval and Iterative Auto-Formalization via Dependency Graph\",\"url\":\"https://iclr.cc/virtual/2026/poster/10010860\"},{\"title\":\"Aria: an Agent for Retrieval and Iterative Auto-Formalization via Dependency Graph | OpenReview\",\"url\":\"https://openreview.net/forum?id=CPxZClPMiy\"},{\"title\":\"(PDF) Aria: An Agent For Retrieval and Iterative Auto-Formalization via Dependency Graph\",\"url\":\"https://www.researchgate.net/publication/396250696_Aria_An_Agent_For_Retrieval_and_Iterative_Auto-Formalization_via_Dependency_Graph\"},{\"title\":\"ARIA: AN AGENT FOR RETRIEVAL AND ITERATIVE\",\"url\":\"https://arxiv.org/pdf/2510.04520\"},{\"title\":\"[2510.04520v1] Aria: An Agent For Retrieval and Iterative Auto-Formalization via Dependency Graph\",\"url\":\"https://arxiv.org/abs/2510.04520v1\"},{\"title\":\"[2510.04520] Aria: An Agent For Retrieval and Iterative Auto-Formalization via Dependency Graph\",\"url\":\"https://arxiv.org/abs/2510.04520\"},{\"title\":\"Aria: An Agent For Retrieval and Iterative Auto-Formalization via Dependency Graph - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2025arXiv251004520W/abstract\"}]\n\nBased on the search results, I found comprehensive information about your query:\n\n## Aria: An Agent for Retrieval and Iterative Auto-Formalization\n\nAria (Agent for Retrieval and Iterative Autoformalization) is a system for conjecture-level formalization in Lean that emulates human expert reasoning via a two-phase Graph-of-Thought process: recursively decomposing statements into a dependency graph and then constructing formalizations from grounded concepts. The system introduces AriaScorer, a checker that retrieves definitions from Mathlib for term-level grounding, enabling rigorous and reliable verification.\n\n## Performance Results\n\nThe system was evaluated on multiple benchmarks:\n\n- **ProofNet**: On ProofNet, it achieves 91.6% compilation success rate and 68.5% final accuracy, surpassing previous methods.\n\n- **FATE-X**: On FATE-X, a suite of challenging algebra problems from research literature, it outperforms the best baseline with 44.0% vs. 24.0% final accuracy.\n\n- **Homological Conjectures**: On a dataset of homological conjectures, Aria reaches 42.9% final accuracy while all other models score 0%.\n\nThis paper was presented at ICLR 2026 and represents a significant advance in autoformalization of mathematical theorems, particularly for complex research-level problems in areas like homological algebra.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b408782a-f842-4f8b-94f8-b0eb86003c04",
+            "isSidechain": true,
+            "promptId": "f52e040c-c89a-4354-9d36-8828dec412f7",
+            "agentId": "aa8f6287647c684b1",
+            "type": "user",
+            "uuid": "6a534e72-4834-4cc7-ab5e-5f72cd9ace78",
+            "sourceToolAssistantUUID": "b408782a-f842-4f8b-94f8-b0eb86003c04",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "9c44962f-53ef-4dda-a205-11ae79612bf5",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-28T13:03:00.181Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FCB8jvxiDAqXE8vmVsrctj",
+              "type": "tool_result",
+              "content": "Web search results for query: \"DRIFT ICLR 2026 decompose sub-queries ProofNet autoformalization\"\n\nLinks: [{\"title\":\"ICLR Poster DRIFT: Decompose, Retrieve, Illustrate, then Formalize Theorems\",\"url\":\"https://iclr.cc/virtual/2026/poster/10010321\"},{\"title\":\"Preprint DRIFT: DECOMPOSE, RETRIEVE, ILLUSTRATE, THEN FORMALIZE THEOREMS\",\"url\":\"https://arxiv.org/pdf/2510.10815\"},{\"title\":\"DRIFT: Decompose, Retrieve, Illustrate, then Formalize Theorems\",\"url\":\"https://arxiv.org/html/2510.10815\"},{\"title\":\"(PDF) DRIFT: Decompose, Retrieve, Illustrate, then Formalize Theorems\",\"url\":\"https://www.researchgate.net/publication/396458949_DRIFT_Decompose_Retrieve_Illustrate_then_Formalize_Theorems\"},{\"title\":\"DRIFT: Decompose, Retrieve, Illustrate, then Formalize Theorems | OpenReview\",\"url\":\"https://openreview.net/forum?id=IGEs577RFz\"},{\"title\":\"[2510.10815] DRIFT: Decompose, Retrieve, Illustrate, then Formalize Theorems\",\"url\":\"https://arxiv.org/abs/2510.10815\"},{\"title\":\"DRIFT: DECOMPOSE, RETRIEVE, ILLUSTRATE, THEN ...\",\"url\":\"https://openreview.net/pdf/3f497d563de1ccd4d5d0f6acc356e345dba4baa3.pdf\"}]\n\nI found comprehensive information about DRIFT. Here's what the search revealed:\n\n## DRIFT: Decompose, Retrieve, Illustrate, then Formalize Theorems\n\nDRIFT is a novel framework that enables LLMs to decompose informal mathematical statements into smaller, more tractable \"sub-components\", which facilitates targeted retrieval of premises from mathematical libraries such as Mathlib.\n\n### The Problem It Addresses\n\nLLMs struggle to identify and utilize the prerequisite mathematical knowledge and its corresponding formal representation in languages like Lean. Current retrieval-augmented autoformalization methods query external libraries using the informal statement directly, but overlook a fundamental limitation: informal mathematical statements are often complex and offer limited context on the underlying math concepts.\n\n### Key Features\n\nDRIFT retrieves illustrative theorems to help models use premises more effectively in formalization tasks.\n\n### Evaluation Results\n\nDRIFT was evaluated across diverse benchmarks (ProofNet, ConNF, and MiniF2F-test) and consistently improves premise retrieval, nearly doubling the F1 score compared to the DPR baseline on ProofNet. The experiments establish new state-of-the-art in dependency retrieval and autoformalization on ProofNet and ConNF across models, with exceptional performance on the out-of-distribution ConNF benchmark.\n\nThis work appears to be presented at ICLR 2026 and represents an important advancement in automated theorem proving and mathematical formalization using large language models.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6ecb5235-ccf8-4917-b147-5e4d509f7ddc",
+            "isSidechain": true,
+            "promptId": "f52e040c-c89a-4354-9d36-8828dec412f7",
+            "agentId": "aa8f6287647c684b1",
+            "type": "user",
+            "uuid": "78487c2c-7246-4144-9b15-6c45be23bd87",
+            "sourceToolAssistantUUID": "6ecb5235-ccf8-4917-b147-5e4d509f7ddc",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "9c44962f-53ef-4dda-a205-11ae79612bf5",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-28T13:03:00.191Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GSiwKRNvKeLp6rVTYnGuH9",
+              "type": "tool_result",
+              "content": "Web search results for query: \"LeanSearch v2 arXiv 2605.13137 premise retrieval Mathlib\"\n\nLinks: [{\"title\":\"[2605.13137] LeanSearch v2: Global Premise Retrieval for Lean 4 Theorem Proving\",\"url\":\"https://arxiv.org/abs/2605.13137\"},{\"title\":\"LeanSearch v2: Global Premise Retrieval for Lean 4 Theorem Proving\",\"url\":\"https://arxiv.org/html/2605.13137\"},{\"title\":\"Learning an Effective Premise Retrieval Model for Efficient Mathematical Formalization\",\"url\":\"https://arxiv.org/html/2501.13959\"},{\"title\":\"REAL-Prover: Retrieval Augmented Lean Prover for Mathematical Reasoning\",\"url\":\"https://arxiv.org/html/2505.20613v1\"},{\"title\":\"REAL-Prover: Retrieval Augmented Lean ...\",\"url\":\"https://arxiv.org/pdf/2505.20613\"},{\"title\":\"(PDF) REAL-Prover: Retrieval Augmented Lean Prover for Mathematical Reasoning\",\"url\":\"https://www.researchgate.net/publication/392133993_REAL-Prover_Retrieval_Augmented_Lean_Prover_for_Mathematical_Reasoning\"}]\n\nBased on the search results, here's what I found about LeanSearch v2:\n\nLeanSearch v2 addresses the task of global premise retrieval, which involves identifying a scattered set of library lemmas whose joint use enables a concise proof in Lean 4.\n\nLeanSearch v2 is a two-mode retrieval system, with its standard mode applying a hierarchy-informalized Mathlib corpus with an embedding-reranker pipeline, achieving state-of-the-art single-query retrieval without domain-specific fine-tuning (nDCG@10 of 0.62 vs. 0.53 for the next-best system).\n\nIts reasoning mode builds on standard mode as its retrieval substrate, targeting global premise retrieval through iterative sketch-retrieve-reflect cycles.\n\nOn a 69-query benchmark of research-level Mathlib theorems, reasoning mode recovers 46.1% of ground-truth premise groups within 10 retrieved candidates, outperforming strong reasoning retrieval systems (38.0%) and premise-selection baselines (9.3%) on the same benchmark.\n\nIn a controlled downstream evaluation with a fixed prover loop, replacing alternative retrievers with LeanSearch v2 yields the highest proof success (20% vs. 16% for the next-best system and 4% without retrieval), demonstrating that the improved retrieval quality translates to better proof generation performance.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "55252bd7-7c29-4765-a7ae-64b29cf4cfe4",
+            "isSidechain": true,
+            "promptId": "f52e040c-c89a-4354-9d36-8828dec412f7",
+            "agentId": "aa8f6287647c684b1",
+            "type": "user",
+            "uuid": "2be77133-2c10-4f75-b06d-c9056542c853",
+            "sourceToolAssistantUUID": "55252bd7-7c29-4765-a7ae-64b29cf4cfe4",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "9c44962f-53ef-4dda-a205-11ae79612bf5",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-28T13:03:04.167Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MiG8tooddshDqQkk1VBPDy",
+              "type": "tool_result",
+              "content": "Web search results for query: \"MathAtlas 52k entities 87 math areas dependency relations 2026\"\n\nLinks: [{\"title\":\"Dependence relation - Wikipedia\",\"url\":\"https://en.wikipedia.org/wiki/Dependence_relation\"},{\"title\":\"Mathematical Derivation Graphs: A Relation Extraction Task in STEM Manuscripts\",\"url\":\"https://arxiv.org/pdf/2410.21324\"},{\"title\":\"Mathematical Entities: Corpora and Benchmarks\",\"url\":\"https://arxiv.org/html/2406.11577\"},{\"title\":\"[2406.11577] Mathematical Entities: Corpora and Benchmarks\",\"url\":\"https://arxiv.org/abs/2406.11577\"},{\"title\":\"Age-dependent topic modelling of comorbidities in UK Biobank identifies disease subtypes with differential genetic risk\",\"url\":\"https://www.medrxiv.org/content/10.1101/2022.10.23.22281420.full.pdf\"},{\"title\":\"Automatic Description Construction for Math Expression via Topic   Relation Graph\",\"url\":\"https://arxiv.org/pdf/2104.11890\"},{\"title\":\"Linking and managing mathematical objects\",\"url\":\"https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/8250482\"}]\n\nThe search results don't contain information about \"MathAtlas\" specifically. The results show various papers related to mathematical entities, dependency relations, and mathematical text processing, but none of them mention MathAtlas with the specifications you're asking about (52k entities, 87 math areas, dependency relations).\n\nLet me try a more specific search for MathAtlas:\n\nLinks: [{\"title\":\"Handwritten mathematical symbols dataset\",\"url\":\"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4786757/\"},{\"title\":\"Attain: Inclusive annotated pavement distress types and severity dataset\",\"url\":\"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12167439/\"},{\"title\":\"Measuring Mathematical Problem Solving With the MATH Dataset | OpenReview\",\"url\":\"https://openreview.net/forum?id=7Bywt2mQsCe\"},{\"title\":\"Measuring Multimodal Mathematical Reasoning with MATH-Vision Dataset | OpenReview\",\"url\":\"https://openreview.net/forum?id=QWTCcxMpPA\"},{\"title\":\"6DoF assembly pose estimation dataset for robotic manipulation\",\"url\":\"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11385461/\"},{\"title\":\"Machine Learning-Ready Data Sets for the Analysis and Nowcasting of Atmospheric Radiation at Aviation Altitudes\",\"url\":\"https://arxiv.org/pdf/2602.07108\"},{\"title\":\"A Multi-Modal, Multi-Temporal, Multi-Resolution Benchmark Dataset for Building Height Estimation\",\"url\":\"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12774874/\"},{\"title\":\"The AMATUS Dataset: Arithmetic Performance, Mathematics Anxiety and Attitudes in Primary School Teachers and University Students\",\"url\":\"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12270086/\"},{\"title\":\"ATLAS: Autoformalizing Theorems through Lifting, Augmentation, and Synthesis of Data\",\"url\":\"https://arxiv.org/pdf/2502.05567\"}]\n\nThe search results still don't contain specific information about \"MathAtlas\" with those particular specifications. Let me try one more targeted search:\n\nLinks: [{\"title\":\"Interactive Math Learning | MathAtlas\",\"url\":\"https://mathatlas.app/\"}]\n\nBased on my web searches, I was unable to find specific information about \"MathAtlas\" with 52k entities, 87 math areas, and dependency relations in a 2026 research context. \n\nThe only result for MathAtlas I found is a website (mathatlas.app) that describes an interactive mathematics learning platform with modules on advanced mathematical topics like Group Theory, Galois Theory, and Complex Analysis, but this doesn't appear to match the specific technical specifications you mentioned (52k entities, 87 math areas, dependency relations).\n\nIf you're looking for information about a recent academic dataset or research project with these specifications, it's possible that:\n1. It's a very recent publication not yet widely indexed\n2. It may be described under a different name\n3. It could be available on academic repositories like arXiv that haven't been fully indexed yet\n\nCould you provide additional context, such as the authors' names, the research institution, or a direct link to the paper or project?\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e508c052-1897-44f9-9ae1-b7e5a823b2fb",
+            "isSidechain": true,
+            "promptId": "f52e040c-c89a-4354-9d36-8828dec412f7",
+            "agentId": "aa8f6287647c684b1",
+            "type": "user",
+            "uuid": "c3bf3b87-ebc2-48da-aee6-31fbb4070371",
+            "sourceToolAssistantUUID": "e508c052-1897-44f9-9ae1-b7e5a823b2fb",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "9c44962f-53ef-4dda-a205-11ae79612bf5",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-28T13:03:04.502Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Fawy6TowCHoe7bYoqC6G7f",
+              "type": "tool_result",
+              "content": "Web search results for query: \"MSC-180 arXiv 2512.18256 mathematical branches variability\"\n\nLinks: [{\"title\":\"[2512.18256] MSC-180: A Benchmark for Automated Formal Theorem Proving from Mathematical Subject Classification\",\"url\":\"https://arxiv.org/abs/2512.18256\"},{\"title\":\"MSC-180: A Benchmark for Automated Formal Theorem Proving from Mathematical Subject Classification\",\"url\":\"https://arxiv.org/pdf/2512.18256\"},{\"title\":\"MSC-180: A Benchmark for Automated Formal Theorem Proving from Mathematical Subject Classification\",\"url\":\"https://arxiv.org/html/2512.18256\"},{\"title\":\"Variability and the existence of rough integrals with irregular   coefficients\",\"url\":\"https://arxiv.org/pdf/2407.06907\"},{\"title\":\"Morphological details contribute to neuronal response variability within the same cell type\",\"url\":\"https://www.biorxiv.org/content/10.1101/2025.09.15.676219.full.pdf\"}]\n\nBased on the search results, I found information about the arXiv paper 2512.18256:\n\n## MSC-180: A Benchmark for Automated Formal Theorem Proving\n\nMSC-180 is a benchmark for evaluation based on the MSC2020 mathematical subject classification, comprising 180 formal verification problems—3 advanced problems from each of 60 mathematical branches—spanning from undergraduate to graduate levels.\n\n### Addressing Mathematical Branches Variability\n\nTo quantify performance variability across mathematical domains, the researchers introduce the coefficient of variation (CV) as an evaluation metric. The observed CV values are 4-6 times higher than the statistical high-variability threshold, indicating that the models still rely on pattern matching from training corpora rather than possessing transferable reasoning mechanisms and systematic generalization capabilities.\n\nEvaluations reveal that the best LLM-based theorem prover achieves only an 18.89% overall pass rate, with prominent issues including significant domain bias (maximum domain coverage 41.7%) and a difficulty gap (significantly lower pass rates on graduate-level problems).\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b236fb9b-e222-41ac-8a59-7205a64cc1ca",
+            "isSidechain": true,
+            "promptId": "f52e040c-c89a-4354-9d36-8828dec412f7",
+            "agentId": "aa8f6287647c684b1",
+            "type": "user",
+            "uuid": "d61b78d0-25ab-4cef-832c-d507ea3c259e",
+            "sourceToolAssistantUUID": "b236fb9b-e222-41ac-8a59-7205a64cc1ca",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "9c44962f-53ef-4dda-a205-11ae79612bf5",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-28T13:03:05.984Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RvirwUZkNEpD2tKjJadQbw",
+              "type": "tool_result",
+              "content": "Web search results for query: \"CRAMF ICLR 2026 module paths contextual query augmentation autoformalization\"\n\nLinks: [{\"title\":\"Automated Formalization via Conceptual Retrieval-Augmented LLMs\",\"url\":\"https://arxiv.org/html/2508.06931\"},{\"title\":\"Automated Formalization via Conceptual Retrieval-Augmented LLMs\",\"url\":\"https://arxiv.org/pdf/2508.06931\"},{\"title\":\"Published as a conference paper at ICLR 2026\",\"url\":\"https://openreview.net/pdf/3f497d563de1ccd4d5d0f6acc356e345dba4baa3.pdf\"},{\"title\":\"Published as a conference paper at ICLR 2025 AUTONOMOUS EVALUATION OF LLMS FOR\",\"url\":\"https://proceedings.iclr.cc/paper_files/paper/2025/file/1a7a22152cd21f0ca3c0f8139bb32905-Paper-Conference.pdf\"},{\"title\":\"Autoformalizer with Tool Feedback\",\"url\":\"https://arxiv.org/pdf/2510.06857\"},{\"title\":\"Downloads 2026\",\"url\":\"https://iclr.cc/Downloads/2026\"},{\"title\":\"Published as a conference paper at ICLR 2025\",\"url\":\"https://proceedings.iclr.cc/paper_files/paper/2025/file/d630537fc4402cfa3ebbc7450a0cac91-Paper-Conference.pdf\"}]\n\nBased on the search results, I found information about CRAMF and related autoformalization research:\n\nCRAMF is a Concept-driven Retrieval-Augmented Mathematical Formalization framework that enhances LLM-based autoformalization by retrieving formal definitions of core mathematical concepts, providing contextual grounding during code generation.\n\nThe framework automatically constructs a concept-definition knowledge base from Mathlib4, the standard mathematical library for the Lean 4 theorem prover, indexing over 26,000 formal definitions and 1,000+ core mathematical concepts.\n\nTo address conceptual polymorphism, the approach proposes contextual query augmentation with domain- and application-level signals. Additionally, it designs a dual-channel hybrid retrieval strategy with reranking to ensure accurate and relevant definition retrieval.\n\nExperiments on miniF2F, ProofNet, and the newly proposed AdvancedMath benchmark show that CRAMF can be seamlessly integrated into LLM-based autoformalizers, yielding consistent improvements in translation accuracy—achieving up to 62.1% and an average of 29.9% relative improvement.\n\nThe paper \"Automated Formalization via Conceptual Retrieval-Augmented LLMs\" was published at ICLR 2026.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5b81c5a2-1220-4c91-8ff3-ea382eb94f9b",
+            "isSidechain": true,
+            "promptId": "f52e040c-c89a-4354-9d36-8828dec412f7",
+            "agentId": "aa8f6287647c684b1",
+            "type": "user",
+            "uuid": "444f4bdb-f8d9-470d-b4eb-1f505b6c80a7",
+            "sourceToolAssistantUUID": "5b81c5a2-1220-4c91-8ff3-ea382eb94f9b",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "9c44962f-53ef-4dda-a205-11ae79612bf5",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-28T13:03:09.638Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good, I found results for most papers. Now let me fetch the actual paper pages to verify the specific numerical claims in detail."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "444f4bdb-f8d9-470d-b4eb-1f505b6c80a7",
+            "isSidechain": true,
+            "agentId": "aa8f6287647c684b1",
+            "requestId": "req_011CbV1gJDn72MfKJdK7vGQt",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "9a39a913-503f-429e-b8a3-8c490dfd4970",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "9c44962f-53ef-4dda-a205-11ae79612bf5",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HXDquvZBCc3yU77d9CF8mT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 545,
+                "cache_creation_input_tokens": 4429,
+                "cache_read_input_tokens": 10324,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4429,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-28T13:03:12.240Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01843j3hQoN3H6WrdA5BxPpq",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2605.13137",
+                "prompt": "Extract the full title, authors, submission date, abstract, and any specific numerical results mentioned (especially nDCG@10 scores, and whether Qwen3-Embedding-8B is mentioned). What embedding model do they use?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9a39a913-503f-429e-b8a3-8c490dfd4970",
+            "isSidechain": true,
+            "agentId": "aa8f6287647c684b1",
+            "requestId": "req_011CbV1gJDn72MfKJdK7vGQt",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "ae359e9a-7b24-4d3b-9a14-94f712b57bc1",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "9c44962f-53ef-4dda-a205-11ae79612bf5",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HXDquvZBCc3yU77d9CF8mT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 545,
+                "cache_creation_input_tokens": 4429,
+                "cache_read_input_tokens": 10324,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4429,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-28T13:03:15.519Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RKxZc3nzGDziLmKkrebG1Y",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2510.10815",
+                "prompt": "Extract the full title, authors, submission date, venue, abstract. Look for specific numbers: how many sub-queries/sub-components does DRIFT decompose statements into (is 5.8 mentioned)? What are the F1 scores on ProofNet (is 27.68 vs 13.77 mentioned)? What is the DPR baseline F1?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ae359e9a-7b24-4d3b-9a14-94f712b57bc1",
+            "isSidechain": true,
+            "agentId": "aa8f6287647c684b1",
+            "requestId": "req_011CbV1gJDn72MfKJdK7vGQt",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "0a8f0039-23b6-40a6-8067-f0beecfa6193",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "9c44962f-53ef-4dda-a205-11ae79612bf5",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HXDquvZBCc3yU77d9CF8mT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 545,
+                "cache_creation_input_tokens": 4429,
+                "cache_read_input_tokens": 10324,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4429,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-28T13:03:17.052Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01843j3hQoN3H6WrdA5BxPpq",
+              "type": "tool_result",
+              "content": "# LeanSearch v2 Paper Summary\n\n**Title:** \"LeanSearch v2: Global Premise Retrieval for Lean 4 Theorem Proving\"\n\n**Authors:** Guoxiong Gao, Zeming Sun, Jiedong Jiang, Yutong Wang, Jingda Xu, Peihao Wu, Bryan Dai, Bin Dong\n\n**Submission Date:** May 13, 2026 (v1); May 14, 2026 (v2)\n\n**Key Numerical Results:**\n- nDCG@10 score of 0.62 (versus 0.53 for the next-best system)\n- 46.1% ground-truth premise recovery within 10 candidates\n- 38.0% for competing reasoning systems; 9.3% for premise-selection baselines\n- 20% proof success rate (compared to 16% for alternatives)\n\n**Embedding Model:** The document does not specify which embedding model is used. There is no mention of Qwen3-Embedding-8B in the provided content.\n\n**Abstract Summary:** The system addresses identifying scattered library lemmas needed for concise proofs through a two-mode approach combining \"an embedding-reranker pipeline\" with iterative retrieval cycles, achieving superior performance on research-level theorem proving tasks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ae359e9a-7b24-4d3b-9a14-94f712b57bc1",
+            "isSidechain": true,
+            "promptId": "f52e040c-c89a-4354-9d36-8828dec412f7",
+            "agentId": "aa8f6287647c684b1",
+            "type": "user",
+            "uuid": "b47234e2-303d-4452-967e-a4a30195bbee",
+            "sourceToolAssistantUUID": "ae359e9a-7b24-4d3b-9a14-94f712b57bc1",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "9c44962f-53ef-4dda-a205-11ae79612bf5",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-28T13:03:17.406Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YCQwtoTZ5d5Xb2RV8atZe7",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2510.04520",
+                "prompt": "Extract the full title, authors, submission date, venue, abstract. What are the specific accuracy numbers on ProofNet (is 68.5% mentioned)? What is the accuracy on homological conjectures (is 42.9% mentioned)? Do all baselines score 0% on homological conjectures?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b47234e2-303d-4452-967e-a4a30195bbee",
+            "isSidechain": true,
+            "agentId": "aa8f6287647c684b1",
+            "requestId": "req_011CbV1gJDn72MfKJdK7vGQt",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "8b8a5d26-ea6a-4071-87ce-24c68236239f",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "9c44962f-53ef-4dda-a205-11ae79612bf5",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HXDquvZBCc3yU77d9CF8mT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 545,
+                "cache_creation_input_tokens": 4429,
+                "cache_read_input_tokens": 10324,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4429,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-28T13:03:19.287Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EXj1Ho5dm6fi4seaUBzKkk",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2512.18256",
+                "prompt": "Extract the full title, authors, submission date, abstract. How many problems does the benchmark have? How many mathematical branches? Are the CV values 4-6x above high-variability thresholds? What is the overall pass rate mentioned?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8b8a5d26-ea6a-4071-87ce-24c68236239f",
+            "isSidechain": true,
+            "agentId": "aa8f6287647c684b1",
+            "requestId": "req_011CbV1gJDn72MfKJdK7vGQt",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "d7e91573-d3f1-4429-97b6-4ef1841496f1",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "9c44962f-53ef-4dda-a205-11ae79612bf5",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HXDquvZBCc3yU77d9CF8mT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 545,
+                "cache_creation_input_tokens": 4429,
+                "cache_read_input_tokens": 10324,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4429,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-28T13:03:20.636Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RKxZc3nzGDziLmKkrebG1Y",
+              "type": "tool_result",
+              "content": "# DRIFT Paper Summary\n\n**Full Title:** \"DRIFT: Decompose, Retrieve, Illustrate, then Formalize Theorems\"\n\n**Authors:** Meiru Zhang, Philipp Borchert, Milan Gritta, Gerasimos Lampouras\n\n**Submission Date:** October 12, 2025 (v1); Last revised April 6, 2026 (v4)\n\n**Venue:** ICLR 2026\n\n**Abstract:** The paper introduces DRIFT, a framework enabling LLMs to decompose informal mathematical statements into smaller \"sub-components\" for targeted retrieval of premises from mathematical libraries like Mathlib. The work demonstrates consistent improvements in premise retrieval across benchmarks including ProofNet, ConNF, and MiniF2F-test, \"nearly doubling the F1 score compared to the DPR baseline on ProofNet.\"\n\n---\n\n**Regarding Specific Numbers:**\n\nThe provided webpage content does not include:\n- The specific number of sub-components DRIFT uses (whether 5.8 or another figure)\n- Explicit F1 scores of 27.68 vs 13.77 on ProofNet\n- The precise DPR baseline F1 value\n\nThe abstract only states that DRIFT approximately doubled the F1 score relative to DPR but doesn't provide exact numerical values. To obtain these specific metrics, the full PDF would need to be consulted."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0a8f0039-23b6-40a6-8067-f0beecfa6193",
+            "isSidechain": true,
+            "promptId": "f52e040c-c89a-4354-9d36-8828dec412f7",
+            "agentId": "aa8f6287647c684b1",
+            "type": "user",
+            "uuid": "ddcc40f0-49d8-4666-b25b-4e152c44f0c6",
+            "sourceToolAssistantUUID": "0a8f0039-23b6-40a6-8067-f0beecfa6193",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "9c44962f-53ef-4dda-a205-11ae79612bf5",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-28T13:03:20.991Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YCQwtoTZ5d5Xb2RV8atZe7",
+              "type": "tool_result",
+              "content": "# Paper Details\n\n**Full Title:** Aria: An Agent For Retrieval and Iterative Auto-Formalization via Dependency Graph\n\n**Authors:** Hanyu Wang, Ruohan Xie, Yutong Wang, Guoxiong Gao, Xintao Yu, Bin Dong\n\n**Submission Date:** October 6, 2025\n\n**Venue:** arXiv (cs.AI - Computer Science, Artificial Intelligence)\n\n## Key Accuracy Metrics\n\n**ProofNet Results:** Yes, 68.5% final accuracy is mentioned. The abstract states the system \"achieves 91.6% compilation success rate and 68.5% final accuracy, surpassing previous methods.\"\n\n**Homological Conjectures:** Yes, 42.9% final accuracy is confirmed. The abstract notes: \"On a dataset of homological conjectures, Aria reaches 42.9% final accuracy while all other models score 0%.\"\n\n**Baseline Performance:** Correct—all baselines did indeed score 0% on the homological conjecture dataset, as explicitly stated in the abstract."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8b8a5d26-ea6a-4071-87ce-24c68236239f",
+            "isSidechain": true,
+            "promptId": "f52e040c-c89a-4354-9d36-8828dec412f7",
+            "agentId": "aa8f6287647c684b1",
+            "type": "user",
+            "uuid": "52901feb-8e19-4299-9740-dd1b4bd6ae28",
+            "sourceToolAssistantUUID": "8b8a5d26-ea6a-4071-87ce-24c68236239f",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "9c44962f-53ef-4dda-a205-11ae79612bf5",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-28T13:03:21.112Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ToKeKFK7PsWUzBvLDLetgw",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2508.06931",
+                "prompt": "Extract the full title, authors, venue, abstract. Is this paper called CRAMF? Does it store module paths (θ_p) per definition? Does it use contextual query augmentation? What are its key technical details about how it indexes definitions?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "52901feb-8e19-4299-9740-dd1b4bd6ae28",
+            "isSidechain": true,
+            "agentId": "aa8f6287647c684b1",
+            "requestId": "req_011CbV1gJDn72MfKJdK7vGQt",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "87c8d65e-60d4-46cb-9c36-d92177f8009a",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "9c44962f-53ef-4dda-a205-11ae79612bf5",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HXDquvZBCc3yU77d9CF8mT",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 545,
+                "cache_creation_input_tokens": 4429,
+                "cache_read_input_tokens": 10324,
+                "output_tokens": 676,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 4429
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 545,
+                    "output_tokens": 676,
+                    "cache_read_input_tokens": 10324,
+                    "cache_creation_input_tokens": 4429,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 4429,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-28T13:03:23.999Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EXj1Ho5dm6fi4seaUBzKkk",
+              "type": "tool_result",
+              "content": "# MSC-180 Benchmark Summary\n\n**Full Title:**\n\"MSC-180: A Benchmark for Automated Formal Theorem Proving from Mathematical Subject Classification\"\n\n**Authors:**\nSirui Li, Wangyue Lu, Xiaorui Shi, Ke Weng, Haozhe Sun, Minghe Yu, Tiancheng Zhang, Ge Yu, Hengyu Liu, Lun Du\n\n**Submission Date:**\nDecember 20, 2025\n\n**Abstract:**\nThe paper addresses limitations in current LLM-based theorem provers by introducing a new evaluation framework. It highlights issues including \"restricted domain coverage and weak generalization in mathematical reasoning.\"\n\n---\n\n## Key Metrics\n\n**Number of Problems:** 180 formal verification problems\n\n**Mathematical Branches:** 60 distinct mathematical branches (with 3 advanced problems per branch)\n\n**CV Values:** Yes, the findings indicate that \"CV values are 4-6 times higher than the statistical high-variability threshold,\" demonstrating significant performance variability across domains\n\n**Overall Pass Rate:** The best-performing model achieved an \"18.89% overall pass rate\" under the pass@32 setting\n\nThe benchmark spans from undergraduate through graduate difficulty levels, with all problems verified by domain experts."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d7e91573-d3f1-4429-97b6-4ef1841496f1",
+            "isSidechain": true,
+            "promptId": "f52e040c-c89a-4354-9d36-8828dec412f7",
+            "agentId": "aa8f6287647c684b1",
+            "type": "user",
+            "uuid": "7695aab2-ccef-4371-b364-98da150b2a59",
+            "sourceToolAssistantUUID": "d7e91573-d3f1-4429-97b6-4ef1841496f1",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "9c44962f-53ef-4dda-a205-11ae79612bf5",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-28T13:03:28.435Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01ToKeKFK7PsWUzBvLDLetgw",
+              "type": "tool_result",
+              "content": "# Paper Summary: CRAMF\n\n**Full Title:** \"Automated Formalization via Conceptual Retrieval-Augmented LLMs\"\n\n**Authors:** Wangyue Lu, Lun Du, Sirui Li, Ke Weng, Haozhe Sun, Hengyu Liu, Minghe Yu, Tiancheng Zhang, Ge Yu\n\n**Venue:** arXiv:2508.06931v2 [cs.AI], March 21, 2026\n\n## Abstract\nThe paper proposes CRAMF, a framework addressing hallucination and semantic gaps in LLM-based mathematical theorem formalization. It retrieves precise formal definitions from Mathlib4 to ground code generation, constructs a knowledge base from 26,000+ definitions covering 1,000+ concepts, and demonstrates consistent improvements across benchmarks.\n\n## Key Questions Addressed\n\n**Is this paper called CRAMF?** Yes—\"CRAMF\" stands for \"Concept-driven Retrieval-Augmented Mathematical Formalization.\"\n\n**Does it store module paths per definition?** Yes. The ontology defines formal definitions via the attribute triple: \"⟨θτ,θf,θp⟩, denoting the definition's identifier, formal expression, and module path.\"\n\n**Does it use contextual query augmentation?** Yes. The framework employs \"conceptual parsing of the mathematical theorem, generating an interpretation of terms based on extracted core concepts and existing theorem description,\" which enhances queries with domain and application context.\n\n## Key Technical Details\n\n- **Knowledge base structure:** Triple entity model (Γ for concepts, Θ for definitions, Φ for annotations) with semantic relations\n- **Vector encoding:** Uses MathBERT for semantic representation, indexed via Faiss\n- **Retrieval strategy:** Dual-pathway hybrid approach combining symbol-level keyword matching with semantic similarity retrieval, followed by reranking\n- **Concept extraction:** Handles both explicit and implicit concepts; includes LLM-based problem rewriting for applied mathematics"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "87c8d65e-60d4-46cb-9c36-d92177f8009a",
+            "isSidechain": true,
+            "promptId": "f52e040c-c89a-4354-9d36-8828dec412f7",
+            "agentId": "aa8f6287647c684b1",
+            "type": "user",
+            "uuid": "ff1dd761-0b06-4955-b449-029b6c589f05",
+            "sourceToolAssistantUUID": "87c8d65e-60d4-46cb-9c36-d92177f8009a",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "9c44962f-53ef-4dda-a205-11ae79612bf5",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-28T13:03:33.034Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good. Now let me dig deeper on the specific claims. I need to check: (1) whether LeanSearch v2 uses Qwen3-Embedding-8B, (2) the exact nDCG@10 value, (3) DRIFT's specific F1 numbers and sub-query count, (4) whether CRAMF's venue is ICLR 2026, and (5) search more for MathAtlas."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ff1dd761-0b06-4955-b449-029b6c589f05",
+            "isSidechain": true,
+            "agentId": "aa8f6287647c684b1",
+            "requestId": "req_011CbV1hxDJvehFCQwPnW5LJ",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "9edf7201-1c7b-4d13-a4e5-59d30c94847c",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "9c44962f-53ef-4dda-a205-11ae79612bf5",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016DqqL2yoeHPwdrZyxJaFKV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3066,
+                "cache_read_input_tokens": 14753,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3066,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-28T13:03:35.936Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014159hgnkT5TMr5jLTWwCSD",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2605.13137",
+                "prompt": "Find ALL mentions of: (1) Qwen3-Embedding-8B or any Qwen model, (2) the exact nDCG@10 score (is it 0.62 or 0.623?), (3) hierarchy-informed Mathlib informalization, (4) what embedding model they use. Search the full text carefully."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9edf7201-1c7b-4d13-a4e5-59d30c94847c",
+            "isSidechain": true,
+            "agentId": "aa8f6287647c684b1",
+            "requestId": "req_011CbV1hxDJvehFCQwPnW5LJ",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "973d89ce-f02d-4e3c-8991-7ce7725e19e9",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "9c44962f-53ef-4dda-a205-11ae79612bf5",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016DqqL2yoeHPwdrZyxJaFKV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3066,
+                "cache_read_input_tokens": 14753,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3066,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-28T13:03:39.274Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QAjL1DnmocRDv7X1chLfVr",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2510.10815",
+                "prompt": "Find the specific numerical claims: (1) How many sub-queries or sub-components does DRIFT decompose statements into on average? Is the number 5.8 mentioned? (2) What are the exact F1 scores on ProofNet? Is 27.68 mentioned? Is 13.77 mentioned? (3) What is the DPR baseline F1? Look through all tables and results sections."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "973d89ce-f02d-4e3c-8991-7ce7725e19e9",
+            "isSidechain": true,
+            "agentId": "aa8f6287647c684b1",
+            "requestId": "req_011CbV1hxDJvehFCQwPnW5LJ",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "2112068c-9ce2-40f2-b667-4dad79c9f90d",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "9c44962f-53ef-4dda-a205-11ae79612bf5",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016DqqL2yoeHPwdrZyxJaFKV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3066,
+                "cache_read_input_tokens": 14753,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3066,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-28T13:03:40.273Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NLDBNWu6z5aFpyQ9Dk6FQ1",
+              "name": "WebSearch",
+              "input": {
+                "query": "MathAtlas mathematical knowledge graph dataset 2025 2026 arXiv"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2112068c-9ce2-40f2-b667-4dad79c9f90d",
+            "isSidechain": true,
+            "agentId": "aa8f6287647c684b1",
+            "requestId": "req_011CbV1hxDJvehFCQwPnW5LJ",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "27425eff-80df-425d-bd5b-a25186b418ee",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "9c44962f-53ef-4dda-a205-11ae79612bf5",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016DqqL2yoeHPwdrZyxJaFKV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3066,
+                "cache_read_input_tokens": 14753,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3066,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-28T13:03:41.101Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014159hgnkT5TMr5jLTWwCSD",
+              "type": "tool_result",
+              "content": "# LeanSearch v2: Key Technical Details\n\n## Embedding Model\nThe system uses **Qwen3-Embedding-8B** for encoding corpus items and queries: \"Each corpus item is encoded into a fixed-dimensional vector using Qwen3-Embedding-8B.\"\n\n## nDCG@10 Score\nThe exact metric reported is **nDCG@10 of 0.623** (not 0.62, which appears rounded in the abstract). Table 1 shows: \"LeanSearch v2 (rerank)\" achieves 0.623 nDCG@10.\n\n## Hierarchy-Informed Informalization\nThe document describes a **dependency-aware informalization strategy** where \"each call receives the already-informalized descriptions of the target's dependencies as context, so that descriptions are grounded in mathematical concepts rather than opaque formal identifiers.\"\n\nThis approach is \"known to produce more grounded descriptions than flat, context-free informalization\" per prior work (Gao et al., 2024b).\n\n## Qwen Models Used\nBeyond the embedding model, LeanSearch v2 employs:\n- **Qwen3-32B** for initial informalization\n- **Qwen3-Reranker-8B** for the reranking pipeline stage\n\nAll three are Qwen3 family models leveraging general-purpose capabilities without domain-specific fine-tuning."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "973d89ce-f02d-4e3c-8991-7ce7725e19e9",
+            "isSidechain": true,
+            "promptId": "f52e040c-c89a-4354-9d36-8828dec412f7",
+            "agentId": "aa8f6287647c684b1",
+            "type": "user",
+            "uuid": "fb5b838e-06b0-468a-a961-c80ef92ee03c",
+            "sourceToolAssistantUUID": "973d89ce-f02d-4e3c-8991-7ce7725e19e9",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "9c44962f-53ef-4dda-a205-11ae79612bf5",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-28T13:03:42.024Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Lc4Z3S4r6xUoi8ExMvHiKd",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://openreview.net/forum?id=IGEs577RFz",
+                "prompt": "What venue is DRIFT accepted at? Is it ICLR 2026? Is it a poster or spotlight? Extract exact venue information."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fb5b838e-06b0-468a-a961-c80ef92ee03c",
+            "isSidechain": true,
+            "agentId": "aa8f6287647c684b1",
+            "requestId": "req_011CbV1hxDJvehFCQwPnW5LJ",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "3ebe7e18-46fd-4c18-a3d6-7f560fca9acf",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "9c44962f-53ef-4dda-a205-11ae79612bf5",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016DqqL2yoeHPwdrZyxJaFKV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3066,
+                "cache_read_input_tokens": 14753,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3066,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-28T13:03:42.195Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Q9JxQ9drpqerJMW1cQRwjg",
+              "name": "WebSearch",
+              "input": {
+                "query": "CRAMF \"Conceptual Retrieval-Augmented Mathematical Formalization\" ICLR 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3ebe7e18-46fd-4c18-a3d6-7f560fca9acf",
+            "isSidechain": true,
+            "agentId": "aa8f6287647c684b1",
+            "requestId": "req_011CbV1hxDJvehFCQwPnW5LJ",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "aeafb7a8-91b4-4681-82c0-5dbcdfcddf37",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "9c44962f-53ef-4dda-a205-11ae79612bf5",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016DqqL2yoeHPwdrZyxJaFKV",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3066,
+                "cache_read_input_tokens": 14753,
+                "output_tokens": 627,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 3066
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 627,
+                    "cache_read_input_tokens": 14753,
+                    "cache_creation_input_tokens": 3066,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 3066,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-28T13:03:43.961Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Lc4Z3S4r6xUoi8ExMvHiKd",
+              "type": "tool_result",
+              "content": "Based on the webpage content, DRIFT was accepted at **ICLR 2026** as a **poster presentation**.\n\nThe page explicitly states: \"Published: 26 Jan 2026, Last Modified: 11 Apr 2026**ICLR 2026 Poster**\"\n\nAdditionally, the breadcrumb navigation confirms this is associated with the \"ICLR 2026 Conference\" venue."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3ebe7e18-46fd-4c18-a3d6-7f560fca9acf",
+            "isSidechain": true,
+            "promptId": "f52e040c-c89a-4354-9d36-8828dec412f7",
+            "agentId": "aa8f6287647c684b1",
+            "type": "user",
+            "uuid": "841620be-5918-4975-9415-5021317a3576",
+            "sourceToolAssistantUUID": "3ebe7e18-46fd-4c18-a3d6-7f560fca9acf",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "9c44962f-53ef-4dda-a205-11ae79612bf5",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-28T13:03:44.279Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QAjL1DnmocRDv7X1chLfVr",
+              "type": "tool_result",
+              "content": "# DRIFT Numerical Claims Analysis\n\nBased on the paper content:\n\n## (1) Average Number of Sub-queries\n\nThe paper states: \"the final set size is at most nn, where nn is the number of decomposed sub-queries.\" In the footnote discussing decomposer comparison, it notes statistics are \"available at Section A.2.7\" and later references \"5.21 to 6.42 sub-queries generated by the Decompose module.\" The number 5.8 is not explicitly mentioned in the provided text.\n\n## (2) F1 Scores on ProofNet\n\nFrom Table 1 (Dependency Retrieval), the Claude-Opus-4 decomposer achieves **27.68%** F1 on ProofNet. The no-decomposition baseline (\"-\") shows **13.77%** F1, confirming both figures appear in the results.\n\n## (3) DPR Baseline F1\n\nThe paper does not provide explicit F1 scores for the DPR (RAuto) baseline in Table 1. Instead, Table 1 compares Drift variants against a no-decomposition baseline using the same retriever. Actual DPR (RAuto) retrieval metrics appear referenced in Section A.2.2 but aren't fully shown in the main text excerpt provided."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2112068c-9ce2-40f2-b667-4dad79c9f90d",
+            "isSidechain": true,
+            "promptId": "f52e040c-c89a-4354-9d36-8828dec412f7",
+            "agentId": "aa8f6287647c684b1",
+            "type": "user",
+            "uuid": "bbea00c1-5964-424f-b0d8-cfed6e6099ca",
+            "sourceToolAssistantUUID": "2112068c-9ce2-40f2-b667-4dad79c9f90d",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "9c44962f-53ef-4dda-a205-11ae79612bf5",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-28T13:03:46.807Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NLDBNWu6z5aFpyQ9Dk6FQ1",
+              "type": "tool_result",
+              "content": "Web search results for query: \"MathAtlas mathematical knowledge graph dataset 2025 2026 arXiv\"\n\nLinks: [{\"title\":\"[2408.10003] Towards a Knowledge Graph for Models and Algorithms in Applied Mathematics\",\"url\":\"https://arxiv.org/abs/2408.10003\"},{\"title\":\"[2205.03772] Math-KG: Construction and Applications of Mathematical Knowledge Graph\",\"url\":\"https://arxiv.org/abs/2205.03772\"},{\"title\":\"ArGoT: A Glossary of Terms extracted from the arXiv\",\"url\":\"https://arxiv.org/pdf/2109.02801\"},{\"title\":\"On the Use of ArXiv as a Dataset\",\"url\":\"https://arxiv.org/pdf/1905.00075\"},{\"title\":\"[2205.03772] Math-KG: Construction and Applications of Mathematical Knowledge Graph\",\"url\":\"https://ar5iv.labs.arxiv.org/html/2205.03772\"},{\"title\":\"Math-KG: Construction and Applications of Mathematical Knowledge Graph\",\"url\":\"https://arxiv.org/pdf/2205.03772\"},{\"title\":\"Mathematical Knowledge Graph-Driven Framework for ...\",\"url\":\"https://arxiv.org/pdf/2601.05298\"}]\n\nI found several papers related to mathematical knowledge graphs on arXiv. Here are the results:\n\n1. **\"Towards a Knowledge Graph for Models and Algorithms in Applied Mathematics\"** (arXiv 2408.10003, February 2025): This paper addresses mathematical models and algorithms as essential research data, merging two previously distinct ontologies and extending them into a living knowledge graph to make this data FAIR.\n\n2. **\"Math-KG: Construction and Applications of Mathematical Knowledge Graph\"** (arXiv 2205.03772, May 2022): This paper proposes a knowledge graph-based Math-KG to integrate knowledge resources, defining two entity types and six relation types with a pipeline method for Math-KG construction. It is built from the corpora of Baidu Baike and Wikipedia.\n\n3. **\"Mathematical Knowledge Graph-Driven Framework\"** (arXiv 2601.05298, January 2026): This paper describes a mathematical knowledge graph construction that transforms unstructured research papers into a structured knowledge graph by extracting equations, variables, assumptions, and process-performance relationships, organized hierarchically.\n\nThe search didn't return a specific dataset called \"MathAtlas\" in these results. Would you like me to search with a different query to find more specific information about MathAtlas?\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "27425eff-80df-425d-bd5b-a25186b418ee",
+            "isSidechain": true,
+            "promptId": "f52e040c-c89a-4354-9d36-8828dec412f7",
+            "agentId": "aa8f6287647c684b1",
+            "type": "user",
+            "uuid": "af818f73-3fae-435a-bab4-f36a25a6c821",
+            "sourceToolAssistantUUID": "27425eff-80df-425d-bd5b-a25186b418ee",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "9c44962f-53ef-4dda-a205-11ae79612bf5",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-28T13:03:52.442Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Q9JxQ9drpqerJMW1cQRwjg",
+              "type": "tool_result",
+              "content": "Web search results for query: \"CRAMF \"Conceptual Retrieval-Augmented Mathematical Formalization\" ICLR 2026\"\n\nLinks: [{\"title\":\"AUTOMATED FORMALIZATION VIA CONCEPTUAL RETRIEVAL ...\",\"url\":\"https://openreview.net/pdf/c5515c42a45d03adcd764803dc11197cf6a270ae.pdf\"},{\"title\":\"Automated Formalization via Conceptual Retrieval-Augmented LLMs\",\"url\":\"https://arxiv.org/pdf/2508.06931\"},{\"title\":\"Published as a conference paper at ICLR 2026\",\"url\":\"https://openreview.net/pdf/3f497d563de1ccd4d5d0f6acc356e345dba4baa3.pdf\"},{\"title\":\"Automated Formalization via Conceptual Retrieval-Augmented LLMs | OpenReview\",\"url\":\"https://openreview.net/forum?id=09lmwhDqZ3\"},{\"title\":\"Automated Formalization via Conceptual Retrieval-Augmented LLMs\",\"url\":\"https://arxiv.org/html/2508.06931\"},{\"title\":\"[2508.06931] Automated Formalization via Conceptual Retrieval-Augmented LLMs\",\"url\":\"https://arxiv.org/abs/2508.06931\"},{\"title\":\"Automated Formalization via Conceptual Retrieval-Augmented LLMs | Request PDF\",\"url\":\"https://www.researchgate.net/publication/394440359_Automated_Formalization_via_Conceptual_Retrieval-Augmented_LLMs\"}]\n\nBased on the search results, here's what I found about CRAMF:\n\n## CRAMF Overview\n\nCRAMF is a Concept-driven Retrieval-Augmented Mathematical Formalization framework that enhances LLM-based autoformalization by retrieving formal definitions of core mathematical concepts, providing contextual grounding during code generation.\n\n## Problem It Addresses\n\nInteractive theorem provers (ITPs) require manual formalization, which is labor-intensive and demands expert knowledge. Automated formalization faces two major challenges: model hallucination (e.g., undefined predicates, symbol misuse, and version incompatibility) and the semantic gap caused by ambiguous or missing premises in natural language descriptions.\n\n## Key Technical Components\n\nThe framework automatically constructs a concept-definition knowledge base from Mathlib4, the standard mathematical library for the Lean 4 theorem prover, indexing over 26,000 formal definitions and 1,000+ core mathematical concepts. To address conceptual polymorphism, the approach proposes contextual query augmentation with domain- and application-level signals, and designs a dual-channel hybrid retrieval strategy with reranking to ensure accurate and relevant definition retrieval.\n\n## Experimental Results\n\nExperiments on miniF2F, ProofNet, and a newly proposed AdvancedMath benchmark show that CRAMF can be seamlessly integrated into LLM-based autoformalizers, yielding consistent improvements in translation accuracy—achieving up to 62.1% and an average of 29.9% relative improvement.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "aeafb7a8-91b4-4681-82c0-5dbcdfcddf37",
+            "isSidechain": true,
+            "promptId": "f52e040c-c89a-4354-9d36-8828dec412f7",
+            "agentId": "aa8f6287647c684b1",
+            "type": "user",
+            "uuid": "4d751662-6b7b-41b8-b89a-5438332cbfc6",
+            "sourceToolAssistantUUID": "aeafb7a8-91b4-4681-82c0-5dbcdfcddf37",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "9c44962f-53ef-4dda-a205-11ae79612bf5",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-28T13:03:55.033Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me verify CRAMF's venue and check for MathAtlas with additional searches."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4d751662-6b7b-41b8-b89a-5438332cbfc6",
+            "isSidechain": true,
+            "agentId": "aa8f6287647c684b1",
+            "requestId": "req_011CbV1jirSgh2esSz9aJ2Zy",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "df6f2191-7e5b-475a-9083-0af2631af5ed",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "9c44962f-53ef-4dda-a205-11ae79612bf5",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CCUEt3Q3rs7FmchcotCZ8v",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2819,
+                "cache_read_input_tokens": 17819,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2819,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-28T13:03:56.937Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KYTV6dcFWggyrEN63c3V9E",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://openreview.net/forum?id=09lmwhDqZ3",
+                "prompt": "What venue was this paper (CRAMF / Automated Formalization via Conceptual Retrieval-Augmented LLMs) accepted at? Is it ICLR 2026? What type of presentation (poster, spotlight, oral)? Extract the exact venue information."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "df6f2191-7e5b-475a-9083-0af2631af5ed",
+            "isSidechain": true,
+            "agentId": "aa8f6287647c684b1",
+            "requestId": "req_011CbV1jirSgh2esSz9aJ2Zy",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "d8fc0da4-a215-45b2-ab15-97cd55c2cc99",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "9c44962f-53ef-4dda-a205-11ae79612bf5",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CCUEt3Q3rs7FmchcotCZ8v",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2819,
+                "cache_read_input_tokens": 17819,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2819,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-28T13:03:57.996Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VwePuoH3xfjaLpDojY5bvj",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"MathAtlas\" math dataset knowledge base entities areas formalization"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d8fc0da4-a215-45b2-ab15-97cd55c2cc99",
+            "isSidechain": true,
+            "agentId": "aa8f6287647c684b1",
+            "requestId": "req_011CbV1jirSgh2esSz9aJ2Zy",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "30cdc707-6f8e-45c1-9784-b21cff1062e0",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "9c44962f-53ef-4dda-a205-11ae79612bf5",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CCUEt3Q3rs7FmchcotCZ8v",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2819,
+                "cache_read_input_tokens": 17819,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2819,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-28T13:03:58.308Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MFYG5uQhVMwqkLAHht1ycJ",
+              "name": "WebSearch",
+              "input": {
+                "query": "Aria ICLR 2026 poster spotlight autoformalization dependency graph"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "30cdc707-6f8e-45c1-9784-b21cff1062e0",
+            "isSidechain": true,
+            "agentId": "aa8f6287647c684b1",
+            "requestId": "req_011CbV1jirSgh2esSz9aJ2Zy",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "aede0055-b809-4f61-93ff-3fb85ff4371b",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "9c44962f-53ef-4dda-a205-11ae79612bf5",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CCUEt3Q3rs7FmchcotCZ8v",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2819,
+                "cache_read_input_tokens": 17819,
+                "output_tokens": 267,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2819
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 267,
+                    "cache_read_input_tokens": 17819,
+                    "cache_creation_input_tokens": 2819,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2819,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-28T13:03:59.258Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KYTV6dcFWggyrEN63c3V9E",
+              "type": "tool_result",
+              "content": "# Venue Information for CRAMF\n\n**Venue:** ICLR 2026 Conference\n\n**Presentation Type:** Poster\n\n**Exact Quote from Page:** \"Published: 26 Jan 2026, Last Modified: 11 Apr 2026ICLR 2026 Poster\"\n\nYes, this paper was accepted at ICLR 2026 and will be presented as a poster presentation."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d8fc0da4-a215-45b2-ab15-97cd55c2cc99",
+            "isSidechain": true,
+            "promptId": "f52e040c-c89a-4354-9d36-8828dec412f7",
+            "agentId": "aa8f6287647c684b1",
+            "type": "user",
+            "uuid": "8a39b9e7-94f3-4827-ae99-bd019d0af6e4",
+            "sourceToolAssistantUUID": "d8fc0da4-a215-45b2-ab15-97cd55c2cc99",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "9c44962f-53ef-4dda-a205-11ae79612bf5",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-28T13:04:04.140Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VwePuoH3xfjaLpDojY5bvj",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"MathAtlas\" math dataset knowledge base entities areas formalization\"\n\nLinks: [{\"title\":\"MathAtlas: A Benchmark for Autoformalization in the Wild\",\"url\":\"https://arxiv.org/html/2605.14061\"},{\"title\":\"[2310.16005] MLFMF: Data Sets for Machine Learning for Mathematical Formalization\",\"url\":\"https://arxiv.org/abs/2310.16005\"},{\"title\":\"MLFMF: Data Sets for Machine Learning for Mathematical Formalization\",\"url\":\"https://arxiv.org/pdf/2310.16005\"},{\"title\":\"Automated Formalization via Conceptual Retrieval-Augmented LLMs\",\"url\":\"https://arxiv.org/html/2508.06931\"},{\"title\":\"A New Approach Towards Autoformalization\",\"url\":\"https://arxiv.org/pdf/2310.07957\"},{\"title\":\"AutoMathKG: The automated mathematical knowledge graph based on LLM and vector database\",\"url\":\"https://arxiv.org/pdf/2505.13406\"}]\n\nBased on the search results, here's what I found about MathAtlas:\n\nMathAtlas is a large-scale, graduate-level benchmark designed to measure autoformalization performance on mathematics in the wild. It contains approximately 51k informal entities, divided into statements (theorems, examples, and exercises), definitions, and proofs, which are extracted from 103 graduate math textbooks.\n\nThe dataset was created because creating scalable autoformalization systems necessitates the study of definition autoformalization, for which large-scale real-world benchmarks were lacking. Systems which can only autoformalize theorem statements are limited in their scope by the level of existing theory because they cannot formalize theorems using math concepts they do not already have definitions for.\n\nThe project uses LeanSearch to link definitions in MathAtlas to formal definitions in Mathlib. The dataset is publicly available on Hugging Face and serves as a resource for benchmarking autoformalization methods—the process of converting informal mathematical text into formal mathematical language that can be verified by proof assistants.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "30cdc707-6f8e-45c1-9784-b21cff1062e0",
+            "isSidechain": true,
+            "promptId": "f52e040c-c89a-4354-9d36-8828dec412f7",
+            "agentId": "aa8f6287647c684b1",
+            "type": "user",
+            "uuid": "b4d57c85-2716-4931-b3e2-9714e324c497",
+            "sourceToolAssistantUUID": "30cdc707-6f8e-45c1-9784-b21cff1062e0",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "9c44962f-53ef-4dda-a205-11ae79612bf5",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-28T13:04:06.719Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MFYG5uQhVMwqkLAHht1ycJ",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Aria ICLR 2026 poster spotlight autoformalization dependency graph\"\n\nLinks: [{\"title\":\"Aria: an Agent for Retrieval and Iterative Auto-Formalization via Dependency Graph | OpenReview\",\"url\":\"https://openreview.net/forum?id=CPxZClPMiy\"},{\"title\":\"ICLR Poster Aria: an Agent for Retrieval and Iterative Auto-Formalization via Dependency Graph\",\"url\":\"https://iclr.cc/virtual/2026/poster/10010860\"},{\"title\":\"Downloads 2026\",\"url\":\"https://iclr.cc/Downloads/2026\"},{\"title\":\"Aria: An Agent For Retrieval and Iterative Auto-Formalization via Dependency Graph\",\"url\":\"https://arxiv.org/pdf/2510.04520\"},{\"title\":\"[2510.04520] Aria: An Agent For Retrieval and Iterative Auto-Formalization via Dependency Graph\",\"url\":\"https://arxiv.org/abs/2510.04520\"},{\"title\":\"[2510.04520v1] Aria: An Agent For Retrieval and Iterative Auto-Formalization via Dependency Graph\",\"url\":\"https://arxiv.org/abs/2510.04520v1\"}]\n\nI found information about Aria, which was presented as a poster at ICLR 2026. Here's what the research covers:\n\nAria (Agent for Retrieval and Iterative Autoformalization) is a system for conjecture-level formalization in Lean that emulates human expert reasoning via a two-phase Graph-of-Thought process: recursively decomposing statements into a dependency graph and then constructing formalizations from grounded concepts.\n\nThe research addresses the challenge that accurate auto-formalization of theorem statements remains a major bottleneck for LLMs due to hallucinations, semantic mismatches, and their inability to synthesize new definitions.\n\nTo ensure semantic correctness, the authors introduce AriaScorer, a checker that retrieves definitions from Mathlib for term-level grounding, enabling rigorous and reliable verification.\n\n**Performance Results:**\n\nOn ProofNet, Aria achieves 91.6% compilation success rate and 68.5% final accuracy, surpassing previous methods. Additionally, on FATE-X (a suite of challenging algebra problems from research literature), it outperforms the best baseline with 44.0% vs. 24.0% final accuracy, and on a dataset of homological conjectures, Aria reaches 42.9% final accuracy while all other models score 0%.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "aede0055-b809-4f61-93ff-3fb85ff4371b",
+            "isSidechain": true,
+            "promptId": "f52e040c-c89a-4354-9d36-8828dec412f7",
+            "agentId": "aa8f6287647c684b1",
+            "type": "user",
+            "uuid": "d8ca0733-e509-4b57-992e-69ea69db696a",
+            "sourceToolAssistantUUID": "aede0055-b809-4f61-93ff-3fb85ff4371b",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "9c44962f-53ef-4dda-a205-11ae79612bf5",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-28T13:04:09.646Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me fetch the MathAtlas paper to verify the specific claims about 52k entities, 87 math areas, and 178k dependency relations."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d8ca0733-e509-4b57-992e-69ea69db696a",
+            "isSidechain": true,
+            "agentId": "aa8f6287647c684b1",
+            "requestId": "req_011CbV1kmumuKRKzCozkBQtC",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "05af5e75-8fc9-442d-98fc-027c5dcba2af",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "9c44962f-53ef-4dda-a205-11ae79612bf5",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QDP5AS8iy2tGEMzKTujuzJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1668,
+                "cache_read_input_tokens": 20638,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1668,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-28T13:04:12.234Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SGCGZADRQnaKP2jjRn44Ht",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2605.14061",
+                "prompt": "Extract the full title, authors, submission date. How many entities does MathAtlas contain (is it 52k or 51k)? How many math areas does it cover (is it 87 or some other number)? How many dependency relations (is 178k mentioned)? How many textbooks were used (is it 103)? Extract all key statistics about the dataset size and coverage."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "05af5e75-8fc9-442d-98fc-027c5dcba2af",
+            "isSidechain": true,
+            "agentId": "aa8f6287647c684b1",
+            "requestId": "req_011CbV1kmumuKRKzCozkBQtC",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "87e6d05f-2887-43e6-8318-b326d8ab0067",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "9c44962f-53ef-4dda-a205-11ae79612bf5",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QDP5AS8iy2tGEMzKTujuzJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1668,
+                "cache_read_input_tokens": 20638,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1668,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-28T13:04:13.335Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KQ5KeQ4DcLobhZ6ayX1vDK",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://openreview.net/forum?id=CPxZClPMiy",
+                "prompt": "Is Aria accepted as a poster or spotlight at ICLR 2026? Extract the exact venue and presentation type."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "87e6d05f-2887-43e6-8318-b326d8ab0067",
+            "isSidechain": true,
+            "agentId": "aa8f6287647c684b1",
+            "requestId": "req_011CbV1kmumuKRKzCozkBQtC",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b7d2f71c-0908-4566-bfae-5ecd8e8bbab7",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "9c44962f-53ef-4dda-a205-11ae79612bf5",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QDP5AS8iy2tGEMzKTujuzJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1668,
+                "cache_read_input_tokens": 20638,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1668,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-28T13:04:14.785Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KQ5KeQ4DcLobhZ6ayX1vDK",
+              "type": "tool_result",
+              "content": "Based on the content provided, Aria is accepted as a **poster** at **ICLR 2026**.\n\nThe page explicitly states: \"Published: 26 Jan 2026, Last Modified: 11 Apr 2026 **ICLR 2026 Poster**\""
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b7d2f71c-0908-4566-bfae-5ecd8e8bbab7",
+            "isSidechain": true,
+            "promptId": "f52e040c-c89a-4354-9d36-8828dec412f7",
+            "agentId": "aa8f6287647c684b1",
+            "type": "user",
+            "uuid": "cfd8b7ea-a8a9-4efe-abbe-ca76804b0337",
+            "sourceToolAssistantUUID": "b7d2f71c-0908-4566-bfae-5ecd8e8bbab7",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "9c44962f-53ef-4dda-a205-11ae79612bf5",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-28T13:04:18.809Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SGCGZADRQnaKP2jjRn44Ht",
+              "type": "tool_result",
+              "content": "# MathAtlas Dataset Overview\n\n**Title:** \"MathAtlas: A Benchmark for Autoformalization in the Wild\"\n\n**Authors:** Nilay Patel, Noah Arias, Davit Babayan, Victoria Cochran, Timothy Libman, Hafsah Mahmood, Liam McCarty, Soli Munoz, Laurel Willey, and Jeffrey Flanigan\n\n**Affiliation:** University of California, Santa Cruz\n\n**Submission Date:** May 13, 2026 (arXiv:2605.14061v1)\n\n## Key Statistics\n\n**Entity Count:** The dataset contains \"∼52k\" entities (52,052 total), broken down as:\n- ~18k theorems\n- ~10k exercises  \n- ~10k definitions\n- ~10k proofs\n- ~5.5k examples\n\n**Mathematical Coverage:** The benchmark spans \"87 areas of mathematics,\" including real analysis, differential geometry, category theory, topology, and quantum groups.\n\n**Dependency Relations:** Approximately \"∼178k\" object relations exist within the dependency graph, derived from \"∼193k\" total object references (83.7% matched).\n\n**Source Materials:** The dataset was extracted from \"103 graduate mathematics textbooks\" covering diverse mathematical subfields.\n\n**Entity References:** Around \"∼17k\" entity references were identified, with over 99.8% successfully matched to target entities.\n\n**Dependency Depth:** Nodes average a dependency depth of 30 (median: 17), ranging from 0 to 80 levels deep."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "87e6d05f-2887-43e6-8318-b326d8ab0067",
+            "isSidechain": true,
+            "promptId": "f52e040c-c89a-4354-9d36-8828dec412f7",
+            "agentId": "aa8f6287647c684b1",
+            "type": "user",
+            "uuid": "9d5b184e-beec-4e5c-bc25-de9fbc98e9bb",
+            "sourceToolAssistantUUID": "87e6d05f-2887-43e6-8318-b326d8ab0067",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "9c44962f-53ef-4dda-a205-11ae79612bf5",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-28T13:04:21.256Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me verify the last remaining detail -- whether DRIFT decomposes into approximately 5.8 sub-queries -- by looking at the full paper more carefully."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9d5b184e-beec-4e5c-bc25-de9fbc98e9bb",
+            "isSidechain": true,
+            "agentId": "aa8f6287647c684b1",
+            "requestId": "req_011CbV1mfYZuEK9MsEoKh7WX",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "39bdd8a9-0d8a-4d5e-9fa6-d1a43cc323fe",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "9c44962f-53ef-4dda-a205-11ae79612bf5",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Af42EZq4gncdB1avFicjGJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 98,
+                "cache_creation_input_tokens": 686,
+                "cache_read_input_tokens": 22306,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 686,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-28T13:04:24.032Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PC7dnjaueq7nRSyUimnnG8",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/pdf/2510.10815",
+                "prompt": "Search for the average number of sub-queries generated by DRIFT's decompose module. Is 5.8 mentioned anywhere? The earlier HTML version mentioned ranges from 5.21 to 6.42. Find the exact numbers and any average figure. Also look for the exact F1 scores: is 27.68 and 13.77 explicitly in a table?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "39bdd8a9-0d8a-4d5e-9fa6-d1a43cc323fe",
+            "isSidechain": true,
+            "agentId": "aa8f6287647c684b1",
+            "requestId": "req_011CbV1mfYZuEK9MsEoKh7WX",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "4c247fc0-b211-48c9-b9a4-8b99e19ba83d",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "9c44962f-53ef-4dda-a205-11ae79612bf5",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Af42EZq4gncdB1avFicjGJ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 98,
+                "cache_creation_input_tokens": 686,
+                "cache_read_input_tokens": 22306,
+                "output_tokens": 199,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 686
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 98,
+                    "output_tokens": 199,
+                    "cache_read_input_tokens": 22306,
+                    "cache_creation_input_tokens": 686,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 686,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-28T13:04:31.284Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PC7dnjaueq7nRSyUimnnG8",
+              "type": "tool_result",
+              "content": "I've searched through the provided PDF content, but I cannot locate the specific figures you're asking about:\n\n1. **Sub-queries average (5.8)**: Not found in the visible text sections of this PDF.\n\n2. **Range 5.21 to 6.42**: Not present in the extracted content.\n\n3. **F1 scores (27.68 and 13.77)**: These specific values do not appear in the searchable portions of the document provided.\n\nThe PDF content shown consists primarily of metadata, page structure, and hyperlink annotations rather than the full body text where such numerical results would typically appear. To locate these metrics, you would need access to:\n- The results or evaluation sections (likely in pages not fully extracted here)\n- Tables presenting performance comparisons\n- Quantitative analysis sections\n\nI recommend consulting the full paper directly or checking the appendices where detailed experimental results are usually reported.\n\n[Binary content (application/pdf, 717.6KB) also saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu/9c44962f-53ef-4dda-a205-11ae79612bf5/tool-results/webfetch-1779973464043-ywxun9.pdf]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4c247fc0-b211-48c9-b9a4-8b99e19ba83d",
+            "isSidechain": true,
+            "promptId": "f52e040c-c89a-4354-9d36-8828dec412f7",
+            "agentId": "aa8f6287647c684b1",
+            "type": "user",
+            "uuid": "55b4e1fc-2da8-43ee-8e9b-37ce1cf489a8",
+            "sourceToolAssistantUUID": "4c247fc0-b211-48c9-b9a4-8b99e19ba83d",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "9c44962f-53ef-4dda-a205-11ae79612bf5",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-28T13:04:37.481Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011x4brdQZ9AL9Dg3WfHXNiu",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2510.10815",
+                "prompt": "Search thoroughly for: (1) The exact average number of sub-queries generated, especially looking in Section A.2.7 or any appendix. Is 5.8 mentioned? What are the exact numbers per decomposer? (2) Look in Table 1 for the exact F1 scores. What are the F1 values for the best DRIFT variant on ProofNet and for the no-decomposition baseline? Are 27.68 and 13.77 the exact numbers? Look at ALL tables."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "55b4e1fc-2da8-43ee-8e9b-37ce1cf489a8",
+            "isSidechain": true,
+            "agentId": "aa8f6287647c684b1",
+            "requestId": "req_011CbV1nauYFsYhUYkLiXH5Y",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "3981af95-86a9-4fab-b8f4-406f5ad41633",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "9c44962f-53ef-4dda-a205-11ae79612bf5",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ny1efJPVaogRjpFXj6XtUV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 586,
+                "cache_read_input_tokens": 22992,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 586,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 64,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-28T13:04:42.277Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011x4brdQZ9AL9Dg3WfHXNiu",
+              "type": "tool_result",
+              "content": "# DRIFT Research Findings\n\n## Sub-Query Generation\n\nThe paper indicates that the decomposition module generates a dynamic number of sub-queries. According to the text: \"the final set size is at most nn, where nn is the number of decomposed sub-queries.\" More specifically, footnote 777 states: \"The full statistics of the decomposed sub-queries are available at [Section A.2.7].\"\n\nSection A.2.7 (\"Statistics of Decomposed Sub-queries\") is referenced but the actual statistics table appears truncated in the provided content. However, the main text notes that Drift retrieves premises by \"taking the union of the top-1 results for each of the 5.21 to 6.42 sub-queries generated by the Decompose module.\" This indicates the range varies by decomposer model.\n\n## Dependency Retrieval Performance\n\nAccording to Table 1, the F1 scores show:\n\n**ProofNet benchmark:**\n- No-decomposition baseline (\"-\"): 13.77% F1\n- Claude-Opus-4 (best DRIFT variant): 27.68% F1\n- Improvement: +13.91 percentage points\n\nThe paper summarizes: \"Averaged across all decomposer models, Drift achieves an absolute improvement of 13.34, 2.08, and 7.74 points over the baseline F1 score on the ProofNet, MiniF2F-test, and ConNF benchmarks, respectively.\""
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3981af95-86a9-4fab-b8f4-406f5ad41633",
+            "isSidechain": true,
+            "promptId": "f52e040c-c89a-4354-9d36-8828dec412f7",
+            "agentId": "aa8f6287647c684b1",
+            "type": "user",
+            "uuid": "6ef64003-8967-4d3b-802b-91744eb3b784",
+            "sourceToolAssistantUUID": "3981af95-86a9-4fab-b8f4-406f5ad41633",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "9c44962f-53ef-4dda-a205-11ae79612bf5",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-28T13:05:22.495Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have all the data needed. Let me also verify whether the \"~5.8\" claim is a reasonable characterization of the 5.21-6.42 range.\n\nThe midpoint of 5.21 and 6.42 is 5.815, which rounds to ~5.8. That checks out.\n\nHere is my comprehensive verification report for all six papers:\n\n---\n\n## Paper Verification Report\n\n### 1. LeanSearch v2 (arXiv 2605.13137)\n\n**Exists?** YES. Confirmed at [arxiv.org/abs/2605.13137](https://arxiv.org/abs/2605.13137).\n\n**Venue/Date claim: \"May 2026, arXiv 2605.13137\"** -- CORRECT. Submitted May 13, 2026; revised May 14, 2026.\n\n**Claim: \"SOTA premise retrieval (nDCG@10 = 0.623)\"** -- CORRECT. Table 1 in the paper reports nDCG@10 of 0.623 for \"LeanSearch v2 (rerank)\", versus 0.53 for the next-best system.\n\n**Claim: \"without domain-specific fine-tuning\"** -- CORRECT. The paper emphasizes using general-purpose models without domain-specific fine-tuning.\n\n**Claim: \"hierarchy-informed Mathlib informalization\"** -- PARTIALLY ACCURATE. The paper describes a \"dependency-aware informalization strategy\" where previously informalized descriptions of dependencies are passed as context. The proposal's term \"hierarchy-informed\" is a paraphrase rather than the paper's exact terminology (\"dependency-aware\"), but the concept is the same.\n\n**Claim: \"with Qwen3-Embedding-8B\"** -- CORRECT. The paper explicitly states: \"Each corpus item is encoded into a fixed-dimensional vector using Qwen3-Embedding-8B.\"\n\n---\n\n### 2. DRIFT (ICLR 2026 Poster)\n\n**Exists?** YES. Confirmed at [arxiv.org/abs/2510.10815](https://arxiv.org/abs/2510.10815) and [OpenReview](https://openreview.net/forum?id=IGEs577RFz).\n\n**Venue/Date claim: \"ICLR 2026 Poster\"** -- CORRECT. Published January 26, 2026 as an ICLR 2026 Poster.\n\n**Claim: \"decomposes statements into ~5.8 atomic sub-queries\"** -- APPROXIMATELY CORRECT. The paper reports sub-query counts ranging from 5.21 to 6.42 depending on the decomposer model. The midpoint is ~5.8, so this is a reasonable summary, though the paper does not state \"5.8\" as a single figure. The paper also does not use the word \"atomic\" -- it calls them \"sub-components\" or \"sub-queries.\"\n\n**Claim: \"nearly doubling F1 on ProofNet (27.68 vs. 13.77)\"** -- CORRECT. Table 1 shows the no-decomposition baseline at 13.77% F1 and the best DRIFT variant (Claude-Opus-4 decomposer) at 27.68% F1 on ProofNet. The paper itself characterizes this as \"nearly doubling.\"\n\n---\n\n### 3. Aria (ICLR 2026)\n\n**Exists?** YES. Confirmed at [arxiv.org/abs/2510.04520](https://arxiv.org/abs/2510.04520) and [OpenReview](https://openreview.net/forum?id=CPxZClPMiy).\n\n**Venue/Date claim: \"ICLR 2026\"** -- CORRECT. Accepted as an ICLR 2026 Poster (published January 26, 2026).\n\n**Claim: \"68.5% on ProofNet\"** -- CORRECT. The abstract states \"68.5% final accuracy\" on ProofNet.\n\n**Claim: \"42.9% on homological conjectures while all baselines score 0%\"** -- CORRECT. The abstract states: \"On a dataset of homological conjectures, Aria reaches 42.9% final accuracy while all other models score 0%.\"\n\n---\n\n### 4. MathAtlas (May 2026)\n\n**Exists?** YES. Confirmed at [arxiv.org/html/2605.14061](https://arxiv.org/html/2605.14061).\n\n**Date claim: \"May 2026\"** -- CORRECT. Submitted May 13, 2026.\n\n**Claim: \"52k entities\"** -- CORRECT. The paper reports ~52k entities (52,052 total).\n\n**Claim: \"87 math areas\"** -- CORRECT. The paper states the benchmark spans \"87 areas of mathematics.\"\n\n**Claim: \"178k dependency relations\"** -- CORRECT. The paper reports \"~178k\" object relations in the dependency graph.\n\n---\n\n### 5. CRAMF (ICLR 2026)\n\n**Exists?** YES. The paper is titled \"Automated Formalization via Conceptual Retrieval-Augmented LLMs\" and introduces the CRAMF framework. Confirmed at [arxiv.org/abs/2508.06931](https://arxiv.org/abs/2508.06931) and [OpenReview](https://openreview.net/forum?id=09lmwhDqZ3).\n\n**Venue claim: \"ICLR 2026\"** -- CORRECT. Accepted as an ICLR 2026 Poster (published January 26, 2026).\n\n**Claim: \"stores module paths (theta_p) per definition\"** -- CORRECT. The paper defines formal definitions via the attribute triple \"(theta_tau, theta_f, theta_p), denoting the definition's identifier, formal expression, and module path.\"\n\n**Claim: \"uses contextual query augmentation\"** -- CORRECT. The paper proposes \"contextual query augmentation with domain- and application-level signals\" to address conceptual polymorphism.\n\n---\n\n### 6. MSC-180 (Dec 2025, arXiv 2512.18256)\n\n**Exists?** YES. Confirmed at [arxiv.org/abs/2512.18256](https://arxiv.org/abs/2512.18256).\n\n**Date/Venue claim: \"Dec 2025, arXiv 2512.18256\"** -- CORRECT. Submitted December 20, 2025.\n\n**Claim: \"CV values 4-6x above high-variability thresholds\"** -- CORRECT. The paper reports \"CV values are 4-6 times higher than the statistical high-variability threshold.\"\n\n**Claim: \"across 60 mathematical branches\"** -- CORRECT. The benchmark comprises 180 problems from 60 mathematical branches (3 per branch).\n\n---\n\n## Summary Table\n\n| Paper | Exists? | Venue/Date Correct? | Numerical Claims Accurate? |\n|-------|---------|--------------------|-----------------------------|\n| LeanSearch v2 | YES | YES | YES (nDCG@10=0.623, Qwen3-Embedding-8B confirmed) |\n| DRIFT | YES | YES (ICLR 2026 Poster) | YES (27.68 vs 13.77 F1; ~5.8 is reasonable summary of 5.21-6.42 range) |\n| Aria | YES | YES (ICLR 2026 Poster) | YES (68.5% ProofNet, 42.9% homological, 0% baselines) |\n| MathAtlas | YES | YES (May 2026) | YES (52k entities, 87 areas, 178k relations) |\n| CRAMF | YES | YES (ICLR 2026 Poster) | YES (theta_p module paths, contextual query augmentation) |\n| MSC-180 | YES | YES (Dec 2025) | YES (CV 4-6x, 60 branches) |\n\n**Overall verdict:** All six papers exist, all venue/date claims are correct, and all specific numerical claims are accurate. The only minor note is that LeanSearch v2 uses the term \"dependency-aware informalization\" rather than \"hierarchy-informed informalization\" as stated in the proposal, and DRIFT's \"~5.8 sub-queries\" is a derived midpoint of the reported 5.21-6.42 range rather than a figure stated directly in the paper. These are minor paraphrasing differences, not factual errors."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6ef64003-8967-4d3b-802b-91744eb3b784",
+            "isSidechain": true,
+            "agentId": "aa8f6287647c684b1",
+            "requestId": "req_011CbV1oPvXQMf8BjHaFzW1r",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "f565cbc9-0441-4fec-a716-c69f9e0c11f6",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "9c44962f-53ef-4dda-a205-11ae79612bf5",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017QGs81LnbwXHjH6w3UoAjF",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 542,
+                "cache_read_input_tokens": 23578,
+                "output_tokens": 2062,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 542
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2062,
+                    "cache_read_input_tokens": 23578,
+                    "cache_creation_input_tokens": 542,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 542,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000059"
+        }
+      ],
+      "message_count": 59
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-you-are-helping-verify-claims-in-a-research-proposal-about-domain-adaptive-aut.md"
+}

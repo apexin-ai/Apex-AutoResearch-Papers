@@ -1,0 +1,3950 @@
+# Research conversation: Formal Error Profiling Enables Teacher-Free Targeted Math Self-Improvement ## Core Problem Self-improvement loops for ma
+
+**Reproducibility Budgets for Open-Weight LLM Evaluation: A Generalizability Theory Study of 7–9B Instruction-Tuned Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 58
+- **Recorded user turns:** 1
+- **Tool calls:** 16
+- **Original source:** `logs/chats/exported-trajectories/account-2/a78563ed-01dd-4d0b-a0f9-ae617d124f47.jsonl`
+- **Structured JSON:** [`196549472046e953b6ac.json`](../../sessions/19/196549472046e953b6ac.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-27T08:52:01.454Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-27T08:52:01.454Z",
+  "sessionId": "a78563ed-01dd-4d0b-a0f9-ae617d124f47",
+  "content": "# Formal Error Profiling Enables Teacher-Free Targeted Math Self-Improvement\n\n## Core Problem\n\nSelf-improvement loops for mathematical reasoning suffer from model collapse (solver-verifier gap theory, ICLR 2026) and untargeted data waste. All existing error-targeted synthesis methods — STAT (ICLR 2026), Self-Error-Instruct (ACL 2025), SwS (NeurIPS 2025), WarriorMath (arXiv 2025) — depend on LLM teachers or LLM metacognition for error diagnosis, introducing teacher bias, hallucinated attributions, and scalability ceilings. Empirically, LLMs cannot reliably spot mathematical errors even with reference solutions (arXiv 2509.01395, EMNLP 2025). Can formal symbolic tools serve as collapse-proof verifiers and ground-truth error diagnosticians, enabling stable, teacher-free, targeted self-improvement?\n\n## Core Contributions\n\n1. **Teacher-free error-targeted self-improvement**: The first self-improvement system where error diagnosis and targeted synthesis are driven entirely by formal symbolic tools (Z3, SymPy), eliminating LLM teacher dependency. Unlike RLVR/GRPO (also teacher-free), FormalLoop targets specific error types rather than optimizing globally.\n\n2. **Formally-verified step-localized DPO**: Preference pairs where trajectories share k formally-verified-correct steps and diverge at step k+1 — providing step-localized credit assignment with formal guarantees. Unlike Step-DPO (NeurIPS 2024) and Full-Step-DPO (ACL 2025 Findings) which use LLM/human annotations, and unlike NSRSA (arXiv 2026) which constructs solution-level accept/reject pairs, our pairs provide zero-noise step-localized preference signals.\n\n3. **Ground-truth error profile dynamics**: FormalLoop uniquely enables tracking formally-verified per-skill-type error evolution across self-improvement iterations — answering whether error types have fixed reduction priority orderings, whether skill dependencies exist (e.g., arithmetic errors must resolve before algebraic errors become visible), and whether error profile entropy predicts convergence. No prior work provides ground-truth skill-decomposed self-improvement dynamics.\n\n4. **Precision-coverage tradeoff hypothesis**: We hypothesize that in self-improvement loops, there exists a verifier noise threshold τ beyond which expanding coverage yields negative marginal returns. Imperfect verifier research (arXiv 2604.07666, arXiv 2026) estimates τ ≈ 15%; solver-verifier gap theory (ICLR 2026) predicts verifier reliability determines the self-improvement ceiling. FormalLoop tests this: formal verification achieves near-zero noise within its scope (~60-70% of amenable categories), which should outperform full-coverage but noisier LLM diagnosis. We validate via noise injection ablation.\n\n## Why Not Simpler Alternatives?\n\n**vs. Outcome verification + STAT-style LLM teacher profiling**: (1) Error attribution precision — outcome verification doesn't localize errors; LLM step diagnosis hallucinates (arXiv 2509.01395, EMNLP 2025); formal verification provides guaranteed step-level attribution. (2) Iterative stability — LLM teacher biases compound across iterations; formal diagnosis is independently calibrated each round. (3) No teacher ceiling — STAT's profiling quality is bounded by teacher metacognition.\n\n**vs. Subcategory-level outcome targeting** (using MATH's existing 7 subcategory labels to oversample weak categories): This requires no formal verification at all. However, subcategory labels are coarse — within Algebra alone, a model may struggle specifically with equation solving but not algebraic manipulation. Formal step-level diagnosis provides within-subcategory skill decomposition that subcategory-level targeting cannot. We include subcategory-level targeting as an explicit baseline to quantify this granularity advantage.\n\n**vs. FoVer-PRM as verifier in a standard self-improvement loop**: FoVer (ACL 2026) trains PRMs from formal verification data for general use. A natural alternative is using a FoVer-trained PRM as the verifier in a self-improvement loop (via Best-of-N or RLVR). FormalLoop differs by using formal verification directly for error categorization and targeted synthesis — not indirectly through a learned PRM. We include FoVer-PRM + RLVR as a baseline to isolate direct formal profiling's advantage.\n\n## Research Landscape\n\nCurrent SOTA in synthetic math data: SPARQ (June 2025, +24% via quality-diversity from 7.5K seeds), CoTEvol (April 2026, +6.6% via evolutionary CoT synthesis), MathMixup (Jan 2026, 47.6% on 7 benchmarks via difficulty-controlled curriculum). Self-improvement: SPICE (Oct 2025, +8.9% via document-grounded self-play), SvS (Aug 2025, +18.3% Pass@32 on AIME24 via variational problem synthesis). Verification: FoVer (ACL 2026) trains PRMs from formal verification across 12 benchmarks; imperfect verifier research (arXiv 2604.07666, arXiv 2026) shows ≤15% noise is tolerable with precision mattering more than recall. Concurrent: Adaptive Problem Generation (arXiv 2602.19187, Feb 2026) uses SymPy in closed-loop RLVR but adapts difficulty globally without error-type diagnosis. SwS (NeurIPS 2025) identifies weaknesses via pass-rate analysis without formal diagnosis. Reasoning Core (March 2026) generates verifiable symbolic data but is not error-targeted or iterative. Safe (ACL 2025) does step-aware Lean 4 verification in one-shot refinement, not closed-loop. Bidirectional Curriculum (March 2026) dynamically adjusts difficulty without formal verification. NSRSA (arXiv 2026) uses SymPy arithmetic verification for iterative self-training on GSM8K with solution-level DPO, but covers only arithmetic operations without error categorization or targeted synthesis. MATH-VF (arXiv 2025) uses Z3+SymPy for step-wise verification but as a training-free inference tool.\n\n## Proposed Approach\n\nFormalLoop runs iterative cycles on a student model (Qwen3.5-9B primary, Qwen3.5-4B validation): (1) student solves problems, (2) solutions are formalized and verified step-by-step via Z3/SymPy, (3) step-level errors classified into a formal taxonomy (algebraic manipulation, equation solving, arithmetic, constraint reasoning, logical inference), (4) SymPy-based synthesis generates targeted problems exercising weak skills with solver-guaranteed solutions, (5) student trains via SFT+DPO on targeted data and formally-constructed preference pairs, then re-profiled.\n\n**Formal coverage scope**: Formal verification covers algebraic and arithmetic domains amenable to Z3/SymPy (Algebra, Number Theory, Prealgebra, portions of Intermediate Algebra and Precalculus). Geometry and Counting & Probability use outcome-based verification as fallback. Per-category formalization success rates are reported. Even partial coverage with near-zero noise can outperform full-coverage noisy LLM diagnosis (imperfect verifier research, arXiv 2604.07666).\n\n**Formalization quality control**: To prevent conflating formalization failures with reasoning errors: (a) distinguish \"verification failed\" from \"formalization failed\" status, (b) exclude solutions where formal rejection co-occurs with correct final answer, (c) use only high-confidence pairs for DPO. Target noise rate well below the 15% tolerance threshold (arXiv 2604.07666).\n\n**DPO pair construction with fallback**: Primary: step-localized pairs (shared k correct steps, diverge at k+1). When step-localized pairs are insufficient (estimated via pilot study yield analysis), mix in solution-level formally-verified pairs (NSRSA-style). Report mixing ratio and its effect on training.\n\n## Experimental Design\n\n**Models**: Qwen3.5-9B (primary, 5 iterations) + Qwen3.5-4B (validation, 3 iterations). Pilot study includes Llama 3.1-8B formalization success rate comparison (not full training loop).\n\n**Benchmarks**: GSM8K, MATH-500, Minerva Math, AMC23, AIME24, AIME25, Olympiad-Bench. OOD generalization on AIME24/25. Per-MATH-subcategory breakdown (formally-covered vs. fallback).\n\n**Evaluation protocol**: Greedy accuracy + Pass@K (K=8, 32) + majority voting@K. 3 independent runs, mean ± std, significance tests. Per-problem sampling: 16-32 solutions for DPO pair construction.\n\n**Baseline matrix**:\n- Training paradigm: Vanilla SFT (uniform), SFT+DPO (uniform), GRPO/RLVR\n- Targeting: SwS (NeurIPS 2025, pass-rate weakness targeting), STAT-style (GPT-4o teacher) profiling + targeted synthesis, subcategory-level outcome targeting\n- Symbolic: Adaptive Problem Generation (arXiv 2602.19187, global difficulty adaptation)\n- Verification: FoVer-PRM (ACL 2026, github.com/psunlpgroup/FoVer) + Best-of-N/RLVR loop, outcome-only verification loop (NSRSA-style)\n\n**Ablation studies** (priority-ranked; ablations run on Qwen3.5-4B, 2-3 iterations, 3 benchmarks: GSM8K, MATH-500, AIME24):\n1. [Must] Error profiling source: Formal vs. LLM-based vs. pass-rate-based vs. subcategory-level vs. random\n2. [Must] Preference pair source: Step-localized formal DPO vs. solution-level formal DPO (NSRSA-style) vs. outcome DPO vs. LLM-annotated DPO (Step-DPO style)\n3. [Must] Targeting vs. uniform: Targeted synthesis vs. uniform synthesis (same quantity)\n4. [Should] Training objective: SFT only vs. DPO only vs. SFT+DPO\n5. [Should] Taxonomy granularity: 5-type vs. 2-type (arithmetic/non-arithmetic) vs. single aggregate\n6. [Should] Iteration dynamics: Per-iteration accuracy, error profile evolution, formalization coverage, entropy curves\n7. [Nice] Precision-coverage tradeoff: Inject artificial noise (5%, 10%, 15%, 20%) into formal labels, measure impact on self-improvement trajectory\n\n**Compute fairness**: Unified metric: total dollar cost (GPU + CPU + API). Report per-method cost breakdown. Compute-matched comparisons: (i) fixed GPU training FLOPs, (ii) fixed total dollar budget. Accuracy vs. total cost curves.\n\n**Pilot study** (before main experiments):\n- Per-subcategory formalization success rate on MATH-Train (200-300 problems per subcategory)\n- Failure mode analysis: formalization failure vs. solver timeout vs. scope limitation\n- Selection bias analysis: compare error type distributions between formalization-success and formalization-failure groups\n- DPO pair yield estimation: 500 problems × 16 solutions, count constructable step-localized pairs\n- Cross-family comparison: Qwen3.5-9B vs. Llama 3.1-8B formalization success rates\n- Taxonomy coverage validation and comparison with STAT's skill taxonomy\n- Human evaluation of 100-200 synthesized problems (well-formedness, difficulty, NL quality)\n\n## Key References\n\n- FoVer: Efficient PRM Training Data Synthesis via Formal Verification (ACL Findings 2026)\n- STAT: Skill-Targeted Adaptive Training (ICLR 2026)\n- Stabilizing Iterative Self-Training with Verified Reasoning via Symbolic Recursive Self-Alignment [NSRSA] (arXiv 2026)\n- Theoretical Modeling of LLM Self-Improvement Training Dynamics Through Solver-Verifier Gap (ICLR 2026)\n- SPARQ: Synthetic Problem Generation for Reasoning via Quality-Diversity Algorithms (arXiv 2025)\n- CoTEvol: Self-Evolving Chain-of-Thoughts for Data Synthesis in Mathematical Reasoning (arXiv 2026)\n- MathMixup: Boosting LLM Mathematical Reasoning with Difficulty-Controllable Data Synthesis and Curriculum Learning (arXiv 2026)\n- Self-Error-Instruct: Generalizing from Errors for LLMs Mathematical Reasoning (ACL 2025)\n- SPICE: Self-Play In Corpus Environments Improves Reasoning (arXiv 2025)\n- SvS: Beyond Pass@1: Self-Play with Variational Problem Synthesis Sustains RLVR (arXiv 2025)\n- SwS: Self-aware Weakness-driven Problem Synthesis in Reinforcement Learning for LLM Reasoning (NeurIPS 2025)\n- Adaptive Problem Generation via Symbolic Representations (arXiv 2026, arXiv 2602.19187)\n- An Imperfect Verifier is Good Enough: Learning with Noisy Rewards (arXiv 2026, arXiv 2604.07666)\n- Step-Wise Formal Verification for LLM-Based Mathematical Problem Solving [MATH-VF] (arXiv 2025)\n- Safe: Enhancing Mathematical Reasoning via Retrospective Step-aware Formal Verification (ACL 2025)\n- WarriorMath: Enhancing the Mathematical Ability of Large Language Models with a Defect-aware Framework (arXiv 2025)\n- Bidirectional Curriculum Generation: A Multi-Agent Framework for Data-Efficient Mathematical Reasoning (arXiv 2026)\n- Reasoning Core: A Scalable Procedural Data Generation Suite for Symbolic Pre-training and Post-Training (arXiv 2026)\n- Neuro-Symbolic Data Generation for Math Reasoning (NeurIPS 2024)\n- Step-DPO: Step-wise Preference Optimization for Long-chain Reasoning of LLMs (NeurIPS 2024)\n- Full-Step-DPO: Self-Supervised Preference Optimization with Step-wise Rewards for Mathematical Reasoning (ACL 2025 Findings)\n- LLMs Cannot Spot Math Errors Even When Allowed to Peek into the Solution (EMNLP 2025, arXiv 2509.01395)\n\n## Resource Estimate\n\n- **manual**: gpu_hours: 750 H100 hours (5 iterations 9B + 3 iterations 4B + ablations on 4B + pilot study + evaluation), timeline: 4-5 months, estimated_gpu_cost: $1,875\n- **human_in_loop**: gpu_hours: 700 H100 hours, timeline: 3-4 months, claude_api_cost: $500-700 (pipeline code, taxonomy iteration, analysis), teacher_api_cost: $200-400 (GPT-4o for STAT baseline), estimated_gpu_cost: $1,750\n- **auto_research**: gpu_hours: 700 H100 hours, timeline: 6-8 weeks, claude_api_cost: $1,500-2,500, teacher_api_cost: $200-400, estimated_gpu_cost: $1,750, speed_bottleneck: Z3/SymPy step verification is CPU-bound (~0.5-2s per step); LLM-to-formal translation ~60-70% success rate on amenable categories requires retry loops"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-27T08:52:01.461Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-27T08:52:01.461Z",
+  "sessionId": "a78563ed-01dd-4d0b-a0f9-ae617d124f47"
+}
+```
+
+---
+
+## Round 1
+
+56 recorded events
+
+### User
+
+_source line 3 · 2026-05-27T08:52:01.482Z_
+
+# Formal Error Profiling Enables Teacher-Free Targeted Math Self-Improvement
+
+## Core Problem
+
+Self-improvement loops for mathematical reasoning suffer from model collapse (solver-verifier gap theory, ICLR 2026) and untargeted data waste. All existing error-targeted synthesis methods — STAT (ICLR 2026), Self-Error-Instruct (ACL 2025), SwS (NeurIPS 2025), WarriorMath (arXiv 2025) — depend on LLM teachers or LLM metacognition for error diagnosis, introducing teacher bias, hallucinated attributions, and scalability ceilings. Empirically, LLMs cannot reliably spot mathematical errors even with reference solutions (arXiv 2509.01395, EMNLP 2025). Can formal symbolic tools serve as collapse-proof verifiers and ground-truth error diagnosticians, enabling stable, teacher-free, targeted self-improvement?
+
+## Core Contributions
+
+1. **Teacher-free error-targeted self-improvement**: The first self-improvement system where error diagnosis and targeted synthesis are driven entirely by formal symbolic tools (Z3, SymPy), eliminating LLM teacher dependency. Unlike RLVR/GRPO (also teacher-free), FormalLoop targets specific error types rather than optimizing globally.
+
+2. **Formally-verified step-localized DPO**: Preference pairs where trajectories share k formally-verified-correct steps and diverge at step k+1 — providing step-localized credit assignment with formal guarantees. Unlike Step-DPO (NeurIPS 2024) and Full-Step-DPO (ACL 2025 Findings) which use LLM/human annotations, and unlike NSRSA (arXiv 2026) which constructs solution-level accept/reject pairs, our pairs provide zero-noise step-localized preference signals.
+
+3. **Ground-truth error profile dynamics**: FormalLoop uniquely enables tracking formally-verified per-skill-type error evolution across self-improvement iterations — answering whether error types have fixed reduction priority orderings, whether skill dependencies exist (e.g., arithmetic errors must resolve before algebraic errors become visible), and whether error profile entropy predicts convergence. No prior work provides ground-truth skill-decomposed self-improvement dynamics.
+
+4. **Precision-coverage tradeoff hypothesis**: We hypothesize that in self-improvement loops, there exists a verifier noise threshold τ beyond which expanding coverage yields negative marginal returns. Imperfect verifier research (arXiv 2604.07666, arXiv 2026) estimates τ ≈ 15%; solver-verifier gap theory (ICLR 2026) predicts verifier reliability determines the self-improvement ceiling. FormalLoop tests this: formal verification achieves near-zero noise within its scope (~60-70% of amenable categories), which should outperform full-coverage but noisier LLM diagnosis. We validate via noise injection ablation.
+
+## Why Not Simpler Alternatives?
+
+**vs. Outcome verification + STAT-style LLM teacher profiling**: (1) Error attribution precision — outcome verification doesn't localize errors; LLM step diagnosis hallucinates (arXiv 2509.01395, EMNLP 2025); formal verification provides guaranteed step-level attribution. (2) Iterative stability — LLM teacher biases compound across iterations; formal diagnosis is independently calibrated each round. (3) No teacher ceiling — STAT's profiling quality is bounded by teacher metacognition.
+
+**vs. Subcategory-level outcome targeting** (using MATH's existing 7 subcategory labels to oversample weak categories): This requires no formal verification at all. However, subcategory labels are coarse — within Algebra alone, a model may struggle specifically with equation solving but not algebraic manipulation. Formal step-level diagnosis provides within-subcategory skill decomposition that subcategory-level targeting cannot. We include subcategory-level targeting as an explicit baseline to quantify this granularity advantage.
+
+**vs. FoVer-PRM as verifier in a standard self-improvement loop**: FoVer (ACL 2026) trains PRMs from formal verification data for general use. A natural alternative is using a FoVer-trained PRM as the verifier in a self-improvement loop (via Best-of-N or RLVR). FormalLoop differs by using formal verification directly for error categorization and targeted synthesis — not indirectly through a learned PRM. We include FoVer-PRM + RLVR as a baseline to isolate direct formal profiling's advantage.
+
+## Research Landscape
+
+Current SOTA in synthetic math data: SPARQ (June 2025, +24% via quality-diversity from 7.5K seeds), CoTEvol (April 2026, +6.6% via evolutionary CoT synthesis), MathMixup (Jan 2026, 47.6% on 7 benchmarks via difficulty-controlled curriculum). Self-improvement: SPICE (Oct 2025, +8.9% via document-grounded self-play), SvS (Aug 2025, +18.3% Pass@32 on AIME24 via variational problem synthesis). Verification: FoVer (ACL 2026) trains PRMs from formal verification across 12 benchmarks; imperfect verifier research (arXiv 2604.07666, arXiv 2026) shows ≤15% noise is tolerable with precision mattering more than recall. Concurrent: Adaptive Problem Generation (arXiv 2602.19187, Feb 2026) uses SymPy in closed-loop RLVR but adapts difficulty globally without error-type diagnosis. SwS (NeurIPS 2025) identifies weaknesses via pass-rate analysis without formal diagnosis. Reasoning Core (March 2026) generates verifiable symbolic data but is not error-targeted or iterative. Safe (ACL 2025) does step-aware Lean 4 verification in one-shot refinement, not closed-loop. Bidirectional Curriculum (March 2026) dynamically adjusts difficulty without formal verification. NSRSA (arXiv 2026) uses SymPy arithmetic verification for iterative self-training on GSM8K with solution-level DPO, but covers only arithmetic operations without error categorization or targeted synthesis. MATH-VF (arXiv 2025) uses Z3+SymPy for step-wise verification but as a training-free inference tool.
+
+## Proposed Approach
+
+FormalLoop runs iterative cycles on a student model (Qwen3.5-9B primary, Qwen3.5-4B validation): (1) student solves problems, (2) solutions are formalized and verified step-by-step via Z3/SymPy, (3) step-level errors classified into a formal taxonomy (algebraic manipulation, equation solving, arithmetic, constraint reasoning, logical inference), (4) SymPy-based synthesis generates targeted problems exercising weak skills with solver-guaranteed solutions, (5) student trains via SFT+DPO on targeted data and formally-constructed preference pairs, then re-profiled.
+
+**Formal coverage scope**: Formal verification covers algebraic and arithmetic domains amenable to Z3/SymPy (Algebra, Number Theory, Prealgebra, portions of Intermediate Algebra and Precalculus). Geometry and Counting & Probability use outcome-based verification as fallback. Per-category formalization success rates are reported. Even partial coverage with near-zero noise can outperform full-coverage noisy LLM diagnosis (imperfect verifier research, arXiv 2604.07666).
+
+**Formalization quality control**: To prevent conflating formalization failures with reasoning errors: (a) distinguish "verification failed" from "formalization failed" status, (b) exclude solutions where formal rejection co-occurs with correct final answer, (c) use only high-confidence pairs for DPO. Target noise rate well below the 15% tolerance threshold (arXiv 2604.07666).
+
+**DPO pair construction with fallback**: Primary: step-localized pairs (shared k correct steps, diverge at k+1). When step-localized pairs are insufficient (estimated via pilot study yield analysis), mix in solution-level formally-verified pairs (NSRSA-style). Report mixing ratio and its effect on training.
+
+## Experimental Design
+
+**Models**: Qwen3.5-9B (primary, 5 iterations) + Qwen3.5-4B (validation, 3 iterations). Pilot study includes Llama 3.1-8B formalization success rate comparison (not full training loop).
+
+**Benchmarks**: GSM8K, MATH-500, Minerva Math, AMC23, AIME24, AIME25, Olympiad-Bench. OOD generalization on AIME24/25. Per-MATH-subcategory breakdown (formally-covered vs. fallback).
+
+**Evaluation protocol**: Greedy accuracy + Pass@K (K=8, 32) + majority voting@K. 3 independent runs, mean ± std, significance tests. Per-problem sampling: 16-32 solutions for DPO pair construction.
+
+**Baseline matrix**:
+- Training paradigm: Vanilla SFT (uniform), SFT+DPO (uniform), GRPO/RLVR
+- Targeting: SwS (NeurIPS 2025, pass-rate weakness targeting), STAT-style (GPT-4o teacher) profiling + targeted synthesis, subcategory-level outcome targeting
+- Symbolic: Adaptive Problem Generation (arXiv 2602.19187, global difficulty adaptation)
+- Verification: FoVer-PRM (ACL 2026, github.com/psunlpgroup/FoVer) + Best-of-N/RLVR loop, outcome-only verification loop (NSRSA-style)
+
+**Ablation studies** (priority-ranked; ablations run on Qwen3.5-4B, 2-3 iterations, 3 benchmarks: GSM8K, MATH-500, AIME24):
+1. [Must] Error profiling source: Formal vs. LLM-based vs. pass-rate-based vs. subcategory-level vs. random
+2. [Must] Preference pair source: Step-localized formal DPO vs. solution-level formal DPO (NSRSA-style) vs. outcome DPO vs. LLM-annotated DPO (Step-DPO style)
+3. [Must] Targeting vs. uniform: Targeted synthesis vs. uniform synthesis (same quantity)
+4. [Should] Training objective: SFT only vs. DPO only vs. SFT+DPO
+5. [Should] Taxonomy granularity: 5-type vs. 2-type (arithmetic/non-arithmetic) vs. single aggregate
+6. [Should] Iteration dynamics: Per-iteration accuracy, error profile evolution, formalization coverage, entropy curves
+7. [Nice] Precision-coverage tradeoff: Inject artificial noise (5%, 10%, 15%, 20%) into formal labels, measure impact on self-improvement trajectory
+
+**Compute fairness**: Unified metric: total dollar cost (GPU + CPU + API). Report per-method cost breakdown. Compute-matched comparisons: (i) fixed GPU training FLOPs, (ii) fixed total dollar budget. Accuracy vs. total cost curves.
+
+**Pilot study** (before main experiments):
+- Per-subcategory formalization success rate on MATH-Train (200-300 problems per subcategory)
+- Failure mode analysis: formalization failure vs. solver timeout vs. scope limitation
+- Selection bias analysis: compare error type distributions between formalization-success and formalization-failure groups
+- DPO pair yield estimation: 500 problems × 16 solutions, count constructable step-localized pairs
+- Cross-family comparison: Qwen3.5-9B vs. Llama 3.1-8B formalization success rates
+- Taxonomy coverage validation and comparison with STAT's skill taxonomy
+- Human evaluation of 100-200 synthesized problems (well-formedness, difficulty, NL quality)
+
+## Key References
+
+- FoVer: Efficient PRM Training Data Synthesis via Formal Verification (ACL Findings 2026)
+- STAT: Skill-Targeted Adaptive Training (ICLR 2026)
+- Stabilizing Iterative Self-Training with Verified Reasoning via Symbolic Recursive Self-Alignment [NSRSA] (arXiv 2026)
+- Theoretical Modeling of LLM Self-Improvement Training Dynamics Through Solver-Verifier Gap (ICLR 2026)
+- SPARQ: Synthetic Problem Generation for Reasoning via Quality-Diversity Algorithms (arXiv 2025)
+- CoTEvol: Self-Evolving Chain-of-Thoughts for Data Synthesis in Mathematical Reasoning (arXiv 2026)
+- MathMixup: Boosting LLM Mathematical Reasoning with Difficulty-Controllable Data Synthesis and Curriculum Learning (arXiv 2026)
+- Self-Error-Instruct: Generalizing from Errors for LLMs Mathematical Reasoning (ACL 2025)
+- SPICE: Self-Play In Corpus Environments Improves Reasoning (arXiv 2025)
+- SvS: Beyond Pass@1: Self-Play with Variational Problem Synthesis Sustains RLVR (arXiv 2025)
+- SwS: Self-aware Weakness-driven Problem Synthesis in Reinforcement Learning for LLM Reasoning (NeurIPS 2025)
+- Adaptive Problem Generation via Symbolic Representations (arXiv 2026, arXiv 2602.19187)
+- An Imperfect Verifier is Good Enough: Learning with Noisy Rewards (arXiv 2026, arXiv 2604.07666)
+- Step-Wise Formal Verification for LLM-Based Mathematical Problem Solving [MATH-VF] (arXiv 2025)
+- Safe: Enhancing Mathematical Reasoning via Retrospective Step-aware Formal Verification (ACL 2025)
+- WarriorMath: Enhancing the Mathematical Ability of Large Language Models with a Defect-aware Framework (arXiv 2025)
+- Bidirectional Curriculum Generation: A Multi-Agent Framework for Data-Efficient Mathematical Reasoning (arXiv 2026)
+- Reasoning Core: A Scalable Procedural Data Generation Suite for Symbolic Pre-training and Post-Training (arXiv 2026)
+- Neuro-Symbolic Data Generation for Math Reasoning (NeurIPS 2024)
+- Step-DPO: Step-wise Preference Optimization for Long-chain Reasoning of LLMs (NeurIPS 2024)
+- Full-Step-DPO: Self-Supervised Preference Optimization with Step-wise Rewards for Mathematical Reasoning (ACL 2025 Findings)
+- LLMs Cannot Spot Math Errors Even When Allowed to Peek into the Solution (EMNLP 2025, arXiv 2509.01395)
+
+## Resource Estimate
+
+- **manual**: gpu_hours: 750 H100 hours (5 iterations 9B + 3 iterations 4B + ablations on 4B + pilot study + evaluation), timeline: 4-5 months, estimated_gpu_cost: $1,875
+- **human_in_loop**: gpu_hours: 700 H100 hours, timeline: 3-4 months, claude_api_cost: $500-700 (pipeline code, taxonomy iteration, analysis), teacher_api_cost: $200-400 (GPT-4o for STAT baseline), estimated_gpu_cost: $1,750
+- **auto_research**: gpu_hours: 700 H100 hours, timeline: 6-8 weeks, claude_api_cost: $1,500-2,500, teacher_api_cost: $200-400, estimated_gpu_cost: $1,750, speed_bottleneck: Z3/SymPy step verification is CPU-bound (~0.5-2s per step); LLM-to-formal translation ~60-70% success rate on amenable categories requires retry loops
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "521d8246-b4fb-444f-8e8d-124129010450",
+  "type": "user",
+  "uuid": "29be3011-2dc9-48ad-a69e-fb05e4145942",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a78563ed-01dd-4d0b-a0f9-ae617d124f47",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-27T08:52:01.480Z_
+
+```json
+{
+  "parentUuid": "29be3011-2dc9-48ad-a69e-fb05e4145942",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "ae609f72-28f4-4b71-a462-12a197910169",
+  "timestamp": "2026-05-27T08:52:01.480Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a78563ed-01dd-4d0b-a0f9-ae617d124f47",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-27T08:52:01.480Z_
+
+```json
+{
+  "parentUuid": "ae609f72-28f4-4b71-a462-12a197910169",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "81b55f73-00fa-4a92-923a-dc47cf9a3805",
+  "timestamp": "2026-05-27T08:52:01.480Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a78563ed-01dd-4d0b-a0f9-ae617d124f47",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Formal error profiling for teacher-free math self-improvement",
+  "sessionId": "a78563ed-01dd-4d0b-a0f9-ae617d124f47"
+}
+```
+
+---
+
+### Assistant
+
+_source line 7 · 2026-05-27T08:52:06.430Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze this proposal as the 补救 agent (remediation agent), focusing exclusively on experimental design and technical execution completeness. I need to first do thorough literature research to understand the current experimental standards in this field before giving any suggestions.
+
+Let me search for the key papers and methods mentioned in this proposal to understand the experimental design standards.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "81b55f73-00fa-4a92-923a-dc47cf9a3805",
+  "isSidechain": false,
+  "requestId": "req_011CbSnivFFCLuR9Ecf4Rfey",
+  "type": "assistant",
+  "uuid": "9240c2cb-dda4-41b9-9f8e-6407e9e51eb5",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a78563ed-01dd-4d0b-a0f9-ae617d124f47",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MHGVTJZrUtsjhicDBYWt97",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 5203,
+      "cache_read_input_tokens": 14080,
+      "output_tokens": 194,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5203,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 194,
+          "cache_read_input_tokens": 14080,
+          "cache_creation_input_tokens": 5203,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5203
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-27T08:52:06.947Z_
+
+I need to do thorough literature research before evaluating the experimental design. Let me search for the key papers and current experimental standards in this area.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9240c2cb-dda4-41b9-9f8e-6407e9e51eb5",
+  "isSidechain": false,
+  "requestId": "req_011CbSnivFFCLuR9Ecf4Rfey",
+  "type": "assistant",
+  "uuid": "a8836f1b-e29e-4427-b2e2-e04792d388ab",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a78563ed-01dd-4d0b-a0f9-ae617d124f47",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MHGVTJZrUtsjhicDBYWt97",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 5203,
+      "cache_read_input_tokens": 14080,
+      "output_tokens": 194,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5203,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 194,
+          "cache_read_input_tokens": 14080,
+          "cache_creation_input_tokens": 5203,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5203
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-27T08:52:07.302Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01BZ7qBLXEyuddPx9omVqSq3`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a8836f1b-e29e-4427-b2e2-e04792d388ab",
+  "isSidechain": false,
+  "requestId": "req_011CbSnivFFCLuR9Ecf4Rfey",
+  "type": "assistant",
+  "uuid": "c2da8cff-6b82-415d-a673-fa777b5ec861",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a78563ed-01dd-4d0b-a0f9-ae617d124f47",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MHGVTJZrUtsjhicDBYWt97",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 5203,
+      "cache_read_input_tokens": 14080,
+      "output_tokens": 194,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5203,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 194,
+          "cache_read_input_tokens": 14080,
+          "cache_creation_input_tokens": 5203,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5203
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-27T08:52:07.309Z_
+
+<details><summary>↩ Tool result · `toolu_01BZ7qBLXEyuddPx9omVqSq3`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c2da8cff-6b82-415d-a673-fa777b5ec861",
+  "isSidechain": false,
+  "promptId": "521d8246-b4fb-444f-8e8d-124129010450",
+  "type": "user",
+  "uuid": "297b3cd2-5ef7-44d2-8397-bfac3195b1c1",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "c2da8cff-6b82-415d-a673-fa777b5ec861",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a78563ed-01dd-4d0b-a0f9-ae617d124f47",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 11_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Formal Error Profiling Enables Teacher-Free Targeted Math Self-Improvement  ## Core Problem  Self-improvement loops for mathematical reasoning suffer from model collapse (solver-verifier gap theory,…",
+  "leafUuid": "297b3cd2-5ef7-44d2-8397-bfac3195b1c1",
+  "sessionId": "a78563ed-01dd-4d0b-a0f9-ae617d124f47"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 12_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Formal error profiling for teacher-free math self-improvement",
+  "sessionId": "a78563ed-01dd-4d0b-a0f9-ae617d124f47"
+}
+```
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-27T08:52:10.046Z_
+
+Now let me conduct the prerequisite literature research. I'll search for multiple key topics in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "297b3cd2-5ef7-44d2-8397-bfac3195b1c1",
+  "isSidechain": false,
+  "requestId": "req_011CbSnjM9wt83WZz2tWBUof",
+  "type": "assistant",
+  "uuid": "61c0a24f-394a-46ad-8b86-78db6bc14647",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a78563ed-01dd-4d0b-a0f9-ae617d124f47",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A3MPdbXcSzWQbgj3gcv9me",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 722,
+      "cache_read_input_tokens": 19283,
+      "output_tokens": 94,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 722,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 94,
+          "cache_read_input_tokens": 19283,
+          "cache_creation_input_tokens": 722,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 722
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-27T08:52:10.446Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Ds6bKXkMu4sLcARyeXUasv`</summary>
+
+```json
+{
+  "query": "STAT skill-targeted adaptive training ICLR 2026 experimental design baselines ablation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "61c0a24f-394a-46ad-8b86-78db6bc14647",
+  "isSidechain": false,
+  "requestId": "req_011CbSnjM9wt83WZz2tWBUof",
+  "type": "assistant",
+  "uuid": "a43653d6-2940-4a1e-bf75-242ff566f3ae",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a78563ed-01dd-4d0b-a0f9-ae617d124f47",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A3MPdbXcSzWQbgj3gcv9me",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 722,
+      "cache_read_input_tokens": 19283,
+      "output_tokens": 94,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 722,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 94,
+          "cache_read_input_tokens": 19283,
+          "cache_creation_input_tokens": 722,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 722
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-27T08:52:17.451Z_
+
+<details><summary>↩ Tool result · `toolu_01Ds6bKXkMu4sLcARyeXUasv`</summary>
+
+```text
+Web search results for query: "STAT skill-targeted adaptive training ICLR 2026 experimental design baselines ablation"
+
+Links: [{"title":"STAT: Skill-Targeted Adaptive Training Yinghui He∗Abhishek Panigrahi∗ Yong Lin","url":"https://openreview.net/pdf?id=mobvlazdlu"},{"title":"ICLR Poster STAT: Skill-Targeted Adaptive Training","url":"https://iclr.cc/virtual/2026/poster/10007620"},{"title":"STAT: Skill-Targeted Adaptive Training | OpenReview","url":"https://openreview.net/forum?id=m3jG3GaNIj"},{"title":"Skill-Targeted Adaptive Training","url":"https://arxiv.org/html/2510.10023v1"},{"title":"NeurIPS STAT: Skill-Targeted Adaptive Training","url":"https://nips.cc/virtual/2025/loc/san-diego/131068"},{"title":"[2510.10023] Skill-Targeted Adaptive Training","url":"https://arxiv.org/abs/2510.10023"},{"title":"GitHub - princeton-pli/STAT: Skill-Targeted Adaptive Training","url":"https://github.com/princeton-pli/STAT"},{"title":"Skill-Targeted Adaptive Training | Princeton Language and Intelligence","url":"https://pli.princeton.edu/events/2026/skill-targeted-adaptive-training"}]
+
+Based on the search results, I found comprehensive information about STAT (Skill-Targeted Adaptive Training). Here are the key details about the experimental design, baselines, and ablations:
+
+## Overview
+STAT trains a student model using the metacognition ability of a stronger large language model (LLM) as the teacher, which creates a list of skills needed for the task and labels each data point with its required skills, then monitors the student's answers to create a Missing-Skill-Profile tracking how often they failed to apply each skill.
+
+## Method Variants
+STAT has two variants: STAT-Sel, where the teacher uses existing training examples but adaptively reweights them according to the Missing-Skill-Profile, and STAT-Syn, where the teacher synthesizes additional examples involving missing skills.
+
+## Experimental Results
+
+**Main Benchmarks:** The methods yield improvements of up to 7.5% on MATH, whereas SFT provides only limited gains. Furthermore, STAT enhances performance on out-of-distribution benchmarks (e.g., AIME24/25, AMC23, etc.) by an average of 4.6%.
+
+**Models Tested:** Adaptive training data selection was conducted for three models: Llama-3.2-3B-Instruct, Llama-3.2-1B-Instruct, and Qwen2.5-3B.
+
+## Baselines and Comparisons
+The skills emphasized in both baselines, MATH-Train and Embed-Sel, align poorly with the actual Top 10 missing skills of the model, and the missing skills are not necessarily those most common in the original data distribution.
+
+## Complementarity with RL
+STAT is complementary to RL via GRPO: after the model is improved using STAT to address skill gaps, GRPO continues to add further gains.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a43653d6-2940-4a1e-bf75-242ff566f3ae",
+  "isSidechain": false,
+  "promptId": "521d8246-b4fb-444f-8e8d-124129010450",
+  "type": "user",
+  "uuid": "ef3a0f5f-014d-4453-b08b-56db566b0481",
+  "toolUseResult": {
+    "query": "STAT skill-targeted adaptive training ICLR 2026 experimental design baselines ablation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JhkmcNQkBsZheApHQPquR2",
+        "content": [
+          {
+            "title": "STAT: Skill-Targeted Adaptive Training Yinghui He∗Abhishek Panigrahi∗ Yong Lin",
+            "url": "https://openreview.net/pdf?id=mobvlazdlu"
+          },
+          {
+            "title": "ICLR Poster STAT: Skill-Targeted Adaptive Training",
+            "url": "https://iclr.cc/virtual/2026/poster/10007620"
+          },
+          {
+            "title": "STAT: Skill-Targeted Adaptive Training | OpenReview",
+            "url": "https://openreview.net/forum?id=m3jG3GaNIj"
+          },
+          {
+            "title": "Skill-Targeted Adaptive Training",
+            "url": "https://arxiv.org/html/2510.10023v1"
+          },
+          {
+            "title": "NeurIPS STAT: Skill-Targeted Adaptive Training",
+            "url": "https://nips.cc/virtual/2025/loc/san-diego/131068"
+          },
+          {
+            "title": "[2510.10023] Skill-Targeted Adaptive Training",
+            "url": "https://arxiv.org/abs/2510.10023"
+          },
+          {
+            "title": "GitHub - princeton-pli/STAT: Skill-Targeted Adaptive Training",
+            "url": "https://github.com/princeton-pli/STAT"
+          },
+          {
+            "title": "Skill-Targeted Adaptive Training | Princeton Language and Intelligence",
+            "url": "https://pli.princeton.edu/events/2026/skill-targeted-adaptive-training"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about STAT (Skill-Targeted Adaptive Training). Here are the key details about the experimental design, baselines, and ablations:\n\n## Overview\nSTAT trains a student model using the metacognition ability of a stronger large language model (LLM) as the teacher, which creates a list of skills needed for the task and labels each data point with its required skills, then monitors the student's answers to create a Missing-Skill-Profile tracking how often they failed to apply each skill.\n\n## Method Variants\nSTAT has two variants: STAT-Sel, where the teacher uses existing training examples but adaptively reweights them according to the Missing-Skill-Profile, and STAT-Syn, where the teacher synthesizes additional examples involving missing skills.\n\n## Experimental Results\n\n**Main Benchmarks:** The methods yield improvements of up to 7.5% on MATH, whereas SFT provides only limited gains. Furthermore, STAT enhances performance on out-of-distribution benchmarks (e.g., AIME24/25, AMC23, etc.) by an average of 4.6%.\n\n**Models Tested:** Adaptive training data selection was conducted for three models: Llama-3.2-3B-Instruct, Llama-3.2-1B-Instruct, and Qwen2.5-3B.\n\n## Baselines and Comparisons\nThe skills emphasized in both baselines, MATH-Train and Embed-Sel, align poorly with the actual Top 10 missing skills of the model, and the missing skills are not necessarily those most common in the original data distribution.\n\n## Complementarity with RL\nSTAT is complementary to RL via GRPO: after the model is improved using STAT to address skill gaps, GRPO continues to add further gains."
+    ],
+    "durationSeconds": 7.0002764729999996,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "a43653d6-2940-4a1e-bf75-242ff566f3ae",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a78563ed-01dd-4d0b-a0f9-ae617d124f47",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-27T08:52:22.238Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WL1xNubejWkjN63QfbgMYr`</summary>
+
+```json
+{
+  "query": "FoVer formal verification PRM training ACL 2026 baselines evaluation benchmarks"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ef3a0f5f-014d-4453-b08b-56db566b0481",
+  "isSidechain": false,
+  "requestId": "req_011CbSnk6FHjgVQ9kiaRMZxq",
+  "type": "assistant",
+  "uuid": "5e9ac012-c790-4838-9ca9-ad383e2bbe72",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a78563ed-01dd-4d0b-a0f9-ae617d124f47",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H1FSZZfK1Hiuggir5HTedG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 912,
+      "cache_read_input_tokens": 20005,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 912,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 20005,
+          "cache_creation_input_tokens": 912,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 912
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-27T08:52:33.232Z_
+
+<details><summary>↩ Tool result · `toolu_01WL1xNubejWkjN63QfbgMYr`</summary>
+
+```text
+Web search results for query: "FoVer formal verification PRM training ACL 2026 baselines evaluation benchmarks"
+
+Links: [{"title":"FoVer: Efficient PRM Training Data Synthesis via Formal Verification","url":"https://fover-prm.github.io/"},{"title":"GitHub - psunlpgroup/FoVer: This repository includes code and materials for the paper \"Efficient PRM Training Data Synthesis via Formal Verification\" (ACL 2026 Findings). · GitHub","url":"https://github.com/psunlpgroup/FoVer"},{"title":"[2505.15960] Efficient PRM Training Data Synthesis via Formal Verification","url":"https://arxiv.org/abs/2505.15960"},{"title":"Efficient PRM Training Data Synthesis via Formal Verification","url":"https://arxiv.org/html/2505.15960v3"},{"title":"Generalizable Process Reward Models via Formally Verified Training Data | OpenReview","url":"https://openreview.net/forum?id=LAejsDitr3"},{"title":"FOVER: Training Verifiers with Formal Tools","url":"https://www.emergentmind.com/papers/2505.15960"},{"title":"Training Step-Level Reasoning Verifiers with Formal ...","url":"https://arxiv.org/pdf/2505.15960"},{"title":"Trust but Verify! A Survey on Verification Design for Test-time Scaling","url":"https://arxiv.org/html/2508.16665"}]
+
+Based on the search results, here's what I found about FoVer:
+
+## Overview
+
+FoVer efficiently produces accurate PRM training data for formal reasoning tasks by leveraging formal verification tools. The paper was published in ACL 2026 Findings.
+
+## Methodology
+
+FoVer is a framework that synthesizes PRM training data from formal reasoning tasks by annotating step-level error labels using formal verification tools such as Z3 and Isabelle. By leveraging formal verification, FoVer enables efficient and accurate PRM data construction without requiring human annotation or additional LLM calls.
+
+## Training Data and Approach
+
+FoVer creates PRM training data named FoVer-40K by annotating step-level error labels on LLM responses to formal logic and theorem proving tasks using Z3 and Isabelle.
+
+## Benchmarks and Evaluation
+
+Experiments on 12 reasoning benchmarks show that fine-tuning on FoVer's training data improves PRMs not only on math and logic reasoning tasks, which are informal variants of the training tasks, but also on NLI and BBH benchmarks, which differ substantially from the tasks used to construct the training data. PRMs trained with FoVer outperform baseline PRMs on average, showing that the training data created from formal reasoning improves PRMs on widely used reasoning benchmarks.
+
+## Key Innovation
+
+The main innovation of FoVer is addressing the limitation that existing methods are costly and produce noisy labels, as they rely on human annotation or repeated LLM calls.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5e9ac012-c790-4838-9ca9-ad383e2bbe72",
+  "isSidechain": false,
+  "promptId": "521d8246-b4fb-444f-8e8d-124129010450",
+  "type": "user",
+  "uuid": "6776a43d-2ac9-4703-afda-83685e808f24",
+  "toolUseResult": {
+    "query": "FoVer formal verification PRM training ACL 2026 baselines evaluation benchmarks",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Xzm5xb11JbrqQTuemdJXpn",
+        "content": [
+          {
+            "title": "FoVer: Efficient PRM Training Data Synthesis via Formal Verification",
+            "url": "https://fover-prm.github.io/"
+          },
+          {
+            "title": "GitHub - psunlpgroup/FoVer: This repository includes code and materials for the paper \"Efficient PRM Training Data Synthesis via Formal Verification\" (ACL 2026 Findings). · GitHub",
+            "url": "https://github.com/psunlpgroup/FoVer"
+          },
+          {
+            "title": "[2505.15960] Efficient PRM Training Data Synthesis via Formal Verification",
+            "url": "https://arxiv.org/abs/2505.15960"
+          },
+          {
+            "title": "Efficient PRM Training Data Synthesis via Formal Verification",
+            "url": "https://arxiv.org/html/2505.15960v3"
+          },
+          {
+            "title": "Generalizable Process Reward Models via Formally Verified Training Data | OpenReview",
+            "url": "https://openreview.net/forum?id=LAejsDitr3"
+          },
+          {
+            "title": "FOVER: Training Verifiers with Formal Tools",
+            "url": "https://www.emergentmind.com/papers/2505.15960"
+          },
+          {
+            "title": "Training Step-Level Reasoning Verifiers with Formal ...",
+            "url": "https://arxiv.org/pdf/2505.15960"
+          },
+          {
+            "title": "Trust but Verify! A Survey on Verification Design for Test-time Scaling",
+            "url": "https://arxiv.org/html/2508.16665"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about FoVer:\n\n## Overview\n\nFoVer efficiently produces accurate PRM training data for formal reasoning tasks by leveraging formal verification tools. The paper was published in ACL 2026 Findings.\n\n## Methodology\n\nFoVer is a framework that synthesizes PRM training data from formal reasoning tasks by annotating step-level error labels using formal verification tools such as Z3 and Isabelle. By leveraging formal verification, FoVer enables efficient and accurate PRM data construction without requiring human annotation or additional LLM calls.\n\n## Training Data and Approach\n\nFoVer creates PRM training data named FoVer-40K by annotating step-level error labels on LLM responses to formal logic and theorem proving tasks using Z3 and Isabelle.\n\n## Benchmarks and Evaluation\n\nExperiments on 12 reasoning benchmarks show that fine-tuning on FoVer's training data improves PRMs not only on math and logic reasoning tasks, which are informal variants of the training tasks, but also on NLI and BBH benchmarks, which differ substantially from the tasks used to construct the training data. PRMs trained with FoVer outperform baseline PRMs on average, showing that the training data created from formal reasoning improves PRMs on widely used reasoning benchmarks.\n\n## Key Innovation\n\nThe main innovation of FoVer is addressing the limitation that existing methods are costly and produce noisy labels, as they rely on human annotation or repeated LLM calls."
+    ],
+    "durationSeconds": 10.989333775999995,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "5e9ac012-c790-4838-9ca9-ad383e2bbe72",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a78563ed-01dd-4d0b-a0f9-ae617d124f47",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-27T08:52:36.883Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Q3UbaqF4HSVVSK1fopXqg3`</summary>
+
+```json
+{
+  "query": "SwS self-aware weakness-driven problem synthesis NeurIPS 2025 experimental setup baselines math reasoning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6776a43d-2ac9-4703-afda-83685e808f24",
+  "isSidechain": false,
+  "requestId": "req_011CbSnmFgbPwkm1ddcGZeLH",
+  "type": "assistant",
+  "uuid": "88c228d2-a2ee-4384-bdcc-2500d9eb44e2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a78563ed-01dd-4d0b-a0f9-ae617d124f47",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013GLXPEnyuJ9xQJGkqd7fSH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 818,
+      "cache_read_input_tokens": 20917,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 818,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 20917,
+          "cache_creation_input_tokens": 818,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 818
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-27T08:52:46.633Z_
+
+<details><summary>↩ Tool result · `toolu_01Q3UbaqF4HSVVSK1fopXqg3`</summary>
+
+```text
+Web search results for query: "SwS self-aware weakness-driven problem synthesis NeurIPS 2025 experimental setup baselines math reasoning"
+
+Links: [{"title":"SwS: Self-aware Weakness-driven Problem Synthesis in Reinforcement Learning for LLM Reasoning | OpenReview","url":"https://openreview.net/forum?id=0jQUNQsZra"},{"title":"SwS: Self-aware Weakness-driven Problem Synthesis in Reinforcement Learning for LLM Reasoning - Microsoft Research","url":"https://www.microsoft.com/en-us/research/publication/sws-self-aware-weakness-driven-problem-synthesis-in-reinforcement-learning-for-llm-reasoning/"},{"title":"GitHub - MasterVito/SwS: Official Repo for SwS: A Weakness-driven Problem Synthesis Framework in RL for LLM Reasoning","url":"https://github.com/MasterVito/SwS"},{"title":"SwS: Self-aware Weakness-driven Problem Synthesis in Reinforcement Learning for LLM Reasoning","url":"https://mastervito.github.io/MasterVito.SwS.github.io/"},{"title":"[2506.08989] SwS: Self-aware Weakness-driven Problem Synthesis in Reinforcement Learning for LLM Reasoning","url":"https://arxiv.org/abs/2506.08989"},{"title":"SwS: Self-aware Weakness-driven Problem Synthesis in ...","url":"https://openreview.net/pdf/c3403842de341324f63358f1732f1518761661f2.pdf"},{"title":"Self-aware Weakness-Driven Synthesis Framework","url":"https://www.emergentmind.com/topics/self-aware-weakness-driven-problem-synthesis-framework-sws"},{"title":"SwS: Self-aware Weakness-driven Problem Synthesis in Reinforcement Learning for LLM Reasoning","url":"https://arxiv.org/html/2506.08989v1"}]
+
+Based on the search results, I found comprehensive information about the SwS framework paper presented at NeurIPS 2025:
+
+## Overview
+
+SwS is a Self-aware Weakness-driven problem Synthesis framework that systematically identifies model deficiencies and leverages them for problem augmentation.
+
+## Problem Definition
+
+Weaknesses are defined as questions that the model consistently fails to learn through its iterative sampling during RL training. The framework extracts the core concepts from these failure cases and synthesizes new problems to strengthen the model's weak areas in subsequent augmented training.
+
+## Experimental Setup
+
+The experiments were conducted across model sizes ranging from 3B to 32B and comprehensively evaluated performance on eight popular mathematical reasoning benchmarks. SwS is a targeted problem synthesis framework designed to strengthen a model's weakest reasoning capabilities via RL training, beginning with preliminary RL training on an initial problem set to identify problems where the model fails to learn efficiently as weaknesses in reasoning.
+
+## Results and Baselines
+
+Models trained on the augmented problem set consistently surpass both the base models and those trained on the original dataset across all benchmarks, achieving a substantial average absolute improvement of 10.0% for the 7B model and 7.7% for the 32B model, even surpassing their counterparts trained on carefully curated human-labeled problem sets.
+
+SwS has been accepted to NeurIPS 2025, with the paper available on arXiv (2506.08989) and code released on GitHub.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "88c228d2-a2ee-4384-bdcc-2500d9eb44e2",
+  "isSidechain": false,
+  "promptId": "521d8246-b4fb-444f-8e8d-124129010450",
+  "type": "user",
+  "uuid": "1a6b8adf-67c4-4b4b-8a55-88f1176ec208",
+  "toolUseResult": {
+    "query": "SwS self-aware weakness-driven problem synthesis NeurIPS 2025 experimental setup baselines math reasoning",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HcuYdmrBS27wUJeSWBeBim",
+        "content": [
+          {
+            "title": "SwS: Self-aware Weakness-driven Problem Synthesis in Reinforcement Learning for LLM Reasoning | OpenReview",
+            "url": "https://openreview.net/forum?id=0jQUNQsZra"
+          },
+          {
+            "title": "SwS: Self-aware Weakness-driven Problem Synthesis in Reinforcement Learning for LLM Reasoning - Microsoft Research",
+            "url": "https://www.microsoft.com/en-us/research/publication/sws-self-aware-weakness-driven-problem-synthesis-in-reinforcement-learning-for-llm-reasoning/"
+          },
+          {
+            "title": "GitHub - MasterVito/SwS: Official Repo for SwS: A Weakness-driven Problem Synthesis Framework in RL for LLM Reasoning",
+            "url": "https://github.com/MasterVito/SwS"
+          },
+          {
+            "title": "SwS: Self-aware Weakness-driven Problem Synthesis in Reinforcement Learning for LLM Reasoning",
+            "url": "https://mastervito.github.io/MasterVito.SwS.github.io/"
+          },
+          {
+            "title": "[2506.08989] SwS: Self-aware Weakness-driven Problem Synthesis in Reinforcement Learning for LLM Reasoning",
+            "url": "https://arxiv.org/abs/2506.08989"
+          },
+          {
+            "title": "SwS: Self-aware Weakness-driven Problem Synthesis in ...",
+            "url": "https://openreview.net/pdf/c3403842de341324f63358f1732f1518761661f2.pdf"
+          },
+          {
+            "title": "Self-aware Weakness-Driven Synthesis Framework",
+            "url": "https://www.emergentmind.com/topics/self-aware-weakness-driven-problem-synthesis-framework-sws"
+          },
+          {
+            "title": "SwS: Self-aware Weakness-driven Problem Synthesis in Reinforcement Learning for LLM Reasoning",
+            "url": "https://arxiv.org/html/2506.08989v1"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about the SwS framework paper presented at NeurIPS 2025:\n\n## Overview\n\nSwS is a Self-aware Weakness-driven problem Synthesis framework that systematically identifies model deficiencies and leverages them for problem augmentation.\n\n## Problem Definition\n\nWeaknesses are defined as questions that the model consistently fails to learn through its iterative sampling during RL training. The framework extracts the core concepts from these failure cases and synthesizes new problems to strengthen the model's weak areas in subsequent augmented training.\n\n## Experimental Setup\n\nThe experiments were conducted across model sizes ranging from 3B to 32B and comprehensively evaluated performance on eight popular mathematical reasoning benchmarks. SwS is a targeted problem synthesis framework designed to strengthen a model's weakest reasoning capabilities via RL training, beginning with preliminary RL training on an initial problem set to identify problems where the model fails to learn efficiently as weaknesses in reasoning.\n\n## Results and Baselines\n\nModels trained on the augmented problem set consistently surpass both the base models and those trained on the original dataset across all benchmarks, achieving a substantial average absolute improvement of 10.0% for the 7B model and 7.7% for the 32B model, even surpassing their counterparts trained on carefully curated human-labeled problem sets.\n\nSwS has been accepted to NeurIPS 2025, with the paper available on arXiv (2506.08989) and code released on GitHub."
+    ],
+    "durationSeconds": 9.746637433000004,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "88c228d2-a2ee-4384-bdcc-2500d9eb44e2",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a78563ed-01dd-4d0b-a0f9-ae617d124f47",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-27T08:52:49.705Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KkvEhLBKVbS6BkRrqu9SKw`</summary>
+
+```json
+{
+  "query": "NSRSA symbolic recursive self-alignment SymPy arithmetic verification iterative self-training GSM8K DPO 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1a6b8adf-67c4-4b4b-8a55-88f1176ec208",
+  "isSidechain": false,
+  "requestId": "req_011CbSnnEvyjuXwrUbB4dhsh",
+  "type": "assistant",
+  "uuid": "89e5ef1c-58b9-4b23-aa31-670e285404fc",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a78563ed-01dd-4d0b-a0f9-ae617d124f47",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N8XfBVYQQ1qTC9vAdTKv9s",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 915,
+      "cache_read_input_tokens": 21735,
+      "output_tokens": 81,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 915,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 81,
+          "cache_read_input_tokens": 21735,
+          "cache_creation_input_tokens": 915,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 915
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-27T08:52:56.960Z_
+
+<details><summary>↩ Tool result · `toolu_01KkvEhLBKVbS6BkRrqu9SKw`</summary>
+
+```text
+Web search results for query: "NSRSA symbolic recursive self-alignment SymPy arithmetic verification iterative self-training GSM8K DPO 2026"
+
+Links: [{"title":"Stabilizing Iterative Self-Training with Verified Reasoning via Symbolic Recursive Self-Alignment","url":"https://arxiv.org/pdf/2603.21558"},{"title":"[2603.21558] Stabilizing Iterative Self-Training with Verified Reasoning via Symbolic Recursive Self-Alignment","url":"https://arxiv.org/abs/2603.21558"},{"title":"Stabilizing Iterative Self-Training with Verified Reasoning via Symbolic Recursive Self-Alignment","url":"https://arxiv.org/html/2603.21558"},{"title":"GSM8K Or MMLU Or HumanEval+ Benchmark Papers | HFEPX","url":"https://www.opentrain.ai/tools/hf-eval-papers/benchmarks/either-gsm8k-or-humaneval-or-mmlu/"},{"title":"GSM8K Or MMLU Or LiveCodeBench Benchmark Papers | HFEPX","url":"https://www.opentrain.ai/tools/hf-eval-papers/benchmarks/either-gsm8k-or-livecodebench-or-mmlu/"},{"title":"GSM8K Benchmark Papers (Last 45 Days) | HFEPX","url":"https://www.opentrain.ai/tools/hf-eval-papers/benchmarks/gsm8k-last-45d/"}]
+
+Based on the search results, I found a paper that directly matches your query:
+
+## NSRSA: Symbolic Recursive Self-Alignment
+
+Neuro-Symbolic Recursive Self-Alignment (NSRSA) stabilizes iterative self-training by embedding a symbolic verification subsystem that gates training data quality at the reasoning step level.
+
+### Key Technical Features
+
+NSRSA verifies each arithmetic operation via sympy, checks logical flow consistency across reasoning steps, and enforces domain constraints. This approach differs from simpler filtering methods, as NSRSA rejects approximately 34% of correct-answer solutions that pass outcome verification, eliminating "lucky guesses" with flawed reasoning from the training set.
+
+### Evaluation Results
+
+The method was evaluated on GSM8K using Qwen3-4B-Thinking across 5 self-training iterations under five conditions: no verification, outcome verification, majority voting, full NSRSA symbolic verification, and NSRSA with DPO. NSRSA achieved 91.0% accuracy (from 80.5% baseline), while no-verification collapsed to 73.2% and outcome-only plateaued at 85.8%.
+
+### DPO Integration
+
+Constructing DPO preference pairs from NSRSA verification teaches the model to distinguish sound from flawed reasoning (reward accuracy 46% → 63%).
+
+The paper was published on arXiv on March 23, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "89e5ef1c-58b9-4b23-aa31-670e285404fc",
+  "isSidechain": false,
+  "promptId": "521d8246-b4fb-444f-8e8d-124129010450",
+  "type": "user",
+  "uuid": "f7701e3a-51ab-4441-877c-d4e105ce8694",
+  "toolUseResult": {
+    "query": "NSRSA symbolic recursive self-alignment SymPy arithmetic verification iterative self-training GSM8K DPO 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016x7QQNt3xFtuGCcJaF9Cj5",
+        "content": [
+          {
+            "title": "Stabilizing Iterative Self-Training with Verified Reasoning via Symbolic Recursive Self-Alignment",
+            "url": "https://arxiv.org/pdf/2603.21558"
+          },
+          {
+            "title": "[2603.21558] Stabilizing Iterative Self-Training with Verified Reasoning via Symbolic Recursive Self-Alignment",
+            "url": "https://arxiv.org/abs/2603.21558"
+          },
+          {
+            "title": "Stabilizing Iterative Self-Training with Verified Reasoning via Symbolic Recursive Self-Alignment",
+            "url": "https://arxiv.org/html/2603.21558"
+          },
+          {
+            "title": "GSM8K Or MMLU Or HumanEval+ Benchmark Papers | HFEPX",
+            "url": "https://www.opentrain.ai/tools/hf-eval-papers/benchmarks/either-gsm8k-or-humaneval-or-mmlu/"
+          },
+          {
+            "title": "GSM8K Or MMLU Or LiveCodeBench Benchmark Papers | HFEPX",
+            "url": "https://www.opentrain.ai/tools/hf-eval-papers/benchmarks/either-gsm8k-or-livecodebench-or-mmlu/"
+          },
+          {
+            "title": "GSM8K Benchmark Papers (Last 45 Days) | HFEPX",
+            "url": "https://www.opentrain.ai/tools/hf-eval-papers/benchmarks/gsm8k-last-45d/"
+          }
+        ]
+      },
+      "Based on the search results, I found a paper that directly matches your query:\n\n## NSRSA: Symbolic Recursive Self-Alignment\n\nNeuro-Symbolic Recursive Self-Alignment (NSRSA) stabilizes iterative self-training by embedding a symbolic verification subsystem that gates training data quality at the reasoning step level.\n\n### Key Technical Features\n\nNSRSA verifies each arithmetic operation via sympy, checks logical flow consistency across reasoning steps, and enforces domain constraints. This approach differs from simpler filtering methods, as NSRSA rejects approximately 34% of correct-answer solutions that pass outcome verification, eliminating \"lucky guesses\" with flawed reasoning from the training set.\n\n### Evaluation Results\n\nThe method was evaluated on GSM8K using Qwen3-4B-Thinking across 5 self-training iterations under five conditions: no verification, outcome verification, majority voting, full NSRSA symbolic verification, and NSRSA with DPO. NSRSA achieved 91.0% accuracy (from 80.5% baseline), while no-verification collapsed to 73.2% and outcome-only plateaued at 85.8%.\n\n### DPO Integration\n\nConstructing DPO preference pairs from NSRSA verification teaches the model to distinguish sound from flawed reasoning (reward accuracy 46% → 63%).\n\nThe paper was published on arXiv on March 23, 2026."
+    ],
+    "durationSeconds": 7.249661980999997,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "89e5ef1c-58b9-4b23-aa31-670e285404fc",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a78563ed-01dd-4d0b-a0f9-ae617d124f47",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-27T08:53:00.163Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01U43yhqmncWFnYkgHiTke6e`</summary>
+
+```json
+{
+  "query": "imperfect verifier noisy rewards self-improvement LLM math 2026 arXiv 2604.07666 precision coverage tradeoff"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f7701e3a-51ab-4441-877c-d4e105ce8694",
+  "isSidechain": false,
+  "requestId": "req_011CbSno1aq5Kib1mDae3bzL",
+  "type": "assistant",
+  "uuid": "a12df733-e2f5-4981-965b-f979f41ba4dd",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a78563ed-01dd-4d0b-a0f9-ae617d124f47",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019pyicaC9EYNHVD73NqQRhe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 819,
+      "cache_read_input_tokens": 22650,
+      "output_tokens": 85,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 819,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 85,
+          "cache_read_input_tokens": 22650,
+          "cache_creation_input_tokens": 819,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 819
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Formal Error Profiling Enables Teacher-Free Targeted Math Self-Improvement  ## Core Problem  Self-improvement loops for mathematical reasoning suffer from model collapse (solver-verifier gap theory,…",
+  "leafUuid": "a12df733-e2f5-4981-965b-f979f41ba4dd",
+  "sessionId": "a78563ed-01dd-4d0b-a0f9-ae617d124f47"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 24_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Formal error profiling for teacher-free math self-improvement",
+  "sessionId": "a78563ed-01dd-4d0b-a0f9-ae617d124f47"
+}
+```
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-27T08:53:08.131Z_
+
+<details><summary>↩ Tool result · `toolu_01U43yhqmncWFnYkgHiTke6e`</summary>
+
+```text
+Web search results for query: "imperfect verifier noisy rewards self-improvement LLM math 2026 arXiv 2604.07666 precision coverage tradeoff"
+
+Links: [{"title":"[2604.07666] An Imperfect Verifier is Good Enough: Learning with Noisy Rewards","url":"https://arxiv.org/abs/2604.07666"},{"title":"An Imperfect Verifier is Good Enough: Learning with Noisy Rewards","url":"https://arxiv.org/html/2604.07666"},{"title":"Reinforcement Learning with Verifiable yet Noisy Rewards under Imperfect Verifiers","url":"https://arxiv.org/html/2510.00915v3"},{"title":"An Imperfect Verifier is Good Enough: Learning with Noisy Rewards","url":"https://arxiv.org/pdf/2604.07666"},{"title":"[2510.00915] Reinforcement Learning with Verifiable yet Noisy Rewards under Imperfect Verifiers","url":"https://arxiv.org/abs/2510.00915"},{"title":"Rate or Fate? RLVεR: Reinforcement Learning with Verifiable Noisy Rewards","url":"https://arxiv.org/html/2601.04411"}]
+
+I found the paper you're looking for! Here's information about arXiv 2604.07666:
+
+**Title and Authors:** "An Imperfect Verifier is Good Enough: Learning with Noisy Rewards" by Andreas Plesner, Francisco Guzmán, and Anish Athalye
+
+**Main Topic:** The paper investigates Reinforcement Learning with Verifiable Rewards (RLVR), which has become a prominent method for post-training Large Language Models (LLMs).
+
+**Key Findings:** 
+- Noise rates up to 15% yield peak validation accuracy within 2 percentage points of the clean baseline
+- These findings are consistent across controlled and model-based noise types, three model families (Qwen3, GLM4, Llama 3.1), and model sizes from 4B to 9B
+- Not all errors are equal: precision matters more than recall, and engineering effort improving a verifier beyond a certain point has diminishing returns
+
+**Research Domains:** The investigation covers code generation and scientific reasoning domains
+
+**Conclusion:** The results indicate that imperfect verification does not constitute a fundamental barrier to RLVR.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a12df733-e2f5-4981-965b-f979f41ba4dd",
+  "isSidechain": false,
+  "promptId": "521d8246-b4fb-444f-8e8d-124129010450",
+  "type": "user",
+  "uuid": "8d9a9496-d524-4d4a-bf9c-9d9415a01c7a",
+  "toolUseResult": {
+    "query": "imperfect verifier noisy rewards self-improvement LLM math 2026 arXiv 2604.07666 precision coverage tradeoff",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HLNNgQ1i6CG1juj6Ycz4a7",
+        "content": [
+          {
+            "title": "[2604.07666] An Imperfect Verifier is Good Enough: Learning with Noisy Rewards",
+            "url": "https://arxiv.org/abs/2604.07666"
+          },
+          {
+            "title": "An Imperfect Verifier is Good Enough: Learning with Noisy Rewards",
+            "url": "https://arxiv.org/html/2604.07666"
+          },
+          {
+            "title": "Reinforcement Learning with Verifiable yet Noisy Rewards under Imperfect Verifiers",
+            "url": "https://arxiv.org/html/2510.00915v3"
+          },
+          {
+            "title": "An Imperfect Verifier is Good Enough: Learning with Noisy Rewards",
+            "url": "https://arxiv.org/pdf/2604.07666"
+          },
+          {
+            "title": "[2510.00915] Reinforcement Learning with Verifiable yet Noisy Rewards under Imperfect Verifiers",
+            "url": "https://arxiv.org/abs/2510.00915"
+          },
+          {
+            "title": "Rate or Fate? RLVεR: Reinforcement Learning with Verifiable Noisy Rewards",
+            "url": "https://arxiv.org/html/2601.04411"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's information about arXiv 2604.07666:\n\n**Title and Authors:** \"An Imperfect Verifier is Good Enough: Learning with Noisy Rewards\" by Andreas Plesner, Francisco Guzmán, and Anish Athalye\n\n**Main Topic:** The paper investigates Reinforcement Learning with Verifiable Rewards (RLVR), which has become a prominent method for post-training Large Language Models (LLMs).\n\n**Key Findings:** \n- Noise rates up to 15% yield peak validation accuracy within 2 percentage points of the clean baseline\n- These findings are consistent across controlled and model-based noise types, three model families (Qwen3, GLM4, Llama 3.1), and model sizes from 4B to 9B\n- Not all errors are equal: precision matters more than recall, and engineering effort improving a verifier beyond a certain point has diminishing returns\n\n**Research Domains:** The investigation covers code generation and scientific reasoning domains\n\n**Conclusion:** The results indicate that imperfect verification does not constitute a fundamental barrier to RLVR."
+    ],
+    "durationSeconds": 7.964698070999992,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "a12df733-e2f5-4981-965b-f979f41ba4dd",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a78563ed-01dd-4d0b-a0f9-ae617d124f47",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-27T08:53:10.871Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JzVnGzie5nngSGYLuYQVBR`</summary>
+
+```json
+{
+  "query": "Step-DPO step-wise preference optimization math reasoning NeurIPS 2024 experimental design baselines evaluation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8d9a9496-d524-4d4a-bf9c-9d9415a01c7a",
+  "isSidechain": false,
+  "requestId": "req_011CbSnopsgHu5yQBoSeqYaf",
+  "type": "assistant",
+  "uuid": "860ab685-5ac2-4567-a8a9-547d9e59bcab",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a78563ed-01dd-4d0b-a0f9-ae617d124f47",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017f3cizTmUapHKkFn1cJZPB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 700,
+      "cache_read_input_tokens": 23469,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 700,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 23469,
+          "cache_creation_input_tokens": 700,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 700
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-27T08:53:18.884Z_
+
+<details><summary>↩ Tool result · `toolu_01JzVnGzie5nngSGYLuYQVBR`</summary>
+
+```text
+Web search results for query: "Step-DPO step-wise preference optimization math reasoning NeurIPS 2024 experimental design baselines evaluation"
+
+Links: [{"title":"[2406.18629] Step-DPO: Step-wise Preference Optimization for Long-chain Reasoning of LLMs","url":"https://arxiv.org/abs/2406.18629"},{"title":"(PDF) Step-DPO: Step-wise Preference Optimization for Long-chain Reasoning of LLMs","url":"https://www.researchgate.net/publication/381770836_Step-DPO_Step-wise_Preference_Optimization_for_Long-chain_Reasoning_of_LLMs"},{"title":"STEP-DPO: STEP-WISE PREFERENCE OPTIMIZATION","url":"https://openreview.net/pdf?id=H5FUVj0vMd"},{"title":"Full-Step-DPO: Self-Supervised Preference Optimization with Step-wise   Rewards for Mathematical Reasoning","url":"https://arxiv.org/pdf/2502.14356"},{"title":"Full-Step-DPO: Self-Supervised Preference Optimization with Step-wise Rewards for Mathematical Reasoning","url":"https://arxiv.org/html/2502.14356v1"},{"title":"STEP-DPO: STEP-WISE PREFERENCE OPTIMIZATION FOR LONG-CHAIN REASONING OF LLMS","url":"https://arxiv.org/pdf/2406.18629"},{"title":"Step-level Value Preference Optimization for Mathematical ...","url":"https://aclanthology.org/2024.findings-emnlp.463.pdf"}]
+
+Based on the web search results, here's what I found about Step-DPO:
+
+## Overview
+
+Step-DPO is a method that improves mathematical reasoning in Large Language Models through step-wise preference optimization, with fine-tuning Qwen2-72B-Instruct achieving 70.8% accuracy on MATH and 94.0% on GSM8K, surpassing closed-source models like GPT-4-1106, Claude-3-Opus, and Gemini-1.5-Pro.
+
+## Methodology and Design
+
+The approach addresses the challenge that mathematical reasoning requires extensive and precise chains of reasoning, making the correctness of each reasoning step critical, with the goal of enhancing robustness and factuality of LLMs by learning from human feedback.
+
+Step-DPO focuses on optimizing only the first erroneous step in the reasoning chain, demonstrating notable improvements.
+
+## Experimental Results
+
+With a curated dataset, mathematical reasoning performance can be significantly boosted with only hundreds of training steps.
+
+## Baselines and Comparisons
+
+The research acknowledges limitations of prior work: Several prior studies have attempted to enhance the Chain-of-Thought (CoT) inference framework, but while these efforts led to significant improvements in certain tasks, they have not fully mitigated common hallucinations and have limited generalizability across all reasoning tasks.
+
+More recent work like Full-Step-DPO has built upon Step-DPO by focusing on building preference data based on reasoning steps rather than entire solutions.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "860ab685-5ac2-4567-a8a9-547d9e59bcab",
+  "isSidechain": false,
+  "promptId": "521d8246-b4fb-444f-8e8d-124129010450",
+  "type": "user",
+  "uuid": "08d2a666-805f-4cc1-919c-c2da72aae1da",
+  "toolUseResult": {
+    "query": "Step-DPO step-wise preference optimization math reasoning NeurIPS 2024 experimental design baselines evaluation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015pidgj7Fpxawezf95ipt4j",
+        "content": [
+          {
+            "title": "[2406.18629] Step-DPO: Step-wise Preference Optimization for Long-chain Reasoning of LLMs",
+            "url": "https://arxiv.org/abs/2406.18629"
+          },
+          {
+            "title": "(PDF) Step-DPO: Step-wise Preference Optimization for Long-chain Reasoning of LLMs",
+            "url": "https://www.researchgate.net/publication/381770836_Step-DPO_Step-wise_Preference_Optimization_for_Long-chain_Reasoning_of_LLMs"
+          },
+          {
+            "title": "STEP-DPO: STEP-WISE PREFERENCE OPTIMIZATION",
+            "url": "https://openreview.net/pdf?id=H5FUVj0vMd"
+          },
+          {
+            "title": "Full-Step-DPO: Self-Supervised Preference Optimization with Step-wise   Rewards for Mathematical Reasoning",
+            "url": "https://arxiv.org/pdf/2502.14356"
+          },
+          {
+            "title": "Full-Step-DPO: Self-Supervised Preference Optimization with Step-wise Rewards for Mathematical Reasoning",
+            "url": "https://arxiv.org/html/2502.14356v1"
+          },
+          {
+            "title": "STEP-DPO: STEP-WISE PREFERENCE OPTIMIZATION FOR LONG-CHAIN REASONING OF LLMS",
+            "url": "https://arxiv.org/pdf/2406.18629"
+          },
+          {
+            "title": "Step-level Value Preference Optimization for Mathematical ...",
+            "url": "https://aclanthology.org/2024.findings-emnlp.463.pdf"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found about Step-DPO:\n\n## Overview\n\nStep-DPO is a method that improves mathematical reasoning in Large Language Models through step-wise preference optimization, with fine-tuning Qwen2-72B-Instruct achieving 70.8% accuracy on MATH and 94.0% on GSM8K, surpassing closed-source models like GPT-4-1106, Claude-3-Opus, and Gemini-1.5-Pro.\n\n## Methodology and Design\n\nThe approach addresses the challenge that mathematical reasoning requires extensive and precise chains of reasoning, making the correctness of each reasoning step critical, with the goal of enhancing robustness and factuality of LLMs by learning from human feedback.\n\nStep-DPO focuses on optimizing only the first erroneous step in the reasoning chain, demonstrating notable improvements.\n\n## Experimental Results\n\nWith a curated dataset, mathematical reasoning performance can be significantly boosted with only hundreds of training steps.\n\n## Baselines and Comparisons\n\nThe research acknowledges limitations of prior work: Several prior studies have attempted to enhance the Chain-of-Thought (CoT) inference framework, but while these efforts led to significant improvements in certain tasks, they have not fully mitigated common hallucinations and have limited generalizability across all reasoning tasks.\n\nMore recent work like Full-Step-DPO has built upon Step-DPO by focusing on building preference data based on reasoning steps rather than entire solutions."
+    ],
+    "durationSeconds": 8.007459222000005,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "860ab685-5ac2-4567-a8a9-547d9e59bcab",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a78563ed-01dd-4d0b-a0f9-ae617d124f47",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-27T08:53:21.760Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0123PUUuYuELozC1UzEJnydc`</summary>
+
+```json
+{
+  "query": "adaptive problem generation symbolic representations SymPy closed-loop RLVR 2602.19187 experimental setup"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "08d2a666-805f-4cc1-919c-c2da72aae1da",
+  "isSidechain": false,
+  "requestId": "req_011CbSnpct93rAjkHKVh5ezR",
+  "type": "assistant",
+  "uuid": "9106c90c-f2b2-4942-b43f-55f28ba6467b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a78563ed-01dd-4d0b-a0f9-ae617d124f47",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D5jjoMunoBCxrUtukCTk6o",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 846,
+      "cache_read_input_tokens": 24169,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 846,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 24169,
+          "cache_creation_input_tokens": 846,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 846
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-27T08:53:28.947Z_
+
+<details><summary>↩ Tool result · `toolu_0123PUUuYuELozC1UzEJnydc`</summary>
+
+```text
+Web search results for query: "adaptive problem generation symbolic representations SymPy closed-loop RLVR 2602.19187 experimental setup"
+
+Links: [{"title":"[2602.19187] Adaptive Problem Generation via Symbolic Representations","url":"https://arxiv.org/abs/2602.19187"},{"title":"Adaptive Problem Generation via Symbolic Representations","url":"https://arxiv.org/pdf/2602.19187"},{"title":"Adaptive Problem Generation via Symbolic Representations","url":"https://arxiv.org/html/2602.19187"},{"title":"System and method of adaptive generation of problem determination decision procedures","url":"https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/7831537"},{"title":"Towards Adaptive Environment Generation for Training Embodied Agents","url":"https://arxiv.org/pdf/2602.06366"}]
+
+Based on the search results, I found the paper you're looking for. Here's information about the research:
+
+## Adaptive Problem Generation via Symbolic Representations (arXiv 2602.19187)
+
+The paper presents a method for generating training data for reinforcement learning with verifiable rewards to improve small open-weights language models on mathematical tasks.
+
+**Key Approach:**
+
+The researchers perform modifications in a symbolic problem space, representing each problem as a set of symbolic variables and constraints (e.g., via algebraic frameworks such as SymPy or SMT formulations). This representation enables precise control over problem structure, automatic generation of ground-truth solutions, and decouples mathematical reasoning from linguistic realization.
+
+**Closed-Loop Framework:**
+
+To adapt the problem difficulty to the model, the authors introduce a closed-loop framework that learns modification strategies through prompt optimization in symbolic space.
+
+**Experimental Results:**
+
+Experimental results demonstrate that both adaptive problem generation and symbolic representation modifications contribute to improving the model's math solving ability. The experiments on multiple benchmarks and models show that the approach consistently improves performance when trained with RLVR using either PPO or GRPO, compared to training with the seed data alone.
+
+The paper was published on February 22, 2026, and addresses limitations of existing open-loop data generation approaches by enabling adaptation to the model's capabilities.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9106c90c-f2b2-4942-b43f-55f28ba6467b",
+  "isSidechain": false,
+  "promptId": "521d8246-b4fb-444f-8e8d-124129010450",
+  "type": "user",
+  "uuid": "560c26d8-15e0-43d7-986f-51f9e3af8ef4",
+  "toolUseResult": {
+    "query": "adaptive problem generation symbolic representations SymPy closed-loop RLVR 2602.19187 experimental setup",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014rE5ExWwsbWoRHRyHjsNRS",
+        "content": [
+          {
+            "title": "[2602.19187] Adaptive Problem Generation via Symbolic Representations",
+            "url": "https://arxiv.org/abs/2602.19187"
+          },
+          {
+            "title": "Adaptive Problem Generation via Symbolic Representations",
+            "url": "https://arxiv.org/pdf/2602.19187"
+          },
+          {
+            "title": "Adaptive Problem Generation via Symbolic Representations",
+            "url": "https://arxiv.org/html/2602.19187"
+          },
+          {
+            "title": "System and method of adaptive generation of problem determination decision procedures",
+            "url": "https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/7831537"
+          },
+          {
+            "title": "Towards Adaptive Environment Generation for Training Embodied Agents",
+            "url": "https://arxiv.org/pdf/2602.06366"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for. Here's information about the research:\n\n## Adaptive Problem Generation via Symbolic Representations (arXiv 2602.19187)\n\nThe paper presents a method for generating training data for reinforcement learning with verifiable rewards to improve small open-weights language models on mathematical tasks.\n\n**Key Approach:**\n\nThe researchers perform modifications in a symbolic problem space, representing each problem as a set of symbolic variables and constraints (e.g., via algebraic frameworks such as SymPy or SMT formulations). This representation enables precise control over problem structure, automatic generation of ground-truth solutions, and decouples mathematical reasoning from linguistic realization.\n\n**Closed-Loop Framework:**\n\nTo adapt the problem difficulty to the model, the authors introduce a closed-loop framework that learns modification strategies through prompt optimization in symbolic space.\n\n**Experimental Results:**\n\nExperimental results demonstrate that both adaptive problem generation and symbolic representation modifications contribute to improving the model's math solving ability. The experiments on multiple benchmarks and models show that the approach consistently improves performance when trained with RLVR using either PPO or GRPO, compared to training with the seed data alone.\n\nThe paper was published on February 22, 2026, and addresses limitations of existing open-loop data generation approaches by enabling adaptation to the model's capabilities."
+    ],
+    "durationSeconds": 7.182603124999994,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "9106c90c-f2b2-4942-b43f-55f28ba6467b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a78563ed-01dd-4d0b-a0f9-ae617d124f47",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 30 · 2026-05-27T08:53:28.956Z_
+
+```json
+{
+  "parentUuid": "560c26d8-15e0-43d7-986f-51f9e3af8ef4",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "1e7889e4-1c61-4e89-a12d-ac55c37c8e43",
+  "timestamp": "2026-05-27T08:53:28.956Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a78563ed-01dd-4d0b-a0f9-ae617d124f47",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-27T08:53:32.092Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JfH3YV38iwaPyLcY5c1P83`</summary>
+
+```json
+{
+  "query": "solver-verifier gap theory self-improvement training dynamics ICLR 2026 model collapse verification reliability"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1e7889e4-1c61-4e89-a12d-ac55c37c8e43",
+  "isSidechain": false,
+  "requestId": "req_011CbSnqMsXNe53V75akDazz",
+  "type": "assistant",
+  "uuid": "f49bc233-622c-496e-888e-55af1b3e5bfd",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a78563ed-01dd-4d0b-a0f9-ae617d124f47",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KqDh8AHqMMV4Rv5wKC8492",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 718,
+      "cache_read_input_tokens": 25015,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 718,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 25015,
+          "cache_creation_input_tokens": 718,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 718
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-27T08:53:39.194Z_
+
+<details><summary>↩ Tool result · `toolu_01JfH3YV38iwaPyLcY5c1P83`</summary>
+
+```text
+Web search results for query: "solver-verifier gap theory self-improvement training dynamics ICLR 2026 model collapse verification reliability"
+
+Links: [{"title":"Published as a conference paper at ICLR 2026 THEORETICAL MODELING","url":"https://openreview.net/pdf?id=Hh7x3c0cZl"},{"title":"[2507.00075] Theoretical Modeling of Large Language Model Self-Improvement Training Dynamics Through Solver-Verifier Gap","url":"https://arxiv.org/abs/2507.00075"},{"title":"Theoretical Modeling of Large Language Model Self-Improvement Training Dynamics Through Solver-Verifier Gap","url":"https://arxiv.org/html/2507.00075"},{"title":"Theoretical Modeling of LLM Self-Improvement Training Dynamics Through Solver-Verifier Gap","url":"https://arxiv.org/html/2507.00075v1"},{"title":"Theoretical Modeling of LLM Self-Improvement Training ...","url":"https://arxiv.org/pdf/2507.00075"},{"title":"Theoretical Modeling of LLM Self-Improvement Training Dynamics Through Solver-Verifier Gap","url":"https://www.researchgate.net/publication/393260770_Theoretical_Modeling_of_LLM_Self-Improvement_Training_Dynamics_Through_Solver-Verifier_Gap"}]
+
+Based on the search results, I found relevant research on this topic:
+
+## Solver-Verifier Gap Theory in LLM Self-Improvement
+
+A theoretical model has been developed to explain training dynamics of self-improvement via the concept of solver-verifier gap. This work is inspired by the conjecture that self-improvement capability arises from the gap between an LLM's solver capability and verifier capability.
+
+### Key Findings
+
+The framework defines solver capability as the quality of responses directly generated from the LLM and verifier capability as the quality of responses generated from the LLM and evaluated by itself.
+
+For self-improvement, accuracy exhibits exponential curves towards a limit. For cross-improvement, adding external data at different times yields similar performance.
+
+### Practical Validation
+
+Experimental results across various models and datasets reveal that capability dynamics follow an exponential law, as implied by the theoretical framework.
+
+### Extensions Beyond Self-Improvement
+
+The analysis extends to investigate how external data influences these dynamics, finding that under limited external data regimes, such external data can be utilized at any stage without significantly affecting final performances.
+
+This work was published as a conference paper at ICLR 2026 and represents recent theoretical advances in understanding LLM self-improvement mechanisms.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f49bc233-622c-496e-888e-55af1b3e5bfd",
+  "isSidechain": false,
+  "promptId": "521d8246-b4fb-444f-8e8d-124129010450",
+  "type": "user",
+  "uuid": "16ea9062-3329-4d4a-a251-0f062ae8d513",
+  "toolUseResult": {
+    "query": "solver-verifier gap theory self-improvement training dynamics ICLR 2026 model collapse verification reliability",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Awev5A6SafNuyzcdy26LSu",
+        "content": [
+          {
+            "title": "Published as a conference paper at ICLR 2026 THEORETICAL MODELING",
+            "url": "https://openreview.net/pdf?id=Hh7x3c0cZl"
+          },
+          {
+            "title": "[2507.00075] Theoretical Modeling of Large Language Model Self-Improvement Training Dynamics Through Solver-Verifier Gap",
+            "url": "https://arxiv.org/abs/2507.00075"
+          },
+          {
+            "title": "Theoretical Modeling of Large Language Model Self-Improvement Training Dynamics Through Solver-Verifier Gap",
+            "url": "https://arxiv.org/html/2507.00075"
+          },
+          {
+            "title": "Theoretical Modeling of LLM Self-Improvement Training Dynamics Through Solver-Verifier Gap",
+            "url": "https://arxiv.org/html/2507.00075v1"
+          },
+          {
+            "title": "Theoretical Modeling of LLM Self-Improvement Training ...",
+            "url": "https://arxiv.org/pdf/2507.00075"
+          },
+          {
+            "title": "Theoretical Modeling of LLM Self-Improvement Training Dynamics Through Solver-Verifier Gap",
+            "url": "https://www.researchgate.net/publication/393260770_Theoretical_Modeling_of_LLM_Self-Improvement_Training_Dynamics_Through_Solver-Verifier_Gap"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant research on this topic:\n\n## Solver-Verifier Gap Theory in LLM Self-Improvement\n\nA theoretical model has been developed to explain training dynamics of self-improvement via the concept of solver-verifier gap. This work is inspired by the conjecture that self-improvement capability arises from the gap between an LLM's solver capability and verifier capability.\n\n### Key Findings\n\nThe framework defines solver capability as the quality of responses directly generated from the LLM and verifier capability as the quality of responses generated from the LLM and evaluated by itself.\n\nFor self-improvement, accuracy exhibits exponential curves towards a limit. For cross-improvement, adding external data at different times yields similar performance.\n\n### Practical Validation\n\nExperimental results across various models and datasets reveal that capability dynamics follow an exponential law, as implied by the theoretical framework.\n\n### Extensions Beyond Self-Improvement\n\nThe analysis extends to investigate how external data influences these dynamics, finding that under limited external data regimes, such external data can be utilized at any stage without significantly affecting final performances.\n\nThis work was published as a conference paper at ICLR 2026 and represents recent theoretical advances in understanding LLM self-improvement mechanisms."
+    ],
+    "durationSeconds": 7.096726114000004,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "f49bc233-622c-496e-888e-55af1b3e5bfd",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a78563ed-01dd-4d0b-a0f9-ae617d124f47",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-27T08:53:41.980Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01YavagU5Tjd6BMQHk9bp4Lm`</summary>
+
+```json
+{
+  "query": "Z3 SymPy step-level math verification LLM success rate coverage limitations formalization 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "16ea9062-3329-4d4a-a251-0f062ae8d513",
+  "isSidechain": false,
+  "requestId": "req_011CbSnr7fY3XQcvAs5uMAKP",
+  "type": "assistant",
+  "uuid": "1df932a6-3f4e-4615-bb30-18151a424859",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a78563ed-01dd-4d0b-a0f9-ae617d124f47",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0195eYkYPtdP5miB3RyawkVJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 717,
+      "cache_read_input_tokens": 25733,
+      "output_tokens": 78,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 717,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 78,
+          "cache_read_input_tokens": 25733,
+          "cache_creation_input_tokens": 717,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 717
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-27T08:53:49.611Z_
+
+<details><summary>↩ Tool result · `toolu_01YavagU5Tjd6BMQHk9bp4Lm`</summary>
+
+```text
+Web search results for query: "Z3 SymPy step-level math verification LLM success rate coverage limitations formalization 2025 2026"
+
+Links: [{"title":"Step-Wise Formal Verification for LLM-Based Mathematical Problem Solving","url":"https://arxiv.org/html/2505.20869v1"},{"title":"Step-Wise Formal Verification for LLM-Based Mathematical ...","url":"https://arxiv.org/pdf/2505.20869"},{"title":"[Literature Review] Step-Wise Formal Verification for LLM-Based Mathematical Problem Solving","url":"https://www.themoonlight.io/en/review/step-wise-formal-verification-for-llm-based-mathematical-problem-solving"},{"title":"LLM Math Benchmark: Stunning 2025 Results You Need To See","url":"https://binaryverseai.com/llm-math-benchmark-performance-2025/"},{"title":"Hard2Verify: A Step-Level Verification Benchmark for Open-Ended Frontier Math","url":"https://arxiv.org/pdf/2510.13744"}]
+
+Based on the search results, I found highly relevant recent research on this topic:
+
+## Step-Level Mathematical Verification with Z3 and SymPy
+
+A recent framework integrates Large Language Models with external tools, such as SymPy and Z3-Solver for determining the correctness of mathematical problem solving steps. The MATH-VF framework, developed based on a Formalizer and Critic, is a training-free framework for step-by-step verification of mathematical reasoning that not only evaluates the correctness of solutions but also provides constructive feedback for incorrect ones.
+
+## Tool-Specific Roles
+
+SymPy is used for symbolic and numerical computations, equation solving, and expression manipulation. The SMT Solver Z3 is used to check the satisfiability of logical expressions and handle constraints, including nonlinear polynomial constraints.
+
+## Coverage Limitations
+
+The research reveals significant coverage limitations. On error identification tasks, Qwen2.5-Math-PRM-72B performance drops from ProcessBench state-of-the-art at 78.3 to 37.3 on Hard2Verify, a step-level verification benchmark for frontier-level mathematics. This reflects challenges in verifying mathematical proofs where each step must be not only correct but also sufficiently supported.
+
+## Evaluation and Formalization
+
+Empirical results have been evaluated on widely used mathematical benchmarks including MATH500 and ProcessBench. The research demonstrates ongoing efforts to formalize and verify mathematical reasoning at the step level, though significant gaps remain in handling frontier-level mathematics.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1df932a6-3f4e-4615-bb30-18151a424859",
+  "isSidechain": false,
+  "promptId": "521d8246-b4fb-444f-8e8d-124129010450",
+  "type": "user",
+  "uuid": "fb92ea21-b097-4b06-9b9c-454627c75a93",
+  "toolUseResult": {
+    "query": "Z3 SymPy step-level math verification LLM success rate coverage limitations formalization 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01E9GNbM7hz9qSYXYiQjHeiy",
+        "content": [
+          {
+            "title": "Step-Wise Formal Verification for LLM-Based Mathematical Problem Solving",
+            "url": "https://arxiv.org/html/2505.20869v1"
+          },
+          {
+            "title": "Step-Wise Formal Verification for LLM-Based Mathematical ...",
+            "url": "https://arxiv.org/pdf/2505.20869"
+          },
+          {
+            "title": "[Literature Review] Step-Wise Formal Verification for LLM-Based Mathematical Problem Solving",
+            "url": "https://www.themoonlight.io/en/review/step-wise-formal-verification-for-llm-based-mathematical-problem-solving"
+          },
+          {
+            "title": "LLM Math Benchmark: Stunning 2025 Results You Need To See",
+            "url": "https://binaryverseai.com/llm-math-benchmark-performance-2025/"
+          },
+          {
+            "title": "Hard2Verify: A Step-Level Verification Benchmark for Open-Ended Frontier Math",
+            "url": "https://arxiv.org/pdf/2510.13744"
+          }
+        ]
+      },
+      "Based on the search results, I found highly relevant recent research on this topic:\n\n## Step-Level Mathematical Verification with Z3 and SymPy\n\nA recent framework integrates Large Language Models with external tools, such as SymPy and Z3-Solver for determining the correctness of mathematical problem solving steps. The MATH-VF framework, developed based on a Formalizer and Critic, is a training-free framework for step-by-step verification of mathematical reasoning that not only evaluates the correctness of solutions but also provides constructive feedback for incorrect ones.\n\n## Tool-Specific Roles\n\nSymPy is used for symbolic and numerical computations, equation solving, and expression manipulation. The SMT Solver Z3 is used to check the satisfiability of logical expressions and handle constraints, including nonlinear polynomial constraints.\n\n## Coverage Limitations\n\nThe research reveals significant coverage limitations. On error identification tasks, Qwen2.5-Math-PRM-72B performance drops from ProcessBench state-of-the-art at 78.3 to 37.3 on Hard2Verify, a step-level verification benchmark for frontier-level mathematics. This reflects challenges in verifying mathematical proofs where each step must be not only correct but also sufficiently supported.\n\n## Evaluation and Formalization\n\nEmpirical results have been evaluated on widely used mathematical benchmarks including MATH500 and ProcessBench. The research demonstrates ongoing efforts to formalize and verify mathematical reasoning at the step level, though significant gaps remain in handling frontier-level mathematics."
+    ],
+    "durationSeconds": 7.62630515,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "1df932a6-3f4e-4615-bb30-18151a424859",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a78563ed-01dd-4d0b-a0f9-ae617d124f47",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 35_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Formal Error Profiling Enables Teacher-Free Targeted Math Self-Improvement  ## Core Problem  Self-improvement loops for mathematical reasoning suffer from model collapse (solver-verifier gap theory,…",
+  "leafUuid": "fb92ea21-b097-4b06-9b9c-454627c75a93",
+  "sessionId": "a78563ed-01dd-4d0b-a0f9-ae617d124f47"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 36_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Formal error profiling for teacher-free math self-improvement",
+  "sessionId": "a78563ed-01dd-4d0b-a0f9-ae617d124f47"
+}
+```
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-27T08:53:53.028Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011jUfJP1KdYHdZaVniMEvnG`</summary>
+
+```json
+{
+  "query": "Qwen3.5-9B Qwen3.5-4B model release 2026 math reasoning benchmark performance"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fb92ea21-b097-4b06-9b9c-454627c75a93",
+  "isSidechain": false,
+  "requestId": "req_011CbSnrtEvQQey48U67cp3Q",
+  "type": "assistant",
+  "uuid": "ec750113-3a03-4b46-a4c0-eed2f13f3507",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a78563ed-01dd-4d0b-a0f9-ae617d124f47",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UcM5Jq5kpyq27JTjjxuQrP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 724,
+      "cache_read_input_tokens": 26450,
+      "output_tokens": 79,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 724,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 79,
+          "cache_read_input_tokens": 26450,
+          "cache_creation_input_tokens": 724,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 724
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-27T08:54:00.287Z_
+
+<details><summary>↩ Tool result · `toolu_011jUfJP1KdYHdZaVniMEvnG`</summary>
+
+```text
+Web search results for query: "Qwen3.5-9B Qwen3.5-4B model release 2026 math reasoning benchmark performance"
+
+Links: [{"title":"Qwen 3.5 9B Review: Alibaba's Open Source Model Tested","url":"https://emelia.io/hub/qwen-35-9b-review"},{"title":"Qwen3.5-9B Benchmarks, Pricing & Context Window","url":"https://llm-stats.com/models/qwen3.5-9b"},{"title":"Qwen 3.5: Complete Guide (2026)","url":"https://codersera.com/blog/qwen-3-5-complete-guide-2026/"},{"title":"Gemma 4 vs Qwen 3.5: Which Open-Weight Model Should You Use for Local AI Workflows? | MindStudio","url":"https://www.mindstudio.ai/blog/gemma-4-vs-qwen-3-5-open-weight-comparison"},{"title":"Qwen/Qwen3.5-9B · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3.5-9B"},{"title":"Qwen/Qwen3.5-4B · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3.5-4B"},{"title":"Qwen 3.5: The Complete Guide - Benchmarks, Local Setup, and How It Stacks Up Against Every Major Model","url":"https://techie007.substack.com/p/qwen-35-the-complete-guide-benchmarks"},{"title":"Qwen: Qwen3.5-9B Review | Pricing, Benchmarks & Capabilities (2026) | Design for Online","url":"https://designforonline.com/ai-models/qwen-qwen3-5-9b/"},{"title":"Qwen3.5-9B tops every AI benchmark right now, but that's not how you should pick a model","url":"https://www.xda-developers.com/qwen-3-5-9b-tops-ai-benchmarks-not-how-pick-model/"}]
+
+Based on the search results, here's what I found about the Qwen3.5-9B and Qwen3.5-4B models and their math reasoning benchmark performance:
+
+## Model Release
+
+On March 1, 2026, Alibaba released Qwen 3.5, a new generation of open source AI models that represents a major milestone for compact LLMs. The family includes four small models: Qwen3.5-0.8B, Qwen3.5-2B, Qwen3.5-4B, and Qwen3.5-9B.
+
+## Math Reasoning Benchmark Performance
+
+For math reasoning benchmarks:
+
+- **AIME 2026**: On AIME 2026, it scores 91.3 - strong, but behind GPT-5.2 (96.7) and Claude Opus 4.6 (93.3).
+
+- **HMMT Feb 2025**: On HMMT Feb 2025, it hits 94.8, which is more competitive.
+
+## Model Architecture
+
+What sets Qwen 3.5 apart is its innovative hybrid architecture. It combines Gated Delta Networks (linear attention) with a sparse Mixture-of-Experts (MoE) system. All Qwen 3.5 models are natively multimodal: they process text, images, and video through early fusion of multimodal tokens.
+
+The Qwen3.5-9B demonstrates competitive performance on mathematics benchmarks while maintaining efficient inference due to its hybrid architecture.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ec750113-3a03-4b46-a4c0-eed2f13f3507",
+  "isSidechain": false,
+  "promptId": "521d8246-b4fb-444f-8e8d-124129010450",
+  "type": "user",
+  "uuid": "5ccc7639-4913-45db-b0a2-75e9a43ccac0",
+  "toolUseResult": {
+    "query": "Qwen3.5-9B Qwen3.5-4B model release 2026 math reasoning benchmark performance",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0139wFzegxv3yq6Hu2QXAc3x",
+        "content": [
+          {
+            "title": "Qwen 3.5 9B Review: Alibaba's Open Source Model Tested",
+            "url": "https://emelia.io/hub/qwen-35-9b-review"
+          },
+          {
+            "title": "Qwen3.5-9B Benchmarks, Pricing & Context Window",
+            "url": "https://llm-stats.com/models/qwen3.5-9b"
+          },
+          {
+            "title": "Qwen 3.5: Complete Guide (2026)",
+            "url": "https://codersera.com/blog/qwen-3-5-complete-guide-2026/"
+          },
+          {
+            "title": "Gemma 4 vs Qwen 3.5: Which Open-Weight Model Should You Use for Local AI Workflows? | MindStudio",
+            "url": "https://www.mindstudio.ai/blog/gemma-4-vs-qwen-3-5-open-weight-comparison"
+          },
+          {
+            "title": "Qwen/Qwen3.5-9B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3.5-9B"
+          },
+          {
+            "title": "Qwen/Qwen3.5-4B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3.5-4B"
+          },
+          {
+            "title": "Qwen 3.5: The Complete Guide - Benchmarks, Local Setup, and How It Stacks Up Against Every Major Model",
+            "url": "https://techie007.substack.com/p/qwen-35-the-complete-guide-benchmarks"
+          },
+          {
+            "title": "Qwen: Qwen3.5-9B Review | Pricing, Benchmarks & Capabilities (2026) | Design for Online",
+            "url": "https://designforonline.com/ai-models/qwen-qwen3-5-9b/"
+          },
+          {
+            "title": "Qwen3.5-9B tops every AI benchmark right now, but that's not how you should pick a model",
+            "url": "https://www.xda-developers.com/qwen-3-5-9b-tops-ai-benchmarks-not-how-pick-model/"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the Qwen3.5-9B and Qwen3.5-4B models and their math reasoning benchmark performance:\n\n## Model Release\n\nOn March 1, 2026, Alibaba released Qwen 3.5, a new generation of open source AI models that represents a major milestone for compact LLMs. The family includes four small models: Qwen3.5-0.8B, Qwen3.5-2B, Qwen3.5-4B, and Qwen3.5-9B.\n\n## Math Reasoning Benchmark Performance\n\nFor math reasoning benchmarks:\n\n- **AIME 2026**: On AIME 2026, it scores 91.3 - strong, but behind GPT-5.2 (96.7) and Claude Opus 4.6 (93.3).\n\n- **HMMT Feb 2025**: On HMMT Feb 2025, it hits 94.8, which is more competitive.\n\n## Model Architecture\n\nWhat sets Qwen 3.5 apart is its innovative hybrid architecture. It combines Gated Delta Networks (linear attention) with a sparse Mixture-of-Experts (MoE) system. All Qwen 3.5 models are natively multimodal: they process text, images, and video through early fusion of multimodal tokens.\n\nThe Qwen3.5-9B demonstrates competitive performance on mathematics benchmarks while maintaining efficient inference due to its hybrid architecture."
+    ],
+    "durationSeconds": 7.2537253449999985,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "ec750113-3a03-4b46-a4c0-eed2f13f3507",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a78563ed-01dd-4d0b-a0f9-ae617d124f47",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-27T08:54:03.863Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01V9h4etgKi2QxZka6fS8KwH`</summary>
+
+```json
+{
+  "query": "SPARQ quality diversity synthetic math data generation 2025 experimental baselines benchmarks"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5ccc7639-4913-45db-b0a2-75e9a43ccac0",
+  "isSidechain": false,
+  "requestId": "req_011CbSnsg1FG13aeHsvNMu4M",
+  "type": "assistant",
+  "uuid": "5c051836-d6c9-49ab-afa6-a39e063f675d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a78563ed-01dd-4d0b-a0f9-ae617d124f47",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SiDoQWGfoQ3Ty3En3eo4MM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1001,
+      "cache_read_input_tokens": 27174,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1001,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 27174,
+          "cache_creation_input_tokens": 1001,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1001
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-27T08:54:12.478Z_
+
+<details><summary>↩ Tool result · `toolu_01V9h4etgKi2QxZka6fS8KwH`</summary>
+
+```text
+Web search results for query: "SPARQ quality diversity synthetic math data generation 2025 experimental baselines benchmarks"
+
+Links: [{"title":"SPARQ: Synthetic Problem Generation for Reasoning via Quality-Diversity Algorithms","url":"https://arxiv.org/html/2506.06499v1"},{"title":"[2506.06499] SPARQ: Synthetic Problem Generation for Reasoning via Quality-Diversity Algorithms","url":"https://arxiv.org/abs/2506.06499"},{"title":"(PDF) Synthetic Problem Generation for Reasoning via Quality-Diversity Algorithms","url":"https://www.researchgate.net/publication/392530808_Synthetic_Problem_Generation_for_Reasoning_via_Quality-Diversity_Algorithms"},{"title":"Preprint. Under review DÉJÀQ: OPEN-ENDED EVOLUTION OF DIVERSE,","url":"https://arxiv.org/pdf/2601.01931"},{"title":"Mikayel Samvelyan","url":"https://samvelyan.com/"},{"title":"SPARQ: Synthetic Problem Generation for Reasoning via Quality-Diversity Algorithms. | BibSonomy","url":"https://www.bibsonomy.org/bibtex/13e320b58ca7bd52dcf23e118f007da21"},{"title":"Hard Examples Are All You Need: Maximizing GRPO Post-Training Under Annotation BudgetsCode available at https://github.com/Pikus16/grpo_difficulty","url":"https://arxiv.org/html/2508.14094v1"},{"title":"Surveying the Effects of Quality, Diversity, and Complexity in Synthetic   Data From Large Language Models","url":"https://arxiv.org/pdf/2412.02980"}]
+
+Based on the search results, here's what I found about SPARQ:
+
+## Overview
+
+SPARQ is a Synthetic Problem Generation for Reasoning via Quality-Diversity Algorithms approach for generating high-quality and diverse synthetic math problem and solution pairs using only a single model by measuring a problem's solve-rate: a proxy for problem difficulty.
+
+## Methodology and Scale
+
+Starting from a seed dataset of 7.5K samples, SPARQ generates over 20 million new problem-solution pairs. The approach shows that filtering the generated data by difficulty and then fine-tuning the same model on the resulting data improves relative model performance by up to 24%.
+
+## Experimental Results and Baselines
+
+SPARQ demonstrated that generating and filtering data based on quality scores significantly improves the pass@1 accuracy of the MATH SFT Gemma-2-9b student from 38% to 47%. The static uniform method improves by up to an absolute 9%, and tripling the number of generated problems leads to a roughly 1.5% performance increase.
+
+## Quality and Diversity Analysis
+
+The research investigates the role of problem diversity in problem generation and downstream generalization, with problem diversity measured by examining the coverage (number of unique skills) and redundancy (number of repeated skills). The paper includes ablations examining how different filtering strategies affect both in-distribution and out-of-distribution performance on benchmarks like the AIME dataset.
+
+The paper was published on arxiv on June 6, 2025, with authors Alex Havrilla, Edward Hughes, Mikayel Samvelyan, and Jacob Abernethy.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5c051836-d6c9-49ab-afa6-a39e063f675d",
+  "isSidechain": false,
+  "promptId": "521d8246-b4fb-444f-8e8d-124129010450",
+  "type": "user",
+  "uuid": "00e87938-c655-41c9-b1b0-14a1a8877ea0",
+  "toolUseResult": {
+    "query": "SPARQ quality diversity synthetic math data generation 2025 experimental baselines benchmarks",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QWzNGw8YurnZY8twP3G7TU",
+        "content": [
+          {
+            "title": "SPARQ: Synthetic Problem Generation for Reasoning via Quality-Diversity Algorithms",
+            "url": "https://arxiv.org/html/2506.06499v1"
+          },
+          {
+            "title": "[2506.06499] SPARQ: Synthetic Problem Generation for Reasoning via Quality-Diversity Algorithms",
+            "url": "https://arxiv.org/abs/2506.06499"
+          },
+          {
+            "title": "(PDF) Synthetic Problem Generation for Reasoning via Quality-Diversity Algorithms",
+            "url": "https://www.researchgate.net/publication/392530808_Synthetic_Problem_Generation_for_Reasoning_via_Quality-Diversity_Algorithms"
+          },
+          {
+            "title": "Preprint. Under review DÉJÀQ: OPEN-ENDED EVOLUTION OF DIVERSE,",
+            "url": "https://arxiv.org/pdf/2601.01931"
+          },
+          {
+            "title": "Mikayel Samvelyan",
+            "url": "https://samvelyan.com/"
+          },
+          {
+            "title": "SPARQ: Synthetic Problem Generation for Reasoning via Quality-Diversity Algorithms. | BibSonomy",
+            "url": "https://www.bibsonomy.org/bibtex/13e320b58ca7bd52dcf23e118f007da21"
+          },
+          {
+            "title": "Hard Examples Are All You Need: Maximizing GRPO Post-Training Under Annotation BudgetsCode available at https://github.com/Pikus16/grpo_difficulty",
+            "url": "https://arxiv.org/html/2508.14094v1"
+          },
+          {
+            "title": "Surveying the Effects of Quality, Diversity, and Complexity in Synthetic   Data From Large Language Models",
+            "url": "https://arxiv.org/pdf/2412.02980"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about SPARQ:\n\n## Overview\n\nSPARQ is a Synthetic Problem Generation for Reasoning via Quality-Diversity Algorithms approach for generating high-quality and diverse synthetic math problem and solution pairs using only a single model by measuring a problem's solve-rate: a proxy for problem difficulty.\n\n## Methodology and Scale\n\nStarting from a seed dataset of 7.5K samples, SPARQ generates over 20 million new problem-solution pairs. The approach shows that filtering the generated data by difficulty and then fine-tuning the same model on the resulting data improves relative model performance by up to 24%.\n\n## Experimental Results and Baselines\n\nSPARQ demonstrated that generating and filtering data based on quality scores significantly improves the pass@1 accuracy of the MATH SFT Gemma-2-9b student from 38% to 47%. The static uniform method improves by up to an absolute 9%, and tripling the number of generated problems leads to a roughly 1.5% performance increase.\n\n## Quality and Diversity Analysis\n\nThe research investigates the role of problem diversity in problem generation and downstream generalization, with problem diversity measured by examining the coverage (number of unique skills) and redundancy (number of repeated skills). The paper includes ablations examining how different filtering strategies affect both in-distribution and out-of-distribution performance on benchmarks like the AIME dataset.\n\nThe paper was published on arxiv on June 6, 2025, with authors Alex Havrilla, Edward Hughes, Mikayel Samvelyan, and Jacob Abernethy."
+    ],
+    "durationSeconds": 8.611383176999997,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "5c051836-d6c9-49ab-afa6-a39e063f675d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a78563ed-01dd-4d0b-a0f9-ae617d124f47",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-27T08:54:16.226Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01SHqKFc23y8aHCNXvwXZQCS`</summary>
+
+```json
+{
+  "query": "GRPO RLVR math reasoning 2025 2026 Qwen baseline experimental setup benchmarks evaluation metrics"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "00e87938-c655-41c9-b1b0-14a1a8877ea0",
+  "isSidechain": false,
+  "requestId": "req_011CbSntZyPBM1qiboFGoprA",
+  "type": "assistant",
+  "uuid": "10e05c03-0d46-426e-a812-aa85d7d85fd3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a78563ed-01dd-4d0b-a0f9-ae617d124f47",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014vDoyNBCKnwMp67La2x3MA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 877,
+      "cache_read_input_tokens": 28175,
+      "output_tokens": 78,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 877,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 78,
+          "cache_read_input_tokens": 28175,
+          "cache_creation_input_tokens": 877,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 877
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-27T08:54:24.023Z_
+
+<details><summary>↩ Tool result · `toolu_01SHqKFc23y8aHCNXvwXZQCS`</summary>
+
+```text
+Web search results for query: "GRPO RLVR math reasoning 2025 2026 Qwen baseline experimental setup benchmarks evaluation metrics"
+
+Links: [{"title":"GRPO-VPS: Enhancing Group Relative Policy Optimization with Verifiable Process Supervision for Effective Reasoning","url":"https://arxiv.org/html/2604.20659"},{"title":"Qwen-2.5-Math-7B: Mathematical Reasoning Model","url":"https://www.emergentmind.com/topics/qwen-2-5-math-7b"},{"title":"Reinforcement Learning for Reasoning in Large","url":"https://ai.radensa.ru/wp-content/uploads/2025/05/2504.20571v1.pdf"},{"title":"Reinforcement learning with random rewards actually works with Qwen 2.5","url":"https://www.interconnects.ai/p/reinforcement-learning-with-random"},{"title":"Reinforcement Learning for Reasoning in Large Language Models with One Training Example","url":"https://arxiv.org/html/2504.20571v3"},{"title":"DRA-GRPO: Your GRPO Needs to Know Diverse Reasoning Paths for Mathematical Reasoning","url":"https://arxiv.org/pdf/2505.09655"},{"title":"Reinforcement Learning for Reasoning in Large","url":"https://arxiv.org/pdf/2504.20571"},{"title":"Harder Is Better: Boosting Mathematical Reasoning via Difficulty-Aware GRPO and Multi-Aspect Question Reformulation","url":"https://arxiv.org/html/2601.20614"}]
+
+Based on the search results, I found relevant information about GRPO and RLVR (Reinforcement Learning for Reasoning in Large Language Models) applied to math reasoning with Qwen models. Here's what I found:
+
+## Overview
+
+GRPO is adopted as the RL algorithm for LLMs, and GRPO comprises three main components: policy gradient loss, KL divergence loss, and entropy loss.
+
+## Baseline and Experimental Setup
+
+RLVR improves the Qwen2.5-Math-1.5B model from 36.0% to 73.6% on MATH500, and from 17.6% to 35.7% on average across 6 mathematical reasoning benchmarks. For Qwen2.5-Math-7B, 1-shot RLVR improves average performance by 17.8%.
+
+## Evaluation Metrics and Benchmarks
+
+Experiments show substantial gains across four math reasoning benchmarks. Common benchmarks include MATH500, AIME24, and other mathematical reasoning tasks. Compared to GRPO, methods achieve up to +2.6 points Pass@1 on Qwen2.5-Math-1.5B and +1.1 point on Qwen2.5-Math-7B, while reducing reasoning length by 11.0% to 13.7%.
+
+## Key Findings
+
+The importance of promoting diverse exploration in model outputs has been emphasized, showing that adding an entropy loss with an appropriate coefficient further enhances performance. Additionally, employing entropy loss alone, even without any outcome reward, achieves a 27% performance boost on MATH500 for Qwen2.5-Math-1.5B.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "10e05c03-0d46-426e-a812-aa85d7d85fd3",
+  "isSidechain": false,
+  "promptId": "521d8246-b4fb-444f-8e8d-124129010450",
+  "type": "user",
+  "uuid": "daf72bbd-c84d-429c-b084-01e47802fc18",
+  "toolUseResult": {
+    "query": "GRPO RLVR math reasoning 2025 2026 Qwen baseline experimental setup benchmarks evaluation metrics",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XEK5kPi86j8sbNHLj5xTFd",
+        "content": [
+          {
+            "title": "GRPO-VPS: Enhancing Group Relative Policy Optimization with Verifiable Process Supervision for Effective Reasoning",
+            "url": "https://arxiv.org/html/2604.20659"
+          },
+          {
+            "title": "Qwen-2.5-Math-7B: Mathematical Reasoning Model",
+            "url": "https://www.emergentmind.com/topics/qwen-2-5-math-7b"
+          },
+          {
+            "title": "Reinforcement Learning for Reasoning in Large",
+            "url": "https://ai.radensa.ru/wp-content/uploads/2025/05/2504.20571v1.pdf"
+          },
+          {
+            "title": "Reinforcement learning with random rewards actually works with Qwen 2.5",
+            "url": "https://www.interconnects.ai/p/reinforcement-learning-with-random"
+          },
+          {
+            "title": "Reinforcement Learning for Reasoning in Large Language Models with One Training Example",
+            "url": "https://arxiv.org/html/2504.20571v3"
+          },
+          {
+            "title": "DRA-GRPO: Your GRPO Needs to Know Diverse Reasoning Paths for Mathematical Reasoning",
+            "url": "https://arxiv.org/pdf/2505.09655"
+          },
+          {
+            "title": "Reinforcement Learning for Reasoning in Large",
+            "url": "https://arxiv.org/pdf/2504.20571"
+          },
+          {
+            "title": "Harder Is Better: Boosting Mathematical Reasoning via Difficulty-Aware GRPO and Multi-Aspect Question Reformulation",
+            "url": "https://arxiv.org/html/2601.20614"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about GRPO and RLVR (Reinforcement Learning for Reasoning in Large Language Models) applied to math reasoning with Qwen models. Here's what I found:\n\n## Overview\n\nGRPO is adopted as the RL algorithm for LLMs, and GRPO comprises three main components: policy gradient loss, KL divergence loss, and entropy loss.\n\n## Baseline and Experimental Setup\n\nRLVR improves the Qwen2.5-Math-1.5B model from 36.0% to 73.6% on MATH500, and from 17.6% to 35.7% on average across 6 mathematical reasoning benchmarks. For Qwen2.5-Math-7B, 1-shot RLVR improves average performance by 17.8%.\n\n## Evaluation Metrics and Benchmarks\n\nExperiments show substantial gains across four math reasoning benchmarks. Common benchmarks include MATH500, AIME24, and other mathematical reasoning tasks. Compared to GRPO, methods achieve up to +2.6 points Pass@1 on Qwen2.5-Math-1.5B and +1.1 point on Qwen2.5-Math-7B, while reducing reasoning length by 11.0% to 13.7%.\n\n## Key Findings\n\nThe importance of promoting diverse exploration in model outputs has been emphasized, showing that adding an entropy loss with an appropriate coefficient further enhances performance. Additionally, employing entropy loss alone, even without any outcome reward, achieves a 27% performance boost on MATH500 for Qwen2.5-Math-1.5B."
+    ],
+    "durationSeconds": 7.791510081000015,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "10e05c03-0d46-426e-a812-aa85d7d85fd3",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a78563ed-01dd-4d0b-a0f9-ae617d124f47",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-27T08:54:26.904Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Q59fUpGp2BNVoFFTTYxrnP`</summary>
+
+```json
+{
+  "query": "\"self-improvement\" \"math reasoning\" LLM iterative training 2025 2026 collapse prevention compute budget fairness"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "daf72bbd-c84d-429c-b084-01e47802fc18",
+  "isSidechain": false,
+  "requestId": "req_011CbSnuRQxqAyHcSDmw9sKt",
+  "type": "assistant",
+  "uuid": "1c676531-bf64-40b1-a67c-e24d3cd8f3d9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a78563ed-01dd-4d0b-a0f9-ae617d124f47",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Jer2YCMfcTom33pKyYV63L",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 885,
+      "cache_read_input_tokens": 29052,
+      "output_tokens": 79,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 885,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 79,
+          "cache_read_input_tokens": 29052,
+          "cache_creation_input_tokens": 885,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 885
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-27T08:54:34.850Z_
+
+<details><summary>↩ Tool result · `toolu_01Q59fUpGp2BNVoFFTTYxrnP`</summary>
+
+```text
+Web search results for query: ""self-improvement" "math reasoning" LLM iterative training 2025 2026 collapse prevention compute budget fairness"
+
+Links: [{"title":"Preventing Curriculum Collapse in Self-Evolving Reasoning Systems","url":"https://arxiv.org/pdf/2603.13309"},{"title":"Think, Prune, Train, Improve: Scaling Reasoning Without Scaling Models","url":"https://arxiv.org/html/2504.18116"},{"title":"iGRPO: Self-Feedback-Driven LLM Reasoning","url":"https://arxiv.org/pdf/2602.09000"},{"title":"MIND THE GAP: EXAMINING THE SELF-IMPROVEMENT ...","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/63943ee9fe347f3d95892cf87d9a42e6-Paper-Conference.pdf"},{"title":"Self-Error-Instruct: Generalizing from Errors for LLMs Mathematical Reasoning","url":"https://arxiv.org/pdf/2505.22591"},{"title":"Exploration-Driven Optimization for Test-Time Large Language Model Reasoning","url":"https://arxiv.org/html/2605.09853v1"},{"title":"Think, Prune, Train, Improve: Scaling Reasoning without Scaling Models","url":"https://arxiv.org/pdf/2504.18116"},{"title":"Dual-Phase LLM Reasoning: Self-Evolved Mathematical Frameworks","url":"https://arxiv.org/pdf/2601.05616"}]
+
+I found several relevant research papers on self-improvement in LLMs with math reasoning. Here are the key findings:
+
+## Collapse Prevention in Self-Evolving Systems
+
+Self-evolving reasoning frameworks allow LLMs to improve their reasoning capabilities by iteratively generating and solving problems without external supervision, but these systems can exhibit diversity collapse in posing new problems after just a few iterations. Prism is a question-centric self-evolution method introduced to directly tackle this collapse.
+
+## Iterative Training Strategies
+
+The Think, Prune, Train process is a scalable framework that iteratively fine-tunes models on their own reasoning traces using ground-truth pruning to ensure high-quality training data, with correctness-based pruning stabilizing training and preserving knowledge while enhancing reasoning.
+
+One of the most effective strategies to prevent model collapse during self-training is the use of a reliable verifier, and in the absence of additional resources like labeled data or an external oracle, models can utilize their own verification capabilities.
+
+## Avoiding Performance Degradation
+
+Unfiltered recursive fine-tuning can degrade model performance leading to catastrophic forgetting and hallucination, but correctness-based pruning stabilizes training while preserving knowledge and enhancing reasoning.
+
+## Compute-Efficient Improvement
+
+Models can achieve significant improvements through recursive fine-tuning (with Gemma-2B increasing from 41.9% to 57.6% Pass@1), with key conditions for effective self-improvement including data volume, model size, pruning strategies, and fine-tuning iterations.
+
+These papers demonstrate recent advances in enabling LLMs to self-improve on math reasoning while managing computational costs and preventing model degradation.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1c676531-bf64-40b1-a67c-e24d3cd8f3d9",
+  "isSidechain": false,
+  "promptId": "521d8246-b4fb-444f-8e8d-124129010450",
+  "type": "user",
+  "uuid": "b806604e-87f7-468c-b795-f051340924cb",
+  "toolUseResult": {
+    "query": "\"self-improvement\" \"math reasoning\" LLM iterative training 2025 2026 collapse prevention compute budget fairness",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01H3bW5tD3S3a1AgwYtzz8mB",
+        "content": [
+          {
+            "title": "Preventing Curriculum Collapse in Self-Evolving Reasoning Systems",
+            "url": "https://arxiv.org/pdf/2603.13309"
+          },
+          {
+            "title": "Think, Prune, Train, Improve: Scaling Reasoning Without Scaling Models",
+            "url": "https://arxiv.org/html/2504.18116"
+          },
+          {
+            "title": "iGRPO: Self-Feedback-Driven LLM Reasoning",
+            "url": "https://arxiv.org/pdf/2602.09000"
+          },
+          {
+            "title": "MIND THE GAP: EXAMINING THE SELF-IMPROVEMENT ...",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/63943ee9fe347f3d95892cf87d9a42e6-Paper-Conference.pdf"
+          },
+          {
+            "title": "Self-Error-Instruct: Generalizing from Errors for LLMs Mathematical Reasoning",
+            "url": "https://arxiv.org/pdf/2505.22591"
+          },
+          {
+            "title": "Exploration-Driven Optimization for Test-Time Large Language Model Reasoning",
+            "url": "https://arxiv.org/html/2605.09853v1"
+          },
+          {
+            "title": "Think, Prune, Train, Improve: Scaling Reasoning without Scaling Models",
+            "url": "https://arxiv.org/pdf/2504.18116"
+          },
+          {
+            "title": "Dual-Phase LLM Reasoning: Self-Evolved Mathematical Frameworks",
+            "url": "https://arxiv.org/pdf/2601.05616"
+          }
+        ]
+      },
+      "I found several relevant research papers on self-improvement in LLMs with math reasoning. Here are the key findings:\n\n## Collapse Prevention in Self-Evolving Systems\n\nSelf-evolving reasoning frameworks allow LLMs to improve their reasoning capabilities by iteratively generating and solving problems without external supervision, but these systems can exhibit diversity collapse in posing new problems after just a few iterations. Prism is a question-centric self-evolution method introduced to directly tackle this collapse.\n\n## Iterative Training Strategies\n\nThe Think, Prune, Train process is a scalable framework that iteratively fine-tunes models on their own reasoning traces using ground-truth pruning to ensure high-quality training data, with correctness-based pruning stabilizing training and preserving knowledge while enhancing reasoning.\n\nOne of the most effective strategies to prevent model collapse during self-training is the use of a reliable verifier, and in the absence of additional resources like labeled data or an external oracle, models can utilize their own verification capabilities.\n\n## Avoiding Performance Degradation\n\nUnfiltered recursive fine-tuning can degrade model performance leading to catastrophic forgetting and hallucination, but correctness-based pruning stabilizes training while preserving knowledge and enhancing reasoning.\n\n## Compute-Efficient Improvement\n\nModels can achieve significant improvements through recursive fine-tuning (with Gemma-2B increasing from 41.9% to 57.6% Pass@1), with key conditions for effective self-improvement including data volume, model size, pruning strategies, and fine-tuning iterations.\n\nThese papers demonstrate recent advances in enabling LLMs to self-improve on math reasoning while managing computational costs and preventing model degradation."
+    ],
+    "durationSeconds": 7.941324097000004,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "1c676531-bf64-40b1-a67c-e24d3cd8f3d9",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a78563ed-01dd-4d0b-a0f9-ae617d124f47",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45 · 2026-05-27T08:55:54.262Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have sufficient background research to evaluate the experimental design of this proposal. Let me synthesize what I've learned and provide a thorough assessment.
+
+Key findings from my research:
+
+1. **STAT (ICLR 2026)**: Uses LLM teacher for skill profiling, tested on Llama-3.2-3B/1B, Qwen2.5-3B. Benchmarks: MATH, AIME24/25, AMC23. Shows +7.5% on MATH, +4.6% on OOD. Complementary to GRPO.
+
+
+2. **FoVer (ACL 2026 Findings)**: Generates PRM training data through formal verification tools like Z3 and Isabelle, then evaluates across 12 benchmarks to show that PRMs trained this way generalize well beyond mathematical domains into NLI and BBH tasks.
+3. **SwS (NeurIPS 2025)**: Identifies model weaknesses through pass-rate analysis and synthesizes targeted training data, achieving +10% improvement on 7B models and +7.7% on 32B across 8 benchmarks.
+4. **NSRSA (arXiv 2026)**: Uses SymPy for arithmetic verification.
+
+NSRSA runs iterative self-training on GSM8K with Qwen3-4B-Thinking over 5 iterations, boosting performance from 80.5% to 91.0% using solution-level DPO. The imperfect verifier approach tolerates noise rates up to 15% while maintaining near-clean performance, with precision prioritized over recall across Qwen3, GLM4, and Llama 3.1 models. There's also a theoretical framework explaining the solver-verifier gap through exponential convergence dynamics, plus SPARQ which generates quality-diverse training pairs from 7.5K seeds yielding 20M+ examples with up to +24% improvements, and MATH-VF which applies Z3 and SymPy step-wise verification as a training-free approach.
+
+Qwen3.5-9B/4B became available in March 2026 and achieved 91.3 on AIME 2026. Looking at the experimental design, the baseline matrix is comprehensive—covering different training paradigms like SFT, SFT+DPO, and GRPO, plus various targeting approaches and verification methods. The ablation hierarchy is well-prioritized, compute fairness is handled through dollar-cost normalization, and there's a pilot study for feasibility. Multiple benchmarks including out-of-distribution tests on AIME24/25, three independent runs with significance testing, and formalization quality controls all strengthen the design. The baseline coverage appears solid overall.
+
+I'm checking whether key methods are included—GRPO, RLVR, SwS, STAT, FoVer, and NSRSA-style verification are all there. SPARQ could be relevant for quality-diversity synthetic data but is more about generation than error-targeted improvement. CoTEvol and MathMixup are mentioned in the landscape but less directly comparable. Adaptive Problem Generation from the concurrent work is already included, which is good. Collapse-prevention methods like Prism are less directly applicable. The baseline set seems fairly comprehensive for the claims being made. Now I'm evaluating the formalization coverage—the proposal acknowledges that formal verification covers roughly 60-70% of amenable categories and has plans to address the remaining scope.
+
+The proposal reports per-category formalization success rates and uses outcome-based verification as a fallback for geometry and combinatorics, which handles the selection bias concern that's also analyzed in the pilot study. The evaluation is limited to 9B and 4B models due to compute constraints, though reviewers might want scaling results—Llama 3.1-8B is used for cross-family validation on formalization success but not the full training loop. The DPO pair construction is the key innovation but might have low yield, so the proposal includes yield estimation in the pilot and has a fallback to solution-level pairs with ablation on mixing ratios. I'm now looking at the compute fairness aspect.
+
+The proposal normalizes costs across both fixed GPU FLOPs and fixed dollar budgets, which seems comprehensive. For evaluation, they're using standard metrics like greedy decoding, Pass@K, and majority voting, with per-MATH-subcategory breakdowns comparing formally-covered versus fallback cases, plus three runs with significance testing.
+
+I'm spotting a couple of potential issues though. There's a risk of AIME25 data contamination since Qwen3.5-9B was released in March 2026 and those problems might be in the training data—I should flag whether contamination analysis is included or if newer benchmarks are needed. Also, the step-level formalization task of translating the model's natural language solution steps into Z3 or SymPy constraints is non-trivial engineering work, and it's unclear who's doing this formalization or whether the student model itself is expected to handle it.
+
+Looking more closely at the proposal, it mentions "LLM-to-formal translation ~60-70% success rate," which suggests they're using an LLM for formalization. But if the approach claims to be "teacher-free," using another LLM for the formalization step seems to contradict that claim—it's still introducing LLM dependency, just at a different stage.
+
+Actually, I think the distinction they're making is that the error diagnosis itself is teacher-free. The LLM handles the mechanical translation from natural language to formal statements, but then Z3 and SymPy do the actual verification and error localization. So when Z3 flags something as unsatisfiable, that's a concrete error signal, not a subjective judgment. The risk is that if the LLM mistranslates a step, Z3 might incorrectly flag an error—which could be seen as a form of "teacher noise"—but the proposal apparently addresses this with formalization quality control measures.
+
+I should also note they haven't compared against other PRM-based verification approaches beyond FoVer, though FoVer is the most directly relevant since it also uses formal verification. And there's a question about why they chose 5 iterations for the 9B model specifically—that parameter choice needs justification.
+
+There are also some reproducibility concerns: the proposal doesn't specify how many problems get synthesized per iteration or what the total training data size is. On the evaluation side, running only 3 trials on a 30-problem benchmark like AIME24 might not provide enough statistical power given the variance on small test sets. They mention Pass@K and majority voting but don't compare against stronger test-time compute baselines like PRM-guided search, which recent work shows can be quite competitive.
+
+One more thing to check—the proposal mentions Qwen3.5-9B as the base model but doesn't clarify if that's the base or instruction-tuned version, and the baseline performance on MATH benchmarks isn't specified. That matters because if the model already performs very well out of the box, there's less room for improvement and it becomes harder to demonstrate statistically significant gains.
+
+The architecture is actually a hybrid setup with gated delta networks and sparse mixture of experts, which is different from a standard reasoning model. The 9B version is likely a base or instruction-tuned model without reasoning tokens, so its baseline math performance is probably moderate rather than exceptional.
+
+On hyperparameters, the ablation covers SFT-only versus DPO-only versus combined approaches, but doesn't explore sensitivity to the β parameter or how the loss weighting between SFT and DPO affects results.
+
+Looking at this holistically, the experimental design is actually quite solid. The main gaps I'm seeing are around how the formalization pipeline is specified and some missing details on the solution extraction process.
+
+The critical missing piece is how natural language solution steps get converted into formal Z3 or SymPy constraints—whether this uses an LLM call per step (which would have cost and latency implications) or relies on rule-based translation (which would be more limited in coverage). The resource estimate mentions a 60-70% success rate for LLM-to-formal translation, but the approach section doesn't explicitly describe this mechanism.
+
+There's also the question of whether Qwen3.5-9B is already saturating on easier benchmarks like GSM8K, which could create a ceiling effect and make improvements harder to detect statistically. The proposal should establish baseline performance first. Additionally, the training data size per iteration isn't specified, making it difficult to fairly compare computational costs. On the smaller benchmarks like AIME24 and AIME25 with only 30 problems each, statistical significance becomes a real concern.
+
+Looking at what would actually trigger a rejection, the formalization pipeline specification is non-negotiable—reviewers will want to know exactly how NL-to-formal translation works. Training data size per iteration is essential for reproducibility. And the statistical significance issue on these small test sets needs to be addressed with confidence intervals rather than just raw numbers.
+
+The other concerns like convergence criteria, data contamination, and hyperparameter sensitivity are important but probably won't sink the paper if handled reasonably. Re-reading the proposal more carefully, I notice it does actually specify the formalization process—mentioning the 60-70% success rate on amenable categories with retry loops, and the step-by-step verification through Z3/SymPy with quality control measures. So that's more addressed than I initially thought.
+
+But there's a subtle issue lurking here: if an LLM is being used for the formalization itself, does that count as a "teacher" model? The proposal claims to be teacher-free, but that definition might be getting stretched if the formalization step relies on an LLM.
+
+Actually, wait—this is more of a conceptual concern than an experimental design issue. What I should really be checking is whether the formalization pipeline is specified clearly enough to be reproducible and whether it actually ensures the experimental results are valid. And I'm wondering if there are established benchmarks or metrics for formalization quality that the proposal should be using.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b806604e-87f7-468c-b795-f051340924cb",
+  "isSidechain": false,
+  "requestId": "req_011CbSnvDeZiTfBnf22Wbi4j",
+  "type": "assistant",
+  "uuid": "1c4eb147-9404-4cb2-8bd2-76281978b639",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a78563ed-01dd-4d0b-a0f9-ae617d124f47",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015RKMhx4vps4jGQQubqxscF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 865,
+      "cache_read_input_tokens": 29937,
+      "output_tokens": 3273,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 865,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3273,
+          "cache_read_input_tokens": 29937,
+          "cache_creation_input_tokens": 865,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 865
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46 · 2026-05-27T08:55:54.265Z_
+
+Let me search for a few more critical topics to complete my research.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1c4eb147-9404-4cb2-8bd2-76281978b639",
+  "isSidechain": false,
+  "requestId": "req_011CbSnvDeZiTfBnf22Wbi4j",
+  "type": "assistant",
+  "uuid": "5d11ee96-c16c-4ac9-b3c6-52a02f0b8553",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a78563ed-01dd-4d0b-a0f9-ae617d124f47",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015RKMhx4vps4jGQQubqxscF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 865,
+      "cache_read_input_tokens": 29937,
+      "output_tokens": 3273,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 865,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3273,
+          "cache_read_input_tokens": 29937,
+          "cache_creation_input_tokens": 865,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 865
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-27T08:55:54.288Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UvgLH4RMHjgNTxYwR4cd68`</summary>
+
+```json
+{
+  "query": "MATH-500 GSM8K benchmark saturation 2026 Qwen 9B baseline performance ceiling effect small model"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5d11ee96-c16c-4ac9-b3c6-52a02f0b8553",
+  "isSidechain": false,
+  "requestId": "req_011CbSnvDeZiTfBnf22Wbi4j",
+  "type": "assistant",
+  "uuid": "79dab75f-9e31-456d-a76d-94f7ba1cd63c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a78563ed-01dd-4d0b-a0f9-ae617d124f47",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015RKMhx4vps4jGQQubqxscF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 865,
+      "cache_read_input_tokens": 29937,
+      "output_tokens": 3273,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 865,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3273,
+          "cache_read_input_tokens": 29937,
+          "cache_creation_input_tokens": 865,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 865
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 48_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Formal Error Profiling Enables Teacher-Free Targeted Math Self-Improvement  ## Core Problem  Self-improvement loops for mathematical reasoning suffer from model collapse (solver-verifier gap theory,…",
+  "leafUuid": "79dab75f-9e31-456d-a76d-94f7ba1cd63c",
+  "sessionId": "a78563ed-01dd-4d0b-a0f9-ae617d124f47"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 49_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Formal error profiling for teacher-free math self-improvement",
+  "sessionId": "a78563ed-01dd-4d0b-a0f9-ae617d124f47"
+}
+```
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-27T08:56:01.688Z_
+
+<details><summary>↩ Tool result · `toolu_01UvgLH4RMHjgNTxYwR4cd68`</summary>
+
+```text
+Web search results for query: "MATH-500 GSM8K benchmark saturation 2026 Qwen 9B baseline performance ceiling effect small model"
+
+Links: [{"title":"LLM Benchmarks Compared: MMLU, HumanEval, GSM8K and More (2026)","url":"https://www.lxt.ai/blog/llm-benchmarks/"},{"title":"GSM8K Benchmark - AI Math Reasoning Leaderboard (2026)","url":"https://lmmarketcap.com/benchmarks/gsm8k"},{"title":"GSM8K: Math Reasoning Benchmark","url":"https://www.emergentmind.com/topics/gsm8k"},{"title":"LLM Math Benchmarks 2025–2026: GSM8K, MATH, AIME, AMC | CodeSOTA | CodeSOTA","url":"https://www.codesota.com/llm/math-benchmarks"},{"title":"2025-05-15 Qwen3 Technical Report Qwen Team https://huggingface.co/Qwen","url":"https://arxiv.org/pdf/2505.09388"},{"title":"LLM Benchmarks 2026: 30+ Models Ranked — MMLU, SWE-bench, Arena Elo & Pricing","url":"https://iternal.ai/llm-selection-guide"},{"title":"GSM8K: Grade School Math Benchmark","url":"https://www.emergentmind.com/topics/gsm8k-dataset"},{"title":"GSM8K Benchmark: Evaluating Math Reasoning","url":"https://www.emergentmind.com/topics/gsm8k-benchmark"},{"title":"GSM8K Benchmark — Klu","url":"https://klu.ai/glossary/GSM8K-eval"}]
+
+Based on the search results, here's what I found regarding benchmark saturation and baseline performance:
+
+## GSM8K Saturation in 2026
+
+GSM8K is now saturated — top models exceed 95%, making it less useful for comparing frontier models. Frontier models now reach 99% (GPT-5.3 Codex), making GSM8K useless for top-tier comparisons. However, GSM8K is still useful for comparing smaller models (7B-13B) where performance still varies significantly between 60-90%.
+
+## MATH-500 as an Alternative
+
+MATH-500 tests competition-level mathematical reasoning across 500 problems drawn from AMC, AIME, and similar competitions, spanning five difficulty levels. Unlike GSM8K, MATH-500 problems require multi-step symbolic reasoning.
+
+## Qwen Baseline Performance
+
+While the search results reference Qwen models in various contexts—including Qwen3.5-plus leading at 83.6% on LiveCodeBench v6 as of February 2026—specific baseline performance data for Qwen 9B on MATH-500 or GSM8K in 2026 was not found in these results. The results do mention that smaller models (7B-13B range) show more varied performance on GSM8K, which would include models in the 9B range.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "79dab75f-9e31-456d-a76d-94f7ba1cd63c",
+  "isSidechain": false,
+  "promptId": "521d8246-b4fb-444f-8e8d-124129010450",
+  "type": "user",
+  "uuid": "cce3f724-b891-48d2-9c4b-3ad60ea3366d",
+  "toolUseResult": {
+    "query": "MATH-500 GSM8K benchmark saturation 2026 Qwen 9B baseline performance ceiling effect small model",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015DkLozQDPsTL1Qf9eWN2GU",
+        "content": [
+          {
+            "title": "LLM Benchmarks Compared: MMLU, HumanEval, GSM8K and More (2026)",
+            "url": "https://www.lxt.ai/blog/llm-benchmarks/"
+          },
+          {
+            "title": "GSM8K Benchmark - AI Math Reasoning Leaderboard (2026)",
+            "url": "https://lmmarketcap.com/benchmarks/gsm8k"
+          },
+          {
+            "title": "GSM8K: Math Reasoning Benchmark",
+            "url": "https://www.emergentmind.com/topics/gsm8k"
+          },
+          {
+            "title": "LLM Math Benchmarks 2025–2026: GSM8K, MATH, AIME, AMC | CodeSOTA | CodeSOTA",
+            "url": "https://www.codesota.com/llm/math-benchmarks"
+          },
+          {
+            "title": "2025-05-15 Qwen3 Technical Report Qwen Team https://huggingface.co/Qwen",
+            "url": "https://arxiv.org/pdf/2505.09388"
+          },
+          {
+            "title": "LLM Benchmarks 2026: 30+ Models Ranked — MMLU, SWE-bench, Arena Elo & Pricing",
+            "url": "https://iternal.ai/llm-selection-guide"
+          },
+          {
+            "title": "GSM8K: Grade School Math Benchmark",
+            "url": "https://www.emergentmind.com/topics/gsm8k-dataset"
+          },
+          {
+            "title": "GSM8K Benchmark: Evaluating Math Reasoning",
+            "url": "https://www.emergentmind.com/topics/gsm8k-benchmark"
+          },
+          {
+            "title": "GSM8K Benchmark — Klu",
+            "url": "https://klu.ai/glossary/GSM8K-eval"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found regarding benchmark saturation and baseline performance:\n\n## GSM8K Saturation in 2026\n\nGSM8K is now saturated — top models exceed 95%, making it less useful for comparing frontier models. Frontier models now reach 99% (GPT-5.3 Codex), making GSM8K useless for top-tier comparisons. However, GSM8K is still useful for comparing smaller models (7B-13B) where performance still varies significantly between 60-90%.\n\n## MATH-500 as an Alternative\n\nMATH-500 tests competition-level mathematical reasoning across 500 problems drawn from AMC, AIME, and similar competitions, spanning five difficulty levels. Unlike GSM8K, MATH-500 problems require multi-step symbolic reasoning.\n\n## Qwen Baseline Performance\n\nWhile the search results reference Qwen models in various contexts—including Qwen3.5-plus leading at 83.6% on LiveCodeBench v6 as of February 2026—specific baseline performance data for Qwen 9B on MATH-500 or GSM8K in 2026 was not found in these results. The results do mention that smaller models (7B-13B range) show more varied performance on GSM8K, which would include models in the 9B range."
+    ],
+    "durationSeconds": 7.389793971000007,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "79dab75f-9e31-456d-a76d-94f7ba1cd63c",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a78563ed-01dd-4d0b-a0f9-ae617d124f47",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-27T08:56:05.063Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01N8TcGqjVTwtYbDHEmPzGJ7`</summary>
+
+```json
+{
+  "query": "AIME 2024 2025 benchmark small sample size statistical significance LLM evaluation variance"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cce3f724-b891-48d2-9c4b-3ad60ea3366d",
+  "isSidechain": false,
+  "requestId": "req_011CbSo2cuxZWJyjo8xX1nj1",
+  "type": "assistant",
+  "uuid": "68a1b18d-b59f-474d-8841-d170d9de57d1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a78563ed-01dd-4d0b-a0f9-ae617d124f47",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KhXeNGPv7GwG7ucWjnwXex",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4061,
+      "cache_read_input_tokens": 30802,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4061,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 30802,
+          "cache_creation_input_tokens": 4061,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4061
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-27T08:56:14.387Z_
+
+<details><summary>↩ Tool result · `toolu_01N8TcGqjVTwtYbDHEmPzGJ7`</summary>
+
+```text
+Web search results for query: "AIME 2024 2025 benchmark small sample size statistical significance LLM evaluation variance"
+
+Links: [{"title":"MathArena AIME-2024 Benchmark","url":"https://www.emergentmind.com/topics/matharena-aime-2024"},{"title":"AIME Benchmarks: Math & AI Evaluation","url":"https://www.emergentmind.com/topics/aime-benchmarks"},{"title":"Evaluating LLMs When They Do Not Know the Answer: Statistical Evaluation of Mathematical Reasoning via Comparative Signals","url":"https://arxiv.org/pdf/2602.03061"},{"title":"AIME24 Benchmark for LLM Math Reasoning","url":"https://www.emergentmind.com/topics/aime24-benchmark"},{"title":"Position: Don't Use the CLT in LLM Evals With Fewer Than a Few Hundred Datapoints","url":"https://arxiv.org/pdf/2503.01747"},{"title":"Confidence in Large Language Model Evaluation: A Bayesian Approach to   Limited-Sample Challenges","url":"https://arxiv.org/pdf/2504.21303"},{"title":"Statistical multi-metric evaluation and visualization of LLM system   predictive performance","url":"https://arxiv.org/pdf/2501.18243"},{"title":"Efficient Evaluation of LLM Performance with Statistical Guarantees","url":"https://arxiv.org/pdf/2601.20251"}]
+
+I found several relevant sources about AIME benchmarks and statistical significance in LLM evaluation. Here's what the search revealed:
+
+## AIME as a Small-Sample Benchmark
+
+AIME consists of 15 free-response math problems, each requiring a single integer answer between 0 and 999. This small sample size creates important statistical challenges.
+
+## Statistical Significance Concerns
+
+Evaluating mathematical reasoning in LLMs is constrained by limited benchmark sizes and inherent model stochasticity, yielding high-variance accuracy estimates and unstable rankings across platforms. Most reported gains from RL or minor intervention are indistinguishable from noise, requiring careful t-testing across seeds, with at least 10 seeds recommended for small-N benchmarks.
+
+A recent position paper warns that CLT-based methods for uncertainty quantification fail to provide adequate uncertainty estimates for LLM evaluations that rely on smaller, highly specialized benchmarks, with CLT-based methods demonstrating very poor performance that usually dramatically underestimates uncertainty by producing error bars that are too small.
+
+## Solutions to Address Variance
+
+One approach combines standard labeled outcomes with pairwise comparison signals obtained by having models judge auxiliary reasoning chains, achieving variance reduction and more reliable model rankings especially in small-sample regimes. Data contamination has inflated model scores on AIME 2024 by 10–20 points compared to uncontaminated contests, making timeline-controlled evaluation essential.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "68a1b18d-b59f-474d-8841-d170d9de57d1",
+  "isSidechain": false,
+  "promptId": "521d8246-b4fb-444f-8e8d-124129010450",
+  "type": "user",
+  "uuid": "b39b96df-4923-4921-9816-13ca87d465ac",
+  "toolUseResult": {
+    "query": "AIME 2024 2025 benchmark small sample size statistical significance LLM evaluation variance",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01M7KvBm1RWL4XdK1tRcZcjf",
+        "content": [
+          {
+            "title": "MathArena AIME-2024 Benchmark",
+            "url": "https://www.emergentmind.com/topics/matharena-aime-2024"
+          },
+          {
+            "title": "AIME Benchmarks: Math & AI Evaluation",
+            "url": "https://www.emergentmind.com/topics/aime-benchmarks"
+          },
+          {
+            "title": "Evaluating LLMs When They Do Not Know the Answer: Statistical Evaluation of Mathematical Reasoning via Comparative Signals",
+            "url": "https://arxiv.org/pdf/2602.03061"
+          },
+          {
+            "title": "AIME24 Benchmark for LLM Math Reasoning",
+            "url": "https://www.emergentmind.com/topics/aime24-benchmark"
+          },
+          {
+            "title": "Position: Don't Use the CLT in LLM Evals With Fewer Than a Few Hundred Datapoints",
+            "url": "https://arxiv.org/pdf/2503.01747"
+          },
+          {
+            "title": "Confidence in Large Language Model Evaluation: A Bayesian Approach to   Limited-Sample Challenges",
+            "url": "https://arxiv.org/pdf/2504.21303"
+          },
+          {
+            "title": "Statistical multi-metric evaluation and visualization of LLM system   predictive performance",
+            "url": "https://arxiv.org/pdf/2501.18243"
+          },
+          {
+            "title": "Efficient Evaluation of LLM Performance with Statistical Guarantees",
+            "url": "https://arxiv.org/pdf/2601.20251"
+          }
+        ]
+      },
+      "I found several relevant sources about AIME benchmarks and statistical significance in LLM evaluation. Here's what the search revealed:\n\n## AIME as a Small-Sample Benchmark\n\nAIME consists of 15 free-response math problems, each requiring a single integer answer between 0 and 999. This small sample size creates important statistical challenges.\n\n## Statistical Significance Concerns\n\nEvaluating mathematical reasoning in LLMs is constrained by limited benchmark sizes and inherent model stochasticity, yielding high-variance accuracy estimates and unstable rankings across platforms. Most reported gains from RL or minor intervention are indistinguishable from noise, requiring careful t-testing across seeds, with at least 10 seeds recommended for small-N benchmarks.\n\nA recent position paper warns that CLT-based methods for uncertainty quantification fail to provide adequate uncertainty estimates for LLM evaluations that rely on smaller, highly specialized benchmarks, with CLT-based methods demonstrating very poor performance that usually dramatically underestimates uncertainty by producing error bars that are too small.\n\n## Solutions to Address Variance\n\nOne approach combines standard labeled outcomes with pairwise comparison signals obtained by having models judge auxiliary reasoning chains, achieving variance reduction and more reliable model rankings especially in small-sample regimes. Data contamination has inflated model scores on AIME 2024 by 10–20 points compared to uncontaminated contests, making timeline-controlled evaluation essential."
+    ],
+    "durationSeconds": 9.319596707999997,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "68a1b18d-b59f-474d-8841-d170d9de57d1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a78563ed-01dd-4d0b-a0f9-ae617d124f47",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53 · 2026-05-27T08:56:49.492Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This is very important! The statistical significance concern is real - AIME has only 15 problems per year (so AIME24 has 30 across both I and II, and AIME25 has 30). With such small samples, variance is very high. The research suggests at least 10 seeds for small-N benchmarks, while the proposal only plans 3 independent runs.
+
+Also, data contamination on AIME 2024 is a real concern - "Data contamination has inflated model scores on AIME 2024 by 10–20 points compared to uncontaminated contests."
+ 
+Now I'm pulling together my assessment. The core problems are the underpowered statistical design on AIME (3 runs won't capture variance on 15-problem benchmarks when 10+ are recommended), the known 10-20 point inflation from data contamination on AIME24, and the fact that GSM8K is already saturated for capable models so gains there won't be meaningful. There's also the question of whether the training data quantity is sufficient.
+
+I need clarity on several implementation details: how many problems are synthesized per iteration, what's the total training token budget, whether the NL-to-formal translation uses the student model or a separate one, and what the retry logic looks like. The iterative loop also lacks a defined convergence criterion—5 iterations seems arbitrary. And the DPO setup needs more scrutiny around the β hyperparameter and how it interacts with the SFT loss weighting.
+
+Looking at the baseline comparisons, I'm seeing vanilla SFT, SFT+DPO, and GRPO/RLVR as the training paradigm variants, plus SwS and STAT as external references. I should think through whether these baselines actually isolate what's novel here.
+
+One gap I'm noticing: using an existing PRM like Qwen2.5-Math-PRM for Best-of-N selection in a self-training loop without error targeting would be a natural ablation to show whether improvements come from better verification or from the error-targeting mechanism itself. The FoVer-PRM + Best-of-N/RLVR baseline partially covers this, but not quite cleanly enough to isolate that contribution.
+
+Actually, thinking about it more, the baseline set is pretty solid as-is. The FoVer-PRM + Best-of-N/RLVR loop does isolate whether direct formal profiling beats indirect verification through a learned PRM.
+
+On another front, I'm realizing the proposal relies heavily on Qwen3.5 (9B primary, 4B for validation), which could look narrow given that the research landscape covers Llama, Gemma, and other families. The pilot does include a Llama 3.1-8B comparison for formalization, but showing main results on a single family is worth noting as a limitation. Though to be fair, testing two model sizes within the same family is pretty standard practice.
+
+For the per-MATH-subcategory analysis, I need to think carefully about whether improvements in formally-covered categories come from better verification or just easier categories. But the ablation comparing formal versus LLM-based versus pass-rate versus random profiling within the same categories actually does isolate this—if formal profiling outperforms LLM profiling in covered categories, that's the verification quality effect.
+
+Now I'm ready to wrap up my assessment. The main defect I'm seeing is statistical significance on the smaller benchmarks like AIME24/25 and AMC23, where three runs isn't enough—I'd want at least 8-10 seeds or Bayesian confidence intervals to be confident in those results.
+
+There's also a data contamination risk with AIME24 since models from 2026 onward show known inflation of 10-20 points, so either a contamination analysis or testing on AIME 2026 and newer benchmarks would be important. GSM8K is hitting a ceiling effect with capable 9B models, which limits what we can learn from near-saturation results. The training data quantity per iteration isn't specified—I need to know how many problems are synthesized each round and what the total training data size is for reproducibility. The formalization pipeline is missing implementation details like who does the NL-to-formal translation, which model handles it, what the retry logic looks like, and the cost breakdown. And there's no convergence criterion specified for the iterative loop—it just stops at 5 iterations.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b39b96df-4923-4921-9816-13ca87d465ac",
+  "isSidechain": false,
+  "requestId": "req_011CbSo3ZDV8j7Sz4qJWobwx",
+  "type": "assistant",
+  "uuid": "16349b30-99ff-4bce-9512-8d010e044a0b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a78563ed-01dd-4d0b-a0f9-ae617d124f47",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RdQEvTPqbSS36Tcg1Jirfp",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 781,
+      "cache_read_input_tokens": 34863,
+      "output_tokens": 6741,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 781,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6741,
+          "cache_read_input_tokens": 34863,
+          "cache_creation_input_tokens": 781,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 781
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 54 · 2026-05-27T08:58:40.524Z_
+
+Now I have sufficient research to conduct a thorough evaluation. Let me compile my assessment.
+
+---
+
+【状态】: 有缺陷待补救
+
+【前置调研发现】
+- **STAT: Skill-Targeted Adaptive Training** (ICLR 2026): Tested on Llama-3.2-3B/1B, Qwen2.5-3B. Baselines include MATH-Train, Embed-Sel, GRPO. Evaluated on MATH, AIME24/25, AMC23. Shows STAT complementary to GRPO. 3-model evaluation across families. Reports per-skill missing profiles.
+- **NSRSA: Symbolic Recursive Self-Alignment** (arXiv 2603.21558, 2026): Qwen3-4B-Thinking on GSM8K across 5 iterations under 5 conditions (no-verify, outcome, majority vote, full NSRSA, NSRSA+DPO). Rejects ~34% of correct-answer solutions with flawed reasoning. Solution-level DPO only.
+- **FoVer: Efficient PRM Training Data Synthesis** (ACL 2026 Findings): Z3 + Isabelle formal verification for PRM data. Evaluated on 12 benchmarks including math, logic, NLI, BBH. Demonstrates cross-domain generalization of formally-trained PRMs.
+- **SwS: Weakness-Driven Problem Synthesis** (NeurIPS 2025): 3B to 32B model range, 8 math benchmarks. Pass-rate based weakness identification. +10% for 7B, +7.7% for 32B. Compares against human-labeled problem sets.
+- **Imperfect Verifier (arXiv 2604.07666, 2026)**: Noise ≤15% yields near-clean accuracy. Precision > recall. Tested across Qwen3, GLM4, Llama 3.1 (4B-9B). Three model families, code + scientific reasoning.
+- **Solver-Verifier Gap Theory** (ICLR 2026): Exponential convergence law. External data timing doesn't significantly affect final performance under limited-data regimes.
+- **SPARQ** (arXiv 2506.06499, 2025): 7.5K seeds → 20M+ pairs, +24% on MATH for Gemma-2-9B via quality-diversity filtering. Ablates filtering strategies and diversity metrics.
+- **MATH-VF (Step-Wise Formal Verification)** (arXiv 2505.20869, 2025): Z3+SymPy step-level verification. SymPy for symbolic computation/equation solving; Z3 for logical/polynomial constraints. Training-free framework tested on MATH500 and ProcessBench.
+- **Position: Don't Use CLT in LLM Evals** (arXiv 2503.01747): CLT-based methods dramatically underestimate uncertainty on small benchmarks. At least 10 seeds recommended for small-N benchmarks like AIME (15 problems per contest).
+- **AIME Data Contamination** (MathArena/emergentmind): AIME 2024 scores inflated 10-20 points by data contamination in models trained after 2024. Timeline-controlled evaluation essential.
+
+- **调研总结**: 该领域当前实验设计标准要求：(1) 跨模型家族验证（至少2个家族），(2) 高方差小样本benchmark需≥8-10 seeds或Bayesian置信区间，(3) 数据污染分析（特别是AIME24），(4) 详细的per-iteration数据量和计算成本分解，(5) compute-matched比较是新兴标准。当前proposal的baseline矩阵和ablation设计在该领域属于上游水平，但在统计严谨性和若干实验细节上存在可修补的缺陷。
+
+---
+
+【缺陷 1】
+- 类别: 评估方案缺陷
+- 问题: Proposal 规定"3 independent runs, mean ± std, significance tests"用于所有 benchmark，但 AIME24 和 AIME25 每个仅有 30 道题（各15题×2场），AMC23 约25题。在如此小的样本量下，3 runs 的统计功效严重不足。近期文献（arXiv 2503.01747）明确指出，CLT-based 方法在小样本 LLM 评估中"dramatically underestimates uncertainty"，建议 AIME 类 benchmark 至少 10 seeds。对于 FormalLoop 这种 iterative 方法，每轮训练的随机性会进一步放大方差。3 runs 可能导致无法在 AIME/AMC 上得出显著结论，而这恰恰是 proposal 声称要展示 OOD generalization 的核心 benchmark。
+- 严重度: 可补救
+- 补救方案: (1) AIME24/25、AMC23 上增加至 8-10 independent runs（不同随机种子的完整训练循环），或在资源不允许时至少用不同采样温度做 16+ evaluation seeds（同一模型、不同采样）。(2) 采用 Bayesian bootstrap 置信区间替代 CLT-based significance test。(3) 在 GSM8K、MATH-500 等大样本 benchmark 上 3 runs 足够，但应明确分层：大样本 benchmark 用 t-test，小样本 benchmark 用 bootstrap 或 permutation test。(4) 报告 per-problem pass rate 分布（而非仅聚合准确率），让读者自行评估方差。
+- 调研依据: arXiv 2503.01747 "Position: Don't Use the CLT in LLM Evals With Fewer Than a Few Hundred Datapoints"；MathArena AIME evaluation methodology recommendations。
+
+【缺陷 2】
+- 类别: 评估方案缺陷
+- 问题: Proposal 使用 AIME24 作为 OOD generalization 的关键 benchmark，但 Qwen3.5 系列（2026年3月发布）的预训练数据极有可能包含 AIME 2024 题目。调研显示 AIME 2024 在 2026 年发布的模型上存在 10-20 分的数据污染膨胀。如果 baseline 和 FormalLoop 都在受污染的 benchmark 上评估，虽然相对比较仍有效，但绝对数值的 OOD 泛化 claim 会被审稿人质疑。
+- 严重度: 可补救
+- 补救方案: (1) 增加 AIME 2026（2026年2月举行，大概率不在 Qwen3.5 预训练数据中）作为最无污染的 OOD benchmark。(2) 对 AIME24 做污染检测：检查 base model（未经 FormalLoop 训练）在 AIME24 上的 pass@1 表现，与已知的未污染基准对比。(3) 在论文中明确报告 base model 在所有 benchmark 上的 baseline 性能，让读者自行判断污染程度。(4) 如条件允许，加入 Putnam/HMMT 等更高难度竞赛题目作为几乎不可能被污染的 OOD 测试。
+- 调研依据: MathArena 社区对 AIME 2024 数据污染的分析；Qwen3.5 release timeline（2026年3月）vs. AIME 2024（2024年2月）。
+
+【缺陷 3】
+- 类别: 实验设计不足
+- 问题: Proposal 的 Approach 部分没有明确指定 NL-to-formal translation 的实现方式。"solutions are formalized and verified step-by-step via Z3/SymPy" 暗示存在一个从自然语言解题步骤到形式化约束的翻译环节，Resource Estimate 中提到"LLM-to-formal translation ~60-70% success rate"，但 Approach 部分未说明：(a) 是 student model 自己做 formalization 还是用另一个 LLM？(b) retry logic 的具体策略？(c) formalization 的 prompt 设计和 few-shot 示例来源？(d) 不同数学子类的 formalization template 是否不同？这不仅影响可复现性，更直接影响实验结果的解读——如果 formalization 本身引入系统性偏差（比如某些错误类型更容易被正确 formalize），则 error profile 可能反映的是 formalization 能力而非推理能力。
+- 严重度: 可补救
+- 补救方案: (1) 在 Approach 部分明确指定 formalization pipeline：使用什么模型（建议用 student model 自己做，保持 teacher-free claim 的一致性；或明确声明 formalization 用的是通用 code-generation 能力而非 diagnostic 判断，与 teacher-free claim 不矛盾）。(2) 详细描述 per-subcategory formalization templates（如 algebra equation → SymPy Eq() + solve()；inequality → Z3 constraint）。(3) 在 pilot study 中增加 formalization 质量评估：随机抽样 200 条 formalization，人工判断 formalization 是否忠实反映原始推理步骤。(4) 报告 formalization confounding analysis：对比"formalization 成功且 Z3 判对"vs."formalization 成功且 Z3 判错"两组的原始推理质量差异，排除 formalization 偏差。
+- 调研依据: MATH-VF (arXiv 2505.20869) 的 formalization 方法（SymPy/Z3 分别处理不同类型约束）；FoVer (ACL 2026) 使用 Z3+Isabelle 但有明确的 formalization pipeline 描述。
+
+【缺陷 4】
+- 类别: 实验设计不足
+- 问题: Proposal 未指定每次迭代的合成数据量。Iterative self-improvement 的核心变量之一是每轮训练数据的规模——过少则信号不足，过多则可能引入冗余或 overfitting。Proposal 中提到"SymPy-based synthesis generates targeted problems exercising weak skills"，但没有说明：(a) 每类 error type 合成多少题？(b) 总量是固定的还是根据 error profile 动态调整？(c) 合成题目与原始训练集的比例？这直接影响与 baseline 的 compute fairness 比较——如果 FormalLoop 每轮用 10K 合成题而 vanilla SFT baseline 用 100K 原始题，比较就不公平。
+- 严重度: 可补救
+- 补救方案: (1) 明确指定 per-iteration data budget（如每轮 5K-10K 合成题，按 error profile 比例分配）。(2) 在 compute fairness 比较中，除了 dollar cost，还应报告 per-method total training tokens/examples。(3) 考虑两种 matched comparison：(i) 固定训练数据量（FormalLoop targeted 5K vs. uniform 5K），(ii) 固定计算预算（包括合成成本）。(4) 在 ablation 中增加 data scaling 分析：2K/5K/10K/20K per iteration，观察 marginal return。
+- 调研依据: SPARQ (arXiv 2506.06499) 明确报告了 7.5K seeds → 20M+ 合成数据的 scaling 分析；SwS (NeurIPS 2025) 报告了 augmented problem set 的具体规模。
+
+【缺陷 5】
+- 类别: 评估方案缺陷
+- 问题: GSM8K 在 2026 年对 9B 级别模型已接近饱和（顶级模型 >95%，capable 9B 模型通常 >85-90%）。如果 Qwen3.5-9B 的 baseline GSM8K 准确率已经很高，那么在 GSM8K 上展示的改进将缺乏区分度和说服力。Proposal 将 GSM8K 列为主要 benchmark 之一且在 ablation 中也使用，但未讨论 ceiling effect。
+- 严重度: 可补救
+- 补救方案: (1) 在 pilot study 中首先报告 base model（未经 FormalLoop）在所有 benchmark 上的性能，明确 headroom。(2) 如果 GSM8K baseline >90%，将其降级为 sanity check（确保不退化），不作为主要 improvement claim 的依据。(3) ablation benchmark 替换建议：将 GSM8K 替换为 Minerva Math 或 Olympiad-Bench（这些 benchmark 对 9B 模型有更大 headroom），保留 MATH-500 和 AIME24 作为 ablation 评估。(4) 对 GSM8K 报告 error reduction rate（从 baseline 的错误中减少了多少%）而非绝对准确率提升，这在高 baseline 下更有信息量。
+- 调研依据: LMMarketCap GSM8K leaderboard 2026 数据显示 frontier model 已达 99%；领域共识是 GSM8K 主要用于较小模型或作为 sanity check。
+
+【缺陷 6】
+- 类别: 实验设计不足
+- 问题: Proposal 指定"5 iterations (9B) + 3 iterations (4B)"但未提供迭代次数的选择依据或收敛准则。在 self-improvement 文献中，不同方法的最优迭代次数差异很大（NSRSA 在 5 轮时达到最优，但 vanilla self-training 可能在 2-3 轮就开始退化）。没有 convergence criterion 的固定迭代设计有两个风险：(a) 如果 FormalLoop 在第 3 轮就收敛，后续 2 轮是浪费且可能引入 overfitting；(b) 如果 baseline 在第 2 轮就退化但 FormalLoop 在第 5 轮才显优势，直接比较 final iteration 的结果会掩盖 iteration-level dynamics。
+- 严重度: 可补救
+- 补救方案: (1) 定义明确的 convergence criterion：例如连续 2 轮在 validation set（如 MATH-500）上准确率提升 <0.5%，或 error profile entropy 变化 <ε。(2) 所有方法都跑满 5 轮，但报告 per-iteration 结果曲线（已在 ablation #6 中部分涉及——将其从 [Should] 升级为 [Must]）。(3) 报告 best-iteration 和 final-iteration 两种结果，让读者同时看到 peak performance 和 stability。(4) 对于 4B validation model，3 iterations 可能不足以展示收敛特性——考虑增至 4-5 iterations 或明确论证为何 3 轮足够。
+- 调研依据: NSRSA (arXiv 2603.21558) 在 5 iterations 上展示了完整的收敛/退化曲线；Solver-Verifier Gap Theory (ICLR 2026) 预测指数收敛律，可据此设置理论 convergence bound。
+
+【缺陷 7】
+- 类别: ablation 不完整
+- 问题: Proposal 的 ablation #4 比较 SFT-only vs. DPO-only vs. SFT+DPO，但未涉及 DPO 的关键超参数 β（控制 preference 学习强度）。对于 step-localized formal DPO 这种新型 preference pair 构造方式，β 的最优值可能与标准 DPO 不同——因为 step-localized pair 的 chosen/rejected 差异更小（仅一步之差），β 过大可能导致 overfitting 到微小的步骤差异，β 过小则信号不足。此外，SFT 和 DPO 的 loss weight 比例也未讨论。
+- 严重度: 可补救
+- 补救方案: (1) 在 ablation #4 的 SFT+DPO 条件下，增加 β ∈ {0.05, 0.1, 0.2, 0.5} 的 sensitivity analysis（可在 4B 模型、2 iterations、1 benchmark 上快速验证）。(2) 讨论 step-localized pair 的 chosen-rejected margin 分布，与 solution-level pair 对比，论证 β 选择的合理性。(3) 如果 β sensitivity 结果表明 step-localized DPO 对 β 不敏感（一定范围内效果稳定），这本身就是一个积极发现，值得报告。
+- 调研依据: Step-DPO (NeurIPS 2024) 和 Full-Step-DPO (ACL 2025 Findings) 均在步骤级 DPO 中讨论了 margin 和 β 的交互；基于领域实验规范判断，DPO 超参数 sensitivity 是审稿人常见要求。
+
+Sources:
+- [STAT: Skill-Targeted Adaptive Training](https://openreview.net/forum?id=m3jG3GaNIj)
+- [FoVer: Efficient PRM Training Data Synthesis via Formal Verification](https://arxiv.org/abs/2505.15960)
+- [SwS: Self-aware Weakness-driven Problem Synthesis](https://openreview.net/forum?id=0jQUNQsZra)
+- [NSRSA: Symbolic Recursive Self-Alignment](https://arxiv.org/abs/2603.21558)
+- [An Imperfect Verifier is Good Enough](https://arxiv.org/abs/2604.07666)
+- [Solver-Verifier Gap Theory](https://arxiv.org/abs/2507.00075)
+- [SPARQ: Synthetic Problem Generation](https://arxiv.org/abs/2506.06499)
+- [MATH-VF: Step-Wise Formal Verification](https://arxiv.org/html/2505.20869v1)
+- [Adaptive Problem Generation via Symbolic Representations](https://arxiv.org/abs/2602.19187)
+- [Position: Don't Use CLT in LLM Evals](https://arxiv.org/pdf/2503.01747)
+- [Step-DPO](https://arxiv.org/abs/2406.18629)
+- [GSM8K Benchmark Saturation](https://lmmarketcap.com/benchmarks/gsm8k)
+- [Qwen 3.5 Complete Guide](https://codersera.com/blog/qwen-3-5-complete-guide-2026/)
+- [AIME Benchmark Data Contamination](https://www.emergentmind.com/topics/matharena-aime-2024)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "16349b30-99ff-4bce-9512-8d010e044a0b",
+  "isSidechain": false,
+  "requestId": "req_011CbSo3ZDV8j7Sz4qJWobwx",
+  "type": "assistant",
+  "uuid": "4d19e8a8-0a74-4cf8-9b5d-08bb71b65d86",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "a78563ed-01dd-4d0b-a0f9-ae617d124f47",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RdQEvTPqbSS36Tcg1Jirfp",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 781,
+      "cache_read_input_tokens": 34863,
+      "output_tokens": 6741,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 781,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6741,
+          "cache_read_input_tokens": 34863,
+          "cache_creation_input_tokens": 781,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 781
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 55_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Formal Error Profiling Enables Teacher-Free Targeted Math Self-Improvement  ## Core Problem  Self-improvement loops for mathematical reasoning suffer from model collapse (solver-verifier gap theory,…",
+  "leafUuid": "4d19e8a8-0a74-4cf8-9b5d-08bb71b65d86",
+  "sessionId": "a78563ed-01dd-4d0b-a0f9-ae617d124f47"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 56_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Formal error profiling for teacher-free math self-improvement",
+  "sessionId": "a78563ed-01dd-4d0b-a0f9-ae617d124f47"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 57_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "# Formal Error Profiling Enables Teacher-Free Targeted Math Self-Improvement  ## Core Problem  Self-improvement loops for mathematical reasoning suffer from model collapse (solver-verifier gap theory,…",
+  "leafUuid": "4d19e8a8-0a74-4cf8-9b5d-08bb71b65d86",
+  "sessionId": "a78563ed-01dd-4d0b-a0f9-ae617d124f47"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 58_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Formal error profiling for teacher-free math self-improvement",
+  "sessionId": "a78563ed-01dd-4d0b-a0f9-ae617d124f47"
+}
+```
+
+---

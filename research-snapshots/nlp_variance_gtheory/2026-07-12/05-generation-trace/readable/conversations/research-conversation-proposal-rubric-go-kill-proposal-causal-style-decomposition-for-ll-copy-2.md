@@ -1,0 +1,3471 @@
+# Research conversation: 【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。 【proposal】: # Causal Style Decomposition for LL
+
+**Reproducibility Budgets for Open-Weight LLM Evaluation: A Generalizability Theory Study of 7–9B Instruction-Tuned Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 51
+- **Recorded user turns:** 1
+- **Tool calls:** 13
+- **Original source:** `logs/chats/exported-trajectories/account-2/cec9e6bb-8ddf-469a-af52-bb35246f2388.jsonl`
+- **Structured JSON:** [`d2eaebee59fd4bce1e4d.json`](../../sessions/d2/d2eaebee59fd4bce1e4d.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-20T03:32:22.385Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-20T03:32:22.385Z",
+  "sessionId": "cec9e6bb-8ddf-469a-af52-bb35246f2388",
+  "content": "【任务】: 请评估以下 proposal 的客观中稿概率。\n必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。\n\n【proposal】:\n# Causal Style Decomposition for LLM Judge Debiasing via Doubly-Robust Counterfactual Estimation\n\n## Description\nStyle bias is the dominant systematic bias in LLM-as-a-judge evaluations (effect size 0.76–0.92 across all major models), vastly exceeding position bias (≤0.04), yet no existing method causally isolates and removes style's contribution to black-box judge scores. FairJudge (Feb 2026) addresses style bias by retraining a dedicated judge, but cannot debias commercial APIs like GPT-4o or Claude. We introduce Causal Style Decomposition (CSD), a model-agnostic post-hoc debiasing framework that generates content-preserving binary style counterfactuals along three independent axes (formality, verbosity, formatting) using RATE's double-rewrite protocol, then estimates per-axis causal effects via a Double Machine Learning partially linear model (Chernozhukov et al. 2018) that preserves interpretable style coefficients while allowing arbitrary nonlinear content-quality effects. A legitimacy-aware correction avoids over-debiasing by tuning a conservatism parameter α that distinguishes domain-invariant style bias from legitimate style-quality correlations. Unlike FairJudge (requires retraining), Length-Controlled AlpacaEval (single dimension), or Bias-Bounded Evaluation (non-causal noise injection), CSD provides a principled, multi-dimensional causal decomposition applicable to any black-box judge. We evaluate across five LLM judges on SOS-Bench (objective correctness), LLMBar adversarial (style resistance), RewardBench (domain-specific), and RubricBench (atomic rubric-based), supplemented by a 200-response pilot study with separate human annotations for content and presentation quality. An optional amortized deployment stage trains a lightweight predictor to estimate style effects without generating new counterfactuals, reducing marginal overhead to near-zero. CSD requires no judge retraining, applies to any black-box judge API, and reduces per-response debiasing cost from 25x (naive) to ~7x (full pipeline) or near-zero (amortized).\n\n## Core Problem\nHow can we isolate and remove the causal effect of surface-level style on LLM judge scores while preserving legitimate style-content associations, recovering a score that more faithfully reflects content quality?\n\n## Opportunity\nStyle bias is the dominant bias in LLM judges (effect size 0.76–0.92 across all models per Soumik 2026), vastly exceeding position bias (≤0.04), yet debiasing research overwhelmingly targets position bias. SOS-Bench (ICLR 2025) demonstrated that LLM judges prioritize style over factuality and safety across 152,380 data points. The 'Preference Leakage' paper (ICLR 2026) found judges rely heavily on 'stylistic regularities—tone consistency, sentence cadence, punctuation density.' FairJudge (arXiv Feb 2026) addresses style bias through judge retraining (SFT+DPO+GRPO), but this requires training a new judge model and does not apply to black-box commercial judges. Meanwhile, the CASSE study (Jan 2026) shows style features are 'deeply entangled rather than orthogonal'—prompting for conciseness significantly reduces perceived expertise—highlighting that naive style removal risks destroying legitimate quality signals. This creates a need for a principled causal method that can (a) apply to any black-box judge, (b) quantify per-response style contributions, and (c) distinguish bias from legitimate style-quality correlation. Causal intervention techniques for LLMs now achieve 92.3% style transfer accuracy while preserving content, and the RATE framework (ICML 2025) provides a double-rewrite protocol for unbiased estimation with imperfect counterfactuals, making this technically feasible.\n\n## Landscape\nSOS-Bench (ICLR 2025) is the largest meta-benchmark documenting style-over-substance failure but proposes no fix. FairJudge (arXiv 2602.06625, Feb 2026) is the most directly relevant concurrent work: it trains a dedicated judge via SFT→DPO→GRPO on a curated 16K-instance dataset with contrastive perturbations along five non-semantic dimensions (position, length, format, reasoning style, model provenance), achieving 76.83% agreement on PandaLM and 78.82% on JudgeLM; however, it requires retraining a new judge model (Qwen3-VL 2B/4B/8B backbones) and cannot debias existing black-box commercial judges (GPT-4o, Claude, Gemini). Soumik (April 2026) tests 9 debiasing strategies across 5 judges but focuses on position/verbosity bias without systematic causal style removal. JudgeBiasBench (March 2026) uses Gemini-2.0-Flash for counterfactual bias injection but applies this to construct biased test instances rather than to estimate and remove style effects. RATE (ICML 2025) is the closest methodological precedent—it estimates causal effects of high-level attributes on reward model scores via a double-rewrite correction for imperfect counterfactuals—but targets reward model explainability, not judge debiasing. The ISE framework (Choi et al., NAACL 2024) argues ATE is inapplicable to text treatments due to positivity violations from high dimensionality, but this criticism applies to free-text treatments, not to well-defined binary style interventions where positivity holds by construction (Pryzant et al. 2021; Veitch et al. UAI 2020). Length-Controlled AlpacaEval (ICLR 2025) demonstrates effective post-hoc regression debiasing but only controls for a single dimension (length) at zero additional inference cost. Bias-Bounded Evaluation (arXiv March 2026) injects calibrated Gaussian noise for differential-privacy-inspired debiasing, retaining 61–99% ranking correlation on Arena-Hard-Auto. CyclicJudge (arXiv March 2026) uses round-robin judge assignment to reduce inter-judge variance but is style-agnostic. RBD (NeurIPS 2025) fine-tunes a reasoning-based bias detector achieving 18.5% accuracy improvement but without causal style decomposition. UDA (AAAI 2026) reduces inter-judge Elo divergence by 63.4% via adaptive K-factor calibration. The CASSE dataset (Jan 2026) documents cross-feature stylistic interactions across 12 style features, showing conciseness reduces perceived expertise, supporting our legitimacy-aware correction design. Causal Effect Estimation with Latent Textual Treatments (arXiv Feb 2026) proposes SAE-based causal estimation for latent text features but has not been applied to judge debiasing. Double Machine Learning (Chernozhukov et al. 2018) provides the partially linear model framework and DoubleML Python package we adopt for flexible decomposition. No arXiv preprint or OpenReview submission as of May 2026 proposes content-preserving binary style counterfactuals combined with doubly-robust DML estimation for black-box judge debiasing.\n\n## Approach\nWe propose Causal Style Decomposition (CSD), a model-agnostic post-hoc debiasing framework in four stages.\n\n**Stage 1 — Binary Style Counterfactual Generation.** For each response under evaluation, generate style counterfactuals along three binary axes: (A1) formality (formal ↔ casual), (A2) verbosity (verbose ↔ terse), (A3) formatting (structured/markdown ↔ plain prose). These three axes are chosen for genuine independence: formality concerns register and word choice, verbosity concerns information density, and formatting concerns visual layout. We use Qwen3-32B with axis-specific prompts, applying the RATE double-rewrite protocol: for each axis, generate (i) a counterfactual x' by flipping the axis and (ii) a double-rewrite x'' by flipping x' back. This yields 6 rewrites per response (2 per axis). Content preservation is enforced via a conjunction of BERTScore ≥ 0.92, NLI entailment ≥ 0.95 (DeBERTa-v3-large-MNLI), GPT-4o-mini content-preservation verification, and human spot-checks on a 10% random sample. **Theoretical justification for binary ATE:** Unlike free-text treatments where positivity is structurally violated (Choi et al. NAACL 2024), binary style axes define well-posed interventions satisfying positivity—any text can be made formal or casual, verbose or terse, structured or plain—following the functional intervention framework (Pryzant et al. 2021; Veitch et al. UAI 2020). RATE's Assumption 1 (direction-independent rewrite noise) and Assumption 2 (additive decomposition of reward into attribute and noise components) provide sufficient conditions for unbiased ATE estimation under imperfect counterfactuals.\n\n**Stage 2 — Doubly-Robust Causal Effect Estimation via DML.** Score each original response and its 6 counterfactuals with the target LLM judge (7 scorings per response). Estimate per-axis treatment effects using a Double Machine Learning partially linear model (Chernozhukov et al. 2018): score = β₁·formality + β₂·verbosity + β₃·formatting + g(content_features) + ε, where β coefficients capture interpretable style effects and g(·) is a nonparametric function of content features (estimated via gradient-boosted trees with 5-fold cross-fitting). This replaces the linear additive SCM: the partially linear form preserves interpretable style coefficients while allowing arbitrary nonlinear content-quality effects, and the doubly-robust property ensures consistency if either the outcome model or propensity model is correctly specified. For handling residual axis correlations (e.g., formatting weakly correlating with verbosity), we use the multivariate treatment extension of DoubleML, jointly estimating all three β coefficients rather than decomposing them independently. We include ablations comparing: (i) linear additive, (ii) DML partially linear, and (iii) fully nonparametric (kernel-based) decompositions, plus an ISE-based continuous estimator as a methodological comparison.\n\n**Stage 3 — Legitimacy-Aware Score Adjustment.** Rather than naively subtracting the full estimated style ATE (which risks over-correction when style legitimately signals quality—e.g., well-structured markdown for technical content), we introduce a conservatism parameter α ∈ [0,1]: debiased_score = raw_score − α · Σ β_k · style_k. We determine α by maximizing Spearman correlation with ground-truth quality on a held-out validation set. Additionally, we test domain-conditional α values: for each content domain (coding, reasoning, creative writing, factual QA), we estimate whether style-quality correlations are legitimate by checking if style effects are consistent across domains (bias) vs. domain-specific (potentially legitimate). Style effects that are large and domain-invariant are classified as bias; domain-specific effects are partially retained.\n\n**Stage 4 — Amortized Deployment (optional).** To reduce the ~7x overhead of full CSD for large-scale deployment, we train a lightweight amortized style-effect predictor: a small regression model (e.g., linear probe on text embeddings from a frozen encoder) trained on the counterfactual data from Stage 1–2 to predict per-response style attribution vectors from response features alone. At deployment, this predictor estimates style effects without generating new counterfactuals, reducing marginal cost to near-zero. We validate that the amortized predictor recovers ≥90% of the debiasing improvement of the full pipeline.\n\n**Evaluation.** We evaluate across five LLM judges (GPT-4o, Claude Sonnet 4, Gemini 2.5 Pro, Llama-3.3-70B, Qwen3-32B) on four benchmarks: (1) SOS-Bench—measuring whether debiased scores better correlate with objective correctness on constituent benchmarks (IFEval, MMLU-Pro, GPQA) rather than style; (2) LLMBar adversarial set—measuring whether debiased judges resist choosing wrong-but-polished over correct-but-plain responses; (3) RewardBench—domain-specific analysis across chat-hard, safety, and reasoning subsets; (4) RubricBench—1,147 pairwise comparisons with expert-annotated atomic rubrics targeting misleading surface bias. We additionally conduct a 200-response pilot human annotation study with separate 5-point Likert scales for content quality and presentation quality, providing direct validation that debiased scores correlate with content ratings while discounting presentation ratings. Baselines: FairJudge-8B, Length-Controlled AlpacaEval regression, Bias-Bounded Evaluation, raw (undebiased) judges, and a 'format normalization' baseline that strips all markdown before judging.\n\n## Resource Estimate\n{'manual': {'gpu_hours': '100–140 A100-80GB hours (style counterfactual generation with Qwen3-32B: 6 rewrites/response × ~2K responses ≈ 30h; content verification BERTScore/NLI: 3h; open-source judge inference: 25h; DML estimation and ablations: 5h; amortized model training: 2h; iteration buffer: 35–75h)', 'timeline': '12–14 weeks', 'estimated_gpu_cost': '$250–350 (A100 spot ~$2.50/hr) + $200–350 commercial judge API costs (GPT-4o, Claude Sonnet 4, Gemini 2.5 Pro) + $100–150 GPT-4o-mini content verification + $800–1200 pilot annotation study (200 responses × 3 annotators)'}, 'human_in_loop': {'gpu_hours': '100–140 A100-80GB hours', 'timeline': '9–11 weeks', 'claude_api_cost': '$150–300 (Sonnet 4.6 at $3/$15 per MTok for prompt engineering, counterfactual quality analysis, DML specification, ablation design, and paper drafting)', 'estimated_gpu_cost': '$250–350 + $200–350 commercial judge API + $100–150 GPT-4o-mini + $800–1200 annotation study'}, 'auto_research': {'gpu_hours': '150–220 A100-80GB hours (additional ablations: linear vs. DML vs. nonparametric, ISE comparison, α sensitivity sweeps, domain-conditional analysis, amortized predictor architectures)', 'timeline': '5–7 weeks', 'claude_api_cost': '$500–750 (Sonnet 4.6 for experiment orchestration, automated counterfactual quality filtering, DML cross-fitting, statistical analysis, and full paper drafting)', 'estimated_gpu_cost': '$375–550 + $300–450 commercial judge API + $150–200 GPT-4o-mini + $800–1200 annotation study', 'speed_bottleneck': 'Sequential dependency chain: style counterfactual generation → content-preservation validation (including human spot-checks) → judge scoring → DML estimation; human annotation study runs in parallel but requires ~2 weeks for annotator recruitment and completion'}}\n\n## Inspired By\nField guide finding: 'Style bias is the dominant bias (0.76–0.92) yet has received minimal research attention'; SOS-Bench limitation that it documents but doesn't solve the problem; FairJudge's success at training-based debiasing motivating the question of whether a model-agnostic alternative exists; RATE's double-rewrite correction as a principled solution to imperfect-counterfactual bias; DML/partially-linear models as the standard tool for flexible causal decomposition with interpretable treatment coefficients; CASSE's finding that style features are entangled motivating legitimacy-aware correction.\n\n## Target Venues\n- AAAI 2027 (abstract: July 21, full paper: July 28, 2026 — primary target, 10 weeks)\n- ICLR 2027 (estimated deadline: September 24, 2026 — comfortable 18-week runway)\n- ARR October 2026 cycle (estimated deadline: October 15, 2026 — tertiary option, 21-week runway)\n\n## Key References\n- Style Outweighs Substance: Failure Modes of LLM Judges in Alignment Benchmarking (ICLR 2025)\n- Preference Leakage: A Contamination Problem in LLM-as-a-judge (ICLR 2026)\n- FairJudge: An Adaptive, Debiased, and Consistent LLM-as-a-Judge (arXiv 2602.06625, Feb 2026)\n- Judging the Judges: A Systematic Evaluation of Bias Mitigation Strategies in LLM-as-a-Judge Pipelines (arXiv 2026)\n- Toward Robust LLM-Based Judges: Taxonomic Bias Evaluation and Debiasing Optimization (arXiv 2026)\n- RATE: Causal Explainability of Reward Models with Imperfect Counterfactuals (ICML 2025)\n- Double/Debiased Machine Learning for Treatment and Structural Parameters (Chernozhukov et al., Econometrics Journal 2018)\n- Causal Inference for Human-Language Model Collaboration (Choi et al., NAACL 2024)\n- Adapting Text Embeddings for Causal Inference (Veitch, Sridhar & Blei, UAI 2020)\n- Causal Effects of Linguistic Properties (Pryzant et al., NAACL 2021)\n- A Concise Agent is Less Expert: Revealing Side Effects of Using Style Features on Conversational Agents (CASSE, arXiv 2601.10809, Jan 2026)\n- Counterfactual LLM-based Framework for Measuring Rhetorical Style (arXiv 2025)\n- Length-Controlled AlpacaEval: A Simple Way to Debias Automatic Evaluators (ICLR 2025)\n- Any Large Language Model Can Be a Reliable Judge: Debiasing with a Reasoning-based Bias Detector (NeurIPS 2025)\n- Towards Provably Unbiased LLM Judges via Bias-Bounded Evaluation (arXiv 2026)\n- CausalPFN: Amortized Causal Effect Estimation via In-Context Learning (NeurIPS 2025)\n- RubricBench: Aligning Model-Generated Rubrics with Human Standards (arXiv 2603.01562, March 2026)\n- Estimating Causal Effects of Text Interventions Leveraging LLMs (Findings of AACL-IJCNLP 2025)\n- Causal Effect Estimation with Latent Textual Treatments (arXiv 2026)\n- How to Make Causal Inferences Using Texts (Egami et al., Science Advances 2022)\n"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-20T03:32:22.388Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-20T03:32:22.388Z",
+  "sessionId": "cec9e6bb-8ddf-469a-af52-bb35246f2388"
+}
+```
+
+---
+
+## Round 1
+
+49 recorded events
+
+### User
+
+_source line 3 · 2026-05-20T03:32:22.399Z_
+
+【任务】: 请评估以下 proposal 的客观中稿概率。
+必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。
+
+【proposal】:
+# Causal Style Decomposition for LLM Judge Debiasing via Doubly-Robust Counterfactual Estimation
+
+## Description
+Style bias is the dominant systematic bias in LLM-as-a-judge evaluations (effect size 0.76–0.92 across all major models), vastly exceeding position bias (≤0.04), yet no existing method causally isolates and removes style's contribution to black-box judge scores. FairJudge (Feb 2026) addresses style bias by retraining a dedicated judge, but cannot debias commercial APIs like GPT-4o or Claude. We introduce Causal Style Decomposition (CSD), a model-agnostic post-hoc debiasing framework that generates content-preserving binary style counterfactuals along three independent axes (formality, verbosity, formatting) using RATE's double-rewrite protocol, then estimates per-axis causal effects via a Double Machine Learning partially linear model (Chernozhukov et al. 2018) that preserves interpretable style coefficients while allowing arbitrary nonlinear content-quality effects. A legitimacy-aware correction avoids over-debiasing by tuning a conservatism parameter α that distinguishes domain-invariant style bias from legitimate style-quality correlations. Unlike FairJudge (requires retraining), Length-Controlled AlpacaEval (single dimension), or Bias-Bounded Evaluation (non-causal noise injection), CSD provides a principled, multi-dimensional causal decomposition applicable to any black-box judge. We evaluate across five LLM judges on SOS-Bench (objective correctness), LLMBar adversarial (style resistance), RewardBench (domain-specific), and RubricBench (atomic rubric-based), supplemented by a 200-response pilot study with separate human annotations for content and presentation quality. An optional amortized deployment stage trains a lightweight predictor to estimate style effects without generating new counterfactuals, reducing marginal overhead to near-zero. CSD requires no judge retraining, applies to any black-box judge API, and reduces per-response debiasing cost from 25x (naive) to ~7x (full pipeline) or near-zero (amortized).
+
+## Core Problem
+How can we isolate and remove the causal effect of surface-level style on LLM judge scores while preserving legitimate style-content associations, recovering a score that more faithfully reflects content quality?
+
+## Opportunity
+Style bias is the dominant bias in LLM judges (effect size 0.76–0.92 across all models per Soumik 2026), vastly exceeding position bias (≤0.04), yet debiasing research overwhelmingly targets position bias. SOS-Bench (ICLR 2025) demonstrated that LLM judges prioritize style over factuality and safety across 152,380 data points. The 'Preference Leakage' paper (ICLR 2026) found judges rely heavily on 'stylistic regularities—tone consistency, sentence cadence, punctuation density.' FairJudge (arXiv Feb 2026) addresses style bias through judge retraining (SFT+DPO+GRPO), but this requires training a new judge model and does not apply to black-box commercial judges. Meanwhile, the CASSE study (Jan 2026) shows style features are 'deeply entangled rather than orthogonal'—prompting for conciseness significantly reduces perceived expertise—highlighting that naive style removal risks destroying legitimate quality signals. This creates a need for a principled causal method that can (a) apply to any black-box judge, (b) quantify per-response style contributions, and (c) distinguish bias from legitimate style-quality correlation. Causal intervention techniques for LLMs now achieve 92.3% style transfer accuracy while preserving content, and the RATE framework (ICML 2025) provides a double-rewrite protocol for unbiased estimation with imperfect counterfactuals, making this technically feasible.
+
+## Landscape
+SOS-Bench (ICLR 2025) is the largest meta-benchmark documenting style-over-substance failure but proposes no fix. FairJudge (arXiv 2602.06625, Feb 2026) is the most directly relevant concurrent work: it trains a dedicated judge via SFT→DPO→GRPO on a curated 16K-instance dataset with contrastive perturbations along five non-semantic dimensions (position, length, format, reasoning style, model provenance), achieving 76.83% agreement on PandaLM and 78.82% on JudgeLM; however, it requires retraining a new judge model (Qwen3-VL 2B/4B/8B backbones) and cannot debias existing black-box commercial judges (GPT-4o, Claude, Gemini). Soumik (April 2026) tests 9 debiasing strategies across 5 judges but focuses on position/verbosity bias without systematic causal style removal. JudgeBiasBench (March 2026) uses Gemini-2.0-Flash for counterfactual bias injection but applies this to construct biased test instances rather than to estimate and remove style effects. RATE (ICML 2025) is the closest methodological precedent—it estimates causal effects of high-level attributes on reward model scores via a double-rewrite correction for imperfect counterfactuals—but targets reward model explainability, not judge debiasing. The ISE framework (Choi et al., NAACL 2024) argues ATE is inapplicable to text treatments due to positivity violations from high dimensionality, but this criticism applies to free-text treatments, not to well-defined binary style interventions where positivity holds by construction (Pryzant et al. 2021; Veitch et al. UAI 2020). Length-Controlled AlpacaEval (ICLR 2025) demonstrates effective post-hoc regression debiasing but only controls for a single dimension (length) at zero additional inference cost. Bias-Bounded Evaluation (arXiv March 2026) injects calibrated Gaussian noise for differential-privacy-inspired debiasing, retaining 61–99% ranking correlation on Arena-Hard-Auto. CyclicJudge (arXiv March 2026) uses round-robin judge assignment to reduce inter-judge variance but is style-agnostic. RBD (NeurIPS 2025) fine-tunes a reasoning-based bias detector achieving 18.5% accuracy improvement but without causal style decomposition. UDA (AAAI 2026) reduces inter-judge Elo divergence by 63.4% via adaptive K-factor calibration. The CASSE dataset (Jan 2026) documents cross-feature stylistic interactions across 12 style features, showing conciseness reduces perceived expertise, supporting our legitimacy-aware correction design. Causal Effect Estimation with Latent Textual Treatments (arXiv Feb 2026) proposes SAE-based causal estimation for latent text features but has not been applied to judge debiasing. Double Machine Learning (Chernozhukov et al. 2018) provides the partially linear model framework and DoubleML Python package we adopt for flexible decomposition. No arXiv preprint or OpenReview submission as of May 2026 proposes content-preserving binary style counterfactuals combined with doubly-robust DML estimation for black-box judge debiasing.
+
+## Approach
+We propose Causal Style Decomposition (CSD), a model-agnostic post-hoc debiasing framework in four stages.
+
+**Stage 1 — Binary Style Counterfactual Generation.** For each response under evaluation, generate style counterfactuals along three binary axes: (A1) formality (formal ↔ casual), (A2) verbosity (verbose ↔ terse), (A3) formatting (structured/markdown ↔ plain prose). These three axes are chosen for genuine independence: formality concerns register and word choice, verbosity concerns information density, and formatting concerns visual layout. We use Qwen3-32B with axis-specific prompts, applying the RATE double-rewrite protocol: for each axis, generate (i) a counterfactual x' by flipping the axis and (ii) a double-rewrite x'' by flipping x' back. This yields 6 rewrites per response (2 per axis). Content preservation is enforced via a conjunction of BERTScore ≥ 0.92, NLI entailment ≥ 0.95 (DeBERTa-v3-large-MNLI), GPT-4o-mini content-preservation verification, and human spot-checks on a 10% random sample. **Theoretical justification for binary ATE:** Unlike free-text treatments where positivity is structurally violated (Choi et al. NAACL 2024), binary style axes define well-posed interventions satisfying positivity—any text can be made formal or casual, verbose or terse, structured or plain—following the functional intervention framework (Pryzant et al. 2021; Veitch et al. UAI 2020). RATE's Assumption 1 (direction-independent rewrite noise) and Assumption 2 (additive decomposition of reward into attribute and noise components) provide sufficient conditions for unbiased ATE estimation under imperfect counterfactuals.
+
+**Stage 2 — Doubly-Robust Causal Effect Estimation via DML.** Score each original response and its 6 counterfactuals with the target LLM judge (7 scorings per response). Estimate per-axis treatment effects using a Double Machine Learning partially linear model (Chernozhukov et al. 2018): score = β₁·formality + β₂·verbosity + β₃·formatting + g(content_features) + ε, where β coefficients capture interpretable style effects and g(·) is a nonparametric function of content features (estimated via gradient-boosted trees with 5-fold cross-fitting). This replaces the linear additive SCM: the partially linear form preserves interpretable style coefficients while allowing arbitrary nonlinear content-quality effects, and the doubly-robust property ensures consistency if either the outcome model or propensity model is correctly specified. For handling residual axis correlations (e.g., formatting weakly correlating with verbosity), we use the multivariate treatment extension of DoubleML, jointly estimating all three β coefficients rather than decomposing them independently. We include ablations comparing: (i) linear additive, (ii) DML partially linear, and (iii) fully nonparametric (kernel-based) decompositions, plus an ISE-based continuous estimator as a methodological comparison.
+
+**Stage 3 — Legitimacy-Aware Score Adjustment.** Rather than naively subtracting the full estimated style ATE (which risks over-correction when style legitimately signals quality—e.g., well-structured markdown for technical content), we introduce a conservatism parameter α ∈ [0,1]: debiased_score = raw_score − α · Σ β_k · style_k. We determine α by maximizing Spearman correlation with ground-truth quality on a held-out validation set. Additionally, we test domain-conditional α values: for each content domain (coding, reasoning, creative writing, factual QA), we estimate whether style-quality correlations are legitimate by checking if style effects are consistent across domains (bias) vs. domain-specific (potentially legitimate). Style effects that are large and domain-invariant are classified as bias; domain-specific effects are partially retained.
+
+**Stage 4 — Amortized Deployment (optional).** To reduce the ~7x overhead of full CSD for large-scale deployment, we train a lightweight amortized style-effect predictor: a small regression model (e.g., linear probe on text embeddings from a frozen encoder) trained on the counterfactual data from Stage 1–2 to predict per-response style attribution vectors from response features alone. At deployment, this predictor estimates style effects without generating new counterfactuals, reducing marginal cost to near-zero. We validate that the amortized predictor recovers ≥90% of the debiasing improvement of the full pipeline.
+
+**Evaluation.** We evaluate across five LLM judges (GPT-4o, Claude Sonnet 4, Gemini 2.5 Pro, Llama-3.3-70B, Qwen3-32B) on four benchmarks: (1) SOS-Bench—measuring whether debiased scores better correlate with objective correctness on constituent benchmarks (IFEval, MMLU-Pro, GPQA) rather than style; (2) LLMBar adversarial set—measuring whether debiased judges resist choosing wrong-but-polished over correct-but-plain responses; (3) RewardBench—domain-specific analysis across chat-hard, safety, and reasoning subsets; (4) RubricBench—1,147 pairwise comparisons with expert-annotated atomic rubrics targeting misleading surface bias. We additionally conduct a 200-response pilot human annotation study with separate 5-point Likert scales for content quality and presentation quality, providing direct validation that debiased scores correlate with content ratings while discounting presentation ratings. Baselines: FairJudge-8B, Length-Controlled AlpacaEval regression, Bias-Bounded Evaluation, raw (undebiased) judges, and a 'format normalization' baseline that strips all markdown before judging.
+
+## Resource Estimate
+{'manual': {'gpu_hours': '100–140 A100-80GB hours (style counterfactual generation with Qwen3-32B: 6 rewrites/response × ~2K responses ≈ 30h; content verification BERTScore/NLI: 3h; open-source judge inference: 25h; DML estimation and ablations: 5h; amortized model training: 2h; iteration buffer: 35–75h)', 'timeline': '12–14 weeks', 'estimated_gpu_cost': '$250–350 (A100 spot ~$2.50/hr) + $200–350 commercial judge API costs (GPT-4o, Claude Sonnet 4, Gemini 2.5 Pro) + $100–150 GPT-4o-mini content verification + $800–1200 pilot annotation study (200 responses × 3 annotators)'}, 'human_in_loop': {'gpu_hours': '100–140 A100-80GB hours', 'timeline': '9–11 weeks', 'claude_api_cost': '$150–300 (Sonnet 4.6 at $3/$15 per MTok for prompt engineering, counterfactual quality analysis, DML specification, ablation design, and paper drafting)', 'estimated_gpu_cost': '$250–350 + $200–350 commercial judge API + $100–150 GPT-4o-mini + $800–1200 annotation study'}, 'auto_research': {'gpu_hours': '150–220 A100-80GB hours (additional ablations: linear vs. DML vs. nonparametric, ISE comparison, α sensitivity sweeps, domain-conditional analysis, amortized predictor architectures)', 'timeline': '5–7 weeks', 'claude_api_cost': '$500–750 (Sonnet 4.6 for experiment orchestration, automated counterfactual quality filtering, DML cross-fitting, statistical analysis, and full paper drafting)', 'estimated_gpu_cost': '$375–550 + $300–450 commercial judge API + $150–200 GPT-4o-mini + $800–1200 annotation study', 'speed_bottleneck': 'Sequential dependency chain: style counterfactual generation → content-preservation validation (including human spot-checks) → judge scoring → DML estimation; human annotation study runs in parallel but requires ~2 weeks for annotator recruitment and completion'}}
+
+## Inspired By
+Field guide finding: 'Style bias is the dominant bias (0.76–0.92) yet has received minimal research attention'; SOS-Bench limitation that it documents but doesn't solve the problem; FairJudge's success at training-based debiasing motivating the question of whether a model-agnostic alternative exists; RATE's double-rewrite correction as a principled solution to imperfect-counterfactual bias; DML/partially-linear models as the standard tool for flexible causal decomposition with interpretable treatment coefficients; CASSE's finding that style features are entangled motivating legitimacy-aware correction.
+
+## Target Venues
+- AAAI 2027 (abstract: July 21, full paper: July 28, 2026 — primary target, 10 weeks)
+- ICLR 2027 (estimated deadline: September 24, 2026 — comfortable 18-week runway)
+- ARR October 2026 cycle (estimated deadline: October 15, 2026 — tertiary option, 21-week runway)
+
+## Key References
+- Style Outweighs Substance: Failure Modes of LLM Judges in Alignment Benchmarking (ICLR 2025)
+- Preference Leakage: A Contamination Problem in LLM-as-a-judge (ICLR 2026)
+- FairJudge: An Adaptive, Debiased, and Consistent LLM-as-a-Judge (arXiv 2602.06625, Feb 2026)
+- Judging the Judges: A Systematic Evaluation of Bias Mitigation Strategies in LLM-as-a-Judge Pipelines (arXiv 2026)
+- Toward Robust LLM-Based Judges: Taxonomic Bias Evaluation and Debiasing Optimization (arXiv 2026)
+- RATE: Causal Explainability of Reward Models with Imperfect Counterfactuals (ICML 2025)
+- Double/Debiased Machine Learning for Treatment and Structural Parameters (Chernozhukov et al., Econometrics Journal 2018)
+- Causal Inference for Human-Language Model Collaboration (Choi et al., NAACL 2024)
+- Adapting Text Embeddings for Causal Inference (Veitch, Sridhar & Blei, UAI 2020)
+- Causal Effects of Linguistic Properties (Pryzant et al., NAACL 2021)
+- A Concise Agent is Less Expert: Revealing Side Effects of Using Style Features on Conversational Agents (CASSE, arXiv 2601.10809, Jan 2026)
+- Counterfactual LLM-based Framework for Measuring Rhetorical Style (arXiv 2025)
+- Length-Controlled AlpacaEval: A Simple Way to Debias Automatic Evaluators (ICLR 2025)
+- Any Large Language Model Can Be a Reliable Judge: Debiasing with a Reasoning-based Bias Detector (NeurIPS 2025)
+- Towards Provably Unbiased LLM Judges via Bias-Bounded Evaluation (arXiv 2026)
+- CausalPFN: Amortized Causal Effect Estimation via In-Context Learning (NeurIPS 2025)
+- RubricBench: Aligning Model-Generated Rubrics with Human Standards (arXiv 2603.01562, March 2026)
+- Estimating Causal Effects of Text Interventions Leveraging LLMs (Findings of AACL-IJCNLP 2025)
+- Causal Effect Estimation with Latent Textual Treatments (arXiv 2026)
+- How to Make Causal Inferences Using Texts (Egami et al., Science Advances 2022)
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "8d59aeed-9297-4c90-b23c-11a89b0323ff",
+  "type": "user",
+  "uuid": "fe628fa8-1e0c-4de6-b181-c9bf5d058f40",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cec9e6bb-8ddf-469a-af52-bb35246f2388",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-20T03:32:22.398Z_
+
+```json
+{
+  "parentUuid": "fe628fa8-1e0c-4de6-b181-c9bf5d058f40",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "65336450-0fde-4a7b-9a14-ac995dbf8de1",
+  "timestamp": "2026-05-20T03:32:22.398Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cec9e6bb-8ddf-469a-af52-bb35246f2388",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-20T03:32:22.398Z_
+
+```json
+{
+  "parentUuid": "65336450-0fde-4a7b-9a14-ac995dbf8de1",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "9e6bc589-8cca-4b97-8dd8-4a1458926906",
+  "timestamp": "2026-05-20T03:32:22.398Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cec9e6bb-8ddf-469a-af52-bb35246f2388",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Causal Style Decomposition for LLM Judge Debiasing via Doubly-Robust Counterfactual Estimation  ## Description S…",
+  "leafUuid": "9e6bc589-8cca-4b97-8dd8-4a1458926906",
+  "sessionId": "cec9e6bb-8ddf-469a-af52-bb35246f2388"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Causal style decomposition for LLM judge debiasing",
+  "sessionId": "cec9e6bb-8ddf-469a-af52-bb35246f2388"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-20T03:32:27.120Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to evaluate a research proposal for its idea quality, following the specific rubric provided. I need to:
+
+1. First, do web searches to understand the current landscape
+2. Answer the Trivial Alternative and Premise Assumption checks
+3. Score on 3 dimensions (Novelty, Significance, Related Work)
+4. Estimate acceptance probability
+
+Let me start by searching for the key related works and the current state of the field.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9e6bc589-8cca-4b97-8dd8-4a1458926906",
+  "isSidechain": false,
+  "requestId": "req_011CbD7gjUhfHUaX6KLXBLn4",
+  "type": "assistant",
+  "uuid": "024e799e-bc41-48ac-a58e-b970be0bd3a6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cec9e6bb-8ddf-469a-af52-bb35246f2388",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RoMQRqGfo9hxuYKMP5xutz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 6119,
+      "cache_read_input_tokens": 13985,
+      "output_tokens": 217,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6119,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 217,
+          "cache_read_input_tokens": 13985,
+          "cache_creation_input_tokens": 6119,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6119
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-20T03:32:28.148Z_
+
+I need to conduct thorough literature research before evaluating this proposal. Let me search for the key related works and field landscape.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "024e799e-bc41-48ac-a58e-b970be0bd3a6",
+  "isSidechain": false,
+  "requestId": "req_011CbD7gjUhfHUaX6KLXBLn4",
+  "type": "assistant",
+  "uuid": "82b61acf-7f15-4189-8776-be8b135e58b1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cec9e6bb-8ddf-469a-af52-bb35246f2388",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RoMQRqGfo9hxuYKMP5xutz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 6119,
+      "cache_read_input_tokens": 13985,
+      "output_tokens": 217,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6119,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 217,
+          "cache_read_input_tokens": 13985,
+          "cache_creation_input_tokens": 6119,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6119
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-20T03:32:28.325Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_017ife74JECVHmacJ55dF2q4`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "82b61acf-7f15-4189-8776-be8b135e58b1",
+  "isSidechain": false,
+  "requestId": "req_011CbD7gjUhfHUaX6KLXBLn4",
+  "type": "assistant",
+  "uuid": "ae3d801c-e0de-4892-951c-fc81d38e44fe",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cec9e6bb-8ddf-469a-af52-bb35246f2388",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RoMQRqGfo9hxuYKMP5xutz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 6119,
+      "cache_read_input_tokens": 13985,
+      "output_tokens": 217,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6119,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 217,
+          "cache_read_input_tokens": 13985,
+          "cache_creation_input_tokens": 6119,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6119
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-20T03:32:28.332Z_
+
+<details><summary>↩ Tool result · `toolu_017ife74JECVHmacJ55dF2q4`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ae3d801c-e0de-4892-951c-fc81d38e44fe",
+  "isSidechain": false,
+  "promptId": "8d59aeed-9297-4c90-b23c-11a89b0323ff",
+  "type": "user",
+  "uuid": "22782750-2ba0-49b4-b3dd-9e3aac57c850",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "ae3d801c-e0de-4892-951c-fc81d38e44fe",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cec9e6bb-8ddf-469a-af52-bb35246f2388",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-20T03:32:31.159Z_
+
+Now let me conduct the required literature searches in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "22782750-2ba0-49b4-b3dd-9e3aac57c850",
+  "isSidechain": false,
+  "requestId": "req_011CbD7hBUPTKrzUNJApeERy",
+  "type": "assistant",
+  "uuid": "3a8171fc-4885-42d3-965b-5e4430bd06fd",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cec9e6bb-8ddf-469a-af52-bb35246f2388",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EDgpv7Yv478R2NQBxLAnLM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 744,
+      "cache_read_input_tokens": 20104,
+      "output_tokens": 313,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 744,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 313,
+          "cache_read_input_tokens": 20104,
+          "cache_creation_input_tokens": 744,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 744
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-20T03:32:32.331Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GjepQEDc7NRbWUXeuymS1a`</summary>
+
+```json
+{
+  "query": "FairJudge LLM debiasing style bias arXiv 2602.06625 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3a8171fc-4885-42d3-965b-5e4430bd06fd",
+  "isSidechain": false,
+  "requestId": "req_011CbD7hBUPTKrzUNJApeERy",
+  "type": "assistant",
+  "uuid": "45f6819d-6894-42c9-ae69-c6f389772668",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cec9e6bb-8ddf-469a-af52-bb35246f2388",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EDgpv7Yv478R2NQBxLAnLM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 744,
+      "cache_read_input_tokens": 20104,
+      "output_tokens": 313,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 744,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 313,
+          "cache_read_input_tokens": 20104,
+          "cache_creation_input_tokens": 744,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 744
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-20T03:32:32.627Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01D28VM8ktmcskhahefGPY3o`</summary>
+
+```json
+{
+  "query": "SOS-Bench style over substance LLM judges ICLR 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "45f6819d-6894-42c9-ae69-c6f389772668",
+  "isSidechain": false,
+  "requestId": "req_011CbD7hBUPTKrzUNJApeERy",
+  "type": "assistant",
+  "uuid": "4d7bbf9d-f597-4108-a386-5a1c652dbb3f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cec9e6bb-8ddf-469a-af52-bb35246f2388",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EDgpv7Yv478R2NQBxLAnLM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 744,
+      "cache_read_input_tokens": 20104,
+      "output_tokens": 313,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 744,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 313,
+          "cache_read_input_tokens": 20104,
+          "cache_creation_input_tokens": 744,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 744
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-20T03:32:33.103Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01EutsVTtrwnugSmytdmyj76`</summary>
+
+```json
+{
+  "query": "RATE causal explainability reward models imperfect counterfactuals ICML 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4d7bbf9d-f597-4108-a386-5a1c652dbb3f",
+  "isSidechain": false,
+  "requestId": "req_011CbD7hBUPTKrzUNJApeERy",
+  "type": "assistant",
+  "uuid": "297e621b-2da9-4740-8c18-eeb03ba7ce5a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cec9e6bb-8ddf-469a-af52-bb35246f2388",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EDgpv7Yv478R2NQBxLAnLM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 744,
+      "cache_read_input_tokens": 20104,
+      "output_tokens": 313,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 744,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 313,
+          "cache_read_input_tokens": 20104,
+          "cache_creation_input_tokens": 744,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 744
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-20T03:32:34.135Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JK2SxFvXPf7t799ieBeqq4`</summary>
+
+```json
+{
+  "query": "LLM judge style bias debiasing causal counterfactual 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "297e621b-2da9-4740-8c18-eeb03ba7ce5a",
+  "isSidechain": false,
+  "requestId": "req_011CbD7hBUPTKrzUNJApeERy",
+  "type": "assistant",
+  "uuid": "3cb76cee-d43a-4d19-a22c-29d01cae9739",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cec9e6bb-8ddf-469a-af52-bb35246f2388",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EDgpv7Yv478R2NQBxLAnLM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 744,
+      "cache_read_input_tokens": 20104,
+      "output_tokens": 313,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 744,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 313,
+          "cache_read_input_tokens": 20104,
+          "cache_creation_input_tokens": 744,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 744
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-20T03:32:34.411Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015s4Mc1F1kZGqnpQ11n2bRY`</summary>
+
+```json
+{
+  "query": "Length-Controlled AlpacaEval debiasing ICLR 2025 post-hoc regression"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3cb76cee-d43a-4d19-a22c-29d01cae9739",
+  "isSidechain": false,
+  "requestId": "req_011CbD7hBUPTKrzUNJApeERy",
+  "type": "assistant",
+  "uuid": "fcc226a8-b2f3-4e34-a93c-7d4781e2bf83",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cec9e6bb-8ddf-469a-af52-bb35246f2388",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EDgpv7Yv478R2NQBxLAnLM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 744,
+      "cache_read_input_tokens": 20104,
+      "output_tokens": 313,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 744,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 313,
+          "cache_read_input_tokens": 20104,
+          "cache_creation_input_tokens": 744,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 744
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-20T03:32:38.786Z_
+
+<details><summary>↩ Tool result · `toolu_01EutsVTtrwnugSmytdmyj76`</summary>
+
+```text
+Web search results for query: "RATE causal explainability reward models imperfect counterfactuals ICML 2025"
+
+Links: [{"title":"RATE: Causal Explainability of Reward Models with Imperfect Counterfactuals | OpenReview","url":"https://openreview.net/forum?id=rL3uxe5a0c"},{"title":"[2410.11348] RATE: Causal Explainability of Reward Models with Imperfect Counterfactuals","url":"https://arxiv.org/abs/2410.11348"},{"title":"RATE: Causal Explainability of Reward Models with Imperfect Counterfactuals","url":"https://arxiv.org/pdf/2410.11348"},{"title":"RATE: Causal Explainability of Reward Models with Imperfect Counterfactuals","url":"https://proceedings.mlr.press/v267/reber25a.html"},{"title":"ICML Poster RATE: Causal Explainability of Reward Models with Imperfect Counterfactuals","url":"https://icml.cc/virtual/2025/poster/43898"},{"title":"RATE: Causal Explainability of Reward Models with Imperfect Counterfactuals","url":"https://arxiv.org/html/2410.11348"}]
+
+I found several results about RATE, a paper accepted to ICML 2025. Here's what I found:
+
+## Overview
+
+RATE (Rewrite-based Attribute Treatment Estimator) is an effective method for measuring the sensitivity of a reward model to high-level attributes of responses, such as sentiment, helpfulness, or complexity. RATE measures the causal effect of an attribute on the reward.
+
+## The Core Challenge and Solution
+
+RATE uses LLMs to rewrite responses to produce imperfect counterfactual examples that can be used to measure causal effects. However, these rewrites are imperfect in a manner that can induce substantial bias in the estimated sensitivity of the reward model to the attribute.
+
+The core idea of RATE is to adjust for this imperfect-rewrite effect by rewriting twice. The validity of the RATE procedure has been established and it is shown to be an effective estimator.
+
+## Motivation
+
+Reward models are widely used as proxies for human preferences when aligning or evaluating LLMs, but reward models are black boxes, and it is often unclear what, exactly, they are actually rewarding.
+
+The paper was published at the 42nd International Conference on Machine Learning, with proceedings in PMLR 267:51341-51368, 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "297e621b-2da9-4740-8c18-eeb03ba7ce5a",
+  "isSidechain": false,
+  "promptId": "8d59aeed-9297-4c90-b23c-11a89b0323ff",
+  "type": "user",
+  "uuid": "4ee53bce-7d8b-461d-93e0-77a22d3896e8",
+  "toolUseResult": {
+    "query": "RATE causal explainability reward models imperfect counterfactuals ICML 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017aBW4DXUmNLVfe1VRCZ6Un",
+        "content": [
+          {
+            "title": "RATE: Causal Explainability of Reward Models with Imperfect Counterfactuals | OpenReview",
+            "url": "https://openreview.net/forum?id=rL3uxe5a0c"
+          },
+          {
+            "title": "[2410.11348] RATE: Causal Explainability of Reward Models with Imperfect Counterfactuals",
+            "url": "https://arxiv.org/abs/2410.11348"
+          },
+          {
+            "title": "RATE: Causal Explainability of Reward Models with Imperfect Counterfactuals",
+            "url": "https://arxiv.org/pdf/2410.11348"
+          },
+          {
+            "title": "RATE: Causal Explainability of Reward Models with Imperfect Counterfactuals",
+            "url": "https://proceedings.mlr.press/v267/reber25a.html"
+          },
+          {
+            "title": "ICML Poster RATE: Causal Explainability of Reward Models with Imperfect Counterfactuals",
+            "url": "https://icml.cc/virtual/2025/poster/43898"
+          },
+          {
+            "title": "RATE: Causal Explainability of Reward Models with Imperfect Counterfactuals",
+            "url": "https://arxiv.org/html/2410.11348"
+          }
+        ]
+      },
+      "I found several results about RATE, a paper accepted to ICML 2025. Here's what I found:\n\n## Overview\n\nRATE (Rewrite-based Attribute Treatment Estimator) is an effective method for measuring the sensitivity of a reward model to high-level attributes of responses, such as sentiment, helpfulness, or complexity. RATE measures the causal effect of an attribute on the reward.\n\n## The Core Challenge and Solution\n\nRATE uses LLMs to rewrite responses to produce imperfect counterfactual examples that can be used to measure causal effects. However, these rewrites are imperfect in a manner that can induce substantial bias in the estimated sensitivity of the reward model to the attribute.\n\nThe core idea of RATE is to adjust for this imperfect-rewrite effect by rewriting twice. The validity of the RATE procedure has been established and it is shown to be an effective estimator.\n\n## Motivation\n\nReward models are widely used as proxies for human preferences when aligning or evaluating LLMs, but reward models are black boxes, and it is often unclear what, exactly, they are actually rewarding.\n\nThe paper was published at the 42nd International Conference on Machine Learning, with proceedings in PMLR 267:51341-51368, 2025."
+    ],
+    "durationSeconds": 5.661753491000002,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "297e621b-2da9-4740-8c18-eeb03ba7ce5a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cec9e6bb-8ddf-469a-af52-bb35246f2388",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-20T03:32:39.396Z_
+
+<details><summary>↩ Tool result · `toolu_01D28VM8ktmcskhahefGPY3o`</summary>
+
+```text
+Web search results for query: "SOS-Bench style over substance LLM judges ICLR 2025"
+
+Links: [{"title":"[Literature Review] Style Outweighs Substance: Failure Modes of LLM Judges in Alignment Benchmarking","url":"https://www.themoonlight.io/en/review/style-outweighs-substance-failure-modes-of-llm-judges-in-alignment-benchmarking"},{"title":"(PDF) Style over Substance: Failure Modes of LLM Judges in Alignment Benchmarking","url":"https://www.researchgate.net/publication/384288829_Style_over_Substance_Failure_Modes_of_LLM_Judges_in_Alignment_Benchmarking"},{"title":"ICLR Poster Style Outweighs Substance: Failure Modes of LLM Judges in Alignment Benchmarking","url":"https://iclr.cc/virtual/2025/poster/29906"},{"title":"[Quick Review] Style Outweighs Substance: Failure Modes of LLM Judges in Alignment Benchmarking","url":"https://liner.com/review/style-outweighs-substance-failure-modes-of-llm-judges-in-alignment"},{"title":"Style Outweighs Substance: Failure Modes of LLM Judges in Alignment Benchmarking | OpenReview","url":"https://openreview.net/forum?id=MzHNftnAM1"},{"title":"Style Outweighs Substance: Failure Modes of LLM Judges in Alignment   Benchmarking","url":"https://arxiv.org/pdf/2409.15268"},{"title":"Style Outweighs Substance: Failure Modes of LLM Judges in Alignment Benchmarking","url":"https://arxiv.org/html/2409.15268v3"},{"title":"[2409.15268] Style Outweighs Substance: Failure Modes of LLM Judges in Alignment Benchmarking","url":"https://arxiv.org/abs/2409.15268"},{"title":"Style over Substance: Failure Modes of LLM Judges in Alignment Benchmarking","url":"https://arxiv.org/html/2409.15268v1"},{"title":"Paper page - Style over Substance: Failure Modes of LLM Judges in Alignment Benchmarking","url":"https://huggingface.co/papers/2409.15268"}]
+
+I found relevant information about this research. Here's what the search revealed:
+
+## Overview
+
+The paper "Style Outweighs Substance: Failure Modes of LLM Judges in Alignment Benchmarking" was presented at ICLR in 2025, written by Benjamin Feuer and colleagues.
+
+## Key Findings
+
+The research found that (1) LLM-judge preferences do not correlate with concrete measures of safety, world knowledge, and instruction following; (2) LLM-judges have powerful implicit biases, prioritizing style over factuality and safety; and (3) the supervised fine-tuning (SFT) stage of post-training has a large impact on alignment, with data scaling and prompt diversity as the driving factors.
+
+## SOS-Bench
+
+The researchers introduced SOS-Bench (Substance Outweighs Style Benchmark), the largest standardized, reproducible LLM meta-benchmark to date. SOS-Bench combines 19 existing world knowledge, instruction following, and safety benchmarks for a holistic view of model performance.
+
+## Scale and Scope
+
+The study tested models on 152,380 data points; to the best of their knowledge, this is almost 7x larger than the largest previous open source LLM benchmark which end users can run themselves, HuggingFace's OpenLLM Leaderboard 2.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4d7bbf9d-f597-4108-a386-5a1c652dbb3f",
+  "isSidechain": false,
+  "promptId": "8d59aeed-9297-4c90-b23c-11a89b0323ff",
+  "type": "user",
+  "uuid": "26297e34-90eb-4033-9020-fa6af4512e36",
+  "toolUseResult": {
+    "query": "SOS-Bench style over substance LLM judges ICLR 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Hd1yNfFU31K5BgzNDShTxW",
+        "content": [
+          {
+            "title": "[Literature Review] Style Outweighs Substance: Failure Modes of LLM Judges in Alignment Benchmarking",
+            "url": "https://www.themoonlight.io/en/review/style-outweighs-substance-failure-modes-of-llm-judges-in-alignment-benchmarking"
+          },
+          {
+            "title": "(PDF) Style over Substance: Failure Modes of LLM Judges in Alignment Benchmarking",
+            "url": "https://www.researchgate.net/publication/384288829_Style_over_Substance_Failure_Modes_of_LLM_Judges_in_Alignment_Benchmarking"
+          },
+          {
+            "title": "ICLR Poster Style Outweighs Substance: Failure Modes of LLM Judges in Alignment Benchmarking",
+            "url": "https://iclr.cc/virtual/2025/poster/29906"
+          },
+          {
+            "title": "[Quick Review] Style Outweighs Substance: Failure Modes of LLM Judges in Alignment Benchmarking",
+            "url": "https://liner.com/review/style-outweighs-substance-failure-modes-of-llm-judges-in-alignment"
+          },
+          {
+            "title": "Style Outweighs Substance: Failure Modes of LLM Judges in Alignment Benchmarking | OpenReview",
+            "url": "https://openreview.net/forum?id=MzHNftnAM1"
+          },
+          {
+            "title": "Style Outweighs Substance: Failure Modes of LLM Judges in Alignment   Benchmarking",
+            "url": "https://arxiv.org/pdf/2409.15268"
+          },
+          {
+            "title": "Style Outweighs Substance: Failure Modes of LLM Judges in Alignment Benchmarking",
+            "url": "https://arxiv.org/html/2409.15268v3"
+          },
+          {
+            "title": "[2409.15268] Style Outweighs Substance: Failure Modes of LLM Judges in Alignment Benchmarking",
+            "url": "https://arxiv.org/abs/2409.15268"
+          },
+          {
+            "title": "Style over Substance: Failure Modes of LLM Judges in Alignment Benchmarking",
+            "url": "https://arxiv.org/html/2409.15268v1"
+          },
+          {
+            "title": "Paper page - Style over Substance: Failure Modes of LLM Judges in Alignment Benchmarking",
+            "url": "https://huggingface.co/papers/2409.15268"
+          }
+        ]
+      },
+      "I found relevant information about this research. Here's what the search revealed:\n\n## Overview\n\nThe paper \"Style Outweighs Substance: Failure Modes of LLM Judges in Alignment Benchmarking\" was presented at ICLR in 2025, written by Benjamin Feuer and colleagues.\n\n## Key Findings\n\nThe research found that (1) LLM-judge preferences do not correlate with concrete measures of safety, world knowledge, and instruction following; (2) LLM-judges have powerful implicit biases, prioritizing style over factuality and safety; and (3) the supervised fine-tuning (SFT) stage of post-training has a large impact on alignment, with data scaling and prompt diversity as the driving factors.\n\n## SOS-Bench\n\nThe researchers introduced SOS-Bench (Substance Outweighs Style Benchmark), the largest standardized, reproducible LLM meta-benchmark to date. SOS-Bench combines 19 existing world knowledge, instruction following, and safety benchmarks for a holistic view of model performance.\n\n## Scale and Scope\n\nThe study tested models on 152,380 data points; to the best of their knowledge, this is almost 7x larger than the largest previous open source LLM benchmark which end users can run themselves, HuggingFace's OpenLLM Leaderboard 2."
+    ],
+    "durationSeconds": 6.766606539999999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "4d7bbf9d-f597-4108-a386-5a1c652dbb3f",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cec9e6bb-8ddf-469a-af52-bb35246f2388",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-20T03:32:40.110Z_
+
+<details><summary>↩ Tool result · `toolu_01GjepQEDc7NRbWUXeuymS1a`</summary>
+
+```text
+Web search results for query: "FairJudge LLM debiasing style bias arXiv 2602.06625 2026"
+
+Links: [{"title":"[2602.06625] FairJudge: An Adaptive, Debiased, and Consistent LLM-as-a-Judge","url":"https://arxiv.org/abs/2602.06625"},{"title":"FairJudge: An Adaptive, Debiased, and Consistent LLM-as-a-Judge","url":"https://arxiv.org/pdf/2602.06625"},{"title":"FairJudge: An Adaptive, Debiased, and Consistent LLM-as-a-Judge","url":"https://arxiv.org/html/2602.06625"},{"title":"FairJudge: MLLM Judging for Social-Attributes and Prompt–Image Alignment","url":"https://arxiv.org/html/2510.22827v1/"},{"title":"Debiasing LLMs by Masking Unfairness-Driving Attention Heads","url":"https://arxiv.org/pdf/2510.10142"},{"title":"[2604.23178] Judging the Judges: A Systematic Evaluation of Bias Mitigation Strategies in LLM-as-a-Judge Pipelines","url":"https://arxiv.org/abs/2604.23178"}]
+
+Based on the search results, I found the paper you're looking for. Here's the information about FairJudge (arXiv 2602.06625):
+
+FairJudge is an adaptive, debiased, and consistent LLM-as-a-Judge system created by researchers at Zhejiang University. 
+
+The paper addresses three fundamental limitations in existing LLM-as-a-Judge systems: limited adaptivity to task- and domain-specific evaluation criteria, systematic biases driven by non-semantic cues such as position, length, format, and model provenance, and evaluation inconsistency that leads to contradictory judgments across different evaluation modes.
+
+Unlike prior approaches that treat the judge as a static evaluator, FairJudge models judging behavior itself as a learnable and regularized policy. The approach constructs a high-information-density judging dataset with explicit supervision signals aligned with evaluation behavior, and adopts a curriculum-style SFT-DPO-GRPO training paradigm that progressively aligns rubric adherence, bias mitigation, and cross-mode consistency.
+
+To address non-semantic biases, FairJudge introduces systematic contrastive constructions by perturbing evaluation inputs along non-semantic dimensions such as answer order, length, formatting, reasoning style, and teacher model provenance, allowing debiasing to be learned as a behavioral property.
+
+The paper was published on February 6, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "45f6819d-6894-42c9-ae69-c6f389772668",
+  "isSidechain": false,
+  "promptId": "8d59aeed-9297-4c90-b23c-11a89b0323ff",
+  "type": "user",
+  "uuid": "ad49e749-4a5b-4277-bc64-b120fa32c94a",
+  "toolUseResult": {
+    "query": "FairJudge LLM debiasing style bias arXiv 2602.06625 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01AKCTbmPX66iX2Si7hqATDo",
+        "content": [
+          {
+            "title": "[2602.06625] FairJudge: An Adaptive, Debiased, and Consistent LLM-as-a-Judge",
+            "url": "https://arxiv.org/abs/2602.06625"
+          },
+          {
+            "title": "FairJudge: An Adaptive, Debiased, and Consistent LLM-as-a-Judge",
+            "url": "https://arxiv.org/pdf/2602.06625"
+          },
+          {
+            "title": "FairJudge: An Adaptive, Debiased, and Consistent LLM-as-a-Judge",
+            "url": "https://arxiv.org/html/2602.06625"
+          },
+          {
+            "title": "FairJudge: MLLM Judging for Social-Attributes and Prompt–Image Alignment",
+            "url": "https://arxiv.org/html/2510.22827v1/"
+          },
+          {
+            "title": "Debiasing LLMs by Masking Unfairness-Driving Attention Heads",
+            "url": "https://arxiv.org/pdf/2510.10142"
+          },
+          {
+            "title": "[2604.23178] Judging the Judges: A Systematic Evaluation of Bias Mitigation Strategies in LLM-as-a-Judge Pipelines",
+            "url": "https://arxiv.org/abs/2604.23178"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for. Here's the information about FairJudge (arXiv 2602.06625):\n\nFairJudge is an adaptive, debiased, and consistent LLM-as-a-Judge system created by researchers at Zhejiang University. \n\nThe paper addresses three fundamental limitations in existing LLM-as-a-Judge systems: limited adaptivity to task- and domain-specific evaluation criteria, systematic biases driven by non-semantic cues such as position, length, format, and model provenance, and evaluation inconsistency that leads to contradictory judgments across different evaluation modes.\n\nUnlike prior approaches that treat the judge as a static evaluator, FairJudge models judging behavior itself as a learnable and regularized policy. The approach constructs a high-information-density judging dataset with explicit supervision signals aligned with evaluation behavior, and adopts a curriculum-style SFT-DPO-GRPO training paradigm that progressively aligns rubric adherence, bias mitigation, and cross-mode consistency.\n\nTo address non-semantic biases, FairJudge introduces systematic contrastive constructions by perturbing evaluation inputs along non-semantic dimensions such as answer order, length, formatting, reasoning style, and teacher model provenance, allowing debiasing to be learned as a behavioral property.\n\nThe paper was published on February 6, 2026."
+    ],
+    "durationSeconds": 7.7749817949999995,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "45f6819d-6894-42c9-ae69-c6f389772668",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cec9e6bb-8ddf-469a-af52-bb35246f2388",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-20T03:32:41.378Z_
+
+<details><summary>↩ Tool result · `toolu_015s4Mc1F1kZGqnpQ11n2bRY`</summary>
+
+```text
+Web search results for query: "Length-Controlled AlpacaEval debiasing ICLR 2025 post-hoc regression"
+
+Links: [{"title":"Published as a conference paper at ICLR 2025","url":"https://arxiv.org/pdf/2410.04203"},{"title":"Post-Hoc Reward Calibration: A Case Study on Length Bias","url":"https://iclr.cc/media/iclr-2025/Slides/30144.pdf"},{"title":"Length-Controlled AlpacaEval: A Simple Way to Debias Automatic   Evaluators","url":"https://arxiv.org/pdf/2404.04475"},{"title":"Length-Controlled AlpacaEval: A Simple Way to Debias Automatic Evaluators","url":"https://arxiv.org/html/2404.04475v2"},{"title":"[2404.04475] Length-Controlled AlpacaEval: A Simple Way to Debias Automatic Evaluators","url":"https://arxiv.org/abs/2404.04475"},{"title":"Length-Controlled AlpacaEval - A Simple Way to Debias Automatic Evaluators","url":"https://hyunyoung2.github.io/2024/07/20/alpacaEval2/"},{"title":"Published as a conference paper at COLM 2024 Length-Controlled AlpacaEval:","url":"https://openreview.net/pdf/76a4afefba676b543f4c4ca61529f92e828e171f.pdf"}]
+
+Based on the search results, here's what I found about Length-Controlled AlpacaEval debiasing:
+
+## Overview
+
+The approach proposes a simple, interpretable debiasing strategy for automated evaluation metrics based on regression-based adjustments for observational causal inference, viewing spurious correlates like response length as undesirable mediators in a causal graph.
+
+## Key Method
+
+For each model, a logistic regression is fit to predict the preference of the auto-annotator given the instruction, the model, and the difference of length between baseline and model output, then used to predict the counterfactual "what would the preference be if the model's output had the same length as the baseline" by setting the length difference to 0.
+
+## Results and Impact
+
+Length controlled win-rates increase the correlation between AlpacaEval's leaderboard and Chat Arena from 0.93 to 0.98 Spearman correlation, while significantly decreasing the length gameability. Additionally, it is significantly more robust to gaming the evaluation by increasing the verbosity of the output.
+
+## ICLR 2025 Connection
+
+The search results indicate that Length Controlled (LC) Win Rate is a debiased version of AlpacaEval2 that controls for the length of outputs and increases correlation to Chat Arena. There is also a related ICLR 2025 paper on "Post-Hoc Reward Calibration: A Case Study on Length Bias" that applies similar debiasing concepts to reward models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fcc226a8-b2f3-4e34-a93c-7d4781e2bf83",
+  "isSidechain": false,
+  "promptId": "8d59aeed-9297-4c90-b23c-11a89b0323ff",
+  "type": "user",
+  "uuid": "4a3e67b4-00fb-4e5c-9335-662502b0f699",
+  "toolUseResult": {
+    "query": "Length-Controlled AlpacaEval debiasing ICLR 2025 post-hoc regression",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01PE5YWV8JK5w2bDRjn24yew",
+        "content": [
+          {
+            "title": "Published as a conference paper at ICLR 2025",
+            "url": "https://arxiv.org/pdf/2410.04203"
+          },
+          {
+            "title": "Post-Hoc Reward Calibration: A Case Study on Length Bias",
+            "url": "https://iclr.cc/media/iclr-2025/Slides/30144.pdf"
+          },
+          {
+            "title": "Length-Controlled AlpacaEval: A Simple Way to Debias Automatic   Evaluators",
+            "url": "https://arxiv.org/pdf/2404.04475"
+          },
+          {
+            "title": "Length-Controlled AlpacaEval: A Simple Way to Debias Automatic Evaluators",
+            "url": "https://arxiv.org/html/2404.04475v2"
+          },
+          {
+            "title": "[2404.04475] Length-Controlled AlpacaEval: A Simple Way to Debias Automatic Evaluators",
+            "url": "https://arxiv.org/abs/2404.04475"
+          },
+          {
+            "title": "Length-Controlled AlpacaEval - A Simple Way to Debias Automatic Evaluators",
+            "url": "https://hyunyoung2.github.io/2024/07/20/alpacaEval2/"
+          },
+          {
+            "title": "Published as a conference paper at COLM 2024 Length-Controlled AlpacaEval:",
+            "url": "https://openreview.net/pdf/76a4afefba676b543f4c4ca61529f92e828e171f.pdf"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about Length-Controlled AlpacaEval debiasing:\n\n## Overview\n\nThe approach proposes a simple, interpretable debiasing strategy for automated evaluation metrics based on regression-based adjustments for observational causal inference, viewing spurious correlates like response length as undesirable mediators in a causal graph.\n\n## Key Method\n\nFor each model, a logistic regression is fit to predict the preference of the auto-annotator given the instruction, the model, and the difference of length between baseline and model output, then used to predict the counterfactual \"what would the preference be if the model's output had the same length as the baseline\" by setting the length difference to 0.\n\n## Results and Impact\n\nLength controlled win-rates increase the correlation between AlpacaEval's leaderboard and Chat Arena from 0.93 to 0.98 Spearman correlation, while significantly decreasing the length gameability. Additionally, it is significantly more robust to gaming the evaluation by increasing the verbosity of the output.\n\n## ICLR 2025 Connection\n\nThe search results indicate that Length Controlled (LC) Win Rate is a debiased version of AlpacaEval2 that controls for the length of outputs and increases correlation to Chat Arena. There is also a related ICLR 2025 paper on \"Post-Hoc Reward Calibration: A Case Study on Length Bias\" that applies similar debiasing concepts to reward models."
+    ],
+    "durationSeconds": 6.964157390999999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "fcc226a8-b2f3-4e34-a93c-7d4781e2bf83",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cec9e6bb-8ddf-469a-af52-bb35246f2388",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Causal Style Decomposition for LLM Judge Debiasing via Doubly-Robust Counterfactual Estimation  ## Description S…",
+  "leafUuid": "4a3e67b4-00fb-4e5c-9335-662502b0f699",
+  "sessionId": "cec9e6bb-8ddf-469a-af52-bb35246f2388"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Causal style decomposition for LLM judge debiasing",
+  "sessionId": "cec9e6bb-8ddf-469a-af52-bb35246f2388"
+}
+```
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-20T03:32:41.796Z_
+
+<details><summary>↩ Tool result · `toolu_01JK2SxFvXPf7t799ieBeqq4`</summary>
+
+```text
+Web search results for query: "LLM judge style bias debiasing causal counterfactual 2025 2026"
+
+Links: [{"title":"LLM-Based Judge Model","url":"https://www.emergentmind.com/topics/llm-based-judge-model"},{"title":"Any Large Language Model Can Be a Reliable Judge: Debiasing with a Reasoning-based Bias Detector | OpenReview","url":"https://openreview.net/forum?id=sLNz60fJFF"},{"title":"LLM-as-a-Judge: Why Frontier Models Fail 50%+ Bias Tests | Adaline","url":"https://www.adaline.ai/blog/llm-as-a-judge-reliability-bias"},{"title":"The Silent Judge: Unacknowledged Shortcut Bias in LLM-as-a-Judge","url":"https://arxiv.org/pdf/2509.26072"},{"title":"[2604.23178] Judging the Judges: A Systematic Evaluation of Bias Mitigation Strategies in LLM-as-a-Judge Pipelines","url":"https://arxiv.org/abs/2604.23178"},{"title":"Mitigating Biases of Large Language Models in Stance Detection with   Counterfactual Augmented Calibration","url":"https://arxiv.org/pdf/2402.14296"},{"title":"Judging the Judges: A Systematic Evaluation of Bias Mitigation Strategies in LLM-as-a-Judge Pipelines","url":"https://arxiv.org/html/2604.23178v1"}]
+
+I found several highly relevant recent sources on LLM judge bias and debiasing strategies from 2025-2026. Here's what the research shows:
+
+## Key Findings on LLM Judge Bias
+
+Style bias is the dominant bias (0.76–0.92 across all models), far exceeding position bias, which has received minimal attention despite being more prevalent than previously documented biases.
+
+Group fairness cannot be achieved by size, release date, or country of origin; explicit debiasing and counterfactual auditing are necessary. Additionally, current debiasing strategies (prompt augmentation, ensembling, counterfactual audits) are necessary but insufficient, particularly for domain- and language-general evaluation.
+
+## Recent Debiasing Approaches
+
+Two notable recent approaches include:
+
+1. **Reasoning-based Bias Detector (RBD)**: A plug-in module that identifies biased evaluations and generates structured reasoning to guide evaluator self-correction, operating externally through iterative bias detection and feedback-driven revision.
+
+2. **Causal and Counterfactual Methods**: Studies reveal consistent verdict shifts with both models exhibiting a strong recency bias and a clear provenance hierarchy (EXPERT > HUMAN > LLM > UNKNOWN) when superficial cues are manipulated.
+
+## Model-Dependent Debiasing Effects
+
+Debiasing is beneficial but model-dependent: the combined budget strategy significantly improves Claude Sonnet 4 by +11.2 pp, with directionally positive trends for other models.
+
+The research from 2025-2026 emphasizes that while debiasing strategies exist, their effectiveness varies significantly across models and requires careful evaluation.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3cb76cee-d43a-4d19-a22c-29d01cae9739",
+  "isSidechain": false,
+  "promptId": "8d59aeed-9297-4c90-b23c-11a89b0323ff",
+  "type": "user",
+  "uuid": "24ad2e4a-1281-4225-823c-67d1621a1f37",
+  "toolUseResult": {
+    "query": "LLM judge style bias debiasing causal counterfactual 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01UYajjfFdcNGkLmwXrjbR7q",
+        "content": [
+          {
+            "title": "LLM-Based Judge Model",
+            "url": "https://www.emergentmind.com/topics/llm-based-judge-model"
+          },
+          {
+            "title": "Any Large Language Model Can Be a Reliable Judge: Debiasing with a Reasoning-based Bias Detector | OpenReview",
+            "url": "https://openreview.net/forum?id=sLNz60fJFF"
+          },
+          {
+            "title": "LLM-as-a-Judge: Why Frontier Models Fail 50%+ Bias Tests | Adaline",
+            "url": "https://www.adaline.ai/blog/llm-as-a-judge-reliability-bias"
+          },
+          {
+            "title": "The Silent Judge: Unacknowledged Shortcut Bias in LLM-as-a-Judge",
+            "url": "https://arxiv.org/pdf/2509.26072"
+          },
+          {
+            "title": "[2604.23178] Judging the Judges: A Systematic Evaluation of Bias Mitigation Strategies in LLM-as-a-Judge Pipelines",
+            "url": "https://arxiv.org/abs/2604.23178"
+          },
+          {
+            "title": "Mitigating Biases of Large Language Models in Stance Detection with   Counterfactual Augmented Calibration",
+            "url": "https://arxiv.org/pdf/2402.14296"
+          },
+          {
+            "title": "Judging the Judges: A Systematic Evaluation of Bias Mitigation Strategies in LLM-as-a-Judge Pipelines",
+            "url": "https://arxiv.org/html/2604.23178v1"
+          }
+        ]
+      },
+      "I found several highly relevant recent sources on LLM judge bias and debiasing strategies from 2025-2026. Here's what the research shows:\n\n## Key Findings on LLM Judge Bias\n\nStyle bias is the dominant bias (0.76–0.92 across all models), far exceeding position bias, which has received minimal attention despite being more prevalent than previously documented biases.\n\nGroup fairness cannot be achieved by size, release date, or country of origin; explicit debiasing and counterfactual auditing are necessary. Additionally, current debiasing strategies (prompt augmentation, ensembling, counterfactual audits) are necessary but insufficient, particularly for domain- and language-general evaluation.\n\n## Recent Debiasing Approaches\n\nTwo notable recent approaches include:\n\n1. **Reasoning-based Bias Detector (RBD)**: A plug-in module that identifies biased evaluations and generates structured reasoning to guide evaluator self-correction, operating externally through iterative bias detection and feedback-driven revision.\n\n2. **Causal and Counterfactual Methods**: Studies reveal consistent verdict shifts with both models exhibiting a strong recency bias and a clear provenance hierarchy (EXPERT > HUMAN > LLM > UNKNOWN) when superficial cues are manipulated.\n\n## Model-Dependent Debiasing Effects\n\nDebiasing is beneficial but model-dependent: the combined budget strategy significantly improves Claude Sonnet 4 by +11.2 pp, with directionally positive trends for other models.\n\nThe research from 2025-2026 emphasizes that while debiasing strategies exist, their effectiveness varies significantly across models and requires careful evaluation."
+    ],
+    "durationSeconds": 7.654240987,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "3cb76cee-d43a-4d19-a22c-29d01cae9739",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cec9e6bb-8ddf-469a-af52-bb35246f2388",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25 · 2026-05-20T03:32:45.870Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I have initial results. Let me now search for more specific related works mentioned in the proposal, and check for any closely competing works.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "24ad2e4a-1281-4225-823c-67d1621a1f37",
+  "isSidechain": false,
+  "requestId": "req_011CbD7iAvvg4pPsthnXkV7P",
+  "type": "assistant",
+  "uuid": "aa489a14-50d1-46d1-b5d7-0568339f5004",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cec9e6bb-8ddf-469a-af52-bb35246f2388",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WF2TSpnBaMLyj2FjKokgC4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 776,
+      "cache_creation_input_tokens": 3477,
+      "cache_read_input_tokens": 20848,
+      "output_tokens": 297,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3477,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 776,
+          "output_tokens": 297,
+          "cache_read_input_tokens": 20848,
+          "cache_creation_input_tokens": 3477,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3477
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26 · 2026-05-20T03:32:47.121Z_
+
+Let me do additional targeted searches to verify key claims and check for competing works.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "aa489a14-50d1-46d1-b5d7-0568339f5004",
+  "isSidechain": false,
+  "requestId": "req_011CbD7iAvvg4pPsthnXkV7P",
+  "type": "assistant",
+  "uuid": "2cfce3d2-84a0-409e-bbf8-e96f5d55e03e",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cec9e6bb-8ddf-469a-af52-bb35246f2388",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WF2TSpnBaMLyj2FjKokgC4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 776,
+      "cache_creation_input_tokens": 3477,
+      "cache_read_input_tokens": 20848,
+      "output_tokens": 297,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3477,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 776,
+          "output_tokens": 297,
+          "cache_read_input_tokens": 20848,
+          "cache_creation_input_tokens": 3477,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3477
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-20T03:32:47.540Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VpdeHEgrN6R4aZFXSNkfJ6`</summary>
+
+```json
+{
+  "query": "Double Machine Learning DML text causal inference NLP treatment effects 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2cfce3d2-84a0-409e-bbf8-e96f5d55e03e",
+  "isSidechain": false,
+  "requestId": "req_011CbD7iAvvg4pPsthnXkV7P",
+  "type": "assistant",
+  "uuid": "23ab9636-f17d-45fd-bbb7-e99fafb67fad",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cec9e6bb-8ddf-469a-af52-bb35246f2388",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WF2TSpnBaMLyj2FjKokgC4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 776,
+      "cache_creation_input_tokens": 3477,
+      "cache_read_input_tokens": 20848,
+      "output_tokens": 297,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3477,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 776,
+          "output_tokens": 297,
+          "cache_read_input_tokens": 20848,
+          "cache_creation_input_tokens": 3477,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3477
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-20T03:32:48.400Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017wbAZ6KNjbaCyRKoYcymZX`</summary>
+
+```json
+{
+  "query": "\"Judging the Judges\" systematic evaluation bias mitigation LLM judge 2026 Soumik"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "23ab9636-f17d-45fd-bbb7-e99fafb67fad",
+  "isSidechain": false,
+  "requestId": "req_011CbD7iAvvg4pPsthnXkV7P",
+  "type": "assistant",
+  "uuid": "de0d35f5-8329-4a2a-bfe9-d01c359b98a7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cec9e6bb-8ddf-469a-af52-bb35246f2388",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WF2TSpnBaMLyj2FjKokgC4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 776,
+      "cache_creation_input_tokens": 3477,
+      "cache_read_input_tokens": 20848,
+      "output_tokens": 297,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3477,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 776,
+          "output_tokens": 297,
+          "cache_read_input_tokens": 20848,
+          "cache_creation_input_tokens": 3477,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3477
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-20T03:32:48.911Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RkLY3vTAPbHxMxu7sgPxTv`</summary>
+
+```json
+{
+  "query": "Bias-Bounded Evaluation differential privacy LLM judge debiasing 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "de0d35f5-8329-4a2a-bfe9-d01c359b98a7",
+  "isSidechain": false,
+  "requestId": "req_011CbD7iAvvg4pPsthnXkV7P",
+  "type": "assistant",
+  "uuid": "7e5a8cfe-16bd-4525-b87c-485e5ab2284a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cec9e6bb-8ddf-469a-af52-bb35246f2388",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WF2TSpnBaMLyj2FjKokgC4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 776,
+      "cache_creation_input_tokens": 3477,
+      "cache_read_input_tokens": 20848,
+      "output_tokens": 297,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3477,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 776,
+          "output_tokens": 297,
+          "cache_read_input_tokens": 20848,
+          "cache_creation_input_tokens": 3477,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3477
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-20T03:32:49.745Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017e9HWZhaLfbTLJfAPiGibE`</summary>
+
+```json
+{
+  "query": "CASSE concise agent style features side effects 2026 arXiv 2601"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7e5a8cfe-16bd-4525-b87c-485e5ab2284a",
+  "isSidechain": false,
+  "requestId": "req_011CbD7iAvvg4pPsthnXkV7P",
+  "type": "assistant",
+  "uuid": "48c25219-94ad-4058-b7ab-697173242519",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cec9e6bb-8ddf-469a-af52-bb35246f2388",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WF2TSpnBaMLyj2FjKokgC4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 776,
+      "cache_creation_input_tokens": 3477,
+      "cache_read_input_tokens": 20848,
+      "output_tokens": 297,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3477,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 776,
+          "output_tokens": 297,
+          "cache_read_input_tokens": 20848,
+          "cache_creation_input_tokens": 3477,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3477
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-20T03:32:53.584Z_
+
+<details><summary>↩ Tool result · `toolu_01VpdeHEgrN6R4aZFXSNkfJ6`</summary>
+
+```text
+Web search results for query: "Double Machine Learning DML text causal inference NLP treatment effects 2025 2026"
+
+Links: [{"title":"Double machine learning for causal inference in a multivariate sample selection model","url":"https://arxiv.org/pdf/2511.12640"},{"title":"Estimating causal effects with machine learning: A guide for ecologists - Arif - 2025 - Methods in Ecology and Evolution - Wiley Online Library","url":"https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.70191"},{"title":"Double Debiased Machine Learning Nonparametric Inference with Continuous   Treatments","url":"https://arxiv.org/pdf/2004.03036"},{"title":"Introduction to Causal Inference: Double Machine Learning | Carlos Mendez","url":"https://carlos-mendez.org/post/python_doubleml/"},{"title":"Double Machine Learning for Causal Inference under Shared-State   Interference","url":"https://arxiv.org/pdf/2504.08836"},{"title":"Understanding Double Machine Learning for Causal Inference: A Practical Note | by Truong (Jack) Luu | Medium","url":"https://medium.com/@jackluucoding/understanding-double-machine-learning-for-causal-inference-a-practical-guide-97c23e19db56"},{"title":"Introduction to causal inference using Double Machine Learning | by Kaixin Wang | Data Science + AI at Microsoft | Medium","url":"https://medium.com/data-science-at-microsoft/introduction-to-causal-inference-using-double-machine-learning-5daa642321f3"},{"title":"Chapter 19 Double Machine Learning | Causal Inference and Machine Learning: In Economics, Social, and Health Sciences","url":"https://www.causalmlbook.com/double-machine-learning.html"},{"title":"Double Machine Learning for Causal Inference: A Practical Guide | by Mohamed Hmamouch | Medium","url":"https://medium.com/@med.hmamouch99/double-machine-learning-for-causal-inference-a-practical-guide-5d85b77aa586"},{"title":"“Double Machine Learning for Causal Inference in High-Dimensional Electronic Health Records”","url":"https://www.medrxiv.org/content/10.1101/2025.07.21.25331944.full.pdf"}]
+
+I've completed a web search for Double Machine Learning (DML) related to causal inference and treatment effects. Here's what the search results reveal:
+
+## Overview of Double Machine Learning (DML)
+
+Double Machine Learning (DML) is a semiparametric causal inference technique that integrates machine learning algorithms with causal inference principles to estimate average treatment effects.
+
+## Key Characteristics
+
+DML addresses causal inference problems by using flexible machine learning models to partial out the confounding variation, then estimating the causal effect on the cleaned residuals. DML can accommodate complex, nonlinear relationships between covariates and outcomes by using machine learning algorithms to estimate nuisance parameters, and then employs orthogonalisation to derive estimating equations that directly partial out the confounding effects.
+
+## Recent Applications and Extensions (2025-2026)
+
+The search results show active recent work on DML:
+
+- Researchers have proposed plug-in and double machine learning estimators of average treatment effect (ATE), average treatment effect on the treated (ATET) and local average treatment effect (LATE) in multivariate sample selection models.
+
+- Recent work extends DML to settings where units interact via markets and recommendation systems, proving an extension of the DML theorem to achieve efficient inference under shared-state interference.
+
+- DML has been proposed as a machine learning framework for causal inference in high-dimensional observational data.
+
+The search results do not specifically focus on NLP applications of DML, though the methodology appears to be expanding into various applied domains as of 2025-2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "23ab9636-f17d-45fd-bbb7-e99fafb67fad",
+  "isSidechain": false,
+  "promptId": "8d59aeed-9297-4c90-b23c-11a89b0323ff",
+  "type": "user",
+  "uuid": "22cdd9be-d0d1-4616-b164-e1861f50aead",
+  "toolUseResult": {
+    "query": "Double Machine Learning DML text causal inference NLP treatment effects 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WitCk6ZNyKA1g6jckFYAPX",
+        "content": [
+          {
+            "title": "Double machine learning for causal inference in a multivariate sample selection model",
+            "url": "https://arxiv.org/pdf/2511.12640"
+          },
+          {
+            "title": "Estimating causal effects with machine learning: A guide for ecologists - Arif - 2025 - Methods in Ecology and Evolution - Wiley Online Library",
+            "url": "https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.70191"
+          },
+          {
+            "title": "Double Debiased Machine Learning Nonparametric Inference with Continuous   Treatments",
+            "url": "https://arxiv.org/pdf/2004.03036"
+          },
+          {
+            "title": "Introduction to Causal Inference: Double Machine Learning | Carlos Mendez",
+            "url": "https://carlos-mendez.org/post/python_doubleml/"
+          },
+          {
+            "title": "Double Machine Learning for Causal Inference under Shared-State   Interference",
+            "url": "https://arxiv.org/pdf/2504.08836"
+          },
+          {
+            "title": "Understanding Double Machine Learning for Causal Inference: A Practical Note | by Truong (Jack) Luu | Medium",
+            "url": "https://medium.com/@jackluucoding/understanding-double-machine-learning-for-causal-inference-a-practical-guide-97c23e19db56"
+          },
+          {
+            "title": "Introduction to causal inference using Double Machine Learning | by Kaixin Wang | Data Science + AI at Microsoft | Medium",
+            "url": "https://medium.com/data-science-at-microsoft/introduction-to-causal-inference-using-double-machine-learning-5daa642321f3"
+          },
+          {
+            "title": "Chapter 19 Double Machine Learning | Causal Inference and Machine Learning: In Economics, Social, and Health Sciences",
+            "url": "https://www.causalmlbook.com/double-machine-learning.html"
+          },
+          {
+            "title": "Double Machine Learning for Causal Inference: A Practical Guide | by Mohamed Hmamouch | Medium",
+            "url": "https://medium.com/@med.hmamouch99/double-machine-learning-for-causal-inference-a-practical-guide-5d85b77aa586"
+          },
+          {
+            "title": "“Double Machine Learning for Causal Inference in High-Dimensional Electronic Health Records”",
+            "url": "https://www.medrxiv.org/content/10.1101/2025.07.21.25331944.full.pdf"
+          }
+        ]
+      },
+      "I've completed a web search for Double Machine Learning (DML) related to causal inference and treatment effects. Here's what the search results reveal:\n\n## Overview of Double Machine Learning (DML)\n\nDouble Machine Learning (DML) is a semiparametric causal inference technique that integrates machine learning algorithms with causal inference principles to estimate average treatment effects.\n\n## Key Characteristics\n\nDML addresses causal inference problems by using flexible machine learning models to partial out the confounding variation, then estimating the causal effect on the cleaned residuals. DML can accommodate complex, nonlinear relationships between covariates and outcomes by using machine learning algorithms to estimate nuisance parameters, and then employs orthogonalisation to derive estimating equations that directly partial out the confounding effects.\n\n## Recent Applications and Extensions (2025-2026)\n\nThe search results show active recent work on DML:\n\n- Researchers have proposed plug-in and double machine learning estimators of average treatment effect (ATE), average treatment effect on the treated (ATET) and local average treatment effect (LATE) in multivariate sample selection models.\n\n- Recent work extends DML to settings where units interact via markets and recommendation systems, proving an extension of the DML theorem to achieve efficient inference under shared-state interference.\n\n- DML has been proposed as a machine learning framework for causal inference in high-dimensional observational data.\n\nThe search results do not specifically focus on NLP applications of DML, though the methodology appears to be expanding into various applied domains as of 2025-2026."
+    ],
+    "durationSeconds": 6.038671456,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "23ab9636-f17d-45fd-bbb7-e99fafb67fad",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cec9e6bb-8ddf-469a-af52-bb35246f2388",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-20T03:32:54.785Z_
+
+<details><summary>↩ Tool result · `toolu_017wbAZ6KNjbaCyRKoYcymZX`</summary>
+
+```text
+Web search results for query: ""Judging the Judges" systematic evaluation bias mitigation LLM judge 2026 Soumik"
+
+Links: [{"title":"Judging the Judges: A Systematic Evaluation of Bias Mitigation Strategies in LLM-as-a-Judge Pipelines","url":"https://arxiv.org/html/2604.23178"},{"title":"[2604.23178] Judging the Judges: A Systematic Evaluation of Bias Mitigation Strategies in LLM-as-a-Judge Pipelines","url":"https://arxiv.org/abs/2604.23178"},{"title":"LLM Evaluators Recognize and Favor Their Own Generations","url":"https://www.researchgate.net/publication/397200002_LLM_Evaluators_Recognize_and_Favor_Their_Own_Generations"},{"title":"GitHub - sksoumik/llm-as-judge: Judging the Judges: A Systematic Evaluation of Bias Mitigation Strategies in LLM-as-a-Judge Pipelines · GitHub","url":"https://github.com/sksoumik/llm-as-judge"},{"title":"Judging the Judges: A Systematic Evaluation of Bi… - arXiv","url":"https://arxiv-troller.com/paper/3154455/"},{"title":"Judging the Judges: A Systematic Evaluation of Bias Miti- gation Strategies in LLM-as-a-Judge Pipelines | OpenReview","url":"https://openreview.net/forum?id=QF4lAmG4zc"},{"title":"Toward Robust LLM-Based Judges: Taxonomic Bias Evaluation and Debiasing Optimization","url":"https://arxiv.org/pdf/2603.08091"},{"title":"Mitigating the Bias of Large Language Model Evaluation","url":"https://arxiv.org/pdf/2409.16788"},{"title":"Judging the Judges: A Systematic Evaluation of Bias Miti-","url":"https://arxiv.org/pdf/2604.23178"}]
+
+I found the research paper you're looking for! Here's what I found:
+
+"Judging the Judges: A Systematic Evaluation of Bias Mitigation Strategies in LLM-as-a-Judge Pipelines" is a paper by Sadman Kabir Soumik from April 2026. 
+
+The paper presents a comprehensive empirical study comparing nine debiasing strategies across five judge models from four provider families (Google, Anthropic, OpenAI, Meta), three benchmarks (MT-Bench with 400 samples, LLMBar with 200 samples, and a custom benchmark with 225 samples), and four bias types.
+
+Key findings from the research include:
+
+1. Style bias is the dominant bias (0.76–0.92 across all models), far exceeding position bias (≤ 0.04), yet has received minimal research attention.
+
+2. All models show a conciseness preference on expansion pairs, but truncation controls confirm they correctly distinguish quality from length (0.92–1.00 accuracy), suggesting quality-sensitive evaluation rather than a simple length bias.
+
+The paper addresses an important gap: no prior work has systematically compared these strategies, measured their cross-bias interactions, or evaluated them in a unified framework.
+
+You can access the full paper on arXiv (arxiv.org/html/2604.23178) and the code on GitHub (github.com/sksoumik/llm-as-judge).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "de0d35f5-8329-4a2a-bfe9-d01c359b98a7",
+  "isSidechain": false,
+  "promptId": "8d59aeed-9297-4c90-b23c-11a89b0323ff",
+  "type": "user",
+  "uuid": "f4dfa3be-21db-4531-8e05-d37ee7207118",
+  "toolUseResult": {
+    "query": "\"Judging the Judges\" systematic evaluation bias mitigation LLM judge 2026 Soumik",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01H1RyqpKKLZTHtLKZvzpDrp",
+        "content": [
+          {
+            "title": "Judging the Judges: A Systematic Evaluation of Bias Mitigation Strategies in LLM-as-a-Judge Pipelines",
+            "url": "https://arxiv.org/html/2604.23178"
+          },
+          {
+            "title": "[2604.23178] Judging the Judges: A Systematic Evaluation of Bias Mitigation Strategies in LLM-as-a-Judge Pipelines",
+            "url": "https://arxiv.org/abs/2604.23178"
+          },
+          {
+            "title": "LLM Evaluators Recognize and Favor Their Own Generations",
+            "url": "https://www.researchgate.net/publication/397200002_LLM_Evaluators_Recognize_and_Favor_Their_Own_Generations"
+          },
+          {
+            "title": "GitHub - sksoumik/llm-as-judge: Judging the Judges: A Systematic Evaluation of Bias Mitigation Strategies in LLM-as-a-Judge Pipelines · GitHub",
+            "url": "https://github.com/sksoumik/llm-as-judge"
+          },
+          {
+            "title": "Judging the Judges: A Systematic Evaluation of Bi… - arXiv",
+            "url": "https://arxiv-troller.com/paper/3154455/"
+          },
+          {
+            "title": "Judging the Judges: A Systematic Evaluation of Bias Miti- gation Strategies in LLM-as-a-Judge Pipelines | OpenReview",
+            "url": "https://openreview.net/forum?id=QF4lAmG4zc"
+          },
+          {
+            "title": "Toward Robust LLM-Based Judges: Taxonomic Bias Evaluation and Debiasing Optimization",
+            "url": "https://arxiv.org/pdf/2603.08091"
+          },
+          {
+            "title": "Mitigating the Bias of Large Language Model Evaluation",
+            "url": "https://arxiv.org/pdf/2409.16788"
+          },
+          {
+            "title": "Judging the Judges: A Systematic Evaluation of Bias Miti-",
+            "url": "https://arxiv.org/pdf/2604.23178"
+          }
+        ]
+      },
+      "I found the research paper you're looking for! Here's what I found:\n\n\"Judging the Judges: A Systematic Evaluation of Bias Mitigation Strategies in LLM-as-a-Judge Pipelines\" is a paper by Sadman Kabir Soumik from April 2026. \n\nThe paper presents a comprehensive empirical study comparing nine debiasing strategies across five judge models from four provider families (Google, Anthropic, OpenAI, Meta), three benchmarks (MT-Bench with 400 samples, LLMBar with 200 samples, and a custom benchmark with 225 samples), and four bias types.\n\nKey findings from the research include:\n\n1. Style bias is the dominant bias (0.76–0.92 across all models), far exceeding position bias (≤ 0.04), yet has received minimal research attention.\n\n2. All models show a conciseness preference on expansion pairs, but truncation controls confirm they correctly distinguish quality from length (0.92–1.00 accuracy), suggesting quality-sensitive evaluation rather than a simple length bias.\n\nThe paper addresses an important gap: no prior work has systematically compared these strategies, measured their cross-bias interactions, or evaluated them in a unified framework.\n\nYou can access the full paper on arXiv (arxiv.org/html/2604.23178) and the code on GitHub (github.com/sksoumik/llm-as-judge)."
+    ],
+    "durationSeconds": 6.381848938999999,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "de0d35f5-8329-4a2a-bfe9-d01c359b98a7",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cec9e6bb-8ddf-469a-af52-bb35246f2388",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-20T03:32:56.367Z_
+
+<details><summary>↩ Tool result · `toolu_01RkLY3vTAPbHxMxu7sgPxTv`</summary>
+
+```text
+Web search results for query: "Bias-Bounded Evaluation differential privacy LLM judge debiasing 2026"
+
+Links: [{"title":"LLM Judges: A Bias-Bounded Evaluation Framework (CS 2026) - Studocu","url":"https://www.studocu.com/in/document/chirec-international-school/mathematics-applications-and-interpretation-sl/llm-judges-a-bias-bounded-evaluation-framework-cs-2026/155334241"},{"title":"Towards Provably Unbiased LLM Judges via Bias-Bounded Evaluation","url":"https://arxiv.org/html/2603.05485"},{"title":"GitHub - penfever/bias-bounded-evaluation: A Python implementation of differential privacy-inspired techniques for reducing implicit bias in LLM judge evaluations while providing formal guarantees. · GitHub","url":"https://github.com/penfever/bias-bounded-evaluation"},{"title":"[2603.05485] Towards Provably Unbiased LLM Judges via Bias-Bounded Evaluation","url":"https://arxiv.org/abs/2603.05485"},{"title":"Towards Provably Unbiased LLM Judges via Bias-Bounded Evaluation","url":"https://arxiv.org/pdf/2603.05485"},{"title":"[2603.08091v1] Toward Robust LLM-Based Judges: Taxonomic Bias Evaluation and Debiasing Optimization","url":"https://arxiv.org/abs/2603.08091v1"},{"title":"Toward robust LLM-based judges: taxonomic bias evaluation and debiasing optimization","url":"https://arxiv.org/html/2603.08091"}]
+
+Based on the search results, I found relevant information about Bias-Bounded Evaluation and its application to LLM judge debiasing:
+
+## Key Findings
+
+Bias-bounded evaluation (BBE) is a novel framework that measures how sensitive an LLM judge is to biases and then renders that sensitivity in the judgment scores.
+
+Bias-bounded evaluation measures how sensitive a judge is to contextual perturbations, and then injects calibrated Gaussian noise to mitigate the effects of the bias.
+
+BBE injects calibrated Gaussian noise to the judge's scores to mitigate the effects of the bias, using a novel mechanism called average bias-boundedness (A-BB).
+
+## Differential Privacy Connection
+
+The approach is inspired by the idea of leveraging noise to bound sensitivity to perturbations of an output vector as is standard with worst-case guarantees in differential privacy.
+
+## Recent Developments (2026)
+
+The 2026 AAAI Conference added an LLM judge (AI-Powered Peer Review System) to the panel of reviewers for its scientific submissions, with mixed results.
+
+A reference implementation of the bias-bounded evaluation pipeline has been released to audit and stabilize large language model judges, combining classical differential-privacy style guarantees with practical tooling for measuring judge sensitivity, applying calibrated noise, and visualizing downstream impact.
+
+Average bias-boundedness (A-BB) formally guarantees reductions of harm/impact as a result of any measurable bias in an LLM judge.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7e5a8cfe-16bd-4525-b87c-485e5ab2284a",
+  "isSidechain": false,
+  "promptId": "8d59aeed-9297-4c90-b23c-11a89b0323ff",
+  "type": "user",
+  "uuid": "6f907db9-add2-4d61-88f7-5d497f029c97",
+  "toolUseResult": {
+    "query": "Bias-Bounded Evaluation differential privacy LLM judge debiasing 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01R4NmZGHmBPfNom1ZV6vHXK",
+        "content": [
+          {
+            "title": "LLM Judges: A Bias-Bounded Evaluation Framework (CS 2026) - Studocu",
+            "url": "https://www.studocu.com/in/document/chirec-international-school/mathematics-applications-and-interpretation-sl/llm-judges-a-bias-bounded-evaluation-framework-cs-2026/155334241"
+          },
+          {
+            "title": "Towards Provably Unbiased LLM Judges via Bias-Bounded Evaluation",
+            "url": "https://arxiv.org/html/2603.05485"
+          },
+          {
+            "title": "GitHub - penfever/bias-bounded-evaluation: A Python implementation of differential privacy-inspired techniques for reducing implicit bias in LLM judge evaluations while providing formal guarantees. · GitHub",
+            "url": "https://github.com/penfever/bias-bounded-evaluation"
+          },
+          {
+            "title": "[2603.05485] Towards Provably Unbiased LLM Judges via Bias-Bounded Evaluation",
+            "url": "https://arxiv.org/abs/2603.05485"
+          },
+          {
+            "title": "Towards Provably Unbiased LLM Judges via Bias-Bounded Evaluation",
+            "url": "https://arxiv.org/pdf/2603.05485"
+          },
+          {
+            "title": "[2603.08091v1] Toward Robust LLM-Based Judges: Taxonomic Bias Evaluation and Debiasing Optimization",
+            "url": "https://arxiv.org/abs/2603.08091v1"
+          },
+          {
+            "title": "Toward robust LLM-based judges: taxonomic bias evaluation and debiasing optimization",
+            "url": "https://arxiv.org/html/2603.08091"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about Bias-Bounded Evaluation and its application to LLM judge debiasing:\n\n## Key Findings\n\nBias-bounded evaluation (BBE) is a novel framework that measures how sensitive an LLM judge is to biases and then renders that sensitivity in the judgment scores.\n\nBias-bounded evaluation measures how sensitive a judge is to contextual perturbations, and then injects calibrated Gaussian noise to mitigate the effects of the bias.\n\nBBE injects calibrated Gaussian noise to the judge's scores to mitigate the effects of the bias, using a novel mechanism called average bias-boundedness (A-BB).\n\n## Differential Privacy Connection\n\nThe approach is inspired by the idea of leveraging noise to bound sensitivity to perturbations of an output vector as is standard with worst-case guarantees in differential privacy.\n\n## Recent Developments (2026)\n\nThe 2026 AAAI Conference added an LLM judge (AI-Powered Peer Review System) to the panel of reviewers for its scientific submissions, with mixed results.\n\nA reference implementation of the bias-bounded evaluation pipeline has been released to audit and stabilize large language model judges, combining classical differential-privacy style guarantees with practical tooling for measuring judge sensitivity, applying calibrated noise, and visualizing downstream impact.\n\nAverage bias-boundedness (A-BB) formally guarantees reductions of harm/impact as a result of any measurable bias in an LLM judge."
+    ],
+    "durationSeconds": 7.4535717890000015,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "7e5a8cfe-16bd-4525-b87c-485e5ab2284a",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cec9e6bb-8ddf-469a-af52-bb35246f2388",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 34_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Causal Style Decomposition for LLM Judge Debiasing via Doubly-Robust Counterfactual Estimation  ## Description S…",
+  "leafUuid": "6f907db9-add2-4d61-88f7-5d497f029c97",
+  "sessionId": "cec9e6bb-8ddf-469a-af52-bb35246f2388"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 35_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Causal style decomposition for LLM judge debiasing",
+  "sessionId": "cec9e6bb-8ddf-469a-af52-bb35246f2388"
+}
+```
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-20T03:32:57.924Z_
+
+<details><summary>↩ Tool result · `toolu_017e9HWZhaLfbTLJfAPiGibE`</summary>
+
+```text
+Web search results for query: "CASSE concise agent style features side effects 2026 arXiv 2601"
+
+Links: [{"title":"[2601.10809] A Concise Agent is Less Expert: Revealing Side Effects of Using Style Features on Conversational Agents","url":"https://arxiv.org/abs/2601.10809"},{"title":"A Concise Agent is Less Expert: Revealing Side Effects of Using Style Features on Conversational Agents","url":"https://arxiv.org/html/2601.10809"},{"title":"MAESTRO: Multi-Agent Evaluation Suite for Testing, ...","url":"https://arxiv.org/pdf/2601.00481"},{"title":"Digital Twin Approaches for Interpretable Side Effect Prediction in Drug Discovery","url":"https://www.biorxiv.org/content/10.1101/2025.10.14.682276.full.pdf"},{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2510.04618"},{"title":"Mitigating Side Effects in Multi-Agent Systems Using Blame Assignment","url":"https://arxiv.org/pdf/2405.04702"},{"title":"Graph generative and adversarial strategy-enhanced node feature learning and self-calibrated pairwise attribute encoding for prediction of drug-related side effects","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10507253/"},{"title":"OnSIDES (ON-label SIDE effectS resource) Database : Extracting Adverse Drug Events from Drug Labels using Natural Language Processing Models","url":"https://www.medrxiv.org/content/10.1101/2024.03.22.24304724.full.pdf"}]
+
+Based on the search results, I found the paper you're looking for. Here's what the research reveals:
+
+CASSE (Conversational Agent Stylistic Side Effects) is a dataset capturing complex interactions between style features in conversational agents. The paper, titled "A Concise Agent is Less Expert: Revealing Side Effects of Using Style Features on Conversational Agents," was published on arXiv on January 15, 2026 (arXiv 2601.10809).
+
+The key findings include:
+
+- Prompting for Concise significantly reduces perceived Expertise, while prompting for Efficient leads to a drop in Helpfulness
+
+- Style features are deeply entangled rather than orthogonal
+
+- The research surveyed 127 conversational agent papers from the ACL Anthology (2023–2025), identifying 12 distinct, frequently used style features such as helpful, concise, and expert
+
+- While prompt-based and activation steering-based mitigation strategies can partially restore suppressed traits, they often degrade the primary intended style
+
+These findings challenge the assumption of faithful style control in LLMs and highlight the need for multi-objective and more principled approaches to safe, targeted stylistic steering in conversational agents.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "48c25219-94ad-4058-b7ab-697173242519",
+  "isSidechain": false,
+  "promptId": "8d59aeed-9297-4c90-b23c-11a89b0323ff",
+  "type": "user",
+  "uuid": "2dd9213b-92f3-4d97-b08b-ee8ad734b80c",
+  "toolUseResult": {
+    "query": "CASSE concise agent style features side effects 2026 arXiv 2601",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01GZCpmD4DhU2RZNHu7cbxTr",
+        "content": [
+          {
+            "title": "[2601.10809] A Concise Agent is Less Expert: Revealing Side Effects of Using Style Features on Conversational Agents",
+            "url": "https://arxiv.org/abs/2601.10809"
+          },
+          {
+            "title": "A Concise Agent is Less Expert: Revealing Side Effects of Using Style Features on Conversational Agents",
+            "url": "https://arxiv.org/html/2601.10809"
+          },
+          {
+            "title": "MAESTRO: Multi-Agent Evaluation Suite for Testing, ...",
+            "url": "https://arxiv.org/pdf/2601.00481"
+          },
+          {
+            "title": "Digital Twin Approaches for Interpretable Side Effect Prediction in Drug Discovery",
+            "url": "https://www.biorxiv.org/content/10.1101/2025.10.14.682276.full.pdf"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2510.04618"
+          },
+          {
+            "title": "Mitigating Side Effects in Multi-Agent Systems Using Blame Assignment",
+            "url": "https://arxiv.org/pdf/2405.04702"
+          },
+          {
+            "title": "Graph generative and adversarial strategy-enhanced node feature learning and self-calibrated pairwise attribute encoding for prediction of drug-related side effects",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10507253/"
+          },
+          {
+            "title": "OnSIDES (ON-label SIDE effectS resource) Database : Extracting Adverse Drug Events from Drug Labels using Natural Language Processing Models",
+            "url": "https://www.medrxiv.org/content/10.1101/2024.03.22.24304724.full.pdf"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for. Here's what the research reveals:\n\nCASSE (Conversational Agent Stylistic Side Effects) is a dataset capturing complex interactions between style features in conversational agents. The paper, titled \"A Concise Agent is Less Expert: Revealing Side Effects of Using Style Features on Conversational Agents,\" was published on arXiv on January 15, 2026 (arXiv 2601.10809).\n\nThe key findings include:\n\n- Prompting for Concise significantly reduces perceived Expertise, while prompting for Efficient leads to a drop in Helpfulness\n\n- Style features are deeply entangled rather than orthogonal\n\n- The research surveyed 127 conversational agent papers from the ACL Anthology (2023–2025), identifying 12 distinct, frequently used style features such as helpful, concise, and expert\n\n- While prompt-based and activation steering-based mitigation strategies can partially restore suppressed traits, they often degrade the primary intended style\n\nThese findings challenge the assumption of faithful style control in LLMs and highlight the need for multi-objective and more principled approaches to safe, targeted stylistic steering in conversational agents."
+    ],
+    "durationSeconds": 8.176553332,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "48c25219-94ad-4058-b7ab-697173242519",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cec9e6bb-8ddf-469a-af52-bb35246f2388",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 37 · 2026-05-20T03:32:57.928Z_
+
+```json
+{
+  "parentUuid": "2dd9213b-92f3-4d97-b08b-ee8ad734b80c",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "5455583b-bdb7-4619-9a82-c49d0a455032",
+  "timestamp": "2026-05-20T03:32:57.928Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cec9e6bb-8ddf-469a-af52-bb35246f2388",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 38 · 2026-05-20T03:33:00.924Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. Now let me search for a few more things to verify the novelty claim and look for any similar competing work that might already do what CSD proposes.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5455583b-bdb7-4619-9a82-c49d0a455032",
+  "isSidechain": false,
+  "requestId": "req_011CbD7jMFZZc4wqhCeme2m4",
+  "type": "assistant",
+  "uuid": "7b65eca3-929a-4fc2-b427-de5098fe0139",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cec9e6bb-8ddf-469a-af52-bb35246f2388",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qs1B3foXkFHV42j96GGrok",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4575,
+      "cache_read_input_tokens": 24325,
+      "output_tokens": 259,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4575,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 259,
+          "cache_read_input_tokens": 24325,
+          "cache_creation_input_tokens": 4575,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4575
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39 · 2026-05-20T03:33:01.411Z_
+
+Let me do a few more targeted searches to check for closely competing work and verify the novelty claim.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7b65eca3-929a-4fc2-b427-de5098fe0139",
+  "isSidechain": false,
+  "requestId": "req_011CbD7jMFZZc4wqhCeme2m4",
+  "type": "assistant",
+  "uuid": "d563064a-416b-4687-a2e2-5436c2812d79",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cec9e6bb-8ddf-469a-af52-bb35246f2388",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qs1B3foXkFHV42j96GGrok",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4575,
+      "cache_read_input_tokens": 24325,
+      "output_tokens": 259,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4575,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 259,
+          "cache_read_input_tokens": 24325,
+          "cache_creation_input_tokens": 4575,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4575
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-20T03:33:02.407Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FjZQbp8kYu21DoyJsZ3Y8b`</summary>
+
+```json
+{
+  "query": "causal style decomposition counterfactual rewriting LLM evaluation debiasing post-hoc black-box 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d563064a-416b-4687-a2e2-5436c2812d79",
+  "isSidechain": false,
+  "requestId": "req_011CbD7jMFZZc4wqhCeme2m4",
+  "type": "assistant",
+  "uuid": "4afbdd95-d7dd-4505-abed-e852d9025169",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cec9e6bb-8ddf-469a-af52-bb35246f2388",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qs1B3foXkFHV42j96GGrok",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4575,
+      "cache_read_input_tokens": 24325,
+      "output_tokens": 259,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4575,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 259,
+          "cache_read_input_tokens": 24325,
+          "cache_creation_input_tokens": 4575,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4575
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-20T03:33:03.344Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UFK5ntq5Bj6iC7xYVByUSk`</summary>
+
+```json
+{
+  "query": "Preference Leakage contamination LLM judge ICLR 2026 stylistic regularities"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4afbdd95-d7dd-4505-abed-e852d9025169",
+  "isSidechain": false,
+  "requestId": "req_011CbD7jMFZZc4wqhCeme2m4",
+  "type": "assistant",
+  "uuid": "af27c22e-f42a-434f-a0d4-73b8c34ae5d6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cec9e6bb-8ddf-469a-af52-bb35246f2388",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qs1B3foXkFHV42j96GGrok",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4575,
+      "cache_read_input_tokens": 24325,
+      "output_tokens": 259,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4575,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 259,
+          "cache_read_input_tokens": 24325,
+          "cache_creation_input_tokens": 4575,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4575
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-20T03:33:03.918Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WrnLEvGQDEPsbsVCyAuCZF`</summary>
+
+```json
+{
+  "query": "CoRL 2026 conference on robot learning call for papers topics"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "af27c22e-f42a-434f-a0d4-73b8c34ae5d6",
+  "isSidechain": false,
+  "requestId": "req_011CbD7jMFZZc4wqhCeme2m4",
+  "type": "assistant",
+  "uuid": "47674eeb-f120-405c-9964-1f810c4a676b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cec9e6bb-8ddf-469a-af52-bb35246f2388",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qs1B3foXkFHV42j96GGrok",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4575,
+      "cache_read_input_tokens": 24325,
+      "output_tokens": 259,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4575,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 259,
+          "cache_read_input_tokens": 24325,
+          "cache_creation_input_tokens": 4575,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4575
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-20T03:33:09.227Z_
+
+<details><summary>↩ Tool result · `toolu_01FjZQbp8kYu21DoyJsZ3Y8b`</summary>
+
+```text
+Web search results for query: "causal style decomposition counterfactual rewriting LLM evaluation debiasing post-hoc black-box 2025 2026"
+
+Links: [{"title":"Causal-Guided Active Learning for Debiasing Large Language Models","url":"https://arxiv.org/html/2408.12942v1"},{"title":"CoLD: Counterfactually-Guided Length Debiasing for Process Reward Models","url":"https://arxiv.org/html/2507.15698v1"},{"title":"On the Eligibility of LLMs for Counterfactual Reasoning: A Decompositional Study","url":"https://arxiv.org/html/2505.11839v1"},{"title":"On the Eligibility of LLMs for Counterfactual Reasoning: A Decompositional Study","url":"https://arxiv.org/pdf/2505.11839"},{"title":"From Plausible to Causal: Counterfactual Semantics for Policy Evaluation in Simulated Online Communities","url":"https://arxiv.org/html/2604.03920v1"}]
+
+Based on the search results, I found several relevant papers on causal, counterfactual, and debiasing approaches for LLM evaluation:
+
+## Key Findings:
+
+**1. Causal-Guided Active Learning for Debiasing (August 2024)**
+A method demonstrating how counterfactual ICL-based prompts can effectively leverage biased counterfactual examples to debias LLMs, improving both generalizability and harmfulness reduction.
+
+**2. Counterfactually-Guided Length Debiasing (CoLD) (July 2025)**
+A framework for Process Reward Models that uses a counterfactual perspective to debias length bias through methods including a length penalty that subtracts length-proportional terms from original PRM scores.
+
+**3. LLM Eligibility for Counterfactual Reasoning: Decompositional Study (May 2025)**
+A decompositional strategy breaking down counterfactual generation from causality construction to reasoning over counterfactual interventions. The methodology assesses whether LLMs can identify causal variable groups, construct causal graphs as directed acyclic graphs (DAGs), identify correct intervened variables, and accurately infer counterfactual mediators and outcomes.
+
+**4. Causal Counterfactual Semantics for Policy Evaluation (April 2026)**
+A framework distinguishing necessary causation (would outcome have occurred without intervention) from sufficient causation (does intervention reliably produce outcome) for LLM-based social simulations.
+
+These papers cover causal analysis, counterfactual reasoning, and debiasing approaches for LLM evaluation from 2024-2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4afbdd95-d7dd-4505-abed-e852d9025169",
+  "isSidechain": false,
+  "promptId": "8d59aeed-9297-4c90-b23c-11a89b0323ff",
+  "type": "user",
+  "uuid": "4be00a51-a47d-4f17-9c2b-93a1fddc846a",
+  "toolUseResult": {
+    "query": "causal style decomposition counterfactual rewriting LLM evaluation debiasing post-hoc black-box 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TDGTMhGWvPFuGpJx9636e3",
+        "content": [
+          {
+            "title": "Causal-Guided Active Learning for Debiasing Large Language Models",
+            "url": "https://arxiv.org/html/2408.12942v1"
+          },
+          {
+            "title": "CoLD: Counterfactually-Guided Length Debiasing for Process Reward Models",
+            "url": "https://arxiv.org/html/2507.15698v1"
+          },
+          {
+            "title": "On the Eligibility of LLMs for Counterfactual Reasoning: A Decompositional Study",
+            "url": "https://arxiv.org/html/2505.11839v1"
+          },
+          {
+            "title": "On the Eligibility of LLMs for Counterfactual Reasoning: A Decompositional Study",
+            "url": "https://arxiv.org/pdf/2505.11839"
+          },
+          {
+            "title": "From Plausible to Causal: Counterfactual Semantics for Policy Evaluation in Simulated Online Communities",
+            "url": "https://arxiv.org/html/2604.03920v1"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers on causal, counterfactual, and debiasing approaches for LLM evaluation:\n\n## Key Findings:\n\n**1. Causal-Guided Active Learning for Debiasing (August 2024)**\nA method demonstrating how counterfactual ICL-based prompts can effectively leverage biased counterfactual examples to debias LLMs, improving both generalizability and harmfulness reduction.\n\n**2. Counterfactually-Guided Length Debiasing (CoLD) (July 2025)**\nA framework for Process Reward Models that uses a counterfactual perspective to debias length bias through methods including a length penalty that subtracts length-proportional terms from original PRM scores.\n\n**3. LLM Eligibility for Counterfactual Reasoning: Decompositional Study (May 2025)**\nA decompositional strategy breaking down counterfactual generation from causality construction to reasoning over counterfactual interventions. The methodology assesses whether LLMs can identify causal variable groups, construct causal graphs as directed acyclic graphs (DAGs), identify correct intervened variables, and accurately infer counterfactual mediators and outcomes.\n\n**4. Causal Counterfactual Semantics for Policy Evaluation (April 2026)**\nA framework distinguishing necessary causation (would outcome have occurred without intervention) from sufficient causation (does intervention reliably produce outcome) for LLM-based social simulations.\n\nThese papers cover causal analysis, counterfactual reasoning, and debiasing approaches for LLM evaluation from 2024-2026."
+    ],
+    "durationSeconds": 6.8157952290000035,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "4afbdd95-d7dd-4505-abed-e852d9025169",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cec9e6bb-8ddf-469a-af52-bb35246f2388",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-20T03:33:10.043Z_
+
+<details><summary>↩ Tool result · `toolu_01UFK5ntq5Bj6iC7xYVByUSk`</summary>
+
+```text
+Web search results for query: "Preference Leakage contamination LLM judge ICLR 2026 stylistic regularities"
+
+Links: [{"title":"[Paper Note] Preference Leakage: A Contamination Problem in LLM-as-a-judge - 📚 AI Paper Notes","url":"https://en.papernotes.org/ICLR2026/llm_evaluation/preference_leakage_a_contamination_problem_in_llm-as-a-judge/"},{"title":"Preference Leakage: A Contamination Problem in LLM-as-a-judge","url":"https://arxiv.org/html/2502.01534v3"},{"title":"Preference Leakage: A Contamination Problem in LLM-as- ...","url":"https://arxiv.org/pdf/2502.01534"},{"title":"ICLR Poster Preference Leakage: A Contamination Problem in LLM-as-a-judge","url":"https://iclr.cc/virtual/2026/poster/10008112"},{"title":"Preference Leakage: A Contamination Problem in LLM-as-a-judge [Quick Review]","url":"https://liner.com/review/preference-leakage-a-contamination-problem-in-llmasajudge"},{"title":"Preference Leakage: A Contamination Problem in LLM-as-a-judge | OpenReview","url":"https://openreview.net/forum?id=grIvSXVJ65"},{"title":"Preference Leakage: A Contamination Problem in LLM-as-a-judge","url":"https://openreview.net/pdf?id=gW6NT2IuME"},{"title":"Paper page - Preference Leakage: A Contamination Problem in LLM-as-a-judge","url":"https://huggingface.co/papers/2502.01534"},{"title":"[2502.01534] Preference Leakage: A Contamination Problem in LLM-as-a-judge","url":"https://arxiv.org/abs/2502.01534"}]
+
+I found relevant search results for your query. Here's what the research shows:
+
+## Preference Leakage in LLM-as-a-Judge (ICLR 2026)
+
+Preference leakage is a contamination problem in LLM-as-a-judge caused by the relatedness between the synthetic data generators and LLM-based evaluators. The research defines three common relatednesses between the data generator LLM and the judge LLM: being the same model, having an inheritance relationship, and belonging to the same model family.
+
+### Key Finding on Stylistic Regularities
+
+The research emphasizes the critical role of stylistic features: Eliminating style and format yields the largest decrease in leakage, suggesting that judges tend to rely heavily on stylistic regularities—such as tone consistency, sentence cadence, and punctuation density—when forming preference judgments. Lexical-level substitution has limited effect, indicating that preference leakage is driven by surface stylistic features rather than semantic similarity.
+
+### Additional Findings
+
+Contextual Calibration (post-hoc calibration on a held-out set) effectively mitigates preference leakage, reducing Error Bias from 17.8 to 7.3. Additionally, smaller models such as LLaMA-3-1B and Qwen-2.5-3B exhibit higher preference leakage than larger models, as they rely more heavily on repeatedly occurring surface features (format/style), which are the carriers of preference leakage.
+
+The paper was published at ICLR 2026 with arXiv identifier 2502.01534.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "af27c22e-f42a-434f-a0d4-73b8c34ae5d6",
+  "isSidechain": false,
+  "promptId": "8d59aeed-9297-4c90-b23c-11a89b0323ff",
+  "type": "user",
+  "uuid": "71759f16-73fb-494e-9ab4-dcdd45d01d4c",
+  "toolUseResult": {
+    "query": "Preference Leakage contamination LLM judge ICLR 2026 stylistic regularities",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016wHNf2Nr9CmQQYC3YK7XJf",
+        "content": [
+          {
+            "title": "[Paper Note] Preference Leakage: A Contamination Problem in LLM-as-a-judge - 📚 AI Paper Notes",
+            "url": "https://en.papernotes.org/ICLR2026/llm_evaluation/preference_leakage_a_contamination_problem_in_llm-as-a-judge/"
+          },
+          {
+            "title": "Preference Leakage: A Contamination Problem in LLM-as-a-judge",
+            "url": "https://arxiv.org/html/2502.01534v3"
+          },
+          {
+            "title": "Preference Leakage: A Contamination Problem in LLM-as- ...",
+            "url": "https://arxiv.org/pdf/2502.01534"
+          },
+          {
+            "title": "ICLR Poster Preference Leakage: A Contamination Problem in LLM-as-a-judge",
+            "url": "https://iclr.cc/virtual/2026/poster/10008112"
+          },
+          {
+            "title": "Preference Leakage: A Contamination Problem in LLM-as-a-judge [Quick Review]",
+            "url": "https://liner.com/review/preference-leakage-a-contamination-problem-in-llmasajudge"
+          },
+          {
+            "title": "Preference Leakage: A Contamination Problem in LLM-as-a-judge | OpenReview",
+            "url": "https://openreview.net/forum?id=grIvSXVJ65"
+          },
+          {
+            "title": "Preference Leakage: A Contamination Problem in LLM-as-a-judge",
+            "url": "https://openreview.net/pdf?id=gW6NT2IuME"
+          },
+          {
+            "title": "Paper page - Preference Leakage: A Contamination Problem in LLM-as-a-judge",
+            "url": "https://huggingface.co/papers/2502.01534"
+          },
+          {
+            "title": "[2502.01534] Preference Leakage: A Contamination Problem in LLM-as-a-judge",
+            "url": "https://arxiv.org/abs/2502.01534"
+          }
+        ]
+      },
+      "I found relevant search results for your query. Here's what the research shows:\n\n## Preference Leakage in LLM-as-a-Judge (ICLR 2026)\n\nPreference leakage is a contamination problem in LLM-as-a-judge caused by the relatedness between the synthetic data generators and LLM-based evaluators. The research defines three common relatednesses between the data generator LLM and the judge LLM: being the same model, having an inheritance relationship, and belonging to the same model family.\n\n### Key Finding on Stylistic Regularities\n\nThe research emphasizes the critical role of stylistic features: Eliminating style and format yields the largest decrease in leakage, suggesting that judges tend to rely heavily on stylistic regularities—such as tone consistency, sentence cadence, and punctuation density—when forming preference judgments. Lexical-level substitution has limited effect, indicating that preference leakage is driven by surface stylistic features rather than semantic similarity.\n\n### Additional Findings\n\nContextual Calibration (post-hoc calibration on a held-out set) effectively mitigates preference leakage, reducing Error Bias from 17.8 to 7.3. Additionally, smaller models such as LLaMA-3-1B and Qwen-2.5-3B exhibit higher preference leakage than larger models, as they rely more heavily on repeatedly occurring surface features (format/style), which are the carriers of preference leakage.\n\nThe paper was published at ICLR 2026 with arXiv identifier 2502.01534."
+    ],
+    "durationSeconds": 6.694642423000005,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "af27c22e-f42a-434f-a0d4-73b8c34ae5d6",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cec9e6bb-8ddf-469a-af52-bb35246f2388",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-20T03:33:10.668Z_
+
+<details><summary>↩ Tool result · `toolu_01WrnLEvGQDEPsbsVCyAuCZF`</summary>
+
+```text
+Web search results for query: "CoRL 2026 conference on robot learning call for papers topics"
+
+Links: [{"title":"CoRL 2026 - Call for Papers","url":"https://www.corl.org/contributions/call-for-papers"},{"title":"Conference on Robot Learning (CoRL) 2026: Everything You Need to Know - AI Expert Magazine - premier publication dedicated to AI","url":"https://www.aiexpertmagazine.com/conference-on-robot-learning-corl-2026-everything-you-need-to-know/"},{"title":"CoRL LaTeX Template | Robot Learning Conference Format | Underleaf","url":"https://www.underleaf.ai/templates/corl"},{"title":"Conference on Robot Learning (@corl_conf) / Posts / X","url":"https://x.com/corl_conf?lang=en"},{"title":"CoRL 2026 - Contributions","url":"https://www.corl.org/contributions"},{"title":"CoRL 2026 - Call for Workshops","url":"https://www.corl.org/contributions/call-for-workshops"},{"title":"CoRL 2026","url":"https://www.corl.org/"},{"title":"Safe Learning for Contact-Rich Robot Tasks: A Survey from Classical Learning-Based Methods to Safe Foundation Models","url":"https://arxiv.org/pdf/2512.11908"},{"title":"Automatic Environment Shaping is the Next Frontier in RL","url":"https://arxiv.org/pdf/2407.16186"}]
+
+Based on the search results, here's what I found about the CoRL 2026 conference call for papers topics:
+
+## Key Topics Welcomed
+
+CoRL welcomes papers in areas such as learning representations for robotic perception and control, learning robot foundation models or general-purpose knowledge systems for robotics, imitation learning, reinforcement learning for control of physical robots, learning approaches to robot safety and alignment, applications of robot learning in robot manipulation, navigation, locomotion, driving, flight, and other areas of robotics, robot systems/hardware/sensors for learning and data-driven approaches, theoretical foundations of robot learning, and video models and latent world models for robot learning.
+
+Additional topics include imitation learning, reinforcement learning for robots, sim-to-real transfer, robot perception through learning, learned manipulation and locomotion, and learning-based planning.
+
+## Important Requirements
+
+Submissions should focus on a core robotics problem and demonstrate the relevance of proposed models, algorithms, datasets, and benchmarks to robotics. Authors are encouraged to report real-robot experiments or provide convincing evidence that simulation experiments are transferable to real robots.
+
+## Key Dates
+
+The paper submission deadline is May 29, 2026, and CoRL 2026 will be held at the JW Marriott Austin in Austin, TX (November 9–12, 2026), with a workshop day on November 9 and the main conference on November 10–12.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "47674eeb-f120-405c-9964-1f810c4a676b",
+  "isSidechain": false,
+  "promptId": "8d59aeed-9297-4c90-b23c-11a89b0323ff",
+  "type": "user",
+  "uuid": "72518f4d-70f1-44cd-bf02-af0e014840cf",
+  "toolUseResult": {
+    "query": "CoRL 2026 conference on robot learning call for papers topics",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JUos4cxcRqCYLvDuhi3no4",
+        "content": [
+          {
+            "title": "CoRL 2026 - Call for Papers",
+            "url": "https://www.corl.org/contributions/call-for-papers"
+          },
+          {
+            "title": "Conference on Robot Learning (CoRL) 2026: Everything You Need to Know - AI Expert Magazine - premier publication dedicated to AI",
+            "url": "https://www.aiexpertmagazine.com/conference-on-robot-learning-corl-2026-everything-you-need-to-know/"
+          },
+          {
+            "title": "CoRL LaTeX Template | Robot Learning Conference Format | Underleaf",
+            "url": "https://www.underleaf.ai/templates/corl"
+          },
+          {
+            "title": "Conference on Robot Learning (@corl_conf) / Posts / X",
+            "url": "https://x.com/corl_conf?lang=en"
+          },
+          {
+            "title": "CoRL 2026 - Contributions",
+            "url": "https://www.corl.org/contributions"
+          },
+          {
+            "title": "CoRL 2026 - Call for Workshops",
+            "url": "https://www.corl.org/contributions/call-for-workshops"
+          },
+          {
+            "title": "CoRL 2026",
+            "url": "https://www.corl.org/"
+          },
+          {
+            "title": "Safe Learning for Contact-Rich Robot Tasks: A Survey from Classical Learning-Based Methods to Safe Foundation Models",
+            "url": "https://arxiv.org/pdf/2512.11908"
+          },
+          {
+            "title": "Automatic Environment Shaping is the Next Frontier in RL",
+            "url": "https://arxiv.org/pdf/2407.16186"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the CoRL 2026 conference call for papers topics:\n\n## Key Topics Welcomed\n\nCoRL welcomes papers in areas such as learning representations for robotic perception and control, learning robot foundation models or general-purpose knowledge systems for robotics, imitation learning, reinforcement learning for control of physical robots, learning approaches to robot safety and alignment, applications of robot learning in robot manipulation, navigation, locomotion, driving, flight, and other areas of robotics, robot systems/hardware/sensors for learning and data-driven approaches, theoretical foundations of robot learning, and video models and latent world models for robot learning.\n\nAdditional topics include imitation learning, reinforcement learning for robots, sim-to-real transfer, robot perception through learning, learned manipulation and locomotion, and learning-based planning.\n\n## Important Requirements\n\nSubmissions should focus on a core robotics problem and demonstrate the relevance of proposed models, algorithms, datasets, and benchmarks to robotics. Authors are encouraged to report real-robot experiments or provide convincing evidence that simulation experiments are transferable to real robots.\n\n## Key Dates\n\nThe paper submission deadline is May 29, 2026, and CoRL 2026 will be held at the JW Marriott Austin in Austin, TX (November 9–12, 2026), with a workshop day on November 9 and the main conference on November 10–12."
+    ],
+    "durationSeconds": 6.746840551999994,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "47674eeb-f120-405c-9964-1f810c4a676b",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cec9e6bb-8ddf-469a-af52-bb35246f2388",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46 · 2026-05-20T03:34:07.114Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Important finding: The proposal says "Target Venues" are AAAI 2027, ICLR 2027, and ARR October 2026 cycle. The user's task says "评估其投稿 CoRL 2026 主会的中稿潜力" — i.e., evaluating it for CoRL 2026 submission. But CoRL is the Conference on Robot Learning! This proposal is about LLM judge debiasing — it has absolutely nothing to do with robotics. This is a fundamental mismatch.
+
+
+So there's a critical disconnect here: the proposal targets NLP/ML venues and doesn't mention CoRL at all, yet the user is asking me to evaluate it for a robotics conference. The proposal simply isn't suited for CoRL's scope.
+
+I should flag this as a fundamental mismatch while still assessing the research idea itself on its merits, then provide constructive feedback on what would actually be needed to make it viable for the intended venues.
+
+Looking at the core contribution, the paper claims style bias dominates LLM judge behavior and proposes using counterfactual generation with causal inference to remove it post-hoc. But there's a simpler baseline already doing this effectively—Length-Controlled AlpacaEval uses regression-based debiasing on a single dimension and achieves near-perfect correlation with Arena (0.93→0.98 Spearman). The natural question is whether adding more style features as regressors without the expensive counterfactual generation step would achieve comparable results at a fraction of the computational cost.
+
+The proposal does include format normalization as a baseline, which helps, but the critical gap is whether the full causal counterfactual machinery actually delivers substantial improvements over straightforward multi-dimensional regression debiasing. Both approaches have causal interpretations—the regression method is essentially counterfactual prediction with controlled values—so the added complexity needs clear empirical justification.
+
+There's also a tension in the foundational assumptions: the CASSE paper shows style features are deeply entangled rather than orthogonal, yet the proposal claims their three axes (formality, verbosity, formatting) are genuinely independent. This needs reconciliation, and the RATE assumptions for causal identification appear to have unstated dependencies.
+
+The content preservation thresholds (BERTScore ≥ 0.92, NLI ≥ 0.95) are somewhat arbitrary, and style transfer notoriously affects perceived quality in ways these metrics may not capture. The partially linear model assumption—treating style effects as linear while content effects are nonlinear—is a convenient modeling choice without clear justification.
+
+On novelty, the specific combination of counterfactual generation plus DML for debiasing is novel, though each component is borrowed from existing work like RATE and double machine learning frameworks. The 7x computational overhead is a real practical constraint, though the amortized deployment stage helps mitigate it. The related work section is comprehensive and addresses the key criticisms in the literature. But there's a fundamental venue mismatch here — this is an NLP/evaluation paper, not robotics, so submitting to CoRL would result in a desk rejection. The proposal actually targets AAAI 2027, ICLR 2027, and ARR instead. I need to be clear about the venue mismatch—this proposal is completely out of scope for CoRL since it's about language model evaluation, not robot learning. But setting that aside, if this were submitted to a more appropriate venue like AAAI or ICLR, the idea itself shows medium novelty: the multi-dimensional causal decomposition approach extends naturally from single-dimension work, but the core insight of combining counterfactuals with debiased machine learning for style evaluation feels competent rather than groundbreaking, especially given that similar counterfactual debiasing has already been explored in recent work.
+
+The significance lands between medium and strong—the problem is real and important, and a model-agnostic solution would be valuable, though the 7x computational overhead could be a practical barrier to adoption. The related work section is solid with strong coverage of recent literature and clear positioning against existing approaches. Overall, I'd estimate around 30-40% acceptance probability at an appropriate venue based on the idea quality alone, but for CoRL specifically it's essentially a desk reject due to fundamental scope mismatch.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "72518f4d-70f1-44cd-bf02-af0e014840cf",
+  "isSidechain": false,
+  "requestId": "req_011CbD7kHkW67gu9ziJzUKQt",
+  "type": "assistant",
+  "uuid": "1aa85e62-e756-4d93-afc6-92e1b6d77cf1",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cec9e6bb-8ddf-469a-af52-bb35246f2388",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qd1bSY394mG5pLGUxSAs2n",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2613,
+      "cache_read_input_tokens": 28900,
+      "output_tokens": 6774,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2613,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6774,
+          "cache_read_input_tokens": 28900,
+          "cache_creation_input_tokens": 2613,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2613
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47 · 2026-05-20T03:35:41.701Z_
+
+Now I have sufficient information to complete my evaluation. Let me compile the assessment.
+
+---
+
+```
+【阶段】: Triage
+
+【关键前置问题：投稿 CoRL 2026 的适配性】
+
+⚠️ 致命问题：本 proposal 与 CoRL 2026 的投稿范围完全不匹配。
+
+CoRL (Conference on Robot Learning) 的征稿范围明确聚焦于：机器人感知与控制的学习表征、模仿学习、强化学习用于物理机器人控制、sim-to-real transfer、机器人操纵/导航/运动等。CoRL 2026 (Austin, TX, Nov 9-12) 的 Call for Papers 明确要求 "submissions should focus on a core robotics problem and demonstrate relevance of proposed models/algorithms to robotics."
+
+本 proposal 是一篇纯粹的 NLP/LLM 评估方法论文——研究 LLM-as-a-Judge 中的风格偏差去除。它与机器人学习没有任何关联。投稿 CoRL 会被 desk reject。
+
+Proposal 自身列出的 Target Venues (AAAI 2027, ICLR 2027, ARR Oct 2026) 是合理的。以下评估基于 idea 本身的质量，假设投稿至合适的 NLP/AI venues。
+
+---
+
+【领域调研】:
+
+- **SOS-Bench / "Style Outweighs Substance" (ICLR 2025, arXiv 2409.15268)**: 最大规模的 LLM judge 风格偏差文档化工作，152,380 数据点证明 LLM judges 系统性地优先考虑 style over factuality/safety。提出了 SOS-Bench 但未提供修复方案。与本 proposal 关系：proposal 直接建立在此 gap 之上。✅ 引用准确。
+
+- **FairJudge (arXiv 2602.06625, Feb 2026)**: 通过 SFT→DPO→GRPO 三阶段训练范式，在 Qwen3 backbone 上训练去偏 judge。在 PandaLM 上 76.83% agreement，JudgeLM 上 78.82%。核心限制：需要训练新 judge，无法应用于黑盒商用 API。与本 proposal 关系：最直接的竞争者，但方法路线完全不同（train-based vs. post-hoc）。✅ 引用准确。
+
+- **RATE (ICML 2025, arXiv 2410.11348)**: 提出 double-rewrite protocol 估计 reward model 对高层属性（如 helpfulness, sentiment）的因果效应。核心贡献是校正不完美 counterfactual 带来的偏差。目标是 reward model 可解释性，非 judge debiasing。与本 proposal 关系：CSD 直接复用了 RATE 的 double-rewrite 方法论。✅ 引用准确。
+
+- **"Judging the Judges" (Soumik, arXiv 2604.23178, Apr 2026)**: 系统比较 9 种去偏策略在 5 个 judge model 上的效果。关键发现：style bias 是 dominant bias (0.76–0.92)，远超 position bias (≤0.04)。但论文聚焦于评估已有策略，未提出新的因果方法。✅ 引用准确。
+
+- **Length-Controlled AlpacaEval (COLM 2024 / ICLR 2025)**: 通过 logistic regression 做 post-hoc length debiasing，将 AlpacaEval 与 Chatbot Arena 的 Spearman 相关从 0.93 提升至 0.98。仅控制单一维度（长度）。与本 proposal 关系：最重要的 trivial alternative baseline——多维 regression 扩展可能就够了。✅ 引用准确。
+
+- **Bias-Bounded Evaluation (arXiv 2603.05485, Mar 2026)**: 差分隐私启发的方法，注入校准高斯噪声，保留 61–99% ranking correlation。非因果方法。✅ 引用准确。
+
+- **Preference Leakage (ICLR 2026, arXiv 2502.01534)**: 发现 judge 依赖 "stylistic regularities—tone consistency, sentence cadence, punctuation density" 形成偏好判断。Contextual Calibration 可有效缓解。✅ 引用准确。
+
+- **CASSE (arXiv 2601.10809, Jan 2026)**: 关键发现风格特征 "deeply entangled rather than orthogonal"——prompting for conciseness 显著降低 perceived expertise。这直接与 proposal 的 "three axes are genuinely independent" 假设相矛盾。✅ 引用准确。
+
+- **CoLD: Counterfactually-Guided Length Debiasing (arXiv, Jul 2025)**: 用反事实视角做 Process Reward Model 的 length debiasing。在精神上与 CSD 高度接近——同样是 counterfactual + debiasing，只是针对 PRM 而非 judge，且仅处理 length 维度。Proposal 未引用此工作。
+
+- **调研总结**: LLM judge 风格偏差是 2025-2026 的热门话题，问题已被充分文档化（SOS-Bench, Soumik, Preference Leakage），但因果性去偏方案仍处空白——FairJudge 是 train-based，LC AlpacaEval 仅覆盖单维度，BBE 是非因果噪声注入。Proposal 定位于"黑盒 judge + 多维因果 + post-hoc"这一空位，定位合理但该空位是否需要如此重量级的方法论是核心争议。
+
+---
+
+【Trivial Alternative 检验】:
+
+存在明确的 trivial alternative 威胁：
+
+**Multi-dimensional LC AlpacaEval 扩展**。LC AlpacaEval 已证明 single-dimension post-hoc regression debiasing 极其有效（Spearman 0.93→0.98）。一个自然的 trivial baseline 是：用现成的 style classifiers（formality score, verbosity score, formatting complexity score）作为 regressors，做多维 logistic/linear regression debiasing——无需生成任何 counterfactual，无需 7x 推理开销，无需 DML 框架。这个方法成本接近零。
+
+**Format normalization baseline**。Proposal 自己也列了 "strip all markdown before judging" 作为 baseline。对于 formatting 轴，这可能就够了。
+
+**CSD 的增量价值在哪？** Proposal 的核心论点是：(1) 因果识别比回归调整更 principled——回归可能有遗漏变量偏差；(2) legitimacy-aware correction 区分 bias vs. legitimate style-quality correlation；(3) per-response granularity 而非 aggregate level。这些论点在理论上成立，但需要实验证明 CSD 实际上优于多维回归 baseline 的幅度。如果差距很小，7x 成本很难 justify。
+
+**结论：trivial alternative 威胁真实存在。** 如果多维回归扩展已能捕获大部分 style bias，CSD 的增量价值会被审稿人质疑。Proposal 需要明确将 "multi-dimensional regression baseline"（不仅仅是 LC AlpacaEval 的单维版本）列为核心对比实验。
+
+---
+
+【前提假设检验】:
+
+核心 claim 的逻辑链条中有以下未经验证的假设：
+
+**1. "三个风格轴是 genuinely independent" — 与已有证据矛盾。** Proposal 声称 formality/verbosity/formatting 是独立的，但 CASSE (arXiv 2601.10809) 明确证明风格特征 "deeply entangled rather than orthogonal"。例如，formal 文本往往更 verbose，structured formatting 往往伴随更高的 verbosity。Proposal 的 DML multivariate treatment 部分试图处理 "residual axis correlations"，但同时声称轴是独立的，存在内部矛盾。这不致命（可以改为声称轴是 "well-defined but potentially correlated"），但削弱了方法论的 clean narrative。
+
+**2. RATE 的两个核心假设在风格改写中是否成立。** RATE Assumption 1 要求 direction-independent rewrite noise（formal→casual 的 noise 与 casual→formal 的 noise 相同）。这在 style transfer 中很可能不成立——将一篇学术论文改写为 casual 风格（大幅简化）vs. 将一段聊天记录改写为 formal 风格（大幅扩展）产生的 noise 模式很可能不对称。RATE Assumption 2 (additive decomposition) 同样是强假设。Proposal 未提供验证这些假设的实验设计。
+
+**3. "Content preservation" 的可操作化是否可靠。** BERTScore ≥ 0.92 + NLI ≥ 0.95 的阈值看似严格，但 BERTScore 对表面形式敏感（可能因 style change 而降低即使 content 不变），NLI entailment 不等于 content equivalence（一个更 verbose 的重写几乎总是 entail 原文）。这些指标的组合并不能保证 "content preserved, only style changed"，而这是整个因果识别策略的基石。
+
+**4. α 参数的 held-out tuning 循环论证风险。** Legitimacy-aware correction 通过在 held-out set 上最大化与 ground-truth 的 Spearman correlation 来确定 α。但如果 ground-truth 本身（如 benchmark correctness labels）已经是 proposal 的评估指标，那么 α 的 tuning 就有 data leakage / overfitting 风险。此外，"domain-conditional α" 需要足够的 per-domain 样本量，200 responses 的 pilot study 可能不够。
+
+---
+
+【3 维度打分】:
+
+1. **Novelty: 中** — 
+   CSD 的贡献是将 RATE 的 double-rewrite protocol + DML partially linear model 组合应用于 LLM judge 的多维风格去偏。搜索结果确认，截至 2026 年 5 月，没有已发表的工作将 content-preserving binary style counterfactuals + doubly-robust DML estimation 用于黑盒 judge debiasing——这个特定组合确实是新的。
+
+   然而，这是 **方法论组合的新颖性，而非原理层面的新颖性**：
+   - RATE (ICML 2025) 已经做了 "counterfactual generation + causal effect estimation on reward models"——CSD 将对象从 reward model 换成 judge，从 high-level attributes 换成 style axes
+   - LC AlpacaEval (COLM 2024) 已经做了 "post-hoc regression debiasing of judge scores"——CSD 将单维扩展为多维，将 linear regression 换成 DML
+   - CoLD (Jul 2025) 已经将 counterfactual 视角用于 reward model 的 length debiasing
+   
+   如果 positive results，审稿人可能会说 "this is a natural extension of RATE to judges, with DML as a stronger estimator"——useful but not deeply surprising。Novelty 的 ceiling 受限于此。
+
+2. **Significance: 中偏强** — 
+   研究问题的重要性毫无疑问：SOS-Bench (ICLR 2025), Soumik (2026), Preference Leakage (ICLR 2026) 一致证实 style bias 是 LLM judge 的 dominant failure mode，且现有方法要么需要 retraining (FairJudge)，要么只覆盖单维 (LC AlpacaEval)，要么是非因果的 (BBE)。一个 model-agnostic、multi-dimensional、post-hoc 的因果去偏方案填补了真实空白。
+
+   但 significance 受两个因素制约：(a) 7x 推理成本（即使 amortized 版本也需要先在 pipeline 上投入大量 cost 来训练 predictor），限制了实际部署价值；(b) 如果多维回归 baseline 已经能解决 80% 的问题，因果方法的 marginal significance 会被大幅压缩。
+
+3. **Related Work: 强** — 
+   Proposal 的文献覆盖非常全面：FairJudge, SOS-Bench, RATE, LC AlpacaEval, BBE, CASSE, Preference Leakage, Soumik, RBD, UDA, CyclicJudge, ISE 均被覆盖且差异化定位清晰。ISE 的 positivity violation 批评被正面反驳（binary interventions vs. free-text treatments）。唯一遗漏是 CoLD (Counterfactually-Guided Length Debiasing, Jul 2025)，这是方法论上最接近的工作之一（counterfactual + debiasing for reward model），建议补充。
+
+---
+
+【概率估计】: 25% - 38%，中位 30%
+
+（注：此概率为投稿至合适 venue 如 AAAI/ICLR/ACL 的估计。投稿 CoRL 2026 的中稿概率约为 0%——scope 完全不匹配，会被 desk reject。）
+
+【估计理由】: 
+- Significance 是本 proposal 的最大优势，问题确实重要且时机正确，这把下限拉到 25% 以上
+- Novelty 是限制上界的主因——核心方法是 RATE + DML 的组合应用而非原创性方法论突破，审稿人很可能认为 "natural extension, limited novelty"
+- Trivial alternative 威胁（多维回归扩展）如果不能在实验中被明确击败，会成为最致命的拒稿理由
+- 前提假设中 RATE assumptions 在 style transfer 中的适用性和 "three axes independence" 与 CASSE 发现的矛盾会被严格审稿人抓住
+- Related Work 强是加分项但不能决定上界
+
+【主要风险】:
+1. **Trivial Alternative 致命风险**: 多维 regression debiasing（LC AlpacaEval 的自然多维扩展）可能以接近零成本达到 CSD 80%+ 的效果，使 7x 推理成本的因果方法 unjustifiable
+2. **RATE 假设不适用风险**: Direction-independent rewrite noise 假设在 style transfer 中很可能被违反（formal→casual vs. casual→formal 的 noise asymmetry），如果不验证此假设，整个因果识别策略的理论基础动摇
+```
+
+---
+
+Sources:
+- [FairJudge: An Adaptive, Debiased, and Consistent LLM-as-a-Judge](https://arxiv.org/abs/2602.06625)
+- [Style Outweighs Substance: Failure Modes of LLM Judges (ICLR 2025)](https://arxiv.org/abs/2409.15268)
+- [RATE: Causal Explainability of Reward Models with Imperfect Counterfactuals (ICML 2025)](https://arxiv.org/abs/2410.11348)
+- [Judging the Judges: Systematic Evaluation of Bias Mitigation (Soumik 2026)](https://arxiv.org/abs/2604.23178)
+- [Length-Controlled AlpacaEval](https://arxiv.org/abs/2404.04475)
+- [Bias-Bounded Evaluation](https://arxiv.org/abs/2603.05485)
+- [Preference Leakage (ICLR 2026)](https://arxiv.org/abs/2502.01534)
+- [CASSE: A Concise Agent is Less Expert](https://arxiv.org/abs/2601.10809)
+- [CoLD: Counterfactually-Guided Length Debiasing](https://arxiv.org/html/2507.15698v1)
+- [CoRL 2026 Call for Papers](https://www.corl.org/contributions/call-for-papers)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1aa85e62-e756-4d93-afc6-92e1b6d77cf1",
+  "isSidechain": false,
+  "requestId": "req_011CbD7kHkW67gu9ziJzUKQt",
+  "type": "assistant",
+  "uuid": "105736f2-6eb9-4f43-adf9-8f83689b60d4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "cec9e6bb-8ddf-469a-af52-bb35246f2388",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qd1bSY394mG5pLGUxSAs2n",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2613,
+      "cache_read_input_tokens": 28900,
+      "output_tokens": 6774,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2613,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6774,
+          "cache_read_input_tokens": 28900,
+          "cache_creation_input_tokens": 2613,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2613
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 48_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Causal Style Decomposition for LLM Judge Debiasing via Doubly-Robust Counterfactual Estimation  ## Description S…",
+  "leafUuid": "105736f2-6eb9-4f43-adf9-8f83689b60d4",
+  "sessionId": "cec9e6bb-8ddf-469a-af52-bb35246f2388"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 49_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Causal style decomposition for LLM judge debiasing",
+  "sessionId": "cec9e6bb-8ddf-469a-af52-bb35246f2388"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 50_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # Causal Style Decomposition for LLM Judge Debiasing via Doubly-Robust Counterfactual Estimation  ## Description S…",
+  "leafUuid": "105736f2-6eb9-4f43-adf9-8f83689b60d4",
+  "sessionId": "cec9e6bb-8ddf-469a-af52-bb35246f2388"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 51_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Causal style decomposition for LLM judge debiasing",
+  "sessionId": "cec9e6bb-8ddf-469a-af52-bb35246f2388"
+}
+```
+
+---

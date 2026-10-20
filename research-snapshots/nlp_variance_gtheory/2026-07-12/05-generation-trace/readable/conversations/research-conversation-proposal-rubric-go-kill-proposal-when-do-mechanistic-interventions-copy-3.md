@@ -1,0 +1,2419 @@
+# Research conversation: 【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。 【proposal】: # When Do Mechanistic Interventions
+
+**Reproducibility Budgets for Open-Weight LLM Evaluation: A Generalizability Theory Study of 7–9B Instruction-Tuned Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 37
+- **Recorded user turns:** 1
+- **Tool calls:** 9
+- **Original source:** `logs/chats/exported-trajectories/account-2/1741ef32-5043-428d-9fcb-3d13db752949.jsonl`
+- **Structured JSON:** [`d69e0224fab6b91568fa.json`](../../sessions/d6/d69e0224fab6b91568fa.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-19T19:17:07.909Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-19T19:17:07.909Z",
+  "sessionId": "1741ef32-5043-428d-9fcb-3d13db752949",
+  "content": "【任务】: 请评估以下 proposal 的客观中稿概率。\n必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。\n\n【proposal】:\n# When Do Mechanistic Interventions Succeed? A Multi-Granularity Empirical Test on Process Reward Models\n\n## Description\nWhen do mechanistic interventions actually improve model behavior? We propose and test a Domain Amenability Hypothesis: mechanistic interventions succeed when applied to domains with well-defined output semantics, constrained output structure, verifiable ground truth, and independently testable specificity. Process Reward Models — producing binary step-level correctness judgments in verifiable mathematical reasoning, yet conflating fluency with correctness (43% of reward gains from stylistic exploitation) — represent an ideal testbed. We study two architecturally diverse 7B discriminative PRMs (Qwen2.5-Math and Math-Shepherd-Mistral) plus a 1.5B variant for deeper circuit analysis. We train SAEs from scratch on PRM activations — explicitly contrasting with SteerRM's pretrained base-model SAE approach — using a pilot-then-target layer selection strategy that reduces training cost by ~45% while enabling analysis across all informative layers. We apply multi-method causal circuit tracing (RelP and activation patching on 7B models, plus attribution graphs via CLTs on the 1.5B model) to produce a cross-validated circuit taxonomy. We then compare three core intervention granularities — feature-level (with output-score filtering per Arad et al.), neuron-level (CIRM-style), and circuit-level — plus two extension granularities, with streamlined self-repair quantification combining attribution-based survey and focused path patching. All interventions are assessed against both Orgad et al.'s (ICML 2026) evaluation criteria and Lee et al.'s (2026) scientific rigor criteria, producing a granularity-by-criterion matrix. By contrasting PRM results against Basu et al.'s clinical LM failures, this work provides the first structured empirical evidence for when mechanistic interventions succeed.\n\n## Core Problem\nThe mechanistic interpretability community faces a critical unresolved question: under what conditions do mechanistic interventions actually improve model behavior? 'Interpretability without Actionability' (Basu et al., March 2026) found that four mechanistic intervention methods — including SAE steering and activation patching — produced zero or negligible corrections on clinical triage LMs, revealing a persistent knowledge-action gap. Yet concurrent work shows successes: SteerRM achieves +7.3 points on RM-Bench via SAE feature suppression, and CIRM matches 70B RM performance by editing <2% of neurons. The field urgently needs a systematic empirical framework to determine WHEN mechanistic interventions succeed vs. fail, testing multiple intervention granularities within a single controlled domain. We propose a Domain Amenability Hypothesis: mechanistic interventions are more likely to succeed in domains with (a) well-defined output semantics, (b) constrained output structure, (c) verifiable ground truth, and (d) independently testable specificity. Process Reward Models — with their binary step-level reward structure, scalar output, constrained mathematical domain, and orthogonally measurable fluency vs. reasoning dimensions — represent an ideal testbed for this hypothesis, while simultaneously addressing the practical problem that PRMs conflate fluency with reasoning correctness (43% of reward gains from stylistic exploitation; Tiwari et al., 2026). This domain-conditions framing is our own contribution; we adopt Orgad et al.'s (ICML 2026) evaluation criteria (comparative utility, mechanistic faithfulness, generalization, specificity) and Lee et al.'s (2026) scientific rigor criteria (falsifiability, reproducibility, predictivity) as complementary assessment frameworks for our interventions, and situate our multi-granularity approach within the 'Locate, Steer, Improve' pipeline taxonomy (Zhang et al., 2026).\n\n## Opportunity\nThe interpretability-actionability debate (Basu et al. vs. SteerRM/CIRM successes) lacks a controlled empirical framework that simultaneously tests WHEN interventions succeed (domain conditions) and HOW intervention granularity affects success. Meanwhile, PRM debiasing spans multiple intervention granularities never compared within a unified framework: SteerRM (2026) performs correlational feature-level suppression using pretrained base-model SAEs; CIRM (Shinoda et al., ACL 2026) performs neuron-level causal mediation; 'One Bias After Another' (2026) uses linear probes for mechanistic reward shaping; CRA (2025) trains SAEs from scratch on PRM activations for backdoor correction. A key methodological gap exists in the SAE-based approach: SteerRM used pretrained LlamaScope SAEs trained on base-model activations, restricting effective analysis to layers 0-9 where reconstruction quality is adequate; CRA trained SAEs directly on PRM activations, enabling analysis across all layers. No work has systematically evaluated which approach is more effective for PRM debiasing. Furthermore, Wang et al. (2026) demonstrate automated evolutionary bias discovery in RMs, providing a principled upstream methodology for identifying which biases to target with mechanistic interventions — yet no work has connected automated bias discovery to mechanistic circuit tracing and intervention. No work has: (a) systematically compared feature-level, neuron-level, and circuit-level interventions within one experimental framework on PRMs, (b) performed multi-method causal circuit tracing on PRM internals with both RelP and attribution graphs, (c) explicitly tested a domain amenability hypothesis by contrasting a domain that satisfies all four conditions (PRMs) against documented failures in domains that lack them (clinical LMs), or (d) applied output-score-based feature filtering (Arad et al., EMNLP 2025) to improve SAE steering on reward models. The 'Locate, Steer, Improve' survey (Zhang et al., 2026) explicitly identifies the gap between localization and practical steering as the central unsolved problem in actionable MI; our multi-granularity comparison directly addresses this gap within a controlled domain.\n\n## Related Work / Landscape\nTHE ACTIONABILITY DEBATE: 'Interpretability without Actionability' (Basu et al., arXiv:2603.18353, March 2026) tested four mechanistic intervention methods on clinical triage LMs and found a persistent knowledge-action gap: SAE steering produced zero corrections, activation patching showed null net gain at standard strength. Orgad et al. (arXiv:2605.11161, ICML 2026) propose evaluating interpretability work along two dimensions — concreteness (how precisely an action is articulated) and validation (empirical support for the action's utility) — and identify evaluation criteria for output-modifying actions: comparative utility against standard baselines, mechanistic faithfulness, generalization across architectures, and specificity of targeted effects. Importantly, these dimensions characterize the interpretability research output itself, not domain properties; we adopt their evaluation criteria as our assessment framework while contributing our own Domain Amenability Hypothesis about which domain properties favor mechanistic intervention success. Lee et al. (arXiv:2605.05508, May 2026) argue interpretability can serve as rigorous evaluation when it satisfies three scientific criteria: falsifiability, reproducibility, and predictivity. They identify three failure modes for causal interpretability methods — non-specificity (interventions affect multiple behaviors), inconsistency (unreliable behavioral shifts across inputs), and underdetermination (multiple features appear to influence identical behaviors) — providing a complementary diagnostic framework to Orgad et al.'s criteria.\n\nACTIONABLE MI SURVEY: 'Locate, Steer, and Improve' (Zhang et al., arXiv:2601.14004, Jan 2026) provides the most comprehensive taxonomy of actionable MI, categorizing localization methods (magnitude analysis, causal attribution, gradient detection, probing, vocabulary projection, circuit discovery) and intervention methods (amplitude manipulation, targeted optimization, vector arithmetic) across multiple granularities (neuron, feature, head, circuit, layer, parameter). Key findings: causal methods outperform magnitude-based identification; SAE features enable monosemantic intervention but are expensive; polysemy limits neuron-level approaches; success requires sparse and decomposable mechanisms. Our work directly instantiates their 'locate-steer-improve' pipeline across multiple granularities in a controlled domain.\n\nPRM BIAS: Tiwari et al. (arXiv:2603.06621) established that PRMs function as fluency detectors with 43% of reward gains from stylistic exploitation, introducing PRM-BiasBench. 'Consistency Not Causality' (arXiv:2502.14619) shows RMs are insensitive to problem removal but sensitive to formatting. Wang et al. (arXiv:2602.15222, Feb 2026) present an automated evolutionary pipeline for discovering RM biases — using LLM-based iterative proposal and refinement of candidate biases, validated through counterfactual pairs. They found 10 statistically significant biases in Skywork-V2-8B including preferences for redundant spacing and hallucinated content, and note their discovered biases 'present concrete targets for mechanistic interpretability research.' Their methodology complements our contrastive pair construction by providing a principled upstream bias discovery phase.\n\nINTERVENTION GRANULARITIES AND SAE METHODOLOGY: (1) Feature-level: SteerRM (arXiv:2603.12795, March 2026) uses pretrained LlamaScope SAEs (32× expansion, trained on Llama-3.1-8B-Base activations) applied to RM hidden states, with contrastive feature identification via a strength-stability criterion. Critically, they restricted analysis to layers 0-9 because reconstruction quality degrades sharply beyond this range — with MSE increasing by orders of magnitude — reflecting distributional mismatch between base-model SAE training data and RM-specific activations. This is not an inherent SAE limitation but a pretrained-vs-fine-tuned domain gap. Their approach is training-free but limited to architectures with available pretrained SAEs (Llama, Gemma). In contrast, CRA (arXiv:2508.04216) trains SAEs from scratch on PRM activations (8× expansion, 8× V100 GPUs) across all layers of Math-Shepherd-PRM-7B and Qwen2.5-Math-PRM-7B, achieving usable reconstruction at all layers since SAEs are matched to the actual PRM activation distribution. Our approach follows CRA's from-scratch methodology, which is more principled for PRMs but costlier than pretrained SAEs. Arad et al. (arXiv:2505.20063, EMNLP 2025) demonstrate that feature selection quality critically determines steering effectiveness: distinguishing 'output features' (which causally affect model outputs) from 'input features' (which merely activate on relevant inputs) yields 2-3× improvement, suggesting SteerRM's activation-difference features may be suboptimal without output-score validation. (2) Neuron-level: CIRM (Shinoda et al., arXiv:2604.27495, ACL 2026) uses Spearman correlation for bias-specific neuron identification with Pearl's causal mediation analysis — edits <2% of neurons in 2 general RMs to match 70B performance, finds bias signals primarily in early layers. Selection is correlation-based on polysemantic neurons without SAE decomposition. (3) Probe-level: 'One Bias After Another' (arXiv:2603.03291, Feb 2026) uses linear activation probes for mechanistic reward shaping across five RMs. (4) Training-time approaches: Factored CRL (arXiv:2601.21350, ICML 2026) separates causal/non-causal reward factors via adversarial gradient reversal; Robust Reward Modeling (Lu et al., arXiv:2604.13833, April 2026) performs causal decomposition via decoder-based intent reconstruction — these complement our inference-time mechanistic approach.\n\nSPARSE REWARD CIRCUITRY: Xu et al. (arXiv:2602.00986, Feb 2026) identify a sparse reward subsystem in LLMs containing 'value neurons' (predicting state value) and 'dopamine neurons' (encoding step-level TD errors), with zeroing top 1% of value neurons causing catastrophic -54.9% accuracy degradation vs. -0.6% for random neurons. Their L1-norm probe pruning provides an efficient neuron identification methodology to compare against CIRM's Spearman correlation.\n\nSAE-ON-RM WORK: CRA (arXiv:2508.04216) trains SAEs on PRM activations for backdoor correction. SARM (arXiv:2508.08746, AAAI 2026 Oral) integrates SAEs for interpretable reward decomposition. Activation monitoring (arXiv:2603.04069) uses SAEs on residual streams for hacking detection. SAFER (arXiv:2507.00665) applies SAEs to probe safety-relevant features in RMs.\n\nCIRCUIT ANALYSIS TOOLS: Attribution graphs (Lindsey et al., Anthropic 2025) combine cross-layer transcoders with backward Jacobian tracing. RelP (arXiv:2508.21258, NeurIPS 2025 MechInterp Workshop Spotlight) provides faithful gradient-based circuit discovery requiring only 2 forward passes + 1 backward pass — achieving Pearson r=0.956 vs. r=0.006 for attribution patching on GPT-2 Large MLPs, validated on models up to Qwen2-7B. CLT-Forge (arXiv:2603.21014) provides open-source CLT infrastructure up to ~1B scale.\n\nSELF-REPAIR: McGrath et al. (ICML 2024) showed self-repair varies significantly across prompts and involves LayerNorm scaling (~30% of measured self-repair), with sparse neuron sets in final MLP layers performing anti-erasure. They recommend path patching over full-component ablation and LayerNorm freezing during ablations.\n\nGENERATIVE PRM LANDSCAPE: ThinkPRM (arXiv:2504.16828, TMLR 2026) and GenPRM (arXiv:2504.00891, AAAI 2026) demonstrate generative PRMs outperform discriminative PRMs on accuracy with far less training data. However, discriminative PRMs remain widely deployed due to lower inference cost and deployment simplicity. Understanding failure modes of discriminative systems has independent value.\n\n## Approach\nWe conduct the first systematic empirical test of when mechanistic interventions succeed, using Process Reward Models as a controlled domain that we argue satisfies all four conditions of our Domain Amenability Hypothesis: (a) well-defined output semantics (binary step-level correctness judgments), (b) constrained output structure (scalar reward scores), (c) verifiable ground truth (mathematically checkable reasoning), and (d) independently testable specificity (fluency bias measurable separately from reasoning accuracy on orthogonal benchmarks). We contrast this with the clinical triage domain where Basu et al. found failure — which lacks verifiable ground truth, has unconstrained output structure, and has no orthogonal specificity test. We study two architecturally diverse 7B discriminative PRMs — Qwen2.5-Math-PRM-7B (Qwen2.5-Math base) and Math-Shepherd-Mistral-7B-PRM (Mistral-7B base) — plus Skywork-o1-Open-PRM-Qwen-2.5-1.5B for deeper mechanistic analysis, systematically comparing three core intervention granularities (feature-level, neuron-level, circuit-level) across all models and two extension granularities (layer-level, hybrid) on the single most informative PRM.\n\n**Phase 1: Pilot-Guided SAE Training with Output-Score Filtering.**\n\n*SAE methodology: from-scratch on PRM activations.* A critical methodological choice distinguishes our approach from SteerRM. SteerRM used pretrained LlamaScope SAEs (trained on Llama-3.1-8B-Base activations) applied to RM hidden states, restricting effective analysis to layers 0-9 where reconstruction quality remains adequate — beyond which MSE increases by orders of magnitude due to distributional mismatch between base-model and reward-model activations. We instead follow CRA's precedent of training SAEs from scratch on PRM-specific activations, using 8× expansion factor via SAELens. This is more principled: PRM activation distributions differ substantially from base LMs, particularly in later layers where reward-specific representations are learned. CRA validated this approach on Math-Shepherd-PRM-7B and Qwen2.5-Math-PRM-7B using 8× V100 GPUs. The trade-off is compute cost versus analysis coverage: pretrained SAEs are free but architecture-restricted and layer-limited; from-scratch SAEs cost ~2-4 A100-days per PRM but enable analysis across all layers.\n\n*Pilot-then-target layer selection.* To avoid training SAEs wastefully on all ~28-32 layers of 7B PRMs, we adopt a pilot-then-target strategy: (a) Train SAEs on all 28 layers of the 1.5B PRM (cheap: ~15 H100-hours total at 8× expansion). (b) Analyze which layer ranges concentrate fluency-encoding vs. reasoning-encoding features by computing per-layer output-score distributions (Arad et al.'s filtering). (c) Identify a key layer range (we hypothesize layers 0-16 based on CIRM's early-layer bias finding and the reward-head gradient flow pattern). (d) Train SAEs only on the identified layer range for 2×7B PRMs, plus every 4th layer outside this range as a coverage check. This reduces per-PRM SAE training from ~30 SAEs to ~16, cutting SAE training compute by ~45%.\n\n*Feature identification with output-score filtering.* Use contrastive input pairs (fluent-but-wrong vs. disfluent-but-correct reasoning steps, sourced from PRM-BiasBench and augmented with Wang et al.'s automated evolutionary bias discovery pipeline to identify novel bias targets) to identify candidate fluency-associated and reasoning-associated features via activation difference analysis. Critically, apply Arad et al.'s output-score filtering: for each candidate feature, compute its output score (causal effect on model output via single forward pass with high steering factor on a neutral prompt). Retain only features with high output scores (≥0.1 threshold), filtering out features that merely detect fluency cues but don't causally influence reward scores.\n\n**Phase 2: Multi-Method Causal Circuit Tracing.**\n\nTier A (both 7B PRMs — budget: 60 H100-hours): (a) Relevance Patching (RelP) for efficient, faithful gradient-based circuit discovery across all components simultaneously — requiring only 2 forward + 1 backward pass per sample, validated on Qwen2-7B with Pearson r=0.956 faithfulness (~15h across 2 PRMs on 1000+ contrastive samples). (b) Activation patching at every attention head and MLP layer with contrastive pairs to measure causal effect on step-level reward scores, providing cross-validation of RelP findings (~45h across 2 PRMs).\n\nTier B (1.5B PRM — budget: 35 H100-hours): Attribution graphs using cross-layer transcoders via CLT-Forge on Skywork-o1-Open-PRM-Qwen-2.5-1.5B, at the demonstrated-feasible scale for CLT training. This produces complete feature-level circuit maps for representative examples.\n\n**Concrete CLT fallback:** If CLT training on the 1.5B PRM exceeds 45 H100-hours or reconstruction loss exceeds 2× the per-layer SAE baseline, we fall back to Tier A methods only (RelP + activation patching on both 7B PRMs), which constitute two independent causal methods sufficient for cross-validation.\n\nComponents are classified as fluency-encoding, reasoning-encoding, or mixed only when at least two methods converge.\n\n**Phase 2b: Streamlined Self-Repair Quantification.** We quantify self-repair following McGrath et al. (ICML 2024) in two stages:\n\n(a) *Attribution-based survey* (cheap: ~5 H100-hours). Use RelP-derived attribution scores to approximate self-repair ratios SR(C) = (|DE(C)| - |TE(C)|) / |DE(C)| for all identified fluency-encoding components across N≥500 test examples, where DE(C) = direct effect and TE(C) = total effect. This provides distributional estimates (median, IQR, 5th/95th percentiles) of self-repair across all components.\n\n(b) *Focused path patching* (targeted: ~15 H100-hours). For the top-10 components with highest estimated SR from stage (a), perform exhaustive path patching with LayerNorm freezing on N≥200 examples per component. Decompose self-repair into downstream attention compensation (ΣΔ DE_h), downstream MLP compensation (ΣΔ DE_m), and LayerNorm scaling (ΔDE_LN). Compare single-site vs. multi-site ablation to test H4.\n\n**Phase 3: Multi-Granularity Intervention Comparison.** Three CORE granularities and two EXTENSION granularities:\n\n**Core granularities (all 3 PRMs × 3 core benchmarks):**\n(i) Feature-level: SAE feature suppression on output-score-filtered bias features (our improved SteerRM-style approach with from-scratch SAEs + Arad et al. filtering);\n(ii) Neuron-level: CIRM-style correlation-based neuron identification with causal mediation (median replacement), adapted to PRMs — comparing Spearman correlation selection against Xu et al.'s L1-norm probe pruning as alternative identification methods;\n(iii) Circuit-level: targeted ablation/dampening of causally-validated fluency circuits while preserving reasoning circuits, using path patching for precise intervention.\n\n**Extension granularities (single most informative PRM × 3 core benchmarks):**\n(iv) Layer-level: blanket dampening of layers classified as predominantly fluency-encoding — the coarsest intervention, serving as a lower bound;\n(v) Hybrid: circuit-informed feature suppression restricting feature-level interventions to causally-validated output-score-filtered features within identified fluency circuits — the finest-grained intervention, serving as an upper bound.\n\nWe benchmark core interventions on three core benchmarks: ProcessBench (core error detection), PRM-BiasBench (bias-specific evaluation), and RM-Bench Hard split (style-invariant adversarial evaluation). PRMBench and Socratic-PRMBench serve as extension benchmarks evaluated on the single most informative PRM across all five granularities, providing fine-grained diagnostic depth without expanding the core matrix.\n\n**Phase 4: Actionability Assessment.** We evaluate each intervention against two complementary frameworks:\n\n*Orgad et al.'s criteria* — (1) Comparative utility: does each intervention outperform simple baselines (fine-tuning on debiased data, prompt-based re-ranking, random component ablation)? (2) Mechanistic faithfulness: do interventions on identified components produce predicted changes? (3) Generalization: do findings hold across our two architecturally diverse 7B PRMs? (4) Specificity: do interventions affect only targeted bias, or cause broad side effects?\n\n*Lee et al.'s scientific rigor criteria* — (1) Falsifiability: are our mechanistic claims testable and potentially disprovable? (2) Reproducibility: are intervention effects consistent across similar inputs? (3) Predictivity: can our circuit taxonomy predict intervention outcomes on held-out examples? We explicitly test Lee et al.'s three failure modes — non-specificity, inconsistency, and underdetermination — as diagnostic checks on our findings.\n\nThis produces a granularity-by-criterion matrix that, combined with our Domain Amenability Hypothesis and the contrast with Basu et al.'s clinical LM failures, provides the first structured empirical evidence for WHEN mechanistic interventions succeed.\n\n**Domain Amenability Hypothesis — Testing and Contrast.** We argue PRMs satisfy all four domain amenability conditions, in stark contrast to clinical triage LMs: (1) Well-defined output semantics: PRM rewards are binary step-level judgments vs. open-ended clinical assessments; (2) Constrained output structure: scalar reward score vs. unconstrained text; (3) Verifiable ground truth: mathematically checkable reasoning vs. subjective triage correctness; (4) Testable specificity: fluency bias reduction measurable independently from reasoning accuracy on orthogonal benchmarks vs. entangled clinical dimensions. If our interventions succeed (>3% improvement on at least one benchmark), this provides positive evidence for the hypothesis; if they fail despite the favorable domain conditions, this significantly strengthens the case that mechanistic intervention is fundamentally limited.\n\n**Revised Hypotheses.** H1 (Domain Amenability): PRM mechanistic interventions will show statistically significant improvements (>3% on at least one benchmark), providing positive evidence for our Domain Amenability Hypothesis — in contrast to Basu et al.'s clinical LM null result. H2 (Circuit Structure): Multi-method causal tracing will identify separable fluency-reasoning circuit structure in PRMs, with convergence across at least two analysis methods, corroborating CIRM's early-layer bias encoding and Xu et al.'s sparse reward subsystem findings. H3 (Granularity-Dependent Effectiveness): Among the three core intervention granularities, effectiveness will vary by evaluation context — circuit-informed approaches will outperform on adversarially-constructed bias probes (PRM-BiasBench), while feature-level may suffice for naturally-distributed errors (ProcessBench). H4 (Self-Repair): Self-repair (estimated via attribution-based SR ratio) will partially attenuate single-site interventions (median SR > 0.3), but multi-site simultaneous intervention will yield TE_multi > Σ TE_single, demonstrating that coordinated ablation disrupts self-repair pathways.\n\n## Inspiration\nPrimary question: The actionability debate (Basu et al. vs. SteerRM/CIRM successes) — PRMs as the ideal controlled testbed via our Domain Amenability Hypothesis; Evaluation frameworks: Orgad et al.'s criteria (comparative utility, mechanistic faithfulness, generalization, specificity) + Lee et al.'s scientific rigor criteria (falsifiability, reproducibility, predictivity); Taxonomic framework: 'Locate, Steer, Improve' survey's locate-steer-improve pipeline; SAE methodology: CRA's from-scratch PRM SAE training (contrasted with SteerRM's pretrained LlamaScope approach) + Arad et al.'s output-score filtering; Circuit tracing: RelP for efficient faithful circuit discovery + CLT-Forge for attribution graphs; Neuron identification: CIRM's causal mediation + Xu et al.'s L1-norm probe pruning; Bias discovery: Wang et al.'s automated evolutionary bias discovery for contrastive pair construction; Self-repair methodology: McGrath et al.'s path patching and LayerNorm freezing\n\n## Key References\n- Interpretability without Actionability: Mechanistic Methods Cannot Correct Language Model Errors Despite Near-Perfect Internal Representations (Basu et al., arXiv:2603.18353, 2026)\n- Position: Interpretability Can Be Actionable (Orgad et al., arXiv:2605.11161, ICML 2026)\n- Rigorous Interpretation Is a Form of Evaluation (Lee et al., arXiv:2605.05508, May 2026)\n- Locate, Steer, and Improve: A Practical Survey of Actionable Mechanistic Interpretability in Large Language Models (Zhang et al., arXiv:2601.14004, 2026)\n- SAEs Are Good for Steering — If You Select the Right Features (Arad et al., arXiv:2505.20063, EMNLP 2025)\n- Automatically Finding Reward Model Biases (Wang et al., arXiv:2602.15222, Feb 2026)\n- Sparse Reward Subsystem in Large Language Models (Xu et al., arXiv:2602.00986, 2026)\n- Robust Reward Modeling for Large Language Models via Causal Decomposition (Lu et al., arXiv:2604.13833, 2026)\n- Explorations of Self-Repair in Language Models (McGrath et al., ICML 2024)\n- Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models (Tiwari et al., arXiv:2603.06621, 2026)\n- Debiasing Reward Models via Causally Motivated Inference-Time Intervention (Shinoda et al., arXiv:2604.27495, ACL 2026)\n- SteerRM: Debiasing Reward Models via Sparse Autoencoders (arXiv:2603.12795, 2026)\n- One Bias After Another: Mechanistic Reward Shaping and Persistent Biases in Language Reward Models (arXiv:2603.03291, 2026)\n- Causal Reward Adjustment: Mitigating Reward Hacking in External Reasoning via Backdoor Correction (arXiv:2508.04216, 2025)\n- Interpretable Reward Model via Sparse Autoencoder (arXiv:2508.08746, AAAI 2026 Oral)\n- Monitoring Emergent Reward Hacking During Generation via Internal Activations (arXiv:2603.04069, 2026)\n- Reward Models Identify Consistency, Not Causality (arXiv:2502.14619, 2025)\n- CoLD: Counterfactually-Guided Length Debiasing for Process Reward Models (arXiv:2507.15698, 2025)\n- RM-Bench: Benchmarking Reward Models of Language Models with Subtlety and Style (ICLR 2025)\n- Factored Causal Representation Learning for Robust Reward Modeling in RLHF (arXiv:2601.21350, ICML 2026)\n- SAFER: Probing Safety in Reward Models with Sparse Autoencoder (arXiv:2507.00665, 2025)\n- Circuit Tracing: Revealing Computational Graphs in Language Models (Lindsey et al., Anthropic, 2025)\n- RelP: Faithful and Efficient Circuit Discovery in Language Models via Relevance Patching (arXiv:2508.21258, NeurIPS 2025 MechInterp Workshop Spotlight)\n- CLT-Forge: A Scalable Library for Cross-Layer Transcoders and Attribution Graphs (arXiv:2603.21014, 2026)\n- PRMBench: A Fine-grained and Challenging Benchmark for Process-Level Reward Models (ACL 2025)\n- Socratic-PRMBench: Benchmarking Process Reward Models with Systematic Reasoning Patterns (arXiv:2505.23474, 2025)\n- Process Reward Models That Think (ThinkPRM, arXiv:2504.16828, TMLR 2026)\n- GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning (arXiv:2504.00891, AAAI 2026)\n- Towards Best Practices of Activation Patching in Language Models: Metrics and Methods (Goldowsky-Dill et al., arXiv:2309.16042, 2023)\n- Group-SAE: Efficient Training of Sparse Autoencoders for Large Language Models via Layer Groups (arXiv:2410.21508, 2024)\n\n## Resource Estimate\n- **manual**: {'gpu_hours': '280 H100-hours (Phase 1 — pilot SAE on 1.5B: 15h, targeted SAE training on 2×7B: 50h, output-score filtering: 5h; Phase 2 — Tier A RelP + activation patching on 2×7B: 60h, Tier B CLT on 1.5B: 35h; Phase 2b — attribution-based self-repair survey: 5h, focused path patching: 15h; Phase 3 — core interventions 3×3×3: 35h, extension interventions 2×1×3 + 5×1×2: 15h; baselines + CIRM adaptation: 30h; buffer: 15h)', 'timeline': '12 weeks (Phase 1: dataset construction + Wang et al. bias discovery + pilot SAE + targeted SAE training 3w; Phase 2: circuit tracing Tier A + Tier B in parallel 3w; Phase 2b + Phase 3: self-repair + interventions 3w; Phase 4: actionability analysis + extension benchmarks + writing 3w — with 1w overlap from parallelization)', 'estimated_gpu_cost': '$560 (at $2.00/H100-hr on-demand)'}\n- **human_in_loop**: {'gpu_hours': '250 H100-hours (automated experiment scripting reduces overhead; Claude generates CIRM adaptation + output-score filtering pipeline)', 'timeline': '10 weeks (Claude generates contrastive datasets integrating Wang et al. pipeline, automates multi-method tracing, adapts CIRM to PRM setting, implements self-repair protocol, drafts analysis)', 'claude_api_cost': '$380 (dataset generation ~$80, experiment code + CIRM adaptation + output-score pipeline ~$110, analysis + self-repair ~$70, actionability framework ~$60, paper drafting ~$60)', 'estimated_gpu_cost': '$500'}\n- **auto_research**: {'gpu_hours': '330 H100-hours (additional exploratory runs, automated hyperparameter sweeps for SAE training and output-score thresholds, broader self-repair analysis)', 'timeline': '8 weeks (aggressive parallelization across 3 PRMs; automated multi-method tracing; continuous experiment design loop)', 'claude_api_cost': '$800 (continuous experiment design, automated cross-validation, CIRM reproduction + adaptation, iterative paper refinement)', 'estimated_gpu_cost': '$660', 'speed_bottleneck': 'Sequential dependency: pilot SAE training (1.5B) must complete before targeted layer selection for 7B SAE training. However: Tier A (7B) and Tier B (1.5B) circuit tracing run in parallel once SAEs are ready, and the 3-core-granularity comparison parallelizes across PRMs.'}\n"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-19T19:17:07.912Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-19T19:17:07.912Z",
+  "sessionId": "1741ef32-5043-428d-9fcb-3d13db752949"
+}
+```
+
+---
+
+## Round 1
+
+35 recorded events
+
+### User
+
+_source line 3 · 2026-05-19T19:17:07.922Z_
+
+【任务】: 请评估以下 proposal 的客观中稿概率。
+必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。
+
+【proposal】:
+# When Do Mechanistic Interventions Succeed? A Multi-Granularity Empirical Test on Process Reward Models
+
+## Description
+When do mechanistic interventions actually improve model behavior? We propose and test a Domain Amenability Hypothesis: mechanistic interventions succeed when applied to domains with well-defined output semantics, constrained output structure, verifiable ground truth, and independently testable specificity. Process Reward Models — producing binary step-level correctness judgments in verifiable mathematical reasoning, yet conflating fluency with correctness (43% of reward gains from stylistic exploitation) — represent an ideal testbed. We study two architecturally diverse 7B discriminative PRMs (Qwen2.5-Math and Math-Shepherd-Mistral) plus a 1.5B variant for deeper circuit analysis. We train SAEs from scratch on PRM activations — explicitly contrasting with SteerRM's pretrained base-model SAE approach — using a pilot-then-target layer selection strategy that reduces training cost by ~45% while enabling analysis across all informative layers. We apply multi-method causal circuit tracing (RelP and activation patching on 7B models, plus attribution graphs via CLTs on the 1.5B model) to produce a cross-validated circuit taxonomy. We then compare three core intervention granularities — feature-level (with output-score filtering per Arad et al.), neuron-level (CIRM-style), and circuit-level — plus two extension granularities, with streamlined self-repair quantification combining attribution-based survey and focused path patching. All interventions are assessed against both Orgad et al.'s (ICML 2026) evaluation criteria and Lee et al.'s (2026) scientific rigor criteria, producing a granularity-by-criterion matrix. By contrasting PRM results against Basu et al.'s clinical LM failures, this work provides the first structured empirical evidence for when mechanistic interventions succeed.
+
+## Core Problem
+The mechanistic interpretability community faces a critical unresolved question: under what conditions do mechanistic interventions actually improve model behavior? 'Interpretability without Actionability' (Basu et al., March 2026) found that four mechanistic intervention methods — including SAE steering and activation patching — produced zero or negligible corrections on clinical triage LMs, revealing a persistent knowledge-action gap. Yet concurrent work shows successes: SteerRM achieves +7.3 points on RM-Bench via SAE feature suppression, and CIRM matches 70B RM performance by editing <2% of neurons. The field urgently needs a systematic empirical framework to determine WHEN mechanistic interventions succeed vs. fail, testing multiple intervention granularities within a single controlled domain. We propose a Domain Amenability Hypothesis: mechanistic interventions are more likely to succeed in domains with (a) well-defined output semantics, (b) constrained output structure, (c) verifiable ground truth, and (d) independently testable specificity. Process Reward Models — with their binary step-level reward structure, scalar output, constrained mathematical domain, and orthogonally measurable fluency vs. reasoning dimensions — represent an ideal testbed for this hypothesis, while simultaneously addressing the practical problem that PRMs conflate fluency with reasoning correctness (43% of reward gains from stylistic exploitation; Tiwari et al., 2026). This domain-conditions framing is our own contribution; we adopt Orgad et al.'s (ICML 2026) evaluation criteria (comparative utility, mechanistic faithfulness, generalization, specificity) and Lee et al.'s (2026) scientific rigor criteria (falsifiability, reproducibility, predictivity) as complementary assessment frameworks for our interventions, and situate our multi-granularity approach within the 'Locate, Steer, Improve' pipeline taxonomy (Zhang et al., 2026).
+
+## Opportunity
+The interpretability-actionability debate (Basu et al. vs. SteerRM/CIRM successes) lacks a controlled empirical framework that simultaneously tests WHEN interventions succeed (domain conditions) and HOW intervention granularity affects success. Meanwhile, PRM debiasing spans multiple intervention granularities never compared within a unified framework: SteerRM (2026) performs correlational feature-level suppression using pretrained base-model SAEs; CIRM (Shinoda et al., ACL 2026) performs neuron-level causal mediation; 'One Bias After Another' (2026) uses linear probes for mechanistic reward shaping; CRA (2025) trains SAEs from scratch on PRM activations for backdoor correction. A key methodological gap exists in the SAE-based approach: SteerRM used pretrained LlamaScope SAEs trained on base-model activations, restricting effective analysis to layers 0-9 where reconstruction quality is adequate; CRA trained SAEs directly on PRM activations, enabling analysis across all layers. No work has systematically evaluated which approach is more effective for PRM debiasing. Furthermore, Wang et al. (2026) demonstrate automated evolutionary bias discovery in RMs, providing a principled upstream methodology for identifying which biases to target with mechanistic interventions — yet no work has connected automated bias discovery to mechanistic circuit tracing and intervention. No work has: (a) systematically compared feature-level, neuron-level, and circuit-level interventions within one experimental framework on PRMs, (b) performed multi-method causal circuit tracing on PRM internals with both RelP and attribution graphs, (c) explicitly tested a domain amenability hypothesis by contrasting a domain that satisfies all four conditions (PRMs) against documented failures in domains that lack them (clinical LMs), or (d) applied output-score-based feature filtering (Arad et al., EMNLP 2025) to improve SAE steering on reward models. The 'Locate, Steer, Improve' survey (Zhang et al., 2026) explicitly identifies the gap between localization and practical steering as the central unsolved problem in actionable MI; our multi-granularity comparison directly addresses this gap within a controlled domain.
+
+## Related Work / Landscape
+THE ACTIONABILITY DEBATE: 'Interpretability without Actionability' (Basu et al., arXiv:2603.18353, March 2026) tested four mechanistic intervention methods on clinical triage LMs and found a persistent knowledge-action gap: SAE steering produced zero corrections, activation patching showed null net gain at standard strength. Orgad et al. (arXiv:2605.11161, ICML 2026) propose evaluating interpretability work along two dimensions — concreteness (how precisely an action is articulated) and validation (empirical support for the action's utility) — and identify evaluation criteria for output-modifying actions: comparative utility against standard baselines, mechanistic faithfulness, generalization across architectures, and specificity of targeted effects. Importantly, these dimensions characterize the interpretability research output itself, not domain properties; we adopt their evaluation criteria as our assessment framework while contributing our own Domain Amenability Hypothesis about which domain properties favor mechanistic intervention success. Lee et al. (arXiv:2605.05508, May 2026) argue interpretability can serve as rigorous evaluation when it satisfies three scientific criteria: falsifiability, reproducibility, and predictivity. They identify three failure modes for causal interpretability methods — non-specificity (interventions affect multiple behaviors), inconsistency (unreliable behavioral shifts across inputs), and underdetermination (multiple features appear to influence identical behaviors) — providing a complementary diagnostic framework to Orgad et al.'s criteria.
+
+ACTIONABLE MI SURVEY: 'Locate, Steer, and Improve' (Zhang et al., arXiv:2601.14004, Jan 2026) provides the most comprehensive taxonomy of actionable MI, categorizing localization methods (magnitude analysis, causal attribution, gradient detection, probing, vocabulary projection, circuit discovery) and intervention methods (amplitude manipulation, targeted optimization, vector arithmetic) across multiple granularities (neuron, feature, head, circuit, layer, parameter). Key findings: causal methods outperform magnitude-based identification; SAE features enable monosemantic intervention but are expensive; polysemy limits neuron-level approaches; success requires sparse and decomposable mechanisms. Our work directly instantiates their 'locate-steer-improve' pipeline across multiple granularities in a controlled domain.
+
+PRM BIAS: Tiwari et al. (arXiv:2603.06621) established that PRMs function as fluency detectors with 43% of reward gains from stylistic exploitation, introducing PRM-BiasBench. 'Consistency Not Causality' (arXiv:2502.14619) shows RMs are insensitive to problem removal but sensitive to formatting. Wang et al. (arXiv:2602.15222, Feb 2026) present an automated evolutionary pipeline for discovering RM biases — using LLM-based iterative proposal and refinement of candidate biases, validated through counterfactual pairs. They found 10 statistically significant biases in Skywork-V2-8B including preferences for redundant spacing and hallucinated content, and note their discovered biases 'present concrete targets for mechanistic interpretability research.' Their methodology complements our contrastive pair construction by providing a principled upstream bias discovery phase.
+
+INTERVENTION GRANULARITIES AND SAE METHODOLOGY: (1) Feature-level: SteerRM (arXiv:2603.12795, March 2026) uses pretrained LlamaScope SAEs (32× expansion, trained on Llama-3.1-8B-Base activations) applied to RM hidden states, with contrastive feature identification via a strength-stability criterion. Critically, they restricted analysis to layers 0-9 because reconstruction quality degrades sharply beyond this range — with MSE increasing by orders of magnitude — reflecting distributional mismatch between base-model SAE training data and RM-specific activations. This is not an inherent SAE limitation but a pretrained-vs-fine-tuned domain gap. Their approach is training-free but limited to architectures with available pretrained SAEs (Llama, Gemma). In contrast, CRA (arXiv:2508.04216) trains SAEs from scratch on PRM activations (8× expansion, 8× V100 GPUs) across all layers of Math-Shepherd-PRM-7B and Qwen2.5-Math-PRM-7B, achieving usable reconstruction at all layers since SAEs are matched to the actual PRM activation distribution. Our approach follows CRA's from-scratch methodology, which is more principled for PRMs but costlier than pretrained SAEs. Arad et al. (arXiv:2505.20063, EMNLP 2025) demonstrate that feature selection quality critically determines steering effectiveness: distinguishing 'output features' (which causally affect model outputs) from 'input features' (which merely activate on relevant inputs) yields 2-3× improvement, suggesting SteerRM's activation-difference features may be suboptimal without output-score validation. (2) Neuron-level: CIRM (Shinoda et al., arXiv:2604.27495, ACL 2026) uses Spearman correlation for bias-specific neuron identification with Pearl's causal mediation analysis — edits <2% of neurons in 2 general RMs to match 70B performance, finds bias signals primarily in early layers. Selection is correlation-based on polysemantic neurons without SAE decomposition. (3) Probe-level: 'One Bias After Another' (arXiv:2603.03291, Feb 2026) uses linear activation probes for mechanistic reward shaping across five RMs. (4) Training-time approaches: Factored CRL (arXiv:2601.21350, ICML 2026) separates causal/non-causal reward factors via adversarial gradient reversal; Robust Reward Modeling (Lu et al., arXiv:2604.13833, April 2026) performs causal decomposition via decoder-based intent reconstruction — these complement our inference-time mechanistic approach.
+
+SPARSE REWARD CIRCUITRY: Xu et al. (arXiv:2602.00986, Feb 2026) identify a sparse reward subsystem in LLMs containing 'value neurons' (predicting state value) and 'dopamine neurons' (encoding step-level TD errors), with zeroing top 1% of value neurons causing catastrophic -54.9% accuracy degradation vs. -0.6% for random neurons. Their L1-norm probe pruning provides an efficient neuron identification methodology to compare against CIRM's Spearman correlation.
+
+SAE-ON-RM WORK: CRA (arXiv:2508.04216) trains SAEs on PRM activations for backdoor correction. SARM (arXiv:2508.08746, AAAI 2026 Oral) integrates SAEs for interpretable reward decomposition. Activation monitoring (arXiv:2603.04069) uses SAEs on residual streams for hacking detection. SAFER (arXiv:2507.00665) applies SAEs to probe safety-relevant features in RMs.
+
+CIRCUIT ANALYSIS TOOLS: Attribution graphs (Lindsey et al., Anthropic 2025) combine cross-layer transcoders with backward Jacobian tracing. RelP (arXiv:2508.21258, NeurIPS 2025 MechInterp Workshop Spotlight) provides faithful gradient-based circuit discovery requiring only 2 forward passes + 1 backward pass — achieving Pearson r=0.956 vs. r=0.006 for attribution patching on GPT-2 Large MLPs, validated on models up to Qwen2-7B. CLT-Forge (arXiv:2603.21014) provides open-source CLT infrastructure up to ~1B scale.
+
+SELF-REPAIR: McGrath et al. (ICML 2024) showed self-repair varies significantly across prompts and involves LayerNorm scaling (~30% of measured self-repair), with sparse neuron sets in final MLP layers performing anti-erasure. They recommend path patching over full-component ablation and LayerNorm freezing during ablations.
+
+GENERATIVE PRM LANDSCAPE: ThinkPRM (arXiv:2504.16828, TMLR 2026) and GenPRM (arXiv:2504.00891, AAAI 2026) demonstrate generative PRMs outperform discriminative PRMs on accuracy with far less training data. However, discriminative PRMs remain widely deployed due to lower inference cost and deployment simplicity. Understanding failure modes of discriminative systems has independent value.
+
+## Approach
+We conduct the first systematic empirical test of when mechanistic interventions succeed, using Process Reward Models as a controlled domain that we argue satisfies all four conditions of our Domain Amenability Hypothesis: (a) well-defined output semantics (binary step-level correctness judgments), (b) constrained output structure (scalar reward scores), (c) verifiable ground truth (mathematically checkable reasoning), and (d) independently testable specificity (fluency bias measurable separately from reasoning accuracy on orthogonal benchmarks). We contrast this with the clinical triage domain where Basu et al. found failure — which lacks verifiable ground truth, has unconstrained output structure, and has no orthogonal specificity test. We study two architecturally diverse 7B discriminative PRMs — Qwen2.5-Math-PRM-7B (Qwen2.5-Math base) and Math-Shepherd-Mistral-7B-PRM (Mistral-7B base) — plus Skywork-o1-Open-PRM-Qwen-2.5-1.5B for deeper mechanistic analysis, systematically comparing three core intervention granularities (feature-level, neuron-level, circuit-level) across all models and two extension granularities (layer-level, hybrid) on the single most informative PRM.
+
+**Phase 1: Pilot-Guided SAE Training with Output-Score Filtering.**
+
+*SAE methodology: from-scratch on PRM activations.* A critical methodological choice distinguishes our approach from SteerRM. SteerRM used pretrained LlamaScope SAEs (trained on Llama-3.1-8B-Base activations) applied to RM hidden states, restricting effective analysis to layers 0-9 where reconstruction quality remains adequate — beyond which MSE increases by orders of magnitude due to distributional mismatch between base-model and reward-model activations. We instead follow CRA's precedent of training SAEs from scratch on PRM-specific activations, using 8× expansion factor via SAELens. This is more principled: PRM activation distributions differ substantially from base LMs, particularly in later layers where reward-specific representations are learned. CRA validated this approach on Math-Shepherd-PRM-7B and Qwen2.5-Math-PRM-7B using 8× V100 GPUs. The trade-off is compute cost versus analysis coverage: pretrained SAEs are free but architecture-restricted and layer-limited; from-scratch SAEs cost ~2-4 A100-days per PRM but enable analysis across all layers.
+
+*Pilot-then-target layer selection.* To avoid training SAEs wastefully on all ~28-32 layers of 7B PRMs, we adopt a pilot-then-target strategy: (a) Train SAEs on all 28 layers of the 1.5B PRM (cheap: ~15 H100-hours total at 8× expansion). (b) Analyze which layer ranges concentrate fluency-encoding vs. reasoning-encoding features by computing per-layer output-score distributions (Arad et al.'s filtering). (c) Identify a key layer range (we hypothesize layers 0-16 based on CIRM's early-layer bias finding and the reward-head gradient flow pattern). (d) Train SAEs only on the identified layer range for 2×7B PRMs, plus every 4th layer outside this range as a coverage check. This reduces per-PRM SAE training from ~30 SAEs to ~16, cutting SAE training compute by ~45%.
+
+*Feature identification with output-score filtering.* Use contrastive input pairs (fluent-but-wrong vs. disfluent-but-correct reasoning steps, sourced from PRM-BiasBench and augmented with Wang et al.'s automated evolutionary bias discovery pipeline to identify novel bias targets) to identify candidate fluency-associated and reasoning-associated features via activation difference analysis. Critically, apply Arad et al.'s output-score filtering: for each candidate feature, compute its output score (causal effect on model output via single forward pass with high steering factor on a neutral prompt). Retain only features with high output scores (≥0.1 threshold), filtering out features that merely detect fluency cues but don't causally influence reward scores.
+
+**Phase 2: Multi-Method Causal Circuit Tracing.**
+
+Tier A (both 7B PRMs — budget: 60 H100-hours): (a) Relevance Patching (RelP) for efficient, faithful gradient-based circuit discovery across all components simultaneously — requiring only 2 forward + 1 backward pass per sample, validated on Qwen2-7B with Pearson r=0.956 faithfulness (~15h across 2 PRMs on 1000+ contrastive samples). (b) Activation patching at every attention head and MLP layer with contrastive pairs to measure causal effect on step-level reward scores, providing cross-validation of RelP findings (~45h across 2 PRMs).
+
+Tier B (1.5B PRM — budget: 35 H100-hours): Attribution graphs using cross-layer transcoders via CLT-Forge on Skywork-o1-Open-PRM-Qwen-2.5-1.5B, at the demonstrated-feasible scale for CLT training. This produces complete feature-level circuit maps for representative examples.
+
+**Concrete CLT fallback:** If CLT training on the 1.5B PRM exceeds 45 H100-hours or reconstruction loss exceeds 2× the per-layer SAE baseline, we fall back to Tier A methods only (RelP + activation patching on both 7B PRMs), which constitute two independent causal methods sufficient for cross-validation.
+
+Components are classified as fluency-encoding, reasoning-encoding, or mixed only when at least two methods converge.
+
+**Phase 2b: Streamlined Self-Repair Quantification.** We quantify self-repair following McGrath et al. (ICML 2024) in two stages:
+
+(a) *Attribution-based survey* (cheap: ~5 H100-hours). Use RelP-derived attribution scores to approximate self-repair ratios SR(C) = (|DE(C)| - |TE(C)|) / |DE(C)| for all identified fluency-encoding components across N≥500 test examples, where DE(C) = direct effect and TE(C) = total effect. This provides distributional estimates (median, IQR, 5th/95th percentiles) of self-repair across all components.
+
+(b) *Focused path patching* (targeted: ~15 H100-hours). For the top-10 components with highest estimated SR from stage (a), perform exhaustive path patching with LayerNorm freezing on N≥200 examples per component. Decompose self-repair into downstream attention compensation (ΣΔ DE_h), downstream MLP compensation (ΣΔ DE_m), and LayerNorm scaling (ΔDE_LN). Compare single-site vs. multi-site ablation to test H4.
+
+**Phase 3: Multi-Granularity Intervention Comparison.** Three CORE granularities and two EXTENSION granularities:
+
+**Core granularities (all 3 PRMs × 3 core benchmarks):**
+(i) Feature-level: SAE feature suppression on output-score-filtered bias features (our improved SteerRM-style approach with from-scratch SAEs + Arad et al. filtering);
+(ii) Neuron-level: CIRM-style correlation-based neuron identification with causal mediation (median replacement), adapted to PRMs — comparing Spearman correlation selection against Xu et al.'s L1-norm probe pruning as alternative identification methods;
+(iii) Circuit-level: targeted ablation/dampening of causally-validated fluency circuits while preserving reasoning circuits, using path patching for precise intervention.
+
+**Extension granularities (single most informative PRM × 3 core benchmarks):**
+(iv) Layer-level: blanket dampening of layers classified as predominantly fluency-encoding — the coarsest intervention, serving as a lower bound;
+(v) Hybrid: circuit-informed feature suppression restricting feature-level interventions to causally-validated output-score-filtered features within identified fluency circuits — the finest-grained intervention, serving as an upper bound.
+
+We benchmark core interventions on three core benchmarks: ProcessBench (core error detection), PRM-BiasBench (bias-specific evaluation), and RM-Bench Hard split (style-invariant adversarial evaluation). PRMBench and Socratic-PRMBench serve as extension benchmarks evaluated on the single most informative PRM across all five granularities, providing fine-grained diagnostic depth without expanding the core matrix.
+
+**Phase 4: Actionability Assessment.** We evaluate each intervention against two complementary frameworks:
+
+*Orgad et al.'s criteria* — (1) Comparative utility: does each intervention outperform simple baselines (fine-tuning on debiased data, prompt-based re-ranking, random component ablation)? (2) Mechanistic faithfulness: do interventions on identified components produce predicted changes? (3) Generalization: do findings hold across our two architecturally diverse 7B PRMs? (4) Specificity: do interventions affect only targeted bias, or cause broad side effects?
+
+*Lee et al.'s scientific rigor criteria* — (1) Falsifiability: are our mechanistic claims testable and potentially disprovable? (2) Reproducibility: are intervention effects consistent across similar inputs? (3) Predictivity: can our circuit taxonomy predict intervention outcomes on held-out examples? We explicitly test Lee et al.'s three failure modes — non-specificity, inconsistency, and underdetermination — as diagnostic checks on our findings.
+
+This produces a granularity-by-criterion matrix that, combined with our Domain Amenability Hypothesis and the contrast with Basu et al.'s clinical LM failures, provides the first structured empirical evidence for WHEN mechanistic interventions succeed.
+
+**Domain Amenability Hypothesis — Testing and Contrast.** We argue PRMs satisfy all four domain amenability conditions, in stark contrast to clinical triage LMs: (1) Well-defined output semantics: PRM rewards are binary step-level judgments vs. open-ended clinical assessments; (2) Constrained output structure: scalar reward score vs. unconstrained text; (3) Verifiable ground truth: mathematically checkable reasoning vs. subjective triage correctness; (4) Testable specificity: fluency bias reduction measurable independently from reasoning accuracy on orthogonal benchmarks vs. entangled clinical dimensions. If our interventions succeed (>3% improvement on at least one benchmark), this provides positive evidence for the hypothesis; if they fail despite the favorable domain conditions, this significantly strengthens the case that mechanistic intervention is fundamentally limited.
+
+**Revised Hypotheses.** H1 (Domain Amenability): PRM mechanistic interventions will show statistically significant improvements (>3% on at least one benchmark), providing positive evidence for our Domain Amenability Hypothesis — in contrast to Basu et al.'s clinical LM null result. H2 (Circuit Structure): Multi-method causal tracing will identify separable fluency-reasoning circuit structure in PRMs, with convergence across at least two analysis methods, corroborating CIRM's early-layer bias encoding and Xu et al.'s sparse reward subsystem findings. H3 (Granularity-Dependent Effectiveness): Among the three core intervention granularities, effectiveness will vary by evaluation context — circuit-informed approaches will outperform on adversarially-constructed bias probes (PRM-BiasBench), while feature-level may suffice for naturally-distributed errors (ProcessBench). H4 (Self-Repair): Self-repair (estimated via attribution-based SR ratio) will partially attenuate single-site interventions (median SR > 0.3), but multi-site simultaneous intervention will yield TE_multi > Σ TE_single, demonstrating that coordinated ablation disrupts self-repair pathways.
+
+## Inspiration
+Primary question: The actionability debate (Basu et al. vs. SteerRM/CIRM successes) — PRMs as the ideal controlled testbed via our Domain Amenability Hypothesis; Evaluation frameworks: Orgad et al.'s criteria (comparative utility, mechanistic faithfulness, generalization, specificity) + Lee et al.'s scientific rigor criteria (falsifiability, reproducibility, predictivity); Taxonomic framework: 'Locate, Steer, Improve' survey's locate-steer-improve pipeline; SAE methodology: CRA's from-scratch PRM SAE training (contrasted with SteerRM's pretrained LlamaScope approach) + Arad et al.'s output-score filtering; Circuit tracing: RelP for efficient faithful circuit discovery + CLT-Forge for attribution graphs; Neuron identification: CIRM's causal mediation + Xu et al.'s L1-norm probe pruning; Bias discovery: Wang et al.'s automated evolutionary bias discovery for contrastive pair construction; Self-repair methodology: McGrath et al.'s path patching and LayerNorm freezing
+
+## Key References
+- Interpretability without Actionability: Mechanistic Methods Cannot Correct Language Model Errors Despite Near-Perfect Internal Representations (Basu et al., arXiv:2603.18353, 2026)
+- Position: Interpretability Can Be Actionable (Orgad et al., arXiv:2605.11161, ICML 2026)
+- Rigorous Interpretation Is a Form of Evaluation (Lee et al., arXiv:2605.05508, May 2026)
+- Locate, Steer, and Improve: A Practical Survey of Actionable Mechanistic Interpretability in Large Language Models (Zhang et al., arXiv:2601.14004, 2026)
+- SAEs Are Good for Steering — If You Select the Right Features (Arad et al., arXiv:2505.20063, EMNLP 2025)
+- Automatically Finding Reward Model Biases (Wang et al., arXiv:2602.15222, Feb 2026)
+- Sparse Reward Subsystem in Large Language Models (Xu et al., arXiv:2602.00986, 2026)
+- Robust Reward Modeling for Large Language Models via Causal Decomposition (Lu et al., arXiv:2604.13833, 2026)
+- Explorations of Self-Repair in Language Models (McGrath et al., ICML 2024)
+- Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models (Tiwari et al., arXiv:2603.06621, 2026)
+- Debiasing Reward Models via Causally Motivated Inference-Time Intervention (Shinoda et al., arXiv:2604.27495, ACL 2026)
+- SteerRM: Debiasing Reward Models via Sparse Autoencoders (arXiv:2603.12795, 2026)
+- One Bias After Another: Mechanistic Reward Shaping and Persistent Biases in Language Reward Models (arXiv:2603.03291, 2026)
+- Causal Reward Adjustment: Mitigating Reward Hacking in External Reasoning via Backdoor Correction (arXiv:2508.04216, 2025)
+- Interpretable Reward Model via Sparse Autoencoder (arXiv:2508.08746, AAAI 2026 Oral)
+- Monitoring Emergent Reward Hacking During Generation via Internal Activations (arXiv:2603.04069, 2026)
+- Reward Models Identify Consistency, Not Causality (arXiv:2502.14619, 2025)
+- CoLD: Counterfactually-Guided Length Debiasing for Process Reward Models (arXiv:2507.15698, 2025)
+- RM-Bench: Benchmarking Reward Models of Language Models with Subtlety and Style (ICLR 2025)
+- Factored Causal Representation Learning for Robust Reward Modeling in RLHF (arXiv:2601.21350, ICML 2026)
+- SAFER: Probing Safety in Reward Models with Sparse Autoencoder (arXiv:2507.00665, 2025)
+- Circuit Tracing: Revealing Computational Graphs in Language Models (Lindsey et al., Anthropic, 2025)
+- RelP: Faithful and Efficient Circuit Discovery in Language Models via Relevance Patching (arXiv:2508.21258, NeurIPS 2025 MechInterp Workshop Spotlight)
+- CLT-Forge: A Scalable Library for Cross-Layer Transcoders and Attribution Graphs (arXiv:2603.21014, 2026)
+- PRMBench: A Fine-grained and Challenging Benchmark for Process-Level Reward Models (ACL 2025)
+- Socratic-PRMBench: Benchmarking Process Reward Models with Systematic Reasoning Patterns (arXiv:2505.23474, 2025)
+- Process Reward Models That Think (ThinkPRM, arXiv:2504.16828, TMLR 2026)
+- GenPRM: Scaling Test-Time Compute of Process Reward Models via Generative Reasoning (arXiv:2504.00891, AAAI 2026)
+- Towards Best Practices of Activation Patching in Language Models: Metrics and Methods (Goldowsky-Dill et al., arXiv:2309.16042, 2023)
+- Group-SAE: Efficient Training of Sparse Autoencoders for Large Language Models via Layer Groups (arXiv:2410.21508, 2024)
+
+## Resource Estimate
+- **manual**: {'gpu_hours': '280 H100-hours (Phase 1 — pilot SAE on 1.5B: 15h, targeted SAE training on 2×7B: 50h, output-score filtering: 5h; Phase 2 — Tier A RelP + activation patching on 2×7B: 60h, Tier B CLT on 1.5B: 35h; Phase 2b — attribution-based self-repair survey: 5h, focused path patching: 15h; Phase 3 — core interventions 3×3×3: 35h, extension interventions 2×1×3 + 5×1×2: 15h; baselines + CIRM adaptation: 30h; buffer: 15h)', 'timeline': '12 weeks (Phase 1: dataset construction + Wang et al. bias discovery + pilot SAE + targeted SAE training 3w; Phase 2: circuit tracing Tier A + Tier B in parallel 3w; Phase 2b + Phase 3: self-repair + interventions 3w; Phase 4: actionability analysis + extension benchmarks + writing 3w — with 1w overlap from parallelization)', 'estimated_gpu_cost': '$560 (at $2.00/H100-hr on-demand)'}
+- **human_in_loop**: {'gpu_hours': '250 H100-hours (automated experiment scripting reduces overhead; Claude generates CIRM adaptation + output-score filtering pipeline)', 'timeline': '10 weeks (Claude generates contrastive datasets integrating Wang et al. pipeline, automates multi-method tracing, adapts CIRM to PRM setting, implements self-repair protocol, drafts analysis)', 'claude_api_cost': '$380 (dataset generation ~$80, experiment code + CIRM adaptation + output-score pipeline ~$110, analysis + self-repair ~$70, actionability framework ~$60, paper drafting ~$60)', 'estimated_gpu_cost': '$500'}
+- **auto_research**: {'gpu_hours': '330 H100-hours (additional exploratory runs, automated hyperparameter sweeps for SAE training and output-score thresholds, broader self-repair analysis)', 'timeline': '8 weeks (aggressive parallelization across 3 PRMs; automated multi-method tracing; continuous experiment design loop)', 'claude_api_cost': '$800 (continuous experiment design, automated cross-validation, CIRM reproduction + adaptation, iterative paper refinement)', 'estimated_gpu_cost': '$660', 'speed_bottleneck': 'Sequential dependency: pilot SAE training (1.5B) must complete before targeted layer selection for 7B SAE training. However: Tier A (7B) and Tier B (1.5B) circuit tracing run in parallel once SAEs are ready, and the 3-core-granularity comparison parallelizes across PRMs.'}
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "9b42ad3c-f5a9-410b-a318-aecdc23a88d0",
+  "type": "user",
+  "uuid": "5158f856-fa25-4bd4-9bf6-471ad330f9b0",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "1741ef32-5043-428d-9fcb-3d13db752949",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-19T19:17:07.921Z_
+
+```json
+{
+  "parentUuid": "5158f856-fa25-4bd4-9bf6-471ad330f9b0",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": [],
+    "readdedNames": [],
+    "pendingMcpServers": []
+  },
+  "type": "attachment",
+  "uuid": "87a1d5c8-3f57-4aa3-80e1-d53964df5156",
+  "timestamp": "2026-05-19T19:17:07.921Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "1741ef32-5043-428d-9fcb-3d13db752949",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-19T19:17:07.921Z_
+
+```json
+{
+  "parentUuid": "87a1d5c8-3f57-4aa3-80e1-d53964df5156",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "861f3fad-2119-4c8f-a5c1-1a37641f84d5",
+  "timestamp": "2026-05-19T19:17:07.921Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "1741ef32-5043-428d-9fcb-3d13db752949",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # When Do Mechanistic Interventions Succeed? A Multi-Granularity Empirical Test on Process Reward Models  ## Descr…",
+  "leafUuid": "861f3fad-2119-4c8f-a5c1-1a37641f84d5",
+  "sessionId": "1741ef32-5043-428d-9fcb-3d13db752949"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Assess mechanistic intervention success in process reward models",
+  "sessionId": "1741ef32-5043-428d-9fcb-3d13db752949"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-19T19:17:21.967Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to evaluate a research proposal for CoRL 2026 (Conference on Robot Learning). Let me first carefully read the proposal, then conduct web searches to understand the current landscape before making my assessment.
+
+Wait - this is for CoRL 2026 (Conference on Robot Learning), but the proposal is about mechanistic interpretability of Process Reward Models (PRMs) for mathematical reasoning. This seems like a mismatch - CoRL is about robot learning, not NLP/interpretability. Let me re-read...
+
+Actually, looking at the rubric, it mentions "NLP/CL 领域" (NLP/Computational Linguistics field). 
+
+There's definitely a venue mismatch here - the proposal is about mechanistic interpretability of PRMs for math reasoning, which is fundamentally an NLP/interpretability problem, not robot learning. I should evaluate it as requested but flag this significant disconnect.
+
+Before assessing the idea quality, I need to do some research to understand the current landscape: what's known about mechanistic interpretability in reward models, the key papers this builds on, how recent CoRL submissions actually look, and whether mechanistic interventions have proven effective in similar domains. Let me start searching.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "861f3fad-2119-4c8f-a5c1-1a37641f84d5",
+  "isSidechain": false,
+  "requestId": "req_011CbCTvMDhvJskVgpqUvto7",
+  "type": "assistant",
+  "uuid": "ec2b1f37-786a-4442-8b65-3ffa0e7411f4",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "1741ef32-5043-428d-9fcb-3d13db752949",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RUTsA867Wd8HdLiAHBTAVV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 23707,
+      "output_tokens": 554,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 554,
+          "cache_read_input_tokens": 23707,
+          "cache_creation_input_tokens": 0,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-19T19:17:21.973Z_
+
+I need to conduct thorough literature searches before making any assessment. Let me start by loading the WebSearch tool and then researching the key areas of this proposal.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ec2b1f37-786a-4442-8b65-3ffa0e7411f4",
+  "isSidechain": false,
+  "requestId": "req_011CbCTvMDhvJskVgpqUvto7",
+  "type": "assistant",
+  "uuid": "5dea21e1-aff2-4fca-b301-935d74b79368",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "1741ef32-5043-428d-9fcb-3d13db752949",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RUTsA867Wd8HdLiAHBTAVV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 23707,
+      "output_tokens": 554,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 554,
+          "cache_read_input_tokens": 23707,
+          "cache_creation_input_tokens": 0,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-19T19:17:22.007Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01MUQq719YT5dnkjcTK8K7w8`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5dea21e1-aff2-4fca-b301-935d74b79368",
+  "isSidechain": false,
+  "requestId": "req_011CbCTvMDhvJskVgpqUvto7",
+  "type": "assistant",
+  "uuid": "47d9ef2b-4e9d-4dd8-8556-97770268d462",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "1741ef32-5043-428d-9fcb-3d13db752949",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RUTsA867Wd8HdLiAHBTAVV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 23707,
+      "output_tokens": 554,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 554,
+          "cache_read_input_tokens": 23707,
+          "cache_creation_input_tokens": 0,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-19T19:17:22.013Z_
+
+<details><summary>↩ Tool result · `toolu_01MUQq719YT5dnkjcTK8K7w8`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "47d9ef2b-4e9d-4dd8-8556-97770268d462",
+  "isSidechain": false,
+  "promptId": "9b42ad3c-f5a9-410b-a318-aecdc23a88d0",
+  "type": "user",
+  "uuid": "7f3cde90-3052-422a-87df-0bef2660267f",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 19
+  },
+  "sourceToolAssistantUUID": "47d9ef2b-4e9d-4dd8-8556-97770268d462",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "1741ef32-5043-428d-9fcb-3d13db752949",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-19T19:17:25.169Z_
+
+Now let me conduct the required literature searches. I'll run multiple searches in parallel to cover the key areas.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7f3cde90-3052-422a-87df-0bef2660267f",
+  "isSidechain": false,
+  "requestId": "req_011CbCTwPYdra5VgkYoUcrKZ",
+  "type": "assistant",
+  "uuid": "bbe07cf1-3e5d-4120-9ff1-8b0b182419dd",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "1741ef32-5043-428d-9fcb-3d13db752949",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CfT1nxdJjseEkme7Jd9yWT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1080,
+      "cache_read_input_tokens": 23707,
+      "output_tokens": 92,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1080,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 92,
+          "cache_read_input_tokens": 23707,
+          "cache_creation_input_tokens": 1080,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1080
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-19T19:17:25.455Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NYfdnEZEZztNU7rXD72DXq`</summary>
+
+```json
+{
+  "query": "mechanistic interpretability actionability reward models 2026 SAE steering interventions"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bbe07cf1-3e5d-4120-9ff1-8b0b182419dd",
+  "isSidechain": false,
+  "requestId": "req_011CbCTwPYdra5VgkYoUcrKZ",
+  "type": "assistant",
+  "uuid": "b0ab93a5-05c2-4d5a-a200-db03b2249717",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "1741ef32-5043-428d-9fcb-3d13db752949",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CfT1nxdJjseEkme7Jd9yWT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1080,
+      "cache_read_input_tokens": 23707,
+      "output_tokens": 92,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1080,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 92,
+          "cache_read_input_tokens": 23707,
+          "cache_creation_input_tokens": 1080,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1080
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-19T19:17:33.737Z_
+
+<details><summary>↩ Tool result · `toolu_01NYfdnEZEZztNU7rXD72DXq`</summary>
+
+```text
+Web search results for query: "mechanistic interpretability actionability reward models 2026 SAE steering interventions"
+
+Links: [{"title":"Interpretability without actionability: mechanistic methods cannot correct language model errors despite near-perfect internal representations","url":"https://arxiv.org/html/2603.18353v1"},{"title":"(PDF) Interpretability without actionability: mechanistic methods cannot correct language model errors despite near-perfect internal representations","url":"https://www.researchgate.net/publication/402859588_Interpretability_without_actionability_mechanistic_methods_cannot_correct_language_model_errors_despite_near-perfect_internal_representations"},{"title":"Steering Without Breaking: Mechanistically Informed Interventions for Discrete Diffusion Language Models","url":"https://arxiv.org/html/2605.10971"},{"title":"Interpretability without actionability: mechanistic methods cannot...","url":"https://arxiv.org/abs/2603.18353"},{"title":"Control Reinforcement Learning: Interpretable Token-Level Steering of LLMs via Sparse Autoencoder Features","url":"https://arxiv.org/pdf/2602.10437"},{"title":"Interpretability without actionability: mechanistic methods ...","url":"https://arxiv.org/pdf/2603.18353"},{"title":"Locate, Steer, and Improve: A Practical Survey of Actionable Mechanistic Interpretability in Large Language Models","url":"https://arxiv.org/pdf/2601.14004"},{"title":"SteerRM: Debiasing Reward Models via Sparse Autoencoders","url":"https://arxiv.org/pdf/2603.12795"}]
+
+I found several highly relevant research papers on this topic from 2026. Here are the key findings:
+
+## Main Research on Mechanistic Interpretability and Actionability
+
+A major 2026 study tested whether mechanistic interpretability methods can bridge the knowledge-action gap by evaluating four mechanistic interpretability methods spanning the principal approaches to inference-time model intervention for their ability to correct errors in a safety-critical task.
+
+The research evaluated specific steering techniques:
+
+- SAE feature steering produced zero effect despite 3,695 significant features
+- Concept bottleneck steering corrected 20% of missed hazards but disrupted 53% of correct detections
+- TSV steering at high strength corrected 24% of missed hazards while disrupting 6% of correct detections, but left 76% of errors uncorrected
+
+## Key Finding on the Knowledge-Action Gap
+
+Linear probes discriminated hazardous from benign cases with 98.2% AUROC, yet the model's output sensitivity was only 45.1%, a 53-percentage-point knowledge-action gap. Current mechanistic interpretability methods cannot reliably translate internal knowledge into corrected outputs, with implications for AI safety frameworks that assume interpretability enables effective error correction.
+
+## SAE-Based Interventions for Reward Models
+
+Separately, SAE-based interventions can mitigate reward-model biases without retraining, providing a practical and interpretable solution for alignment pipelines.
+
+## Actionable Mechanistic Interpretability Framework
+
+A 2026 survey presents a framework structured around "Locate, Steer, and Improve," formally categorizing Localizing and Steering methods based on specific Interpretable Objects, demonstrating how this framework enables tangible improvements in Alignment, Capability, and Efficiency.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b0ab93a5-05c2-4d5a-a200-db03b2249717",
+  "isSidechain": false,
+  "promptId": "9b42ad3c-f5a9-410b-a318-aecdc23a88d0",
+  "type": "user",
+  "uuid": "0ace848b-b8bf-481d-8e86-7a534cb0f5ab",
+  "toolUseResult": {
+    "query": "mechanistic interpretability actionability reward models 2026 SAE steering interventions",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01PYqT2r6H4SL14F8VPxybwJ",
+        "content": [
+          {
+            "title": "Interpretability without actionability: mechanistic methods cannot correct language model errors despite near-perfect internal representations",
+            "url": "https://arxiv.org/html/2603.18353v1"
+          },
+          {
+            "title": "(PDF) Interpretability without actionability: mechanistic methods cannot correct language model errors despite near-perfect internal representations",
+            "url": "https://www.researchgate.net/publication/402859588_Interpretability_without_actionability_mechanistic_methods_cannot_correct_language_model_errors_despite_near-perfect_internal_representations"
+          },
+          {
+            "title": "Steering Without Breaking: Mechanistically Informed Interventions for Discrete Diffusion Language Models",
+            "url": "https://arxiv.org/html/2605.10971"
+          },
+          {
+            "title": "Interpretability without actionability: mechanistic methods cannot...",
+            "url": "https://arxiv.org/abs/2603.18353"
+          },
+          {
+            "title": "Control Reinforcement Learning: Interpretable Token-Level Steering of LLMs via Sparse Autoencoder Features",
+            "url": "https://arxiv.org/pdf/2602.10437"
+          },
+          {
+            "title": "Interpretability without actionability: mechanistic methods ...",
+            "url": "https://arxiv.org/pdf/2603.18353"
+          },
+          {
+            "title": "Locate, Steer, and Improve: A Practical Survey of Actionable Mechanistic Interpretability in Large Language Models",
+            "url": "https://arxiv.org/pdf/2601.14004"
+          },
+          {
+            "title": "SteerRM: Debiasing Reward Models via Sparse Autoencoders",
+            "url": "https://arxiv.org/pdf/2603.12795"
+          }
+        ]
+      },
+      "I found several highly relevant research papers on this topic from 2026. Here are the key findings:\n\n## Main Research on Mechanistic Interpretability and Actionability\n\nA major 2026 study tested whether mechanistic interpretability methods can bridge the knowledge-action gap by evaluating four mechanistic interpretability methods spanning the principal approaches to inference-time model intervention for their ability to correct errors in a safety-critical task.\n\nThe research evaluated specific steering techniques:\n\n- SAE feature steering produced zero effect despite 3,695 significant features\n- Concept bottleneck steering corrected 20% of missed hazards but disrupted 53% of correct detections\n- TSV steering at high strength corrected 24% of missed hazards while disrupting 6% of correct detections, but left 76% of errors uncorrected\n\n## Key Finding on the Knowledge-Action Gap\n\nLinear probes discriminated hazardous from benign cases with 98.2% AUROC, yet the model's output sensitivity was only 45.1%, a 53-percentage-point knowledge-action gap. Current mechanistic interpretability methods cannot reliably translate internal knowledge into corrected outputs, with implications for AI safety frameworks that assume interpretability enables effective error correction.\n\n## SAE-Based Interventions for Reward Models\n\nSeparately, SAE-based interventions can mitigate reward-model biases without retraining, providing a practical and interpretable solution for alignment pipelines.\n\n## Actionable Mechanistic Interpretability Framework\n\nA 2026 survey presents a framework structured around \"Locate, Steer, and Improve,\" formally categorizing Localizing and Steering methods based on specific Interpretable Objects, demonstrating how this framework enables tangible improvements in Alignment, Capability, and Efficiency."
+    ],
+    "durationSeconds": 8.276366713000003,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "b0ab93a5-05c2-4d5a-a200-db03b2249717",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "1741ef32-5043-428d-9fcb-3d13db752949",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-19T19:17:36.660Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01V1ynhh6bQwhavFAb1AmHkL`</summary>
+
+```json
+{
+  "query": "SteerRM debiasing reward models sparse autoencoders CIRM causal mediation PRM 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0ace848b-b8bf-481d-8e86-7a534cb0f5ab",
+  "isSidechain": false,
+  "requestId": "req_011CbCTxFYxBkcAF5v4AWja4",
+  "type": "assistant",
+  "uuid": "207b95f2-e4ab-4887-a8bc-1b51613ec49d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "1741ef32-5043-428d-9fcb-3d13db752949",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DegG6n3xNDrPErobJiCvfc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 918,
+      "cache_read_input_tokens": 24787,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 918,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 24787,
+          "cache_creation_input_tokens": 918,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 918
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-19T19:17:43.110Z_
+
+<details><summary>↩ Tool result · `toolu_01V1ynhh6bQwhavFAb1AmHkL`</summary>
+
+```text
+Web search results for query: "SteerRM debiasing reward models sparse autoencoders CIRM causal mediation PRM 2026"
+
+Links: [{"title":"SteerRM: Debiasing Reward Models via Sparse Autoencoders","url":"https://arxiv.org/pdf/2603.12795"},{"title":"[2603.12795] SteerRM: Debiasing Reward Models via Sparse Autoencoders","url":"https://arxiv.org/abs/2603.12795"},{"title":"SteerRM: Debiasing Reward Models via Sparse Autoencoders","url":"https://arxiv.org/html/2603.12795"},{"title":"Debiasing Reward Models via Causally Motivated Inference-Time Intervention","url":"https://arxiv.org/html/2604.27495"},{"title":"Steering Diffusion Transformers with Sparse Autoencoders | OpenReview","url":"https://openreview.net/forum?id=J48XM0au4u"}]
+
+Based on the web search results, I found relevant information about your query:
+
+## SteerRM: Debiasing Reward Models via Sparse Autoencoders
+
+SteerRM is the first training-free method for debiasing reward models using Sparse Autoencoder (SAE)-based interventions. Reward models exhibit biases toward superficial stylistic cues, preferring better-presented responses over semantically superior ones.
+
+SteerRM isolates stylistic effects using contrastive paired responses, identifies bias-related SAE features with a strength-stability criterion, and suppresses them at inference time. Across six reward models on RM-Bench, SteerRM improves Hard-split accuracy by 7.3 points on average while preserving overall performance.
+
+## Related Work: CIRM (Causal Intervention for Reward Models)
+
+The search also returned a related paper on causal debiasing approaches. CIRM is a neuron-level inference-time method for debiasing reward models. The method identifies neurons whose activations are highly correlated with spurious features (bias-specific neurons) and applies causal intervention at inference time to less than 2% of all neurons in reward models.
+
+Both papers represent recent advances (March 2026 for SteerRM) in debiasing reward models through mechanistic interpretability approaches rather than requiring model retraining.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "207b95f2-e4ab-4887-a8bc-1b51613ec49d",
+  "isSidechain": false,
+  "promptId": "9b42ad3c-f5a9-410b-a318-aecdc23a88d0",
+  "type": "user",
+  "uuid": "c82e7a85-7dea-4aef-be64-81e1b4888b12",
+  "toolUseResult": {
+    "query": "SteerRM debiasing reward models sparse autoencoders CIRM causal mediation PRM 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011DGjQsZofG8QxkZYqCTEzL",
+        "content": [
+          {
+            "title": "SteerRM: Debiasing Reward Models via Sparse Autoencoders",
+            "url": "https://arxiv.org/pdf/2603.12795"
+          },
+          {
+            "title": "[2603.12795] SteerRM: Debiasing Reward Models via Sparse Autoencoders",
+            "url": "https://arxiv.org/abs/2603.12795"
+          },
+          {
+            "title": "SteerRM: Debiasing Reward Models via Sparse Autoencoders",
+            "url": "https://arxiv.org/html/2603.12795"
+          },
+          {
+            "title": "Debiasing Reward Models via Causally Motivated Inference-Time Intervention",
+            "url": "https://arxiv.org/html/2604.27495"
+          },
+          {
+            "title": "Steering Diffusion Transformers with Sparse Autoencoders | OpenReview",
+            "url": "https://openreview.net/forum?id=J48XM0au4u"
+          }
+        ]
+      },
+      "Based on the web search results, I found relevant information about your query:\n\n## SteerRM: Debiasing Reward Models via Sparse Autoencoders\n\nSteerRM is the first training-free method for debiasing reward models using Sparse Autoencoder (SAE)-based interventions. Reward models exhibit biases toward superficial stylistic cues, preferring better-presented responses over semantically superior ones.\n\nSteerRM isolates stylistic effects using contrastive paired responses, identifies bias-related SAE features with a strength-stability criterion, and suppresses them at inference time. Across six reward models on RM-Bench, SteerRM improves Hard-split accuracy by 7.3 points on average while preserving overall performance.\n\n## Related Work: CIRM (Causal Intervention for Reward Models)\n\nThe search also returned a related paper on causal debiasing approaches. CIRM is a neuron-level inference-time method for debiasing reward models. The method identifies neurons whose activations are highly correlated with spurious features (bias-specific neurons) and applies causal intervention at inference time to less than 2% of all neurons in reward models.\n\nBoth papers represent recent advances (March 2026 for SteerRM) in debiasing reward models through mechanistic interpretability approaches rather than requiring model retraining."
+    ],
+    "durationSeconds": 6.445653977999998,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "207b95f2-e4ab-4887-a8bc-1b51613ec49d",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "1741ef32-5043-428d-9fcb-3d13db752949",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-19T19:17:45.693Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01V8PxVLMivkicnUwSEms225`</summary>
+
+```json
+{
+  "query": "CoRL 2026 conference on robot learning topics scope submission guidelines"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c82e7a85-7dea-4aef-be64-81e1b4888b12",
+  "isSidechain": false,
+  "requestId": "req_011CbCTxwbEp7M3jFHzABqdf",
+  "type": "assistant",
+  "uuid": "62939556-3ad3-4669-9119-5f7d0182d668",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "1741ef32-5043-428d-9fcb-3d13db752949",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bk3VkVjn4yfAAkbCGT97an",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 664,
+      "cache_read_input_tokens": 25705,
+      "output_tokens": 65,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 664,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 65,
+          "cache_read_input_tokens": 25705,
+          "cache_creation_input_tokens": 664,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 664
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-19T19:17:53.370Z_
+
+<details><summary>↩ Tool result · `toolu_01V8PxVLMivkicnUwSEms225`</summary>
+
+```text
+Web search results for query: "CoRL 2026 conference on robot learning topics scope submission guidelines"
+
+Links: [{"title":"CoRL 2026 - Call for Papers","url":"https://www.corl.org/contributions/call-for-papers"},{"title":"Conference on Robot Learning (CoRL) 2026: Everything You Need to Know - AI Expert Magazine - premier publication dedicated to AI","url":"https://www.aiexpertmagazine.com/conference-on-robot-learning-corl-2026-everything-you-need-to-know/"},{"title":"CoRL 2026 - Contributions","url":"https://www.corl.org/contributions"},{"title":"CoRL 2026 - Call for Workshops","url":"https://www.corl.org/contributions/call-for-workshops"},{"title":"CoRL LaTeX Template | Robot Learning Conference Format | Underleaf","url":"https://www.underleaf.ai/templates/corl"},{"title":"CoRL 2026 - Instruction for Authors","url":"https://www.corl.org/contributions/instruction-for-authors"},{"title":"CoRL 2026","url":"https://www.corl.org/"}]
+
+Based on the search results, here's what I found about CoRL 2026 conference on robot learning:
+
+## Conference Overview
+
+The Conference on Robot Learning (CoRL) is an annual international conference aiming to bring together the robotics and machine learning research communities, focusing on the increasingly important role of learning in robotics and its interaction with other areas of robotics. The aim of CoRL 2026 is to publish significant original research at the intersection of robotics and machine learning. The conference is scheduled for November 10–12, 2026, in Austin, Texas.
+
+## Topics and Scope
+
+CoRL welcomes papers in areas such as: Learning representations for robotic perception and control, Learning robot foundation models or general-purpose knowledge systems for robotics, and Imitation learning for robotics. CoRL covers topics including imitation learning, reinforcement learning for robots, sim-to-real transfer, robot perception through learning, learned manipulation and locomotion, and learning-based planning.
+
+## Submission Guidelines
+
+- **Format**: Papers are limited to 8 pages of content plus unlimited references.
+- **Deadline**: The paper submission deadline is May 29, 2026.
+- **Robotics Focus Required**: Submissions should focus on a core robotics problem and demonstrate the relevance of proposed models, algorithms, datasets, and benchmarks to robotics.
+- **Real-Robot Experiments**: Authors are encouraged to report real-robot experiments or provide convincing evidence that simulation experiments are transferable to real robots.
+- **Reviewer Requirement**: All submissions must include at least one author who agrees to serve as a CoRL reviewer, and they are qualified if they have at least one accepted publication at a previous robotics or learning conference.
+- **Limitations Section**: All submissions should include a Limitations section, explicitly describing limiting assumptions, failure modes, and other limitations of the results and experiments.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "62939556-3ad3-4669-9119-5f7d0182d668",
+  "isSidechain": false,
+  "promptId": "9b42ad3c-f5a9-410b-a318-aecdc23a88d0",
+  "type": "user",
+  "uuid": "14c4ada9-c3e9-4693-b96f-4e00382838c9",
+  "toolUseResult": {
+    "query": "CoRL 2026 conference on robot learning topics scope submission guidelines",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01S3jrojAFT4JpLEJp7aBuP5",
+        "content": [
+          {
+            "title": "CoRL 2026 - Call for Papers",
+            "url": "https://www.corl.org/contributions/call-for-papers"
+          },
+          {
+            "title": "Conference on Robot Learning (CoRL) 2026: Everything You Need to Know - AI Expert Magazine - premier publication dedicated to AI",
+            "url": "https://www.aiexpertmagazine.com/conference-on-robot-learning-corl-2026-everything-you-need-to-know/"
+          },
+          {
+            "title": "CoRL 2026 - Contributions",
+            "url": "https://www.corl.org/contributions"
+          },
+          {
+            "title": "CoRL 2026 - Call for Workshops",
+            "url": "https://www.corl.org/contributions/call-for-workshops"
+          },
+          {
+            "title": "CoRL LaTeX Template | Robot Learning Conference Format | Underleaf",
+            "url": "https://www.underleaf.ai/templates/corl"
+          },
+          {
+            "title": "CoRL 2026 - Instruction for Authors",
+            "url": "https://www.corl.org/contributions/instruction-for-authors"
+          },
+          {
+            "title": "CoRL 2026",
+            "url": "https://www.corl.org/"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about CoRL 2026 conference on robot learning:\n\n## Conference Overview\n\nThe Conference on Robot Learning (CoRL) is an annual international conference aiming to bring together the robotics and machine learning research communities, focusing on the increasingly important role of learning in robotics and its interaction with other areas of robotics. The aim of CoRL 2026 is to publish significant original research at the intersection of robotics and machine learning. The conference is scheduled for November 10–12, 2026, in Austin, Texas.\n\n## Topics and Scope\n\nCoRL welcomes papers in areas such as: Learning representations for robotic perception and control, Learning robot foundation models or general-purpose knowledge systems for robotics, and Imitation learning for robotics. CoRL covers topics including imitation learning, reinforcement learning for robots, sim-to-real transfer, robot perception through learning, learned manipulation and locomotion, and learning-based planning.\n\n## Submission Guidelines\n\n- **Format**: Papers are limited to 8 pages of content plus unlimited references.\n- **Deadline**: The paper submission deadline is May 29, 2026.\n- **Robotics Focus Required**: Submissions should focus on a core robotics problem and demonstrate the relevance of proposed models, algorithms, datasets, and benchmarks to robotics.\n- **Real-Robot Experiments**: Authors are encouraged to report real-robot experiments or provide convincing evidence that simulation experiments are transferable to real robots.\n- **Reviewer Requirement**: All submissions must include at least one author who agrees to serve as a CoRL reviewer, and they are qualified if they have at least one accepted publication at a previous robotics or learning conference.\n- **Limitations Section**: All submissions should include a Limitations section, explicitly describing limiting assumptions, failure modes, and other limitations of the results and experiments."
+    ],
+    "durationSeconds": 7.674045358000003,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "62939556-3ad3-4669-9119-5f7d0182d668",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "1741ef32-5043-428d-9fcb-3d13db752949",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 19_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # When Do Mechanistic Interventions Succeed? A Multi-Granularity Empirical Test on Process Reward Models  ## Descr…",
+  "leafUuid": "14c4ada9-c3e9-4693-b96f-4e00382838c9",
+  "sessionId": "1741ef32-5043-428d-9fcb-3d13db752949"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Assess mechanistic intervention success in process reward models",
+  "sessionId": "1741ef32-5043-428d-9fcb-3d13db752949"
+}
+```
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-19T19:17:57.930Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BCSdt4owsbsm3LUEtYrcru`</summary>
+
+```json
+{
+  "query": "process reward models mechanistic interpretability circuit analysis SAE 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "14c4ada9-c3e9-4693-b96f-4e00382838c9",
+  "isSidechain": false,
+  "requestId": "req_011CbCTyhn451M5qsmbgrJKZ",
+  "type": "assistant",
+  "uuid": "04557522-37b6-40ad-b484-032cd5b9f940",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "1741ef32-5043-428d-9fcb-3d13db752949",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S4P4xxf2EUvoNd6tqHtj27",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 786,
+      "cache_read_input_tokens": 26369,
+      "output_tokens": 68,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 786,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 68,
+          "cache_read_input_tokens": 26369,
+          "cache_creation_input_tokens": 786,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 786
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-19T19:18:09.512Z_
+
+<details><summary>↩ Tool result · `toolu_01BCSdt4owsbsm3LUEtYrcru`</summary>
+
+```text
+Web search results for query: "process reward models mechanistic interpretability circuit analysis SAE 2025 2026"
+
+Links: [{"title":"Circuit-Aware Reward Training: A Mechanistic Framework for Longtail Robustness in RLHF","url":"https://arxiv.org/pdf/2509.24713"},{"title":"Understanding Mechanistic Interpretability in AI Models | IntuitionLabs","url":"https://intuitionlabs.ai/articles/mechanistic-interpretability-ai-llms"},{"title":"Mechanistic Interpretability Framework","url":"https://www.emergentmind.com/topics/mechanistic-interpretability-framework"},{"title":"Towards Automated Circuit Discovery for Mechanistic Interpretability","url":"https://arxiv.org/pdf/2304.14997"},{"title":"Understanding Mechanistic Interpretability in AI Models 8/16/2025 • 40 min read","url":"https://intuitionlabs.ai/pdfs/understanding-mechanistic-interpretability-in-ai-models.pdf"},{"title":"Circuit Insights: Towards Interpretability Beyond Activations","url":"https://arxiv.org/pdf/2510.14936"},{"title":"Published as a conference paper at ICLR 2026 MECHANISTIC INTERPRETABILITY","url":"https://arxiv.org/pdf/2510.02917"},{"title":"Mechanistic Interpretability for Large Language Model Alignment: Progress, Challenges, and Future Directions","url":"https://arxiv.org/pdf/2602.11180"}]
+
+I've found several relevant sources on process reward models, mechanistic interpretability, circuit analysis, and SAEs from 2025-2026:
+
+## Key Findings:
+
+**Circuit-Aware Reward Training (CART):** A mechanistic interpretability framework identifies specialized neural circuits in reward models and uses circuit analysis to guide data augmentation, regularization, and ensemble strategies.
+
+**Mechanistic Interpretability Advancements:** MIT Technology Review recognized mechanistic interpretability as a 2026 Breakthrough Technology, while core concepts like "feature" still lack rigorous definitions and practical SAE methods still underperform simple baselines on safety-relevant tasks.
+
+**Circuit Analysis Methods:** Recent work includes the Mechanistic Interpretability Benchmark (MIB) which establishes evaluation tracks for circuit localization and causal variable localization across diverse tasks and models (April 2025). Additionally, TinySQL, a large-scale synthetic dataset, confirms the utility of edge attribution patching and sparse autoencoders for circuit analysis (March 2025).
+
+**SAE and Circuit Development:** Later studies extend circuit analysis to SAE features, which are generally more interpretable and often monosemantic, and variants such as skip-transcoders and cross-layer transcoders have been explored as alternatives to SAEs.
+
+**Reward Model Challenges:** Reward models develop functionally distinct circuits for longtail scenarios, with mechanisms specialized for rare-event processing.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "04557522-37b6-40ad-b484-032cd5b9f940",
+  "isSidechain": false,
+  "promptId": "9b42ad3c-f5a9-410b-a318-aecdc23a88d0",
+  "type": "user",
+  "uuid": "1ef78258-ad95-4145-859a-174f97495f0a",
+  "toolUseResult": {
+    "query": "process reward models mechanistic interpretability circuit analysis SAE 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Tov4V2Hxb3GtEXKA7gXZKS",
+        "content": [
+          {
+            "title": "Circuit-Aware Reward Training: A Mechanistic Framework for Longtail Robustness in RLHF",
+            "url": "https://arxiv.org/pdf/2509.24713"
+          },
+          {
+            "title": "Understanding Mechanistic Interpretability in AI Models | IntuitionLabs",
+            "url": "https://intuitionlabs.ai/articles/mechanistic-interpretability-ai-llms"
+          },
+          {
+            "title": "Mechanistic Interpretability Framework",
+            "url": "https://www.emergentmind.com/topics/mechanistic-interpretability-framework"
+          },
+          {
+            "title": "Towards Automated Circuit Discovery for Mechanistic Interpretability",
+            "url": "https://arxiv.org/pdf/2304.14997"
+          },
+          {
+            "title": "Understanding Mechanistic Interpretability in AI Models 8/16/2025 • 40 min read",
+            "url": "https://intuitionlabs.ai/pdfs/understanding-mechanistic-interpretability-in-ai-models.pdf"
+          },
+          {
+            "title": "Circuit Insights: Towards Interpretability Beyond Activations",
+            "url": "https://arxiv.org/pdf/2510.14936"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026 MECHANISTIC INTERPRETABILITY",
+            "url": "https://arxiv.org/pdf/2510.02917"
+          },
+          {
+            "title": "Mechanistic Interpretability for Large Language Model Alignment: Progress, Challenges, and Future Directions",
+            "url": "https://arxiv.org/pdf/2602.11180"
+          }
+        ]
+      },
+      "I've found several relevant sources on process reward models, mechanistic interpretability, circuit analysis, and SAEs from 2025-2026:\n\n## Key Findings:\n\n**Circuit-Aware Reward Training (CART):** A mechanistic interpretability framework identifies specialized neural circuits in reward models and uses circuit analysis to guide data augmentation, regularization, and ensemble strategies.\n\n**Mechanistic Interpretability Advancements:** MIT Technology Review recognized mechanistic interpretability as a 2026 Breakthrough Technology, while core concepts like \"feature\" still lack rigorous definitions and practical SAE methods still underperform simple baselines on safety-relevant tasks.\n\n**Circuit Analysis Methods:** Recent work includes the Mechanistic Interpretability Benchmark (MIB) which establishes evaluation tracks for circuit localization and causal variable localization across diverse tasks and models (April 2025). Additionally, TinySQL, a large-scale synthetic dataset, confirms the utility of edge attribution patching and sparse autoencoders for circuit analysis (March 2025).\n\n**SAE and Circuit Development:** Later studies extend circuit analysis to SAE features, which are generally more interpretable and often monosemantic, and variants such as skip-transcoders and cross-layer transcoders have been explored as alternatives to SAEs.\n\n**Reward Model Challenges:** Reward models develop functionally distinct circuits for longtail scenarios, with mechanisms specialized for rare-event processing."
+    ],
+    "durationSeconds": 11.577326202999997,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "04557522-37b6-40ad-b484-032cd5b9f940",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "1741ef32-5043-428d-9fcb-3d13db752949",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-19T19:18:12.311Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FbszYMYqyzeEnS6gHDHYye`</summary>
+
+```json
+{
+  "query": "\"domain amenability\" mechanistic interventions interpretability conditions success failure 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1ef78258-ad95-4145-859a-174f97495f0a",
+  "isSidechain": false,
+  "requestId": "req_011CbCTztUmRrvswpqaFogKm",
+  "type": "assistant",
+  "uuid": "bb2944e1-f070-4008-8bcb-0f4a3712e149",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "1741ef32-5043-428d-9fcb-3d13db752949",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VbyLVpp5F4RnPz1GpnqoZm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 782,
+      "cache_read_input_tokens": 27155,
+      "output_tokens": 68,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 782,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 68,
+          "cache_read_input_tokens": 27155,
+          "cache_creation_input_tokens": 782,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 782
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-19T19:18:18.631Z_
+
+<details><summary>↩ Tool result · `toolu_01FbszYMYqyzeEnS6gHDHYye`</summary>
+
+```text
+Web search results for query: ""domain amenability" mechanistic interventions interpretability conditions success failure 2026"
+
+Web search error: unavailable
+
+I apologize, but I'm currently unable to perform the web search due to a temporary unavailability of the search tool. The tool has encountered an error and cannot process queries at this moment.
+
+If you'd like, you could try:
+1. Rephrasing your search query and asking again in a moment
+2. Providing me with specific information you're looking for, and I can try to help based on my existing knowledge
+3. Trying again shortly
+
+Is there another way I can assist you with information about domain amenability, mechanistic interventions, and interpretability conditions?
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bb2944e1-f070-4008-8bcb-0f4a3712e149",
+  "isSidechain": false,
+  "promptId": "9b42ad3c-f5a9-410b-a318-aecdc23a88d0",
+  "type": "user",
+  "uuid": "a835b8e9-3f9f-4c39-89d8-f033726561da",
+  "toolUseResult": {
+    "query": "\"domain amenability\" mechanistic interventions interpretability conditions success failure 2026",
+    "results": [
+      "Web search error: unavailable",
+      "I apologize, but I'm currently unable to perform the web search due to a temporary unavailability of the search tool. The tool has encountered an error and cannot process queries at this moment.\n\nIf you'd like, you could try:\n1. Rephrasing your search query and asking again in a moment\n2. Providing me with specific information you're looking for, and I can try to help based on my existing knowledge\n3. Trying again shortly\n\nIs there another way I can assist you with information about domain amenability, mechanistic interventions, and interpretability conditions?"
+    ],
+    "durationSeconds": 6.314026667000006,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "bb2944e1-f070-4008-8bcb-0f4a3712e149",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "1741ef32-5043-428d-9fcb-3d13db752949",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-19T19:18:21.645Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TCwdjvaRUsg6bee47jLX3G`</summary>
+
+```json
+{
+  "query": "Orgad et al interpretability actionable ICML 2026 Lee et al rigorous interpretation evaluation 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a835b8e9-3f9f-4c39-89d8-f033726561da",
+  "isSidechain": false,
+  "requestId": "req_011CbCU1ZUYXpvF5JnamCiQ1",
+  "type": "assistant",
+  "uuid": "e78b236a-ccbe-430a-9319-c038b0d1c842",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "1741ef32-5043-428d-9fcb-3d13db752949",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019rpSNdCNzypbGkzSwyZ93i",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 257,
+      "cache_read_input_tokens": 27937,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 257,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 27937,
+          "cache_creation_input_tokens": 257,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 257
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-19T19:18:28.194Z_
+
+<details><summary>↩ Tool result · `toolu_01TCwdjvaRUsg6bee47jLX3G`</summary>
+
+```text
+Web search results for query: "Orgad et al interpretability actionable ICML 2026 Lee et al rigorous interpretation evaluation 2026"
+
+Links: [{"title":"The Hitchhiker's Guide to Actionable Interpretability","url":"https://actionable-interpretability-guide.github.io/"},{"title":"[2605.11161] Interpretability Can Be Actionable","url":"https://arxiv.org/abs/2605.11161"},{"title":"Interpretability Can Be Actionable","url":"https://arxiv.org/html/2605.11161"},{"title":"ICML Poster Position: Interpretability Can Be Actionable","url":"https://icml.cc/virtual/2026/poster/67043"},{"title":"Actionable Interpretability","url":"https://icml.cc/virtual/2025/workshop/39962"},{"title":"General Information | Workshop on Actionable Interpretability@COLM 2026","url":"https://actionable-interpretability.github.io/"},{"title":"Actionable Interpretability Must Be Defined in Terms of Symmetries","url":"https://arxiv.org/pdf/2601.12913"},{"title":"ICML 2026 Lay Summaries - ICML Blog","url":"https://blog.icml.cc/category/icml-2026/"},{"title":"Foundations of Interpretable Models","url":"https://arxiv.org/pdf/2508.00545"}]
+
+Based on the search results, I found relevant information about your query:
+
+## Orgad et al. - Interpretability Can Be Actionable (ICML 2026)
+
+Orgad et al.'s paper "Interpretability Can Be Actionable" includes authors Hadas Orgad, Fazl Barez, Tal Haklay, Isabelle Lee, Marius Mosbach, Anja Reusch, Naomi Saphra, Byron Wallace, Sarah Wiegreffe, Eric Wong, Ian Tenney, and Mor Geva. The position paper argues that interpretability should be evaluated by actionability—the extent to which insights enable concrete decisions and interventions—defining actionable interpretability along two dimensions of concreteness and validation.
+
+The framing draws in part on discussions from the ICML 2025 workshop on actionable interpretability, which aimed to foster dialogue on leveraging interpretability insights to drive tangible advancements in AI. The paper was presented as a poster position at ICML 2026.
+
+The search results show that the Orgad et al. paper is a prominent work on actionable interpretability, but the specific Lee et al. paper on rigorous interpretation evaluation that you mentioned did not appear in the search results with enough detail to provide information about it.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e78b236a-ccbe-430a-9319-c038b0d1c842",
+  "isSidechain": false,
+  "promptId": "9b42ad3c-f5a9-410b-a318-aecdc23a88d0",
+  "type": "user",
+  "uuid": "5498ecd3-fe9d-4fe0-91af-4fb2c8ec2e9f",
+  "toolUseResult": {
+    "query": "Orgad et al interpretability actionable ICML 2026 Lee et al rigorous interpretation evaluation 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018azUJVrYSuUyVDZqPHSU2u",
+        "content": [
+          {
+            "title": "The Hitchhiker's Guide to Actionable Interpretability",
+            "url": "https://actionable-interpretability-guide.github.io/"
+          },
+          {
+            "title": "[2605.11161] Interpretability Can Be Actionable",
+            "url": "https://arxiv.org/abs/2605.11161"
+          },
+          {
+            "title": "Interpretability Can Be Actionable",
+            "url": "https://arxiv.org/html/2605.11161"
+          },
+          {
+            "title": "ICML Poster Position: Interpretability Can Be Actionable",
+            "url": "https://icml.cc/virtual/2026/poster/67043"
+          },
+          {
+            "title": "Actionable Interpretability",
+            "url": "https://icml.cc/virtual/2025/workshop/39962"
+          },
+          {
+            "title": "General Information | Workshop on Actionable Interpretability@COLM 2026",
+            "url": "https://actionable-interpretability.github.io/"
+          },
+          {
+            "title": "Actionable Interpretability Must Be Defined in Terms of Symmetries",
+            "url": "https://arxiv.org/pdf/2601.12913"
+          },
+          {
+            "title": "ICML 2026 Lay Summaries - ICML Blog",
+            "url": "https://blog.icml.cc/category/icml-2026/"
+          },
+          {
+            "title": "Foundations of Interpretable Models",
+            "url": "https://arxiv.org/pdf/2508.00545"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about your query:\n\n## Orgad et al. - Interpretability Can Be Actionable (ICML 2026)\n\nOrgad et al.'s paper \"Interpretability Can Be Actionable\" includes authors Hadas Orgad, Fazl Barez, Tal Haklay, Isabelle Lee, Marius Mosbach, Anja Reusch, Naomi Saphra, Byron Wallace, Sarah Wiegreffe, Eric Wong, Ian Tenney, and Mor Geva. The position paper argues that interpretability should be evaluated by actionability—the extent to which insights enable concrete decisions and interventions—defining actionable interpretability along two dimensions of concreteness and validation.\n\nThe framing draws in part on discussions from the ICML 2025 workshop on actionable interpretability, which aimed to foster dialogue on leveraging interpretability insights to drive tangible advancements in AI. The paper was presented as a poster position at ICML 2026.\n\nThe search results show that the Orgad et al. paper is a prominent work on actionable interpretability, but the specific Lee et al. paper on rigorous interpretation evaluation that you mentioned did not appear in the search results with enough detail to provide information about it."
+    ],
+    "durationSeconds": 6.542827428999997,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "e78b236a-ccbe-430a-9319-c038b0d1c842",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "1741ef32-5043-428d-9fcb-3d13db752949",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-19T19:18:30.929Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Nmq6zWh64NJeUX9pr5ZKqn`</summary>
+
+```json
+{
+  "query": "PRM bias fluency exploitation reward hacking process reward models benchmark 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5498ecd3-fe9d-4fe0-91af-4fb2c8ec2e9f",
+  "isSidechain": false,
+  "requestId": "req_011CbCU2GMBjmnVaSmhdeBAT",
+  "type": "assistant",
+  "uuid": "08da905e-4057-4d39-9e38-577ab170e9eb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "1741ef32-5043-428d-9fcb-3d13db752949",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R4uAZ6MyghzLb9Va9PyWPD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 751,
+      "cache_read_input_tokens": 28194,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 751,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 28194,
+          "cache_creation_input_tokens": 751,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 751
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-19T19:18:39.644Z_
+
+<details><summary>↩ Tool result · `toolu_01Nmq6zWh64NJeUX9pr5ZKqn`</summary>
+
+```text
+Web search results for query: "PRM bias fluency exploitation reward hacking process reward models benchmark 2025 2026"
+
+Links: [{"title":"[2603.06621] Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models","url":"https://arxiv.org/abs/2603.06621"},{"title":"Daily Papers - Hugging Face","url":"https://huggingface.co/papers?q=reward+hacking"},{"title":"Reward Under Attack: Evaluating the Sensitivity of Process Reward Models","url":"https://openreview.net/pdf?id=Hw24VOppus"},{"title":"Process Reward Models: Step-Level Feedback for LLMs","url":"https://www.emergentmind.com/topics/process-reward-models-prm"},{"title":"Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges","url":"https://arxiv.org/html/2604.13602v1"},{"title":"One Bias After Another: Mechanistic Reward Shaping and Persistent Biases in Language Reward Models","url":"https://arxiv.org/pdf/2603.03291"}]
+
+I found relevant research on this topic. Here are the key findings from the search results:
+
+## Recent Research on Process Reward Models and Reward Hacking
+
+Process Reward Models (PRMs) are rapidly becoming the backbone of LLM reasoning pipelines, yet state-of-the-art PRMs are systematically exploitable under adversarial optimization pressure.
+
+### Key Vulnerabilities Found
+
+Static perturbation analysis uncovers a fluency-logic dissociation: high invariance to surface-level style changes, yet inconsistent detection of logically-corrupted reasoning, with different models failing on different attack types. Adversarial optimization demonstrates that gradient-based attacks inflate rewards on invalid trajectories, with reward landscapes exhibiting wide, exploitable peaks.
+
+### Critical Failure Modes
+
+RL-induced reward hacking exposes the critical failure mode: policies trained on AIME problems achieve near-perfect PRM rewards (>0.9), while ground-truth accuracy remains low (below 4%), with 43% of reward gains attributable to stylistic shortcuts. These findings reveal that current PRMs function as fluency detectors rather than reasoning verifiers, creating systematic blind spots that undermine their use as training signals.
+
+### Biases in Reward Models
+
+By systematically measuring biases in five high-quality RMs, including the state-of-the-art, issues persist despite prior work with respect to length, sycophancy, and overconfidence. New issues related to bias toward model-specific "styles" and answer-order were also discovered.
+
+### Benchmarks and Diagnostics
+
+PRM-BiasBench and a diagnostic toolkit were released to enable robustness evaluation before deployment. Socratic-PRMBench (May 2025) analyzes PRM accuracy across reasoning patterns, exposing latent weaknesses and biases.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "08da905e-4057-4d39-9e38-577ab170e9eb",
+  "isSidechain": false,
+  "promptId": "9b42ad3c-f5a9-410b-a318-aecdc23a88d0",
+  "type": "user",
+  "uuid": "e987215c-9125-43a3-aeab-b7eab08c4523",
+  "toolUseResult": {
+    "query": "PRM bias fluency exploitation reward hacking process reward models benchmark 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014bmCSpVkhBWAEoAxw3BfqZ",
+        "content": [
+          {
+            "title": "[2603.06621] Reward Under Attack: Analyzing the Robustness and Hackability of Process Reward Models",
+            "url": "https://arxiv.org/abs/2603.06621"
+          },
+          {
+            "title": "Daily Papers - Hugging Face",
+            "url": "https://huggingface.co/papers?q=reward+hacking"
+          },
+          {
+            "title": "Reward Under Attack: Evaluating the Sensitivity of Process Reward Models",
+            "url": "https://openreview.net/pdf?id=Hw24VOppus"
+          },
+          {
+            "title": "Process Reward Models: Step-Level Feedback for LLMs",
+            "url": "https://www.emergentmind.com/topics/process-reward-models-prm"
+          },
+          {
+            "title": "Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges",
+            "url": "https://arxiv.org/html/2604.13602v1"
+          },
+          {
+            "title": "One Bias After Another: Mechanistic Reward Shaping and Persistent Biases in Language Reward Models",
+            "url": "https://arxiv.org/pdf/2603.03291"
+          }
+        ]
+      },
+      "I found relevant research on this topic. Here are the key findings from the search results:\n\n## Recent Research on Process Reward Models and Reward Hacking\n\nProcess Reward Models (PRMs) are rapidly becoming the backbone of LLM reasoning pipelines, yet state-of-the-art PRMs are systematically exploitable under adversarial optimization pressure.\n\n### Key Vulnerabilities Found\n\nStatic perturbation analysis uncovers a fluency-logic dissociation: high invariance to surface-level style changes, yet inconsistent detection of logically-corrupted reasoning, with different models failing on different attack types. Adversarial optimization demonstrates that gradient-based attacks inflate rewards on invalid trajectories, with reward landscapes exhibiting wide, exploitable peaks.\n\n### Critical Failure Modes\n\nRL-induced reward hacking exposes the critical failure mode: policies trained on AIME problems achieve near-perfect PRM rewards (>0.9), while ground-truth accuracy remains low (below 4%), with 43% of reward gains attributable to stylistic shortcuts. These findings reveal that current PRMs function as fluency detectors rather than reasoning verifiers, creating systematic blind spots that undermine their use as training signals.\n\n### Biases in Reward Models\n\nBy systematically measuring biases in five high-quality RMs, including the state-of-the-art, issues persist despite prior work with respect to length, sycophancy, and overconfidence. New issues related to bias toward model-specific \"styles\" and answer-order were also discovered.\n\n### Benchmarks and Diagnostics\n\nPRM-BiasBench and a diagnostic toolkit were released to enable robustness evaluation before deployment. Socratic-PRMBench (May 2025) analyzes PRM accuracy across reasoning patterns, exposing latent weaknesses and biases."
+    ],
+    "durationSeconds": 8.711325844000006,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "08da905e-4057-4d39-9e38-577ab170e9eb",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "1741ef32-5043-428d-9fcb-3d13db752949",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 29 · 2026-05-19T19:18:39.649Z_
+
+```json
+{
+  "parentUuid": "e987215c-9125-43a3-aeab-b7eab08c4523",
+  "isSidechain": false,
+  "attachment": {
+    "type": "task_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "2435d606-d977-4a04-b6f2-1a7ac211e361",
+  "timestamp": "2026-05-19T19:18:39.649Z",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "1741ef32-5043-428d-9fcb-3d13db752949",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-19T19:18:42.542Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Ksv58ULQyrxNZQkBwj2dau`</summary>
+
+```json
+{
+  "query": "CoRL 2026 accepted papers topics NLP interpretability language models scope"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2435d606-d977-4a04-b6f2-1a7ac211e361",
+  "isSidechain": false,
+  "requestId": "req_011CbCU37KjkPHynb3FnG8Pg",
+  "type": "assistant",
+  "uuid": "a6e49a28-fa70-4c7d-8791-2b86b87dc167",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "1741ef32-5043-428d-9fcb-3d13db752949",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DrtHofRR7UeqnDMQMFAKwL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 893,
+      "cache_read_input_tokens": 28945,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 893,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 28945,
+          "cache_creation_input_tokens": 893,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 893
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-19T19:18:51.645Z_
+
+<details><summary>↩ Tool result · `toolu_01Ksv58ULQyrxNZQkBwj2dau`</summary>
+
+```text
+Web search results for query: "CoRL 2026 accepted papers topics NLP interpretability language models scope"
+
+Links: [{"title":"On Behalf of the Stakeholders: Trends in NLP Model Interpretability in   the Era of LLMs","url":"https://arxiv.org/pdf/2407.19200"},{"title":"Crafting Large Language Models for Enhanced Interpretability","url":"https://arxiv.org/pdf/2407.04307"},{"title":"CoRL 2026 - Instruction for Authors","url":"https://www.corl.org/contributions/instruction-for-authors"},{"title":"Editorial: Explainable AI in Natural Language Processing","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11362634/"},{"title":"Local Interpretations for Explainable Natural Language Processing: A   Survey","url":"https://arxiv.org/pdf/2103.11072"},{"title":"Main Conference - ACL 2026","url":"https://2026.aclweb.org/calls/main_conference_papers/"},{"title":"CLMN: Concept based Language Models via Neural Symbolic Reasoning","url":"https://arxiv.org/pdf/2510.10063"},{"title":"The Language Interpretability Tool: Extensible, Interactive   Visualizations and Analysis for NLP Models","url":"https://arxiv.org/pdf/2008.05122"}]
+
+Based on my search results, I found some relevant information about CoRL 2026, though the results primarily showed ACL 2026 information rather than specific CoRL 2026 accepted papers. Here's what I found:
+
+The search returned general information about NLP interpretability and language models research, but did not contain specific details about CoRL 2026 accepted papers or their topics. However, I did find that all accepted papers at CoRL 2026 will be presented in poster sessions, with selected papers invited for oral spotlight presentations, and all submissions must include a Limitations section.
+
+The search results also showed that related conferences like ACL 2026 are focusing on interpretability and explainability in NLP. Explainability refers to methods and techniques aimed at making the internal decision-making processes of complex NLP models transparent and understandable to humans, moving beyond treating models as "black boxes".
+
+To get more specific information about CoRL 2026's accepted papers and their particular topics and scope, you may want to:
+1. Visit the official CoRL 2026 website directly
+2. Check the conference proceedings or paper list on their website
+3. Search for the specific conference name with "accepted papers" or "program"
+
+Would you like me to search for more specific information about CoRL 2026?
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a6e49a28-fa70-4c7d-8791-2b86b87dc167",
+  "isSidechain": false,
+  "promptId": "9b42ad3c-f5a9-410b-a318-aecdc23a88d0",
+  "type": "user",
+  "uuid": "178d5fd9-7994-46fa-b5ba-f9d54c0b0d1f",
+  "toolUseResult": {
+    "query": "CoRL 2026 accepted papers topics NLP interpretability language models scope",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013uy73EtoLM5zJQBUwEpnfT",
+        "content": [
+          {
+            "title": "On Behalf of the Stakeholders: Trends in NLP Model Interpretability in   the Era of LLMs",
+            "url": "https://arxiv.org/pdf/2407.19200"
+          },
+          {
+            "title": "Crafting Large Language Models for Enhanced Interpretability",
+            "url": "https://arxiv.org/pdf/2407.04307"
+          },
+          {
+            "title": "CoRL 2026 - Instruction for Authors",
+            "url": "https://www.corl.org/contributions/instruction-for-authors"
+          },
+          {
+            "title": "Editorial: Explainable AI in Natural Language Processing",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11362634/"
+          },
+          {
+            "title": "Local Interpretations for Explainable Natural Language Processing: A   Survey",
+            "url": "https://arxiv.org/pdf/2103.11072"
+          },
+          {
+            "title": "Main Conference - ACL 2026",
+            "url": "https://2026.aclweb.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "CLMN: Concept based Language Models via Neural Symbolic Reasoning",
+            "url": "https://arxiv.org/pdf/2510.10063"
+          },
+          {
+            "title": "The Language Interpretability Tool: Extensible, Interactive   Visualizations and Analysis for NLP Models",
+            "url": "https://arxiv.org/pdf/2008.05122"
+          }
+        ]
+      },
+      "Based on my search results, I found some relevant information about CoRL 2026, though the results primarily showed ACL 2026 information rather than specific CoRL 2026 accepted papers. Here's what I found:\n\nThe search returned general information about NLP interpretability and language models research, but did not contain specific details about CoRL 2026 accepted papers or their topics. However, I did find that all accepted papers at CoRL 2026 will be presented in poster sessions, with selected papers invited for oral spotlight presentations, and all submissions must include a Limitations section.\n\nThe search results also showed that related conferences like ACL 2026 are focusing on interpretability and explainability in NLP. Explainability refers to methods and techniques aimed at making the internal decision-making processes of complex NLP models transparent and understandable to humans, moving beyond treating models as \"black boxes\".\n\nTo get more specific information about CoRL 2026's accepted papers and their particular topics and scope, you may want to:\n1. Visit the official CoRL 2026 website directly\n2. Check the conference proceedings or paper list on their website\n3. Search for the specific conference name with \"accepted papers\" or \"program\"\n\nWould you like me to search for more specific information about CoRL 2026?"
+    ],
+    "durationSeconds": 9.099424489000011,
+    "searchCount": 1
+  },
+  "sourceToolAssistantUUID": "a6e49a28-fa70-4c7d-8791-2b86b87dc167",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "1741ef32-5043-428d-9fcb-3d13db752949",
+  "version": "2.1.142",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 32_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # When Do Mechanistic Interventions Succeed? A Multi-Granularity Empirical Test on Process Reward Models  ## Descr…",
+  "leafUuid": "178d5fd9-7994-46fa-b5ba-f9d54c0b0d1f",
+  "sessionId": "1741ef32-5043-428d-9fcb-3d13db752949"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 33_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Assess mechanistic intervention success in process reward models",
+  "sessionId": "1741ef32-5043-428d-9fcb-3d13db752949"
+}
+```
+
+---
+
+### Assistant
+
+_source line 34 · 2026-05-19T19:19:25.468Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a very clear picture. Let me synthesize what I've learned:
+
+1. **CoRL 2026 is the Conference on Robot Learning**, focused on robotics + machine learning. Topics include: learning representations for robotic perception and control, robot foundation models, imitation learning, reinforcement learning for robots, sim-to-real transfer, robot perception, learned manipulation and locomotion, learning-based planning. Papers should "focus on a core robotics problem" and are "encouraged to report real-robot experiments."
+
+2. **This proposal** is entirely about mechanistic interpretability of Process Reward Models for mathematical reasoning — it has zero robotics content. 
+
+This is a fundamental mismatch. The work belongs at venues like NeurIPS, ICML, ACL, EMNLP, or ICLR instead. Looking at the research landscape, there's been recent progress on mechanistic interventions in language models, SAE-based debiasing approaches showing measurable improvements, neuron-level causal mediation techniques, and new evaluation frameworks — all pointing toward where this research naturally fits.
+
+The proposal itself is testing when mechanistic interventions succeed across different granularities (features, neurons, circuits) on process reward models, training SAEs from scratch and using causal circuit tracing to produce a comprehensive matrix of results. But the core problem is that CoRL explicitly requires papers to focus on robotics problems, and this is fundamentally a mechanistic interpretability and language model steering paper.
+
+Even setting aside the venue mismatch, the novelty is questionable — the "Domain Amenability Hypothesis" boils down to observing that interventions work better when you have ground truth and constrained outputs, which feels more like a post-hoc rationalization than a genuine insight.
+
+The multi-granularity comparison across feature, neuron, and circuit levels is the most concrete contribution, though it's more of an empirical engineering effort than a conceptual advance. The SAE comparison adds some value but is fairly incremental.
+
+The core problem is that the hypothesis could be validated just by surveying existing literature and building a table — you don't need an elaborate experimental framework to confirm that domain properties correlate with intervention success. And there's a shaky logical assumption underlying everything: that differences in intervention outcomes between clinical language models and PRMs stem from domain properties rather than fundamental differences in how these models work.
+
+Testing on math PRMs versus the clinical triage setup from prior work introduces massive confounds — different architectures, training procedures, task formulations, and datasets all vary simultaneously. Attributing the results to "domain amenability" rather than these other factors is a significant inferential leap. The question of when mechanistic interventions succeed is genuinely important, but the execution amounts to testing on a domain expected to work and comparing it to one where it failed, then calling that a hypothesis test. That's too weak given all the confounding variables.
+
+The related work section is thorough and probably the strongest part, though it also underscores how saturated this research area has become. Looking at this holistically, this reads like a desk-reject scenario for a top venue.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "178d5fd9-7994-46fa-b5ba-f9d54c0b0d1f",
+  "isSidechain": false,
+  "requestId": "req_011CbCU3zahsmpejDr7yHLcV",
+  "type": "assistant",
+  "uuid": "408c7e8b-a37f-46e1-ac88-f5e1c5d49a94",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "1741ef32-5043-428d-9fcb-3d13db752949",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QS9tdkBjftH1PmRWffBqtg",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 723,
+      "cache_read_input_tokens": 29838,
+      "output_tokens": 4954,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 723,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4954,
+          "cache_read_input_tokens": 29838,
+          "cache_creation_input_tokens": 723,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 723
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35 · 2026-05-19T19:20:39.005Z_
+
+Now I have sufficient information to conduct the evaluation. Let me compile my findings.
+
+---
+
+```
+【阶段】: Triage
+
+【领域调研】:
+
+**关键发现：致命的 venue mismatch**
+
+CoRL (Conference on Robot Learning) 2026 明确要求论文 "focus on a core robotics problem"，鼓励 "real-robot experiments or convincing evidence that simulation experiments are transferable to real robots"。议题范围包括：robot foundation models, imitation learning for robotics, sim-to-real transfer, learned manipulation and locomotion 等。
+本 proposal 的内容是 NLP/MI 领域的 mechanistic interpretability for Process Reward Models（数学推理任务），与 robotics 零交集。这在 CoRL 属于 desk-reject 级别的 scope mismatch。
+
+以下是基于 idea 本身质量的调研（假设投稿至合适 venue 如 NeurIPS/ICML/ICLR）：
+
+- [Interpretability without Actionability] (arXiv:2603.18353, 2026): 本 proposal 的核心起点。Basu et al. 在 clinical triage LMs 上测试 4 种 MI 方法（含 SAE steering），发现 zero/negligible corrections，揭示 knowledge-action gap。本 proposal 试图用 PRM domain 作为对照来解释这一失败。
+- [SteerRM] (arXiv:2603.12795, 2026): 用 pretrained LlamaScope SAEs 做 RM debiasing，Hard-split +7.3 points。本 proposal 声称通过 from-scratch SAE + output-score filtering 改进此方法。
+- [CIRM] (arXiv:2604.27495, ACL 2026): Neuron-level causal mediation debiasing，edit <2% neurons 即匹配 70B 性能。本 proposal 将其作为 neuron-level baseline。
+- [Orgad et al.] (arXiv:2605.11161, ICML 2026): Position paper，提出 actionable interpretability 的 concreteness × validation 二维评估框架。本 proposal 采用其评估 criteria。
+- [Lee et al.] (arXiv:2605.05508, 2026): 主张 interpretability 作为 rigorous evaluation 需满足 falsifiability, reproducibility, predictivity。本 proposal 采用其 scientific rigor criteria。
+- [Tiwari et al.] (arXiv:2603.06621, 2026): 建立 PRM-BiasBench，发现 43% reward gains 来自 stylistic exploitation。本 proposal 的 PRM bias 问题来源。
+- [Zhang et al.] (arXiv:2601.14004, 2026): "Locate, Steer, Improve" survey，目前最全面的 actionable MI 分类体系。本 proposal 声称 instantiate 其 pipeline。
+- [One Bias After Another] (arXiv:2603.03291, 2026): Linear probes for mechanistic reward shaping，5 个 RMs。本 proposal 的 probe-level baseline。
+- [CRA] (arXiv:2508.04216, 2025): 在 PRM activations 上从头训练 SAE 做 backdoor correction。本 proposal 的 SAE 方法论直接来源。
+
+- 调研总结: 2025-2026 年，PRM debiasing 和 actionable MI 已成为高度活跃的研究领域。SteerRM (feature-level), CIRM (neuron-level), CRA (SAE from scratch), "One Bias After Another" (probe-level) 各自从不同粒度切入 PRM/RM debiasing。本 proposal 的核心定位是"将现有方法整合到统一框架中比较"——这是 empirical comparison/systematization 贡献，而非方法论突破。
+
+
+【Trivial Alternative 检验】:
+
+存在严重的 trivial alternative 威胁：
+
+1. **Domain Amenability Hypothesis 的检验**：Proposal 声称通过 PRM vs. clinical LM 的对比来 "test" 其假设，但这只是 N=2 的 domain 对比，且两个 domain 之间存在大量混杂因素（model architecture, training procedure, task formulation, data distribution, model scale 等均不同）。一个更简单的方式是：直接做 literature survey + meta-analysis，列出已有 MI intervention 的 success/failure cases，按 domain 属性分类——这无需任何 GPU，就能得出类似的（甚至更有说服力的）结论。
+
+2. **Multi-granularity comparison**：将 SteerRM、CIRM 等已有方法在相同 benchmark 上跑一遍并比较，本质上是 replication + comparison study。这有价值，但 novelty delta 有限——因为各方法的论文本身已经在相似 benchmark 上报告了结果（RM-Bench, ProcessBench 等）。
+
+3. **PRM debiasing 本身**：Fine-tuning on debiased data（proposal 自己列为 baseline）可能就是最简单有效的方案。如果 fine-tuning baseline 表现良好，整个 mechanistic intervention 的 comparative utility 就会被质疑。
+
+
+【前提假设检验】:
+
+核心 claim 的逻辑链有多个未经验证的关键假设：
+
+1. **"Domain properties 是 intervention success 的决定因素" 这一假设缺乏控制**：Basu et al. 在 clinical LMs 上失败，但失败原因可能是 model-specific、task-specific 或 method-specific 的，而非 domain-specific 的。将两个完全不同实验的结果归因于 "domain amenability" 是一个 attribution leap，缺乏控制实验来排除混杂因素。真正的检验需要在同一模型、同一方法上切换 domain——这在实践中极难实现。
+
+2. **"PRMs satisfy all four conditions" 的论证是 post-hoc 且 circular**：作者先观察到 SteerRM/CIRM 在 PRM 上成功，然后提出 4 个 "条件"，然后论证 PRM 满足这 4 个条件。这不是 hypothesis testing，而是 post-hoc rationalization。
+
+3. **"43% of reward gains from stylistic exploitation" 是否意味着 fluency-reasoning 可分离**：这个数字来自 Tiwari et al. 的 adversarial optimization 实验，不一定意味着 PRM 内部有 clean 的 fluency vs. reasoning circuit separation。Polysemanticity 和 superposition 可能使分离比预期困难得多。
+
+4. **Self-repair 的假设 (H4) 是从非 PRM 文献外推的**：McGrath et al. 的 self-repair 研究是在 general LMs 上做的，直接外推到 discriminative PRMs 的 reward head 缺乏依据。
+
+
+【3 维度打分】:
+
+1. Novelty: 弱 — 
+   核心贡献是 (a) Domain Amenability Hypothesis 和 (b) multi-granularity comparison。
+   
+   对于 (a)：这是一个 N=2 的 post-hoc domain 对比，且"有 verifiable ground truth + constrained output 的 domain 更容易做 intervention"接近常识。没有搜索到任何先前工作提出过完全相同的 formulation，但 Zhang et al. (2026) 的 survey 已经讨论了 "success requires sparse and decomposable mechanisms"——这本质上是相同洞察的不同表述。
+   
+   对于 (b)：SteerRM, CIRM, CRA, "One Bias After Another" 已分别在 feature/neuron/probe/SAE 粒度上做了 PRM/RM debiasing。本 proposal 的增量是"放在一起比较"——这是 empirical systematization，不是 methodological novelty。没有提出任何新的 intervention 方法、新的 analysis technique、或新的 model architecture。
+   
+   剔除 surface differences 后，真正的 novelty delta 是 "unified comparison + domain amenability framing"——这更像是 survey/benchmark paper 的贡献，而非 top venue main conference 的 idea 级别。
+
+2. Significance: 中 — 
+   "When do mechanistic interventions work?" 是一个 timely 且 important 的问题，Basu et al. 和 Orgad et al. 的工作证明了这个问题的 urgency。PRM debiasing 也有实际应用价值（RLHF pipeline 的 robustness）。
+   
+   但问题在于：(a) 即使实验成功（PRMs 上 intervention 有效），审稿人很可能说 "I would have guessed this"——因为 PRM 的 constrained output + verifiable ground truth 本身就预示着 intervention 应该更容易成功；(b) 如果实验失败（PRMs 上也不行），那结论是 "mechanistic interventions fundamentally limited"——这虽然有价值但属于 negative result；(c) 对领域的推广性有限——从 N=2 domain 对比得出的 "domain amenability" 结论，审稿人很难被说服这是一个 general principle。
+
+3. Related Work: 强 — 
+   Related work 覆盖非常全面，涵盖了 2025-2026 几乎所有相关工作：actionability debate (Basu et al., Orgad et al., Lee et al.), PRM bias (Tiwari et al., Wang et al.), intervention methods (SteerRM, CIRM, CRA, "One Bias After Another"), SAE methodology (Arad et al., CRA vs. SteerRM), circuit analysis (RelP, CLT-Forge), self-repair (McGrath et al.)。差异化定位也比较清晰。这是 proposal 最强的维度。
+
+
+【概率估计】: 0% - 3%，中位 1%
+
+【估计理由】: 
+**致命问题是 venue mismatch。** CoRL 2026 明确要求 "focus on a core robotics problem"，本 proposal 关于 NLP mechanistic interpretability for math PRMs 的内容与 robotics 完全无关，极大概率 desk-reject。这一条直接将概率压到接近 0%。
+
+即使假设投到合适的 venue（NeurIPS/ICML/ICLR），idea 质量的概率估计约 20-28%（中位 ~24%）：
+- Novelty 弱是主要限制因素：核心贡献是 existing methods 的 comparison + post-hoc domain hypothesis，缺乏 methodological innovation
+- Significance 受限于 "I would have guessed this" 风险
+- 极好的 Related Work 覆盖提供了 floor support，但不能弥补 idea 内核的薄弱
+- 280 H100-hours 的投入产出比堪忧——花大量 compute 做 comparison study
+
+【主要风险】: 
+1. **致命风险 — 完全的 venue mismatch**: CoRL 是 robotics 会议，本 proposal 是纯 NLP/MI 工作，desk-reject 概率极高。建议改投 NeurIPS 2026, ICML 2026, ICLR 2027, 或 EMNLP 2026。
+2. **Idea 层面风险 — Novelty 不足**: 核心贡献是 empirical comparison + post-hoc domain hypothesis，没有新方法/新 technique/新 insight。审稿人可能评价为 "well-executed comparison study but limited novelty for main conference"。Domain Amenability Hypothesis 的 N=2 对比 + 大量混杂因素使其作为 "hypothesis test" 的说服力很弱。
+```
+
+Sources:
+- [Interpretability without Actionability (Basu et al., 2026)](https://arxiv.org/abs/2603.18353)
+- [SteerRM: Debiasing Reward Models via Sparse Autoencoders](https://arxiv.org/abs/2603.12795)
+- [CIRM: Debiasing Reward Models via Causally Motivated Inference-Time Intervention](https://arxiv.org/html/2604.27495)
+- [Position: Interpretability Can Be Actionable (Orgad et al., ICML 2026)](https://arxiv.org/abs/2605.11161)
+- [Locate, Steer, and Improve Survey (Zhang et al., 2026)](https://arxiv.org/pdf/2601.14004)
+- [Reward Under Attack: PRM Hackability (Tiwari et al., 2026)](https://arxiv.org/abs/2603.06621)
+- [One Bias After Another (2026)](https://arxiv.org/pdf/2603.03291)
+- [CoRL 2026 Call for Papers](https://www.corl.org/contributions/call-for-papers)
+- [CoRL 2026 Instructions for Authors](https://www.corl.org/contributions/instruction-for-authors)
+- [ICML 2026 Poster: Interpretability Can Be Actionable](https://icml.cc/virtual/2026/poster/67043)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "408c7e8b-a37f-46e1-ac88-f5e1c5d49a94",
+  "isSidechain": false,
+  "requestId": "req_011CbCU3zahsmpejDr7yHLcV",
+  "type": "assistant",
+  "uuid": "aa3f2a8f-af37-4307-b5de-58ab83aa2204",
+  "userType": "external",
+  "entrypoint": "sdk-py",
+  "cwd": "/home/ubuntu/idea_review",
+  "sessionId": "1741ef32-5043-428d-9fcb-3d13db752949",
+  "version": "2.1.142",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QS9tdkBjftH1PmRWffBqtg",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 723,
+      "cache_read_input_tokens": 29838,
+      "output_tokens": 4954,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 723,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4954,
+          "cache_read_input_tokens": 29838,
+          "cache_creation_input_tokens": 723,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 723
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 36_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # When Do Mechanistic Interventions Succeed? A Multi-Granularity Empirical Test on Process Reward Models  ## Descr…",
+  "leafUuid": "aa3f2a8f-af37-4307-b5de-58ab83aa2204",
+  "sessionId": "1741ef32-5043-428d-9fcb-3d13db752949"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 37_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Assess mechanistic intervention success in process reward models",
+  "sessionId": "1741ef32-5043-428d-9fcb-3d13db752949"
+}
+```
+
+---
