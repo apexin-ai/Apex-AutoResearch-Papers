@@ -1,6 +1,6 @@
 # Contents
 
-This catalogue covers **52 projects with manuscript PDFs** and **35 additional project records**. Records without a PDF are listed after the manuscript projects. Open a project README for its available manuscript, research code, experiment outputs, and recorded research process.
+This catalogue covers **53 projects with manuscript PDFs** and **36 additional project records**. Records without a PDF are listed after the manuscript projects. Open a project README for its available manuscript, research code, experiment outputs, and recorded research process.
 
 | Project | Manuscript | Code/config files | Data/result files | Trace sources | Recorded events |
 |---|---|---:|---:|---:|---:|
@@ -11,6 +11,7 @@ This catalogue covers **52 projects with manuscript PDFs** and **35 additional p
 | [cert_manip_resist_eval](paper-assets/cert_manip_resist_eval/README.md) | [PDF](paper-assets/cert_manip_resist_eval/01-manuscript/paper.pdf) | 253 | 873 | 880 | 97,735 |
 | [clkc_mech_interp](paper-assets/clkc_mech_interp/README.md) | [PDF](paper-assets/clkc_mech_interp/01-manuscript/paper.pdf) | 189 | 584 | 689 | 76,491 |
 | [collapse_aware_reward_rebalancing](paper-assets/collapse_aware_reward_rebalancing/README.md) | [PDF](paper-assets/collapse_aware_reward_rebalancing/01-manuscript/paper.pdf) | 64 | 154 | 214 | 14,906 |
+| [contamcal-irt-calibration](paper-assets/contamcal-irt-calibration/README.md) | [PDF](paper-assets/contamcal-irt-calibration/01-manuscript/paper.pdf) | 958 | 2,747 | 5,003 | 356,899 |
 | [contrastive_entrain_calib](paper-assets/contrastive_entrain_calib/README.md) | [PDF](paper-assets/contrastive_entrain_calib/01-manuscript/paper.pdf) | 339 | 940 | 1,573 | 119,612 |
 | [contrastive_trace_safety](paper-assets/contrastive_trace_safety/README.md) | [PDF](paper-assets/contrastive_trace_safety/01-manuscript/paper.pdf) | 276 | 513 | 855 | 116,437 |
 | [cost-verify-agent-rl](paper-assets/cost-verify-agent-rl/README.md) | [PDF](paper-assets/cost-verify-agent-rl/01-manuscript/paper.pdf) | 495 | 1,236 | 2,831 | 209,966 |
@@ -70,6 +71,7 @@ This catalogue covers **52 projects with manuscript PDFs** and **35 additional p
 | [distill_kv_rag_cache](paper-assets/distill_kv_rag_cache/README.md) | No PDF in snapshot | 48 | 13 | 65 | 6,102 |
 | [ec_hte_codex_a](paper-assets/ec_hte_codex_a/README.md) | No PDF in snapshot | 25 | 40 | 30 | 3,330 |
 | [ec_hte_codex_b](paper-assets/ec_hte_codex_b/README.md) | No PDF in snapshot | 38 | 92 | 9 | 2,848 |
+| [ec_hte_codex_c](paper-assets/ec_hte_codex_c/README.md) | No PDF in snapshot | 22 | 57 | 4 | 3,851 |
 | [eco_alpha_beta_diversity](paper-assets/eco_alpha_beta_diversity/README.md) | No PDF in snapshot | 22 | 40 | 20 | 1,818 |
 | [error_diag_dpo_recovery](paper-assets/error_diag_dpo_recovery/README.md) | No PDF in snapshot | 76 | 97 | 323 | 25,149 |
 | [error_type_pref_optim](paper-assets/error_type_pref_optim/README.md) | No PDF in snapshot | 12 | 1 | 11 | 1,643 |

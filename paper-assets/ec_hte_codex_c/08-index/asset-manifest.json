@@ -1,0 +1,99 @@
+{
+  "project": "ec_hte_codex_c",
+  "code_count": 22,
+  "data_count": 57,
+  "env_count": 0,
+  "tex_count": 0,
+  "bib_count": 0,
+  "review_count": 0,
+  "validation_count": 6,
+  "contribution_count": 0,
+  "chat_count": 4,
+  "worker_count": 0,
+  "trace_count": 4,
+  "trace_bytes": 3628237,
+  "maintenance_count": 7,
+  "provenance_count": 0,
+  "submission_count": 0,
+  "license_count": 0,
+  "paper_pdf": null,
+  "paper_sha256": "",
+  "title": "ec hte codex c",
+  "pages": 0,
+  "status_marker": "",
+  "version_count": 0,
+  "version_paths": [],
+  "archive_rel": "contamcal-irt-calibration/workspace.tar.gz",
+  "archive_note": "Archive scan completed",
+  "archive_error": null,
+  "source_s3": {
+    "bucket": "agent-ml-research-project-backups-20260531",
+    "key": "contamcal-irt-calibration/workspace.tar.gz",
+    "sha256": "01d1ed51e11849cb695cf653cb78f6d45d375aa06fb1b2957b6be616d1ea3f65",
+    "bytes": 8863878919,
+    "etag": "\"6d03ec834212614dba38e34df3ce4bbc-1057\"",
+    "modified": "2026-05-31T17:29:59+00:00"
+  },
+  "academic_record": {
+    "date": "2026-05-31",
+    "record": "Project status documents are included as source evidence; formal submission, acceptance, or publication status is unverified."
+  },
+  "criteria": [
+    {
+      "name": "Manuscript and versions",
+      "status": "Partial",
+      "evidence": "0 source files; 0 PDF candidates",
+      "gap": "Candidate filenames do not establish official submission or publication.",
+      "path": "01-manuscript/"
+    },
+    {
+      "name": "Academic status",
+      "status": "Unverified",
+      "evidence": "Project status documents are included as source evidence; formal submission, acceptance, or publication status is unverified.",
+      "gap": "Official submission, acceptance, and publication were not independently checked.",
+      "path": "07-maintenance/"
+    },
+    {
+      "name": "AI / human contribution",
+      "status": "Partial",
+      "evidence": "0 task/role records",
+      "gap": "User and assistant roles do not identify people or establish author contributions.",
+      "path": "02-contributions/"
+    },
+    {
+      "name": "Generation trace",
+      "status": "Organized",
+      "evidence": "4 conversations; 0 worker logs/results; 4 source files",
+      "gap": "Overlapping snapshots are retained; credentials and binary attachments are redacted.",
+      "path": "05-generation-trace/"
+    },
+    {
+      "name": "Reproduction code",
+      "status": "Available",
+      "evidence": "22 code/configuration files; 0 environment manifests",
+      "gap": "The code is archived; experiments were not rerun for this release.",
+      "path": "03-code/"
+    },
+    {
+      "name": "Experiments and environment",
+      "status": "Partial",
+      "evidence": "57 data/result files",
+      "gap": "Original data permissions and completeness require project-specific review.",
+      "path": "04-experiments/"
+    },
+    {
+      "name": "Validation evidence",
+      "status": "Partial",
+      "evidence": "0 internal review records; 6 other audit records",
+      "gap": "Internal reviews are project evidence, not independently verified external reviews.",
+      "path": "06-validation/"
+    },
+    {
+      "name": "Maintenance",
+      "status": "Partial",
+      "evidence": "7 project documentation files; 0 license files",
+      "gap": "A project license file applies only within its stated scope.",
+      "path": "07-maintenance/"
+    }
+  ]
+}

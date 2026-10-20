@@ -191,6 +191,22 @@
       }
     },
     {
+      "project": "contamcal-irt-calibration",
+      "title": "Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families",
+      "catalog": "../paper-assets/contamcal-irt-calibration/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 5003,
+        "messages": 356899,
+        "user_turns": 10425,
+        "tool_calls": 143590,
+        "unparsed_lines": 1855,
+        "worker": 1906,
+        "result": 1825,
+        "conversation": 1010,
+        "history": 262
+      }
+    },
+    {
       "project": "contrastive_entrain_calib",
       "title": "The Probe Reward Trap: Behavioral Death Before Distributional Collapse in Sycophancy Calibration",
       "catalog": "../paper-assets/contrastive_entrain_calib/05-generation-trace/catalog.json",
@@ -420,6 +436,19 @@
         "tool_calls": 1367,
         "unparsed_lines": 0,
         "conversation": 9
+      }
+    },
+    {
+      "project": "ec_hte_codex_c",
+      "title": "ec hte codex c",
+      "catalog": "../paper-assets/ec_hte_codex_c/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 4,
+        "messages": 3851,
+        "user_turns": 156,
+        "tool_calls": 1772,
+        "unparsed_lines": 0,
+        "conversation": 4
       }
     },
     {

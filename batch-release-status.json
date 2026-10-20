@@ -1337,6 +1337,38 @@
         }
       ],
       "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39397907680"
+    },
+    "contamcal-irt-calibration/workspace.tar.gz": {
+      "status": "uploaded",
+      "source": {
+        "bytes": 8863878919,
+        "etag": "\"6d03ec834212614dba38e34df3ce4bbc-1057\"",
+        "modified": "2026-05-31T17:29:59+00:00"
+      },
+      "archive_sha256": "01d1ed51e11849cb695cf653cb78f6d45d375aa06fb1b2957b6be616d1ea3f65",
+      "projects": [
+        "contamcal-irt-calibration",
+        "ec_hte_codex_c"
+      ],
+      "counts": [
+        {
+          "project": "contamcal-irt-calibration",
+          "title": "Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families",
+          "paper_pdf": "paper.pdf",
+          "code_count": 958,
+          "data_count": 2747,
+          "trace_count": 5003
+        },
+        {
+          "project": "ec_hte_codex_c",
+          "title": "ec hte codex c",
+          "paper_pdf": null,
+          "code_count": 22,
+          "data_count": 57,
+          "trace_count": 4
+        }
+      ],
+      "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39401186475"
     }
   }
 }
