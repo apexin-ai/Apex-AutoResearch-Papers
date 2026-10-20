@@ -1,0 +1,3776 @@
+# Research conversation: [HANDOFF] 你是 Main Agent，这是 Loop #9。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 本项目只能用 gpu-6000pro-2 的 cuda:0 和 cuda:1（白
+
+**How Deep Is Your Data? Estimating Recursive Generation Depth via Statistical Fingerprints (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 65
+- **Recorded user turns:** 1
+- **Tool calls:** 20
+- **Original source:** `logs/chats/exported-trajectories/account-2/fca35eee-3d86-498b-8ae4-4acc744cd03e.jsonl`
+- **Structured JSON:** [`6b0b99e3d6d24240f0f8.json`](../../sessions/6b/6b0b99e3d6d24240f0f8.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-15T16:33:45.012Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-15T16:33:45.012Z",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e",
+  "content": "[HANDOFF] 你是 Main Agent，这是 Loop #9。\n\n## 上一轮交接 (task_context)\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 gpu-6000pro-2 的 cuda:0 和 cuda:1（白名单 gpu_ids=[0,1]）\n- submit_training_job 的 command 必须用 `bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ...\"` 包裹，tmux 跑在 /bin/sh 下\n- 脚本内 GPU 编号始终用 cuda:0（CUDA_VISIBLE_DEVICES 自动映射物理卡）\n- EDD 报告必须附 bootstrap CI + p-value，禁止无统计支撑的硬阈值判定（D027）\n- 论文写作前必须读 red-section skill 规范；Framing 调整批准后必须 framing-reaudit 全文审查\n\n### 2. 🖥️ 基础设施快照\n- 服务器：gpu-6000pro-2（2× RTX 6000 Pro 48GB）\n- 工作目录：/root/autodl-tmp/recursive_gen_depth_est\n- Python：/root/miniconda3/bin/python（conda base 环境，不是 venv）\n- 模型路径：/root/autodl-tmp/models/{roberta-base, deberta-v3-base, gpt2-xl, pythia-1.4b, olmo-1b}\n- 数据：/root/autodl-tmp/recursive_gen_depth_est/data/depth_{0,1,2,3}.jsonl（各 5000 samples）\n- 深度扩展数据：data/{pythia,gpt2xl,olmo}_depth_extension/ 含 d4/d5\n- 活跃进程：无（全部实验已完成）\n- Cron：无活跃 cron（reconcile 返回 0）\n\n### 3. 📊 当前状态\n**刚完成**：n2_roberta_finetune_001 分析 → DONE (success)。RoBERTa 59.5% vs RF 78.2% (-18.7pp)，与 DeBERTa 58.3% 一致。N2/R1-N3 reviewer concern 完全 resolved。已向 Director 汇报。\n\n**Registry 全貌**：46 个实验，全部 DONE（success 23 / negative 3 / failed 6 / killed 13）。无 RUNNING/PREPARING/ANALYZING。\n\n**等待中**：无 Worker 回调、无 Cron、无 pending Director 决策。GPU 双卡空闲。\n\n**Phase 状态**：Phase 1 实验收尾 ✅ 全部完成 → 等 Director 启动 Phase 2 写作（DDL: EMNLP ARR May 25，剩 10 天）\n\n### 4. 📋 待办\n- Director 批准进入 Phase 2 → 按 memory.md 写作顺序，第一批启动：§4 EDD 公式定义(R1-N1) + §3 Benchmark Construction(W5) + Bibliography 扩充(R2-N2) + 术语一致性扫描(R2-W2)，四个 Worker 并行\n- Director 要求补充实验 → cuda:0/cuda:1 双卡空闲可立即使用\n- 写 paper 任何 section 前 → 必须读 red-section skill + paper_framing.md\n- 第三批写作（§5 end-to-end baseline 对比）→ N2 数据已就绪：RoBERTa 59.5%±3.2% / DeBERTa 58.3%±4.7%，feature overlap Spearman ρ=-0.484, top-5 overlap=0\n- 4 张必需图（Dream D002）→ 用 draw-paper-figure skill 在服务器生成，可与写作并行\n\n### 5. 🎯 战略上下文\n- **核心 story (Plan A, D011)**：Depth Degradation Atlas + EDD metric + feature universality。DCOL 已关闭(D018)降级为 negative analysis\n- **关键决策链**：D022/D023 baseline 叙事重构（RF≈CORAL≈DivEye 不可区分）→ D024/D027 EDD 从硬阈值转连续衰减曲线 → D014/D021 z-score LR claim 已证伪（必须删除）→ D015 三档策略分类\n- **易错点**：\n  - 不要说 \"EDD=4 across all models\"——Pythia 显著(p=0.001)，OLMo 边际(p=0.091)，GPT-2 XL 不显著(p=0.505)，必须用连续 AUC 衰减叙事\n  - 不要说 \"z-score fixes temp09 d1v2 inversion\"——实验证伪（D021），z-score 对 LR pairwise AUC 反而更差\n  - 不要把 nucleus 和 temperature 归为 \"soft sampling\"（D015 三档分类）\n  - Plan_010 (DCOL ablation) 已取消，不要尝试恢复\n  - literature_map.yaml 有 35 entries（满足 Dream D002 的 25+ refs），但论文正文引用可能不足，R2-N2 需要确认 bib 覆盖率\n\n## 项目硬约束 (memory.md 节选)\n\n## 约束\n\n- **submit_on_allocated bash 语法**: tmux 跑在 /bin/sh 下，必须用 `bash -c \"...\"` 包裹 bash-only 语法（如 source）。(2026-05-15)\n- **sync_code 不可靠**: submit_on_allocated 的 sync_code=true 可能不同步新创建的文件。安全方案：Worker SSH 手动写入。(2026-05-15)\n- **CUDA_VISIBLE_DEVICES 与脚本 device 参数冲突**: submit_training_job 自动注入 CUDA_VISIBLE_DEVICES 映射物理 GPU，脚本内必须用 cuda:0（逻辑第一块卡）。若脚本硬编码物理 GPU 编号（如 cuda:1），会报 \"CUDA error: invalid device ordinal\"。多步 pipeline 中某些步骤可能在 CUDA_VISIBLE_DEVICES 生效前运行（如 shell 脚本前几步），但后续 Python 脚本一律用 cuda:0。(2026-05-15)\n\n## 可查的历史\n前 38 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。\n完整聊天归档可用 `recall_session_history(\"关键词\")` 搜索。\n\n## 第一个动作要求\n1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）\n2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-15T16:33:45.015Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-15T16:33:45.015Z",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e"
+}
+```
+
+---
+
+## Round 1
+
+63 recorded events
+
+### User
+
+_source line 3 · 2026-05-15T16:33:45.052Z_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #9。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 gpu-6000pro-2 的 cuda:0 和 cuda:1（白名单 gpu_ids=[0,1]）
+- submit_training_job 的 command 必须用 `bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ..."` 包裹，tmux 跑在 /bin/sh 下
+- 脚本内 GPU 编号始终用 cuda:0（CUDA_VISIBLE_DEVICES 自动映射物理卡）
+- EDD 报告必须附 bootstrap CI + p-value，禁止无统计支撑的硬阈值判定（D027）
+- 论文写作前必须读 red-section skill 规范；Framing 调整批准后必须 framing-reaudit 全文审查
+
+### 2. 🖥️ 基础设施快照
+- 服务器：gpu-6000pro-2（2× RTX 6000 Pro 48GB）
+- 工作目录：/root/autodl-tmp/recursive_gen_depth_est
+- Python：/root/miniconda3/bin/python（conda base 环境，不是 venv）
+- 模型路径：/root/autodl-tmp/models/{roberta-base, deberta-v3-base, gpt2-xl, pythia-1.4b, olmo-1b}
+- 数据：/root/autodl-tmp/recursive_gen_depth_est/data/depth_{0,1,2,3}.jsonl（各 5000 samples）
+- 深度扩展数据：data/{pythia,gpt2xl,olmo}_depth_extension/ 含 d4/d5
+- 活跃进程：无（全部实验已完成）
+- Cron：无活跃 cron（reconcile 返回 0）
+
+### 3. 📊 当前状态
+**刚完成**：n2_roberta_finetune_001 分析 → DONE (success)。RoBERTa 59.5% vs RF 78.2% (-18.7pp)，与 DeBERTa 58.3% 一致。N2/R1-N3 reviewer concern 完全 resolved。已向 Director 汇报。
+
+**Registry 全貌**：46 个实验，全部 DONE（success 23 / negative 3 / failed 6 / killed 13）。无 RUNNING/PREPARING/ANALYZING。
+
+**等待中**：无 Worker 回调、无 Cron、无 pending Director 决策。GPU 双卡空闲。
+
+**Phase 状态**：Phase 1 实验收尾 ✅ 全部完成 → 等 Director 启动 Phase 2 写作（DDL: EMNLP ARR May 25，剩 10 天）
+
+### 4. 📋 待办
+- Director 批准进入 Phase 2 → 按 memory.md 写作顺序，第一批启动：§4 EDD 公式定义(R1-N1) + §3 Benchmark Construction(W5) + Bibliography 扩充(R2-N2) + 术语一致性扫描(R2-W2)，四个 Worker 并行
+- Director 要求补充实验 → cuda:0/cuda:1 双卡空闲可立即使用
+- 写 paper 任何 section 前 → 必须读 red-section skill + paper_framing.md
+- 第三批写作（§5 end-to-end baseline 对比）→ N2 数据已就绪：RoBERTa 59.5%±3.2% / DeBERTa 58.3%±4.7%，feature overlap Spearman ρ=-0.484, top-5 overlap=0
+- 4 张必需图（Dream D002）→ 用 draw-paper-figure skill 在服务器生成，可与写作并行
+
+### 5. 🎯 战略上下文
+- **核心 story (Plan A, D011)**：Depth Degradation Atlas + EDD metric + feature universality。DCOL 已关闭(D018)降级为 negative analysis
+- **关键决策链**：D022/D023 baseline 叙事重构（RF≈CORAL≈DivEye 不可区分）→ D024/D027 EDD 从硬阈值转连续衰减曲线 → D014/D021 z-score LR claim 已证伪（必须删除）→ D015 三档策略分类
+- **易错点**：
+  - 不要说 "EDD=4 across all models"——Pythia 显著(p=0.001)，OLMo 边际(p=0.091)，GPT-2 XL 不显著(p=0.505)，必须用连续 AUC 衰减叙事
+  - 不要说 "z-score fixes temp09 d1v2 inversion"——实验证伪（D021），z-score 对 LR pairwise AUC 反而更差
+  - 不要把 nucleus 和 temperature 归为 "soft sampling"（D015 三档分类）
+  - Plan_010 (DCOL ablation) 已取消，不要尝试恢复
+  - literature_map.yaml 有 35 entries（满足 Dream D002 的 25+ refs），但论文正文引用可能不足，R2-N2 需要确认 bib 覆盖率
+
+## 项目硬约束 (memory.md 节选)
+
+## 约束
+
+- **submit_on_allocated bash 语法**: tmux 跑在 /bin/sh 下，必须用 `bash -c "..."` 包裹 bash-only 语法（如 source）。(2026-05-15)
+- **sync_code 不可靠**: submit_on_allocated 的 sync_code=true 可能不同步新创建的文件。安全方案：Worker SSH 手动写入。(2026-05-15)
+- **CUDA_VISIBLE_DEVICES 与脚本 device 参数冲突**: submit_training_job 自动注入 CUDA_VISIBLE_DEVICES 映射物理 GPU，脚本内必须用 cuda:0（逻辑第一块卡）。若脚本硬编码物理 GPU 编号（如 cuda:1），会报 "CUDA error: invalid device ordinal"。多步 pipeline 中某些步骤可能在 CUDA_VISIBLE_DEVICES 生效前运行（如 shell 脚本前几步），但后续 Python 脚本一律用 cuda:0。(2026-05-15)
+
+## 可查的历史
+前 38 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "4a692b27-acc9-4510-88f1-72c3acd11f24",
+  "type": "user",
+  "uuid": "73fbe157-5d38-4cb3-a448-83193eae6481",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_3ad3e5f3",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-15T16:33:45.051Z_
+
+```json
+{
+  "parentUuid": "73fbe157-5d38-4cb3-a448-83193eae6481",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__allocate_and_submit",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__approve_worker",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_worker",
+      "mcp__agent-ml-research__check_job_status",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_alert",
+      "mcp__agent-ml-research__feishu_send_approval_card",
+      "mcp__agent-ml-research__feishu_send_result_card",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_baseline_metrics",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__poll_cron",
+      "mcp__agent-ml-research__poll_secret_request",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__register_cron",
+      "mcp__agent-ml-research__request_secret",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__submit_on_allocated",
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__tail_training_logs",
+      "mcp__agent-ml-research__update_baseline",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__allocate_and_submit",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__approve_worker",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_worker",
+      "mcp__agent-ml-research__check_job_status",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_alert",
+      "mcp__agent-ml-research__feishu_send_approval_card",
+      "mcp__agent-ml-research__feishu_send_result_card",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_baseline_metrics",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__poll_cron",
+      "mcp__agent-ml-research__poll_secret_request",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__register_cron",
+      "mcp__agent-ml-research__request_secret",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__submit_on_allocated",
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__tail_training_logs",
+      "mcp__agent-ml-research__update_baseline",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "9eeec55d-6513-4d8e-99a8-7d6eb265ed69",
+  "timestamp": "2026-05-15T16:33:45.051Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_3ad3e5f3",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-15T16:33:45.051Z_
+
+```json
+{
+  "parentUuid": "9eeec55d-6513-4d8e-99a8-7d6eb265ed69",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "51b20fc7-588f-4ff1-a0f4-741e75864dd5",
+  "timestamp": "2026-05-15T16:33:45.051Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_3ad3e5f3",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-15T16:33:45.051Z_
+
+```json
+{
+  "parentUuid": "51b20fc7-588f-4ff1-a0f4-741e75864dd5",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "7f7f8f11-491a-45c4-ac58-be31702fc2c4",
+  "timestamp": "2026-05-15T16:33:45.051Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_3ad3e5f3",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Prepare Phase 2 writing: EDD formulation and benchmark construction",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-15T16:33:52.194Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+新 session 启动，按 session-start 规范执行初始化。先确认硬约束已读取，然后执行初始化步骤。
+
+硬约束确认：
+- 只能用 gpu-6000pro-2 的 cuda:0 和 cuda:1
+- submit_training_job command 必须用 bash -c 包裹
+
+
+- 脚本内 GPU 编号始终用 cuda:0
+- EDD 报告必须附 bootstrap CI + p-value
+- 论文写作前必须读 red-section skill
+
+46 个实验已全部完成，GPU 双卡现在空闲，等待 Director 启动 Phase 2 写作阶段。现在执行 session-start 初始化。
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7f7f8f11-491a-45c4-ac58-be31702fc2c4",
+  "isSidechain": false,
+  "requestId": "req_011Cb4gE5Krpg5Yf1poQ5qie",
+  "type": "assistant",
+  "uuid": "30f68f78-5fb8-4500-85ac-045c225dd5b6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_3ad3e5f3",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XSC5LC6ZRBJiNfqPVkKj4i",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 24896,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 468,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 24896,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 468,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 24896,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 24896
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-15T16:33:52.388Z_
+
+硬约束已确认：gpu_ids=[0,1] on gpu-6000pro-2、bash -c 包裹、cuda:0 逻辑编号、EDD 需 bootstrap CI + p-value、写作前读 red-section。当前无活跃实验，全部 DONE。
+
+执行 session-start 初始化。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "30f68f78-5fb8-4500-85ac-045c225dd5b6",
+  "isSidechain": false,
+  "requestId": "req_011Cb4gE5Krpg5Yf1poQ5qie",
+  "type": "assistant",
+  "uuid": "00e35c49-b4cd-46a2-943e-f1ae8883aba3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_3ad3e5f3",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XSC5LC6ZRBJiNfqPVkKj4i",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 24896,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 468,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 24896,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 468,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 24896,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 24896
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-15T16:33:54.145Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_013sjhpSM4Rfhgk5aDEg2a8K`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__main_agent_post_to_director",
+  "max_results": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "00e35c49-b4cd-46a2-943e-f1ae8883aba3",
+  "isSidechain": false,
+  "requestId": "req_011Cb4gE5Krpg5Yf1poQ5qie",
+  "type": "assistant",
+  "uuid": "cdc75657-ee62-4d24-b9c0-867fc9952d2c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_3ad3e5f3",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XSC5LC6ZRBJiNfqPVkKj4i",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 24896,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 468,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 24896,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 468,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 24896,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 24896
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-15T16:33:54.152Z_
+
+<details><summary>↩ Tool result · `toolu_013sjhpSM4Rfhgk5aDEg2a8K`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_roadmap"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__main_agent_post_to_director"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cdc75657-ee62-4d24-b9c0-867fc9952d2c",
+  "isSidechain": false,
+  "promptId": "4a692b27-acc9-4510-88f1-72c3acd11f24",
+  "type": "user",
+  "uuid": "84472a84-36be-4ea8-898a-fc33b470e788",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__main_agent_post_to_director"
+    ],
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__main_agent_post_to_director",
+    "total_deferred_tools": 79
+  },
+  "sourceToolAssistantUUID": "cdc75657-ee62-4d24-b9c0-867fc9952d2c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_3ad3e5f3",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-15T16:33:57.401Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_016QGoSaJRPw7mwkT188GGPB`</summary>
+
+```json
+{
+  "filters": {
+    "status": "RUNNING"
+  },
+  "project": "recursive_gen_depth_est"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "84472a84-36be-4ea8-898a-fc33b470e788",
+  "isSidechain": false,
+  "requestId": "req_011Cb4gEkEgCdvoR73XB5wpy",
+  "type": "assistant",
+  "uuid": "299e735b-2394-4130-b566-5554a7e1ade0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_3ad3e5f3",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019Ta2qRAgBZegRYXxvgyB8U",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1605,
+      "cache_read_input_tokens": 36737,
+      "output_tokens": 270,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1605,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 270,
+          "cache_read_input_tokens": 36737,
+          "cache_creation_input_tokens": 1605,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1605
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-15T16:33:57.645Z_
+
+<details><summary>↩ Tool result · `toolu_016QGoSaJRPw7mwkT188GGPB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2294}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "299e735b-2394-4130-b566-5554a7e1ade0",
+  "isSidechain": false,
+  "promptId": "4a692b27-acc9-4510-88f1-72c3acd11f24",
+  "type": "user",
+  "uuid": "ea144648-5205-4711-ad3b-5dfd38d72a03",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2294}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2294}}"
+    }
+  },
+  "sourceToolAssistantUUID": "299e735b-2394-4130-b566-5554a7e1ade0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_3ad3e5f3",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-15T16:33:58.306Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_015CEhjE5QYaU64ggumLDVQQ`</summary>
+
+```json
+{
+  "filters": {
+    "status": "PREPARING"
+  },
+  "project": "recursive_gen_depth_est"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ea144648-5205-4711-ad3b-5dfd38d72a03",
+  "isSidechain": false,
+  "requestId": "req_011Cb4gEkEgCdvoR73XB5wpy",
+  "type": "assistant",
+  "uuid": "03f16cf6-0e53-4028-a616-61ded137cd48",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_3ad3e5f3",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019Ta2qRAgBZegRYXxvgyB8U",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1605,
+      "cache_read_input_tokens": 36737,
+      "output_tokens": 270,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1605,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 270,
+          "cache_read_input_tokens": 36737,
+          "cache_creation_input_tokens": 1605,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1605
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-15T16:33:58.519Z_
+
+<details><summary>↩ Tool result · `toolu_015CEhjE5QYaU64ggumLDVQQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1996}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "03f16cf6-0e53-4028-a616-61ded137cd48",
+  "isSidechain": false,
+  "promptId": "4a692b27-acc9-4510-88f1-72c3acd11f24",
+  "type": "user",
+  "uuid": "300aed39-4a60-4557-8ea3-73f17a2b568c",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1996}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1996}}"
+    }
+  },
+  "sourceToolAssistantUUID": "03f16cf6-0e53-4028-a616-61ded137cd48",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_3ad3e5f3",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-15T16:33:58.596Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_015p69gLyfGQGHVTcpdSFYEr`</summary>
+
+```json
+{
+  "filters": {
+    "status": "ANALYZING"
+  },
+  "project": "recursive_gen_depth_est"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "300aed39-4a60-4557-8ea3-73f17a2b568c",
+  "isSidechain": false,
+  "requestId": "req_011Cb4gEkEgCdvoR73XB5wpy",
+  "type": "assistant",
+  "uuid": "bd7db6f9-2ef0-4ae8-bbd3-3dcaf8b6d823",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_3ad3e5f3",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019Ta2qRAgBZegRYXxvgyB8U",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1605,
+      "cache_read_input_tokens": 36737,
+      "output_tokens": 270,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1605,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 270,
+          "cache_read_input_tokens": 36737,
+          "cache_creation_input_tokens": 1605,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1605
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-15T16:33:58.602Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons · `toolu_01EBehaD2pKrnXGp4oHFmUCd`</summary>
+
+```json
+{}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bd7db6f9-2ef0-4ae8-bbd3-3dcaf8b6d823",
+  "isSidechain": false,
+  "requestId": "req_011Cb4gEkEgCdvoR73XB5wpy",
+  "type": "assistant",
+  "uuid": "a4ce8059-5cb3-44f8-a888-2a064bb1c72c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_3ad3e5f3",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019Ta2qRAgBZegRYXxvgyB8U",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1605,
+      "cache_read_input_tokens": 36737,
+      "output_tokens": 270,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1605,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 270,
+          "cache_read_input_tokens": 36737,
+          "cache_creation_input_tokens": 1605,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1605
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 18_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[HANDOFF] 你是 Main Agent，这是 Loop #9。  ## 上一轮交接 (task_context)  ### 1. 🔴 硬约束 / 红线 - 本项目只能用 gpu-6000pro-2 的 cuda:0 和 cuda:1（白名单 gpu_ids=[0,1]） - submit_training_job 的 command 必须用 `bash -c \"source /root/…",
+  "leafUuid": "a4ce8059-5cb3-44f8-a888-2a064bb1c72c",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 19_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Prepare Phase 2 writing: EDD formulation and benchmark construction",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e"
+}
+```
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-15T16:33:58.844Z_
+
+<details><summary>↩ Tool result · `toolu_015p69gLyfGQGHVTcpdSFYEr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2354}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bd7db6f9-2ef0-4ae8-bbd3-3dcaf8b6d823",
+  "isSidechain": false,
+  "promptId": "4a692b27-acc9-4510-88f1-72c3acd11f24",
+  "type": "user",
+  "uuid": "4740318a-42c2-46dd-b076-7b5fed7e2d15",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2354}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2354}}"
+    }
+  },
+  "sourceToolAssistantUUID": "bd7db6f9-2ef0-4ae8-bbd3-3dcaf8b6d823",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_3ad3e5f3",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T16:33:58.912Z_
+
+<details><summary>↩ Tool result · `toolu_01EBehaD2pKrnXGp4oHFmUCd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a4ce8059-5cb3-44f8-a888-2a064bb1c72c",
+  "isSidechain": false,
+  "promptId": "4a692b27-acc9-4510-88f1-72c3acd11f24",
+  "type": "user",
+  "uuid": "705711a1-a858-42d2-99fc-8f6301a5fbb4",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 0, \\\"results\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "a4ce8059-5cb3-44f8-a888-2a064bb1c72c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_3ad3e5f3",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22 · 2026-05-15T16:34:02.149Z_
+
+确认：0 RUNNING / 0 PREPARING / 0 ANALYZING，0 活跃 cron。与 handoff 一致。
+
+读 report.md 和 ROADMAP.md。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "705711a1-a858-42d2-99fc-8f6301a5fbb4",
+  "isSidechain": false,
+  "requestId": "req_011Cb4gF6VLA8JERVE4zCgMP",
+  "type": "assistant",
+  "uuid": "fbbdc5e0-e114-4f20-a913-5a7e2e4ee5fb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_3ad3e5f3",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KBQbuoQKDygxcz1F2o6und",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 659,
+      "cache_read_input_tokens": 38342,
+      "output_tokens": 214,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 659,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 214,
+          "cache_read_input_tokens": 38342,
+          "cache_creation_input_tokens": 659,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 659
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-15T16:34:03.109Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01NNuUiv2SRdj5KytVrEzAMN`</summary>
+
+```json
+{
+  "project": "recursive_gen_depth_est",
+  "file": "report.md",
+  "max_chars": 8000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fbbdc5e0-e114-4f20-a913-5a7e2e4ee5fb",
+  "isSidechain": false,
+  "requestId": "req_011Cb4gF6VLA8JERVE4zCgMP",
+  "type": "assistant",
+  "uuid": "93b19fde-3065-47bb-96cd-0292e09b64a6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_3ad3e5f3",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KBQbuoQKDygxcz1F2o6und",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 659,
+      "cache_read_input_tokens": 38342,
+      "output_tokens": 214,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 659,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 214,
+          "cache_read_input_tokens": 38342,
+          "cache_creation_input_tokens": 659,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 659
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-15T16:34:03.121Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap · `toolu_01DhTJVeMzWwR2zZA5672pf1`</summary>
+
+```json
+{
+  "project": "recursive_gen_depth_est"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "93b19fde-3065-47bb-96cd-0292e09b64a6",
+  "isSidechain": false,
+  "requestId": "req_011Cb4gF6VLA8JERVE4zCgMP",
+  "type": "assistant",
+  "uuid": "9eb10a03-104a-49f2-abb6-3c1d5448f171",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_3ad3e5f3",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KBQbuoQKDygxcz1F2o6und",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 659,
+      "cache_read_input_tokens": 38342,
+      "output_tokens": 214,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 659,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 214,
+          "cache_read_input_tokens": 38342,
+          "cache_creation_input_tokens": 659,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 659
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-15T16:34:03.142Z_
+
+<details><summary>↩ Tool result · `toolu_01NNuUiv2SRdj5KytVrEzAMN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/report.md\", \"content\": \"# Handover — 2026-05-15\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n- zeroshot_llm_500_001: R1-W4 zero-shot 样本量扩展: 从 200→500 samples 缩窄 CI。当前 200 samples 的 CI 过宽，500 samples 可将 CI 宽度缩小 ~37%，更可靠地与 RF 78.2% 对比。（已分配 gpu-6000pro-2 GPU:cuda:1，等待提交）\\n- temp07_pilot_pythia_001: R2-W3 multi-τ: τ=0.7 temperature pilot with Pythia-1.4B. 验证 d1v2 inversion 是否在 τ=0.7 也出现（对比 τ=0.9 的 GPT-2 XL 0.129 / OLMo 0.253）。若出现则 temperature inversion 是 τ<1 的通用现象；若不出现则 τ=0.9 是边界条件。（已分配 gpu-6000pro-2 GPU:cuda:0，等待提交）\\n\\n## 近期结论\\n- **n2_roberta_finetune_001** (success): N2 reviewer concern: end-to-end RoBERTa-base finetune baseline vs RF on hand-crafted features (78.2%). 与 DeBERTa 形成双 backbone 对比，排除模型选择偏差。\\n  [n2_roberta_feature_overlap_analysis](/api/workspace-files/projects/recursive_gen_depth_est/artifacts/n2_roberta_finetune_001/report/n2_roberta_feature_overlap_analysis.md)\\n- **n2_deberta_finetune_001** (success): N2 reviewer concern: end-to-end DeBERTa-v3-base finetune baseline vs RF on hand-crafted features (78.2%). 若 DeBERTa acc < RF，证明手工特征确有独立贡献；若 ≥ RF，需重新定位 narrative。\\n  [n2_feature_overlap_analysis](/api/workspace-files/projects/recursive_gen_depth_est/artifacts/n2_deberta_finetune_001/report/n2_feature_overlap_analysis.md)\\n- **cross_strategy_loo_001** (success): Cross-strategy LOO (plan_007): 深度信号跨策略可迁移——同模型内，用 2 种解码策略训练的 RF 可泛化到第 3 种，4-class acc 均值 59.1% 远超 chance 25%。temp09 holdout 的 d1v2 AUC 反转 (GPT-2 XL: 0.13, OLMo: 0.25) 证明解码策略塑造不同的退化轨迹 (D014)\\n\\n## 趋势\\n成功 24 / 负向 3 / 失败 6 / 共 46\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\ngpu-6000pro-2: 无 GPU 信息\\n\\n## 告警\\n- mvp_pipeline_001: 已被终止 — unknown\\n- mvp_pipeline_002: 已被终止 — unknown\\n- mvp_pipeline_003: 已被终止 — unknown\\n- mvp_pipeline_004: 已被终止 — unknown\\n- mvp_pipeline_base_002: 已被终止 — unknown\\n- mvp_pipeline_base_003: 已被终止 — unknown\\n- mvp_pipeline_pythia_001: 已被终止 — unknown\\n- mvp_pipeline_qwen_base_004: 已被终止 — unknown\\n- cross_model_olmo_001: 训练失败 — unknown\\n- dcol_deberta_001: 训练失败 — unknown\\n- cross_model_olmo_temp09_001: 已被终止 — unknown\\n- dcol_deberta_002: 训练失败 — unknown\\n- dcol_deberta_003: 已被终止 — unknown\\n- olmo_temp09_002: 已被终止 — unknown\\n- dcol_deberta_004: 已被终止 — unknown\\n- dcol_deberta_005: 训练失败 — unknown\\n- cross_model_loo_001: 已被终止 — unknown\\n- depth_extension_binary_pairwise_001: 训练失败 — unknown\\n- depth_extension_olmo_d4d5_001: 训练失败 — unknown\\n\", \"total_chars\": 2311, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "93b19fde-3065-47bb-96cd-0292e09b64a6",
+  "isSidechain": false,
+  "promptId": "4a692b27-acc9-4510-88f1-72c3acd11f24",
+  "type": "user",
+  "uuid": "27ba8e63-eabd-467e-ba2a-8e360802bfa6",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-15\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n（无）\\\\n\\\\n## 待处理\\\\n- zeroshot_llm_500_001: R1-W4 zero-shot 样本量扩展: 从 200→500 samples 缩窄 CI。当前 200 samples 的 CI 过宽，500 samples 可将 CI 宽度缩小 ~37%，更可靠地与 RF 78.2% 对比。（已分配 gpu-6000pro-2 GPU:cuda:1，等待提交）\\\\n- temp07_pilot_pythia_001: R2-W3 multi-τ: τ=0.7 temperature pilot with Pythia-1.4B. 验证 d1v2 inversion 是否在 τ=0.7 也出现（对比 τ=0.9 的 GPT-2 XL 0.129 / OLMo 0.253）。若出现则 temperature inversion 是 τ<1 的通用现象；若不出现则 τ=0.9 是边界条件。（已分配 gpu-6000pro-2 GPU:cuda:0，等待提交）\\\\n\\\\n## 近期结论\\\\n- **n2_roberta_finetune_001** (success): N2 reviewer concern: end-to-end RoBERTa-base finetune baseline vs RF on hand-crafted features (78.2%). 与 DeBERTa 形成双 backbone 对比，排除模型选择偏差。\\\\n  [n2_roberta_feature_overlap_analysis](/api/workspace-files/projects/recursive_gen_depth_est/artifacts/n2_roberta_finetune_001/report/n2_roberta_feature_overlap_analysis.md)\\\\n- **n2_deberta_finetune_001** (success): N2 reviewer concern: end-to-end DeBERTa-v3-base finetune baseline vs RF on hand-crafted features (78.2%). 若 DeBERTa acc < RF，证明手工特征确有独立贡献；若 ≥ RF，需重新定位 narrative。\\\\n  [n2_feature_overlap_analysis](/api/workspace-files/projects/recursive_gen_depth_est/artifacts/n2_deberta_finetune_001/report/n2_feature_overlap_analysis.md)\\\\n- **cross_strategy_loo_001** (success): Cross-strategy LOO (plan_007): 深度信号跨策略可迁移——同模型内，用 2 种解码策略训练的 RF 可泛化到第 3 种，4-class acc 均值 59.1% 远超 chance 25%。temp09 holdout 的 d1v2 AUC 反转 (GPT-2 XL: 0.13, OLMo: 0.25) 证明解码策略塑造不同的退化轨迹 (D014)\\\\n\\\\n## 趋势\\\\n成功 24 / 负向 3 / 失败 6 / 共 46\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\ngpu-6000pro-2: 无 GPU 信息\\\\n\\\\n## 告警\\\\n- mvp_pipeline_001: 已被终止 — unknown\\\\n- mvp_pipeline_002: 已被终止 — unknown\\\\n- mvp_pipeline_003: 已被终止 — unknown\\\\n- mvp_pipeline_004: 已被终止 — unknown\\\\n- mvp_pipeline_base_002: 已被终止 — unknown\\\\n- mvp_pipeline_base_003: 已被终止 — unknown\\\\n- mvp_pipeline_pythia_001: 已被终止 — unknown\\\\n- mvp_pipeline_qwen_base_004: 已被终止 — unknown\\\\n- cross_model_olmo_001: 训练失败 — unknown\\\\n- dcol_deberta_001: 训练失败 — unknown\\\\n- cross_model_olmo_temp09_001: 已被终止 — unknown\\\\n- dcol_deberta_002: 训练失败 — unknown\\\\n- dcol_deberta_003: 已被终止 — unknown\\\\n- olmo_temp09_002: 已被终止 — unknown\\\\n- dcol_deberta_004: 已被终止 — unknown\\\\n- dcol_deberta_005: 训练失败 — unknown\\\\n- cross_model_loo_001: 已被终止 — unknown\\\\n- depth_extension_binary_pairwise_001: 训练失败 — unknown\\\\n- depth_extension_olmo_d4d5_001: 训练失败 — unknown\\\\n\\\", \\\"total_chars\\\": 2311, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/report.md\", \"content\": \"# Handover — 2026-05-15\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n- zeroshot_llm_500_001: R1-W4 zero-shot 样本量扩展: 从 200→500 samples 缩窄 CI。当前 200 samples 的 CI 过宽，500 samples 可将 CI 宽度缩小 ~37%，更可靠地与 RF 78.2% 对比。（已分配 gpu-6000pro-2 GPU:cuda:1，等待提交）\\n- temp07_pilot_pythia_001: R2-W3 multi-τ: τ=0.7 temperature pilot with Pythia-1.4B. 验证 d1v2 inversion 是否在 τ=0.7 也出现（对比 τ=0.9 的 GPT-2 XL 0.129 / OLMo 0.253）。若出现则 temperature inversion 是 τ<1 的通用现象；若不出现则 τ=0.9 是边界条件。（已分配 gpu-6000pro-2 GPU:cuda:0，等待提交）\\n\\n## 近期结论\\n- **n2_roberta_finetune_001** (success): N2 reviewer concern: end-to-end RoBERTa-base finetune baseline vs RF on hand-crafted features (78.2%). 与 DeBERTa 形成双 backbone 对比，排除模型选择偏差。\\n  [n2_roberta_feature_overlap_analysis](/api/workspace-files/projects/recursive_gen_depth_est/artifacts/n2_roberta_finetune_001/report/n2_roberta_feature_overlap_analysis.md)\\n- **n2_deberta_finetune_001** (success): N2 reviewer concern: end-to-end DeBERTa-v3-base finetune baseline vs RF on hand-crafted features (78.2%). 若 DeBERTa acc < RF，证明手工特征确有独立贡献；若 ≥ RF，需重新定位 narrative。\\n  [n2_feature_overlap_analysis](/api/workspace-files/projects/recursive_gen_depth_est/artifacts/n2_deberta_finetune_001/report/n2_feature_overlap_analysis.md)\\n- **cross_strategy_loo_001** (success): Cross-strategy LOO (plan_007): 深度信号跨策略可迁移——同模型内，用 2 种解码策略训练的 RF 可泛化到第 3 种，4-class acc 均值 59.1% 远超 chance 25%。temp09 holdout 的 d1v2 AUC 反转 (GPT-2 XL: 0.13, OLMo: 0.25) 证明解码策略塑造不同的退化轨迹 (D014)\\n\\n## 趋势\\n成功 24 / 负向 3 / 失败 6 / 共 46\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\ngpu-6000pro-2: 无 GPU 信息\\n\\n## 告警\\n- mvp_pipeline_001: 已被终止 — unknown\\n- mvp_pipeline_002: 已被终止 — unknown\\n- mvp_pipeline_003: 已被终止 — unknown\\n- mvp_pipeline_004: 已被终止 — unknown\\n- mvp_pipeline_base_002: 已被终止 — unknown\\n- mvp_pipeline_base_003: 已被终止 — unknown\\n- mvp_pipeline_pythia_001: 已被终止 — unknown\\n- mvp_pipeline_qwen_base_004: 已被终止 — unknown\\n- cross_model_olmo_001: 训练失败 — unknown\\n- dcol_deberta_001: 训练失败 — unknown\\n- cross_model_olmo_temp09_001: 已被终止 — unknown\\n- dcol_deberta_002: 训练失败 — unknown\\n- dcol_deberta_003: 已被终止 — unknown\\n- olmo_temp09_002: 已被终止 — unknown\\n- dcol_deberta_004: 已被终止 — unknown\\n- dcol_deberta_005: 训练失败 — unknown\\n- cross_model_loo_001: 已被终止 — unknown\\n- depth_extension_binary_pairwise_001: 训练失败 — unknown\\n- depth_extension_olmo_d4d5_001: 训练失败 — unknown\\n\", \"total_chars\": 2311, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "93b19fde-3065-47bb-96cd-0292e09b64a6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_3ad3e5f3",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-15T16:34:03.161Z_
+
+<details><summary>↩ Tool result · `toolu_01DhTJVeMzWwR2zZA5672pf1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/ROADMAP.md\", \"content\": \"# recursive_gen_depth_est — Research Dashboard\\n\\n> 最后更新: 2026-05-15 13:29 UTC | 更新原因: Phase 1 全部完成，Phase 2 写作启动。R1-N3 resolved (dual backbone)。\\n\\n## 核心方向\\n递归生成深度估计：给定文本，预测其经历了多少轮 model→data→model 递归训练循环。\\n**Primary contribution**: Depth Degradation Atlas + EDD metric + feature universality findings。\\n详见 paper_framing.md（Plan A, D011）。\\n\\n## 当前进展\\n- **阶段**: **Phase 2 写作**（Phase 1 全部完成 2026-05-15）+ 审稿进行中\\n- **Framing**: Plan A 已激活 — Atlas/EDD primary, DCOL non-blocking (D011)\\n- **3×3 矩阵**: ✅ 9/9 全部完成（70–85% 4-class acc）\\n- **EDD 跨模型一致性**: 三模型 d3v4 AUC 收敛于 0.75 附近，d4v5 均<0.70。连续 AUC 衰减曲线叙事 (D024/D027)\\n- **Cross-model LOO (plan_005)**: ✅ 均值 66.4%\\n- **Cross-strategy LOO (plan_007)**: ✅ 均值 59.1%\\n- **N2 Dual Backbone**: ✅ DeBERTa 58.3%±4.7%, RoBERTa 59.5%±3.2%, 均远低于 RF 78.2% (-19.9pp/-18.7pp)\\n- **Feature Overlap**: ✅ Spearman ρ=-0.484 (p=0.036), DeBERTa vs RF 关注完全相反特征\\n- **DDL**: EMNLP ARR May 25 — **剩余 10 天**\\n\\n## 审稿 Issue 进度\\n**Critical (4)**: R1-N1 EDD公式 ⏳ | R1-N2 std/CI ✅ | R1-N3 end-to-end baseline ✅ | R2-N2 文献 ⏳\\n**Warning 数据已完成**: W1 permutation importance ✅ | W5 无条件生成确认 ✅ | W6 per-class recall ✅ | N3 fold std ✅\\n**Warning 待 Paper Agent**: W3 LoRA引用 | W5 论文文本 | W6 论文纳入 | R2-W2 术语 | R2-W4 Limitations位置 | R2-W6 orphan bib\\n**Open (rebuttal)**: W2 domain bias | W4 zero-shot样本量 | R2-W3 multi-τ\\n\\n## Phase 2 写作计划 (May 15–22)\\n- [ ] Paper Agent Patch: 纳入 N2 双 backbone 结果 + feature overlap 分析到 Section 5.4\\n- [ ] Paper Agent: 处理所有 Warning 级审稿修改 (R1-N1/W1/W3/W5/W6/R2-N2/R2-W2/R2-W4/R2-W6)\\n- [ ] Reviewer 对抗迭代 (max 5 rounds)\\n- [ ] RoBERTa feature overlap 分析（等 Agent 完成）\\n\\n## Phase 3: 提交 (May 23–25)\\n- [ ] 最终 polish + bibliography audit\\n- [ ] 提交 ARR\\n\\n## GPU 预算\\n- 本项目分配: gpu-6000pro-2 cuda:0, cuda:1 (2× RTX 6000 Pro)\\n- 已消耗: ~36 GPU·h\\n- 当前: 两卡空闲，Phase 2 写作期间可用于补充实验\\n- 可用: ~480 GPU·h (10天 × 2卡 × 24h)\\n\\n## DCOL 失败记录\\n| 版本 | Backbone | 失败原因 |\\n|------|----------|---------|\\n| v1-v5 | DeBERTa | embedding collapse / OOM / catastrophic forgetting / NaN |\\n| v6 | RoBERTa | ❌ negative: 稳定但 acc=64.5% << RF 78.2% (-13.7pp), 严重过拟合 |\\n\\n## Dream-Derived 论文硬约束 (D002)\\n1. ≥4 figures: AUC decay / feature trajectory / confusion matrix / Atlas heatmap\\n2. Bibliography 25+ refs\\n3. d1-d5 only accuracy as companion metric\\n4. Surprisal reference model specification + circularity discussion\\n\\n## 教训\\n- DCOL: DeBERTa disentangled attention 与 contrastive loss 数值不兼容\\n- kill 实验时必须验证进程确实死亡\\n- 模型下载与训练不得并发操作同一目录（RoBERTa aria2 事故）\\n- EDD 报告必须附 bootstrap CI + p-value (D027)\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D027 | 2026-05-15 | EDD=4 三模型一致性声明降级：Pythia 显著 (p=0.001)，OLMo 边际 (p=0. | depth_extension_binary_pairwise_002, depth_extension_gpt2xl_d4d5_001, depth_extension_olmo_d4d5_002 |\\n| D026 | 2026-05-15 | 修正 EDD=4 三模型声明：从\\\"均 EDD=4\\\"转向\\\"一致的 depth-4 衰减边界，统计强度分 | depth_extension_binary_pairwise_002, depth_extension_gpt2xl_d4d5_001, depth_extension_olmo_d4d5_002 |\\n| D025 | 2026-05-15 | EDD=4 跨模型一致性确认：Pythia/GPT-2 XL/OLMo 三模型均 EDD=4，Cla | depth_extension_binary_pairwise_002, depth_extension_gpt2xl_d4d5_001, depth_extension_olmo_d4d5_002 |\\n| D024 | 2026-05-15 | EDD 叙事从硬阈值判定转向连续 AUC 衰减曲线 + d3v4 borderline 透明报告 | depth_extension_binary_pairwise_002, depth_extension_olmo_d4d5_002, depth_extension_gpt2xl_d4d5_001 |\\n| D023 | 2026-05-15 | Baseline comparison reframed: RF ≈ CORAL ≈ DivEye  | baseline_battery_001, cross_strategy_loo_001 |\\n| D022 | 2026-05-15 | Baseline 排名重构：RF ≈ CORAL ≈ DivEye 统计不可区分，核心贡献在特征而非 | baseline_battery_001, baseline_battery_9cell_001 |\\n| D021 | 2026-05-15 | Z-score LR cross-strategy claim 被推翻，降级为 RF-only fi | lr_zscore_cross_strategy_001, cross_strategy_loo_001 |\\n| D020 | 2026-05-15 | 取消 plan_010 (DCOL ablation)，纳入 plan_011b (GPT-2 XL | dcol_roberta_v6_001, depth_extension_gpt2xl_d4d5_001, depth_extension_binary_pairwise_002 |\\n| D019 | 2026-05-15 | Binary pairwise 验证 EDD=4（Pythia-1.4B nucleus），较 4- | depth_extension_binary_pairwise_002, depth_extension_pythia_d4d5_001 |\\n| D018 | 2026-05-15 | 正式关闭 DCOL 方向，降级为论文 negative result | dcol_roberta_v6_001, dcol_deberta_005, dcol_deberta_004, dcol_deberta_003, dcol_deberta_002, dcol_deberta_001 |\\n\\n\\n\\n\\n\", \"lines\": 79}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9eb10a03-104a-49f2-abb6-3c1d5448f171",
+  "isSidechain": false,
+  "promptId": "4a692b27-acc9-4510-88f1-72c3acd11f24",
+  "type": "user",
+  "uuid": "cf6f2afd-a4d0-4120-b381-88958d1f19d2",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/ROADMAP.md\\\", \\\"content\\\": \\\"# recursive_gen_depth_est — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-15 13:29 UTC | 更新原因: Phase 1 全部完成，Phase 2 写作启动。R1-N3 resolved (dual backbone)。\\\\n\\\\n## 核心方向\\\\n递归生成深度估计：给定文本，预测其经历了多少轮 model→data→model 递归训练循环。\\\\n**Primary contribution**: Depth Degradation Atlas + EDD metric + feature universality findings。\\\\n详见 paper_framing.md（Plan A, D011）。\\\\n\\\\n## 当前进展\\\\n- **阶段**: **Phase 2 写作**（Phase 1 全部完成 2026-05-15）+ 审稿进行中\\\\n- **Framing**: Plan A 已激活 — Atlas/EDD primary, DCOL non-blocking (D011)\\\\n- **3×3 矩阵**: ✅ 9/9 全部完成（70–85% 4-class acc）\\\\n- **EDD 跨模型一致性**: 三模型 d3v4 AUC 收敛于 0.75 附近，d4v5 均<0.70。连续 AUC 衰减曲线叙事 (D024/D027)\\\\n- **Cross-model LOO (plan_005)**: ✅ 均值 66.4%\\\\n- **Cross-strategy LOO (plan_007)**: ✅ 均值 59.1%\\\\n- **N2 Dual Backbone**: ✅ DeBERTa 58.3%±4.7%, RoBERTa 59.5%±3.2%, 均远低于 RF 78.2% (-19.9pp/-18.7pp)\\\\n- **Feature Overlap**: ✅ Spearman ρ=-0.484 (p=0.036), DeBERTa vs RF 关注完全相反特征\\\\n- **DDL**: EMNLP ARR May 25 — **剩余 10 天**\\\\n\\\\n## 审稿 Issue 进度\\\\n**Critical (4)**: R1-N1 EDD公式 ⏳ | R1-N2 std/CI ✅ | R1-N3 end-to-end baseline ✅ | R2-N2 文献 ⏳\\\\n**Warning 数据已完成**: W1 permutation importance ✅ | W5 无条件生成确认 ✅ | W6 per-class recall ✅ | N3 fold std ✅\\\\n**Warning 待 Paper Agent**: W3 LoRA引用 | W5 论文文本 | W6 论文纳入 | R2-W2 术语 | R2-W4 Limitations位置 | R2-W6 orphan bib\\\\n**Open (rebuttal)**: W2 domain bias | W4 zero-shot样本量 | R2-W3 multi-τ\\\\n\\\\n## Phase 2 写作计划 (May 15–22)\\\\n- [ ] Paper Agent Patch: 纳入 N2 双 backbone 结果 + feature overlap 分析到 Section 5.4\\\\n- [ ] Paper Agent: 处理所有 Warning 级审稿修改 (R1-N1/W1/W3/W5/W6/R2-N2/R2-W2/R2-W4/R2-W6)\\\\n- [ ] Reviewer 对抗迭代 (max 5 rounds)\\\\n- [ ] RoBERTa feature overlap 分析（等 Agent 完成）\\\\n\\\\n## Phase 3: 提交 (May 23–25)\\\\n- [ ] 最终 polish + bibliography audit\\\\n- [ ] 提交 ARR\\\\n\\\\n## GPU 预算\\\\n- 本项目分配: gpu-6000pro-2 cuda:0, cuda:1 (2× RTX 6000 Pro)\\\\n- 已消耗: ~36 GPU·h\\\\n- 当前: 两卡空闲，Phase 2 写作期间可用于补充实验\\\\n- 可用: ~480 GPU·h (10天 × 2卡 × 24h)\\\\n\\\\n## DCOL 失败记录\\\\n| 版本 | Backbone | 失败原因 |\\\\n|------|----------|---------|\\\\n| v1-v5 | DeBERTa | embedding collapse / OOM / catastrophic forgetting / NaN |\\\\n| v6 | RoBERTa | ❌ negative: 稳定但 acc=64.5% << RF 78.2% (-13.7pp), 严重过拟合 |\\\\n\\\\n## Dream-Derived 论文硬约束 (D002)\\\\n1. ≥4 figures: AUC decay / feature trajectory / confusion matrix / Atlas heatmap\\\\n2. Bibliography 25+ refs\\\\n3. d1-d5 only accuracy as companion metric\\\\n4. Surprisal reference model specification + circularity discussion\\\\n\\\\n## 教训\\\\n- DCOL: DeBERTa disentangled attention 与 contrastive loss 数值不兼容\\\\n- kill 实验时必须验证进程确实死亡\\\\n- 模型下载与训练不得并发操作同一目录（RoBERTa aria2 事故）\\\\n- EDD 报告必须附 bootstrap CI + p-value (D027)\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D027 | 2026-05-15 | EDD=4 三模型一致性声明降级：Pythia 显著 (p=0.001)，OLMo 边际 (p=0. | depth_extension_binary_pairwise_002, depth_extension_gpt2xl_d4d5_001, depth_extension_olmo_d4d5_002 |\\\\n| D026 | 2026-05-15 | 修正 EDD=4 三模型声明：从\\\\\\\"均 EDD=4\\\\\\\"转向\\\\\\\"一致的 depth-4 衰减边界，统计强度分 | depth_extension_binary_pairwise_002, depth_extension_gpt2xl_d4d5_001, depth_extension_olmo_d4d5_002 |\\\\n| D025 | 2026-05-15 | EDD=4 跨模型一致性确认：Pythia/GPT-2 XL/OLMo 三模型均 EDD=4，Cla | depth_extension_binary_pairwise_002, depth_extension_gpt2xl_d4d5_001, depth_extension_olmo_d4d5_002 |\\\\n| D024 | 2026-05-15 | EDD 叙事从硬阈值判定转向连续 AUC 衰减曲线 + d3v4 borderline 透明报告 | depth_extension_binary_pairwise_002, depth_extension_olmo_d4d5_002, depth_extension_gpt2xl_d4d5_001 |\\\\n| D023 | 2026-05-15 | Baseline comparison reframed: RF ≈ CORAL ≈ DivEye  | baseline_battery_001, cross_strategy_loo_001 |\\\\n| D022 | 2026-05-15 | Baseline 排名重构：RF ≈ CORAL ≈ DivEye 统计不可区分，核心贡献在特征而非 | baseline_battery_001, baseline_battery_9cell_001 |\\\\n| D021 | 2026-05-15 | Z-score LR cross-strategy claim 被推翻，降级为 RF-only fi | lr_zscore_cross_strategy_001, cross_strategy_loo_001 |\\\\n| D020 | 2026-05-15 | 取消 plan_010 (DCOL ablation)，纳入 plan_011b (GPT-2 XL | dcol_roberta_v6_001, depth_extension_gpt2xl_d4d5_001, depth_extension_binary_pairwise_002 |\\\\n| D019 | 2026-05-15 | Binary pairwise 验证 EDD=4（Pythia-1.4B nucleus），较 4- | depth_extension_binary_pairwise_002, depth_extension_pythia_d4d5_001 |\\\\n| D018 | 2026-05-15 | 正式关闭 DCOL 方向，降级为论文 negative result | dcol_roberta_v6_001, dcol_deberta_005, dcol_deberta_004, dcol_deberta_003, dcol_deberta_002, dcol_deberta_001 |\\\\n\\\\n\\\\n\\\\n\\\\n\\\", \\\"lines\\\": 79}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/ROADMAP.md\", \"content\": \"# recursive_gen_depth_est — Research Dashboard\\n\\n> 最后更新: 2026-05-15 13:29 UTC | 更新原因: Phase 1 全部完成，Phase 2 写作启动。R1-N3 resolved (dual backbone)。\\n\\n## 核心方向\\n递归生成深度估计：给定文本，预测其经历了多少轮 model→data→model 递归训练循环。\\n**Primary contribution**: Depth Degradation Atlas + EDD metric + feature universality findings。\\n详见 paper_framing.md（Plan A, D011）。\\n\\n## 当前进展\\n- **阶段**: **Phase 2 写作**（Phase 1 全部完成 2026-05-15）+ 审稿进行中\\n- **Framing**: Plan A 已激活 — Atlas/EDD primary, DCOL non-blocking (D011)\\n- **3×3 矩阵**: ✅ 9/9 全部完成（70–85% 4-class acc）\\n- **EDD 跨模型一致性**: 三模型 d3v4 AUC 收敛于 0.75 附近，d4v5 均<0.70。连续 AUC 衰减曲线叙事 (D024/D027)\\n- **Cross-model LOO (plan_005)**: ✅ 均值 66.4%\\n- **Cross-strategy LOO (plan_007)**: ✅ 均值 59.1%\\n- **N2 Dual Backbone**: ✅ DeBERTa 58.3%±4.7%, RoBERTa 59.5%±3.2%, 均远低于 RF 78.2% (-19.9pp/-18.7pp)\\n- **Feature Overlap**: ✅ Spearman ρ=-0.484 (p=0.036), DeBERTa vs RF 关注完全相反特征\\n- **DDL**: EMNLP ARR May 25 — **剩余 10 天**\\n\\n## 审稿 Issue 进度\\n**Critical (4)**: R1-N1 EDD公式 ⏳ | R1-N2 std/CI ✅ | R1-N3 end-to-end baseline ✅ | R2-N2 文献 ⏳\\n**Warning 数据已完成**: W1 permutation importance ✅ | W5 无条件生成确认 ✅ | W6 per-class recall ✅ | N3 fold std ✅\\n**Warning 待 Paper Agent**: W3 LoRA引用 | W5 论文文本 | W6 论文纳入 | R2-W2 术语 | R2-W4 Limitations位置 | R2-W6 orphan bib\\n**Open (rebuttal)**: W2 domain bias | W4 zero-shot样本量 | R2-W3 multi-τ\\n\\n## Phase 2 写作计划 (May 15–22)\\n- [ ] Paper Agent Patch: 纳入 N2 双 backbone 结果 + feature overlap 分析到 Section 5.4\\n- [ ] Paper Agent: 处理所有 Warning 级审稿修改 (R1-N1/W1/W3/W5/W6/R2-N2/R2-W2/R2-W4/R2-W6)\\n- [ ] Reviewer 对抗迭代 (max 5 rounds)\\n- [ ] RoBERTa feature overlap 分析（等 Agent 完成）\\n\\n## Phase 3: 提交 (May 23–25)\\n- [ ] 最终 polish + bibliography audit\\n- [ ] 提交 ARR\\n\\n## GPU 预算\\n- 本项目分配: gpu-6000pro-2 cuda:0, cuda:1 (2× RTX 6000 Pro)\\n- 已消耗: ~36 GPU·h\\n- 当前: 两卡空闲，Phase 2 写作期间可用于补充实验\\n- 可用: ~480 GPU·h (10天 × 2卡 × 24h)\\n\\n## DCOL 失败记录\\n| 版本 | Backbone | 失败原因 |\\n|------|----------|---------|\\n| v1-v5 | DeBERTa | embedding collapse / OOM / catastrophic forgetting / NaN |\\n| v6 | RoBERTa | ❌ negative: 稳定但 acc=64.5% << RF 78.2% (-13.7pp), 严重过拟合 |\\n\\n## Dream-Derived 论文硬约束 (D002)\\n1. ≥4 figures: AUC decay / feature trajectory / confusion matrix / Atlas heatmap\\n2. Bibliography 25+ refs\\n3. d1-d5 only accuracy as companion metric\\n4. Surprisal reference model specification + circularity discussion\\n\\n## 教训\\n- DCOL: DeBERTa disentangled attention 与 contrastive loss 数值不兼容\\n- kill 实验时必须验证进程确实死亡\\n- 模型下载与训练不得并发操作同一目录（RoBERTa aria2 事故）\\n- EDD 报告必须附 bootstrap CI + p-value (D027)\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D027 | 2026-05-15 | EDD=4 三模型一致性声明降级：Pythia 显著 (p=0.001)，OLMo 边际 (p=0. | depth_extension_binary_pairwise_002, depth_extension_gpt2xl_d4d5_001, depth_extension_olmo_d4d5_002 |\\n| D026 | 2026-05-15 | 修正 EDD=4 三模型声明：从\\\"均 EDD=4\\\"转向\\\"一致的 depth-4 衰减边界，统计强度分 | depth_extension_binary_pairwise_002, depth_extension_gpt2xl_d4d5_001, depth_extension_olmo_d4d5_002 |\\n| D025 | 2026-05-15 | EDD=4 跨模型一致性确认：Pythia/GPT-2 XL/OLMo 三模型均 EDD=4，Cla | depth_extension_binary_pairwise_002, depth_extension_gpt2xl_d4d5_001, depth_extension_olmo_d4d5_002 |\\n| D024 | 2026-05-15 | EDD 叙事从硬阈值判定转向连续 AUC 衰减曲线 + d3v4 borderline 透明报告 | depth_extension_binary_pairwise_002, depth_extension_olmo_d4d5_002, depth_extension_gpt2xl_d4d5_001 |\\n| D023 | 2026-05-15 | Baseline comparison reframed: RF ≈ CORAL ≈ DivEye  | baseline_battery_001, cross_strategy_loo_001 |\\n| D022 | 2026-05-15 | Baseline 排名重构：RF ≈ CORAL ≈ DivEye 统计不可区分，核心贡献在特征而非 | baseline_battery_001, baseline_battery_9cell_001 |\\n| D021 | 2026-05-15 | Z-score LR cross-strategy claim 被推翻，降级为 RF-only fi | lr_zscore_cross_strategy_001, cross_strategy_loo_001 |\\n| D020 | 2026-05-15 | 取消 plan_010 (DCOL ablation)，纳入 plan_011b (GPT-2 XL | dcol_roberta_v6_001, depth_extension_gpt2xl_d4d5_001, depth_extension_binary_pairwise_002 |\\n| D019 | 2026-05-15 | Binary pairwise 验证 EDD=4（Pythia-1.4B nucleus），较 4- | depth_extension_binary_pairwise_002, depth_extension_pythia_d4d5_001 |\\n| D018 | 2026-05-15 | 正式关闭 DCOL 方向，降级为论文 negative result | dcol_roberta_v6_001, dcol_deberta_005, dcol_deberta_004, dcol_deberta_003, dcol_deberta_002, dcol_deberta_001 |\\n\\n\\n\\n\\n\", \"lines\": 79}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "9eb10a03-104a-49f2-abb6-3c1d5448f171",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_3ad3e5f3",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 27_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[HANDOFF] 你是 Main Agent，这是 Loop #9。  ## 上一轮交接 (task_context)  ### 1. 🔴 硬约束 / 红线 - 本项目只能用 gpu-6000pro-2 的 cuda:0 和 cuda:1（白名单 gpu_ids=[0,1]） - submit_training_job 的 command 必须用 `bash -c \"source /root/…",
+  "leafUuid": "cf6f2afd-a4d0-4120-b381-88958d1f19d2",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 28_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Prepare Phase 2 writing: EDD formulation and benchmark construction",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e"
+}
+```
+
+---
+
+### Assistant
+
+_source line 29 · 2026-05-15T16:34:19.261Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Session-start 初始化完成。现状清晰：
+
+1. Registry: 0 RUNNING / 0 PREPARING / 0 ANALYZING，46 个实验全部 DONE
+2. Cron: 0 活跃
+3. Report.md: 有两个"待处理"实验（zeroshot_llm_500_001 和 temp07_pilot_pythia_001）标记为"已分配，等待提交"，但这些在 handoff 中没有提到，可能是上一轮遗留的。让我确认一下 registry 中这些实验的状态。
+
+
+4. 现在进入 Phase 2 写作阶段，EMNLP ARR 截止日期还有 10 天，GPU 双卡目前空闲。Report.md 中的两个待处理实验（zeroshot_llm_500_001 的零样本扩展和 temp07_pilot_pythia_001 的多温度试点）与 handoff 中声称的全部完成状态存在矛盾，需要核实。
+
+检查后发现 registry 中确实没有运行中、准备中或分析中的实验，handoff 的"46 个实验全部完成"是准确的，report.md 的待处理标记只是历史遗留未更新。当前状态是 Phase 1 全部完成，等待 Director 反馈，GPU 资源可用于后续工作。
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cf6f2afd-a4d0-4120-b381-88958d1f19d2",
+  "isSidechain": false,
+  "requestId": "req_011Cb4gFQyaQmd3czKRA5jFs",
+  "type": "assistant",
+  "uuid": "3212d4b5-7951-4374-8a08-5aa357d3ecc0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_3ad3e5f3",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VDezYm9sSeoqNzTpetQyV7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4170,
+      "cache_read_input_tokens": 39001,
+      "output_tokens": 978,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4170,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 978,
+          "cache_read_input_tokens": 39001,
+          "cache_creation_input_tokens": 4170,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4170
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30 · 2026-05-15T16:34:19.262Z_
+
+report.md 提到两个"待处理"实验，确认下 registry 状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3212d4b5-7951-4374-8a08-5aa357d3ecc0",
+  "isSidechain": false,
+  "requestId": "req_011Cb4gFQyaQmd3czKRA5jFs",
+  "type": "assistant",
+  "uuid": "3c9bc2fa-5d05-46c6-8b60-169b020935a6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_3ad3e5f3",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VDezYm9sSeoqNzTpetQyV7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4170,
+      "cache_read_input_tokens": 39001,
+      "output_tokens": 978,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4170,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 978,
+          "cache_read_input_tokens": 39001,
+          "cache_creation_input_tokens": 4170,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4170
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-15T16:34:20.207Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01XPsyRmqc2Wx5kD2kYMwX9U`</summary>
+
+```json
+{
+  "filters": {
+    "status": "QUEUED"
+  },
+  "project": "recursive_gen_depth_est"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3c9bc2fa-5d05-46c6-8b60-169b020935a6",
+  "isSidechain": false,
+  "requestId": "req_011Cb4gFQyaQmd3czKRA5jFs",
+  "type": "assistant",
+  "uuid": "67afb9a5-40ad-4588-8e8d-027ab3401950",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_3ad3e5f3",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VDezYm9sSeoqNzTpetQyV7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4170,
+      "cache_read_input_tokens": 39001,
+      "output_tokens": 978,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4170,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 978,
+          "cache_read_input_tokens": 39001,
+          "cache_creation_input_tokens": 4170,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4170
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-15T16:34:20.450Z_
+
+<details><summary>↩ Tool result · `toolu_01XPsyRmqc2Wx5kD2kYMwX9U`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2307}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "67afb9a5-40ad-4588-8e8d-027ab3401950",
+  "isSidechain": false,
+  "promptId": "4a692b27-acc9-4510-88f1-72c3acd11f24",
+  "type": "user",
+  "uuid": "680c0a61-9fad-4fee-b8bf-bd2e95134ed2",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2307}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2307}}"
+    }
+  },
+  "sourceToolAssistantUUID": "67afb9a5-40ad-4588-8e8d-027ab3401950",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_3ad3e5f3",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-15T16:34:20.792Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01MudwqZyDUcSXrDfL4cEYdt`</summary>
+
+```json
+{
+  "filters": {
+    "status": "ALLOCATED"
+  },
+  "project": "recursive_gen_depth_est"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "680c0a61-9fad-4fee-b8bf-bd2e95134ed2",
+  "isSidechain": false,
+  "requestId": "req_011Cb4gFQyaQmd3czKRA5jFs",
+  "type": "assistant",
+  "uuid": "ab4f6fcb-21dd-4e5a-879d-0374b72a14ed",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_3ad3e5f3",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VDezYm9sSeoqNzTpetQyV7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4170,
+      "cache_read_input_tokens": 39001,
+      "output_tokens": 978,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4170,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 978,
+          "cache_read_input_tokens": 39001,
+          "cache_creation_input_tokens": 4170,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4170
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-15T16:34:21.013Z_
+
+<details><summary>↩ Tool result · `toolu_01MudwqZyDUcSXrDfL4cEYdt`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"zeroshot_llm_500_001\": {\"status\": \"ALLOCATED\", \"created_at\": \"2026-05-15T15:46:50.066Z\", \"updated_at\": \"2026-05-15T15:51:24.547Z\", \"hypothesis\": \"R1-W4 zero-shot 样本量扩展: 从 200→500 samples 缩窄 CI。当前 200 samples 的 CI 过宽，500 samples 可将 CI 宽度缩小 ~37%，更可靠地与 RF 78.2% 对比。\"}, \"temp07_pilot_pythia_001\": {\"status\": \"ALLOCATED\", \"created_at\": \"2026-05-15T15:46:49.321Z\", \"updated_at\": \"2026-05-15T15:51:23.831Z\", \"hypothesis\": \"R2-W3 multi-τ: τ=0.7 temperature pilot with Pythia-1.4B. 验证 d1v2 inversion 是否在 τ=0.7 也出现（对比 τ=0.9 的 GPT-2 XL 0.129 / OLMo 0.253）。若出现则 temperature inversion 是 τ<1 的通用现象；若不出现则 τ=0.9 是边界条件。\"}}, \"count\": 2, \"total\": 2, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2114}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ab4f6fcb-21dd-4e5a-879d-0374b72a14ed",
+  "isSidechain": false,
+  "promptId": "4a692b27-acc9-4510-88f1-72c3acd11f24",
+  "type": "user",
+  "uuid": "16ab6a53-5604-49f1-99fc-45826e01b499",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"zeroshot_llm_500_001\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"created_at\\\": \\\"2026-05-15T15:46:50.066Z\\\", \\\"updated_at\\\": \\\"2026-05-15T15:51:24.547Z\\\", \\\"hypothesis\\\": \\\"R1-W4 zero-shot 样本量扩展: 从 200→500 samples 缩窄 CI。当前 200 samples 的 CI 过宽，500 samples 可将 CI 宽度缩小 ~37%，更可靠地与 RF 78.2% 对比。\\\"}, \\\"temp07_pilot_pythia_001\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"created_at\\\": \\\"2026-05-15T15:46:49.321Z\\\", \\\"updated_at\\\": \\\"2026-05-15T15:51:23.831Z\\\", \\\"hypothesis\\\": \\\"R2-W3 multi-τ: τ=0.7 temperature pilot with Pythia-1.4B. 验证 d1v2 inversion 是否在 τ=0.7 也出现（对比 τ=0.9 的 GPT-2 XL 0.129 / OLMo 0.253）。若出现则 temperature inversion 是 τ<1 的通用现象；若不出现则 τ=0.9 是边界条件。\\\"}}, \\\"count\\\": 2, \\\"total\\\": 2, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2114}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"zeroshot_llm_500_001\": {\"status\": \"ALLOCATED\", \"created_at\": \"2026-05-15T15:46:50.066Z\", \"updated_at\": \"2026-05-15T15:51:24.547Z\", \"hypothesis\": \"R1-W4 zero-shot 样本量扩展: 从 200→500 samples 缩窄 CI。当前 200 samples 的 CI 过宽，500 samples 可将 CI 宽度缩小 ~37%，更可靠地与 RF 78.2% 对比。\"}, \"temp07_pilot_pythia_001\": {\"status\": \"ALLOCATED\", \"created_at\": \"2026-05-15T15:46:49.321Z\", \"updated_at\": \"2026-05-15T15:51:23.831Z\", \"hypothesis\": \"R2-W3 multi-τ: τ=0.7 temperature pilot with Pythia-1.4B. 验证 d1v2 inversion 是否在 τ=0.7 也出现（对比 τ=0.9 的 GPT-2 XL 0.129 / OLMo 0.253）。若出现则 temperature inversion 是 τ<1 的通用现象；若不出现则 τ=0.9 是边界条件。\"}}, \"count\": 2, \"total\": 2, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2114}}"
+    }
+  },
+  "sourceToolAssistantUUID": "ab4f6fcb-21dd-4e5a-879d-0374b72a14ed",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_3ad3e5f3",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-15T16:34:20.966Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01LEhXgHxgDJ8NiFAtM8KsBW`</summary>
+
+```json
+{
+  "filters": {
+    "status": "PENDING"
+  },
+  "project": "recursive_gen_depth_est"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ab4f6fcb-21dd-4e5a-879d-0374b72a14ed",
+  "isSidechain": false,
+  "requestId": "req_011Cb4gFQyaQmd3czKRA5jFs",
+  "type": "assistant",
+  "uuid": "a67c8db4-30e9-4eaf-ad2f-12ba40b3ced7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_3ad3e5f3",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VDezYm9sSeoqNzTpetQyV7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4170,
+      "cache_read_input_tokens": 39001,
+      "output_tokens": 978,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4170,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 978,
+          "cache_read_input_tokens": 39001,
+          "cache_creation_input_tokens": 4170,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4170
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-15T16:34:21.221Z_
+
+<details><summary>↩ Tool result · `toolu_01LEhXgHxgDJ8NiFAtM8KsBW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1996}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a67c8db4-30e9-4eaf-ad2f-12ba40b3ced7",
+  "isSidechain": false,
+  "promptId": "4a692b27-acc9-4510-88f1-72c3acd11f24",
+  "type": "user",
+  "uuid": "26ec2b6f-5945-44a7-a8e8-37a273ae05aa",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1996}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1996}}"
+    }
+  },
+  "sourceToolAssistantUUID": "a67c8db4-30e9-4eaf-ad2f-12ba40b3ced7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_3ad3e5f3",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 37 · 2026-05-15T16:34:21.225Z_
+
+```json
+{
+  "parentUuid": "26ec2b6f-5945-44a7-a8e8-37a273ae05aa",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "4e6b557e-77c9-456d-a08b-4025e8468db8",
+  "timestamp": "2026-05-15T16:34:21.225Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_3ad3e5f3",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 38 · 2026-05-15T16:34:41.729Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+有两个 ALLOCATED 实验未提交：
+1. zeroshot_llm_500_001 (cuda:1) - R1-W4 zero-shot 样本量扩展
+2. temp07_pilot_pythia_001 (cuda:0) - R2-W3 multi-τ pilot
+
+这些是上一轮分配了 GPU 但还没提交的。handoff 说"无活跃进程"但 registry 有 ALLOCATED 状态。
+
+这很重要 — 有两个已分配 GPU 但未提交的实验，GPU 空跑 = 失职。
+
+我需要先确认这两个实验的代码和数据是否已准备好，然后查阅 resource-saturation skill 的相关内容，最后向 Director 汇报这两个 Phase 1 补充实验（审稿修改相关）的状态，并请示是否应该提交。 看起来 handoff 和 registry 之间有矛盾——handoff 说在等 Director 启动 Phase 2，但 registry 里已经有两个分配好的实验（都在今天较早时分配的）。这两个实验需要先写代码再提交训练，所以我应该先向 Director 汇报现状，确认这两个实验是否应该继续推进。
+
+不过按照"永远全速推进"的原则，既然 GPU 已经分配了，我不应该等待，而是立即准备提交这两个实验。让我先查看 resource-saturation skill，然后检查这两个实验的完整信息，看看代码和 spec 是否已经准备好。
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4e6b557e-77c9-456d-a08b-4025e8468db8",
+  "isSidechain": false,
+  "requestId": "req_011Cb4gGjt9bLcRNuxbq9Dxm",
+  "type": "assistant",
+  "uuid": "07839672-2f3c-49cf-9451-31763a2fca42",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_3ad3e5f3",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013RMq2B8BoamTH6RH32HZzw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1761,
+      "cache_read_input_tokens": 43171,
+      "output_tokens": 1115,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1761,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1115,
+          "cache_read_input_tokens": 43171,
+          "cache_creation_input_tokens": 1761,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1761
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39 · 2026-05-15T16:34:41.732Z_
+
+发现 2 个 ALLOCATED 未提交实验。读完整信息确认代码/环境是否就绪。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "07839672-2f3c-49cf-9451-31763a2fca42",
+  "isSidechain": false,
+  "requestId": "req_011Cb4gGjt9bLcRNuxbq9Dxm",
+  "type": "assistant",
+  "uuid": "81a1d6bb-c1a4-4679-bf7e-f95ec71b67dc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_3ad3e5f3",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013RMq2B8BoamTH6RH32HZzw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1761,
+      "cache_read_input_tokens": 43171,
+      "output_tokens": 1115,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1761,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1115,
+          "cache_read_input_tokens": 43171,
+          "cache_creation_input_tokens": 1761,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1761
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-15T16:34:42.074Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01GjqbmCZVtA55fsSXcuHhPd`</summary>
+
+```json
+{
+  "filters": {
+    "status": "ALLOCATED"
+  },
+  "project": "recursive_gen_depth_est",
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "81a1d6bb-c1a4-4679-bf7e-f95ec71b67dc",
+  "isSidechain": false,
+  "requestId": "req_011Cb4gGjt9bLcRNuxbq9Dxm",
+  "type": "assistant",
+  "uuid": "e0a72913-4ff7-4343-ab22-c02400e6f512",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_3ad3e5f3",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013RMq2B8BoamTH6RH32HZzw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1761,
+      "cache_read_input_tokens": 43171,
+      "output_tokens": 1115,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1761,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1115,
+          "cache_read_input_tokens": 43171,
+          "cache_creation_input_tokens": 1761,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1761
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-15T16:34:43.507Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01AaoFfnDvb3BsABVZWvDPgv`</summary>
+
+```text
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_3ad3e5f3.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c1be082c-91e9-4ca4-84aa-1c18be5b7347",
+  "isSidechain": false,
+  "promptId": "4a692b27-acc9-4510-88f1-72c3acd11f24",
+  "type": "user",
+  "uuid": "32148506-5d2e-4b43-a5ac-a1f021061b28",
+  "toolUseResult": "Error: File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_3ad3e5f3.",
+  "sourceToolAssistantUUID": "c1be082c-91e9-4ca4-84aa-1c18be5b7347",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_3ad3e5f3",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-15T16:34:42.279Z_
+
+<details><summary>↩ Tool result · `toolu_01GjqbmCZVtA55fsSXcuHhPd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"zeroshot_llm_500_001\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-15T15:46:50.066Z\", \"updated_at\": \"2026-05-15T15:51:24.547Z\", \"hypothesis\": \"R1-W4 zero-shot 样本量扩展: 从 200→500 samples 缩窄 CI。当前 200 samples 的 CI 过宽，500 samples 可将 CI 宽度缩小 ~37%，更可靠地与 RF 78.2% 对比。\", \"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:1\", \"reproduce\": {\"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-15T15:50:43.319Z\"}}, \"temp07_pilot_pythia_001\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-15T15:46:49.321Z\", \"updated_at\": \"2026-05-15T15:51:23.831Z\", \"hypothesis\": \"R2-W3 multi-τ: τ=0.7 temperature pilot with Pythia-1.4B. 验证 d1v2 inversion 是否在 τ=0.7 也出现（对比 τ=0.9 的 GPT-2 XL 0.129 / OLMo 0.253）。若出现则 temperature inversion 是 τ<1 的通用现象；若不出现则 τ=0.9 是边界条件。\", \"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:0\", \"reproduce\": {\"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-15T15:50:42.735Z\"}}}, \"count\": 2, \"total\": 2, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1892}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e0a72913-4ff7-4343-ab22-c02400e6f512",
+  "isSidechain": false,
+  "promptId": "4a692b27-acc9-4510-88f1-72c3acd11f24",
+  "type": "user",
+  "uuid": "cc05d244-0d10-4f8a-a440-336ea1a5315d",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"zeroshot_llm_500_001\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T15:46:50.066Z\\\", \\\"updated_at\\\": \\\"2026-05-15T15:51:24.547Z\\\", \\\"hypothesis\\\": \\\"R1-W4 zero-shot 样本量扩展: 从 200→500 samples 缩窄 CI。当前 200 samples 的 CI 过宽，500 samples 可将 CI 宽度缩小 ~37%，更可靠地与 RF 78.2% 对比。\\\", \\\"server\\\": \\\"gpu-6000pro-2\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"gpu-6000pro-2\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-15T15:50:43.319Z\\\"}}, \\\"temp07_pilot_pythia_001\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T15:46:49.321Z\\\", \\\"updated_at\\\": \\\"2026-05-15T15:51:23.831Z\\\", \\\"hypothesis\\\": \\\"R2-W3 multi-τ: τ=0.7 temperature pilot with Pythia-1.4B. 验证 d1v2 inversion 是否在 τ=0.7 也出现（对比 τ=0.9 的 GPT-2 XL 0.129 / OLMo 0.253）。若出现则 temperature inversion 是 τ<1 的通用现象；若不出现则 τ=0.9 是边界条件。\\\", \\\"server\\\": \\\"gpu-6000pro-2\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"gpu-6000pro-2\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-15T15:50:42.735Z\\\"}}}, \\\"count\\\": 2, \\\"total\\\": 2, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1892}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"zeroshot_llm_500_001\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-15T15:46:50.066Z\", \"updated_at\": \"2026-05-15T15:51:24.547Z\", \"hypothesis\": \"R1-W4 zero-shot 样本量扩展: 从 200→500 samples 缩窄 CI。当前 200 samples 的 CI 过宽，500 samples 可将 CI 宽度缩小 ~37%，更可靠地与 RF 78.2% 对比。\", \"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:1\", \"reproduce\": {\"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-15T15:50:43.319Z\"}}, \"temp07_pilot_pythia_001\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-15T15:46:49.321Z\", \"updated_at\": \"2026-05-15T15:51:23.831Z\", \"hypothesis\": \"R2-W3 multi-τ: τ=0.7 temperature pilot with Pythia-1.4B. 验证 d1v2 inversion 是否在 τ=0.7 也出现（对比 τ=0.9 的 GPT-2 XL 0.129 / OLMo 0.253）。若出现则 temperature inversion 是 τ<1 的通用现象；若不出现则 τ=0.9 是边界条件。\", \"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:0\", \"reproduce\": {\"server\": \"gpu-6000pro-2\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-15T15:50:42.735Z\"}}}, \"count\": 2, \"total\": 2, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1892}}"
+    }
+  },
+  "sourceToolAssistantUUID": "e0a72913-4ff7-4343-ab22-c02400e6f512",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_3ad3e5f3",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-15T16:34:43.490Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01AaoFfnDvb3BsABVZWvDPgv`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cc05d244-0d10-4f8a-a440-336ea1a5315d",
+  "isSidechain": false,
+  "requestId": "req_011Cb4gGjt9bLcRNuxbq9Dxm",
+  "type": "assistant",
+  "uuid": "c1be082c-91e9-4ca4-84aa-1c18be5b7347",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_3ad3e5f3",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013RMq2B8BoamTH6RH32HZzw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1761,
+      "cache_read_input_tokens": 43171,
+      "output_tokens": 1115,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1761,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1115,
+          "cache_read_input_tokens": 43171,
+          "cache_creation_input_tokens": 1761,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1761
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 44_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[HANDOFF] 你是 Main Agent，这是 Loop #9。  ## 上一轮交接 (task_context)  ### 1. 🔴 硬约束 / 红线 - 本项目只能用 gpu-6000pro-2 的 cuda:0 和 cuda:1（白名单 gpu_ids=[0,1]） - submit_training_job 的 command 必须用 `bash -c \"source /root/…",
+  "leafUuid": "32148506-5d2e-4b43-a5ac-a1f021061b28",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 45_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Prepare Phase 2 writing: EDD formulation and benchmark construction",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e"
+}
+```
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-15T16:34:46.650Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01QDrDpsRYy6YWxATJxNEgmM`</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "32148506-5d2e-4b43-a5ac-a1f021061b28",
+  "isSidechain": false,
+  "requestId": "req_011Cb4gJPx9VAw1PYnCCU9zg",
+  "type": "assistant",
+  "uuid": "4493b98c-be09-4cad-9a88-6191a4cdafd3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_3ad3e5f3",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016w1eSkreY5noS5frjhLnfq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1848,
+      "cache_read_input_tokens": 44932,
+      "output_tokens": 96,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1848,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 96,
+          "cache_read_input_tokens": 44932,
+          "cache_creation_input_tokens": 1848,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1848
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-15T16:34:46.684Z_
+
+<details><summary>↩ Tool result · `toolu_01QDrDpsRYy6YWxATJxNEgmM`</summary>
+
+```text
+No files found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4493b98c-be09-4cad-9a88-6191a4cdafd3",
+  "isSidechain": false,
+  "promptId": "4a692b27-acc9-4510-88f1-72c3acd11f24",
+  "type": "user",
+  "uuid": "1ecb02ee-a131-4923-9d1e-7c76b0a61974",
+  "toolUseResult": {
+    "filenames": [],
+    "durationMs": 27,
+    "numFiles": 0,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "4493b98c-be09-4cad-9a88-6191a4cdafd3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_3ad3e5f3",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-15T16:34:49.509Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01Y6bMrobuKbDfWPjuaxnZQX`</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1ecb02ee-a131-4923-9d1e-7c76b0a61974",
+  "isSidechain": false,
+  "requestId": "req_011Cb4gJcpoB8TZaBj2X6Fy9",
+  "type": "assistant",
+  "uuid": "219fc0ba-db5c-4cd2-affb-529b0635c952",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_3ad3e5f3",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LRBFUY4CTJs48VTkomiAAn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 111,
+      "cache_read_input_tokens": 46780,
+      "output_tokens": 93,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 111,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 93,
+          "cache_read_input_tokens": 46780,
+          "cache_creation_input_tokens": 111,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 111
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-15T16:34:49.525Z_
+
+<details><summary>↩ Tool result · `toolu_01Y6bMrobuKbDfWPjuaxnZQX`</summary>
+
+```text
+No files found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "219fc0ba-db5c-4cd2-affb-529b0635c952",
+  "isSidechain": false,
+  "promptId": "4a692b27-acc9-4510-88f1-72c3acd11f24",
+  "type": "user",
+  "uuid": "9c1708ab-b476-4ee3-8c64-ec6db3c16a4b",
+  "toolUseResult": {
+    "filenames": [],
+    "durationMs": 12,
+    "numFiles": 0,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "219fc0ba-db5c-4cd2-affb-529b0635c952",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_3ad3e5f3",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50 · 2026-05-15T16:35:05.146Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The resource-saturation skill file doesn't exist. That's fine, I know the core rules from CLAUDE.md:
+- GPU 分配了没跑 = 失职
+- Worker 池 < 2 = 失职
+- 汇报必须带 [资源] 行
+
+现在情况清楚了：
+
+1. 2 个 ALLOCATED 实验（zeroshot_llm_500_001 on cuda:1, temp07_pilot_pythia_001 on cuda:0）—— 分配了但未提交，GPU 空跑
+
+
+2. 这两个实验缺少完整的 spec，只有 hypothesis 和 GPU 分配，代码还没写。这些是审稿 rebuttal 的补充实验，Director 已批准，我需要立即让 Worker 准备代码并提交——temp07_pilot_pythia_001 需要生成 τ=0.7 的 Pythia-1.4B 数据。
+
+然后训练随机森林分类器计算 pairwise AUC，zeroshot_llm_500_001 则是扩大样本到 500 做 zero-shot LLM 深度判断。这两个实验可以并行执行，同时我还要向 Director 汇报 session 启动和 Phase 2 写作就绪的状态。
+
+我应该先查看 experiment_plan 了解这两个实验的具体设计，然后给 Worker 精确指令——但实际上代码分析、SSH 操作这些都应该交给 Worker 去做，我只负责轻量协调。
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9c1708ab-b476-4ee3-8c64-ec6db3c16a4b",
+  "isSidechain": false,
+  "requestId": "req_011Cb4gJqBCespzPHojT6v4L",
+  "type": "assistant",
+  "uuid": "5d842f49-2f5d-44ee-956f-db3ec9c50c04",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_3ad3e5f3",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G5D5u5DTxfHvRAzLxhot69",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 108,
+      "cache_read_input_tokens": 46891,
+      "output_tokens": 694,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 108,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 694,
+          "cache_read_input_tokens": 46891,
+          "cache_creation_input_tokens": 108,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 108
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51 · 2026-05-15T16:35:05.156Z_
+
+2 个 ALLOCATED 实验 GPU 空跑中——需要立即推进。先读实验计划了解具体设计。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5d842f49-2f5d-44ee-956f-db3ec9c50c04",
+  "isSidechain": false,
+  "requestId": "req_011Cb4gJqBCespzPHojT6v4L",
+  "type": "assistant",
+  "uuid": "f2568539-a128-4b8a-b20c-9811431a1671",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_3ad3e5f3",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G5D5u5DTxfHvRAzLxhot69",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 108,
+      "cache_read_input_tokens": 46891,
+      "output_tokens": 694,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 108,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 694,
+          "cache_read_input_tokens": 46891,
+          "cache_creation_input_tokens": 108,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 108
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-15T16:35:06.033Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01HM1MGN8jUnCawxPY4C3wsg`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__list_workers",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f2568539-a128-4b8a-b20c-9811431a1671",
+  "isSidechain": false,
+  "requestId": "req_011Cb4gJqBCespzPHojT6v4L",
+  "type": "assistant",
+  "uuid": "f90485ba-c998-41c0-87ab-2165ced59b59",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_3ad3e5f3",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G5D5u5DTxfHvRAzLxhot69",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 108,
+      "cache_read_input_tokens": 46891,
+      "output_tokens": 694,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 108,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 694,
+          "cache_read_input_tokens": 46891,
+          "cache_creation_input_tokens": 108,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 108
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-15T16:35:06.038Z_
+
+<details><summary>↩ Tool result · `toolu_01HM1MGN8jUnCawxPY4C3wsg`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_experiment_plan_with_status"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__spawn_worker"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__list_workers"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f90485ba-c998-41c0-87ab-2165ced59b59",
+  "isSidechain": false,
+  "promptId": "4a692b27-acc9-4510-88f1-72c3acd11f24",
+  "type": "user",
+  "uuid": "cd118467-7d50-4406-b3f1-62a9cc4687e5",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__list_workers"
+    ],
+    "query": "select:mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__list_workers",
+    "total_deferred_tools": 79
+  },
+  "sourceToolAssistantUUID": "f90485ba-c998-41c0-87ab-2165ced59b59",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_3ad3e5f3",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-15T16:35:12.106Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_experiment_plan_with_status · `toolu_01VVJRYJyY36rUTF5inRmKwy`</summary>
+
+```json
+{
+  "project": "recursive_gen_depth_est"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cd118467-7d50-4406-b3f1-62a9cc4687e5",
+  "isSidechain": false,
+  "requestId": "req_011Cb4gL4GH546xdbXAB9TbN",
+  "type": "assistant",
+  "uuid": "524f268f-8023-4914-a5df-1529f1c28dc7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_3ad3e5f3",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KNsqQSLc3v6ZmbV8ybih3Y",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2292,
+      "cache_read_input_tokens": 46999,
+      "output_tokens": 167,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2292,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 167,
+          "cache_read_input_tokens": 46999,
+          "cache_creation_input_tokens": 2292,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2292
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-15T16:35:12.255Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01VmDJkqscygfTqAucQoC3yw`</summary>
+
+```json
+{
+  "project": "recursive_gen_depth_est",
+  "file": "memory.md",
+  "max_chars": 12000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "524f268f-8023-4914-a5df-1529f1c28dc7",
+  "isSidechain": false,
+  "requestId": "req_011Cb4gL4GH546xdbXAB9TbN",
+  "type": "assistant",
+  "uuid": "4a65e6ff-27e4-48c3-b73c-badc850b9ba4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_3ad3e5f3",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KNsqQSLc3v6ZmbV8ybih3Y",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2292,
+      "cache_read_input_tokens": 46999,
+      "output_tokens": 167,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2292,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 167,
+          "cache_read_input_tokens": 46999,
+          "cache_creation_input_tokens": 2292,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2292
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-15T16:35:12.353Z_
+
+<details><summary>↩ Tool result · `toolu_01VVJRYJyY36rUTF5inRmKwy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": [{\"id\": \"plan_001a\", \"claim\": 1, \"description\": \"Pythia-1.4B recursive chain — nucleus p=0.95 (MVP)\", \"priority\": \"P0\", \"gpu_budget_hours\": 2, \"deps\": [], \"status\": \"DONE\", \"notes\": \"4 depths × 1 strategy. 78.2% 4-class acc, d1v2 AUC 0.861. Content-type control: 81.6%.\", \"registry_id\": \"mvp_pipeline_pythia_002\", \"conclusion\": \"success\", \"metrics\": {\"full_4class_acc\": 0.782, \"full_4class_acc_ci\": [0.769, 0.794], \"full_4class_acc_stratified\": 0.781, \"full_mae\": 0.2367, \"full_auc_0v1\": 0.9975, \"full_auc_1v2\": 0.8607, \"full_auc_2v3\": 0.8005, \"filtered_4class_acc\": 0.816, \"filtered_4class_acc_ci\": [0.803, 0.829], \"filtered_mae\": 0.1995, \"filtered_auc_0v1\": 0.9977, \"filtered_auc_1v2\": 0.8782, \"filtered_auc_2v3\": 0.8323, \"filtered_sample_count\": 16993, \"three_class_acc\": 0.708, \"three_class_acc_ci\": [0.692, 0.725], \"three_class_mae\": 0.3203, \"three_class_auc_1v2\": 0.854, \"three_class_auc_1v3\": 0.9569, \"three_class_auc_2v3\": 0.7931, \"three_class_recall_d1\": 0.79, \"three_class_recall_d2\": 0.607, \"three_class_recall_d3\": 0.728, \"three_class_precision_d1\": 0.852, \"three_class_precision_d2\": 0.605, \"three_class_precision_d3\": 0.68, \"three_class_f1_d1\": 0.82, \"three_class_f1_d2\": 0.606, \"three_class_f1_d3\": 0.703, \"three_class_lr_acc\": 0.671, \"filtered_three_class_acc\": 0.747, \"filtered_three_class_acc_ci\": [0.727, 0.764], \"filtered_three_class_mae\": 0.2759, \"filtered_three_class_recall_d1\": 0.862, \"filtered_three_class_recall_d2\": 0.635, \"filtered_three_class_recall_d3\": 0.735, \"filtered_three_class_precision_d1\": 0.867, \"filtered_three_class_precision_d2\": 0.659, \"filtered_three_class_precision_d3\": 0.704, \"filtered_three_class_f1_d1\": 0.864, \"filtered_three_class_f1_d2\": 0.647, \"filtered_three_class_f1_d3\": 0.719, \"filtered_three_class_auc_1v2\": 0.8926, \"filtered_three_class_auc_1v3\": 0.9769, \"filtered_three_class_auc_2v3\": 0.8272, \"filtered_three_class_sample_count\": 12012, \"best_model\": \"RandomForest\", \"top_features\": [\"var_surprisal\", \"p90_ppl\", \"mean_ppl\", \"mean_surprisal\", \"p75_ppl\"], \"truncation_length\": 498, \"feature_dim\": 19}}, {\"id\": \"plan_001b\", \"claim\": 1, \"description\": \"Pythia-1.4B — temperature τ=0.9 chain (4 depths)\", \"priority\": \"P0\", \"gpu_budget_hours\": 2, \"deps\": [], \"registry_id\": \"pythia_temp09_001\", \"notes\": \"τ=0.9 temp-only decoding. Data→data/pythia_temp09/. Launched on cuda:0 after OLMo.\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"four_class\": {\"rf_accuracy\": 0.7625, \"rf_accuracy_ci\": [0.749, 0.7753], \"lr_accuracy\": 0.7405, \"lr_accuracy_ci\": [0.7265, 0.7545], \"pairwise_auc\": {\"0v1\": 0.9968, \"0v2\": 0.9993, \"0v3\": 0.9991, \"1v2\": 0.8327, \"1v3\": 0.959, \"2v3\": 0.7928}, \"top_features\": [\"var_surprisal (0.1776)\", \"p90_ppl (0.1501)\", \"mean_ppl (0.1140)\", \"mean_surprisal (0.0889)\", \"p75_ppl (0.0687)\"], \"feature_dim\": 19, \"truncation_length\": 498}, \"three_class_full\": {\"accuracy\": 0.6983, \"accuracy_ci\": [0.682, 0.715], \"mae\": 0.3357, \"recall\": {\"d1\": 0.802, \"d2\": 0.554, \"d3\": 0.739}, \"precision\": {\"d1\": 0.792, \"d2\": 0.608, \"d3\": 0.686}, \"f1\": {\"d1\": 0.797, \"d2\": 0.58, \"d3\": 0.712}, \"pairwise_auc\": {\"d1v2\": 0.8354, \"d1v3\": 0.9631, \"d2v3\": 0.8043}}, \"three_class_filtered\": {\"accuracy\": 0.7252, \"accuracy_ci\": [0.7064, 0.7427], \"mae\": 0.2953, \"recall\": {\"d1\": 0.842, \"d2\": 0.596, \"d3\": 0.735}, \"precision\": {\"d1\": 0.821, \"d2\": 0.628, \"d3\": 0.715}, \"f1\": {\"d1\": 0.831, \"d2\": 0.611, \"d3\": 0.725}, \"pairwise_auc\": {\"d1v2\": 0.8656, \"d1v3\": 0.9772, \"d2v3\": 0.8295}, \"n_samples\": 11445, \"n_removed\": 3555}, \"finetune_losses\": {\"depth_0\": 2.222, \"depth_1\": 1.37, \"depth_2\": 1.006}, \"code_contamination\": {\"d0\": 0.004, \"d1\": 0.077, \"d2\": 0.116, \"d3\": 0.136}}}, {\"id\": \"plan_001c\", \"claim\": 1, \"description\": \"Pythia-1.4B — top-k k=50 chain (4 depths)\", \"priority\": \"P0\", \"gpu_budget_hours\": 2, \"deps\": [], \"registry_id\": \"pythia_topk50_001\", \"notes\": \"top-k k=50 decoding. Data→data/pythia_topk50/. Queued for cuda:1 after GPT-2 XL.\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"rf_4class_acc\": 0.696, \"rf_4class_acc_ci\": [0.6825, 0.7107], \"lr_4class_acc\": 0.682, \"rf_3class_acc\": 0.592, \"rf_3class_acc_ci\": [0.575, 0.6107], \"rf_3class_filtered_acc\": 0.6133, \"rf_3class_filtered_acc_ci\": [0.593, 0.6312], \"pairwise_auc_rf\": {\"d0v1\": 0.9927, \"d0v2\": 0.9983, \"d0v3\": 0.9978, \"d1v2\": 0.7518, \"d1v3\": 0.9176, \"d2v3\": 0.6918}, \"pairwise_auc_3class_filtered_rf\": {\"d1v2\": 0.768, \"d1v3\": 0.9323, \"d2v3\": 0.7013}, \"feature_importance_top5\": [\"var_surprisal\", \"p90_ppl\", \"mean_ppl\", \"mean_surprisal\", \"p75_ppl\"], \"finetune_loss\": {\"depth_0\": 2.2406, \"depth_1\": 1.6704, \"depth_2\": 1.4374}, \"code_contamination_narrow\": {\"depth_0\": 0.004, \"depth_1\": 0.077, \"depth_2\": 0.123, \"depth_3\": 0.131}}}, {\"id\": \"plan_002\", \"claim\": 1, \"description\": \"OLMo-1B recursive chain (4 depths × 3 strategies)\", \"priority\": \"P0\", \"gpu_budget_hours\": 8, \"deps\": [], \"registry_id\": \"cross_model_olmo_002\", \"notes\": \"OLMo-1B on Dolma. q_proj/k_proj/v_proj LoRA. olmo_001 failed (script bug), olmo_002 重跑。等 cuda:0 释放。\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"four_class_acc_rf\": 0.788, \"four_class_acc_ci\": [0.776, 0.8], \"four_class_acc_lr\": 0.751, \"auc_0v1\": 0.9834, \"auc_0v2\": 0.9949, \"auc_0v3\": 0.9989, \"auc_1v2\": 0.8673, \"auc_1v3\": 0.9806, \"auc_2v3\": 0.8124, \"three_class_acc\": 0.744, \"three_class_acc_ci\": [0.728, 0.76], \"three_class_mae\": 0.27, \"three_class_auc_1v2\": 0.8664, \"three_class_auc_1v3\": 0.9852, \"three_class_auc_2v3\": 0.8274, \"three_class_recall\": {\"d1\": 0.864, \"d2\": 0.607, \"d3\": 0.761}, \"three_class_precision\": {\"d1\": 0.863, \"d2\": 0.646, \"d3\": 0.718}, \"four_class_per_class\": {\"d0\": {\"precision\": 0.95, \"recall\": 0.99, \"f1\": 0.97}, \"d1\": {\"precision\": 0.85, \"recall\": 0.82, \"f1\": 0.83}, \"d2\": {\"precision\": 0.63, \"recall\": 0.59, \"f1\": 0.61}, \"d3\": {\"precision\": 0.71, \"recall\": 0.76, \"f1\": 0.73}}, \"finetune_losses\": {\"depth_0\": 2.269, \"depth_1\": 1.65, \"depth_2\": 1.226}, \"top_features\": [\"p90_ppl (0.18)\", \"var_surprisal (0.16)\", \"p75_ppl (0.11)\", \"mean_surprisal (0.08)\", \"type_token_ratio (0.06)\"], \"code_contamination\": {\"d0\": 0.005, \"d1\": 0.027, \"d2\": 0.007, \"d3\": 0.008}, \"feature_dim\": 19, \"truncation_length\": 507}}, {\"id\": \"plan_003\", \"claim\": 1, \"description\": \"GPT-2 XL 1.5B recursive chain (4 depths × 3 strategies)\", \"priority\": \"P0\", \"gpu_budget_hours\": 8, \"deps\": [], \"registry_id\": \"cross_model_gpt2xl_001\", \"notes\": \"GPT-2 most studied in collapse literature. WebText training data. c_attn/c_proj LoRA.\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"four_class_acc_rf\": 0.833, \"four_class_acc_ci\": [0.823, 0.845], \"four_class_acc_lr\": 0.813, \"auc_0v1\": 0.9941, \"auc_0v2\": 0.9965, \"auc_0v3\": 0.9988, \"auc_1v2\": 0.9131, \"auc_1v3\": 0.9857, \"auc_2v3\": 0.8829, \"three_class_acc\": 0.793, \"three_class_acc_ci\": [0.778, 0.806], \"three_class_auc_1v2\": 0.9109, \"three_class_auc_1v3\": 0.989, \"three_class_auc_2v3\": 0.8885, \"finetune_losses\": {\"depth_0\": 2.55, \"depth_1\": 1.715, \"depth_2\": 1.342}, \"top_features\": [\"p90_ppl (0.208)\", \"var_surprisal (0.208)\", \"p75_ppl (0.103)\", \"mean_surprisal (0.082)\", \"mean_ppl (0.065)\"], \"code_contamination\": {\"d0\": 0.005, \"d1\": 0.005, \"d2\": 0.013, \"d3\": 0.007}}}, {\"id\": \"plan_002b\", \"claim\": 1, \"description\": \"OLMo-1B — temperature τ=0.9 chain (4 depths)\", \"priority\": \"P0\", \"gpu_budget_hours\": 2, \"deps\": [], \"registry_id\": \"olmo_temp09_001\", \"notes\": \"3×3 matrix cell. OLMo temp09. olmo_temp09_001 正在运行 (PID 205384, cuda:1)。之前被 cron 子进程误报为 failed，已修正。olmo_temp09_002 已取消。\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"four_class\": {\"rf_accuracy\": 0.8203, \"d1v2_auc\": 0.901}, \"three_class_filtered\": {\"rf_accuracy\": 0.7757}, \"finetune_losses\": {\"depth_0\": 2.27, \"depth_1\": 1.63, \"depth_2\": 1.18}, \"code_contamination_narrow_max\": 0.007, \"top_features\": [\"p90_ppl (0.199)\", \"var_surprisal (0.174)\", \"p75_ppl (0.126)\"]}}, {\"id\": \"plan_002c\", \"claim\": 1, \"description\": \"OLMo-1B — top-k k=50 chain (4 depths)\", \"priority\": \"P0\", \"gpu_budget_hours\": 2, \"deps\": [], \"registry_id\": \"olmo_topk50_001\", \"notes\": \"3×3 matrix cell. OLMo topk50. 等 cuda:1 释放后提交。\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"four_class\": {\"lr_accuracy\": 0.757, \"lr_accuracy_ci\": [0.7425, 0.7702], \"rf_accuracy\": 0.742, \"rf_accuracy_ci\": [0.7282, 0.7555]}, \"pairwise_auc\": {\"lr\": {\"d0v1\": 0.9969, \"d0v2\": 0.9995, \"d0v3\": 0.9998, \"d1v2\": 0.8293, \"d1v3\": 0.9592, \"d2v3\": 0.7497}, \"rf\": {\"d0v1\": 0.993, \"d0v2\": 0.9983, \"d0v3\": 0.9991, \"d1v2\": 0.8305, \"d1v3\": 0.9591, \"d2v3\": 0.7357}}, \"three_class\": {\"lr_accuracy\": 0.6567, \"lr_accuracy_ci\": [0.6403, 0.6733], \"rf_accuracy\": 0.6517, \"rf_accuracy_ci\": [0.635, 0.6687]}, \"three_class_filtered\": {\"lr_accuracy\": 0.6703, \"lr_accuracy_ci\": [0.653, 0.6882], \"rf_accuracy\": 0.6699, \"rf_accuracy_ci\": [0.6537, 0.6875]}, \"three_class_filtered_auc\": {\"lr\": {\"d1v2\": 0.7903, \"d1v3\": 0.97, \"d2v3\": 0.7501}, \"rf\": {\"d1v2\": 0.8071, \"d1v3\": 0.9645, \"d2v3\": 0.7364}}, \"feature_importance_top5\": [\"p90_ppl\", \"var_surprisal\", \"p75_ppl\", \"mean_surprisal\", \"p25_ppl\"], \"finetune_loss\": {\"depth_1\": 1.946, \"depth_2\": 1.726}, \"code_contamination\": {\"narrow_pct\": {\"depth_0\": 0.4, \"depth_1\": 0.8, \"depth_2\": 0.3, \"depth_3\": 0.4}, \"broad_pct\": {\"depth_0\": 0.5, \"depth_1\": 2.5, \"depth_2\": 0.8, \"depth_3\": 0.7}}}}, {\"id\": \"plan_003b\", \"claim\": 1, \"description\": \"GPT-2 XL — temperature τ=0.9 chain (4 depths)\", \"priority\": \"P0\", \"gpu_budget_hours\": 2, \"deps\": [], \"registry_id\": \"gpt2xl_temp09_001\", \"notes\": \"3×3 matrix cell. Running on cuda:1.\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"data\": {\"samples_per_depth\": 5000, \"total_samples\": 20000, \"depths\": 4}, \"finetune_losses\": {\"depth_1\": 2.5498, \"depth_2\": 1.6972, \"depth_3\": 1.2922}, \"code_contamination\": {\"depth_0\": {\"broad\": 25, \"narrow\": 20, \"broad_pct\": 0.5, \"narrow_pct\": 0.4}, \"depth_1\": {\"broad\": 25, \"narrow\": 40, \"broad_pct\": 0.5, \"narrow_pct\": 0.8}, \"depth_2\": {\"broad\": 34, \"narrow\": 80, \"broad_pct\": 0.7, \"narrow_pct\": 1.6}, \"depth_3\": {\"broad\": 25, \"narrow\": 76, \"broad_pct\": 0.5, \"narrow_pct\": 1.5}}, \"four_class\": {\"rf_accuracy\": 0.8542, \"rf_accuracy_ci\": [0.843, 0.8653], \"lr_accuracy\": 0.8155, \"lr_accuracy_ci\": [0.8025, 0.8273], \"rf_auc\": {\"d0v1\": 0.9963, \"d0v2\": 0.9992, \"d0v3\": 1, \"d1v2\": 0.9367, \"d1v3\": 0.9947, \"d2v3\": 0.8815}, \"lr_auc\": {\"d0v1\": 0.984, \"d0v2\": 0.9998, \"d0v3\": 1, \"d1v2\": 0.8903, \"d1v3\": 0.9824, \"d2v3\": 0.8183}, \"top_features\": [\"p90_ppl\", \"mean_surprisal\", \"p75_ppl\", \"var_surprisal\"]}, \"three_class\": {\"rf_accuracy\": 0.82, \"rf_accuracy_ci\": [0.806, 0.834], \"lr_accuracy\": 0.7773, \"lr_accuracy_ci\": [0.7627, 0.792], \"rf_auc\": {\"d1v2\": 0.9418, \"d1v3\": 0.9967, \"d2v3\": 0.8849}}, \"three_class_filtered\": {\"rf_accuracy\": 0.815, \"rf_accuracy_ci\": [0.7999, 0.8298], \"lr_accuracy\": 0.7869, \"lr_accuracy_ci\": [0.7711, 0.8016], \"rf_auc\": {\"d1v2\": 0.937, \"d1v3\": 0.9944, \"d2v3\": 0.8891}}}}, {\"id\": \"plan_003c\", \"claim\": 1, \"description\": \"GPT-2 XL — top-k k=50 chain (4 depths)\", \"priority\": \"P0\", \"gpu_budget_hours\": 2, \"deps\": [], \"registry_id\": \"gpt2xl_topk50_001\", \"notes\": \"3×3 matrix cell. GPT-2 XL topk50.\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"four_class\": {\"accuracy\": 0.766, \"depth1_vs_depth2_auc\": 0.8259, \"pass\": true}, \"three_class\": {\"accuracy\": 0.695, \"depth1_vs_depth2_auc\": 0.8392, \"pass\": true}, \"three_class_filtered\": {\"accuracy\": 0.684, \"depth1_vs_depth2_auc\": 0.8314, \"pass\": true}}}, {\"id\": \"plan_004\", \"claim\": 1, \"description\": \"DCOL training: RoBERTa-large with learnable margins contrastive loss (v6, non-blocking)\", \"priority\": \"P1\", \"gpu_budget_hours\": 8, \"deps\": [\"plan_001b\", \"plan_002\", \"plan_003\"], \"notes\": \"v1-v5 DeBERTa 全部失败 (D011)。v6 换 RoBERTa-large 非阻塞尝试。成功→bonus section，失败→negative analysis。不阻塞论文进度。\", \"registry_id\": \"dcol_roberta_v6_001\", \"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"test_acc\": 0.6448, \"test_mae\": 0.4052, \"best_val_acc\": 0.6436, \"best_epoch\": 1, \"epochs_run\": 4, \"early_stopping\": true, \"train_acc_final\": 0.75, \"rf_baseline\": 0.782, \"delta_vs_baseline\": -0.137, \"overfitting\": \"severe (train 75% vs val 64.4% at best epoch)\", \"stability\": \"resolved (no NaN, no collapse, collapse guard passed at step 500)\"}}, {\"id\": \"plan_005\", \"claim\": 1, \"description\": \"Leave-one-model-out generalization (RF): train on 2 families, test on 3rd\", \"priority\": \"P0\", \"gpu_budget_hours\": 2, \"deps\": [\"plan_001b\", \"plan_002\", \"plan_003\"], \"registry_id\": \"cross_model_loo_v1\", \"notes\": \"3 rotations with RF classifier. Research-phase gate: cross-model acc ≥ 45%. Plan A: 不依赖 DCOL。均值 66.4%，gate 通过。\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"mean_acc\": 0.664, \"mean_3class_acc\": 0.5544, \"holdout_pythia\": {\"acc\": 0.6242, \"ci95\": [0.6205, 0.6282], \"3class_acc\": 0.499, \"3class_ci95\": [0.4944, 0.5034], \"d1v2_auc\": 0.5617, \"d1v3_auc\": 0.8547, \"d2v3_auc\": 0.6534, \"d0v1_auc\": 0.9921, \"d0v2_auc\": 0.9999, \"d0v3_auc\": 0.9998, \"per_class\": {\"d0\": {\"P\": 0.9889, \"R\": 1, \"F1\": 0.9944}, \"d1\": {\"P\": 0.6655, \"R\": 0.493, \"F1\": 0.5664}, \"d2\": {\"P\": 0.3699, \"R\": 0.2677, \"F1\": 0.3106}, \"d3\": {\"P\": 0.483, \"R\": 0.7363, \"F1\": 0.5834}}}, \"holdout_olmo\": {\"acc\": 0.6921, \"ci95\": [0.6884, 0.696], \"3class_acc\": 0.592, \"3class_ci95\": [0.5873, 0.5965], \"d1v2_auc\": 0.7687, \"d1v3_auc\": 0.9277, \"d2v3_auc\": 0.6862, \"per_class\": {\"d0\": {\"P\": 0.9783, \"R\": 0.9925, \"F1\": 0.9854}, \"d1\": {\"P\": 0.7111, \"R\": 0.7549, \"F1\": 0.7324}, \"d2\": {\"P\": 0.4616, \"R\": 0.4327, \"F1\": 0.4467}, \"d3\": {\"P\": 0.5964, \"R\": 0.5883, \"F1\": 0.5923}}}, \"holdout_gpt2xl\": {\"acc\": 0.6756, \"ci95\": [0.6717, 0.6795], \"3class_acc\": 0.5723, \"3class_ci95\": [0.5679, 0.5767], \"d1v2_auc\": 0.8157, \"d1v3_auc\": 0.9149, \"d2v3_auc\": 0.6639, \"d0v1_auc\": 0.9927, \"d0v2_auc\": 0.9919, \"d0v3_auc\": 0.9876, \"per_class\": {\"d0\": {\"P\": 0.9484, \"R\": 0.9853, \"F1\": 0.9665}, \"d1\": {\"P\": 0.7093, \"R\": 0.7465, \"F1\": 0.7274}, \"d2\": {\"P\": 0.4521, \"R\": 0.5255, \"F1\": 0.486}, \"d3\": {\"P\": 0.5963, \"R\": 0.445, \"F1\": 0.5097}}}, \"mean_per_class_recall\": {\"d0\": 0.9926, \"d1\": 0.6648, \"d2\": 0.4086, \"d3\": 0.5899}, \"lowest_recall_class\": \"d2\", \"lowest_recall_value\": 0.4086, \"detailed_artifact\": \"cross_model_loo_detailed.json\"}}, {\"id\": \"plan_006\", \"claim\": 2, \"description\": \"Depth Degradation Atlas: monotonicity scores, EDD, cross-model/strategy heatmaps\", \"priority\": \"P0\", \"gpu_budget_hours\": 3, \"deps\": [\"plan_001b\", \"plan_002\", \"plan_003\"], \"registry_id\": \"atlas_v1_analysis\", \"notes\": \"v1 完成: monotonicity ρ=-0.82~-0.89, EDD=3 (未饱和), cross-model Jaccard=0.667, rank corr ρ>0.85. 4 JSON in artifacts/atlas/. 待完成: 正式出图(AUC decay/feature trajectory/heatmap/confusion matrix) + 纳入 3×3 剩余 cells 数据.\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"monotonicity_rho_range\": [-0.89, -0.82], \"edd\": 3, \"edd_saturated\": false, \"cross_model_jaccard\": 0.667, \"cross_model_rank_corr\": 0.85, \"artifacts\": [\"monotonicity_scores.json\", \"cross_model_comparison.json\", \"edd_analysis.json\", \"feature_trajectory.json\"]}}, {\"id\": \"plan_006b\", \"claim\": 1, \"description\": \"3-class experiment (d1/d2/d3 only): isolate pure depth gradient from real-vs-synthetic signal\", \"priority\": \"P0\", \"gpu_budget_hours\": 0.5, \"deps\": [\"plan_001a\"], \"status\": \"DONE\", \"registry_id\": \"mvp_pipeline_pythia_002\", \"notes\": \"Reviewer-requested. 3-class acc=70.8% [0.692,0.725], d1v2 AUC=0.854, d2v3=0.793. Results in mvp_pipeline_pythia_002 metrics.\", \"conclusion\": \"success\", \"metrics\": {\"full_4class_acc\": 0.782, \"full_4class_acc_ci\": [0.769, 0.794], \"full_4class_acc_stratified\": 0.781, \"full_mae\": 0.2367, \"full_auc_0v1\": 0.9975, \"full_auc_1v2\": 0.8607, \"full_auc_2v3\": 0.8005, \"filtered_4class_acc\": 0.816, \"filtered_4class_acc_ci\": [0.803, 0.829], \"filtered_mae\": 0.1995, \"filtered_auc_0v1\": 0.9977, \"filtered_auc_1v2\": 0.8782, \"filtered_auc_2v3\": 0.8323, \"filtered_sample_count\": 16993, \"three_class_acc\": 0.708, \"three_class_acc_ci\": [0.692, 0.725], \"three_class_mae\": 0.3203, \"three_class_auc_1v2\": 0.854, \"three_class_auc_1v3\": 0.9569, \"three_class_auc_2v3\": 0.7931, \"three_class_recall_d1\": 0.79, \"three_class_recall_d2\": 0.607, \"three_class_recall_d3\": 0.728, \"three_class_precision_d1\": 0.852, \"three_class_precision_d2\": 0.605, \"three_class_precision_d3\": 0.68, \"three_class_f1_d1\": 0.82, \"three_class_f1_d2\": 0.606, \"three_class_f1_d3\": 0.703, \"three_class_lr_acc\": 0.671, \"filtered_three_class_acc\": 0.747, \"filtered_three_class_acc_ci\": [0.727, 0.764], \"filtered_three_class_mae\": 0.2759, \"filtered_three_class_recall_d1\": 0.862, \"filtered_three_class_recall_d2\": 0.635, \"filtered_three_class_recall_d3\": 0.735, \"filtered_three_class_precision_d1\": 0.867, \"filtered_three_class_precision_d2\": 0.659, \"filtered_three_class_precision_d3\": 0.704, \"filtered_three_class_f1_d1\": 0.864, \"filtered_three_class_f1_d2\": 0.647, \"filtered_three_class_f1_d3\": 0.719, \"filtered_three_class_auc_1v2\": 0.8926, \"filtered_three_class_auc_1v3\": 0.9769, \"filtered_three_class_auc_2v3\": 0.8272, \"filtered_three_class_sample_count\": 12012, \"best_model\": \"RandomForest\", \"top_features\": [\"var_surprisal\", \"p90_ppl\", \"mean_ppl\", \"mean_surprisal\", \"p75_ppl\"], \"truncation_length\": 498, \"feature_dim\": 19}}, {\"id\": \"plan_007\", \"claim\": 1, \"description\": \"Leave-one-strategy-out robustness (RF): train on 2 strategies, test on 3rd\", \"priority\": \"P0\", \"gpu_budget_hours\": 2, \"deps\": [\"plan_001b\", \"plan_002\", \"plan_003\"], \"registry_id\": \"cross_strategy_loo_001\", \"notes\": \"3 rotations per model with RF. Plan A: 不依赖 DCOL。均值 59.1%，9/9 > chance。temp09 d1v2 反转已解释 (Covariate Shift)。\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"mean_4class_acc\": 0.5908, \"pythia_holdout_nucleus\": {\"acc\": 0.6935, \"d1v2_auc\": 0.6903, \"d2v3_auc\": 0.7626}, \"pythia_holdout_temp09\": {\"acc\": 0.6281, \"d1v2_auc\": 0.576, \"d2v3_auc\": 0.724}, \"pythia_holdout_topk50\": {\"acc\": 0.5151, \"d1v2_auc\": 0.6393, \"d2v3_auc\": 0.5801}, \"gpt2xl_holdout_nucleus\": {\"acc\": 0.5993, \"d1v2_auc\": 0.7826, \"d2v3_auc\": 0.4985}, \"gpt2xl_holdout_temp09\": {\"acc\": 0.5609, \"d1v2_auc\": 0.1288, \"d2v3_auc\": 0.6366}, \"gpt2xl_holdout_topk50\": {\"acc\": 0.5364, \"d1v2_auc\": 0.8308, \"d2v3_auc\": 0.7222}, \"olmo_holdout_nucleus\": {\"acc\": 0.6538, \"d1v2_auc\": 0.7931, \"d2v3_auc\": 0.6076}, \"olmo_holdout_temp09\": {\"acc\": 0.5816, \"d1v2_auc\": 0.2529, \"d2v3_auc\": 0.7015}, \"olmo_holdout_topk50\": {\"acc\": 0.5488, \"d1v2_auc\": 0.8549, \"d2v3_auc\": 0.7107}, \"finding_temp09_d1v2_inversion\": \"d1v2 AUC inverts when holding out temp09 (GPT-2 XL: 0.13, OLMo: 0.25) — temp09 d1→d2 features differ fundamentally from nucleus/topk50\"}}, {\"id\": \"plan_008\", \"claim\": 1, \"description\": \"DeBERTa end-to-end classifier: direct text→depth\", \"priority\": \"P1\", \"gpu_budget_hours\": 10, \"deps\": [\"plan_001b\", \"plan_002\", \"plan_003\"], \"registry_id\": \"n2_deberta_finetune_001\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy_mean\": 0.5831, \"accuracy_std\": 0.0467, \"per_class_f1\": {\"d0\": 0.947, \"d1\": 0.378, \"d2\": 0.247, \"d3\": 0.656}, \"pairwise_auc\": {\"d0v1\": 0.981, \"d1v2\": 0.733, \"d2v3\": 0.755}, \"vs_rf_baseline\": \"58.3% vs 78.2% (-19.9pp)\", \"elapsed_seconds\": 3727}}, {\"id\": \"plan_009\", \"claim\": 1, \"description\": \"Baseline battery: DivEye, perplexity regression, CORAL, CE, zero-shot LLM\", \"priority\": \"P1\", \"gpu_budget_hours\": 8, \"registry_id\": \"baseline_battery_001\", \"deps\": [\"plan_001b\", \"plan_002\", \"plan_003\"], \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"ppl_reg_single_4class_acc\": 0.251, \"ppl_reg_multi_4class_acc\": 0.622, \"ce_mlp_4class_acc\": 0.749, \"coral_4class_acc\": 0.7807, \"coral_3class_acc\": 0.7089, \"coral_mae\": 0.2273, \"coral_d1v2_auc\": 0.8179, \"diveye_4class_acc\": 0.7817, \"diveye_3class_acc\": 0.7098, \"diveye_d1v2_auc\": 0.8654, \"rf_4class_acc\": 0.781, \"lr_4class_acc\": 0.75, \"note\": \"CE-MLP 74.9% may be undertrained (5 epochs); CORAL updated to 100 epochs. All results from Pythia nucleus baseline features.\"}}, {\"id\": \"plan_010\", \"claim\": 1, \"description\": \"DCOL component ablation\", \"priority\": \"P2\", \"gpu_budget_hours\": 8, \"deps\": [\"plan_004\"], \"status\": \"planned\", \"notes\": \"DCOL v6 失败 (D018)，前置条件 plan_004 未满足，取消。\"}, {\"id\": \"plan_011\", \"claim\": 2, \"description\": \"Depth extension to 5 generations + EDD saturation analysis\", \"priority\": \"P0\", \"gpu_budget_hours\": 4, \"deps\": [\"plan_001a\"], \"registry_id\": \"depth_extension_binary_pairwise_002\", \"notes\": \"Pythia-1.4B nucleus EDD=4 (binary d3v4=0.784>0.75, d4v5=0.683<0.75)。6-class pairwise AUC 因决策边界稀释不可用，必须用 binary pairwise classifier。\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"d1v2_auc\": 0.925, \"d1v2_ci95\": [0.9138, 0.9354], \"d2v3_auc\": 0.8225, \"d2v3_ci95\": [0.8052, 0.8402], \"d3v4_auc\": 0.7837, \"d3v4_ci95\": [0.7648, 0.8024], \"d4v5_auc\": 0.6832, \"d4v5_ci95\": [0.6611, 0.7045], \"edd_determination\": \"4\"}}, {\"id\": \"plan_011b\", \"claim\": 2, \"description\": \"GPT-2 XL depth extension d4/d5 + EDD cross-model verification\", \"priority\": \"P1\", \"gpu_budget_hours\": 4, \"deps\": [\"plan_003\", \"plan_011\"], \"registry_id\": \"depth_extension_gpt2xl_d4d5_001\", \"notes\": \"GPT-2 XL 是 3×3 矩阵信号最强模型 (85.4%)。验证 EDD 跨模型一致性，直接增强 Claim 2。已 RUNNING on cuda:0。\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"binary_pairwise\": {\"d1v2_auc\": 0.966, \"d2v3_auc\": 0.919, \"d3v4_auc\": 0.75, \"d4v5_auc\": 0.681}, \"six_class_rf_accuracy\": 0.679, \"edd_at_075\": 4, \"edd_note\": \"d3v4=0.750>=0.75 PASS, d4v5=0.681<0.75 FAIL → EDD=4\"}}, {\"id\": \"plan_011c\", \"claim\": 2, \"description\": \"OLMo-1B depth extension d4/d5 + EDD cross-model verification\", \"priority\": \"P1\", \"gpu_budget_hours\": 4, \"deps\": [\"plan_002\", \"plan_011\"], \"notes\": \"第 3 个模型 EDD 验证。代码已就绪 (run_depth_extension_olmo.sh)，含 binary pairwise eval。Reviewer PASS。排 granularity ablation 之后上 cuda:1。\", \"registry_id\": \"depth_extension_olmo_d4d5_002\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"binary_pairwise\": {\"d1v2_auc\": 0.968, \"d2v3_auc\": 0.843, \"d3v4_auc\": 0.765, \"d4v5_auc\": 0.684}, \"six_class_rf_accuracy\": 0.667, \"edd_at_075\": 4, \"edd_note\": \"d3v4=0.765>=0.75 PASS, d4v5=0.684<0.75 FAIL → EDD=4\"}}, {\"id\": \"plan_012\", \"claim\": 1, \"description\": \"Granularity ablation (RF): binary / 3-class / 4-class / 6-class\", \"registry_id\": \"granularity_ablation_rf_001\", \"priority\": \"P1\", \"gpu_budget_hours\": 1, \"deps\": [\"plan_001b\", \"plan_002\", \"plan_003\"], \"notes\": \"Plan A: 用 RF 做，不依赖 DCOL。与 plan_011 depth extension 联动（6-class 需要 5+ depths 数据）。\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"summary\": {\"binary_acc_mean\": 0.995, \"binary_acc_std\": 0.004, \"3class_acc_mean\": 0.721, \"3class_acc_std\": 0.067, \"4class_acc_mean\": 0.783, \"4class_acc_std\": 0.048, \"6class_acc\": 0.629, \"note\": \"3-class excludes d0 (most separable class), so 3class < 4class is by design. True granularity trend (with d0): binary 99.5% > 4-class 78.3% > 6-class 62.9% — monotonic decrease confirmed.\"}, \"per_cell\": {\"pythia_nucleus095\": {\"binary\": {\"acc\": 0.998, \"ci95\": [0.9965, 0.9992], \"auc\": {\"d0v1\": 1}}, \"3class\": {\"acc\": 0.7117, \"ci95\": [0.6947, 0.7283], \"auc\": {\"d1v2\": 0.861, \"d2v3\": 0.796}}, \"4class\": {\"acc\": 0.7812, \"ci95\": [0.7677, 0.7935], \"auc\": {\"d0v1\": 0.998, \"d1v2\": 0.868, \"d2v3\": 0.804}}, \"6class\": {\"acc\": 0.6292, \"ci95\": [0.6175, 0.6412], \"auc\": {\"d0v1\": 0.997, \"d1v2\": 0.83, \"d2v3\": 0.689, \"d3v4\": 0.692, \"d4v5\": 0.691}}}, \"pythia_temp09\": {\"binary\": {\"acc\": 0.997, \"ci95\": [0.9952, 0.9985], \"auc\": {\"d0v1\": 1}}, \"3class\": {\"acc\": 0.7063, \"ci95\": [0.6907, 0.723], \"auc\": {\"d1v2\": 0.838, \"d2v3\": 0.806}}, \"4class\": {\"acc\": 0.7605, \"ci95\": [0.7475, 0.7738], \"auc\": {\"d0v1\": 0.997, \"d1v2\": 0.835, \"d2v3\": 0.796}}}, \"pythia_topk50\": {\"binary\": {\"acc\": 0.9945, \"ci95\": [0.992, 0.9965], \"auc\": {\"d0v1\": 1}}, \"3class\": {\"acc\": 0.5883, \"ci95\": [0.5717, 0.6073], \"auc\": {\"d1v2\": 0.749, \"d2v3\": 0.705}}, \"4class\": {\"acc\": 0.6943, \"ci95\": [0.6805, 0.708], \"auc\": {\"d0v1\": 0.994, \"d1v2\": 0.761, \"d2v3\": 0.695}}}, \"gpt2xl_nucleus095\": {\"binary\": {\"acc\": 0.9912, \"ci95\": [0.9882, 0.9938], \"auc\": {\"d0v1\": 0.999}}, \"3class\": {\"acc\": 0.79, \"ci95\": [0.775, 0.8047], \"auc\": {\"d1v2\": 0.913, \"d2v3\": 0.891}}, \"4class\": {\"acc\": 0.8393, \"ci95\": [0.8283, 0.8502], \"auc\": {\"d0v1\": 0.995, \"d1v2\": 0.916, \"d2v3\": 0.885}}}, \"gpt2xl_temp09\": {\"binary\": {\"acc\": 0.9978, \"ci95\": [0.9962, 0.999], \"auc\": {\"d0v1\": 1}}, \"3class\": {\"acc\": 0.826, \"ci95\": [0.8117, 0.8397], \"auc\": {\"d1v2\": 0.944, \"d2v3\": 0.887}}, \"4class\": {\"acc\": 0.8552, \"ci95\": [0.844, 0.866], \"auc\": {\"d0v1\": 0.997, \"d1v2\": 0.939, \"d2v3\": 0.886}}}, \"gpt2xl_topk50\": {\"binary\": {\"acc\": 0.9952, \"ci95\": [0.993, 0.9972], \"auc\": {\"d0v1\": 1}}, \"3class\": {\"acc\": 0.695, \"ci95\": [0.6777, 0.7113], \"auc\": {\"d1v2\": 0.844, \"d2v3\": 0.766}}, \"4class\": {\"acc\": 0.757, \"ci95\": [0.743, 0.7702], \"auc\": {\"d0v1\": 0.993, \"d1v2\": 0.824, \"d2v3\": 0.762}}}, \"olmo_nucleus095\": {\"binary\": {\"acc\": 0.9868, \"ci95\": [0.9832, 0.99], \"auc\": {\"d0v1\": 0.999}}, \"3class\": {\"acc\": 0.7503, \"ci95\": [0.7353, 0.7657], \"auc\": {\"d1v2\": 0.873, \"d2v3\": 0.831}}, \"4class\": {\"acc\": 0.7897, \"ci95\": [0.7772, 0.8027], \"auc\": {\"d0v1\": 0.985, \"d1v2\": 0.87, \"d2v3\": 0.816}}}, \"olmo_temp09\": {\"binary\": {\"acc\": 0.9982, \"ci95\": [0.997, 0.9992], \"auc\": {\"d0v1\": 1}}, \"3class\": {\"acc\": 0.7633, \"ci95\": [0.7477, 0.7797], \"auc\": {\"d1v2\": 0.894, \"d2v3\": 0.838}}, \"4class\": {\"acc\": 0.8263, \"ci95\": [0.8147, 0.8385], \"auc\": {\"d0v1\": 0.996, \"d1v2\": 0.903, \"d2v3\": 0.828}}}, \"olmo_topk50\": {\"binary\": {\"acc\": 0.996, \"ci95\": [0.994, 0.9978], \"auc\": {\"d0v1\": 1}}, \"3class\": {\"acc\": 0.661, \"ci95\": [0.644, 0.6773], \"auc\": {\"d1v2\": 0.812, \"d2v3\": 0.739}}, \"4class\": {\"acc\": 0.7435, \"ci95\": [0.73, 0.758], \"auc\": {\"d0v1\": 0.995, \"d1v2\": 0.831, \"d2v3\": 0.738}}}}, \"boundary_dilution\": {\"d2v3_auc_by_granularity_pythia_nuc\": {\"3class\": 0.796, \"4class\": 0.804, \"6class\": 0.689}, \"d1v2_auc_by_granularity_pythia_nuc\": {\"3class\": 0.861, \"4class\": 0.868, \"6class\": 0.83}, \"note\": \"d2v3 AUC drops 14% from 4-class to 6-class (0.804→0.689), confirming decision boundary dilution at higher granularity\"}, \"decoding_strategy_ranking\": {\"4class_acc\": {\"temp09\": 0.814, \"nucleus095\": 0.803, \"topk50\": 0.732}, \"note\": \"topk50 consistently worst across all 3 models; temp09 slightly outperforms nucleus095\"}}}, {\"id\": \"plan_013\", \"claim\": 3, \"description\": \"Downstream curation proof-of-concept\", \"priority\": \"P2\", \"gpu_budget_hours\": 15, \"deps\": [\"plan_001b\", \"plan_002\", \"plan_003\"], \"notes\": \"Plan A: 用 RF-predicted depth 做 curation，不依赖 DCOL。\", \"status\": \"planned\"}, {\"id\": \"plan_014\", \"claim\": 2, \"description\": \"7B cross-scale probe\", \"priority\": \"P2\", \"gpu_budget_hours\": 25, \"deps\": [\"plan_001b\", \"plan_002\", \"plan_003\"], \"notes\": \"May need cloud GPU. Plan A: 验证 Atlas findings 是否 scale-dependent。\", \"status\": \"planned\"}, {\"id\": \"plan_015\", \"claim\": 2, \"description\": \"Wild-data calibration on RedPajama/Dolma\", \"priority\": \"P2\", \"gpu_budget_hours\": 5, \"deps\": [\"plan_001b\", \"plan_002\", \"plan_003\"], \"status\": \"planned\"}], \"total\": 24}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "524f268f-8023-4914-a5df-1529f1c28dc7",
+  "isSidechain": false,
+  "promptId": "4a692b27-acc9-4510-88f1-72c3acd11f24",
+  "type": "user",
+  "uuid": "e9f82801-e6af-4adb-94b0-55a19d9d56d5",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": [{\\\"id\\\": \\\"plan_001a\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Pythia-1.4B recursive chain — nucleus p=0.95 (MVP)\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 2, \\\"deps\\\": [], \\\"status\\\": \\\"DONE\\\", \\\"notes\\\": \\\"4 depths × 1 strategy. 78.2% 4-class acc, d1v2 AUC 0.861. Content-type control: 81.6%.\\\", \\\"registry_id\\\": \\\"mvp_pipeline_pythia_002\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"full_4class_acc\\\": 0.782, \\\"full_4class_acc_ci\\\": [0.769, 0.794], \\\"full_4class_acc_stratified\\\": 0.781, \\\"full_mae\\\": 0.2367, \\\"full_auc_0v1\\\": 0.9975, \\\"full_auc_1v2\\\": 0.8607, \\\"full_auc_2v3\\\": 0.8005, \\\"filtered_4class_acc\\\": 0.816, \\\"filtered_4class_acc_ci\\\": [0.803, 0.829], \\\"filtered_mae\\\": 0.1995, \\\"filtered_auc_0v1\\\": 0.9977, \\\"filtered_auc_1v2\\\": 0.8782, \\\"filtered_auc_2v3\\\": 0.8323, \\\"filtered_sample_count\\\": 16993, \\\"three_class_acc\\\": 0.708, \\\"three_class_acc_ci\\\": [0.692, 0.725], \\\"three_class_mae\\\": 0.3203, \\\"three_class_auc_1v2\\\": 0.854, \\\"three_class_auc_1v3\\\": 0.9569, \\\"three_class_auc_2v3\\\": 0.7931, \\\"three_class_recall_d1\\\": 0.79, \\\"three_class_recall_d2\\\": 0.607, \\\"three_class_recall_d3\\\": 0.728, \\\"three_class_precision_d1\\\": 0.852, \\\"three_class_precision_d2\\\": 0.605, \\\"three_class_precision_d3\\\": 0.68, \\\"three_class_f1_d1\\\": 0.82, \\\"three_class_f1_d2\\\": 0.606, \\\"three_class_f1_d3\\\": 0.703, \\\"three_class_lr_acc\\\": 0.671, \\\"filtered_three_class_acc\\\": 0.747, \\\"filtered_three_class_acc_ci\\\": [0.727, 0.764], \\\"filtered_three_class_mae\\\": 0.2759, \\\"filtered_three_class_recall_d1\\\": 0.862, \\\"filtered_three_class_recall_d2\\\": 0.635, \\\"filtered_three_class_recall_d3\\\": 0.735, \\\"filtered_three_class_precision_d1\\\": 0.867, \\\"filtered_three_class_precision_d2\\\": 0.659, \\\"filtered_three_class_precision_d3\\\": 0.704, \\\"filtered_three_class_f1_d1\\\": 0.864, \\\"filtered_three_class_f1_d2\\\": 0.647, \\\"filtered_three_class_f1_d3\\\": 0.719, \\\"filtered_three_class_auc_1v2\\\": 0.8926, \\\"filtered_three_class_auc_1v3\\\": 0.9769, \\\"filtered_three_class_auc_2v3\\\": 0.8272, \\\"filtered_three_class_sample_count\\\": 12012, \\\"best_model\\\": \\\"RandomForest\\\", \\\"top_features\\\": [\\\"var_surprisal\\\", \\\"p90_ppl\\\", \\\"mean_ppl\\\", \\\"mean_surprisal\\\", \\\"p75_ppl\\\"], \\\"truncation_length\\\": 498, \\\"feature_dim\\\": 19}}, {\\\"id\\\": \\\"plan_001b\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Pythia-1.4B — temperature τ=0.9 chain (4 depths)\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 2, \\\"deps\\\": [], \\\"registry_id\\\": \\\"pythia_temp09_001\\\", \\\"notes\\\": \\\"τ=0.9 temp-only decoding. Data→data/pythia_temp09/. Launched on cuda:0 after OLMo.\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"four_class\\\": {\\\"rf_accuracy\\\": 0.7625, \\\"rf_accuracy_ci\\\": [0.749, 0.7753], \\\"lr_accuracy\\\": 0.7405, \\\"lr_accuracy_ci\\\": [0.7265, 0.7545], \\\"pairwise_auc\\\": {\\\"0v1\\\": 0.9968, \\\"0v2\\\": 0.9993, \\\"0v3\\\": 0.9991, \\\"1v2\\\": 0.8327, \\\"1v3\\\": 0.959, \\\"2v3\\\": 0.7928}, \\\"top_features\\\": [\\\"var_surprisal (0.1776)\\\", \\\"p90_ppl (0.1501)\\\", \\\"mean_ppl (0.1140)\\\", \\\"mean_surprisal (0.0889)\\\", \\\"p75_ppl (0.0687)\\\"], \\\"feature_dim\\\": 19, \\\"truncation_length\\\": 498}, \\\"three_class_full\\\": {\\\"accuracy\\\": 0.6983, \\\"accuracy_ci\\\": [0.682, 0.715], \\\"mae\\\": 0.3357, \\\"recall\\\": {\\\"d1\\\": 0.802, \\\"d2\\\": 0.554, \\\"d3\\\": 0.739}, \\\"precision\\\": {\\\"d1\\\": 0.792, \\\"d2\\\": 0.608, \\\"d3\\\": 0.686}, \\\"f1\\\": {\\\"d1\\\": 0.797, \\\"d2\\\": 0.58, \\\"d3\\\": 0.712}, \\\"pairwise_auc\\\": {\\\"d1v2\\\": 0.8354, \\\"d1v3\\\": 0.9631, \\\"d2v3\\\": 0.8043}}, \\\"three_class_filtered\\\": {\\\"accuracy\\\": 0.7252, \\\"accuracy_ci\\\": [0.7064, 0.7427], \\\"mae\\\": 0.2953, \\\"recall\\\": {\\\"d1\\\": 0.842, \\\"d2\\\": 0.596, \\\"d3\\\": 0.735}, \\\"precision\\\": {\\\"d1\\\": 0.821, \\\"d2\\\": 0.628, \\\"d3\\\": 0.715}, \\\"f1\\\": {\\\"d1\\\": 0.831, \\\"d2\\\": 0.611, \\\"d3\\\": 0.725}, \\\"pairwise_auc\\\": {\\\"d1v2\\\": 0.8656, \\\"d1v3\\\": 0.9772, \\\"d2v3\\\": 0.8295}, \\\"n_samples\\\": 11445, \\\"n_removed\\\": 3555}, \\\"finetune_losses\\\": {\\\"depth_0\\\": 2.222, \\\"depth_1\\\": 1.37, \\\"depth_2\\\": 1.006}, \\\"code_contamination\\\": {\\\"d0\\\": 0.004, \\\"d1\\\": 0.077, \\\"d2\\\": 0.116, \\\"d3\\\": 0.136}}}, {\\\"id\\\": \\\"plan_001c\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Pythia-1.4B — top-k k=50 chain (4 depths)\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 2, \\\"deps\\\": [], \\\"registry_id\\\": \\\"pythia_topk50_001\\\", \\\"notes\\\": \\\"top-k k=50 decoding. Data→data/pythia_topk50/. Queued for cuda:1 after GPT-2 XL.\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"rf_4class_acc\\\": 0.696, \\\"rf_4class_acc_ci\\\": [0.6825, 0.7107], \\\"lr_4class_acc\\\": 0.682, \\\"rf_3class_acc\\\": 0.592, \\\"rf_3class_acc_ci\\\": [0.575, 0.6107], \\\"rf_3class_filtered_acc\\\": 0.6133, \\\"rf_3class_filtered_acc_ci\\\": [0.593, 0.6312], \\\"pairwise_auc_rf\\\": {\\\"d0v1\\\": 0.9927, \\\"d0v2\\\": 0.9983, \\\"d0v3\\\": 0.9978, \\\"d1v2\\\": 0.7518, \\\"d1v3\\\": 0.9176, \\\"d2v3\\\": 0.6918}, \\\"pairwise_auc_3class_filtered_rf\\\": {\\\"d1v2\\\": 0.768, \\\"d1v3\\\": 0.9323, \\\"d2v3\\\": 0.7013}, \\\"feature_importance_top5\\\": [\\\"var_surprisal\\\", \\\"p90_ppl\\\", \\\"mean_ppl\\\", \\\"mean_surprisal\\\", \\\"p75_ppl\\\"], \\\"finetune_loss\\\": {\\\"depth_0\\\": 2.2406, \\\"depth_1\\\": 1.6704, \\\"depth_2\\\": 1.4374}, \\\"code_contamination_narrow\\\": {\\\"depth_0\\\": 0.004, \\\"depth_1\\\": 0.077, \\\"depth_2\\\": 0.123, \\\"depth_3\\\": 0.131}}}, {\\\"id\\\": \\\"plan_002\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"OLMo-1B recursive chain (4 depths × 3 strategies)\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 8, \\\"deps\\\": [], \\\"registry_id\\\": \\\"cross_model_olmo_002\\\", \\\"notes\\\": \\\"OLMo-1B on Dolma. q_proj/k_proj/v_proj LoRA. olmo_001 failed (script bug), olmo_002 重跑。等 cuda:0 释放。\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"four_class_acc_rf\\\": 0.788, \\\"four_class_acc_ci\\\": [0.776, 0.8], \\\"four_class_acc_lr\\\": 0.751, \\\"auc_0v1\\\": 0.9834, \\\"auc_0v2\\\": 0.9949, \\\"auc_0v3\\\": 0.9989, \\\"auc_1v2\\\": 0.8673, \\\"auc_1v3\\\": 0.9806, \\\"auc_2v3\\\": 0.8124, \\\"three_class_acc\\\": 0.744, \\\"three_class_acc_ci\\\": [0.728, 0.76], \\\"three_class_mae\\\": 0.27, \\\"three_class_auc_1v2\\\": 0.8664, \\\"three_class_auc_1v3\\\": 0.9852, \\\"three_class_auc_2v3\\\": 0.8274, \\\"three_class_recall\\\": {\\\"d1\\\": 0.864, \\\"d2\\\": 0.607, \\\"d3\\\": 0.761}, \\\"three_class_precision\\\": {\\\"d1\\\": 0.863, \\\"d2\\\": 0.646, \\\"d3\\\": 0.718}, \\\"four_class_per_class\\\": {\\\"d0\\\": {\\\"precision\\\": 0.95, \\\"recall\\\": 0.99, \\\"f1\\\": 0.97}, \\\"d1\\\": {\\\"precision\\\": 0.85, \\\"recall\\\": 0.82, \\\"f1\\\": 0.83}, \\\"d2\\\": {\\\"precision\\\": 0.63, \\\"recall\\\": 0.59, \\\"f1\\\": 0.61}, \\\"d3\\\": {\\\"precision\\\": 0.71, \\\"recall\\\": 0.76, \\\"f1\\\": 0.73}}, \\\"finetune_losses\\\": {\\\"depth_0\\\": 2.269, \\\"depth_1\\\": 1.65, \\\"depth_2\\\": 1.226}, \\\"top_features\\\": [\\\"p90_ppl (0.18)\\\", \\\"var_surprisal (0.16)\\\", \\\"p75_ppl (0.11)\\\", \\\"mean_surprisal (0.08)\\\", \\\"type_token_ratio (0.06)\\\"], \\\"code_contamination\\\": {\\\"d0\\\": 0.005, \\\"d1\\\": 0.027, \\\"d2\\\": 0.007, \\\"d3\\\": 0.008}, \\\"feature_dim\\\": 19, \\\"truncation_length\\\": 507}}, {\\\"id\\\": \\\"plan_003\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"GPT-2 XL 1.5B recursive chain (4 depths × 3 strategies)\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 8, \\\"deps\\\": [], \\\"registry_id\\\": \\\"cross_model_gpt2xl_001\\\", \\\"notes\\\": \\\"GPT-2 most studied in collapse literature. WebText training data. c_attn/c_proj LoRA.\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"four_class_acc_rf\\\": 0.833, \\\"four_class_acc_ci\\\": [0.823, 0.845], \\\"four_class_acc_lr\\\": 0.813, \\\"auc_0v1\\\": 0.9941, \\\"auc_0v2\\\": 0.9965, \\\"auc_0v3\\\": 0.9988, \\\"auc_1v2\\\": 0.9131, \\\"auc_1v3\\\": 0.9857, \\\"auc_2v3\\\": 0.8829, \\\"three_class_acc\\\": 0.793, \\\"three_class_acc_ci\\\": [0.778, 0.806], \\\"three_class_auc_1v2\\\": 0.9109, \\\"three_class_auc_1v3\\\": 0.989, \\\"three_class_auc_2v3\\\": 0.8885, \\\"finetune_losses\\\": {\\\"depth_0\\\": 2.55, \\\"depth_1\\\": 1.715, \\\"depth_2\\\": 1.342}, \\\"top_features\\\": [\\\"p90_ppl (0.208)\\\", \\\"var_surprisal (0.208)\\\", \\\"p75_ppl (0.103)\\\", \\\"mean_surprisal (0.082)\\\", \\\"mean_ppl (0.065)\\\"], \\\"code_contamination\\\": {\\\"d0\\\": 0.005, \\\"d1\\\": 0.005, \\\"d2\\\": 0.013, \\\"d3\\\": 0.007}}}, {\\\"id\\\": \\\"plan_002b\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"OLMo-1B — temperature τ=0.9 chain (4 depths)\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 2, \\\"deps\\\": [], \\\"registry_id\\\": \\\"olmo_temp09_001\\\", \\\"notes\\\": \\\"3×3 matrix cell. OLMo temp09. olmo_temp09_001 正在运行 (PID 205384, cuda:1)。之前被 cron 子进程误报为 failed，已修正。olmo_temp09_002 已取消。\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"four_class\\\": {\\\"rf_accuracy\\\": 0.8203, \\\"d1v2_auc\\\": 0.901}, \\\"three_class_filtered\\\": {\\\"rf_accuracy\\\": 0.7757}, \\\"finetune_losses\\\": {\\\"depth_0\\\": 2.27, \\\"depth_1\\\": 1.63, \\\"depth_2\\\": 1.18}, \\\"code_contamination_narrow_max\\\": 0.007, \\\"top_features\\\": [\\\"p90_ppl (0.199)\\\", \\\"var_surprisal (0.174)\\\", \\\"p75_ppl (0.126)\\\"]}}, {\\\"id\\\": \\\"plan_002c\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"OLMo-1B — top-k k=50 chain (4 depths)\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 2, \\\"deps\\\": [], \\\"registry_id\\\": \\\"olmo_topk50_001\\\", \\\"notes\\\": \\\"3×3 matrix cell. OLMo topk50. 等 cuda:1 释放后提交。\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"four_class\\\": {\\\"lr_accuracy\\\": 0.757, \\\"lr_accuracy_ci\\\": [0.7425, 0.7702], \\\"rf_accuracy\\\": 0.742, \\\"rf_accuracy_ci\\\": [0.7282, 0.7555]}, \\\"pairwise_auc\\\": {\\\"lr\\\": {\\\"d0v1\\\": 0.9969, \\\"d0v2\\\": 0.9995, \\\"d0v3\\\": 0.9998, \\\"d1v2\\\": 0.8293, \\\"d1v3\\\": 0.9592, \\\"d2v3\\\": 0.7497}, \\\"rf\\\": {\\\"d0v1\\\": 0.993, \\\"d0v2\\\": 0.9983, \\\"d0v3\\\": 0.9991, \\\"d1v2\\\": 0.8305, \\\"d1v3\\\": 0.9591, \\\"d2v3\\\": 0.7357}}, \\\"three_class\\\": {\\\"lr_accuracy\\\": 0.6567, \\\"lr_accuracy_ci\\\": [0.6403, 0.6733], \\\"rf_accuracy\\\": 0.6517, \\\"rf_accuracy_ci\\\": [0.635, 0.6687]}, \\\"three_class_filtered\\\": {\\\"lr_accuracy\\\": 0.6703, \\\"lr_accuracy_ci\\\": [0.653, 0.6882], \\\"rf_accuracy\\\": 0.6699, \\\"rf_accuracy_ci\\\": [0.6537, 0.6875]}, \\\"three_class_filtered_auc\\\": {\\\"lr\\\": {\\\"d1v2\\\": 0.7903, \\\"d1v3\\\": 0.97, \\\"d2v3\\\": 0.7501}, \\\"rf\\\": {\\\"d1v2\\\": 0.8071, \\\"d1v3\\\": 0.9645, \\\"d2v3\\\": 0.7364}}, \\\"feature_importance_top5\\\": [\\\"p90_ppl\\\", \\\"var_surprisal\\\", \\\"p75_ppl\\\", \\\"mean_surprisal\\\", \\\"p25_ppl\\\"], \\\"finetune_loss\\\": {\\\"depth_1\\\": 1.946, \\\"depth_2\\\": 1.726}, \\\"code_contamination\\\": {\\\"narrow_pct\\\": {\\\"depth_0\\\": 0.4, \\\"depth_1\\\": 0.8, \\\"depth_2\\\": 0.3, \\\"depth_3\\\": 0.4}, \\\"broad_pct\\\": {\\\"depth_0\\\": 0.5, \\\"depth_1\\\": 2.5, \\\"depth_2\\\": 0.8, \\\"depth_3\\\": 0.7}}}}, {\\\"id\\\": \\\"plan_003b\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"GPT-2 XL — temperature τ=0.9 chain (4 depths)\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 2, \\\"deps\\\": [], \\\"registry_id\\\": \\\"gpt2xl_temp09_001\\\", \\\"notes\\\": \\\"3×3 matrix cell. Running on cuda:1.\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"data\\\": {\\\"samples_per_depth\\\": 5000, \\\"total_samples\\\": 20000, \\\"depths\\\": 4}, \\\"finetune_losses\\\": {\\\"depth_1\\\": 2.5498, \\\"depth_2\\\": 1.6972, \\\"depth_3\\\": 1.2922}, \\\"code_contamination\\\": {\\\"depth_0\\\": {\\\"broad\\\": 25, \\\"narrow\\\": 20, \\\"broad_pct\\\": 0.5, \\\"narrow_pct\\\": 0.4}, \\\"depth_1\\\": {\\\"broad\\\": 25, \\\"narrow\\\": 40, \\\"broad_pct\\\": 0.5, \\\"narrow_pct\\\": 0.8}, \\\"depth_2\\\": {\\\"broad\\\": 34, \\\"narrow\\\": 80, \\\"broad_pct\\\": 0.7, \\\"narrow_pct\\\": 1.6}, \\\"depth_3\\\": {\\\"broad\\\": 25, \\\"narrow\\\": 76, \\\"broad_pct\\\": 0.5, \\\"narrow_pct\\\": 1.5}}, \\\"four_class\\\": {\\\"rf_accuracy\\\": 0.8542, \\\"rf_accuracy_ci\\\": [0.843, 0.8653], \\\"lr_accuracy\\\": 0.8155, \\\"lr_accuracy_ci\\\": [0.8025, 0.8273], \\\"rf_auc\\\": {\\\"d0v1\\\": 0.9963, \\\"d0v2\\\": 0.9992, \\\"d0v3\\\": 1, \\\"d1v2\\\": 0.9367, \\\"d1v3\\\": 0.9947, \\\"d2v3\\\": 0.8815}, \\\"lr_auc\\\": {\\\"d0v1\\\": 0.984, \\\"d0v2\\\": 0.9998, \\\"d0v3\\\": 1, \\\"d1v2\\\": 0.8903, \\\"d1v3\\\": 0.9824, \\\"d2v3\\\": 0.8183}, \\\"top_features\\\": [\\\"p90_ppl\\\", \\\"mean_surprisal\\\", \\\"p75_ppl\\\", \\\"var_surprisal\\\"]}, \\\"three_class\\\": {\\\"rf_accuracy\\\": 0.82, \\\"rf_accuracy_ci\\\": [0.806, 0.834], \\\"lr_accuracy\\\": 0.7773, \\\"lr_accuracy_ci\\\": [0.7627, 0.792], \\\"rf_auc\\\": {\\\"d1v2\\\": 0.9418, \\\"d1v3\\\": 0.9967, \\\"d2v3\\\": 0.8849}}, \\\"three_class_filtered\\\": {\\\"rf_accuracy\\\": 0.815, \\\"rf_accuracy_ci\\\": [0.7999, 0.8298], \\\"lr_accuracy\\\": 0.7869, \\\"lr_accuracy_ci\\\": [0.7711, 0.8016], \\\"rf_auc\\\": {\\\"d1v2\\\": 0.937, \\\"d1v3\\\": 0.9944, \\\"d2v3\\\": 0.8891}}}}, {\\\"id\\\": \\\"plan_003c\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"GPT-2 XL — top-k k=50 chain (4 depths)\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 2, \\\"deps\\\": [], \\\"registry_id\\\": \\\"gpt2xl_topk50_001\\\", \\\"notes\\\": \\\"3×3 matrix cell. GPT-2 XL topk50.\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"four_class\\\": {\\\"accuracy\\\": 0.766, \\\"depth1_vs_depth2_auc\\\": 0.8259, \\\"pass\\\": true}, \\\"three_class\\\": {\\\"accuracy\\\": 0.695, \\\"depth1_vs_depth2_auc\\\": 0.8392, \\\"pass\\\": true}, \\\"three_class_filtered\\\": {\\\"accuracy\\\": 0.684, \\\"depth1_vs_depth2_auc\\\": 0.8314, \\\"pass\\\": true}}}, {\\\"id\\\": \\\"plan_004\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"DCOL training: RoBERTa-large with learnable margins contrastive loss (v6, non-blocking)\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 8, \\\"deps\\\": [\\\"plan_001b\\\", \\\"plan_002\\\", \\\"plan_003\\\"], \\\"notes\\\": \\\"v1-v5 DeBERTa 全部失败 (D011)。v6 换 RoBERTa-large 非阻塞尝试。成功→bonus section，失败→negative analysis。不阻塞论文进度。\\\", \\\"registry_id\\\": \\\"dcol_roberta_v6_001\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"test_acc\\\": 0.6448, \\\"test_mae\\\": 0.4052, \\\"best_val_acc\\\": 0.6436, \\\"best_epoch\\\": 1, \\\"epochs_run\\\": 4, \\\"early_stopping\\\": true, \\\"train_acc_final\\\": 0.75, \\\"rf_baseline\\\": 0.782, \\\"delta_vs_baseline\\\": -0.137, \\\"overfitting\\\": \\\"severe (train 75% vs val 64.4% at best epoch)\\\", \\\"stability\\\": \\\"resolved (no NaN, no collapse, collapse guard passed at step 500)\\\"}}, {\\\"id\\\": \\\"plan_005\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Leave-one-model-out generalization (RF): train on 2 families, test on 3rd\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 2, \\\"deps\\\": [\\\"plan_001b\\\", \\\"plan_002\\\", \\\"plan_003\\\"], \\\"registry_id\\\": \\\"cross_model_loo_v1\\\", \\\"notes\\\": \\\"3 rotations with RF classifier. Research-phase gate: cross-model acc ≥ 45%. Plan A: 不依赖 DCOL。均值 66.4%，gate 通过。\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"mean_acc\\\": 0.664, \\\"mean_3class_acc\\\": 0.5544, \\\"holdout_pythia\\\": {\\\"acc\\\": 0.6242, \\\"ci95\\\": [0.6205, 0.6282], \\\"3class_acc\\\": 0.499, \\\"3class_ci95\\\": [0.4944, 0.5034], \\\"d1v2_auc\\\": 0.5617, \\\"d1v3_auc\\\": 0.8547, \\\"d2v3_auc\\\": 0.6534, \\\"d0v1_auc\\\": 0.9921, \\\"d0v2_auc\\\": 0.9999, \\\"d0v3_auc\\\": 0.9998, \\\"per_class\\\": {\\\"d0\\\": {\\\"P\\\": 0.9889, \\\"R\\\": 1, \\\"F1\\\": 0.9944}, \\\"d1\\\": {\\\"P\\\": 0.6655, \\\"R\\\": 0.493, \\\"F1\\\": 0.5664}, \\\"d2\\\": {\\\"P\\\": 0.3699, \\\"R\\\": 0.2677, \\\"F1\\\": 0.3106}, \\\"d3\\\": {\\\"P\\\": 0.483, \\\"R\\\": 0.7363, \\\"F1\\\": 0.5834}}}, \\\"holdout_olmo\\\": {\\\"acc\\\": 0.6921, \\\"ci95\\\": [0.6884, 0.696], \\\"3class_acc\\\": 0.592, \\\"3class_ci95\\\": [0.5873, 0.5965], \\\"d1v2_auc\\\": 0.7687, \\\"d1v3_auc\\\": 0.9277, \\\"d2v3_auc\\\": 0.6862, \\\"per_class\\\": {\\\"d0\\\": {\\\"P\\\": 0.9783, \\\"R\\\": 0.9925, \\\"F1\\\": 0.9854}, \\\"d1\\\": {\\\"P\\\": 0.7111, \\\"R\\\": 0.7549, \\\"F1\\\": 0.7324}, \\\"d2\\\": {\\\"P\\\": 0.4616, \\\"R\\\": 0.4327, \\\"F1\\\": 0.4467}, \\\"d3\\\": {\\\"P\\\": 0.5964, \\\"R\\\": 0.5883, \\\"F1\\\": 0.5923}}}, \\\"holdout_gpt2xl\\\": {\\\"acc\\\": 0.6756, \\\"ci95\\\": [0.6717, 0.6795], \\\"3class_acc\\\": 0.5723, \\\"3class_ci95\\\": [0.5679, 0.5767], \\\"d1v2_auc\\\": 0.8157, \\\"d1v3_auc\\\": 0.9149, \\\"d2v3_auc\\\": 0.6639, \\\"d0v1_auc\\\": 0.9927, \\\"d0v2_auc\\\": 0.9919, \\\"d0v3_auc\\\": 0.9876, \\\"per_class\\\": {\\\"d0\\\": {\\\"P\\\": 0.9484, \\\"R\\\": 0.9853, \\\"F1\\\": 0.9665}, \\\"d1\\\": {\\\"P\\\": 0.7093, \\\"R\\\": 0.7465, \\\"F1\\\": 0.7274}, \\\"d2\\\": {\\\"P\\\": 0.4521, \\\"R\\\": 0.5255, \\\"F1\\\": 0.486}, \\\"d3\\\": {\\\"P\\\": 0.5963, \\\"R\\\": 0.445, \\\"F1\\\": 0.5097}}}, \\\"mean_per_class_recall\\\": {\\\"d0\\\": 0.9926, \\\"d1\\\": 0.6648, \\\"d2\\\": 0.4086, \\\"d3\\\": 0.5899}, \\\"lowest_recall_class\\\": \\\"d2\\\", \\\"lowest_recall_value\\\": 0.4086, \\\"detailed_artifact\\\": \\\"cross_model_loo_detailed.json\\\"}}, {\\\"id\\\": \\\"plan_006\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"Depth Degradation Atlas: monotonicity scores, EDD, cross-model/strategy heatmaps\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 3, \\\"deps\\\": [\\\"plan_001b\\\", \\\"plan_002\\\", \\\"plan_003\\\"], \\\"registry_id\\\": \\\"atlas_v1_analysis\\\", \\\"notes\\\": \\\"v1 完成: monotonicity ρ=-0.82~-0.89, EDD=3 (未饱和), cross-model Jaccard=0.667, rank corr ρ>0.85. 4 JSON in artifacts/atlas/. 待完成: 正式出图(AUC decay/feature trajectory/heatmap/confusion matrix) + 纳入 3×3 剩余 cells 数据.\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"monotonicity_rho_range\\\": [-0.89, -0.82], \\\"edd\\\": 3, \\\"edd_saturated\\\": false, \\\"cross_model_jaccard\\\": 0.667, \\\"cross_model_rank_corr\\\": 0.85, \\\"artifacts\\\": [\\\"monotonicity_scores.json\\\", \\\"cross_model_comparison.json\\\", \\\"edd_analysis.json\\\", \\\"feature_trajectory.json\\\"]}}, {\\\"id\\\": \\\"plan_006b\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"3-class experiment (d1/d2/d3 only): isolate pure depth gradient from real-vs-synthetic signal\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 0.5, \\\"deps\\\": [\\\"plan_001a\\\"], \\\"status\\\": \\\"DONE\\\", \\\"registry_id\\\": \\\"mvp_pipeline_pythia_002\\\", \\\"notes\\\": \\\"Reviewer-requested. 3-class acc=70.8% [0.692,0.725], d1v2 AUC=0.854, d2v3=0.793. Results in mvp_pipeline_pythia_002 metrics.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"full_4class_acc\\\": 0.782, \\\"full_4class_acc_ci\\\": [0.769, 0.794], \\\"full_4class_acc_stratified\\\": 0.781, \\\"full_mae\\\": 0.2367, \\\"full_auc_0v1\\\": 0.9975, \\\"full_auc_1v2\\\": 0.8607, \\\"full_auc_2v3\\\": 0.8005, \\\"filtered_4class_acc\\\": 0.816, \\\"filtered_4class_acc_ci\\\": [0.803, 0.829], \\\"filtered_mae\\\": 0.1995, \\\"filtered_auc_0v1\\\": 0.9977, \\\"filtered_auc_1v2\\\": 0.8782, \\\"filtered_auc_2v3\\\": 0.8323, \\\"filtered_sample_count\\\": 16993, \\\"three_class_acc\\\": 0.708, \\\"three_class_acc_ci\\\": [0.692, 0.725], \\\"three_class_mae\\\": 0.3203, \\\"three_class_auc_1v2\\\": 0.854, \\\"three_class_auc_1v3\\\": 0.9569, \\\"three_class_auc_2v3\\\": 0.7931, \\\"three_class_recall_d1\\\": 0.79, \\\"three_class_recall_d2\\\": 0.607, \\\"three_class_recall_d3\\\": 0.728, \\\"three_class_precision_d1\\\": 0.852, \\\"three_class_precision_d2\\\": 0.605, \\\"three_class_precision_d3\\\": 0.68, \\\"three_class_f1_d1\\\": 0.82, \\\"three_class_f1_d2\\\": 0.606, \\\"three_class_f1_d3\\\": 0.703, \\\"three_class_lr_acc\\\": 0.671, \\\"filtered_three_class_acc\\\": 0.747, \\\"filtered_three_class_acc_ci\\\": [0.727, 0.764], \\\"filtered_three_class_mae\\\": 0.2759, \\\"filtered_three_class_recall_d1\\\": 0.862, \\\"filtered_three_class_recall_d2\\\": 0.635, \\\"filtered_three_class_recall_d3\\\": 0.735, \\\"filtered_three_class_precision_d1\\\": 0.867, \\\"filtered_three_class_precision_d2\\\": 0.659, \\\"filtered_three_class_precision_d3\\\": 0.704, \\\"filtered_three_class_f1_d1\\\": 0.864, \\\"filtered_three_class_f1_d2\\\": 0.647, \\\"filtered_three_class_f1_d3\\\": 0.719, \\\"filtered_three_class_auc_1v2\\\": 0.8926, \\\"filtered_three_class_auc_1v3\\\": 0.9769, \\\"filtered_three_class_auc_2v3\\\": 0.8272, \\\"filtered_three_class_sample_count\\\": 12012, \\\"best_model\\\": \\\"RandomForest\\\", \\\"top_features\\\": [\\\"var_surprisal\\\", \\\"p90_ppl\\\", \\\"mean_ppl\\\", \\\"mean_surprisal\\\", \\\"p75_ppl\\\"], \\\"truncation_length\\\": 498, \\\"feature_dim\\\": 19}}, {\\\"id\\\": \\\"plan_007\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Leave-one-strategy-out robustness (RF): train on 2 strategies, test on 3rd\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 2, \\\"deps\\\": [\\\"plan_001b\\\", \\\"plan_002\\\", \\\"plan_003\\\"], \\\"registry_id\\\": \\\"cross_strategy_loo_001\\\", \\\"notes\\\": \\\"3 rotations per model with RF. Plan A: 不依赖 DCOL。均值 59.1%，9/9 > chance。temp09 d1v2 反转已解释 (Covariate Shift)。\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"mean_4class_acc\\\": 0.5908, \\\"pythia_holdout_nucleus\\\": {\\\"acc\\\": 0.6935, \\\"d1v2_auc\\\": 0.6903, \\\"d2v3_auc\\\": 0.7626}, \\\"pythia_holdout_temp09\\\": {\\\"acc\\\": 0.6281, \\\"d1v2_auc\\\": 0.576, \\\"d2v3_auc\\\": 0.724}, \\\"pythia_holdout_topk50\\\": {\\\"acc\\\": 0.5151, \\\"d1v2_auc\\\": 0.6393, \\\"d2v3_auc\\\": 0.5801}, \\\"gpt2xl_holdout_nucleus\\\": {\\\"acc\\\": 0.5993, \\\"d1v2_auc\\\": 0.7826, \\\"d2v3_auc\\\": 0.4985}, \\\"gpt2xl_holdout_temp09\\\": {\\\"acc\\\": 0.5609, \\\"d1v2_auc\\\": 0.1288, \\\"d2v3_auc\\\": 0.6366}, \\\"gpt2xl_holdout_topk50\\\": {\\\"acc\\\": 0.5364, \\\"d1v2_auc\\\": 0.8308, \\\"d2v3_auc\\\": 0.7222}, \\\"olmo_holdout_nucleus\\\": {\\\"acc\\\": 0.6538, \\\"d1v2_auc\\\": 0.7931, \\\"d2v3_auc\\\": 0.6076}, \\\"olmo_holdout_temp09\\\": {\\\"acc\\\": 0.5816, \\\"d1v2_auc\\\": 0.2529, \\\"d2v3_auc\\\": 0.7015}, \\\"olmo_holdout_topk50\\\": {\\\"acc\\\": 0.5488, \\\"d1v2_auc\\\": 0.8549, \\\"d2v3_auc\\\": 0.7107}, \\\"finding_temp09_d1v2_inversion\\\": \\\"d1v2 AUC inverts when holding out temp09 (GPT-2 XL: 0.13, OLMo: 0.25) — temp09 d1→d2 features differ fundamentally from nucleus/topk50\\\"}}, {\\\"id\\\": \\\"plan_008\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"DeBERTa end-to-end classifier: direct text→depth\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 10, \\\"deps\\\": [\\\"plan_001b\\\", \\\"plan_002\\\", \\\"plan_003\\\"], \\\"registry_id\\\": \\\"n2_deberta_finetune_001\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy_mean\\\": 0.5831, \\\"accuracy_std\\\": 0.0467, \\\"per_class_f1\\\": {\\\"d0\\\": 0.947, \\\"d1\\\": 0.378, \\\"d2\\\": 0.247, \\\"d3\\\": 0.656}, \\\"pairwise_auc\\\": {\\\"d0v1\\\": 0.981, \\\"d1v2\\\": 0.733, \\\"d2v3\\\": 0.755}, \\\"vs_rf_baseline\\\": \\\"58.3% vs 78.2% (-19.9pp)\\\", \\\"elapsed_seconds\\\": 3727}}, {\\\"id\\\": \\\"plan_009\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Baseline battery: DivEye, perplexity regression, CORAL, CE, zero-shot LLM\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 8, \\\"registry_id\\\": \\\"baseline_battery_001\\\", \\\"deps\\\": [\\\"plan_001b\\\", \\\"plan_002\\\", \\\"plan_003\\\"], \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"ppl_reg_single_4class_acc\\\": 0.251, \\\"ppl_reg_multi_4class_acc\\\": 0.622, \\\"ce_mlp_4class_acc\\\": 0.749, \\\"coral_4class_acc\\\": 0.7807, \\\"coral_3class_acc\\\": 0.7089, \\\"coral_mae\\\": 0.2273, \\\"coral_d1v2_auc\\\": 0.8179, \\\"diveye_4class_acc\\\": 0.7817, \\\"diveye_3class_acc\\\": 0.7098, \\\"diveye_d1v2_auc\\\": 0.8654, \\\"rf_4class_acc\\\": 0.781, \\\"lr_4class_acc\\\": 0.75, \\\"note\\\": \\\"CE-MLP 74.9% may be undertrained (5 epochs); CORAL updated to 100 epochs. All results from Pythia nucleus baseline features.\\\"}}, {\\\"id\\\": \\\"plan_010\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"DCOL component ablation\\\", \\\"priority\\\": \\\"P2\\\", \\\"gpu_budget_hours\\\": 8, \\\"deps\\\": [\\\"plan_004\\\"], \\\"status\\\": \\\"planned\\\", \\\"notes\\\": \\\"DCOL v6 失败 (D018)，前置条件 plan_004 未满足，取消。\\\"}, {\\\"id\\\": \\\"plan_011\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"Depth extension to 5 generations + EDD saturation analysis\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 4, \\\"deps\\\": [\\\"plan_001a\\\"], \\\"registry_id\\\": \\\"depth_extension_binary_pairwise_002\\\", \\\"notes\\\": \\\"Pythia-1.4B nucleus EDD=4 (binary d3v4=0.784>0.75, d4v5=0.683<0.75)。6-class pairwise AUC 因决策边界稀释不可用，必须用 binary pairwise classifier。\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"d1v2_auc\\\": 0.925, \\\"d1v2_ci95\\\": [0.9138, 0.9354], \\\"d2v3_auc\\\": 0.8225, \\\"d2v3_ci95\\\": [0.8052, 0.8402], \\\"d3v4_auc\\\": 0.7837, \\\"d3v4_ci95\\\": [0.7648, 0.8024], \\\"d4v5_auc\\\": 0.6832, \\\"d4v5_ci95\\\": [0.6611, 0.7045], \\\"edd_determination\\\": \\\"4\\\"}}, {\\\"id\\\": \\\"plan_011b\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"GPT-2 XL depth extension d4/d5 + EDD cross-model verification\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 4, \\\"deps\\\": [\\\"plan_003\\\", \\\"plan_011\\\"], \\\"registry_id\\\": \\\"depth_extension_gpt2xl_d4d5_001\\\", \\\"notes\\\": \\\"GPT-2 XL 是 3×3 矩阵信号最强模型 (85.4%)。验证 EDD 跨模型一致性，直接增强 Claim 2。已 RUNNING on cuda:0。\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"binary_pairwise\\\": {\\\"d1v2_auc\\\": 0.966, \\\"d2v3_auc\\\": 0.919, \\\"d3v4_auc\\\": 0.75, \\\"d4v5_auc\\\": 0.681}, \\\"six_class_rf_accuracy\\\": 0.679, \\\"edd_at_075\\\": 4, \\\"edd_note\\\": \\\"d3v4=0.750>=0.75 PASS, d4v5=0.681<0.75 FAIL → EDD=4\\\"}}, {\\\"id\\\": \\\"plan_011c\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"OLMo-1B depth extension d4/d5 + EDD cross-model verification\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 4, \\\"deps\\\": [\\\"plan_002\\\", \\\"plan_011\\\"], \\\"notes\\\": \\\"第 3 个模型 EDD 验证。代码已就绪 (run_depth_extension_olmo.sh)，含 binary pairwise eval。Reviewer PASS。排 granularity ablation 之后上 cuda:1。\\\", \\\"registry_id\\\": \\\"depth_extension_olmo_d4d5_002\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"binary_pairwise\\\": {\\\"d1v2_auc\\\": 0.968, \\\"d2v3_auc\\\": 0.843, \\\"d3v4_auc\\\": 0.765, \\\"d4v5_auc\\\": 0.684}, \\\"six_class_rf_accuracy\\\": 0.667, \\\"edd_at_075\\\": 4, \\\"edd_note\\\": \\\"d3v4=0.765>=0.75 PASS, d4v5=0.684<0.75 FAIL → EDD=4\\\"}}, {\\\"id\\\": \\\"plan_012\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Granularity ablation (RF): binary / 3-class / 4-class / 6-class\\\", \\\"registry_id\\\": \\\"granularity_ablation_rf_001\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 1, \\\"deps\\\": [\\\"plan_001b\\\", \\\"plan_002\\\", \\\"plan_003\\\"], \\\"notes\\\": \\\"Plan A: 用 RF 做，不依赖 DCOL。与 plan_011 depth extension 联动（6-class 需要 5+ depths 数据）。\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"summary\\\": {\\\"binary_acc_mean\\\": 0.995, \\\"binary_acc_std\\\": 0.004, \\\"3class_acc_mean\\\": 0.721, \\\"3class_acc_std\\\": 0.067, \\\"4class_acc_mean\\\": 0.783, \\\"4class_acc_std\\\": 0.048, \\\"6class_acc\\\": 0.629, \\\"note\\\": \\\"3-class excludes d0 (most separable class), so 3class < 4class is by design. True granularity trend (with d0): binary 99.5% > 4-class 78.3% > 6-class 62.9% — monotonic decrease confirmed.\\\"}, \\\"per_cell\\\": {\\\"pythia_nucleus095\\\": {\\\"binary\\\": {\\\"acc\\\": 0.998, \\\"ci95\\\": [0.9965, 0.9992], \\\"auc\\\": {\\\"d0v1\\\": 1}}, \\\"3class\\\": {\\\"acc\\\": 0.7117, \\\"ci95\\\": [0.6947, 0.7283], \\\"auc\\\": {\\\"d1v2\\\": 0.861, \\\"d2v3\\\": 0.796}}, \\\"4class\\\": {\\\"acc\\\": 0.7812, \\\"ci95\\\": [0.7677, 0.7935], \\\"auc\\\": {\\\"d0v1\\\": 0.998, \\\"d1v2\\\": 0.868, \\\"d2v3\\\": 0.804}}, \\\"6class\\\": {\\\"acc\\\": 0.6292, \\\"ci95\\\": [0.6175, 0.6412], \\\"auc\\\": {\\\"d0v1\\\": 0.997, \\\"d1v2\\\": 0.83, \\\"d2v3\\\": 0.689, \\\"d3v4\\\": 0.692, \\\"d4v5\\\": 0.691}}}, \\\"pythia_temp09\\\": {\\\"binary\\\": {\\\"acc\\\": 0.997, \\\"ci95\\\": [0.9952, 0.9985], \\\"auc\\\": {\\\"d0v1\\\": 1}}, \\\"3class\\\": {\\\"acc\\\": 0.7063, \\\"ci95\\\": [0.6907, 0.723], \\\"auc\\\": {\\\"d1v2\\\": 0.838, \\\"d2v3\\\": 0.806}}, \\\"4class\\\": {\\\"acc\\\": 0.7605, \\\"ci95\\\": [0.7475, 0.7738], \\\"auc\\\": {\\\"d0v1\\\": 0.997, \\\"d1v2\\\": 0.835, \\\"d2v3\\\": 0.796}}}, \\\"pythia_topk50\\\": {\\\"binary\\\": {\\\"acc\\\": 0.9945, \\\"ci95\\\": [0.992, 0.9965], \\\"auc\\\": {\\\"d0v1\\\": 1}}, \\\"3class\\\": {\\\"acc\\\": 0.5883, \\\"ci95\\\": [0.5717, 0.6073], \\\"auc\\\": {\\\"d1v2\\\": 0.749, \\\"d2v3\\\": 0.705}}, \\\"4class\\\": {\\\"acc\\\": 0.6943, \\\"ci95\\\": [0.6805, 0.708], \\\"auc\\\": {\\\"d0v1\\\": 0.994, \\\"d1v2\\\": 0.761, \\\"d2v3\\\": 0.695}}}, \\\"gpt2xl_nucleus095\\\": {\\\"binary\\\": {\\\"acc\\\": 0.9912, \\\"ci95\\\": [0.9882, 0.9938], \\\"auc\\\": {\\\"d0v1\\\": 0.999}}, \\\"3class\\\": {\\\"acc\\\": 0.79, \\\"ci95\\\": [0.775, 0.8047], \\\"auc\\\": {\\\"d1v2\\\": 0.913, \\\"d2v3\\\": 0.891}}, \\\"4class\\\": {\\\"acc\\\": 0.8393, \\\"ci95\\\": [0.8283, 0.8502], \\\"auc\\\": {\\\"d0v1\\\": 0.995, \\\"d1v2\\\": 0.916, \\\"d2v3\\\": 0.885}}}, \\\"gpt2xl_temp09\\\": {\\\"binary\\\": {\\\"acc\\\": 0.9978, \\\"ci95\\\": [0.9962, 0.999], \\\"auc\\\": {\\\"d0v1\\\": 1}}, \\\"3class\\\": {\\\"acc\\\": 0.826, \\\"ci95\\\": [0.8117, 0.8397], \\\"auc\\\": {\\\"d1v2\\\": 0.944, \\\"d2v3\\\": 0.887}}, \\\"4class\\\": {\\\"acc\\\": 0.8552, \\\"ci95\\\": [0.844, 0.866], \\\"auc\\\": {\\\"d0v1\\\": 0.997, \\\"d1v2\\\": 0.939, \\\"d2v3\\\": 0.886}}}, \\\"gpt2xl_topk50\\\": {\\\"binary\\\": {\\\"acc\\\": 0.9952, \\\"ci95\\\": [0.993, 0.9972], \\\"auc\\\": {\\\"d0v1\\\": 1}}, \\\"3class\\\": {\\\"acc\\\": 0.695, \\\"ci95\\\": [0.6777, 0.7113], \\\"auc\\\": {\\\"d1v2\\\": 0.844, \\\"d2v3\\\": 0.766}}, \\\"4class\\\": {\\\"acc\\\": 0.757, \\\"ci95\\\": [0.743, 0.7702], \\\"auc\\\": {\\\"d0v1\\\": 0.993, \\\"d1v2\\\": 0.824, \\\"d2v3\\\": 0.762}}}, \\\"olmo_nucleus095\\\": {\\\"binary\\\": {\\\"acc\\\": 0.9868, \\\"ci95\\\": [0.9832, 0.99], \\\"auc\\\": {\\\"d0v1\\\": 0.999}}, \\\"3class\\\": {\\\"acc\\\": 0.7503, \\\"ci95\\\": [0.7353, 0.7657], \\\"auc\\\": {\\\"d1v2\\\": 0.873, \\\"d2v3\\\": 0.831}}, \\\"4class\\\": {\\\"acc\\\": 0.7897, \\\"ci95\\\": [0.7772, 0.8027], \\\"auc\\\": {\\\"d0v1\\\": 0.985, \\\"d1v2\\\": 0.87, \\\"d2v3\\\": 0.816}}}, \\\"olmo_temp09\\\": {\\\"binary\\\": {\\\"acc\\\": 0.9982, \\\"ci95\\\": [0.997, 0.9992], \\\"auc\\\": {\\\"d0v1\\\": 1}}, \\\"3class\\\": {\\\"acc\\\": 0.7633, \\\"ci95\\\": [0.7477, 0.7797], \\\"auc\\\": {\\\"d1v2\\\": 0.894, \\\"d2v3\\\": 0.838}}, \\\"4class\\\": {\\\"acc\\\": 0.8263, \\\"ci95\\\": [0.8147, 0.8385], \\\"auc\\\": {\\\"d0v1\\\": 0.996, \\\"d1v2\\\": 0.903, \\\"d2v3\\\": 0.828}}}, \\\"olmo_topk50\\\": {\\\"binary\\\": {\\\"acc\\\": 0.996, \\\"ci95\\\": [0.994, 0.9978], \\\"auc\\\": {\\\"d0v1\\\": 1}}, \\\"3class\\\": {\\\"acc\\\": 0.661, \\\"ci95\\\": [0.644, 0.6773], \\\"auc\\\": {\\\"d1v2\\\": 0.812, \\\"d2v3\\\": 0.739}}, \\\"4class\\\": {\\\"acc\\\": 0.7435, \\\"ci95\\\": [0.73, 0.758], \\\"auc\\\": {\\\"d0v1\\\": 0.995, \\\"d1v2\\\": 0.831, \\\"d2v3\\\": 0.738}}}}, \\\"boundary_dilution\\\": {\\\"d2v3_auc_by_granularity_pythia_nuc\\\": {\\\"3class\\\": 0.796, \\\"4class\\\": 0.804, \\\"6class\\\": 0.689}, \\\"d1v2_auc_by_granularity_pythia_nuc\\\": {\\\"3class\\\": 0.861, \\\"4class\\\": 0.868, \\\"6class\\\": 0.83}, \\\"note\\\": \\\"d2v3 AUC drops 14% from 4-class to 6-class (0.804→0.689), confirming decision boundary dilution at higher granularity\\\"}, \\\"decoding_strategy_ranking\\\": {\\\"4class_acc\\\": {\\\"temp09\\\": 0.814, \\\"nucleus095\\\": 0.803, \\\"topk50\\\": 0.732}, \\\"note\\\": \\\"topk50 consistently worst across all 3 models; temp09 slightly outperforms nucleus095\\\"}}}, {\\\"id\\\": \\\"plan_013\\\", \\\"claim\\\": 3, \\\"description\\\": \\\"Downstream curation proof-of-concept\\\", \\\"priority\\\": \\\"P2\\\", \\\"gpu_budget_hours\\\": 15, \\\"deps\\\": [\\\"plan_001b\\\", \\\"plan_002\\\", \\\"plan_003\\\"], \\\"notes\\\": \\\"Plan A: 用 RF-predicted depth 做 curation，不依赖 DCOL。\\\", \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_014\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"7B cross-scale probe\\\", \\\"priority\\\": \\\"P2\\\", \\\"gpu_budget_hours\\\": 25, \\\"deps\\\": [\\\"plan_001b\\\", \\\"plan_002\\\", \\\"plan_003\\\"], \\\"notes\\\": \\\"May need cloud GPU. Plan A: 验证 Atlas findings 是否 scale-dependent。\\\", \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_015\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"Wild-data calibration on RedPajama/Dolma\\\", \\\"priority\\\": \\\"P2\\\", \\\"gpu_budget_hours\\\": 5, \\\"deps\\\": [\\\"plan_001b\\\", \\\"plan_002\\\", \\\"plan_003\\\"], \\\"status\\\": \\\"planned\\\"}], \\\"total\\\": 24}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": [{\"id\": \"plan_001a\", \"claim\": 1, \"description\": \"Pythia-1.4B recursive chain — nucleus p=0.95 (MVP)\", \"priority\": \"P0\", \"gpu_budget_hours\": 2, \"deps\": [], \"status\": \"DONE\", \"notes\": \"4 depths × 1 strategy. 78.2% 4-class acc, d1v2 AUC 0.861. Content-type control: 81.6%.\", \"registry_id\": \"mvp_pipeline_pythia_002\", \"conclusion\": \"success\", \"metrics\": {\"full_4class_acc\": 0.782, \"full_4class_acc_ci\": [0.769, 0.794], \"full_4class_acc_stratified\": 0.781, \"full_mae\": 0.2367, \"full_auc_0v1\": 0.9975, \"full_auc_1v2\": 0.8607, \"full_auc_2v3\": 0.8005, \"filtered_4class_acc\": 0.816, \"filtered_4class_acc_ci\": [0.803, 0.829], \"filtered_mae\": 0.1995, \"filtered_auc_0v1\": 0.9977, \"filtered_auc_1v2\": 0.8782, \"filtered_auc_2v3\": 0.8323, \"filtered_sample_count\": 16993, \"three_class_acc\": 0.708, \"three_class_acc_ci\": [0.692, 0.725], \"three_class_mae\": 0.3203, \"three_class_auc_1v2\": 0.854, \"three_class_auc_1v3\": 0.9569, \"three_class_auc_2v3\": 0.7931, \"three_class_recall_d1\": 0.79, \"three_class_recall_d2\": 0.607, \"three_class_recall_d3\": 0.728, \"three_class_precision_d1\": 0.852, \"three_class_precision_d2\": 0.605, \"three_class_precision_d3\": 0.68, \"three_class_f1_d1\": 0.82, \"three_class_f1_d2\": 0.606, \"three_class_f1_d3\": 0.703, \"three_class_lr_acc\": 0.671, \"filtered_three_class_acc\": 0.747, \"filtered_three_class_acc_ci\": [0.727, 0.764], \"filtered_three_class_mae\": 0.2759, \"filtered_three_class_recall_d1\": 0.862, \"filtered_three_class_recall_d2\": 0.635, \"filtered_three_class_recall_d3\": 0.735, \"filtered_three_class_precision_d1\": 0.867, \"filtered_three_class_precision_d2\": 0.659, \"filtered_three_class_precision_d3\": 0.704, \"filtered_three_class_f1_d1\": 0.864, \"filtered_three_class_f1_d2\": 0.647, \"filtered_three_class_f1_d3\": 0.719, \"filtered_three_class_auc_1v2\": 0.8926, \"filtered_three_class_auc_1v3\": 0.9769, \"filtered_three_class_auc_2v3\": 0.8272, \"filtered_three_class_sample_count\": 12012, \"best_model\": \"RandomForest\", \"top_features\": [\"var_surprisal\", \"p90_ppl\", \"mean_ppl\", \"mean_surprisal\", \"p75_ppl\"], \"truncation_length\": 498, \"feature_dim\": 19}}, {\"id\": \"plan_001b\", \"claim\": 1, \"description\": \"Pythia-1.4B — temperature τ=0.9 chain (4 depths)\", \"priority\": \"P0\", \"gpu_budget_hours\": 2, \"deps\": [], \"registry_id\": \"pythia_temp09_001\", \"notes\": \"τ=0.9 temp-only decoding. Data→data/pythia_temp09/. Launched on cuda:0 after OLMo.\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"four_class\": {\"rf_accuracy\": 0.7625, \"rf_accuracy_ci\": [0.749, 0.7753], \"lr_accuracy\": 0.7405, \"lr_accuracy_ci\": [0.7265, 0.7545], \"pairwise_auc\": {\"0v1\": 0.9968, \"0v2\": 0.9993, \"0v3\": 0.9991, \"1v2\": 0.8327, \"1v3\": 0.959, \"2v3\": 0.7928}, \"top_features\": [\"var_surprisal (0.1776)\", \"p90_ppl (0.1501)\", \"mean_ppl (0.1140)\", \"mean_surprisal (0.0889)\", \"p75_ppl (0.0687)\"], \"feature_dim\": 19, \"truncation_length\": 498}, \"three_class_full\": {\"accuracy\": 0.6983, \"accuracy_ci\": [0.682, 0.715], \"mae\": 0.3357, \"recall\": {\"d1\": 0.802, \"d2\": 0.554, \"d3\": 0.739}, \"precision\": {\"d1\": 0.792, \"d2\": 0.608, \"d3\": 0.686}, \"f1\": {\"d1\": 0.797, \"d2\": 0.58, \"d3\": 0.712}, \"pairwise_auc\": {\"d1v2\": 0.8354, \"d1v3\": 0.9631, \"d2v3\": 0.8043}}, \"three_class_filtered\": {\"accuracy\": 0.7252, \"accuracy_ci\": [0.7064, 0.7427], \"mae\": 0.2953, \"recall\": {\"d1\": 0.842, \"d2\": 0.596, \"d3\": 0.735}, \"precision\": {\"d1\": 0.821, \"d2\": 0.628, \"d3\": 0.715}, \"f1\": {\"d1\": 0.831, \"d2\": 0.611, \"d3\": 0.725}, \"pairwise_auc\": {\"d1v2\": 0.8656, \"d1v3\": 0.9772, \"d2v3\": 0.8295}, \"n_samples\": 11445, \"n_removed\": 3555}, \"finetune_losses\": {\"depth_0\": 2.222, \"depth_1\": 1.37, \"depth_2\": 1.006}, \"code_contamination\": {\"d0\": 0.004, \"d1\": 0.077, \"d2\": 0.116, \"d3\": 0.136}}}, {\"id\": \"plan_001c\", \"claim\": 1, \"description\": \"Pythia-1.4B — top-k k=50 chain (4 depths)\", \"priority\": \"P0\", \"gpu_budget_hours\": 2, \"deps\": [], \"registry_id\": \"pythia_topk50_001\", \"notes\": \"top-k k=50 decoding. Data→data/pythia_topk50/. Queued for cuda:1 after GPT-2 XL.\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"rf_4class_acc\": 0.696, \"rf_4class_acc_ci\": [0.6825, 0.7107], \"lr_4class_acc\": 0.682, \"rf_3class_acc\": 0.592, \"rf_3class_acc_ci\": [0.575, 0.6107], \"rf_3class_filtered_acc\": 0.6133, \"rf_3class_filtered_acc_ci\": [0.593, 0.6312], \"pairwise_auc_rf\": {\"d0v1\": 0.9927, \"d0v2\": 0.9983, \"d0v3\": 0.9978, \"d1v2\": 0.7518, \"d1v3\": 0.9176, \"d2v3\": 0.6918}, \"pairwise_auc_3class_filtered_rf\": {\"d1v2\": 0.768, \"d1v3\": 0.9323, \"d2v3\": 0.7013}, \"feature_importance_top5\": [\"var_surprisal\", \"p90_ppl\", \"mean_ppl\", \"mean_surprisal\", \"p75_ppl\"], \"finetune_loss\": {\"depth_0\": 2.2406, \"depth_1\": 1.6704, \"depth_2\": 1.4374}, \"code_contamination_narrow\": {\"depth_0\": 0.004, \"depth_1\": 0.077, \"depth_2\": 0.123, \"depth_3\": 0.131}}}, {\"id\": \"plan_002\", \"claim\": 1, \"description\": \"OLMo-1B recursive chain (4 depths × 3 strategies)\", \"priority\": \"P0\", \"gpu_budget_hours\": 8, \"deps\": [], \"registry_id\": \"cross_model_olmo_002\", \"notes\": \"OLMo-1B on Dolma. q_proj/k_proj/v_proj LoRA. olmo_001 failed (script bug), olmo_002 重跑。等 cuda:0 释放。\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"four_class_acc_rf\": 0.788, \"four_class_acc_ci\": [0.776, 0.8], \"four_class_acc_lr\": 0.751, \"auc_0v1\": 0.9834, \"auc_0v2\": 0.9949, \"auc_0v3\": 0.9989, \"auc_1v2\": 0.8673, \"auc_1v3\": 0.9806, \"auc_2v3\": 0.8124, \"three_class_acc\": 0.744, \"three_class_acc_ci\": [0.728, 0.76], \"three_class_mae\": 0.27, \"three_class_auc_1v2\": 0.8664, \"three_class_auc_1v3\": 0.9852, \"three_class_auc_2v3\": 0.8274, \"three_class_recall\": {\"d1\": 0.864, \"d2\": 0.607, \"d3\": 0.761}, \"three_class_precision\": {\"d1\": 0.863, \"d2\": 0.646, \"d3\": 0.718}, \"four_class_per_class\": {\"d0\": {\"precision\": 0.95, \"recall\": 0.99, \"f1\": 0.97}, \"d1\": {\"precision\": 0.85, \"recall\": 0.82, \"f1\": 0.83}, \"d2\": {\"precision\": 0.63, \"recall\": 0.59, \"f1\": 0.61}, \"d3\": {\"precision\": 0.71, \"recall\": 0.76, \"f1\": 0.73}}, \"finetune_losses\": {\"depth_0\": 2.269, \"depth_1\": 1.65, \"depth_2\": 1.226}, \"top_features\": [\"p90_ppl (0.18)\", \"var_surprisal (0.16)\", \"p75_ppl (0.11)\", \"mean_surprisal (0.08)\", \"type_token_ratio (0.06)\"], \"code_contamination\": {\"d0\": 0.005, \"d1\": 0.027, \"d2\": 0.007, \"d3\": 0.008}, \"feature_dim\": 19, \"truncation_length\": 507}}, {\"id\": \"plan_003\", \"claim\": 1, \"description\": \"GPT-2 XL 1.5B recursive chain (4 depths × 3 strategies)\", \"priority\": \"P0\", \"gpu_budget_hours\": 8, \"deps\": [], \"registry_id\": \"cross_model_gpt2xl_001\", \"notes\": \"GPT-2 most studied in collapse literature. WebText training data. c_attn/c_proj LoRA.\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"four_class_acc_rf\": 0.833, \"four_class_acc_ci\": [0.823, 0.845], \"four_class_acc_lr\": 0.813, \"auc_0v1\": 0.9941, \"auc_0v2\": 0.9965, \"auc_0v3\": 0.9988, \"auc_1v2\": 0.9131, \"auc_1v3\": 0.9857, \"auc_2v3\": 0.8829, \"three_class_acc\": 0.793, \"three_class_acc_ci\": [0.778, 0.806], \"three_class_auc_1v2\": 0.9109, \"three_class_auc_1v3\": 0.989, \"three_class_auc_2v3\": 0.8885, \"finetune_losses\": {\"depth_0\": 2.55, \"depth_1\": 1.715, \"depth_2\": 1.342}, \"top_features\": [\"p90_ppl (0.208)\", \"var_surprisal (0.208)\", \"p75_ppl (0.103)\", \"mean_surprisal (0.082)\", \"mean_ppl (0.065)\"], \"code_contamination\": {\"d0\": 0.005, \"d1\": 0.005, \"d2\": 0.013, \"d3\": 0.007}}}, {\"id\": \"plan_002b\", \"claim\": 1, \"description\": \"OLMo-1B — temperature τ=0.9 chain (4 depths)\", \"priority\": \"P0\", \"gpu_budget_hours\": 2, \"deps\": [], \"registry_id\": \"olmo_temp09_001\", \"notes\": \"3×3 matrix cell. OLMo temp09. olmo_temp09_001 正在运行 (PID 205384, cuda:1)。之前被 cron 子进程误报为 failed，已修正。olmo_temp09_002 已取消。\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"four_class\": {\"rf_accuracy\": 0.8203, \"d1v2_auc\": 0.901}, \"three_class_filtered\": {\"rf_accuracy\": 0.7757}, \"finetune_losses\": {\"depth_0\": 2.27, \"depth_1\": 1.63, \"depth_2\": 1.18}, \"code_contamination_narrow_max\": 0.007, \"top_features\": [\"p90_ppl (0.199)\", \"var_surprisal (0.174)\", \"p75_ppl (0.126)\"]}}, {\"id\": \"plan_002c\", \"claim\": 1, \"description\": \"OLMo-1B — top-k k=50 chain (4 depths)\", \"priority\": \"P0\", \"gpu_budget_hours\": 2, \"deps\": [], \"registry_id\": \"olmo_topk50_001\", \"notes\": \"3×3 matrix cell. OLMo topk50. 等 cuda:1 释放后提交。\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"four_class\": {\"lr_accuracy\": 0.757, \"lr_accuracy_ci\": [0.7425, 0.7702], \"rf_accuracy\": 0.742, \"rf_accuracy_ci\": [0.7282, 0.7555]}, \"pairwise_auc\": {\"lr\": {\"d0v1\": 0.9969, \"d0v2\": 0.9995, \"d0v3\": 0.9998, \"d1v2\": 0.8293, \"d1v3\": 0.9592, \"d2v3\": 0.7497}, \"rf\": {\"d0v1\": 0.993, \"d0v2\": 0.9983, \"d0v3\": 0.9991, \"d1v2\": 0.8305, \"d1v3\": 0.9591, \"d2v3\": 0.7357}}, \"three_class\": {\"lr_accuracy\": 0.6567, \"lr_accuracy_ci\": [0.6403, 0.6733], \"rf_accuracy\": 0.6517, \"rf_accuracy_ci\": [0.635, 0.6687]}, \"three_class_filtered\": {\"lr_accuracy\": 0.6703, \"lr_accuracy_ci\": [0.653, 0.6882], \"rf_accuracy\": 0.6699, \"rf_accuracy_ci\": [0.6537, 0.6875]}, \"three_class_filtered_auc\": {\"lr\": {\"d1v2\": 0.7903, \"d1v3\": 0.97, \"d2v3\": 0.7501}, \"rf\": {\"d1v2\": 0.8071, \"d1v3\": 0.9645, \"d2v3\": 0.7364}}, \"feature_importance_top5\": [\"p90_ppl\", \"var_surprisal\", \"p75_ppl\", \"mean_surprisal\", \"p25_ppl\"], \"finetune_loss\": {\"depth_1\": 1.946, \"depth_2\": 1.726}, \"code_contamination\": {\"narrow_pct\": {\"depth_0\": 0.4, \"depth_1\": 0.8, \"depth_2\": 0.3, \"depth_3\": 0.4}, \"broad_pct\": {\"depth_0\": 0.5, \"depth_1\": 2.5, \"depth_2\": 0.8, \"depth_3\": 0.7}}}}, {\"id\": \"plan_003b\", \"claim\": 1, \"description\": \"GPT-2 XL — temperature τ=0.9 chain (4 depths)\", \"priority\": \"P0\", \"gpu_budget_hours\": 2, \"deps\": [], \"registry_id\": \"gpt2xl_temp09_001\", \"notes\": \"3×3 matrix cell. Running on cuda:1.\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"data\": {\"samples_per_depth\": 5000, \"total_samples\": 20000, \"depths\": 4}, \"finetune_losses\": {\"depth_1\": 2.5498, \"depth_2\": 1.6972, \"depth_3\": 1.2922}, \"code_contamination\": {\"depth_0\": {\"broad\": 25, \"narrow\": 20, \"broad_pct\": 0.5, \"narrow_pct\": 0.4}, \"depth_1\": {\"broad\": 25, \"narrow\": 40, \"broad_pct\": 0.5, \"narrow_pct\": 0.8}, \"depth_2\": {\"broad\": 34, \"narrow\": 80, \"broad_pct\": 0.7, \"narrow_pct\": 1.6}, \"depth_3\": {\"broad\": 25, \"narrow\": 76, \"broad_pct\": 0.5, \"narrow_pct\": 1.5}}, \"four_class\": {\"rf_accuracy\": 0.8542, \"rf_accuracy_ci\": [0.843, 0.8653], \"lr_accuracy\": 0.8155, \"lr_accuracy_ci\": [0.8025, 0.8273], \"rf_auc\": {\"d0v1\": 0.9963, \"d0v2\": 0.9992, \"d0v3\": 1, \"d1v2\": 0.9367, \"d1v3\": 0.9947, \"d2v3\": 0.8815}, \"lr_auc\": {\"d0v1\": 0.984, \"d0v2\": 0.9998, \"d0v3\": 1, \"d1v2\": 0.8903, \"d1v3\": 0.9824, \"d2v3\": 0.8183}, \"top_features\": [\"p90_ppl\", \"mean_surprisal\", \"p75_ppl\", \"var_surprisal\"]}, \"three_class\": {\"rf_accuracy\": 0.82, \"rf_accuracy_ci\": [0.806, 0.834], \"lr_accuracy\": 0.7773, \"lr_accuracy_ci\": [0.7627, 0.792], \"rf_auc\": {\"d1v2\": 0.9418, \"d1v3\": 0.9967, \"d2v3\": 0.8849}}, \"three_class_filtered\": {\"rf_accuracy\": 0.815, \"rf_accuracy_ci\": [0.7999, 0.8298], \"lr_accuracy\": 0.7869, \"lr_accuracy_ci\": [0.7711, 0.8016], \"rf_auc\": {\"d1v2\": 0.937, \"d1v3\": 0.9944, \"d2v3\": 0.8891}}}}, {\"id\": \"plan_003c\", \"claim\": 1, \"description\": \"GPT-2 XL — top-k k=50 chain (4 depths)\", \"priority\": \"P0\", \"gpu_budget_hours\": 2, \"deps\": [], \"registry_id\": \"gpt2xl_topk50_001\", \"notes\": \"3×3 matrix cell. GPT-2 XL topk50.\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"four_class\": {\"accuracy\": 0.766, \"depth1_vs_depth2_auc\": 0.8259, \"pass\": true}, \"three_class\": {\"accuracy\": 0.695, \"depth1_vs_depth2_auc\": 0.8392, \"pass\": true}, \"three_class_filtered\": {\"accuracy\": 0.684, \"depth1_vs_depth2_auc\": 0.8314, \"pass\": true}}}, {\"id\": \"plan_004\", \"claim\": 1, \"description\": \"DCOL training: RoBERTa-large with learnable margins contrastive loss (v6, non-blocking)\", \"priority\": \"P1\", \"gpu_budget_hours\": 8, \"deps\": [\"plan_001b\", \"plan_002\", \"plan_003\"], \"notes\": \"v1-v5 DeBERTa 全部失败 (D011)。v6 换 RoBERTa-large 非阻塞尝试。成功→bonus section，失败→negative analysis。不阻塞论文进度。\", \"registry_id\": \"dcol_roberta_v6_001\", \"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"test_acc\": 0.6448, \"test_mae\": 0.4052, \"best_val_acc\": 0.6436, \"best_epoch\": 1, \"epochs_run\": 4, \"early_stopping\": true, \"train_acc_final\": 0.75, \"rf_baseline\": 0.782, \"delta_vs_baseline\": -0.137, \"overfitting\": \"severe (train 75% vs val 64.4% at best epoch)\", \"stability\": \"resolved (no NaN, no collapse, collapse guard passed at step 500)\"}}, {\"id\": \"plan_005\", \"claim\": 1, \"description\": \"Leave-one-model-out generalization (RF): train on 2 families, test on 3rd\", \"priority\": \"P0\", \"gpu_budget_hours\": 2, \"deps\": [\"plan_001b\", \"plan_002\", \"plan_003\"], \"registry_id\": \"cross_model_loo_v1\", \"notes\": \"3 rotations with RF classifier. Research-phase gate: cross-model acc ≥ 45%. Plan A: 不依赖 DCOL。均值 66.4%，gate 通过。\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"mean_acc\": 0.664, \"mean_3class_acc\": 0.5544, \"holdout_pythia\": {\"acc\": 0.6242, \"ci95\": [0.6205, 0.6282], \"3class_acc\": 0.499, \"3class_ci95\": [0.4944, 0.5034], \"d1v2_auc\": 0.5617, \"d1v3_auc\": 0.8547, \"d2v3_auc\": 0.6534, \"d0v1_auc\": 0.9921, \"d0v2_auc\": 0.9999, \"d0v3_auc\": 0.9998, \"per_class\": {\"d0\": {\"P\": 0.9889, \"R\": 1, \"F1\": 0.9944}, \"d1\": {\"P\": 0.6655, \"R\": 0.493, \"F1\": 0.5664}, \"d2\": {\"P\": 0.3699, \"R\": 0.2677, \"F1\": 0.3106}, \"d3\": {\"P\": 0.483, \"R\": 0.7363, \"F1\": 0.5834}}}, \"holdout_olmo\": {\"acc\": 0.6921, \"ci95\": [0.6884, 0.696], \"3class_acc\": 0.592, \"3class_ci95\": [0.5873, 0.5965], \"d1v2_auc\": 0.7687, \"d1v3_auc\": 0.9277, \"d2v3_auc\": 0.6862, \"per_class\": {\"d0\": {\"P\": 0.9783, \"R\": 0.9925, \"F1\": 0.9854}, \"d1\": {\"P\": 0.7111, \"R\": 0.7549, \"F1\": 0.7324}, \"d2\": {\"P\": 0.4616, \"R\": 0.4327, \"F1\": 0.4467}, \"d3\": {\"P\": 0.5964, \"R\": 0.5883, \"F1\": 0.5923}}}, \"holdout_gpt2xl\": {\"acc\": 0.6756, \"ci95\": [0.6717, 0.6795], \"3class_acc\": 0.5723, \"3class_ci95\": [0.5679, 0.5767], \"d1v2_auc\": 0.8157, \"d1v3_auc\": 0.9149, \"d2v3_auc\": 0.6639, \"d0v1_auc\": 0.9927, \"d0v2_auc\": 0.9919, \"d0v3_auc\": 0.9876, \"per_class\": {\"d0\": {\"P\": 0.9484, \"R\": 0.9853, \"F1\": 0.9665}, \"d1\": {\"P\": 0.7093, \"R\": 0.7465, \"F1\": 0.7274}, \"d2\": {\"P\": 0.4521, \"R\": 0.5255, \"F1\": 0.486}, \"d3\": {\"P\": 0.5963, \"R\": 0.445, \"F1\": 0.5097}}}, \"mean_per_class_recall\": {\"d0\": 0.9926, \"d1\": 0.6648, \"d2\": 0.4086, \"d3\": 0.5899}, \"lowest_recall_class\": \"d2\", \"lowest_recall_value\": 0.4086, \"detailed_artifact\": \"cross_model_loo_detailed.json\"}}, {\"id\": \"plan_006\", \"claim\": 2, \"description\": \"Depth Degradation Atlas: monotonicity scores, EDD, cross-model/strategy heatmaps\", \"priority\": \"P0\", \"gpu_budget_hours\": 3, \"deps\": [\"plan_001b\", \"plan_002\", \"plan_003\"], \"registry_id\": \"atlas_v1_analysis\", \"notes\": \"v1 完成: monotonicity ρ=-0.82~-0.89, EDD=3 (未饱和), cross-model Jaccard=0.667, rank corr ρ>0.85. 4 JSON in artifacts/atlas/. 待完成: 正式出图(AUC decay/feature trajectory/heatmap/confusion matrix) + 纳入 3×3 剩余 cells 数据.\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"monotonicity_rho_range\": [-0.89, -0.82], \"edd\": 3, \"edd_saturated\": false, \"cross_model_jaccard\": 0.667, \"cross_model_rank_corr\": 0.85, \"artifacts\": [\"monotonicity_scores.json\", \"cross_model_comparison.json\", \"edd_analysis.json\", \"feature_trajectory.json\"]}}, {\"id\": \"plan_006b\", \"claim\": 1, \"description\": \"3-class experiment (d1/d2/d3 only): isolate pure depth gradient from real-vs-synthetic signal\", \"priority\": \"P0\", \"gpu_budget_hours\": 0.5, \"deps\": [\"plan_001a\"], \"status\": \"DONE\", \"registry_id\": \"mvp_pipeline_pythia_002\", \"notes\": \"Reviewer-requested. 3-class acc=70.8% [0.692,0.725], d1v2 AUC=0.854, d2v3=0.793. Results in mvp_pipeline_pythia_002 metrics.\", \"conclusion\": \"success\", \"metrics\": {\"full_4class_acc\": 0.782, \"full_4class_acc_ci\": [0.769, 0.794], \"full_4class_acc_stratified\": 0.781, \"full_mae\": 0.2367, \"full_auc_0v1\": 0.9975, \"full_auc_1v2\": 0.8607, \"full_auc_2v3\": 0.8005, \"filtered_4class_acc\": 0.816, \"filtered_4class_acc_ci\": [0.803, 0.829], \"filtered_mae\": 0.1995, \"filtered_auc_0v1\": 0.9977, \"filtered_auc_1v2\": 0.8782, \"filtered_auc_2v3\": 0.8323, \"filtered_sample_count\": 16993, \"three_class_acc\": 0.708, \"three_class_acc_ci\": [0.692, 0.725], \"three_class_mae\": 0.3203, \"three_class_auc_1v2\": 0.854, \"three_class_auc_1v3\": 0.9569, \"three_class_auc_2v3\": 0.7931, \"three_class_recall_d1\": 0.79, \"three_class_recall_d2\": 0.607, \"three_class_recall_d3\": 0.728, \"three_class_precision_d1\": 0.852, \"three_class_precision_d2\": 0.605, \"three_class_precision_d3\": 0.68, \"three_class_f1_d1\": 0.82, \"three_class_f1_d2\": 0.606, \"three_class_f1_d3\": 0.703, \"three_class_lr_acc\": 0.671, \"filtered_three_class_acc\": 0.747, \"filtered_three_class_acc_ci\": [0.727, 0.764], \"filtered_three_class_mae\": 0.2759, \"filtered_three_class_recall_d1\": 0.862, \"filtered_three_class_recall_d2\": 0.635, \"filtered_three_class_recall_d3\": 0.735, \"filtered_three_class_precision_d1\": 0.867, \"filtered_three_class_precision_d2\": 0.659, \"filtered_three_class_precision_d3\": 0.704, \"filtered_three_class_f1_d1\": 0.864, \"filtered_three_class_f1_d2\": 0.647, \"filtered_three_class_f1_d3\": 0.719, \"filtered_three_class_auc_1v2\": 0.8926, \"filtered_three_class_auc_1v3\": 0.9769, \"filtered_three_class_auc_2v3\": 0.8272, \"filtered_three_class_sample_count\": 12012, \"best_model\": \"RandomForest\", \"top_features\": [\"var_surprisal\", \"p90_ppl\", \"mean_ppl\", \"mean_surprisal\", \"p75_ppl\"], \"truncation_length\": 498, \"feature_dim\": 19}}, {\"id\": \"plan_007\", \"claim\": 1, \"description\": \"Leave-one-strategy-out robustness (RF): train on 2 strategies, test on 3rd\", \"priority\": \"P0\", \"gpu_budget_hours\": 2, \"deps\": [\"plan_001b\", \"plan_002\", \"plan_003\"], \"registry_id\": \"cross_strategy_loo_001\", \"notes\": \"3 rotations per model with RF. Plan A: 不依赖 DCOL。均值 59.1%，9/9 > chance。temp09 d1v2 反转已解释 (Covariate Shift)。\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"mean_4class_acc\": 0.5908, \"pythia_holdout_nucleus\": {\"acc\": 0.6935, \"d1v2_auc\": 0.6903, \"d2v3_auc\": 0.7626}, \"pythia_holdout_temp09\": {\"acc\": 0.6281, \"d1v2_auc\": 0.576, \"d2v3_auc\": 0.724}, \"pythia_holdout_topk50\": {\"acc\": 0.5151, \"d1v2_auc\": 0.6393, \"d2v3_auc\": 0.5801}, \"gpt2xl_holdout_nucleus\": {\"acc\": 0.5993, \"d1v2_auc\": 0.7826, \"d2v3_auc\": 0.4985}, \"gpt2xl_holdout_temp09\": {\"acc\": 0.5609, \"d1v2_auc\": 0.1288, \"d2v3_auc\": 0.6366}, \"gpt2xl_holdout_topk50\": {\"acc\": 0.5364, \"d1v2_auc\": 0.8308, \"d2v3_auc\": 0.7222}, \"olmo_holdout_nucleus\": {\"acc\": 0.6538, \"d1v2_auc\": 0.7931, \"d2v3_auc\": 0.6076}, \"olmo_holdout_temp09\": {\"acc\": 0.5816, \"d1v2_auc\": 0.2529, \"d2v3_auc\": 0.7015}, \"olmo_holdout_topk50\": {\"acc\": 0.5488, \"d1v2_auc\": 0.8549, \"d2v3_auc\": 0.7107}, \"finding_temp09_d1v2_inversion\": \"d1v2 AUC inverts when holding out temp09 (GPT-2 XL: 0.13, OLMo: 0.25) — temp09 d1→d2 features differ fundamentally from nucleus/topk50\"}}, {\"id\": \"plan_008\", \"claim\": 1, \"description\": \"DeBERTa end-to-end classifier: direct text→depth\", \"priority\": \"P1\", \"gpu_budget_hours\": 10, \"deps\": [\"plan_001b\", \"plan_002\", \"plan_003\"], \"registry_id\": \"n2_deberta_finetune_001\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy_mean\": 0.5831, \"accuracy_std\": 0.0467, \"per_class_f1\": {\"d0\": 0.947, \"d1\": 0.378, \"d2\": 0.247, \"d3\": 0.656}, \"pairwise_auc\": {\"d0v1\": 0.981, \"d1v2\": 0.733, \"d2v3\": 0.755}, \"vs_rf_baseline\": \"58.3% vs 78.2% (-19.9pp)\", \"elapsed_seconds\": 3727}}, {\"id\": \"plan_009\", \"claim\": 1, \"description\": \"Baseline battery: DivEye, perplexity regression, CORAL, CE, zero-shot LLM\", \"priority\": \"P1\", \"gpu_budget_hours\": 8, \"registry_id\": \"baseline_battery_001\", \"deps\": [\"plan_001b\", \"plan_002\", \"plan_003\"], \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"ppl_reg_single_4class_acc\": 0.251, \"ppl_reg_multi_4class_acc\": 0.622, \"ce_mlp_4class_acc\": 0.749, \"coral_4class_acc\": 0.7807, \"coral_3class_acc\": 0.7089, \"coral_mae\": 0.2273, \"coral_d1v2_auc\": 0.8179, \"diveye_4class_acc\": 0.7817, \"diveye_3class_acc\": 0.7098, \"diveye_d1v2_auc\": 0.8654, \"rf_4class_acc\": 0.781, \"lr_4class_acc\": 0.75, \"note\": \"CE-MLP 74.9% may be undertrained (5 epochs); CORAL updated to 100 epochs. All results from Pythia nucleus baseline features.\"}}, {\"id\": \"plan_010\", \"claim\": 1, \"description\": \"DCOL component ablation\", \"priority\": \"P2\", \"gpu_budget_hours\": 8, \"deps\": [\"plan_004\"], \"status\": \"planned\", \"notes\": \"DCOL v6 失败 (D018)，前置条件 plan_004 未满足，取消。\"}, {\"id\": \"plan_011\", \"claim\": 2, \"description\": \"Depth extension to 5 generations + EDD saturation analysis\", \"priority\": \"P0\", \"gpu_budget_hours\": 4, \"deps\": [\"plan_001a\"], \"registry_id\": \"depth_extension_binary_pairwise_002\", \"notes\": \"Pythia-1.4B nucleus EDD=4 (binary d3v4=0.784>0.75, d4v5=0.683<0.75)。6-class pairwise AUC 因决策边界稀释不可用，必须用 binary pairwise classifier。\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"d1v2_auc\": 0.925, \"d1v2_ci95\": [0.9138, 0.9354], \"d2v3_auc\": 0.8225, \"d2v3_ci95\": [0.8052, 0.8402], \"d3v4_auc\": 0.7837, \"d3v4_ci95\": [0.7648, 0.8024], \"d4v5_auc\": 0.6832, \"d4v5_ci95\": [0.6611, 0.7045], \"edd_determination\": \"4\"}}, {\"id\": \"plan_011b\", \"claim\": 2, \"description\": \"GPT-2 XL depth extension d4/d5 + EDD cross-model verification\", \"priority\": \"P1\", \"gpu_budget_hours\": 4, \"deps\": [\"plan_003\", \"plan_011\"], \"registry_id\": \"depth_extension_gpt2xl_d4d5_001\", \"notes\": \"GPT-2 XL 是 3×3 矩阵信号最强模型 (85.4%)。验证 EDD 跨模型一致性，直接增强 Claim 2。已 RUNNING on cuda:0。\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"binary_pairwise\": {\"d1v2_auc\": 0.966, \"d2v3_auc\": 0.919, \"d3v4_auc\": 0.75, \"d4v5_auc\": 0.681}, \"six_class_rf_accuracy\": 0.679, \"edd_at_075\": 4, \"edd_note\": \"d3v4=0.750>=0.75 PASS, d4v5=0.681<0.75 FAIL → EDD=4\"}}, {\"id\": \"plan_011c\", \"claim\": 2, \"description\": \"OLMo-1B depth extension d4/d5 + EDD cross-model verification\", \"priority\": \"P1\", \"gpu_budget_hours\": 4, \"deps\": [\"plan_002\", \"plan_011\"], \"notes\": \"第 3 个模型 EDD 验证。代码已就绪 (run_depth_extension_olmo.sh)，含 binary pairwise eval。Reviewer PASS。排 granularity ablation 之后上 cuda:1。\", \"registry_id\": \"depth_extension_olmo_d4d5_002\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"binary_pairwise\": {\"d1v2_auc\": 0.968, \"d2v3_auc\": 0.843, \"d3v4_auc\": 0.765, \"d4v5_auc\": 0.684}, \"six_class_rf_accuracy\": 0.667, \"edd_at_075\": 4, \"edd_note\": \"d3v4=0.765>=0.75 PASS, d4v5=0.684<0.75 FAIL → EDD=4\"}}, {\"id\": \"plan_012\", \"claim\": 1, \"description\": \"Granularity ablation (RF): binary / 3-class / 4-class / 6-class\", \"registry_id\": \"granularity_ablation_rf_001\", \"priority\": \"P1\", \"gpu_budget_hours\": 1, \"deps\": [\"plan_001b\", \"plan_002\", \"plan_003\"], \"notes\": \"Plan A: 用 RF 做，不依赖 DCOL。与 plan_011 depth extension 联动（6-class 需要 5+ depths 数据）。\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"summary\": {\"binary_acc_mean\": 0.995, \"binary_acc_std\": 0.004, \"3class_acc_mean\": 0.721, \"3class_acc_std\": 0.067, \"4class_acc_mean\": 0.783, \"4class_acc_std\": 0.048, \"6class_acc\": 0.629, \"note\": \"3-class excludes d0 (most separable class), so 3class < 4class is by design. True granularity trend (with d0): binary 99.5% > 4-class 78.3% > 6-class 62.9% — monotonic decrease confirmed.\"}, \"per_cell\": {\"pythia_nucleus095\": {\"binary\": {\"acc\": 0.998, \"ci95\": [0.9965, 0.9992], \"auc\": {\"d0v1\": 1}}, \"3class\": {\"acc\": 0.7117, \"ci95\": [0.6947, 0.7283], \"auc\": {\"d1v2\": 0.861, \"d2v3\": 0.796}}, \"4class\": {\"acc\": 0.7812, \"ci95\": [0.7677, 0.7935], \"auc\": {\"d0v1\": 0.998, \"d1v2\": 0.868, \"d2v3\": 0.804}}, \"6class\": {\"acc\": 0.6292, \"ci95\": [0.6175, 0.6412], \"auc\": {\"d0v1\": 0.997, \"d1v2\": 0.83, \"d2v3\": 0.689, \"d3v4\": 0.692, \"d4v5\": 0.691}}}, \"pythia_temp09\": {\"binary\": {\"acc\": 0.997, \"ci95\": [0.9952, 0.9985], \"auc\": {\"d0v1\": 1}}, \"3class\": {\"acc\": 0.7063, \"ci95\": [0.6907, 0.723], \"auc\": {\"d1v2\": 0.838, \"d2v3\": 0.806}}, \"4class\": {\"acc\": 0.7605, \"ci95\": [0.7475, 0.7738], \"auc\": {\"d0v1\": 0.997, \"d1v2\": 0.835, \"d2v3\": 0.796}}}, \"pythia_topk50\": {\"binary\": {\"acc\": 0.9945, \"ci95\": [0.992, 0.9965], \"auc\": {\"d0v1\": 1}}, \"3class\": {\"acc\": 0.5883, \"ci95\": [0.5717, 0.6073], \"auc\": {\"d1v2\": 0.749, \"d2v3\": 0.705}}, \"4class\": {\"acc\": 0.6943, \"ci95\": [0.6805, 0.708], \"auc\": {\"d0v1\": 0.994, \"d1v2\": 0.761, \"d2v3\": 0.695}}}, \"gpt2xl_nucleus095\": {\"binary\": {\"acc\": 0.9912, \"ci95\": [0.9882, 0.9938], \"auc\": {\"d0v1\": 0.999}}, \"3class\": {\"acc\": 0.79, \"ci95\": [0.775, 0.8047], \"auc\": {\"d1v2\": 0.913, \"d2v3\": 0.891}}, \"4class\": {\"acc\": 0.8393, \"ci95\": [0.8283, 0.8502], \"auc\": {\"d0v1\": 0.995, \"d1v2\": 0.916, \"d2v3\": 0.885}}}, \"gpt2xl_temp09\": {\"binary\": {\"acc\": 0.9978, \"ci95\": [0.9962, 0.999], \"auc\": {\"d0v1\": 1}}, \"3class\": {\"acc\": 0.826, \"ci95\": [0.8117, 0.8397], \"auc\": {\"d1v2\": 0.944, \"d2v3\": 0.887}}, \"4class\": {\"acc\": 0.8552, \"ci95\": [0.844, 0.866], \"auc\": {\"d0v1\": 0.997, \"d1v2\": 0.939, \"d2v3\": 0.886}}}, \"gpt2xl_topk50\": {\"binary\": {\"acc\": 0.9952, \"ci95\": [0.993, 0.9972], \"auc\": {\"d0v1\": 1}}, \"3class\": {\"acc\": 0.695, \"ci95\": [0.6777, 0.7113], \"auc\": {\"d1v2\": 0.844, \"d2v3\": 0.766}}, \"4class\": {\"acc\": 0.757, \"ci95\": [0.743, 0.7702], \"auc\": {\"d0v1\": 0.993, \"d1v2\": 0.824, \"d2v3\": 0.762}}}, \"olmo_nucleus095\": {\"binary\": {\"acc\": 0.9868, \"ci95\": [0.9832, 0.99], \"auc\": {\"d0v1\": 0.999}}, \"3class\": {\"acc\": 0.7503, \"ci95\": [0.7353, 0.7657], \"auc\": {\"d1v2\": 0.873, \"d2v3\": 0.831}}, \"4class\": {\"acc\": 0.7897, \"ci95\": [0.7772, 0.8027], \"auc\": {\"d0v1\": 0.985, \"d1v2\": 0.87, \"d2v3\": 0.816}}}, \"olmo_temp09\": {\"binary\": {\"acc\": 0.9982, \"ci95\": [0.997, 0.9992], \"auc\": {\"d0v1\": 1}}, \"3class\": {\"acc\": 0.7633, \"ci95\": [0.7477, 0.7797], \"auc\": {\"d1v2\": 0.894, \"d2v3\": 0.838}}, \"4class\": {\"acc\": 0.8263, \"ci95\": [0.8147, 0.8385], \"auc\": {\"d0v1\": 0.996, \"d1v2\": 0.903, \"d2v3\": 0.828}}}, \"olmo_topk50\": {\"binary\": {\"acc\": 0.996, \"ci95\": [0.994, 0.9978], \"auc\": {\"d0v1\": 1}}, \"3class\": {\"acc\": 0.661, \"ci95\": [0.644, 0.6773], \"auc\": {\"d1v2\": 0.812, \"d2v3\": 0.739}}, \"4class\": {\"acc\": 0.7435, \"ci95\": [0.73, 0.758], \"auc\": {\"d0v1\": 0.995, \"d1v2\": 0.831, \"d2v3\": 0.738}}}}, \"boundary_dilution\": {\"d2v3_auc_by_granularity_pythia_nuc\": {\"3class\": 0.796, \"4class\": 0.804, \"6class\": 0.689}, \"d1v2_auc_by_granularity_pythia_nuc\": {\"3class\": 0.861, \"4class\": 0.868, \"6class\": 0.83}, \"note\": \"d2v3 AUC drops 14% from 4-class to 6-class (0.804→0.689), confirming decision boundary dilution at higher granularity\"}, \"decoding_strategy_ranking\": {\"4class_acc\": {\"temp09\": 0.814, \"nucleus095\": 0.803, \"topk50\": 0.732}, \"note\": \"topk50 consistently worst across all 3 models; temp09 slightly outperforms nucleus095\"}}}, {\"id\": \"plan_013\", \"claim\": 3, \"description\": \"Downstream curation proof-of-concept\", \"priority\": \"P2\", \"gpu_budget_hours\": 15, \"deps\": [\"plan_001b\", \"plan_002\", \"plan_003\"], \"notes\": \"Plan A: 用 RF-predicted depth 做 curation，不依赖 DCOL。\", \"status\": \"planned\"}, {\"id\": \"plan_014\", \"claim\": 2, \"description\": \"7B cross-scale probe\", \"priority\": \"P2\", \"gpu_budget_hours\": 25, \"deps\": [\"plan_001b\", \"plan_002\", \"plan_003\"], \"notes\": \"May need cloud GPU. Plan A: 验证 Atlas findings 是否 scale-dependent。\", \"status\": \"planned\"}, {\"id\": \"plan_015\", \"claim\": 2, \"description\": \"Wild-data calibration on RedPajama/Dolma\", \"priority\": \"P2\", \"gpu_budget_hours\": 5, \"deps\": [\"plan_001b\", \"plan_002\", \"plan_003\"], \"status\": \"planned\"}], \"total\": 24}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "524f268f-8023-4914-a5df-1529f1c28dc7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_3ad3e5f3",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-15T16:35:12.372Z_
+
+<details><summary>↩ Tool result · `toolu_01VmDJkqscygfTqAucQoC3yw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/memory.md\", \"content\": \"# Memory — recursive_gen_depth_est\\n\\n> 非 metrics 性质的决策原因、约束、经验教训。Metrics 查 registry。\\n\\n## 决策原因\\n\\n- **CORAL 需要充分训练**: epochs=5 只得 53.7%，100 epochs 后 78.1%。d1v2 AUC 从 0.34→0.82。之前\\\"CORAL 不适合此任务\\\"的结论是训练不足导致的误判。(2026-05-14)\\n- **CE-MLP 可能也训练不足**: baseline battery 首次跑 CE-MLP 用了 5 epochs 得 74.9%，需要用默认参数重跑确认。(2026-05-14)\\n- **解码策略影响是模型依赖的 (D006, updated)**: Pythia temp09 降 1.9pp，但 GPT-2 XL temp09 升 2.1pp，OLMo temp09 升 3.26pp。论文不能说\\\"strategy-agnostic\\\"，应说\\\"strategy-dependent magnitude with consistent signal presence\\\"。(2026-05-15)\\n- **OLMo temp09 是当前最强配置 (D008)**: 82.03% 4-class RF, d1v2 AUC 0.901。(2026-05-15)\\n- **Feature importance 表述 (D007)**: top feature set (p90_ppl, var_surprisal) 跨 cells 稳定，但 ranking 因模型而异。Claim 2 应说\\\"consistent feature set\\\"而非\\\"var_surprisal as single best\\\"。(2026-05-14)\\n- **Top-k 信号衰减**: Pythia top-k 69.6% vs nucleus 78.2% (-8.6pp)，截断式采样比连续概率重分配保留更弱的深度信号。(2026-05-14)\\n- **Atlas v2 EDD 差异 (D009)**: 6/7 cells EDD=3，但 Pythia topk50 EDD=1（d2v3 AUC=0.692）。\\\"小模型+受限采样→退化信号更早饱和\\\"是 Discussion 核心论点。(2026-05-15)\\n- **Atlas v2 Feature trajectory (D010)**: p90_ppl/var_surprisal/mean_surprisal 随 depth 单调递减（ρ=-1.0），rep_2gram/3gram/4gram 随 depth 单调递增。两类信号互补。(2026-05-15)\\n- **EDD 推荐阈值 T=0.75 (D011)**: T=0.75 下 7/9 维持 EDD=3，仅 topk 掉队。瓶颈统一在 d2v3 pair。(2026-05-15)\\n- **topk 跨模型一致性最高 (D012)**: ρ=0.811，确定性截断使 feature landscape 趋同，但伴随信号衰减。(2026-05-15)\\n- **p90_ppl 优于 mean_ppl 的统计根因**: 1 个样本 (mean_ppl=1.43e13) 贡献 depth-1 mean_ppl 的 94.4%。Token-level perplexity 极度重尾（kurtosis>4900）。p90_ppl 完美单调。论文应说明 percentile-based features 的统计稳健性优势。(2026-05-15)\\n- **Cross-strategy LOO temp09 d1v2 反转根因 (D014, updated 2026-05-15)**: Covariate shift 确认。temp09 depth N ≈ 其他策略 depth N+1。**⚠️ 重要修正：z-score 修复效果取决于分类器类型且实验验证与 framing 声称不符**。RF 对 z-score 完全不变（树模型 scale-invariant）。LR cross-strategy z-score 实验 (lr_zscore_cross_strategy_001) 结果：GPT-2 XL temp09 holdout d1v2 AUC 0.50→0.24（framing 声称 0.13→0.68），OLMo 0.50→0.19（framing 声称 0.25→0.83）。**z-score 对 LR temp09 holdout d1v2 AUC 无效甚至更差**，说明偏移不仅是 scale 问题。论文必须删除/修改 z-score 恢复 LR AUC 的 claim。(2026-05-15)\\n- **Cross-model LOO 3-class (plan_005 detailed)**: mean acc 55.4%，d2 recall 最低 (0.409)——d2 夹在 d1/d3 之间最难区分，符合 ordinal structure 预期。(2026-05-15)\\n- **6-class pairwise AUC 不可与 4-class 直比**: 决策边界稀释导致系统性偏低（d2v3 从 4-class 0.80 降到 0.69）。EDD 判定必须用 dedicated binary pairwise classifier。(2026-05-15)\\n- **EDD=4 (Pythia nucleus, binary pairwise 验证)**: d3v4 AUC=0.784 (>0.75 ✅), d4v5 AUC=0.683 (<0.75 ❌)。深度信号在 d4 仍可区分，d5 饱和。Binary classifier 一致优于 4-class pipeline（d1v2: 0.925 vs 0.861, d2v3: 0.823 vs 0.801），确认决策边界稀释效应。(2026-05-15)\\n- **Granularity ablation 3-class < 4-class 是结构性的，非异常 (D019)**: 3-class 排除 d0（real text），所以 accuracy 低于 4-class。含 d0 的粒度趋势：binary 99.5% > 4-class 78.3% > 6-class 62.9%，严格单调下降。(2026-05-15)\\n- **Boundary dilution 量化 (D020)**: d2v3 AUC 从 4-class 0.804 → 6-class 0.689（-14.3%），d0v1 AUC 几乎不受影响（≥0.997）。稀释效应集中在相邻深度边界。(2026-05-15)\\n- **N2 双 backbone 架构无关性 (2026-05-15)**: RoBERTa-base (59.5% ± 3.2%) 和 DeBERTa-v3-base (58.3% ± 4.7%) end-to-end finetune 结果高度一致（差 1.2pp），均大幅低于 RF 78.2%。排除了 reviewer concern \\\"也许换个 PLM 就能追上 RF\\\"。两种架构（MLM vs disentangled attention）得到相同结论 = architecture-independent finding。论文可以用 \\\"architecture-independent\\\" 措辞。\\n- **PLM 表征 vs 手工特征互补性 (2026-05-15)**: DeBERTa feature overlap analysis: Spearman ρ=-0.484 (p=0.036), top-5 feature overlap=0。PLM 擅长编码表面特征 (TTR R²=0.85, rep_2gram R²=0.82)，而 RF 依赖的 perplexity 分布统计量 (var_surprisal, p90_ppl) 在 DeBERTa 表征中 R² 为负。论文 story: hand-crafted statistical features 捕获了 PLM 无法从 raw text 学到的递归深度信号——不是\\\"选错了 PLM\\\"，而是两类方法关注文本的不同层面。\\n\\n## 约束\\n\\n- **submit_on_allocated bash 语法**: tmux 跑在 /bin/sh 下，必须用 `bash -c \\\"...\\\"` 包裹 bash-only 语法（如 source）。(2026-05-15)\\n- **sync_code 不可靠**: submit_on_allocated 的 sync_code=true 可能不同步新创建的文件。安全方案：Worker SSH 手动写入。(2026-05-15)\\n- **CUDA_VISIBLE_DEVICES 与脚本 device 参数冲突**: submit_training_job 自动注入 CUDA_VISIBLE_DEVICES 映射物理 GPU，脚本内必须用 cuda:0（逻辑第一块卡）。若脚本硬编码物理 GPU 编号（如 cuda:1），会报 \\\"CUDA error: invalid device ordinal\\\"。多步 pipeline 中某些步骤可能在 CUDA_VISIBLE_DEVICES 生效前运行（如 shell 脚本前几步），但后续 Python 脚本一律用 cuda:0。(2026-05-15)\\n\\n## 经验教训\\n\\n- **DCOL 全系列失败 (D018)**: v1-v5 DeBERTa 数值不稳定，v6 RoBERTa 稳定但 acc=64.5% << RF 78.2%。Contrastive ordinal loss 对此任务表达能力不足。(2026-05-15)\\n- **模型文件损坏需提前验证 (2026-05-15)**: n2_roberta_finetune_001 因 pytorch_model.bin 损坏重试 2 次。下载大模型后应立即验证文件完整性（检查 filesize 或 md5），避免训练中途才发现。\\n\\n---\\n\\n## Phase 2 Writing Prep (2026-05-15)\\n\\n### A) 审稿 Warning 待修复清单（Paper Agent 负责）\\n\\n| # | Issue ID | 要改什么 | Paper Section | 优先级 |\\n|---|----------|---------|---------------|--------|\\n| 1 | W3 | 添加 LoRA (Hu et al., 2022) 引用——DCOL v4/v5 用了 LoRA 微调 | Related Work / Method (DCOL 描述) | Medium |\\n| 2 | W5 | 论文文本中确认数据生成使用无条件生成（unconditional generation），实验数据已验证 ✅ | §3 Benchmark Construction | Medium |\\n| 3 | W6 | 纳入 per-class recall 表（cross-model LOO depth_2 recall 低至 26.8%，cross-strategy d2 recall 3.7-19%），不能只报 mean accuracy | §5 Results / Generalization subsection | High |\\n| 4 | R2-W2 | 术语一致性审查：统一 \\\"generation depth\\\" vs \\\"recursive depth\\\" vs \\\"iteration depth\\\" 等变体 | 全文 | Medium |\\n| 5 | R2-W4 | Limitations section 位置调整（当前可能在 Discussion 内，需按 ARR 格式独立成节或按审稿建议调整） | Limitations | Low |\\n| 6 | R2-W6 | 清理 orphan bib entries（bib 文件中存在未被正文引用的条目） | Bibliography | Low |\\n\\n### B) Critical 待修复清单\\n\\n| # | Issue ID | 要改什么 | Paper Section | 依赖 |\\n|---|----------|---------|---------------|------|\\n| 1 | R1-N1 | EDD 正式数学定义：给出公式 EDD(T) = max{d : AUC(d, d+1) ≥ T}，含 threshold T 说明 | §4 Depth Degradation Atlas / EDD 定义 | 无 |\\n| 2 | R1-N3 | 添加 end-to-end finetune baseline（DeBERTa/RoBERTa）对比表，证明手工特征+简单分类器优于端到端方法 | §5 Results / Baselines | ✅ N2 完成 |\\n| 3 | R2-N2 | Bibliography 扩充至 25+ refs，覆盖 watermarking / model collapse theory / data curation / binary detectors / decoding effects（具体列表见 paper_framing.md Dream D002 §3） | Bibliography | 无 |\\n\\n### C) 决策驱动的论文修改\\n\\n| # | Decision | 论文修改内容 | 影响 Section |\\n|---|----------|-------------|-------------|\\n| 1 | D014/D021 | **删除 z-score 恢复 LR cross-strategy d1v2 AUC 的 claim**。实验证伪：z-score 对 LR temp09 holdout d1v2 AUC 无效甚至更差（GPT-2 XL 0.50→0.24, OLMo 0.50→0.19）。保留 z-score 提升整体 LR acc（25%→61%）但明确标注 pairwise d1v2 不恢复。结论改为\\\"genuine structural distributional shift, not correctable scale artifact\\\" | §6 Discussion (cross-strategy analysis) |\\n| 2 | D018 | **DCOL 降级为 negative analysis section**。6 次迭代全部失败（2 backbone × 多种超参），端到端方法 acc=64.5% << RF 78.2%。写 ~0.5 page \\\"Why contrastive ordinal learning fails for depth estimation\\\"，含失败模式分类（collapse/OOM/forgetting/NaN/overfitting）和根因分析（高维文本嵌入空间中 ordinal margin 难以学习） | §5.x Negative Analysis 或 Appendix |\\n| 3 | D022/D023 | **Baseline 叙事重构**：从 \\\"RF best\\\" 改为 \\\"RF ≈ CORAL ≈ DivEye 统计不可区分 (bootstrap p>0.05 Bonferroni), all >> CE-MLP\\\"。核心贡献在 19 个统计特征而非分类器选择。Cross-strategy 从 \\\"robust generalization\\\" 改为 \\\"strategy-specific trajectory revelation\\\" | §5 Results / Baseline comparison |\\n| 4 | D024/D027 | **EDD 叙事变更**：从硬阈值 \\\"EDD=4 across all models\\\" 转向连续 AUC 衰减曲线。正文措辞 \\\"d3v4 AUC consistently clusters near 0.75 (0.750–0.784), d4v5 uniformly falls below 0.70 (0.681–0.694)\\\"。完整报告 bootstrap CI + p-values（Pythia p=0.001, OLMo p=0.091, GPT-2 XL p=0.505），强调方向一致性而非阈值判定 | §4 Atlas / EDD analysis |\\n| 5 | D015 | **三档策略分类**：论文不得将 nucleus 和 temperature 归为 \\\"soft sampling\\\"。必须采用 nucleus(baseline稳定) / temperature(信号增强但 d1v2 反转风险) / topk(信号衰减方向一致) | §6 Discussion + Limitations |\\n| 6 | D013 | **per-class recall 必须呈现**：cross-model LOO 66.4% 被 d0 recall>98% 拉高，d2 recall 低至 26.8%。cross-strategy mean 59.1% 被 d0 recall≥89.5% 膨胀 | §5 Generalization |\\n\\n### D) 写作顺序建议（考虑依赖关系）\\n\\n**第一批（无依赖，可立即开始）**：\\n1. §4 EDD 公式定义（R1-N1）——其他 section 引用 EDD 都需要此定义\\n2. §3 Benchmark Construction——确认无条件生成文本（W5）、surprise reference model 说明（Dream D002 §4）\\n3. Bibliography 扩充（R2-N2）——25+ refs，边写正文边补\\n4. 术语一致性扫描（R2-W2）——越早统一越好，避免后续返工\\n\\n**第二批（依赖第一批）**：\\n5. §4 Atlas analysis——含 EDD 连续衰减曲线叙事（D024/D027）、feature universality、EDD sensitivity table (T=0.65/0.70/0.75/0.80)\\n6. §5 Results——baseline 重构（D022/D023）、per-class recall 表（W6）、d1-d5 only accuracy（Dream D002 §5）\\n7. §5.x DCOL negative analysis（D018）\\n\\n**第三批（N2 ✅ 已完成）**：\\n8. §5 End-to-end baseline 对比（R1-N3）——RoBERTa 59.5% / DeBERTa 58.3% vs RF 78.2%\\n9. §6 Discussion——三档策略分类（D015）、cross-strategy d1v2 AUC 表（含 z-score 修正后结论 D014/D021）、temp09 反转机制分析\\n10. Limitations——跨策略部署约束（D015）、d0 confound（Dream D002）、controlled vs wild gap\\n\\n**第四批（收尾）**：\\n11. §1 Introduction——依赖 Results 和 Discussion 定稿后回写\\n12. Abstract——最后写\\n13. R2-W4 Limitations 位置调整\\n14. R2-W6 orphan bib 清理\\n15. 4 张必需图（AUC decay / feature trajectory / confusion matrix / Atlas heatmap）——可与写作并行制图\\n\\n### E) 阻塞项\\n\\n- **N2 end-to-end baseline**: ✅ 全部完成。DeBERTa 58.3% / RoBERTa 59.5%，均 << RF 78.2%。第三批写作可立即开始。\\n- **4 张图**: Dream D002 硬约束。需要 draw-paper-figure skill 在服务器上生成。建议与第二批写作并行启动制图。\\n\", \"total_chars\": 8593, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4a65e6ff-27e4-48c3-b73c-badc850b9ba4",
+  "isSidechain": false,
+  "promptId": "4a692b27-acc9-4510-88f1-72c3acd11f24",
+  "type": "user",
+  "uuid": "674aee08-e704-413a-a025-fd066bd27507",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/memory.md\\\", \\\"content\\\": \\\"# Memory — recursive_gen_depth_est\\\\n\\\\n> 非 metrics 性质的决策原因、约束、经验教训。Metrics 查 registry。\\\\n\\\\n## 决策原因\\\\n\\\\n- **CORAL 需要充分训练**: epochs=5 只得 53.7%，100 epochs 后 78.1%。d1v2 AUC 从 0.34→0.82。之前\\\\\\\"CORAL 不适合此任务\\\\\\\"的结论是训练不足导致的误判。(2026-05-14)\\\\n- **CE-MLP 可能也训练不足**: baseline battery 首次跑 CE-MLP 用了 5 epochs 得 74.9%，需要用默认参数重跑确认。(2026-05-14)\\\\n- **解码策略影响是模型依赖的 (D006, updated)**: Pythia temp09 降 1.9pp，但 GPT-2 XL temp09 升 2.1pp，OLMo temp09 升 3.26pp。论文不能说\\\\\\\"strategy-agnostic\\\\\\\"，应说\\\\\\\"strategy-dependent magnitude with consistent signal presence\\\\\\\"。(2026-05-15)\\\\n- **OLMo temp09 是当前最强配置 (D008)**: 82.03% 4-class RF, d1v2 AUC 0.901。(2026-05-15)\\\\n- **Feature importance 表述 (D007)**: top feature set (p90_ppl, var_surprisal) 跨 cells 稳定，但 ranking 因模型而异。Claim 2 应说\\\\\\\"consistent feature set\\\\\\\"而非\\\\\\\"var_surprisal as single best\\\\\\\"。(2026-05-14)\\\\n- **Top-k 信号衰减**: Pythia top-k 69.6% vs nucleus 78.2% (-8.6pp)，截断式采样比连续概率重分配保留更弱的深度信号。(2026-05-14)\\\\n- **Atlas v2 EDD 差异 (D009)**: 6/7 cells EDD=3，但 Pythia topk50 EDD=1（d2v3 AUC=0.692）。\\\\\\\"小模型+受限采样→退化信号更早饱和\\\\\\\"是 Discussion 核心论点。(2026-05-15)\\\\n- **Atlas v2 Feature trajectory (D010)**: p90_ppl/var_surprisal/mean_surprisal 随 depth 单调递减（ρ=-1.0），rep_2gram/3gram/4gram 随 depth 单调递增。两类信号互补。(2026-05-15)\\\\n- **EDD 推荐阈值 T=0.75 (D011)**: T=0.75 下 7/9 维持 EDD=3，仅 topk 掉队。瓶颈统一在 d2v3 pair。(2026-05-15)\\\\n- **topk 跨模型一致性最高 (D012)**: ρ=0.811，确定性截断使 feature landscape 趋同，但伴随信号衰减。(2026-05-15)\\\\n- **p90_ppl 优于 mean_ppl 的统计根因**: 1 个样本 (mean_ppl=1.43e13) 贡献 depth-1 mean_ppl 的 94.4%。Token-level perplexity 极度重尾（kurtosis>4900）。p90_ppl 完美单调。论文应说明 percentile-based features 的统计稳健性优势。(2026-05-15)\\\\n- **Cross-strategy LOO temp09 d1v2 反转根因 (D014, updated 2026-05-15)**: Covariate shift 确认。temp09 depth N ≈ 其他策略 depth N+1。**⚠️ 重要修正：z-score 修复效果取决于分类器类型且实验验证与 framing 声称不符**。RF 对 z-score 完全不变（树模型 scale-invariant）。LR cross-strategy z-score 实验 (lr_zscore_cross_strategy_001) 结果：GPT-2 XL temp09 holdout d1v2 AUC 0.50→0.24（framing 声称 0.13→0.68），OLMo 0.50→0.19（framing 声称 0.25→0.83）。**z-score 对 LR temp09 holdout d1v2 AUC 无效甚至更差**，说明偏移不仅是 scale 问题。论文必须删除/修改 z-score 恢复 LR AUC 的 claim。(2026-05-15)\\\\n- **Cross-model LOO 3-class (plan_005 detailed)**: mean acc 55.4%，d2 recall 最低 (0.409)——d2 夹在 d1/d3 之间最难区分，符合 ordinal structure 预期。(2026-05-15)\\\\n- **6-class pairwise AUC 不可与 4-class 直比**: 决策边界稀释导致系统性偏低（d2v3 从 4-class 0.80 降到 0.69）。EDD 判定必须用 dedicated binary pairwise classifier。(2026-05-15)\\\\n- **EDD=4 (Pythia nucleus, binary pairwise 验证)**: d3v4 AUC=0.784 (>0.75 ✅), d4v5 AUC=0.683 (<0.75 ❌)。深度信号在 d4 仍可区分，d5 饱和。Binary classifier 一致优于 4-class pipeline（d1v2: 0.925 vs 0.861, d2v3: 0.823 vs 0.801），确认决策边界稀释效应。(2026-05-15)\\\\n- **Granularity ablation 3-class < 4-class 是结构性的，非异常 (D019)**: 3-class 排除 d0（real text），所以 accuracy 低于 4-class。含 d0 的粒度趋势：binary 99.5% > 4-class 78.3% > 6-class 62.9%，严格单调下降。(2026-05-15)\\\\n- **Boundary dilution 量化 (D020)**: d2v3 AUC 从 4-class 0.804 → 6-class 0.689（-14.3%），d0v1 AUC 几乎不受影响（≥0.997）。稀释效应集中在相邻深度边界。(2026-05-15)\\\\n- **N2 双 backbone 架构无关性 (2026-05-15)**: RoBERTa-base (59.5% ± 3.2%) 和 DeBERTa-v3-base (58.3% ± 4.7%) end-to-end finetune 结果高度一致（差 1.2pp），均大幅低于 RF 78.2%。排除了 reviewer concern \\\\\\\"也许换个 PLM 就能追上 RF\\\\\\\"。两种架构（MLM vs disentangled attention）得到相同结论 = architecture-independent finding。论文可以用 \\\\\\\"architecture-independent\\\\\\\" 措辞。\\\\n- **PLM 表征 vs 手工特征互补性 (2026-05-15)**: DeBERTa feature overlap analysis: Spearman ρ=-0.484 (p=0.036), top-5 feature overlap=0。PLM 擅长编码表面特征 (TTR R²=0.85, rep_2gram R²=0.82)，而 RF 依赖的 perplexity 分布统计量 (var_surprisal, p90_ppl) 在 DeBERTa 表征中 R² 为负。论文 story: hand-crafted statistical features 捕获了 PLM 无法从 raw text 学到的递归深度信号——不是\\\\\\\"选错了 PLM\\\\\\\"，而是两类方法关注文本的不同层面。\\\\n\\\\n## 约束\\\\n\\\\n- **submit_on_allocated bash 语法**: tmux 跑在 /bin/sh 下，必须用 `bash -c \\\\\\\"...\\\\\\\"` 包裹 bash-only 语法（如 source）。(2026-05-15)\\\\n- **sync_code 不可靠**: submit_on_allocated 的 sync_code=true 可能不同步新创建的文件。安全方案：Worker SSH 手动写入。(2026-05-15)\\\\n- **CUDA_VISIBLE_DEVICES 与脚本 device 参数冲突**: submit_training_job 自动注入 CUDA_VISIBLE_DEVICES 映射物理 GPU，脚本内必须用 cuda:0（逻辑第一块卡）。若脚本硬编码物理 GPU 编号（如 cuda:1），会报 \\\\\\\"CUDA error: invalid device ordinal\\\\\\\"。多步 pipeline 中某些步骤可能在 CUDA_VISIBLE_DEVICES 生效前运行（如 shell 脚本前几步），但后续 Python 脚本一律用 cuda:0。(2026-05-15)\\\\n\\\\n## 经验教训\\\\n\\\\n- **DCOL 全系列失败 (D018)**: v1-v5 DeBERTa 数值不稳定，v6 RoBERTa 稳定但 acc=64.5% << RF 78.2%。Contrastive ordinal loss 对此任务表达能力不足。(2026-05-15)\\\\n- **模型文件损坏需提前验证 (2026-05-15)**: n2_roberta_finetune_001 因 pytorch_model.bin 损坏重试 2 次。下载大模型后应立即验证文件完整性（检查 filesize 或 md5），避免训练中途才发现。\\\\n\\\\n---\\\\n\\\\n## Phase 2 Writing Prep (2026-05-15)\\\\n\\\\n### A) 审稿 Warning 待修复清单（Paper Agent 负责）\\\\n\\\\n| # | Issue ID | 要改什么 | Paper Section | 优先级 |\\\\n|---|----------|---------|---------------|--------|\\\\n| 1 | W3 | 添加 LoRA (Hu et al., 2022) 引用——DCOL v4/v5 用了 LoRA 微调 | Related Work / Method (DCOL 描述) | Medium |\\\\n| 2 | W5 | 论文文本中确认数据生成使用无条件生成（unconditional generation），实验数据已验证 ✅ | §3 Benchmark Construction | Medium |\\\\n| 3 | W6 | 纳入 per-class recall 表（cross-model LOO depth_2 recall 低至 26.8%，cross-strategy d2 recall 3.7-19%），不能只报 mean accuracy | §5 Results / Generalization subsection | High |\\\\n| 4 | R2-W2 | 术语一致性审查：统一 \\\\\\\"generation depth\\\\\\\" vs \\\\\\\"recursive depth\\\\\\\" vs \\\\\\\"iteration depth\\\\\\\" 等变体 | 全文 | Medium |\\\\n| 5 | R2-W4 | Limitations section 位置调整（当前可能在 Discussion 内，需按 ARR 格式独立成节或按审稿建议调整） | Limitations | Low |\\\\n| 6 | R2-W6 | 清理 orphan bib entries（bib 文件中存在未被正文引用的条目） | Bibliography | Low |\\\\n\\\\n### B) Critical 待修复清单\\\\n\\\\n| # | Issue ID | 要改什么 | Paper Section | 依赖 |\\\\n|---|----------|---------|---------------|------|\\\\n| 1 | R1-N1 | EDD 正式数学定义：给出公式 EDD(T) = max{d : AUC(d, d+1) ≥ T}，含 threshold T 说明 | §4 Depth Degradation Atlas / EDD 定义 | 无 |\\\\n| 2 | R1-N3 | 添加 end-to-end finetune baseline（DeBERTa/RoBERTa）对比表，证明手工特征+简单分类器优于端到端方法 | §5 Results / Baselines | ✅ N2 完成 |\\\\n| 3 | R2-N2 | Bibliography 扩充至 25+ refs，覆盖 watermarking / model collapse theory / data curation / binary detectors / decoding effects（具体列表见 paper_framing.md Dream D002 §3） | Bibliography | 无 |\\\\n\\\\n### C) 决策驱动的论文修改\\\\n\\\\n| # | Decision | 论文修改内容 | 影响 Section |\\\\n|---|----------|-------------|-------------|\\\\n| 1 | D014/D021 | **删除 z-score 恢复 LR cross-strategy d1v2 AUC 的 claim**。实验证伪：z-score 对 LR temp09 holdout d1v2 AUC 无效甚至更差（GPT-2 XL 0.50→0.24, OLMo 0.50→0.19）。保留 z-score 提升整体 LR acc（25%→61%）但明确标注 pairwise d1v2 不恢复。结论改为\\\\\\\"genuine structural distributional shift, not correctable scale artifact\\\\\\\" | §6 Discussion (cross-strategy analysis) |\\\\n| 2 | D018 | **DCOL 降级为 negative analysis section**。6 次迭代全部失败（2 backbone × 多种超参），端到端方法 acc=64.5% << RF 78.2%。写 ~0.5 page \\\\\\\"Why contrastive ordinal learning fails for depth estimation\\\\\\\"，含失败模式分类（collapse/OOM/forgetting/NaN/overfitting）和根因分析（高维文本嵌入空间中 ordinal margin 难以学习） | §5.x Negative Analysis 或 Appendix |\\\\n| 3 | D022/D023 | **Baseline 叙事重构**：从 \\\\\\\"RF best\\\\\\\" 改为 \\\\\\\"RF ≈ CORAL ≈ DivEye 统计不可区分 (bootstrap p>0.05 Bonferroni), all >> CE-MLP\\\\\\\"。核心贡献在 19 个统计特征而非分类器选择。Cross-strategy 从 \\\\\\\"robust generalization\\\\\\\" 改为 \\\\\\\"strategy-specific trajectory revelation\\\\\\\" | §5 Results / Baseline comparison |\\\\n| 4 | D024/D027 | **EDD 叙事变更**：从硬阈值 \\\\\\\"EDD=4 across all models\\\\\\\" 转向连续 AUC 衰减曲线。正文措辞 \\\\\\\"d3v4 AUC consistently clusters near 0.75 (0.750–0.784), d4v5 uniformly falls below 0.70 (0.681–0.694)\\\\\\\"。完整报告 bootstrap CI + p-values（Pythia p=0.001, OLMo p=0.091, GPT-2 XL p=0.505），强调方向一致性而非阈值判定 | §4 Atlas / EDD analysis |\\\\n| 5 | D015 | **三档策略分类**：论文不得将 nucleus 和 temperature 归为 \\\\\\\"soft sampling\\\\\\\"。必须采用 nucleus(baseline稳定) / temperature(信号增强但 d1v2 反转风险) / topk(信号衰减方向一致) | §6 Discussion + Limitations |\\\\n| 6 | D013 | **per-class recall 必须呈现**：cross-model LOO 66.4% 被 d0 recall>98% 拉高，d2 recall 低至 26.8%。cross-strategy mean 59.1% 被 d0 recall≥89.5% 膨胀 | §5 Generalization |\\\\n\\\\n### D) 写作顺序建议（考虑依赖关系）\\\\n\\\\n**第一批（无依赖，可立即开始）**：\\\\n1. §4 EDD 公式定义（R1-N1）——其他 section 引用 EDD 都需要此定义\\\\n2. §3 Benchmark Construction——确认无条件生成文本（W5）、surprise reference model 说明（Dream D002 §4）\\\\n3. Bibliography 扩充（R2-N2）——25+ refs，边写正文边补\\\\n4. 术语一致性扫描（R2-W2）——越早统一越好，避免后续返工\\\\n\\\\n**第二批（依赖第一批）**：\\\\n5. §4 Atlas analysis——含 EDD 连续衰减曲线叙事（D024/D027）、feature universality、EDD sensitivity table (T=0.65/0.70/0.75/0.80)\\\\n6. §5 Results——baseline 重构（D022/D023）、per-class recall 表（W6）、d1-d5 only accuracy（Dream D002 §5）\\\\n7. §5.x DCOL negative analysis（D018）\\\\n\\\\n**第三批（N2 ✅ 已完成）**：\\\\n8. §5 End-to-end baseline 对比（R1-N3）——RoBERTa 59.5% / DeBERTa 58.3% vs RF 78.2%\\\\n9. §6 Discussion——三档策略分类（D015）、cross-strategy d1v2 AUC 表（含 z-score 修正后结论 D014/D021）、temp09 反转机制分析\\\\n10. Limitations——跨策略部署约束（D015）、d0 confound（Dream D002）、controlled vs wild gap\\\\n\\\\n**第四批（收尾）**：\\\\n11. §1 Introduction——依赖 Results 和 Discussion 定稿后回写\\\\n12. Abstract——最后写\\\\n13. R2-W4 Limitations 位置调整\\\\n14. R2-W6 orphan bib 清理\\\\n15. 4 张必需图（AUC decay / feature trajectory / confusion matrix / Atlas heatmap）——可与写作并行制图\\\\n\\\\n### E) 阻塞项\\\\n\\\\n- **N2 end-to-end baseline**: ✅ 全部完成。DeBERTa 58.3% / RoBERTa 59.5%，均 << RF 78.2%。第三批写作可立即开始。\\\\n- **4 张图**: Dream D002 硬约束。需要 draw-paper-figure skill 在服务器上生成。建议与第二批写作并行启动制图。\\\\n\\\", \\\"total_chars\\\": 8593, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/memory.md\", \"content\": \"# Memory — recursive_gen_depth_est\\n\\n> 非 metrics 性质的决策原因、约束、经验教训。Metrics 查 registry。\\n\\n## 决策原因\\n\\n- **CORAL 需要充分训练**: epochs=5 只得 53.7%，100 epochs 后 78.1%。d1v2 AUC 从 0.34→0.82。之前\\\"CORAL 不适合此任务\\\"的结论是训练不足导致的误判。(2026-05-14)\\n- **CE-MLP 可能也训练不足**: baseline battery 首次跑 CE-MLP 用了 5 epochs 得 74.9%，需要用默认参数重跑确认。(2026-05-14)\\n- **解码策略影响是模型依赖的 (D006, updated)**: Pythia temp09 降 1.9pp，但 GPT-2 XL temp09 升 2.1pp，OLMo temp09 升 3.26pp。论文不能说\\\"strategy-agnostic\\\"，应说\\\"strategy-dependent magnitude with consistent signal presence\\\"。(2026-05-15)\\n- **OLMo temp09 是当前最强配置 (D008)**: 82.03% 4-class RF, d1v2 AUC 0.901。(2026-05-15)\\n- **Feature importance 表述 (D007)**: top feature set (p90_ppl, var_surprisal) 跨 cells 稳定，但 ranking 因模型而异。Claim 2 应说\\\"consistent feature set\\\"而非\\\"var_surprisal as single best\\\"。(2026-05-14)\\n- **Top-k 信号衰减**: Pythia top-k 69.6% vs nucleus 78.2% (-8.6pp)，截断式采样比连续概率重分配保留更弱的深度信号。(2026-05-14)\\n- **Atlas v2 EDD 差异 (D009)**: 6/7 cells EDD=3，但 Pythia topk50 EDD=1（d2v3 AUC=0.692）。\\\"小模型+受限采样→退化信号更早饱和\\\"是 Discussion 核心论点。(2026-05-15)\\n- **Atlas v2 Feature trajectory (D010)**: p90_ppl/var_surprisal/mean_surprisal 随 depth 单调递减（ρ=-1.0），rep_2gram/3gram/4gram 随 depth 单调递增。两类信号互补。(2026-05-15)\\n- **EDD 推荐阈值 T=0.75 (D011)**: T=0.75 下 7/9 维持 EDD=3，仅 topk 掉队。瓶颈统一在 d2v3 pair。(2026-05-15)\\n- **topk 跨模型一致性最高 (D012)**: ρ=0.811，确定性截断使 feature landscape 趋同，但伴随信号衰减。(2026-05-15)\\n- **p90_ppl 优于 mean_ppl 的统计根因**: 1 个样本 (mean_ppl=1.43e13) 贡献 depth-1 mean_ppl 的 94.4%。Token-level perplexity 极度重尾（kurtosis>4900）。p90_ppl 完美单调。论文应说明 percentile-based features 的统计稳健性优势。(2026-05-15)\\n- **Cross-strategy LOO temp09 d1v2 反转根因 (D014, updated 2026-05-15)**: Covariate shift 确认。temp09 depth N ≈ 其他策略 depth N+1。**⚠️ 重要修正：z-score 修复效果取决于分类器类型且实验验证与 framing 声称不符**。RF 对 z-score 完全不变（树模型 scale-invariant）。LR cross-strategy z-score 实验 (lr_zscore_cross_strategy_001) 结果：GPT-2 XL temp09 holdout d1v2 AUC 0.50→0.24（framing 声称 0.13→0.68），OLMo 0.50→0.19（framing 声称 0.25→0.83）。**z-score 对 LR temp09 holdout d1v2 AUC 无效甚至更差**，说明偏移不仅是 scale 问题。论文必须删除/修改 z-score 恢复 LR AUC 的 claim。(2026-05-15)\\n- **Cross-model LOO 3-class (plan_005 detailed)**: mean acc 55.4%，d2 recall 最低 (0.409)——d2 夹在 d1/d3 之间最难区分，符合 ordinal structure 预期。(2026-05-15)\\n- **6-class pairwise AUC 不可与 4-class 直比**: 决策边界稀释导致系统性偏低（d2v3 从 4-class 0.80 降到 0.69）。EDD 判定必须用 dedicated binary pairwise classifier。(2026-05-15)\\n- **EDD=4 (Pythia nucleus, binary pairwise 验证)**: d3v4 AUC=0.784 (>0.75 ✅), d4v5 AUC=0.683 (<0.75 ❌)。深度信号在 d4 仍可区分，d5 饱和。Binary classifier 一致优于 4-class pipeline（d1v2: 0.925 vs 0.861, d2v3: 0.823 vs 0.801），确认决策边界稀释效应。(2026-05-15)\\n- **Granularity ablation 3-class < 4-class 是结构性的，非异常 (D019)**: 3-class 排除 d0（real text），所以 accuracy 低于 4-class。含 d0 的粒度趋势：binary 99.5% > 4-class 78.3% > 6-class 62.9%，严格单调下降。(2026-05-15)\\n- **Boundary dilution 量化 (D020)**: d2v3 AUC 从 4-class 0.804 → 6-class 0.689（-14.3%），d0v1 AUC 几乎不受影响（≥0.997）。稀释效应集中在相邻深度边界。(2026-05-15)\\n- **N2 双 backbone 架构无关性 (2026-05-15)**: RoBERTa-base (59.5% ± 3.2%) 和 DeBERTa-v3-base (58.3% ± 4.7%) end-to-end finetune 结果高度一致（差 1.2pp），均大幅低于 RF 78.2%。排除了 reviewer concern \\\"也许换个 PLM 就能追上 RF\\\"。两种架构（MLM vs disentangled attention）得到相同结论 = architecture-independent finding。论文可以用 \\\"architecture-independent\\\" 措辞。\\n- **PLM 表征 vs 手工特征互补性 (2026-05-15)**: DeBERTa feature overlap analysis: Spearman ρ=-0.484 (p=0.036), top-5 feature overlap=0。PLM 擅长编码表面特征 (TTR R²=0.85, rep_2gram R²=0.82)，而 RF 依赖的 perplexity 分布统计量 (var_surprisal, p90_ppl) 在 DeBERTa 表征中 R² 为负。论文 story: hand-crafted statistical features 捕获了 PLM 无法从 raw text 学到的递归深度信号——不是\\\"选错了 PLM\\\"，而是两类方法关注文本的不同层面。\\n\\n## 约束\\n\\n- **submit_on_allocated bash 语法**: tmux 跑在 /bin/sh 下，必须用 `bash -c \\\"...\\\"` 包裹 bash-only 语法（如 source）。(2026-05-15)\\n- **sync_code 不可靠**: submit_on_allocated 的 sync_code=true 可能不同步新创建的文件。安全方案：Worker SSH 手动写入。(2026-05-15)\\n- **CUDA_VISIBLE_DEVICES 与脚本 device 参数冲突**: submit_training_job 自动注入 CUDA_VISIBLE_DEVICES 映射物理 GPU，脚本内必须用 cuda:0（逻辑第一块卡）。若脚本硬编码物理 GPU 编号（如 cuda:1），会报 \\\"CUDA error: invalid device ordinal\\\"。多步 pipeline 中某些步骤可能在 CUDA_VISIBLE_DEVICES 生效前运行（如 shell 脚本前几步），但后续 Python 脚本一律用 cuda:0。(2026-05-15)\\n\\n## 经验教训\\n\\n- **DCOL 全系列失败 (D018)**: v1-v5 DeBERTa 数值不稳定，v6 RoBERTa 稳定但 acc=64.5% << RF 78.2%。Contrastive ordinal loss 对此任务表达能力不足。(2026-05-15)\\n- **模型文件损坏需提前验证 (2026-05-15)**: n2_roberta_finetune_001 因 pytorch_model.bin 损坏重试 2 次。下载大模型后应立即验证文件完整性（检查 filesize 或 md5），避免训练中途才发现。\\n\\n---\\n\\n## Phase 2 Writing Prep (2026-05-15)\\n\\n### A) 审稿 Warning 待修复清单（Paper Agent 负责）\\n\\n| # | Issue ID | 要改什么 | Paper Section | 优先级 |\\n|---|----------|---------|---------------|--------|\\n| 1 | W3 | 添加 LoRA (Hu et al., 2022) 引用——DCOL v4/v5 用了 LoRA 微调 | Related Work / Method (DCOL 描述) | Medium |\\n| 2 | W5 | 论文文本中确认数据生成使用无条件生成（unconditional generation），实验数据已验证 ✅ | §3 Benchmark Construction | Medium |\\n| 3 | W6 | 纳入 per-class recall 表（cross-model LOO depth_2 recall 低至 26.8%，cross-strategy d2 recall 3.7-19%），不能只报 mean accuracy | §5 Results / Generalization subsection | High |\\n| 4 | R2-W2 | 术语一致性审查：统一 \\\"generation depth\\\" vs \\\"recursive depth\\\" vs \\\"iteration depth\\\" 等变体 | 全文 | Medium |\\n| 5 | R2-W4 | Limitations section 位置调整（当前可能在 Discussion 内，需按 ARR 格式独立成节或按审稿建议调整） | Limitations | Low |\\n| 6 | R2-W6 | 清理 orphan bib entries（bib 文件中存在未被正文引用的条目） | Bibliography | Low |\\n\\n### B) Critical 待修复清单\\n\\n| # | Issue ID | 要改什么 | Paper Section | 依赖 |\\n|---|----------|---------|---------------|------|\\n| 1 | R1-N1 | EDD 正式数学定义：给出公式 EDD(T) = max{d : AUC(d, d+1) ≥ T}，含 threshold T 说明 | §4 Depth Degradation Atlas / EDD 定义 | 无 |\\n| 2 | R1-N3 | 添加 end-to-end finetune baseline（DeBERTa/RoBERTa）对比表，证明手工特征+简单分类器优于端到端方法 | §5 Results / Baselines | ✅ N2 完成 |\\n| 3 | R2-N2 | Bibliography 扩充至 25+ refs，覆盖 watermarking / model collapse theory / data curation / binary detectors / decoding effects（具体列表见 paper_framing.md Dream D002 §3） | Bibliography | 无 |\\n\\n### C) 决策驱动的论文修改\\n\\n| # | Decision | 论文修改内容 | 影响 Section |\\n|---|----------|-------------|-------------|\\n| 1 | D014/D021 | **删除 z-score 恢复 LR cross-strategy d1v2 AUC 的 claim**。实验证伪：z-score 对 LR temp09 holdout d1v2 AUC 无效甚至更差（GPT-2 XL 0.50→0.24, OLMo 0.50→0.19）。保留 z-score 提升整体 LR acc（25%→61%）但明确标注 pairwise d1v2 不恢复。结论改为\\\"genuine structural distributional shift, not correctable scale artifact\\\" | §6 Discussion (cross-strategy analysis) |\\n| 2 | D018 | **DCOL 降级为 negative analysis section**。6 次迭代全部失败（2 backbone × 多种超参），端到端方法 acc=64.5% << RF 78.2%。写 ~0.5 page \\\"Why contrastive ordinal learning fails for depth estimation\\\"，含失败模式分类（collapse/OOM/forgetting/NaN/overfitting）和根因分析（高维文本嵌入空间中 ordinal margin 难以学习） | §5.x Negative Analysis 或 Appendix |\\n| 3 | D022/D023 | **Baseline 叙事重构**：从 \\\"RF best\\\" 改为 \\\"RF ≈ CORAL ≈ DivEye 统计不可区分 (bootstrap p>0.05 Bonferroni), all >> CE-MLP\\\"。核心贡献在 19 个统计特征而非分类器选择。Cross-strategy 从 \\\"robust generalization\\\" 改为 \\\"strategy-specific trajectory revelation\\\" | §5 Results / Baseline comparison |\\n| 4 | D024/D027 | **EDD 叙事变更**：从硬阈值 \\\"EDD=4 across all models\\\" 转向连续 AUC 衰减曲线。正文措辞 \\\"d3v4 AUC consistently clusters near 0.75 (0.750–0.784), d4v5 uniformly falls below 0.70 (0.681–0.694)\\\"。完整报告 bootstrap CI + p-values（Pythia p=0.001, OLMo p=0.091, GPT-2 XL p=0.505），强调方向一致性而非阈值判定 | §4 Atlas / EDD analysis |\\n| 5 | D015 | **三档策略分类**：论文不得将 nucleus 和 temperature 归为 \\\"soft sampling\\\"。必须采用 nucleus(baseline稳定) / temperature(信号增强但 d1v2 反转风险) / topk(信号衰减方向一致) | §6 Discussion + Limitations |\\n| 6 | D013 | **per-class recall 必须呈现**：cross-model LOO 66.4% 被 d0 recall>98% 拉高，d2 recall 低至 26.8%。cross-strategy mean 59.1% 被 d0 recall≥89.5% 膨胀 | §5 Generalization |\\n\\n### D) 写作顺序建议（考虑依赖关系）\\n\\n**第一批（无依赖，可立即开始）**：\\n1. §4 EDD 公式定义（R1-N1）——其他 section 引用 EDD 都需要此定义\\n2. §3 Benchmark Construction——确认无条件生成文本（W5）、surprise reference model 说明（Dream D002 §4）\\n3. Bibliography 扩充（R2-N2）——25+ refs，边写正文边补\\n4. 术语一致性扫描（R2-W2）——越早统一越好，避免后续返工\\n\\n**第二批（依赖第一批）**：\\n5. §4 Atlas analysis——含 EDD 连续衰减曲线叙事（D024/D027）、feature universality、EDD sensitivity table (T=0.65/0.70/0.75/0.80)\\n6. §5 Results——baseline 重构（D022/D023）、per-class recall 表（W6）、d1-d5 only accuracy（Dream D002 §5）\\n7. §5.x DCOL negative analysis（D018）\\n\\n**第三批（N2 ✅ 已完成）**：\\n8. §5 End-to-end baseline 对比（R1-N3）——RoBERTa 59.5% / DeBERTa 58.3% vs RF 78.2%\\n9. §6 Discussion——三档策略分类（D015）、cross-strategy d1v2 AUC 表（含 z-score 修正后结论 D014/D021）、temp09 反转机制分析\\n10. Limitations——跨策略部署约束（D015）、d0 confound（Dream D002）、controlled vs wild gap\\n\\n**第四批（收尾）**：\\n11. §1 Introduction——依赖 Results 和 Discussion 定稿后回写\\n12. Abstract——最后写\\n13. R2-W4 Limitations 位置调整\\n14. R2-W6 orphan bib 清理\\n15. 4 张必需图（AUC decay / feature trajectory / confusion matrix / Atlas heatmap）——可与写作并行制图\\n\\n### E) 阻塞项\\n\\n- **N2 end-to-end baseline**: ✅ 全部完成。DeBERTa 58.3% / RoBERTa 59.5%，均 << RF 78.2%。第三批写作可立即开始。\\n- **4 张图**: Dream D002 硬约束。需要 draw-paper-figure skill 在服务器上生成。建议与第二批写作并行启动制图。\\n\", \"total_chars\": 8593, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "4a65e6ff-27e4-48c3-b73c-badc850b9ba4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_3ad3e5f3",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 58_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[HANDOFF] 你是 Main Agent，这是 Loop #9。  ## 上一轮交接 (task_context)  ### 1. 🔴 硬约束 / 红线 - 本项目只能用 gpu-6000pro-2 的 cuda:0 和 cuda:1（白名单 gpu_ids=[0,1]） - submit_training_job 的 command 必须用 `bash -c \"source /root/…",
+  "leafUuid": "674aee08-e704-413a-a025-fd066bd27507",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 59_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Prepare Phase 2 writing: EDD formulation and benchmark construction",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e"
+}
+```
+
+---
+
+### Assistant
+
+_source line 60 · 2026-05-15T16:35:54.756Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Session-start 完成。关键状态：
+
+1. **Registry**: 46 DONE + 2 ALLOCATED (zeroshot_llm_500_001 on cuda:1, temp07_pilot_pythia_001 on cuda:0)
+2. **Cron**: 0 活跃
+3. **ROADMAP**: Phase 2 写作，DDL May 25（10 天）
+4. **两个 ALLOCATED 实验未提交** — GPU 分配了但没跑 = 失职
+
+
+5. **矛盾发现**：handoff 说全部 DONE，但实际有 2 个 ALLOCATED，说明上一轮创建了这两个补充实验但没提交。这两个是 rebuttal 相关的：zeroshot_llm_500_001 扩大了 zero-shot 样本量，temp07_pilot_pythia_001 是多温度的 pilot 实验，都已获得 GPU 批准。
+
+6. **立即行动**：根据硬约束，分配的 GPU 必须全部运行，现在有 2 张卡空闲且 2 个实验已分配，必须马上推进。同时 Phase 2 写作可以并行启动。我需要派 3 个 Worker：第一个准备并提交 temp07_pilot_pythia_001 到 cuda:0，第二个准备并提交 zeroshot_llm_500_001 到 cuda:1，第三个启动 Phase 2 的写作任务。
+
+7. **确认依赖关系**：两个已分配的实验独立于 Phase 2 写作，但我需要先检查这些实验的具体代码需求，然后给 Worker 足够的上下文让他们处理代码编写、环境部署和训练提交。关于 Phase 2 写作，ROADMAP 中有这个任务但没有明确的 Director 启动指令，handoff 说要等 Director 启动，所以这部分可能需要先确认。 两个实验的具体需求很清楚了——第一个需要 GPU 来训练分类器，第二个需要调用 LLM API 进行零样本判断。我检查了 GPU 白名单，两个实验都能在分配的 GPU 上运行，所以我可以立即启动这两个 Worker。
+
+现在我需要为每个 Worker 准备清晰的上下文和指令，包括数据生成的具体参数和参考代码位置，然后向 Director 报告进展。 特征、训练 RF、计算 pairwise AUC。关键上下文包括服务器、工作目录、Python 环境、模型路径和实验 ID。现在我需要验证 d1v2 inversion 是否在 τ=0.7 也出现。
+
+对于 zeroshot_llm_500_001 实验，我要把 zero-shot LLM 深度判断的样本量从 200 扩大到 500，参考 baseline_battery_001 的代码，可能需要处理 API key 问题。我打算用两个 Worker 并行处理这两个任务，但先要确认 zero-shot LLM 是否需要外部 API 密钥。
+
+我会先派出任务，如果 Worker 遇到需要 key 的情况再处理。
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "674aee08-e704-413a-a025-fd066bd27507",
+  "isSidechain": false,
+  "requestId": "req_011Cb4gLWcnuiMooDApr3i9u",
+  "type": "assistant",
+  "uuid": "4b7a30eb-a465-4481-943a-29613835e5a2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_3ad3e5f3",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018P8ZjYQztusXQpgnXEBbaV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 20198,
+      "cache_read_input_tokens": 49291,
+      "output_tokens": 5011,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20198,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5011,
+          "cache_read_input_tokens": 49291,
+          "cache_creation_input_tokens": 20198,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20198
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61 · 2026-05-15T16:35:55.538Z_
+
+状态确认完毕。实际上 registry 有 **2 个 ALLOCATED 未提交实验**（handoff 遗漏）：
+- `temp07_pilot_pythia_001` (cuda:0) — τ=0.7 Pythia pilot
+- `zeroshot_llm_500_001` (cuda:1) — zero-shot 500 samples
+
+GPU 已分配但空跑 = 失职。立即 spawn Worker 处理这两个实验，同时向 Director 汇报 session 启动状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4b7a30eb-a465-4481-943a-29613835e5a2",
+  "isSidechain": false,
+  "requestId": "req_011Cb4gLWcnuiMooDApr3i9u",
+  "type": "assistant",
+  "uuid": "50008be3-3f2c-4ce3-aa1b-de13aebafc89",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_3ad3e5f3",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018P8ZjYQztusXQpgnXEBbaV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 20198,
+      "cache_read_input_tokens": 49291,
+      "output_tokens": 5011,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20198,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5011,
+          "cache_read_input_tokens": 49291,
+          "cache_creation_input_tokens": 20198,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20198
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62 · 2026-05-15T16:36:16.563Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker · `toolu_014KUhqVwd4zWu4rj8RCWgrY`</summary>
+
+```json
+{
+  "task_type": "code:temp07_pilot_pythia_001",
+  "project": "recursive_gen_depth_est",
+  "task_prompt": "## 任务：temp07_pilot_pythia_001 — Pythia-1.4B τ=0.7 Temperature Pilot\n\n### 目标\n生成 Pythia-1.4B 在 temperature=0.7 下的递归训练链数据 (d0-d3, 各 5000 samples)，提取特征，训练 RF 分类器，计算 pairwise AUC。验证 d1v2 inversion 是否在 τ=0.7 也出现。\n\n### 背景\nCross-strategy LOO 实验发现 temp09 holdout 有 d1v2 AUC 反转现象（GPT-2 XL: 0.129, OLMo: 0.253）。τ=0.7 pilot 验证这是 τ<1 通用现象还是 τ=0.9 边界条件。\n\n### 环境\n- 服务器: gpu-6000pro-2（通过 SSH）\n- 工作目录: /root/autodl-tmp/recursive_gen_depth_est\n- Python: `/root/miniconda3/bin/python`（conda base 环境，激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- 模型: /root/autodl-tmp/models/pythia-1.4b\n- GPU: cuda:0（CUDA_VISIBLE_DEVICES 自动注入，脚本内用 cuda:0）\n- 实验 ID: temp07_pilot_pythia_001\n\n### 参考代码\n服务器上已有类似实验的代码和数据：\n- 参考 temp09 数据: `data/pythia_temp09/` 目录结构\n- 参考其他 pipeline 脚本: 项目中的 `run_*.sh` 或 `run_*.py` 脚本\n- 参考特征提取: 已有 `extract_features.py` 或类似\n- 参考分类训练: 已有 RF 训练脚本\n\n### 步骤\n1. **探测环境**: SSH read_only 查看项目结构、已有脚本、已有 temp09 数据目录结构\n2. **准备数据生成脚本**: 基于已有的数据生成代码，修改 temperature=0.7。数据存放 `data/pythia_temp07/`\n3. **准备全 pipeline 脚本**: 数据生成 → 微调(LoRA) → 特征提取 → RF 训练 → pairwise AUC 分析。写成一个 `run_temp07_pilot.sh` 或类似形式\n4. **用 submit_training_job 提交训练**: \n   - experiment_id: temp07_pilot_pythia_001\n   - server: gpu-6000pro-2\n   - gpu_id: 0\n   - command 必须用: `bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && python/bash your_script\"`\n5. **更新 registry spec**: command, server, data_path, data_count, model_name, seed\n\n### 验证\n- 代码写完后先 dry-run 验证能启动（如 `python script.py --help` 或跑前几个 step 确认无 import error）\n- 提交后确认进程已启动（检查 PID）\n\n### 出错诊断\n- import error → 检查 conda base 环境的包列表\n- CUDA error → 确认用 cuda:0，不要硬编码其他 GPU 编号\n- 模型找不到 → 确认 /root/autodl-tmp/models/pythia-1.4b 路径\n- 数据目录 → 参考已有的 data/ 子目录结构\n\n### 产出\n- 提交训练 job（cron 自动监控）\n- registry 更新 spec",
+  "tool_groups": [
+    "ssh",
+    "registry"
+  ],
+  "context": "服务器 gpu-6000pro-2 使用 conda base 环境（不是 venv）。submit_training_job 的 command 必须用 bash -c 包裹。脚本内 GPU 编号始终用 cuda:0。已有数据在 data/ 下各子目录。模型在 /root/autodl-tmp/models/。"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "50008be3-3f2c-4ce3-aa1b-de13aebafc89",
+  "isSidechain": false,
+  "requestId": "req_011Cb4gLWcnuiMooDApr3i9u",
+  "type": "assistant",
+  "uuid": "2b75ccf6-6e9d-4189-a64d-a49541a8bcf4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_3ad3e5f3",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018P8ZjYQztusXQpgnXEBbaV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 20198,
+      "cache_read_input_tokens": 49291,
+      "output_tokens": 5011,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20198,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5011,
+          "cache_read_input_tokens": 49291,
+          "cache_creation_input_tokens": 20198,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20198
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-15T16:36:19.372Z_
+
+<details><summary>↩ Tool result · `toolu_014KUhqVwd4zWu4rj8RCWgrY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_code_temp07_pilot_pythia_001_20260515T163617\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/logs/workers/worker_code_temp07_pilot_pythia_001_20260515T163617.log\", \"setup_data\": {}, \"message\": \"Worker worker_code_temp07_pilot_pythia_001_20260515T163617 started. Use get_worker_status('worker_code_temp07_pilot_pythia_001_20260515T163617') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2b75ccf6-6e9d-4189-a64d-a49541a8bcf4",
+  "isSidechain": false,
+  "promptId": "4a692b27-acc9-4510-88f1-72c3acd11f24",
+  "type": "user",
+  "uuid": "580d049f-10c8-4e6e-af40-54650ee8c70d",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_temp07_pilot_pythia_001_20260515T163617\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/logs/workers/worker_code_temp07_pilot_pythia_001_20260515T163617.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_code_temp07_pilot_pythia_001_20260515T163617 started. Use get_worker_status('worker_code_temp07_pilot_pythia_001_20260515T163617') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"worker_id\": \"worker_code_temp07_pilot_pythia_001_20260515T163617\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/logs/workers/worker_code_temp07_pilot_pythia_001_20260515T163617.log\", \"setup_data\": {}, \"message\": \"Worker worker_code_temp07_pilot_pythia_001_20260515T163617 started. Use get_worker_status('worker_code_temp07_pilot_pythia_001_20260515T163617') to check progress.\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "2b75ccf6-6e9d-4189-a64d-a49541a8bcf4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_3ad3e5f3",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64 · 2026-05-15T16:36:35.272Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker · `toolu_01Ps9ApmXNPERSHSf7pTDpwE`</summary>
+
+```json
+{
+  "task_type": "code:zeroshot_llm_500_001",
+  "project": "recursive_gen_depth_est",
+  "task_prompt": "## 任务：zeroshot_llm_500_001 — Zero-shot LLM 深度判断 500 样本\n\n### 目标\n扩大 zero-shot LLM 深度判断样本量从 200→500 samples，缩窄 CI（预期缩小 ~37%），更可靠地与 RF 78.2% baseline 对比。\n\n### 背景\nbaseline_battery_001 中已完成 200 samples 的 zero-shot LLM 实验。当前 CI 过宽，500 samples 可提供更可靠的统计比较。这是审稿 R1-W4 要求。\n\n### 环境\n- 服务器: gpu-6000pro-2（通过 SSH）\n- 工作目录: /root/autodl-tmp/recursive_gen_depth_est\n- Python: `/root/miniconda3/bin/python`（conda base 环境，激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- GPU: cuda:1（CUDA_VISIBLE_DEVICES 自动注入，脚本内用 cuda:0）\n- 实验 ID: zeroshot_llm_500_001\n\n### 参考代码\n- 在服务器上查找 baseline_battery_001 相关的 zero-shot LLM 代码\n- 查看 `scripts/` 或项目根目录下已有的 zero-shot / LLM 判断脚本\n- 参考 artifacts/baseline_battery_001/ 下的产出文件了解输出格式\n\n### 步骤\n1. **探测环境**: SSH read_only 查看项目结构，找到 baseline_battery_001 的 zero-shot LLM 代码\n2. **分析已有代码**: 理解 200 samples 版本的实现方式（用的什么 LLM、什么 prompt、什么评估方式）\n3. **修改脚本**: 将样本量从 200 扩大到 500，保持其他参数不变\n4. **检查是否需要 API key**: 如果 zero-shot 用外部 API（如 OpenAI/Anthropic），需要告诉我你需要什么 key\n5. **用 submit_training_job 提交**:\n   - experiment_id: zeroshot_llm_500_001\n   - server: gpu-6000pro-2\n   - gpu_id: 1\n   - command 必须用: `bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && python your_script\"`\n6. **更新 registry spec**: command, data_path, data_count, model_name\n\n### 验证\n- 代码写完后先 dry-run 验证（跑几个 samples 确认无错）\n- 检查 API key 是否可用（如需要）\n- 提交后确认进程已启动\n\n### 出错诊断\n- API 相关错误 → 记录需要哪个 key，返回告知我走 request_secret 流程\n- 样本不够 → 检查数据文件，确认 500 samples 可用\n- import error → 检查依赖包\n\n### 产出\n- 提交训练 job（cron 自动监控）\n- registry 更新 spec\n- 如果需要 API key，明确告知需要什么 key",
+  "tool_groups": [
+    "ssh",
+    "registry"
+  ],
+  "context": "服务器 gpu-6000pro-2 使用 conda base 环境（不是 venv）。submit_training_job 的 command 必须用 bash -c 包裹。脚本内 GPU 编号始终用 cuda:0。baseline_battery_001 已完成 200 samples 的 zero-shot LLM 实验（在 registry 中 DONE/success）。"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "580d049f-10c8-4e6e-af40-54650ee8c70d",
+  "isSidechain": false,
+  "requestId": "req_011Cb4gLWcnuiMooDApr3i9u",
+  "type": "assistant",
+  "uuid": "f88cff75-9746-40e2-a057-ca75adcd9431",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_3ad3e5f3",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018P8ZjYQztusXQpgnXEBbaV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 20198,
+      "cache_read_input_tokens": 49291,
+      "output_tokens": 5011,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20198,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5011,
+          "cache_read_input_tokens": 49291,
+          "cache_creation_input_tokens": 20198,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20198
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-15T16:36:42.015Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director · `toolu_01MaDZAXavP4zCkgVnZCDcTr`</summary>
+
+```json
+{
+  "text": "[资源] GPU 分配 2/2 (cuda:0 temp07_pilot, cuda:1 zeroshot_500) | 实际跑 0/2 (刚启动 Worker 准备提交) | Worker 池 2 (GPU 2 / CPU 0)\n\n**Session #9 启动汇报**\n\n**实验总况**: 46 DONE (success 24, negative 3, failed 6, killed 13) + 2 ALLOCATED 未提交。\n\n**发现遗留 ALLOCATED 实验**:\n1. `temp07_pilot_pythia_001` (cuda:0) — R2-W3 τ=0.7 pilot，验证 d1v2 inversion 是否为 τ<1 通用现象\n2. `zeroshot_llm_500_001` (cuda:1) — R1-W4 zero-shot 样本量 200→500 缩窄 CI\n\n两个实验已 ALLOCATED 但上轮 session 未提交。已分别 spawn Worker 准备代码并提交。\n\n**Phase 2 写作就绪**: memory.md 已完整规划写作顺序（4 批 15 项）。第一批（§4 EDD 公式定义 / §3 Benchmark / Bibliography 扩充 / 术语一致性）无依赖可立即启动。DDL EMNLP ARR May 25，剩 10 天。\n\n**请示**: 两个补充实验 Worker 已派出。Director 是否批准启动 Phase 2 写作？若批准，我将再 spawn 4 个 CPU Worker 并行处理第一批写作任务。",
+  "project": "recursive_gen_depth_est"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f88cff75-9746-40e2-a057-ca75adcd9431",
+  "isSidechain": false,
+  "requestId": "req_011Cb4gLWcnuiMooDApr3i9u",
+  "type": "assistant",
+  "uuid": "22d3704e-e93a-45ad-a534-a335f7a4d28f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/agent_3ad3e5f3",
+  "sessionId": "fca35eee-3d86-498b-8ae4-4acc744cd03e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018P8ZjYQztusXQpgnXEBbaV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 20198,
+      "cache_read_input_tokens": 49291,
+      "output_tokens": 5011,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20198,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5011,
+          "cache_read_input_tokens": 49291,
+          "cache_creation_input_tokens": 20198,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20198
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---

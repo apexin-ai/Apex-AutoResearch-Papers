@@ -1,0 +1,5017 @@
+# Research conversation: <project_context> # 项目: recursive_gen_depth_est ## 运行环境 - 服务器名: gpu-6000pro-2 - SSH 连接命令: ssh connect.westb.seetacloud.c
+
+**How Deep Is Your Data? Estimating Recursive Generation Depth via Statistical Fingerprints (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 77
+- **Recorded user turns:** 1
+- **Tool calls:** 25
+- **Original source:** `logs/chats/exported-trajectories/account-3/2c0258ad-87f3-4a74-980d-775a4f63204b.jsonl`
+- **Structured JSON:** [`006caa5a0e30a9255af0.json`](../../sessions/00/006caa5a0e30a9255af0.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-16T13:14:50.159Z_
+
+````json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-16T13:14:50.159Z",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "content": "&lt;project_context>\n# 项目: recursive_gen_depth_est\n\n## 运行环境\n- 服务器名: gpu-6000pro-2\n- SSH 连接命令: ssh connect.westb.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/autodl-tmp/recursive_gen_depth_est\n\n## ⚠️ 活跃约束（必须遵守）\n\n- **C001**: 提交同系列实验（如 DCOL v5/v6）前必须先 read_registry 检查该系列所有历史实验的失败原因和参数约束，确认新 spec 不重复已知错误（原因：DCOL 系列 4 次失败，v4 重复了 v1 完全相同的错误（margin_lr=1e-3 导致 embedding collapse）。Worker 写 spec 时未查阅同系列历史教训。）\n- **C002**: 提交 DCOL 系列新实验前必须先 read_registry 检查同系列所有历史实验的失败原因和参数约束（原因：DCOL v4 重复了 v1 完全相同的错误（margin_lr=1e-3 导致 embedding collapse），系列已连续 4 次失败。Worker 未查阅历史教训直接提交。）\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n&lt;/project_context>\n## 任务：同步 R4 文字修改到服务器并编译验证\n\n本地 workspace 的 tex 文件刚做了 15 条 R4 审稿修改。需要同步到服务器后编译验证。\n\n### 步骤\n\n1. 确定本地 tex 文件路径。用 Glob 找到本地的 abstract.tex：\n   可能在 `/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/paper/` 或 `docs/paper/`\n\n2. SSH 到 gpu-6000pro-2，确认服务器论文目录：\n   ```\n   ls /root/autodl-tmp/recursive_gen_depth_est/paper/*.tex\n   ```\n\n3. 将本地所有修改过的 tex 文件同步到服务器。需要同步的文件（全部在 R4 中修改过）：\n   - abstract.tex\n   - generalization.tex\n   - discussion.tex\n   - section_appendix.tex\n   - atlas.tex\n   - method.tex\n   - introduction.tex\n   - related_work.tex\n   \n   方法：先用 Read 读取本地每个文件的完整内容，然后用 ssh_execute 写入服务器对应位置。\n   用 `cat << 'TEXEOF' > /root/autodl-tmp/recursive_gen_depth_est/paper/&lt;filename>` heredoc 写入。\n\n4. 编译：\n   ```\n   cd /root/autodl-tmp/recursive_gen_depth_est/paper/\n   pdflatex -interaction=nonstopmode main && bibtex main && pdflatex -interaction=nonstopmode main && pdflatex -interaction=nonstopmode main\n   ```\n\n5. 验证：\n   ```\n   # Errors\n   grep -c \"^!\" main.log || echo \"0 errors\"\n   \n   # Undefined refs\n   grep -c \"LaTeX Warning.*undefined\" main.log || echo \"0 undefined refs\"\n   \n   # Overfull hbox\n   grep \"Overfull.*hbox\" main.log | head -5\n   \n   # 页数\n   grep \"Output written\" main.log\n   \n   # PDF 时间戳\n   ls -la main.pdf\n   ```\n\n6. 如果有 errors 或 undefined refs，报告具体错误行和文件。\n\n### 环境\n- 服务器：gpu-6000pro-2\n- 论文目录：`/root/autodl-tmp/recursive_gen_depth_est/paper/`\n- 本地论文目录：用 Glob 查找"
+}
+````
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-16T13:14:50.163Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-16T13:14:50.163Z",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b"
+}
+```
+
+---
+
+## Round 1
+
+75 recorded events
+
+### User
+
+_source line 3 · 2026-05-16T13:14:50.196Z_
+
+&lt;project_context>
+# 项目: recursive_gen_depth_est
+
+## 运行环境
+- 服务器名: gpu-6000pro-2
+- SSH 连接命令: ssh connect.westb.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP
+- 项目代码根目录: /root/autodl-tmp/recursive_gen_depth_est
+
+## ⚠️ 活跃约束（必须遵守）
+
+- **C001**: 提交同系列实验（如 DCOL v5/v6）前必须先 read_registry 检查该系列所有历史实验的失败原因和参数约束，确认新 spec 不重复已知错误（原因：DCOL 系列 4 次失败，v4 重复了 v1 完全相同的错误（margin_lr=1e-3 导致 embedding collapse）。Worker 写 spec 时未查阅同系列历史教训。）
+- **C002**: 提交 DCOL 系列新实验前必须先 read_registry 检查同系列所有历史实验的失败原因和参数约束（原因：DCOL v4 重复了 v1 完全相同的错误（margin_lr=1e-3 导致 embedding collapse），系列已连续 4 次失败。Worker 未查阅历史教训直接提交。）
+
+
+## 环境搭建
+连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。
+
+## 输出风格
+回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。
+&lt;/project_context>
+## 任务：同步 R4 文字修改到服务器并编译验证
+
+本地 workspace 的 tex 文件刚做了 15 条 R4 审稿修改。需要同步到服务器后编译验证。
+
+### 步骤
+
+1. 确定本地 tex 文件路径。用 Glob 找到本地的 abstract.tex：
+   可能在 `/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/paper/` 或 `docs/paper/`
+
+2. SSH 到 gpu-6000pro-2，确认服务器论文目录：
+   ```
+   ls /root/autodl-tmp/recursive_gen_depth_est/paper/*.tex
+   ```
+
+3. 将本地所有修改过的 tex 文件同步到服务器。需要同步的文件（全部在 R4 中修改过）：
+   - abstract.tex
+   - generalization.tex
+   - discussion.tex
+   - section_appendix.tex
+   - atlas.tex
+   - method.tex
+   - introduction.tex
+   - related_work.tex
+   
+   方法：先用 Read 读取本地每个文件的完整内容，然后用 ssh_execute 写入服务器对应位置。
+   用 `cat << 'TEXEOF' > /root/autodl-tmp/recursive_gen_depth_est/paper/&lt;filename>` heredoc 写入。
+
+4. 编译：
+   ```
+   cd /root/autodl-tmp/recursive_gen_depth_est/paper/
+   pdflatex -interaction=nonstopmode main && bibtex main && pdflatex -interaction=nonstopmode main && pdflatex -interaction=nonstopmode main
+   ```
+
+5. 验证：
+   ```
+   # Errors
+   grep -c "^!" main.log || echo "0 errors"
+   
+   # Undefined refs
+   grep -c "LaTeX Warning.*undefined" main.log || echo "0 undefined refs"
+   
+   # Overfull hbox
+   grep "Overfull.*hbox" main.log | head -5
+   
+   # 页数
+   grep "Output written" main.log
+   
+   # PDF 时间戳
+   ls -la main.pdf
+   ```
+
+6. 如果有 errors 或 undefined refs，报告具体错误行和文件。
+
+### 环境
+- 服务器：gpu-6000pro-2
+- 论文目录：`/root/autodl-tmp/recursive_gen_depth_est/paper/`
+- 本地论文目录：用 Glob 查找
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "6da10313-6a8f-475a-9e62-751bf1f7e158",
+  "type": "user",
+  "uuid": "2ef4c39f-792c-43a4-8813-94fabc5ca9a9",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-16T13:14:50.196Z_
+
+```json
+{
+  "parentUuid": "2ef4c39f-792c-43a4-8813-94fabc5ca9a9",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "d85775a5-8c4a-45f3-9745-62cfe5b9c14a",
+  "timestamp": "2026-05-16T13:14:50.196Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-16T13:14:50.196Z_
+
+```json
+{
+  "parentUuid": "d85775a5-8c4a-45f3-9745-62cfe5b9c14a",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "00824c67-20fb-4e6f-80ac-d5dce4792d8a",
+  "timestamp": "2026-05-16T13:14:50.196Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-16T13:14:50.196Z_
+
+```json
+{
+  "parentUuid": "00824c67-20fb-4e6f-80ac-d5dce4792d8a",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "8ac48496-907f-41c2-bcdf-1acd6f6b393c",
+  "timestamp": "2026-05-16T13:14:50.196Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Sync R4 tex revisions and compile paper",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-16T13:14:53.892Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by finding the local tex files, then sync them to the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8ac48496-907f-41c2-bcdf-1acd6f6b393c",
+  "isSidechain": false,
+  "requestId": "req_011Cb6JsDkM2gvZrGrFhPumU",
+  "type": "assistant",
+  "uuid": "060c0ebb-a76c-4abe-bb16-c647a59bd3db",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018o1YC96hAxWXKyBoAoBJsu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11718,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 217,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11718,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 217,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11718,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11718
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-16T13:14:54.858Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_013Ccx6bTBjvTwbmCsTkFqP9`</summary>
+
+```json
+{
+  "pattern": "**/paper/*.tex",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "060c0ebb-a76c-4abe-bb16-c647a59bd3db",
+  "isSidechain": false,
+  "requestId": "req_011Cb6JsDkM2gvZrGrFhPumU",
+  "type": "assistant",
+  "uuid": "fc85de7d-f5cb-414f-904a-3367a1ef1281",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018o1YC96hAxWXKyBoAoBJsu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11718,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 217,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11718,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 217,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11718,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11718
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T13:14:54.880Z_
+
+<details><summary>↩ Tool result · `toolu_013Ccx6bTBjvTwbmCsTkFqP9`</summary>
+
+```text
+docs/paper/main.tex
+docs/paper/conclusion.tex
+docs/paper/abstract.tex
+docs/paper/method.tex
+docs/paper/atlas.tex
+docs/paper/discussion.tex
+docs/paper/introduction.tex
+docs/paper/related_work.tex
+docs/paper/section_appendix.tex
+docs/paper/generalization.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fc85de7d-f5cb-414f-904a-3367a1ef1281",
+  "isSidechain": false,
+  "promptId": "6da10313-6a8f-475a-9e62-751bf1f7e158",
+  "type": "user",
+  "uuid": "1a399fe9-9fe5-4188-9176-e4c3f69921c2",
+  "toolUseResult": {
+    "filenames": [
+      "docs/paper/main.tex",
+      "docs/paper/conclusion.tex",
+      "docs/paper/abstract.tex",
+      "docs/paper/method.tex",
+      "docs/paper/atlas.tex",
+      "docs/paper/discussion.tex",
+      "docs/paper/introduction.tex",
+      "docs/paper/related_work.tex",
+      "docs/paper/section_appendix.tex",
+      "docs/paper/generalization.tex"
+    ],
+    "durationMs": 14,
+    "numFiles": 10,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "fc85de7d-f5cb-414f-904a-3367a1ef1281",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-16T13:14:55.772Z_
+
+<details><summary>↩ Tool result · `toolu_01EBgSgS8zPdqRZEwY6UVq7w`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6a1aebd3-5a89-45d2-b38f-b4823fc3c2a8",
+  "isSidechain": false,
+  "promptId": "6da10313-6a8f-475a-9e62-751bf1f7e158",
+  "type": "user",
+  "uuid": "dd5fc8c6-15bf-4958-bd2a-b9557373f7bf",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  },
+  "sourceToolAssistantUUID": "6a1aebd3-5a89-45d2-b38f-b4823fc3c2a8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-16T13:14:55.768Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01EBgSgS8zPdqRZEwY6UVq7w`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1a399fe9-9fe5-4188-9176-e4c3f69921c2",
+  "isSidechain": false,
+  "requestId": "req_011Cb6JsDkM2gvZrGrFhPumU",
+  "type": "assistant",
+  "uuid": "6a1aebd3-5a89-45d2-b38f-b4823fc3c2a8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018o1YC96hAxWXKyBoAoBJsu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11718,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 217,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11718,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 217,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11718,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11718
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-16T13:14:59.666Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Found the local tex files in `docs/paper/`. Now I need to:
+1. Read all 8 modified tex files locally
+2. Check the server paper directory
+3. Sync them to the server
+4. Compile and verify
+
+Let me start by reading all the local files and checking the server directory in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dd5fc8c6-15bf-4958-bd2a-b9557373f7bf",
+  "isSidechain": false,
+  "requestId": "req_011Cb6JsdjV6eb1UmjMu13kQ",
+  "type": "assistant",
+  "uuid": "bd9404f0-fb8a-45dc-a7f8-024e80324a2d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YXetNnTViRtizz35a25Rdr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 914,
+      "cache_read_input_tokens": 23559,
+      "output_tokens": 811,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 914,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 811,
+          "cache_read_input_tokens": 23559,
+          "cache_creation_input_tokens": 914,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 914
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14 · 2026-05-16T13:15:00.627Z_
+
+本地论文目录：`docs/paper/`。开始读取所有需要同步的文件并确认服务器目录。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bd9404f0-fb8a-45dc-a7f8-024e80324a2d",
+  "isSidechain": false,
+  "requestId": "req_011Cb6JsdjV6eb1UmjMu13kQ",
+  "type": "assistant",
+  "uuid": "b4bb23f1-d180-493a-b671-e99fce4d24fa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YXetNnTViRtizz35a25Rdr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 914,
+      "cache_read_input_tokens": 23559,
+      "output_tokens": 811,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 914,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 811,
+          "cache_read_input_tokens": 23559,
+          "cache_creation_input_tokens": 914,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 914
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-16T13:15:01.127Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01E8wJTRjoxyd7kS4byqar7J`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/abstract.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b4bb23f1-d180-493a-b671-e99fce4d24fa",
+  "isSidechain": false,
+  "requestId": "req_011Cb6JsdjV6eb1UmjMu13kQ",
+  "type": "assistant",
+  "uuid": "49fe2093-7a2e-4b9b-81a7-451c28579d5c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YXetNnTViRtizz35a25Rdr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 914,
+      "cache_read_input_tokens": 23559,
+      "output_tokens": 811,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 914,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 811,
+          "cache_read_input_tokens": 23559,
+          "cache_creation_input_tokens": 914,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 914
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-16T13:15:01.141Z_
+
+<details><summary>↩ Tool result · `toolu_01E8wJTRjoxyd7kS4byqar7J`</summary>
+
+```text
+1	\begin{abstract}
+2	As large language models increasingly train on web text containing their own outputs, a recursive model$\to$data$\to$model loop arises---yet no method estimates how many such iterations a text has undergone.
+3	We formalize \emph{recursive generation depth estimation} as ordinal classification and construct a benchmark of 180K passages spanning 3 model families, 3 decoding strategies, and 4 generation depths.
+4	From each passage we extract a compact statistical fingerprint---19 candidate features dominated by perplexity tail statistics---computed against a fixed reference model.
+5	A Random Forest classifier achieves 70--85\% four-class accuracy (chance = 25\%), with perplexity tail statistics emerging as consistent depth markers across all studied configurations.
+6	Our \emph{Depth Degradation Atlas} reveals that decoding strategy reshapes degradation trajectories rather than merely attenuating them, and we define the \emph{Effective Discriminable Depth} (EDD) metric, finding $\mathrm{EDD}_{0.75}{=}4$ for the best-characterized model family (Pythia, $p{=}0.001$; consistent direction across all three families with graded statistical support; \S4.4).
+7	Cross-model transfer reaches 66.4\% (d1--d3 balanced accuracy: 55.4\%, $1.7\times$ chance); cross-model recursive chains---where each depth is generated by a different architecture---achieve 84.75\% accuracy, providing preliminary evidence consistent with a process-level depth signal.
+8	Preliminary cross-scale observations on two 7B-scale generators yield 70.2\% accuracy ($\mathrm{EDD}{=}4$) and 60.1\%, with divergent AUC trajectories possibly linked to instruction-tuning effects.
+9	Applied to WikiText-103 and C4 web-crawl text, the classifiers maintain high d0 accuracy on editorial text while revealing model-dependent false positive rates on heterogeneous web content.
+10	\end{abstract}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "49fe2093-7a2e-4b9b-81a7-451c28579d5c",
+  "isSidechain": false,
+  "promptId": "6da10313-6a8f-475a-9e62-751bf1f7e158",
+  "type": "user",
+  "uuid": "9800830b-b88d-44e7-9849-8468ecc6c08a",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/abstract.tex",
+      "content": "\\begin{abstract}\nAs large language models increasingly train on web text containing their own outputs, a recursive model$\\to$data$\\to$model loop arises---yet no method estimates how many such iterations a text has undergone.\nWe formalize \\emph{recursive generation depth estimation} as ordinal classification and construct a benchmark of 180K passages spanning 3 model families, 3 decoding strategies, and 4 generation depths.\nFrom each passage we extract a compact statistical fingerprint---19 candidate features dominated by perplexity tail statistics---computed against a fixed reference model.\nA Random Forest classifier achieves 70--85\\% four-class accuracy (chance = 25\\%), with perplexity tail statistics emerging as consistent depth markers across all studied configurations.\nOur \\emph{Depth Degradation Atlas} reveals that decoding strategy reshapes degradation trajectories rather than merely attenuating them, and we define the \\emph{Effective Discriminable Depth} (EDD) metric, finding $\\mathrm{EDD}_{0.75}{=}4$ for the best-characterized model family (Pythia, $p{=}0.001$; consistent direction across all three families with graded statistical support; \\S4.4).\nCross-model transfer reaches 66.4\\% (d1--d3 balanced accuracy: 55.4\\%, $1.7\\times$ chance); cross-model recursive chains---where each depth is generated by a different architecture---achieve 84.75\\% accuracy, providing preliminary evidence consistent with a process-level depth signal.\nPreliminary cross-scale observations on two 7B-scale generators yield 70.2\\% accuracy ($\\mathrm{EDD}{=}4$) and 60.1\\%, with divergent AUC trajectories possibly linked to instruction-tuning effects.\nApplied to WikiText-103 and C4 web-crawl text, the classifiers maintain high d0 accuracy on editorial text while revealing model-dependent false positive rates on heterogeneous web content.\n\\end{abstract}",
+      "numLines": 10,
+      "startLine": 1,
+      "totalLines": 10
+    }
+  },
+  "sourceToolAssistantUUID": "49fe2093-7a2e-4b9b-81a7-451c28579d5c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-16T13:15:02.111Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01SSHmyjoktLHQGFdGSHqCh9`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/generalization.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9800830b-b88d-44e7-9849-8468ecc6c08a",
+  "isSidechain": false,
+  "requestId": "req_011Cb6JsdjV6eb1UmjMu13kQ",
+  "type": "assistant",
+  "uuid": "a36b1fe4-fcab-45a7-be53-abe52037ad0e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YXetNnTViRtizz35a25Rdr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 914,
+      "cache_read_input_tokens": 23559,
+      "output_tokens": 811,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 914,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 811,
+          "cache_read_input_tokens": 23559,
+          "cache_creation_input_tokens": 914,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 914
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-16T13:15:02.117Z_
+
+<details><summary>↩ Tool result · `toolu_01SSHmyjoktLHQGFdGSHqCh9`</summary>
+
+```text
+1	\section{Generalization and Robustness}
+2	\label{sec:generalization}
+3	
+4	We test whether the atlas results (69.6--85.4\%) reflect genuine statistical regularities or training artifacts, evaluating generalization along seven axes: four in detail below---classifier choice (\S\ref{sec:gen:baselines}), cross-model transfer (\S\ref{sec:gen:crossmodel}), cross-strategy transfer (\S\ref{sec:gen:crossstrategy}), and preliminary cross-scale observations (\S\ref{sec:gen:crossscale})---and three in the Appendix (end-to-end learning, temperature robustness, and cross-boundary transfer).
+5	
+6	\subsection{Classifier Comparison and Surface-Text Ablation}
+7	\label{sec:gen:baselines}
+8	
+9	Table~\ref{tab:baselines} evaluates three classifier families---bagging (RF), gradient boosting (XGBoost, LightGBM)---on the same 19 features across three atlas cells spanning the full accuracy range.
+10	Per-cell spread is $\leq$0.4pp, establishing a feature-determined ceiling independent of the learning algorithm.
+11	On Pythia nucleus, CORAL ordinal regression \cite{coral2020} (78.1\%) and DivEye \cite{diveye2026} (78.2\%) match the within-cell RF of Table~\ref{tab:main_matrix} within 0.1\,pp (bootstrap $p>0.05$, Bonferroni-corrected); all feature-based methods significantly outperform CE-MLP (74.9\%, $p<0.001$) and logistic regression (75.0\%).
+12	
+13	\paragraph{Surface-text ablation.}
+14	As a complementary ablation, we test whether depth can be estimated from surface text alone---without the targeted distributional features our pipeline extracts.
+15	Single-feature regression on mean perplexity performs at chance (25.1\%); two zero-shot LLMs---DeepSeek V3.2 (36.2\%, 95\% CI $[32.0, 40.4]$) and Qwen2.5-7B-Instruct (30.4\%, $[26.5, 34.6]$; each 500 samples, prompt template in Appendix~\ref{app:zeroshot_prompt})---both fail to distinguish recursive depth, performing near chance (25\%).
+16	The 42\,pp gap between RF (78.2\%) and both LLMs confirms that the depth signal resides in distributional statistics inaccessible from surface text alone; this gap exceeds the CI half-width (${\approx}$4\,pp) by an order of magnitude, ensuring robustness at $n{=}500$.
+17	
+18	\begin{table}[t]
+19	\centering
+20	\small
+21	\caption{Classifier convergence: 4-class accuracy (\%) across three atlas cells. RF (bagging), XGBoost and LightGBM (gradient boosting) operate on the same 19 features; $\Delta_{\max}$: largest per-cell spread. Chance = 25\%. RF values differ from Table~\ref{tab:main_matrix} by $\leq$0.7pp due to matched-fold evaluation.}
+22	\label{tab:baselines}
+23	\begin{tabular}{@{}lcccc@{}}
+24	\toprule
+25	Cell & RF & XGB & LGBM & $\Delta_{\max}$ \\
+26	\midrule
+27	Pythia, nuc. & 78.8 & 79.0 & 78.9 & 0.2 \\
+28	GPT-2~XL, $\tau$ & 85.8 & 86.2 & 86.2 & 0.4 \\
+29	Pythia, top-$k$ & 68.9 & 68.9 & 68.7 & 0.2 \\
+30	\bottomrule
+31	\end{tabular}
+32	\end{table}
+33	
+34	Convergence across five structurally different classifiers---spanning bagging, gradient boosting, ordinal regression, and ensemble detection---confirms the signal resides in the features, not the learning algorithm.
+35	Figure~\ref{fig:confusion_matrix} shows d0 near-perfectly identified; errors concentrate at d2/d3 in-distribution and spread across d1--d3 under transfer.
+36	
+37	\begin{figure}[t]
+38	\centering
+39	\includegraphics[width=\columnwidth]{figures/fig_confusion_matrix.pdf}
+40	\caption{Confusion matrices for the best in-distribution setting (GPT-2 XL, temp $\tau{=}0.9$, 85.4\%) and the best cross-model leave-one-out transfer (OLMo holdout, 69.2\%). d0 recall exceeds 99\% in both; errors spread across the d1--d3 range under transfer.}
+41	\label{fig:confusion_matrix}
+42	\end{figure}
+43	
+44	\subsection{Cross-Model Transfer}
+45	\label{sec:gen:crossmodel}
+46	
+47	We perform leave-one-model-family-out evaluation: train on two families (nucleus only), test on the held-out third (Table~\ref{tab:cross_model}).
+48	
+49	\begin{table}[t]
+50	\centering
+51	\small
+52	\caption{Cross-model transfer (leave-one-out, nucleus only). Chance = 25\% / 33\% (d1--d3). d1--d3 bal.\ acc: Pythia 49.9\%, OLMo 59.2\%, GPT-2~XL 57.2\% (mean 55.4\%).}
+53	\label{tab:cross_model}
+54	\begin{tabular}{lccccc}
+55	\toprule
+56	Holdout & Acc & d0 & d1 & d2 & d3 \\
+57	 & (\%) & Rec. & Rec. & Rec. & Rec. \\
+58	\midrule
+59	Pythia & 62.4 & 100.0 & 49.3 & 26.8 & 73.6 \\
+60	OLMo & \textbf{69.2} & 99.3 & 75.5 & 43.3 & 58.8 \\
+61	GPT-2 XL & 67.6 & 98.5 & 74.7 & 52.6 & 44.5 \\
+62	\midrule
+63	Mean & 66.4 & 99.3 & 66.5 & 40.9 & 59.0 \\
+64	\bottomrule
+65	\end{tabular}
+66	\end{table}
+67	
+68	Mean transfer accuracy is 66.4\% (2.7$\times$ chance); d0 recall ($>$98\%) inflates the headline while d2 drops to 26.8\% (Pythia holdout).
+69	Excluding d0, d1--d3 balanced accuracy averages 55.4\% (chance = 33\%).
+70	
+71	\subsection{Cross-Strategy Transfer}
+72	\label{sec:gen:crossstrategy}
+73	
+74	We train on two decoding strategies and test on the held-out third (Table~\ref{tab:cross_strategy}).
+75	
+76	\begin{table}[t]
+77	\centering
+78	\small
+79	\caption{Cross-strategy transfer (leave-one-out). Chance = 25\% / 33\% (d1--d3). d0 recall $\geq$89\% inflates headline; d1--d3 mean: 45.9\%.}
+80	\label{tab:cross_strategy}
+81	\begin{tabular}{lccc}
+82	\toprule
+83	Holdout & Pythia & OLMo & GPT-2 XL \\
+84	 & Acc (\%) & Acc (\%) & Acc (\%) \\
+85	\midrule
+86	nucleus & \textbf{69.4} & \textbf{65.4} & \textbf{59.9} \\
+87	temp ($\tau{=}0.9$) & 62.8 & 58.2 & 56.1 \\
+88	top-$k$ ($k{=}50$) & 51.5 & 54.9 & 53.6 \\
+89	\bottomrule
+90	\end{tabular}
+91	\end{table}
+92	
+93	Mean cross-strategy accuracy (59.1\%) falls 7pp below cross-model transfer (66.4\%); excluding d0, d1--d3 accuracy drops to 45.9\% (chance = 33\%).
+94	d2 recall varies sharply: nucleus holdouts retain 30--54\%, top-$k$ holdouts fall to 8--19\%, and temperature holdouts span 3.7--39.5\% (median 8.9\%).
+95	Training on nucleus + top-$k$ and testing on temperature inverts the d1/d2 boundary (d1v2 AUC $<$ 0.5); per-strategy z-score normalization partially recovers it but leaves a residual gap (Limitations).
+96	A multi-temperature ablation (Appendix~\ref{app:multi_tau}) confirms that within-$\tau$ depth signal holds for $\tau \leq 0.9$ (d1v2 AUC $>0.80$) but collapses at $\tau{=}1.1$; cross-$\tau$ LOO transfer (mean 46.7\%) is harder than cross-strategy transfer.
+97	Temperature variations ($\tau \in [0.5, 0.9]$) do not fundamentally alter depth discriminability within a fixed strategy; classification accuracy remains within 3pp of the $\tau{=}0.7$ baseline across all tested temperatures. Full multi-$\tau$ analysis is provided in Appendix~\ref{app:multi_tau}.
+98	
+99	End-to-end PLMs (DeBERTa-v3, RoBERTa) achieve only ${\sim}$59\%, lagging RF by 19pp, confirming depth signal resides in perplexity tail statistics inaccessible to standard PLM representations (Appendix~\ref{app:e2e}).
+100	
+101	%% ----------------------------------------------------------------
+102	\subsection{Preliminary Cross-Scale Observations}
+103	\label{sec:gen:crossscale}
+104	
+105	The preceding analyses use 1--1.5B parameter models.
+106	To test whether depth signal persists in substantially larger generators, we extend the benchmark to two 7--8B models: Qwen2.5-7B-Instruct~\cite{qwen2.5} and Llama-3.1-8B-Instruct~\cite{llama3}, both under 4-bit NF4 QLoRA fine-tuning, generating depths $d \in \{0, 1, \ldots, 5\}$ with nucleus sampling ($p{=}0.95$, 500 samples per depth).
+107	Feature extraction uses the same reference model (Pythia-1.4B) and 19-feature pipeline as all prior experiments.
+108	
+109	\paragraph{Scale comparison.}
+110	Table~\ref{tab:cross_scale} contrasts the two 7--8B models with the three 1--1.5B models on matched evaluation (nucleus sampling, depths 0--3).
+111	
+112	\begin{table}[t]
+113	\centering
+114	\small
+115	\caption{Cross-scale comparison: 4-class RF accuracy (\%, depths 0--3, nucleus), $\mathrm{EDD}_{T{=}0.70}$ (depths 0--5), and d0-vs-d1 AUC. CI: 95\% bootstrap. Chance = 25\%.}
+116	\label{tab:cross_scale}
+117	\begin{tabular}{@{}lccc@{}}
+118	\toprule
+119	Model & 4-class acc & $\mathrm{EDD}_{T{=}0.70}$ & d0v1 AUC \\
+120	\midrule
+121	GPT-2~XL (1.5B) & 83.3 & 4 & 0.999 \\
+122	OLMo-1B & 78.8 & 4 & 0.997 \\
+123	Pythia-1.4B & 78.2 & 4 & 0.998 \\
+124	\midrule
+125	Llama-3.1-8B & 70.2\,[68.3, 72.4] & 4 & 0.949 \\
+126	Qwen2.5-7B & 60.1\,[58.0, 62.1] & ${>}5$ & 0.969 \\
+127	\bottomrule
+128	\end{tabular}
+129	\end{table}
+130	
+131	Three findings emerge:
+132	
+133	\paragraph{(1) Depth signal persists at 7--8B scale.}
+134	Both 7--8B models substantially exceed the 25\% chance baseline: Llama-3.1-8B achieves 70.2\% (95\% CI $[68.3, 72.4]$) and Qwen2.5-7B achieves 60.1\% ($[58.0, 62.1]$), confirming that recursive depth remains estimable from perplexity-based features even when the generator is 5--7$\times$ larger than the reference model.
+135	Depth-0 separability is preserved in both models: d0v1 AUC is 0.949 (Llama-3.1) and 0.969 (Qwen2.5).
+136	
+137	\paragraph{(2) EDD at 7--8B scale.}
+138	At threshold $T{=}0.70$, Qwen2.5-7B maintains all consecutive-pair AUCs above 0.70 through depth~5 (Table~\ref{tab:cross_scale_auc}), yielding $\mathrm{EDD}_{T{=}0.70} > 5$---exceeding the $\mathrm{EDD}{=}4$ observed at 1--1.5B.
+139	Llama-3.1-8B matches the smaller models at $\mathrm{EDD}{=}4$: its monotonic decay causes d4v5 (0.618) to drop below $T$, despite stronger signal at shallower depths.
+140	Both larger generators produce weaker per-step signal than the 1--1.5B models (mean consecutive AUC: 0.786 for Llama-3.1, 0.782 for Qwen2.5, vs.\ 0.852 at 1--1.5B).
+141	
+142	\begin{table}[t]
+143	\centering
+144	\small
+145	\caption{Consecutive binary AUC for 7--8B models (nucleus $p{=}0.95$). Llama-3.1-8B exhibits monotonic decay (d4v5 drops below $T{=}0.70$); Qwen2.5-7B shows a non-monotonic (U-shaped) pattern with all pairs above $T$.}
+146	\label{tab:cross_scale_auc}
+147	\begin{tabular}{@{}lccccc@{}}
+148	\toprule
+149	Model & d0v1 & d1v2 & d2v3 & d3v4 & d4v5 \\
+150	\midrule
+151	Llama-3.1-8B & 0.949 & 0.877 & 0.771 & 0.716 & 0.618 \\
+152	Qwen2.5-7B & 0.969 & 0.729 & 0.709 & 0.732 & 0.772 \\
+153	\bottomrule
+154	\end{tabular}
+155	\end{table}
+156	
+157	\paragraph{(3) Divergent AUC trajectories across architectures.}
+158	Llama-3.1-8B exhibits monotonic AUC decay (0.949 $\to$ 0.877 $\to$ 0.771 $\to$ 0.716 $\to$ 0.618), consistent with the pattern observed at 1--1.5B scale.
+159	In contrast, Qwen2.5-7B shows a U-shaped recovery beyond d2v3: consecutive AUC drops from 0.969 (d0v1) to a minimum of 0.709 (d2v3), then \emph{rises} to 0.732 (d3v4) and 0.772 (d4v5).
+160	This divergence suggests the U-shape observed in Qwen is model-specific---possibly related to its instruction-tuning regime (RLHF/DPO)---rather than a scale-dependent phenomenon.
+161	The Llama-3.1 result demonstrates that monotonic decay \emph{does} replicate at 7--8B scale for at least one architecture, strengthening the generality of the decay pattern as the default behavior.
+162	
+163	\paragraph{Caveats.}
+164	For Qwen2.5-7B, the CI lower bound (58.0\%) does not exclude sub-60\% accuracy; Llama-3.1-8B's lower bound (68.3\%) is more comfortably above chance but still below the 75--83\% range at 1--1.5B.
+165	The divergent AUC trajectories across two models caution against strong generalizations from only two 7--8B data points: both the monotonic (Llama-3.1) and non-monotonic (Qwen2.5) patterns are single observations, and further architectures are needed to establish which is the dominant regime at this scale.
+166	Both models are instruction-tuned, introducing a confound absent in the base-model experiments: RLHF/DPO alignment may independently shape the feature trajectory in ways not fully attributable to recursive depth alone.
+167	Cross-model recursive chains (84.75\%) and cross-domain transfer (arXiv 74.1\%) further confirm signal universality (Appendix~\ref{app:cross_boundary}).
+168	
+169	\paragraph{Cross-scale confounds.}
+170	Four confounds limit these cross-scale results: (1) 4-bit NF4 QLoRA quantization (absent at 1--1.5B), (2) instruction-tuning (RLHF/DPO, absent in base-model experiments), (3) smaller sample size (500 vs 5{,}000), and (4) evaluation limited to nucleus sampling.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a36b1fe4-fcab-45a7-be53-abe52037ad0e",
+  "isSidechain": false,
+  "promptId": "6da10313-6a8f-475a-9e62-751bf1f7e158",
+  "type": "user",
+  "uuid": "dedc34ad-acaf-4b98-9866-454f5af313db",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/generalization.tex",
+      "content": "\\section{Generalization and Robustness}\n\\label{sec:generalization}\n\nWe test whether the atlas results (69.6--85.4\\%) reflect genuine statistical regularities or training artifacts, evaluating generalization along seven axes: four in detail below---classifier choice (\\S\\ref{sec:gen:baselines}), cross-model transfer (\\S\\ref{sec:gen:crossmodel}), cross-strategy transfer (\\S\\ref{sec:gen:crossstrategy}), and preliminary cross-scale observations (\\S\\ref{sec:gen:crossscale})---and three in the Appendix (end-to-end learning, temperature robustness, and cross-boundary transfer).\n\n\\subsection{Classifier Comparison and Surface-Text Ablation}\n\\label{sec:gen:baselines}\n\nTable~\\ref{tab:baselines} evaluates three classifier families---bagging (RF), gradient boosting (XGBoost, LightGBM)---on the same 19 features across three atlas cells spanning the full accuracy range.\nPer-cell spread is $\\leq$0.4pp, establishing a feature-determined ceiling independent of the learning algorithm.\nOn Pythia nucleus, CORAL ordinal regression \\cite{coral2020} (78.1\\%) and DivEye \\cite{diveye2026} (78.2\\%) match the within-cell RF of Table~\\ref{tab:main_matrix} within 0.1\\,pp (bootstrap $p>0.05$, Bonferroni-corrected); all feature-based methods significantly outperform CE-MLP (74.9\\%, $p<0.001$) and logistic regression (75.0\\%).\n\n\\paragraph{Surface-text ablation.}\nAs a complementary ablation, we test whether depth can be estimated from surface text alone---without the targeted distributional features our pipeline extracts.\nSingle-feature regression on mean perplexity performs at chance (25.1\\%); two zero-shot LLMs---DeepSeek V3.2 (36.2\\%, 95\\% CI $[32.0, 40.4]$) and Qwen2.5-7B-Instruct (30.4\\%, $[26.5, 34.6]$; each 500 samples, prompt template in Appendix~\\ref{app:zeroshot_prompt})---both fail to distinguish recursive depth, performing near chance (25\\%).\nThe 42\\,pp gap between RF (78.2\\%) and both LLMs confirms that the depth signal resides in distributional statistics inaccessible from surface text alone; this gap exceeds the CI half-width (${\\approx}$4\\,pp) by an order of magnitude, ensuring robustness at $n{=}500$.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Classifier convergence: 4-class accuracy (\\%) across three atlas cells. RF (bagging), XGBoost and LightGBM (gradient boosting) operate on the same 19 features; $\\Delta_{\\max}$: largest per-cell spread. Chance = 25\\%. RF values differ from Table~\\ref{tab:main_matrix} by $\\leq$0.7pp due to matched-fold evaluation.}\n\\label{tab:baselines}\n\\begin{tabular}{@{}lcccc@{}}\n\\toprule\nCell & RF & XGB & LGBM & $\\Delta_{\\max}$ \\\\\n\\midrule\nPythia, nuc. & 78.8 & 79.0 & 78.9 & 0.2 \\\\\nGPT-2~XL, $\\tau$ & 85.8 & 86.2 & 86.2 & 0.4 \\\\\nPythia, top-$k$ & 68.9 & 68.9 & 68.7 & 0.2 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nConvergence across five structurally different classifiers---spanning bagging, gradient boosting, ordinal regression, and ensemble detection---confirms the signal resides in the features, not the learning algorithm.\nFigure~\\ref{fig:confusion_matrix} shows d0 near-perfectly identified; errors concentrate at d2/d3 in-distribution and spread across d1--d3 under transfer.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_confusion_matrix.pdf}\n\\caption{Confusion matrices for the best in-distribution setting (GPT-2 XL, temp $\\tau{=}0.9$, 85.4\\%) and the best cross-model leave-one-out transfer (OLMo holdout, 69.2\\%). d0 recall exceeds 99\\% in both; errors spread across the d1--d3 range under transfer.}\n\\label{fig:confusion_matrix}\n\\end{figure}\n\n\\subsection{Cross-Model Transfer}\n\\label{sec:gen:crossmodel}\n\nWe perform leave-one-model-family-out evaluation: train on two families (nucleus only), test on the held-out third (Table~\\ref{tab:cross_model}).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Cross-model transfer (leave-one-out, nucleus only). Chance = 25\\% / 33\\% (d1--d3). d1--d3 bal.\\ acc: Pythia 49.9\\%, OLMo 59.2\\%, GPT-2~XL 57.2\\% (mean 55.4\\%).}\n\\label{tab:cross_model}\n\\begin{tabular}{lccccc}\n\\toprule\nHoldout & Acc & d0 & d1 & d2 & d3 \\\\\n & (\\%) & Rec. & Rec. & Rec. & Rec. \\\\\n\\midrule\nPythia & 62.4 & 100.0 & 49.3 & 26.8 & 73.6 \\\\\nOLMo & \\textbf{69.2} & 99.3 & 75.5 & 43.3 & 58.8 \\\\\nGPT-2 XL & 67.6 & 98.5 & 74.7 & 52.6 & 44.5 \\\\\n\\midrule\nMean & 66.4 & 99.3 & 66.5 & 40.9 & 59.0 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nMean transfer accuracy is 66.4\\% (2.7$\\times$ chance); d0 recall ($>$98\\%) inflates the headline while d2 drops to 26.8\\% (Pythia holdout).\nExcluding d0, d1--d3 balanced accuracy averages 55.4\\% (chance = 33\\%).\n\n\\subsection{Cross-Strategy Transfer}\n\\label{sec:gen:crossstrategy}\n\nWe train on two decoding strategies and test on the held-out third (Table~\\ref{tab:cross_strategy}).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Cross-strategy transfer (leave-one-out). Chance = 25\\% / 33\\% (d1--d3). d0 recall $\\geq$89\\% inflates headline; d1--d3 mean: 45.9\\%.}\n\\label{tab:cross_strategy}\n\\begin{tabular}{lccc}\n\\toprule\nHoldout & Pythia & OLMo & GPT-2 XL \\\\\n & Acc (\\%) & Acc (\\%) & Acc (\\%) \\\\\n\\midrule\nnucleus & \\textbf{69.4} & \\textbf{65.4} & \\textbf{59.9} \\\\\ntemp ($\\tau{=}0.9$) & 62.8 & 58.2 & 56.1 \\\\\ntop-$k$ ($k{=}50$) & 51.5 & 54.9 & 53.6 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nMean cross-strategy accuracy (59.1\\%) falls 7pp below cross-model transfer (66.4\\%); excluding d0, d1--d3 accuracy drops to 45.9\\% (chance = 33\\%).\nd2 recall varies sharply: nucleus holdouts retain 30--54\\%, top-$k$ holdouts fall to 8--19\\%, and temperature holdouts span 3.7--39.5\\% (median 8.9\\%).\nTraining on nucleus + top-$k$ and testing on temperature inverts the d1/d2 boundary (d1v2 AUC $<$ 0.5); per-strategy z-score normalization partially recovers it but leaves a residual gap (Limitations).\nA multi-temperature ablation (Appendix~\\ref{app:multi_tau}) confirms that within-$\\tau$ depth signal holds for $\\tau \\leq 0.9$ (d1v2 AUC $>0.80$) but collapses at $\\tau{=}1.1$; cross-$\\tau$ LOO transfer (mean 46.7\\%) is harder than cross-strategy transfer.\nTemperature variations ($\\tau \\in [0.5, 0.9]$) do not fundamentally alter depth discriminability within a fixed strategy; classification accuracy remains within 3pp of the $\\tau{=}0.7$ baseline across all tested temperatures. Full multi-$\\tau$ analysis is provided in Appendix~\\ref{app:multi_tau}.\n\nEnd-to-end PLMs (DeBERTa-v3, RoBERTa) achieve only ${\\sim}$59\\%, lagging RF by 19pp, confirming depth signal resides in perplexity tail statistics inaccessible to standard PLM representations (Appendix~\\ref{app:e2e}).\n\n%% ----------------------------------------------------------------\n\\subsection{Preliminary Cross-Scale Observations}\n\\label{sec:gen:crossscale}\n\nThe preceding analyses use 1--1.5B parameter models.\nTo test whether depth signal persists in substantially larger generators, we extend the benchmark to two 7--8B models: Qwen2.5-7B-Instruct~\\cite{qwen2.5} and Llama-3.1-8B-Instruct~\\cite{llama3}, both under 4-bit NF4 QLoRA fine-tuning, generating depths $d \\in \\{0, 1, \\ldots, 5\\}$ with nucleus sampling ($p{=}0.95$, 500 samples per depth).\nFeature extraction uses the same reference model (Pythia-1.4B) and 19-feature pipeline as all prior experiments.\n\n\\paragraph{Scale comparison.}\nTable~\\ref{tab:cross_scale} contrasts the two 7--8B models with the three 1--1.5B models on matched evaluation (nucleus sampling, depths 0--3).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Cross-scale comparison: 4-class RF accuracy (\\%, depths 0--3, nucleus), $\\mathrm{EDD}_{T{=}0.70}$ (depths 0--5), and d0-vs-d1 AUC. CI: 95\\% bootstrap. Chance = 25\\%.}\n\\label{tab:cross_scale}\n\\begin{tabular}{@{}lccc@{}}\n\\toprule\nModel & 4-class acc & $\\mathrm{EDD}_{T{=}0.70}$ & d0v1 AUC \\\\\n\\midrule\nGPT-2~XL (1.5B) & 83.3 & 4 & 0.999 \\\\\nOLMo-1B & 78.8 & 4 & 0.997 \\\\\nPythia-1.4B & 78.2 & 4 & 0.998 \\\\\n\\midrule\nLlama-3.1-8B & 70.2\\,[68.3, 72.4] & 4 & 0.949 \\\\\nQwen2.5-7B & 60.1\\,[58.0, 62.1] & ${>}5$ & 0.969 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThree findings emerge:\n\n\\paragraph{(1) Depth signal persists at 7--8B scale.}\nBoth 7--8B models substantially exceed the 25\\% chance baseline: Llama-3.1-8B achieves 70.2\\% (95\\% CI $[68.3, 72.4]$) and Qwen2.5-7B achieves 60.1\\% ($[58.0, 62.1]$), confirming that recursive depth remains estimable from perplexity-based features even when the generator is 5--7$\\times$ larger than the reference model.\nDepth-0 separability is preserved in both models: d0v1 AUC is 0.949 (Llama-3.1) and 0.969 (Qwen2.5).\n\n\\paragraph{(2) EDD at 7--8B scale.}\nAt threshold $T{=}0.70$, Qwen2.5-7B maintains all consecutive-pair AUCs above 0.70 through depth~5 (Table~\\ref{tab:cross_scale_auc}), yielding $\\mathrm{EDD}_{T{=}0.70} > 5$---exceeding the $\\mathrm{EDD}{=}4$ observed at 1--1.5B.\nLlama-3.1-8B matches the smaller models at $\\mathrm{EDD}{=}4$: its monotonic decay causes d4v5 (0.618) to drop below $T$, despite stronger signal at shallower depths.\nBoth larger generators produce weaker per-step signal than the 1--1.5B models (mean consecutive AUC: 0.786 for Llama-3.1, 0.782 for Qwen2.5, vs.\\ 0.852 at 1--1.5B).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Consecutive binary AUC for 7--8B models (nucleus $p{=}0.95$). Llama-3.1-8B exhibits monotonic decay (d4v5 drops below $T{=}0.70$); Qwen2.5-7B shows a non-monotonic (U-shaped) pattern with all pairs above $T$.}\n\\label{tab:cross_scale_auc}\n\\begin{tabular}{@{}lccccc@{}}\n\\toprule\nModel & d0v1 & d1v2 & d2v3 & d3v4 & d4v5 \\\\\n\\midrule\nLlama-3.1-8B & 0.949 & 0.877 & 0.771 & 0.716 & 0.618 \\\\\nQwen2.5-7B & 0.969 & 0.729 & 0.709 & 0.732 & 0.772 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{(3) Divergent AUC trajectories across architectures.}\nLlama-3.1-8B exhibits monotonic AUC decay (0.949 $\\to$ 0.877 $\\to$ 0.771 $\\to$ 0.716 $\\to$ 0.618), consistent with the pattern observed at 1--1.5B scale.\nIn contrast, Qwen2.5-7B shows a U-shaped recovery beyond d2v3: consecutive AUC drops from 0.969 (d0v1) to a minimum of 0.709 (d2v3), then \\emph{rises} to 0.732 (d3v4) and 0.772 (d4v5).\nThis divergence suggests the U-shape observed in Qwen is model-specific---possibly related to its instruction-tuning regime (RLHF/DPO)---rather than a scale-dependent phenomenon.\nThe Llama-3.1 result demonstrates that monotonic decay \\emph{does} replicate at 7--8B scale for at least one architecture, strengthening the generality of the decay pattern as the default behavior.\n\n\\paragraph{Caveats.}\nFor Qwen2.5-7B, the CI lower bound (58.0\\%) does not exclude sub-60\\% accuracy; Llama-3.1-8B's lower bound (68.3\\%) is more comfortably above chance but still below the 75--83\\% range at 1--1.5B.\nThe divergent AUC trajectories across two models caution against strong generalizations from only two 7--8B data points: both the monotonic (Llama-3.1) and non-monotonic (Qwen2.5) patterns are single observations, and further architectures are needed to establish which is the dominant regime at this scale.\nBoth models are instruction-tuned, introducing a confound absent in the base-model experiments: RLHF/DPO alignment may independently shape the feature trajectory in ways not fully attributable to recursive depth alone.\nCross-model recursive chains (84.75\\%) and cross-domain transfer (arXiv 74.1\\%) further confirm signal universality (Appendix~\\ref{app:cross_boundary}).\n\n\\paragraph{Cross-scale confounds.}\nFour confounds limit these cross-scale results: (1) 4-bit NF4 QLoRA quantization (absent at 1--1.5B), (2) instruction-tuning (RLHF/DPO, absent in base-model experiments), (3) smaller sample size (500 vs 5{,}000), and (4) evaluation limited to nucleus sampling.",
+      "numLines": 170,
+      "startLine": 1,
+      "totalLines": 170
+    }
+  },
+  "sourceToolAssistantUUID": "a36b1fe4-fcab-45a7-be53-abe52037ad0e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-16T13:15:02.624Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01NfDTFGVdXzVnFEQdj6fzNM`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/discussion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dedc34ad-acaf-4b98-9866-454f5af313db",
+  "isSidechain": false,
+  "requestId": "req_011Cb6JsdjV6eb1UmjMu13kQ",
+  "type": "assistant",
+  "uuid": "09ee3e09-9e6b-4e30-8fe2-f7103dc2d506",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YXetNnTViRtizz35a25Rdr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 914,
+      "cache_read_input_tokens": 23559,
+      "output_tokens": 811,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 914,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 811,
+          "cache_read_input_tokens": 23559,
+          "cache_creation_input_tokens": 914,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 914
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-16T13:15:02.640Z_
+
+<details><summary>↩ Tool result · `toolu_01NfDTFGVdXzVnFEQdj6fzNM`</summary>
+
+```text
+1	\section{Discussion and Conclusion}
+2	\label{sec:discussion}
+3	
+4	We formalized recursive generation depth estimation and showed that a compact feature set dominated by perplexity tail statistics achieves 70--85\% four-class accuracy ($\mathrm{EDD}_{0.75}{=}4$ across models; \S\ref{sec:atlas:edd}), with five features sufficing for 97.6\% of full performance and classifier-agnostic convergence within $\leq$0.4pp.
+5	The dominant feature group---perplexity tail statistics (\texttt{p90\_ppl} top-2 in 9/9 cells, \texttt{var\_surprisal} in 8/9 under SHAP)---generalizes across the three studied model families without retraining, making depth estimation a candidate early-warning signal for model collapse~\cite{shumailov2024_nature} within this experimental scope.
+6	Recent work corroborates this connection, identifying entropy decline as a measurable signal of recursive degradation that parallels the tail erosion our features capture~\cite{shi2025_closer_look}.
+7	A surface-text ablation reinforces this view: zero-shot LLMs (DeepSeek V3.2 at 36.2\%, Qwen2.5-7B at 30.4\%) both perform near chance despite exhibiting complementary prediction biases, and the 42\,pp gap confirms that the depth signal resides in distributional statistics inaccessible from surface text alone (\S\ref{sec:gen:baselines}).
+8	
+9	Cross-strategy transfer remains the primary bottleneck (59.1\% vs.\ 66.4\% cross-model), with the temperature-induced d1/d2 AUC inversion making single-classifier deployment across unknown decoding strategies infeasible.
+10	A multi-temperature ablation ($\tau \in [0.5, 1.1]$, Pythia-1.4B; Appendix~\ref{app:multi_tau}) reinforces this: within-$\tau$ depth discrimination is robust for $\tau \leq 0.9$ (d1v2 AUC $>0.80$), but cross-$\tau$ transfer (mean 46.7\%) is harder than cross-strategy transfer (59.1\%), confirming that strategy-conditioned classifiers are necessary.
+11	A two-stage pipeline---first identifying the decoding strategy, then applying a strategy-conditioned depth classifier---could address this.
+12	Different strategies produce distinguishable perplexity signatures (top-$k$ yields narrower distributions; temperature sampling produces heavier tails), suggesting that automatic strategy identification is technically feasible, though independent validation on held-out strategy sets is needed.
+13	As an alternative, when deployment is restricted to a single platform or API provider, the decoding strategy is typically known a priori, and a strategy-conditioned classifier can be applied directly.
+14	
+15	\paragraph{Depth-graduated data curation.}
+16	Current data curation operates on a binary human-vs-machine distinction~\cite{dsir2023,qurating2024}.
+17	Depth estimation enables a finer-grained alternative: retain low-depth generations (d1) while filtering high-depth text (d3+) where tail erosion has degraded quality.
+18	A pilot study (Appendix~\ref{app:curation_poc}) yields an inconclusive comparison between RF-filtered and unfiltered conditions ($p>0.4$, $\mathrm{df}{=}4$), though RF-filtered subsets significantly outperform size-matched random subsampling ($p<0.001$--$0.02$); large-scale validation is needed to determine whether depth-based filtering provides a practical advantage over unfiltered training.
+19	Cross-strategy deployment would first require strategy identification to avoid boundary inversion (\S\ref{sec:gen:crossstrategy}).
+20	
+21	\paragraph{Toward a provenance toolkit.}
+22	Depth estimation complements existing provenance methods---watermarking~\cite{kirchenbauer2023_watermark} (requires generator cooperation) and source attribution~\cite{uchendu2020_attribution} (identifies model, not history)---by characterizing \emph{iterative reuse} regardless of generator identity~\cite{bevendorff2025_two_paradigms}.
+23	A layered system combining watermark presence, source model, and recursive depth could support more nuanced data auditing within controlled generation settings than any single method.
+24	
+25	\paragraph{Mixed-depth documents.}
+26	Sliding-window depth estimation at the segment level (256--512 tokens) could extend the approach to mixed-depth documents, enabling paragraph-level curation even from partially contaminated content.
+27	
+28	\paragraph{Adversarial robustness.}
+29	Perplexity tail statistics exhibit inherent resistance to surface-level transformations (paraphrasing, back-translation) that preserve surprisal structure, though robustness to targeted distribution-aware attacks remains unverified.
+30	
+31	\paragraph{Scaling behavior.}
+32	Our preliminary cross-scale observations (\S\ref{sec:gen:crossscale}) suggest that depth signal persists at 7--8B scale within controlled generation settings (Llama-3.1-8B: 70.2\%, Qwen2.5-7B: 60.1\%), though four confounds---QLoRA quantization, instruction-tuning, smaller sample size, and evaluation limited to nucleus sampling---preclude strong conclusions.
+33	Llama-3.1-8B matches the smaller models at $\mathrm{EDD}{=}4$ with monotonic AUC decay, while Qwen2.5-7B achieves $\mathrm{EDD}_{T{=}0.70} > 5$ via a non-monotonic (U-shaped) trajectory---exceeding the $\mathrm{EDD}{=}4$ at 1--1.5B.
+34	Per-step signal strength decreases (mean consecutive AUC ${\approx}$0.78 vs.\ ${\approx}$0.85 at 1--1.5B), consistent with larger models generating more fluent text with narrower perplexity distributions.
+35	The divergent AUC trajectories (monotonic for Llama-3.1 vs.\ U-shaped for Qwen2.5-Instruct) suggest that instruction tuning may alter degradation dynamics at high recursion depth, an observation warranting further investigation with controlled base/instruct pairs.
+36	Tail erosion is driven by retraining on one's own output distribution rather than model capacity per se, explaining why the signal attenuates but does not vanish; further scaling beyond 8B may require richer feature sets (e.g., attention entropy or generation diversity metrics) to maintain discriminability.
+37	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "09ee3e09-9e6b-4e30-8fe2-f7103dc2d506",
+  "isSidechain": false,
+  "promptId": "6da10313-6a8f-475a-9e62-751bf1f7e158",
+  "type": "user",
+  "uuid": "71d29847-8878-4cc2-b37c-7c458ffe95b5",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/discussion.tex",
+      "content": "\\section{Discussion and Conclusion}\n\\label{sec:discussion}\n\nWe formalized recursive generation depth estimation and showed that a compact feature set dominated by perplexity tail statistics achieves 70--85\\% four-class accuracy ($\\mathrm{EDD}_{0.75}{=}4$ across models; \\S\\ref{sec:atlas:edd}), with five features sufficing for 97.6\\% of full performance and classifier-agnostic convergence within $\\leq$0.4pp.\nThe dominant feature group---perplexity tail statistics (\\texttt{p90\\_ppl} top-2 in 9/9 cells, \\texttt{var\\_surprisal} in 8/9 under SHAP)---generalizes across the three studied model families without retraining, making depth estimation a candidate early-warning signal for model collapse~\\cite{shumailov2024_nature} within this experimental scope.\nRecent work corroborates this connection, identifying entropy decline as a measurable signal of recursive degradation that parallels the tail erosion our features capture~\\cite{shi2025_closer_look}.\nA surface-text ablation reinforces this view: zero-shot LLMs (DeepSeek V3.2 at 36.2\\%, Qwen2.5-7B at 30.4\\%) both perform near chance despite exhibiting complementary prediction biases, and the 42\\,pp gap confirms that the depth signal resides in distributional statistics inaccessible from surface text alone (\\S\\ref{sec:gen:baselines}).\n\nCross-strategy transfer remains the primary bottleneck (59.1\\% vs.\\ 66.4\\% cross-model), with the temperature-induced d1/d2 AUC inversion making single-classifier deployment across unknown decoding strategies infeasible.\nA multi-temperature ablation ($\\tau \\in [0.5, 1.1]$, Pythia-1.4B; Appendix~\\ref{app:multi_tau}) reinforces this: within-$\\tau$ depth discrimination is robust for $\\tau \\leq 0.9$ (d1v2 AUC $>0.80$), but cross-$\\tau$ transfer (mean 46.7\\%) is harder than cross-strategy transfer (59.1\\%), confirming that strategy-conditioned classifiers are necessary.\nA two-stage pipeline---first identifying the decoding strategy, then applying a strategy-conditioned depth classifier---could address this.\nDifferent strategies produce distinguishable perplexity signatures (top-$k$ yields narrower distributions; temperature sampling produces heavier tails), suggesting that automatic strategy identification is technically feasible, though independent validation on held-out strategy sets is needed.\nAs an alternative, when deployment is restricted to a single platform or API provider, the decoding strategy is typically known a priori, and a strategy-conditioned classifier can be applied directly.\n\n\\paragraph{Depth-graduated data curation.}\nCurrent data curation operates on a binary human-vs-machine distinction~\\cite{dsir2023,qurating2024}.\nDepth estimation enables a finer-grained alternative: retain low-depth generations (d1) while filtering high-depth text (d3+) where tail erosion has degraded quality.\nA pilot study (Appendix~\\ref{app:curation_poc}) yields an inconclusive comparison between RF-filtered and unfiltered conditions ($p>0.4$, $\\mathrm{df}{=}4$), though RF-filtered subsets significantly outperform size-matched random subsampling ($p<0.001$--$0.02$); large-scale validation is needed to determine whether depth-based filtering provides a practical advantage over unfiltered training.\nCross-strategy deployment would first require strategy identification to avoid boundary inversion (\\S\\ref{sec:gen:crossstrategy}).\n\n\\paragraph{Toward a provenance toolkit.}\nDepth estimation complements existing provenance methods---watermarking~\\cite{kirchenbauer2023_watermark} (requires generator cooperation) and source attribution~\\cite{uchendu2020_attribution} (identifies model, not history)---by characterizing \\emph{iterative reuse} regardless of generator identity~\\cite{bevendorff2025_two_paradigms}.\nA layered system combining watermark presence, source model, and recursive depth could support more nuanced data auditing within controlled generation settings than any single method.\n\n\\paragraph{Mixed-depth documents.}\nSliding-window depth estimation at the segment level (256--512 tokens) could extend the approach to mixed-depth documents, enabling paragraph-level curation even from partially contaminated content.\n\n\\paragraph{Adversarial robustness.}\nPerplexity tail statistics exhibit inherent resistance to surface-level transformations (paraphrasing, back-translation) that preserve surprisal structure, though robustness to targeted distribution-aware attacks remains unverified.\n\n\\paragraph{Scaling behavior.}\nOur preliminary cross-scale observations (\\S\\ref{sec:gen:crossscale}) suggest that depth signal persists at 7--8B scale within controlled generation settings (Llama-3.1-8B: 70.2\\%, Qwen2.5-7B: 60.1\\%), though four confounds---QLoRA quantization, instruction-tuning, smaller sample size, and evaluation limited to nucleus sampling---preclude strong conclusions.\nLlama-3.1-8B matches the smaller models at $\\mathrm{EDD}{=}4$ with monotonic AUC decay, while Qwen2.5-7B achieves $\\mathrm{EDD}_{T{=}0.70} > 5$ via a non-monotonic (U-shaped) trajectory---exceeding the $\\mathrm{EDD}{=}4$ at 1--1.5B.\nPer-step signal strength decreases (mean consecutive AUC ${\\approx}$0.78 vs.\\ ${\\approx}$0.85 at 1--1.5B), consistent with larger models generating more fluent text with narrower perplexity distributions.\nThe divergent AUC trajectories (monotonic for Llama-3.1 vs.\\ U-shaped for Qwen2.5-Instruct) suggest that instruction tuning may alter degradation dynamics at high recursion depth, an observation warranting further investigation with controlled base/instruct pairs.\nTail erosion is driven by retraining on one's own output distribution rather than model capacity per se, explaining why the signal attenuates but does not vanish; further scaling beyond 8B may require richer feature sets (e.g., attention entropy or generation diversity metrics) to maintain discriminability.\n",
+      "numLines": 37,
+      "startLine": 1,
+      "totalLines": 37
+    }
+  },
+  "sourceToolAssistantUUID": "09ee3e09-9e6b-4e30-8fe2-f7103dc2d506",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-16T13:15:03.060Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01B86eVpzC7kBCVhLCsM7iMv`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/section_appendix.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "71d29847-8878-4cc2-b37c-7c458ffe95b5",
+  "isSidechain": false,
+  "requestId": "req_011Cb6JsdjV6eb1UmjMu13kQ",
+  "type": "assistant",
+  "uuid": "29940403-336d-4a38-b677-52dbd031fc27",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YXetNnTViRtizz35a25Rdr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 914,
+      "cache_read_input_tokens": 23559,
+      "output_tokens": 811,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 914,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 811,
+          "cache_read_input_tokens": 23559,
+          "cache_creation_input_tokens": 914,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 914
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-16T13:15:03.073Z_
+
+<details><summary>↩ Tool result · `toolu_01B86eVpzC7kBCVhLCsM7iMv`</summary>
+
+```text
+1	\section{Additional Results}
+2	\label{app:additional}
+3	
+4	\subsection{Top-$k$ Feature Trajectories}
+5	\label{app:topk_trajectories}
+6	
+7	Figure~\ref{fig:feature_trajectory} in the main text shows feature trajectories for nucleus ($p{=}0.95$) and temperature ($\tau{=}0.9$) sampling.
+8	Top-$k$ ($k{=}50$) trajectories follow the same monotonically decreasing trend for all features but with compressed inter-depth spacing, consistent with the signal attenuation effect discussed in \S\ref{sec:atlas:strategy}.
+9	Concretely, the d0$\to$d1 drop in \textsc{p90\_ppl} under top-$k$ is 78\% (vs.\ 87\% for nucleus), and the d2$\to$d3 reduction is 31\% (vs.\ 39\% for nucleus).
+10	Despite the magnitude reduction, feature rank ordering across depths is preserved, which explains why ordinal classifiers maintain directionality even under top-$k$ conditions.
+11	
+12	\subsection{Permutation Importance}
+13	\label{app:permutation}
+14	
+15	To verify that the Gini-based importance rankings in \S\ref{sec:atlas:features} are not an artifact of the impurity measure, we compute permutation importance (5-fold CV, 10 repeats) for all 9 atlas cells.
+16	The top-2 features are stable across measures: \textsc{p90\_ppl} ranks in the top 2 in 9/9 cells under both Gini and permutation importance, and \textsc{var\_surprisal} in 8/9 (vs.\ 7/9 for Gini, with the additional cell being OLMo top-$k$; the single SHAP exception is GPT-2~XL top-$k$, where \textsc{p75\_ppl} displaces \textsc{var\_surprisal} to rank 3).
+17	Kendall's $W{=}0.90$ across all three methods (Gini, permutation, SHAP) indicates strong concordance ($p{<}0.005$).
+18	Pairwise Spearman correlations are: SHAP--Gini $\rho{=}0.93$, SHAP--permutation $\rho{=}0.84$, Gini--permutation $\rho{=}0.76$.
+19	Per-cell top-5 overlap between SHAP and permutation importance is 3--4 out of 5 features; the aggregated (mean-across-cells) top-5 sets are identical, confirming that the top features are robust to the choice of importance measure at the aggregate level while per-cell rankings exhibit model-dependent variation.
+20	
+21	\subsection{Per-Class Recall}
+22	\label{app:per_class}
+23	
+24	Table~\ref{tab:per_class_recall} reports per-class recall across all 9 atlas cells (4-class in-distribution, 5-fold CV).
+25	Depth~0 recall exceeds 98\% uniformly.
+26	Among generated depths, d2 is the hardest class in every cell; the deficit is most pronounced under top-$k$ sampling (46--53\%), where vocabulary truncation removes the tail tokens that carry depth-discriminative signal.
+27	
+28	\begin{table}[h]
+29	\centering
+30	\small
+31	\caption{Per-class recall (\%) for all 9 atlas cells. d2 is the lowest-recall class in every cell. Boldface marks the highest d2 recall.}
+32	\label{tab:per_class_recall}
+33	\begin{tabular}{@{}lcccc@{}}
+34	\toprule
+35	Cell & d0 & d1 & d2 & d3 \\
+36	\midrule
+37	Pythia, nuc.       & 99.7 & 81.9 & 58.7 & 72.3 \\
+38	Pythia, $\tau$     & 99.7 & 81.3 & 53.9 & 72.1 \\
+39	Pythia, top-$k$    & 99.5 & 72.3 & 45.6 & 57.5 \\
+40	OLMo, nuc.         & 98.8 & 80.5 & 61.5 & 74.3 \\
+41	OLMo, $\tau$       & 99.7 & 87.7 & 66.1 & 77.2 \\
+42	OLMo, top-$k$      & 99.5 & 78.5 & 51.2 & 65.6 \\
+43	GPT-2~XL, nuc.     & 99.2 & 85.9 & \textbf{73.3} & 77.5 \\
+44	GPT-2~XL, $\tau$   & 99.5 & 90.9 & 68.8 & 81.9 \\
+45	GPT-2~XL, top-$k$  & 98.5 & 79.5 & 52.5 & 71.1 \\
+46	\bottomrule
+47	\end{tabular}
+48	\end{table}
+49	
+50	\subsection{DCOL Iteration Details}
+51	\label{app:dcol_iterations}
+52	
+53	Table~\ref{tab:dcol_iterations} summarizes all six DCOL iterations.
+54	DeBERTa-v3-large exhibited systematic numerical instability across five configurations; RoBERTa-large resolved stability but could not close the accuracy gap with feature-based methods.
+55	
+56	\begin{table}[h]
+57	\centering
+58	\small
+59	\caption{DCOL iteration summary. All experiments use Pythia-1.4B nucleus data. RF baseline: 78.2\%.}
+60	\label{tab:dcol_iterations}
+61	\begin{tabular}{@{}llp{2.2cm}p{2.8cm}@{}}
+62	\toprule
+63	Ver. & Backbone & Config & Outcome \\
+64	\midrule
+65	v1 & DeBERTa & FT, m\_lr $10^{-3}$ & Embed.\ collapse (31.5\%) \\
+66	v2 & DeBERTa & FT, m\_lr $10^{-4}$ & OOM \\
+67	v3 & DeBERTa & FT, m\_lr $10^{-4}$ & Forgetting + OOM \\
+68	v4 & DeBERTa & LoRA, m\_lr $10^{-3}$ & Embed.\ collapse \\
+69	v5 & DeBERTa & LoRA, m\_lr $10^{-4}$ & NaN gradients \\
+70	v6 & RoBERTa & FT, grad clip 1.0 & Stable; 64.5\% ($-$13.7pp) \\
+71	\bottomrule
+72	\end{tabular}
+73	\end{table}
+74	
+75	\subsection{Zero-Shot LLM Prompt Template}
+76	\label{app:zeroshot_prompt}
+77	
+78	Both DeepSeek V3.2 and Qwen2.5-7B-Instruct use identical prompting.
+79	The system message defines recursive generation depth with per-depth descriptions (depth~0: human-written; depth~1--3: successive LLM generation cycles) and lists expected textual patterns at each depth (vocabulary richness, repetition, coherence).
+80	The user message presents the passage (truncated to ${\approx}$384 words) and requests a JSON response containing an integer depth prediction (0--3), a confidence score, and a one-sentence reasoning.
+81	No in-context examples are provided.
+82	
+83	\begin{quote}
+84	\small
+85	\textbf{System:} ``You are an expert at detecting AI-generated text and estimating its generation depth. `Recursive generation depth' refers to how many times a text has been through an LLM generation cycle: Depth~0: Original human-written text [\ldots] Depth~3: Text generated by an LLM given depth-2 text as input. Key patterns by depth: Depth~0 (human): Rich vocabulary [\ldots] Depth~3 (third-gen): Noticeable repetition, formulaic structure [\ldots]''
+86	
+87	\textbf{User:} ``Analyze the following text and estimate its recursive generation depth (0, 1, 2, or 3). TEXT: \{text\}. Respond with ONLY a JSON object: \{\texttt{"depth"}: $\langle$int 0--3$\rangle$, \texttt{"confidence"}: $\langle$float 0--1$\rangle$, \texttt{"reasoning"}: $\langle$str$\rangle$\}''
+88	\end{quote}
+89	
+90	\subsection{Temperature Robustness}
+91	\label{app:multi_tau}
+92	
+93	The cross-strategy results in \S\ref{sec:gen:crossstrategy} use a single temperature ($\tau{=}0.9$).
+94	To test whether depth signal generalizes across temperatures, we repeat the classification pipeline at $\tau \in \{0.5, 0.7, 0.9, 1.1\}$ on Pythia-1.4B.
+95	
+96	\paragraph{Within-$\tau$ robustness.}
+97	For $\tau \in [0.5, 0.9]$, d1-vs-d2 AUC exceeds 0.80 (peak 0.851 at $\tau{=}0.7$, comparable to nucleus $p{=}0.95$'s 0.861) and 4-class accuracy ranges from 75.4\% to 77.3\% (Table~\ref{tab:multi_tau_within}), confirming the depth signal is not an artifact of a single temperature.
+98	The same top-5 features (\texttt{var\_surprisal}, \texttt{p90\_ppl}, \texttt{mean\_ppl}, \texttt{mean\_surprisal}, \texttt{p75\_ppl}) dominate across all $\tau$ values with only minor rank-order variation.
+99	
+100	\paragraph{Collapse at $\tau{=}1.1$: memorization as prerequisite.}
+101	At $\tau{=}1.1$, 4-class accuracy drops to 57.2\% and d1v2 AUC falls to 0.528.
+102	Training loss reveals the mechanism: at low temperature ($\tau{=}0.5$), fine-tuning loss decreases steeply across recursive depths ($2.27 \to 0.42 \to 0.16$), indicating rapid memorization of the model's own output.
+103	At $\tau{=}1.1$, loss remains nearly flat ($2.27 \to 1.91 \to 1.85$)---high-entropy output resists memorization, so depth-dependent distributional shifts do not accumulate.
+104	This establishes \emph{memorization as a prerequisite} for detectable depth signal: recursive depth is discriminable only when successive fine-tuning iterations progressively reshape the output distribution.
+105	
+106	\paragraph{Cross-$\tau$ non-transferability.}
+107	Leave-one-$\tau$-out transfer yields mean accuracy of 46.7\% with mean d1v2 AUC of 0.319 (Table~\ref{tab:multi_tau_cross})---worse than cross-strategy transfer (59.1\%; \S\ref{sec:gen:crossstrategy}).
+108	Holdout $\tau{=}0.5$ produces inverted d1v2 AUC (0.176), confirming that different temperatures produce surprisal distributions with incompatible shapes.
+109	This extends the strategy-specificity finding: even within a single decoding family, the feature space is temperature-specific, reinforcing the need for strategy-conditioned classifiers.
+110	
+111	\paragraph{Ecological validity.}
+112	On WikiText-103 (546 editorial passages), all three model-specific RF classifiers achieve $\geq$98.5\% d0 accuracy despite $+$621\% domain shift in mean perplexity---partly an easy case, as WikiText's higher perplexity places it farther from d1--d3 in feature space.
+113	On noisier web-crawl data (5{,}000 C4 passages), FPR ranges from 4.7\% (OLMo) to 22.4\% (GPT-2~XL), concentrated in template/SEO content with high n-gram repetition (Table~\ref{tab:calibration}); deployment on heterogeneous web data requires model-specific calibration.
+114	
+115	\begin{table}[h]
+116	\centering
+117	\small
+118	\caption{Within-$\tau$ 4-class classification (Pythia-1.4B, 5-fold CV). d$i$v$j$: pairwise AUC for depth $i$ vs.\ depth $j$.}
+119	\label{tab:multi_tau_within}
+120	\begin{tabular}{@{}lcccc@{}}
+121	\toprule
+122	$\tau$ & 4-class acc (\%) & d1v2 AUC & d0v1 AUC & d2v3 AUC \\
+123	\midrule
+124	0.5 & 77.3 & 0.842 & 0.996 & 0.764 \\
+125	0.7 & 75.4 & 0.851 & 0.997 & 0.720 \\
+126	0.9 & 75.9 & 0.808 & 0.991 & 0.781 \\
+127	1.1 & 57.2 & 0.528 & 0.988 & 0.599 \\
+128	\bottomrule
+129	\end{tabular}
+130	\end{table}
+131	
+132	\begin{table}[h]
+133	\centering
+134	\small
+135	\caption{Cross-$\tau$ leave-one-out transfer (Pythia-1.4B). Train on three temperatures, test on the held-out one.}
+136	\label{tab:multi_tau_cross}
+137	\begin{tabular}{@{}lcc@{}}
+138	\toprule
+139	Holdout & Acc (\%) & d1v2 AUC \\
+140	\midrule
+141	$\tau{=}0.5$ & 52.2 & 0.176 \\
+142	$\tau{=}0.7$ & 41.0 & 0.299 \\
+143	$\tau{=}0.9$ & 46.4 & 0.277 \\
+144	$\tau{=}1.1$ & 47.1 & 0.525 \\
+145	\midrule
+146	Mean & 46.7 & 0.319 \\
+147	\bottomrule
+148	\end{tabular}
+149	\end{table}
+150	
+151	\subsection{Feature Overlap Analysis}
+152	\label{app:feature_overlap}
+153	
+154	We probe whether end-to-end PLM representations capture the same depth signals as our statistical features via linear probing of [CLS] representations from DeBERTa-v3-base and RoBERTa-base.
+155	PLM representations excel at surface lexical features (TTR: $R^2{=}0.85$, repeated bigrams) but fail to capture perplexity distribution statistics---\textsc{var\_surprisal} and \textsc{p90\_ppl} yield negative $R^2$ under linear probing, indicating these features are not linearly accessible in the pretrained representation space.
+156	This confirms that the 19pp accuracy gap between feature-based and end-to-end methods (\S\ref{app:e2e}) stems from complementary---not redundant---representations: PLMs capture lexical patterns while the targeted statistical features capture distributional tail properties that constitute the dominant depth markers.
+157	
+158	\subsection{End-to-End Learning}
+159	\label{app:e2e}
+160	
+161	DeBERTa-v3-base \cite{he2021_deberta_v3} and RoBERTa-base \cite{liu2019_roberta} finetuned end-to-end achieve 58.3\% ($\pm$4.7\%) and 59.5\% ($\pm$3.2\%) respectively---lagging the RF baseline (78.2\%) by 19.9pp and 18.7pp.
+162	The 1.2pp inter-backbone gap rules out architecture bias; Table~\ref{tab:e2e_detail} shows both backbones share the same failure mode---high d0 F1 ($>$0.94) but collapsed d1/d2 performance (F1 $\leq$ 0.42)---while RF achieves 0.596 d2 recall, a $>$2$\times$ advantage at the hardest depth class.
+163	
+164	\begin{table}[h]
+165	\centering
+166	\small
+167	\caption{Per-class performance for end-to-end PLM classifiers vs.\ RF baseline (Pythia-1.4B nucleus). PLM columns report F1; RF d2 column reports recall (the class with the largest PLM--RF gap). Both PLM backbones share the same failure pattern: collapsed d1/d2 scores despite adequate d0/d3.}
+168	\label{tab:e2e_detail}
+169	\begin{tabular}{@{}lccccc@{}}
+170	\toprule
+171	Method & Acc (\%) & d0 & d1 & d2 & d3 \\
+172	\midrule
+173	DeBERTa-v3 & 58.3\,$\pm$\,4.7 & .947 & .378 & .247 & .656 \\
+174	RoBERTa-base & 59.5\,$\pm$\,3.2 & .958 & .416 & .261 & .647 \\
+175	\midrule
+176	RF (19 feat.) & 78.2 & --- & --- & .596$^\dagger$ & --- \\
+177	\bottomrule
+178	\multicolumn{6}{@{}l}{\footnotesize $^\dagger$Recall; shown for the depth class with the largest PLM--RF gap.}
+179	\end{tabular}
+180	\end{table}
+181	
+182	\paragraph{Feature space divergence.}
+183	SHAP TreeExplainer analysis confirms that perplexity and surprisal features account for 88.8\% of RF's total contribution.
+184	Three independent importance measures---SHAP, Gini, and permutation---show strong concordance (Kendall's $W{=}0.90$, $p{<}0.005$; pairwise Spearman $\rho$: SHAP--Gini $0.93$, SHAP--permutation $0.84$; \S\ref{app:permutation}), with \texttt{p90\_ppl} appearing in the SHAP top-2 in 9/9 cells and \texttt{var\_surprisal} in 8/9.
+185	Linear probing of PLM [CLS] representations yields negative $R^2$ for both \texttt{var\_surprisal} and \texttt{p90\_ppl} (\S\ref{app:feature_overlap}), indicating that pretrained representations lack the linear structure needed to recover perplexity tail statistics---a systematic representational gap rather than a backbone-specific artifact.
+186	
+187	DCOL \cite{cloc2025} reached 64.5\% (\S\ref{app:dcol_iterations}); all end-to-end approaches (58--65\%) underperform feature-based methods, suggesting depth estimation benefits from targeted statistical features that capture distributional tail properties absent from PLM representations.
+188	This comparison is bounded by backbone scale ($\leq$125M parameters); whether larger PLMs (e.g., 7B+) can close the gap via richer internal representations remains an open question.
+189	
+190	\subsection{Domain Bias Analysis}
+191	\label{app:domain_bias}
+192	
+193	To assess whether the classifier exploits depth-related features or memorizes stylistic cues from individual seed articles, we conduct three sub-experiments.
+194	
+195	\paragraph{Methodological note.}
+196	An initial implementation assigned sample IDs with a global counter across depths, inadvertently correlating seed-group identity with depth (LOGO accuracy 64.0\%, seed-group prediction 20.8\%).
+197	We discovered the issue during internal review, corrected to per-depth seed assignment ensuring each group contains equal samples per depth, and re-ran all sub-experiments.
+198	The results below use the corrected pipeline; the initial (buggy) numbers are reported for transparency.
+199	
+200	\paragraph{Sub-A: Standard CV.}
+201	Five-fold CV accuracy on 3-class (d1/d2/d3) classification ranges from 59\% to 82\% across the 9 atlas cells (up to 2.5$\times$ above the 33.3\% chance level), confirming that depth signal is the dominant classification factor.
+202	
+203	\paragraph{Sub-B: LOGO evaluation.}
+204	We assign each passage to one of 10 seed-article groups (balanced: each group contains equal samples per depth) and perform leave-one-group-out CV.
+205	LOGO mean accuracy is 72.1\% (range 59.5--81.6\%), matching standard CV (72.0\%) within noise (before fix: 64.0\%, reflecting the depth--group confound).
+206	Per-cell fold standard deviations range from 0.4pp to 1.4pp, indicating that cross-group generalization is as reliable as within-group classification.
+207	
+208	\paragraph{Sub-C: Negative control.}
+209	We train two classifiers on identical features: one predicting depth, the other predicting seed-group identity (10-class, chance = 10\%).
+210	Depth prediction accuracy averages 72.0\%; seed-group prediction averages 10.2\%---indistinguishable from chance (before fix: 20.8\%, inflated by the depth--group confound).
+211	The depth-to-seed-group accuracy ratio is 7.1$\times$, confirming that the feature representation encodes depth but not seed-article identity.
+212	
+213	Taken together, these results show that seed-article grouping has no measurable effect on depth estimation after correcting the group assignment: LOGO accuracy equals standard CV, and seed-group prediction is at chance.
+214	
+215	\subsection{Wild-Data Calibration}
+216	\label{app:calibration}
+217	
+218	Table~\ref{tab:calibration} reports d0 accuracy and false positive rate (FPR) for all three model-specific nucleus RF classifiers on two out-of-distribution human-text corpora: WikiText-103 (546 editorial passages) and C4 (5{,}000 web-crawl passages).
+219	
+220	\begin{table}[h]
+221	\centering
+222	\small
+223	\caption{Wild-data d0 accuracy and FPR for nucleus RF classifiers. All passages are human-written (true d0). FPR = fraction misclassified as d1+. 95\% Wilson CIs computed for C4 ($n{=}5{,}000$).}
+224	\label{tab:calibration}
+225	\begin{tabular}{@{}llrccc@{}}
+226	\toprule
+227	Model & Source & $n$ & d0 (\%) & FPR (\%) & 95\% Wilson CI \\
+228	\midrule
+229	Pythia-1.4B & WikiText & 546 & 100.0 & 0.0 & --- \\
+230	 & C4 & 5{,}000 & 79.8 & 20.2 & [19.1, 21.3] \\
+231	\addlinespace
+232	GPT-2~XL & WikiText & 546 & 99.3 & 0.7 & --- \\
+233	 & C4 & 5{,}000 & 77.6 & 22.4 & [21.3, 23.6] \\
+234	\addlinespace
+235	OLMo-1B & WikiText & 546 & 98.5 & 1.5 & --- \\
+236	 & C4 & 5{,}000 & 95.3 & 4.7 & [4.2, 5.3] \\
+237	\bottomrule
+238	\end{tabular}
+239	\end{table}
+240	
+241	On WikiText-103, all three classifiers achieve $\geq$98.5\% d0 accuracy, confirming that editorial text is reliably distinguished from recursive generations across model families.
+242	On C4, FPR varies sharply: OLMo (4.7\%) vs.\ Pythia (20.2\%) and GPT-2~XL (22.4\%).
+243	C4 misclassifications concentrate in template and SEO content with elevated repetition features (\texttt{rep\_3gram} $+$37\%, \texttt{rep\_4gram} $+$75\% vs.\ correctly classified d0 passages), rather than in random noise.
+244	The model gap likely reflects training data composition: OLMo (trained on Dolma, which includes diverse web data) produces d0 features more tolerant of web-crawl variation, while Pythia and GPT-2~XL (trained primarily on Wikipedia/WebText) map template-heavy content into the d1+ region.
+245	Among C4 false positives for GPT-2~XL, predictions distribute as d1 (9.0\%), d2 (3.7\%), d3 (9.6\%); for OLMo, d1 (2.9\%), d2 (0.5\%), d3 (1.3\%)---the non-uniform depth distribution suggests the classifier maps specific repetition patterns to particular depth signatures rather than producing random misclassifications.
+246	
+247	\subsection{Downstream Curation PoC}
+248	\label{app:curation_poc}
+249	
+250	To validate that depth estimation translates to actionable data curation, we conduct a proof-of-concept downstream evaluation.
+251	We fine-tune Pythia-410M with LoRA ($r{=}16$, $\alpha{=}32$) for 3 epochs on 8 data conditions derived from the Pythia nucleus depth-estimation corpus, repeating each condition over 5 random seeds.
+252	Conditions vary the selection mechanism (RF-predicted depth, oracle depth, random subsampling) and stringency (strict $\approx$25\%, moderate $\approx$50\%, soft threshold).
+253	Table~\ref{tab:curation_poc} reports per-condition perplexity; Table~\ref{tab:curation_comparisons} reports pairwise contrasts.
+254	
+255	\begin{table}[h]
+256	\centering
+257	\small
+258	\caption{Curation PoC: per-condition perplexity (Pythia-410M LoRA, 5 seeds). $\Delta$ is signed so that positive values indicate lower (better) perplexity than unfiltered. $^*$\,: $p<0.05$ (paired $t$-test vs.\ unfiltered).}
+259	\label{tab:curation_poc}
+260	\resizebox{\columnwidth}{!}{%
+261	\begin{tabular}{@{}lcccccc@{}}
+262	\toprule
+263	Condition & Mean PPL & Std & $n$ & $\Delta$ vs Unfilt. & $p$ & $d_z$ \\
+264	\midrule
+265	unfiltered        & 15.776 & 0.066 & 10{,}000 & ---      & ---   & ---      \\
+266	rf\_soft          & 15.733 & 0.038 &  4{,}422 & +0.043   & 0.407 &  0.41    \\
+267	rf\_moderate      & 15.756 & 0.056 &  4{,}940 & +0.021   & 0.492 &  0.34    \\
+268	rf\_strict        & 15.810 & 0.061 &  2{,}496 & $-$0.034 & 0.607 & $-$0.25  \\
+269	oracle\_moderate  & 15.809 & 0.103 &  5{,}000 & $-$0.033 & 0.485 & $-$0.34  \\
+270	oracle\_strict    & 15.879 & 0.128 &  2{,}500 & $-$0.103 & 0.216 & $-$0.66  \\
+271	random\_soft      & 16.062 & 0.079 &  4{,}422 & $-$0.286 & ${<}$0.001$^*$ & $-$2.77  \\
+272	random\_moderate  & 15.998 & 0.090 &  4{,}940 & $-$0.222 & 0.028$^*$ & $-$1.50  \\
+273	random\_strict    & 16.239 & 0.165 &  2{,}496 & $-$0.463 & 0.013$^*$ & $-$1.89  \\
+274	\bottomrule
+275	\end{tabular}}
+276	\end{table}
+277	
+278	\begin{table}[h]
+279	\centering
+280	\small
+281	\caption{Pairwise comparisons (paired $t$-test, 5 seeds). $^*$\,: $p<0.05$; $^{**}$\,: $p<0.01$.}
+282	\label{tab:curation_comparisons}
+283	\begin{tabular}{@{}lccc@{}}
+284	\toprule
+285	Comparison & $\Delta$ PPL & $t$ & $p$ \\
+286	\midrule
+287	rf\_strict vs random\_strict     & 0.429 & $-$7.05 & 0.002$^{**}$ \\
+288	rf\_moderate vs random\_moderate & 0.242 & $-$3.77 & 0.020$^*$    \\
+289	rf\_soft vs random\_soft         & 0.328 & $-$17.98 & ${<}$0.001$^{**}$ \\
+290	rf\_soft vs unfiltered           & 0.043 &    0.93 & 0.407        \\
+291	\bottomrule
+292	\end{tabular}
+293	\end{table}
+294	
+295	\subsection{Reference Model Ablation}
+296	\label{app:ref_ablation}
+297	
+298	\begin{table}[h]
+299	\centering
+300	\caption{Reference model ablation. Classification accuracy (5-fold CV) on Pythia-1.4B generated text (nucleus, d0--d3) using different reference models for feature extraction.}
+301	\label{tab:ref_ablation}
+302	\begin{tabular}{lcc}
+303	\toprule
+304	Reference Model & Architecture & Accuracy (\%) \\
+305	\midrule
+306	Pythia-1.4B (self) & GPT-NeoX & 78.6 $\pm$ 0.6 \\
+307	OLMo-1B (cross) & OLMo & 74.5 $\pm$ 0.7 \\
+308	\bottomrule
+309	\end{tabular}
+310	\end{table}
+311	
+312	\subsection{Cross-Boundary Generalization}
+313	\label{app:cross_boundary}
+314	
+315	The preceding experiments assume a single model family generates all recursive depths.
+316	In practice, recursive contamination may traverse model boundaries: text generated by model~A is used to train model~B, whose output trains model~C.
+317	We probe whether the depth signal persists under two relaxations of the single-model assumption.
+318	
+319	\paragraph{Cross-model recursive chains.}
+320	We construct a heterogeneous chain: human text (d0) $\to$ Pythia-1.4B generates d1 $\to$ OLMo-1B finetuned on Pythia-d1 generates d2 $\to$ GPT-2~XL finetuned on OLMo-d2 generates d3.
+321	Each recursive step uses a \emph{different} model family, eliminating the possibility that depth signal arises from a single model's idiosyncratic behavior.
+322	A 4-class Random Forest achieves 84.75\% accuracy (95\% CI $[81.0, 88.25]$), with per-depth F1 scores of 0.98 (d0), 0.88 (d1), 0.76 (d2), and 0.76 (d3).
+323	Pairwise AUC remains high: d0-vs-d1 = 0.999 and d2-vs-d3 = 0.841.
+324	These results suggest that distributional artifacts of recursive generation persist across model boundaries---providing preliminary evidence consistent with a process-level depth signal rather than individual generator artifacts.
+325	
+326	\paragraph{Confound discussion.}
+327	The heterogeneous chain confounds architecture identity with depth (d1=Pythia, d2=OLMo, d3=GPT-2~XL).
+328	However, if the classifier exploited architecture fingerprints rather than depth signal, near-perfect accuracy would be expected since architecture perfectly determines depth label.
+329	The observed 84.75\% with monotonically decreasing per-depth F1 (d0=0.98, d1=0.88, d2=0.76, d3=0.76) is more consistent with a depth-signal interpretation, as architecture fingerprinting would not produce this graded pattern.
+330	Nevertheless, definitive disentanglement requires a reverse-order chain or architecture-balanced design.
+331	
+332	\paragraph{Cross-domain transfer.}
+333	All prior experiments use WikiText-103 as the seed corpus.
+334	To test domain dependence, we repeat the pipeline with arXiv abstracts as the seed text (Pythia-1.4B, nucleus $p{=}0.95$, 500 samples per depth, d0--d3).
+335	Five-fold cross-validation yields 74.1\% $\pm$ 2.0\% accuracy, compared to ${\sim}$78\% on the WikiText seed.
+336	Per-depth F1 shows the familiar pattern: d0 = 1.00, d1 = 0.78, d2 = 0.52, d3 = 0.66---with d2 remaining the most challenging class.
+337	The 4pp accuracy gap relative to WikiText likely reflects the narrower stylistic range of scientific abstracts, which may reduce the distributional contrast between adjacent depths.
+338	These results provide preliminary evidence that the perplexity-based features capture properties of the recursive generation process rather than domain-specific artifacts of the seed corpus.
+339	
+340	\subsection{Extended Discussion}
+341	\label{app:extended_discussion}
+342	
+343	\paragraph{Depth-graduated curation.}
+344	Current data curation operates on a binary human-vs-machine distinction \cite{dsir2023,qurating2024}.
+345	Recursive generation depth estimation enables a finer-grained alternative: retain low-depth generations (d1) whose distributional properties remain close to the human source, while down-weighting or filtering high-depth text (d3+) where tail erosion has degraded quality.
+346	The 70--85\% in-distribution accuracy and $\mathrm{EDD}_{0.75}{=}4$ suggest depth-graduated filtering is feasible within known model--strategy configurations, though the d1/d2 boundary inversion under cross-strategy transfer (\S\ref{sec:gen:crossstrategy}) means reliable curation requires either known decoding strategy metadata or an upstream strategy-identification step; a pilot study (Appendix~\ref{app:curation_poc}) yields an inconclusive RF-vs-unfiltered comparison ($p>0.4$), though RF-filtered subsets significantly outperform size-matched random subsampling ($p<0.001$--$0.02$); large-scale validation remains open.
+347	Importance weighting \cite{sugiyama2007_importance_weighting} could further enable continuous depth-aware data selection rather than discrete thresholding.
+348	
+349	\paragraph{Toward a provenance toolkit.}
+350	Depth estimation complements existing provenance methods along orthogonal axes.
+351	Watermarking \cite{kirchenbauer2023_watermark} provides high-confidence attribution when the generator cooperates but is inapplicable to unwatermarked text.
+352	Source attribution \cite{uchendu2020_attribution} identifies the generating model but not the generation history.
+353	Depth estimation characterizes \emph{iterative reuse} regardless of generator cooperation or identity.
+354	A layered provenance system combining these three signals---watermark presence, source model, and recursive generation depth---could support more nuanced data auditing than any single method.
+355	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "29940403-336d-4a38-b677-52dbd031fc27",
+  "isSidechain": false,
+  "promptId": "6da10313-6a8f-475a-9e62-751bf1f7e158",
+  "type": "user",
+  "uuid": "badf3c99-f81c-44dd-ac58-d3f1030b94e8",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/section_appendix.tex",
+      "content": "\\section{Additional Results}\n\\label{app:additional}\n\n\\subsection{Top-$k$ Feature Trajectories}\n\\label{app:topk_trajectories}\n\nFigure~\\ref{fig:feature_trajectory} in the main text shows feature trajectories for nucleus ($p{=}0.95$) and temperature ($\\tau{=}0.9$) sampling.\nTop-$k$ ($k{=}50$) trajectories follow the same monotonically decreasing trend for all features but with compressed inter-depth spacing, consistent with the signal attenuation effect discussed in \\S\\ref{sec:atlas:strategy}.\nConcretely, the d0$\\to$d1 drop in \\textsc{p90\\_ppl} under top-$k$ is 78\\% (vs.\\ 87\\% for nucleus), and the d2$\\to$d3 reduction is 31\\% (vs.\\ 39\\% for nucleus).\nDespite the magnitude reduction, feature rank ordering across depths is preserved, which explains why ordinal classifiers maintain directionality even under top-$k$ conditions.\n\n\\subsection{Permutation Importance}\n\\label{app:permutation}\n\nTo verify that the Gini-based importance rankings in \\S\\ref{sec:atlas:features} are not an artifact of the impurity measure, we compute permutation importance (5-fold CV, 10 repeats) for all 9 atlas cells.\nThe top-2 features are stable across measures: \\textsc{p90\\_ppl} ranks in the top 2 in 9/9 cells under both Gini and permutation importance, and \\textsc{var\\_surprisal} in 8/9 (vs.\\ 7/9 for Gini, with the additional cell being OLMo top-$k$; the single SHAP exception is GPT-2~XL top-$k$, where \\textsc{p75\\_ppl} displaces \\textsc{var\\_surprisal} to rank 3).\nKendall's $W{=}0.90$ across all three methods (Gini, permutation, SHAP) indicates strong concordance ($p{<}0.005$).\nPairwise Spearman correlations are: SHAP--Gini $\\rho{=}0.93$, SHAP--permutation $\\rho{=}0.84$, Gini--permutation $\\rho{=}0.76$.\nPer-cell top-5 overlap between SHAP and permutation importance is 3--4 out of 5 features; the aggregated (mean-across-cells) top-5 sets are identical, confirming that the top features are robust to the choice of importance measure at the aggregate level while per-cell rankings exhibit model-dependent variation.\n\n\\subsection{Per-Class Recall}\n\\label{app:per_class}\n\nTable~\\ref{tab:per_class_recall} reports per-class recall across all 9 atlas cells (4-class in-distribution, 5-fold CV).\nDepth~0 recall exceeds 98\\% uniformly.\nAmong generated depths, d2 is the hardest class in every cell; the deficit is most pronounced under top-$k$ sampling (46--53\\%), where vocabulary truncation removes the tail tokens that carry depth-discriminative signal.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Per-class recall (\\%) for all 9 atlas cells. d2 is the lowest-recall class in every cell. Boldface marks the highest d2 recall.}\n\\label{tab:per_class_recall}\n\\begin{tabular}{@{}lcccc@{}}\n\\toprule\nCell & d0 & d1 & d2 & d3 \\\\\n\\midrule\nPythia, nuc.       & 99.7 & 81.9 & 58.7 & 72.3 \\\\\nPythia, $\\tau$     & 99.7 & 81.3 & 53.9 & 72.1 \\\\\nPythia, top-$k$    & 99.5 & 72.3 & 45.6 & 57.5 \\\\\nOLMo, nuc.         & 98.8 & 80.5 & 61.5 & 74.3 \\\\\nOLMo, $\\tau$       & 99.7 & 87.7 & 66.1 & 77.2 \\\\\nOLMo, top-$k$      & 99.5 & 78.5 & 51.2 & 65.6 \\\\\nGPT-2~XL, nuc.     & 99.2 & 85.9 & \\textbf{73.3} & 77.5 \\\\\nGPT-2~XL, $\\tau$   & 99.5 & 90.9 & 68.8 & 81.9 \\\\\nGPT-2~XL, top-$k$  & 98.5 & 79.5 & 52.5 & 71.1 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\subsection{DCOL Iteration Details}\n\\label{app:dcol_iterations}\n\nTable~\\ref{tab:dcol_iterations} summarizes all six DCOL iterations.\nDeBERTa-v3-large exhibited systematic numerical instability across five configurations; RoBERTa-large resolved stability but could not close the accuracy gap with feature-based methods.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{DCOL iteration summary. All experiments use Pythia-1.4B nucleus data. RF baseline: 78.2\\%.}\n\\label{tab:dcol_iterations}\n\\begin{tabular}{@{}llp{2.2cm}p{2.8cm}@{}}\n\\toprule\nVer. & Backbone & Config & Outcome \\\\\n\\midrule\nv1 & DeBERTa & FT, m\\_lr $10^{-3}$ & Embed.\\ collapse (31.5\\%) \\\\\nv2 & DeBERTa & FT, m\\_lr $10^{-4}$ & OOM \\\\\nv3 & DeBERTa & FT, m\\_lr $10^{-4}$ & Forgetting + OOM \\\\\nv4 & DeBERTa & LoRA, m\\_lr $10^{-3}$ & Embed.\\ collapse \\\\\nv5 & DeBERTa & LoRA, m\\_lr $10^{-4}$ & NaN gradients \\\\\nv6 & RoBERTa & FT, grad clip 1.0 & Stable; 64.5\\% ($-$13.7pp) \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\subsection{Zero-Shot LLM Prompt Template}\n\\label{app:zeroshot_prompt}\n\nBoth DeepSeek V3.2 and Qwen2.5-7B-Instruct use identical prompting.\nThe system message defines recursive generation depth with per-depth descriptions (depth~0: human-written; depth~1--3: successive LLM generation cycles) and lists expected textual patterns at each depth (vocabulary richness, repetition, coherence).\nThe user message presents the passage (truncated to ${\\approx}$384 words) and requests a JSON response containing an integer depth prediction (0--3), a confidence score, and a one-sentence reasoning.\nNo in-context examples are provided.\n\n\\begin{quote}\n\\small\n\\textbf{System:} ``You are an expert at detecting AI-generated text and estimating its generation depth. `Recursive generation depth' refers to how many times a text has been through an LLM generation cycle: Depth~0: Original human-written text [\\ldots] Depth~3: Text generated by an LLM given depth-2 text as input. Key patterns by depth: Depth~0 (human): Rich vocabulary [\\ldots] Depth~3 (third-gen): Noticeable repetition, formulaic structure [\\ldots]''\n\n\\textbf{User:} ``Analyze the following text and estimate its recursive generation depth (0, 1, 2, or 3). TEXT: \\{text\\}. Respond with ONLY a JSON object: \\{\\texttt{\"depth\"}: $\\langle$int 0--3$\\rangle$, \\texttt{\"confidence\"}: $\\langle$float 0--1$\\rangle$, \\texttt{\"reasoning\"}: $\\langle$str$\\rangle$\\}''\n\\end{quote}\n\n\\subsection{Temperature Robustness}\n\\label{app:multi_tau}\n\nThe cross-strategy results in \\S\\ref{sec:gen:crossstrategy} use a single temperature ($\\tau{=}0.9$).\nTo test whether depth signal generalizes across temperatures, we repeat the classification pipeline at $\\tau \\in \\{0.5, 0.7, 0.9, 1.1\\}$ on Pythia-1.4B.\n\n\\paragraph{Within-$\\tau$ robustness.}\nFor $\\tau \\in [0.5, 0.9]$, d1-vs-d2 AUC exceeds 0.80 (peak 0.851 at $\\tau{=}0.7$, comparable to nucleus $p{=}0.95$'s 0.861) and 4-class accuracy ranges from 75.4\\% to 77.3\\% (Table~\\ref{tab:multi_tau_within}), confirming the depth signal is not an artifact of a single temperature.\nThe same top-5 features (\\texttt{var\\_surprisal}, \\texttt{p90\\_ppl}, \\texttt{mean\\_ppl}, \\texttt{mean\\_surprisal}, \\texttt{p75\\_ppl}) dominate across all $\\tau$ values with only minor rank-order variation.\n\n\\paragraph{Collapse at $\\tau{=}1.1$: memorization as prerequisite.}\nAt $\\tau{=}1.1$, 4-class accuracy drops to 57.2\\% and d1v2 AUC falls to 0.528.\nTraining loss reveals the mechanism: at low temperature ($\\tau{=}0.5$), fine-tuning loss decreases steeply across recursive depths ($2.27 \\to 0.42 \\to 0.16$), indicating rapid memorization of the model's own output.\nAt $\\tau{=}1.1$, loss remains nearly flat ($2.27 \\to 1.91 \\to 1.85$)---high-entropy output resists memorization, so depth-dependent distributional shifts do not accumulate.\nThis establishes \\emph{memorization as a prerequisite} for detectable depth signal: recursive depth is discriminable only when successive fine-tuning iterations progressively reshape the output distribution.\n\n\\paragraph{Cross-$\\tau$ non-transferability.}\nLeave-one-$\\tau$-out transfer yields mean accuracy of 46.7\\% with mean d1v2 AUC of 0.319 (Table~\\ref{tab:multi_tau_cross})---worse than cross-strategy transfer (59.1\\%; \\S\\ref{sec:gen:crossstrategy}).\nHoldout $\\tau{=}0.5$ produces inverted d1v2 AUC (0.176), confirming that different temperatures produce surprisal distributions with incompatible shapes.\nThis extends the strategy-specificity finding: even within a single decoding family, the feature space is temperature-specific, reinforcing the need for strategy-conditioned classifiers.\n\n\\paragraph{Ecological validity.}\nOn WikiText-103 (546 editorial passages), all three model-specific RF classifiers achieve $\\geq$98.5\\% d0 accuracy despite $+$621\\% domain shift in mean perplexity---partly an easy case, as WikiText's higher perplexity places it farther from d1--d3 in feature space.\nOn noisier web-crawl data (5{,}000 C4 passages), FPR ranges from 4.7\\% (OLMo) to 22.4\\% (GPT-2~XL), concentrated in template/SEO content with high n-gram repetition (Table~\\ref{tab:calibration}); deployment on heterogeneous web data requires model-specific calibration.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Within-$\\tau$ 4-class classification (Pythia-1.4B, 5-fold CV). d$i$v$j$: pairwise AUC for depth $i$ vs.\\ depth $j$.}\n\\label{tab:multi_tau_within}\n\\begin{tabular}{@{}lcccc@{}}\n\\toprule\n$\\tau$ & 4-class acc (\\%) & d1v2 AUC & d0v1 AUC & d2v3 AUC \\\\\n\\midrule\n0.5 & 77.3 & 0.842 & 0.996 & 0.764 \\\\\n0.7 & 75.4 & 0.851 & 0.997 & 0.720 \\\\\n0.9 & 75.9 & 0.808 & 0.991 & 0.781 \\\\\n1.1 & 57.2 & 0.528 & 0.988 & 0.599 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Cross-$\\tau$ leave-one-out transfer (Pythia-1.4B). Train on three temperatures, test on the held-out one.}\n\\label{tab:multi_tau_cross}\n\\begin{tabular}{@{}lcc@{}}\n\\toprule\nHoldout & Acc (\\%) & d1v2 AUC \\\\\n\\midrule\n$\\tau{=}0.5$ & 52.2 & 0.176 \\\\\n$\\tau{=}0.7$ & 41.0 & 0.299 \\\\\n$\\tau{=}0.9$ & 46.4 & 0.277 \\\\\n$\\tau{=}1.1$ & 47.1 & 0.525 \\\\\n\\midrule\nMean & 46.7 & 0.319 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\subsection{Feature Overlap Analysis}\n\\label{app:feature_overlap}\n\nWe probe whether end-to-end PLM representations capture the same depth signals as our statistical features via linear probing of [CLS] representations from DeBERTa-v3-base and RoBERTa-base.\nPLM representations excel at surface lexical features (TTR: $R^2{=}0.85$, repeated bigrams) but fail to capture perplexity distribution statistics---\\textsc{var\\_surprisal} and \\textsc{p90\\_ppl} yield negative $R^2$ under linear probing, indicating these features are not linearly accessible in the pretrained representation space.\nThis confirms that the 19pp accuracy gap between feature-based and end-to-end methods (\\S\\ref{app:e2e}) stems from complementary---not redundant---representations: PLMs capture lexical patterns while the targeted statistical features capture distributional tail properties that constitute the dominant depth markers.\n\n\\subsection{End-to-End Learning}\n\\label{app:e2e}\n\nDeBERTa-v3-base \\cite{he2021_deberta_v3} and RoBERTa-base \\cite{liu2019_roberta} finetuned end-to-end achieve 58.3\\% ($\\pm$4.7\\%) and 59.5\\% ($\\pm$3.2\\%) respectively---lagging the RF baseline (78.2\\%) by 19.9pp and 18.7pp.\nThe 1.2pp inter-backbone gap rules out architecture bias; Table~\\ref{tab:e2e_detail} shows both backbones share the same failure mode---high d0 F1 ($>$0.94) but collapsed d1/d2 performance (F1 $\\leq$ 0.42)---while RF achieves 0.596 d2 recall, a $>$2$\\times$ advantage at the hardest depth class.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Per-class performance for end-to-end PLM classifiers vs.\\ RF baseline (Pythia-1.4B nucleus). PLM columns report F1; RF d2 column reports recall (the class with the largest PLM--RF gap). Both PLM backbones share the same failure pattern: collapsed d1/d2 scores despite adequate d0/d3.}\n\\label{tab:e2e_detail}\n\\begin{tabular}{@{}lccccc@{}}\n\\toprule\nMethod & Acc (\\%) & d0 & d1 & d2 & d3 \\\\\n\\midrule\nDeBERTa-v3 & 58.3\\,$\\pm$\\,4.7 & .947 & .378 & .247 & .656 \\\\\nRoBERTa-base & 59.5\\,$\\pm$\\,3.2 & .958 & .416 & .261 & .647 \\\\\n\\midrule\nRF (19 feat.) & 78.2 & --- & --- & .596$^\\dagger$ & --- \\\\\n\\bottomrule\n\\multicolumn{6}{@{}l}{\\footnotesize $^\\dagger$Recall; shown for the depth class with the largest PLM--RF gap.}\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Feature space divergence.}\nSHAP TreeExplainer analysis confirms that perplexity and surprisal features account for 88.8\\% of RF's total contribution.\nThree independent importance measures---SHAP, Gini, and permutation---show strong concordance (Kendall's $W{=}0.90$, $p{<}0.005$; pairwise Spearman $\\rho$: SHAP--Gini $0.93$, SHAP--permutation $0.84$; \\S\\ref{app:permutation}), with \\texttt{p90\\_ppl} appearing in the SHAP top-2 in 9/9 cells and \\texttt{var\\_surprisal} in 8/9.\nLinear probing of PLM [CLS] representations yields negative $R^2$ for both \\texttt{var\\_surprisal} and \\texttt{p90\\_ppl} (\\S\\ref{app:feature_overlap}), indicating that pretrained representations lack the linear structure needed to recover perplexity tail statistics---a systematic representational gap rather than a backbone-specific artifact.\n\nDCOL \\cite{cloc2025} reached 64.5\\% (\\S\\ref{app:dcol_iterations}); all end-to-end approaches (58--65\\%) underperform feature-based methods, suggesting depth estimation benefits from targeted statistical features that capture distributional tail properties absent from PLM representations.\nThis comparison is bounded by backbone scale ($\\leq$125M parameters); whether larger PLMs (e.g., 7B+) can close the gap via richer internal representations remains an open question.\n\n\\subsection{Domain Bias Analysis}\n\\label{app:domain_bias}\n\nTo assess whether the classifier exploits depth-related features or memorizes stylistic cues from individual seed articles, we conduct three sub-experiments.\n\n\\paragraph{Methodological note.}\nAn initial implementation assigned sample IDs with a global counter across depths, inadvertently correlating seed-group identity with depth (LOGO accuracy 64.0\\%, seed-group prediction 20.8\\%).\nWe discovered the issue during internal review, corrected to per-depth seed assignment ensuring each group contains equal samples per depth, and re-ran all sub-experiments.\nThe results below use the corrected pipeline; the initial (buggy) numbers are reported for transparency.\n\n\\paragraph{Sub-A: Standard CV.}\nFive-fold CV accuracy on 3-class (d1/d2/d3) classification ranges from 59\\% to 82\\% across the 9 atlas cells (up to 2.5$\\times$ above the 33.3\\% chance level), confirming that depth signal is the dominant classification factor.\n\n\\paragraph{Sub-B: LOGO evaluation.}\nWe assign each passage to one of 10 seed-article groups (balanced: each group contains equal samples per depth) and perform leave-one-group-out CV.\nLOGO mean accuracy is 72.1\\% (range 59.5--81.6\\%), matching standard CV (72.0\\%) within noise (before fix: 64.0\\%, reflecting the depth--group confound).\nPer-cell fold standard deviations range from 0.4pp to 1.4pp, indicating that cross-group generalization is as reliable as within-group classification.\n\n\\paragraph{Sub-C: Negative control.}\nWe train two classifiers on identical features: one predicting depth, the other predicting seed-group identity (10-class, chance = 10\\%).\nDepth prediction accuracy averages 72.0\\%; seed-group prediction averages 10.2\\%---indistinguishable from chance (before fix: 20.8\\%, inflated by the depth--group confound).\nThe depth-to-seed-group accuracy ratio is 7.1$\\times$, confirming that the feature representation encodes depth but not seed-article identity.\n\nTaken together, these results show that seed-article grouping has no measurable effect on depth estimation after correcting the group assignment: LOGO accuracy equals standard CV, and seed-group prediction is at chance.\n\n\\subsection{Wild-Data Calibration}\n\\label{app:calibration}\n\nTable~\\ref{tab:calibration} reports d0 accuracy and false positive rate (FPR) for all three model-specific nucleus RF classifiers on two out-of-distribution human-text corpora: WikiText-103 (546 editorial passages) and C4 (5{,}000 web-crawl passages).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Wild-data d0 accuracy and FPR for nucleus RF classifiers. All passages are human-written (true d0). FPR = fraction misclassified as d1+. 95\\% Wilson CIs computed for C4 ($n{=}5{,}000$).}\n\\label{tab:calibration}\n\\begin{tabular}{@{}llrccc@{}}\n\\toprule\nModel & Source & $n$ & d0 (\\%) & FPR (\\%) & 95\\% Wilson CI \\\\\n\\midrule\nPythia-1.4B & WikiText & 546 & 100.0 & 0.0 & --- \\\\\n & C4 & 5{,}000 & 79.8 & 20.2 & [19.1, 21.3] \\\\\n\\addlinespace\nGPT-2~XL & WikiText & 546 & 99.3 & 0.7 & --- \\\\\n & C4 & 5{,}000 & 77.6 & 22.4 & [21.3, 23.6] \\\\\n\\addlinespace\nOLMo-1B & WikiText & 546 & 98.5 & 1.5 & --- \\\\\n & C4 & 5{,}000 & 95.3 & 4.7 & [4.2, 5.3] \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nOn WikiText-103, all three classifiers achieve $\\geq$98.5\\% d0 accuracy, confirming that editorial text is reliably distinguished from recursive generations across model families.\nOn C4, FPR varies sharply: OLMo (4.7\\%) vs.\\ Pythia (20.2\\%) and GPT-2~XL (22.4\\%).\nC4 misclassifications concentrate in template and SEO content with elevated repetition features (\\texttt{rep\\_3gram} $+$37\\%, \\texttt{rep\\_4gram} $+$75\\% vs.\\ correctly classified d0 passages), rather than in random noise.\nThe model gap likely reflects training data composition: OLMo (trained on Dolma, which includes diverse web data) produces d0 features more tolerant of web-crawl variation, while Pythia and GPT-2~XL (trained primarily on Wikipedia/WebText) map template-heavy content into the d1+ region.\nAmong C4 false positives for GPT-2~XL, predictions distribute as d1 (9.0\\%), d2 (3.7\\%), d3 (9.6\\%); for OLMo, d1 (2.9\\%), d2 (0.5\\%), d3 (1.3\\%)---the non-uniform depth distribution suggests the classifier maps specific repetition patterns to particular depth signatures rather than producing random misclassifications.\n\n\\subsection{Downstream Curation PoC}\n\\label{app:curation_poc}\n\nTo validate that depth estimation translates to actionable data curation, we conduct a proof-of-concept downstream evaluation.\nWe fine-tune Pythia-410M with LoRA ($r{=}16$, $\\alpha{=}32$) for 3 epochs on 8 data conditions derived from the Pythia nucleus depth-estimation corpus, repeating each condition over 5 random seeds.\nConditions vary the selection mechanism (RF-predicted depth, oracle depth, random subsampling) and stringency (strict $\\approx$25\\%, moderate $\\approx$50\\%, soft threshold).\nTable~\\ref{tab:curation_poc} reports per-condition perplexity; Table~\\ref{tab:curation_comparisons} reports pairwise contrasts.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Curation PoC: per-condition perplexity (Pythia-410M LoRA, 5 seeds). $\\Delta$ is signed so that positive values indicate lower (better) perplexity than unfiltered. $^*$\\,: $p<0.05$ (paired $t$-test vs.\\ unfiltered).}\n\\label{tab:curation_poc}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}lcccccc@{}}\n\\toprule\nCondition & Mean PPL & Std & $n$ & $\\Delta$ vs Unfilt. & $p$ & $d_z$ \\\\\n\\midrule\nunfiltered        & 15.776 & 0.066 & 10{,}000 & ---      & ---   & ---      \\\\\nrf\\_soft          & 15.733 & 0.038 &  4{,}422 & +0.043   & 0.407 &  0.41    \\\\\nrf\\_moderate      & 15.756 & 0.056 &  4{,}940 & +0.021   & 0.492 &  0.34    \\\\\nrf\\_strict        & 15.810 & 0.061 &  2{,}496 & $-$0.034 & 0.607 & $-$0.25  \\\\\noracle\\_moderate  & 15.809 & 0.103 &  5{,}000 & $-$0.033 & 0.485 & $-$0.34  \\\\\noracle\\_strict    & 15.879 & 0.128 &  2{,}500 & $-$0.103 & 0.216 & $-$0.66  \\\\\nrandom\\_soft      & 16.062 & 0.079 &  4{,}422 & $-$0.286 & ${<}$0.001$^*$ & $-$2.77  \\\\\nrandom\\_moderate  & 15.998 & 0.090 &  4{,}940 & $-$0.222 & 0.028$^*$ & $-$1.50  \\\\\nrandom\\_strict    & 16.239 & 0.165 &  2{,}496 & $-$0.463 & 0.013$^*$ & $-$1.89  \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Pairwise comparisons (paired $t$-test, 5 seeds). $^*$\\,: $p<0.05$; $^{**}$\\,: $p<0.01$.}\n\\label{tab:curation_comparisons}\n\\begin{tabular}{@{}lccc@{}}\n\\toprule\nComparison & $\\Delta$ PPL & $t$ & $p$ \\\\\n\\midrule\nrf\\_strict vs random\\_strict     & 0.429 & $-$7.05 & 0.002$^{**}$ \\\\\nrf\\_moderate vs random\\_moderate & 0.242 & $-$3.77 & 0.020$^*$    \\\\\nrf\\_soft vs random\\_soft         & 0.328 & $-$17.98 & ${<}$0.001$^{**}$ \\\\\nrf\\_soft vs unfiltered           & 0.043 &    0.93 & 0.407        \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\subsection{Reference Model Ablation}\n\\label{app:ref_ablation}\n\n\\begin{table}[h]\n\\centering\n\\caption{Reference model ablation. Classification accuracy (5-fold CV) on Pythia-1.4B generated text (nucleus, d0--d3) using different reference models for feature extraction.}\n\\label{tab:ref_ablation}\n\\begin{tabular}{lcc}\n\\toprule\nReference Model & Architecture & Accuracy (\\%) \\\\\n\\midrule\nPythia-1.4B (self) & GPT-NeoX & 78.6 $\\pm$ 0.6 \\\\\nOLMo-1B (cross) & OLMo & 74.5 $\\pm$ 0.7 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\subsection{Cross-Boundary Generalization}\n\\label{app:cross_boundary}\n\nThe preceding experiments assume a single model family generates all recursive depths.\nIn practice, recursive contamination may traverse model boundaries: text generated by model~A is used to train model~B, whose output trains model~C.\nWe probe whether the depth signal persists under two relaxations of the single-model assumption.\n\n\\paragraph{Cross-model recursive chains.}\nWe construct a heterogeneous chain: human text (d0) $\\to$ Pythia-1.4B generates d1 $\\to$ OLMo-1B finetuned on Pythia-d1 generates d2 $\\to$ GPT-2~XL finetuned on OLMo-d2 generates d3.\nEach recursive step uses a \\emph{different} model family, eliminating the possibility that depth signal arises from a single model's idiosyncratic behavior.\nA 4-class Random Forest achieves 84.75\\% accuracy (95\\% CI $[81.0, 88.25]$), with per-depth F1 scores of 0.98 (d0), 0.88 (d1), 0.76 (d2), and 0.76 (d3).\nPairwise AUC remains high: d0-vs-d1 = 0.999 and d2-vs-d3 = 0.841.\nThese results suggest that distributional artifacts of recursive generation persist across model boundaries---providing preliminary evidence consistent with a process-level depth signal rather than individual generator artifacts.\n\n\\paragraph{Confound discussion.}\nThe heterogeneous chain confounds architecture identity with depth (d1=Pythia, d2=OLMo, d3=GPT-2~XL).\nHowever, if the classifier exploited architecture fingerprints rather than depth signal, near-perfect accuracy would be expected since architecture perfectly determines depth label.\nThe observed 84.75\\% with monotonically decreasing per-depth F1 (d0=0.98, d1=0.88, d2=0.76, d3=0.76) is more consistent with a depth-signal interpretation, as architecture fingerprinting would not produce this graded pattern.\nNevertheless, definitive disentanglement requires a reverse-order chain or architecture-balanced design.\n\n\\paragraph{Cross-domain transfer.}\nAll prior experiments use WikiText-103 as the seed corpus.\nTo test domain dependence, we repeat the pipeline with arXiv abstracts as the seed text (Pythia-1.4B, nucleus $p{=}0.95$, 500 samples per depth, d0--d3).\nFive-fold cross-validation yields 74.1\\% $\\pm$ 2.0\\% accuracy, compared to ${\\sim}$78\\% on the WikiText seed.\nPer-depth F1 shows the familiar pattern: d0 = 1.00, d1 = 0.78, d2 = 0.52, d3 = 0.66---with d2 remaining the most challenging class.\nThe 4pp accuracy gap relative to WikiText likely reflects the narrower stylistic range of scientific abstracts, which may reduce the distributional contrast between adjacent depths.\nThese results provide preliminary evidence that the perplexity-based features capture properties of the recursive generation process rather than domain-specific artifacts of the seed corpus.\n\n\\subsection{Extended Discussion}\n\\label{app:extended_discussion}\n\n\\paragraph{Depth-graduated curation.}\nCurrent data curation operates on a binary human-vs-machine distinction \\cite{dsir2023,qurating2024}.\nRecursive generation depth estimation enables a finer-grained alternative: retain low-depth generations (d1) whose distributional properties remain close to the human source, while down-weighting or filtering high-depth text (d3+) where tail erosion has degraded quality.\nThe 70--85\\% in-distribution accuracy and $\\mathrm{EDD}_{0.75}{=}4$ suggest depth-graduated filtering is feasible within known model--strategy configurations, though the d1/d2 boundary inversion under cross-strategy transfer (\\S\\ref{sec:gen:crossstrategy}) means reliable curation requires either known decoding strategy metadata or an upstream strategy-identification step; a pilot study (Appendix~\\ref{app:curation_poc}) yields an inconclusive RF-vs-unfiltered comparison ($p>0.4$), though RF-filtered subsets significantly outperform size-matched random subsampling ($p<0.001$--$0.02$); large-scale validation remains open.\nImportance weighting \\cite{sugiyama2007_importance_weighting} could further enable continuous depth-aware data selection rather than discrete thresholding.\n\n\\paragraph{Toward a provenance toolkit.}\nDepth estimation complements existing provenance methods along orthogonal axes.\nWatermarking \\cite{kirchenbauer2023_watermark} provides high-confidence attribution when the generator cooperates but is inapplicable to unwatermarked text.\nSource attribution \\cite{uchendu2020_attribution} identifies the generating model but not the generation history.\nDepth estimation characterizes \\emph{iterative reuse} regardless of generator cooperation or identity.\nA layered provenance system combining these three signals---watermark presence, source model, and recursive generation depth---could support more nuanced data auditing than any single method.\n",
+      "numLines": 355,
+      "startLine": 1,
+      "totalLines": 355
+    }
+  },
+  "sourceToolAssistantUUID": "29940403-336d-4a38-b677-52dbd031fc27",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-16T13:15:03.496Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_019uvNQGVtLVMrCa3XieixvA`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/atlas.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "badf3c99-f81c-44dd-ac58-d3f1030b94e8",
+  "isSidechain": false,
+  "requestId": "req_011Cb6JsdjV6eb1UmjMu13kQ",
+  "type": "assistant",
+  "uuid": "05810df8-d223-4135-969e-73fbda876fb8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YXetNnTViRtizz35a25Rdr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 914,
+      "cache_read_input_tokens": 23559,
+      "output_tokens": 811,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 914,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 811,
+          "cache_read_input_tokens": 23559,
+          "cache_creation_input_tokens": 914,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 914
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-16T13:15:03.501Z_
+
+<details><summary>↩ Tool result · `toolu_019uvNQGVtLVMrCa3XieixvA`</summary>
+
+```text
+1	\section{The Depth Degradation Atlas}
+2	\label{sec:atlas}
+3	
+4	We present the Depth Degradation Atlas: a systematic empirical map of how statistical fingerprints evolve across recursive generation depths, models, and decoding strategies.
+5	The atlas spans $3 \times 3 = 9$ model--strategy cells evaluated at depths $d \in \{0, 1, 2, 3\}$, with depth extensions to $d{=}5$ for cross-model EDD validation (\S\ref{sec:atlas:edd}).
+6	
+7	%% ----------------------------------------------------------------
+8	\subsection{In-Distribution Performance}
+9	\label{sec:atlas:id}
+10	
+11	Table~\ref{tab:main_matrix} reports four-class Random Forest accuracy (5-fold CV, 200 trees) across all nine cells.
+12	Accuracy ranges from 69.6\% (Pythia, top-$k$) to 85.4\% (GPT-2~XL, temperature), all exceeding the 25\% chance baseline by a wide margin.
+13	Two axis effects emerge.
+14	GPT-2~XL achieves the highest accuracy under every strategy (76.6--85.4\%), followed by OLMo (74.2--82.0\%) and Pythia (69.6--78.2\%).
+15	Top-$k$ sampling yields the lowest accuracy in every model.
+16	The mean within-model strategy gap is 8.4~pp, comparable to the 7.1~pp mean within-strategy model gap---decoding strategy and model family contribute roughly equally to performance variance.
+17	
+18	\begin{table}[t]
+19	\centering
+20	\small
+21	\caption{Four-class RF accuracy (\%) across the $3 \times 3$ atlas, with d1--d3 three-class accuracy in parentheses (chance = 25\% / 33\%). Depth-0 recall exceeds 98\% in all cells.}
+22	\label{tab:main_matrix}
+23	\begin{tabular}{@{}lccc@{}}
+24	\toprule
+25	& Nucleus & Temp.\ $\tau{=}0.9$ & Top-$k$ \\
+26	\midrule
+27	Pythia-1.4B  & 78.2\,(71.2) & 76.3\,(70.6) & 69.6\,(58.8) \\
+28	OLMo-1B     & 78.8\,(75.0) & 82.0\,(76.3) & 74.2\,(66.1) \\
+29	GPT-2~XL    & 83.3\,(79.0) & 85.4\,(82.6) & 76.6\,(69.5) \\
+30	\bottomrule
+31	\end{tabular}
+32	\end{table}
+33	
+34	\paragraph{Per-class recall distribution.}
+35	Depth-0 recall exceeds 98\% in all 9 cells, confirming that human-written text is trivially separable from any generation depth.
+36	Among generated depths, d2 consistently yields the lowest recall (46--73\% across cells), followed by d3 (58--82\%) and d1 (72--91\%).
+37	For example, Pythia-1.4B nucleus achieves per-class recall of d0$\,{=}\,$99\%, d1$\,{=}\,$82\%, d2$\,{=}\,$59\%, d3$\,{=}\,$72\%.
+38	The strongest d2 recall is obtained by GPT-2~XL nucleus (73\%).
+39	The d2 trough reflects its position at the center of the depth gradient: d2 features overlap with both the d1 distribution above and d3 below, making it the most confusable class---consistent with the d2-vs-d3 pair being the EDD bottleneck (\S\ref{sec:atlas:edd}).
+40	Full per-class recall for all cells appears in Appendix~\ref{app:per_class}.
+41	
+42	%% ----------------------------------------------------------------
+43	\subsection{Feature Consistency Across the Grid}
+44	\label{sec:atlas:features}
+45	
+46	Despite the 15.8~pp accuracy spread across cells, a small feature family dominates in every setting.
+47	Perplexity tail statistics as a feature group dominate depth discrimination: the 90th-percentile perplexity (\texttt{p90\_ppl}) ranks top-2 by Gini importance in all 9 cells; surprisal variance (\texttt{var\_surprisal}) in 8/9 under SHAP (7/9 under Gini; Appendix~\ref{app:permutation}).\footnote{Individual feature rankings should be interpreted cautiously given high multicollinearity (VIF${>}$10 for 14--16/19 features); the group-level dominance of perplexity tail statistics is robust across importance measures.}
+48	Table~\ref{tab:feature_importance} shows the full per-cell ranking.
+49	
+50	Cross-model feature-rank Spearman correlation averages $\bar{\rho} = 0.868$ (range $[0.619, 0.954]$): models agree on which features carry depth information even when they differ in absolute accuracy.
+51	Among strategies, top-$k$ yields the highest cross-model rank correlation ($\rho = 0.811$)---the deterministic vocabulary truncation imposes a more uniform feature landscape across architectures, at the cost of weaker overall signal (\S\ref{sec:atlas:strategy}).
+52	
+53	Percentile-based features outperform their moment-based counterparts.
+54	Token-level perplexity distributions are heavy-tailed: individual outlier passages can dominate the arithmetic mean of their depth class, whereas \texttt{p90\_ppl} is robust to such extremes while still capturing the tail erosion that signals generation depth.
+55	
+56	Feature ablation confirms this concentration: the top-2 features (\texttt{p90\_ppl} + \texttt{var\_surprisal}) alone reach 91.1\% of full accuracy (71.5\%), and the top-5 features achieve 97.6\% (76.5\% vs.\ 78.4\%), with perplexity statistics alone reaching 76.6\% (vs.\ surprisal 73.2\%, other categories ${\leq}$47\%).
+57	Variance inflation analysis reveals VIF${>}$10 for 14--16 of 19 features, placing the effective independent dimensionality at ${\approx}$4--5.
+58	Forward selection independently confirms the dominant pair: \texttt{p90\_ppl} is selected first in 6/9 cells, \texttt{var\_surprisal} in 3/9.
+59	
+60	The feature hierarchy also shifts with depth.
+61	At shallow boundaries (d1 vs.\ d2), \texttt{var\_surprisal} dominates importance; at deeper boundaries (d3 vs.\ d4, d4 vs.\ d5), tail perplexity statistics (\texttt{p90\_ppl}, \texttt{kurtosis\_ppl}) take over.
+62	This transition aligns with model-collapse dynamics~\cite{shumailov2024_nature}: early recursion narrows the surprisal distribution (captured by its variance), while later steps erode the perplexity tail (captured by upper quantiles and kurtosis).
+63	
+64	\begin{table}[t]
+65	\centering
+66	\small
+67	\caption{Top-5 features by Gini importance. \textbf{Bold}: top-2. \texttt{p90\_ppl} top-2 in 9/9; \texttt{var\_surprisal} 8/9 under SHAP (7/9 under Gini).}
+68	\label{tab:feature_importance}
+69	\resizebox{\columnwidth}{!}{%
+70	\begin{tabular}{@{}l l@{}}
+71	\toprule
+72	Cell & Top-5 features (Gini importance, ranked) \\
+73	\midrule
+74	Pythia, nuc.       & \textbf{var\_surp\,(.17)}, \textbf{p90\_ppl\,(.15)}, m\_ppl\,(.11), var\_ppl\,(.08), p75\,(.07) \\
+75	Pythia, $\tau$     & \textbf{var\_surp\,(.17)}, \textbf{p90\_ppl\,(.14)}, m\_ppl\,(.11), p75\,(.07), m\_surp\,(.07) \\
+76	Pythia, top-$k$    & \textbf{var\_surp\,(.16)}, \textbf{p90\_ppl\,(.12)}, m\_ppl\,(.11), var\_ppl\,(.07), m\_surp\,(.06) \\
+77	GPT-2\,XL, nuc.    & \textbf{var\_surp\,(.21)}, \textbf{p90\_ppl\,(.21)}, p75\,(.10), m\_surp\,(.07), m\_ppl\,(.06) \\
+78	GPT-2\,XL, $\tau$  & \textbf{p90\_ppl\,(.25)}, \textbf{p75\,(.15)}, m\_surp\,(.13), var\_surp\,(.12), p50\,(.05) \\
+79	GPT-2\,XL, top-$k$ & \textbf{p90\_ppl\,(.24)}, \textbf{p75\,(.12)}, var\_surp\,(.10), m\_surp\,(.09), ttr\,(.04) \\
+80	OLMo, nuc.         & \textbf{p90\_ppl\,(.18)}, \textbf{var\_surp\,(.15)}, p75\,(.11), m\_surp\,(.07), ttr\,(.06) \\
+81	OLMo, $\tau$       & \textbf{p90\_ppl\,(.21)}, \textbf{var\_surp\,(.16)}, p75\,(.12), m\_surp\,(.09), ttr\,(.05) \\
+82	OLMo, top-$k$      & \textbf{p90\_ppl\,(.20)}, \textbf{var\_surp\,(.17)}, p75\,(.10), m\_surp\,(.07), m\_ppl\,(.05) \\
+83	\bottomrule
+84	\end{tabular}}
+85	\end{table}
+86	
+87	\begin{figure}[t]
+88	\centering
+89	\includegraphics[width=\columnwidth]{figures/fig_atlas_heatmap.pdf}
+90	\caption{Atlas feature importance heatmap. Rows: 19 features grouped by category (\S\ref{sec:method:features}); columns: 9 model--strategy cells. Color intensity encodes RF Gini importance. The perplexity-tail and surprisal-variance blocks maintain high importance across all cells.}
+91	\label{fig:atlas_heatmap}
+92	\end{figure}
+93	
+94	%% ----------------------------------------------------------------
+95	\subsection{Monotonicity and Inter-Depth Distances}
+96	\label{sec:atlas:monotonicity}
+97	
+98	Depth features exhibit strong monotonic trends: perplexity tail statistics (\texttt{p90\_ppl}, \texttt{mean\_surprisal}) decrease with depth (Spearman $\rho = -1.0$ across cell-level medians) while repetition features increase, reflecting the complementary narrowing and self-repetition of distribution collapse.
+99	Inter-depth distances are non-uniform: d0-vs-d1 AUC exceeds 0.99 in all 9 cells, whereas d2-vs-d3 ranges from 0.69 to 0.89---separating adjacent deep generations requires the tail statistics identified in \S\ref{sec:atlas:features}.
+100	
+101	\begin{figure}[t]
+102	\centering
+103	\includegraphics[width=\columnwidth]{figures/fig_feature_trajectory.pdf}
+104	\caption{Feature trajectories across depths $d{=}0$ to $d{=}3$, stratified by model (columns) and strategy (line style). Top row: \texttt{p90\_ppl} (monotonically decreasing). Middle: \texttt{var\_surprisal} (decreasing). Bottom: \texttt{rep\_3gram} (increasing). Shaded bands: interquartile range. The $d{=}0 \to d{=}1$ gap exceeds all subsequent inter-depth gaps.}
+105	\label{fig:feature_trajectory}
+106	\end{figure}
+107	
+108	%% ----------------------------------------------------------------
+109	\subsection{EDD Analysis}
+110	\label{sec:atlas:edd}
+111	
+112	We extend the benchmark to depth $d{=}5$ for all three models under nucleus sampling.
+113	Each model's depth-3 LoRA checkpoint is used to finetune and generate depth-4 data, and the process repeats for depth~5; feature extraction uses the same reference model (Pythia-1.4B).
+114	We train dedicated binary RF classifiers (500 trees) for each adjacent pair, as defined in Eq.~\ref{eq:edd}.
+115	
+116	\paragraph{AUC decay profile.}
+117	Figure~\ref{fig:auc_decay} plots the binary pairwise AUC decay curves.
+118	For Pythia-1.4B (nucleus), AUC decays monotonically: d0-vs-d1 $= 0.999$, d1-vs-d2 $= 0.925$, d2-vs-d3 $= 0.823$, d3-vs-d4 $= 0.784$, d4-vs-d5 $= 0.683$.
+119	The steepest drop occurs between the d1-vs-d2 and d2-vs-d3 pairs; the curve then flattens as the system approaches an indistinguishable regime gradually rather than crossing a sharp boundary.
+120	
+121	\paragraph{Cross-model convergence at depth 4--5.}
+122	The d3-vs-d4 AUC consistently clusters near the $T{=}0.75$ threshold across all three models (Pythia $0.784$, OLMo $0.765$, GPT-2~XL $0.750$), while d4-vs-d5 uniformly falls below $0.70$ ($0.681$--$0.684$).
+123	The directional pattern is consistent, but statistical strength is stratified: bootstrap testing ($10{,}000$ resamples, $H_0{:}\, \mathrm{AUC} \leq 0.75$) yields $p = 0.001$ for Pythia (significant), $p = 0.091$ for OLMo (marginal), and $p = 0.505$ for GPT-2~XL (non-significant).
+124	All three models cross the $T{=}0.75$ threshold within the d3--d4 region, establishing a consistent depth-4 decay boundary with graded confidence rather than uniform statistical significance.
+125	The d4-vs-d5 saturation is unambiguous across models, supporting the interpretation of d3--d4 as a \emph{transition zone} from discriminable to indistinguishable regime.
+126	
+127	\paragraph{EDD threshold sensitivity.}
+128	Table~\ref{tab:edd_sensitivity} reports $\mathrm{EDD}_T$ across the primary 9-cell benchmark (depths 0--3) at four threshold values.
+129	At $T{=}0.65$, all 9 cells achieve $\mathrm{EDD} = 3$; at $T{=}0.75$, 7 of 9 cells maintain $\mathrm{EDD} \geq 3$; at $T{=}0.80$, the count drops to 5 of 9.
+130	The cells losing $\mathrm{EDD}{=}3$ first are consistently the top-$k$ configurations (Pythia top-$k$ at $T{=}0.70$, then OLMo top-$k$ at $T{=}0.75$), where the d2-vs-d3 pair is the consistent bottleneck across all 9 cells.
+131	
+132	\begin{table}[t]
+133	\centering
+134	\small
+135	\caption{Number of atlas cells achieving $\mathrm{EDD} \geq 3$ at each threshold $T$, across 9 model--strategy cells (depths 0--3). The d2-vs-d3 boundary is the bottleneck; top-$k$ cells drop first.}
+136	\label{tab:edd_sensitivity}
+137	\begin{tabular}{@{}lcccc@{}}
+138	\toprule
+139	& $T{=}0.65$ & $T{=}0.70$ & $T{=}0.75$ & $T{=}0.80$ \\
+140	\midrule
+141	Cells with $\mathrm{EDD} \geq 3$ & 9/9 & 8/9 & 7/9 & 5/9 \\
+142	\bottomrule
+143	\end{tabular}
+144	\end{table}
+145	
+146	\begin{figure}[t]
+147	\centering
+148	\includegraphics[width=\columnwidth]{figures/fig_auc_decay.pdf}
+149	\caption{Binary pairwise AUC decay curves for three models (nucleus sampling, depths 0--5). Horizontal dashed lines mark $T \in \{0.65, 0.70, 0.75, 0.80\}$. All three curves converge below 0.70 at d4-vs-d5, while d3-vs-d4 AUC clusters in the range 0.750--0.784. Shaded bands: bootstrap 95\% CIs.}
+150	\label{fig:auc_decay}
+151	\end{figure}
+152	
+153	\paragraph{Decision boundary dilution.}
+154	\label{sec:atlas:edd:dilution}
+155	EDD uses binary-pair classifiers to avoid \emph{decision boundary dilution}: in Pythia nucleus, d2\,vs.\,d3 AUC degrades from 0.804 (4-class) to 0.689 (6-class)---a 14.3\% relative decline despite identical data---because shared decision boundaries dilute per-pair capacity.
+156	Binary classifiers eliminate this confound, isolating true adjacent-pair discriminability.
+157	
+158	%% ----------------------------------------------------------------
+159	\subsection{Strategy-Dependent Trajectories}
+160	\label{sec:atlas:strategy}
+161	
+162	The three decoding strategies induce qualitatively distinct degradation trajectories.
+163	Nucleus ($p{=}0.95$) produces the most consistent accuracy (78.2--83.3\%) and serves as the reference trajectory.
+164	Temperature ($\tau{=}0.9$) yields the highest accuracy in 2/3 models (GPT-2~XL 85.4\%, OLMo 82.0\%) because uniform logit scaling accelerates convergence to an attractor distribution~\cite{shumailov2024_nature}, amplifying the statistical fingerprint---but this acceleration creates a boundary reversal risk: temperature depth-$N$ features approximate nucleus/top-$k$ depth-$(N{+}1)$ features, causing cross-strategy classifiers to systematically overpredict depth (\S\ref{sec:generalization}).
+165	Top-$k$ ($k{=}50$) produces the lowest accuracy (69.6--76.6\%) because hard vocabulary truncation removes depth-discriminative low-probability tokens, though feature direction is preserved (cross-model $\rho = 0.811$).
+166	The strategy effect (8.4~pp range) exceeds the model effect (7.1~pp), indicating deployment-time knowledge of the decoding strategy matters at least as much as the generator model.
+167	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "05810df8-d223-4135-969e-73fbda876fb8",
+  "isSidechain": false,
+  "promptId": "6da10313-6a8f-475a-9e62-751bf1f7e158",
+  "type": "user",
+  "uuid": "9d2c57c2-83ea-4434-8d52-5630e4d95d48",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/atlas.tex",
+      "content": "\\section{The Depth Degradation Atlas}\n\\label{sec:atlas}\n\nWe present the Depth Degradation Atlas: a systematic empirical map of how statistical fingerprints evolve across recursive generation depths, models, and decoding strategies.\nThe atlas spans $3 \\times 3 = 9$ model--strategy cells evaluated at depths $d \\in \\{0, 1, 2, 3\\}$, with depth extensions to $d{=}5$ for cross-model EDD validation (\\S\\ref{sec:atlas:edd}).\n\n%% ----------------------------------------------------------------\n\\subsection{In-Distribution Performance}\n\\label{sec:atlas:id}\n\nTable~\\ref{tab:main_matrix} reports four-class Random Forest accuracy (5-fold CV, 200 trees) across all nine cells.\nAccuracy ranges from 69.6\\% (Pythia, top-$k$) to 85.4\\% (GPT-2~XL, temperature), all exceeding the 25\\% chance baseline by a wide margin.\nTwo axis effects emerge.\nGPT-2~XL achieves the highest accuracy under every strategy (76.6--85.4\\%), followed by OLMo (74.2--82.0\\%) and Pythia (69.6--78.2\\%).\nTop-$k$ sampling yields the lowest accuracy in every model.\nThe mean within-model strategy gap is 8.4~pp, comparable to the 7.1~pp mean within-strategy model gap---decoding strategy and model family contribute roughly equally to performance variance.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Four-class RF accuracy (\\%) across the $3 \\times 3$ atlas, with d1--d3 three-class accuracy in parentheses (chance = 25\\% / 33\\%). Depth-0 recall exceeds 98\\% in all cells.}\n\\label{tab:main_matrix}\n\\begin{tabular}{@{}lccc@{}}\n\\toprule\n& Nucleus & Temp.\\ $\\tau{=}0.9$ & Top-$k$ \\\\\n\\midrule\nPythia-1.4B  & 78.2\\,(71.2) & 76.3\\,(70.6) & 69.6\\,(58.8) \\\\\nOLMo-1B     & 78.8\\,(75.0) & 82.0\\,(76.3) & 74.2\\,(66.1) \\\\\nGPT-2~XL    & 83.3\\,(79.0) & 85.4\\,(82.6) & 76.6\\,(69.5) \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Per-class recall distribution.}\nDepth-0 recall exceeds 98\\% in all 9 cells, confirming that human-written text is trivially separable from any generation depth.\nAmong generated depths, d2 consistently yields the lowest recall (46--73\\% across cells), followed by d3 (58--82\\%) and d1 (72--91\\%).\nFor example, Pythia-1.4B nucleus achieves per-class recall of d0$\\,{=}\\,$99\\%, d1$\\,{=}\\,$82\\%, d2$\\,{=}\\,$59\\%, d3$\\,{=}\\,$72\\%.\nThe strongest d2 recall is obtained by GPT-2~XL nucleus (73\\%).\nThe d2 trough reflects its position at the center of the depth gradient: d2 features overlap with both the d1 distribution above and d3 below, making it the most confusable class---consistent with the d2-vs-d3 pair being the EDD bottleneck (\\S\\ref{sec:atlas:edd}).\nFull per-class recall for all cells appears in Appendix~\\ref{app:per_class}.\n\n%% ----------------------------------------------------------------\n\\subsection{Feature Consistency Across the Grid}\n\\label{sec:atlas:features}\n\nDespite the 15.8~pp accuracy spread across cells, a small feature family dominates in every setting.\nPerplexity tail statistics as a feature group dominate depth discrimination: the 90th-percentile perplexity (\\texttt{p90\\_ppl}) ranks top-2 by Gini importance in all 9 cells; surprisal variance (\\texttt{var\\_surprisal}) in 8/9 under SHAP (7/9 under Gini; Appendix~\\ref{app:permutation}).\\footnote{Individual feature rankings should be interpreted cautiously given high multicollinearity (VIF${>}$10 for 14--16/19 features); the group-level dominance of perplexity tail statistics is robust across importance measures.}\nTable~\\ref{tab:feature_importance} shows the full per-cell ranking.\n\nCross-model feature-rank Spearman correlation averages $\\bar{\\rho} = 0.868$ (range $[0.619, 0.954]$): models agree on which features carry depth information even when they differ in absolute accuracy.\nAmong strategies, top-$k$ yields the highest cross-model rank correlation ($\\rho = 0.811$)---the deterministic vocabulary truncation imposes a more uniform feature landscape across architectures, at the cost of weaker overall signal (\\S\\ref{sec:atlas:strategy}).\n\nPercentile-based features outperform their moment-based counterparts.\nToken-level perplexity distributions are heavy-tailed: individual outlier passages can dominate the arithmetic mean of their depth class, whereas \\texttt{p90\\_ppl} is robust to such extremes while still capturing the tail erosion that signals generation depth.\n\nFeature ablation confirms this concentration: the top-2 features (\\texttt{p90\\_ppl} + \\texttt{var\\_surprisal}) alone reach 91.1\\% of full accuracy (71.5\\%), and the top-5 features achieve 97.6\\% (76.5\\% vs.\\ 78.4\\%), with perplexity statistics alone reaching 76.6\\% (vs.\\ surprisal 73.2\\%, other categories ${\\leq}$47\\%).\nVariance inflation analysis reveals VIF${>}$10 for 14--16 of 19 features, placing the effective independent dimensionality at ${\\approx}$4--5.\nForward selection independently confirms the dominant pair: \\texttt{p90\\_ppl} is selected first in 6/9 cells, \\texttt{var\\_surprisal} in 3/9.\n\nThe feature hierarchy also shifts with depth.\nAt shallow boundaries (d1 vs.\\ d2), \\texttt{var\\_surprisal} dominates importance; at deeper boundaries (d3 vs.\\ d4, d4 vs.\\ d5), tail perplexity statistics (\\texttt{p90\\_ppl}, \\texttt{kurtosis\\_ppl}) take over.\nThis transition aligns with model-collapse dynamics~\\cite{shumailov2024_nature}: early recursion narrows the surprisal distribution (captured by its variance), while later steps erode the perplexity tail (captured by upper quantiles and kurtosis).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Top-5 features by Gini importance. \\textbf{Bold}: top-2. \\texttt{p90\\_ppl} top-2 in 9/9; \\texttt{var\\_surprisal} 8/9 under SHAP (7/9 under Gini).}\n\\label{tab:feature_importance}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}l l@{}}\n\\toprule\nCell & Top-5 features (Gini importance, ranked) \\\\\n\\midrule\nPythia, nuc.       & \\textbf{var\\_surp\\,(.17)}, \\textbf{p90\\_ppl\\,(.15)}, m\\_ppl\\,(.11), var\\_ppl\\,(.08), p75\\,(.07) \\\\\nPythia, $\\tau$     & \\textbf{var\\_surp\\,(.17)}, \\textbf{p90\\_ppl\\,(.14)}, m\\_ppl\\,(.11), p75\\,(.07), m\\_surp\\,(.07) \\\\\nPythia, top-$k$    & \\textbf{var\\_surp\\,(.16)}, \\textbf{p90\\_ppl\\,(.12)}, m\\_ppl\\,(.11), var\\_ppl\\,(.07), m\\_surp\\,(.06) \\\\\nGPT-2\\,XL, nuc.    & \\textbf{var\\_surp\\,(.21)}, \\textbf{p90\\_ppl\\,(.21)}, p75\\,(.10), m\\_surp\\,(.07), m\\_ppl\\,(.06) \\\\\nGPT-2\\,XL, $\\tau$  & \\textbf{p90\\_ppl\\,(.25)}, \\textbf{p75\\,(.15)}, m\\_surp\\,(.13), var\\_surp\\,(.12), p50\\,(.05) \\\\\nGPT-2\\,XL, top-$k$ & \\textbf{p90\\_ppl\\,(.24)}, \\textbf{p75\\,(.12)}, var\\_surp\\,(.10), m\\_surp\\,(.09), ttr\\,(.04) \\\\\nOLMo, nuc.         & \\textbf{p90\\_ppl\\,(.18)}, \\textbf{var\\_surp\\,(.15)}, p75\\,(.11), m\\_surp\\,(.07), ttr\\,(.06) \\\\\nOLMo, $\\tau$       & \\textbf{p90\\_ppl\\,(.21)}, \\textbf{var\\_surp\\,(.16)}, p75\\,(.12), m\\_surp\\,(.09), ttr\\,(.05) \\\\\nOLMo, top-$k$      & \\textbf{p90\\_ppl\\,(.20)}, \\textbf{var\\_surp\\,(.17)}, p75\\,(.10), m\\_surp\\,(.07), m\\_ppl\\,(.05) \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_atlas_heatmap.pdf}\n\\caption{Atlas feature importance heatmap. Rows: 19 features grouped by category (\\S\\ref{sec:method:features}); columns: 9 model--strategy cells. Color intensity encodes RF Gini importance. The perplexity-tail and surprisal-variance blocks maintain high importance across all cells.}\n\\label{fig:atlas_heatmap}\n\\end{figure}\n\n%% ----------------------------------------------------------------\n\\subsection{Monotonicity and Inter-Depth Distances}\n\\label{sec:atlas:monotonicity}\n\nDepth features exhibit strong monotonic trends: perplexity tail statistics (\\texttt{p90\\_ppl}, \\texttt{mean\\_surprisal}) decrease with depth (Spearman $\\rho = -1.0$ across cell-level medians) while repetition features increase, reflecting the complementary narrowing and self-repetition of distribution collapse.\nInter-depth distances are non-uniform: d0-vs-d1 AUC exceeds 0.99 in all 9 cells, whereas d2-vs-d3 ranges from 0.69 to 0.89---separating adjacent deep generations requires the tail statistics identified in \\S\\ref{sec:atlas:features}.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_feature_trajectory.pdf}\n\\caption{Feature trajectories across depths $d{=}0$ to $d{=}3$, stratified by model (columns) and strategy (line style). Top row: \\texttt{p90\\_ppl} (monotonically decreasing). Middle: \\texttt{var\\_surprisal} (decreasing). Bottom: \\texttt{rep\\_3gram} (increasing). Shaded bands: interquartile range. The $d{=}0 \\to d{=}1$ gap exceeds all subsequent inter-depth gaps.}\n\\label{fig:feature_trajectory}\n\\end{figure}\n\n%% ----------------------------------------------------------------\n\\subsection{EDD Analysis}\n\\label{sec:atlas:edd}\n\nWe extend the benchmark to depth $d{=}5$ for all three models under nucleus sampling.\nEach model's depth-3 LoRA checkpoint is used to finetune and generate depth-4 data, and the process repeats for depth~5; feature extraction uses the same reference model (Pythia-1.4B).\nWe train dedicated binary RF classifiers (500 trees) for each adjacent pair, as defined in Eq.~\\ref{eq:edd}.\n\n\\paragraph{AUC decay profile.}\nFigure~\\ref{fig:auc_decay} plots the binary pairwise AUC decay curves.\nFor Pythia-1.4B (nucleus), AUC decays monotonically: d0-vs-d1 $= 0.999$, d1-vs-d2 $= 0.925$, d2-vs-d3 $= 0.823$, d3-vs-d4 $= 0.784$, d4-vs-d5 $= 0.683$.\nThe steepest drop occurs between the d1-vs-d2 and d2-vs-d3 pairs; the curve then flattens as the system approaches an indistinguishable regime gradually rather than crossing a sharp boundary.\n\n\\paragraph{Cross-model convergence at depth 4--5.}\nThe d3-vs-d4 AUC consistently clusters near the $T{=}0.75$ threshold across all three models (Pythia $0.784$, OLMo $0.765$, GPT-2~XL $0.750$), while d4-vs-d5 uniformly falls below $0.70$ ($0.681$--$0.684$).\nThe directional pattern is consistent, but statistical strength is stratified: bootstrap testing ($10{,}000$ resamples, $H_0{:}\\, \\mathrm{AUC} \\leq 0.75$) yields $p = 0.001$ for Pythia (significant), $p = 0.091$ for OLMo (marginal), and $p = 0.505$ for GPT-2~XL (non-significant).\nAll three models cross the $T{=}0.75$ threshold within the d3--d4 region, establishing a consistent depth-4 decay boundary with graded confidence rather than uniform statistical significance.\nThe d4-vs-d5 saturation is unambiguous across models, supporting the interpretation of d3--d4 as a \\emph{transition zone} from discriminable to indistinguishable regime.\n\n\\paragraph{EDD threshold sensitivity.}\nTable~\\ref{tab:edd_sensitivity} reports $\\mathrm{EDD}_T$ across the primary 9-cell benchmark (depths 0--3) at four threshold values.\nAt $T{=}0.65$, all 9 cells achieve $\\mathrm{EDD} = 3$; at $T{=}0.75$, 7 of 9 cells maintain $\\mathrm{EDD} \\geq 3$; at $T{=}0.80$, the count drops to 5 of 9.\nThe cells losing $\\mathrm{EDD}{=}3$ first are consistently the top-$k$ configurations (Pythia top-$k$ at $T{=}0.70$, then OLMo top-$k$ at $T{=}0.75$), where the d2-vs-d3 pair is the consistent bottleneck across all 9 cells.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Number of atlas cells achieving $\\mathrm{EDD} \\geq 3$ at each threshold $T$, across 9 model--strategy cells (depths 0--3). The d2-vs-d3 boundary is the bottleneck; top-$k$ cells drop first.}\n\\label{tab:edd_sensitivity}\n\\begin{tabular}{@{}lcccc@{}}\n\\toprule\n& $T{=}0.65$ & $T{=}0.70$ & $T{=}0.75$ & $T{=}0.80$ \\\\\n\\midrule\nCells with $\\mathrm{EDD} \\geq 3$ & 9/9 & 8/9 & 7/9 & 5/9 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_auc_decay.pdf}\n\\caption{Binary pairwise AUC decay curves for three models (nucleus sampling, depths 0--5). Horizontal dashed lines mark $T \\in \\{0.65, 0.70, 0.75, 0.80\\}$. All three curves converge below 0.70 at d4-vs-d5, while d3-vs-d4 AUC clusters in the range 0.750--0.784. Shaded bands: bootstrap 95\\% CIs.}\n\\label{fig:auc_decay}\n\\end{figure}\n\n\\paragraph{Decision boundary dilution.}\n\\label{sec:atlas:edd:dilution}\nEDD uses binary-pair classifiers to avoid \\emph{decision boundary dilution}: in Pythia nucleus, d2\\,vs.\\,d3 AUC degrades from 0.804 (4-class) to 0.689 (6-class)---a 14.3\\% relative decline despite identical data---because shared decision boundaries dilute per-pair capacity.\nBinary classifiers eliminate this confound, isolating true adjacent-pair discriminability.\n\n%% ----------------------------------------------------------------\n\\subsection{Strategy-Dependent Trajectories}\n\\label{sec:atlas:strategy}\n\nThe three decoding strategies induce qualitatively distinct degradation trajectories.\nNucleus ($p{=}0.95$) produces the most consistent accuracy (78.2--83.3\\%) and serves as the reference trajectory.\nTemperature ($\\tau{=}0.9$) yields the highest accuracy in 2/3 models (GPT-2~XL 85.4\\%, OLMo 82.0\\%) because uniform logit scaling accelerates convergence to an attractor distribution~\\cite{shumailov2024_nature}, amplifying the statistical fingerprint---but this acceleration creates a boundary reversal risk: temperature depth-$N$ features approximate nucleus/top-$k$ depth-$(N{+}1)$ features, causing cross-strategy classifiers to systematically overpredict depth (\\S\\ref{sec:generalization}).\nTop-$k$ ($k{=}50$) produces the lowest accuracy (69.6--76.6\\%) because hard vocabulary truncation removes depth-discriminative low-probability tokens, though feature direction is preserved (cross-model $\\rho = 0.811$).\nThe strategy effect (8.4~pp range) exceeds the model effect (7.1~pp), indicating deployment-time knowledge of the decoding strategy matters at least as much as the generator model.\n",
+      "numLines": 167,
+      "startLine": 1,
+      "totalLines": 167
+    }
+  },
+  "sourceToolAssistantUUID": "05810df8-d223-4135-969e-73fbda876fb8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-16T13:15:03.969Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01RSvSyrsf1nJUrJHYaW5kdD`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/method.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9d2c57c2-83ea-4434-8d52-5630e4d95d48",
+  "isSidechain": false,
+  "requestId": "req_011Cb6JsdjV6eb1UmjMu13kQ",
+  "type": "assistant",
+  "uuid": "f1757eb6-fcf7-48e2-b434-150f61a2a79b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YXetNnTViRtizz35a25Rdr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 914,
+      "cache_read_input_tokens": 23559,
+      "output_tokens": 811,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 914,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 811,
+          "cache_read_input_tokens": 23559,
+          "cache_creation_input_tokens": 914,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 914
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-16T13:15:03.979Z_
+
+<details><summary>↩ Tool result · `toolu_01RSvSyrsf1nJUrJHYaW5kdD`</summary>
+
+```text
+1	\section{Method}
+2	\label{sec:method}
+3	
+4	\subsection{Problem Definition}
+5	\label{sec:method:problem}
+6	
+7	Let $f_\theta$ denote a language model and $\mathcal{D}_0$ a corpus of human-written seed text.
+8	We define a \emph{recursive generation chain} of depth $K$ as the sequence $\mathcal{D}_0, \mathcal{D}_1, \dots, \mathcal{D}_K$, where each $\mathcal{D}_k$ ($k \geq 1$) is produced by finetuning $f_\theta$ on $\mathcal{D}_{k-1}$ and sampling from the resulting model.
+9	Depth $d{=}0$ denotes human-written text; depth $d{=}k$ ($k \geq 1$) denotes text generated by a model trained on depth-$(k{-}1)$ data.
+10	
+11	Given a text passage $x$, the task is to estimate its recursive generation depth $d \in \{0, 1, \dots, K\}$.
+12	This is an ordinal classification problem: depths carry a natural ordering, and $d{=}1$ is structurally closer to $d{=}0$ than $d{=}3$ is, since each generation step compounds distributional drift.
+13	
+14	\subsection{Multi-Generational Benchmark Construction}
+15	\label{sec:method:benchmark}
+16	
+17	We construct a benchmark spanning three axes: model family, decoding strategy, and generation depth.
+18	
+19	\paragraph{Model families.}
+20	We select three 1--1.5B-parameter models with diverse pretraining corpora and architectures: Pythia-1.4B (EleutherAI), OLMo-1B (AI2), and GPT-2~XL (OpenAI, 1.5B).
+21	Restricting to a narrow parameter range isolates the effect of architecture and training data from scale.
+22	
+23	\paragraph{Decoding strategies.}
+24	Each model is paired with three decoding strategies: nucleus sampling ($p{=}0.95$) \cite{holtzman2020_nucleus}, temperature sampling ($\tau{=}0.9$), and top-$k$ sampling ($k{=}50$).
+25	These span the dominant modes of open-ended generation and induce qualitatively different entropy profiles.
+26	Our findings on feature importance and discriminability are limited to this grid; transfer to untested models, scales, or strategies is not established.
+27	
+28	\paragraph{Depth and scale.}
+29	The primary benchmark covers depths d0--d3 across all $3 \times 3 = 9$ model--strategy cells, with 5{,}000 samples per depth per cell (180K samples total).
+30	For depth extension experiments (\S\ref{sec:atlas}), we extend one pipeline (Pythia-1.4B, nucleus) to d0--d5.
+31	
+32	\paragraph{Generation pipeline.}
+33	Starting from a Wikipedia subset as seed text ($\mathcal{D}_0$), each generation cycle proceeds in three steps: (1)~LoRA finetuning \cite{hu2022lora} on $\mathcal{D}_{k-1}$, freezing base model weights and training low-rank update matrices ($<$1\% additional parameters; $r{=}16$, $\alpha{=}32$, lr $2{\times}10^{-4}$, batch size 8, 3 epochs, dropout $0.05$, architecture-specific targets); (2)~sampling 5{,}000 passages from the LoRA-finetuned model (max 512 tokens, BOS-seeded, no prompt conditioning) under the specified decoding strategy; (3)~the generated corpus becomes $\mathcal{D}_k$ for the next cycle.
+34	Each depth is produced by a model explicitly trained on the prior depth's data---not by sampling from the unmodified base model.
+35	Our unconditional (BOS-seeded) generation setting may amplify depth signal relative to prompt-conditioned generation, where higher output quality could narrow inter-depth distributional gaps; extending to prompted generation is left for future work.
+36	There is no per-passage lineage across depths, ensuring cross-validation splits do not introduce information leakage.
+37	
+38	\paragraph{Reference model.}
+39	All statistical features (\S\ref{sec:method:features}) are computed using a fixed reference model---Pythia-1.4B---providing a consistent perplexity reference across all generation conditions.
+40	We select Pythia-1.4B because it is the smallest of the three generators, and its training corpus (The Pile) partially overlaps with those of OLMo and GPT-2~XL, keeping perplexity values in a comparable range.
+41	For the Pythia pipeline, feature extraction constitutes self-model measurement; for OLMo and GPT-2~XL, it is cross-model.
+42	Empirically, the Pythia pipeline's 4-class accuracy (78.2\%) does not exceed GPT-2~XL (85.4\%), indicating that self-model measurement does not confer a systematic advantage.
+43	In cross-model leave-one-out evaluation (\S\ref{sec:generalization}), the reference model remains fixed regardless of which generator is held out; the implications of sharing the reference model with one generator are discussed in Limitations.
+44	An ablation replacing Pythia-1.4B with OLMo-1B as reference model yields 74.5\% vs 78.5\%, suggesting that depth signal detection is not critically dependent on the specific reference model ($\Delta$=4.0pp, within the 5pp robustness threshold; Appendix~\ref{tab:ref_ablation}).
+45	
+46	\subsection{Statistical Feature Design}
+47	\label{sec:method:features}
+48	
+49	We extract a feature vector $\mathbf{f}(x)$ comprising 19 candidate features from the reference-model perplexity distribution over each passage $x$; ablation (\S\ref{sec:atlas:features}) shows the top 5 achieve 97.6\% of full-set performance, and variance inflation analysis reveals VIF${>}$10 for 14--16 features, placing the effective independent dimensionality at ${\approx}$4--5.
+50	The features fall into four categories (Table~\ref{tab:features}).
+51	
+52	\begin{table}[t]
+53	\centering
+54	\small
+55	\caption{The 19 statistical features comprising $\mathbf{f}(x)$, grouped by category. All perplexity and surprisal features are computed from the reference model (Pythia-1.4B).}
+56	\label{tab:features}
+57	\begin{tabular}{@{}llr@{}}
+58	\toprule
+59	Category & Features & $n$ \\
+60	\midrule
+61	Perplexity & mean, var, skewness, kurtosis, & 9 \\
+62	statistics & p10, p25, p50, p75, p90 & \\
+63	\addlinespace
+64	Surprisal & mean, var, entropy & 3 \\
+65	statistics & & \\
+66	\addlinespace
+67	Lexical & type--token ratio, hapax ratio, & 4 \\
+68	diversity & bigram entropy, trigram entropy & \\
+69	\addlinespace
+70	Repetition & repeated 2/3/4-gram fractions & 3 \\
+71	\bottomrule
+72	\end{tabular}
+73	\end{table}
+74	
+75	\emph{Perplexity statistics} (9 features) capture the per-token perplexity distribution via moments (mean, variance, skewness, kurtosis) and quantiles (p10--p90); tail quantiles prove especially informative as recursive finetuning erodes the high-perplexity tail (\S\ref{sec:atlas}).
+76	\emph{Surprisal statistics} (3 features): mean, variance, and entropy of $-\log p(\text{token})$; surprisal variance captures second-order structure not redundant with perplexity moments.
+77	\emph{Lexical diversity} (4 features): type--token ratio, hapax ratio, bigram/trigram entropy.
+78	\emph{Repetition} (3 features): repeated $n$-gram fractions for $n \in \{2, 3, 4\}$.
+79	
+80	\subsection{Effective Discriminable Depth}
+81	\label{sec:method:edd}
+82	
+83	Aggregate multi-class accuracy obscures whether discriminability degrades at specific depth boundaries.
+84	We introduce the \emph{Effective Discriminable Depth} (EDD) to formalize the frontier beyond which adjacent depths become statistically indistinguishable.
+85	
+86	\paragraph{Pairwise discriminability.}
+87	Let $\mathcal{D} = \{0, 1, \dots, K\}$ denote the depth set and $T \in (0.5, 1.0]$ a discrimination threshold.
+88	For each adjacent pair $(d, d{+}1)$, we define the pairwise discriminability $\mathrm{AUC}(d, d{+}1)$ as the area under the ROC curve of a dedicated binary Random Forest classifier (500 trees, $\lfloor\sqrt{19}\rfloor$ candidate features per split) trained on class-balanced data from $\mathbf{f}(x)$ (\S\ref{sec:method:features}) to distinguish depth-$d$ from depth-$(d{+}1)$ samples, evaluated via 5-fold stratified cross-validation.
+89	Each pair uses an independent classifier, avoiding the decision boundary dilution that arises in multi-class settings (\S\ref{sec:atlas:edd}).
+90	
+91	\begin{definition}[Effective Discriminable Depth]
+92	\label{def:edd}
+93	The \emph{Effective Discriminable Depth} at threshold $T$ is:
+94	\begin{equation}
+95	\mathrm{EDD}_T = \max \bigl\{ d^*{+}1 \,:\, \forall\, d' \leq d^*,\; \mathrm{AUC}(d', d'{+}1) \geq T \bigr\}
+96	\label{eq:edd}
+97	\end{equation}
+98	where $d^* \in \{0, \dots, K{-}1\}$. If\, $\mathrm{AUC}(0,1) < T$, then $\mathrm{EDD}_T = 0$.
+99	\end{definition}
+100	
+101	$\mathrm{EDD}_T$ is the deepest depth $d$ such that every adjacent pair from $(0,1)$ through $(d{-}1, d)$ remains discriminable at level $T$.
+102	The universal quantifier ensures EDD reports the longest \emph{contiguous} discriminable prefix rather than an isolated high-AUC pair at greater depth.\footnote{Our AUC profiles are empirically monotonically decreasing for the 1--1.5B base models (\S\ref{sec:atlas}), so in practice $\mathrm{EDD}_T = \max\{d'{+}1 : \mathrm{AUC}(d', d'{+}1) \geq T\}$. Qwen2.5-7B exhibits a U-shaped AUC pattern rather than monotonic decay, possibly reflecting instruction-tuning effects (\S\ref{sec:gen:crossscale}). For non-monotonic profiles, the contiguous formulation is more conservative (see Limitations).}
+103	We set $T{=}0.75$ as default; sensitivity at $T \in \{0.65, 0.70, 0.75, 0.80\}$ is reported in \S\ref{sec:atlas}.
+104	
+105	\paragraph{Classifiers.}
+106	Our primary classifier is a Random Forest (200 trees, unconstrained depth, 5-fold stratified cross-validation).
+107	We compare against CORAL ordinal regression \cite{coral2020}, DivEye \cite{diveye2026}, a 2-layer cross-entropy MLP, logistic regression, and a single-feature baseline using mean perplexity alone; results appear in \S\ref{sec:generalization}.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f1757eb6-fcf7-48e2-b434-150f61a2a79b",
+  "isSidechain": false,
+  "promptId": "6da10313-6a8f-475a-9e62-751bf1f7e158",
+  "type": "user",
+  "uuid": "77d30f3a-dbb6-43e8-8b27-35a43aef1e87",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/method.tex",
+      "content": "\\section{Method}\n\\label{sec:method}\n\n\\subsection{Problem Definition}\n\\label{sec:method:problem}\n\nLet $f_\\theta$ denote a language model and $\\mathcal{D}_0$ a corpus of human-written seed text.\nWe define a \\emph{recursive generation chain} of depth $K$ as the sequence $\\mathcal{D}_0, \\mathcal{D}_1, \\dots, \\mathcal{D}_K$, where each $\\mathcal{D}_k$ ($k \\geq 1$) is produced by finetuning $f_\\theta$ on $\\mathcal{D}_{k-1}$ and sampling from the resulting model.\nDepth $d{=}0$ denotes human-written text; depth $d{=}k$ ($k \\geq 1$) denotes text generated by a model trained on depth-$(k{-}1)$ data.\n\nGiven a text passage $x$, the task is to estimate its recursive generation depth $d \\in \\{0, 1, \\dots, K\\}$.\nThis is an ordinal classification problem: depths carry a natural ordering, and $d{=}1$ is structurally closer to $d{=}0$ than $d{=}3$ is, since each generation step compounds distributional drift.\n\n\\subsection{Multi-Generational Benchmark Construction}\n\\label{sec:method:benchmark}\n\nWe construct a benchmark spanning three axes: model family, decoding strategy, and generation depth.\n\n\\paragraph{Model families.}\nWe select three 1--1.5B-parameter models with diverse pretraining corpora and architectures: Pythia-1.4B (EleutherAI), OLMo-1B (AI2), and GPT-2~XL (OpenAI, 1.5B).\nRestricting to a narrow parameter range isolates the effect of architecture and training data from scale.\n\n\\paragraph{Decoding strategies.}\nEach model is paired with three decoding strategies: nucleus sampling ($p{=}0.95$) \\cite{holtzman2020_nucleus}, temperature sampling ($\\tau{=}0.9$), and top-$k$ sampling ($k{=}50$).\nThese span the dominant modes of open-ended generation and induce qualitatively different entropy profiles.\nOur findings on feature importance and discriminability are limited to this grid; transfer to untested models, scales, or strategies is not established.\n\n\\paragraph{Depth and scale.}\nThe primary benchmark covers depths d0--d3 across all $3 \\times 3 = 9$ model--strategy cells, with 5{,}000 samples per depth per cell (180K samples total).\nFor depth extension experiments (\\S\\ref{sec:atlas}), we extend one pipeline (Pythia-1.4B, nucleus) to d0--d5.\n\n\\paragraph{Generation pipeline.}\nStarting from a Wikipedia subset as seed text ($\\mathcal{D}_0$), each generation cycle proceeds in three steps: (1)~LoRA finetuning \\cite{hu2022lora} on $\\mathcal{D}_{k-1}$, freezing base model weights and training low-rank update matrices ($<$1\\% additional parameters; $r{=}16$, $\\alpha{=}32$, lr $2{\\times}10^{-4}$, batch size 8, 3 epochs, dropout $0.05$, architecture-specific targets); (2)~sampling 5{,}000 passages from the LoRA-finetuned model (max 512 tokens, BOS-seeded, no prompt conditioning) under the specified decoding strategy; (3)~the generated corpus becomes $\\mathcal{D}_k$ for the next cycle.\nEach depth is produced by a model explicitly trained on the prior depth's data---not by sampling from the unmodified base model.\nOur unconditional (BOS-seeded) generation setting may amplify depth signal relative to prompt-conditioned generation, where higher output quality could narrow inter-depth distributional gaps; extending to prompted generation is left for future work.\nThere is no per-passage lineage across depths, ensuring cross-validation splits do not introduce information leakage.\n\n\\paragraph{Reference model.}\nAll statistical features (\\S\\ref{sec:method:features}) are computed using a fixed reference model---Pythia-1.4B---providing a consistent perplexity reference across all generation conditions.\nWe select Pythia-1.4B because it is the smallest of the three generators, and its training corpus (The Pile) partially overlaps with those of OLMo and GPT-2~XL, keeping perplexity values in a comparable range.\nFor the Pythia pipeline, feature extraction constitutes self-model measurement; for OLMo and GPT-2~XL, it is cross-model.\nEmpirically, the Pythia pipeline's 4-class accuracy (78.2\\%) does not exceed GPT-2~XL (85.4\\%), indicating that self-model measurement does not confer a systematic advantage.\nIn cross-model leave-one-out evaluation (\\S\\ref{sec:generalization}), the reference model remains fixed regardless of which generator is held out; the implications of sharing the reference model with one generator are discussed in Limitations.\nAn ablation replacing Pythia-1.4B with OLMo-1B as reference model yields 74.5\\% vs 78.5\\%, suggesting that depth signal detection is not critically dependent on the specific reference model ($\\Delta$=4.0pp, within the 5pp robustness threshold; Appendix~\\ref{tab:ref_ablation}).\n\n\\subsection{Statistical Feature Design}\n\\label{sec:method:features}\n\nWe extract a feature vector $\\mathbf{f}(x)$ comprising 19 candidate features from the reference-model perplexity distribution over each passage $x$; ablation (\\S\\ref{sec:atlas:features}) shows the top 5 achieve 97.6\\% of full-set performance, and variance inflation analysis reveals VIF${>}$10 for 14--16 features, placing the effective independent dimensionality at ${\\approx}$4--5.\nThe features fall into four categories (Table~\\ref{tab:features}).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{The 19 statistical features comprising $\\mathbf{f}(x)$, grouped by category. All perplexity and surprisal features are computed from the reference model (Pythia-1.4B).}\n\\label{tab:features}\n\\begin{tabular}{@{}llr@{}}\n\\toprule\nCategory & Features & $n$ \\\\\n\\midrule\nPerplexity & mean, var, skewness, kurtosis, & 9 \\\\\nstatistics & p10, p25, p50, p75, p90 & \\\\\n\\addlinespace\nSurprisal & mean, var, entropy & 3 \\\\\nstatistics & & \\\\\n\\addlinespace\nLexical & type--token ratio, hapax ratio, & 4 \\\\\ndiversity & bigram entropy, trigram entropy & \\\\\n\\addlinespace\nRepetition & repeated 2/3/4-gram fractions & 3 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\emph{Perplexity statistics} (9 features) capture the per-token perplexity distribution via moments (mean, variance, skewness, kurtosis) and quantiles (p10--p90); tail quantiles prove especially informative as recursive finetuning erodes the high-perplexity tail (\\S\\ref{sec:atlas}).\n\\emph{Surprisal statistics} (3 features): mean, variance, and entropy of $-\\log p(\\text{token})$; surprisal variance captures second-order structure not redundant with perplexity moments.\n\\emph{Lexical diversity} (4 features): type--token ratio, hapax ratio, bigram/trigram entropy.\n\\emph{Repetition} (3 features): repeated $n$-gram fractions for $n \\in \\{2, 3, 4\\}$.\n\n\\subsection{Effective Discriminable Depth}\n\\label{sec:method:edd}\n\nAggregate multi-class accuracy obscures whether discriminability degrades at specific depth boundaries.\nWe introduce the \\emph{Effective Discriminable Depth} (EDD) to formalize the frontier beyond which adjacent depths become statistically indistinguishable.\n\n\\paragraph{Pairwise discriminability.}\nLet $\\mathcal{D} = \\{0, 1, \\dots, K\\}$ denote the depth set and $T \\in (0.5, 1.0]$ a discrimination threshold.\nFor each adjacent pair $(d, d{+}1)$, we define the pairwise discriminability $\\mathrm{AUC}(d, d{+}1)$ as the area under the ROC curve of a dedicated binary Random Forest classifier (500 trees, $\\lfloor\\sqrt{19}\\rfloor$ candidate features per split) trained on class-balanced data from $\\mathbf{f}(x)$ (\\S\\ref{sec:method:features}) to distinguish depth-$d$ from depth-$(d{+}1)$ samples, evaluated via 5-fold stratified cross-validation.\nEach pair uses an independent classifier, avoiding the decision boundary dilution that arises in multi-class settings (\\S\\ref{sec:atlas:edd}).\n\n\\begin{definition}[Effective Discriminable Depth]\n\\label{def:edd}\nThe \\emph{Effective Discriminable Depth} at threshold $T$ is:\n\\begin{equation}\n\\mathrm{EDD}_T = \\max \\bigl\\{ d^*{+}1 \\,:\\, \\forall\\, d' \\leq d^*,\\; \\mathrm{AUC}(d', d'{+}1) \\geq T \\bigr\\}\n\\label{eq:edd}\n\\end{equation}\nwhere $d^* \\in \\{0, \\dots, K{-}1\\}$. If\\, $\\mathrm{AUC}(0,1) < T$, then $\\mathrm{EDD}_T = 0$.\n\\end{definition}\n\n$\\mathrm{EDD}_T$ is the deepest depth $d$ such that every adjacent pair from $(0,1)$ through $(d{-}1, d)$ remains discriminable at level $T$.\nThe universal quantifier ensures EDD reports the longest \\emph{contiguous} discriminable prefix rather than an isolated high-AUC pair at greater depth.\\footnote{Our AUC profiles are empirically monotonically decreasing for the 1--1.5B base models (\\S\\ref{sec:atlas}), so in practice $\\mathrm{EDD}_T = \\max\\{d'{+}1 : \\mathrm{AUC}(d', d'{+}1) \\geq T\\}$. Qwen2.5-7B exhibits a U-shaped AUC pattern rather than monotonic decay, possibly reflecting instruction-tuning effects (\\S\\ref{sec:gen:crossscale}). For non-monotonic profiles, the contiguous formulation is more conservative (see Limitations).}\nWe set $T{=}0.75$ as default; sensitivity at $T \\in \\{0.65, 0.70, 0.75, 0.80\\}$ is reported in \\S\\ref{sec:atlas}.\n\n\\paragraph{Classifiers.}\nOur primary classifier is a Random Forest (200 trees, unconstrained depth, 5-fold stratified cross-validation).\nWe compare against CORAL ordinal regression \\cite{coral2020}, DivEye \\cite{diveye2026}, a 2-layer cross-entropy MLP, logistic regression, and a single-feature baseline using mean perplexity alone; results appear in \\S\\ref{sec:generalization}.",
+      "numLines": 107,
+      "startLine": 1,
+      "totalLines": 107
+    }
+  },
+  "sourceToolAssistantUUID": "f1757eb6-fcf7-48e2-b434-150f61a2a79b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-16T13:15:04.450Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01AGjKBM7vwvafdeCvBeCQp8`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/introduction.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "77d30f3a-dbb6-43e8-8b27-35a43aef1e87",
+  "isSidechain": false,
+  "requestId": "req_011Cb6JsdjV6eb1UmjMu13kQ",
+  "type": "assistant",
+  "uuid": "1f6de941-fd97-4d54-9084-828651571aa8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YXetNnTViRtizz35a25Rdr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 914,
+      "cache_read_input_tokens": 23559,
+      "output_tokens": 811,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 914,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 811,
+          "cache_read_input_tokens": 23559,
+          "cache_creation_input_tokens": 914,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 914
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-16T13:15:04.455Z_
+
+<details><summary>↩ Tool result · `toolu_01AGjKBM7vwvafdeCvBeCQp8`</summary>
+
+```text
+1	\section{Introduction}
+2	\label{sec:intro}
+3	
+4	The text on which large language models are trained increasingly contains their own outputs.
+5	As synthetic content proliferates across the web, a recursive loop emerges: models trained on web corpora ingest text generated by earlier models, and their outputs feed into the next generation's training data \cite{shumailov2024_nature,alemohammad2024_mad}.
+6	This model$\to$data$\to$model cycle is no longer hypothetical---it is already occurring in the wild---yet we lack the ability to determine how many recursive iterations a given text has undergone, a distinction that matters because first-generation synthetic text may be benign or even beneficial for training, while deeply recursive text drives the distributional collapse that degrades model quality \cite{dohmatob2024_tale_of_tails}.
+7	
+8	Existing tools address adjacent but distinct problems.
+9	Binary detectors such as Binoculars \cite{binoculars2024}, Fast-DetectGPT \cite{fast_detectgpt2024}, and DivEye \cite{diveye2026} classify text as human-written or machine-generated, collapsing all depths $d \geq 1$ into a single category.
+10	Watermarking \cite{kirchenbauer2023_watermark} requires proactive embedding and cannot be applied retroactively.
+11	The model collapse literature \cite{shumailov2024_nature,dohmatob2024_tale_of_tails} assumes depth is known a priori; \citet{drayson2025_detection_prevents_collapse} filter synthetic data via binary detection without distinguishing depths.
+12	No existing method estimates the ordinal recursive generation depth of a text passage from its content alone.
+13	
+14	Our key insight is that recursive generation leaves quantifiable statistical fingerprints in text, and these fingerprints are \textbf{universal and scale-variant} across the three model families and three decoding strategies studied.
+15	Specifically, perplexity tail statistics---the 90th-percentile perplexity (\textsc{p90\_ppl}) and surprisal variance (\textsc{var\_surprisal})---emerge as dominant depth indicators, ranking in the top two features by importance in 9/9 and 8/9 model--strategy configurations, respectively.
+16	Surprisingly, in one of two 7B models the AUC trajectory becomes non-monotonic, suggesting that instruction tuning may alter degradation dynamics rather than scale alone driving a qualitative shift.
+17	
+18	We formalize recursive generation depth estimation as an ordinal classification task and introduce a lightweight pipeline to solve it.
+19	Given a text passage, we compute a feature vector from reference-model perplexity statistics---19 candidates capturing distributional location, spread, tail behavior, and lexical diversity, though high multicollinearity concentrates the signal in ${\approx}$4--5 effective dimensions (\S\ref{sec:atlas:features})---and classify it with a Random Forest into one of $K{+}1$ depth classes ($d{=}0$ for human text through $d{=}K$ for $K$-th generation text).
+20	To systematically characterize how recursive generation reshapes these features, we construct the \emph{Depth Degradation Atlas}: a $3 \times 3$ grid of model families (Pythia-1.4B, OLMo-1B, GPT-2~XL) and decoding strategies (nucleus $p{=}0.95$, temperature $\tau{=}0.9$, top-$k$ $k{=}50$), each spanning 4 generation depths, totaling 180K samples.
+21	The atlas reveals strategy-dependent degradation trajectories---temperature sampling accelerates convergence toward a low-entropy attractor, while top-$k$ attenuates the depth signal---and we introduce the \emph{Effective Discriminable Depth} (EDD) metric to quantify how far into the recursion chain adjacent depths remain distinguishable.
+22	
+23	Our contributions are:
+24	
+25	\begin{itemize}
+26	    \item \textbf{Task formalization and benchmark.} We define recursive generation depth estimation as ordinal classification, introduce the EDD metric, and construct a 180K-sample benchmark spanning 3 model families $\times$ 3 decoding strategies $\times$ 4 depths.
+27	
+28	    \item \textbf{Depth Degradation Atlas.} A systematic $3 \times 3$ empirical characterization reveals that perplexity tail statistics as a feature group dominate depth discrimination (top-2 in 9/9 and 8/9 cells), decoding strategy reshapes degradation trajectories qualitatively, and depth discrimination persists through $\mathrm{EDD}_{0.75}{=}4$ for the best-characterized family (Pythia, $p{=}0.001$; consistent direction across all three families with graded statistical support).
+29	
+30	    \item \textbf{Generalization across seven axes (four in main text; three in appendix).} We demonstrate robustness beyond the training grid: cross-model recursive chains (84.75\%---preliminary evidence consistent with a process-level depth signal), preliminary cross-scale observations on two 7B architectures (70.2\% and 60.1\%, with divergent AUC trajectories), cross-domain transfer to arXiv (74.1\%), temperature robustness ($\tau \in [0.5, 0.9]$), and reference model independence ($\Delta{=}4$\,pp). A surface-text ablation (zero-shot LLMs at 30--36\%, 42\,pp below RF) confirms that depth signal resides in distributional statistics inaccessible from surface text alone---while requiring only 19 features and a Random Forest for millisecond-scale, GPU-free inference.
+31	\end{itemize}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1f6de941-fd97-4d54-9084-828651571aa8",
+  "isSidechain": false,
+  "promptId": "6da10313-6a8f-475a-9e62-751bf1f7e158",
+  "type": "user",
+  "uuid": "1aa4b76b-7b41-46b6-8fcc-1dddff7639ae",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/introduction.tex",
+      "content": "\\section{Introduction}\n\\label{sec:intro}\n\nThe text on which large language models are trained increasingly contains their own outputs.\nAs synthetic content proliferates across the web, a recursive loop emerges: models trained on web corpora ingest text generated by earlier models, and their outputs feed into the next generation's training data \\cite{shumailov2024_nature,alemohammad2024_mad}.\nThis model$\\to$data$\\to$model cycle is no longer hypothetical---it is already occurring in the wild---yet we lack the ability to determine how many recursive iterations a given text has undergone, a distinction that matters because first-generation synthetic text may be benign or even beneficial for training, while deeply recursive text drives the distributional collapse that degrades model quality \\cite{dohmatob2024_tale_of_tails}.\n\nExisting tools address adjacent but distinct problems.\nBinary detectors such as Binoculars \\cite{binoculars2024}, Fast-DetectGPT \\cite{fast_detectgpt2024}, and DivEye \\cite{diveye2026} classify text as human-written or machine-generated, collapsing all depths $d \\geq 1$ into a single category.\nWatermarking \\cite{kirchenbauer2023_watermark} requires proactive embedding and cannot be applied retroactively.\nThe model collapse literature \\cite{shumailov2024_nature,dohmatob2024_tale_of_tails} assumes depth is known a priori; \\citet{drayson2025_detection_prevents_collapse} filter synthetic data via binary detection without distinguishing depths.\nNo existing method estimates the ordinal recursive generation depth of a text passage from its content alone.\n\nOur key insight is that recursive generation leaves quantifiable statistical fingerprints in text, and these fingerprints are \\textbf{universal and scale-variant} across the three model families and three decoding strategies studied.\nSpecifically, perplexity tail statistics---the 90th-percentile perplexity (\\textsc{p90\\_ppl}) and surprisal variance (\\textsc{var\\_surprisal})---emerge as dominant depth indicators, ranking in the top two features by importance in 9/9 and 8/9 model--strategy configurations, respectively.\nSurprisingly, in one of two 7B models the AUC trajectory becomes non-monotonic, suggesting that instruction tuning may alter degradation dynamics rather than scale alone driving a qualitative shift.\n\nWe formalize recursive generation depth estimation as an ordinal classification task and introduce a lightweight pipeline to solve it.\nGiven a text passage, we compute a feature vector from reference-model perplexity statistics---19 candidates capturing distributional location, spread, tail behavior, and lexical diversity, though high multicollinearity concentrates the signal in ${\\approx}$4--5 effective dimensions (\\S\\ref{sec:atlas:features})---and classify it with a Random Forest into one of $K{+}1$ depth classes ($d{=}0$ for human text through $d{=}K$ for $K$-th generation text).\nTo systematically characterize how recursive generation reshapes these features, we construct the \\emph{Depth Degradation Atlas}: a $3 \\times 3$ grid of model families (Pythia-1.4B, OLMo-1B, GPT-2~XL) and decoding strategies (nucleus $p{=}0.95$, temperature $\\tau{=}0.9$, top-$k$ $k{=}50$), each spanning 4 generation depths, totaling 180K samples.\nThe atlas reveals strategy-dependent degradation trajectories---temperature sampling accelerates convergence toward a low-entropy attractor, while top-$k$ attenuates the depth signal---and we introduce the \\emph{Effective Discriminable Depth} (EDD) metric to quantify how far into the recursion chain adjacent depths remain distinguishable.\n\nOur contributions are:\n\n\\begin{itemize}\n    \\item \\textbf{Task formalization and benchmark.} We define recursive generation depth estimation as ordinal classification, introduce the EDD metric, and construct a 180K-sample benchmark spanning 3 model families $\\times$ 3 decoding strategies $\\times$ 4 depths.\n\n    \\item \\textbf{Depth Degradation Atlas.} A systematic $3 \\times 3$ empirical characterization reveals that perplexity tail statistics as a feature group dominate depth discrimination (top-2 in 9/9 and 8/9 cells), decoding strategy reshapes degradation trajectories qualitatively, and depth discrimination persists through $\\mathrm{EDD}_{0.75}{=}4$ for the best-characterized family (Pythia, $p{=}0.001$; consistent direction across all three families with graded statistical support).\n\n    \\item \\textbf{Generalization across seven axes (four in main text; three in appendix).} We demonstrate robustness beyond the training grid: cross-model recursive chains (84.75\\%---preliminary evidence consistent with a process-level depth signal), preliminary cross-scale observations on two 7B architectures (70.2\\% and 60.1\\%, with divergent AUC trajectories), cross-domain transfer to arXiv (74.1\\%), temperature robustness ($\\tau \\in [0.5, 0.9]$), and reference model independence ($\\Delta{=}4$\\,pp). A surface-text ablation (zero-shot LLMs at 30--36\\%, 42\\,pp below RF) confirms that depth signal resides in distributional statistics inaccessible from surface text alone---while requiring only 19 features and a Random Forest for millisecond-scale, GPU-free inference.\n\\end{itemize}",
+      "numLines": 31,
+      "startLine": 1,
+      "totalLines": 31
+    }
+  },
+  "sourceToolAssistantUUID": "1f6de941-fd97-4d54-9084-828651571aa8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-16T13:15:05.422Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01HDbpAreQmtFH9TBEqFknYD`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/related_work.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1aa4b76b-7b41-46b6-8fcc-1dddff7639ae",
+  "isSidechain": false,
+  "requestId": "req_011Cb6JsdjV6eb1UmjMu13kQ",
+  "type": "assistant",
+  "uuid": "041138b8-14a3-4af5-b24d-6e285a60317a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YXetNnTViRtizz35a25Rdr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 914,
+      "cache_read_input_tokens": 23559,
+      "output_tokens": 811,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 914,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 811,
+          "cache_read_input_tokens": 23559,
+          "cache_creation_input_tokens": 914,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 914
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-16T13:15:05.427Z_
+
+<details><summary>↩ Tool result · `toolu_01HDbpAreQmtFH9TBEqFknYD`</summary>
+
+```text
+1	\section{Related Work}
+2	\label{sec:related}
+3	
+4	\paragraph{Model Collapse Theory.}
+5	\citet{shumailov2024_nature} demonstrate that recursive training on model outputs erodes distributional tails, collapsing the output distribution.
+6	\citet{dohmatob2024_tale_of_tails} formalize this via scaling laws distinguishing tail \emph{narrowing} from \emph{cutting}; \citet{dohmatob2025_strong_collapse} establish strong collapse guarantees, and \citet{dohmatob2024_demystified} analyze the regression case.
+7	The MAD framework \cite{alemohammad2024_mad} extends this to self-consuming models and quantifies the precision--recall tradeoff.
+8	Mitigation strategies include retaining real data \cite{gerstgrasser2024_accumulate}, filtering via detection \cite{drayson2025_detection_prevents_collapse}, and synthetic data verification to escape collapse dynamics \cite{yi2026_escaping_collapse}.
+9	Recent work identifies non-monotonic dynamics \cite{bakshi2026_collapse_improvement}, fixed-point convergence \cite{marchi2024_heat_death}, contamination bounds \cite{wang2026_contamination}, curated pipelines \cite{falahati2026_curated}, knowledge collapse \cite{knowledge_collapse2025}, spectral signatures \cite{sigma2026_spectral}, and self-improving loops \cite{synthetic_eggs2026}.
+10	These works characterize degradation but assume depth is known a priori; we address the inverse problem of estimating depth from text alone.
+11	
+12	\paragraph{AI Text Detection.}
+13	The detection literature, recently surveyed by \citet{wu2025_detection_survey}, spans statistical, model-based, and watermarking paradigms.
+14	DetectGPT \cite{mitchell2023_detectgpt} introduced probability curvature as a zero-shot detection signal; Fast-DetectGPT \cite{fast_detectgpt2024} improves efficiency via surrogate-model conditional curvature.
+15	Binoculars \cite{binoculars2024} exploits perplexity ratios between related models, DivEye \cite{diveye2026} leverages surprisal diversity, and GLTR \cite{gehrmann2019_gltr} visualizes per-token likelihood ranks.
+16	Fundamental limits exist: paraphrasing reduces detection to near chance \cite{sadasivan2023_paraphrase}, detection degrades under distribution shift \cite{pudasaini2026_detection_fails}, and a generator barrier bounds performance when the generator is unknown \cite{pu2026_generator_barrier}.
+17	Ghostbuster \cite{verma2024_ghostbuster} trains classifiers on statistical features for binary detection, sharing our feature-engineering philosophy but not addressing depth; M4-SemEval \cite{wang2024_m4_semeval} benchmarks multilingual detection, and DNA-GPT \cite{yang2024_dnagpt} uses divergent $n$-gram analysis.
+18	Watermarking \cite{kirchenbauer2023_watermark} embeds detectable signals but requires proactive deployment.
+19	All these methods perform binary classification, discarding ordinal depth information; our approach outputs ordinal depth labels, complementing rather than replacing binary detection.
+20	
+21	\paragraph{Adjacent Tasks.}
+22	EditLens \cite{editlens2026} estimates editing extent but does not model recursive chains.
+23	\citet{uchendu2020_attribution} classify \emph{which} model generated text rather than generation depth.
+24	LOKI \cite{loki2025} benchmarks synthetic data detection across modalities but evaluates binary detection only.
+25	\citet{mohamed2025_broken_telephone} study iterative generation as a ``broken telephone'' effect, measuring forward quality degradation across iterative LLM rewrites.
+26	Their framing is complementary but distinct: they characterize \emph{how} text degrades (measuring fluency, coherence, and factuality decay) without attempting to \emph{classify} which iteration a given passage comes from.
+27	Our task performs the inverse---ordinal depth estimation from text alone---which requires discriminating between adjacent depths rather than merely detecting aggregate degradation trends.
+28	
+29	\paragraph{Ordinal Classification.}
+30	CORAL \cite{coral2020} enforces rank consistency via ordered binary tasks; CLOC \cite{cloc2025} extends contrastive learning with multi-margin ordinal losses.
+31	We adopt both as baselines (\S\ref{sec:generalization}) to confirm the signal is accessible to principled ordinal methods.
+32	
+33	\paragraph{Decoding Strategy Effects.}
+34	Decoding strategies shape text statistics in ways that interact with depth signals: nucleus sampling maintains diversity \cite{holtzman2020_nucleus}, decoding parameters affect evaluation non-trivially \cite{finlayson2024_closing}, and strategy effects are model-dependent \cite{garces_arias2025_decoding_decoded}.
+35	\citet{wiher2022_decoding} systematically compare methods on surface-level properties, and Mirostat \cite{basu2021_mirostat} regulates output entropy via perplexity control.
+36	Our Depth Degradation Atlas (\S\ref{sec:atlas}) reveals that these strategies induce qualitatively different degradation trajectories under recursive generation---temperature sampling accelerates convergence to a low-entropy attractor while top-$k$ attenuates the depth signal---effects beyond single-pass text quality.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "041138b8-14a3-4af5-b24d-6e285a60317a",
+  "isSidechain": false,
+  "promptId": "6da10313-6a8f-475a-9e62-751bf1f7e158",
+  "type": "user",
+  "uuid": "f6531418-d97f-4fde-ae17-65551845b916",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/related_work.tex",
+      "content": "\\section{Related Work}\n\\label{sec:related}\n\n\\paragraph{Model Collapse Theory.}\n\\citet{shumailov2024_nature} demonstrate that recursive training on model outputs erodes distributional tails, collapsing the output distribution.\n\\citet{dohmatob2024_tale_of_tails} formalize this via scaling laws distinguishing tail \\emph{narrowing} from \\emph{cutting}; \\citet{dohmatob2025_strong_collapse} establish strong collapse guarantees, and \\citet{dohmatob2024_demystified} analyze the regression case.\nThe MAD framework \\cite{alemohammad2024_mad} extends this to self-consuming models and quantifies the precision--recall tradeoff.\nMitigation strategies include retaining real data \\cite{gerstgrasser2024_accumulate}, filtering via detection \\cite{drayson2025_detection_prevents_collapse}, and synthetic data verification to escape collapse dynamics \\cite{yi2026_escaping_collapse}.\nRecent work identifies non-monotonic dynamics \\cite{bakshi2026_collapse_improvement}, fixed-point convergence \\cite{marchi2024_heat_death}, contamination bounds \\cite{wang2026_contamination}, curated pipelines \\cite{falahati2026_curated}, knowledge collapse \\cite{knowledge_collapse2025}, spectral signatures \\cite{sigma2026_spectral}, and self-improving loops \\cite{synthetic_eggs2026}.\nThese works characterize degradation but assume depth is known a priori; we address the inverse problem of estimating depth from text alone.\n\n\\paragraph{AI Text Detection.}\nThe detection literature, recently surveyed by \\citet{wu2025_detection_survey}, spans statistical, model-based, and watermarking paradigms.\nDetectGPT \\cite{mitchell2023_detectgpt} introduced probability curvature as a zero-shot detection signal; Fast-DetectGPT \\cite{fast_detectgpt2024} improves efficiency via surrogate-model conditional curvature.\nBinoculars \\cite{binoculars2024} exploits perplexity ratios between related models, DivEye \\cite{diveye2026} leverages surprisal diversity, and GLTR \\cite{gehrmann2019_gltr} visualizes per-token likelihood ranks.\nFundamental limits exist: paraphrasing reduces detection to near chance \\cite{sadasivan2023_paraphrase}, detection degrades under distribution shift \\cite{pudasaini2026_detection_fails}, and a generator barrier bounds performance when the generator is unknown \\cite{pu2026_generator_barrier}.\nGhostbuster \\cite{verma2024_ghostbuster} trains classifiers on statistical features for binary detection, sharing our feature-engineering philosophy but not addressing depth; M4-SemEval \\cite{wang2024_m4_semeval} benchmarks multilingual detection, and DNA-GPT \\cite{yang2024_dnagpt} uses divergent $n$-gram analysis.\nWatermarking \\cite{kirchenbauer2023_watermark} embeds detectable signals but requires proactive deployment.\nAll these methods perform binary classification, discarding ordinal depth information; our approach outputs ordinal depth labels, complementing rather than replacing binary detection.\n\n\\paragraph{Adjacent Tasks.}\nEditLens \\cite{editlens2026} estimates editing extent but does not model recursive chains.\n\\citet{uchendu2020_attribution} classify \\emph{which} model generated text rather than generation depth.\nLOKI \\cite{loki2025} benchmarks synthetic data detection across modalities but evaluates binary detection only.\n\\citet{mohamed2025_broken_telephone} study iterative generation as a ``broken telephone'' effect, measuring forward quality degradation across iterative LLM rewrites.\nTheir framing is complementary but distinct: they characterize \\emph{how} text degrades (measuring fluency, coherence, and factuality decay) without attempting to \\emph{classify} which iteration a given passage comes from.\nOur task performs the inverse---ordinal depth estimation from text alone---which requires discriminating between adjacent depths rather than merely detecting aggregate degradation trends.\n\n\\paragraph{Ordinal Classification.}\nCORAL \\cite{coral2020} enforces rank consistency via ordered binary tasks; CLOC \\cite{cloc2025} extends contrastive learning with multi-margin ordinal losses.\nWe adopt both as baselines (\\S\\ref{sec:generalization}) to confirm the signal is accessible to principled ordinal methods.\n\n\\paragraph{Decoding Strategy Effects.}\nDecoding strategies shape text statistics in ways that interact with depth signals: nucleus sampling maintains diversity \\cite{holtzman2020_nucleus}, decoding parameters affect evaluation non-trivially \\cite{finlayson2024_closing}, and strategy effects are model-dependent \\cite{garces_arias2025_decoding_decoded}.\n\\citet{wiher2022_decoding} systematically compare methods on surface-level properties, and Mirostat \\cite{basu2021_mirostat} regulates output entropy via perplexity control.\nOur Depth Degradation Atlas (\\S\\ref{sec:atlas}) reveals that these strategies induce qualitatively different degradation trajectories under recursive generation---temperature sampling accelerates convergence to a low-entropy attractor while top-$k$ attenuates the depth signal---effects beyond single-pass text quality.",
+      "numLines": 36,
+      "startLine": 1,
+      "totalLines": 36
+    }
+  },
+  "sourceToolAssistantUUID": "041138b8-14a3-4af5-b24d-6e285a60317a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-16T13:15:05.562Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01P8m3XpeAjNEiZnMHy7pZ2s`</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "ls /root/autodl-tmp/recursive_gen_depth_est/paper/*.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f6531418-d97f-4fde-ae17-65551845b916",
+  "isSidechain": false,
+  "requestId": "req_011Cb6JsdjV6eb1UmjMu13kQ",
+  "type": "assistant",
+  "uuid": "42b66abc-ffc3-49fe-973a-70f13f456865",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YXetNnTViRtizz35a25Rdr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 914,
+      "cache_read_input_tokens": 23559,
+      "output_tokens": 811,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 914,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 811,
+          "cache_read_input_tokens": 23559,
+          "cache_creation_input_tokens": 914,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 914
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 32_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "42b66abc-ffc3-49fe-973a-70f13f456865",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 33_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Sync R4 tex revisions and compile paper",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b"
+}
+```
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-16T13:15:09.340Z_
+
+<details><summary>↩ Tool result · `toolu_01P8m3XpeAjNEiZnMHy7pZ2s`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/recursive_gen_depth_est/paper/abstract.tex\\n/root/autodl-tmp/recursive_gen_depth_est/paper/atlas.tex\\n/root/autodl-tmp/recursive_gen_depth_est/paper/conclusion.tex\\n/root/autodl-tmp/recursive_gen_depth_est/paper/discussion.tex\\n/root/autodl-tmp/recursive_gen_depth_est/paper/generalization.tex\\n/root/autodl-tmp/recursive_gen_depth_est/paper/introduction.tex\\n/root/autodl-tmp/recursive_gen_depth_est/paper/main.tex\\n/root/autodl-tmp/recursive_gen_depth_est/paper/method.tex\\n/root/autodl-tmp/recursive_gen_depth_est/paper/related_work.tex\\n/root/autodl-tmp/recursive_gen_depth_est/paper/section_appendix.tex\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.76}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "42b66abc-ffc3-49fe-973a-70f13f456865",
+  "isSidechain": false,
+  "promptId": "6da10313-6a8f-475a-9e62-751bf1f7e158",
+  "type": "user",
+  "uuid": "6f2b24cf-4519-49e2-9df1-a3f4cd10548c",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/recursive_gen_depth_est/paper/abstract.tex\\\\n/root/autodl-tmp/recursive_gen_depth_est/paper/atlas.tex\\\\n/root/autodl-tmp/recursive_gen_depth_est/paper/conclusion.tex\\\\n/root/autodl-tmp/recursive_gen_depth_est/paper/discussion.tex\\\\n/root/autodl-tmp/recursive_gen_depth_est/paper/generalization.tex\\\\n/root/autodl-tmp/recursive_gen_depth_est/paper/introduction.tex\\\\n/root/autodl-tmp/recursive_gen_depth_est/paper/main.tex\\\\n/root/autodl-tmp/recursive_gen_depth_est/paper/method.tex\\\\n/root/autodl-tmp/recursive_gen_depth_est/paper/related_work.tex\\\\n/root/autodl-tmp/recursive_gen_depth_est/paper/section_appendix.tex\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.76}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/recursive_gen_depth_est/paper/abstract.tex\\n/root/autodl-tmp/recursive_gen_depth_est/paper/atlas.tex\\n/root/autodl-tmp/recursive_gen_depth_est/paper/conclusion.tex\\n/root/autodl-tmp/recursive_gen_depth_est/paper/discussion.tex\\n/root/autodl-tmp/recursive_gen_depth_est/paper/generalization.tex\\n/root/autodl-tmp/recursive_gen_depth_est/paper/introduction.tex\\n/root/autodl-tmp/recursive_gen_depth_est/paper/main.tex\\n/root/autodl-tmp/recursive_gen_depth_est/paper/method.tex\\n/root/autodl-tmp/recursive_gen_depth_est/paper/related_work.tex\\n/root/autodl-tmp/recursive_gen_depth_est/paper/section_appendix.tex\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.76}}"
+    }
+  },
+  "sourceToolAssistantUUID": "42b66abc-ffc3-49fe-973a-70f13f456865",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 35 · 2026-05-16T13:15:09.359Z_
+
+```json
+{
+  "parentUuid": "6f2b24cf-4519-49e2-9df1-a3f4cd10548c",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "0fb6e557-09ef-4650-aa62-39f49e5018a2",
+  "timestamp": "2026-05-16T13:15:09.359Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 36 · 2026-05-16T13:15:13.833Z_
+
+所有文件已读取，服务器目录确认。开始同步 8 个 tex 文件到服务器。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0fb6e557-09ef-4650-aa62-39f49e5018a2",
+  "isSidechain": false,
+  "requestId": "req_011Cb6JtdeJW6RDwzM7z7Lou",
+  "type": "assistant",
+  "uuid": "6fde0f34-9899-40b5-8b7f-ea7d9ecbb270",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017ZBhgfCvm12X5RqAkMK6DT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 29045,
+      "cache_read_input_tokens": 24473,
+      "output_tokens": 6457,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 29045,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6457,
+          "cache_read_input_tokens": 24473,
+          "cache_creation_input_tokens": 29045,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 29045
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-16T13:15:26.298Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01NFofagL7xxZvSNViDM84ND`</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "cat << 'TEXEOF' > /root/autodl-tmp/recursive_gen_depth_est/paper/abstract.tex\n\\begin{abstract}\nAs large language models increasingly train on web text containing their own outputs, a recursive model$\\to$data$\\to$model loop arises---yet no method estimates how many such iterations a text has undergone.\nWe formalize \\emph{recursive generation depth estimation} as ordinal classification and construct a benchmark of 180K passages spanning 3 model families, 3 decoding strategies, and 4 generation depths.\nFrom each passage we extract a compact statistical fingerprint---19 candidate features dominated by perplexity tail statistics---computed against a fixed reference model.\nA Random Forest classifier achieves 70--85\\% four-class accuracy (chance = 25\\%), with perplexity tail statistics emerging as consistent depth markers across all studied configurations.\nOur \\emph{Depth Degradation Atlas} reveals that decoding strategy reshapes degradation trajectories rather than merely attenuating them, and we define the \\emph{Effective Discriminable Depth} (EDD) metric, finding $\\mathrm{EDD}_{0.75}{=}4$ for the best-characterized model family (Pythia, $p{=}0.001$; consistent direction across all three families with graded statistical support; \\S4.4).\nCross-model transfer reaches 66.4\\% (d1--d3 balanced accuracy: 55.4\\%, $1.7\\times$ chance); cross-model recursive chains---where each depth is generated by a different architecture---achieve 84.75\\% accuracy, providing preliminary evidence consistent with a process-level depth signal.\nPreliminary cross-scale observations on two 7B-scale generators yield 70.2\\% accuracy ($\\mathrm{EDD}{=}4$) and 60.1\\%, with divergent AUC trajectories possibly linked to instruction-tuning effects.\nApplied to WikiText-103 and C4 web-crawl text, the classifiers maintain high d0 accuracy on editorial text while revealing model-dependent false positive rates on heterogeneous web content.\n\\end{abstract}\nTEXEOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6fde0f34-9899-40b5-8b7f-ea7d9ecbb270",
+  "isSidechain": false,
+  "requestId": "req_011Cb6JtdeJW6RDwzM7z7Lou",
+  "type": "assistant",
+  "uuid": "4a57ca62-b548-4173-85a1-30c0421a95d2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017ZBhgfCvm12X5RqAkMK6DT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 29045,
+      "cache_read_input_tokens": 24473,
+      "output_tokens": 6457,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 29045,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6457,
+          "cache_read_input_tokens": 24473,
+          "cache_creation_input_tokens": 29045,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 29045
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-16T13:15:27.465Z_
+
+<details><summary>↩ Tool result · `toolu_01NFofagL7xxZvSNViDM84ND`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.16}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4a57ca62-b548-4173-85a1-30c0421a95d2",
+  "isSidechain": false,
+  "promptId": "6da10313-6a8f-475a-9e62-751bf1f7e158",
+  "type": "user",
+  "uuid": "8747144b-2ab1-43de-803d-8dd3a767020c",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.16}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.16}}"
+    }
+  },
+  "sourceToolAssistantUUID": "4a57ca62-b548-4173-85a1-30c0421a95d2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-16T13:15:37.399Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01XpnqiXqPsFpiuxL4NfZUJJ`</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "cat << 'TEXEOF' > /root/autodl-tmp/recursive_gen_depth_est/paper/introduction.tex\n\\section{Introduction}\n\\label{sec:intro}\n\nThe text on which large language models are trained increasingly contains their own outputs.\nAs synthetic content proliferates across the web, a recursive loop emerges: models trained on web corpora ingest text generated by earlier models, and their outputs feed into the next generation's training data \\cite{shumailov2024_nature,alemohammad2024_mad}.\nThis model$\\to$data$\\to$model cycle is no longer hypothetical---it is already occurring in the wild---yet we lack the ability to determine how many recursive iterations a given text has undergone, a distinction that matters because first-generation synthetic text may be benign or even beneficial for training, while deeply recursive text drives the distributional collapse that degrades model quality \\cite{dohmatob2024_tale_of_tails}.\n\nExisting tools address adjacent but distinct problems.\nBinary detectors such as Binoculars \\cite{binoculars2024}, Fast-DetectGPT \\cite{fast_detectgpt2024}, and DivEye \\cite{diveye2026} classify text as human-written or machine-generated, collapsing all depths $d \\geq 1$ into a single category.\nWatermarking \\cite{kirchenbauer2023_watermark} requires proactive embedding and cannot be applied retroactively.\nThe model collapse literature \\cite{shumailov2024_nature,dohmatob2024_tale_of_tails} assumes depth is known a priori; \\citet{drayson2025_detection_prevents_collapse} filter synthetic data via binary detection without distinguishing depths.\nNo existing method estimates the ordinal recursive generation depth of a text passage from its content alone.\n\nOur key insight is that recursive generation leaves quantifiable statistical fingerprints in text, and these fingerprints are \\textbf{universal and scale-variant} across the three model families and three decoding strategies studied.\nSpecifically, perplexity tail statistics---the 90th-percentile perplexity (\\textsc{p90\\_ppl}) and surprisal variance (\\textsc{var\\_surprisal})---emerge as dominant depth indicators, ranking in the top two features by importance in 9/9 and 8/9 model--strategy configurations, respectively.\nSurprisingly, in one of two 7B models the AUC trajectory becomes non-monotonic, suggesting that instruction tuning may alter degradation dynamics rather than scale alone driving a qualitative shift.\n\nWe formalize recursive generation depth estimation as an ordinal classification task and introduce a lightweight pipeline to solve it.\nGiven a text passage, we compute a feature vector from reference-model perplexity statistics---19 candidates capturing distributional location, spread, tail behavior, and lexical diversity, though high multicollinearity concentrates the signal in ${\\approx}$4--5 effective dimensions (\\S\\ref{sec:atlas:features})---and classify it with a Random Forest into one of $K{+}1$ depth classes ($d{=}0$ for human text through $d{=}K$ for $K$-th generation text).\nTo systematically characterize how recursive generation reshapes these features, we construct the \\emph{Depth Degradation Atlas}: a $3 \\times 3$ grid of model families (Pythia-1.4B, OLMo-1B, GPT-2~XL) and decoding strategies (nucleus $p{=}0.95$, temperature $\\tau{=}0.9$, top-$k$ $k{=}50$), each spanning 4 generation depths, totaling 180K samples.\nThe atlas reveals strategy-dependent degradation trajectories---temperature sampling accelerates convergence toward a low-entropy attractor, while top-$k$ attenuates the depth signal---and we introduce the \\emph{Effective Discriminable Depth} (EDD) metric to quantify how far into the recursion chain adjacent depths remain distinguishable.\n\nOur contributions are:\n\n\\begin{itemize}\n    \\item \\textbf{Task formalization and benchmark.} We define recursive generation depth estimation as ordinal classification, introduce the EDD metric, and construct a 180K-sample benchmark spanning 3 model families $\\times$ 3 decoding strategies $\\times$ 4 depths.\n\n    \\item \\textbf{Depth Degradation Atlas.} A systematic $3 \\times 3$ empirical characterization reveals that perplexity tail statistics as a feature group dominate depth discrimination (top-2 in 9/9 and 8/9 cells), decoding strategy reshapes degradation trajectories qualitatively, and depth discrimination persists through $\\mathrm{EDD}_{0.75}{=}4$ for the best-characterized family (Pythia, $p{=}0.001$; consistent direction across all three families with graded statistical support).\n\n    \\item \\textbf{Generalization across seven axes (four in main text; three in appendix).} We demonstrate robustness beyond the training grid: cross-model recursive chains (84.75\\%---preliminary evidence consistent with a process-level depth signal), preliminary cross-scale observations on two 7B architectures (70.2\\% and 60.1\\%, with divergent AUC trajectories), cross-domain transfer to arXiv (74.1\\%), temperature robustness ($\\tau \\in [0.5, 0.9]$), and reference model independence ($\\Delta{=}4$\\,pp). A surface-text ablation (zero-shot LLMs at 30--36\\%, 42\\,pp below RF) confirms that depth signal resides in distributional statistics inaccessible from surface text alone---while requiring only 19 features and a Random Forest for millisecond-scale, GPU-free inference.\n\\end{itemize}\nTEXEOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8747144b-2ab1-43de-803d-8dd3a767020c",
+  "isSidechain": false,
+  "requestId": "req_011Cb6JtdeJW6RDwzM7z7Lou",
+  "type": "assistant",
+  "uuid": "cd570689-81d4-435c-b8f7-5555221dc560",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017ZBhgfCvm12X5RqAkMK6DT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 29045,
+      "cache_read_input_tokens": 24473,
+      "output_tokens": 6457,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 29045,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6457,
+          "cache_read_input_tokens": 24473,
+          "cache_creation_input_tokens": 29045,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 29045
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-16T13:15:38.581Z_
+
+<details><summary>↩ Tool result · `toolu_01XpnqiXqPsFpiuxL4NfZUJJ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.16}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cd570689-81d4-435c-b8f7-5555221dc560",
+  "isSidechain": false,
+  "promptId": "6da10313-6a8f-475a-9e62-751bf1f7e158",
+  "type": "user",
+  "uuid": "c0ac1429-b8d8-4d62-a398-95e8cf09ee91",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.16}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.16}}"
+    }
+  },
+  "sourceToolAssistantUUID": "cd570689-81d4-435c-b8f7-5555221dc560",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-16T13:15:47.861Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Cz4xV5EgmXD2PMzA78eWtK`</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "cat << 'TEXEOF' > /root/autodl-tmp/recursive_gen_depth_est/paper/related_work.tex\n\\section{Related Work}\n\\label{sec:related}\n\n\\paragraph{Model Collapse Theory.}\n\\citet{shumailov2024_nature} demonstrate that recursive training on model outputs erodes distributional tails, collapsing the output distribution.\n\\citet{dohmatob2024_tale_of_tails} formalize this via scaling laws distinguishing tail \\emph{narrowing} from \\emph{cutting}; \\citet{dohmatob2025_strong_collapse} establish strong collapse guarantees, and \\citet{dohmatob2024_demystified} analyze the regression case.\nThe MAD framework \\cite{alemohammad2024_mad} extends this to self-consuming models and quantifies the precision--recall tradeoff.\nMitigation strategies include retaining real data \\cite{gerstgrasser2024_accumulate}, filtering via detection \\cite{drayson2025_detection_prevents_collapse}, and synthetic data verification to escape collapse dynamics \\cite{yi2026_escaping_collapse}.\nRecent work identifies non-monotonic dynamics \\cite{bakshi2026_collapse_improvement}, fixed-point convergence \\cite{marchi2024_heat_death}, contamination bounds \\cite{wang2026_contamination}, curated pipelines \\cite{falahati2026_curated}, knowledge collapse \\cite{knowledge_collapse2025}, spectral signatures \\cite{sigma2026_spectral}, and self-improving loops \\cite{synthetic_eggs2026}.\nThese works characterize degradation but assume depth is known a priori; we address the inverse problem of estimating depth from text alone.\n\n\\paragraph{AI Text Detection.}\nThe detection literature, recently surveyed by \\citet{wu2025_detection_survey}, spans statistical, model-based, and watermarking paradigms.\nDetectGPT \\cite{mitchell2023_detectgpt} introduced probability curvature as a zero-shot detection signal; Fast-DetectGPT \\cite{fast_detectgpt2024} improves efficiency via surrogate-model conditional curvature.\nBinoculars \\cite{binoculars2024} exploits perplexity ratios between related models, DivEye \\cite{diveye2026} leverages surprisal diversity, and GLTR \\cite{gehrmann2019_gltr} visualizes per-token likelihood ranks.\nFundamental limits exist: paraphrasing reduces detection to near chance \\cite{sadasivan2023_paraphrase}, detection degrades under distribution shift \\cite{pudasaini2026_detection_fails}, and a generator barrier bounds performance when the generator is unknown \\cite{pu2026_generator_barrier}.\nGhostbuster \\cite{verma2024_ghostbuster} trains classifiers on statistical features for binary detection, sharing our feature-engineering philosophy but not addressing depth; M4-SemEval \\cite{wang2024_m4_semeval} benchmarks multilingual detection, and DNA-GPT \\cite{yang2024_dnagpt} uses divergent $n$-gram analysis.\nWatermarking \\cite{kirchenbauer2023_watermark} embeds detectable signals but requires proactive deployment.\nAll these methods perform binary classification, discarding ordinal depth information; our approach outputs ordinal depth labels, complementing rather than replacing binary detection.\n\n\\paragraph{Adjacent Tasks.}\nEditLens \\cite{editlens2026} estimates editing extent but does not model recursive chains.\n\\citet{uchendu2020_attribution} classify \\emph{which} model generated text rather than generation depth.\nLOKI \\cite{loki2025} benchmarks synthetic data detection across modalities but evaluates binary detection only.\n\\citet{mohamed2025_broken_telephone} study iterative generation as a ``broken telephone'' effect, measuring forward quality degradation across iterative LLM rewrites.\nTheir framing is complementary but distinct: they characterize \\emph{how} text degrades (measuring fluency, coherence, and factuality decay) without attempting to \\emph{classify} which iteration a given passage comes from.\nOur task performs the inverse---ordinal depth estimation from text alone---which requires discriminating between adjacent depths rather than merely detecting aggregate degradation trends.\n\n\\paragraph{Ordinal Classification.}\nCORAL \\cite{coral2020} enforces rank consistency via ordered binary tasks; CLOC \\cite{cloc2025} extends contrastive learning with multi-margin ordinal losses.\nWe adopt both as baselines (\\S\\ref{sec:generalization}) to confirm the signal is accessible to principled ordinal methods.\n\n\\paragraph{Decoding Strategy Effects.}\nDecoding strategies shape text statistics in ways that interact with depth signals: nucleus sampling maintains diversity \\cite{holtzman2020_nucleus}, decoding parameters affect evaluation non-trivially \\cite{finlayson2024_closing}, and strategy effects are model-dependent \\cite{garces_arias2025_decoding_decoded}.\n\\citet{wiher2022_decoding} systematically compare methods on surface-level properties, and Mirostat \\cite{basu2021_mirostat} regulates output entropy via perplexity control.\nOur Depth Degradation Atlas (\\S\\ref{sec:atlas}) reveals that these strategies induce qualitatively different degradation trajectories under recursive generation---temperature sampling accelerates convergence to a low-entropy attractor while top-$k$ attenuates the depth signal---effects beyond single-pass text quality.\nTEXEOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c0ac1429-b8d8-4d62-a398-95e8cf09ee91",
+  "isSidechain": false,
+  "requestId": "req_011Cb6JtdeJW6RDwzM7z7Lou",
+  "type": "assistant",
+  "uuid": "0a088dc2-cb97-45c7-8140-49e7b24e325d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017ZBhgfCvm12X5RqAkMK6DT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 29045,
+      "cache_read_input_tokens": 24473,
+      "output_tokens": 6457,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 29045,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6457,
+          "cache_read_input_tokens": 24473,
+          "cache_creation_input_tokens": 29045,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 29045
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-16T13:15:49.036Z_
+
+<details><summary>↩ Tool result · `toolu_01Cz4xV5EgmXD2PMzA78eWtK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.16}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0a088dc2-cb97-45c7-8140-49e7b24e325d",
+  "isSidechain": false,
+  "promptId": "6da10313-6a8f-475a-9e62-751bf1f7e158",
+  "type": "user",
+  "uuid": "ff23fb1a-142f-4845-88b8-7cb101a52388",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.16}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.16}}"
+    }
+  },
+  "sourceToolAssistantUUID": "0a088dc2-cb97-45c7-8140-49e7b24e325d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-16T13:16:54.135Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01SRsYv5NnwSTxCkT91PPW3Z`</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "cat << 'TEXEOF' > /root/autodl-tmp/recursive_gen_depth_est/paper/method.tex\n\\section{Method}\n\\label{sec:method}\n\n\\subsection{Problem Definition}\n\\label{sec:method:problem}\n\nLet $f_\\theta$ denote a language model and $\\mathcal{D}_0$ a corpus of human-written seed text.\nWe define a \\emph{recursive generation chain} of depth $K$ as the sequence $\\mathcal{D}_0, \\mathcal{D}_1, \\dots, \\mathcal{D}_K$, where each $\\mathcal{D}_k$ ($k \\geq 1$) is produced by finetuning $f_\\theta$ on $\\mathcal{D}_{k-1}$ and sampling from the resulting model.\nDepth $d{=}0$ denotes human-written text; depth $d{=}k$ ($k \\geq 1$) denotes text generated by a model trained on depth-$(k{-}1)$ data.\n\nGiven a text passage $x$, the task is to estimate its recursive generation depth $d \\in \\{0, 1, \\dots, K\\}$.\nThis is an ordinal classification problem: depths carry a natural ordering, and $d{=}1$ is structurally closer to $d{=}0$ than $d{=}3$ is, since each generation step compounds distributional drift.\n\n\\subsection{Multi-Generational Benchmark Construction}\n\\label{sec:method:benchmark}\n\nWe construct a benchmark spanning three axes: model family, decoding strategy, and generation depth.\n\n\\paragraph{Model families.}\nWe select three 1--1.5B-parameter models with diverse pretraining corpora and architectures: Pythia-1.4B (EleutherAI), OLMo-1B (AI2), and GPT-2~XL (OpenAI, 1.5B).\nRestricting to a narrow parameter range isolates the effect of architecture and training data from scale.\n\n\\paragraph{Decoding strategies.}\nEach model is paired with three decoding strategies: nucleus sampling ($p{=}0.95$) \\cite{holtzman2020_nucleus}, temperature sampling ($\\tau{=}0.9$), and top-$k$ sampling ($k{=}50$).\nThese span the dominant modes of open-ended generation and induce qualitatively different entropy profiles.\nOur findings on feature importance and discriminability are limited to this grid; transfer to untested models, scales, or strategies is not established.\n\n\\paragraph{Depth and scale.}\nThe primary benchmark covers depths d0--d3 across all $3 \\times 3 = 9$ model--strategy cells, with 5{,}000 samples per depth per cell (180K samples total).\nFor depth extension experiments (\\S\\ref{sec:atlas}), we extend one pipeline (Pythia-1.4B, nucleus) to d0--d5.\n\n\\paragraph{Generation pipeline.}\nStarting from a Wikipedia subset as seed text ($\\mathcal{D}_0$), each generation cycle proceeds in three steps: (1)~LoRA finetuning \\cite{hu2022lora} on $\\mathcal{D}_{k-1}$, freezing base model weights and training low-rank update matrices ($<$1\\% additional parameters; $r{=}16$, $\\alpha{=}32$, lr $2{\\times}10^{-4}$, batch size 8, 3 epochs, dropout $0.05$, architecture-specific targets); (2)~sampling 5{,}000 passages from the LoRA-finetuned model (max 512 tokens, BOS-seeded, no prompt conditioning) under the specified decoding strategy; (3)~the generated corpus becomes $\\mathcal{D}_k$ for the next cycle.\nEach depth is produced by a model explicitly trained on the prior depth's data---not by sampling from the unmodified base model.\nOur unconditional (BOS-seeded) generation setting may amplify depth signal relative to prompt-conditioned generation, where higher output quality could narrow inter-depth distributional gaps; extending to prompted generation is left for future work.\nThere is no per-passage lineage across depths, ensuring cross-validation splits do not introduce information leakage.\n\n\\paragraph{Reference model.}\nAll statistical features (\\S\\ref{sec:method:features}) are computed using a fixed reference model---Pythia-1.4B---providing a consistent perplexity reference across all generation conditions.\nWe select Pythia-1.4B because it is the smallest of the three generators, and its training corpus (The Pile) partially overlaps with those of OLMo and GPT-2~XL, keeping perplexity values in a comparable range.\nFor the Pythia pipeline, feature extraction constitutes self-model measurement; for OLMo and GPT-2~XL, it is cross-model.\nEmpirically, the Pythia pipeline's 4-class accuracy (78.2\\%) does not exceed GPT-2~XL (85.4\\%), indicating that self-model measurement does not confer a systematic advantage.\nIn cross-model leave-one-out evaluation (\\S\\ref{sec:generalization}), the reference model remains fixed regardless of which generator is held out; the implications of sharing the reference model with one generator are discussed in Limitations.\nAn ablation replacing Pythia-1.4B with OLMo-1B as reference model yields 74.5\\% vs 78.5\\%, suggesting that depth signal detection is not critically dependent on the specific reference model ($\\Delta$=4.0pp, within the 5pp robustness threshold; Appendix~\\ref{tab:ref_ablation}).\n\n\\subsection{Statistical Feature Design}\n\\label{sec:method:features}\n\nWe extract a feature vector $\\mathbf{f}(x)$ comprising 19 candidate features from the reference-model perplexity distribution over each passage $x$; ablation (\\S\\ref{sec:atlas:features}) shows the top 5 achieve 97.6\\% of full-set performance, and variance inflation analysis reveals VIF${>}$10 for 14--16 features, placing the effective independent dimensionality at ${\\approx}$4--5.\nThe features fall into four categories (Table~\\ref{tab:features}).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{The 19 statistical features comprising $\\mathbf{f}(x)$, grouped by category. All perplexity and surprisal features are computed from the reference model (Pythia-1.4B).}\n\\label{tab:features}\n\\begin{tabular}{@{}llr@{}}\n\\toprule\nCategory & Features & $n$ \\\\\n\\midrule\nPerplexity & mean, var, skewness, kurtosis, & 9 \\\\\nstatistics & p10, p25, p50, p75, p90 & \\\\\n\\addlinespace\nSurprisal & mean, var, entropy & 3 \\\\\nstatistics & & \\\\\n\\addlinespace\nLexical & type--token ratio, hapax ratio, & 4 \\\\\ndiversity & bigram entropy, trigram entropy & \\\\\n\\addlinespace\nRepetition & repeated 2/3/4-gram fractions & 3 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\emph{Perplexity statistics} (9 features) capture the per-token perplexity distribution via moments (mean, variance, skewness, kurtosis) and quantiles (p10--p90); tail quantiles prove especially informative as recursive finetuning erodes the high-perplexity tail (\\S\\ref{sec:atlas}).\n\\emph{Surprisal statistics} (3 features): mean, variance, and entropy of $-\\log p(\\text{token})$; surprisal variance captures second-order structure not redundant with perplexity moments.\n\\emph{Lexical diversity} (4 features): type--token ratio, hapax ratio, bigram/trigram entropy.\n\\emph{Repetition} (3 features): repeated $n$-gram fractions for $n \\in \\{2, 3, 4\\}$.\n\n\\subsection{Effective Discriminable Depth}\n\\label{sec:method:edd}\n\nAggregate multi-class accuracy obscures whether discriminability degrades at specific depth boundaries.\nWe introduce the \\emph{Effective Discriminable Depth} (EDD) to formalize the frontier beyond which adjacent depths become statistically indistinguishable.\n\n\\paragraph{Pairwise discriminability.}\nLet $\\mathcal{D} = \\{0, 1, \\dots, K\\}$ denote the depth set and $T \\in (0.5, 1.0]$ a discrimination threshold.\nFor each adjacent pair $(d, d{+}1)$, we define the pairwise discriminability $\\mathrm{AUC}(d, d{+}1)$ as the area under the ROC curve of a dedicated binary Random Forest classifier (500 trees, $\\lfloor\\sqrt{19}\\rfloor$ candidate features per split) trained on class-balanced data from $\\mathbf{f}(x)$ (\\S\\ref{sec:method:features}) to distinguish depth-$d$ from depth-$(d{+}1)$ samples, evaluated via 5-fold stratified cross-validation.\nEach pair uses an independent classifier, avoiding the decision boundary dilution that arises in multi-class settings (\\S\\ref{sec:atlas:edd}).\n\n\\begin{definition}[Effective Discriminable Depth]\n\\label{def:edd}\nThe \\emph{Effective Discriminable Depth} at threshold $T$ is:\n\\begin{equation}\n\\mathrm{EDD}_T = \\max \\bigl\\{ d^*{+}1 \\,:\\, \\forall\\, d' \\leq d^*,\\; \\mathrm{AUC}(d', d'{+}1) \\geq T \\bigr\\}\n\\label{eq:edd}\n\\end{equation}\nwhere $d^* \\in \\{0, \\dots, K{-}1\\}$. If\\, $\\mathrm{AUC}(0,1) < T$, then $\\mathrm{EDD}_T = 0$.\n\\end{definition}\n\n$\\mathrm{EDD}_T$ is the deepest depth $d$ such that every adjacent pair from $(0,1)$ through $(d{-}1, d)$ remains discriminable at level $T$.\nThe universal quantifier ensures EDD reports the longest \\emph{contiguous} discriminable prefix rather than an isolated high-AUC pair at greater depth.\\footnote{Our AUC profiles are empirically monotonically decreasing for the 1--1.5B base models (\\S\\ref{sec:atlas}), so in practice $\\mathrm{EDD}_T = \\max\\{d'{+}1 : \\mathrm{AUC}(d', d'{+}1) \\geq T\\}$. Qwen2.5-7B exhibits a U-shaped AUC pattern rather than monotonic decay, possibly reflecting instruction-tuning effects (\\S\\ref{sec:gen:crossscale}). For non-monotonic profiles, the contiguous formulation is more conservative (see Limitations).}\nWe set $T{=}0.75$ as default; sensitivity at $T \\in \\{0.65, 0.70, 0.75, 0.80\\}$ is reported in \\S\\ref{sec:atlas}.\n\n\\paragraph{Classifiers.}\nOur primary classifier is a Random Forest (200 trees, unconstrained depth, 5-fold stratified cross-validation).\nWe compare against CORAL ordinal regression \\cite{coral2020}, DivEye \\cite{diveye2026}, a 2-layer cross-entropy MLP, logistic regression, and a single-feature baseline using mean perplexity alone; results appear in \\S\\ref{sec:generalization}.\nTEXEOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ff23fb1a-142f-4845-88b8-7cb101a52388",
+  "isSidechain": false,
+  "requestId": "req_011Cb6JtdeJW6RDwzM7z7Lou",
+  "type": "assistant",
+  "uuid": "04861a46-12e2-477b-b2f4-b2bf89ee60dc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017ZBhgfCvm12X5RqAkMK6DT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 29045,
+      "cache_read_input_tokens": 24473,
+      "output_tokens": 6457,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 29045,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6457,
+          "cache_read_input_tokens": 24473,
+          "cache_creation_input_tokens": 29045,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 29045
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 44_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "04861a46-12e2-477b-b2f4-b2bf89ee60dc",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 45_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Sync R4 tex revisions and compile paper",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b"
+}
+```
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-16T13:17:01.737Z_
+
+<details><summary>↩ Tool result · `toolu_01SRsYv5NnwSTxCkT91PPW3Z`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 7.58}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "04861a46-12e2-477b-b2f4-b2bf89ee60dc",
+  "isSidechain": false,
+  "promptId": "6da10313-6a8f-475a-9e62-751bf1f7e158",
+  "type": "user",
+  "uuid": "9869a12b-b6c3-47f2-8fa8-299df1546539",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 7.58}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 7.58}}"
+    }
+  },
+  "sourceToolAssistantUUID": "04861a46-12e2-477b-b2f4-b2bf89ee60dc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47 · 2026-05-16T13:17:05.321Z_
+
+4 个文件已同步。继续同步剩余 4 个。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9869a12b-b6c3-47f2-8fa8-299df1546539",
+  "isSidechain": false,
+  "requestId": "req_011Cb6K2v9DPKMigFrZtb2wy",
+  "type": "assistant",
+  "uuid": "352b3524-e0d8-4c33-8288-702e695da034",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Retj3GodnKMDBG4r3bJN1x",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6850,
+      "cache_read_input_tokens": 53518,
+      "output_tokens": 20083,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6850,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 20083,
+          "cache_read_input_tokens": 53518,
+          "cache_creation_input_tokens": 6850,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6850
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-16T13:17:51.502Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Rpkkiz4RdiWtRjCVufmzZE`</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "cat << 'TEXEOF' > /root/autodl-tmp/recursive_gen_depth_est/paper/discussion.tex\n\\section{Discussion and Conclusion}\n\\label{sec:discussion}\n\nWe formalized recursive generation depth estimation and showed that a compact feature set dominated by perplexity tail statistics achieves 70--85\\% four-class accuracy ($\\mathrm{EDD}_{0.75}{=}4$ across models; \\S\\ref{sec:atlas:edd}), with five features sufficing for 97.6\\% of full performance and classifier-agnostic convergence within $\\leq$0.4pp.\nThe dominant feature group---perplexity tail statistics (\\texttt{p90\\_ppl} top-2 in 9/9 cells, \\texttt{var\\_surprisal} in 8/9 under SHAP)---generalizes across the three studied model families without retraining, making depth estimation a candidate early-warning signal for model collapse~\\cite{shumailov2024_nature} within this experimental scope.\nRecent work corroborates this connection, identifying entropy decline as a measurable signal of recursive degradation that parallels the tail erosion our features capture~\\cite{shi2025_closer_look}.\nA surface-text ablation reinforces this view: zero-shot LLMs (DeepSeek V3.2 at 36.2\\%, Qwen2.5-7B at 30.4\\%) both perform near chance despite exhibiting complementary prediction biases, and the 42\\,pp gap confirms that the depth signal resides in distributional statistics inaccessible from surface text alone (\\S\\ref{sec:gen:baselines}).\n\nCross-strategy transfer remains the primary bottleneck (59.1\\% vs.\\ 66.4\\% cross-model), with the temperature-induced d1/d2 AUC inversion making single-classifier deployment across unknown decoding strategies infeasible.\nA multi-temperature ablation ($\\tau \\in [0.5, 1.1]$, Pythia-1.4B; Appendix~\\ref{app:multi_tau}) reinforces this: within-$\\tau$ depth discrimination is robust for $\\tau \\leq 0.9$ (d1v2 AUC $>0.80$), but cross-$\\tau$ transfer (mean 46.7\\%) is harder than cross-strategy transfer (59.1\\%), confirming that strategy-conditioned classifiers are necessary.\nA two-stage pipeline---first identifying the decoding strategy, then applying a strategy-conditioned depth classifier---could address this.\nDifferent strategies produce distinguishable perplexity signatures (top-$k$ yields narrower distributions; temperature sampling produces heavier tails), suggesting that automatic strategy identification is technically feasible, though independent validation on held-out strategy sets is needed.\nAs an alternative, when deployment is restricted to a single platform or API provider, the decoding strategy is typically known a priori, and a strategy-conditioned classifier can be applied directly.\n\n\\paragraph{Depth-graduated data curation.}\nCurrent data curation operates on a binary human-vs-machine distinction~\\cite{dsir2023,qurating2024}.\nDepth estimation enables a finer-grained alternative: retain low-depth generations (d1) while filtering high-depth text (d3+) where tail erosion has degraded quality.\nA pilot study (Appendix~\\ref{app:curation_poc}) yields an inconclusive comparison between RF-filtered and unfiltered conditions ($p>0.4$, $\\mathrm{df}{=}4$), though RF-filtered subsets significantly outperform size-matched random subsampling ($p<0.001$--$0.02$); large-scale validation is needed to determine whether depth-based filtering provides a practical advantage over unfiltered training.\nCross-strategy deployment would first require strategy identification to avoid boundary inversion (\\S\\ref{sec:gen:crossstrategy}).\n\n\\paragraph{Toward a provenance toolkit.}\nDepth estimation complements existing provenance methods---watermarking~\\cite{kirchenbauer2023_watermark} (requires generator cooperation) and source attribution~\\cite{uchendu2020_attribution} (identifies model, not history)---by characterizing \\emph{iterative reuse} regardless of generator identity~\\cite{bevendorff2025_two_paradigms}.\nA layered system combining watermark presence, source model, and recursive depth could support more nuanced data auditing within controlled generation settings than any single method.\n\n\\paragraph{Mixed-depth documents.}\nSliding-window depth estimation at the segment level (256--512 tokens) could extend the approach to mixed-depth documents, enabling paragraph-level curation even from partially contaminated content.\n\n\\paragraph{Adversarial robustness.}\nPerplexity tail statistics exhibit inherent resistance to surface-level transformations (paraphrasing, back-translation) that preserve surprisal structure, though robustness to targeted distribution-aware attacks remains unverified.\n\n\\paragraph{Scaling behavior.}\nOur preliminary cross-scale observations (\\S\\ref{sec:gen:crossscale}) suggest that depth signal persists at 7--8B scale within controlled generation settings (Llama-3.1-8B: 70.2\\%, Qwen2.5-7B: 60.1\\%), though four confounds---QLoRA quantization, instruction-tuning, smaller sample size, and evaluation limited to nucleus sampling---preclude strong conclusions.\nLlama-3.1-8B matches the smaller models at $\\mathrm{EDD}{=}4$ with monotonic AUC decay, while Qwen2.5-7B achieves $\\mathrm{EDD}_{T{=}0.70} > 5$ via a non-monotonic (U-shaped) trajectory---exceeding the $\\mathrm{EDD}{=}4$ at 1--1.5B.\nPer-step signal strength decreases (mean consecutive AUC ${\\approx}$0.78 vs.\\ ${\\approx}$0.85 at 1--1.5B), consistent with larger models generating more fluent text with narrower perplexity distributions.\nThe divergent AUC trajectories (monotonic for Llama-3.1 vs.\\ U-shaped for Qwen2.5-Instruct) suggest that instruction tuning may alter degradation dynamics at high recursion depth, an observation warranting further investigation with controlled base/instruct pairs.\nTail erosion is driven by retraining on one's own output distribution rather than model capacity per se, explaining why the signal attenuates but does not vanish; further scaling beyond 8B may require richer feature sets (e.g., attention entropy or generation diversity metrics) to maintain discriminability.\nTEXEOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "352b3524-e0d8-4c33-8288-702e695da034",
+  "isSidechain": false,
+  "requestId": "req_011Cb6K2v9DPKMigFrZtb2wy",
+  "type": "assistant",
+  "uuid": "1ee036dc-5903-4315-ac54-cc41ab85ea21",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Retj3GodnKMDBG4r3bJN1x",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6850,
+      "cache_read_input_tokens": 53518,
+      "output_tokens": 20083,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6850,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 20083,
+          "cache_read_input_tokens": 53518,
+          "cache_creation_input_tokens": 6850,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6850
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-16T13:17:59.765Z_
+
+<details><summary>↩ Tool result · `toolu_01Rpkkiz4RdiWtRjCVufmzZE`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 8.25}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1ee036dc-5903-4315-ac54-cc41ab85ea21",
+  "isSidechain": false,
+  "promptId": "6da10313-6a8f-475a-9e62-751bf1f7e158",
+  "type": "user",
+  "uuid": "520d2a8a-a630-46e8-bb26-6ca5916d1a6e",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 8.25}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 8.25}}"
+    }
+  },
+  "sourceToolAssistantUUID": "1ee036dc-5903-4315-ac54-cc41ab85ea21",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-16T13:19:32.288Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01To3qG1NsoketBfu8DVjAbY`</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "cat << 'TEXEOF' > /root/autodl-tmp/recursive_gen_depth_est/paper/atlas.tex\n\\section{The Depth Degradation Atlas}\n\\label{sec:atlas}\n\nWe present the Depth Degradation Atlas: a systematic empirical map of how statistical fingerprints evolve across recursive generation depths, models, and decoding strategies.\nThe atlas spans $3 \\times 3 = 9$ model--strategy cells evaluated at depths $d \\in \\{0, 1, 2, 3\\}$, with depth extensions to $d{=}5$ for cross-model EDD validation (\\S\\ref{sec:atlas:edd}).\n\n%% ----------------------------------------------------------------\n\\subsection{In-Distribution Performance}\n\\label{sec:atlas:id}\n\nTable~\\ref{tab:main_matrix} reports four-class Random Forest accuracy (5-fold CV, 200 trees) across all nine cells.\nAccuracy ranges from 69.6\\% (Pythia, top-$k$) to 85.4\\% (GPT-2~XL, temperature), all exceeding the 25\\% chance baseline by a wide margin.\nTwo axis effects emerge.\nGPT-2~XL achieves the highest accuracy under every strategy (76.6--85.4\\%), followed by OLMo (74.2--82.0\\%) and Pythia (69.6--78.2\\%).\nTop-$k$ sampling yields the lowest accuracy in every model.\nThe mean within-model strategy gap is 8.4~pp, comparable to the 7.1~pp mean within-strategy model gap---decoding strategy and model family contribute roughly equally to performance variance.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Four-class RF accuracy (\\%) across the $3 \\times 3$ atlas, with d1--d3 three-class accuracy in parentheses (chance = 25\\% / 33\\%). Depth-0 recall exceeds 98\\% in all cells.}\n\\label{tab:main_matrix}\n\\begin{tabular}{@{}lccc@{}}\n\\toprule\n& Nucleus & Temp.\\ $\\tau{=}0.9$ & Top-$k$ \\\\\n\\midrule\nPythia-1.4B  & 78.2\\,(71.2) & 76.3\\,(70.6) & 69.6\\,(58.8) \\\\\nOLMo-1B     & 78.8\\,(75.0) & 82.0\\,(76.3) & 74.2\\,(66.1) \\\\\nGPT-2~XL    & 83.3\\,(79.0) & 85.4\\,(82.6) & 76.6\\,(69.5) \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Per-class recall distribution.}\nDepth-0 recall exceeds 98\\% in all 9 cells, confirming that human-written text is trivially separable from any generation depth.\nAmong generated depths, d2 consistently yields the lowest recall (46--73\\% across cells), followed by d3 (58--82\\%) and d1 (72--91\\%).\nFor example, Pythia-1.4B nucleus achieves per-class recall of d0$\\,{=}\\,$99\\%, d1$\\,{=}\\,$82\\%, d2$\\,{=}\\,$59\\%, d3$\\,{=}\\,$72\\%.\nThe strongest d2 recall is obtained by GPT-2~XL nucleus (73\\%).\nThe d2 trough reflects its position at the center of the depth gradient: d2 features overlap with both the d1 distribution above and d3 below, making it the most confusable class---consistent with the d2-vs-d3 pair being the EDD bottleneck (\\S\\ref{sec:atlas:edd}).\nFull per-class recall for all cells appears in Appendix~\\ref{app:per_class}.\n\n%% ----------------------------------------------------------------\n\\subsection{Feature Consistency Across the Grid}\n\\label{sec:atlas:features}\n\nDespite the 15.8~pp accuracy spread across cells, a small feature family dominates in every setting.\nPerplexity tail statistics as a feature group dominate depth discrimination: the 90th-percentile perplexity (\\texttt{p90\\_ppl}) ranks top-2 by Gini importance in all 9 cells; surprisal variance (\\texttt{var\\_surprisal}) in 8/9 under SHAP (7/9 under Gini; Appendix~\\ref{app:permutation}).\\footnote{Individual feature rankings should be interpreted cautiously given high multicollinearity (VIF${>}$10 for 14--16/19 features); the group-level dominance of perplexity tail statistics is robust across importance measures.}\nTable~\\ref{tab:feature_importance} shows the full per-cell ranking.\n\nCross-model feature-rank Spearman correlation averages $\\bar{\\rho} = 0.868$ (range $[0.619, 0.954]$): models agree on which features carry depth information even when they differ in absolute accuracy.\nAmong strategies, top-$k$ yields the highest cross-model rank correlation ($\\rho = 0.811$)---the deterministic vocabulary truncation imposes a more uniform feature landscape across architectures, at the cost of weaker overall signal (\\S\\ref{sec:atlas:strategy}).\n\nPercentile-based features outperform their moment-based counterparts.\nToken-level perplexity distributions are heavy-tailed: individual outlier passages can dominate the arithmetic mean of their depth class, whereas \\texttt{p90\\_ppl} is robust to such extremes while still capturing the tail erosion that signals generation depth.\n\nFeature ablation confirms this concentration: the top-2 features (\\texttt{p90\\_ppl} + \\texttt{var\\_surprisal}) alone reach 91.1\\% of full accuracy (71.5\\%), and the top-5 features achieve 97.6\\% (76.5\\% vs.\\ 78.4\\%), with perplexity statistics alone reaching 76.6\\% (vs.\\ surprisal 73.2\\%, other categories ${\\leq}$47\\%).\nVariance inflation analysis reveals VIF${>}$10 for 14--16 of 19 features, placing the effective independent dimensionality at ${\\approx}$4--5.\nForward selection independently confirms the dominant pair: \\texttt{p90\\_ppl} is selected first in 6/9 cells, \\texttt{var\\_surprisal} in 3/9.\n\nThe feature hierarchy also shifts with depth.\nAt shallow boundaries (d1 vs.\\ d2), \\texttt{var\\_surprisal} dominates importance; at deeper boundaries (d3 vs.\\ d4, d4 vs.\\ d5), tail perplexity statistics (\\texttt{p90\\_ppl}, \\texttt{kurtosis\\_ppl}) take over.\nThis transition aligns with model-collapse dynamics~\\cite{shumailov2024_nature}: early recursion narrows the surprisal distribution (captured by its variance), while later steps erode the perplexity tail (captured by upper quantiles and kurtosis).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Top-5 features by Gini importance. \\textbf{Bold}: top-2. \\texttt{p90\\_ppl} top-2 in 9/9; \\texttt{var\\_surprisal} 8/9 under SHAP (7/9 under Gini).}\n\\label{tab:feature_importance}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}l l@{}}\n\\toprule\nCell & Top-5 features (Gini importance, ranked) \\\\\n\\midrule\nPythia, nuc.       & \\textbf{var\\_surp\\,(.17)}, \\textbf{p90\\_ppl\\,(.15)}, m\\_ppl\\,(.11), var\\_ppl\\,(.08), p75\\,(.07) \\\\\nPythia, $\\tau$     & \\textbf{var\\_surp\\,(.17)}, \\textbf{p90\\_ppl\\,(.14)}, m\\_ppl\\,(.11), p75\\,(.07), m\\_surp\\,(.07) \\\\\nPythia, top-$k$    & \\textbf{var\\_surp\\,(.16)}, \\textbf{p90\\_ppl\\,(.12)}, m\\_ppl\\,(.11), var\\_ppl\\,(.07), m\\_surp\\,(.06) \\\\\nGPT-2\\,XL, nuc.    & \\textbf{var\\_surp\\,(.21)}, \\textbf{p90\\_ppl\\,(.21)}, p75\\,(.10), m\\_surp\\,(.07), m\\_ppl\\,(.06) \\\\\nGPT-2\\,XL, $\\tau$  & \\textbf{p90\\_ppl\\,(.25)}, \\textbf{p75\\,(.15)}, m\\_surp\\,(.13), var\\_surp\\,(.12), p50\\,(.05) \\\\\nGPT-2\\,XL, top-$k$ & \\textbf{p90\\_ppl\\,(.24)}, \\textbf{p75\\,(.12)}, var\\_surp\\,(.10), m\\_surp\\,(.09), ttr\\,(.04) \\\\\nOLMo, nuc.         & \\textbf{p90\\_ppl\\,(.18)}, \\textbf{var\\_surp\\,(.15)}, p75\\,(.11), m\\_surp\\,(.07), ttr\\,(.06) \\\\\nOLMo, $\\tau$       & \\textbf{p90\\_ppl\\,(.21)}, \\textbf{var\\_surp\\,(.16)}, p75\\,(.12), m\\_surp\\,(.09), ttr\\,(.05) \\\\\nOLMo, top-$k$      & \\textbf{p90\\_ppl\\,(.20)}, \\textbf{var\\_surp\\,(.17)}, p75\\,(.10), m\\_surp\\,(.07), m\\_ppl\\,(.05) \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_atlas_heatmap.pdf}\n\\caption{Atlas feature importance heatmap. Rows: 19 features grouped by category (\\S\\ref{sec:method:features}); columns: 9 model--strategy cells. Color intensity encodes RF Gini importance. The perplexity-tail and surprisal-variance blocks maintain high importance across all cells.}\n\\label{fig:atlas_heatmap}\n\\end{figure}\n\n%% ----------------------------------------------------------------\n\\subsection{Monotonicity and Inter-Depth Distances}\n\\label{sec:atlas:monotonicity}\n\nDepth features exhibit strong monotonic trends: perplexity tail statistics (\\texttt{p90\\_ppl}, \\texttt{mean\\_surprisal}) decrease with depth (Spearman $\\rho = -1.0$ across cell-level medians) while repetition features increase, reflecting the complementary narrowing and self-repetition of distribution collapse.\nInter-depth distances are non-uniform: d0-vs-d1 AUC exceeds 0.99 in all 9 cells, whereas d2-vs-d3 ranges from 0.69 to 0.89---separating adjacent deep generations requires the tail statistics identified in \\S\\ref{sec:atlas:features}.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_feature_trajectory.pdf}\n\\caption{Feature trajectories across depths $d{=}0$ to $d{=}3$, stratified by model (columns) and strategy (line style). Top row: \\texttt{p90\\_ppl} (monotonically decreasing). Middle: \\texttt{var\\_surprisal} (decreasing). Bottom: \\texttt{rep\\_3gram} (increasing). Shaded bands: interquartile range. The $d{=}0 \\to d{=}1$ gap exceeds all subsequent inter-depth gaps.}\n\\label{fig:feature_trajectory}\n\\end{figure}\n\n%% ----------------------------------------------------------------\n\\subsection{EDD Analysis}\n\\label{sec:atlas:edd}\n\nWe extend the benchmark to depth $d{=}5$ for all three models under nucleus sampling.\nEach model's depth-3 LoRA checkpoint is used to finetune and generate depth-4 data, and the process repeats for depth~5; feature extraction uses the same reference model (Pythia-1.4B).\nWe train dedicated binary RF classifiers (500 trees) for each adjacent pair, as defined in Eq.~\\ref{eq:edd}.\n\n\\paragraph{AUC decay profile.}\nFigure~\\ref{fig:auc_decay} plots the binary pairwise AUC decay curves.\nFor Pythia-1.4B (nucleus), AUC decays monotonically: d0-vs-d1 $= 0.999$, d1-vs-d2 $= 0.925$, d2-vs-d3 $= 0.823$, d3-vs-d4 $= 0.784$, d4-vs-d5 $= 0.683$.\nThe steepest drop occurs between the d1-vs-d2 and d2-vs-d3 pairs; the curve then flattens as the system approaches an indistinguishable regime gradually rather than crossing a sharp boundary.\n\n\\paragraph{Cross-model convergence at depth 4--5.}\nThe d3-vs-d4 AUC consistently clusters near the $T{=}0.75$ threshold across all three models (Pythia $0.784$, OLMo $0.765$, GPT-2~XL $0.750$), while d4-vs-d5 uniformly falls below $0.70$ ($0.681$--$0.684$).\nThe directional pattern is consistent, but statistical strength is stratified: bootstrap testing ($10{,}000$ resamples, $H_0{:}\\, \\mathrm{AUC} \\leq 0.75$) yields $p = 0.001$ for Pythia (significant), $p = 0.091$ for OLMo (marginal), and $p = 0.505$ for GPT-2~XL (non-significant).\nAll three models cross the $T{=}0.75$ threshold within the d3--d4 region, establishing a consistent depth-4 decay boundary with graded confidence rather than uniform statistical significance.\nThe d4-vs-d5 saturation is unambiguous across models, supporting the interpretation of d3--d4 as a \\emph{transition zone} from discriminable to indistinguishable regime.\n\n\\paragraph{EDD threshold sensitivity.}\nTable~\\ref{tab:edd_sensitivity} reports $\\mathrm{EDD}_T$ across the primary 9-cell benchmark (depths 0--3) at four threshold values.\nAt $T{=}0.65$, all 9 cells achieve $\\mathrm{EDD} = 3$; at $T{=}0.75$, 7 of 9 cells maintain $\\mathrm{EDD} \\geq 3$; at $T{=}0.80$, the count drops to 5 of 9.\nThe cells losing $\\mathrm{EDD}{=}3$ first are consistently the top-$k$ configurations (Pythia top-$k$ at $T{=}0.70$, then OLMo top-$k$ at $T{=}0.75$), where the d2-vs-d3 pair is the consistent bottleneck across all 9 cells.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Number of atlas cells achieving $\\mathrm{EDD} \\geq 3$ at each threshold $T$, across 9 model--strategy cells (depths 0--3). The d2-vs-d3 boundary is the bottleneck; top-$k$ cells drop first.}\n\\label{tab:edd_sensitivity}\n\\begin{tabular}{@{}lcccc@{}}\n\\toprule\n& $T{=}0.65$ & $T{=}0.70$ & $T{=}0.75$ & $T{=}0.80$ \\\\\n\\midrule\nCells with $\\mathrm{EDD} \\geq 3$ & 9/9 & 8/9 & 7/9 & 5/9 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_auc_decay.pdf}\n\\caption{Binary pairwise AUC decay curves for three models (nucleus sampling, depths 0--5). Horizontal dashed lines mark $T \\in \\{0.65, 0.70, 0.75, 0.80\\}$. All three curves converge below 0.70 at d4-vs-d5, while d3-vs-d4 AUC clusters in the range 0.750--0.784. Shaded bands: bootstrap 95\\% CIs.}\n\\label{fig:auc_decay}\n\\end{figure}\n\n\\paragraph{Decision boundary dilution.}\n\\label{sec:atlas:edd:dilution}\nEDD uses binary-pair classifiers to avoid \\emph{decision boundary dilution}: in Pythia nucleus, d2\\,vs.\\,d3 AUC degrades from 0.804 (4-class) to 0.689 (6-class)---a 14.3\\% relative decline despite identical data---because shared decision boundaries dilute per-pair capacity.\nBinary classifiers eliminate this confound, isolating true adjacent-pair discriminability.\n\n%% ----------------------------------------------------------------\n\\subsection{Strategy-Dependent Trajectories}\n\\label{sec:atlas:strategy}\n\nThe three decoding strategies induce qualitatively distinct degradation trajectories.\nNucleus ($p{=}0.95$) produces the most consistent accuracy (78.2--83.3\\%) and serves as the reference trajectory.\nTemperature ($\\tau{=}0.9$) yields the highest accuracy in 2/3 models (GPT-2~XL 85.4\\%, OLMo 82.0\\%) because uniform logit scaling accelerates convergence to an attractor distribution~\\cite{shumailov2024_nature}, amplifying the statistical fingerprint---but this acceleration creates a boundary reversal risk: temperature depth-$N$ features approximate nucleus/top-$k$ depth-$(N{+}1)$ features, causing cross-strategy classifiers to systematically overpredict depth (\\S\\ref{sec:generalization}).\nTop-$k$ ($k{=}50$) produces the lowest accuracy (69.6--76.6\\%) because hard vocabulary truncation removes depth-discriminative low-probability tokens, though feature direction is preserved (cross-model $\\rho = 0.811$).\nThe strategy effect (8.4~pp range) exceeds the model effect (7.1~pp), indicating deployment-time knowledge of the decoding strategy matters at least as much as the generator model.\nTEXEOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "520d2a8a-a630-46e8-bb26-6ca5916d1a6e",
+  "isSidechain": false,
+  "requestId": "req_011Cb6K2v9DPKMigFrZtb2wy",
+  "type": "assistant",
+  "uuid": "ff996a19-cc2c-4dd1-81d1-f94254d7a822",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Retj3GodnKMDBG4r3bJN1x",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6850,
+      "cache_read_input_tokens": 53518,
+      "output_tokens": 20083,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6850,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 20083,
+          "cache_read_input_tokens": 53518,
+          "cache_creation_input_tokens": 6850,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6850
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-16T13:19:34.178Z_
+
+<details><summary>↩ Tool result · `toolu_01To3qG1NsoketBfu8DVjAbY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.87}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ff996a19-cc2c-4dd1-81d1-f94254d7a822",
+  "isSidechain": false,
+  "promptId": "6da10313-6a8f-475a-9e62-751bf1f7e158",
+  "type": "user",
+  "uuid": "f1f35e9c-ddeb-4ca5-b227-a167d1934b4d",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.87}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.87}}"
+    }
+  },
+  "sourceToolAssistantUUID": "ff996a19-cc2c-4dd1-81d1-f94254d7a822",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-16T13:21:05.006Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Dq75UvX7Eh1yAq7TE5V9bD`</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "cat << 'TEXEOF' > /root/autodl-tmp/recursive_gen_depth_est/paper/generalization.tex\n\\section{Generalization and Robustness}\n\\label{sec:generalization}\n\nWe test whether the atlas results (69.6--85.4\\%) reflect genuine statistical regularities or training artifacts, evaluating generalization along seven axes: four in detail below---classifier choice (\\S\\ref{sec:gen:baselines}), cross-model transfer (\\S\\ref{sec:gen:crossmodel}), cross-strategy transfer (\\S\\ref{sec:gen:crossstrategy}), and preliminary cross-scale observations (\\S\\ref{sec:gen:crossscale})---and three in the Appendix (end-to-end learning, temperature robustness, and cross-boundary transfer).\n\n\\subsection{Classifier Comparison and Surface-Text Ablation}\n\\label{sec:gen:baselines}\n\nTable~\\ref{tab:baselines} evaluates three classifier families---bagging (RF), gradient boosting (XGBoost, LightGBM)---on the same 19 features across three atlas cells spanning the full accuracy range.\nPer-cell spread is $\\leq$0.4pp, establishing a feature-determined ceiling independent of the learning algorithm.\nOn Pythia nucleus, CORAL ordinal regression \\cite{coral2020} (78.1\\%) and DivEye \\cite{diveye2026} (78.2\\%) match the within-cell RF of Table~\\ref{tab:main_matrix} within 0.1\\,pp (bootstrap $p>0.05$, Bonferroni-corrected); all feature-based methods significantly outperform CE-MLP (74.9\\%, $p<0.001$) and logistic regression (75.0\\%).\n\n\\paragraph{Surface-text ablation.}\nAs a complementary ablation, we test whether depth can be estimated from surface text alone---without the targeted distributional features our pipeline extracts.\nSingle-feature regression on mean perplexity performs at chance (25.1\\%); two zero-shot LLMs---DeepSeek V3.2 (36.2\\%, 95\\% CI $[32.0, 40.4]$) and Qwen2.5-7B-Instruct (30.4\\%, $[26.5, 34.6]$; each 500 samples, prompt template in Appendix~\\ref{app:zeroshot_prompt})---both fail to distinguish recursive depth, performing near chance (25\\%).\nThe 42\\,pp gap between RF (78.2\\%) and both LLMs confirms that the depth signal resides in distributional statistics inaccessible from surface text alone; this gap exceeds the CI half-width (${\\approx}$4\\,pp) by an order of magnitude, ensuring robustness at $n{=}500$.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Classifier convergence: 4-class accuracy (\\%) across three atlas cells. RF (bagging), XGBoost and LightGBM (gradient boosting) operate on the same 19 features; $\\Delta_{\\max}$: largest per-cell spread. Chance = 25\\%. RF values differ from Table~\\ref{tab:main_matrix} by $\\leq$0.7pp due to matched-fold evaluation.}\n\\label{tab:baselines}\n\\begin{tabular}{@{}lcccc@{}}\n\\toprule\nCell & RF & XGB & LGBM & $\\Delta_{\\max}$ \\\\\n\\midrule\nPythia, nuc. & 78.8 & 79.0 & 78.9 & 0.2 \\\\\nGPT-2~XL, $\\tau$ & 85.8 & 86.2 & 86.2 & 0.4 \\\\\nPythia, top-$k$ & 68.9 & 68.9 & 68.7 & 0.2 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nConvergence across five structurally different classifiers---spanning bagging, gradient boosting, ordinal regression, and ensemble detection---confirms the signal resides in the features, not the learning algorithm.\nFigure~\\ref{fig:confusion_matrix} shows d0 near-perfectly identified; errors concentrate at d2/d3 in-distribution and spread across d1--d3 under transfer.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_confusion_matrix.pdf}\n\\caption{Confusion matrices for the best in-distribution setting (GPT-2 XL, temp $\\tau{=}0.9$, 85.4\\%) and the best cross-model leave-one-out transfer (OLMo holdout, 69.2\\%). d0 recall exceeds 99\\% in both; errors spread across the d1--d3 range under transfer.}\n\\label{fig:confusion_matrix}\n\\end{figure}\n\n\\subsection{Cross-Model Transfer}\n\\label{sec:gen:crossmodel}\n\nWe perform leave-one-model-family-out evaluation: train on two families (nucleus only), test on the held-out third (Table~\\ref{tab:cross_model}).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Cross-model transfer (leave-one-out, nucleus only). Chance = 25\\% / 33\\% (d1--d3). d1--d3 bal.\\ acc: Pythia 49.9\\%, OLMo 59.2\\%, GPT-2~XL 57.2\\% (mean 55.4\\%).}\n\\label{tab:cross_model}\n\\begin{tabular}{lccccc}\n\\toprule\nHoldout & Acc & d0 & d1 & d2 & d3 \\\\\n & (\\%) & Rec. & Rec. & Rec. & Rec. \\\\\n\\midrule\nPythia & 62.4 & 100.0 & 49.3 & 26.8 & 73.6 \\\\\nOLMo & \\textbf{69.2} & 99.3 & 75.5 & 43.3 & 58.8 \\\\\nGPT-2 XL & 67.6 & 98.5 & 74.7 & 52.6 & 44.5 \\\\\n\\midrule\nMean & 66.4 & 99.3 & 66.5 & 40.9 & 59.0 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nMean transfer accuracy is 66.4\\% (2.7$\\times$ chance); d0 recall ($>$98\\%) inflates the headline while d2 drops to 26.8\\% (Pythia holdout).\nExcluding d0, d1--d3 balanced accuracy averages 55.4\\% (chance = 33\\%).\n\n\\subsection{Cross-Strategy Transfer}\n\\label{sec:gen:crossstrategy}\n\nWe train on two decoding strategies and test on the held-out third (Table~\\ref{tab:cross_strategy}).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Cross-strategy transfer (leave-one-out). Chance = 25\\% / 33\\% (d1--d3). d0 recall $\\geq$89\\% inflates headline; d1--d3 mean: 45.9\\%.}\n\\label{tab:cross_strategy}\n\\begin{tabular}{lccc}\n\\toprule\nHoldout & Pythia & OLMo & GPT-2 XL \\\\\n & Acc (\\%) & Acc (\\%) & Acc (\\%) \\\\\n\\midrule\nnucleus & \\textbf{69.4} & \\textbf{65.4} & \\textbf{59.9} \\\\\ntemp ($\\tau{=}0.9$) & 62.8 & 58.2 & 56.1 \\\\\ntop-$k$ ($k{=}50$) & 51.5 & 54.9 & 53.6 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nMean cross-strategy accuracy (59.1\\%) falls 7pp below cross-model transfer (66.4\\%); excluding d0, d1--d3 accuracy drops to 45.9\\% (chance = 33\\%).\nd2 recall varies sharply: nucleus holdouts retain 30--54\\%, top-$k$ holdouts fall to 8--19\\%, and temperature holdouts span 3.7--39.5\\% (median 8.9\\%).\nTraining on nucleus + top-$k$ and testing on temperature inverts the d1/d2 boundary (d1v2 AUC $<$ 0.5); per-strategy z-score normalization partially recovers it but leaves a residual gap (Limitations).\nA multi-temperature ablation (Appendix~\\ref{app:multi_tau}) confirms that within-$\\tau$ depth signal holds for $\\tau \\leq 0.9$ (d1v2 AUC $>0.80$) but collapses at $\\tau{=}1.1$; cross-$\\tau$ LOO transfer (mean 46.7\\%) is harder than cross-strategy transfer.\nTemperature variations ($\\tau \\in [0.5, 0.9]$) do not fundamentally alter depth discriminability within a fixed strategy; classification accuracy remains within 3pp of the $\\tau{=}0.7$ baseline across all tested temperatures. Full multi-$\\tau$ analysis is provided in Appendix~\\ref{app:multi_tau}.\n\nEnd-to-end PLMs (DeBERTa-v3, RoBERTa) achieve only ${\\sim}$59\\%, lagging RF by 19pp, confirming depth signal resides in perplexity tail statistics inaccessible to standard PLM representations (Appendix~\\ref{app:e2e}).\n\n%% ----------------------------------------------------------------\n\\subsection{Preliminary Cross-Scale Observations}\n\\label{sec:gen:crossscale}\n\nThe preceding analyses use 1--1.5B parameter models.\nTo test whether depth signal persists in substantially larger generators, we extend the benchmark to two 7--8B models: Qwen2.5-7B-Instruct~\\cite{qwen2.5} and Llama-3.1-8B-Instruct~\\cite{llama3}, both under 4-bit NF4 QLoRA fine-tuning, generating depths $d \\in \\{0, 1, \\ldots, 5\\}$ with nucleus sampling ($p{=}0.95$, 500 samples per depth).\nFeature extraction uses the same reference model (Pythia-1.4B) and 19-feature pipeline as all prior experiments.\n\n\\paragraph{Scale comparison.}\nTable~\\ref{tab:cross_scale} contrasts the two 7--8B models with the three 1--1.5B models on matched evaluation (nucleus sampling, depths 0--3).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Cross-scale comparison: 4-class RF accuracy (\\%, depths 0--3, nucleus), $\\mathrm{EDD}_{T{=}0.70}$ (depths 0--5), and d0-vs-d1 AUC. CI: 95\\% bootstrap. Chance = 25\\%.}\n\\label{tab:cross_scale}\n\\begin{tabular}{@{}lccc@{}}\n\\toprule\nModel & 4-class acc & $\\mathrm{EDD}_{T{=}0.70}$ & d0v1 AUC \\\\\n\\midrule\nGPT-2~XL (1.5B) & 83.3 & 4 & 0.999 \\\\\nOLMo-1B & 78.8 & 4 & 0.997 \\\\\nPythia-1.4B & 78.2 & 4 & 0.998 \\\\\n\\midrule\nLlama-3.1-8B & 70.2\\,[68.3, 72.4] & 4 & 0.949 \\\\\nQwen2.5-7B & 60.1\\,[58.0, 62.1] & ${>}5$ & 0.969 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThree findings emerge:\n\n\\paragraph{(1) Depth signal persists at 7--8B scale.}\nBoth 7--8B models substantially exceed the 25\\% chance baseline: Llama-3.1-8B achieves 70.2\\% (95\\% CI $[68.3, 72.4]$) and Qwen2.5-7B achieves 60.1\\% ($[58.0, 62.1]$), confirming that recursive depth remains estimable from perplexity-based features even when the generator is 5--7$\\times$ larger than the reference model.\nDepth-0 separability is preserved in both models: d0v1 AUC is 0.949 (Llama-3.1) and 0.969 (Qwen2.5).\n\n\\paragraph{(2) EDD at 7--8B scale.}\nAt threshold $T{=}0.70$, Qwen2.5-7B maintains all consecutive-pair AUCs above 0.70 through depth~5 (Table~\\ref{tab:cross_scale_auc}), yielding $\\mathrm{EDD}_{T{=}0.70} > 5$---exceeding the $\\mathrm{EDD}{=}4$ observed at 1--1.5B.\nLlama-3.1-8B matches the smaller models at $\\mathrm{EDD}{=}4$: its monotonic decay causes d4v5 (0.618) to drop below $T$, despite stronger signal at shallower depths.\nBoth larger generators produce weaker per-step signal than the 1--1.5B models (mean consecutive AUC: 0.786 for Llama-3.1, 0.782 for Qwen2.5, vs.\\ 0.852 at 1--1.5B).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Consecutive binary AUC for 7--8B models (nucleus $p{=}0.95$). Llama-3.1-8B exhibits monotonic decay (d4v5 drops below $T{=}0.70$); Qwen2.5-7B shows a non-monotonic (U-shaped) pattern with all pairs above $T$.}\n\\label{tab:cross_scale_auc}\n\\begin{tabular}{@{}lccccc@{}}\n\\toprule\nModel & d0v1 & d1v2 & d2v3 & d3v4 & d4v5 \\\\\n\\midrule\nLlama-3.1-8B & 0.949 & 0.877 & 0.771 & 0.716 & 0.618 \\\\\nQwen2.5-7B & 0.969 & 0.729 & 0.709 & 0.732 & 0.772 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{(3) Divergent AUC trajectories across architectures.}\nLlama-3.1-8B exhibits monotonic AUC decay (0.949 $\\to$ 0.877 $\\to$ 0.771 $\\to$ 0.716 $\\to$ 0.618), consistent with the pattern observed at 1--1.5B scale.\nIn contrast, Qwen2.5-7B shows a U-shaped recovery beyond d2v3: consecutive AUC drops from 0.969 (d0v1) to a minimum of 0.709 (d2v3), then \\emph{rises} to 0.732 (d3v4) and 0.772 (d4v5).\nThis divergence suggests the U-shape observed in Qwen is model-specific---possibly related to its instruction-tuning regime (RLHF/DPO)---rather than a scale-dependent phenomenon.\nThe Llama-3.1 result demonstrates that monotonic decay \\emph{does} replicate at 7--8B scale for at least one architecture, strengthening the generality of the decay pattern as the default behavior.\n\n\\paragraph{Caveats.}\nFor Qwen2.5-7B, the CI lower bound (58.0\\%) does not exclude sub-60\\% accuracy; Llama-3.1-8B's lower bound (68.3\\%) is more comfortably above chance but still below the 75--83\\% range at 1--1.5B.\nThe divergent AUC trajectories across two models caution against strong generalizations from only two 7--8B data points: both the monotonic (Llama-3.1) and non-monotonic (Qwen2.5) patterns are single observations, and further architectures are needed to establish which is the dominant regime at this scale.\nBoth models are instruction-tuned, introducing a confound absent in the base-model experiments: RLHF/DPO alignment may independently shape the feature trajectory in ways not fully attributable to recursive depth alone.\nCross-model recursive chains (84.75\\%) and cross-domain transfer (arXiv 74.1\\%) further confirm signal universality (Appendix~\\ref{app:cross_boundary}).\n\n\\paragraph{Cross-scale confounds.}\nFour confounds limit these cross-scale results: (1) 4-bit NF4 QLoRA quantization (absent at 1--1.5B), (2) instruction-tuning (RLHF/DPO, absent in base-model experiments), (3) smaller sample size (500 vs 5{,}000), and (4) evaluation limited to nucleus sampling.\nTEXEOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f1f35e9c-ddeb-4ca5-b227-a167d1934b4d",
+  "isSidechain": false,
+  "requestId": "req_011Cb6K2v9DPKMigFrZtb2wy",
+  "type": "assistant",
+  "uuid": "cd1383d2-43ad-4642-a52e-7fa883bde2e1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Retj3GodnKMDBG4r3bJN1x",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6850,
+      "cache_read_input_tokens": 53518,
+      "output_tokens": 20083,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6850,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 20083,
+          "cache_read_input_tokens": 53518,
+          "cache_creation_input_tokens": 6850,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6850
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-16T13:21:06.666Z_
+
+<details><summary>↩ Tool result · `toolu_01Dq75UvX7Eh1yAq7TE5V9bD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.65}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cd1383d2-43ad-4642-a52e-7fa883bde2e1",
+  "isSidechain": false,
+  "promptId": "6da10313-6a8f-475a-9e62-751bf1f7e158",
+  "type": "user",
+  "uuid": "c2c0ed52-83c1-4bde-be4c-2236eea4bdd1",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.65}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.65}}"
+    }
+  },
+  "sourceToolAssistantUUID": "cd1383d2-43ad-4642-a52e-7fa883bde2e1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-16T13:24:17.607Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01B4uxMAXkytTpj9oF6TjSP1`</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "cat << 'TEXEOF' > /root/autodl-tmp/recursive_gen_depth_est/paper/section_appendix.tex\n\\section{Additional Results}\n\\label{app:additional}\n\n\\subsection{Top-$k$ Feature Trajectories}\n\\label{app:topk_trajectories}\n\nFigure~\\ref{fig:feature_trajectory} in the main text shows feature trajectories for nucleus ($p{=}0.95$) and temperature ($\\tau{=}0.9$) sampling.\nTop-$k$ ($k{=}50$) trajectories follow the same monotonically decreasing trend for all features but with compressed inter-depth spacing, consistent with the signal attenuation effect discussed in \\S\\ref{sec:atlas:strategy}.\nConcretely, the d0$\\to$d1 drop in \\textsc{p90\\_ppl} under top-$k$ is 78\\% (vs.\\ 87\\% for nucleus), and the d2$\\to$d3 reduction is 31\\% (vs.\\ 39\\% for nucleus).\nDespite the magnitude reduction, feature rank ordering across depths is preserved, which explains why ordinal classifiers maintain directionality even under top-$k$ conditions.\n\n\\subsection{Permutation Importance}\n\\label{app:permutation}\n\nTo verify that the Gini-based importance rankings in \\S\\ref{sec:atlas:features} are not an artifact of the impurity measure, we compute permutation importance (5-fold CV, 10 repeats) for all 9 atlas cells.\nThe top-2 features are stable across measures: \\textsc{p90\\_ppl} ranks in the top 2 in 9/9 cells under both Gini and permutation importance, and \\textsc{var\\_surprisal} in 8/9 (vs.\\ 7/9 for Gini, with the additional cell being OLMo top-$k$; the single SHAP exception is GPT-2~XL top-$k$, where \\textsc{p75\\_ppl} displaces \\textsc{var\\_surprisal} to rank 3).\nKendall's $W{=}0.90$ across all three methods (Gini, permutation, SHAP) indicates strong concordance ($p{<}0.005$).\nPairwise Spearman correlations are: SHAP--Gini $\\rho{=}0.93$, SHAP--permutation $\\rho{=}0.84$, Gini--permutation $\\rho{=}0.76$.\nPer-cell top-5 overlap between SHAP and permutation importance is 3--4 out of 5 features; the aggregated (mean-across-cells) top-5 sets are identical, confirming that the top features are robust to the choice of importance measure at the aggregate level while per-cell rankings exhibit model-dependent variation.\n\n\\subsection{Per-Class Recall}\n\\label{app:per_class}\n\nTable~\\ref{tab:per_class_recall} reports per-class recall across all 9 atlas cells (4-class in-distribution, 5-fold CV).\nDepth~0 recall exceeds 98\\% uniformly.\nAmong generated depths, d2 is the hardest class in every cell; the deficit is most pronounced under top-$k$ sampling (46--53\\%), where vocabulary truncation removes the tail tokens that carry depth-discriminative signal.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Per-class recall (\\%) for all 9 atlas cells. d2 is the lowest-recall class in every cell. Boldface marks the highest d2 recall.}\n\\label{tab:per_class_recall}\n\\begin{tabular}{@{}lcccc@{}}\n\\toprule\nCell & d0 & d1 & d2 & d3 \\\\\n\\midrule\nPythia, nuc.       & 99.7 & 81.9 & 58.7 & 72.3 \\\\\nPythia, $\\tau$     & 99.7 & 81.3 & 53.9 & 72.1 \\\\\nPythia, top-$k$    & 99.5 & 72.3 & 45.6 & 57.5 \\\\\nOLMo, nuc.         & 98.8 & 80.5 & 61.5 & 74.3 \\\\\nOLMo, $\\tau$       & 99.7 & 87.7 & 66.1 & 77.2 \\\\\nOLMo, top-$k$      & 99.5 & 78.5 & 51.2 & 65.6 \\\\\nGPT-2~XL, nuc.     & 99.2 & 85.9 & \\textbf{73.3} & 77.5 \\\\\nGPT-2~XL, $\\tau$   & 99.5 & 90.9 & 68.8 & 81.9 \\\\\nGPT-2~XL, top-$k$  & 98.5 & 79.5 & 52.5 & 71.1 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\subsection{DCOL Iteration Details}\n\\label{app:dcol_iterations}\n\nTable~\\ref{tab:dcol_iterations} summarizes all six DCOL iterations.\nDeBERTa-v3-large exhibited systematic numerical instability across five configurations; RoBERTa-large resolved stability but could not close the accuracy gap with feature-based methods.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{DCOL iteration summary. All experiments use Pythia-1.4B nucleus data. RF baseline: 78.2\\%.}\n\\label{tab:dcol_iterations}\n\\begin{tabular}{@{}llp{2.2cm}p{2.8cm}@{}}\n\\toprule\nVer. & Backbone & Config & Outcome \\\\\n\\midrule\nv1 & DeBERTa & FT, m\\_lr $10^{-3}$ & Embed.\\ collapse (31.5\\%) \\\\\nv2 & DeBERTa & FT, m\\_lr $10^{-4}$ & OOM \\\\\nv3 & DeBERTa & FT, m\\_lr $10^{-4}$ & Forgetting + OOM \\\\\nv4 & DeBERTa & LoRA, m\\_lr $10^{-3}$ & Embed.\\ collapse \\\\\nv5 & DeBERTa & LoRA, m\\_lr $10^{-4}$ & NaN gradients \\\\\nv6 & RoBERTa & FT, grad clip 1.0 & Stable; 64.5\\% ($-$13.7pp) \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\subsection{Zero-Shot LLM Prompt Template}\n\\label{app:zeroshot_prompt}\n\nBoth DeepSeek V3.2 and Qwen2.5-7B-Instruct use identical prompting.\nThe system message defines recursive generation depth with per-depth descriptions (depth~0: human-written; depth~1--3: successive LLM generation cycles) and lists expected textual patterns at each depth (vocabulary richness, repetition, coherence).\nThe user message presents the passage (truncated to ${\\approx}$384 words) and requests a JSON response containing an integer depth prediction (0--3), a confidence score, and a one-sentence reasoning.\nNo in-context examples are provided.\n\n\\begin{quote}\n\\small\n\\textbf{System:} ``You are an expert at detecting AI-generated text and estimating its generation depth. `Recursive generation depth' refers to how many times a text has been through an LLM generation cycle: Depth~0: Original human-written text [\\ldots] Depth~3: Text generated by an LLM given depth-2 text as input. Key patterns by depth: Depth~0 (human): Rich vocabulary [\\ldots] Depth~3 (third-gen): Noticeable repetition, formulaic structure [\\ldots]''\n\n\\textbf{User:} ``Analyze the following text and estimate its recursive generation depth (0, 1, 2, or 3). TEXT: \\{text\\}. Respond with ONLY a JSON object: \\{\\texttt{\"depth\"}: $\\langle$int 0--3$\\rangle$, \\texttt{\"confidence\"}: $\\langle$float 0--1$\\rangle$, \\texttt{\"reasoning\"}: $\\langle$str$\\rangle$\\}''\n\\end{quote}\n\n\\subsection{Temperature Robustness}\n\\label{app:multi_tau}\n\nThe cross-strategy results in \\S\\ref{sec:gen:crossstrategy} use a single temperature ($\\tau{=}0.9$).\nTo test whether depth signal generalizes across temperatures, we repeat the classification pipeline at $\\tau \\in \\{0.5, 0.7, 0.9, 1.1\\}$ on Pythia-1.4B.\n\n\\paragraph{Within-$\\tau$ robustness.}\nFor $\\tau \\in [0.5, 0.9]$, d1-vs-d2 AUC exceeds 0.80 (peak 0.851 at $\\tau{=}0.7$, comparable to nucleus $p{=}0.95$'s 0.861) and 4-class accuracy ranges from 75.4\\% to 77.3\\% (Table~\\ref{tab:multi_tau_within}), confirming the depth signal is not an artifact of a single temperature.\nThe same top-5 features (\\texttt{var\\_surprisal}, \\texttt{p90\\_ppl}, \\texttt{mean\\_ppl}, \\texttt{mean\\_surprisal}, \\texttt{p75\\_ppl}) dominate across all $\\tau$ values with only minor rank-order variation.\n\n\\paragraph{Collapse at $\\tau{=}1.1$: memorization as prerequisite.}\nAt $\\tau{=}1.1$, 4-class accuracy drops to 57.2\\% and d1v2 AUC falls to 0.528.\nTraining loss reveals the mechanism: at low temperature ($\\tau{=}0.5$), fine-tuning loss decreases steeply across recursive depths ($2.27 \\to 0.42 \\to 0.16$), indicating rapid memorization of the model's own output.\nAt $\\tau{=}1.1$, loss remains nearly flat ($2.27 \\to 1.91 \\to 1.85$)---high-entropy output resists memorization, so depth-dependent distributional shifts do not accumulate.\nThis establishes \\emph{memorization as a prerequisite} for detectable depth signal: recursive depth is discriminable only when successive fine-tuning iterations progressively reshape the output distribution.\n\n\\paragraph{Cross-$\\tau$ non-transferability.}\nLeave-one-$\\tau$-out transfer yields mean accuracy of 46.7\\% with mean d1v2 AUC of 0.319 (Table~\\ref{tab:multi_tau_cross})---worse than cross-strategy transfer (59.1\\%; \\S\\ref{sec:gen:crossstrategy}).\nHoldout $\\tau{=}0.5$ produces inverted d1v2 AUC (0.176), confirming that different temperatures produce surprisal distributions with incompatible shapes.\nThis extends the strategy-specificity finding: even within a single decoding family, the feature space is temperature-specific, reinforcing the need for strategy-conditioned classifiers.\n\n\\paragraph{Ecological validity.}\nOn WikiText-103 (546 editorial passages), all three model-specific RF classifiers achieve $\\geq$98.5\\% d0 accuracy despite $+$621\\% domain shift in mean perplexity---partly an easy case, as WikiText's higher perplexity places it farther from d1--d3 in feature space.\nOn noisier web-crawl data (5{,}000 C4 passages), FPR ranges from 4.7\\% (OLMo) to 22.4\\% (GPT-2~XL), concentrated in template/SEO content with high n-gram repetition (Table~\\ref{tab:calibration}); deployment on heterogeneous web data requires model-specific calibration.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Within-$\\tau$ 4-class classification (Pythia-1.4B, 5-fold CV). d$i$v$j$: pairwise AUC for depth $i$ vs.\\ depth $j$.}\n\\label{tab:multi_tau_within}\n\\begin{tabular}{@{}lcccc@{}}\n\\toprule\n$\\tau$ & 4-class acc (\\%) & d1v2 AUC & d0v1 AUC & d2v3 AUC \\\\\n\\midrule\n0.5 & 77.3 & 0.842 & 0.996 & 0.764 \\\\\n0.7 & 75.4 & 0.851 & 0.997 & 0.720 \\\\\n0.9 & 75.9 & 0.808 & 0.991 & 0.781 \\\\\n1.1 & 57.2 & 0.528 & 0.988 & 0.599 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Cross-$\\tau$ leave-one-out transfer (Pythia-1.4B). Train on three temperatures, test on the held-out one.}\n\\label{tab:multi_tau_cross}\n\\begin{tabular}{@{}lcc@{}}\n\\toprule\nHoldout & Acc (\\%) & d1v2 AUC \\\\\n\\midrule\n$\\tau{=}0.5$ & 52.2 & 0.176 \\\\\n$\\tau{=}0.7$ & 41.0 & 0.299 \\\\\n$\\tau{=}0.9$ & 46.4 & 0.277 \\\\\n$\\tau{=}1.1$ & 47.1 & 0.525 \\\\\n\\midrule\nMean & 46.7 & 0.319 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\subsection{Feature Overlap Analysis}\n\\label{app:feature_overlap}\n\nWe probe whether end-to-end PLM representations capture the same depth signals as our statistical features via linear probing of [CLS] representations from DeBERTa-v3-base and RoBERTa-base.\nPLM representations excel at surface lexical features (TTR: $R^2{=}0.85$, repeated bigrams) but fail to capture perplexity distribution statistics---\\textsc{var\\_surprisal} and \\textsc{p90\\_ppl} yield negative $R^2$ under linear probing, indicating these features are not linearly accessible in the pretrained representation space.\nThis confirms that the 19pp accuracy gap between feature-based and end-to-end methods (\\S\\ref{app:e2e}) stems from complementary---not redundant---representations: PLMs capture lexical patterns while the targeted statistical features capture distributional tail properties that constitute the dominant depth markers.\n\n\\subsection{End-to-End Learning}\n\\label{app:e2e}\n\nDeBERTa-v3-base \\cite{he2021_deberta_v3} and RoBERTa-base \\cite{liu2019_roberta} finetuned end-to-end achieve 58.3\\% ($\\pm$4.7\\%) and 59.5\\% ($\\pm$3.2\\%) respectively---lagging the RF baseline (78.2\\%) by 19.9pp and 18.7pp.\nThe 1.2pp inter-backbone gap rules out architecture bias; Table~\\ref{tab:e2e_detail} shows both backbones share the same failure mode---high d0 F1 ($>$0.94) but collapsed d1/d2 performance (F1 $\\leq$ 0.42)---while RF achieves 0.596 d2 recall, a $>$2$\\times$ advantage at the hardest depth class.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Per-class performance for end-to-end PLM classifiers vs.\\ RF baseline (Pythia-1.4B nucleus). PLM columns report F1; RF d2 column reports recall (the class with the largest PLM--RF gap). Both PLM backbones share the same failure pattern: collapsed d1/d2 scores despite adequate d0/d3.}\n\\label{tab:e2e_detail}\n\\begin{tabular}{@{}lccccc@{}}\n\\toprule\nMethod & Acc (\\%) & d0 & d1 & d2 & d3 \\\\\n\\midrule\nDeBERTa-v3 & 58.3\\,$\\pm$\\,4.7 & .947 & .378 & .247 & .656 \\\\\nRoBERTa-base & 59.5\\,$\\pm$\\,3.2 & .958 & .416 & .261 & .647 \\\\\n\\midrule\nRF (19 feat.) & 78.2 & --- & --- & .596$^\\dagger$ & --- \\\\\n\\bottomrule\n\\multicolumn{6}{@{}l}{\\footnotesize $^\\dagger$Recall; shown for the depth class with the largest PLM--RF gap.}\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Feature space divergence.}\nSHAP TreeExplainer analysis confirms that perplexity and surprisal features account for 88.8\\% of RF's total contribution.\nThree independent importance measures---SHAP, Gini, and permutation---show strong concordance (Kendall's $W{=}0.90$, $p{<}0.005$; pairwise Spearman $\\rho$: SHAP--Gini $0.93$, SHAP--permutation $0.84$; \\S\\ref{app:permutation}), with \\texttt{p90\\_ppl} appearing in the SHAP top-2 in 9/9 cells and \\texttt{var\\_surprisal} in 8/9.\nLinear probing of PLM [CLS] representations yields negative $R^2$ for both \\texttt{var\\_surprisal} and \\texttt{p90\\_ppl} (\\S\\ref{app:feature_overlap}), indicating that pretrained representations lack the linear structure needed to recover perplexity tail statistics---a systematic representational gap rather than a backbone-specific artifact.\n\nDCOL \\cite{cloc2025} reached 64.5\\% (\\S\\ref{app:dcol_iterations}); all end-to-end approaches (58--65\\%) underperform feature-based methods, suggesting depth estimation benefits from targeted statistical features that capture distributional tail properties absent from PLM representations.\nThis comparison is bounded by backbone scale ($\\leq$125M parameters); whether larger PLMs (e.g., 7B+) can close the gap via richer internal representations remains an open question.\n\n\\subsection{Domain Bias Analysis}\n\\label{app:domain_bias}\n\nTo assess whether the classifier exploits depth-related features or memorizes stylistic cues from individual seed articles, we conduct three sub-experiments.\n\n\\paragraph{Methodological note.}\nAn initial implementation assigned sample IDs with a global counter across depths, inadvertently correlating seed-group identity with depth (LOGO accuracy 64.0\\%, seed-group prediction 20.8\\%).\nWe discovered the issue during internal review, corrected to per-depth seed assignment ensuring each group contains equal samples per depth, and re-ran all sub-experiments.\nThe results below use the corrected pipeline; the initial (buggy) numbers are reported for transparency.\n\n\\paragraph{Sub-A: Standard CV.}\nFive-fold CV accuracy on 3-class (d1/d2/d3) classification ranges from 59\\% to 82\\% across the 9 atlas cells (up to 2.5$\\times$ above the 33.3\\% chance level), confirming that depth signal is the dominant classification factor.\n\n\\paragraph{Sub-B: LOGO evaluation.}\nWe assign each passage to one of 10 seed-article groups (balanced: each group contains equal samples per depth) and perform leave-one-group-out CV.\nLOGO mean accuracy is 72.1\\% (range 59.5--81.6\\%), matching standard CV (72.0\\%) within noise (before fix: 64.0\\%, reflecting the depth--group confound).\nPer-cell fold standard deviations range from 0.4pp to 1.4pp, indicating that cross-group generalization is as reliable as within-group classification.\n\n\\paragraph{Sub-C: Negative control.}\nWe train two classifiers on identical features: one predicting depth, the other predicting seed-group identity (10-class, chance = 10\\%).\nDepth prediction accuracy averages 72.0\\%; seed-group prediction averages 10.2\\%---indistinguishable from chance (before fix: 20.8\\%, inflated by the depth--group confound).\nThe depth-to-seed-group accuracy ratio is 7.1$\\times$, confirming that the feature representation encodes depth but not seed-article identity.\n\nTaken together, these results show that seed-article grouping has no measurable effect on depth estimation after correcting the group assignment: LOGO accuracy equals standard CV, and seed-group prediction is at chance.\n\n\\subsection{Wild-Data Calibration}\n\\label{app:calibration}\n\nTable~\\ref{tab:calibration} reports d0 accuracy and false positive rate (FPR) for all three model-specific nucleus RF classifiers on two out-of-distribution human-text corpora: WikiText-103 (546 editorial passages) and C4 (5{,}000 web-crawl passages).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Wild-data d0 accuracy and FPR for nucleus RF classifiers. All passages are human-written (true d0). FPR = fraction misclassified as d1+. 95\\% Wilson CIs computed for C4 ($n{=}5{,}000$).}\n\\label{tab:calibration}\n\\begin{tabular}{@{}llrccc@{}}\n\\toprule\nModel & Source & $n$ & d0 (\\%) & FPR (\\%) & 95\\% Wilson CI \\\\\n\\midrule\nPythia-1.4B & WikiText & 546 & 100.0 & 0.0 & --- \\\\\n & C4 & 5{,}000 & 79.8 & 20.2 & [19.1, 21.3] \\\\\n\\addlinespace\nGPT-2~XL & WikiText & 546 & 99.3 & 0.7 & --- \\\\\n & C4 & 5{,}000 & 77.6 & 22.4 & [21.3, 23.6] \\\\\n\\addlinespace\nOLMo-1B & WikiText & 546 & 98.5 & 1.5 & --- \\\\\n & C4 & 5{,}000 & 95.3 & 4.7 & [4.2, 5.3] \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nOn WikiText-103, all three classifiers achieve $\\geq$98.5\\% d0 accuracy, confirming that editorial text is reliably distinguished from recursive generations across model families.\nOn C4, FPR varies sharply: OLMo (4.7\\%) vs.\\ Pythia (20.2\\%) and GPT-2~XL (22.4\\%).\nC4 misclassifications concentrate in template and SEO content with elevated repetition features (\\texttt{rep\\_3gram} $+$37\\%, \\texttt{rep\\_4gram} $+$75\\% vs.\\ correctly classified d0 passages), rather than in random noise.\nThe model gap likely reflects training data composition: OLMo (trained on Dolma, which includes diverse web data) produces d0 features more tolerant of web-crawl variation, while Pythia and GPT-2~XL (trained primarily on Wikipedia/WebText) map template-heavy content into the d1+ region.\nAmong C4 false positives for GPT-2~XL, predictions distribute as d1 (9.0\\%), d2 (3.7\\%), d3 (9.6\\%); for OLMo, d1 (2.9\\%), d2 (0.5\\%), d3 (1.3\\%)---the non-uniform depth distribution suggests the classifier maps specific repetition patterns to particular depth signatures rather than producing random misclassifications.\n\n\\subsection{Downstream Curation PoC}\n\\label{app:curation_poc}\n\nTo validate that depth estimation translates to actionable data curation, we conduct a proof-of-concept downstream evaluation.\nWe fine-tune Pythia-410M with LoRA ($r{=}16$, $\\alpha{=}32$) for 3 epochs on 8 data conditions derived from the Pythia nucleus depth-estimation corpus, repeating each condition over 5 random seeds.\nConditions vary the selection mechanism (RF-predicted depth, oracle depth, random subsampling) and stringency (strict $\\approx$25\\%, moderate $\\approx$50\\%, soft threshold).\nTable~\\ref{tab:curation_poc} reports per-condition perplexity; Table~\\ref{tab:curation_comparisons} reports pairwise contrasts.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Curation PoC: per-condition perplexity (Pythia-410M LoRA, 5 seeds). $\\Delta$ is signed so that positive values indicate lower (better) perplexity than unfiltered. $^*$\\,: $p<0.05$ (paired $t$-test vs.\\ unfiltered).}\n\\label{tab:curation_poc}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}lcccccc@{}}\n\\toprule\nCondition & Mean PPL & Std & $n$ & $\\Delta$ vs Unfilt. & $p$ & $d_z$ \\\\\n\\midrule\nunfiltered        & 15.776 & 0.066 & 10{,}000 & ---      & ---   & ---      \\\\\nrf\\_soft          & 15.733 & 0.038 &  4{,}422 & +0.043   & 0.407 &  0.41    \\\\\nrf\\_moderate      & 15.756 & 0.056 &  4{,}940 & +0.021   & 0.492 &  0.34    \\\\\nrf\\_strict        & 15.810 & 0.061 &  2{,}496 & $-$0.034 & 0.607 & $-$0.25  \\\\\noracle\\_moderate  & 15.809 & 0.103 &  5{,}000 & $-$0.033 & 0.485 & $-$0.34  \\\\\noracle\\_strict    & 15.879 & 0.128 &  2{,}500 & $-$0.103 & 0.216 & $-$0.66  \\\\\nrandom\\_soft      & 16.062 & 0.079 &  4{,}422 & $-$0.286 & ${<}$0.001$^*$ & $-$2.77  \\\\\nrandom\\_moderate  & 15.998 & 0.090 &  4{,}940 & $-$0.222 & 0.028$^*$ & $-$1.50  \\\\\nrandom\\_strict    & 16.239 & 0.165 &  2{,}496 & $-$0.463 & 0.013$^*$ & $-$1.89  \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Pairwise comparisons (paired $t$-test, 5 seeds). $^*$\\,: $p<0.05$; $^{**}$\\,: $p<0.01$.}\n\\label{tab:curation_comparisons}\n\\begin{tabular}{@{}lccc@{}}\n\\toprule\nComparison & $\\Delta$ PPL & $t$ & $p$ \\\\\n\\midrule\nrf\\_strict vs random\\_strict     & 0.429 & $-$7.05 & 0.002$^{**}$ \\\\\nrf\\_moderate vs random\\_moderate & 0.242 & $-$3.77 & 0.020$^*$    \\\\\nrf\\_soft vs random\\_soft         & 0.328 & $-$17.98 & ${<}$0.001$^{**}$ \\\\\nrf\\_soft vs unfiltered           & 0.043 &    0.93 & 0.407        \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\subsection{Reference Model Ablation}\n\\label{app:ref_ablation}\n\n\\begin{table}[h]\n\\centering\n\\caption{Reference model ablation. Classification accuracy (5-fold CV) on Pythia-1.4B generated text (nucleus, d0--d3) using different reference models for feature extraction.}\n\\label{tab:ref_ablation}\n\\begin{tabular}{lcc}\n\\toprule\nReference Model & Architecture & Accuracy (\\%) \\\\\n\\midrule\nPythia-1.4B (self) & GPT-NeoX & 78.6 $\\pm$ 0.6 \\\\\nOLMo-1B (cross) & OLMo & 74.5 $\\pm$ 0.7 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\subsection{Cross-Boundary Generalization}\n\\label{app:cross_boundary}\n\nThe preceding experiments assume a single model family generates all recursive depths.\nIn practice, recursive contamination may traverse model boundaries: text generated by model~A is used to train model~B, whose output trains model~C.\nWe probe whether the depth signal persists under two relaxations of the single-model assumption.\n\n\\paragraph{Cross-model recursive chains.}\nWe construct a heterogeneous chain: human text (d0) $\\to$ Pythia-1.4B generates d1 $\\to$ OLMo-1B finetuned on Pythia-d1 generates d2 $\\to$ GPT-2~XL finetuned on OLMo-d2 generates d3.\nEach recursive step uses a \\emph{different} model family, eliminating the possibility that depth signal arises from a single model's idiosyncratic behavior.\nA 4-class Random Forest achieves 84.75\\% accuracy (95\\% CI $[81.0, 88.25]$), with per-depth F1 scores of 0.98 (d0), 0.88 (d1), 0.76 (d2), and 0.76 (d3).\nPairwise AUC remains high: d0-vs-d1 = 0.999 and d2-vs-d3 = 0.841.\nThese results suggest that distributional artifacts of recursive generation persist across model boundaries---providing preliminary evidence consistent with a process-level depth signal rather than individual generator artifacts.\n\n\\paragraph{Confound discussion.}\nThe heterogeneous chain confounds architecture identity with depth (d1=Pythia, d2=OLMo, d3=GPT-2~XL).\nHowever, if the classifier exploited architecture fingerprints rather than depth signal, near-perfect accuracy would be expected since architecture perfectly determines depth label.\nThe observed 84.75\\% with monotonically decreasing per-depth F1 (d0=0.98, d1=0.88, d2=0.76, d3=0.76) is more consistent with a depth-signal interpretation, as architecture fingerprinting would not produce this graded pattern.\nNevertheless, definitive disentanglement requires a reverse-order chain or architecture-balanced design.\n\n\\paragraph{Cross-domain transfer.}\nAll prior experiments use WikiText-103 as the seed corpus.\nTo test domain dependence, we repeat the pipeline with arXiv abstracts as the seed text (Pythia-1.4B, nucleus $p{=}0.95$, 500 samples per depth, d0--d3).\nFive-fold cross-validation yields 74.1\\% $\\pm$ 2.0\\% accuracy, compared to ${\\sim}$78\\% on the WikiText seed.\nPer-depth F1 shows the familiar pattern: d0 = 1.00, d1 = 0.78, d2 = 0.52, d3 = 0.66---with d2 remaining the most challenging class.\nThe 4pp accuracy gap relative to WikiText likely reflects the narrower stylistic range of scientific abstracts, which may reduce the distributional contrast between adjacent depths.\nThese results provide preliminary evidence that the perplexity-based features capture properties of the recursive generation process rather than domain-specific artifacts of the seed corpus.\n\n\\subsection{Extended Discussion}\n\\label{app:extended_discussion}\n\n\\paragraph{Depth-graduated curation.}\nCurrent data curation operates on a binary human-vs-machine distinction \\cite{dsir2023,qurating2024}.\nRecursive generation depth estimation enables a finer-grained alternative: retain low-depth generations (d1) whose distributional properties remain close to the human source, while down-weighting or filtering high-depth text (d3+) where tail erosion has degraded quality.\nThe 70--85\\% in-distribution accuracy and $\\mathrm{EDD}_{0.75}{=}4$ suggest depth-graduated filtering is feasible within known model--strategy configurations, though the d1/d2 boundary inversion under cross-strategy transfer (\\S\\ref{sec:gen:crossstrategy}) means reliable curation requires either known decoding strategy metadata or an upstream strategy-identification step; a pilot study (Appendix~\\ref{app:curation_poc}) yields an inconclusive RF-vs-unfiltered comparison ($p>0.4$), though RF-filtered subsets significantly outperform size-matched random subsampling ($p<0.001$--$0.02$); large-scale validation remains open.\nImportance weighting \\cite{sugiyama2007_importance_weighting} could further enable continuous depth-aware data selection rather than discrete thresholding.\n\n\\paragraph{Toward a provenance toolkit.}\nDepth estimation complements existing provenance methods along orthogonal axes.\nWatermarking \\cite{kirchenbauer2023_watermark} provides high-confidence attribution when the generator cooperates but is inapplicable to unwatermarked text.\nSource attribution \\cite{uchendu2020_attribution} identifies the generating model but not the generation history.\nDepth estimation characterizes \\emph{iterative reuse} regardless of generator cooperation or identity.\nA layered provenance system combining these three signals---watermark presence, source model, and recursive generation depth---could support more nuanced data auditing than any single method.\nTEXEOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c2c0ed52-83c1-4bde-be4c-2236eea4bdd1",
+  "isSidechain": false,
+  "requestId": "req_011Cb6K2v9DPKMigFrZtb2wy",
+  "type": "assistant",
+  "uuid": "cebc7a3d-35a2-448f-903b-c03ee6ebff46",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Retj3GodnKMDBG4r3bJN1x",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6850,
+      "cache_read_input_tokens": 53518,
+      "output_tokens": 20083,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6850,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 20083,
+          "cache_read_input_tokens": 53518,
+          "cache_creation_input_tokens": 6850,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6850
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 55_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "cebc7a3d-35a2-448f-903b-c03ee6ebff46",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 56_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Sync R4 tex revisions and compile paper",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b"
+}
+```
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-16T13:24:19.494Z_
+
+<details><summary>↩ Tool result · `toolu_01B4uxMAXkytTpj9oF6TjSP1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.87}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cebc7a3d-35a2-448f-903b-c03ee6ebff46",
+  "isSidechain": false,
+  "promptId": "6da10313-6a8f-475a-9e62-751bf1f7e158",
+  "type": "user",
+  "uuid": "29482fcb-960f-4289-8df6-baf762c24a22",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.87}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.87}}"
+    }
+  },
+  "sourceToolAssistantUUID": "cebc7a3d-35a2-448f-903b-c03ee6ebff46",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 58 · 2026-05-16T13:24:19.498Z_
+
+```json
+{
+  "parentUuid": "29482fcb-960f-4289-8df6-baf762c24a22",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "b020b0c0-4d54-434c-aeb2-13cd8cd96f7f",
+  "timestamp": "2026-05-16T13:24:19.498Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 59 · 2026-05-16T13:24:28.944Z_
+
+8 个文件全部同步成功。开始编译。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b020b0c0-4d54-434c-aeb2-13cd8cd96f7f",
+  "isSidechain": false,
+  "requestId": "req_011Cb6KbBjiiw3Fq8SgALkQv",
+  "type": "assistant",
+  "uuid": "6c7bf0a1-5d60-4acf-b7f5-c735be7289e3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014jnumwGxpNkXywoBH7Auz7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 20579,
+      "cache_read_input_tokens": 60368,
+      "output_tokens": 181,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20579,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 181,
+          "cache_read_input_tokens": 60368,
+          "cache_creation_input_tokens": 20579,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20579
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-16T13:24:30.568Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01PWrXAE37cD57oZMoLGWo54`</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "cd /root/autodl-tmp/recursive_gen_depth_est/paper && pdflatex -interaction=nonstopmode main && bibtex main && pdflatex -interaction=nonstopmode main && pdflatex -interaction=nonstopmode main",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6c7bf0a1-5d60-4acf-b7f5-c735be7289e3",
+  "isSidechain": false,
+  "requestId": "req_011Cb6KbBjiiw3Fq8SgALkQv",
+  "type": "assistant",
+  "uuid": "86146db8-ab5c-4afc-b4b8-2a4850a62eec",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014jnumwGxpNkXywoBH7Auz7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 20579,
+      "cache_read_input_tokens": 60368,
+      "output_tokens": 181,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20579,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 181,
+          "cache_read_input_tokens": 60368,
+          "cache_creation_input_tokens": 20579,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20579
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-16T13:24:33.492Z_
+
+<details><summary>↩ Tool result · `toolu_01PWrXAE37cD57oZMoLGWo54`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex)\\n restricted \\\\write18 enabled.\\nentering extended mode\\n(./main.tex\\nLaTeX2e <2021-11-15> patch level 1\\nL3 programming layer <2022-01-21>\\n(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls\\nDocument Class: article 2021/10/04 v1.4n Standard LaTeX document class\\n(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo)) (./acl.sty\\nConference Style for ACL\\n(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty\\n(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)\\n(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def))\\n(/usr/share/texlive/texmf-dist/tex/latex/lineno/lineno.sty)\\n(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)\\n(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty\\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)\\n(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty\\n(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))\\n(/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty\\n(/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty))\\n(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty)\\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty\\n(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)\\n(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty\\n(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty))\\n(/usr/share/texlive/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty)\\n(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)\\n(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty)\\n(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)\\n(/usr/share/texlive/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty)\\n(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)\\n(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)\\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)\\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref-langpatches.def)\\n(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)\\n(/usr/share/texlive/texmf-dist/tex/generic/etexcmds/etexcmds.sty)\\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)\\n(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)\\n(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty\\n(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))\\n(/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty))\\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def\\n(/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty)\\n(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty\\n(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty))))\\n(/usr/share/texlive/texmf-dist/tex/latex/psnfss/times.sty)\\n(/usr/share/texlive/texmf-dist/tex/latex/base/latexsym.sty)\\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty\\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty\\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)\\n(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)))\\n(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)\\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty\\nFor additional information on amsmath, use the `?' option.\\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty\\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))\\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)\\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))\\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty\\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))\\n(/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty)\\n(/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty)\\n(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty\\n(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd))\\n(/usr/share/texliv\\n\\n... [截断: 输出过长，省略 46304 字符] ...\\n\\nnderfull \\\\hbox (badness 10000) in paragraph at lines 65--66\\n[]\\\\T1/ptm/m/n/9 (+20) Embed. col-lapse\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 68--68\\n[]\\\\T1/ptm/m/n/9 (+20) LoRA, m_lr\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 69--69\\n[]\\\\T1/ptm/m/n/9 (+20) LoRA, m_lr\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 70--71\\n[]\\\\T1/ptm/m/n/9 (+20) Stable; 64.5%\\n\\nOverfull \\\\hbox (9.66736pt too wide) in paragraph at lines 61--73\\n [][] \\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nUnderfull \\\\hbox (badness 1590) in paragraph at lines 97--99\\n\\\\T1/ptm/m/n/10.95 (+20) ar-ti-fact of a sin-gle tem-per-a-ture. The same\\n\\nUnderfull \\\\hbox (badness 1314) in paragraph at lines 97--99\\n\\\\T1/ptm/m/n/10.95 (+20) top-5 fea-tures (\\\\T1/pcr/m/n/10.95 var_surprisal\\\\T1/ptm\\n/m/n/10.95 (+20) , \\\\T1/pcr/m/n/10.95 p90_ppl\\\\T1/ptm/m/n/10.95 (+20) ,\\n\\nUnderfull \\\\hbox (badness 4403) in paragraph at lines 97--99\\n\\\\T1/pcr/m/n/10.95 mean_ppl\\\\T1/ptm/m/n/10.95 (+20) , \\\\T1/pcr/m/n/10.95 mean_surp\\nrisal\\\\T1/ptm/m/n/10.95 (+20) , \\\\T1/pcr/m/n/10.95 p75_ppl\\\\T1/ptm/m/n/10.95 (+20)\\n )\\n[15]\\nOverfull \\\\hbox (11.39702pt too wide) in paragraph at lines 120--130\\n [][] \\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nOverfull \\\\hbox (21.15677pt too wide) in paragraph at lines 169--180\\n [][] \\n[16]\\nOverfull \\\\hbox (49.9195pt too wide) in paragraph at lines 225--239\\n [][] \\n[17]\\nOverfull \\\\hbox (27.40132pt too wide) in paragraph at lines 283--293\\n [][] \\n\\nOverfull \\\\hbox (11.34003pt too wide) in paragraph at lines 302--310\\n [][] \\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 327--331\\n []\\\\T1/ptm/b/n/10.95 (+20) Confound dis-cus-sion.[] \\\\T1/ptm/m/n/10.95 (+20) The\\n het-ero-ge-neous\\n\\nUnderfull \\\\hbox (badness 4181) in paragraph at lines 327--331\\n\\\\T1/ptm/m/n/10.95 (+20) with mono-ton-i-cally de-creas-ing per-depth F1\\n\\nUnderfull \\\\hbox (badness 1424) in paragraph at lines 327--331\\n\\\\T1/ptm/m/n/10.95 (+20) ar-chi-tec-ture fin-ger-print-ing would not pro-duce\\n\\nUnderfull \\\\hbox (badness 1502) in paragraph at lines 327--331\\n\\\\T1/ptm/m/n/10.95 (+20) this graded pat-tern. Nev-er-the-less, defini-tive\\n[18])\\n\\nPackage lineno Warning: Linenumber reference failed, \\n(lineno)                rerun to get it right.\\n\\n[19] (./main.aux) )\\n(see the transcript file for additional information){/usr/share/texlive/texmf-d\\nist/fonts/enc/dvips/base/8r.enc}&lt;/usr/share/texlive/texmf-dist/fonts/type1/publ\\nic/amsfonts/cm/cmbx10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/ams\\nfonts/cm/cmex10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/\\ncm/cmmi10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmm\\ni6.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb>\\n&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb>&lt;/usr/s\\nhare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb>&lt;/usr/share/te\\nxlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb>&lt;/usr/share/texlive/t\\nexmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb>&lt;/usr/share/texlive/texmf-dis\\nt/fonts/type1/public/amsfonts/cm/cmr7.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/\\ntype1/public/amsfonts/cm/cmr8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/pu\\nblic/amsfonts/cm/cmr9.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/ams\\nfonts/cm/cmsy10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/\\ncm/cmsy6.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy\\n7.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><\\n/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb>&lt;/usr/sh\\nare/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb>&lt;/usr/share/texlive/t\\nexmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fo\\nnts/type1/urw/times/utmb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/t\\nimes/utmr8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pf\\nb>\\nOutput written on main.pdf (19 pages, 465981 bytes).\\nTranscript written on main.log.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.91}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "86146db8-ab5c-4afc-b4b8-2a4850a62eec",
+  "isSidechain": false,
+  "promptId": "6da10313-6a8f-475a-9e62-751bf1f7e158",
+  "type": "user",
+  "uuid": "708ee718-1658-40dd-8d80-b356dfb976b8",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex)\\\\n restricted \\\\\\\\write18 enabled.\\\\nentering extended mode\\\\n(./main.tex\\\\nLaTeX2e <2021-11-15> patch level 1\\\\nL3 programming layer <2022-01-21>\\\\n(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls\\\\nDocument Class: article 2021/10/04 v1.4n Standard LaTeX document class\\\\n(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo)) (./acl.sty\\\\nConference Style for ACL\\\\n(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty\\\\n(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)\\\\n(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def))\\\\n(/usr/share/texlive/texmf-dist/tex/latex/lineno/lineno.sty)\\\\n(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)\\\\n(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty\\\\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)\\\\n(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty\\\\n(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))\\\\n(/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty\\\\n(/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty))\\\\n(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty)\\\\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty\\\\n(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)\\\\n(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty\\\\n(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty))\\\\n(/usr/share/texlive/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty)\\\\n(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)\\\\n(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty)\\\\n(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)\\\\n(/usr/share/texlive/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty)\\\\n(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)\\\\n(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)\\\\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)\\\\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref-langpatches.def)\\\\n(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)\\\\n(/usr/share/texlive/texmf-dist/tex/generic/etexcmds/etexcmds.sty)\\\\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)\\\\n(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)\\\\n(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty\\\\n(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))\\\\n(/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty))\\\\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def\\\\n(/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty)\\\\n(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty\\\\n(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty))))\\\\n(/usr/share/texlive/texmf-dist/tex/latex/psnfss/times.sty)\\\\n(/usr/share/texlive/texmf-dist/tex/latex/base/latexsym.sty)\\\\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty\\\\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty\\\\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)\\\\n(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)))\\\\n(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)\\\\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty\\\\nFor additional information on amsmath, use the `?' option.\\\\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty\\\\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))\\\\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)\\\\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))\\\\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty\\\\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))\\\\n(/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty)\\\\n(/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty)\\\\n(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty\\\\n(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd))\\\\n(/usr/share/texliv\\\\n\\\\n... [截断: 输出过长，省略 46304 字符] ...\\\\n\\\\nnderfull \\\\\\\\hbox (badness 10000) in paragraph at lines 65--66\\\\n[]\\\\\\\\T1/ptm/m/n/9 (+20) Embed. col-lapse\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 10000) in paragraph at lines 68--68\\\\n[]\\\\\\\\T1/ptm/m/n/9 (+20) LoRA, m_lr\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 10000) in paragraph at lines 69--69\\\\n[]\\\\\\\\T1/ptm/m/n/9 (+20) LoRA, m_lr\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 10000) in paragraph at lines 70--71\\\\n[]\\\\\\\\T1/ptm/m/n/9 (+20) Stable; 64.5%\\\\n\\\\nOverfull \\\\\\\\hbox (9.66736pt too wide) in paragraph at lines 61--73\\\\n [][] \\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1590) in paragraph at lines 97--99\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) ar-ti-fact of a sin-gle tem-per-a-ture. The same\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1314) in paragraph at lines 97--99\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) top-5 fea-tures (\\\\\\\\T1/pcr/m/n/10.95 var_surprisal\\\\\\\\T1/ptm\\\\n/m/n/10.95 (+20) , \\\\\\\\T1/pcr/m/n/10.95 p90_ppl\\\\\\\\T1/ptm/m/n/10.95 (+20) ,\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 4403) in paragraph at lines 97--99\\\\n\\\\\\\\T1/pcr/m/n/10.95 mean_ppl\\\\\\\\T1/ptm/m/n/10.95 (+20) , \\\\\\\\T1/pcr/m/n/10.95 mean_surp\\\\nrisal\\\\\\\\T1/ptm/m/n/10.95 (+20) , \\\\\\\\T1/pcr/m/n/10.95 p75_ppl\\\\\\\\T1/ptm/m/n/10.95 (+20)\\\\n )\\\\n[15]\\\\nOverfull \\\\\\\\hbox (11.39702pt too wide) in paragraph at lines 120--130\\\\n [][] \\\\n\\\\nLaTeX Warning: `h' float specifier changed to `ht'.\\\\n\\\\n\\\\nOverfull \\\\\\\\hbox (21.15677pt too wide) in paragraph at lines 169--180\\\\n [][] \\\\n[16]\\\\nOverfull \\\\\\\\hbox (49.9195pt too wide) in paragraph at lines 225--239\\\\n [][] \\\\n[17]\\\\nOverfull \\\\\\\\hbox (27.40132pt too wide) in paragraph at lines 283--293\\\\n [][] \\\\n\\\\nOverfull \\\\\\\\hbox (11.34003pt too wide) in paragraph at lines 302--310\\\\n [][] \\\\n\\\\nUnderfull \\\\\\\\hbox (badness 10000) in paragraph at lines 327--331\\\\n []\\\\\\\\T1/ptm/b/n/10.95 (+20) Confound dis-cus-sion.[] \\\\\\\\T1/ptm/m/n/10.95 (+20) The\\\\n het-ero-ge-neous\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 4181) in paragraph at lines 327--331\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) with mono-ton-i-cally de-creas-ing per-depth F1\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1424) in paragraph at lines 327--331\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) ar-chi-tec-ture fin-ger-print-ing would not pro-duce\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1502) in paragraph at lines 327--331\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) this graded pat-tern. Nev-er-the-less, defini-tive\\\\n[18])\\\\n\\\\nPackage lineno Warning: Linenumber reference failed, \\\\n(lineno)                rerun to get it right.\\\\n\\\\n[19] (./main.aux) )\\\\n(see the transcript file for additional information){/usr/share/texlive/texmf-d\\\\nist/fonts/enc/dvips/base/8r.enc}&lt;/usr/share/texlive/texmf-dist/fonts/type1/publ\\\\nic/amsfonts/cm/cmbx10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/ams\\\\nfonts/cm/cmex10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/\\\\ncm/cmmi10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmm\\\\ni6.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb>\\\\n&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb>&lt;/usr/s\\\\nhare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb>&lt;/usr/share/te\\\\nxlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb>&lt;/usr/share/texlive/t\\\\nexmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb>&lt;/usr/share/texlive/texmf-dis\\\\nt/fonts/type1/public/amsfonts/cm/cmr7.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/\\\\ntype1/public/amsfonts/cm/cmr8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/pu\\\\nblic/amsfonts/cm/cmr9.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/ams\\\\nfonts/cm/cmsy10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/\\\\ncm/cmsy6.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy\\\\n7.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><\\\\n/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb>&lt;/usr/sh\\\\nare/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb>&lt;/usr/share/texlive/t\\\\nexmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fo\\\\nnts/type1/urw/times/utmb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/t\\\\nimes/utmr8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pf\\\\nb>\\\\nOutput written on main.pdf (19 pages, 465981 bytes).\\\\nTranscript written on main.log.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.91}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex)\\n restricted \\\\write18 enabled.\\nentering extended mode\\n(./main.tex\\nLaTeX2e <2021-11-15> patch level 1\\nL3 programming layer <2022-01-21>\\n(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls\\nDocument Class: article 2021/10/04 v1.4n Standard LaTeX document class\\n(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo)) (./acl.sty\\nConference Style for ACL\\n(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty\\n(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)\\n(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def))\\n(/usr/share/texlive/texmf-dist/tex/latex/lineno/lineno.sty)\\n(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)\\n(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty\\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)\\n(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty\\n(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))\\n(/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty\\n(/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty))\\n(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty)\\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty\\n(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)\\n(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty\\n(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty))\\n(/usr/share/texlive/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty)\\n(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)\\n(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty)\\n(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)\\n(/usr/share/texlive/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty)\\n(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)\\n(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)\\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)\\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref-langpatches.def)\\n(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)\\n(/usr/share/texlive/texmf-dist/tex/generic/etexcmds/etexcmds.sty)\\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)\\n(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)\\n(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty\\n(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))\\n(/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty))\\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def\\n(/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty)\\n(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty\\n(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty))))\\n(/usr/share/texlive/texmf-dist/tex/latex/psnfss/times.sty)\\n(/usr/share/texlive/texmf-dist/tex/latex/base/latexsym.sty)\\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty\\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty\\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)\\n(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)))\\n(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)\\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty\\nFor additional information on amsmath, use the `?' option.\\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty\\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))\\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)\\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))\\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty\\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))\\n(/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty)\\n(/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty)\\n(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty\\n(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd))\\n(/usr/share/texliv\\n\\n... [截断: 输出过长，省略 46304 字符] ...\\n\\nnderfull \\\\hbox (badness 10000) in paragraph at lines 65--66\\n[]\\\\T1/ptm/m/n/9 (+20) Embed. col-lapse\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 68--68\\n[]\\\\T1/ptm/m/n/9 (+20) LoRA, m_lr\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 69--69\\n[]\\\\T1/ptm/m/n/9 (+20) LoRA, m_lr\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 70--71\\n[]\\\\T1/ptm/m/n/9 (+20) Stable; 64.5%\\n\\nOverfull \\\\hbox (9.66736pt too wide) in paragraph at lines 61--73\\n [][] \\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nUnderfull \\\\hbox (badness 1590) in paragraph at lines 97--99\\n\\\\T1/ptm/m/n/10.95 (+20) ar-ti-fact of a sin-gle tem-per-a-ture. The same\\n\\nUnderfull \\\\hbox (badness 1314) in paragraph at lines 97--99\\n\\\\T1/ptm/m/n/10.95 (+20) top-5 fea-tures (\\\\T1/pcr/m/n/10.95 var_surprisal\\\\T1/ptm\\n/m/n/10.95 (+20) , \\\\T1/pcr/m/n/10.95 p90_ppl\\\\T1/ptm/m/n/10.95 (+20) ,\\n\\nUnderfull \\\\hbox (badness 4403) in paragraph at lines 97--99\\n\\\\T1/pcr/m/n/10.95 mean_ppl\\\\T1/ptm/m/n/10.95 (+20) , \\\\T1/pcr/m/n/10.95 mean_surp\\nrisal\\\\T1/ptm/m/n/10.95 (+20) , \\\\T1/pcr/m/n/10.95 p75_ppl\\\\T1/ptm/m/n/10.95 (+20)\\n )\\n[15]\\nOverfull \\\\hbox (11.39702pt too wide) in paragraph at lines 120--130\\n [][] \\n\\nLaTeX Warning: `h' float specifier changed to `ht'.\\n\\n\\nOverfull \\\\hbox (21.15677pt too wide) in paragraph at lines 169--180\\n [][] \\n[16]\\nOverfull \\\\hbox (49.9195pt too wide) in paragraph at lines 225--239\\n [][] \\n[17]\\nOverfull \\\\hbox (27.40132pt too wide) in paragraph at lines 283--293\\n [][] \\n\\nOverfull \\\\hbox (11.34003pt too wide) in paragraph at lines 302--310\\n [][] \\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 327--331\\n []\\\\T1/ptm/b/n/10.95 (+20) Confound dis-cus-sion.[] \\\\T1/ptm/m/n/10.95 (+20) The\\n het-ero-ge-neous\\n\\nUnderfull \\\\hbox (badness 4181) in paragraph at lines 327--331\\n\\\\T1/ptm/m/n/10.95 (+20) with mono-ton-i-cally de-creas-ing per-depth F1\\n\\nUnderfull \\\\hbox (badness 1424) in paragraph at lines 327--331\\n\\\\T1/ptm/m/n/10.95 (+20) ar-chi-tec-ture fin-ger-print-ing would not pro-duce\\n\\nUnderfull \\\\hbox (badness 1502) in paragraph at lines 327--331\\n\\\\T1/ptm/m/n/10.95 (+20) this graded pat-tern. Nev-er-the-less, defini-tive\\n[18])\\n\\nPackage lineno Warning: Linenumber reference failed, \\n(lineno)                rerun to get it right.\\n\\n[19] (./main.aux) )\\n(see the transcript file for additional information){/usr/share/texlive/texmf-d\\nist/fonts/enc/dvips/base/8r.enc}&lt;/usr/share/texlive/texmf-dist/fonts/type1/publ\\nic/amsfonts/cm/cmbx10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/ams\\nfonts/cm/cmex10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/\\ncm/cmmi10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmm\\ni6.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb>\\n&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb>&lt;/usr/s\\nhare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb>&lt;/usr/share/te\\nxlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb>&lt;/usr/share/texlive/t\\nexmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb>&lt;/usr/share/texlive/texmf-dis\\nt/fonts/type1/public/amsfonts/cm/cmr7.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/\\ntype1/public/amsfonts/cm/cmr8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/pu\\nblic/amsfonts/cm/cmr9.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/ams\\nfonts/cm/cmsy10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/\\ncm/cmsy6.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy\\n7.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><\\n/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb>&lt;/usr/sh\\nare/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb>&lt;/usr/share/texlive/t\\nexmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fo\\nnts/type1/urw/times/utmb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/t\\nimes/utmr8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pf\\nb>\\nOutput written on main.pdf (19 pages, 465981 bytes).\\nTranscript written on main.log.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.91}}"
+    }
+  },
+  "sourceToolAssistantUUID": "86146db8-ab5c-4afc-b4b8-2a4850a62eec",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 62 · 2026-05-16T13:24:37.860Z_
+
+编译成功。验证结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "708ee718-1658-40dd-8d80-b356dfb976b8",
+  "isSidechain": false,
+  "requestId": "req_011Cb6KcDXu5NvecEKgJYoSk",
+  "type": "assistant",
+  "uuid": "6edf8260-d116-4703-bd30-9f81b8847b92",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0183vJ4z1syq6DBANL4BRx8e",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4302,
+      "cache_read_input_tokens": 80947,
+      "output_tokens": 512,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4302,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 512,
+          "cache_read_input_tokens": 80947,
+          "cache_creation_input_tokens": 4302,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4302
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-16T13:24:39.771Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0113WPVhxQsXiwAAVpVwYASA`</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "grep -c \"^!\" /root/autodl-tmp/recursive_gen_depth_est/paper/main.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6edf8260-d116-4703-bd30-9f81b8847b92",
+  "isSidechain": false,
+  "requestId": "req_011Cb6KcDXu5NvecEKgJYoSk",
+  "type": "assistant",
+  "uuid": "ef9ddafb-e97a-44bd-8761-861b2954c2db",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0183vJ4z1syq6DBANL4BRx8e",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4302,
+      "cache_read_input_tokens": 80947,
+      "output_tokens": 512,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4302,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 512,
+          "cache_read_input_tokens": 80947,
+          "cache_creation_input_tokens": 4302,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4302
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64 · 2026-05-16T13:24:40.758Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QFEu2p8L45Z4B9xeyXMz4Y`</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "grep -c \"LaTeX Warning.*undefined\" /root/autodl-tmp/recursive_gen_depth_est/paper/main.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ef9ddafb-e97a-44bd-8761-861b2954c2db",
+  "isSidechain": false,
+  "requestId": "req_011Cb6KcDXu5NvecEKgJYoSk",
+  "type": "assistant",
+  "uuid": "c268d3e4-3c28-4a3e-8988-b837d8c598b5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0183vJ4z1syq6DBANL4BRx8e",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4302,
+      "cache_read_input_tokens": 80947,
+      "output_tokens": 512,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4302,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 512,
+          "cache_read_input_tokens": 80947,
+          "cache_creation_input_tokens": 4302,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4302
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-16T13:24:40.997Z_
+
+<details><summary>↩ Tool result · `toolu_0113WPVhxQsXiwAAVpVwYASA`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"0\\n\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.21}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ef9ddafb-e97a-44bd-8761-861b2954c2db",
+  "isSidechain": false,
+  "promptId": "6da10313-6a8f-475a-9e62-751bf1f7e158",
+  "type": "user",
+  "uuid": "0a00387a-4c77-4235-97e9-fb1ddf742d10",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.21}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"0\\n\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.21}}"
+    }
+  },
+  "sourceToolAssistantUUID": "ef9ddafb-e97a-44bd-8761-861b2954c2db",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66 · 2026-05-16T13:24:41.702Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WZ5CgA5nNuVAr82UAUxaHA`</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "grep \"Overfull.*hbox\" /root/autodl-tmp/recursive_gen_depth_est/paper/main.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0a00387a-4c77-4235-97e9-fb1ddf742d10",
+  "isSidechain": false,
+  "requestId": "req_011Cb6KcDXu5NvecEKgJYoSk",
+  "type": "assistant",
+  "uuid": "f34363f3-e15d-4770-8391-14c7c7a1c966",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0183vJ4z1syq6DBANL4BRx8e",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4302,
+      "cache_read_input_tokens": 80947,
+      "output_tokens": 512,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4302,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 512,
+          "cache_read_input_tokens": 80947,
+          "cache_creation_input_tokens": 4302,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4302
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-16T13:24:42.174Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LRBjaBxMA96jyE8ttDeGXM`</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "grep \"Output written\" /root/autodl-tmp/recursive_gen_depth_est/paper/main.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f34363f3-e15d-4770-8391-14c7c7a1c966",
+  "isSidechain": false,
+  "requestId": "req_011Cb6KcDXu5NvecEKgJYoSk",
+  "type": "assistant",
+  "uuid": "e7324ff3-f5d4-47b0-b37b-e6388c1d671a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0183vJ4z1syq6DBANL4BRx8e",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4302,
+      "cache_read_input_tokens": 80947,
+      "output_tokens": 512,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4302,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 512,
+          "cache_read_input_tokens": 80947,
+          "cache_creation_input_tokens": 4302,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4302
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-16T13:24:42.387Z_
+
+<details><summary>↩ Tool result · `toolu_01QFEu2p8L45Z4B9xeyXMz4Y`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"0\\n\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c268d3e4-3c28-4a3e-8988-b837d8c598b5",
+  "isSidechain": false,
+  "promptId": "6da10313-6a8f-475a-9e62-751bf1f7e158",
+  "type": "user",
+  "uuid": "9c90f2a1-9669-4fe7-a3e4-8661e93e55b6",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.38}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"0\\n\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.38}}"
+    }
+  },
+  "sourceToolAssistantUUID": "c268d3e4-3c28-4a3e-8988-b837d8c598b5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-16T13:24:42.695Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WTabsn8Xwqajuouk5tR4Zm`</summary>
+
+```json
+{
+  "server": "gpu-6000pro-2",
+  "command": "ls -la /root/autodl-tmp/recursive_gen_depth_est/paper/main.pdf"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9c90f2a1-9669-4fe7-a3e4-8661e93e55b6",
+  "isSidechain": false,
+  "requestId": "req_011Cb6KcDXu5NvecEKgJYoSk",
+  "type": "assistant",
+  "uuid": "0c5c2330-0786-4847-9347-a8568ebae77d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0183vJ4z1syq6DBANL4BRx8e",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4302,
+      "cache_read_input_tokens": 80947,
+      "output_tokens": 512,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4302,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 512,
+          "cache_read_input_tokens": 80947,
+          "cache_creation_input_tokens": 4302,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4302
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 70_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "0c5c2330-0786-4847-9347-a8568ebae77d",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 71_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Sync R4 tex revisions and compile paper",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b"
+}
+```
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-16T13:24:44.211Z_
+
+<details><summary>↩ Tool result · `toolu_01WZ5CgA5nNuVAr82UAUxaHA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Overfull \\\\hbox (36.99884pt too wide) detected at line 97\\nOverfull \\\\hbox (26.58073pt too wide) in paragraph at lines 137--144\\nOverfull \\\\hbox (23.49826pt too wide) in paragraph at lines 117--129\\nOverfull \\\\hbox (9.66736pt too wide) in paragraph at lines 61--73\\nOverfull \\\\hbox (11.39702pt too wide) in paragraph at lines 120--130\\nOverfull \\\\hbox (21.15677pt too wide) in paragraph at lines 169--180\\nOverfull \\\\hbox (49.9195pt too wide) in paragraph at lines 225--239\\nOverfull \\\\hbox (27.40132pt too wide) in paragraph at lines 283--293\\nOverfull \\\\hbox (11.34003pt too wide) in paragraph at lines 302--310\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.82}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f34363f3-e15d-4770-8391-14c7c7a1c966",
+  "isSidechain": false,
+  "promptId": "6da10313-6a8f-475a-9e62-751bf1f7e158",
+  "type": "user",
+  "uuid": "1f7aeffa-d65f-4784-981c-05fb0e851540",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Overfull \\\\\\\\hbox (36.99884pt too wide) detected at line 97\\\\nOverfull \\\\\\\\hbox (26.58073pt too wide) in paragraph at lines 137--144\\\\nOverfull \\\\\\\\hbox (23.49826pt too wide) in paragraph at lines 117--129\\\\nOverfull \\\\\\\\hbox (9.66736pt too wide) in paragraph at lines 61--73\\\\nOverfull \\\\\\\\hbox (11.39702pt too wide) in paragraph at lines 120--130\\\\nOverfull \\\\\\\\hbox (21.15677pt too wide) in paragraph at lines 169--180\\\\nOverfull \\\\\\\\hbox (49.9195pt too wide) in paragraph at lines 225--239\\\\nOverfull \\\\\\\\hbox (27.40132pt too wide) in paragraph at lines 283--293\\\\nOverfull \\\\\\\\hbox (11.34003pt too wide) in paragraph at lines 302--310\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.82}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Overfull \\\\hbox (36.99884pt too wide) detected at line 97\\nOverfull \\\\hbox (26.58073pt too wide) in paragraph at lines 137--144\\nOverfull \\\\hbox (23.49826pt too wide) in paragraph at lines 117--129\\nOverfull \\\\hbox (9.66736pt too wide) in paragraph at lines 61--73\\nOverfull \\\\hbox (11.39702pt too wide) in paragraph at lines 120--130\\nOverfull \\\\hbox (21.15677pt too wide) in paragraph at lines 169--180\\nOverfull \\\\hbox (49.9195pt too wide) in paragraph at lines 225--239\\nOverfull \\\\hbox (27.40132pt too wide) in paragraph at lines 283--293\\nOverfull \\\\hbox (11.34003pt too wide) in paragraph at lines 302--310\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.82}}"
+    }
+  },
+  "sourceToolAssistantUUID": "f34363f3-e15d-4770-8391-14c7c7a1c966",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-16T13:24:46.481Z_
+
+<details><summary>↩ Tool result · `toolu_01LRBjaBxMA96jyE8ttDeGXM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Output written on main.pdf (19 pages, 465981 bytes).\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.26}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e7324ff3-f5d4-47b0-b37b-e6388c1d671a",
+  "isSidechain": false,
+  "promptId": "6da10313-6a8f-475a-9e62-751bf1f7e158",
+  "type": "user",
+  "uuid": "49e9d97f-68af-435f-a710-e1c30c51f6db",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Output written on main.pdf (19 pages, 465981 bytes).\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.26}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Output written on main.pdf (19 pages, 465981 bytes).\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.26}}"
+    }
+  },
+  "sourceToolAssistantUUID": "e7324ff3-f5d4-47b0-b37b-e6388c1d671a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-16T13:24:47.884Z_
+
+<details><summary>↩ Tool result · `toolu_01WTabsn8Xwqajuouk5tR4Zm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 465981 May 16 21:24 /root/autodl-tmp/recursive_gen_depth_est/paper/main.pdf\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0c5c2330-0786-4847-9347-a8568ebae77d",
+  "isSidechain": false,
+  "promptId": "6da10313-6a8f-475a-9e62-751bf1f7e158",
+  "type": "user",
+  "uuid": "3e8ec715-b7ae-4b11-afb5-10f924850530",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 465981 May 16 21:24 /root/autodl-tmp/recursive_gen_depth_est/paper/main.pdf\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.39}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 465981 May 16 21:24 /root/autodl-tmp/recursive_gen_depth_est/paper/main.pdf\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.39}}"
+    }
+  },
+  "sourceToolAssistantUUID": "0c5c2330-0786-4847-9347-a8568ebae77d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 75 · 2026-05-16T13:25:02.113Z_
+
+编译验证完成：
+
+| 检查项 | 结果 |
+|--------|------|
+| Errors | **0** |
+| Undefined refs | **0** |
+| Overfull hbox | 9 个（均为表格，已有的） |
+| 页数 | **19 页**, 465,981 bytes |
+| PDF 时间戳 | May 16 21:24 |
+
+8 个 tex 文件已同步到服务器，编译无错误、无 undefined references。PDF 正常生成 19 页。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3e8ec715-b7ae-4b11-afb5-10f924850530",
+  "isSidechain": false,
+  "requestId": "req_011Cb6KdH8UKCCJYsC1CZkG8",
+  "type": "assistant",
+  "uuid": "ec29c3cc-0845-4c7a-ba18-8bdf3e102aa4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VnzdZp8HB3vW6rgVRd3RHC",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1334,
+      "cache_read_input_tokens": 85249,
+      "output_tokens": 149,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1334,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 149,
+          "cache_read_input_tokens": 85249,
+          "cache_creation_input_tokens": 1334,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1334
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 76_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "ec29c3cc-0845-4c7a-ba18-8bdf3e102aa4",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 77_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Sync R4 tex revisions and compile paper",
+  "sessionId": "2c0258ad-87f3-4a74-980d-775a4f63204b"
+}
+```
+
+---

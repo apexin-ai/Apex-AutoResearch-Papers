@@ -1,0 +1,3338 @@
+# Research conversation: [HANDOFF] 你是 Research Reviewer，这是 Loop #7。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - GPU 白名单：cuda:0, cuda:1（gpu-6000pr
+
+**How Deep Is Your Data? Estimating Recursive Generation Depth via Statistical Fingerprints (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 53
+- **Recorded user turns:** 1
+- **Tool calls:** 13
+- **Original source:** `logs/chats/exported-trajectories/account-3/7e8505cc-d7b7-4957-82c0-cd60ae383a04.jsonl`
+- **Structured JSON:** [`a1eb138bf916f340fc59.json`](../../sessions/a1/a1eb138bf916f340fc59.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-15T15:17:02.305Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-15T15:17:02.305Z",
+  "sessionId": "7e8505cc-d7b7-4957-82c0-cd60ae383a04",
+  "content": "[HANDOFF] 你是 Research Reviewer，这是 Loop #7。\n\n## 上一轮交接 (task_context)\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0, cuda:1（gpu-6000pro-2 上的两张 RTX PRO 6000 Blackwell 97GB）。越界立即 critical。\n- Reference model 是 GPT-2 base (124M)，与测试模型 GPT-2 XL 有部分架构重叠——这是已知且已在 Limitations 中披露的设计选择，不是 bug，不要重复标记。\n- EDD 叙事必须遵循 D024/D026/D027 决策链：不能声称\"三模型一致 EDD=4\"，必须用分级 p 值表述（Pythia p=0.001 显著, OLMo p=0.091 marginal, GPT-2 XL p=0.505 n.s.）。\n\n### 2. 🖥️ 基础设施快照\n- 服务器：gpu-6000pro-2，远程代码目录 /root/autodl-tmp/recursive_gen_depth_est\n- 本地 workspace：/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/\n- 论文源文件：上述 workspace 下 docs/paper/（main.tex + 各章节 .tex）\n- Registry：上述 workspace 下 registry.yaml（46+ 实验）\n- Bootstrap 数据：d23_edd_bootstrap.json（1000 iterations，三模型 p 值）\n- 无活跃训练进程——Phase 1 实验全部 DONE，当前处于 Phase 2 论文写作阶段\n\n### 3. 📊 当前状态\n刚完成 Paper Agent 触发的 Patch 后全文审查（§5.3 维度评分模板），已通过 reviewer_post_to_director 提交。评分：Originality 3, Clarity 3, Soundness 3, Significance 3, Presentation 3, Overall 7。\n\n主要发现：\n- method.tex 第40行交叉引用错误：`\\ref{sec:discussion}` 应指向 Limitations（severity: warning）\n- atlas.tex EDD 公式与 method.tex Eq.1 重复（severity: info）\n- paper_provenance.yaml 仍为空（severity: warning）\n- 所有定量数字与 registry 一致，无不一致（OLMo d4v5 typo 已修复）\n\nRegistry 中无 RUNNING/PREPARING 实验。无等待中的 Worker 回调或 Cron。\n\n### 4. 📋 待办\n- Paper Agent 收到评审后提交修订 → 审查是否修复了 method.tex 交叉引用错误和 EDD 公式重复\n- Director 安排 auto_build_provenance → 审查 paper_provenance.yaml 覆盖率是否达标\n- 若收到下一轮 paper_agent_request_review → 按 §5.3 模板再次评分，关注 Overall 是否提升、是否有新增 critical\n- 若收到编译后 PDF → 核实页数（main body ≤ 8 pages ACL 限制）\n\n### 5. 🎯 战略上下文\n- 项目核心结论：19 维统计特征（p90_ppl + var_surprisal 为 universal markers）在 3×3 矩阵上达 70-85% 四分类准确率，EDD_0.75=4。End-to-end PLM (~59%) 比 feature-based (78.2%) 低 19pp，是重要 negative result。\n- 决策链：D018 关闭 DCOL（全失败）→ D024 EDD 从硬阈值转连续 AUC decay → D026/D027 EDD 叙事分级统计显著性\n- 最容易判断错的事：(1) 看到 cross-model EDD=4 三模型都达到就以为结论一致——实际上只有 Pythia 统计显著，必须查 bootstrap p 值。(2) method.tex 说 reference model overlap \"discussed in Discussion\" 但实际在 Limitations——这个交叉引用错误已报但可能未修。(3) RoBERTa 实验经历了两次失败重跑（aria2 模型文件损坏），registry 中 retry_count=2 是正常的不是异常。\n\n## 项目硬约束 (memory.md 节选)\n\n## 约束\n\n- **submit_on_allocated bash 语法**: tmux 跑在 /bin/sh 下，必须用 `bash -c \"...\"` 包裹 bash-only 语法（如 source）。(2026-05-15)\n- **sync_code 不可靠**: submit_on_allocated 的 sync_code=true 可能不同步新创建的文件。安全方案：Worker SSH 手动写入。(2026-05-15)\n- **CUDA_VISIBLE_DEVICES 与脚本 device 参数冲突**: submit_training_job 自动注入 CUDA_VISIBLE_DEVICES 映射物理 GPU，脚本内必须用 cuda:0（逻辑第一块卡）。若脚本硬编码物理 GPU 编号（如 cuda:1），会报 \"CUDA error: invalid device ordinal\"。多步 pipeline 中某些步骤可能在 CUDA_VISIBLE_DEVICES 生效前运行（如 shell 脚本前几步），但后续 Python 脚本一律用 cuda:0。(2026-05-15)\n\n## 可查的历史\n前 5 轮 handoff 在 `task_context/history/reviewer/loop_*.md`，如有疑问可 Read 回查。\n完整聊天归档可用 `recall_session_history(\"关键词\")` 搜索。\n\n## 第一个动作要求\n1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）\n2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-15T15:17:02.308Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-15T15:17:02.308Z",
+  "sessionId": "7e8505cc-d7b7-4957-82c0-cd60ae383a04"
+}
+```
+
+---
+
+## Round 1
+
+51 recorded events
+
+### User
+
+_source line 3 · 2026-05-15T15:17:02.344Z_
+
+[HANDOFF] 你是 Research Reviewer，这是 Loop #7。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：cuda:0, cuda:1（gpu-6000pro-2 上的两张 RTX PRO 6000 Blackwell 97GB）。越界立即 critical。
+- Reference model 是 GPT-2 base (124M)，与测试模型 GPT-2 XL 有部分架构重叠——这是已知且已在 Limitations 中披露的设计选择，不是 bug，不要重复标记。
+- EDD 叙事必须遵循 D024/D026/D027 决策链：不能声称"三模型一致 EDD=4"，必须用分级 p 值表述（Pythia p=0.001 显著, OLMo p=0.091 marginal, GPT-2 XL p=0.505 n.s.）。
+
+### 2. 🖥️ 基础设施快照
+- 服务器：gpu-6000pro-2，远程代码目录 /root/autodl-tmp/recursive_gen_depth_est
+- 本地 workspace：/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/
+- 论文源文件：上述 workspace 下 docs/paper/（main.tex + 各章节 .tex）
+- Registry：上述 workspace 下 registry.yaml（46+ 实验）
+- Bootstrap 数据：d23_edd_bootstrap.json（1000 iterations，三模型 p 值）
+- 无活跃训练进程——Phase 1 实验全部 DONE，当前处于 Phase 2 论文写作阶段
+
+### 3. 📊 当前状态
+刚完成 Paper Agent 触发的 Patch 后全文审查（§5.3 维度评分模板），已通过 reviewer_post_to_director 提交。评分：Originality 3, Clarity 3, Soundness 3, Significance 3, Presentation 3, Overall 7。
+
+主要发现：
+- method.tex 第40行交叉引用错误：`\ref{sec:discussion}` 应指向 Limitations（severity: warning）
+- atlas.tex EDD 公式与 method.tex Eq.1 重复（severity: info）
+- paper_provenance.yaml 仍为空（severity: warning）
+- 所有定量数字与 registry 一致，无不一致（OLMo d4v5 typo 已修复）
+
+Registry 中无 RUNNING/PREPARING 实验。无等待中的 Worker 回调或 Cron。
+
+### 4. 📋 待办
+- Paper Agent 收到评审后提交修订 → 审查是否修复了 method.tex 交叉引用错误和 EDD 公式重复
+- Director 安排 auto_build_provenance → 审查 paper_provenance.yaml 覆盖率是否达标
+- 若收到下一轮 paper_agent_request_review → 按 §5.3 模板再次评分，关注 Overall 是否提升、是否有新增 critical
+- 若收到编译后 PDF → 核实页数（main body ≤ 8 pages ACL 限制）
+
+### 5. 🎯 战略上下文
+- 项目核心结论：19 维统计特征（p90_ppl + var_surprisal 为 universal markers）在 3×3 矩阵上达 70-85% 四分类准确率，EDD_0.75=4。End-to-end PLM (~59%) 比 feature-based (78.2%) 低 19pp，是重要 negative result。
+- 决策链：D018 关闭 DCOL（全失败）→ D024 EDD 从硬阈值转连续 AUC decay → D026/D027 EDD 叙事分级统计显著性
+- 最容易判断错的事：(1) 看到 cross-model EDD=4 三模型都达到就以为结论一致——实际上只有 Pythia 统计显著，必须查 bootstrap p 值。(2) method.tex 说 reference model overlap "discussed in Discussion" 但实际在 Limitations——这个交叉引用错误已报但可能未修。(3) RoBERTa 实验经历了两次失败重跑（aria2 模型文件损坏），registry 中 retry_count=2 是正常的不是异常。
+
+## 项目硬约束 (memory.md 节选)
+
+## 约束
+
+- **submit_on_allocated bash 语法**: tmux 跑在 /bin/sh 下，必须用 `bash -c "..."` 包裹 bash-only 语法（如 source）。(2026-05-15)
+- **sync_code 不可靠**: submit_on_allocated 的 sync_code=true 可能不同步新创建的文件。安全方案：Worker SSH 手动写入。(2026-05-15)
+- **CUDA_VISIBLE_DEVICES 与脚本 device 参数冲突**: submit_training_job 自动注入 CUDA_VISIBLE_DEVICES 映射物理 GPU，脚本内必须用 cuda:0（逻辑第一块卡）。若脚本硬编码物理 GPU 编号（如 cuda:1），会报 "CUDA error: invalid device ordinal"。多步 pipeline 中某些步骤可能在 CUDA_VISIBLE_DEVICES 生效前运行（如 shell 脚本前几步），但后续 Python 脚本一律用 cuda:0。(2026-05-15)
+
+## 可查的历史
+前 5 轮 handoff 在 `task_context/history/reviewer/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "b348da81-a17b-4e5c-8b2e-fdebce509677",
+  "type": "user",
+  "uuid": "ec645e06-293e-4923-8ef0-bb230658a779",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/reviewer_2647e3b4",
+  "sessionId": "7e8505cc-d7b7-4957-82c0-cd60ae383a04",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-15T15:17:02.343Z_
+
+```json
+{
+  "parentUuid": "ec645e06-293e-4923-8ef0-bb230658a779",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reviewer_post_to_director",
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__tail_training_logs"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reviewer_post_to_director",
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__tail_training_logs"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "446dbe40-9fdd-40b9-a3e7-ab63543a4473",
+  "timestamp": "2026-05-15T15:17:02.343Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/reviewer_2647e3b4",
+  "sessionId": "7e8505cc-d7b7-4957-82c0-cd60ae383a04",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-15T15:17:02.343Z_
+
+```json
+{
+  "parentUuid": "446dbe40-9fdd-40b9-a3e7-ab63543a4473",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "02c7bac0-7d23-481b-83e2-d1024e7261ee",
+  "timestamp": "2026-05-15T15:17:02.343Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/reviewer_2647e3b4",
+  "sessionId": "7e8505cc-d7b7-4957-82c0-cd60ae383a04",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-15T15:17:02.343Z_
+
+```json
+{
+  "parentUuid": "02c7bac0-7d23-481b-83e2-d1024e7261ee",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "9fbd9900-8faf-40e8-bffa-107a692c6d8f",
+  "timestamp": "2026-05-15T15:17:02.343Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/reviewer_2647e3b4",
+  "sessionId": "7e8505cc-d7b7-4957-82c0-cd60ae383a04",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review paper agent revisions and verify provenance",
+  "sessionId": "7e8505cc-d7b7-4957-82c0-cd60ae383a04"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-15T15:17:08.334Z_
+
+我已接收 Loop #7 交接。硬约束确认：GPU 白名单 cuda:0/cuda:1，EDD 叙事必须分级 p 值表述，GPT-2 reference model overlap 已知且已披露。当前无活跃训练，处于 Phase 2 论文写作阶段。
+
+先确认 registry 当前状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9fbd9900-8faf-40e8-bffa-107a692c6d8f",
+  "isSidechain": false,
+  "requestId": "req_011Cb4aNnkWfbN8qqPovXcjT",
+  "type": "assistant",
+  "uuid": "21e23730-1d29-4340-9500-5aba869f2abc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/reviewer_2647e3b4",
+  "sessionId": "7e8505cc-d7b7-4957-82c0-cd60ae383a04",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011UaV7kb5Eoot7GPHVqtpmo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 32415,
+      "output_tokens": 189,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 189,
+          "cache_read_input_tokens": 32415,
+          "cache_creation_input_tokens": 0,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-15T15:17:08.645Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01A6zFaQGeHZTDQr7NeV7aaS`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "21e23730-1d29-4340-9500-5aba869f2abc",
+  "isSidechain": false,
+  "requestId": "req_011Cb4aNnkWfbN8qqPovXcjT",
+  "type": "assistant",
+  "uuid": "ed917b98-f22c-46ea-878c-65524a172dd3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/reviewer_2647e3b4",
+  "sessionId": "7e8505cc-d7b7-4957-82c0-cd60ae383a04",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011UaV7kb5Eoot7GPHVqtpmo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 32415,
+      "output_tokens": 189,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 189,
+          "cache_read_input_tokens": 32415,
+          "cache_creation_input_tokens": 0,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T15:17:08.653Z_
+
+<details><summary>↩ Tool result · `toolu_01A6zFaQGeHZTDQr7NeV7aaS`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ed917b98-f22c-46ea-878c-65524a172dd3",
+  "isSidechain": false,
+  "promptId": "b348da81-a17b-4e5c-8b2e-fdebce509677",
+  "type": "user",
+  "uuid": "88fd72fc-df80-4cef-9d28-26e152e5c4c6",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__read_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__read_registry",
+    "total_deferred_tools": 34
+  },
+  "sourceToolAssistantUUID": "ed917b98-f22c-46ea-878c-65524a172dd3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/reviewer_2647e3b4",
+  "sessionId": "7e8505cc-d7b7-4957-82c0-cd60ae383a04",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-15T15:17:11.902Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_016MqHQkRiWnszGrN8jAUH9Y`</summary>
+
+```json
+{
+  "project": "recursive_gen_depth_est",
+  "filters": {
+    "status": "RUNNING"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "88fd72fc-df80-4cef-9d28-26e152e5c4c6",
+  "isSidechain": false,
+  "requestId": "req_011Cb4aPFpBuw8cjG9gqywwD",
+  "type": "assistant",
+  "uuid": "ae828926-3b59-46af-8f5b-3fdd7d743fa6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/reviewer_2647e3b4",
+  "sessionId": "7e8505cc-d7b7-4957-82c0-cd60ae383a04",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018R7avHtgooQZRK3brQUjXB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 552,
+      "cache_read_input_tokens": 32415,
+      "output_tokens": 92,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 552,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 92,
+          "cache_read_input_tokens": 32415,
+          "cache_creation_input_tokens": 552,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 552
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T15:17:12.566Z_
+
+<details><summary>↩ Tool result · `toolu_016MqHQkRiWnszGrN8jAUH9Y`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.633}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ae828926-3b59-46af-8f5b-3fdd7d743fa6",
+  "isSidechain": false,
+  "promptId": "b348da81-a17b-4e5c-8b2e-fdebce509677",
+  "type": "user",
+  "uuid": "937885af-f94d-4675-be4f-fd08c8dab96e",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.633}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.633}}"
+    }
+  },
+  "sourceToolAssistantUUID": "ae828926-3b59-46af-8f5b-3fdd7d743fa6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/reviewer_2647e3b4",
+  "sessionId": "7e8505cc-d7b7-4957-82c0-cd60ae383a04",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-15T15:17:15.161Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01MwZiFSVfpWExgSwvvc5aZB`</summary>
+
+```json
+{
+  "project": "recursive_gen_depth_est",
+  "filters": {
+    "status": "PREPARING"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "937885af-f94d-4675-be4f-fd08c8dab96e",
+  "isSidechain": false,
+  "requestId": "req_011Cb4aPYToh236TSZLwsvip",
+  "type": "assistant",
+  "uuid": "1e29a32a-a5b5-4da9-8e70-258745735de5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/reviewer_2647e3b4",
+  "sessionId": "7e8505cc-d7b7-4957-82c0-cd60ae383a04",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SaM9NhX8QFHtxa3PWYKFFK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 170,
+      "cache_read_input_tokens": 32967,
+      "output_tokens": 91,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 170,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 91,
+          "cache_read_input_tokens": 32967,
+          "cache_creation_input_tokens": 170,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 170
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-15T15:17:15.367Z_
+
+<details><summary>↩ Tool result · `toolu_01MwZiFSVfpWExgSwvvc5aZB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1944}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1e29a32a-a5b5-4da9-8e70-258745735de5",
+  "isSidechain": false,
+  "promptId": "b348da81-a17b-4e5c-8b2e-fdebce509677",
+  "type": "user",
+  "uuid": "e1d7c486-6340-44e7-bd08-575b36234e90",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1944}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1944}}"
+    }
+  },
+  "sourceToolAssistantUUID": "1e29a32a-a5b5-4da9-8e70-258745735de5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/reviewer_2647e3b4",
+  "sessionId": "7e8505cc-d7b7-4957-82c0-cd60ae383a04",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15 · 2026-05-15T15:17:20.950Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Confirmed: no RUNNING or PREPARING experiments. This matches the handoff state — all Phase 1 experiments are DONE, currently in Phase 2 paper writing.
+
+Now I should check the current state of things. The handoff mentions:
+1. Paper Agent may have submitted revisions after my last review
+2. Need to check if method.tex cross-reference error was fixed
+3. Need to check paper_provenance.yaml status
+4. Check for any new activity
+
+Let me check the latest registry entries to see if anything changed since last loop, and also check the paper files for the issues I flagged.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e1d7c486-6340-44e7-bd08-575b36234e90",
+  "isSidechain": false,
+  "requestId": "req_011Cb4aPkRPTuzZqJDKm7cw7",
+  "type": "assistant",
+  "uuid": "5152fad0-445e-4036-805a-8772cd2e7ea0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/reviewer_2647e3b4",
+  "sessionId": "7e8505cc-d7b7-4957-82c0-cd60ae383a04",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013feQQ5UN13smXNmcLXUcrT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 168,
+      "cache_read_input_tokens": 33137,
+      "output_tokens": 317,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 168,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 317,
+          "cache_read_input_tokens": 33137,
+          "cache_creation_input_tokens": 168,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 168
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16 · 2026-05-15T15:17:22.532Z_
+
+确认：无 RUNNING/PREPARING 实验，与交接一致。
+
+现在检查上轮报告中标记的两个 warning 是否已修复：method.tex 交叉引用错误和 paper_provenance.yaml。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5152fad0-445e-4036-805a-8772cd2e7ea0",
+  "isSidechain": false,
+  "requestId": "req_011Cb4aPkRPTuzZqJDKm7cw7",
+  "type": "assistant",
+  "uuid": "4b1baadb-11fc-4de4-af5a-a490ce22c710",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/reviewer_2647e3b4",
+  "sessionId": "7e8505cc-d7b7-4957-82c0-cd60ae383a04",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013feQQ5UN13smXNmcLXUcrT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 168,
+      "cache_read_input_tokens": 33137,
+      "output_tokens": 317,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 168,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 317,
+          "cache_read_input_tokens": 33137,
+          "cache_creation_input_tokens": 168,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 168
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-15T15:17:23.410Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_012s9Tiy8jnEHpyrZYX3a2R7`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__ssh_read_only",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4b1baadb-11fc-4de4-af5a-a490ce22c710",
+  "isSidechain": false,
+  "requestId": "req_011Cb4aPkRPTuzZqJDKm7cw7",
+  "type": "assistant",
+  "uuid": "af4a232d-e792-4578-b4cc-f778cb5fcdd1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/reviewer_2647e3b4",
+  "sessionId": "7e8505cc-d7b7-4957-82c0-cd60ae383a04",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013feQQ5UN13smXNmcLXUcrT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 168,
+      "cache_read_input_tokens": 33137,
+      "output_tokens": 317,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 168,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 317,
+          "cache_read_input_tokens": 33137,
+          "cache_creation_input_tokens": 168,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 168
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-15T15:17:23.413Z_
+
+<details><summary>↩ Tool result · `toolu_012s9Tiy8jnEHpyrZYX3a2R7`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "af4a232d-e792-4578-b4cc-f778cb5fcdd1",
+  "isSidechain": false,
+  "promptId": "b348da81-a17b-4e5c-8b2e-fdebce509677",
+  "type": "user",
+  "uuid": "03f03ef0-710e-4ee8-ab52-431c479ae056",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 34
+  },
+  "sourceToolAssistantUUID": "af4a232d-e792-4578-b4cc-f778cb5fcdd1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/reviewer_2647e3b4",
+  "sessionId": "7e8505cc-d7b7-4957-82c0-cd60ae383a04",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-15T15:17:26.395Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01FSzPFR3F9rH7pWLh16u5HQ`</summary>
+
+```json
+{
+  "project": "recursive_gen_depth_est",
+  "file": "paper_provenance.yaml"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "03f03ef0-710e-4ee8-ab52-431c479ae056",
+  "isSidechain": false,
+  "requestId": "req_011Cb4aQMV2he5UwmUMA4DbH",
+  "type": "assistant",
+  "uuid": "723a5374-d12b-494c-a65e-326cdad39c86",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/reviewer_2647e3b4",
+  "sessionId": "7e8505cc-d7b7-4957-82c0-cd60ae383a04",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JB4EYku1fjcztJzFEQDB9p",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 973,
+      "cache_read_input_tokens": 33305,
+      "output_tokens": 165,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 973,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 165,
+          "cache_read_input_tokens": 33305,
+          "cache_creation_input_tokens": 973,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 973
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-15T15:17:26.411Z_
+
+<details><summary>↩ Tool result · `toolu_01FSzPFR3F9rH7pWLh16u5HQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/paper_provenance.yaml\", \"content\": \"paper:\\n  title: ''\\n  version: 45\\n  generated_at: '2026-05-15T10:31:10.334975+00:00'\\nclaims: []\\ntables: []\\nfigures: []\\n_completeness:\\n  coverage: 0/0\\n  claims: 0\\n  tables: 0\\n  figures: 0\\n  tier_counts:\\n    tier1: 0\\n    tier2: 0\\n    tier3: 0\\n    tierX: 0\\n  last_checked: '2026-05-15T10:31:10.335009+00:00'\\n\", \"total_chars\": 304, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "723a5374-d12b-494c-a65e-326cdad39c86",
+  "isSidechain": false,
+  "promptId": "b348da81-a17b-4e5c-8b2e-fdebce509677",
+  "type": "user",
+  "uuid": "e6a15a9c-4711-407a-9ca7-76a82e6eb734",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/paper_provenance.yaml\\\", \\\"content\\\": \\\"paper:\\\\n  title: ''\\\\n  version: 45\\\\n  generated_at: '2026-05-15T10:31:10.334975+00:00'\\\\nclaims: []\\\\ntables: []\\\\nfigures: []\\\\n_completeness:\\\\n  coverage: 0/0\\\\n  claims: 0\\\\n  tables: 0\\\\n  figures: 0\\\\n  tier_counts:\\\\n    tier1: 0\\\\n    tier2: 0\\\\n    tier3: 0\\\\n    tierX: 0\\\\n  last_checked: '2026-05-15T10:31:10.335009+00:00'\\\\n\\\", \\\"total_chars\\\": 304, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/paper_provenance.yaml\", \"content\": \"paper:\\n  title: ''\\n  version: 45\\n  generated_at: '2026-05-15T10:31:10.334975+00:00'\\nclaims: []\\ntables: []\\nfigures: []\\n_completeness:\\n  coverage: 0/0\\n  claims: 0\\n  tables: 0\\n  figures: 0\\n  tier_counts:\\n    tier1: 0\\n    tier2: 0\\n    tier3: 0\\n    tierX: 0\\n  last_checked: '2026-05-15T10:31:10.335009+00:00'\\n\", \"total_chars\": 304, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "723a5374-d12b-494c-a65e-326cdad39c86",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/reviewer_2647e3b4",
+  "sessionId": "7e8505cc-d7b7-4957-82c0-cd60ae383a04",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-15T15:17:26.710Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01TfetfeF4aoPKr6F5d4Q4mZ`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/method.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e6a15a9c-4711-407a-9ca7-76a82e6eb734",
+  "isSidechain": false,
+  "requestId": "req_011Cb4aQMV2he5UwmUMA4DbH",
+  "type": "assistant",
+  "uuid": "0d054b42-75fb-4188-9a53-32b82331c6a9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/reviewer_2647e3b4",
+  "sessionId": "7e8505cc-d7b7-4957-82c0-cd60ae383a04",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JB4EYku1fjcztJzFEQDB9p",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 973,
+      "cache_read_input_tokens": 33305,
+      "output_tokens": 165,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 973,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 165,
+          "cache_read_input_tokens": 33305,
+          "cache_creation_input_tokens": 973,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 973
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-15T15:17:26.725Z_
+
+<details><summary>↩ Tool result · `toolu_01TfetfeF4aoPKr6F5d4Q4mZ`</summary>
+
+```text
+1	\section{Task Formulation}
+2	\label{sec:method}
+3	
+4	\subsection{Problem Definition}
+5	\label{sec:method:problem}
+6	
+7	Let $f_\theta$ denote a language model and $\mathcal{D}_0$ a corpus of human-written seed text.
+8	We define a \emph{recursive generation chain} of depth $K$ as the sequence $\mathcal{D}_0, \mathcal{D}_1, \dots, \mathcal{D}_K$, where each $\mathcal{D}_k$ ($k \geq 1$) is produced by finetuning $f_\theta$ on $\mathcal{D}_{k-1}$ and sampling from the resulting model.
+9	Depth $d{=}0$ denotes human-written text; depth $d{=}k$ ($k \geq 1$) denotes text generated by a model trained on depth-$(k{-}1)$ data.
+10	
+11	Given a text passage $x$, the task is to estimate its recursive generation depth $d \in \{0, 1, \dots, K\}$.
+12	This is an ordinal classification problem: depths carry a natural ordering, and $d{=}1$ is structurally closer to $d{=}0$ than $d{=}3$ is, since each generation step compounds distributional drift.
+13	
+14	\subsection{Multi-Generational Benchmark Construction}
+15	\label{sec:method:benchmark}
+16	
+17	We construct a benchmark spanning three axes: model family, decoding strategy, and generation depth.
+18	
+19	\paragraph{Model families.}
+20	We select three 1--1.5B-parameter models with diverse pretraining corpora and architectures: Pythia-1.4B (EleutherAI), OLMo-1B (AI2), and GPT-2~XL (OpenAI, 1.5B).
+21	Restricting to a narrow parameter range isolates the effect of architecture and training data from scale.
+22	
+23	\paragraph{Decoding strategies.}
+24	Each model is paired with three decoding strategies: nucleus sampling ($p{=}0.95$) \cite{holtzman2020_nucleus}, temperature sampling ($\tau{=}0.9$), and top-$k$ sampling ($k{=}50$).
+25	These span the dominant modes of open-ended generation and induce qualitatively different entropy profiles.
+26	
+27	\paragraph{Depth and scale.}
+28	The primary benchmark covers depths d0--d3 across all $3 \times 3 = 9$ model--strategy cells, with 5{,}000 samples per depth per cell (180K samples total).
+29	For depth extension experiments (\S\ref{sec:atlas}), we extend one pipeline (Pythia-1.4B, nucleus) to d0--d5.
+30	
+31	\paragraph{Generation pipeline.}
+32	Starting from a Wikipedia subset as seed text ($\mathcal{D}_0$), each generation cycle proceeds in three steps: (1)~LoRA finetuning \cite{hu2022lora} with rank $r{=}16$, $\alpha{=}32$, learning rate $2{\times}10^{-4}$, batch size 8, for 3 epochs; (2)~generation of 5{,}000 passages (max 512 tokens) under the specified decoding strategy; (3)~the generated corpus becomes $\mathcal{D}_k$ and serves as training data for the next cycle.
+33	Each generation cycle samples unconditionally from the BOS token; there is no per-passage lineage across depths, ensuring that cross-validation splits do not introduce information leakage.
+34	LoRA targets are architecture-specific: \texttt{query\_key\_value} for Pythia (GPT-NeoX), \texttt{q\_proj}/\texttt{k\_proj}/\texttt{v\_proj} for OLMo, and \texttt{c\_attn}/\texttt{c\_proj} for GPT-2~XL.
+35	We adopt standard LoRA hyperparameters ($r{=}16$, $\alpha{=}32$, dropout$\,{=}\,0.05$) following \citet{hu2022lora}, applied uniformly across all models.
+36	
+37	\paragraph{Reference model.}
+38	All statistical features (\S\ref{sec:method:features}) are computed using a fixed reference model---GPT-2 base (124M)---that is independent of the three generation models.
+39	The reference model computes per-token perplexity for each passage, providing a consistent measurement frame across model families.
+40	In cross-model leave-one-out evaluation (\S\ref{sec:generalization}), the reference model remains fixed even when GPT-2~XL is held out; the partial architectural overlap this introduces is discussed in Limitations.
+41	
+42	\subsection{Statistical Feature Design}
+43	\label{sec:method:features}
+44	
+45	We extract a 19-dimensional feature vector $\mathbf{f}(x)$ from the reference-model perplexity distribution over each passage $x$.
+46	The features fall into four categories (Table~\ref{tab:features}).
+47	
+48	\begin{table}[t]
+49	\centering
+50	\small
+51	\caption{The 19 statistical features comprising $\mathbf{f}(x)$, grouped by category. All perplexity and surprisal features are computed from the reference model (GPT-2 base, 124M).}
+52	\label{tab:features}
+53	\begin{tabular}{@{}llr@{}}
+54	\toprule
+55	Category & Features & $n$ \\
+56	\midrule
+57	Perplexity & mean, var, skewness, kurtosis, & 9 \\
+58	statistics & p10, p25, p50, p75, p90 & \\
+59	\addlinespace
+60	Surprisal & mean, var, entropy & 3 \\
+61	statistics & & \\
+62	\addlinespace
+63	Lexical & type--token ratio, hapax ratio, & 4 \\
+64	diversity & bigram entropy, trigram entropy & \\
+65	\addlinespace
+66	Repetition & repeated 2/3/4-gram fractions & 3 \\
+67	\bottomrule
+68	\end{tabular}
+69	\end{table}
+70	
+71	\emph{Perplexity statistics} (9 features) capture the location, spread, and shape of the per-token perplexity distribution via its mean, variance, skewness, kurtosis, and five percentile quantiles (p10--p90).
+72	The tail quantiles (p75, p90) prove especially informative: recursive finetuning erodes the high-perplexity tail, making these features monotonically decreasing with depth (\S\ref{sec:atlas}).
+73	
+74	\emph{Surprisal statistics} (3 features) operate on $-\log p(\text{token})$ and include mean surprisal, surprisal variance, and the entropy of the surprisal distribution.
+75	While correlated with perplexity features, surprisal variance captures second-order structure---the variability of token predictability---that is not redundant with perplexity moments.
+76	
+77	\emph{Lexical diversity} (4 features) measures vocabulary usage through type--token ratio, hapax ratio (fraction of tokens appearing exactly once), and bigram/trigram entropy.
+78	
+79	\emph{Repetition} (3 features) quantifies the fraction of repeated $n$-grams for $n \in \{2, 3, 4\}$, capturing the increased self-repetition characteristic of recursive generation.
+80	
+81	\subsection{Effective Discriminable Depth}
+82	\label{sec:method:edd}
+83	
+84	Aggregate classification accuracy over $K{+}1$ classes obscures whether discriminability degrades at specific depths.
+85	We introduce the \emph{Effective Discriminable Depth} (EDD), a scalar metric that summarizes how far into a recursive chain adjacent depths remain distinguishable.
+86	
+87	For each adjacent depth pair $(d, d{+}1)$, we train a dedicated binary Random Forest (500 trees; increased from 200 in the multi-class setting to ensure convergence on the smaller per-pair samples) and compute the one-vs-one AUC.
+88	Given a threshold $T$, we define:
+89	\begin{equation}
+90	\mathrm{EDD}_T = \max \{ d^*{+}1 : \mathrm{AUC}(d^*, d^*{+}1) \geq T \}
+91	\label{eq:edd}
+92	\end{equation}
+93	where $d^* \in \{0, 1, \dots, K{-}1\}$.
+94	The default threshold is $T{=}0.75$; we report sensitivity analyses at $T \in \{0.65, 0.70, 0.75, 0.80\}$ in \S\ref{sec:atlas}.
+95	Crucially, each AUC is obtained from an independent binary pairwise classifier (5-fold stratified CV) rather than extracted from a single multi-class model, avoiding decision boundary dilution (\S\ref{sec:atlas}).
+96	
+97	EDD captures a natural question: \emph{how deep into the recursive chain can we reliably distinguish successive generations?}
+98	A high EDD indicates that the statistical fingerprints retain discriminative power across many recursion steps; a low EDD signals rapid convergence to an indistinguishable regime.
+99	
+100	\paragraph{Classifiers.}
+101	Our primary classifier is a Random Forest (200 trees, unconstrained depth, 5-fold stratified cross-validation).
+102	We compare against CORAL ordinal regression \cite{coral2020}, DivEye \cite{diveye2026}, a 2-layer cross-entropy MLP, logistic regression, and a single-feature baseline using mean perplexity alone; results appear in \S\ref{sec:generalization}.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0d054b42-75fb-4188-9a53-32b82331c6a9",
+  "isSidechain": false,
+  "promptId": "b348da81-a17b-4e5c-8b2e-fdebce509677",
+  "type": "user",
+  "uuid": "b7a700ed-4efc-48ff-b1a9-1305645d4a72",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/method.tex",
+      "content": "\\section{Task Formulation}\n\\label{sec:method}\n\n\\subsection{Problem Definition}\n\\label{sec:method:problem}\n\nLet $f_\\theta$ denote a language model and $\\mathcal{D}_0$ a corpus of human-written seed text.\nWe define a \\emph{recursive generation chain} of depth $K$ as the sequence $\\mathcal{D}_0, \\mathcal{D}_1, \\dots, \\mathcal{D}_K$, where each $\\mathcal{D}_k$ ($k \\geq 1$) is produced by finetuning $f_\\theta$ on $\\mathcal{D}_{k-1}$ and sampling from the resulting model.\nDepth $d{=}0$ denotes human-written text; depth $d{=}k$ ($k \\geq 1$) denotes text generated by a model trained on depth-$(k{-}1)$ data.\n\nGiven a text passage $x$, the task is to estimate its recursive generation depth $d \\in \\{0, 1, \\dots, K\\}$.\nThis is an ordinal classification problem: depths carry a natural ordering, and $d{=}1$ is structurally closer to $d{=}0$ than $d{=}3$ is, since each generation step compounds distributional drift.\n\n\\subsection{Multi-Generational Benchmark Construction}\n\\label{sec:method:benchmark}\n\nWe construct a benchmark spanning three axes: model family, decoding strategy, and generation depth.\n\n\\paragraph{Model families.}\nWe select three 1--1.5B-parameter models with diverse pretraining corpora and architectures: Pythia-1.4B (EleutherAI), OLMo-1B (AI2), and GPT-2~XL (OpenAI, 1.5B).\nRestricting to a narrow parameter range isolates the effect of architecture and training data from scale.\n\n\\paragraph{Decoding strategies.}\nEach model is paired with three decoding strategies: nucleus sampling ($p{=}0.95$) \\cite{holtzman2020_nucleus}, temperature sampling ($\\tau{=}0.9$), and top-$k$ sampling ($k{=}50$).\nThese span the dominant modes of open-ended generation and induce qualitatively different entropy profiles.\n\n\\paragraph{Depth and scale.}\nThe primary benchmark covers depths d0--d3 across all $3 \\times 3 = 9$ model--strategy cells, with 5{,}000 samples per depth per cell (180K samples total).\nFor depth extension experiments (\\S\\ref{sec:atlas}), we extend one pipeline (Pythia-1.4B, nucleus) to d0--d5.\n\n\\paragraph{Generation pipeline.}\nStarting from a Wikipedia subset as seed text ($\\mathcal{D}_0$), each generation cycle proceeds in three steps: (1)~LoRA finetuning \\cite{hu2022lora} with rank $r{=}16$, $\\alpha{=}32$, learning rate $2{\\times}10^{-4}$, batch size 8, for 3 epochs; (2)~generation of 5{,}000 passages (max 512 tokens) under the specified decoding strategy; (3)~the generated corpus becomes $\\mathcal{D}_k$ and serves as training data for the next cycle.\nEach generation cycle samples unconditionally from the BOS token; there is no per-passage lineage across depths, ensuring that cross-validation splits do not introduce information leakage.\nLoRA targets are architecture-specific: \\texttt{query\\_key\\_value} for Pythia (GPT-NeoX), \\texttt{q\\_proj}/\\texttt{k\\_proj}/\\texttt{v\\_proj} for OLMo, and \\texttt{c\\_attn}/\\texttt{c\\_proj} for GPT-2~XL.\nWe adopt standard LoRA hyperparameters ($r{=}16$, $\\alpha{=}32$, dropout$\\,{=}\\,0.05$) following \\citet{hu2022lora}, applied uniformly across all models.\n\n\\paragraph{Reference model.}\nAll statistical features (\\S\\ref{sec:method:features}) are computed using a fixed reference model---GPT-2 base (124M)---that is independent of the three generation models.\nThe reference model computes per-token perplexity for each passage, providing a consistent measurement frame across model families.\nIn cross-model leave-one-out evaluation (\\S\\ref{sec:generalization}), the reference model remains fixed even when GPT-2~XL is held out; the partial architectural overlap this introduces is discussed in Limitations.\n\n\\subsection{Statistical Feature Design}\n\\label{sec:method:features}\n\nWe extract a 19-dimensional feature vector $\\mathbf{f}(x)$ from the reference-model perplexity distribution over each passage $x$.\nThe features fall into four categories (Table~\\ref{tab:features}).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{The 19 statistical features comprising $\\mathbf{f}(x)$, grouped by category. All perplexity and surprisal features are computed from the reference model (GPT-2 base, 124M).}\n\\label{tab:features}\n\\begin{tabular}{@{}llr@{}}\n\\toprule\nCategory & Features & $n$ \\\\\n\\midrule\nPerplexity & mean, var, skewness, kurtosis, & 9 \\\\\nstatistics & p10, p25, p50, p75, p90 & \\\\\n\\addlinespace\nSurprisal & mean, var, entropy & 3 \\\\\nstatistics & & \\\\\n\\addlinespace\nLexical & type--token ratio, hapax ratio, & 4 \\\\\ndiversity & bigram entropy, trigram entropy & \\\\\n\\addlinespace\nRepetition & repeated 2/3/4-gram fractions & 3 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\emph{Perplexity statistics} (9 features) capture the location, spread, and shape of the per-token perplexity distribution via its mean, variance, skewness, kurtosis, and five percentile quantiles (p10--p90).\nThe tail quantiles (p75, p90) prove especially informative: recursive finetuning erodes the high-perplexity tail, making these features monotonically decreasing with depth (\\S\\ref{sec:atlas}).\n\n\\emph{Surprisal statistics} (3 features) operate on $-\\log p(\\text{token})$ and include mean surprisal, surprisal variance, and the entropy of the surprisal distribution.\nWhile correlated with perplexity features, surprisal variance captures second-order structure---the variability of token predictability---that is not redundant with perplexity moments.\n\n\\emph{Lexical diversity} (4 features) measures vocabulary usage through type--token ratio, hapax ratio (fraction of tokens appearing exactly once), and bigram/trigram entropy.\n\n\\emph{Repetition} (3 features) quantifies the fraction of repeated $n$-grams for $n \\in \\{2, 3, 4\\}$, capturing the increased self-repetition characteristic of recursive generation.\n\n\\subsection{Effective Discriminable Depth}\n\\label{sec:method:edd}\n\nAggregate classification accuracy over $K{+}1$ classes obscures whether discriminability degrades at specific depths.\nWe introduce the \\emph{Effective Discriminable Depth} (EDD), a scalar metric that summarizes how far into a recursive chain adjacent depths remain distinguishable.\n\nFor each adjacent depth pair $(d, d{+}1)$, we train a dedicated binary Random Forest (500 trees; increased from 200 in the multi-class setting to ensure convergence on the smaller per-pair samples) and compute the one-vs-one AUC.\nGiven a threshold $T$, we define:\n\\begin{equation}\n\\mathrm{EDD}_T = \\max \\{ d^*{+}1 : \\mathrm{AUC}(d^*, d^*{+}1) \\geq T \\}\n\\label{eq:edd}\n\\end{equation}\nwhere $d^* \\in \\{0, 1, \\dots, K{-}1\\}$.\nThe default threshold is $T{=}0.75$; we report sensitivity analyses at $T \\in \\{0.65, 0.70, 0.75, 0.80\\}$ in \\S\\ref{sec:atlas}.\nCrucially, each AUC is obtained from an independent binary pairwise classifier (5-fold stratified CV) rather than extracted from a single multi-class model, avoiding decision boundary dilution (\\S\\ref{sec:atlas}).\n\nEDD captures a natural question: \\emph{how deep into the recursive chain can we reliably distinguish successive generations?}\nA high EDD indicates that the statistical fingerprints retain discriminative power across many recursion steps; a low EDD signals rapid convergence to an indistinguishable regime.\n\n\\paragraph{Classifiers.}\nOur primary classifier is a Random Forest (200 trees, unconstrained depth, 5-fold stratified cross-validation).\nWe compare against CORAL ordinal regression \\cite{coral2020}, DivEye \\cite{diveye2026}, a 2-layer cross-entropy MLP, logistic regression, and a single-feature baseline using mean perplexity alone; results appear in \\S\\ref{sec:generalization}.",
+      "numLines": 102,
+      "startLine": 1,
+      "totalLines": 102
+    }
+  },
+  "sourceToolAssistantUUID": "0d054b42-75fb-4188-9a53-32b82331c6a9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/reviewer_2647e3b4",
+  "sessionId": "7e8505cc-d7b7-4957-82c0-cd60ae383a04",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[HANDOFF] 你是 Research Reviewer，这是 Loop #7。  ## 上一轮交接 (task_context)  ### 1. 🔴 硬约束 / 红线 - GPU 白名单：cuda:0, cuda:1（gpu-6000pro-2 上的两张 RTX PRO 6000 Blackwell 97GB）。越界立即 critical。 - Reference model 是 GPT-…",
+  "leafUuid": "b7a700ed-4efc-48ff-b1a9-1305645d4a72",
+  "sessionId": "7e8505cc-d7b7-4957-82c0-cd60ae383a04"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 24_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review paper agent revisions and verify provenance",
+  "sessionId": "7e8505cc-d7b7-4957-82c0-cd60ae383a04"
+}
+```
+
+---
+
+### Assistant
+
+_source line 25 · 2026-05-15T15:17:38.029Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me check the key findings from the handoff:
+
+1. **method.tex cross-reference error**: The handoff said line 40 had `\ref{sec:discussion}` that should point to Limitations. Let me check line 40:
+   - Line 40: "the partial architectural overlap this introduces is discussed in Limitations."
+   - It says "discussed in Limitations" — no `\ref{sec:discussion}` anymore! It looks like this was already fixed. The text now just says "discussed in Limitations" without a `\ref{}` command. Let me check if there's a proper `\ref` to a limitations section or if it's just plain text now.
+   - Actually, looking more carefully, there's no `\ref{}` at all — just plain text "Limitations". This could mean they removed the broken reference but didn't replace it with a proper cross-reference like `\ref{sec:limitations}`. I should check if there's actually a limitations section defined in the paper.
+
+2. **paper_provenance.yaml**: Still showing empty with claims: [], tables: [], figures: [], coverage: 0/0. This warning is still there.
+
+Let me also look at the atlas to see what else needs attention.
+
+Now I'm checking the LaTeX for the EDD formula duplication and examining the overall paper structure...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b7a700ed-4efc-48ff-b1a9-1305645d4a72",
+  "isSidechain": false,
+  "requestId": "req_011Cb4aQb4rJGrbx9wfYrLft",
+  "type": "assistant",
+  "uuid": "d46b7d51-d2b0-4b77-8e5b-8b45793e44f8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/reviewer_2647e3b4",
+  "sessionId": "7e8505cc-d7b7-4957-82c0-cd60ae383a04",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014iDwd7HBCM3NVGvdBpyiG1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3049,
+      "cache_read_input_tokens": 34278,
+      "output_tokens": 657,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3049,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 657,
+          "cache_read_input_tokens": 34278,
+          "cache_creation_input_tokens": 3049,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3049
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26 · 2026-05-15T15:17:38.916Z_
+
+method.tex 第40行已修改——`\ref{sec:discussion}` 被替换为纯文本 "Limitations"，但这不是最佳修复（应该用 `\ref` 指向 limitations 小节标签）。paper_provenance.yaml 仍为空。
+
+让我检查 atlas.tex 的 EDD 公式重复问题，以及 limitations 部分的实际标签。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d46b7d51-d2b0-4b77-8e5b-8b45793e44f8",
+  "isSidechain": false,
+  "requestId": "req_011Cb4aQb4rJGrbx9wfYrLft",
+  "type": "assistant",
+  "uuid": "26262262-dc36-454f-92ed-cb1de7a79461",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/reviewer_2647e3b4",
+  "sessionId": "7e8505cc-d7b7-4957-82c0-cd60ae383a04",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014iDwd7HBCM3NVGvdBpyiG1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3049,
+      "cache_read_input_tokens": 34278,
+      "output_tokens": 657,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3049,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 657,
+          "cache_read_input_tokens": 34278,
+          "cache_creation_input_tokens": 3049,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3049
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-15T15:17:39.908Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01JHcHSC4Lyqy3ZWfCPGVotC`</summary>
+
+```json
+{
+  "pattern": "\\\\label\\{sec:limit",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "26262262-dc36-454f-92ed-cb1de7a79461",
+  "isSidechain": false,
+  "requestId": "req_011Cb4aQb4rJGrbx9wfYrLft",
+  "type": "assistant",
+  "uuid": "86b91a00-5487-4e29-a735-e3018b05d247",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/reviewer_2647e3b4",
+  "sessionId": "7e8505cc-d7b7-4957-82c0-cd60ae383a04",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014iDwd7HBCM3NVGvdBpyiG1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3049,
+      "cache_read_input_tokens": 34278,
+      "output_tokens": 657,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3049,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 657,
+          "cache_read_input_tokens": 34278,
+          "cache_creation_input_tokens": 3049,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3049
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-15T15:17:40.019Z_
+
+<details><summary>↩ Tool result · `toolu_018jCLsNJQtWgDP7Zifhos4j`</summary>
+
+```text
+1	\section{The Depth Degradation Atlas}
+2	\label{sec:atlas}
+3	
+4	We systematically characterize how recursive generation reshapes the statistical profile of text across a grid of 3 model families $\times$ 3 decoding strategies $\times$ 4 generation depths (d0--d3), yielding 9 experimental configurations each spanning 4 depths.
+5	For each cell we train a Random Forest (RF) classifier on the 19 statistical features defined in \S\ref{sec:method} and examine (i)~in-distribution depth classification accuracy, (ii)~which features carry depth signal, (iii)~how far into the recursion chain depth remains discriminable, and (iv)~how decoding strategy modulates the degradation trajectory.
+6	
+7	\subsection{In-Distribution Performance}
+8	\label{sec:atlas:indist}
+9	
+10	Table~\ref{tab:main_matrix} reports 4-class depth estimation accuracy under 5-fold cross-validation.
+11	All 9 cells exceed chance (25\%) by a wide margin, with accuracy ranging from 69.6\% to 85.4\%.
+12	Both model family and decoding strategy influence accuracy, with model ordering GPT-2~XL $>$ OLMo $>$ Pythia holding across all strategies.
+13	Top-$k$ ($k{=}50$) trails by 6--9 percentage points, while temperature and nucleus sampling alternate for the lead depending on model family.
+14	
+15	\begin{table}[t]
+16	\centering
+17	\small
+18	\caption{In-distribution 4-class depth estimation accuracy (\%) across 3 model families $\times$ 3 decoding strategies. RF classifier with 19 statistical features, 5-fold CV (std 0.2--0.9pp across all cells). Chance = 25\%.}
+19	\label{tab:main_matrix}
+20	\begin{tabular}{lccc}
+21	\toprule
+22	Model & Nucleus & Temp & Top-$k$ \\
+23	 & $p{=}0.95$ & $\tau{=}0.9$ & $k{=}50$ \\
+24	\midrule
+25	Pythia-1.4B & 78.2 & 76.3 & 69.6 \\
+26	OLMo-1B & 78.8 & 82.0 & 74.2 \\
+27	GPT-2 XL & 83.3 & \textbf{85.4} & 76.6 \\
+28	\bottomrule
+29	\end{tabular}
+30	\end{table}
+31	
+32	Because the human-written seed text (d0) is often trivially separable from any machine-generated depth, we also evaluate 3-class accuracy excluding d0.
+33	Performance drops moderately---GPT-2~XL with temperature sampling still reaches 82.0\%, and even the weakest setting (Pythia nucleus) retains 70.8\%---confirming that the classifier captures inter-generation differences beyond the human--machine boundary.
+34	
+35	\subsection{Feature Universality}
+36	\label{sec:atlas:features}
+37	
+38	To identify which statistical fingerprints carry depth signal, we train a dedicated binary RF per cell (d$_i$ vs.\ rest) and extract feature importances (Gini impurity; permutation importance yields consistent rankings, Appendix~\ref{app:permutation}).
+39	Figure~\ref{fig:atlas_heatmap} visualizes the top-7 feature importances across all 9 cells.
+40	
+41	Two features dominate.
+42	The 90th-percentile perplexity (\textsc{p90\_ppl}) ranks in the top 2 in all 9 cells, while surprisal variance (\textsc{var\_surprisal}) does so in 7 of 9.
+43	In the two exceptions---GPT-2~XL with temperature and top-$k$ sampling---the 75th-percentile perplexity (\textsc{p75\_ppl}) replaces surprisal variance in the top 2, though surprisal variance remains among the top 4 features.
+44	To quantify cross-model agreement, we compute the Spearman rank correlation of the full 19-feature importance vectors across all $\binom{9}{2}=36$ cell pairs and obtain a mean $\rho = 0.868$ (range: 0.619--0.954).
+45	
+46	\begin{figure}[t]
+47	\centering
+48	\includegraphics[width=\columnwidth]{../../figures/paper/fig_atlas_heatmap.pdf}
+49	\caption{Feature importance heatmap across 9 cells (3 models $\times$ 3 strategies). Top-7 features by mean importance. \textsc{p90\_ppl} appears in the top 2 for all cells; \textsc{var\_surprisal} for 7 of 9.}
+50	\label{fig:atlas_heatmap}
+51	\end{figure}
+52	
+53	These results align with theoretical predictions: recursive finetuning erodes the tail of the token-probability distribution \cite{shumailov2024_nature,dohmatob2024_tale_of_tails}, and high-percentile perplexity directly measures tail behavior.
+54	The universality of these markers across architectures and decoding strategies suggests they reflect a structural property of the recursive generation process rather than model-specific artifacts.
+55	
+56	\subsection{Effective Discriminable Depth}
+57	\label{sec:atlas:edd}
+58	
+59	Aggregate accuracy masks that adjacent depths become harder to distinguish as depth increases; we quantify this via the \emph{Effective Discriminable Depth} (EDD).
+60	For each adjacent depth pair $(d, d{+}1)$, we train a dedicated binary RF (500 trees, 5-fold stratified CV) and compute $\mathrm{AUC}(d, d{+}1)$ (Eq.~\ref{eq:edd}).
+61	We set $T{=}0.75$ as the default threshold---the midpoint between chance AUC (0.5) and perfect discrimination (1.0)---and report sensitivity at $T \in \{0.65, 0.70, 0.75, 0.80\}$ below.
+62	
+63	Within the 4-class atlas (d0--d3), 7 of 9 cells achieve $\mathrm{EDD}_{0.75}=3$; the two exceptions are Pythia and OLMo with top-$k$ sampling ($\mathrm{EDD}_{0.75}=2$), consistent with top-$k$'s signal-attenuating effect noted in \S\ref{sec:atlas:indist}.
+64	
+65	We extend the Pythia-1.4B nucleus pipeline to 6 depths (d0--d5) and train a 500-tree binary RF for each adjacent pair.
+66	Figure~\ref{fig:auc_decay} shows the pairwise AUC decay curve.
+67	The d0\,vs.\,d1 boundary is near-perfect (AUC\,=\,0.998), reflecting the well-known human--machine gap.
+68	Subsequent boundaries degrade monotonically: d1\,vs.\,d2 achieves 0.925 [95\% CI: 0.914,\,0.935], d2\,vs.\,d3 reaches 0.823 [0.805,\,0.840], and d3\,vs.\,d4 yields 0.784 [0.765,\,0.802]---with the confidence interval lower bound still exceeding $T{=}0.75$.
+69	At d4\,vs.\,d5, AUC drops to 0.683 [0.661,\,0.705], falling below the threshold and fixing $\mathrm{EDD}_{0.75}=4$.
+70	
+71	\paragraph{Cross-model EDD.}
+72	We extend the same d0--d5 pipeline to OLMo-1B and GPT-2~XL (both nucleus $p{=}0.95$).
+73	The d3\,vs.\,d4 AUC consistently clusters near the 0.75 threshold: Pythia 0.784 ($p{=}0.001$), OLMo 0.765 ($p{=}0.091$, marginal), GPT-2~XL 0.750 ($p{=}0.505$, n.s.)---only Pythia achieves conventional significance, yet all three exhibit the same directional pattern.
+74	At d4\,vs.\,d5, AUC uniformly drops below 0.70 (Pythia 0.683, OLMo 0.684, GPT-2~XL 0.681), fixing $\mathrm{EDD}_{0.75}{=}4$ for all three models.
+75	This cross-model EDD is stable across threshold choices: all three yield $\mathrm{EDD}{=}5$ at $T{=}0.65$, $\mathrm{EDD}{=}4$ at $T \in \{0.70, 0.75\}$, and $\mathrm{EDD}{=}3$ at $T{=}0.80$, matching the single-model pattern in Table~\ref{tab:edd_sensitivity}.
+76	
+77	\begin{figure}[t]
+78	\centering
+79	\includegraphics[width=\columnwidth]{../../figures/paper/fig_auc_decay.pdf}
+80	\caption{Binary pairwise AUC between adjacent depths (Pythia-1.4B, nucleus $p{=}0.95$, d0--d5). Shaded bands: 95\% bootstrap CI. Dashed line: $T{=}0.75$. $\mathrm{EDD}_{0.75}=4$: depth pairs up to d3\,vs.\,d4 remain discriminable.}
+81	\label{fig:auc_decay}
+82	\end{figure}
+83	
+84	Table~\ref{tab:edd_sensitivity} shows the sensitivity of EDD to the choice of threshold.
+85	At $T{=}0.65$, all pairs through d4\,vs.\,d5 pass, giving $\mathrm{EDD}=5$.
+86	At $T{=}0.80$, only d1\,vs.\,d2 and d2\,vs.\,d3 pass, yielding $\mathrm{EDD}=3$.
+87	The d0\,vs.\,d1 pair passes at every threshold ($\text{AUC}\geq0.99$).
+88	
+89	\begin{table}[t]
+90	\centering
+91	\small
+92	\caption{EDD sensitivity to threshold $T$ (Pythia-1.4B, nucleus $p{=}0.95$). \checkmark: pairwise AUC $\geq T$; ---: below $T$. d0\,vs.\,d1 always passes (AUC$\geq$0.99) and is omitted.}
+93	\label{tab:edd_sensitivity}
+94	\begin{tabular}{cccccr}
+95	\toprule
+96	$T$ & d1/d2 & d2/d3 & d3/d4 & d4/d5 & EDD \\
+97	\midrule
+98	0.65 & \checkmark & \checkmark & \checkmark & \checkmark & 5 \\
+99	0.70 & \checkmark & \checkmark & \checkmark & --- & 4 \\
+100	0.75 & \checkmark & \checkmark & \checkmark & --- & 4 \\
+101	0.80 & \checkmark & \checkmark & --- & --- & 3 \\
+102	\bottomrule
+103	\end{tabular}
+104	\end{table}
+105	
+106	\paragraph{Granularity ablation.}
+107	Decision boundary dilution motivates EDD's binary-pair design: mean accuracy drops from 99.5\% (binary) to 78.3\% (4-class) to 62.9\% (6-class), and the d2\,vs.\,d3 AUC falls from 0.804 to 0.689 between the 4-class and 6-class settings for Pythia nucleus---a 14\% relative decline attributable to boundary dilution, not signal loss.
+108	
+109	\subsection{Strategy-Dependent Trajectories}
+110	\label{sec:atlas:trajectories}
+111	
+112	The atlas reveals that decoding strategy does not merely scale the overall signal strength---it reshapes the degradation trajectory.
+113	Figure~\ref{fig:feature_trajectory} plots normalized feature means across depths for three key features.
+114	
+115	\begin{figure}[t]
+116	\centering
+117	\includegraphics[width=\columnwidth]{../../figures/paper/fig_feature_trajectory.pdf}
+118	\caption{Normalized feature trajectories across generation depths for 3 models $\times$ 2 strategies (nucleus $p{=}0.95$, temperature $\tau{=}0.9$). All features decrease monotonically with depth, but inter-depth spacing is highly non-uniform. Top-$k$ results are provided in Appendix~\ref{app:topk_trajectories}.}
+119	\label{fig:feature_trajectory}
+120	\end{figure}
+121	
+122	\paragraph{Non-uniform inter-depth spacing.}
+123	For Pythia nucleus, \textsc{p90\_ppl} drops from 483.7 (d0) to 61.4 (d1)---an 87\% reduction---but only from 29.7 (d2) to 18.2 (d3), a 39\% reduction.
+124	This geometric compression of the feature space explains why adjacent-pair AUC decays monotonically (Figure~\ref{fig:auc_decay}): each successive generation step yields diminishing statistical displacement.
+125	
+126	\paragraph{Temperature-induced acceleration.}
+127	Temperature sampling ($\tau{=}0.9$) applies uniform logit scaling rather than the hard truncation of nucleus or top-$k$, which accelerates convergence toward the low-entropy attractor described by \citet{marchi2024_heat_death}.
+128	Concretely, feature values at depth $N$ under temperature sampling approximate those at depth $N{+}1$ under nucleus or top-$k$.
+129	This shift yields higher in-distribution accuracy (Table~\ref{tab:main_matrix}) because each depth occupies a more distinct region of feature space, but it also means the d1/d2 boundary under temperature is closer to the d2/d3 boundary under nucleus---a mismatch that creates reversal risk in cross-strategy transfer (\S\ref{sec:generalization}).
+130	
+131	\paragraph{Three-tier strategy taxonomy.}
+132	The trajectory data suggests a functional classification.
+133	Nucleus sampling ($p{=}0.95$) serves as a stable baseline with moderate signal strength.
+134	Temperature sampling ($\tau{=}0.9$) enhances the signal via accelerated convergence, yielding higher within-strategy accuracy but strategy-specific depth boundaries.
+135	Top-$k$ sampling ($k{=}50$) attenuates the signal---accuracy drops 6--9 points relative to nucleus---because hard truncation at a fixed vocabulary size preserves more of the original distribution's shape across depths, compressing inter-depth distances.
+136	Notably, top-$k$ preserves the \emph{direction} of all feature trends despite the magnitude reduction, which has implications for ordinal classifiers that rely on monotonicity (\S\ref{sec:generalization}).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "88e138be-22fc-46ac-a933-8f3c7a9d2f05",
+  "isSidechain": false,
+  "promptId": "b348da81-a17b-4e5c-8b2e-fdebce509677",
+  "type": "user",
+  "uuid": "fcc9f09e-d3c2-43d4-bbbb-8366c0b583df",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/atlas.tex",
+      "content": "\\section{The Depth Degradation Atlas}\n\\label{sec:atlas}\n\nWe systematically characterize how recursive generation reshapes the statistical profile of text across a grid of 3 model families $\\times$ 3 decoding strategies $\\times$ 4 generation depths (d0--d3), yielding 9 experimental configurations each spanning 4 depths.\nFor each cell we train a Random Forest (RF) classifier on the 19 statistical features defined in \\S\\ref{sec:method} and examine (i)~in-distribution depth classification accuracy, (ii)~which features carry depth signal, (iii)~how far into the recursion chain depth remains discriminable, and (iv)~how decoding strategy modulates the degradation trajectory.\n\n\\subsection{In-Distribution Performance}\n\\label{sec:atlas:indist}\n\nTable~\\ref{tab:main_matrix} reports 4-class depth estimation accuracy under 5-fold cross-validation.\nAll 9 cells exceed chance (25\\%) by a wide margin, with accuracy ranging from 69.6\\% to 85.4\\%.\nBoth model family and decoding strategy influence accuracy, with model ordering GPT-2~XL $>$ OLMo $>$ Pythia holding across all strategies.\nTop-$k$ ($k{=}50$) trails by 6--9 percentage points, while temperature and nucleus sampling alternate for the lead depending on model family.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{In-distribution 4-class depth estimation accuracy (\\%) across 3 model families $\\times$ 3 decoding strategies. RF classifier with 19 statistical features, 5-fold CV (std 0.2--0.9pp across all cells). Chance = 25\\%.}\n\\label{tab:main_matrix}\n\\begin{tabular}{lccc}\n\\toprule\nModel & Nucleus & Temp & Top-$k$ \\\\\n & $p{=}0.95$ & $\\tau{=}0.9$ & $k{=}50$ \\\\\n\\midrule\nPythia-1.4B & 78.2 & 76.3 & 69.6 \\\\\nOLMo-1B & 78.8 & 82.0 & 74.2 \\\\\nGPT-2 XL & 83.3 & \\textbf{85.4} & 76.6 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nBecause the human-written seed text (d0) is often trivially separable from any machine-generated depth, we also evaluate 3-class accuracy excluding d0.\nPerformance drops moderately---GPT-2~XL with temperature sampling still reaches 82.0\\%, and even the weakest setting (Pythia nucleus) retains 70.8\\%---confirming that the classifier captures inter-generation differences beyond the human--machine boundary.\n\n\\subsection{Feature Universality}\n\\label{sec:atlas:features}\n\nTo identify which statistical fingerprints carry depth signal, we train a dedicated binary RF per cell (d$_i$ vs.\\ rest) and extract feature importances (Gini impurity; permutation importance yields consistent rankings, Appendix~\\ref{app:permutation}).\nFigure~\\ref{fig:atlas_heatmap} visualizes the top-7 feature importances across all 9 cells.\n\nTwo features dominate.\nThe 90th-percentile perplexity (\\textsc{p90\\_ppl}) ranks in the top 2 in all 9 cells, while surprisal variance (\\textsc{var\\_surprisal}) does so in 7 of 9.\nIn the two exceptions---GPT-2~XL with temperature and top-$k$ sampling---the 75th-percentile perplexity (\\textsc{p75\\_ppl}) replaces surprisal variance in the top 2, though surprisal variance remains among the top 4 features.\nTo quantify cross-model agreement, we compute the Spearman rank correlation of the full 19-feature importance vectors across all $\\binom{9}{2}=36$ cell pairs and obtain a mean $\\rho = 0.868$ (range: 0.619--0.954).\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{../../figures/paper/fig_atlas_heatmap.pdf}\n\\caption{Feature importance heatmap across 9 cells (3 models $\\times$ 3 strategies). Top-7 features by mean importance. \\textsc{p90\\_ppl} appears in the top 2 for all cells; \\textsc{var\\_surprisal} for 7 of 9.}\n\\label{fig:atlas_heatmap}\n\\end{figure}\n\nThese results align with theoretical predictions: recursive finetuning erodes the tail of the token-probability distribution \\cite{shumailov2024_nature,dohmatob2024_tale_of_tails}, and high-percentile perplexity directly measures tail behavior.\nThe universality of these markers across architectures and decoding strategies suggests they reflect a structural property of the recursive generation process rather than model-specific artifacts.\n\n\\subsection{Effective Discriminable Depth}\n\\label{sec:atlas:edd}\n\nAggregate accuracy masks that adjacent depths become harder to distinguish as depth increases; we quantify this via the \\emph{Effective Discriminable Depth} (EDD).\nFor each adjacent depth pair $(d, d{+}1)$, we train a dedicated binary RF (500 trees, 5-fold stratified CV) and compute $\\mathrm{AUC}(d, d{+}1)$ (Eq.~\\ref{eq:edd}).\nWe set $T{=}0.75$ as the default threshold---the midpoint between chance AUC (0.5) and perfect discrimination (1.0)---and report sensitivity at $T \\in \\{0.65, 0.70, 0.75, 0.80\\}$ below.\n\nWithin the 4-class atlas (d0--d3), 7 of 9 cells achieve $\\mathrm{EDD}_{0.75}=3$; the two exceptions are Pythia and OLMo with top-$k$ sampling ($\\mathrm{EDD}_{0.75}=2$), consistent with top-$k$'s signal-attenuating effect noted in \\S\\ref{sec:atlas:indist}.\n\nWe extend the Pythia-1.4B nucleus pipeline to 6 depths (d0--d5) and train a 500-tree binary RF for each adjacent pair.\nFigure~\\ref{fig:auc_decay} shows the pairwise AUC decay curve.\nThe d0\\,vs.\\,d1 boundary is near-perfect (AUC\\,=\\,0.998), reflecting the well-known human--machine gap.\nSubsequent boundaries degrade monotonically: d1\\,vs.\\,d2 achieves 0.925 [95\\% CI: 0.914,\\,0.935], d2\\,vs.\\,d3 reaches 0.823 [0.805,\\,0.840], and d3\\,vs.\\,d4 yields 0.784 [0.765,\\,0.802]---with the confidence interval lower bound still exceeding $T{=}0.75$.\nAt d4\\,vs.\\,d5, AUC drops to 0.683 [0.661,\\,0.705], falling below the threshold and fixing $\\mathrm{EDD}_{0.75}=4$.\n\n\\paragraph{Cross-model EDD.}\nWe extend the same d0--d5 pipeline to OLMo-1B and GPT-2~XL (both nucleus $p{=}0.95$).\nThe d3\\,vs.\\,d4 AUC consistently clusters near the 0.75 threshold: Pythia 0.784 ($p{=}0.001$), OLMo 0.765 ($p{=}0.091$, marginal), GPT-2~XL 0.750 ($p{=}0.505$, n.s.)---only Pythia achieves conventional significance, yet all three exhibit the same directional pattern.\nAt d4\\,vs.\\,d5, AUC uniformly drops below 0.70 (Pythia 0.683, OLMo 0.684, GPT-2~XL 0.681), fixing $\\mathrm{EDD}_{0.75}{=}4$ for all three models.\nThis cross-model EDD is stable across threshold choices: all three yield $\\mathrm{EDD}{=}5$ at $T{=}0.65$, $\\mathrm{EDD}{=}4$ at $T \\in \\{0.70, 0.75\\}$, and $\\mathrm{EDD}{=}3$ at $T{=}0.80$, matching the single-model pattern in Table~\\ref{tab:edd_sensitivity}.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{../../figures/paper/fig_auc_decay.pdf}\n\\caption{Binary pairwise AUC between adjacent depths (Pythia-1.4B, nucleus $p{=}0.95$, d0--d5). Shaded bands: 95\\% bootstrap CI. Dashed line: $T{=}0.75$. $\\mathrm{EDD}_{0.75}=4$: depth pairs up to d3\\,vs.\\,d4 remain discriminable.}\n\\label{fig:auc_decay}\n\\end{figure}\n\nTable~\\ref{tab:edd_sensitivity} shows the sensitivity of EDD to the choice of threshold.\nAt $T{=}0.65$, all pairs through d4\\,vs.\\,d5 pass, giving $\\mathrm{EDD}=5$.\nAt $T{=}0.80$, only d1\\,vs.\\,d2 and d2\\,vs.\\,d3 pass, yielding $\\mathrm{EDD}=3$.\nThe d0\\,vs.\\,d1 pair passes at every threshold ($\\text{AUC}\\geq0.99$).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{EDD sensitivity to threshold $T$ (Pythia-1.4B, nucleus $p{=}0.95$). \\checkmark: pairwise AUC $\\geq T$; ---: below $T$. d0\\,vs.\\,d1 always passes (AUC$\\geq$0.99) and is omitted.}\n\\label{tab:edd_sensitivity}\n\\begin{tabular}{cccccr}\n\\toprule\n$T$ & d1/d2 & d2/d3 & d3/d4 & d4/d5 & EDD \\\\\n\\midrule\n0.65 & \\checkmark & \\checkmark & \\checkmark & \\checkmark & 5 \\\\\n0.70 & \\checkmark & \\checkmark & \\checkmark & --- & 4 \\\\\n0.75 & \\checkmark & \\checkmark & \\checkmark & --- & 4 \\\\\n0.80 & \\checkmark & \\checkmark & --- & --- & 3 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Granularity ablation.}\nDecision boundary dilution motivates EDD's binary-pair design: mean accuracy drops from 99.5\\% (binary) to 78.3\\% (4-class) to 62.9\\% (6-class), and the d2\\,vs.\\,d3 AUC falls from 0.804 to 0.689 between the 4-class and 6-class settings for Pythia nucleus---a 14\\% relative decline attributable to boundary dilution, not signal loss.\n\n\\subsection{Strategy-Dependent Trajectories}\n\\label{sec:atlas:trajectories}\n\nThe atlas reveals that decoding strategy does not merely scale the overall signal strength---it reshapes the degradation trajectory.\nFigure~\\ref{fig:feature_trajectory} plots normalized feature means across depths for three key features.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{../../figures/paper/fig_feature_trajectory.pdf}\n\\caption{Normalized feature trajectories across generation depths for 3 models $\\times$ 2 strategies (nucleus $p{=}0.95$, temperature $\\tau{=}0.9$). All features decrease monotonically with depth, but inter-depth spacing is highly non-uniform. Top-$k$ results are provided in Appendix~\\ref{app:topk_trajectories}.}\n\\label{fig:feature_trajectory}\n\\end{figure}\n\n\\paragraph{Non-uniform inter-depth spacing.}\nFor Pythia nucleus, \\textsc{p90\\_ppl} drops from 483.7 (d0) to 61.4 (d1)---an 87\\% reduction---but only from 29.7 (d2) to 18.2 (d3), a 39\\% reduction.\nThis geometric compression of the feature space explains why adjacent-pair AUC decays monotonically (Figure~\\ref{fig:auc_decay}): each successive generation step yields diminishing statistical displacement.\n\n\\paragraph{Temperature-induced acceleration.}\nTemperature sampling ($\\tau{=}0.9$) applies uniform logit scaling rather than the hard truncation of nucleus or top-$k$, which accelerates convergence toward the low-entropy attractor described by \\citet{marchi2024_heat_death}.\nConcretely, feature values at depth $N$ under temperature sampling approximate those at depth $N{+}1$ under nucleus or top-$k$.\nThis shift yields higher in-distribution accuracy (Table~\\ref{tab:main_matrix}) because each depth occupies a more distinct region of feature space, but it also means the d1/d2 boundary under temperature is closer to the d2/d3 boundary under nucleus---a mismatch that creates reversal risk in cross-strategy transfer (\\S\\ref{sec:generalization}).\n\n\\paragraph{Three-tier strategy taxonomy.}\nThe trajectory data suggests a functional classification.\nNucleus sampling ($p{=}0.95$) serves as a stable baseline with moderate signal strength.\nTemperature sampling ($\\tau{=}0.9$) enhances the signal via accelerated convergence, yielding higher within-strategy accuracy but strategy-specific depth boundaries.\nTop-$k$ sampling ($k{=}50$) attenuates the signal---accuracy drops 6--9 points relative to nucleus---because hard truncation at a fixed vocabulary size preserves more of the original distribution's shape across depths, compressing inter-depth distances.\nNotably, top-$k$ preserves the \\emph{direction} of all feature trends despite the magnitude reduction, which has implications for ordinal classifiers that rely on monotonicity (\\S\\ref{sec:generalization}).",
+      "numLines": 136,
+      "startLine": 1,
+      "totalLines": 136
+    }
+  },
+  "sourceToolAssistantUUID": "88e138be-22fc-46ac-a933-8f3c7a9d2f05",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/reviewer_2647e3b4",
+  "sessionId": "7e8505cc-d7b7-4957-82c0-cd60ae383a04",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-15T15:17:39.938Z_
+
+<details><summary>↩ Tool result · `toolu_01JHcHSC4Lyqy3ZWfCPGVotC`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/conclusion.tex:9:\label{sec:limitations}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "86b91a00-5487-4e29-a735-e3018b05d247",
+  "isSidechain": false,
+  "promptId": "b348da81-a17b-4e5c-8b2e-fdebce509677",
+  "type": "user",
+  "uuid": "6da4698e-b022-496c-bc9c-e1b608a91e50",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/conclusion.tex:9:\\label{sec:limitations}",
+    "numLines": 1
+  },
+  "sourceToolAssistantUUID": "86b91a00-5487-4e29-a735-e3018b05d247",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/reviewer_2647e3b4",
+  "sessionId": "7e8505cc-d7b7-4957-82c0-cd60ae383a04",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-15T15:17:40.014Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_018jCLsNJQtWgDP7Zifhos4j`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/atlas.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6da4698e-b022-496c-bc9c-e1b608a91e50",
+  "isSidechain": false,
+  "requestId": "req_011Cb4aQb4rJGrbx9wfYrLft",
+  "type": "assistant",
+  "uuid": "88e138be-22fc-46ac-a933-8f3c7a9d2f05",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/reviewer_2647e3b4",
+  "sessionId": "7e8505cc-d7b7-4957-82c0-cd60ae383a04",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014iDwd7HBCM3NVGvdBpyiG1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3049,
+      "cache_read_input_tokens": 34278,
+      "output_tokens": 657,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3049,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 657,
+          "cache_read_input_tokens": 34278,
+          "cache_creation_input_tokens": 3049,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3049
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 31 · 2026-05-15T15:17:40.073Z_
+
+```json
+{
+  "parentUuid": "fcc9f09e-d3c2-43d4-bbbb-8366c0b583df",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "09fa9249-d5bb-406a-ad54-a8d8a35ec238",
+  "timestamp": "2026-05-15T15:17:40.073Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/reviewer_2647e3b4",
+  "sessionId": "7e8505cc-d7b7-4957-82c0-cd60ae383a04",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 32_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[HANDOFF] 你是 Research Reviewer，这是 Loop #7。  ## 上一轮交接 (task_context)  ### 1. 🔴 硬约束 / 红线 - GPU 白名单：cuda:0, cuda:1（gpu-6000pro-2 上的两张 RTX PRO 6000 Blackwell 97GB）。越界立即 critical。 - Reference model 是 GPT-…",
+  "leafUuid": "09fa9249-d5bb-406a-ad54-a8d8a35ec238",
+  "sessionId": "7e8505cc-d7b7-4957-82c0-cd60ae383a04"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 33_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review paper agent revisions and verify provenance",
+  "sessionId": "7e8505cc-d7b7-4957-82c0-cd60ae383a04"
+}
+```
+
+---
+
+### Assistant
+
+_source line 34 · 2026-05-15T15:17:59.335Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze what I've found:
+
+1. **method.tex line 40**: The text now reads "the partial architectural overlap this introduces is discussed in Limitations." — no `\ref{}` at all. The actual label in conclusion.tex is `\label{sec:limitations}`. So the fix removed the broken `\ref{sec:discussion}` but replaced it with plain text "Limitations" instead of `\ref{sec:limitations}`. This is a minor fix but not ideal — it should use `\ref{sec:limitations}` for proper cross-referencing.
+
+2. **paper_provenance.yaml**: Still completely empty — claims: 0, tables: 0, figures: 0, coverage: 0/0. 
+
+3. **atlas.tex EDD section**: The warning about duplicated EDD formulas persists from the previous check. Looking at atlas.tex line 60, it references "Eq.~\ref{eq:edd}" which cross-references the equation from method.tex rather than duplicating it, so there's no actual duplication issue here.
+
+4. **Cross-model EDD narrative in atlas.tex lines 71-75**: The graded p-value presentation matches the required decision chain perfectly—Pythia shows conventional significance while OLMo is marginal and GPT-2 XL is non-significant. However, line 74's claim that all three models fix EDD=4 needs verification against the actual model specifications.
+
+Now I'm checking the accuracy matrix and EDD values in the registry to confirm these numbers match what's reported in atlas.tex.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "09fa9249-d5bb-406a-ad54-a8d8a35ec238",
+  "isSidechain": false,
+  "requestId": "req_011Cb4aRa1NroTmMGnKb3zoZ",
+  "type": "assistant",
+  "uuid": "2108480b-5c42-44f3-b0d2-7262d79598ea",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/reviewer_2647e3b4",
+  "sessionId": "7e8505cc-d7b7-4957-82c0-cd60ae383a04",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R46NMD9usuFnSAZbsf6g67",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4837,
+      "cache_read_input_tokens": 37327,
+      "output_tokens": 996,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4837,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 996,
+          "cache_read_input_tokens": 37327,
+          "cache_creation_input_tokens": 4837,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4837
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35 · 2026-05-15T15:18:02.641Z_
+
+发现：
+1. method.tex 第40行修复不完整——移除了 `\ref{sec:discussion}` 但换成了纯文本 "Limitations"，应为 `\ref{sec:limitations}`（conclusion.tex 第9行有该标签）
+2. paper_provenance.yaml 仍为空
+3. atlas.tex EDD 公式不再重复（已改为 `Eq.~\ref{eq:edd}` 引用），之前的 info 已修复
+4. atlas.tex 第73行 EDD 叙事正确使用了分级 p 值表述 ✓
+
+现在交叉验证 atlas.tex 中的关键数字与 registry 是否一致。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2108480b-5c42-44f3-b0d2-7262d79598ea",
+  "isSidechain": false,
+  "requestId": "req_011Cb4aRa1NroTmMGnKb3zoZ",
+  "type": "assistant",
+  "uuid": "f492bdb2-3dec-4a71-9202-7732578dd4eb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/reviewer_2647e3b4",
+  "sessionId": "7e8505cc-d7b7-4957-82c0-cd60ae383a04",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R46NMD9usuFnSAZbsf6g67",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4837,
+      "cache_read_input_tokens": 37327,
+      "output_tokens": 996,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4837,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 996,
+          "cache_read_input_tokens": 37327,
+          "cache_creation_input_tokens": 4837,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4837
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-15T15:18:03.714Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_011jsiB9d5DyX2DSDvoSRWvD`</summary>
+
+```json
+{
+  "project": "recursive_gen_depth_est",
+  "limit": 0,
+  "fields": [
+    "exp_id",
+    "status",
+    "conclusion",
+    "metrics"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f492bdb2-3dec-4a71-9202-7732578dd4eb",
+  "isSidechain": false,
+  "requestId": "req_011Cb4aRa1NroTmMGnKb3zoZ",
+  "type": "assistant",
+  "uuid": "4aa48f86-6464-428f-891f-f16c44f4bf30",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/reviewer_2647e3b4",
+  "sessionId": "7e8505cc-d7b7-4957-82c0-cd60ae383a04",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R46NMD9usuFnSAZbsf6g67",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4837,
+      "cache_read_input_tokens": 37327,
+      "output_tokens": 996,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4837,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 996,
+          "cache_read_input_tokens": 37327,
+          "cache_creation_input_tokens": 4837,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4837
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-15T15:18:04.030Z_
+
+<details><summary>↩ Tool result · `toolu_011jsiB9d5DyX2DSDvoSRWvD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"n2_roberta_finetune_001\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy_mean\": 0.5948, \"accuracy_std\": 0.0324, \"per_class_f1\": {\"d0\": 0.958, \"d1\": 0.4161, \"d2\": 0.2611, \"d3\": 0.6472}, \"per_class_precision\": {\"d0\": 0.9983, \"d1\": 0.7178, \"d2\": 0.2956, \"d3\": 0.4958}, \"per_class_recall\": {\"d0\": 0.9208, \"d1\": 0.293, \"d2\": 0.2338, \"d3\": 0.9314}, \"pairwise_auc\": {\"d0v1\": 0.9886, \"d1v2\": 0.7522, \"d2v3\": 0.7349}, \"fold_accuracies\": [0.6022, 0.5595, 0.5623, 0.6018, 0.648], \"vs_rf_baseline\": \"-18.7pp (59.5% vs 78.2%)\", \"vs_deberta\": \"+1.2pp acc, +0.019 d1v2_auc, -0.020 d2v3_auc\", \"elapsed_seconds\": 1942.5}}, \"n2_deberta_finetune_001\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy_mean\": 0.5831, \"accuracy_std\": 0.0467, \"per_class_f1\": {\"d0\": 0.947, \"d1\": 0.378, \"d2\": 0.247, \"d3\": 0.656}, \"pairwise_auc\": {\"d0v1\": 0.981, \"d1v2\": 0.733, \"d2v3\": 0.755}, \"vs_rf_baseline\": \"58.3% vs 78.2% (-19.9pp)\", \"elapsed_seconds\": 3727}}, \"cross_strategy_loo_001\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"mean_4class_acc\": 0.5908, \"pythia_holdout_nucleus\": {\"acc\": 0.6935, \"d1v2_auc\": 0.6903, \"d2v3_auc\": 0.7626}, \"pythia_holdout_temp09\": {\"acc\": 0.6281, \"d1v2_auc\": 0.576, \"d2v3_auc\": 0.724}, \"pythia_holdout_topk50\": {\"acc\": 0.5151, \"d1v2_auc\": 0.6393, \"d2v3_auc\": 0.5801}, \"gpt2xl_holdout_nucleus\": {\"acc\": 0.5993, \"d1v2_auc\": 0.7826, \"d2v3_auc\": 0.4985}, \"gpt2xl_holdout_temp09\": {\"acc\": 0.5609, \"d1v2_auc\": 0.1288, \"d2v3_auc\": 0.6366}, \"gpt2xl_holdout_topk50\": {\"acc\": 0.5364, \"d1v2_auc\": 0.8308, \"d2v3_auc\": 0.7222}, \"olmo_holdout_nucleus\": {\"acc\": 0.6538, \"d1v2_auc\": 0.7931, \"d2v3_auc\": 0.6076}, \"olmo_holdout_temp09\": {\"acc\": 0.5816, \"d1v2_auc\": 0.2529, \"d2v3_auc\": 0.7015}, \"olmo_holdout_topk50\": {\"acc\": 0.5488, \"d1v2_auc\": 0.8549, \"d2v3_auc\": 0.7107}, \"finding_temp09_d1v2_inversion\": \"d1v2 AUC inverts when holding out temp09 (GPT-2 XL: 0.13, OLMo: 0.25) — temp09 d1→d2 features differ fundamentally from nucleus/topk50\"}}, \"depth_extension_olmo_d4d5_002\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"binary_pairwise\": {\"d1v2_auc\": 0.968, \"d2v3_auc\": 0.843, \"d3v4_auc\": 0.765, \"d4v5_auc\": 0.684}, \"six_class_rf_accuracy\": 0.667, \"edd_at_075\": 4, \"edd_note\": \"d3v4=0.765>=0.75 PASS, d4v5=0.684<0.75 FAIL → EDD=4\"}}, \"depth_extension_gpt2xl_d4d5_001\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"binary_pairwise\": {\"d1v2_auc\": 0.966, \"d2v3_auc\": 0.919, \"d3v4_auc\": 0.75, \"d4v5_auc\": 0.681}, \"six_class_rf_accuracy\": 0.679, \"edd_at_075\": 4, \"edd_note\": \"d3v4=0.750>=0.75 PASS, d4v5=0.681<0.75 FAIL → EDD=4\"}}, \"depth_extension_olmo_d4d5_001\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"lr_zscore_cross_strategy_001\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"raw_lr\": {\"mean_acc\": 0.25, \"note\": \"lbfgs convergence failure on unscaled features, all predictions random\", \"pythia_temp09\": {\"acc\": 0.25, \"d1v2_auc\": 0.6313}, \"gpt2xl_temp09\": {\"acc\": 0.25, \"d1v2_auc\": 0.5}, \"olmo_temp09\": {\"acc\": 0.25, \"d1v2_auc\": 0.5}}, \"zscore_lr\": {\"mean_acc\": 0.6081, \"mean_d1v2\": 0.6417, \"pythia_temp09\": {\"acc\": 0.6139, \"d1v2_auc\": 0.5201}, \"gpt2xl_temp09\": {\"acc\": 0.5642, \"d1v2_auc\": 0.2386}, \"olmo_temp09\": {\"acc\": 0.5546, \"d1v2_auc\": 0.1922}, \"pythia_nucleus\": {\"acc\": 0.6425, \"d1v2_auc\": 0.6142}, \"gpt2xl_nucleus\": {\"acc\": 0.7397, \"d1v2_auc\": 0.8851}, \"olmo_nucleus\": {\"acc\": 0.748, \"d1v2_auc\": 0.8627}, \"pythia_topk50\": {\"acc\": 0.5261, \"d1v2_auc\": 0.7711}, \"gpt2xl_topk50\": {\"acc\": 0.5352, \"d1v2_auc\": 0.8214}, \"olmo_topk50\": {\"acc\": 0.5484, \"d1v2_auc\": 0.8696}}, \"paper_claim_vs_actual\": {\"gpt2xl_temp09_d1v2\": {\"paper_raw\": 0.13, \"paper_zscore\": 0.68, \"actual_raw\": 0.5, \"actual_zscore\": 0.2386}, \"olmo_temp09_d1v2\": {\"paper_raw\": 0.25, \"paper_zscore\": 0.83, \"actual_raw\": 0.5, \"actual_zscore\": 0.1922}}}}, \"granularity_ablation_rf_001\": {\"status\": \"DONE\", \"metrics\": {\"summary\": {\"binary_acc_mean\": 0.995, \"binary_acc_std\": 0.004, \"3class_acc_mean\": 0.721, \"3class_acc_std\": 0.067, \"4class_acc_mean\": 0.783, \"4class_acc_std\": 0.048, \"6class_acc\": 0.629, \"note\": \"3-class excludes d0 (most separable class), so 3class < 4class is by design. True granularity trend (with d0): binary 99.5% > 4-class 78.3% > 6-class 62.9% — monotonic decrease confirmed.\"}, \"per_cell\": {\"pythia_nucleus095\": {\"binary\": {\"acc\": 0.998, \"ci95\": [0.9965, 0.9992], \"auc\": {\"d0v1\": 1}}, \"3class\": {\"acc\": 0.7117, \"ci95\": [0.6947, 0.7283], \"auc\": {\"d1v2\": 0.861, \"d2v3\": 0.796}}, \"4class\": {\"acc\": 0.7812, \"ci95\": [0.7677, 0.7935], \"auc\": {\"d0v1\": 0.998, \"d1v2\": 0.868, \"d2v3\": 0.804}}, \"6class\": {\"acc\": 0.6292, \"ci95\": [0.6175, 0.6412], \"auc\": {\"d0v1\": 0.997, \"d1v2\": 0.83, \"d2v3\": 0.689, \"d3v4\": 0.692, \"d4v5\": 0.691}}}, \"pythia_temp09\": {\"binary\": {\"acc\": 0.997, \"ci95\": [0.9952, 0.9985], \"auc\": {\"d0v1\": 1}}, \"3class\": {\"acc\": 0.7063, \"ci95\": [0.6907, 0.723], \"auc\": {\"d1v2\": 0.838, \"d2v3\": 0.806}}, \"4class\": {\"acc\": 0.7605, \"ci95\": [0.7475, 0.7738], \"auc\": {\"d0v1\": 0.997, \"d1v2\": 0.835, \"d2v3\": 0.796}}}, \"pythia_topk50\": {\"binary\": {\"acc\": 0.9945, \"ci95\": [0.992, 0.9965], \"auc\": {\"d0v1\": 1}}, \"3class\": {\"acc\": 0.5883, \"ci95\": [0.5717, 0.6073], \"auc\": {\"d1v2\": 0.749, \"d2v3\": 0.705}}, \"4class\": {\"acc\": 0.6943, \"ci95\": [0.6805, 0.708], \"auc\": {\"d0v1\": 0.994, \"d1v2\": 0.761, \"d2v3\": 0.695}}}, \"gpt2xl_nucleus095\": {\"binary\": {\"acc\": 0.9912, \"ci95\": [0.9882, 0.9938], \"auc\": {\"d0v1\": 0.999}}, \"3class\": {\"acc\": 0.79, \"ci95\": [0.775, 0.8047], \"auc\": {\"d1v2\": 0.913, \"d2v3\": 0.891}}, \"4class\": {\"acc\": 0.8393, \"ci95\": [0.8283, 0.8502], \"auc\": {\"d0v1\": 0.995, \"d1v2\": 0.916, \"d2v3\": 0.885}}}, \"gpt2xl_temp09\": {\"binary\": {\"acc\": 0.9978, \"ci95\": [0.9962, 0.999], \"auc\": {\"d0v1\": 1}}, \"3class\": {\"acc\": 0.826, \"ci95\": [0.8117, 0.8397], \"auc\": {\"d1v2\": 0.944, \"d2v3\": 0.887}}, \"4class\": {\"acc\": 0.8552, \"ci95\": [0.844, 0.866], \"auc\": {\"d0v1\": 0.997, \"d1v2\": 0.939, \"d2v3\": 0.886}}}, \"gpt2xl_topk50\": {\"binary\": {\"acc\": 0.9952, \"ci95\": [0.993, 0.9972], \"auc\": {\"d0v1\": 1}}, \"3class\": {\"acc\": 0.695, \"ci95\": [0.6777, 0.7113], \"auc\": {\"d1v2\": 0.844, \"d2v3\": 0.766}}, \"4class\": {\"acc\": 0.757, \"ci95\": [0.743, 0.7702], \"auc\": {\"d0v1\": 0.993, \"d1v2\": 0.824, \"d2v3\": 0.762}}}, \"olmo_nucleus095\": {\"binary\": {\"acc\": 0.9868, \"ci95\": [0.9832, 0.99], \"auc\": {\"d0v1\": 0.999}}, \"3class\": {\"acc\": 0.7503, \"ci95\": [0.7353, 0.7657], \"auc\": {\"d1v2\": 0.873, \"d2v3\": 0.831}}, \"4class\": {\"acc\": 0.7897, \"ci95\": [0.7772, 0.8027], \"auc\": {\"d0v1\": 0.985, \"d1v2\": 0.87, \"d2v3\": 0.816}}}, \"olmo_temp09\": {\"binary\": {\"acc\": 0.9982, \"ci95\": [0.997, 0.9992], \"auc\": {\"d0v1\": 1}}, \"3class\": {\"acc\": 0.7633, \"ci95\": [0.7477, 0.7797], \"auc\": {\"d1v2\": 0.894, \"d2v3\": 0.838}}, \"4class\": {\"acc\": 0.8263, \"ci95\": [0.8147, 0.8385], \"auc\": {\"d0v1\": 0.996, \"d1v2\": 0.903, \"d2v3\": 0.828}}}, \"olmo_topk50\": {\"binary\": {\"acc\": 0.996, \"ci95\": [0.994, 0.9978], \"auc\": {\"d0v1\": 1}}, \"3class\": {\"acc\": 0.661, \"ci95\": [0.644, 0.6773], \"auc\": {\"d1v2\": 0.812, \"d2v3\": 0.739}}, \"4class\": {\"acc\": 0.7435, \"ci95\": [0.73, 0.758], \"auc\": {\"d0v1\": 0.995, \"d1v2\": 0.831, \"d2v3\": 0.738}}}}, \"boundary_dilution\": {\"d2v3_auc_by_granularity_pythia_nuc\": {\"3class\": 0.796, \"4class\": 0.804, \"6class\": 0.689}, \"d1v2_auc_by_granularity_pythia_nuc\": {\"3class\": 0.861, \"4class\": 0.868, \"6class\": 0.83}, \"note\": \"d2v3 AUC drops 14% from 4-class to 6-class (0.804→0.689), confirming decision boundary dilution at higher granularity\"}, \"decoding_strategy_ranking\": {\"4class_acc\": {\"temp09\": 0.814, \"nucleus095\": 0.803, \"topk50\": 0.732}, \"note\": \"topk50 consistently worst across all 3 models; temp09 slightly outperforms nucleus095\"}}, \"conclusion\": \"success\"}, \"zero_shot_llm_baseline_001\": {\"status\": \"DONE\", \"metrics\": {\"four_class_acc\": 0.4, \"n_samples\": 200, \"sample_distribution\": {\"d0\": 56, \"d1\": 47, \"d2\": 49, \"d3\": 48}, \"model\": \"DeepSeek V3.2\", \"method\": \"zero-shot prompting\", \"vs_rf_baseline\": -0.382, \"vs_chance\": 0.15, \"note\": \"40.0% (80/200) above chance (25%) but far below RF 78.2% (-38.2pp). Zero-shot LLM cannot reliably distinguish recursive depth from raw text alone.\"}, \"conclusion\": \"success\"}, \"olmo_temp09_002\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"depth_extension_pythia_d4d5_001\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"six_class_rf_accuracy\": 0.6232, \"six_class_rf_accuracy_ci\": [0.6113, 0.636], \"six_class_lr_accuracy\": 0.5862, \"pairwise_auc_rf\": {\"d0v1\": 0.9962, \"d1v2\": 0.8231, \"d2v3\": 0.6878, \"d3v4\": 0.6809, \"d4v5\": 0.6948}, \"pairwise_auc_lr\": {\"d0v1\": 0.9908, \"d1v2\": 0.6901, \"d2v3\": 0.6174, \"d3v4\": 0.6828, \"d4v5\": 0.6554}, \"cumulative_auc_rf\": {\"d0v5\": 0.9987, \"d1v5\": 0.9874, \"d2v5\": 0.949, \"d3v5\": 0.8632}, \"edd_at_075\": 2, \"feature_importance_top5\": [\"p90_ppl (0.1376)\", \"var_surprisal (0.1344)\", \"mean_ppl (0.0796)\", \"mean_surprisal (0.0789)\", \"p75_ppl (0.0680)\"], \"finetune_losses\": {\"depth_3\": 0.7634, \"depth_4\": 0.5828}, \"WARNING\": \"6-class pairwise AUC 不可与 4-class 直比，决策边界稀释导致系统性偏低。需 binary pairwise classifier 重新评估。\"}}, \"depth_extension_binary_pairwise_002\": {\"status\": \"DONE\", \"metrics\": {\"d1v2_auc\": 0.925, \"d1v2_ci95\": [0.9138, 0.9354], \"d2v3_auc\": 0.8225, \"d2v3_ci95\": [0.8052, 0.8402], \"d3v4_auc\": 0.7837, \"d3v4_ci95\": [0.7648, 0.8024], \"d4v5_auc\": 0.6832, \"d4v5_ci95\": [0.6611, 0.7045], \"edd_determination\": \"4\"}, \"conclusion\": \"success\"}, \"depth_extension_binary_pairwise_001\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"dcol_roberta_v6_001\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"test_acc\": 0.6448, \"test_mae\": 0.4052, \"best_val_acc\": 0.6436, \"best_epoch\": 1, \"epochs_run\": 4, \"early_stopping\": true, \"train_acc_final\": 0.75, \"rf_baseline\": 0.782, \"delta_vs_baseline\": -0.137, \"overfitting\": \"severe (train 75% vs val 64.4% at best epoch)\", \"stability\": \"resolved (no NaN, no collapse, collapse guard passed at step 500)\"}}, \"cross_strategy_loo_zscore_001\": {\"status\": \"DONE\", \"metrics\": {\"mean_raw_acc\": 0.5908, \"mean_zscore_acc\": 0.5915, \"raw\": {\"pythia_holdout_nucleus\": {\"acc\": 0.6935, \"d1v2_auc\": 0.6903, \"d2v3_auc\": 0.7626}, \"pythia_holdout_temp09\": {\"acc\": 0.6281, \"d1v2_auc\": 0.576, \"d2v3_auc\": 0.724}, \"pythia_holdout_topk50\": {\"acc\": 0.5151, \"d1v2_auc\": 0.6393, \"d2v3_auc\": 0.5801}, \"gpt2xl_holdout_nucleus\": {\"acc\": 0.5993, \"d1v2_auc\": 0.7826, \"d2v3_auc\": 0.4985}, \"gpt2xl_holdout_temp09\": {\"acc\": 0.5609, \"d1v2_auc\": 0.1288, \"d2v3_auc\": 0.6366}, \"gpt2xl_holdout_topk50\": {\"acc\": 0.5364, \"d1v2_auc\": 0.8308, \"d2v3_auc\": 0.7222}, \"olmo_holdout_nucleus\": {\"acc\": 0.6538, \"d1v2_auc\": 0.7931, \"d2v3_auc\": 0.6076}, \"olmo_holdout_temp09\": {\"acc\": 0.5816, \"d1v2_auc\": 0.2529, \"d2v3_auc\": 0.7015}, \"olmo_holdout_topk50\": {\"acc\": 0.5488, \"d1v2_auc\": 0.8549, \"d2v3_auc\": 0.7107}}, \"zscore\": {\"pythia_holdout_nucleus\": {\"acc\": 0.6992, \"d1v2_auc\": 0.7043, \"d2v3_auc\": 0.7683}, \"pythia_holdout_temp09\": {\"acc\": 0.6368, \"d1v2_auc\": 0.5943, \"d2v3_auc\": 0.7352}, \"pythia_holdout_topk50\": {\"acc\": 0.5155, \"d1v2_auc\": 0.6386, \"d2v3_auc\": 0.5804}, \"gpt2xl_holdout_nucleus\": {\"acc\": 0.5959, \"d1v2_auc\": 0.788, \"d2v3_auc\": 0.4927}, \"gpt2xl_holdout_temp09\": {\"acc\": 0.5632, \"d1v2_auc\": 0.1348, \"d2v3_auc\": 0.631}, \"gpt2xl_holdout_topk50\": {\"acc\": 0.5356, \"d1v2_auc\": 0.8391, \"d2v3_auc\": 0.7282}, \"olmo_holdout_nucleus\": {\"acc\": 0.6506, \"d1v2_auc\": 0.796, \"d2v3_auc\": 0.6078}, \"olmo_holdout_temp09\": {\"acc\": 0.5782, \"d1v2_auc\": 0.2497, \"d2v3_auc\": 0.6871}, \"olmo_holdout_topk50\": {\"acc\": 0.5484, \"d1v2_auc\": 0.8579, \"d2v3_auc\": 0.7056}}, \"temp09_d1v2_delta\": {\"pythia\": 0.0183, \"gpt2xl\": 0.006, \"olmo\": -0.0033}, \"finding\": \"Z-score does NOT fix temp09 d1v2 inversion in RF — RF is scale-invariant (tree splits unaffected by monotonic transforms). Prior z-score recovery (0.13→0.68) was with LR, not RF.\"}, \"conclusion\": \"negative\"}, \"cross_model_loo_v1\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"mean_acc\": 0.664, \"mean_3class_acc\": 0.5544, \"holdout_pythia\": {\"acc\": 0.6242, \"ci95\": [0.6205, 0.6282], \"3class_acc\": 0.499, \"3class_ci95\": [0.4944, 0.5034], \"d1v2_auc\": 0.5617, \"d1v3_auc\": 0.8547, \"d2v3_auc\": 0.6534, \"d0v1_auc\": 0.9921, \"d0v2_auc\": 0.9999, \"d0v3_auc\": 0.9998, \"per_class\": {\"d0\": {\"P\": 0.9889, \"R\": 1, \"F1\": 0.9944}, \"d1\": {\"P\": 0.6655, \"R\": 0.493, \"F1\": 0.5664}, \"d2\": {\"P\": 0.3699, \"R\": 0.2677, \"F1\": 0.3106}, \"d3\": {\"P\": 0.483, \"R\": 0.7363, \"F1\": 0.5834}}}, \"holdout_olmo\": {\"acc\": 0.6921, \"ci95\": [0.6884, 0.696], \"3class_acc\": 0.592, \"3class_ci95\": [0.5873, 0.5965], \"d1v2_auc\": 0.7687, \"d1v3_auc\": 0.9277, \"d2v3_auc\": 0.6862, \"per_class\": {\"d0\": {\"P\": 0.9783, \"R\": 0.9925, \"F1\": 0.9854}, \"d1\": {\"P\": 0.7111, \"R\": 0.7549, \"F1\": 0.7324}, \"d2\": {\"P\": 0.4616, \"R\": 0.4327, \"F1\": 0.4467}, \"d3\": {\"P\": 0.5964, \"R\": 0.5883, \"F1\": 0.5923}}}, \"holdout_gpt2xl\": {\"acc\": 0.6756, \"ci95\": [0.6717, 0.6795], \"3class_acc\": 0.5723, \"3class_ci95\": [0.5679, 0.5767], \"d1v2_auc\": 0.8157, \"d1v3_auc\": 0.9149, \"d2v3_auc\": 0.6639, \"d0v1_auc\": 0.9927, \"d0v2_auc\": 0.9919, \"d0v3_auc\": 0.9876, \"per_class\": {\"d0\": {\"P\": 0.9484, \"R\": 0.9853, \"F1\": 0.9665}, \"d1\": {\"P\": 0.7093, \"R\": 0.7465, \"F1\": 0.7274}, \"d2\": {\"P\": 0.4521, \"R\": 0.5255, \"F1\": 0.486}, \"d3\": {\"P\": 0.5963, \"R\": 0.445, \"F1\": 0.5097}}}, \"mean_per_class_recall\": {\"d0\": 0.9926, \"d1\": 0.6648, \"d2\": 0.4086, \"d3\": 0.5899}, \"lowest_recall_class\": \"d2\", \"lowest_recall_value\": 0.4086, \"detailed_artifact\": \"cross_model_loo_detailed.json\"}}, \"baseline_battery_9cell_001\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"best_acc_matrix\": {\"pythia_nucleus\": 0.782, \"pythia_temp09\": 0.772, \"pythia_topk50\": 0.688, \"olmo_nucleus\": 0.796, \"olmo_temp09\": 0.827, \"olmo_topk50\": 0.759, \"gpt2xl_nucleus\": 0.843, \"gpt2xl_temp09\": 0.853, \"gpt2xl_topk50\": 0.754}, \"methods\": [\"RF\", \"LR\", \"CORAL\", \"DivEye\"], \"cells\": 9, \"finding\": \"RF ≈ CORAL > DivEye > LR, max gap ~4pp. GPT-2 XL temp09 best (85.3%), model effect > strategy effect\", \"WARNING\": \"best_acc_matrix stores best-across-ALL-methods accuracy, NOT RF-only. For RF accuracy use each cell's own registry (e.g. olmo_topk50_001.metrics.four_class.rf_accuracy). olmo_topk50 diff=2.2pp, olmo_nucleus diff=0.83pp.\"}}, \"olmo_topk50_001\": {\"status\": \"DONE\", \"metrics\": {\"four_class\": {\"lr_accuracy\": 0.757, \"lr_accuracy_ci\": [0.7425, 0.7702], \"rf_accuracy\": 0.742, \"rf_accuracy_ci\": [0.7282, 0.7555]}, \"pairwise_auc\": {\"lr\": {\"d0v1\": 0.9969, \"d0v2\": 0.9995, \"d0v3\": 0.9998, \"d1v2\": 0.8293, \"d1v3\": 0.9592, \"d2v3\": 0.7497}, \"rf\": {\"d0v1\": 0.993, \"d0v2\": 0.9983, \"d0v3\": 0.9991, \"d1v2\": 0.8305, \"d1v3\": 0.9591, \"d2v3\": 0.7357}}, \"three_class\": {\"lr_accuracy\": 0.6567, \"lr_accuracy_ci\": [0.6403, 0.6733], \"rf_accuracy\": 0.6517, \"rf_accuracy_ci\": [0.635, 0.6687]}, \"three_class_filtered\": {\"lr_accuracy\": 0.6703, \"lr_accuracy_ci\": [0.653, 0.6882], \"rf_accuracy\": 0.6699, \"rf_accuracy_ci\": [0.6537, 0.6875]}, \"three_class_filtered_auc\": {\"lr\": {\"d1v2\": 0.7903, \"d1v3\": 0.97, \"d2v3\": 0.7501}, \"rf\": {\"d1v2\": 0.8071, \"d1v3\": 0.9645, \"d2v3\": 0.7364}}, \"feature_importance_top5\": [\"p90_ppl\", \"var_surprisal\", \"p75_ppl\", \"mean_surprisal\", \"p25_ppl\"], \"finetune_loss\": {\"depth_1\": 1.946, \"depth_2\": 1.726}, \"code_contamination\": {\"narrow_pct\": {\"depth_0\": 0.4, \"depth_1\": 0.8, \"depth_2\": 0.3, \"depth_3\": 0.4}, \"broad_pct\": {\"depth_0\": 0.5, \"depth_1\": 2.5, \"depth_2\": 0.8, \"depth_3\": 0.7}}}, \"conclusion\": \"success\"}, \"atlas_v2_analysis\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"p90_ppl_in_top2\": \"9/9\", \"var_surprisal_in_top2\": \"7/9\", \"edd_equals_3_at_T075\": \"7/9\", \"edd_distribution_T075\": {\"2\": 2, \"3\": 7}, \"cross_model_rank_corr_range\": \"[0.619, 0.954]\", \"cross_model_rank_corr_mean\": 0.868, \"cv5_accuracy_range\": \"[0.688, 0.859]\", \"cells_covered\": \"9/9\"}}, \"cross_model_loo_001\": {\"status\": \"DONE\", \"conclusion\": \"killed\", \"metrics\": {\"mean_4class_acc\": 0.664, \"holdout_pythia\": {\"acc\": 0.6242, \"ci\": [0.6206, 0.6282], \"d1v2_auc\": 0.5617, \"d2v3_auc\": 0.6534}, \"holdout_olmo\": {\"acc\": 0.6921, \"ci\": [0.6886, 0.6959], \"d1v2_auc\": 0.7687, \"d2v3_auc\": 0.6862}, \"holdout_gpt2xl\": {\"acc\": 0.6756, \"ci\": [0.6719, 0.6792], \"d1v2_auc\": 0.8157, \"d2v3_auc\": 0.6639}, \"per_class_recall\": {\"holdout_pythia\": {\"d0\": 1, \"d1\": 0.493, \"d2\": 0.268, \"d3\": 0.736}, \"holdout_olmo\": {\"d0\": 0.993, \"d1\": 0.755, \"d2\": 0.433, \"d3\": 0.588}, \"holdout_gpt2xl\": {\"d0\": 0.985, \"d1\": 0.747, \"d2\": 0.526, \"d3\": 0.445}}, \"gate_passed\": true, \"gate_threshold\": 0.45}}, \"batch_feature_extraction_5cells\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"gpt2xl_topk50_001\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"four_class\": {\"accuracy\": 0.766, \"depth1_vs_depth2_auc\": 0.8259, \"pass\": true}, \"three_class\": {\"accuracy\": 0.695, \"depth1_vs_depth2_auc\": 0.8392, \"pass\": true}, \"three_class_filtered\": {\"accuracy\": 0.684, \"depth1_vs_depth2_auc\": 0.8314, \"pass\": true}}}, \"dcol_deberta_005\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"dcol_deberta_004\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"dcol_deberta_003\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"olmo_temp09_001\": {\"status\": \"DONE\", \"metrics\": {\"four_class\": {\"rf_accuracy\": 0.8203, \"d1v2_auc\": 0.901}, \"three_class_filtered\": {\"rf_accuracy\": 0.7757}, \"finetune_losses\": {\"depth_0\": 2.27, \"depth_1\": 1.63, \"depth_2\": 1.18}, \"code_contamination_narrow_max\": 0.007, \"top_features\": [\"p90_ppl (0.199)\", \"var_surprisal (0.174)\", \"p75_ppl (0.126)\"]}, \"conclusion\": \"success\"}, \"baseline_battery_001\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"ppl_reg_single_4class_acc\": 0.251, \"ppl_reg_multi_4class_acc\": 0.622, \"ce_mlp_4class_acc\": 0.749, \"coral_4class_acc\": 0.7807, \"coral_3class_acc\": 0.7089, \"coral_mae\": 0.2273, \"coral_d1v2_auc\": 0.8179, \"diveye_4class_acc\": 0.7817, \"diveye_3class_acc\": 0.7098, \"diveye_d1v2_auc\": 0.8654, \"rf_4class_acc\": 0.781, \"lr_4class_acc\": 0.75, \"note\": \"CE-MLP 74.9% may be undertrained (5 epochs); CORAL updated to 100 epochs. All results from Pythia nucleus baseline features.\"}}, \"atlas_v1_analysis\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"monotonicity_rho_range\": [-0.89, -0.82], \"edd\": 3, \"edd_saturated\": false, \"cross_model_jaccard\": 0.667, \"cross_model_rank_corr\": 0.85, \"artifacts\": [\"monotonicity_scores.json\", \"cross_model_comparison.json\", \"edd_analysis.json\", \"feature_trajectory.json\"]}}, \"dcol_deberta_002\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"gpt2xl_temp09_001\": {\"status\": \"DONE\", \"metrics\": {\"data\": {\"samples_per_depth\": 5000, \"total_samples\": 20000, \"depths\": 4}, \"finetune_losses\": {\"depth_1\": 2.5498, \"depth_2\": 1.6972, \"depth_3\": 1.2922}, \"code_contamination\": {\"depth_0\": {\"broad\": 25, \"narrow\": 20, \"broad_pct\": 0.5, \"narrow_pct\": 0.4}, \"depth_1\": {\"broad\": 25, \"narrow\": 40, \"broad_pct\": 0.5, \"narrow_pct\": 0.8}, \"depth_2\": {\"broad\": 34, \"narrow\": 80, \"broad_pct\": 0.7, \"narrow_pct\": 1.6}, \"depth_3\": {\"broad\": 25, \"narrow\": 76, \"broad_pct\": 0.5, \"narrow_pct\": 1.5}}, \"four_class\": {\"rf_accuracy\": 0.8542, \"rf_accuracy_ci\": [0.843, 0.8653], \"lr_accuracy\": 0.8155, \"lr_accuracy_ci\": [0.8025, 0.8273], \"rf_auc\": {\"d0v1\": 0.9963, \"d0v2\": 0.9992, \"d0v3\": 1, \"d1v2\": 0.9367, \"d1v3\": 0.9947, \"d2v3\": 0.8815}, \"lr_auc\": {\"d0v1\": 0.984, \"d0v2\": 0.9998, \"d0v3\": 1, \"d1v2\": 0.8903, \"d1v3\": 0.9824, \"d2v3\": 0.8183}, \"top_features\": [\"p90_ppl\", \"mean_surprisal\", \"p75_ppl\", \"var_surprisal\"]}, \"three_class\": {\"rf_accuracy\": 0.82, \"rf_accuracy_ci\": [0.806, 0.834], \"lr_accuracy\": 0.7773, \"lr_accuracy_ci\": [0.7627, 0.792], \"rf_auc\": {\"d1v2\": 0.9418, \"d1v3\": 0.9967, \"d2v3\": 0.8849}}, \"three_class_filtered\": {\"rf_accuracy\": 0.815, \"rf_accuracy_ci\": [0.7999, 0.8298], \"lr_accuracy\": 0.7869, \"lr_accuracy_ci\": [0.7711, 0.8016], \"rf_auc\": {\"d1v2\": 0.937, \"d1v3\": 0.9944, \"d2v3\": 0.8891}}}, \"conclusion\": \"success\"}, \"dcol_deberta_001\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"cross_model_olmo_temp09_001\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"pythia_topk50_001\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"rf_4class_acc\": 0.696, \"rf_4class_acc_ci\": [0.6825, 0.7107], \"lr_4class_acc\": 0.682, \"rf_3class_acc\": 0.592, \"rf_3class_acc_ci\": [0.575, 0.6107], \"rf_3class_filtered_acc\": 0.6133, \"rf_3class_filtered_acc_ci\": [0.593, 0.6312], \"pairwise_auc_rf\": {\"d0v1\": 0.9927, \"d0v2\": 0.9983, \"d0v3\": 0.9978, \"d1v2\": 0.7518, \"d1v3\": 0.9176, \"d2v3\": 0.6918}, \"pairwise_auc_3class_filtered_rf\": {\"d1v2\": 0.768, \"d1v3\": 0.9323, \"d2v3\": 0.7013}, \"feature_importance_top5\": [\"var_surprisal\", \"p90_ppl\", \"mean_ppl\", \"mean_surprisal\", \"p75_ppl\"], \"finetune_loss\": {\"depth_0\": 2.2406, \"depth_1\": 1.6704, \"depth_2\": 1.4374}, \"code_contamination_narrow\": {\"depth_0\": 0.004, \"depth_1\": 0.077, \"depth_2\": 0.123, \"depth_3\": 0.131}}}, \"cross_model_gpt2xl_001\": {\"status\": \"DONE\", \"metrics\": {\"four_class_acc_rf\": 0.833, \"four_class_acc_ci\": [0.823, 0.845], \"four_class_acc_lr\": 0.813, \"auc_0v1\": 0.9941, \"auc_0v2\": 0.9965, \"auc_0v3\": 0.9988, \"auc_1v2\": 0.9131, \"auc_1v3\": 0.9857, \"auc_2v3\": 0.8829, \"three_class_acc\": 0.793, \"three_class_acc_ci\": [0.778, 0.806], \"three_class_auc_1v2\": 0.9109, \"three_class_auc_1v3\": 0.989, \"three_class_auc_2v3\": 0.8885, \"finetune_losses\": {\"depth_0\": 2.55, \"depth_1\": 1.715, \"depth_2\": 1.342}, \"top_features\": [\"p90_ppl (0.208)\", \"var_surprisal (0.208)\", \"p75_ppl (0.103)\", \"mean_surprisal (0.082)\", \"mean_ppl (0.065)\"], \"code_contamination\": {\"d0\": 0.005, \"d1\": 0.005, \"d2\": 0.013, \"d3\": 0.007}}, \"conclusion\": \"success\"}, \"cross_model_olmo_002\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"four_class_acc_rf\": 0.788, \"four_class_acc_ci\": [0.776, 0.8], \"four_class_acc_lr\": 0.751, \"auc_0v1\": 0.9834, \"auc_0v2\": 0.9949, \"auc_0v3\": 0.9989, \"auc_1v2\": 0.8673, \"auc_1v3\": 0.9806, \"auc_2v3\": 0.8124, \"three_class_acc\": 0.744, \"three_class_acc_ci\": [0.728, 0.76], \"three_class_mae\": 0.27, \"three_class_auc_1v2\": 0.8664, \"three_class_auc_1v3\": 0.9852, \"three_class_auc_2v3\": 0.8274, \"three_class_recall\": {\"d1\": 0.864, \"d2\": 0.607, \"d3\": 0.761}, \"three_class_precision\": {\"d1\": 0.863, \"d2\": 0.646, \"d3\": 0.718}, \"four_class_per_class\": {\"d0\": {\"precision\": 0.95, \"recall\": 0.99, \"f1\": 0.97}, \"d1\": {\"precision\": 0.85, \"recall\": 0.82, \"f1\": 0.83}, \"d2\": {\"precision\": 0.63, \"recall\": 0.59, \"f1\": 0.61}, \"d3\": {\"precision\": 0.71, \"recall\": 0.76, \"f1\": 0.73}}, \"finetune_losses\": {\"depth_0\": 2.269, \"depth_1\": 1.65, \"depth_2\": 1.226}, \"top_features\": [\"p90_ppl (0.18)\", \"var_surprisal (0.16)\", \"p75_ppl (0.11)\", \"mean_surprisal (0.08)\", \"type_token_ratio (0.06)\"], \"code_contamination\": {\"d0\": 0.005, \"d1\": 0.027, \"d2\": 0.007, \"d3\": 0.008}, \"feature_dim\": 19, \"truncation_length\": 507}}, \"pythia_temp09_001\": {\"status\": \"DONE\", \"metrics\": {\"four_class\": {\"rf_accuracy\": 0.7625, \"rf_accuracy_ci\": [0.749, 0.7753], \"lr_accuracy\": 0.7405, \"lr_accuracy_ci\": [0.7265, 0.7545], \"pairwise_auc\": {\"0v1\": 0.9968, \"0v2\": 0.9993, \"0v3\": 0.9991, \"1v2\": 0.8327, \"1v3\": 0.959, \"2v3\": 0.7928}, \"top_features\": [\"var_surprisal (0.1776)\", \"p90_ppl (0.1501)\", \"mean_ppl (0.1140)\", \"mean_surprisal (0.0889)\", \"p75_ppl (0.0687)\"], \"feature_dim\": 19, \"truncation_length\": 498}, \"three_class_full\": {\"accuracy\": 0.6983, \"accuracy_ci\": [0.682, 0.715], \"mae\": 0.3357, \"recall\": {\"d1\": 0.802, \"d2\": 0.554, \"d3\": 0.739}, \"precision\": {\"d1\": 0.792, \"d2\": 0.608, \"d3\": 0.686}, \"f1\": {\"d1\": 0.797, \"d2\": 0.58, \"d3\": 0.712}, \"pairwise_auc\": {\"d1v2\": 0.8354, \"d1v3\": 0.9631, \"d2v3\": 0.8043}}, \"three_class_filtered\": {\"accuracy\": 0.7252, \"accuracy_ci\": [0.7064, 0.7427], \"mae\": 0.2953, \"recall\": {\"d1\": 0.842, \"d2\": 0.596, \"d3\": 0.735}, \"precision\": {\"d1\": 0.821, \"d2\": 0.628, \"d3\": 0.715}, \"f1\": {\"d1\": 0.831, \"d2\": 0.611, \"d3\": 0.725}, \"pairwise_auc\": {\"d1v2\": 0.8656, \"d1v3\": 0.9772, \"d2v3\": 0.8295}, \"n_samples\": 11445, \"n_removed\": 3555}, \"finetune_losses\": {\"depth_0\": 2.222, \"depth_1\": 1.37, \"depth_2\": 1.006}, \"code_contamination\": {\"d0\": 0.004, \"d1\": 0.077, \"d2\": 0.116, \"d3\": 0.136}}, \"conclusion\": \"success\"}, \"mvp_pipeline_pythia_002\": {\"status\": \"DONE\", \"metrics\": {\"full_4class_acc\": 0.782, \"full_4class_acc_ci\": [0.769, 0.794], \"full_4class_acc_stratified\": 0.781, \"full_mae\": 0.2367, \"full_auc_0v1\": 0.9975, \"full_auc_1v2\": 0.8607, \"full_auc_2v3\": 0.8005, \"filtered_4class_acc\": 0.816, \"filtered_4class_acc_ci\": [0.803, 0.829], \"filtered_mae\": 0.1995, \"filtered_auc_0v1\": 0.9977, \"filtered_auc_1v2\": 0.8782, \"filtered_auc_2v3\": 0.8323, \"filtered_sample_count\": 16993, \"three_class_acc\": 0.708, \"three_class_acc_ci\": [0.692, 0.725], \"three_class_mae\": 0.3203, \"three_class_auc_1v2\": 0.854, \"three_class_auc_1v3\": 0.9569, \"three_class_auc_2v3\": 0.7931, \"three_class_recall_d1\": 0.79, \"three_class_recall_d2\": 0.607, \"three_class_recall_d3\": 0.728, \"three_class_precision_d1\": 0.852, \"three_class_precision_d2\": 0.605, \"three_class_precision_d3\": 0.68, \"three_class_f1_d1\": 0.82, \"three_class_f1_d2\": 0.606, \"three_class_f1_d3\": 0.703, \"three_class_lr_acc\": 0.671, \"filtered_three_class_acc\": 0.747, \"filtered_three_class_acc_ci\": [0.727, 0.764], \"filtered_three_class_mae\": 0.2759, \"filtered_three_class_recall_d1\": 0.862, \"filtered_three_class_recall_d2\": 0.635, \"filtered_three_class_recall_d3\": 0.735, \"filtered_three_class_precision_d1\": 0.867, \"filtered_three_class_precision_d2\": 0.659, \"filtered_three_class_precision_d3\": 0.704, \"filtered_three_class_f1_d1\": 0.864, \"filtered_three_class_f1_d2\": 0.647, \"filtered_three_class_f1_d3\": 0.719, \"filtered_three_class_auc_1v2\": 0.8926, \"filtered_three_class_auc_1v3\": 0.9769, \"filtered_three_class_auc_2v3\": 0.8272, \"filtered_three_class_sample_count\": 12012, \"best_model\": \"RandomForest\", \"top_features\": [\"var_surprisal\", \"p90_ppl\", \"mean_ppl\", \"mean_surprisal\", \"p75_ppl\"], \"truncation_length\": 498, \"feature_dim\": 19}, \"conclusion\": \"success\"}, \"cross_model_olmo_001\": {\"status\": \"DONE\", \"metrics\": {\"status\": \"PIPELINE_CRASHED\", \"completed_steps\": [\"depth0_lora_finetune\"], \"failed_at\": \"shell_script_line_52_unmatched_quote\", \"depth0_final_loss\": 2.2686, \"depth0_train_runtime_s\": 283.2, \"depth0_train_steps\": 939, \"depth0_trainable_params\": 3145728, \"depth0_total_params\": 1179910144, \"classification_results\": null, \"note\": \"Script crashed after depth-0 finetune. No depth-1/2/3 generation, no feature extraction, no classification performed.\"}, \"conclusion\": \"failed\"}, \"mvp_pipeline_qwen_base_004\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"mvp_pipeline_pythia_001\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"mvp_pipeline_base_002\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"mvp_pipeline_003\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"mvp_pipeline_002\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"mvp_pipeline_001\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"mvp_pipeline_base_003\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"mvp_pipeline_004\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}}, \"count\": 46, \"total\": 46, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2998}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4aa48f86-6464-428f-891f-f16c44f4bf30",
+  "isSidechain": false,
+  "promptId": "b348da81-a17b-4e5c-8b2e-fdebce509677",
+  "type": "user",
+  "uuid": "ff5f78dc-ffb1-4bff-afbc-1ede7ff437ab",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"n2_roberta_finetune_001\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy_mean\\\": 0.5948, \\\"accuracy_std\\\": 0.0324, \\\"per_class_f1\\\": {\\\"d0\\\": 0.958, \\\"d1\\\": 0.4161, \\\"d2\\\": 0.2611, \\\"d3\\\": 0.6472}, \\\"per_class_precision\\\": {\\\"d0\\\": 0.9983, \\\"d1\\\": 0.7178, \\\"d2\\\": 0.2956, \\\"d3\\\": 0.4958}, \\\"per_class_recall\\\": {\\\"d0\\\": 0.9208, \\\"d1\\\": 0.293, \\\"d2\\\": 0.2338, \\\"d3\\\": 0.9314}, \\\"pairwise_auc\\\": {\\\"d0v1\\\": 0.9886, \\\"d1v2\\\": 0.7522, \\\"d2v3\\\": 0.7349}, \\\"fold_accuracies\\\": [0.6022, 0.5595, 0.5623, 0.6018, 0.648], \\\"vs_rf_baseline\\\": \\\"-18.7pp (59.5% vs 78.2%)\\\", \\\"vs_deberta\\\": \\\"+1.2pp acc, +0.019 d1v2_auc, -0.020 d2v3_auc\\\", \\\"elapsed_seconds\\\": 1942.5}}, \\\"n2_deberta_finetune_001\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy_mean\\\": 0.5831, \\\"accuracy_std\\\": 0.0467, \\\"per_class_f1\\\": {\\\"d0\\\": 0.947, \\\"d1\\\": 0.378, \\\"d2\\\": 0.247, \\\"d3\\\": 0.656}, \\\"pairwise_auc\\\": {\\\"d0v1\\\": 0.981, \\\"d1v2\\\": 0.733, \\\"d2v3\\\": 0.755}, \\\"vs_rf_baseline\\\": \\\"58.3% vs 78.2% (-19.9pp)\\\", \\\"elapsed_seconds\\\": 3727}}, \\\"cross_strategy_loo_001\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"mean_4class_acc\\\": 0.5908, \\\"pythia_holdout_nucleus\\\": {\\\"acc\\\": 0.6935, \\\"d1v2_auc\\\": 0.6903, \\\"d2v3_auc\\\": 0.7626}, \\\"pythia_holdout_temp09\\\": {\\\"acc\\\": 0.6281, \\\"d1v2_auc\\\": 0.576, \\\"d2v3_auc\\\": 0.724}, \\\"pythia_holdout_topk50\\\": {\\\"acc\\\": 0.5151, \\\"d1v2_auc\\\": 0.6393, \\\"d2v3_auc\\\": 0.5801}, \\\"gpt2xl_holdout_nucleus\\\": {\\\"acc\\\": 0.5993, \\\"d1v2_auc\\\": 0.7826, \\\"d2v3_auc\\\": 0.4985}, \\\"gpt2xl_holdout_temp09\\\": {\\\"acc\\\": 0.5609, \\\"d1v2_auc\\\": 0.1288, \\\"d2v3_auc\\\": 0.6366}, \\\"gpt2xl_holdout_topk50\\\": {\\\"acc\\\": 0.5364, \\\"d1v2_auc\\\": 0.8308, \\\"d2v3_auc\\\": 0.7222}, \\\"olmo_holdout_nucleus\\\": {\\\"acc\\\": 0.6538, \\\"d1v2_auc\\\": 0.7931, \\\"d2v3_auc\\\": 0.6076}, \\\"olmo_holdout_temp09\\\": {\\\"acc\\\": 0.5816, \\\"d1v2_auc\\\": 0.2529, \\\"d2v3_auc\\\": 0.7015}, \\\"olmo_holdout_topk50\\\": {\\\"acc\\\": 0.5488, \\\"d1v2_auc\\\": 0.8549, \\\"d2v3_auc\\\": 0.7107}, \\\"finding_temp09_d1v2_inversion\\\": \\\"d1v2 AUC inverts when holding out temp09 (GPT-2 XL: 0.13, OLMo: 0.25) — temp09 d1→d2 features differ fundamentally from nucleus/topk50\\\"}}, \\\"depth_extension_olmo_d4d5_002\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"binary_pairwise\\\": {\\\"d1v2_auc\\\": 0.968, \\\"d2v3_auc\\\": 0.843, \\\"d3v4_auc\\\": 0.765, \\\"d4v5_auc\\\": 0.684}, \\\"six_class_rf_accuracy\\\": 0.667, \\\"edd_at_075\\\": 4, \\\"edd_note\\\": \\\"d3v4=0.765>=0.75 PASS, d4v5=0.684<0.75 FAIL → EDD=4\\\"}}, \\\"depth_extension_gpt2xl_d4d5_001\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"binary_pairwise\\\": {\\\"d1v2_auc\\\": 0.966, \\\"d2v3_auc\\\": 0.919, \\\"d3v4_auc\\\": 0.75, \\\"d4v5_auc\\\": 0.681}, \\\"six_class_rf_accuracy\\\": 0.679, \\\"edd_at_075\\\": 4, \\\"edd_note\\\": \\\"d3v4=0.750>=0.75 PASS, d4v5=0.681<0.75 FAIL → EDD=4\\\"}}, \\\"depth_extension_olmo_d4d5_001\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"lr_zscore_cross_strategy_001\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"raw_lr\\\": {\\\"mean_acc\\\": 0.25, \\\"note\\\": \\\"lbfgs convergence failure on unscaled features, all predictions random\\\", \\\"pythia_temp09\\\": {\\\"acc\\\": 0.25, \\\"d1v2_auc\\\": 0.6313}, \\\"gpt2xl_temp09\\\": {\\\"acc\\\": 0.25, \\\"d1v2_auc\\\": 0.5}, \\\"olmo_temp09\\\": {\\\"acc\\\": 0.25, \\\"d1v2_auc\\\": 0.5}}, \\\"zscore_lr\\\": {\\\"mean_acc\\\": 0.6081, \\\"mean_d1v2\\\": 0.6417, \\\"pythia_temp09\\\": {\\\"acc\\\": 0.6139, \\\"d1v2_auc\\\": 0.5201}, \\\"gpt2xl_temp09\\\": {\\\"acc\\\": 0.5642, \\\"d1v2_auc\\\": 0.2386}, \\\"olmo_temp09\\\": {\\\"acc\\\": 0.5546, \\\"d1v2_auc\\\": 0.1922}, \\\"pythia_nucleus\\\": {\\\"acc\\\": 0.6425, \\\"d1v2_auc\\\": 0.6142}, \\\"gpt2xl_nucleus\\\": {\\\"acc\\\": 0.7397, \\\"d1v2_auc\\\": 0.8851}, \\\"olmo_nucleus\\\": {\\\"acc\\\": 0.748, \\\"d1v2_auc\\\": 0.8627}, \\\"pythia_topk50\\\": {\\\"acc\\\": 0.5261, \\\"d1v2_auc\\\": 0.7711}, \\\"gpt2xl_topk50\\\": {\\\"acc\\\": 0.5352, \\\"d1v2_auc\\\": 0.8214}, \\\"olmo_topk50\\\": {\\\"acc\\\": 0.5484, \\\"d1v2_auc\\\": 0.8696}}, \\\"paper_claim_vs_actual\\\": {\\\"gpt2xl_temp09_d1v2\\\": {\\\"paper_raw\\\": 0.13, \\\"paper_zscore\\\": 0.68, \\\"actual_raw\\\": 0.5, \\\"actual_zscore\\\": 0.2386}, \\\"olmo_temp09_d1v2\\\": {\\\"paper_raw\\\": 0.25, \\\"paper_zscore\\\": 0.83, \\\"actual_raw\\\": 0.5, \\\"actual_zscore\\\": 0.1922}}}}, \\\"granularity_ablation_rf_001\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"summary\\\": {\\\"binary_acc_mean\\\": 0.995, \\\"binary_acc_std\\\": 0.004, \\\"3class_acc_mean\\\": 0.721, \\\"3class_acc_std\\\": 0.067, \\\"4class_acc_mean\\\": 0.783, \\\"4class_acc_std\\\": 0.048, \\\"6class_acc\\\": 0.629, \\\"note\\\": \\\"3-class excludes d0 (most separable class), so 3class < 4class is by design. True granularity trend (with d0): binary 99.5% > 4-class 78.3% > 6-class 62.9% — monotonic decrease confirmed.\\\"}, \\\"per_cell\\\": {\\\"pythia_nucleus095\\\": {\\\"binary\\\": {\\\"acc\\\": 0.998, \\\"ci95\\\": [0.9965, 0.9992], \\\"auc\\\": {\\\"d0v1\\\": 1}}, \\\"3class\\\": {\\\"acc\\\": 0.7117, \\\"ci95\\\": [0.6947, 0.7283], \\\"auc\\\": {\\\"d1v2\\\": 0.861, \\\"d2v3\\\": 0.796}}, \\\"4class\\\": {\\\"acc\\\": 0.7812, \\\"ci95\\\": [0.7677, 0.7935], \\\"auc\\\": {\\\"d0v1\\\": 0.998, \\\"d1v2\\\": 0.868, \\\"d2v3\\\": 0.804}}, \\\"6class\\\": {\\\"acc\\\": 0.6292, \\\"ci95\\\": [0.6175, 0.6412], \\\"auc\\\": {\\\"d0v1\\\": 0.997, \\\"d1v2\\\": 0.83, \\\"d2v3\\\": 0.689, \\\"d3v4\\\": 0.692, \\\"d4v5\\\": 0.691}}}, \\\"pythia_temp09\\\": {\\\"binary\\\": {\\\"acc\\\": 0.997, \\\"ci95\\\": [0.9952, 0.9985], \\\"auc\\\": {\\\"d0v1\\\": 1}}, \\\"3class\\\": {\\\"acc\\\": 0.7063, \\\"ci95\\\": [0.6907, 0.723], \\\"auc\\\": {\\\"d1v2\\\": 0.838, \\\"d2v3\\\": 0.806}}, \\\"4class\\\": {\\\"acc\\\": 0.7605, \\\"ci95\\\": [0.7475, 0.7738], \\\"auc\\\": {\\\"d0v1\\\": 0.997, \\\"d1v2\\\": 0.835, \\\"d2v3\\\": 0.796}}}, \\\"pythia_topk50\\\": {\\\"binary\\\": {\\\"acc\\\": 0.9945, \\\"ci95\\\": [0.992, 0.9965], \\\"auc\\\": {\\\"d0v1\\\": 1}}, \\\"3class\\\": {\\\"acc\\\": 0.5883, \\\"ci95\\\": [0.5717, 0.6073], \\\"auc\\\": {\\\"d1v2\\\": 0.749, \\\"d2v3\\\": 0.705}}, \\\"4class\\\": {\\\"acc\\\": 0.6943, \\\"ci95\\\": [0.6805, 0.708], \\\"auc\\\": {\\\"d0v1\\\": 0.994, \\\"d1v2\\\": 0.761, \\\"d2v3\\\": 0.695}}}, \\\"gpt2xl_nucleus095\\\": {\\\"binary\\\": {\\\"acc\\\": 0.9912, \\\"ci95\\\": [0.9882, 0.9938], \\\"auc\\\": {\\\"d0v1\\\": 0.999}}, \\\"3class\\\": {\\\"acc\\\": 0.79, \\\"ci95\\\": [0.775, 0.8047], \\\"auc\\\": {\\\"d1v2\\\": 0.913, \\\"d2v3\\\": 0.891}}, \\\"4class\\\": {\\\"acc\\\": 0.8393, \\\"ci95\\\": [0.8283, 0.8502], \\\"auc\\\": {\\\"d0v1\\\": 0.995, \\\"d1v2\\\": 0.916, \\\"d2v3\\\": 0.885}}}, \\\"gpt2xl_temp09\\\": {\\\"binary\\\": {\\\"acc\\\": 0.9978, \\\"ci95\\\": [0.9962, 0.999], \\\"auc\\\": {\\\"d0v1\\\": 1}}, \\\"3class\\\": {\\\"acc\\\": 0.826, \\\"ci95\\\": [0.8117, 0.8397], \\\"auc\\\": {\\\"d1v2\\\": 0.944, \\\"d2v3\\\": 0.887}}, \\\"4class\\\": {\\\"acc\\\": 0.8552, \\\"ci95\\\": [0.844, 0.866], \\\"auc\\\": {\\\"d0v1\\\": 0.997, \\\"d1v2\\\": 0.939, \\\"d2v3\\\": 0.886}}}, \\\"gpt2xl_topk50\\\": {\\\"binary\\\": {\\\"acc\\\": 0.9952, \\\"ci95\\\": [0.993, 0.9972], \\\"auc\\\": {\\\"d0v1\\\": 1}}, \\\"3class\\\": {\\\"acc\\\": 0.695, \\\"ci95\\\": [0.6777, 0.7113], \\\"auc\\\": {\\\"d1v2\\\": 0.844, \\\"d2v3\\\": 0.766}}, \\\"4class\\\": {\\\"acc\\\": 0.757, \\\"ci95\\\": [0.743, 0.7702], \\\"auc\\\": {\\\"d0v1\\\": 0.993, \\\"d1v2\\\": 0.824, \\\"d2v3\\\": 0.762}}}, \\\"olmo_nucleus095\\\": {\\\"binary\\\": {\\\"acc\\\": 0.9868, \\\"ci95\\\": [0.9832, 0.99], \\\"auc\\\": {\\\"d0v1\\\": 0.999}}, \\\"3class\\\": {\\\"acc\\\": 0.7503, \\\"ci95\\\": [0.7353, 0.7657], \\\"auc\\\": {\\\"d1v2\\\": 0.873, \\\"d2v3\\\": 0.831}}, \\\"4class\\\": {\\\"acc\\\": 0.7897, \\\"ci95\\\": [0.7772, 0.8027], \\\"auc\\\": {\\\"d0v1\\\": 0.985, \\\"d1v2\\\": 0.87, \\\"d2v3\\\": 0.816}}}, \\\"olmo_temp09\\\": {\\\"binary\\\": {\\\"acc\\\": 0.9982, \\\"ci95\\\": [0.997, 0.9992], \\\"auc\\\": {\\\"d0v1\\\": 1}}, \\\"3class\\\": {\\\"acc\\\": 0.7633, \\\"ci95\\\": [0.7477, 0.7797], \\\"auc\\\": {\\\"d1v2\\\": 0.894, \\\"d2v3\\\": 0.838}}, \\\"4class\\\": {\\\"acc\\\": 0.8263, \\\"ci95\\\": [0.8147, 0.8385], \\\"auc\\\": {\\\"d0v1\\\": 0.996, \\\"d1v2\\\": 0.903, \\\"d2v3\\\": 0.828}}}, \\\"olmo_topk50\\\": {\\\"binary\\\": {\\\"acc\\\": 0.996, \\\"ci95\\\": [0.994, 0.9978], \\\"auc\\\": {\\\"d0v1\\\": 1}}, \\\"3class\\\": {\\\"acc\\\": 0.661, \\\"ci95\\\": [0.644, 0.6773], \\\"auc\\\": {\\\"d1v2\\\": 0.812, \\\"d2v3\\\": 0.739}}, \\\"4class\\\": {\\\"acc\\\": 0.7435, \\\"ci95\\\": [0.73, 0.758], \\\"auc\\\": {\\\"d0v1\\\": 0.995, \\\"d1v2\\\": 0.831, \\\"d2v3\\\": 0.738}}}}, \\\"boundary_dilution\\\": {\\\"d2v3_auc_by_granularity_pythia_nuc\\\": {\\\"3class\\\": 0.796, \\\"4class\\\": 0.804, \\\"6class\\\": 0.689}, \\\"d1v2_auc_by_granularity_pythia_nuc\\\": {\\\"3class\\\": 0.861, \\\"4class\\\": 0.868, \\\"6class\\\": 0.83}, \\\"note\\\": \\\"d2v3 AUC drops 14% from 4-class to 6-class (0.804→0.689), confirming decision boundary dilution at higher granularity\\\"}, \\\"decoding_strategy_ranking\\\": {\\\"4class_acc\\\": {\\\"temp09\\\": 0.814, \\\"nucleus095\\\": 0.803, \\\"topk50\\\": 0.732}, \\\"note\\\": \\\"topk50 consistently worst across all 3 models; temp09 slightly outperforms nucleus095\\\"}}, \\\"conclusion\\\": \\\"success\\\"}, \\\"zero_shot_llm_baseline_001\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"four_class_acc\\\": 0.4, \\\"n_samples\\\": 200, \\\"sample_distribution\\\": {\\\"d0\\\": 56, \\\"d1\\\": 47, \\\"d2\\\": 49, \\\"d3\\\": 48}, \\\"model\\\": \\\"DeepSeek V3.2\\\", \\\"method\\\": \\\"zero-shot prompting\\\", \\\"vs_rf_baseline\\\": -0.382, \\\"vs_chance\\\": 0.15, \\\"note\\\": \\\"40.0% (80/200) above chance (25%) but far below RF 78.2% (-38.2pp). Zero-shot LLM cannot reliably distinguish recursive depth from raw text alone.\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"olmo_temp09_002\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"depth_extension_pythia_d4d5_001\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"six_class_rf_accuracy\\\": 0.6232, \\\"six_class_rf_accuracy_ci\\\": [0.6113, 0.636], \\\"six_class_lr_accuracy\\\": 0.5862, \\\"pairwise_auc_rf\\\": {\\\"d0v1\\\": 0.9962, \\\"d1v2\\\": 0.8231, \\\"d2v3\\\": 0.6878, \\\"d3v4\\\": 0.6809, \\\"d4v5\\\": 0.6948}, \\\"pairwise_auc_lr\\\": {\\\"d0v1\\\": 0.9908, \\\"d1v2\\\": 0.6901, \\\"d2v3\\\": 0.6174, \\\"d3v4\\\": 0.6828, \\\"d4v5\\\": 0.6554}, \\\"cumulative_auc_rf\\\": {\\\"d0v5\\\": 0.9987, \\\"d1v5\\\": 0.9874, \\\"d2v5\\\": 0.949, \\\"d3v5\\\": 0.8632}, \\\"edd_at_075\\\": 2, \\\"feature_importance_top5\\\": [\\\"p90_ppl (0.1376)\\\", \\\"var_surprisal (0.1344)\\\", \\\"mean_ppl (0.0796)\\\", \\\"mean_surprisal (0.0789)\\\", \\\"p75_ppl (0.0680)\\\"], \\\"finetune_losses\\\": {\\\"depth_3\\\": 0.7634, \\\"depth_4\\\": 0.5828}, \\\"WARNING\\\": \\\"6-class pairwise AUC 不可与 4-class 直比，决策边界稀释导致系统性偏低。需 binary pairwise classifier 重新评估。\\\"}}, \\\"depth_extension_binary_pairwise_002\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"d1v2_auc\\\": 0.925, \\\"d1v2_ci95\\\": [0.9138, 0.9354], \\\"d2v3_auc\\\": 0.8225, \\\"d2v3_ci95\\\": [0.8052, 0.8402], \\\"d3v4_auc\\\": 0.7837, \\\"d3v4_ci95\\\": [0.7648, 0.8024], \\\"d4v5_auc\\\": 0.6832, \\\"d4v5_ci95\\\": [0.6611, 0.7045], \\\"edd_determination\\\": \\\"4\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"depth_extension_binary_pairwise_001\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"dcol_roberta_v6_001\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"test_acc\\\": 0.6448, \\\"test_mae\\\": 0.4052, \\\"best_val_acc\\\": 0.6436, \\\"best_epoch\\\": 1, \\\"epochs_run\\\": 4, \\\"early_stopping\\\": true, \\\"train_acc_final\\\": 0.75, \\\"rf_baseline\\\": 0.782, \\\"delta_vs_baseline\\\": -0.137, \\\"overfitting\\\": \\\"severe (train 75% vs val 64.4% at best epoch)\\\", \\\"stability\\\": \\\"resolved (no NaN, no collapse, collapse guard passed at step 500)\\\"}}, \\\"cross_strategy_loo_zscore_001\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"mean_raw_acc\\\": 0.5908, \\\"mean_zscore_acc\\\": 0.5915, \\\"raw\\\": {\\\"pythia_holdout_nucleus\\\": {\\\"acc\\\": 0.6935, \\\"d1v2_auc\\\": 0.6903, \\\"d2v3_auc\\\": 0.7626}, \\\"pythia_holdout_temp09\\\": {\\\"acc\\\": 0.6281, \\\"d1v2_auc\\\": 0.576, \\\"d2v3_auc\\\": 0.724}, \\\"pythia_holdout_topk50\\\": {\\\"acc\\\": 0.5151, \\\"d1v2_auc\\\": 0.6393, \\\"d2v3_auc\\\": 0.5801}, \\\"gpt2xl_holdout_nucleus\\\": {\\\"acc\\\": 0.5993, \\\"d1v2_auc\\\": 0.7826, \\\"d2v3_auc\\\": 0.4985}, \\\"gpt2xl_holdout_temp09\\\": {\\\"acc\\\": 0.5609, \\\"d1v2_auc\\\": 0.1288, \\\"d2v3_auc\\\": 0.6366}, \\\"gpt2xl_holdout_topk50\\\": {\\\"acc\\\": 0.5364, \\\"d1v2_auc\\\": 0.8308, \\\"d2v3_auc\\\": 0.7222}, \\\"olmo_holdout_nucleus\\\": {\\\"acc\\\": 0.6538, \\\"d1v2_auc\\\": 0.7931, \\\"d2v3_auc\\\": 0.6076}, \\\"olmo_holdout_temp09\\\": {\\\"acc\\\": 0.5816, \\\"d1v2_auc\\\": 0.2529, \\\"d2v3_auc\\\": 0.7015}, \\\"olmo_holdout_topk50\\\": {\\\"acc\\\": 0.5488, \\\"d1v2_auc\\\": 0.8549, \\\"d2v3_auc\\\": 0.7107}}, \\\"zscore\\\": {\\\"pythia_holdout_nucleus\\\": {\\\"acc\\\": 0.6992, \\\"d1v2_auc\\\": 0.7043, \\\"d2v3_auc\\\": 0.7683}, \\\"pythia_holdout_temp09\\\": {\\\"acc\\\": 0.6368, \\\"d1v2_auc\\\": 0.5943, \\\"d2v3_auc\\\": 0.7352}, \\\"pythia_holdout_topk50\\\": {\\\"acc\\\": 0.5155, \\\"d1v2_auc\\\": 0.6386, \\\"d2v3_auc\\\": 0.5804}, \\\"gpt2xl_holdout_nucleus\\\": {\\\"acc\\\": 0.5959, \\\"d1v2_auc\\\": 0.788, \\\"d2v3_auc\\\": 0.4927}, \\\"gpt2xl_holdout_temp09\\\": {\\\"acc\\\": 0.5632, \\\"d1v2_auc\\\": 0.1348, \\\"d2v3_auc\\\": 0.631}, \\\"gpt2xl_holdout_topk50\\\": {\\\"acc\\\": 0.5356, \\\"d1v2_auc\\\": 0.8391, \\\"d2v3_auc\\\": 0.7282}, \\\"olmo_holdout_nucleus\\\": {\\\"acc\\\": 0.6506, \\\"d1v2_auc\\\": 0.796, \\\"d2v3_auc\\\": 0.6078}, \\\"olmo_holdout_temp09\\\": {\\\"acc\\\": 0.5782, \\\"d1v2_auc\\\": 0.2497, \\\"d2v3_auc\\\": 0.6871}, \\\"olmo_holdout_topk50\\\": {\\\"acc\\\": 0.5484, \\\"d1v2_auc\\\": 0.8579, \\\"d2v3_auc\\\": 0.7056}}, \\\"temp09_d1v2_delta\\\": {\\\"pythia\\\": 0.0183, \\\"gpt2xl\\\": 0.006, \\\"olmo\\\": -0.0033}, \\\"finding\\\": \\\"Z-score does NOT fix temp09 d1v2 inversion in RF — RF is scale-invariant (tree splits unaffected by monotonic transforms). Prior z-score recovery (0.13→0.68) was with LR, not RF.\\\"}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"cross_model_loo_v1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"mean_acc\\\": 0.664, \\\"mean_3class_acc\\\": 0.5544, \\\"holdout_pythia\\\": {\\\"acc\\\": 0.6242, \\\"ci95\\\": [0.6205, 0.6282], \\\"3class_acc\\\": 0.499, \\\"3class_ci95\\\": [0.4944, 0.5034], \\\"d1v2_auc\\\": 0.5617, \\\"d1v3_auc\\\": 0.8547, \\\"d2v3_auc\\\": 0.6534, \\\"d0v1_auc\\\": 0.9921, \\\"d0v2_auc\\\": 0.9999, \\\"d0v3_auc\\\": 0.9998, \\\"per_class\\\": {\\\"d0\\\": {\\\"P\\\": 0.9889, \\\"R\\\": 1, \\\"F1\\\": 0.9944}, \\\"d1\\\": {\\\"P\\\": 0.6655, \\\"R\\\": 0.493, \\\"F1\\\": 0.5664}, \\\"d2\\\": {\\\"P\\\": 0.3699, \\\"R\\\": 0.2677, \\\"F1\\\": 0.3106}, \\\"d3\\\": {\\\"P\\\": 0.483, \\\"R\\\": 0.7363, \\\"F1\\\": 0.5834}}}, \\\"holdout_olmo\\\": {\\\"acc\\\": 0.6921, \\\"ci95\\\": [0.6884, 0.696], \\\"3class_acc\\\": 0.592, \\\"3class_ci95\\\": [0.5873, 0.5965], \\\"d1v2_auc\\\": 0.7687, \\\"d1v3_auc\\\": 0.9277, \\\"d2v3_auc\\\": 0.6862, \\\"per_class\\\": {\\\"d0\\\": {\\\"P\\\": 0.9783, \\\"R\\\": 0.9925, \\\"F1\\\": 0.9854}, \\\"d1\\\": {\\\"P\\\": 0.7111, \\\"R\\\": 0.7549, \\\"F1\\\": 0.7324}, \\\"d2\\\": {\\\"P\\\": 0.4616, \\\"R\\\": 0.4327, \\\"F1\\\": 0.4467}, \\\"d3\\\": {\\\"P\\\": 0.5964, \\\"R\\\": 0.5883, \\\"F1\\\": 0.5923}}}, \\\"holdout_gpt2xl\\\": {\\\"acc\\\": 0.6756, \\\"ci95\\\": [0.6717, 0.6795], \\\"3class_acc\\\": 0.5723, \\\"3class_ci95\\\": [0.5679, 0.5767], \\\"d1v2_auc\\\": 0.8157, \\\"d1v3_auc\\\": 0.9149, \\\"d2v3_auc\\\": 0.6639, \\\"d0v1_auc\\\": 0.9927, \\\"d0v2_auc\\\": 0.9919, \\\"d0v3_auc\\\": 0.9876, \\\"per_class\\\": {\\\"d0\\\": {\\\"P\\\": 0.9484, \\\"R\\\": 0.9853, \\\"F1\\\": 0.9665}, \\\"d1\\\": {\\\"P\\\": 0.7093, \\\"R\\\": 0.7465, \\\"F1\\\": 0.7274}, \\\"d2\\\": {\\\"P\\\": 0.4521, \\\"R\\\": 0.5255, \\\"F1\\\": 0.486}, \\\"d3\\\": {\\\"P\\\": 0.5963, \\\"R\\\": 0.445, \\\"F1\\\": 0.5097}}}, \\\"mean_per_class_recall\\\": {\\\"d0\\\": 0.9926, \\\"d1\\\": 0.6648, \\\"d2\\\": 0.4086, \\\"d3\\\": 0.5899}, \\\"lowest_recall_class\\\": \\\"d2\\\", \\\"lowest_recall_value\\\": 0.4086, \\\"detailed_artifact\\\": \\\"cross_model_loo_detailed.json\\\"}}, \\\"baseline_battery_9cell_001\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"best_acc_matrix\\\": {\\\"pythia_nucleus\\\": 0.782, \\\"pythia_temp09\\\": 0.772, \\\"pythia_topk50\\\": 0.688, \\\"olmo_nucleus\\\": 0.796, \\\"olmo_temp09\\\": 0.827, \\\"olmo_topk50\\\": 0.759, \\\"gpt2xl_nucleus\\\": 0.843, \\\"gpt2xl_temp09\\\": 0.853, \\\"gpt2xl_topk50\\\": 0.754}, \\\"methods\\\": [\\\"RF\\\", \\\"LR\\\", \\\"CORAL\\\", \\\"DivEye\\\"], \\\"cells\\\": 9, \\\"finding\\\": \\\"RF ≈ CORAL > DivEye > LR, max gap ~4pp. GPT-2 XL temp09 best (85.3%), model effect > strategy effect\\\", \\\"WARNING\\\": \\\"best_acc_matrix stores best-across-ALL-methods accuracy, NOT RF-only. For RF accuracy use each cell's own registry (e.g. olmo_topk50_001.metrics.four_class.rf_accuracy). olmo_topk50 diff=2.2pp, olmo_nucleus diff=0.83pp.\\\"}}, \\\"olmo_topk50_001\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"four_class\\\": {\\\"lr_accuracy\\\": 0.757, \\\"lr_accuracy_ci\\\": [0.7425, 0.7702], \\\"rf_accuracy\\\": 0.742, \\\"rf_accuracy_ci\\\": [0.7282, 0.7555]}, \\\"pairwise_auc\\\": {\\\"lr\\\": {\\\"d0v1\\\": 0.9969, \\\"d0v2\\\": 0.9995, \\\"d0v3\\\": 0.9998, \\\"d1v2\\\": 0.8293, \\\"d1v3\\\": 0.9592, \\\"d2v3\\\": 0.7497}, \\\"rf\\\": {\\\"d0v1\\\": 0.993, \\\"d0v2\\\": 0.9983, \\\"d0v3\\\": 0.9991, \\\"d1v2\\\": 0.8305, \\\"d1v3\\\": 0.9591, \\\"d2v3\\\": 0.7357}}, \\\"three_class\\\": {\\\"lr_accuracy\\\": 0.6567, \\\"lr_accuracy_ci\\\": [0.6403, 0.6733], \\\"rf_accuracy\\\": 0.6517, \\\"rf_accuracy_ci\\\": [0.635, 0.6687]}, \\\"three_class_filtered\\\": {\\\"lr_accuracy\\\": 0.6703, \\\"lr_accuracy_ci\\\": [0.653, 0.6882], \\\"rf_accuracy\\\": 0.6699, \\\"rf_accuracy_ci\\\": [0.6537, 0.6875]}, \\\"three_class_filtered_auc\\\": {\\\"lr\\\": {\\\"d1v2\\\": 0.7903, \\\"d1v3\\\": 0.97, \\\"d2v3\\\": 0.7501}, \\\"rf\\\": {\\\"d1v2\\\": 0.8071, \\\"d1v3\\\": 0.9645, \\\"d2v3\\\": 0.7364}}, \\\"feature_importance_top5\\\": [\\\"p90_ppl\\\", \\\"var_surprisal\\\", \\\"p75_ppl\\\", \\\"mean_surprisal\\\", \\\"p25_ppl\\\"], \\\"finetune_loss\\\": {\\\"depth_1\\\": 1.946, \\\"depth_2\\\": 1.726}, \\\"code_contamination\\\": {\\\"narrow_pct\\\": {\\\"depth_0\\\": 0.4, \\\"depth_1\\\": 0.8, \\\"depth_2\\\": 0.3, \\\"depth_3\\\": 0.4}, \\\"broad_pct\\\": {\\\"depth_0\\\": 0.5, \\\"depth_1\\\": 2.5, \\\"depth_2\\\": 0.8, \\\"depth_3\\\": 0.7}}}, \\\"conclusion\\\": \\\"success\\\"}, \\\"atlas_v2_analysis\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"p90_ppl_in_top2\\\": \\\"9/9\\\", \\\"var_surprisal_in_top2\\\": \\\"7/9\\\", \\\"edd_equals_3_at_T075\\\": \\\"7/9\\\", \\\"edd_distribution_T075\\\": {\\\"2\\\": 2, \\\"3\\\": 7}, \\\"cross_model_rank_corr_range\\\": \\\"[0.619, 0.954]\\\", \\\"cross_model_rank_corr_mean\\\": 0.868, \\\"cv5_accuracy_range\\\": \\\"[0.688, 0.859]\\\", \\\"cells_covered\\\": \\\"9/9\\\"}}, \\\"cross_model_loo_001\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"metrics\\\": {\\\"mean_4class_acc\\\": 0.664, \\\"holdout_pythia\\\": {\\\"acc\\\": 0.6242, \\\"ci\\\": [0.6206, 0.6282], \\\"d1v2_auc\\\": 0.5617, \\\"d2v3_auc\\\": 0.6534}, \\\"holdout_olmo\\\": {\\\"acc\\\": 0.6921, \\\"ci\\\": [0.6886, 0.6959], \\\"d1v2_auc\\\": 0.7687, \\\"d2v3_auc\\\": 0.6862}, \\\"holdout_gpt2xl\\\": {\\\"acc\\\": 0.6756, \\\"ci\\\": [0.6719, 0.6792], \\\"d1v2_auc\\\": 0.8157, \\\"d2v3_auc\\\": 0.6639}, \\\"per_class_recall\\\": {\\\"holdout_pythia\\\": {\\\"d0\\\": 1, \\\"d1\\\": 0.493, \\\"d2\\\": 0.268, \\\"d3\\\": 0.736}, \\\"holdout_olmo\\\": {\\\"d0\\\": 0.993, \\\"d1\\\": 0.755, \\\"d2\\\": 0.433, \\\"d3\\\": 0.588}, \\\"holdout_gpt2xl\\\": {\\\"d0\\\": 0.985, \\\"d1\\\": 0.747, \\\"d2\\\": 0.526, \\\"d3\\\": 0.445}}, \\\"gate_passed\\\": true, \\\"gate_threshold\\\": 0.45}}, \\\"batch_feature_extraction_5cells\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"gpt2xl_topk50_001\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"four_class\\\": {\\\"accuracy\\\": 0.766, \\\"depth1_vs_depth2_auc\\\": 0.8259, \\\"pass\\\": true}, \\\"three_class\\\": {\\\"accuracy\\\": 0.695, \\\"depth1_vs_depth2_auc\\\": 0.8392, \\\"pass\\\": true}, \\\"three_class_filtered\\\": {\\\"accuracy\\\": 0.684, \\\"depth1_vs_depth2_auc\\\": 0.8314, \\\"pass\\\": true}}}, \\\"dcol_deberta_005\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"dcol_deberta_004\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"dcol_deberta_003\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"olmo_temp09_001\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"four_class\\\": {\\\"rf_accuracy\\\": 0.8203, \\\"d1v2_auc\\\": 0.901}, \\\"three_class_filtered\\\": {\\\"rf_accuracy\\\": 0.7757}, \\\"finetune_losses\\\": {\\\"depth_0\\\": 2.27, \\\"depth_1\\\": 1.63, \\\"depth_2\\\": 1.18}, \\\"code_contamination_narrow_max\\\": 0.007, \\\"top_features\\\": [\\\"p90_ppl (0.199)\\\", \\\"var_surprisal (0.174)\\\", \\\"p75_ppl (0.126)\\\"]}, \\\"conclusion\\\": \\\"success\\\"}, \\\"baseline_battery_001\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"ppl_reg_single_4class_acc\\\": 0.251, \\\"ppl_reg_multi_4class_acc\\\": 0.622, \\\"ce_mlp_4class_acc\\\": 0.749, \\\"coral_4class_acc\\\": 0.7807, \\\"coral_3class_acc\\\": 0.7089, \\\"coral_mae\\\": 0.2273, \\\"coral_d1v2_auc\\\": 0.8179, \\\"diveye_4class_acc\\\": 0.7817, \\\"diveye_3class_acc\\\": 0.7098, \\\"diveye_d1v2_auc\\\": 0.8654, \\\"rf_4class_acc\\\": 0.781, \\\"lr_4class_acc\\\": 0.75, \\\"note\\\": \\\"CE-MLP 74.9% may be undertrained (5 epochs); CORAL updated to 100 epochs. All results from Pythia nucleus baseline features.\\\"}}, \\\"atlas_v1_analysis\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"monotonicity_rho_range\\\": [-0.89, -0.82], \\\"edd\\\": 3, \\\"edd_saturated\\\": false, \\\"cross_model_jaccard\\\": 0.667, \\\"cross_model_rank_corr\\\": 0.85, \\\"artifacts\\\": [\\\"monotonicity_scores.json\\\", \\\"cross_model_comparison.json\\\", \\\"edd_analysis.json\\\", \\\"feature_trajectory.json\\\"]}}, \\\"dcol_deberta_002\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"gpt2xl_temp09_001\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"data\\\": {\\\"samples_per_depth\\\": 5000, \\\"total_samples\\\": 20000, \\\"depths\\\": 4}, \\\"finetune_losses\\\": {\\\"depth_1\\\": 2.5498, \\\"depth_2\\\": 1.6972, \\\"depth_3\\\": 1.2922}, \\\"code_contamination\\\": {\\\"depth_0\\\": {\\\"broad\\\": 25, \\\"narrow\\\": 20, \\\"broad_pct\\\": 0.5, \\\"narrow_pct\\\": 0.4}, \\\"depth_1\\\": {\\\"broad\\\": 25, \\\"narrow\\\": 40, \\\"broad_pct\\\": 0.5, \\\"narrow_pct\\\": 0.8}, \\\"depth_2\\\": {\\\"broad\\\": 34, \\\"narrow\\\": 80, \\\"broad_pct\\\": 0.7, \\\"narrow_pct\\\": 1.6}, \\\"depth_3\\\": {\\\"broad\\\": 25, \\\"narrow\\\": 76, \\\"broad_pct\\\": 0.5, \\\"narrow_pct\\\": 1.5}}, \\\"four_class\\\": {\\\"rf_accuracy\\\": 0.8542, \\\"rf_accuracy_ci\\\": [0.843, 0.8653], \\\"lr_accuracy\\\": 0.8155, \\\"lr_accuracy_ci\\\": [0.8025, 0.8273], \\\"rf_auc\\\": {\\\"d0v1\\\": 0.9963, \\\"d0v2\\\": 0.9992, \\\"d0v3\\\": 1, \\\"d1v2\\\": 0.9367, \\\"d1v3\\\": 0.9947, \\\"d2v3\\\": 0.8815}, \\\"lr_auc\\\": {\\\"d0v1\\\": 0.984, \\\"d0v2\\\": 0.9998, \\\"d0v3\\\": 1, \\\"d1v2\\\": 0.8903, \\\"d1v3\\\": 0.9824, \\\"d2v3\\\": 0.8183}, \\\"top_features\\\": [\\\"p90_ppl\\\", \\\"mean_surprisal\\\", \\\"p75_ppl\\\", \\\"var_surprisal\\\"]}, \\\"three_class\\\": {\\\"rf_accuracy\\\": 0.82, \\\"rf_accuracy_ci\\\": [0.806, 0.834], \\\"lr_accuracy\\\": 0.7773, \\\"lr_accuracy_ci\\\": [0.7627, 0.792], \\\"rf_auc\\\": {\\\"d1v2\\\": 0.9418, \\\"d1v3\\\": 0.9967, \\\"d2v3\\\": 0.8849}}, \\\"three_class_filtered\\\": {\\\"rf_accuracy\\\": 0.815, \\\"rf_accuracy_ci\\\": [0.7999, 0.8298], \\\"lr_accuracy\\\": 0.7869, \\\"lr_accuracy_ci\\\": [0.7711, 0.8016], \\\"rf_auc\\\": {\\\"d1v2\\\": 0.937, \\\"d1v3\\\": 0.9944, \\\"d2v3\\\": 0.8891}}}, \\\"conclusion\\\": \\\"success\\\"}, \\\"dcol_deberta_001\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"cross_model_olmo_temp09_001\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"pythia_topk50_001\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"rf_4class_acc\\\": 0.696, \\\"rf_4class_acc_ci\\\": [0.6825, 0.7107], \\\"lr_4class_acc\\\": 0.682, \\\"rf_3class_acc\\\": 0.592, \\\"rf_3class_acc_ci\\\": [0.575, 0.6107], \\\"rf_3class_filtered_acc\\\": 0.6133, \\\"rf_3class_filtered_acc_ci\\\": [0.593, 0.6312], \\\"pairwise_auc_rf\\\": {\\\"d0v1\\\": 0.9927, \\\"d0v2\\\": 0.9983, \\\"d0v3\\\": 0.9978, \\\"d1v2\\\": 0.7518, \\\"d1v3\\\": 0.9176, \\\"d2v3\\\": 0.6918}, \\\"pairwise_auc_3class_filtered_rf\\\": {\\\"d1v2\\\": 0.768, \\\"d1v3\\\": 0.9323, \\\"d2v3\\\": 0.7013}, \\\"feature_importance_top5\\\": [\\\"var_surprisal\\\", \\\"p90_ppl\\\", \\\"mean_ppl\\\", \\\"mean_surprisal\\\", \\\"p75_ppl\\\"], \\\"finetune_loss\\\": {\\\"depth_0\\\": 2.2406, \\\"depth_1\\\": 1.6704, \\\"depth_2\\\": 1.4374}, \\\"code_contamination_narrow\\\": {\\\"depth_0\\\": 0.004, \\\"depth_1\\\": 0.077, \\\"depth_2\\\": 0.123, \\\"depth_3\\\": 0.131}}}, \\\"cross_model_gpt2xl_001\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"four_class_acc_rf\\\": 0.833, \\\"four_class_acc_ci\\\": [0.823, 0.845], \\\"four_class_acc_lr\\\": 0.813, \\\"auc_0v1\\\": 0.9941, \\\"auc_0v2\\\": 0.9965, \\\"auc_0v3\\\": 0.9988, \\\"auc_1v2\\\": 0.9131, \\\"auc_1v3\\\": 0.9857, \\\"auc_2v3\\\": 0.8829, \\\"three_class_acc\\\": 0.793, \\\"three_class_acc_ci\\\": [0.778, 0.806], \\\"three_class_auc_1v2\\\": 0.9109, \\\"three_class_auc_1v3\\\": 0.989, \\\"three_class_auc_2v3\\\": 0.8885, \\\"finetune_losses\\\": {\\\"depth_0\\\": 2.55, \\\"depth_1\\\": 1.715, \\\"depth_2\\\": 1.342}, \\\"top_features\\\": [\\\"p90_ppl (0.208)\\\", \\\"var_surprisal (0.208)\\\", \\\"p75_ppl (0.103)\\\", \\\"mean_surprisal (0.082)\\\", \\\"mean_ppl (0.065)\\\"], \\\"code_contamination\\\": {\\\"d0\\\": 0.005, \\\"d1\\\": 0.005, \\\"d2\\\": 0.013, \\\"d3\\\": 0.007}}, \\\"conclusion\\\": \\\"success\\\"}, \\\"cross_model_olmo_002\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"four_class_acc_rf\\\": 0.788, \\\"four_class_acc_ci\\\": [0.776, 0.8], \\\"four_class_acc_lr\\\": 0.751, \\\"auc_0v1\\\": 0.9834, \\\"auc_0v2\\\": 0.9949, \\\"auc_0v3\\\": 0.9989, \\\"auc_1v2\\\": 0.8673, \\\"auc_1v3\\\": 0.9806, \\\"auc_2v3\\\": 0.8124, \\\"three_class_acc\\\": 0.744, \\\"three_class_acc_ci\\\": [0.728, 0.76], \\\"three_class_mae\\\": 0.27, \\\"three_class_auc_1v2\\\": 0.8664, \\\"three_class_auc_1v3\\\": 0.9852, \\\"three_class_auc_2v3\\\": 0.8274, \\\"three_class_recall\\\": {\\\"d1\\\": 0.864, \\\"d2\\\": 0.607, \\\"d3\\\": 0.761}, \\\"three_class_precision\\\": {\\\"d1\\\": 0.863, \\\"d2\\\": 0.646, \\\"d3\\\": 0.718}, \\\"four_class_per_class\\\": {\\\"d0\\\": {\\\"precision\\\": 0.95, \\\"recall\\\": 0.99, \\\"f1\\\": 0.97}, \\\"d1\\\": {\\\"precision\\\": 0.85, \\\"recall\\\": 0.82, \\\"f1\\\": 0.83}, \\\"d2\\\": {\\\"precision\\\": 0.63, \\\"recall\\\": 0.59, \\\"f1\\\": 0.61}, \\\"d3\\\": {\\\"precision\\\": 0.71, \\\"recall\\\": 0.76, \\\"f1\\\": 0.73}}, \\\"finetune_losses\\\": {\\\"depth_0\\\": 2.269, \\\"depth_1\\\": 1.65, \\\"depth_2\\\": 1.226}, \\\"top_features\\\": [\\\"p90_ppl (0.18)\\\", \\\"var_surprisal (0.16)\\\", \\\"p75_ppl (0.11)\\\", \\\"mean_surprisal (0.08)\\\", \\\"type_token_ratio (0.06)\\\"], \\\"code_contamination\\\": {\\\"d0\\\": 0.005, \\\"d1\\\": 0.027, \\\"d2\\\": 0.007, \\\"d3\\\": 0.008}, \\\"feature_dim\\\": 19, \\\"truncation_length\\\": 507}}, \\\"pythia_temp09_001\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"four_class\\\": {\\\"rf_accuracy\\\": 0.7625, \\\"rf_accuracy_ci\\\": [0.749, 0.7753], \\\"lr_accuracy\\\": 0.7405, \\\"lr_accuracy_ci\\\": [0.7265, 0.7545], \\\"pairwise_auc\\\": {\\\"0v1\\\": 0.9968, \\\"0v2\\\": 0.9993, \\\"0v3\\\": 0.9991, \\\"1v2\\\": 0.8327, \\\"1v3\\\": 0.959, \\\"2v3\\\": 0.7928}, \\\"top_features\\\": [\\\"var_surprisal (0.1776)\\\", \\\"p90_ppl (0.1501)\\\", \\\"mean_ppl (0.1140)\\\", \\\"mean_surprisal (0.0889)\\\", \\\"p75_ppl (0.0687)\\\"], \\\"feature_dim\\\": 19, \\\"truncation_length\\\": 498}, \\\"three_class_full\\\": {\\\"accuracy\\\": 0.6983, \\\"accuracy_ci\\\": [0.682, 0.715], \\\"mae\\\": 0.3357, \\\"recall\\\": {\\\"d1\\\": 0.802, \\\"d2\\\": 0.554, \\\"d3\\\": 0.739}, \\\"precision\\\": {\\\"d1\\\": 0.792, \\\"d2\\\": 0.608, \\\"d3\\\": 0.686}, \\\"f1\\\": {\\\"d1\\\": 0.797, \\\"d2\\\": 0.58, \\\"d3\\\": 0.712}, \\\"pairwise_auc\\\": {\\\"d1v2\\\": 0.8354, \\\"d1v3\\\": 0.9631, \\\"d2v3\\\": 0.8043}}, \\\"three_class_filtered\\\": {\\\"accuracy\\\": 0.7252, \\\"accuracy_ci\\\": [0.7064, 0.7427], \\\"mae\\\": 0.2953, \\\"recall\\\": {\\\"d1\\\": 0.842, \\\"d2\\\": 0.596, \\\"d3\\\": 0.735}, \\\"precision\\\": {\\\"d1\\\": 0.821, \\\"d2\\\": 0.628, \\\"d3\\\": 0.715}, \\\"f1\\\": {\\\"d1\\\": 0.831, \\\"d2\\\": 0.611, \\\"d3\\\": 0.725}, \\\"pairwise_auc\\\": {\\\"d1v2\\\": 0.8656, \\\"d1v3\\\": 0.9772, \\\"d2v3\\\": 0.8295}, \\\"n_samples\\\": 11445, \\\"n_removed\\\": 3555}, \\\"finetune_losses\\\": {\\\"depth_0\\\": 2.222, \\\"depth_1\\\": 1.37, \\\"depth_2\\\": 1.006}, \\\"code_contamination\\\": {\\\"d0\\\": 0.004, \\\"d1\\\": 0.077, \\\"d2\\\": 0.116, \\\"d3\\\": 0.136}}, \\\"conclusion\\\": \\\"success\\\"}, \\\"mvp_pipeline_pythia_002\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"full_4class_acc\\\": 0.782, \\\"full_4class_acc_ci\\\": [0.769, 0.794], \\\"full_4class_acc_stratified\\\": 0.781, \\\"full_mae\\\": 0.2367, \\\"full_auc_0v1\\\": 0.9975, \\\"full_auc_1v2\\\": 0.8607, \\\"full_auc_2v3\\\": 0.8005, \\\"filtered_4class_acc\\\": 0.816, \\\"filtered_4class_acc_ci\\\": [0.803, 0.829], \\\"filtered_mae\\\": 0.1995, \\\"filtered_auc_0v1\\\": 0.9977, \\\"filtered_auc_1v2\\\": 0.8782, \\\"filtered_auc_2v3\\\": 0.8323, \\\"filtered_sample_count\\\": 16993, \\\"three_class_acc\\\": 0.708, \\\"three_class_acc_ci\\\": [0.692, 0.725], \\\"three_class_mae\\\": 0.3203, \\\"three_class_auc_1v2\\\": 0.854, \\\"three_class_auc_1v3\\\": 0.9569, \\\"three_class_auc_2v3\\\": 0.7931, \\\"three_class_recall_d1\\\": 0.79, \\\"three_class_recall_d2\\\": 0.607, \\\"three_class_recall_d3\\\": 0.728, \\\"three_class_precision_d1\\\": 0.852, \\\"three_class_precision_d2\\\": 0.605, \\\"three_class_precision_d3\\\": 0.68, \\\"three_class_f1_d1\\\": 0.82, \\\"three_class_f1_d2\\\": 0.606, \\\"three_class_f1_d3\\\": 0.703, \\\"three_class_lr_acc\\\": 0.671, \\\"filtered_three_class_acc\\\": 0.747, \\\"filtered_three_class_acc_ci\\\": [0.727, 0.764], \\\"filtered_three_class_mae\\\": 0.2759, \\\"filtered_three_class_recall_d1\\\": 0.862, \\\"filtered_three_class_recall_d2\\\": 0.635, \\\"filtered_three_class_recall_d3\\\": 0.735, \\\"filtered_three_class_precision_d1\\\": 0.867, \\\"filtered_three_class_precision_d2\\\": 0.659, \\\"filtered_three_class_precision_d3\\\": 0.704, \\\"filtered_three_class_f1_d1\\\": 0.864, \\\"filtered_three_class_f1_d2\\\": 0.647, \\\"filtered_three_class_f1_d3\\\": 0.719, \\\"filtered_three_class_auc_1v2\\\": 0.8926, \\\"filtered_three_class_auc_1v3\\\": 0.9769, \\\"filtered_three_class_auc_2v3\\\": 0.8272, \\\"filtered_three_class_sample_count\\\": 12012, \\\"best_model\\\": \\\"RandomForest\\\", \\\"top_features\\\": [\\\"var_surprisal\\\", \\\"p90_ppl\\\", \\\"mean_ppl\\\", \\\"mean_surprisal\\\", \\\"p75_ppl\\\"], \\\"truncation_length\\\": 498, \\\"feature_dim\\\": 19}, \\\"conclusion\\\": \\\"success\\\"}, \\\"cross_model_olmo_001\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"status\\\": \\\"PIPELINE_CRASHED\\\", \\\"completed_steps\\\": [\\\"depth0_lora_finetune\\\"], \\\"failed_at\\\": \\\"shell_script_line_52_unmatched_quote\\\", \\\"depth0_final_loss\\\": 2.2686, \\\"depth0_train_runtime_s\\\": 283.2, \\\"depth0_train_steps\\\": 939, \\\"depth0_trainable_params\\\": 3145728, \\\"depth0_total_params\\\": 1179910144, \\\"classification_results\\\": null, \\\"note\\\": \\\"Script crashed after depth-0 finetune. No depth-1/2/3 generation, no feature extraction, no classification performed.\\\"}, \\\"conclusion\\\": \\\"failed\\\"}, \\\"mvp_pipeline_qwen_base_004\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"mvp_pipeline_pythia_001\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"mvp_pipeline_base_002\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"mvp_pipeline_003\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"mvp_pipeline_002\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"mvp_pipeline_001\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"mvp_pipeline_base_003\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"mvp_pipeline_004\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}}, \\\"count\\\": 46, \\\"total\\\": 46, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2998}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"n2_roberta_finetune_001\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy_mean\": 0.5948, \"accuracy_std\": 0.0324, \"per_class_f1\": {\"d0\": 0.958, \"d1\": 0.4161, \"d2\": 0.2611, \"d3\": 0.6472}, \"per_class_precision\": {\"d0\": 0.9983, \"d1\": 0.7178, \"d2\": 0.2956, \"d3\": 0.4958}, \"per_class_recall\": {\"d0\": 0.9208, \"d1\": 0.293, \"d2\": 0.2338, \"d3\": 0.9314}, \"pairwise_auc\": {\"d0v1\": 0.9886, \"d1v2\": 0.7522, \"d2v3\": 0.7349}, \"fold_accuracies\": [0.6022, 0.5595, 0.5623, 0.6018, 0.648], \"vs_rf_baseline\": \"-18.7pp (59.5% vs 78.2%)\", \"vs_deberta\": \"+1.2pp acc, +0.019 d1v2_auc, -0.020 d2v3_auc\", \"elapsed_seconds\": 1942.5}}, \"n2_deberta_finetune_001\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy_mean\": 0.5831, \"accuracy_std\": 0.0467, \"per_class_f1\": {\"d0\": 0.947, \"d1\": 0.378, \"d2\": 0.247, \"d3\": 0.656}, \"pairwise_auc\": {\"d0v1\": 0.981, \"d1v2\": 0.733, \"d2v3\": 0.755}, \"vs_rf_baseline\": \"58.3% vs 78.2% (-19.9pp)\", \"elapsed_seconds\": 3727}}, \"cross_strategy_loo_001\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"mean_4class_acc\": 0.5908, \"pythia_holdout_nucleus\": {\"acc\": 0.6935, \"d1v2_auc\": 0.6903, \"d2v3_auc\": 0.7626}, \"pythia_holdout_temp09\": {\"acc\": 0.6281, \"d1v2_auc\": 0.576, \"d2v3_auc\": 0.724}, \"pythia_holdout_topk50\": {\"acc\": 0.5151, \"d1v2_auc\": 0.6393, \"d2v3_auc\": 0.5801}, \"gpt2xl_holdout_nucleus\": {\"acc\": 0.5993, \"d1v2_auc\": 0.7826, \"d2v3_auc\": 0.4985}, \"gpt2xl_holdout_temp09\": {\"acc\": 0.5609, \"d1v2_auc\": 0.1288, \"d2v3_auc\": 0.6366}, \"gpt2xl_holdout_topk50\": {\"acc\": 0.5364, \"d1v2_auc\": 0.8308, \"d2v3_auc\": 0.7222}, \"olmo_holdout_nucleus\": {\"acc\": 0.6538, \"d1v2_auc\": 0.7931, \"d2v3_auc\": 0.6076}, \"olmo_holdout_temp09\": {\"acc\": 0.5816, \"d1v2_auc\": 0.2529, \"d2v3_auc\": 0.7015}, \"olmo_holdout_topk50\": {\"acc\": 0.5488, \"d1v2_auc\": 0.8549, \"d2v3_auc\": 0.7107}, \"finding_temp09_d1v2_inversion\": \"d1v2 AUC inverts when holding out temp09 (GPT-2 XL: 0.13, OLMo: 0.25) — temp09 d1→d2 features differ fundamentally from nucleus/topk50\"}}, \"depth_extension_olmo_d4d5_002\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"binary_pairwise\": {\"d1v2_auc\": 0.968, \"d2v3_auc\": 0.843, \"d3v4_auc\": 0.765, \"d4v5_auc\": 0.684}, \"six_class_rf_accuracy\": 0.667, \"edd_at_075\": 4, \"edd_note\": \"d3v4=0.765>=0.75 PASS, d4v5=0.684<0.75 FAIL → EDD=4\"}}, \"depth_extension_gpt2xl_d4d5_001\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"binary_pairwise\": {\"d1v2_auc\": 0.966, \"d2v3_auc\": 0.919, \"d3v4_auc\": 0.75, \"d4v5_auc\": 0.681}, \"six_class_rf_accuracy\": 0.679, \"edd_at_075\": 4, \"edd_note\": \"d3v4=0.750>=0.75 PASS, d4v5=0.681<0.75 FAIL → EDD=4\"}}, \"depth_extension_olmo_d4d5_001\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"lr_zscore_cross_strategy_001\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"raw_lr\": {\"mean_acc\": 0.25, \"note\": \"lbfgs convergence failure on unscaled features, all predictions random\", \"pythia_temp09\": {\"acc\": 0.25, \"d1v2_auc\": 0.6313}, \"gpt2xl_temp09\": {\"acc\": 0.25, \"d1v2_auc\": 0.5}, \"olmo_temp09\": {\"acc\": 0.25, \"d1v2_auc\": 0.5}}, \"zscore_lr\": {\"mean_acc\": 0.6081, \"mean_d1v2\": 0.6417, \"pythia_temp09\": {\"acc\": 0.6139, \"d1v2_auc\": 0.5201}, \"gpt2xl_temp09\": {\"acc\": 0.5642, \"d1v2_auc\": 0.2386}, \"olmo_temp09\": {\"acc\": 0.5546, \"d1v2_auc\": 0.1922}, \"pythia_nucleus\": {\"acc\": 0.6425, \"d1v2_auc\": 0.6142}, \"gpt2xl_nucleus\": {\"acc\": 0.7397, \"d1v2_auc\": 0.8851}, \"olmo_nucleus\": {\"acc\": 0.748, \"d1v2_auc\": 0.8627}, \"pythia_topk50\": {\"acc\": 0.5261, \"d1v2_auc\": 0.7711}, \"gpt2xl_topk50\": {\"acc\": 0.5352, \"d1v2_auc\": 0.8214}, \"olmo_topk50\": {\"acc\": 0.5484, \"d1v2_auc\": 0.8696}}, \"paper_claim_vs_actual\": {\"gpt2xl_temp09_d1v2\": {\"paper_raw\": 0.13, \"paper_zscore\": 0.68, \"actual_raw\": 0.5, \"actual_zscore\": 0.2386}, \"olmo_temp09_d1v2\": {\"paper_raw\": 0.25, \"paper_zscore\": 0.83, \"actual_raw\": 0.5, \"actual_zscore\": 0.1922}}}}, \"granularity_ablation_rf_001\": {\"status\": \"DONE\", \"metrics\": {\"summary\": {\"binary_acc_mean\": 0.995, \"binary_acc_std\": 0.004, \"3class_acc_mean\": 0.721, \"3class_acc_std\": 0.067, \"4class_acc_mean\": 0.783, \"4class_acc_std\": 0.048, \"6class_acc\": 0.629, \"note\": \"3-class excludes d0 (most separable class), so 3class < 4class is by design. True granularity trend (with d0): binary 99.5% > 4-class 78.3% > 6-class 62.9% — monotonic decrease confirmed.\"}, \"per_cell\": {\"pythia_nucleus095\": {\"binary\": {\"acc\": 0.998, \"ci95\": [0.9965, 0.9992], \"auc\": {\"d0v1\": 1}}, \"3class\": {\"acc\": 0.7117, \"ci95\": [0.6947, 0.7283], \"auc\": {\"d1v2\": 0.861, \"d2v3\": 0.796}}, \"4class\": {\"acc\": 0.7812, \"ci95\": [0.7677, 0.7935], \"auc\": {\"d0v1\": 0.998, \"d1v2\": 0.868, \"d2v3\": 0.804}}, \"6class\": {\"acc\": 0.6292, \"ci95\": [0.6175, 0.6412], \"auc\": {\"d0v1\": 0.997, \"d1v2\": 0.83, \"d2v3\": 0.689, \"d3v4\": 0.692, \"d4v5\": 0.691}}}, \"pythia_temp09\": {\"binary\": {\"acc\": 0.997, \"ci95\": [0.9952, 0.9985], \"auc\": {\"d0v1\": 1}}, \"3class\": {\"acc\": 0.7063, \"ci95\": [0.6907, 0.723], \"auc\": {\"d1v2\": 0.838, \"d2v3\": 0.806}}, \"4class\": {\"acc\": 0.7605, \"ci95\": [0.7475, 0.7738], \"auc\": {\"d0v1\": 0.997, \"d1v2\": 0.835, \"d2v3\": 0.796}}}, \"pythia_topk50\": {\"binary\": {\"acc\": 0.9945, \"ci95\": [0.992, 0.9965], \"auc\": {\"d0v1\": 1}}, \"3class\": {\"acc\": 0.5883, \"ci95\": [0.5717, 0.6073], \"auc\": {\"d1v2\": 0.749, \"d2v3\": 0.705}}, \"4class\": {\"acc\": 0.6943, \"ci95\": [0.6805, 0.708], \"auc\": {\"d0v1\": 0.994, \"d1v2\": 0.761, \"d2v3\": 0.695}}}, \"gpt2xl_nucleus095\": {\"binary\": {\"acc\": 0.9912, \"ci95\": [0.9882, 0.9938], \"auc\": {\"d0v1\": 0.999}}, \"3class\": {\"acc\": 0.79, \"ci95\": [0.775, 0.8047], \"auc\": {\"d1v2\": 0.913, \"d2v3\": 0.891}}, \"4class\": {\"acc\": 0.8393, \"ci95\": [0.8283, 0.8502], \"auc\": {\"d0v1\": 0.995, \"d1v2\": 0.916, \"d2v3\": 0.885}}}, \"gpt2xl_temp09\": {\"binary\": {\"acc\": 0.9978, \"ci95\": [0.9962, 0.999], \"auc\": {\"d0v1\": 1}}, \"3class\": {\"acc\": 0.826, \"ci95\": [0.8117, 0.8397], \"auc\": {\"d1v2\": 0.944, \"d2v3\": 0.887}}, \"4class\": {\"acc\": 0.8552, \"ci95\": [0.844, 0.866], \"auc\": {\"d0v1\": 0.997, \"d1v2\": 0.939, \"d2v3\": 0.886}}}, \"gpt2xl_topk50\": {\"binary\": {\"acc\": 0.9952, \"ci95\": [0.993, 0.9972], \"auc\": {\"d0v1\": 1}}, \"3class\": {\"acc\": 0.695, \"ci95\": [0.6777, 0.7113], \"auc\": {\"d1v2\": 0.844, \"d2v3\": 0.766}}, \"4class\": {\"acc\": 0.757, \"ci95\": [0.743, 0.7702], \"auc\": {\"d0v1\": 0.993, \"d1v2\": 0.824, \"d2v3\": 0.762}}}, \"olmo_nucleus095\": {\"binary\": {\"acc\": 0.9868, \"ci95\": [0.9832, 0.99], \"auc\": {\"d0v1\": 0.999}}, \"3class\": {\"acc\": 0.7503, \"ci95\": [0.7353, 0.7657], \"auc\": {\"d1v2\": 0.873, \"d2v3\": 0.831}}, \"4class\": {\"acc\": 0.7897, \"ci95\": [0.7772, 0.8027], \"auc\": {\"d0v1\": 0.985, \"d1v2\": 0.87, \"d2v3\": 0.816}}}, \"olmo_temp09\": {\"binary\": {\"acc\": 0.9982, \"ci95\": [0.997, 0.9992], \"auc\": {\"d0v1\": 1}}, \"3class\": {\"acc\": 0.7633, \"ci95\": [0.7477, 0.7797], \"auc\": {\"d1v2\": 0.894, \"d2v3\": 0.838}}, \"4class\": {\"acc\": 0.8263, \"ci95\": [0.8147, 0.8385], \"auc\": {\"d0v1\": 0.996, \"d1v2\": 0.903, \"d2v3\": 0.828}}}, \"olmo_topk50\": {\"binary\": {\"acc\": 0.996, \"ci95\": [0.994, 0.9978], \"auc\": {\"d0v1\": 1}}, \"3class\": {\"acc\": 0.661, \"ci95\": [0.644, 0.6773], \"auc\": {\"d1v2\": 0.812, \"d2v3\": 0.739}}, \"4class\": {\"acc\": 0.7435, \"ci95\": [0.73, 0.758], \"auc\": {\"d0v1\": 0.995, \"d1v2\": 0.831, \"d2v3\": 0.738}}}}, \"boundary_dilution\": {\"d2v3_auc_by_granularity_pythia_nuc\": {\"3class\": 0.796, \"4class\": 0.804, \"6class\": 0.689}, \"d1v2_auc_by_granularity_pythia_nuc\": {\"3class\": 0.861, \"4class\": 0.868, \"6class\": 0.83}, \"note\": \"d2v3 AUC drops 14% from 4-class to 6-class (0.804→0.689), confirming decision boundary dilution at higher granularity\"}, \"decoding_strategy_ranking\": {\"4class_acc\": {\"temp09\": 0.814, \"nucleus095\": 0.803, \"topk50\": 0.732}, \"note\": \"topk50 consistently worst across all 3 models; temp09 slightly outperforms nucleus095\"}}, \"conclusion\": \"success\"}, \"zero_shot_llm_baseline_001\": {\"status\": \"DONE\", \"metrics\": {\"four_class_acc\": 0.4, \"n_samples\": 200, \"sample_distribution\": {\"d0\": 56, \"d1\": 47, \"d2\": 49, \"d3\": 48}, \"model\": \"DeepSeek V3.2\", \"method\": \"zero-shot prompting\", \"vs_rf_baseline\": -0.382, \"vs_chance\": 0.15, \"note\": \"40.0% (80/200) above chance (25%) but far below RF 78.2% (-38.2pp). Zero-shot LLM cannot reliably distinguish recursive depth from raw text alone.\"}, \"conclusion\": \"success\"}, \"olmo_temp09_002\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"depth_extension_pythia_d4d5_001\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"six_class_rf_accuracy\": 0.6232, \"six_class_rf_accuracy_ci\": [0.6113, 0.636], \"six_class_lr_accuracy\": 0.5862, \"pairwise_auc_rf\": {\"d0v1\": 0.9962, \"d1v2\": 0.8231, \"d2v3\": 0.6878, \"d3v4\": 0.6809, \"d4v5\": 0.6948}, \"pairwise_auc_lr\": {\"d0v1\": 0.9908, \"d1v2\": 0.6901, \"d2v3\": 0.6174, \"d3v4\": 0.6828, \"d4v5\": 0.6554}, \"cumulative_auc_rf\": {\"d0v5\": 0.9987, \"d1v5\": 0.9874, \"d2v5\": 0.949, \"d3v5\": 0.8632}, \"edd_at_075\": 2, \"feature_importance_top5\": [\"p90_ppl (0.1376)\", \"var_surprisal (0.1344)\", \"mean_ppl (0.0796)\", \"mean_surprisal (0.0789)\", \"p75_ppl (0.0680)\"], \"finetune_losses\": {\"depth_3\": 0.7634, \"depth_4\": 0.5828}, \"WARNING\": \"6-class pairwise AUC 不可与 4-class 直比，决策边界稀释导致系统性偏低。需 binary pairwise classifier 重新评估。\"}}, \"depth_extension_binary_pairwise_002\": {\"status\": \"DONE\", \"metrics\": {\"d1v2_auc\": 0.925, \"d1v2_ci95\": [0.9138, 0.9354], \"d2v3_auc\": 0.8225, \"d2v3_ci95\": [0.8052, 0.8402], \"d3v4_auc\": 0.7837, \"d3v4_ci95\": [0.7648, 0.8024], \"d4v5_auc\": 0.6832, \"d4v5_ci95\": [0.6611, 0.7045], \"edd_determination\": \"4\"}, \"conclusion\": \"success\"}, \"depth_extension_binary_pairwise_001\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"dcol_roberta_v6_001\": {\"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"test_acc\": 0.6448, \"test_mae\": 0.4052, \"best_val_acc\": 0.6436, \"best_epoch\": 1, \"epochs_run\": 4, \"early_stopping\": true, \"train_acc_final\": 0.75, \"rf_baseline\": 0.782, \"delta_vs_baseline\": -0.137, \"overfitting\": \"severe (train 75% vs val 64.4% at best epoch)\", \"stability\": \"resolved (no NaN, no collapse, collapse guard passed at step 500)\"}}, \"cross_strategy_loo_zscore_001\": {\"status\": \"DONE\", \"metrics\": {\"mean_raw_acc\": 0.5908, \"mean_zscore_acc\": 0.5915, \"raw\": {\"pythia_holdout_nucleus\": {\"acc\": 0.6935, \"d1v2_auc\": 0.6903, \"d2v3_auc\": 0.7626}, \"pythia_holdout_temp09\": {\"acc\": 0.6281, \"d1v2_auc\": 0.576, \"d2v3_auc\": 0.724}, \"pythia_holdout_topk50\": {\"acc\": 0.5151, \"d1v2_auc\": 0.6393, \"d2v3_auc\": 0.5801}, \"gpt2xl_holdout_nucleus\": {\"acc\": 0.5993, \"d1v2_auc\": 0.7826, \"d2v3_auc\": 0.4985}, \"gpt2xl_holdout_temp09\": {\"acc\": 0.5609, \"d1v2_auc\": 0.1288, \"d2v3_auc\": 0.6366}, \"gpt2xl_holdout_topk50\": {\"acc\": 0.5364, \"d1v2_auc\": 0.8308, \"d2v3_auc\": 0.7222}, \"olmo_holdout_nucleus\": {\"acc\": 0.6538, \"d1v2_auc\": 0.7931, \"d2v3_auc\": 0.6076}, \"olmo_holdout_temp09\": {\"acc\": 0.5816, \"d1v2_auc\": 0.2529, \"d2v3_auc\": 0.7015}, \"olmo_holdout_topk50\": {\"acc\": 0.5488, \"d1v2_auc\": 0.8549, \"d2v3_auc\": 0.7107}}, \"zscore\": {\"pythia_holdout_nucleus\": {\"acc\": 0.6992, \"d1v2_auc\": 0.7043, \"d2v3_auc\": 0.7683}, \"pythia_holdout_temp09\": {\"acc\": 0.6368, \"d1v2_auc\": 0.5943, \"d2v3_auc\": 0.7352}, \"pythia_holdout_topk50\": {\"acc\": 0.5155, \"d1v2_auc\": 0.6386, \"d2v3_auc\": 0.5804}, \"gpt2xl_holdout_nucleus\": {\"acc\": 0.5959, \"d1v2_auc\": 0.788, \"d2v3_auc\": 0.4927}, \"gpt2xl_holdout_temp09\": {\"acc\": 0.5632, \"d1v2_auc\": 0.1348, \"d2v3_auc\": 0.631}, \"gpt2xl_holdout_topk50\": {\"acc\": 0.5356, \"d1v2_auc\": 0.8391, \"d2v3_auc\": 0.7282}, \"olmo_holdout_nucleus\": {\"acc\": 0.6506, \"d1v2_auc\": 0.796, \"d2v3_auc\": 0.6078}, \"olmo_holdout_temp09\": {\"acc\": 0.5782, \"d1v2_auc\": 0.2497, \"d2v3_auc\": 0.6871}, \"olmo_holdout_topk50\": {\"acc\": 0.5484, \"d1v2_auc\": 0.8579, \"d2v3_auc\": 0.7056}}, \"temp09_d1v2_delta\": {\"pythia\": 0.0183, \"gpt2xl\": 0.006, \"olmo\": -0.0033}, \"finding\": \"Z-score does NOT fix temp09 d1v2 inversion in RF — RF is scale-invariant (tree splits unaffected by monotonic transforms). Prior z-score recovery (0.13→0.68) was with LR, not RF.\"}, \"conclusion\": \"negative\"}, \"cross_model_loo_v1\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"mean_acc\": 0.664, \"mean_3class_acc\": 0.5544, \"holdout_pythia\": {\"acc\": 0.6242, \"ci95\": [0.6205, 0.6282], \"3class_acc\": 0.499, \"3class_ci95\": [0.4944, 0.5034], \"d1v2_auc\": 0.5617, \"d1v3_auc\": 0.8547, \"d2v3_auc\": 0.6534, \"d0v1_auc\": 0.9921, \"d0v2_auc\": 0.9999, \"d0v3_auc\": 0.9998, \"per_class\": {\"d0\": {\"P\": 0.9889, \"R\": 1, \"F1\": 0.9944}, \"d1\": {\"P\": 0.6655, \"R\": 0.493, \"F1\": 0.5664}, \"d2\": {\"P\": 0.3699, \"R\": 0.2677, \"F1\": 0.3106}, \"d3\": {\"P\": 0.483, \"R\": 0.7363, \"F1\": 0.5834}}}, \"holdout_olmo\": {\"acc\": 0.6921, \"ci95\": [0.6884, 0.696], \"3class_acc\": 0.592, \"3class_ci95\": [0.5873, 0.5965], \"d1v2_auc\": 0.7687, \"d1v3_auc\": 0.9277, \"d2v3_auc\": 0.6862, \"per_class\": {\"d0\": {\"P\": 0.9783, \"R\": 0.9925, \"F1\": 0.9854}, \"d1\": {\"P\": 0.7111, \"R\": 0.7549, \"F1\": 0.7324}, \"d2\": {\"P\": 0.4616, \"R\": 0.4327, \"F1\": 0.4467}, \"d3\": {\"P\": 0.5964, \"R\": 0.5883, \"F1\": 0.5923}}}, \"holdout_gpt2xl\": {\"acc\": 0.6756, \"ci95\": [0.6717, 0.6795], \"3class_acc\": 0.5723, \"3class_ci95\": [0.5679, 0.5767], \"d1v2_auc\": 0.8157, \"d1v3_auc\": 0.9149, \"d2v3_auc\": 0.6639, \"d0v1_auc\": 0.9927, \"d0v2_auc\": 0.9919, \"d0v3_auc\": 0.9876, \"per_class\": {\"d0\": {\"P\": 0.9484, \"R\": 0.9853, \"F1\": 0.9665}, \"d1\": {\"P\": 0.7093, \"R\": 0.7465, \"F1\": 0.7274}, \"d2\": {\"P\": 0.4521, \"R\": 0.5255, \"F1\": 0.486}, \"d3\": {\"P\": 0.5963, \"R\": 0.445, \"F1\": 0.5097}}}, \"mean_per_class_recall\": {\"d0\": 0.9926, \"d1\": 0.6648, \"d2\": 0.4086, \"d3\": 0.5899}, \"lowest_recall_class\": \"d2\", \"lowest_recall_value\": 0.4086, \"detailed_artifact\": \"cross_model_loo_detailed.json\"}}, \"baseline_battery_9cell_001\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"best_acc_matrix\": {\"pythia_nucleus\": 0.782, \"pythia_temp09\": 0.772, \"pythia_topk50\": 0.688, \"olmo_nucleus\": 0.796, \"olmo_temp09\": 0.827, \"olmo_topk50\": 0.759, \"gpt2xl_nucleus\": 0.843, \"gpt2xl_temp09\": 0.853, \"gpt2xl_topk50\": 0.754}, \"methods\": [\"RF\", \"LR\", \"CORAL\", \"DivEye\"], \"cells\": 9, \"finding\": \"RF ≈ CORAL > DivEye > LR, max gap ~4pp. GPT-2 XL temp09 best (85.3%), model effect > strategy effect\", \"WARNING\": \"best_acc_matrix stores best-across-ALL-methods accuracy, NOT RF-only. For RF accuracy use each cell's own registry (e.g. olmo_topk50_001.metrics.four_class.rf_accuracy). olmo_topk50 diff=2.2pp, olmo_nucleus diff=0.83pp.\"}}, \"olmo_topk50_001\": {\"status\": \"DONE\", \"metrics\": {\"four_class\": {\"lr_accuracy\": 0.757, \"lr_accuracy_ci\": [0.7425, 0.7702], \"rf_accuracy\": 0.742, \"rf_accuracy_ci\": [0.7282, 0.7555]}, \"pairwise_auc\": {\"lr\": {\"d0v1\": 0.9969, \"d0v2\": 0.9995, \"d0v3\": 0.9998, \"d1v2\": 0.8293, \"d1v3\": 0.9592, \"d2v3\": 0.7497}, \"rf\": {\"d0v1\": 0.993, \"d0v2\": 0.9983, \"d0v3\": 0.9991, \"d1v2\": 0.8305, \"d1v3\": 0.9591, \"d2v3\": 0.7357}}, \"three_class\": {\"lr_accuracy\": 0.6567, \"lr_accuracy_ci\": [0.6403, 0.6733], \"rf_accuracy\": 0.6517, \"rf_accuracy_ci\": [0.635, 0.6687]}, \"three_class_filtered\": {\"lr_accuracy\": 0.6703, \"lr_accuracy_ci\": [0.653, 0.6882], \"rf_accuracy\": 0.6699, \"rf_accuracy_ci\": [0.6537, 0.6875]}, \"three_class_filtered_auc\": {\"lr\": {\"d1v2\": 0.7903, \"d1v3\": 0.97, \"d2v3\": 0.7501}, \"rf\": {\"d1v2\": 0.8071, \"d1v3\": 0.9645, \"d2v3\": 0.7364}}, \"feature_importance_top5\": [\"p90_ppl\", \"var_surprisal\", \"p75_ppl\", \"mean_surprisal\", \"p25_ppl\"], \"finetune_loss\": {\"depth_1\": 1.946, \"depth_2\": 1.726}, \"code_contamination\": {\"narrow_pct\": {\"depth_0\": 0.4, \"depth_1\": 0.8, \"depth_2\": 0.3, \"depth_3\": 0.4}, \"broad_pct\": {\"depth_0\": 0.5, \"depth_1\": 2.5, \"depth_2\": 0.8, \"depth_3\": 0.7}}}, \"conclusion\": \"success\"}, \"atlas_v2_analysis\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"p90_ppl_in_top2\": \"9/9\", \"var_surprisal_in_top2\": \"7/9\", \"edd_equals_3_at_T075\": \"7/9\", \"edd_distribution_T075\": {\"2\": 2, \"3\": 7}, \"cross_model_rank_corr_range\": \"[0.619, 0.954]\", \"cross_model_rank_corr_mean\": 0.868, \"cv5_accuracy_range\": \"[0.688, 0.859]\", \"cells_covered\": \"9/9\"}}, \"cross_model_loo_001\": {\"status\": \"DONE\", \"conclusion\": \"killed\", \"metrics\": {\"mean_4class_acc\": 0.664, \"holdout_pythia\": {\"acc\": 0.6242, \"ci\": [0.6206, 0.6282], \"d1v2_auc\": 0.5617, \"d2v3_auc\": 0.6534}, \"holdout_olmo\": {\"acc\": 0.6921, \"ci\": [0.6886, 0.6959], \"d1v2_auc\": 0.7687, \"d2v3_auc\": 0.6862}, \"holdout_gpt2xl\": {\"acc\": 0.6756, \"ci\": [0.6719, 0.6792], \"d1v2_auc\": 0.8157, \"d2v3_auc\": 0.6639}, \"per_class_recall\": {\"holdout_pythia\": {\"d0\": 1, \"d1\": 0.493, \"d2\": 0.268, \"d3\": 0.736}, \"holdout_olmo\": {\"d0\": 0.993, \"d1\": 0.755, \"d2\": 0.433, \"d3\": 0.588}, \"holdout_gpt2xl\": {\"d0\": 0.985, \"d1\": 0.747, \"d2\": 0.526, \"d3\": 0.445}}, \"gate_passed\": true, \"gate_threshold\": 0.45}}, \"batch_feature_extraction_5cells\": {\"status\": \"DONE\", \"conclusion\": \"success\"}, \"gpt2xl_topk50_001\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"four_class\": {\"accuracy\": 0.766, \"depth1_vs_depth2_auc\": 0.8259, \"pass\": true}, \"three_class\": {\"accuracy\": 0.695, \"depth1_vs_depth2_auc\": 0.8392, \"pass\": true}, \"three_class_filtered\": {\"accuracy\": 0.684, \"depth1_vs_depth2_auc\": 0.8314, \"pass\": true}}}, \"dcol_deberta_005\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"dcol_deberta_004\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"dcol_deberta_003\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"olmo_temp09_001\": {\"status\": \"DONE\", \"metrics\": {\"four_class\": {\"rf_accuracy\": 0.8203, \"d1v2_auc\": 0.901}, \"three_class_filtered\": {\"rf_accuracy\": 0.7757}, \"finetune_losses\": {\"depth_0\": 2.27, \"depth_1\": 1.63, \"depth_2\": 1.18}, \"code_contamination_narrow_max\": 0.007, \"top_features\": [\"p90_ppl (0.199)\", \"var_surprisal (0.174)\", \"p75_ppl (0.126)\"]}, \"conclusion\": \"success\"}, \"baseline_battery_001\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"ppl_reg_single_4class_acc\": 0.251, \"ppl_reg_multi_4class_acc\": 0.622, \"ce_mlp_4class_acc\": 0.749, \"coral_4class_acc\": 0.7807, \"coral_3class_acc\": 0.7089, \"coral_mae\": 0.2273, \"coral_d1v2_auc\": 0.8179, \"diveye_4class_acc\": 0.7817, \"diveye_3class_acc\": 0.7098, \"diveye_d1v2_auc\": 0.8654, \"rf_4class_acc\": 0.781, \"lr_4class_acc\": 0.75, \"note\": \"CE-MLP 74.9% may be undertrained (5 epochs); CORAL updated to 100 epochs. All results from Pythia nucleus baseline features.\"}}, \"atlas_v1_analysis\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"monotonicity_rho_range\": [-0.89, -0.82], \"edd\": 3, \"edd_saturated\": false, \"cross_model_jaccard\": 0.667, \"cross_model_rank_corr\": 0.85, \"artifacts\": [\"monotonicity_scores.json\", \"cross_model_comparison.json\", \"edd_analysis.json\", \"feature_trajectory.json\"]}}, \"dcol_deberta_002\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"gpt2xl_temp09_001\": {\"status\": \"DONE\", \"metrics\": {\"data\": {\"samples_per_depth\": 5000, \"total_samples\": 20000, \"depths\": 4}, \"finetune_losses\": {\"depth_1\": 2.5498, \"depth_2\": 1.6972, \"depth_3\": 1.2922}, \"code_contamination\": {\"depth_0\": {\"broad\": 25, \"narrow\": 20, \"broad_pct\": 0.5, \"narrow_pct\": 0.4}, \"depth_1\": {\"broad\": 25, \"narrow\": 40, \"broad_pct\": 0.5, \"narrow_pct\": 0.8}, \"depth_2\": {\"broad\": 34, \"narrow\": 80, \"broad_pct\": 0.7, \"narrow_pct\": 1.6}, \"depth_3\": {\"broad\": 25, \"narrow\": 76, \"broad_pct\": 0.5, \"narrow_pct\": 1.5}}, \"four_class\": {\"rf_accuracy\": 0.8542, \"rf_accuracy_ci\": [0.843, 0.8653], \"lr_accuracy\": 0.8155, \"lr_accuracy_ci\": [0.8025, 0.8273], \"rf_auc\": {\"d0v1\": 0.9963, \"d0v2\": 0.9992, \"d0v3\": 1, \"d1v2\": 0.9367, \"d1v3\": 0.9947, \"d2v3\": 0.8815}, \"lr_auc\": {\"d0v1\": 0.984, \"d0v2\": 0.9998, \"d0v3\": 1, \"d1v2\": 0.8903, \"d1v3\": 0.9824, \"d2v3\": 0.8183}, \"top_features\": [\"p90_ppl\", \"mean_surprisal\", \"p75_ppl\", \"var_surprisal\"]}, \"three_class\": {\"rf_accuracy\": 0.82, \"rf_accuracy_ci\": [0.806, 0.834], \"lr_accuracy\": 0.7773, \"lr_accuracy_ci\": [0.7627, 0.792], \"rf_auc\": {\"d1v2\": 0.9418, \"d1v3\": 0.9967, \"d2v3\": 0.8849}}, \"three_class_filtered\": {\"rf_accuracy\": 0.815, \"rf_accuracy_ci\": [0.7999, 0.8298], \"lr_accuracy\": 0.7869, \"lr_accuracy_ci\": [0.7711, 0.8016], \"rf_auc\": {\"d1v2\": 0.937, \"d1v3\": 0.9944, \"d2v3\": 0.8891}}}, \"conclusion\": \"success\"}, \"dcol_deberta_001\": {\"status\": \"DONE\", \"conclusion\": \"failed\"}, \"cross_model_olmo_temp09_001\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"pythia_topk50_001\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"rf_4class_acc\": 0.696, \"rf_4class_acc_ci\": [0.6825, 0.7107], \"lr_4class_acc\": 0.682, \"rf_3class_acc\": 0.592, \"rf_3class_acc_ci\": [0.575, 0.6107], \"rf_3class_filtered_acc\": 0.6133, \"rf_3class_filtered_acc_ci\": [0.593, 0.6312], \"pairwise_auc_rf\": {\"d0v1\": 0.9927, \"d0v2\": 0.9983, \"d0v3\": 0.9978, \"d1v2\": 0.7518, \"d1v3\": 0.9176, \"d2v3\": 0.6918}, \"pairwise_auc_3class_filtered_rf\": {\"d1v2\": 0.768, \"d1v3\": 0.9323, \"d2v3\": 0.7013}, \"feature_importance_top5\": [\"var_surprisal\", \"p90_ppl\", \"mean_ppl\", \"mean_surprisal\", \"p75_ppl\"], \"finetune_loss\": {\"depth_0\": 2.2406, \"depth_1\": 1.6704, \"depth_2\": 1.4374}, \"code_contamination_narrow\": {\"depth_0\": 0.004, \"depth_1\": 0.077, \"depth_2\": 0.123, \"depth_3\": 0.131}}}, \"cross_model_gpt2xl_001\": {\"status\": \"DONE\", \"metrics\": {\"four_class_acc_rf\": 0.833, \"four_class_acc_ci\": [0.823, 0.845], \"four_class_acc_lr\": 0.813, \"auc_0v1\": 0.9941, \"auc_0v2\": 0.9965, \"auc_0v3\": 0.9988, \"auc_1v2\": 0.9131, \"auc_1v3\": 0.9857, \"auc_2v3\": 0.8829, \"three_class_acc\": 0.793, \"three_class_acc_ci\": [0.778, 0.806], \"three_class_auc_1v2\": 0.9109, \"three_class_auc_1v3\": 0.989, \"three_class_auc_2v3\": 0.8885, \"finetune_losses\": {\"depth_0\": 2.55, \"depth_1\": 1.715, \"depth_2\": 1.342}, \"top_features\": [\"p90_ppl (0.208)\", \"var_surprisal (0.208)\", \"p75_ppl (0.103)\", \"mean_surprisal (0.082)\", \"mean_ppl (0.065)\"], \"code_contamination\": {\"d0\": 0.005, \"d1\": 0.005, \"d2\": 0.013, \"d3\": 0.007}}, \"conclusion\": \"success\"}, \"cross_model_olmo_002\": {\"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"four_class_acc_rf\": 0.788, \"four_class_acc_ci\": [0.776, 0.8], \"four_class_acc_lr\": 0.751, \"auc_0v1\": 0.9834, \"auc_0v2\": 0.9949, \"auc_0v3\": 0.9989, \"auc_1v2\": 0.8673, \"auc_1v3\": 0.9806, \"auc_2v3\": 0.8124, \"three_class_acc\": 0.744, \"three_class_acc_ci\": [0.728, 0.76], \"three_class_mae\": 0.27, \"three_class_auc_1v2\": 0.8664, \"three_class_auc_1v3\": 0.9852, \"three_class_auc_2v3\": 0.8274, \"three_class_recall\": {\"d1\": 0.864, \"d2\": 0.607, \"d3\": 0.761}, \"three_class_precision\": {\"d1\": 0.863, \"d2\": 0.646, \"d3\": 0.718}, \"four_class_per_class\": {\"d0\": {\"precision\": 0.95, \"recall\": 0.99, \"f1\": 0.97}, \"d1\": {\"precision\": 0.85, \"recall\": 0.82, \"f1\": 0.83}, \"d2\": {\"precision\": 0.63, \"recall\": 0.59, \"f1\": 0.61}, \"d3\": {\"precision\": 0.71, \"recall\": 0.76, \"f1\": 0.73}}, \"finetune_losses\": {\"depth_0\": 2.269, \"depth_1\": 1.65, \"depth_2\": 1.226}, \"top_features\": [\"p90_ppl (0.18)\", \"var_surprisal (0.16)\", \"p75_ppl (0.11)\", \"mean_surprisal (0.08)\", \"type_token_ratio (0.06)\"], \"code_contamination\": {\"d0\": 0.005, \"d1\": 0.027, \"d2\": 0.007, \"d3\": 0.008}, \"feature_dim\": 19, \"truncation_length\": 507}}, \"pythia_temp09_001\": {\"status\": \"DONE\", \"metrics\": {\"four_class\": {\"rf_accuracy\": 0.7625, \"rf_accuracy_ci\": [0.749, 0.7753], \"lr_accuracy\": 0.7405, \"lr_accuracy_ci\": [0.7265, 0.7545], \"pairwise_auc\": {\"0v1\": 0.9968, \"0v2\": 0.9993, \"0v3\": 0.9991, \"1v2\": 0.8327, \"1v3\": 0.959, \"2v3\": 0.7928}, \"top_features\": [\"var_surprisal (0.1776)\", \"p90_ppl (0.1501)\", \"mean_ppl (0.1140)\", \"mean_surprisal (0.0889)\", \"p75_ppl (0.0687)\"], \"feature_dim\": 19, \"truncation_length\": 498}, \"three_class_full\": {\"accuracy\": 0.6983, \"accuracy_ci\": [0.682, 0.715], \"mae\": 0.3357, \"recall\": {\"d1\": 0.802, \"d2\": 0.554, \"d3\": 0.739}, \"precision\": {\"d1\": 0.792, \"d2\": 0.608, \"d3\": 0.686}, \"f1\": {\"d1\": 0.797, \"d2\": 0.58, \"d3\": 0.712}, \"pairwise_auc\": {\"d1v2\": 0.8354, \"d1v3\": 0.9631, \"d2v3\": 0.8043}}, \"three_class_filtered\": {\"accuracy\": 0.7252, \"accuracy_ci\": [0.7064, 0.7427], \"mae\": 0.2953, \"recall\": {\"d1\": 0.842, \"d2\": 0.596, \"d3\": 0.735}, \"precision\": {\"d1\": 0.821, \"d2\": 0.628, \"d3\": 0.715}, \"f1\": {\"d1\": 0.831, \"d2\": 0.611, \"d3\": 0.725}, \"pairwise_auc\": {\"d1v2\": 0.8656, \"d1v3\": 0.9772, \"d2v3\": 0.8295}, \"n_samples\": 11445, \"n_removed\": 3555}, \"finetune_losses\": {\"depth_0\": 2.222, \"depth_1\": 1.37, \"depth_2\": 1.006}, \"code_contamination\": {\"d0\": 0.004, \"d1\": 0.077, \"d2\": 0.116, \"d3\": 0.136}}, \"conclusion\": \"success\"}, \"mvp_pipeline_pythia_002\": {\"status\": \"DONE\", \"metrics\": {\"full_4class_acc\": 0.782, \"full_4class_acc_ci\": [0.769, 0.794], \"full_4class_acc_stratified\": 0.781, \"full_mae\": 0.2367, \"full_auc_0v1\": 0.9975, \"full_auc_1v2\": 0.8607, \"full_auc_2v3\": 0.8005, \"filtered_4class_acc\": 0.816, \"filtered_4class_acc_ci\": [0.803, 0.829], \"filtered_mae\": 0.1995, \"filtered_auc_0v1\": 0.9977, \"filtered_auc_1v2\": 0.8782, \"filtered_auc_2v3\": 0.8323, \"filtered_sample_count\": 16993, \"three_class_acc\": 0.708, \"three_class_acc_ci\": [0.692, 0.725], \"three_class_mae\": 0.3203, \"three_class_auc_1v2\": 0.854, \"three_class_auc_1v3\": 0.9569, \"three_class_auc_2v3\": 0.7931, \"three_class_recall_d1\": 0.79, \"three_class_recall_d2\": 0.607, \"three_class_recall_d3\": 0.728, \"three_class_precision_d1\": 0.852, \"three_class_precision_d2\": 0.605, \"three_class_precision_d3\": 0.68, \"three_class_f1_d1\": 0.82, \"three_class_f1_d2\": 0.606, \"three_class_f1_d3\": 0.703, \"three_class_lr_acc\": 0.671, \"filtered_three_class_acc\": 0.747, \"filtered_three_class_acc_ci\": [0.727, 0.764], \"filtered_three_class_mae\": 0.2759, \"filtered_three_class_recall_d1\": 0.862, \"filtered_three_class_recall_d2\": 0.635, \"filtered_three_class_recall_d3\": 0.735, \"filtered_three_class_precision_d1\": 0.867, \"filtered_three_class_precision_d2\": 0.659, \"filtered_three_class_precision_d3\": 0.704, \"filtered_three_class_f1_d1\": 0.864, \"filtered_three_class_f1_d2\": 0.647, \"filtered_three_class_f1_d3\": 0.719, \"filtered_three_class_auc_1v2\": 0.8926, \"filtered_three_class_auc_1v3\": 0.9769, \"filtered_three_class_auc_2v3\": 0.8272, \"filtered_three_class_sample_count\": 12012, \"best_model\": \"RandomForest\", \"top_features\": [\"var_surprisal\", \"p90_ppl\", \"mean_ppl\", \"mean_surprisal\", \"p75_ppl\"], \"truncation_length\": 498, \"feature_dim\": 19}, \"conclusion\": \"success\"}, \"cross_model_olmo_001\": {\"status\": \"DONE\", \"metrics\": {\"status\": \"PIPELINE_CRASHED\", \"completed_steps\": [\"depth0_lora_finetune\"], \"failed_at\": \"shell_script_line_52_unmatched_quote\", \"depth0_final_loss\": 2.2686, \"depth0_train_runtime_s\": 283.2, \"depth0_train_steps\": 939, \"depth0_trainable_params\": 3145728, \"depth0_total_params\": 1179910144, \"classification_results\": null, \"note\": \"Script crashed after depth-0 finetune. No depth-1/2/3 generation, no feature extraction, no classification performed.\"}, \"conclusion\": \"failed\"}, \"mvp_pipeline_qwen_base_004\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"mvp_pipeline_pythia_001\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"mvp_pipeline_base_002\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"mvp_pipeline_003\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"mvp_pipeline_002\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"mvp_pipeline_001\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"mvp_pipeline_base_003\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"mvp_pipeline_004\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}}, \"count\": 46, \"total\": 46, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2998}}"
+    }
+  },
+  "sourceToolAssistantUUID": "4aa48f86-6464-428f-891f-f16c44f4bf30",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/reviewer_2647e3b4",
+  "sessionId": "7e8505cc-d7b7-4957-82c0-cd60ae383a04",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 38_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[HANDOFF] 你是 Research Reviewer，这是 Loop #7。  ## 上一轮交接 (task_context)  ### 1. 🔴 硬约束 / 红线 - GPU 白名单：cuda:0, cuda:1（gpu-6000pro-2 上的两张 RTX PRO 6000 Blackwell 97GB）。越界立即 critical。 - Reference model 是 GPT-…",
+  "leafUuid": "ff5f78dc-ffb1-4bff-afbc-1ede7ff437ab",
+  "sessionId": "7e8505cc-d7b7-4957-82c0-cd60ae383a04"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 39_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review paper agent revisions and verify provenance",
+  "sessionId": "7e8505cc-d7b7-4957-82c0-cd60ae383a04"
+}
+```
+
+---
+
+### Assistant
+
+_source line 40 · 2026-05-15T15:18:55.276Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now cross-verify the key numbers in atlas.tex against registry:
+
+**Table 1 (main_matrix) in atlas.tex:**
+- Pythia nucleus: 78.2 → registry mvp_pipeline_pythia_002: 0.782 ✓
+- Pythia temp: 76.3 → registry pythia_temp09_001: 0.7625 → paper says 76.3, registry 76.25... close enough, rounded ✓
+- Pythia topk: 69.6 → registry pythia_topk50_001: 0.696 ✓
+
+
+- OLMo nucleus: 78.8 → registry cross_model_olmo_002: 0.788 ✓
+- OLMo temp: 82.0 → registry olmo_temp09_001: 0.8203 → paper says 82.0, registry 82.03... ✓
+- OLMo topk: 74.2 → registry olmo_topk50_001: 0.742 ✓
+- GPT-2 XL nucleus: 83.3 → registry cross_model_gpt2xl_001: 0.833 ✓
+- GPT-2 XL temp: checking against registry...
+
+The paper reports 85.4 for GPT-2 XL temp, but I'm seeing some variation across different experiment runs—the main registry shows 85.42%, the granularity ablation has 85.52%, and the baseline battery shows 85.3%. There's a slight discrepancy I need to reconcile.
+
+Actually, looking at the atlas.tex file, it mentions accuracy ranging from 69.6% to 85.4%, which matches pythia_topk50 at 69.6% and gpt2xl_temp09 at 85.42% when rounded. So the paper's rounding is consistent.
+
+For the 3-class accuracy, the paper claims GPT-2 XL reaches 82.0%, but the granularity ablation data shows 82.6% instead. Let me look more carefully at what's being compared here.
+
+The individual experiment gpt2xl_temp09_001 has three_class_acc of 0.82 (exactly 82.0%), while the granularity ablation shows 0.826 (82.6%). These are from different runs or settings, so the paper's 82.0% figure matches the dedicated experiment rather than the ablation study.
+
+Now I'm checking the Pythia nucleus results — the paper claims 70.8% but the granularity ablation data shows pythia_nucleus095 at 0.7117 (71.17%), which is slightly higher.
+
+The individual pipeline experiment (mvp_pipeline_pythia_002) gives 0.708 (70.8%), matching the paper exactly. So the paper is consistently pulling from the individual pipeline runs rather than the more comprehensive ablation experiments, which is fine given the small differences are within noise.
+
+The EDD results for d0-d3 check out — 7 of 9 cells hit the threshold, with Pythia and OLMo as the exceptions. And the Pythia depth extension shows d1v2 achieving an AUC of 0.925, which aligns with the registry data.
+
+Now I'm verifying the confidence intervals and AUC values across the depth extension experiments — d1v2 through d3v4 — and they're all matching the registry values within rounding error.
+
+Continuing with d4v5, the AUC of 0.683 and its 95% CI align with the registry, and the EDD determination of 4 checks out. For the cross-model comparisons, I'm confirming that Pythia's performance at 0.784 corresponds to the d3v4 binary pairwise result, though the OLMo value appears to be cut off mid-verification. Now I'm verifying the feature universality metrics—p90_ppl consistently ranks in the top 2 across all nine cells, var_surprisal does so in seven out of nine, and the cross-model rank correlations average 0.868 with a range spanning from 0.619 to 0.954.
+
+Moving to the granularity ablation results, I'm checking that the binary classification achieves 99.5% accuracy, the 4-class model reaches 78.3%, and the 6-class drops to 62.9%, with the d2v3 AUC scores showing 0.804 for 4-class and 0.689 for 6-class under boundary dilution conditions.
+
+The 14% relative decline between the 4-class and 6-class AUC values checks out mathematically. All the numbers in the registry are verified.
+
+Now I need to address the incomplete cross-reference in method.tex where "Limitations" is still plain text instead of a proper reference, and I should verify the remaining tex files like generalization.tex and conclusion.tex for any updates or unverified claims.
+
+Let me look at the generalization.tex file to check the cross-model and PLM results.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ff5f78dc-ffb1-4bff-afbc-1ede7ff437ab",
+  "isSidechain": false,
+  "requestId": "req_011Cb4aTLTMJBwbMbU9waj1P",
+  "type": "assistant",
+  "uuid": "89d2676f-8168-4ef7-b4cb-d126bdab8185",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/reviewer_2647e3b4",
+  "sessionId": "7e8505cc-d7b7-4957-82c0-cd60ae383a04",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BdMG8kHvszgb81xta7YstK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 16181,
+      "cache_read_input_tokens": 42164,
+      "output_tokens": 2884,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16181,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2884,
+          "cache_read_input_tokens": 42164,
+          "cache_creation_input_tokens": 16181,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16181
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41 · 2026-05-15T15:18:55.279Z_
+
+atlas.tex 关键数字全部与 registry 一致。现在检查 generalization.tex 和 conclusion.tex。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "89d2676f-8168-4ef7-b4cb-d126bdab8185",
+  "isSidechain": false,
+  "requestId": "req_011Cb4aTLTMJBwbMbU9waj1P",
+  "type": "assistant",
+  "uuid": "d1183661-3bd4-4fc3-99ea-1e61d15b1765",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/reviewer_2647e3b4",
+  "sessionId": "7e8505cc-d7b7-4957-82c0-cd60ae383a04",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BdMG8kHvszgb81xta7YstK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 16181,
+      "cache_read_input_tokens": 42164,
+      "output_tokens": 2884,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16181,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2884,
+          "cache_read_input_tokens": 42164,
+          "cache_creation_input_tokens": 16181,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16181
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-15T15:18:55.865Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01K8zTwX2Eh7wvuxM3NzbjgB`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/generalization.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d1183661-3bd4-4fc3-99ea-1e61d15b1765",
+  "isSidechain": false,
+  "requestId": "req_011Cb4aTLTMJBwbMbU9waj1P",
+  "type": "assistant",
+  "uuid": "1ab4436a-8846-42d4-9764-e23ebb45935a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/reviewer_2647e3b4",
+  "sessionId": "7e8505cc-d7b7-4957-82c0-cd60ae383a04",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BdMG8kHvszgb81xta7YstK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 16181,
+      "cache_read_input_tokens": 42164,
+      "output_tokens": 2884,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16181,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2884,
+          "cache_read_input_tokens": 42164,
+          "cache_creation_input_tokens": 16181,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16181
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-15T15:18:56.249Z_
+
+<details><summary>↩ Tool result · `toolu_013FUMFu7sa2SV8LGYMHgJ77`</summary>
+
+```text
+1	\section{Conclusion}
+2	\label{sec:conclusion}
+3	
+4	We introduced recursive generation depth estimation and showed that 19 lightweight statistical features---with p90 perplexity and surprisal variance as universal markers---achieve 70--85\% four-class accuracy (chance = 25\%) with $\mathrm{EDD}_{0.75}{=}4$.
+5	Cross-model transfer reaches 66.4\% and cross-strategy 59.1\%, though the temperature-induced d1/d2 inversion and PLMs' ${\sim}$59\% ceiling underscore remaining challenges; future work should address wild-data transfer, larger scales, and strategy-conditioned classifiers.
+6	Code and data will be released upon acceptance.
+7	
+8	\section*{Limitations}
+9	\label{sec:limitations}
+10	
+11	\paragraph{Cross-strategy deployment constraint.}
+12	Deploying depth estimators across decoding strategies requires knowing the target strategy type a priori.
+13	Without this knowledge, d1/d2 predictions may systematically invert: cross-strategy holdout d1v2 AUC drops to 0.129 (GPT-2~XL) and 0.253 (OLMo) when temperature-sampled text is classified by a model trained on nucleus and top-$k$ (\S\ref{sec:gen:crossstrategy}).
+14	Strategy-conditioned classifiers or automatic strategy identification are needed before deployment.
+15	
+16	\paragraph{d0 inflation of headline metrics.}
+17	Depth~0 (human-written text) is near-perfectly separable (recall $>$98\% across all settings), inflating headline accuracy.
+18	Cross-model transfer accuracy of 66.4\% is substantially driven by d0; d2 recall drops to 26.8\% in the worst case (Pythia holdout).
+19	
+20	\paragraph{Controlled vs.\ ecological setting.}
+21	All experiments use Wikipedia seed text with controlled recursive generation (LoRA fine-tuning, 1--1.5B parameter models).
+22	Transfer to mixed-domain corpora, instruction-tuned models, and larger scales (7B+) remains open.
+23	Wild-data calibration is probed only indirectly; ecological transfer is future work.
+24	
+25	\paragraph{EDD threshold sensitivity.}
+26	The Effective Discriminable Depth depends on the AUC threshold $T$: at $T{=}0.80$, several cells lose one discriminable depth level relative to $T{=}0.75$.
+27	The choice of $T$ is application-dependent and affects reported EDD values.
+28	
+29	\paragraph{Reference model dependency.}
+30	Surprisal-based features are computed relative to GPT-2 base (124M), introducing partial overlap when GPT-2~XL is held out, though GPT-2~XL holdout accuracy (67.6\%) does not exceed the unrelated OLMo (69.2\%).
+31	The choice of reference model affects feature values; a different reference model may shift absolute feature magnitudes and potentially alter discriminability at depth boundaries.
+32	
+33	\paragraph{Additional caveats.}
+34	Detection features degrade under domain shift \cite{pudasaini2026_detection_fails}; our depth features are likely susceptible.
+35	\citet{bakshi2026_collapse_improvement} find that early recursion can temporarily \emph{improve} model quality, potentially violating the monotonicity assumption, and \citet{falahati2026_curated} show that curated synthetic data need not trigger collapse, attenuating the fingerprints we exploit.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ad1e8adb-a3b3-4004-9d2c-8a9c3e35d924",
+  "isSidechain": false,
+  "promptId": "b348da81-a17b-4e5c-8b2e-fdebce509677",
+  "type": "user",
+  "uuid": "5fe4d50f-e8bf-4581-a296-ee85e9c73471",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/conclusion.tex",
+      "content": "\\section{Conclusion}\n\\label{sec:conclusion}\n\nWe introduced recursive generation depth estimation and showed that 19 lightweight statistical features---with p90 perplexity and surprisal variance as universal markers---achieve 70--85\\% four-class accuracy (chance = 25\\%) with $\\mathrm{EDD}_{0.75}{=}4$.\nCross-model transfer reaches 66.4\\% and cross-strategy 59.1\\%, though the temperature-induced d1/d2 inversion and PLMs' ${\\sim}$59\\% ceiling underscore remaining challenges; future work should address wild-data transfer, larger scales, and strategy-conditioned classifiers.\nCode and data will be released upon acceptance.\n\n\\section*{Limitations}\n\\label{sec:limitations}\n\n\\paragraph{Cross-strategy deployment constraint.}\nDeploying depth estimators across decoding strategies requires knowing the target strategy type a priori.\nWithout this knowledge, d1/d2 predictions may systematically invert: cross-strategy holdout d1v2 AUC drops to 0.129 (GPT-2~XL) and 0.253 (OLMo) when temperature-sampled text is classified by a model trained on nucleus and top-$k$ (\\S\\ref{sec:gen:crossstrategy}).\nStrategy-conditioned classifiers or automatic strategy identification are needed before deployment.\n\n\\paragraph{d0 inflation of headline metrics.}\nDepth~0 (human-written text) is near-perfectly separable (recall $>$98\\% across all settings), inflating headline accuracy.\nCross-model transfer accuracy of 66.4\\% is substantially driven by d0; d2 recall drops to 26.8\\% in the worst case (Pythia holdout).\n\n\\paragraph{Controlled vs.\\ ecological setting.}\nAll experiments use Wikipedia seed text with controlled recursive generation (LoRA fine-tuning, 1--1.5B parameter models).\nTransfer to mixed-domain corpora, instruction-tuned models, and larger scales (7B+) remains open.\nWild-data calibration is probed only indirectly; ecological transfer is future work.\n\n\\paragraph{EDD threshold sensitivity.}\nThe Effective Discriminable Depth depends on the AUC threshold $T$: at $T{=}0.80$, several cells lose one discriminable depth level relative to $T{=}0.75$.\nThe choice of $T$ is application-dependent and affects reported EDD values.\n\n\\paragraph{Reference model dependency.}\nSurprisal-based features are computed relative to GPT-2 base (124M), introducing partial overlap when GPT-2~XL is held out, though GPT-2~XL holdout accuracy (67.6\\%) does not exceed the unrelated OLMo (69.2\\%).\nThe choice of reference model affects feature values; a different reference model may shift absolute feature magnitudes and potentially alter discriminability at depth boundaries.\n\n\\paragraph{Additional caveats.}\nDetection features degrade under domain shift \\cite{pudasaini2026_detection_fails}; our depth features are likely susceptible.\n\\citet{bakshi2026_collapse_improvement} find that early recursion can temporarily \\emph{improve} model quality, potentially violating the monotonicity assumption, and \\citet{falahati2026_curated} show that curated synthetic data need not trigger collapse, attenuating the fingerprints we exploit.",
+      "numLines": 35,
+      "startLine": 1,
+      "totalLines": 35
+    }
+  },
+  "sourceToolAssistantUUID": "ad1e8adb-a3b3-4004-9d2c-8a9c3e35d924",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/reviewer_2647e3b4",
+  "sessionId": "7e8505cc-d7b7-4957-82c0-cd60ae383a04",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-15T15:18:55.875Z_
+
+<details><summary>↩ Tool result · `toolu_01K8zTwX2Eh7wvuxM3NzbjgB`</summary>
+
+```text
+1	\section{Generalization and Robustness}
+2	\label{sec:generalization}
+3	
+4	We test whether the atlas results (69.6--85.4\%) reflect genuine statistical regularities or training artifacts, evaluating four axes: classifier choice (\S\ref{sec:gen:baselines}), cross-model transfer (\S\ref{sec:gen:crossmodel}), cross-strategy transfer (\S\ref{sec:gen:crossstrategy}), and end-to-end learning (\S\ref{sec:gen:dcol}).
+5	
+6	\subsection{Baseline Comparison}
+7	\label{sec:gen:baselines}
+8	
+9	Table~\ref{tab:baselines} compares classification methods on the Pythia-1.4B nucleus setting.
+10	Three feature-based methods---Random Forest (RF), CORAL ordinal regression \cite{coral2020}, and DivEye \cite{diveye2026}---all operate on the same 19 statistical features and achieve statistically indistinguishable accuracy (78.1--78.2\%; pairwise bootstrap $p>0.05$ after Bonferroni correction, 95\% CI within $\pm$1.1pp).
+11	These three significantly outperform CE-MLP ($p<0.001$, $+$3.8pp), which in turn trails logistic regression by $\sim$0.1pp.
+12	Single-feature regression on mean perplexity performs at chance (25.1\%), confirming that depth estimation requires the multi-dimensional feature representation defined in \S\ref{sec:method}.
+13	
+14	\begin{table}[t]
+15	\centering
+16	\small
+17	\caption{Comparison of classification methods on Pythia-1.4B nucleus. RF, CORAL, and DivEye use the same 19 statistical features and are statistically indistinguishable (bootstrap $p>0.05$, Bonferroni-corrected). Chance = 25\%. 5-fold CV std: 0.2--0.9pp across all methods.}
+18	\label{tab:baselines}
+19	\begin{tabular}{lc}
+20	\toprule
+21	Method & 4-class Acc (\%) \\
+22	\midrule
+23	RF (19 features) & 78.2 \\
+24	CORAL & 78.1 \\
+25	DivEye & 78.2 \\
+26	CE-MLP & 74.9 \\
+27	LR & 75.0 \\
+28	DeepSeek V3.2 (zero-shot)\footnotemark & 40.0 \\
+29	ppl-regression (single feature) & 25.1 \\
+30	\bottomrule
+31	\end{tabular}
+32	\footnotetext{Evaluated on 200 samples (approximately 50 per class) from the Pythia-1.4B nucleus cell only, due to API cost; 95\% CI: $\pm$6.8pp. All other methods use the full 20{,}000-sample set.}
+33	\end{table}
+34	
+35	That three structurally different classifiers achieve identical performance confirms that the discriminative signal resides in the 19 features, not the classifier architecture; a zero-shot LLM baseline (DeepSeek V3.2) reaches only 40.0\%.
+36	Figure~\ref{fig:confusion_matrix} shows d0 is near-perfectly identified in both settings; errors concentrate at the d2/d3 boundary in-distribution and spread across d1--d3 under cross-model transfer.
+37	
+38	\begin{figure}[t]
+39	\centering
+40	\includegraphics[width=\columnwidth]{../../figures/paper/fig_confusion_matrix.pdf}
+41	\caption{Confusion matrices for the best in-distribution setting (GPT-2 XL, temp $\tau{=}0.9$, 85.4\%) and the best cross-model leave-one-out transfer (OLMo holdout, 69.2\%). d0 recall exceeds 99\% in both; errors spread across the d1--d3 range under transfer.}
+42	\label{fig:confusion_matrix}
+43	\end{figure}
+44	
+45	\subsection{Cross-Model Transfer}
+46	\label{sec:gen:crossmodel}
+47	
+48	We perform leave-one-model-family-out evaluation: train on two families (nucleus only), test on the held-out third (Table~\ref{tab:cross_model}).
+49	
+50	\begin{table}[t]
+51	\centering
+52	\small
+53	\caption{Cross-model transfer (leave-one-out, nucleus only). Train on 2 model families, test on held-out 3rd. Chance = 25\%.}
+54	\label{tab:cross_model}
+55	\begin{tabular}{lccccc}
+56	\toprule
+57	Holdout & Acc & d0 & d1 & d2 & d3 \\
+58	 & (\%) & Rec. & Rec. & Rec. & Rec. \\
+59	\midrule
+60	Pythia & 62.4 & 100.0 & 49.3 & 26.8 & 73.6 \\
+61	OLMo & \textbf{69.2} & 99.3 & 75.5 & 43.3 & 58.8 \\
+62	GPT-2 XL & 67.6 & 98.5 & 74.7 & 52.6 & 44.5 \\
+63	\midrule
+64	Mean & 66.4 & 99.3 & 66.5 & 40.9 & 59.0 \\
+65	\bottomrule
+66	\end{tabular}
+67	\end{table}
+68	
+69	Mean transfer accuracy reaches 66.4\% (2.7$\times$ chance), though d0 recall ($>$98\%) inflates the headline; d2 recall drops to 26.8\% (Pythia holdout), making it the most confusable class.
+70	
+71	\subsection{Cross-Strategy Transfer}
+72	\label{sec:gen:crossstrategy}
+73	
+74	We train on two decoding strategies and test on the held-out third (Table~\ref{tab:cross_strategy}).
+75	
+76	\begin{table}[t]
+77	\centering
+78	\small
+79	\caption{Cross-strategy transfer (leave-one-out). Train on 2 strategies, test on held-out 3rd. Chance = 25\%.}
+80	\label{tab:cross_strategy}
+81	\begin{tabular}{lccc}
+82	\toprule
+83	Holdout & Pythia & OLMo & GPT-2 XL \\
+84	 & Acc (\%) & Acc (\%) & Acc (\%) \\
+85	\midrule
+86	nucleus & \textbf{69.4} & \textbf{65.4} & \textbf{59.9} \\
+87	temp ($\tau{=}0.9$) & 62.8 & 58.2 & 56.1 \\
+88	top-$k$ ($k{=}50$) & 51.5 & 54.9 & 53.6 \\
+89	\bottomrule
+90	\end{tabular}
+91	\end{table}
+92	
+93	Mean cross-strategy accuracy (59.1\%) falls 7 points below cross-model transfer (66.4\%), indicating that strategy-induced distribution shifts pose a greater generalization challenge than architectural differences.
+94	As with cross-model transfer, d0 recall remains high ($\geq$89.5\%) across all holdout settings, inflating the headline accuracy; d2 recall ranges from 3.7\% to 19\%, confirming mid-chain depths as the primary confusion locus across both transfer axes.
+95	
+96	\paragraph{Temperature-induced boundary inversion.}
+97	Training on nucleus + top-$k$ and testing on temperature yields d1v2 AUC of 0.129 for GPT-2~XL and 0.253 for OLMo---both below 0.5, indicating that the d1/d2 decision boundary \emph{inverts} (Pythia retains a degraded 0.576), consistent with the accelerated convergence in \S\ref{sec:atlas:trajectories}.
+98	Z-score normalization \cite{sugiyama2007_importance_weighting} improves logistic regression cross-strategy accuracy (25\%$\to$61\%) but does not recover the inversion---all three models worsen (GPT-2~XL 0.50$\to$0.24, OLMo 0.50$\to$0.19, Pythia 0.63$\to$0.52)---confirming a genuine geometry-level shift rather than a correctable scale difference.
+99	
+100	\subsection{End-to-End Learning}
+101	\label{sec:gen:dcol}
+102	
+103	We finetune DeBERTa-v3-base and RoBERTa-base end-to-end (lr$\,{=}\,2{\times}10^{-5}$, 3 epochs, 5-fold CV) on Pythia-1.4B nucleus data.
+104	Both converge to ${\sim}$59\% (RoBERTa 59.5$\pm$3.2\%, DeBERTa 58.3$\pm$4.7\%), 19pp below feature-based RF (78.2\%); the 1.2pp inter-backbone gap rules out architecture selection bias.
+105	Both easily separate d0 (F1$>$0.95) but fail at adjacent-depth discrimination (d1/d2 F1$<$0.42).
+106	Probing reveals a negative correlation between PLM attention and RF permutation importance for both backbones (DeBERTa $\rho{=}{-}0.484$, RoBERTa $\rho{=}{-}0.456$; zero top-5 overlap; Appendix~\ref{app:feature_overlap}), confirming that PLMs encode surface lexical cues while our features capture perplexity tail structure inaccessible to end-to-end learning.
+107	
+108	DCOL \cite{cloc2025}, which adds a contrastive ordinal loss, fared worse: across six iterations with two backbones (Appendix~\ref{app:dcol_iterations}), the best run (RoBERTa-large) reached only 64.5\% with severe overfitting, 13.7pp below RF.
+109	That all end-to-end approaches---standard finetuning (58--60\%), DCOL (64.5\%)---substantially underperform feature-based methods (78.2\%) confirms that depth estimation requires explicit distributional statistics rather than learned text representations.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1ab4436a-8846-42d4-9764-e23ebb45935a",
+  "isSidechain": false,
+  "promptId": "b348da81-a17b-4e5c-8b2e-fdebce509677",
+  "type": "user",
+  "uuid": "cecd4f97-ca46-410c-b5ba-4c4ef5441e47",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/generalization.tex",
+      "content": "\\section{Generalization and Robustness}\n\\label{sec:generalization}\n\nWe test whether the atlas results (69.6--85.4\\%) reflect genuine statistical regularities or training artifacts, evaluating four axes: classifier choice (\\S\\ref{sec:gen:baselines}), cross-model transfer (\\S\\ref{sec:gen:crossmodel}), cross-strategy transfer (\\S\\ref{sec:gen:crossstrategy}), and end-to-end learning (\\S\\ref{sec:gen:dcol}).\n\n\\subsection{Baseline Comparison}\n\\label{sec:gen:baselines}\n\nTable~\\ref{tab:baselines} compares classification methods on the Pythia-1.4B nucleus setting.\nThree feature-based methods---Random Forest (RF), CORAL ordinal regression \\cite{coral2020}, and DivEye \\cite{diveye2026}---all operate on the same 19 statistical features and achieve statistically indistinguishable accuracy (78.1--78.2\\%; pairwise bootstrap $p>0.05$ after Bonferroni correction, 95\\% CI within $\\pm$1.1pp).\nThese three significantly outperform CE-MLP ($p<0.001$, $+$3.8pp), which in turn trails logistic regression by $\\sim$0.1pp.\nSingle-feature regression on mean perplexity performs at chance (25.1\\%), confirming that depth estimation requires the multi-dimensional feature representation defined in \\S\\ref{sec:method}.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Comparison of classification methods on Pythia-1.4B nucleus. RF, CORAL, and DivEye use the same 19 statistical features and are statistically indistinguishable (bootstrap $p>0.05$, Bonferroni-corrected). Chance = 25\\%. 5-fold CV std: 0.2--0.9pp across all methods.}\n\\label{tab:baselines}\n\\begin{tabular}{lc}\n\\toprule\nMethod & 4-class Acc (\\%) \\\\\n\\midrule\nRF (19 features) & 78.2 \\\\\nCORAL & 78.1 \\\\\nDivEye & 78.2 \\\\\nCE-MLP & 74.9 \\\\\nLR & 75.0 \\\\\nDeepSeek V3.2 (zero-shot)\\footnotemark & 40.0 \\\\\nppl-regression (single feature) & 25.1 \\\\\n\\bottomrule\n\\end{tabular}\n\\footnotetext{Evaluated on 200 samples (approximately 50 per class) from the Pythia-1.4B nucleus cell only, due to API cost; 95\\% CI: $\\pm$6.8pp. All other methods use the full 20{,}000-sample set.}\n\\end{table}\n\nThat three structurally different classifiers achieve identical performance confirms that the discriminative signal resides in the 19 features, not the classifier architecture; a zero-shot LLM baseline (DeepSeek V3.2) reaches only 40.0\\%.\nFigure~\\ref{fig:confusion_matrix} shows d0 is near-perfectly identified in both settings; errors concentrate at the d2/d3 boundary in-distribution and spread across d1--d3 under cross-model transfer.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{../../figures/paper/fig_confusion_matrix.pdf}\n\\caption{Confusion matrices for the best in-distribution setting (GPT-2 XL, temp $\\tau{=}0.9$, 85.4\\%) and the best cross-model leave-one-out transfer (OLMo holdout, 69.2\\%). d0 recall exceeds 99\\% in both; errors spread across the d1--d3 range under transfer.}\n\\label{fig:confusion_matrix}\n\\end{figure}\n\n\\subsection{Cross-Model Transfer}\n\\label{sec:gen:crossmodel}\n\nWe perform leave-one-model-family-out evaluation: train on two families (nucleus only), test on the held-out third (Table~\\ref{tab:cross_model}).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Cross-model transfer (leave-one-out, nucleus only). Train on 2 model families, test on held-out 3rd. Chance = 25\\%.}\n\\label{tab:cross_model}\n\\begin{tabular}{lccccc}\n\\toprule\nHoldout & Acc & d0 & d1 & d2 & d3 \\\\\n & (\\%) & Rec. & Rec. & Rec. & Rec. \\\\\n\\midrule\nPythia & 62.4 & 100.0 & 49.3 & 26.8 & 73.6 \\\\\nOLMo & \\textbf{69.2} & 99.3 & 75.5 & 43.3 & 58.8 \\\\\nGPT-2 XL & 67.6 & 98.5 & 74.7 & 52.6 & 44.5 \\\\\n\\midrule\nMean & 66.4 & 99.3 & 66.5 & 40.9 & 59.0 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nMean transfer accuracy reaches 66.4\\% (2.7$\\times$ chance), though d0 recall ($>$98\\%) inflates the headline; d2 recall drops to 26.8\\% (Pythia holdout), making it the most confusable class.\n\n\\subsection{Cross-Strategy Transfer}\n\\label{sec:gen:crossstrategy}\n\nWe train on two decoding strategies and test on the held-out third (Table~\\ref{tab:cross_strategy}).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Cross-strategy transfer (leave-one-out). Train on 2 strategies, test on held-out 3rd. Chance = 25\\%.}\n\\label{tab:cross_strategy}\n\\begin{tabular}{lccc}\n\\toprule\nHoldout & Pythia & OLMo & GPT-2 XL \\\\\n & Acc (\\%) & Acc (\\%) & Acc (\\%) \\\\\n\\midrule\nnucleus & \\textbf{69.4} & \\textbf{65.4} & \\textbf{59.9} \\\\\ntemp ($\\tau{=}0.9$) & 62.8 & 58.2 & 56.1 \\\\\ntop-$k$ ($k{=}50$) & 51.5 & 54.9 & 53.6 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nMean cross-strategy accuracy (59.1\\%) falls 7 points below cross-model transfer (66.4\\%), indicating that strategy-induced distribution shifts pose a greater generalization challenge than architectural differences.\nAs with cross-model transfer, d0 recall remains high ($\\geq$89.5\\%) across all holdout settings, inflating the headline accuracy; d2 recall ranges from 3.7\\% to 19\\%, confirming mid-chain depths as the primary confusion locus across both transfer axes.\n\n\\paragraph{Temperature-induced boundary inversion.}\nTraining on nucleus + top-$k$ and testing on temperature yields d1v2 AUC of 0.129 for GPT-2~XL and 0.253 for OLMo---both below 0.5, indicating that the d1/d2 decision boundary \\emph{inverts} (Pythia retains a degraded 0.576), consistent with the accelerated convergence in \\S\\ref{sec:atlas:trajectories}.\nZ-score normalization \\cite{sugiyama2007_importance_weighting} improves logistic regression cross-strategy accuracy (25\\%$\\to$61\\%) but does not recover the inversion---all three models worsen (GPT-2~XL 0.50$\\to$0.24, OLMo 0.50$\\to$0.19, Pythia 0.63$\\to$0.52)---confirming a genuine geometry-level shift rather than a correctable scale difference.\n\n\\subsection{End-to-End Learning}\n\\label{sec:gen:dcol}\n\nWe finetune DeBERTa-v3-base and RoBERTa-base end-to-end (lr$\\,{=}\\,2{\\times}10^{-5}$, 3 epochs, 5-fold CV) on Pythia-1.4B nucleus data.\nBoth converge to ${\\sim}$59\\% (RoBERTa 59.5$\\pm$3.2\\%, DeBERTa 58.3$\\pm$4.7\\%), 19pp below feature-based RF (78.2\\%); the 1.2pp inter-backbone gap rules out architecture selection bias.\nBoth easily separate d0 (F1$>$0.95) but fail at adjacent-depth discrimination (d1/d2 F1$<$0.42).\nProbing reveals a negative correlation between PLM attention and RF permutation importance for both backbones (DeBERTa $\\rho{=}{-}0.484$, RoBERTa $\\rho{=}{-}0.456$; zero top-5 overlap; Appendix~\\ref{app:feature_overlap}), confirming that PLMs encode surface lexical cues while our features capture perplexity tail structure inaccessible to end-to-end learning.\n\nDCOL \\cite{cloc2025}, which adds a contrastive ordinal loss, fared worse: across six iterations with two backbones (Appendix~\\ref{app:dcol_iterations}), the best run (RoBERTa-large) reached only 64.5\\% with severe overfitting, 13.7pp below RF.\nThat all end-to-end approaches---standard finetuning (58--60\\%), DCOL (64.5\\%)---substantially underperform feature-based methods (78.2\\%) confirms that depth estimation requires explicit distributional statistics rather than learned text representations.",
+      "numLines": 109,
+      "startLine": 1,
+      "totalLines": 109
+    }
+  },
+  "sourceToolAssistantUUID": "1ab4436a-8846-42d4-9764-e23ebb45935a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/reviewer_2647e3b4",
+  "sessionId": "7e8505cc-d7b7-4957-82c0-cd60ae383a04",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-15T15:18:56.238Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_013FUMFu7sa2SV8LGYMHgJ77`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/conclusion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cecd4f97-ca46-410c-b5ba-4c4ef5441e47",
+  "isSidechain": false,
+  "requestId": "req_011Cb4aTLTMJBwbMbU9waj1P",
+  "type": "assistant",
+  "uuid": "ad1e8adb-a3b3-4004-9d2c-8a9c3e35d924",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/reviewer_2647e3b4",
+  "sessionId": "7e8505cc-d7b7-4957-82c0-cd60ae383a04",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BdMG8kHvszgb81xta7YstK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 16181,
+      "cache_read_input_tokens": 42164,
+      "output_tokens": 2884,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16181,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2884,
+          "cache_read_input_tokens": 42164,
+          "cache_creation_input_tokens": 16181,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16181
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 46_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[HANDOFF] 你是 Research Reviewer，这是 Loop #7。  ## 上一轮交接 (task_context)  ### 1. 🔴 硬约束 / 红线 - GPU 白名单：cuda:0, cuda:1（gpu-6000pro-2 上的两张 RTX PRO 6000 Blackwell 97GB）。越界立即 critical。 - Reference model 是 GPT-…",
+  "leafUuid": "5fe4d50f-e8bf-4581-a296-ee85e9c73471",
+  "sessionId": "7e8505cc-d7b7-4957-82c0-cd60ae383a04"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 47_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review paper agent revisions and verify provenance",
+  "sessionId": "7e8505cc-d7b7-4957-82c0-cd60ae383a04"
+}
+```
+
+---
+
+### Assistant
+
+_source line 48 · 2026-05-15T15:20:13.878Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me verify the key numbers in generalization.tex:
+
+**Baselines (Table 2, lines 22-29):**
+- RF: 78.2 → registry mvp_pipeline_pythia_002: 0.782 ✓ (or baseline_battery_001: 0.781, close)
+- CORAL: 78.1 → registry baseline_battery_001: coral_4class_acc = 0.7807 → paper 78.1, registry 78.07... ✓
+
+
+- DivEye: 78.2 → registry baseline_battery_001: diveye_4class_acc = 0.7817 → paper 78.2, registry 78.17... ✓
+- CE-MLP: 74.9 → registry baseline_battery_001: ce_mlp_4class_acc = 0.749 ✓
+- LR: 75.0 → registry baseline_battery_001: lr_4class_acc = 0.75 ✓
+- DeepSeek V3.2 zero-shot: 40.0 → registry zero_shot_ll
+
+_baseline_001: four_class_acc = 0.4 ✓
+- ppl-regression: 25.1 → registry baseline_battery_001: ppl_reg_single_4class_acc = 0.251 ✓
+
+Now I'm checking the cross-model transfer results where Pythia was held out, showing 62.4% overall accuracy with per-class recall metrics that vary significantly—perfect recall on d0 but much lower performance on d1 and d2.
+
+For OLMo, the holdout accuracy is 69.2% with stronger per-class performance across most categories, particularly d0 and d1, though d2 still shows lower recall at 43.3%. recall 58.8 → holdout_olmo.per_class.d3.R = 0.5883 ✓
+- GPT-2 XL holdout: 67.6 → holdout_gpt2xl.acc = 0.6756 → paper 67.6, registry 67.56 ✓
+- d0 recall 98.5 → holdout_gpt2xl.per_class.d0.R = 0.9853 ✓
+- d1 recall 74.7 → holdout_gpt2xl.per_class.d1.R = 0.7465 ✓
+- d2 recall 52.6 → holdout_gpt2xl.per_class.d2.R = 0.5255 ✓
+- d3 recall 44.5 → holdout_gpt2xl.per_class.d3.R = 0.445 ✓
+
+Now I'm verifying the cross-model leave-one-out results, where the mean accuracy of 66.4 matches the registry value. Moving into the cross-strategy transfer experiments, I'm checking the Pythia models across different sampling strategies—nucleus, temperature, and top-k—against their registered values, and starting to verify the OLMo cross-strategy results. I'm verifying the mean calculation across all strategies works out to 59.1, and now checking the temperature inversion metrics where the d1v2 AUC values for GPT-2 XL and OLMo match the paper's reported numbers.
+
+Now I'm cross-referencing the z-score normalization results, confirming that the logistic regression accuracy improves from 25% to 61% with normalization, and the d1v2 scores shift as expected for each model—GPT-2 XL dropping from 0.50 to 0.24, OLMo from 0.50 to 0.19, and Pythia showing a similar pattern.
+
+But I'm noticing a discrepancy: the paper claims all three models worsen with z-score normalization, yet the actual data from the lr_zscore experiment shows improvements in the logistic regression cross-strategy accuracy. The confusion seems to stem from mixing results between different experiments—the RF cross_strategy_loo_001 experiment versus the LR zscore_cross_strategy_001 experiment—and I need to clarify which values the paper is actually citing. I'm verifying the paper's z-score claims against the registry data—the raw LR d1v2 AUC of 0.5 dropping to 0.2386 with z-score normalization matches what's reported. The temperature inversion AUC values (0.129 and 0.253) are coming from the RF cross-strategy experiment, not the LR results.
+
+Looking more carefully at the paragraph structure, the paper explicitly states "improves logistic regression" when introducing the z-score results, so the classifier context switch from RF to LR is clear to the reader. The claim that z-score "does not recover the inversion" is specifically about LR performance—all three models still worsen under z-score normalization despite the overall accuracy improvement. LR. The worsening d1v2 AUCs are also about LR.
+
+But then the cross_strategy_loo_zscore_001 experiment has a finding: "Z-score does NOT fix temp09 d1v2 inversion in RF — RF is scale-invariant". So z-score doesn't help RF either (because RF is scale-invariant), but the paper only discusses the LR case. That's fine — the paper discusses the case where z-score could theoretically help (LR).
+
+Now I'm checking the raw LR d1v2 values. The lr_zscore registry shows raw_lr gpt2xl_temp09 d1v2_auc = 0.5, olmo_temp09 d1v2_auc = 0.5, and pythia_temp09 d1v2_auc = 0.6313, which improve to 0.24, 0.19, and 0.52 respectively after z-scoring. But those 0.5 values are actually from lbfgs convergence failures on unscaled features where all predictions were random — the paper uses these as the baseline "before" values. So the paper's claim that z-score "does not recover the inversion—all three models worsen" is looking at raw LR d1v2 AUCs of {0.5, 0.5, 0.6313} getting worse with z-score applied. , 0.63} → z-score gives {0.24, 0.19, 0.52}. All three worsen. ✓
+
+But the raw LR d1v2 for gpt2xl and olmo is 0.5 because the raw LR *completely failed to converge* (lbfgs failure), not because the model made a meaningful prediction with AUC 0.5. The z-score values are < 0.5 which means actual inversion. So the comparison is: random baseline (0.5) → inversion (< 0.5). The paper says "all three models worsen" which is numerically true but somewhat misleading because the "before" for GPT-2 XL and OLMo was random, not a real signal.
+
+Actually, that's a fair point. Z-score makes LR actively predict the wrong direction rather than just guessing randomly, which is a meaningful finding about how it degrades performance.
+
+Now let me check the end-to-end learning results. RoBERTa matches at 59.5±3.2%, DeBERTa at 58.3±4.7%, and the d1/d2 F1 scores are below 0.42 for RoBERTa. Looking at the DeBERTa scores now — d1 F1 = 0.378 and d2 F1 = 0.247, both clearly under 0.42. For RoBERTa, I need to reconsider: 0.4161 is actually less than 0.42 when comparing precisely, so both models do satisfy the "d1/d2 F1 < 0.42" claim after all.
+
+Now I'm verifying the key metrics from the results — DCOL's best performance of 64.5% matches the registry entry, and it's indeed about 13.7 percentage points below the random forest baseline. The summary statistics in the conclusion also check out: the 70-85% range is a reasonable rounding of the actual 69.6-85.4 span, and the cross-model and cross-strategy percentages are accurate.
+
+I notice there's a LaTeX reference issue in method.tex where a broken `\ref{sec:discussion}` was replaced with text about limitations, but it should actually point to the correct `\ref{sec:limitations}` label that exists in conclusion.tex.
+
+Let me do a final sweep to make sure I haven't missed anything. I've verified all the quantitative claims across the paper and they match the registry perfectly—no discrepancies in the numbers. The paper_provenance.yaml file remains empty with no claims or figures documented, which is still a concern. I'm also checking how the EDD graded p-value narrative is presented in atlas.tex to ensure it's accurate.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5fe4d50f-e8bf-4581-a296-ee85e9c73471",
+  "isSidechain": false,
+  "requestId": "req_011Cb4aXBwkMoNKDWQzeosj5",
+  "type": "assistant",
+  "uuid": "d94d7c91-8e47-44e2-8891-c5e722af7ebe",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/reviewer_2647e3b4",
+  "sessionId": "7e8505cc-d7b7-4957-82c0-cd60ae383a04",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014skSr8khyTdswsYGxWyxHq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6603,
+      "cache_read_input_tokens": 58345,
+      "output_tokens": 4893,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6603,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4893,
+          "cache_read_input_tokens": 58345,
+          "cache_creation_input_tokens": 6603,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6603
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49 · 2026-05-15T15:20:14.008Z_
+
+所有关键数字交叉验证完毕。generalization.tex 的数字也全部与 registry 一致。
+
+现在提交审查报告。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d94d7c91-8e47-44e2-8891-c5e722af7ebe",
+  "isSidechain": false,
+  "requestId": "req_011Cb4aXBwkMoNKDWQzeosj5",
+  "type": "assistant",
+  "uuid": "26318b36-1fd2-42a9-ad73-01037a92b10c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/reviewer_2647e3b4",
+  "sessionId": "7e8505cc-d7b7-4957-82c0-cd60ae383a04",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014skSr8khyTdswsYGxWyxHq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6603,
+      "cache_read_input_tokens": 58345,
+      "output_tokens": 4893,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6603,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4893,
+          "cache_read_input_tokens": 58345,
+          "cache_creation_input_tokens": 6603,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6603
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-15T15:20:14.563Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01DuUXdpxezdt32AktF5LhZn`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__reviewer_post_to_director",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "26318b36-1fd2-42a9-ad73-01037a92b10c",
+  "isSidechain": false,
+  "requestId": "req_011Cb4aXBwkMoNKDWQzeosj5",
+  "type": "assistant",
+  "uuid": "d493cd6e-441c-4762-adc6-6aa739c488a9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/reviewer_2647e3b4",
+  "sessionId": "7e8505cc-d7b7-4957-82c0-cd60ae383a04",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014skSr8khyTdswsYGxWyxHq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6603,
+      "cache_read_input_tokens": 58345,
+      "output_tokens": 4893,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6603,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4893,
+          "cache_read_input_tokens": 58345,
+          "cache_creation_input_tokens": 6603,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6603
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-15T15:20:14.570Z_
+
+<details><summary>↩ Tool result · `toolu_01DuUXdpxezdt32AktF5LhZn`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__reviewer_post_to_director"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d493cd6e-441c-4762-adc6-6aa739c488a9",
+  "isSidechain": false,
+  "promptId": "b348da81-a17b-4e5c-8b2e-fdebce509677",
+  "type": "user",
+  "uuid": "084114b9-3a0a-464a-94a4-f4fee4c3fcb2",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__reviewer_post_to_director"
+    ],
+    "query": "select:mcp__agent-ml-research__reviewer_post_to_director",
+    "total_deferred_tools": 34
+  },
+  "sourceToolAssistantUUID": "d493cd6e-441c-4762-adc6-6aa739c488a9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/reviewer_2647e3b4",
+  "sessionId": "7e8505cc-d7b7-4957-82c0-cd60ae383a04",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-15T15:20:37.808Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reviewer_post_to_director · `toolu_013JkpTV5WQ5DyQ4T7CJGbzS`</summary>
+
+```json
+{
+  "text": "## Loop #7 定期审查报告\n\n### 全文定量数字交叉验证\n\n对 atlas.tex、generalization.tex、conclusion.tex 中所有定量 claim 与 registry 逐一核对，覆盖：\n- Table 1 主矩阵 9 cell 准确率（69.6–85.4%）\n- Table 2 baseline 对比（RF/CORAL/DivEye/CE-MLP/LR/DeepSeek/ppl-reg）\n- Table 3 cross-model LOO（Pythia 62.4%, OLMo 69.2%, GPT-2 XL 67.6%, mean 66.4%）含 per-class recall\n- Table 4 cross-strategy LOO 全 9 cell\n- EDD decay curve 全部 AUC + CI（d1v2=0.925, d2v3=0.823, d3v4=0.784, d4v5=0.683）\n- Cross-model EDD p 值（Pythia 0.001, OLMo 0.091, GPT-2 XL 0.505）\n- EDD sensitivity table（T=0.65→EDD=5, T=0.70/0.75→4, T=0.80→3）\n- Feature universality（p90_ppl top2 in 9/9, var_surprisal 7/9, Spearman ρ=0.868 [0.619,0.954]）\n- Granularity ablation（binary 99.5%, 4class 78.3%, 6class 62.9%, d2v3 dilution 14%）\n- Temperature inversion（GPT-2 XL 0.129, OLMo 0.253）+ z-score LR 结果\n- PLM 结果（RoBERTa 59.5±3.2%, DeBERTa 58.3±4.7%, DCOL 64.5%）\n- Conclusion + Limitations 中所有数字\n\n**结果：全部一致，无不一致。** ✓\n\n### 遗留问题跟踪\n\n[severity: warning] **method.tex 第40行交叉引用修复不完整**（上轮已报，本轮仍存在）。原来的 `\\ref{sec:discussion}` 已被移除，但替换为纯文本 \"Limitations\" 而非 `\\ref{sec:limitations}`。conclusion.tex 第9行有 `\\label{sec:limitations}`，应使用 `\\ref{sec:limitations}` 确保 LaTeX 交叉引用正确。建议修改 method.tex 第40行为 `...is discussed in \\S\\ref{sec:limitations}.`\n\n[severity: warning] **paper_provenance.yaml 仍为空**（上轮已报，本轮仍为空：claims=0, tables=0, figures=0, coverage=0/0）。建议 Director 安排 `auto_build_provenance` 填充溯源数据。\n\n### 已修复确认\n\n- [severity: info] atlas.tex EDD 公式不再重复，已改为 `Eq.~\\ref{eq:edd}` 引用。上轮 info 已解决。✓\n- [severity: info] EDD 叙事（atlas.tex 第73行）正确使用分级 p 值表述，符合 D024/D026/D027 决策链。✓\n- [severity: info] 无 RUNNING/PREPARING 实验，Phase 2 论文写作阶段状态正常。",
+  "project": "recursive_gen_depth_est"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "084114b9-3a0a-464a-94a4-f4fee4c3fcb2",
+  "isSidechain": false,
+  "requestId": "req_011Cb4acy9E2ds1YKBMUBwBo",
+  "type": "assistant",
+  "uuid": "f616c0c1-b206-4ccb-8050-3f5be7f6b5c1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/reviewer_2647e3b4",
+  "sessionId": "7e8505cc-d7b7-4957-82c0-cd60ae383a04",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KRwjypZ7ypfS2eaFPVaXaA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 5129,
+      "cache_read_input_tokens": 64948,
+      "output_tokens": 1030,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5129,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1030,
+          "cache_read_input_tokens": 64948,
+          "cache_creation_input_tokens": 5129,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5129
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-15T15:20:41.359Z_
+
+<details><summary>↩ Tool result · `toolu_013JkpTV5WQ5DyQ4T7CJGbzS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d269fdb74af3f4ab8d78b82a993f5cf:director\"}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f616c0c1-b206-4ccb-8050-3f5be7f6b5c1",
+  "isSidechain": false,
+  "promptId": "b348da81-a17b-4e5c-8b2e-fdebce509677",
+  "type": "user",
+  "uuid": "670150e6-aa22-4ef4-a619-e1a2b976c568",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_5d269fdb74af3f4ab8d78b82a993f5cf:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d269fdb74af3f4ab8d78b82a993f5cf:director\"}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "f616c0c1-b206-4ccb-8050-3f5be7f6b5c1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/reviewer_2647e3b4",
+  "sessionId": "7e8505cc-d7b7-4957-82c0-cd60ae383a04",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
