@@ -1,6 +1,6 @@
 # Research Trace Atlas
 
-Browse recorded tasks, user-role instructions, assistant responses, tool calls, and tool results from **107 trace collections**. Open **Readable Markdown** in any project guide for a GitHub reading view, or select the adjacent JSON link for the complete structured record.
+Browse recorded tasks, user-role instructions, assistant responses, tool calls, and tool results from **108 trace collections**. Open **Readable Markdown** in any project guide for a GitHub reading view, or select the adjacent JSON link for the complete structured record.
 
 [Offline preview](demo.html) · [Interactive browser](index.html) · [Format and provenance](FORMAT.md)
 
@@ -20,6 +20,7 @@ For the complete browser, run `python3 scripts/serve_traces.py --open` from a do
 | [causal_annot_error_attrib](../paper-assets/causal_annot_error_attrib/05-generation-trace/README.md) | 78 | 225 | 163 | 9 | 66,314 | [Read](../paper-assets/causal_annot_error_attrib/05-generation-trace/readable/README.md) |
 | [causal_style_decomp_judge](../paper-assets/causal_style_decomp_judge/05-generation-trace/README.md) | 69 | 221 | 211 | 5 | 73,378 | [Read](../paper-assets/causal_style_decomp_judge/05-generation-trace/readable/README.md) |
 | [cert_manip_resist_eval](../paper-assets/cert_manip_resist_eval/05-generation-trace/README.md) | 137 | 381 | 358 | 4 | 97,735 | [Read](../paper-assets/cert_manip_resist_eval/05-generation-trace/readable/README.md) |
+| [cert_manip_resist_eval--export-20260712](../research-snapshots/cert_manip_resist_eval/2026-07-12/05-generation-trace/README.md) | 1,926 | 0 | 0 | 0 | 260,860 | [Read](../research-snapshots/cert_manip_resist_eval/2026-07-12/05-generation-trace/readable/README.md) |
 | [clkc_mech_interp](../paper-assets/clkc_mech_interp/05-generation-trace/README.md) | 92 | 310 | 282 | 5 | 76,491 | [Read](../paper-assets/clkc_mech_interp/05-generation-trace/readable/README.md) |
 | [clkc_mech_interp--export-20260712](../research-snapshots/clkc_mech_interp/2026-07-12/05-generation-trace/README.md) | 287 | 0 | 0 | 0 | 61,458 | [Read](../research-snapshots/clkc_mech_interp/2026-07-12/05-generation-trace/readable/README.md) |
 | [collapse-aware-mixing](../paper-assets/collapse-aware-mixing/05-generation-trace/README.md) | 54 | 81 | 77 | 20 | 17,588 | [Read](../paper-assets/collapse-aware-mixing/05-generation-trace/readable/README.md) |
@@ -116,6 +117,6 @@ For the complete browser, run `python3 scripts/serve_traces.py --open` from a do
 | [xling_calab_direction](../paper-assets/xling_calab_direction/05-generation-trace/README.md) | 0 | 1 | 1 | 0 | 404 | [Read](../paper-assets/xling_calab_direction/05-generation-trace/readable/README.md) |
 | [xling_calib_direction](../paper-assets/xling_calib_direction/05-generation-trace/README.md) | 48 | 123 | 119 | 0 | 27,260 | [Read](../paper-assets/xling_calib_direction/05-generation-trace/readable/README.md) |
 
-**121,015 source records · 11,395,255 recorded messages/events.** Counts include overlapping snapshots and parallel logs; they are not deduplicated research actions.
+**122,941 source records · 11,656,115 recorded messages/events.** Counts include overlapping snapshots and parallel logs; they are not deduplicated research actions.
 
 Source language and order are retained. A user-role message can originate from another agent or system and does not identify a human author. Missing prompts and timestamps are not reconstructed. Credentials and embedded attachment payloads are redacted.

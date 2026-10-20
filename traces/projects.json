@@ -143,6 +143,19 @@
       }
     },
     {
+      "project": "cert_manip_resist_eval--export-20260712",
+      "title": "The Weakest Link Across Panel Sizes: Predictor Relevance Patterns in Multi-Judge LLM Evaluation under Adversarial Manipulation (July export snapshot)",
+      "catalog": "../research-snapshots/cert_manip_resist_eval/2026-07-12/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 1926,
+        "messages": 260860,
+        "user_turns": 8957,
+        "tool_calls": 73369,
+        "unparsed_lines": 0,
+        "conversation": 1926
+      }
+    },
+    {
       "project": "clkc_mech_interp",
       "title": "English-Chinese Knowledge Conflict Signals Are Consistent With General Cross-Lingual Asymmetries",
       "catalog": "../paper-assets/clkc_mech_interp/05-generation-trace/catalog.json",

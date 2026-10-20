@@ -199,6 +199,17 @@
           "paper_pdf": null,
           "code_count": 5,
           "trace_count": 2241
+        },
+        "cert_manip_resist_eval": {
+          "status": "uploaded",
+          "project": "cert_manip_resist_eval",
+          "collection": "cert_manip_resist_eval--export-20260712",
+          "snapshot": true,
+          "derived_archive_sha256": "77565153289341122df1477ed4ed2de6eb1069cebc2d02183a5ac9c2b9031c77",
+          "indexed_members": 1931,
+          "paper_pdf": null,
+          "code_count": 5,
+          "trace_count": 1926
         }
       },
       "status": "in_progress",
