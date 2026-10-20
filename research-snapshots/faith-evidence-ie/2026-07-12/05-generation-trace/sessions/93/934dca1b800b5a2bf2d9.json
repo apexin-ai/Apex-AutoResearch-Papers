@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "934dca1b800b5a2bf2d9",
+  "project": "faith-evidence-ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [CRON] 实验进程异常退出（失败），需要你诊断原因。 详情: Process exited without valid W&B metrics - exp_id: d140_4b_sft_s42_no_evi_2048 - projec",
+  "task_key": "efad5c71-69cf-4729-85bc-5145fe872cde",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/efad5c71-69cf-4729-85bc-5145fe872cde.jsonl",
+    "occurrence": 1,
+    "bytes": 675336,
+    "sha256": "58580848bae819e1762d4b0d656d6e46f8ded687a4a0c9d49dcab0d289ecacf7"
+  },
+  "statistics": {
+    "messages": 50,
+    "user_turns": 1,
+    "tool_calls": 13,
+    "roles": {
+      "record": 13,
+      "user": 1,
+      "assistant": 11,
+      "tool_call": 13,
+      "tool_result": 12
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "934dca1b800b5a2bf2d9-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 48,
+      "chunks": [
+        {
+          "path": "934dca1b800b5a2bf2d9-part-0001.json",
+          "message_count": 27
+        },
+        {
+          "path": "934dca1b800b5a2bf2d9-part-0002.json",
+          "message_count": 21
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-cron-process-exited-without-valid-w-b-metrics-exp-id-d140-4b-sft-s42-no-evi-20.md"
+}

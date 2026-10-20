@@ -1,0 +1,157 @@
+{
+  "schema_version": "1.0",
+  "id": "b2a22213bbc0c4da5689",
+  "project": "faith-evidence-ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [系统通知 — worker_done:worker_analysis_eval_plan_012_dpo_1ep_fixed_r2_20260515T233756]: Worker worker_analysis_eval_plan_01",
+  "task_key": "488687bc-fd70-4740-9009-27c51e748adc",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/488687bc-fd70-4740-9009-27c51e748adc.jsonl",
+    "occurrence": 1,
+    "bytes": 983356,
+    "sha256": "35ad15d8e436698647f3a01ed29f05ecbf30a3952671cd6557409fb511d47ecd"
+  },
+  "statistics": {
+    "messages": 311,
+    "user_turns": 10,
+    "tool_calls": 86,
+    "roles": {
+      "record": 69,
+      "user": 10,
+      "assistant": 60,
+      "tool_call": 86,
+      "tool_result": 86
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "b2a22213bbc0c4da5689-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 68,
+      "chunks": [
+        {
+          "path": "b2a22213bbc0c4da5689-part-0001.json",
+          "message_count": 68
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "b2a22213bbc0c4da5689-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 42,
+      "chunks": [
+        {
+          "path": "b2a22213bbc0c4da5689-part-0001.json",
+          "message_count": 42
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "b2a22213bbc0c4da5689-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 119,
+      "chunks": [
+        {
+          "path": "b2a22213bbc0c4da5689-part-0001.json",
+          "message_count": 44
+        },
+        {
+          "path": "b2a22213bbc0c4da5689-part-0002.json",
+          "message_count": 75
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "b2a22213bbc0c4da5689-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "b2a22213bbc0c4da5689-part-0002.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "boundary": "recorded_user_message",
+      "message_count": 65,
+      "chunks": [
+        {
+          "path": "b2a22213bbc0c4da5689-part-0002.json",
+          "message_count": 65
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "b2a22213bbc0c4da5689-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "b2a22213bbc0c4da5689-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-worker-done-worker-analysis-eval-plan-012-dpo-1ep-fixed-r2-20260515t233756-wor.md"
+}

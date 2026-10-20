@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "6d6d715658d8febe4eb5",
+  "project": "faith-evidence-ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> 项目：faith-evidence-ie (FREIGE) 服务器：rtx5090-4x, RTX 5090 32GB × 4, AutoDL 实例 GPU 分配：cuda:0-3 全部属于本项目 实验状态：",
+  "task_key": "ae46eb00-1d04-4286-b070-32c4ef4ec30b",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/ae46eb00-1d04-4286-b070-32c4ef4ec30b.jsonl",
+    "occurrence": 1,
+    "bytes": 589339,
+    "sha256": "da1d009b4ac3f09eb130a42071babb67222b0c3e93d32d4cffebea37c90e2fc8"
+  },
+  "statistics": {
+    "messages": 195,
+    "user_turns": 1,
+    "tool_calls": 65,
+    "roles": {
+      "record": 29,
+      "user": 1,
+      "assistant": 35,
+      "tool_call": 65,
+      "tool_result": 65
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "6d6d715658d8febe4eb5-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 193,
+      "chunks": [
+        {
+          "path": "6d6d715658d8febe4eb5-part-0001.json",
+          "message_count": 174
+        },
+        {
+          "path": "6d6d715658d8febe4eb5-part-0002.json",
+          "message_count": 19
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-faith-evidence-ie-freige-rtx5090-4x-rtx-5090-32gb-4-autodl-gpu-c.md"
+}

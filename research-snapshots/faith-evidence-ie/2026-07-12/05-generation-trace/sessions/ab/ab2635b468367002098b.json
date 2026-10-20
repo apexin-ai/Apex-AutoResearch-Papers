@@ -1,0 +1,2362 @@
+{
+  "schema_version": "1.0",
+  "id": "ab2635b468367002098b",
+  "project": "faith-evidence-ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: faith-evidence-ie ## 运行环境 - 服务器名: rtx5090-4x - SSH 账户: root（调用 ssh_execute / submit_training_job",
+  "task_key": "ac6c3eaa-1181-4230-9499-9a3dbe044d7c",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/ac6c3eaa-1181-4230-9499-9a3dbe044d7c.jsonl",
+    "occurrence": 1,
+    "bytes": 126096,
+    "sha256": "95daa43d15d341db4d4be2dd597c48584c349f0f4ce25bc2dfbb56827e01ab82"
+  },
+  "statistics": {
+    "messages": 46,
+    "user_turns": 1,
+    "tool_calls": 9,
+    "roles": {
+      "record": 15,
+      "user": 1,
+      "assistant": 12,
+      "tool_call": 9,
+      "tool_result": 9
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T17:13:07.185Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-19T17:13:07.185Z",
+                "sessionId": "ac6c3eaa-1181-4230-9499-9a3dbe044d7c",
+                "content": "<project_context>\n# 项目: faith-evidence-ie\n\n## 运行环境\n- 服务器名: rtx5090-4x\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh rtx5090-4x  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/autodl-tmp/freige\n\n## ⚠️ 活跃约束（必须遵守）\n\n- **C001**: 提交 eval 前必须 nvidia-smi 确认目标 GPU 显存占用 < 2GB，否则不提交、换卡或等待（原因：本 session 已 5 次因 eval 提交到被占用 GPU 导致 OOM，修复 eval 也因此作废。eval 推理需要接近全部显存，与训练共享必然 OOM。） [来自 D064]\n- **C002**: 提交训练/评估任务时必须在命令前设置 CUDA_VISIBLE_DEVICES=X，禁止依赖 device_map=\"auto\" 自动分配 GPU（原因：plan_011 和 rsft_ced_s45_train_r3 两次因未设 CUDA_VISIBLE_DEVICES 导致 device_map=\"auto\" 跨 GPU 分布，造成 OOM 和资源冲突。已知 bug 重复发生。）\n- **C003**: 提交训练任务时必须在命令前设置 CUDA_VISIBLE_DEVICES=X，禁止依赖 device_map=\"auto\" 自动分配 GPU（原因：plan_011 和 rsft_ced_s45_train_r3 均因未设 CUDA_VISIBLE_DEVICES 导致模型跨 GPU 分布，造成 OOM 或显存冲突。已重复发生两次。）\n- **C004**: Registry 标记 killed 时必须同时 kill -9 PID 并 ps 验证进程已终止，否则 killed 状态不可信（原因：rsft_ced_s45_train_r2 (PID 276148) registry 标记 killed 但进程未实际终止，占用 cuda:2 31.6GB 导致 r3 OOM。plan_011 也有类似模式。Reviewer WARNING。）\n- **C005**: no-evidence 模型 eval 必须传 --no_evidence 参数，确保推理时使用 NO_EVIDENCE_SYSTEM_PROMPT 与训练一致（原因：plan_006 1.7B/8B no-evidence eval 漏传该参数，导致训练/推理提示词不匹配（模型被要求输出未训练过的 evidence 字段），结果全部无效。Reviewer critical #20。）\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n</project_context>\n## 任务：更新 ROADMAP.md\n\n### 目标\n根据最新实验结果更新 ROADMAP.md，反映当前进展。\n\n### 需要更新的内容\n\n1. **14B evidence tax 发现 (D117)**:\n   - 14B SFT: with-evidence ign_f1=0.5507, no-evidence ign_f1=0.551\n   - Evidence tax = +0.03pp（本质为零）\n   - 14B 容量足够同时输出 evidence 和 RE\n\n2. **\"1.7B surpasses\" claim 降级 (D118)**:\n   - 8B SFT 3-seed: s42=0.5128, s43=0.5324, s44=0.4604, mean=0.5019±0.0372\n   - 1.7B RSFT (0.5122) vs 8B SFT mean (0.5019): Δ=+1.03pp, p≈0.34 不显著\n   - 需弱化为 \"comparable / on par with\"\n   - RSFT variance stabilization (SFT std=0.037 vs RSFT std=0.005) 作为独立发现\n\n3. **D112 完成**:\n   - D112 RSFT (bf16, SFT s44 base): ign_f1=0.5152, 比 SFT s44 baseline (0.4734) +4.18pp\n   - D112 pipeline 完整验证\n\n4. **当前 GPU 分布**:\n   - cuda:0: 8B RSFT no-evidence eval r2 (接近完成)\n   - cuda:1: d112 no-evidence eval r3 (44%)\n   - cuda:2: 空闲（D112 完成后释放）\n   - cuda:3: 1.7B no-evidence eval 2048 (38%)\n\n5. **Scaling table 更新**（加入 14B 行 + D112 结果）:\n   | Scale | SFT mean | RSFT mean | Δ |\n   |-------|----------|-----------|---|\n   | 1.7B | 0.4464 (3) | 0.5122 (1) | +6.58pp |\n   | 4B | 0.4358 (3) | 0.4482 (3, Method A) / 0.5152 (1, Method B) | +1.24pp / +4.18pp (vs s44) |\n   | 8B | 0.5019 (3) | 0.5414 (2) | +3.95pp |\n   | 14B | 0.5507 (1) | pending | — |\n\n6. **近期任务更新**:\n   - [x] D112 step 4 eval 完成\n   - [x] 8B SFT s43 eval 完成 (ign_f1=0.5324)\n   - [x] 14B SFT eval 完成 (ign_f1=0.5507)\n   - [ ] 1.7B no-evidence eval 2048 重跑 (排除截断)\n   - [ ] 8B RSFT no-evidence eval (cuda:0)\n   - [ ] d112 no-evidence eval r3 (cuda:1)\n   - [ ] 14B RSFT pipeline (待启动)\n   - [ ] 8B RSFT s43 补齐第 3 seed\n\n### 操作\n用 read_roadmap 读取当前内容，然后用 save_project_file 写入更新后的 ROADMAP.md。注意 8B SFT mean 从 0.4866 (2-seed) 更新为 0.5019 (3-seed)。"
+              }
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T17:13:07.190Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-19T17:13:07.190Z",
+                "sessionId": "ac6c3eaa-1181-4230-9499-9a3dbe044d7c"
+              }
+            }
+          ],
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T17:13:07.235Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "<project_context>\n# 项目: faith-evidence-ie\n\n## 运行环境\n- 服务器名: rtx5090-4x\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh rtx5090-4x  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/autodl-tmp/freige\n\n## ⚠️ 活跃约束（必须遵守）\n\n- **C001**: 提交 eval 前必须 nvidia-smi 确认目标 GPU 显存占用 < 2GB，否则不提交、换卡或等待（原因：本 session 已 5 次因 eval 提交到被占用 GPU 导致 OOM，修复 eval 也因此作废。eval 推理需要接近全部显存，与训练共享必然 OOM。） [来自 D064]\n- **C002**: 提交训练/评估任务时必须在命令前设置 CUDA_VISIBLE_DEVICES=X，禁止依赖 device_map=\"auto\" 自动分配 GPU（原因：plan_011 和 rsft_ced_s45_train_r3 两次因未设 CUDA_VISIBLE_DEVICES 导致 device_map=\"auto\" 跨 GPU 分布，造成 OOM 和资源冲突。已知 bug 重复发生。）\n- **C003**: 提交训练任务时必须在命令前设置 CUDA_VISIBLE_DEVICES=X，禁止依赖 device_map=\"auto\" 自动分配 GPU（原因：plan_011 和 rsft_ced_s45_train_r3 均因未设 CUDA_VISIBLE_DEVICES 导致模型跨 GPU 分布，造成 OOM 或显存冲突。已重复发生两次。）\n- **C004**: Registry 标记 killed 时必须同时 kill -9 PID 并 ps 验证进程已终止，否则 killed 状态不可信（原因：rsft_ced_s45_train_r2 (PID 276148) registry 标记 killed 但进程未实际终止，占用 cuda:2 31.6GB 导致 r3 OOM。plan_011 也有类似模式。Reviewer WARNING。）\n- **C005**: no-evidence 模型 eval 必须传 --no_evidence 参数，确保推理时使用 NO_EVIDENCE_SYSTEM_PROMPT 与训练一致（原因：plan_006 1.7B/8B no-evidence eval 漏传该参数，导致训练/推理提示词不匹配（模型被要求输出未训练过的 evidence 字段），结果全部无效。Reviewer critical #20。）\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n</project_context>\n## 任务：更新 ROADMAP.md\n\n### 目标\n根据最新实验结果更新 ROADMAP.md，反映当前进展。\n\n### 需要更新的内容\n\n1. **14B evidence tax 发现 (D117)**:\n   - 14B SFT: with-evidence ign_f1=0.5507, no-evidence ign_f1=0.551\n   - Evidence tax = +0.03pp（本质为零）\n   - 14B 容量足够同时输出 evidence 和 RE\n\n2. **\"1.7B surpasses\" claim 降级 (D118)**:\n   - 8B SFT 3-seed: s42=0.5128, s43=0.5324, s44=0.4604, mean=0.5019±0.0372\n   - 1.7B RSFT (0.5122) vs 8B SFT mean (0.5019): Δ=+1.03pp, p≈0.34 不显著\n   - 需弱化为 \"comparable / on par with\"\n   - RSFT variance stabilization (SFT std=0.037 vs RSFT std=0.005) 作为独立发现\n\n3. **D112 完成**:\n   - D112 RSFT (bf16, SFT s44 base): ign_f1=0.5152, 比 SFT s44 baseline (0.4734) +4.18pp\n   - D112 pipeline 完整验证\n\n4. **当前 GPU 分布**:\n   - cuda:0: 8B RSFT no-evidence eval r2 (接近完成)\n   - cuda:1: d112 no-evidence eval r3 (44%)\n   - cuda:2: 空闲（D112 完成后释放）\n   - cuda:3: 1.7B no-evidence eval 2048 (38%)\n\n5. **Scaling table 更新**（加入 14B 行 + D112 结果）:\n   | Scale | SFT mean | RSFT mean | Δ |\n   |-------|----------|-----------|---|\n   | 1.7B | 0.4464 (3) | 0.5122 (1) | +6.58pp |\n   | 4B | 0.4358 (3) | 0.4482 (3, Method A) / 0.5152 (1, Method B) | +1.24pp / +4.18pp (vs s44) |\n   | 8B | 0.5019 (3) | 0.5414 (2) | +3.95pp |\n   | 14B | 0.5507 (1) | pending | — |\n\n6. **近期任务更新**:\n   - [x] D112 step 4 eval 完成\n   - [x] 8B SFT s43 eval 完成 (ign_f1=0.5324)\n   - [x] 14B SFT eval 完成 (ign_f1=0.5507)\n   - [ ] 1.7B no-evidence eval 2048 重跑 (排除截断)\n   - [ ] 8B RSFT no-evidence eval (cuda:0)\n   - [ ] d112 no-evidence eval r3 (cuda:1)\n   - [ ] 14B RSFT pipeline (待启动)\n   - [ ] 8B RSFT s43 补齐第 3 seed\n\n### 操作\n用 read_roadmap 读取当前内容，然后用 save_project_file 写入更新后的 ROADMAP.md。注意 8B SFT mean 从 0.4866 (2-seed) 更新为 0.5019 (3-seed)。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": false,
+            "promptId": "728f9907-b4c1-4b15-884b-d9e88637119a",
+            "type": "user",
+            "uuid": "1fe57cc6-df5a-49e6-a076-9ce3c49689d8",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "ac6c3eaa-1181-4230-9499-9a3dbe044d7c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T17:13:07.234Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "1fe57cc6-df5a-49e6-a076-9ce3c49689d8",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "AskUserQuestion",
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__register_artifact",
+                    "mcp__agent-ml-research__save_project_file",
+                    "mcp__agent-ml-research__update_registry"
+                  ],
+                  "addedLines": [
+                    "AskUserQuestion",
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__register_artifact",
+                    "mcp__agent-ml-research__save_project_file",
+                    "mcp__agent-ml-research__update_registry"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "33661bd0-0223-418d-9e80-60f4346da1c0",
+                "timestamp": "2026-05-19T17:13:07.234Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+                "sessionId": "ac6c3eaa-1181-4230-9499-9a3dbe044d7c",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T17:13:07.234Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "33661bd0-0223-418d-9e80-60f4346da1c0",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "mcp_instructions_delta",
+                  "addedNames": [
+                    "agent-ml-research"
+                  ],
+                  "addedBlocks": [
+                    "## agent-ml-research\nML research experiment management tools"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "7f13ef60-3edf-43b0-b036-3370ba68d5f5",
+                "timestamp": "2026-05-19T17:13:07.234Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+                "sessionId": "ac6c3eaa-1181-4230-9499-9a3dbe044d7c",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T17:13:07.234Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "7f13ef60-3edf-43b0-b036-3370ba68d5f5",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "skill_listing",
+                  "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+                  "skillCount": 10,
+                  "isInitial": true
+                },
+                "type": "attachment",
+                "uuid": "bfccfd3f-462f-415c-92e1-9ae931df9779",
+                "timestamp": "2026-05-19T17:13:07.234Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+                "sessionId": "ac6c3eaa-1181-4230-9499-9a3dbe044d7c",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Update ROADMAP with latest experimental results",
+                "sessionId": "ac6c3eaa-1181-4230-9499-9a3dbe044d7c"
+              }
+            }
+          ],
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T17:13:09.784Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll read the current ROADMAP.md first."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bfccfd3f-462f-415c-92e1-9ae931df9779",
+            "isSidechain": false,
+            "requestId": "req_011CbCJTs4GzkfGUh8h9N9e9",
+            "type": "assistant",
+            "uuid": "eccd255c-a0a4-4d91-a184-81ca2da15a5c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "ac6c3eaa-1181-4230-9499-9a3dbe044d7c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MuDn2UNEipMhSBX6NZYJnd",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13005,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 116,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 13005,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 116,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 13005,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 13005
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T17:13:10.422Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017Aafpo5uxdt9AS77Xo3ECn",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "eccd255c-a0a4-4d91-a184-81ca2da15a5c",
+            "isSidechain": false,
+            "requestId": "req_011CbCJTs4GzkfGUh8h9N9e9",
+            "type": "assistant",
+            "uuid": "100aab3e-b400-422b-a6dc-523e50918b5e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "ac6c3eaa-1181-4230-9499-9a3dbe044d7c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MuDn2UNEipMhSBX6NZYJnd",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13005,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 116,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 13005,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 116,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 13005,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 13005
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T17:13:10.429Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_017Aafpo5uxdt9AS77Xo3ECn",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__read_project_file"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__save_project_file"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "100aab3e-b400-422b-a6dc-523e50918b5e",
+            "isSidechain": false,
+            "promptId": "728f9907-b4c1-4b15-884b-d9e88637119a",
+            "type": "user",
+            "uuid": "06224126-6580-4e3c-a7d1-daa364c30a18",
+            "toolUseResult": {
+              "matches": [
+                "mcp__agent-ml-research__read_project_file",
+                "mcp__agent-ml-research__save_project_file"
+              ],
+              "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file",
+              "total_deferred_tools": 25
+            },
+            "sourceToolAssistantUUID": "100aab3e-b400-422b-a6dc-523e50918b5e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "ac6c3eaa-1181-4230-9499-9a3dbe044d7c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T17:13:13.553Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me read the current ROADMAP.md first, then update it.",
+              "signature": "EvQBClkIDRgCKkDXeZRSHGKDztLPcSJdzSVuJQRIuhIE95BxtEDxwLQevAq4lPcrGUwJyj5bxTFw2DO+gszXk/hrlLPCMVmrzNQvMg9jbGF1ZGUtb3B1cy00LTY4ABIMr/DOnCvKaziJ/iX0Ggy72xOsOeinm79RNhEiMEUMM7DCbsByKacc6Jdvkd+LzZs0GiewbAWlggaHeUJdfclIaxNujYkCjmQtoR3WlipJMg1+HOj4JlYSoS0iorqx1eP9rREVQsizzm7W3CTgCwbs54uahTc08Z46FBp3FMC1BrXYmvni/iYmAFmqH/X4TevFUKy/37nPTBgB"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "06224126-6580-4e3c-a7d1-daa364c30a18",
+            "isSidechain": false,
+            "requestId": "req_011CbCJU6uibroxkjFHYzGvQ",
+            "type": "assistant",
+            "uuid": "0a33a5d9-a030-4c1f-a314-1e1aeb2497b5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "ac6c3eaa-1181-4230-9499-9a3dbe044d7c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FNkg3ZG2TFZCe8Y9GuCHS1",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 712,
+                "cache_read_input_tokens": 24846,
+                "output_tokens": 140,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 712,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 140,
+                    "cache_read_input_tokens": 24846,
+                    "cache_creation_input_tokens": 712,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 712
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T17:13:13.823Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HcgL5SjxNMxGot8Sibtqu3",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "faith-evidence-ie",
+                "file": "ROADMAP.md",
+                "max_chars": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0a33a5d9-a030-4c1f-a314-1e1aeb2497b5",
+            "isSidechain": false,
+            "requestId": "req_011CbCJU6uibroxkjFHYzGvQ",
+            "type": "assistant",
+            "uuid": "558190a4-5f98-423a-8e0d-da850a5dcc64",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "ac6c3eaa-1181-4230-9499-9a3dbe044d7c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FNkg3ZG2TFZCe8Y9GuCHS1",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 712,
+                "cache_read_input_tokens": 24846,
+                "output_tokens": 140,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 712,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 140,
+                    "cache_read_input_tokens": 24846,
+                    "cache_creation_input_tokens": 712,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 712
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T17:13:13.843Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HcgL5SjxNMxGot8Sibtqu3",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/ROADMAP.md\\\", \\\"content\\\": \\\"# faith-evidence-ie — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-19 05:43 UTC | 更新原因: D115 8B RSFT 完成 + D114 1.7B Method A 裁决 + D112 进展 + 14B SFT 启动 + Wave 1 全部完成\\\\n\\\\n## 核心方向\\\\nFREIGE: LLM-based evidence-grounded DocRE 系统性研究。3 贡献：RSFT+NLI 有效性 / Decoupling spectrum / Scale-dependent evidence tax。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **阶段**: 🚀 Research + 审稿并行（Round 1 = 3.0 Findings，目标 4.0 Main）\\\\n- **Wave 1**: ✅ 全部完成（SFT s43/s44, GRPO bf16 G=4, Random RSFT）\\\\n- **Scaling seeds (plan_019)**: 8B 2-seed RSFT 完成（D115: s44=0.5451, variance 0.53pp）；1.7B s43/s44 重跑中（D114 Method A）\\\\n- **D112 full pipeline**: Step 3 RSFT 训练中 cuda:0（验证 RSFT 在强 SFT base s44 上的泛化性）\\\\n- **14B SFT (plan_017)**: cuda:1+2 运行中（2-GPU ZeRO-3, D108）\\\\n- **关键数值汇总**:\\\\n\\\\n| Scale | SFT mean (seeds) | RSFT mean (seeds) | Δ ign_f1 | SFT std | RSFT std |\\\\n|-------|-------------------|--------------------|----------|---------|----------|\\\\n| 1.7B | 0.4464 (3) | 0.5122 (1, s42 base) | +6.58pp | 2.79pp | — |\\\\n| 4B | 0.4358 (3) | 0.4482 (3, Method A) | +1.24pp | 3.80pp | 0.51pp |\\\\n| 8B | 0.4866 (2) | 0.5414 (2, Method A) | +5.48pp | 2.62pp | 0.53pp |\\\\n\\\\n- **RSFT 稳定化效应**: 4B variance 3.80→0.51pp (7.5x)，8B variance 2.62→0.53pp (5x)\\\\n- **CED 价值**: CED RSFT (0.4482) > Random RSFT (0.4114) > SFT (0.3974)，+3.68pp gap\\\\n- **GRPO**: bf16 ckpt-100 ign_f1=0.4431 无 catastrophic forgetting（D110），QLoRA 是 confound\\\\n\\\\n## 投稿目标\\\\n- **EMNLP 2026 Main** (ARR July cycle, ~July 15-25, **~57 天**)\\\\n\\\\n## 实验路线（3 层优先级）\\\\n\\\\n### Tier 1 — Main 必要条件\\\\n| 实验 | Plan ID | 状态 |\\\\n|------|---------|------|\\\\n| D102 k=1 方法论修正 | D102 | ✅ 完成 |\\\\n| SFT 4B s43 + s44 + s42 reeval | plan_w3_sft_seeds | ✅ 完成 (D111) |\\\\n| GRPO bf16 G=4 clean control | plan_015 | ✅ 完成 (D110/D113) |\\\\n| Random k=1 RSFT baseline | plan_w18_random | ✅ 完成 (D109) |\\\\n| 8B RSFT s44 seed expansion | plan_019 (8B) | ✅ 完成 (D115) |\\\\n| D112 RSFT from SFT s44 | plan_d112 | 🟡 Step 3 训练中 cuda:0 |\\\\n| 1.7B RSFT s43/s44 重跑 | plan_019 (1.7B) | 🟡 s43_r2 提交中 cuda:3 |\\\\n| 14B SFT (第 4 尺度) | plan_017 | 🟡 训练中 cuda:1+2 |\\\\n\\\\n### Tier 2 — 大幅加分\\\\n| 实验 | Plan ID | 状态 |\\\\n|------|---------|------|\\\\n| 14B RSFT + no-evidence + eval | plan_017 (后续) | pending（等 SFT 完成） |\\\\n| NLI model ablation | plan_010 | pending |\\\\n| Evidence tax 机制分析 | plan_020 | pending |\\\\n| Deep error analysis | plan_021 | pending |\\\\n\\\\n### Tier 3 — 锦上添花\\\\n| 实验 | Plan ID | 状态 |\\\\n|------|---------|------|\\\\n| CDR/GDA 跨领域 | plan_018 | P2（无 evidence 标注） |\\\\n| 第三模型家族 | plan_022 | pending |\\\\n| DocKS-RAG/LMRC 复现 | plan_023 | pending |\\\\n\\\\n## 从 3.0 → 4.0 路径\\\\n| 里程碑 | 预期评分 | 状态 |\\\\n|--------|---------|------|\\\\n| Wave 1 完成 + D112 | 3.0 → 3.5 | 🟡 D112 step 3 训练中 |\\\\n| + 1.7B/8B multi-seed 统计力 | 3.5 | 🟡 8B done, 1.7B 重跑中 |\\\\n| + 14B 第 4 尺度档 | 3.5 → 3.75 | 🟡 SFT 训练中 |\\\\n| + Mechanistic + error analysis | 3.75 → 4.0 | pending |\\\\n\\\\n## GPU 预算\\\\n- 本项目：rtx5090-4x cuda:0-3（4 张 RTX 5090）\\\\n- 当前：4/4 在用（D112 step3 / 14B SFT×2 / 1.7B RSFT）\\\\n- 剩余估算：Tier 1 ~15h + Tier 2 ~65h + Tier 3 ~100h\\\\n\\\\n## 近期任务\\\\n- [x] Wave 1 全部完成（SFT seeds, GRPO bf16, Random RSFT）\\\\n- [x] 8B RSFT s44 eval (D115: 0.5451, variance 压缩 5x)\\\\n- [x] 4B SFT s42 D076 reeval (D111: 0.3974)\\\\n- [ ] D112 step 3 → step 4 eval（cuda:0, ~1.5h total）\\\\n- [ ] 1.7B RSFT s43_r2 + s44_r2 + eval（cuda:3, ~2-3h total）\\\\n- [ ] 14B SFT 完成 → 14B RSFT + no-evidence + eval（cuda:1+2, ~8h SFT + 后续）\\\\n- [ ] experiment_plan.yaml 全面同步 registry\\\\n- [ ] paper_framing.md 更新（D112 结果 + 8B 2-seed + variance 压缩 narrative）\\\\n- [ ] 重新提交论文审稿\\\\n\\\\n## 关键风险\\\\n- **D112 结果待定**: 如 RSFT-from-s44 > SFT s44 (0.4734) → Claim 1 robust；否则需 reframe\\\\n- **8B RSFT evidence quality trade-off**: EDCR 从 0.65-0.67 降到 0.62（RE↑/evidence precision↓），论文需讨论\\\\n- **1.7B surpasses claim**: 现在更强（1.7B RSFT 0.5122 > 8B SFT mean 0.4866 +2.56pp），但仍需 1.7B multi-seed 确认\\\\n- **14B 显存**: 2-GPU ZeRO-3 已启动且正常（D108 验证），后续 RSFT 可能需要调参\\\\n- **EDCR 缺人工验证**: plan_013 取消，用 per-relation 分析 + Limitations 缓解\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D118 | 2026-05-19 | D118: \\\\\\\"1.7B RSFT surpasses 8B SFT\\\\\\\" claim 降级为 \\\\\\\"appr | plan019_8b_sft_s43_eval, plan019_1_7b_rsft_s44_r2_eval |\\\\n| D117 | 2026-05-19 | D117: 14B SFT evidence tax = 0.03pp（本质为零），完成 4 尺度  | plan017_14b_sft_eval_r2, plan017_14b_sft_no_evidence_eval_r2 |\\\\n| D116 | 2026-05-19 | D116: D112 结果无效（QLoRA confound），必须用 bf16 LoRA 重跑 s | d112_rsft_s44_eval, d112_rsft_s44_train |\\\\n| D115 | 2026-05-19 | D115: 8B RSFT s44 ign_f1=0.5451 确认 RSFT 跨 seed 稳健， | plan019_8b_rsft_s44_eval, eval_rsft_ced_s42 |\\\\n| D114 | 2026-05-19 | D114: 1.7B RSFT s43/s44 应使用 Method A（s42 SFT base） | plan019_1_7b_rsft_s43, plan019_1_7b_rsft_s44, d112_rsft_s44_ced_score |\\\\n| D113 | 2026-05-18 | D113: GRPO bf16 ckpt-100 为最优 checkpoint，ckpt-200 无 | grpo_bf16_g4_ckpt100_eval, grpo_bf16_g4_ckpt200_eval |\\\\n| D112 | 2026-05-18 | D112: 4B RSFT ign_f1 claim 需重大 reframe——全部 RSFT 基于 | wave1_sft_4b_s43_eval_r2, wave1_sft_4b_s44_eval_r2, eval_rsft_ced_s42 |\\\\n| D111 | 2026-05-18 | D111: 4B SFT s42 必须用 D076 协议重新 eval，统一三 seed 参考基准 | wave1_sft_4b_s43_eval_r2, wave1_sft_4b_s44_eval_r2 |\\\\n| D110 | 2026-05-18 | D110: GRPO bf16 ckpt-100 ign_f1=0.4431 无 catastrop | wave1_grpo_bf16_g4, grpo_bf16_g4_ckpt100_eval |\\\\n| D109 | 2026-05-18 | D109: Random RSFT k=1 ign_f1=0.4114 确证 CED scoring | random_rsft_k1_baseline, eval_flat_nli_seed45 |\\\\n\\\\n\\\", \\\"total_chars\\\": 5100, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "558190a4-5f98-423a-8e0d-da850a5dcc64",
+            "isSidechain": false,
+            "promptId": "728f9907-b4c1-4b15-884b-d9e88637119a",
+            "type": "user",
+            "uuid": "1d99f970-f2c6-4e44-8616-2a94cb91257f",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/ROADMAP.md\\\", \\\"content\\\": \\\"# faith-evidence-ie — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-19 05:43 UTC | 更新原因: D115 8B RSFT 完成 + D114 1.7B Method A 裁决 + D112 进展 + 14B SFT 启动 + Wave 1 全部完成\\\\n\\\\n## 核心方向\\\\nFREIGE: LLM-based evidence-grounded DocRE 系统性研究。3 贡献：RSFT+NLI 有效性 / Decoupling spectrum / Scale-dependent evidence tax。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **阶段**: 🚀 Research + 审稿并行（Round 1 = 3.0 Findings，目标 4.0 Main）\\\\n- **Wave 1**: ✅ 全部完成（SFT s43/s44, GRPO bf16 G=4, Random RSFT）\\\\n- **Scaling seeds (plan_019)**: 8B 2-seed RSFT 完成（D115: s44=0.5451, variance 0.53pp）；1.7B s43/s44 重跑中（D114 Method A）\\\\n- **D112 full pipeline**: Step 3 RSFT 训练中 cuda:0（验证 RSFT 在强 SFT base s44 上的泛化性）\\\\n- **14B SFT (plan_017)**: cuda:1+2 运行中（2-GPU ZeRO-3, D108）\\\\n- **关键数值汇总**:\\\\n\\\\n| Scale | SFT mean (seeds) | RSFT mean (seeds) | Δ ign_f1 | SFT std | RSFT std |\\\\n|-------|-------------------|--------------------|----------|---------|----------|\\\\n| 1.7B | 0.4464 (3) | 0.5122 (1, s42 base) | +6.58pp | 2.79pp | — |\\\\n| 4B | 0.4358 (3) | 0.4482 (3, Method A) | +1.24pp | 3.80pp | 0.51pp |\\\\n| 8B | 0.4866 (2) | 0.5414 (2, Method A) | +5.48pp | 2.62pp | 0.53pp |\\\\n\\\\n- **RSFT 稳定化效应**: 4B variance 3.80→0.51pp (7.5x)，8B variance 2.62→0.53pp (5x)\\\\n- **CED 价值**: CED RSFT (0.4482) > Random RSFT (0.4114) > SFT (0.3974)，+3.68pp gap\\\\n- **GRPO**: bf16 ckpt-100 ign_f1=0.4431 无 catastrophic forgetting（D110），QLoRA 是 confound\\\\n\\\\n## 投稿目标\\\\n- **EMNLP 2026 Main** (ARR July cycle, ~July 15-25, **~57 天**)\\\\n\\\\n## 实验路线（3 层优先级）\\\\n\\\\n### Tier 1 — Main 必要条件\\\\n| 实验 | Plan ID | 状态 |\\\\n|------|---------|------|\\\\n| D102 k=1 方法论修正 | D102 | ✅ 完成 |\\\\n| SFT 4B s43 + s44 + s42 reeval | plan_w3_sft_seeds | ✅ 完成 (D111) |\\\\n| GRPO bf16 G=4 clean control | plan_015 | ✅ 完成 (D110/D113) |\\\\n| Random k=1 RSFT baseline | plan_w18_random | ✅ 完成 (D109) |\\\\n| 8B RSFT s44 seed expansion | plan_019 (8B) | ✅ 完成 (D115) |\\\\n| D112 RSFT from SFT s44 | plan_d112 | 🟡 Step 3 训练中 cuda:0 |\\\\n| 1.7B RSFT s43/s44 重跑 | plan_019 (1.7B) | 🟡 s43_r2 提交中 cuda:3 |\\\\n| 14B SFT (第 4 尺度) | plan_017 | 🟡 训练中 cuda:1+2 |\\\\n\\\\n### Tier 2 — 大幅加分\\\\n| 实验 | Plan ID | 状态 |\\\\n|------|---------|------|\\\\n| 14B RSFT + no-evidence + eval | plan_017 (后续) | pending（等 SFT 完成） |\\\\n| NLI model ablation | plan_010 | pending |\\\\n| Evidence tax 机制分析 | plan_020 | pending |\\\\n| Deep error analysis | plan_021 | pending |\\\\n\\\\n### Tier 3 — 锦上添花\\\\n| 实验 | Plan ID | 状态 |\\\\n|------|---------|------|\\\\n| CDR/GDA 跨领域 | plan_018 | P2（无 evidence 标注） |\\\\n| 第三模型家族 | plan_022 | pending |\\\\n| DocKS-RAG/LMRC 复现 | plan_023 | pending |\\\\n\\\\n## 从 3.0 → 4.0 路径\\\\n| 里程碑 | 预期评分 | 状态 |\\\\n|--------|---------|------|\\\\n| Wave 1 完成 + D112 | 3.0 → 3.5 | 🟡 D112 step 3 训练中 |\\\\n| + 1.7B/8B multi-seed 统计力 | 3.5 | 🟡 8B done, 1.7B 重跑中 |\\\\n| + 14B 第 4 尺度档 | 3.5 → 3.75 | 🟡 SFT 训练中 |\\\\n| + Mechanistic + error analysis | 3.75 → 4.0 | pending |\\\\n\\\\n## GPU 预算\\\\n- 本项目：rtx5090-4x cuda:0-3（4 张 RTX 5090）\\\\n- 当前：4/4 在用（D112 step3 / 14B SFT×2 / 1.7B RSFT）\\\\n- 剩余估算：Tier 1 ~15h + Tier 2 ~65h + Tier 3 ~100h\\\\n\\\\n## 近期任务\\\\n- [x] Wave 1 全部完成（SFT seeds, GRPO bf16, Random RSFT）\\\\n- [x] 8B RSFT s44 eval (D115: 0.5451, variance 压缩 5x)\\\\n- [x] 4B SFT s42 D076 reeval (D111: 0.3974)\\\\n- [ ] D112 step 3 → step 4 eval（cuda:0, ~1.5h total）\\\\n- [ ] 1.7B RSFT s43_r2 + s44_r2 + eval（cuda:3, ~2-3h total）\\\\n- [ ] 14B SFT 完成 → 14B RSFT + no-evidence + eval（cuda:1+2, ~8h SFT + 后续）\\\\n- [ ] experiment_plan.yaml 全面同步 registry\\\\n- [ ] paper_framing.md 更新（D112 结果 + 8B 2-seed + variance 压缩 narrative）\\\\n- [ ] 重新提交论文审稿\\\\n\\\\n## 关键风险\\\\n- **D112 结果待定**: 如 RSFT-from-s44 > SFT s44 (0.4734) → Claim 1 robust；否则需 reframe\\\\n- **8B RSFT evidence quality trade-off**: EDCR 从 0.65-0.67 降到 0.62（RE↑/evidence precision↓），论文需讨论\\\\n- **1.7B surpasses claim**: 现在更强（1.7B RSFT 0.5122 > 8B SFT mean 0.4866 +2.56pp），但仍需 1.7B multi-seed 确认\\\\n- **14B 显存**: 2-GPU ZeRO-3 已启动且正常（D108 验证），后续 RSFT 可能需要调参\\\\n- **EDCR 缺人工验证**: plan_013 取消，用 per-relation 分析 + Limitations 缓解\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D118 | 2026-05-19 | D118: \\\\\\\"1.7B RSFT surpasses 8B SFT\\\\\\\" claim 降级为 \\\\\\\"appr | plan019_8b_sft_s43_eval, plan019_1_7b_rsft_s44_r2_eval |\\\\n| D117 | 2026-05-19 | D117: 14B SFT evidence tax = 0.03pp（本质为零），完成 4 尺度  | plan017_14b_sft_eval_r2, plan017_14b_sft_no_evidence_eval_r2 |\\\\n| D116 | 2026-05-19 | D116: D112 结果无效（QLoRA confound），必须用 bf16 LoRA 重跑 s | d112_rsft_s44_eval, d112_rsft_s44_train |\\\\n| D115 | 2026-05-19 | D115: 8B RSFT s44 ign_f1=0.5451 确认 RSFT 跨 seed 稳健， | plan019_8b_rsft_s44_eval, eval_rsft_ced_s42 |\\\\n| D114 | 2026-05-19 | D114: 1.7B RSFT s43/s44 应使用 Method A（s42 SFT base） | plan019_1_7b_rsft_s43, plan019_1_7b_rsft_s44, d112_rsft_s44_ced_score |\\\\n| D113 | 2026-05-18 | D113: GRPO bf16 ckpt-100 为最优 checkpoint，ckpt-200 无 | grpo_bf16_g4_ckpt100_eval, grpo_bf16_g4_ckpt200_eval |\\\\n| D112 | 2026-05-18 | D112: 4B RSFT ign_f1 claim 需重大 reframe——全部 RSFT 基于 | wave1_sft_4b_s43_eval_r2, wave1_sft_4b_s44_eval_r2, eval_rsft_ced_s42 |\\\\n| D111 | 2026-05-18 | D111: 4B SFT s42 必须用 D076 协议重新 eval，统一三 seed 参考基准 | wave1_sft_4b_s43_eval_r2, wave1_sft_4b_s44_eval_r2 |\\\\n| D110 | 2026-05-18 | D110: GRPO bf16 ckpt-100 ign_f1=0.4431 无 catastrop | wave1_grpo_bf16_g4, grpo_bf16_g4_ckpt100_eval |\\\\n| D109 | 2026-05-18 | D109: Random RSFT k=1 ign_f1=0.4114 确证 CED scoring | random_rsft_k1_baseline, eval_flat_nli_seed45 |\\\\n\\\\n\\\", \\\"total_chars\\\": 5100, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/ROADMAP.md\", \"content\": \"# faith-evidence-ie — Research Dashboard\\n\\n> 最后更新: 2026-05-19 05:43 UTC | 更新原因: D115 8B RSFT 完成 + D114 1.7B Method A 裁决 + D112 进展 + 14B SFT 启动 + Wave 1 全部完成\\n\\n## 核心方向\\nFREIGE: LLM-based evidence-grounded DocRE 系统性研究。3 贡献：RSFT+NLI 有效性 / Decoupling spectrum / Scale-dependent evidence tax。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: 🚀 Research + 审稿并行（Round 1 = 3.0 Findings，目标 4.0 Main）\\n- **Wave 1**: ✅ 全部完成（SFT s43/s44, GRPO bf16 G=4, Random RSFT）\\n- **Scaling seeds (plan_019)**: 8B 2-seed RSFT 完成（D115: s44=0.5451, variance 0.53pp）；1.7B s43/s44 重跑中（D114 Method A）\\n- **D112 full pipeline**: Step 3 RSFT 训练中 cuda:0（验证 RSFT 在强 SFT base s44 上的泛化性）\\n- **14B SFT (plan_017)**: cuda:1+2 运行中（2-GPU ZeRO-3, D108）\\n- **关键数值汇总**:\\n\\n| Scale | SFT mean (seeds) | RSFT mean (seeds) | Δ ign_f1 | SFT std | RSFT std |\\n|-------|-------------------|--------------------|----------|---------|----------|\\n| 1.7B | 0.4464 (3) | 0.5122 (1, s42 base) | +6.58pp | 2.79pp | — |\\n| 4B | 0.4358 (3) | 0.4482 (3, Method A) | +1.24pp | 3.80pp | 0.51pp |\\n| 8B | 0.4866 (2) | 0.5414 (2, Method A) | +5.48pp | 2.62pp | 0.53pp |\\n\\n- **RSFT 稳定化效应**: 4B variance 3.80→0.51pp (7.5x)，8B variance 2.62→0.53pp (5x)\\n- **CED 价值**: CED RSFT (0.4482) > Random RSFT (0.4114) > SFT (0.3974)，+3.68pp gap\\n- **GRPO**: bf16 ckpt-100 ign_f1=0.4431 无 catastrophic forgetting（D110），QLoRA 是 confound\\n\\n## 投稿目标\\n- **EMNLP 2026 Main** (ARR July cycle, ~July 15-25, **~57 天**)\\n\\n## 实验路线（3 层优先级）\\n\\n### Tier 1 — Main 必要条件\\n| 实验 | Plan ID | 状态 |\\n|------|---------|------|\\n| D102 k=1 方法论修正 | D102 | ✅ 完成 |\\n| SFT 4B s43 + s44 + s42 reeval | plan_w3_sft_seeds | ✅ 完成 (D111) |\\n| GRPO bf16 G=4 clean control | plan_015 | ✅ 完成 (D110/D113) |\\n| Random k=1 RSFT baseline | plan_w18_random | ✅ 完成 (D109) |\\n| 8B RSFT s44 seed expansion | plan_019 (8B) | ✅ 完成 (D115) |\\n| D112 RSFT from SFT s44 | plan_d112 | 🟡 Step 3 训练中 cuda:0 |\\n| 1.7B RSFT s43/s44 重跑 | plan_019 (1.7B) | 🟡 s43_r2 提交中 cuda:3 |\\n| 14B SFT (第 4 尺度) | plan_017 | 🟡 训练中 cuda:1+2 |\\n\\n### Tier 2 — 大幅加分\\n| 实验 | Plan ID | 状态 |\\n|------|---------|------|\\n| 14B RSFT + no-evidence + eval | plan_017 (后续) | pending（等 SFT 完成） |\\n| NLI model ablation | plan_010 | pending |\\n| Evidence tax 机制分析 | plan_020 | pending |\\n| Deep error analysis | plan_021 | pending |\\n\\n### Tier 3 — 锦上添花\\n| 实验 | Plan ID | 状态 |\\n|------|---------|------|\\n| CDR/GDA 跨领域 | plan_018 | P2（无 evidence 标注） |\\n| 第三模型家族 | plan_022 | pending |\\n| DocKS-RAG/LMRC 复现 | plan_023 | pending |\\n\\n## 从 3.0 → 4.0 路径\\n| 里程碑 | 预期评分 | 状态 |\\n|--------|---------|------|\\n| Wave 1 完成 + D112 | 3.0 → 3.5 | 🟡 D112 step 3 训练中 |\\n| + 1.7B/8B multi-seed 统计力 | 3.5 | 🟡 8B done, 1.7B 重跑中 |\\n| + 14B 第 4 尺度档 | 3.5 → 3.75 | 🟡 SFT 训练中 |\\n| + Mechanistic + error analysis | 3.75 → 4.0 | pending |\\n\\n## GPU 预算\\n- 本项目：rtx5090-4x cuda:0-3（4 张 RTX 5090）\\n- 当前：4/4 在用（D112 step3 / 14B SFT×2 / 1.7B RSFT）\\n- 剩余估算：Tier 1 ~15h + Tier 2 ~65h + Tier 3 ~100h\\n\\n## 近期任务\\n- [x] Wave 1 全部完成（SFT seeds, GRPO bf16, Random RSFT）\\n- [x] 8B RSFT s44 eval (D115: 0.5451, variance 压缩 5x)\\n- [x] 4B SFT s42 D076 reeval (D111: 0.3974)\\n- [ ] D112 step 3 → step 4 eval（cuda:0, ~1.5h total）\\n- [ ] 1.7B RSFT s43_r2 + s44_r2 + eval（cuda:3, ~2-3h total）\\n- [ ] 14B SFT 完成 → 14B RSFT + no-evidence + eval（cuda:1+2, ~8h SFT + 后续）\\n- [ ] experiment_plan.yaml 全面同步 registry\\n- [ ] paper_framing.md 更新（D112 结果 + 8B 2-seed + variance 压缩 narrative）\\n- [ ] 重新提交论文审稿\\n\\n## 关键风险\\n- **D112 结果待定**: 如 RSFT-from-s44 > SFT s44 (0.4734) → Claim 1 robust；否则需 reframe\\n- **8B RSFT evidence quality trade-off**: EDCR 从 0.65-0.67 降到 0.62（RE↑/evidence precision↓），论文需讨论\\n- **1.7B surpasses claim**: 现在更强（1.7B RSFT 0.5122 > 8B SFT mean 0.4866 +2.56pp），但仍需 1.7B multi-seed 确认\\n- **14B 显存**: 2-GPU ZeRO-3 已启动且正常（D108 验证），后续 RSFT 可能需要调参\\n- **EDCR 缺人工验证**: plan_013 取消，用 per-relation 分析 + Limitations 缓解\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D118 | 2026-05-19 | D118: \\\"1.7B RSFT surpasses 8B SFT\\\" claim 降级为 \\\"appr | plan019_8b_sft_s43_eval, plan019_1_7b_rsft_s44_r2_eval |\\n| D117 | 2026-05-19 | D117: 14B SFT evidence tax = 0.03pp（本质为零），完成 4 尺度  | plan017_14b_sft_eval_r2, plan017_14b_sft_no_evidence_eval_r2 |\\n| D116 | 2026-05-19 | D116: D112 结果无效（QLoRA confound），必须用 bf16 LoRA 重跑 s | d112_rsft_s44_eval, d112_rsft_s44_train |\\n| D115 | 2026-05-19 | D115: 8B RSFT s44 ign_f1=0.5451 确认 RSFT 跨 seed 稳健， | plan019_8b_rsft_s44_eval, eval_rsft_ced_s42 |\\n| D114 | 2026-05-19 | D114: 1.7B RSFT s43/s44 应使用 Method A（s42 SFT base） | plan019_1_7b_rsft_s43, plan019_1_7b_rsft_s44, d112_rsft_s44_ced_score |\\n| D113 | 2026-05-18 | D113: GRPO bf16 ckpt-100 为最优 checkpoint，ckpt-200 无 | grpo_bf16_g4_ckpt100_eval, grpo_bf16_g4_ckpt200_eval |\\n| D112 | 2026-05-18 | D112: 4B RSFT ign_f1 claim 需重大 reframe——全部 RSFT 基于 | wave1_sft_4b_s43_eval_r2, wave1_sft_4b_s44_eval_r2, eval_rsft_ced_s42 |\\n| D111 | 2026-05-18 | D111: 4B SFT s42 必须用 D076 协议重新 eval，统一三 seed 参考基准 | wave1_sft_4b_s43_eval_r2, wave1_sft_4b_s44_eval_r2 |\\n| D110 | 2026-05-18 | D110: GRPO bf16 ckpt-100 ign_f1=0.4431 无 catastrop | wave1_grpo_bf16_g4, grpo_bf16_g4_ckpt100_eval |\\n| D109 | 2026-05-18 | D109: Random RSFT k=1 ign_f1=0.4114 确证 CED scoring | random_rsft_k1_baseline, eval_flat_nli_seed45 |\\n\\n\", \"total_chars\": 5100, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+              }
+            },
+            "sourceToolAssistantUUID": "558190a4-5f98-423a-8e0d-da850a5dcc64",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "ac6c3eaa-1181-4230-9499-9a3dbe044d7c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "1d99f970-f2c6-4e44-8616-2a94cb91257f",
+                "sessionId": "ac6c3eaa-1181-4230-9499-9a3dbe044d7c"
+              }
+            }
+          ],
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Update ROADMAP with latest experimental results",
+                "sessionId": "ac6c3eaa-1181-4230-9499-9a3dbe044d7c"
+              }
+            }
+          ],
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T17:13:38.635Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have the current ROADMAP.md. Let me update it based on the task requirements:\n\n1. 14B evidence tax discovery (D117) - already partially noted\n2. \"1.7B surpasses\" claim downgrade (D118) - need to weaken the claim\n3. D112 completion - step 4 eval done, ign_f1=0.5152, +4.18pp over SFT s44 baseline (0.4734)\n4. Current GPU distribution\n5. Scaling table update - add 14B row, update 8B to 3-seed mean, add D112 result\n\n\n6. Task list update\n\nI'm going through the document systematically to make these updates. The scaling table needs the 8B SFT mean adjusted from 0.4866 to 0.5019 based on three seeds, I'll add the 14B row with its evidence tax findings, and incorporate the D112 results for the 4B model. I also need to soften the language around the 1.7B surpassing claim and update the GPU allocation details, plus I'm checking the RSFT variance comparison for the 8B model.\n\nLooking at the actual numbers from the data, the 8B SFT shows a standard deviation of 0.0372 across three seeds while RSFT comes in at 0.005, which is a meaningful difference in stability I should highlight.\n\nFor the 1.7B comparison claim, the RSFT score of 0.5122 versus the 8B SFT mean of 0.5019 gives only a 1.03 percentage point difference with a p-value around 0.34—not statistically significant, so I need to soften that language to say they're comparable rather than claiming one surpasses the other.\n\nNow I'm checking the variance numbers: the 8B SFT runs across three seeds show a standard deviation of 3.72 percentage points, while the RSFT variance from the earlier experiment was much tighter at 0.53 percentage points. With those numbers confirmed, I can move forward with updating the roadmap to reflect the completed experiments and the revised claims.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1d99f970-f2c6-4e44-8616-2a94cb91257f",
+            "isSidechain": false,
+            "requestId": "req_011CbCJUMYHWdM1X8cnTuN9W",
+            "type": "assistant",
+            "uuid": "02a0756d-4b21-4be0-9a77-b4323e4e2dca",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "ac6c3eaa-1181-4230-9499-9a3dbe044d7c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016jbuCcEgJXkr5V1iGGXtZT",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3455,
+                "cache_read_input_tokens": 25558,
+                "output_tokens": 4785,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3455,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 4785,
+                    "cache_read_input_tokens": 25558,
+                    "cache_creation_input_tokens": 3455,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3455
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T17:13:38.639Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I'll write the updated ROADMAP.md."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "02a0756d-4b21-4be0-9a77-b4323e4e2dca",
+            "isSidechain": false,
+            "requestId": "req_011CbCJUMYHWdM1X8cnTuN9W",
+            "type": "assistant",
+            "uuid": "10d4a6b4-1257-4d59-a1a5-4dbf791ee051",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "ac6c3eaa-1181-4230-9499-9a3dbe044d7c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016jbuCcEgJXkr5V1iGGXtZT",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3455,
+                "cache_read_input_tokens": 25558,
+                "output_tokens": 4785,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3455,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 4785,
+                    "cache_read_input_tokens": 25558,
+                    "cache_creation_input_tokens": 3455,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3455
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T17:14:16.850Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UqMbVys6SyF9c8mJTGFcwF",
+              "name": "mcp__agent-ml-research__save_project_file",
+              "input": {
+                "project": "faith-evidence-ie",
+                "file": "ROADMAP.md",
+                "content": "# faith-evidence-ie — Research Dashboard\n\n> 最后更新: 2026-05-19 09:30 UTC | 更新原因: D117 14B evidence tax=0 + D118 1.7B claim 降级 + D112 bf16 完成 (0.5152) + 8B SFT 3-seed + scaling table 更新\n\n## 核心方向\nFREIGE: LLM-based evidence-grounded DocRE 系统性研究。3 贡献：RSFT+NLI 有效性 / Decoupling spectrum / Scale-dependent evidence tax。详见 paper_framing.md。\n\n## 当前进展\n- **阶段**: 🚀 Research + 审稿并行（Round 1 = 3.0 Findings，目标 4.0 Main）\n- **Wave 1**: ✅ 全部完成（SFT seeds, GRPO bf16, Random RSFT）\n- **Scaling seeds (plan_019)**: 8B 2-seed RSFT 完成（D115: s44=0.5451, variance 0.53pp）；8B SFT 3-seed 完成（mean=0.5019±3.72pp）\n- **D112 full pipeline**: ✅ 完成（bf16 LoRA RSFT from SFT s44: ign_f1=0.5152, +4.18pp over SFT s44 baseline 0.4734）\n- **14B SFT (plan_017)**: ✅ 完成（D117: with-evidence 0.5507, no-evidence 0.551, evidence tax=0.03pp≈0）\n- **D118 claim 降级**: 1.7B RSFT (0.5122) vs 8B SFT mean (0.5019) Δ=+1.03pp, p≈0.34 不显著，降级为 \"comparable / on par with\"\n- **关键数值汇总**:\n\n| Scale | SFT mean (seeds) | RSFT mean (seeds) | Δ ign_f1 | SFT std | RSFT std |\n|-------|-------------------|--------------------|----------|---------|----------|\n| 1.7B | 0.4464 (3) | 0.5122 (1, s42 base) | +6.58pp | 2.79pp | — |\n| 4B | 0.4358 (3) | 0.4482 (3, Method A) / 0.5152 (1, Method B) | +1.24pp / +4.18pp (vs s44) | 3.80pp | 0.51pp |\n| 8B | 0.5019 (3) | 0.5414 (2, Method A) | +3.95pp | 3.72pp | 0.53pp |\n| 14B | 0.5507 (1) | pending | — | — | — |\n\n- **14B evidence tax**: 0.03pp（本质为零），14B 容量足够同时输出 evidence 和 RE\n- **RSFT variance 稳定化**: 8B SFT std=3.72pp → RSFT std=0.53pp (7x)；4B SFT std=3.80pp → RSFT std=0.51pp (7.5x)\n- **CED 价值**: CED RSFT (0.4482) > Random RSFT (0.4114) > SFT (0.3974)，+3.68pp gap\n- **GRPO**: bf16 ckpt-100 ign_f1=0.4431 无 catastrophic forgetting（D110），QLoRA 是 confound\n\n## 投稿目标\n- **EMNLP 2026 Main** (ARR July cycle, ~July 15-25, **~57 天**)\n\n## 实验路线（3 层优先级）\n\n### Tier 1 — Main 必要条件\n| 实验 | Plan ID | 状态 |\n|------|---------|------|\n| D102 k=1 方法论修正 | D102 | ✅ 完成 |\n| SFT 4B s43 + s44 + s42 reeval | plan_w3_sft_seeds | ✅ 完成 (D111) |\n| GRPO bf16 G=4 clean control | plan_015 | ✅ 完成 (D110/D113) |\n| Random k=1 RSFT baseline | plan_w18_random | ✅ 完成 (D109) |\n| 8B RSFT s44 seed expansion | plan_019 (8B) | ✅ 完成 (D115) |\n| 8B SFT s43 eval | plan_019 | ✅ 完成 (ign_f1=0.5324) |\n| D112 RSFT from SFT s44 (bf16) | plan_d112 | ✅ 完成 (ign_f1=0.5152) |\n| 14B SFT (第 4 尺度) | plan_017 | ✅ 完成 (D117: 0.5507, tax=0.03pp) |\n| 1.7B RSFT s43/s44 重跑 | plan_019 (1.7B) | 🟡 进行中 |\n\n### Tier 2 — 大幅加分\n| 实验 | Plan ID | 状态 |\n|------|---------|------|\n| 14B RSFT + no-evidence + eval | plan_017 (后续) | pending（等启动） |\n| 8B RSFT s43 补齐第 3 seed | plan_019 | pending |\n| NLI model ablation | plan_010 | pending |\n| Evidence tax 机制分析 | plan_020 | pending |\n| Deep error analysis | plan_021 | pending |\n\n### Tier 3 — 锦上添花\n| 实验 | Plan ID | 状态 |\n|------|---------|------|\n| CDR/GDA 跨领域 | plan_018 | P2（无 evidence 标注） |\n| 第三模型家族 | plan_022 | pending |\n| DocKS-RAG/LMRC 复现 | plan_023 | pending |\n\n## 从 3.0 → 4.0 路径\n| 里程碑 | 预期评分 | 状态 |\n|--------|---------|------|\n| Wave 1 完成 + D112 | 3.0 → 3.5 | ✅ D112 完成 (0.5152) |\n| + 1.7B/8B multi-seed 统计力 | 3.5 | 🟡 8B 3-seed done, 1.7B 进行中 |\n| + 14B 第 4 尺度档 | 3.5 → 3.75 | ✅ SFT 完成 (0.5507), RSFT pending |\n| + Mechanistic + error analysis | 3.75 → 4.0 | pending |\n\n## GPU 分布\n- cuda:0: 8B RSFT no-evidence eval r2（接近完成）\n- cuda:1: D112 no-evidence eval r3（44%）\n- cuda:2: 空闲\n- cuda:3: 1.7B no-evidence eval 2048（38%）\n\n## 近期任务\n- [x] Wave 1 全部完成（SFT seeds, GRPO bf16, Random RSFT）\n- [x] 8B RSFT s44 eval (D115: 0.5451, variance 压缩 5x)\n- [x] 4B SFT s42 D076 reeval (D111: 0.3974)\n- [x] D112 step 4 eval 完成 (bf16 LoRA: ign_f1=0.5152, +4.18pp)\n- [x] 8B SFT s43 eval 完成 (ign_f1=0.5324)\n- [x] 14B SFT eval 完成 (D117: ign_f1=0.5507, evidence tax=0.03pp)\n- [ ] 1.7B no-evidence eval 2048 重跑（排除截断，cuda:3）\n- [ ] 8B RSFT no-evidence eval（cuda:0，接近完成）\n- [ ] D112 no-evidence eval r3（cuda:1，44%）\n- [ ] 14B RSFT pipeline（待启动）\n- [ ] 8B RSFT s43 补齐第 3 seed\n- [ ] experiment_plan.yaml 全面同步 registry\n- [ ] paper_framing.md 更新（D112 + D117 + D118 narrative 调整）\n- [ ] 重新提交论文审稿\n\n## 关键风险\n- **D112 结果**: ✅ 已确认 RSFT-from-s44 (0.5152) > SFT s44 (0.4734) +4.18pp，Claim 1 robust\n- **1.7B \"surpasses\" claim 已降级 (D118)**: 1.7B RSFT vs 8B SFT Δ=+1.03pp, p≈0.34 不显著，改为 \"comparable\"；RSFT variance stabilization (SFT std=3.72pp vs RSFT std=0.53pp) 作为独立发现\n- **14B evidence tax = 0 (D117)**: 积极结果，14B 容量足够，论文 Claim 3 需调整为 \"tax scales inversely with model capacity\"\n- **8B RSFT evidence quality trade-off**: EDCR 从 0.65-0.67 降到 0.62（RE↑/evidence precision↓），论文需讨论\n- **14B RSFT 待启动**: SFT 已完成，RSFT pipeline 是 Tier 2 首要任务\n- **EDCR 缺人工验证**: plan_013 取消，用 per-relation 分析 + Limitations 缓解\n\n## 关键决策日志\n\n| ID | 日期 | 摘要 | 关联实验 |\n|----|------|------|----------|\n| D118 | 2026-05-19 | D118: \"1.7B RSFT surpasses 8B SFT\" claim 降级为 \"appr | plan019_8b_sft_s43_eval, plan019_1_7b_rsft_s44_r2_eval |\n| D117 | 2026-05-19 | D117: 14B SFT evidence tax = 0.03pp（本质为零），完成 4 尺度  | plan017_14b_sft_eval_r2, plan017_14b_sft_no_evidence_eval_r2 |\n| D116 | 2026-05-19 | D116: D112 结果无效（QLoRA confound），必须用 bf16 LoRA 重跑 s | d112_rsft_s44_eval, d112_rsft_s44_train |\n| D115 | 2026-05-19 | D115: 8B RSFT s44 ign_f1=0.5451 确认 RSFT 跨 seed 稳健， | plan019_8b_rsft_s44_eval, eval_rsft_ced_s42 |\n| D114 | 2026-05-19 | D114: 1.7B RSFT s43/s44 应使用 Method A（s42 SFT base） | plan019_1_7b_rsft_s43, plan019_1_7b_rsft_s44, d112_rsft_s44_ced_score |\n| D113 | 2026-05-18 | D113: GRPO bf16 ckpt-100 为最优 checkpoint，ckpt-200 无 | grpo_bf16_g4_ckpt100_eval, grpo_bf16_g4_ckpt200_eval |\n| D112 | 2026-05-18 | D112: 4B RSFT ign_f1 claim 需重大 reframe——全部 RSFT 基于 | wave1_sft_4b_s43_eval_r2, wave1_sft_4b_s44_eval_r2, eval_rsft_ced_s42 |\n| D111 | 2026-05-18 | D111: 4B SFT s42 必须用 D076 协议重新 eval，统一三 seed 参考基准 | wave1_sft_4b_s43_eval_r2, wave1_sft_4b_s44_eval_r2 |\n| D110 | 2026-05-18 | D110: GRPO bf16 ckpt-100 ign_f1=0.4431 无 catastrop | wave1_grpo_bf16_g4, grpo_bf16_g4_ckpt100_eval |\n| D109 | 2026-05-18 | D109: Random RSFT k=1 ign_f1=0.4114 确证 CED scoring | random_rsft_k1_baseline, eval_flat_nli_seed45 |\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "10d4a6b4-1257-4d59-a1a5-4dbf791ee051",
+            "isSidechain": false,
+            "requestId": "req_011CbCJUMYHWdM1X8cnTuN9W",
+            "type": "assistant",
+            "uuid": "6e7212d5-3071-4898-8fa7-fd63d15b1469",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "ac6c3eaa-1181-4230-9499-9a3dbe044d7c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016jbuCcEgJXkr5V1iGGXtZT",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3455,
+                "cache_read_input_tokens": 25558,
+                "output_tokens": 4785,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3455,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 4785,
+                    "cache_read_input_tokens": 25558,
+                    "cache_creation_input_tokens": 3455,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3455
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T17:14:16.884Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UqMbVys6SyF9c8mJTGFcwF",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"file 'ROADMAP.md' is not writable via save_project_file. Writable: ['memory.md', 'paper_framing.md', 'writing_plan.yaml']. Use update_roadmap instead.\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6e7212d5-3071-4898-8fa7-fd63d15b1469",
+            "isSidechain": false,
+            "promptId": "728f9907-b4c1-4b15-884b-d9e88637119a",
+            "type": "user",
+            "uuid": "a38d6c46-61e7-4ec2-a897-d2e01145962d",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"file 'ROADMAP.md' is not writable via save_project_file. Writable: ['memory.md', 'paper_framing.md', 'writing_plan.yaml']. Use update_roadmap instead.\\\", \\\"metadata\\\": {}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"file 'ROADMAP.md' is not writable via save_project_file. Writable: ['memory.md', 'paper_framing.md', 'writing_plan.yaml']. Use update_roadmap instead.\", \"metadata\": {}}"
+              }
+            },
+            "sourceToolAssistantUUID": "6e7212d5-3071-4898-8fa7-fd63d15b1469",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "ac6c3eaa-1181-4230-9499-9a3dbe044d7c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T17:14:19.997Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Need to use update_roadmap instead. Let me find that tool.",
+              "signature": "EvUBClkIDRgCKkDj/aIwHBhZatvhWM1OYk99hT9vxmIL9YnZk5I+yIqZBpM8eiXYB0+Z4K+HbWqOz2vA+oV6wnkzz89WrHm23yEJMg9jbGF1ZGUtb3B1cy00LTY4ABIMNJhNDbccRM2b12mbGgxNLJIy5/bnf2ftpBEiMGi89ZEIvvHuoTDGU2g/2kb+PF/yw0ApGu4nVlS/7PKn0nPucrOhzXuJSw7hOEsSSSpKfashQjz0jcyyE9gmSAqzjmajczyCs7PIdnCiH4BWclTtPSuVkoPy9nvP6lBFu9HiX19vBo0Bfw0257vH/sfK/KgFSmvK4HsbUUYYAQ=="
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a38d6c46-61e7-4ec2-a897-d2e01145962d",
+            "isSidechain": false,
+            "requestId": "req_011CbCJZ1Nyf7p75TXuw27vV",
+            "type": "assistant",
+            "uuid": "58b8a6d7-851e-4c31-b55f-f3fe17e96828",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "ac6c3eaa-1181-4230-9499-9a3dbe044d7c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019iFqN9LRHTzKcWYP8C2oxL",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4872,
+                "cache_read_input_tokens": 29013,
+                "output_tokens": 188,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 4872,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 188,
+                    "cache_read_input_tokens": 29013,
+                    "cache_creation_input_tokens": 4872,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 4872
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T17:14:20.492Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "需要用 `update_roadmap` 工具。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "58b8a6d7-851e-4c31-b55f-f3fe17e96828",
+            "isSidechain": false,
+            "requestId": "req_011CbCJZ1Nyf7p75TXuw27vV",
+            "type": "assistant",
+            "uuid": "33f23f17-9a2e-43a5-8bf0-c89afdb5d8ed",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "ac6c3eaa-1181-4230-9499-9a3dbe044d7c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019iFqN9LRHTzKcWYP8C2oxL",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4872,
+                "cache_read_input_tokens": 29013,
+                "output_tokens": 188,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 4872,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 188,
+                    "cache_read_input_tokens": 29013,
+                    "cache_creation_input_tokens": 4872,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 4872
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-19T17:14:21.183Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HLW4fzjv2CPLeFjAfdaPdc",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__update_registry",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "33f23f17-9a2e-43a5-8bf0-c89afdb5d8ed",
+            "isSidechain": false,
+            "requestId": "req_011CbCJZ1Nyf7p75TXuw27vV",
+            "type": "assistant",
+            "uuid": "9dfd8cda-dd75-485b-9bef-d4465c85942c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "ac6c3eaa-1181-4230-9499-9a3dbe044d7c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019iFqN9LRHTzKcWYP8C2oxL",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4872,
+                "cache_read_input_tokens": 29013,
+                "output_tokens": 188,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 4872,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 188,
+                    "cache_read_input_tokens": 29013,
+                    "cache_creation_input_tokens": 4872,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 4872
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-19T17:14:25.325Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01WBbJZ3MKB9ErJGhZCkpsLs",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__save_project_file"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cedbaa31-a650-489f-8865-53ab972821f3",
+            "isSidechain": false,
+            "promptId": "728f9907-b4c1-4b15-884b-d9e88637119a",
+            "type": "user",
+            "uuid": "c7e14871-cbd6-47ae-85f2-e7592174c222",
+            "toolUseResult": {
+              "matches": [
+                "mcp__agent-ml-research__save_project_file"
+              ],
+              "query": "update_roadmap",
+              "total_deferred_tools": 25
+            },
+            "sourceToolAssistantUUID": "cedbaa31-a650-489f-8865-53ab972821f3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "ac6c3eaa-1181-4230-9499-9a3dbe044d7c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-19T17:14:21.187Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01HLW4fzjv2CPLeFjAfdaPdc",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__update_registry"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9dfd8cda-dd75-485b-9bef-d4465c85942c",
+            "isSidechain": false,
+            "promptId": "728f9907-b4c1-4b15-884b-d9e88637119a",
+            "type": "user",
+            "uuid": "de3d9ff7-13e7-48b2-baeb-c1873f441198",
+            "toolUseResult": {
+              "matches": [
+                "mcp__agent-ml-research__update_registry"
+              ],
+              "query": "select:mcp__agent-ml-research__update_registry",
+              "total_deferred_tools": 25
+            },
+            "sourceToolAssistantUUID": "9dfd8cda-dd75-485b-9bef-d4465c85942c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "ac6c3eaa-1181-4230-9499-9a3dbe044d7c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-19T17:14:25.304Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WBbJZ3MKB9ErJGhZCkpsLs",
+              "name": "ToolSearch",
+              "input": {
+                "query": "update_roadmap",
+                "max_results": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "de3d9ff7-13e7-48b2-baeb-c1873f441198",
+            "isSidechain": false,
+            "requestId": "req_011CbCJZ1Nyf7p75TXuw27vV",
+            "type": "assistant",
+            "uuid": "cedbaa31-a650-489f-8865-53ab972821f3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "ac6c3eaa-1181-4230-9499-9a3dbe044d7c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019iFqN9LRHTzKcWYP8C2oxL",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4872,
+                "cache_read_input_tokens": 29013,
+                "output_tokens": 188,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 4872,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 188,
+                    "cache_read_input_tokens": 29013,
+                    "cache_creation_input_tokens": 4872,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 4872
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-19T17:14:31.419Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011qMaMbxUhfAUBNzwctrPsz",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__update_roadmap",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c7e14871-cbd6-47ae-85f2-e7592174c222",
+            "isSidechain": false,
+            "requestId": "req_011CbCJZdgHA1Att8jo8atyk",
+            "type": "assistant",
+            "uuid": "4cfb287e-8093-4fd3-8e4f-1a4d0e8b4db7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "ac6c3eaa-1181-4230-9499-9a3dbe044d7c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RNxxApt3VXQqCjtJJUukWE",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 990,
+                "cache_read_input_tokens": 33885,
+                "output_tokens": 87,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 990,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 87,
+                    "cache_read_input_tokens": 33885,
+                    "cache_creation_input_tokens": 990,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 990
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-19T17:14:31.423Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_011qMaMbxUhfAUBNzwctrPsz",
+              "content": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4cfb287e-8093-4fd3-8e4f-1a4d0e8b4db7",
+            "isSidechain": false,
+            "promptId": "728f9907-b4c1-4b15-884b-d9e88637119a",
+            "type": "user",
+            "uuid": "72f1abc1-ee44-4217-87a4-734761eb30f2",
+            "toolUseResult": {
+              "matches": [],
+              "query": "select:mcp__agent-ml-research__update_roadmap",
+              "total_deferred_tools": 25
+            },
+            "sourceToolAssistantUUID": "4cfb287e-8093-4fd3-8e4f-1a4d0e8b4db7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "ac6c3eaa-1181-4230-9499-9a3dbe044d7c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-19T17:14:34.471Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The tool isn't available as a deferred tool. Let me try a different search.",
+              "signature": "EoYCClkIDRgCKkB+Rflmo1UzkQf/KS/MAxp1WOWQVcNWXeXgA0FGekkJNtnaDBzwNinSctzbn8fqfyMqeq9G6PAI/m6RABPGvv70Mg9jbGF1ZGUtb3B1cy00LTY4ABIMDKsKqJnzqsZmnzUqGgwl5qGF7WiaOQcB9QYiMIa3fi0L7Zo016hILJ4cjdGQyu1nvm9xH5uj9E3mXDj+cEXO7qI5Cy1X5FZu6woWaipb25xDcS63jbj7NyzqDBYdoV4HmuRqR2u98Aumtc1EHoScQTDqUwkF8p02K/PWUkR4/a4gYwTZERZA2btA1mJ4Wp5qSZ4ztGtf3A1VWw1c9BieHaM8xixOk1qEmxgB"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "72f1abc1-ee44-4217-87a4-734761eb30f2",
+            "isSidechain": false,
+            "requestId": "req_011CbCJa5tckwTwiQkEeaxHZ",
+            "type": "assistant",
+            "uuid": "87e91c26-0e3d-4dd2-baea-e0e3a1a8cab8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "ac6c3eaa-1181-4230-9499-9a3dbe044d7c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JyEiJLmUCuASTKkGykF7Vx",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 107,
+                "cache_read_input_tokens": 34875,
+                "output_tokens": 106,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 107,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 106,
+                    "cache_read_input_tokens": 34875,
+                    "cache_creation_input_tokens": 107,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 107
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-19T17:14:34.483Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Bydnjx5TtweSq3dDu5Uf24",
+              "name": "ToolSearch",
+              "input": {
+                "query": "roadmap",
+                "max_results": 5
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "87e91c26-0e3d-4dd2-baea-e0e3a1a8cab8",
+            "isSidechain": false,
+            "requestId": "req_011CbCJa5tckwTwiQkEeaxHZ",
+            "type": "assistant",
+            "uuid": "c5b57b0a-60ab-483c-b47c-8cea59027929",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "ac6c3eaa-1181-4230-9499-9a3dbe044d7c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JyEiJLmUCuASTKkGykF7Vx",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 107,
+                "cache_read_input_tokens": 34875,
+                "output_tokens": 106,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 107,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 106,
+                    "cache_read_input_tokens": 34875,
+                    "cache_creation_input_tokens": 107,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 107
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-19T17:14:34.492Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01Bydnjx5TtweSq3dDu5Uf24",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__read_project_file"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__save_project_file"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c5b57b0a-60ab-483c-b47c-8cea59027929",
+            "isSidechain": false,
+            "promptId": "728f9907-b4c1-4b15-884b-d9e88637119a",
+            "type": "user",
+            "uuid": "9271561a-f6c6-42c3-bf8a-b038bbbf3854",
+            "toolUseResult": {
+              "matches": [
+                "mcp__agent-ml-research__read_project_file",
+                "mcp__agent-ml-research__save_project_file"
+              ],
+              "query": "roadmap",
+              "total_deferred_tools": 25
+            },
+            "sourceToolAssistantUUID": "c5b57b0a-60ab-483c-b47c-8cea59027929",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "ac6c3eaa-1181-4230-9499-9a3dbe044d7c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-19T17:14:34.630Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "9271561a-f6c6-42c3-bf8a-b038bbbf3854",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "5537f2e5-b97d-4a95-b089-23be33c4b832",
+                "timestamp": "2026-05-19T17:14:34.630Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+                "sessionId": "ac6c3eaa-1181-4230-9499-9a3dbe044d7c",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-19T17:14:39.131Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The `update_roadmap` tool isn't showing up in ToolSearch. Let me try to find it with a different query, or just directly write the file since I know its path.",
+              "signature": "EtoCClkIDRgCKkBe3fm3v5FhKuQQi48rfW6aYtZUohLVZbIVOtlQkybLqHR1sLy8zDBRZoQexRhjj9UyZIbu33o+62dzUglZhmuKMg9jbGF1ZGUtb3B1cy00LTY4ABIMn6hfc3RdPXGafOWxGgzitVbmPIDf5YiIRtsiMH0J/a4y6OgLpyreA7O0XHVGvNW7ktenoCHrpEGbBwpqlbDrS4ePne/8WBYBVvLciyquASWa8s1xFvEuqwaBfdBWHcTeVJDyR0thpZQZWqpA1c1wHGScAyJfrl2bg1Lwl6tOP9ZNDG7F6WH0jXrn8HuwiK+VE3Fg94lIeOVycQDo6pBzFN/29Ir27D/83Od2AJQjTkOqBBBFPpdhW9i7Q9nZW8eHneHPOA+tRR3OdpTiHeIiqz3hmqK3UI2vjgnnNFD43ZFKeEnJe7G414ntORfxqGnDkMHkRPOr1pgTT+XygBgB"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5537f2e5-b97d-4a95-b089-23be33c4b832",
+            "isSidechain": false,
+            "requestId": "req_011CbCJaJf4rreVj8mCE4A1n",
+            "type": "assistant",
+            "uuid": "185c4e3e-22fc-49e6-9437-98388f64231a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "ac6c3eaa-1181-4230-9499-9a3dbe044d7c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UJokF8j186d5UtjAHHFEyb",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 803,
+                "cache_read_input_tokens": 34982,
+                "output_tokens": 161,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 803,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 161,
+                    "cache_read_input_tokens": 34982,
+                    "cache_creation_input_tokens": 803,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 803
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-19T17:14:39.653Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "`update_roadmap` 工具未找到。直接写文件。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "185c4e3e-22fc-49e6-9437-98388f64231a",
+            "isSidechain": false,
+            "requestId": "req_011CbCJaJf4rreVj8mCE4A1n",
+            "type": "assistant",
+            "uuid": "932d8d40-4e5a-4caf-9480-4f3bdcd1862f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "ac6c3eaa-1181-4230-9499-9a3dbe044d7c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UJokF8j186d5UtjAHHFEyb",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 803,
+                "cache_read_input_tokens": 34982,
+                "output_tokens": 161,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 803,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 161,
+                    "cache_read_input_tokens": 34982,
+                    "cache_creation_input_tokens": 803,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 803
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-19T17:14:40.937Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017pdtn6uDUBB94tR1dpJbMt",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/ROADMAP.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "932d8d40-4e5a-4caf-9480-4f3bdcd1862f",
+            "isSidechain": false,
+            "requestId": "req_011CbCJaJf4rreVj8mCE4A1n",
+            "type": "assistant",
+            "uuid": "e039d739-0d41-49d6-a591-6647e6f1b53b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "ac6c3eaa-1181-4230-9499-9a3dbe044d7c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UJokF8j186d5UtjAHHFEyb",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 803,
+                "cache_read_input_tokens": 34982,
+                "output_tokens": 161,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 803,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 161,
+                    "cache_read_input_tokens": 34982,
+                    "cache_creation_input_tokens": 803,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 803
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-19T17:14:40.955Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017pdtn6uDUBB94tR1dpJbMt",
+              "type": "tool_result",
+              "content": "1\t# faith-evidence-ie — Research Dashboard\n2\t\n3\t> 最后更新: 2026-05-19 05:43 UTC | 更新原因: D115 8B RSFT 完成 + D114 1.7B Method A 裁决 + D112 进展 + 14B SFT 启动 + Wave 1 全部完成\n4\t\n5\t## 核心方向\n6\tFREIGE: LLM-based evidence-grounded DocRE 系统性研究。3 贡献：RSFT+NLI 有效性 / Decoupling spectrum / Scale-dependent evidence tax。详见 paper_framing.md。\n7\t\n8\t## 当前进展\n9\t- **阶段**: 🚀 Research + 审稿并行（Round 1 = 3.0 Findings，目标 4.0 Main）\n10\t- **Wave 1**: ✅ 全部完成（SFT s43/s44, GRPO bf16 G=4, Random RSFT）\n11\t- **Scaling seeds (plan_019)**: 8B 2-seed RSFT 完成（D115: s44=0.5451, variance 0.53pp）；1.7B s43/s44 重跑中（D114 Method A）\n12\t- **D112 full pipeline**: Step 3 RSFT 训练中 cuda:0（验证 RSFT 在强 SFT base s44 上的泛化性）\n13\t- **14B SFT (plan_017)**: cuda:1+2 运行中（2-GPU ZeRO-3, D108）\n14\t- **关键数值汇总**:\n15\t\n16\t| Scale | SFT mean (seeds) | RSFT mean (seeds) | Δ ign_f1 | SFT std | RSFT std |\n17\t|-------|-------------------|--------------------|----------|---------|----------|\n18\t| 1.7B | 0.4464 (3) | 0.5122 (1, s42 base) | +6.58pp | 2.79pp | — |\n19\t| 4B | 0.4358 (3) | 0.4482 (3, Method A) | +1.24pp | 3.80pp | 0.51pp |\n20\t| 8B | 0.4866 (2) | 0.5414 (2, Method A) | +5.48pp | 2.62pp | 0.53pp |\n21\t\n22\t- **RSFT 稳定化效应**: 4B variance 3.80→0.51pp (7.5x)，8B variance 2.62→0.53pp (5x)\n23\t- **CED 价值**: CED RSFT (0.4482) > Random RSFT (0.4114) > SFT (0.3974)，+3.68pp gap\n24\t- **GRPO**: bf16 ckpt-100 ign_f1=0.4431 无 catastrophic forgetting（D110），QLoRA 是 confound\n25\t\n26\t## 投稿目标\n27\t- **EMNLP 2026 Main** (ARR July cycle, ~July 15-25, **~57 天**)\n28\t\n29\t## 实验路线（3 层优先级）\n30\t\n31\t### Tier 1 — Main 必要条件\n32\t| 实验 | Plan ID | 状态 |\n33\t|------|---------|------|\n34\t| D102 k=1 方法论修正 | D102 | ✅ 完成 |\n35\t| SFT 4B s43 + s44 + s42 reeval | plan_w3_sft_seeds | ✅ 完成 (D111) |\n36\t| GRPO bf16 G=4 clean control | plan_015 | ✅ 完成 (D110/D113) |\n37\t| Random k=1 RSFT baseline | plan_w18_random | ✅ 完成 (D109) |\n38\t| 8B RSFT s44 seed expansion | plan_019 (8B) | ✅ 完成 (D115) |\n39\t| D112 RSFT from SFT s44 | plan_d112 | 🟡 Step 3 训练中 cuda:0 |\n40\t| 1.7B RSFT s43/s44 重跑 | plan_019 (1.7B) | 🟡 s43_r2 提交中 cuda:3 |\n41\t| 14B SFT (第 4 尺度) | plan_017 | 🟡 训练中 cuda:1+2 |\n42\t\n43\t### Tier 2 — 大幅加分\n44\t| 实验 | Plan ID | 状态 |\n45\t|------|---------|------|\n46\t| 14B RSFT + no-evidence + eval | plan_017 (后续) | pending（等 SFT 完成） |\n47\t| NLI model ablation | plan_010 | pending |\n48\t| Evidence tax 机制分析 | plan_020 | pending |\n49\t| Deep error analysis | plan_021 | pending |\n50\t\n51\t### Tier 3 — 锦上添花\n52\t| 实验 | Plan ID | 状态 |\n53\t|------|---------|------|\n54\t| CDR/GDA 跨领域 | plan_018 | P2（无 evidence 标注） |\n55\t| 第三模型家族 | plan_022 | pending |\n56\t| DocKS-RAG/LMRC 复现 | plan_023 | pending |\n57\t\n58\t## 从 3.0 → 4.0 路径\n59\t| 里程碑 | 预期评分 | 状态 |\n60\t|--------|---------|------|\n61\t| Wave 1 完成 + D112 | 3.0 → 3.5 | 🟡 D112 step 3 训练中 |\n62\t| + 1.7B/8B multi-seed 统计力 | 3.5 | 🟡 8B done, 1.7B 重跑中 |\n63\t| + 14B 第 4 尺度档 | 3.5 → 3.75 | 🟡 SFT 训练中 |\n64\t| + Mechanistic + error analysis | 3.75 → 4.0 | pending |\n65\t\n66\t## GPU 预算\n67\t- 本项目：rtx5090-4x cuda:0-3（4 张 RTX 5090）\n68\t- 当前：4/4 在用（D112 step3 / 14B SFT×2 / 1.7B RSFT）\n69\t- 剩余估算：Tier 1 ~15h + Tier 2 ~65h + Tier 3 ~100h\n70\t\n71\t## 近期任务\n72\t- [x] Wave 1 全部完成（SFT seeds, GRPO bf16, Random RSFT）\n73\t- [x] 8B RSFT s44 eval (D115: 0.5451, variance 压缩 5x)\n74\t- [x] 4B SFT s42 D076 reeval (D111: 0.3974)\n75\t- [ ] D112 step 3 → step 4 eval（cuda:0, ~1.5h total）\n76\t- [ ] 1.7B RSFT s43_r2 + s44_r2 + eval（cuda:3, ~2-3h total）\n77\t- [ ] 14B SFT 完成 → 14B RSFT + no-evidence + eval（cuda:1+2, ~8h SFT + 后续）\n78\t- [ ] experiment_plan.yaml 全面同步 registry\n79\t- [ ] paper_framing.md 更新（D112 结果 + 8B 2-seed + variance 压缩 narrative）\n80\t- [ ] 重新提交论文审稿\n81\t\n82\t## 关键风险\n83\t- **D112 结果待定**: 如 RSFT-from-s44 > SFT s44 (0.4734) → Claim 1 robust；否则需 reframe\n84\t- **8B RSFT evidence quality trade-off**: EDCR 从 0.65-0.67 降到 0.62（RE↑/evidence precision↓），论文需讨论\n85\t- **1.7B surpasses claim**: 现在更强（1.7B RSFT 0.5122 > 8B SFT mean 0.4866 +2.56pp），但仍需 1.7B multi-seed 确认\n86\t- **14B 显存**: 2-GPU ZeRO-3 已启动且正常（D108 验证），后续 RSFT 可能需要调参\n87\t- **EDCR 缺人工验证**: plan_013 取消，用 per-relation 分析 + Limitations 缓解\n88\t\n89\t## 关键决策日志\n90\t\n91\t| ID | 日期 | 摘要 | 关联实验 |\n92\t|----|------|------|----------|\n93\t| D119 | 2026-05-19 | D119: D112 bf16 eval ign_f1=0.5152 确认 Method B (RS | d112_rsft_s44_eval_bf16, d112_rsft_s44_eval |\n94\t| D118 | 2026-05-19 | D118: \"1.7B RSFT surpasses 8B SFT\" claim 降级为 \"appr | plan019_8b_sft_s43_eval, plan019_1_7b_rsft_s44_r2_eval |\n95\t| D117 | 2026-05-19 | D117: 14B SFT evidence tax = 0.03pp（本质为零），完成 4 尺度  | plan017_14b_sft_eval_r2, plan017_14b_sft_no_evidence_eval_r2 |\n96\t| D116 | 2026-05-19 | D116: D112 结果无效（QLoRA confound），必须用 bf16 LoRA 重跑 s | d112_rsft_s44_eval, d112_rsft_s44_train |\n97\t| D115 | 2026-05-19 | D115: 8B RSFT s44 ign_f1=0.5451 确认 RSFT 跨 seed 稳健， | plan019_8b_rsft_s44_eval, eval_rsft_ced_s42 |\n98\t| D114 | 2026-05-19 | D114: 1.7B RSFT s43/s44 应使用 Method A（s42 SFT base） | plan019_1_7b_rsft_s43, plan019_1_7b_rsft_s44, d112_rsft_s44_ced_score |\n99\t| D113 | 2026-05-18 | D113: GRPO bf16 ckpt-100 为最优 checkpoint，ckpt-200 无 | grpo_bf16_g4_ckpt100_eval, grpo_bf16_g4_ckpt200_eval |\n100\t| D112 | 2026-05-18 | D112: 4B RSFT ign_f1 claim 需重大 reframe——全部 RSFT 基于 | wave1_sft_4b_s43_eval_r2, wave1_sft_4b_s44_eval_r2, eval_rsft_ced_s42 |\n101\t| D111 | 2026-05-18 | D111: 4B SFT s42 必须用 D076 协议重新 eval，统一三 seed 参考基准 | wave1_sft_4b_s43_eval_r2, wave1_sft_4b_s44_eval_r2 |\n102\t| D110 | 2026-05-18 | D110: GRPO bf16 ckpt-100 ign_f1=0.4431 无 catastrop | wave1_grpo_bf16_g4, grpo_bf16_g4_ckpt100_eval |\n103\t\n104\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e039d739-0d41-49d6-a591-6647e6f1b53b",
+            "isSidechain": false,
+            "promptId": "728f9907-b4c1-4b15-884b-d9e88637119a",
+            "type": "user",
+            "uuid": "134ac941-c66c-4519-9b75-864f6d02c64b",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/ROADMAP.md",
+                "content": "# faith-evidence-ie — Research Dashboard\n\n> 最后更新: 2026-05-19 05:43 UTC | 更新原因: D115 8B RSFT 完成 + D114 1.7B Method A 裁决 + D112 进展 + 14B SFT 启动 + Wave 1 全部完成\n\n## 核心方向\nFREIGE: LLM-based evidence-grounded DocRE 系统性研究。3 贡献：RSFT+NLI 有效性 / Decoupling spectrum / Scale-dependent evidence tax。详见 paper_framing.md。\n\n## 当前进展\n- **阶段**: 🚀 Research + 审稿并行（Round 1 = 3.0 Findings，目标 4.0 Main）\n- **Wave 1**: ✅ 全部完成（SFT s43/s44, GRPO bf16 G=4, Random RSFT）\n- **Scaling seeds (plan_019)**: 8B 2-seed RSFT 完成（D115: s44=0.5451, variance 0.53pp）；1.7B s43/s44 重跑中（D114 Method A）\n- **D112 full pipeline**: Step 3 RSFT 训练中 cuda:0（验证 RSFT 在强 SFT base s44 上的泛化性）\n- **14B SFT (plan_017)**: cuda:1+2 运行中（2-GPU ZeRO-3, D108）\n- **关键数值汇总**:\n\n| Scale | SFT mean (seeds) | RSFT mean (seeds) | Δ ign_f1 | SFT std | RSFT std |\n|-------|-------------------|--------------------|----------|---------|----------|\n| 1.7B | 0.4464 (3) | 0.5122 (1, s42 base) | +6.58pp | 2.79pp | — |\n| 4B | 0.4358 (3) | 0.4482 (3, Method A) | +1.24pp | 3.80pp | 0.51pp |\n| 8B | 0.4866 (2) | 0.5414 (2, Method A) | +5.48pp | 2.62pp | 0.53pp |\n\n- **RSFT 稳定化效应**: 4B variance 3.80→0.51pp (7.5x)，8B variance 2.62→0.53pp (5x)\n- **CED 价值**: CED RSFT (0.4482) > Random RSFT (0.4114) > SFT (0.3974)，+3.68pp gap\n- **GRPO**: bf16 ckpt-100 ign_f1=0.4431 无 catastrophic forgetting（D110），QLoRA 是 confound\n\n## 投稿目标\n- **EMNLP 2026 Main** (ARR July cycle, ~July 15-25, **~57 天**)\n\n## 实验路线（3 层优先级）\n\n### Tier 1 — Main 必要条件\n| 实验 | Plan ID | 状态 |\n|------|---------|------|\n| D102 k=1 方法论修正 | D102 | ✅ 完成 |\n| SFT 4B s43 + s44 + s42 reeval | plan_w3_sft_seeds | ✅ 完成 (D111) |\n| GRPO bf16 G=4 clean control | plan_015 | ✅ 完成 (D110/D113) |\n| Random k=1 RSFT baseline | plan_w18_random | ✅ 完成 (D109) |\n| 8B RSFT s44 seed expansion | plan_019 (8B) | ✅ 完成 (D115) |\n| D112 RSFT from SFT s44 | plan_d112 | 🟡 Step 3 训练中 cuda:0 |\n| 1.7B RSFT s43/s44 重跑 | plan_019 (1.7B) | 🟡 s43_r2 提交中 cuda:3 |\n| 14B SFT (第 4 尺度) | plan_017 | 🟡 训练中 cuda:1+2 |\n\n### Tier 2 — 大幅加分\n| 实验 | Plan ID | 状态 |\n|------|---------|------|\n| 14B RSFT + no-evidence + eval | plan_017 (后续) | pending（等 SFT 完成） |\n| NLI model ablation | plan_010 | pending |\n| Evidence tax 机制分析 | plan_020 | pending |\n| Deep error analysis | plan_021 | pending |\n\n### Tier 3 — 锦上添花\n| 实验 | Plan ID | 状态 |\n|------|---------|------|\n| CDR/GDA 跨领域 | plan_018 | P2（无 evidence 标注） |\n| 第三模型家族 | plan_022 | pending |\n| DocKS-RAG/LMRC 复现 | plan_023 | pending |\n\n## 从 3.0 → 4.0 路径\n| 里程碑 | 预期评分 | 状态 |\n|--------|---------|------|\n| Wave 1 完成 + D112 | 3.0 → 3.5 | 🟡 D112 step 3 训练中 |\n| + 1.7B/8B multi-seed 统计力 | 3.5 | 🟡 8B done, 1.7B 重跑中 |\n| + 14B 第 4 尺度档 | 3.5 → 3.75 | 🟡 SFT 训练中 |\n| + Mechanistic + error analysis | 3.75 → 4.0 | pending |\n\n## GPU 预算\n- 本项目：rtx5090-4x cuda:0-3（4 张 RTX 5090）\n- 当前：4/4 在用（D112 step3 / 14B SFT×2 / 1.7B RSFT）\n- 剩余估算：Tier 1 ~15h + Tier 2 ~65h + Tier 3 ~100h\n\n## 近期任务\n- [x] Wave 1 全部完成（SFT seeds, GRPO bf16, Random RSFT）\n- [x] 8B RSFT s44 eval (D115: 0.5451, variance 压缩 5x)\n- [x] 4B SFT s42 D076 reeval (D111: 0.3974)\n- [ ] D112 step 3 → step 4 eval（cuda:0, ~1.5h total）\n- [ ] 1.7B RSFT s43_r2 + s44_r2 + eval（cuda:3, ~2-3h total）\n- [ ] 14B SFT 完成 → 14B RSFT + no-evidence + eval（cuda:1+2, ~8h SFT + 后续）\n- [ ] experiment_plan.yaml 全面同步 registry\n- [ ] paper_framing.md 更新（D112 结果 + 8B 2-seed + variance 压缩 narrative）\n- [ ] 重新提交论文审稿\n\n## 关键风险\n- **D112 结果待定**: 如 RSFT-from-s44 > SFT s44 (0.4734) → Claim 1 robust；否则需 reframe\n- **8B RSFT evidence quality trade-off**: EDCR 从 0.65-0.67 降到 0.62（RE↑/evidence precision↓），论文需讨论\n- **1.7B surpasses claim**: 现在更强（1.7B RSFT 0.5122 > 8B SFT mean 0.4866 +2.56pp），但仍需 1.7B multi-seed 确认\n- **14B 显存**: 2-GPU ZeRO-3 已启动且正常（D108 验证），后续 RSFT 可能需要调参\n- **EDCR 缺人工验证**: plan_013 取消，用 per-relation 分析 + Limitations 缓解\n\n## 关键决策日志\n\n| ID | 日期 | 摘要 | 关联实验 |\n|----|------|------|----------|\n| D119 | 2026-05-19 | D119: D112 bf16 eval ign_f1=0.5152 确认 Method B (RS | d112_rsft_s44_eval_bf16, d112_rsft_s44_eval |\n| D118 | 2026-05-19 | D118: \"1.7B RSFT surpasses 8B SFT\" claim 降级为 \"appr | plan019_8b_sft_s43_eval, plan019_1_7b_rsft_s44_r2_eval |\n| D117 | 2026-05-19 | D117: 14B SFT evidence tax = 0.03pp（本质为零），完成 4 尺度  | plan017_14b_sft_eval_r2, plan017_14b_sft_no_evidence_eval_r2 |\n| D116 | 2026-05-19 | D116: D112 结果无效（QLoRA confound），必须用 bf16 LoRA 重跑 s | d112_rsft_s44_eval, d112_rsft_s44_train |\n| D115 | 2026-05-19 | D115: 8B RSFT s44 ign_f1=0.5451 确认 RSFT 跨 seed 稳健， | plan019_8b_rsft_s44_eval, eval_rsft_ced_s42 |\n| D114 | 2026-05-19 | D114: 1.7B RSFT s43/s44 应使用 Method A（s42 SFT base） | plan019_1_7b_rsft_s43, plan019_1_7b_rsft_s44, d112_rsft_s44_ced_score |\n| D113 | 2026-05-18 | D113: GRPO bf16 ckpt-100 为最优 checkpoint，ckpt-200 无 | grpo_bf16_g4_ckpt100_eval, grpo_bf16_g4_ckpt200_eval |\n| D112 | 2026-05-18 | D112: 4B RSFT ign_f1 claim 需重大 reframe——全部 RSFT 基于 | wave1_sft_4b_s43_eval_r2, wave1_sft_4b_s44_eval_r2, eval_rsft_ced_s42 |\n| D111 | 2026-05-18 | D111: 4B SFT s42 必须用 D076 协议重新 eval，统一三 seed 参考基准 | wave1_sft_4b_s43_eval_r2, wave1_sft_4b_s44_eval_r2 |\n| D110 | 2026-05-18 | D110: GRPO bf16 ckpt-100 ign_f1=0.4431 无 catastrop | wave1_grpo_bf16_g4, grpo_bf16_g4_ckpt100_eval |\n\n",
+                "numLines": 104,
+                "startLine": 1,
+                "totalLines": 104
+              }
+            },
+            "sourceToolAssistantUUID": "e039d739-0d41-49d6-a591-6647e6f1b53b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "ac6c3eaa-1181-4230-9499-9a3dbe044d7c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "134ac941-c66c-4519-9b75-864f6d02c64b",
+                "sessionId": "ac6c3eaa-1181-4230-9499-9a3dbe044d7c"
+              }
+            }
+          ],
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Update ROADMAP with latest experimental results",
+                "sessionId": "ac6c3eaa-1181-4230-9499-9a3dbe044d7c"
+              }
+            }
+          ],
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-19T17:14:44.916Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I see the file has D119 in the decision log (line 93) which wasn't in the MCP read. The file on disk is slightly newer. Let me write the updated version now.",
+              "signature": "Et0CClkIDRgCKkAqT//Ka9iajnBN6Uw2DbaEMxHCflXoyAdc3WxbB5alnKKjzyLChySIr1624a3eaLkTx8a1RG7CSba67eNdx7mPMg9jbGF1ZGUtb3B1cy00LTY4ABIMqsAmjt4dxiVqlWxbGgx5obZPugjJL+teC0IiMBPTweW0RNJkWY956v9Jbx9PlvQdkMKrH+KoJdh/bXVBlILzLol1Goh0VMkbmo1bGCqxAXv04h2LPGGcgR7UdM/ktHtGv20GfR9Jvnni/fhO3oVth+mJF/gwhP2VhKcG8wgeYE4tZkPUG3Q8rsj7pDfVFHNwKlmtpna3RFAM4ubvrbAidU7/XcoNmdeB3qDHSzoNFy1S2KQV4uv2vT1Rn/GUx3CAplz8Aai4uenIDh9e6lsUGe1VGeA62Ovj3ccDoTWC4OHmXqIsbKKze4wAunU03XLNBKz0S4Op82/CsveR6LzBjRgB"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "134ac941-c66c-4519-9b75-864f6d02c64b",
+            "isSidechain": false,
+            "requestId": "req_011CbCJan2rDpqc32a2LXAvp",
+            "type": "assistant",
+            "uuid": "7544bde3-3fb1-4fe7-9a43-053a78eb69b8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "ac6c3eaa-1181-4230-9499-9a3dbe044d7c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Kit44nohpVUTBXTmGRfNXE",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3488,
+                "cache_read_input_tokens": 35785,
+                "output_tokens": 3730,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3488,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 3730,
+                    "cache_read_input_tokens": 35785,
+                    "cache_creation_input_tokens": 3488,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3488
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-19T17:14:45.311Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已读取（注意磁盘版本比 MCP 读取多了 D119）。现在写入更新。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7544bde3-3fb1-4fe7-9a43-053a78eb69b8",
+            "isSidechain": false,
+            "requestId": "req_011CbCJan2rDpqc32a2LXAvp",
+            "type": "assistant",
+            "uuid": "bde9b17c-1ea8-4dbd-b471-b8d029f6883d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "ac6c3eaa-1181-4230-9499-9a3dbe044d7c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Kit44nohpVUTBXTmGRfNXE",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3488,
+                "cache_read_input_tokens": 35785,
+                "output_tokens": 3730,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3488,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 3730,
+                    "cache_read_input_tokens": 35785,
+                    "cache_creation_input_tokens": 3488,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3488
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-19T17:15:24.946Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016XsXRoWYUV1qMJZrNcx6zL",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/ROADMAP.md",
+                "content": "# faith-evidence-ie — Research Dashboard\n\n> 最后更新: 2026-05-19 09:30 UTC | 更新原因: D117 14B evidence tax=0 + D118 1.7B claim 降级 + D112 bf16 完成 (0.5152) + 8B SFT 3-seed (0.5019) + scaling table 4行\n\n## 核心方向\nFREIGE: LLM-based evidence-grounded DocRE 系统性研究。3 贡献：RSFT+NLI 有效性 / Decoupling spectrum / Scale-dependent evidence tax。详见 paper_framing.md。\n\n## 当前进展\n- **阶段**: 🚀 Research + 审稿并行（Round 1 = 3.0 Findings，目标 4.0 Main）\n- **Wave 1**: ✅ 全部完成（SFT seeds, GRPO bf16, Random RSFT）\n- **Scaling seeds (plan_019)**: 8B 3-seed SFT 完成（mean=0.5019±3.72pp）；8B 2-seed RSFT 完成（D115: s44=0.5451, variance 0.53pp）\n- **D112 full pipeline**: ✅ 完成（bf16 LoRA RSFT from SFT s44: ign_f1=0.5152, +4.18pp over SFT s44 baseline 0.4734）\n- **14B SFT (plan_017)**: ✅ 完成（D117: with-evidence 0.5507, no-evidence 0.551, evidence tax=0.03pp≈0）\n- **D118 claim 降级**: 1.7B RSFT (0.5122) vs 8B SFT mean (0.5019) Δ=+1.03pp, p≈0.34 不显著，降级为 \"comparable / on par with\"\n- **关键数值汇总**:\n\n| Scale | SFT mean (seeds) | RSFT mean (seeds) | Δ ign_f1 | SFT std | RSFT std |\n|-------|-------------------|--------------------|----------|---------|----------|\n| 1.7B | 0.4464 (3) | 0.5122 (1, s42 base) | +6.58pp | 2.79pp | — |\n| 4B | 0.4358 (3) | 0.4482 (3, Method A) / 0.5152 (1, Method B) | +1.24pp / +4.18pp (vs s44) | 3.80pp | 0.51pp |\n| 8B | 0.5019 (3) | 0.5414 (2, Method A) | +3.95pp | 3.72pp | 0.53pp |\n| 14B | 0.5507 (1) | pending | — | — | — |\n\n- **14B evidence tax**: 0.03pp（本质为零），14B 容量足够同时输出 evidence 和 RE\n- **RSFT variance 稳定化**: 8B SFT std=3.72pp → RSFT std=0.53pp (7x)；4B SFT std=3.80pp → RSFT std=0.51pp (7.5x)\n- **CED 价值**: CED RSFT (0.4482) > Random RSFT (0.4114) > SFT (0.3974)，+3.68pp gap\n- **GRPO**: bf16 ckpt-100 ign_f1=0.4431 无 catastrophic forgetting（D110），QLoRA 是 confound\n\n## 投稿目标\n- **EMNLP 2026 Main** (ARR July cycle, ~July 15-25, **~57 天**)\n\n## 实验路线（3 层优先级）\n\n### Tier 1 — Main 必要条件\n| 实验 | Plan ID | 状态 |\n|------|---------|------|\n| D102 k=1 方法论修正 | D102 | ✅ 完成 |\n| SFT 4B s43 + s44 + s42 reeval | plan_w3_sft_seeds | ✅ 完成 (D111) |\n| GRPO bf16 G=4 clean control | plan_015 | ✅ 完成 (D110/D113) |\n| Random k=1 RSFT baseline | plan_w18_random | ✅ 完成 (D109) |\n| 8B RSFT s44 seed expansion | plan_019 (8B) | ✅ 完成 (D115) |\n| 8B SFT s43 eval | plan_019 | ✅ 完成 (ign_f1=0.5324) |\n| D112 RSFT from SFT s44 (bf16) | plan_d112 | ✅ 完成 (D119: ign_f1=0.5152) |\n| 14B SFT (第 4 尺度) | plan_017 | ✅ 完成 (D117: 0.5507, tax=0.03pp) |\n| 1.7B RSFT s43/s44 重跑 | plan_019 (1.7B) | 🟡 进行中 |\n\n### Tier 2 — 大幅加分\n| 实验 | Plan ID | 状态 |\n|------|---------|------|\n| 14B RSFT + no-evidence + eval | plan_017 (后续) | pending（待启动） |\n| 8B RSFT s43 补齐第 3 seed | plan_019 | pending |\n| NLI model ablation | plan_010 | pending |\n| Evidence tax 机制分析 | plan_020 | pending |\n| Deep error analysis | plan_021 | pending |\n\n### Tier 3 — 锦上添花\n| 实验 | Plan ID | 状态 |\n|------|---------|------|\n| CDR/GDA 跨领域 | plan_018 | P2（无 evidence 标注） |\n| 第三模型家族 | plan_022 | pending |\n| DocKS-RAG/LMRC 复现 | plan_023 | pending |\n\n## 从 3.0 → 4.0 路径\n| 里程碑 | 预期评分 | 状态 |\n|--------|---------|------|\n| Wave 1 完成 + D112 | 3.0 → 3.5 | ✅ D112 完成 (0.5152, +4.18pp) |\n| + 1.7B/8B multi-seed 统计力 | 3.5 | 🟡 8B 3-seed done, 1.7B 进行中 |\n| + 14B 第 4 尺度档 | 3.5 → 3.75 | ✅ SFT 完成 (0.5507), RSFT pending |\n| + Mechanistic + error analysis | 3.75 → 4.0 | pending |\n\n## GPU 分布\n- cuda:0: 8B RSFT no-evidence eval r2（接近完成）\n- cuda:1: D112 no-evidence eval r3（44%）\n- cuda:2: 空闲\n- cuda:3: 1.7B no-evidence eval 2048（38%）\n\n## 近期任务\n- [x] Wave 1 全部完成（SFT seeds, GRPO bf16, Random RSFT）\n- [x] 8B RSFT s44 eval (D115: 0.5451, variance 压缩 5x)\n- [x] 4B SFT s42 D076 reeval (D111: 0.3974)\n- [x] D112 step 4 eval 完成 (bf16 LoRA: ign_f1=0.5152, +4.18pp)\n- [x] 8B SFT s43 eval 完成 (ign_f1=0.5324)\n- [x] 14B SFT eval 完成 (D117: ign_f1=0.5507, evidence tax=0.03pp)\n- [ ] 1.7B no-evidence eval 2048 重跑（排除截断，cuda:3）\n- [ ] 8B RSFT no-evidence eval（cuda:0，接近完成）\n- [ ] D112 no-evidence eval r3（cuda:1，44%）\n- [ ] 14B RSFT pipeline（待启动）\n- [ ] 8B RSFT s43 补齐第 3 seed\n- [ ] experiment_plan.yaml 全面同步 registry\n- [ ] paper_framing.md 更新（D112 + D117 + D118 narrative 调整）\n- [ ] 重新提交论文审稿\n\n## 关键风险\n- **D112 结果**: ✅ 已确认 RSFT-from-s44 (0.5152) > SFT s44 (0.4734) +4.18pp，Claim 1 robust\n- **1.7B claim 已降级 (D118)**: 1.7B RSFT vs 8B SFT Δ=+1.03pp, p≈0.34 不显著，改为 \"comparable\"；RSFT variance stabilization (SFT std=3.72pp vs RSFT std=0.53pp) 作为独立发现\n- **14B evidence tax = 0 (D117)**: 积极结果，14B 容量足够，Claim 3 需调整为 \"tax scales inversely with model capacity\"\n- **8B RSFT evidence quality trade-off**: EDCR 从 0.65-0.67 降到 0.62（RE↑/evidence precision↓），论文需讨论\n- **14B RSFT 待启动**: SFT 已完成，RSFT pipeline 是 Tier 2 首要任务\n- **EDCR 缺人工验证**: plan_013 取消，用 per-relation 分析 + Limitations 缓解\n\n## 关键决策日志\n\n| ID | 日期 | 摘要 | 关联实验 |\n|----|------|------|----------|\n| D119 | 2026-05-19 | D119: D112 bf16 eval ign_f1=0.5152 确认 Method B (RS | d112_rsft_s44_eval_bf16, d112_rsft_s44_eval |\n| D118 | 2026-05-19 | D118: \"1.7B RSFT surpasses 8B SFT\" claim 降级为 \"appr | plan019_8b_sft_s43_eval, plan019_1_7b_rsft_s44_r2_eval |\n| D117 | 2026-05-19 | D117: 14B SFT evidence tax = 0.03pp（本质为零），完成 4 尺度  | plan017_14b_sft_eval_r2, plan017_14b_sft_no_evidence_eval_r2 |\n| D116 | 2026-05-19 | D116: D112 结果无效（QLoRA confound），必须用 bf16 LoRA 重跑 s | d112_rsft_s44_eval, d112_rsft_s44_train |\n| D115 | 2026-05-19 | D115: 8B RSFT s44 ign_f1=0.5451 确认 RSFT 跨 seed 稳健， | plan019_8b_rsft_s44_eval, eval_rsft_ced_s42 |\n| D114 | 2026-05-19 | D114: 1.7B RSFT s43/s44 应使用 Method A（s42 SFT base） | plan019_1_7b_rsft_s43, plan019_1_7b_rsft_s44, d112_rsft_s44_ced_score |\n| D113 | 2026-05-18 | D113: GRPO bf16 ckpt-100 为最优 checkpoint，ckpt-200 无 | grpo_bf16_g4_ckpt100_eval, grpo_bf16_g4_ckpt200_eval |\n| D112 | 2026-05-18 | D112: 4B RSFT ign_f1 claim 需重大 reframe——全部 RSFT 基于 | wave1_sft_4b_s43_eval_r2, wave1_sft_4b_s44_eval_r2, eval_rsft_ced_s42 |\n| D111 | 2026-05-18 | D111: 4B SFT s42 必须用 D076 协议重新 eval，统一三 seed 参考基准 | wave1_sft_4b_s43_eval_r2, wave1_sft_4b_s44_eval_r2 |\n| D110 | 2026-05-18 | D110: GRPO bf16 ckpt-100 ign_f1=0.4431 无 catastrop | wave1_grpo_bf16_g4, grpo_bf16_g4_ckpt100_eval |\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bde9b17c-1ea8-4dbd-b471-b8d029f6883d",
+            "isSidechain": false,
+            "requestId": "req_011CbCJan2rDpqc32a2LXAvp",
+            "type": "assistant",
+            "uuid": "14888c4b-6d20-44c3-af3f-53203bd54463",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "ac6c3eaa-1181-4230-9499-9a3dbe044d7c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Kit44nohpVUTBXTmGRfNXE",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3488,
+                "cache_read_input_tokens": 35785,
+                "output_tokens": 3730,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3488,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 3730,
+                    "cache_read_input_tokens": 35785,
+                    "cache_creation_input_tokens": 3488,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3488
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-19T17:15:24.978Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016XsXRoWYUV1qMJZrNcx6zL",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/ROADMAP.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "14888c4b-6d20-44c3-af3f-53203bd54463",
+            "isSidechain": false,
+            "promptId": "728f9907-b4c1-4b15-884b-d9e88637119a",
+            "type": "user",
+            "uuid": "51c0e811-e431-4ea1-9a88-2fec8982911b",
+            "toolUseResult": {
+              "type": "update",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/ROADMAP.md",
+              "content": "# faith-evidence-ie — Research Dashboard\n\n> 最后更新: 2026-05-19 09:30 UTC | 更新原因: D117 14B evidence tax=0 + D118 1.7B claim 降级 + D112 bf16 完成 (0.5152) + 8B SFT 3-seed (0.5019) + scaling table 4行\n\n## 核心方向\nFREIGE: LLM-based evidence-grounded DocRE 系统性研究。3 贡献：RSFT+NLI 有效性 / Decoupling spectrum / Scale-dependent evidence tax。详见 paper_framing.md。\n\n## 当前进展\n- **阶段**: 🚀 Research + 审稿并行（Round 1 = 3.0 Findings，目标 4.0 Main）\n- **Wave 1**: ✅ 全部完成（SFT seeds, GRPO bf16, Random RSFT）\n- **Scaling seeds (plan_019)**: 8B 3-seed SFT 完成（mean=0.5019±3.72pp）；8B 2-seed RSFT 完成（D115: s44=0.5451, variance 0.53pp）\n- **D112 full pipeline**: ✅ 完成（bf16 LoRA RSFT from SFT s44: ign_f1=0.5152, +4.18pp over SFT s44 baseline 0.4734）\n- **14B SFT (plan_017)**: ✅ 完成（D117: with-evidence 0.5507, no-evidence 0.551, evidence tax=0.03pp≈0）\n- **D118 claim 降级**: 1.7B RSFT (0.5122) vs 8B SFT mean (0.5019) Δ=+1.03pp, p≈0.34 不显著，降级为 \"comparable / on par with\"\n- **关键数值汇总**:\n\n| Scale | SFT mean (seeds) | RSFT mean (seeds) | Δ ign_f1 | SFT std | RSFT std |\n|-------|-------------------|--------------------|----------|---------|----------|\n| 1.7B | 0.4464 (3) | 0.5122 (1, s42 base) | +6.58pp | 2.79pp | — |\n| 4B | 0.4358 (3) | 0.4482 (3, Method A) / 0.5152 (1, Method B) | +1.24pp / +4.18pp (vs s44) | 3.80pp | 0.51pp |\n| 8B | 0.5019 (3) | 0.5414 (2, Method A) | +3.95pp | 3.72pp | 0.53pp |\n| 14B | 0.5507 (1) | pending | — | — | — |\n\n- **14B evidence tax**: 0.03pp（本质为零），14B 容量足够同时输出 evidence 和 RE\n- **RSFT variance 稳定化**: 8B SFT std=3.72pp → RSFT std=0.53pp (7x)；4B SFT std=3.80pp → RSFT std=0.51pp (7.5x)\n- **CED 价值**: CED RSFT (0.4482) > Random RSFT (0.4114) > SFT (0.3974)，+3.68pp gap\n- **GRPO**: bf16 ckpt-100 ign_f1=0.4431 无 catastrophic forgetting（D110），QLoRA 是 confound\n\n## 投稿目标\n- **EMNLP 2026 Main** (ARR July cycle, ~July 15-25, **~57 天**)\n\n## 实验路线（3 层优先级）\n\n### Tier 1 — Main 必要条件\n| 实验 | Plan ID | 状态 |\n|------|---------|------|\n| D102 k=1 方法论修正 | D102 | ✅ 完成 |\n| SFT 4B s43 + s44 + s42 reeval | plan_w3_sft_seeds | ✅ 完成 (D111) |\n| GRPO bf16 G=4 clean control | plan_015 | ✅ 完成 (D110/D113) |\n| Random k=1 RSFT baseline | plan_w18_random | ✅ 完成 (D109) |\n| 8B RSFT s44 seed expansion | plan_019 (8B) | ✅ 完成 (D115) |\n| 8B SFT s43 eval | plan_019 | ✅ 完成 (ign_f1=0.5324) |\n| D112 RSFT from SFT s44 (bf16) | plan_d112 | ✅ 完成 (D119: ign_f1=0.5152) |\n| 14B SFT (第 4 尺度) | plan_017 | ✅ 完成 (D117: 0.5507, tax=0.03pp) |\n| 1.7B RSFT s43/s44 重跑 | plan_019 (1.7B) | 🟡 进行中 |\n\n### Tier 2 — 大幅加分\n| 实验 | Plan ID | 状态 |\n|------|---------|------|\n| 14B RSFT + no-evidence + eval | plan_017 (后续) | pending（待启动） |\n| 8B RSFT s43 补齐第 3 seed | plan_019 | pending |\n| NLI model ablation | plan_010 | pending |\n| Evidence tax 机制分析 | plan_020 | pending |\n| Deep error analysis | plan_021 | pending |\n\n### Tier 3 — 锦上添花\n| 实验 | Plan ID | 状态 |\n|------|---------|------|\n| CDR/GDA 跨领域 | plan_018 | P2（无 evidence 标注） |\n| 第三模型家族 | plan_022 | pending |\n| DocKS-RAG/LMRC 复现 | plan_023 | pending |\n\n## 从 3.0 → 4.0 路径\n| 里程碑 | 预期评分 | 状态 |\n|--------|---------|------|\n| Wave 1 完成 + D112 | 3.0 → 3.5 | ✅ D112 完成 (0.5152, +4.18pp) |\n| + 1.7B/8B multi-seed 统计力 | 3.5 | 🟡 8B 3-seed done, 1.7B 进行中 |\n| + 14B 第 4 尺度档 | 3.5 → 3.75 | ✅ SFT 完成 (0.5507), RSFT pending |\n| + Mechanistic + error analysis | 3.75 → 4.0 | pending |\n\n## GPU 分布\n- cuda:0: 8B RSFT no-evidence eval r2（接近完成）\n- cuda:1: D112 no-evidence eval r3（44%）\n- cuda:2: 空闲\n- cuda:3: 1.7B no-evidence eval 2048（38%）\n\n## 近期任务\n- [x] Wave 1 全部完成（SFT seeds, GRPO bf16, Random RSFT）\n- [x] 8B RSFT s44 eval (D115: 0.5451, variance 压缩 5x)\n- [x] 4B SFT s42 D076 reeval (D111: 0.3974)\n- [x] D112 step 4 eval 完成 (bf16 LoRA: ign_f1=0.5152, +4.18pp)\n- [x] 8B SFT s43 eval 完成 (ign_f1=0.5324)\n- [x] 14B SFT eval 完成 (D117: ign_f1=0.5507, evidence tax=0.03pp)\n- [ ] 1.7B no-evidence eval 2048 重跑（排除截断，cuda:3）\n- [ ] 8B RSFT no-evidence eval（cuda:0，接近完成）\n- [ ] D112 no-evidence eval r3（cuda:1，44%）\n- [ ] 14B RSFT pipeline（待启动）\n- [ ] 8B RSFT s43 补齐第 3 seed\n- [ ] experiment_plan.yaml 全面同步 registry\n- [ ] paper_framing.md 更新（D112 + D117 + D118 narrative 调整）\n- [ ] 重新提交论文审稿\n\n## 关键风险\n- **D112 结果**: ✅ 已确认 RSFT-from-s44 (0.5152) > SFT s44 (0.4734) +4.18pp，Claim 1 robust\n- **1.7B claim 已降级 (D118)**: 1.7B RSFT vs 8B SFT Δ=+1.03pp, p≈0.34 不显著，改为 \"comparable\"；RSFT variance stabilization (SFT std=3.72pp vs RSFT std=0.53pp) 作为独立发现\n- **14B evidence tax = 0 (D117)**: 积极结果，14B 容量足够，Claim 3 需调整为 \"tax scales inversely with model capacity\"\n- **8B RSFT evidence quality trade-off**: EDCR 从 0.65-0.67 降到 0.62（RE↑/evidence precision↓），论文需讨论\n- **14B RSFT 待启动**: SFT 已完成，RSFT pipeline 是 Tier 2 首要任务\n- **EDCR 缺人工验证**: plan_013 取消，用 per-relation 分析 + Limitations 缓解\n\n## 关键决策日志\n\n| ID | 日期 | 摘要 | 关联实验 |\n|----|------|------|----------|\n| D119 | 2026-05-19 | D119: D112 bf16 eval ign_f1=0.5152 确认 Method B (RS | d112_rsft_s44_eval_bf16, d112_rsft_s44_eval |\n| D118 | 2026-05-19 | D118: \"1.7B RSFT surpasses 8B SFT\" claim 降级为 \"appr | plan019_8b_sft_s43_eval, plan019_1_7b_rsft_s44_r2_eval |\n| D117 | 2026-05-19 | D117: 14B SFT evidence tax = 0.03pp（本质为零），完成 4 尺度  | plan017_14b_sft_eval_r2, plan017_14b_sft_no_evidence_eval_r2 |\n| D116 | 2026-05-19 | D116: D112 结果无效（QLoRA confound），必须用 bf16 LoRA 重跑 s | d112_rsft_s44_eval, d112_rsft_s44_train |\n| D115 | 2026-05-19 | D115: 8B RSFT s44 ign_f1=0.5451 确认 RSFT 跨 seed 稳健， | plan019_8b_rsft_s44_eval, eval_rsft_ced_s42 |\n| D114 | 2026-05-19 | D114: 1.7B RSFT s43/s44 应使用 Method A（s42 SFT base） | plan019_1_7b_rsft_s43, plan019_1_7b_rsft_s44, d112_rsft_s44_ced_score |\n| D113 | 2026-05-18 | D113: GRPO bf16 ckpt-100 为最优 checkpoint，ckpt-200 无 | grpo_bf16_g4_ckpt100_eval, grpo_bf16_g4_ckpt200_eval |\n| D112 | 2026-05-18 | D112: 4B RSFT ign_f1 claim 需重大 reframe——全部 RSFT 基于 | wave1_sft_4b_s43_eval_r2, wave1_sft_4b_s44_eval_r2, eval_rsft_ced_s42 |\n| D111 | 2026-05-18 | D111: 4B SFT s42 必须用 D076 协议重新 eval，统一三 seed 参考基准 | wave1_sft_4b_s43_eval_r2, wave1_sft_4b_s44_eval_r2 |\n| D110 | 2026-05-18 | D110: GRPO bf16 ckpt-100 ign_f1=0.4431 无 catastrop | wave1_grpo_bf16_g4, grpo_bf16_g4_ckpt100_eval |\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 1,
+                  "oldLines": 25,
+                  "newStart": 1,
+                  "newLines": 28,
+                  "lines": [
+                    " # faith-evidence-ie — Research Dashboard",
+                    " ",
+                    "-> 最后更新: 2026-05-19 05:43 UTC | 更新原因: D115 8B RSFT 完成 + D114 1.7B Method A 裁决 + D112 进展 + 14B SFT 启动 + Wave 1 全部完成",
+                    "+> 最后更新: 2026-05-19 09:30 UTC | 更新原因: D117 14B evidence tax=0 + D118 1.7B claim 降级 + D112 bf16 完成 (0.5152) + 8B SFT 3-seed (0.5019) + scaling table 4行",
+                    " ",
+                    " ## 核心方向",
+                    " FREIGE: LLM-based evidence-grounded DocRE 系统性研究。3 贡献：RSFT+NLI 有效性 / Decoupling spectrum / Scale-dependent evidence tax。详见 paper_framing.md。",
+                    " ",
+                    " ## 当前进展",
+                    " - **阶段**: 🚀 Research + 审稿并行（Round 1 = 3.0 Findings，目标 4.0 Main）",
+                    "-- **Wave 1**: ✅ 全部完成（SFT s43/s44, GRPO bf16 G=4, Random RSFT）",
+                    "-- **Scaling seeds (plan_019)**: 8B 2-seed RSFT 完成（D115: s44=0.5451, variance 0.53pp）；1.7B s43/s44 重跑中（D114 Method A）",
+                    "-- **D112 full pipeline**: Step 3 RSFT 训练中 cuda:0（验证 RSFT 在强 SFT base s44 上的泛化性）",
+                    "-- **14B SFT (plan_017)**: cuda:1+2 运行中（2-GPU ZeRO-3, D108）",
+                    "+- **Wave 1**: ✅ 全部完成（SFT seeds, GRPO bf16, Random RSFT）",
+                    "+- **Scaling seeds (plan_019)**: 8B 3-seed SFT 完成（mean=0.5019±3.72pp）；8B 2-seed RSFT 完成（D115: s44=0.5451, variance 0.53pp）",
+                    "+- **D112 full pipeline**: ✅ 完成（bf16 LoRA RSFT from SFT s44: ign_f1=0.5152, +4.18pp over SFT s44 baseline 0.4734）",
+                    "+- **14B SFT (plan_017)**: ✅ 完成（D117: with-evidence 0.5507, no-evidence 0.551, evidence tax=0.03pp≈0）",
+                    "+- **D118 claim 降级**: 1.7B RSFT (0.5122) vs 8B SFT mean (0.5019) Δ=+1.03pp, p≈0.34 不显著，降级为 \"comparable / on par with\"",
+                    " - **关键数值汇总**:",
+                    " ",
+                    " | Scale | SFT mean (seeds) | RSFT mean (seeds) | Δ ign_f1 | SFT std | RSFT std |",
+                    " |-------|-------------------|--------------------|----------|---------|----------|",
+                    " | 1.7B | 0.4464 (3) | 0.5122 (1, s42 base) | +6.58pp | 2.79pp | — |",
+                    "-| 4B | 0.4358 (3) | 0.4482 (3, Method A) | +1.24pp | 3.80pp | 0.51pp |",
+                    "-| 8B | 0.4866 (2) | 0.5414 (2, Method A) | +5.48pp | 2.62pp | 0.53pp |",
+                    "+| 4B | 0.4358 (3) | 0.4482 (3, Method A) / 0.5152 (1, Method B) | +1.24pp / +4.18pp (vs s44) | 3.80pp | 0.51pp |",
+                    "+| 8B | 0.5019 (3) | 0.5414 (2, Method A) | +3.95pp | 3.72pp | 0.53pp |",
+                    "+| 14B | 0.5507 (1) | pending | — | — | — |",
+                    " ",
+                    "-- **RSFT 稳定化效应**: 4B variance 3.80→0.51pp (7.5x)，8B variance 2.62→0.53pp (5x)",
+                    "+- **14B evidence tax**: 0.03pp（本质为零），14B 容量足够同时输出 evidence 和 RE",
+                    "+- **RSFT variance 稳定化**: 8B SFT std=3.72pp → RSFT std=0.53pp (7x)；4B SFT std=3.80pp → RSFT std=0.51pp (7.5x)",
+                    " - **CED 价值**: CED RSFT (0.4482) > Random RSFT (0.4114) > SFT (0.3974)，+3.68pp gap",
+                    " - **GRPO**: bf16 ckpt-100 ign_f1=0.4431 无 catastrophic forgetting（D110），QLoRA 是 confound",
+                    " "
+                  ]
+                },
+                {
+                  "oldStart": 36,
+                  "oldLines": 14,
+                  "newStart": 39,
+                  "newLines": 16,
+                  "lines": [
+                    " | GRPO bf16 G=4 clean control | plan_015 | ✅ 完成 (D110/D113) |",
+                    " | Random k=1 RSFT baseline | plan_w18_random | ✅ 完成 (D109) |",
+                    " | 8B RSFT s44 seed expansion | plan_019 (8B) | ✅ 完成 (D115) |",
+                    "-| D112 RSFT from SFT s44 | plan_d112 | 🟡 Step 3 训练中 cuda:0 |",
+                    "-| 1.7B RSFT s43/s44 重跑 | plan_019 (1.7B) | 🟡 s43_r2 提交中 cuda:3 |",
+                    "-| 14B SFT (第 4 尺度) | plan_017 | 🟡 训练中 cuda:1+2 |",
+                    "+| 8B SFT s43 eval | plan_019 | ✅ 完成 (ign_f1=0.5324) |",
+                    "+| D112 RSFT from SFT s44 (bf16) | plan_d112 | ✅ 完成 (D119: ign_f1=0.5152) |",
+                    "+| 14B SFT (第 4 尺度) | plan_017 | ✅ 完成 (D117: 0.5507, tax=0.03pp) |",
+                    "+| 1.7B RSFT s43/s44 重跑 | plan_019 (1.7B) | 🟡 进行中 |",
+                    " ",
+                    " ### Tier 2 — 大幅加分",
+                    " | 实验 | Plan ID | 状态 |",
+                    " |------|---------|------|",
+                    "-| 14B RSFT + no-evidence + eval | plan_017 (后续) | pending（等 SFT 完成） |",
+                    "+| 14B RSFT + no-evidence + eval | plan_017 (后续) | pending（待启动） |",
+                    "+| 8B RSFT s43 补齐第 3 seed | plan_019 | pending |",
+                    " | NLI model ablation | plan_010 | pending |",
+                    " | Evidence tax 机制分析 | plan_020 | pending |",
+                    " | Deep error analysis | plan_021 | pending |"
+                  ]
+                },
+                {
+                  "oldStart": 58,
+                  "oldLines": 32,
+                  "newStart": 63,
+                  "newLines": 39,
+                  "lines": [
+                    " ## 从 3.0 → 4.0 路径",
+                    " | 里程碑 | 预期评分 | 状态 |",
+                    " |--------|---------|------|",
+                    "-| Wave 1 完成 + D112 | 3.0 → 3.5 | 🟡 D112 step 3 训练中 |",
+                    "-| + 1.7B/8B multi-seed 统计力 | 3.5 | 🟡 8B done, 1.7B 重跑中 |",
+                    "-| + 14B 第 4 尺度档 | 3.5 → 3.75 | 🟡 SFT 训练中 |",
+                    "+| Wave 1 完成 + D112 | 3.0 → 3.5 | ✅ D112 完成 (0.5152, +4.18pp) |",
+                    "+| + 1.7B/8B multi-seed 统计力 | 3.5 | 🟡 8B 3-seed done, 1.7B 进行中 |",
+                    "+| + 14B 第 4 尺度档 | 3.5 → 3.75 | ✅ SFT 完成 (0.5507), RSFT pending |",
+                    " | + Mechanistic + error analysis | 3.75 → 4.0 | pending |",
+                    " ",
+                    "-## GPU 预算",
+                    "-- 本项目：rtx5090-4x cuda:0-3（4 张 RTX 5090）",
+                    "-- 当前：4/4 在用（D112 step3 / 14B SFT×2 / 1.7B RSFT）",
+                    "-- 剩余估算：Tier 1 ~15h + Tier 2 ~65h + Tier 3 ~100h",
+                    "+## GPU 分布",
+                    "+- cuda:0: 8B RSFT no-evidence eval r2（接近完成）",
+                    "+- cuda:1: D112 no-evidence eval r3（44%）",
+                    "+- cuda:2: 空闲",
+                    "+- cuda:3: 1.7B no-evidence eval 2048（38%）",
+                    " ",
+                    " ## 近期任务",
+                    " - [x] Wave 1 全部完成（SFT seeds, GRPO bf16, Random RSFT）",
+                    " - [x] 8B RSFT s44 eval (D115: 0.5451, variance 压缩 5x)",
+                    " - [x] 4B SFT s42 D076 reeval (D111: 0.3974)",
+                    "-- [ ] D112 step 3 → step 4 eval（cuda:0, ~1.5h total）",
+                    "-- [ ] 1.7B RSFT s43_r2 + s44_r2 + eval（cuda:3, ~2-3h total）",
+                    "-- [ ] 14B SFT 完成 → 14B RSFT + no-evidence + eval（cuda:1+2, ~8h SFT + 后续）",
+                    "+- [x] D112 step 4 eval 完成 (bf16 LoRA: ign_f1=0.5152, +4.18pp)",
+                    "+- [x] 8B SFT s43 eval 完成 (ign_f1=0.5324)",
+                    "+- [x] 14B SFT eval 完成 (D117: ign_f1=0.5507, evidence tax=0.03pp)",
+                    "+- [ ] 1.7B no-evidence eval 2048 重跑（排除截断，cuda:3）",
+                    "+- [ ] 8B RSFT no-evidence eval（cuda:0，接近完成）",
+                    "+- [ ] D112 no-evidence eval r3（cuda:1，44%）",
+                    "+- [ ] 14B RSFT pipeline（待启动）",
+                    "+- [ ] 8B RSFT s43 补齐第 3 seed",
+                    " - [ ] experiment_plan.yaml 全面同步 registry",
+                    "-- [ ] paper_framing.md 更新（D112 结果 + 8B 2-seed + variance 压缩 narrative）",
+                    "+- [ ] paper_framing.md 更新（D112 + D117 + D118 narrative 调整）",
+                    " - [ ] 重新提交论文审稿",
+                    " ",
+                    " ## 关键风险",
+                    "-- **D112 结果待定**: 如 RSFT-from-s44 > SFT s44 (0.4734) → Claim 1 robust；否则需 reframe",
+                    "+- **D112 结果**: ✅ 已确认 RSFT-from-s44 (0.5152) > SFT s44 (0.4734) +4.18pp，Claim 1 robust",
+                    "+- **1.7B claim 已降级 (D118)**: 1.7B RSFT vs 8B SFT Δ=+1.03pp, p≈0.34 不显著，改为 \"comparable\"；RSFT variance stabilization (SFT std=3.72pp vs RSFT std=0.53pp) 作为独立发现",
+                    "+- **14B evidence tax = 0 (D117)**: 积极结果，14B 容量足够，Claim 3 需调整为 \"tax scales inversely with model capacity\"",
+                    " - **8B RSFT evidence quality trade-off**: EDCR 从 0.65-0.67 降到 0.62（RE↑/evidence precision↓），论文需讨论",
+                    "-- **1.7B surpasses claim**: 现在更强（1.7B RSFT 0.5122 > 8B SFT mean 0.4866 +2.56pp），但仍需 1.7B multi-seed 确认",
+                    "-- **14B 显存**: 2-GPU ZeRO-3 已启动且正常（D108 验证），后续 RSFT 可能需要调参",
+                    "+- **14B RSFT 待启动**: SFT 已完成，RSFT pipeline 是 Tier 2 首要任务",
+                    " - **EDCR 缺人工验证**: plan_013 取消，用 per-relation 分析 + Limitations 缓解",
+                    " ",
+                    " ## 关键决策日志"
+                  ]
+                },
+                {
+                  "oldStart": 100,
+                  "oldLines": 4,
+                  "newStart": 112,
+                  "newLines": 3,
+                  "lines": [
+                    " | D112 | 2026-05-18 | D112: 4B RSFT ign_f1 claim 需重大 reframe——全部 RSFT 基于 | wave1_sft_4b_s43_eval_r2, wave1_sft_4b_s44_eval_r2, eval_rsft_ced_s42 |",
+                    " | D111 | 2026-05-18 | D111: 4B SFT s42 必须用 D076 协议重新 eval，统一三 seed 参考基准 | wave1_sft_4b_s43_eval_r2, wave1_sft_4b_s44_eval_r2 |",
+                    " | D110 | 2026-05-18 | D110: GRPO bf16 ckpt-100 ign_f1=0.4431 无 catastrop | wave1_grpo_bf16_g4, grpo_bf16_g4_ckpt100_eval |",
+                    "-"
+                  ]
+                }
+              ],
+              "originalFile": "# faith-evidence-ie — Research Dashboard\n\n> 最后更新: 2026-05-19 05:43 UTC | 更新原因: D115 8B RSFT 完成 + D114 1.7B Method A 裁决 + D112 进展 + 14B SFT 启动 + Wave 1 全部完成\n\n## 核心方向\nFREIGE: LLM-based evidence-grounded DocRE 系统性研究。3 贡献：RSFT+NLI 有效性 / Decoupling spectrum / Scale-dependent evidence tax。详见 paper_framing.md。\n\n## 当前进展\n- **阶段**: 🚀 Research + 审稿并行（Round 1 = 3.0 Findings，目标 4.0 Main）\n- **Wave 1**: ✅ 全部完成（SFT s43/s44, GRPO bf16 G=4, Random RSFT）\n- **Scaling seeds (plan_019)**: 8B 2-seed RSFT 完成（D115: s44=0.5451, variance 0.53pp）；1.7B s43/s44 重跑中（D114 Method A）\n- **D112 full pipeline**: Step 3 RSFT 训练中 cuda:0（验证 RSFT 在强 SFT base s44 上的泛化性）\n- **14B SFT (plan_017)**: cuda:1+2 运行中（2-GPU ZeRO-3, D108）\n- **关键数值汇总**:\n\n| Scale | SFT mean (seeds) | RSFT mean (seeds) | Δ ign_f1 | SFT std | RSFT std |\n|-------|-------------------|--------------------|----------|---------|----------|\n| 1.7B | 0.4464 (3) | 0.5122 (1, s42 base) | +6.58pp | 2.79pp | — |\n| 4B | 0.4358 (3) | 0.4482 (3, Method A) | +1.24pp | 3.80pp | 0.51pp |\n| 8B | 0.4866 (2) | 0.5414 (2, Method A) | +5.48pp | 2.62pp | 0.53pp |\n\n- **RSFT 稳定化效应**: 4B variance 3.80→0.51pp (7.5x)，8B variance 2.62→0.53pp (5x)\n- **CED 价值**: CED RSFT (0.4482) > Random RSFT (0.4114) > SFT (0.3974)，+3.68pp gap\n- **GRPO**: bf16 ckpt-100 ign_f1=0.4431 无 catastrophic forgetting（D110），QLoRA 是 confound\n\n## 投稿目标\n- **EMNLP 2026 Main** (ARR July cycle, ~July 15-25, **~57 天**)\n\n## 实验路线（3 层优先级）\n\n### Tier 1 — Main 必要条件\n| 实验 | Plan ID | 状态 |\n|------|---------|------|\n| D102 k=1 方法论修正 | D102 | ✅ 完成 |\n| SFT 4B s43 + s44 + s42 reeval | plan_w3_sft_seeds | ✅ 完成 (D111) |\n| GRPO bf16 G=4 clean control | plan_015 | ✅ 完成 (D110/D113) |\n| Random k=1 RSFT baseline | plan_w18_random | ✅ 完成 (D109) |\n| 8B RSFT s44 seed expansion | plan_019 (8B) | ✅ 完成 (D115) |\n| D112 RSFT from SFT s44 | plan_d112 | 🟡 Step 3 训练中 cuda:0 |\n| 1.7B RSFT s43/s44 重跑 | plan_019 (1.7B) | 🟡 s43_r2 提交中 cuda:3 |\n| 14B SFT (第 4 尺度) | plan_017 | 🟡 训练中 cuda:1+2 |\n\n### Tier 2 — 大幅加分\n| 实验 | Plan ID | 状态 |\n|------|---------|------|\n| 14B RSFT + no-evidence + eval | plan_017 (后续) | pending（等 SFT 完成） |\n| NLI model ablation | plan_010 | pending |\n| Evidence tax 机制分析 | plan_020 | pending |\n| Deep error analysis | plan_021 | pending |\n\n### Tier 3 — 锦上添花\n| 实验 | Plan ID | 状态 |\n|------|---------|------|\n| CDR/GDA 跨领域 | plan_018 | P2（无 evidence 标注） |\n| 第三模型家族 | plan_022 | pending |\n| DocKS-RAG/LMRC 复现 | plan_023 | pending |\n\n## 从 3.0 → 4.0 路径\n| 里程碑 | 预期评分 | 状态 |\n|--------|---------|------|\n| Wave 1 完成 + D112 | 3.0 → 3.5 | 🟡 D112 step 3 训练中 |\n| + 1.7B/8B multi-seed 统计力 | 3.5 | 🟡 8B done, 1.7B 重跑中 |\n| + 14B 第 4 尺度档 | 3.5 → 3.75 | 🟡 SFT 训练中 |\n| + Mechanistic + error analysis | 3.75 → 4.0 | pending |\n\n## GPU 预算\n- 本项目：rtx5090-4x cuda:0-3（4 张 RTX 5090）\n- 当前：4/4 在用（D112 step3 / 14B SFT×2 / 1.7B RSFT）\n- 剩余估算：Tier 1 ~15h + Tier 2 ~65h + Tier 3 ~100h\n\n## 近期任务\n- [x] Wave 1 全部完成（SFT seeds, GRPO bf16, Random RSFT）\n- [x] 8B RSFT s44 eval (D115: 0.5451, variance 压缩 5x)\n- [x] 4B SFT s42 D076 reeval (D111: 0.3974)\n- [ ] D112 step 3 → step 4 eval（cuda:0, ~1.5h total）\n- [ ] 1.7B RSFT s43_r2 + s44_r2 + eval（cuda:3, ~2-3h total）\n- [ ] 14B SFT 完成 → 14B RSFT + no-evidence + eval（cuda:1+2, ~8h SFT + 后续）\n- [ ] experiment_plan.yaml 全面同步 registry\n- [ ] paper_framing.md 更新（D112 结果 + 8B 2-seed + variance 压缩 narrative）\n- [ ] 重新提交论文审稿\n\n## 关键风险\n- **D112 结果待定**: 如 RSFT-from-s44 > SFT s44 (0.4734) → Claim 1 robust；否则需 reframe\n- **8B RSFT evidence quality trade-off**: EDCR 从 0.65-0.67 降到 0.62（RE↑/evidence precision↓），论文需讨论\n- **1.7B surpasses claim**: 现在更强（1.7B RSFT 0.5122 > 8B SFT mean 0.4866 +2.56pp），但仍需 1.7B multi-seed 确认\n- **14B 显存**: 2-GPU ZeRO-3 已启动且正常（D108 验证），后续 RSFT 可能需要调参\n- **EDCR 缺人工验证**: plan_013 取消，用 per-relation 分析 + Limitations 缓解\n\n## 关键决策日志\n\n| ID | 日期 | 摘要 | 关联实验 |\n|----|------|------|----------|\n| D119 | 2026-05-19 | D119: D112 bf16 eval ign_f1=0.5152 确认 Method B (RS | d112_rsft_s44_eval_bf16, d112_rsft_s44_eval |\n| D118 | 2026-05-19 | D118: \"1.7B RSFT surpasses 8B SFT\" claim 降级为 \"appr | plan019_8b_sft_s43_eval, plan019_1_7b_rsft_s44_r2_eval |\n| D117 | 2026-05-19 | D117: 14B SFT evidence tax = 0.03pp（本质为零），完成 4 尺度  | plan017_14b_sft_eval_r2, plan017_14b_sft_no_evidence_eval_r2 |\n| D116 | 2026-05-19 | D116: D112 结果无效（QLoRA confound），必须用 bf16 LoRA 重跑 s | d112_rsft_s44_eval, d112_rsft_s44_train |\n| D115 | 2026-05-19 | D115: 8B RSFT s44 ign_f1=0.5451 确认 RSFT 跨 seed 稳健， | plan019_8b_rsft_s44_eval, eval_rsft_ced_s42 |\n| D114 | 2026-05-19 | D114: 1.7B RSFT s43/s44 应使用 Method A（s42 SFT base） | plan019_1_7b_rsft_s43, plan019_1_7b_rsft_s44, d112_rsft_s44_ced_score |\n| D113 | 2026-05-18 | D113: GRPO bf16 ckpt-100 为最优 checkpoint，ckpt-200 无 | grpo_bf16_g4_ckpt100_eval, grpo_bf16_g4_ckpt200_eval |\n| D112 | 2026-05-18 | D112: 4B RSFT ign_f1 claim 需重大 reframe——全部 RSFT 基于 | wave1_sft_4b_s43_eval_r2, wave1_sft_4b_s44_eval_r2, eval_rsft_ced_s42 |\n| D111 | 2026-05-18 | D111: 4B SFT s42 必须用 D076 协议重新 eval，统一三 seed 参考基准 | wave1_sft_4b_s43_eval_r2, wave1_sft_4b_s44_eval_r2 |\n| D110 | 2026-05-18 | D110: GRPO bf16 ckpt-100 ign_f1=0.4431 无 catastrop | wave1_grpo_bf16_g4, grpo_bf16_g4_ckpt100_eval |\n\n",
+              "userModified": false
+            },
+            "sourceToolAssistantUUID": "14888c4b-6d20-44c3-af3f-53203bd54463",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "ac6c3eaa-1181-4230-9499-9a3dbe044d7c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "51c0e811-e431-4ea1-9a88-2fec8982911b",
+                "sessionId": "ac6c3eaa-1181-4230-9499-9a3dbe044d7c"
+              }
+            }
+          ],
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Update ROADMAP with latest experimental results",
+                "sessionId": "ac6c3eaa-1181-4230-9499-9a3dbe044d7c"
+              }
+            }
+          ],
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-19T17:15:33.214Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "ROADMAP.md 已更新。主要变更：\n\n- **Scaling table**: 新增 14B 行 (0.5507)，8B SFT 从 2-seed 0.4866 更新为 3-seed 0.5019，4B 加入 D112 Method B 结果 (0.5152)，8B Δ 从 +5.48pp 修正为 +3.95pp\n- **D112**: 标记完成，ign_f1=0.5152 (+4.18pp over s44 baseline)\n- **14B evidence tax (D117)**: tax=0.03pp≈0，14B 容量足够\n- **1.7B claim (D118)**: \"surpasses\" 降级为 \"comparable\"，variance stabilization 独立化\n- **Tier 1 实验**: D112、8B SFT s43、14B SFT 全部标记 ✅；8B RSFT s43 移入 Tier 2\n- **GPU 分布**: 更新为当前状态（cuda:2 空闲）\n- **关键风险**: D112 标记已解决，1.7B/14B 风险项更新为最新结论"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "51c0e811-e431-4ea1-9a88-2fec8982911b",
+            "isSidechain": false,
+            "requestId": "req_011CbCJe21p4UVqL1fkXbDVT",
+            "type": "assistant",
+            "uuid": "09c6bb17-1a37-4ae1-a3bc-16409867c65f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "ac6c3eaa-1181-4230-9499-9a3dbe044d7c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BatfLXE94Vy7BNsB3vv6SP",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3781,
+                "cache_read_input_tokens": 39273,
+                "output_tokens": 325,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3781,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 325,
+                    "cache_read_input_tokens": 39273,
+                    "cache_creation_input_tokens": 3781,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3781
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "09c6bb17-1a37-4ae1-a3bc-16409867c65f",
+                "sessionId": "ac6c3eaa-1181-4230-9499-9a3dbe044d7c"
+              }
+            }
+          ],
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Update ROADMAP with latest experimental results",
+                "sessionId": "ac6c3eaa-1181-4230-9499-9a3dbe044d7c"
+              }
+            }
+          ],
+          "id": "event-000046"
+        }
+      ],
+      "message_count": 44
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-faith-evidence-ie-rtx5090-4x-ssh-root-ssh-execute-submit-train-copy-1267.md"
+}

@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "715042cd03e260fbcd95",
+  "project": "faith-evidence-ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> 项目 faith-evidence-ie. rsft_score_filter.py 在 /root/autodl-tmp/freige/training/rsft_score_filter.py. 已有 -",
+  "task_key": "b0c17b53-fc37-4b84-b70a-e2244dfb707a",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/b0c17b53-fc37-4b84-b70a-e2244dfb707a.jsonl",
+    "occurrence": 1,
+    "bytes": 618404,
+    "sha256": "017afafd2cb5b2a5efb59a006e358df9df7e6af0232e8365ad904d907348518b"
+  },
+  "statistics": {
+    "messages": 260,
+    "user_turns": 1,
+    "tool_calls": 81,
+    "roles": {
+      "record": 51,
+      "user": 1,
+      "assistant": 46,
+      "tool_call": 81,
+      "tool_result": 81
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "715042cd03e260fbcd95-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 258,
+      "chunks": [
+        {
+          "path": "715042cd03e260fbcd95-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "715042cd03e260fbcd95-part-0002.json",
+          "message_count": 80
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-faith-evidence-ie-rsft-score-filter-py-root-autodl-tmp-freige-tr-copy-2.md"
+}

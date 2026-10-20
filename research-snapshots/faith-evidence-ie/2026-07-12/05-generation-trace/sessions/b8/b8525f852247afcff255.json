@@ -1,0 +1,91 @@
+{
+  "schema_version": "1.0",
+  "id": "b8525f852247afcff255",
+  "project": "faith-evidence-ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。 详情: Process exited cleanly, W&B data available - exp_id: eval_llama_s",
+  "task_key": "31a63d90-c6fd-457b-9d4d-f23cebe36cb6",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/31a63d90-c6fd-457b-9d4d-f23cebe36cb6.jsonl",
+    "occurrence": 1,
+    "bytes": 733850,
+    "sha256": "153cea792f21206f81f8839925105e32703b27da6cca7bb4d94b3bf4f1383af2"
+  },
+  "statistics": {
+    "messages": 68,
+    "user_turns": 4,
+    "tool_calls": 15,
+    "roles": {
+      "record": 21,
+      "user": 4,
+      "assistant": 13,
+      "tool_call": 15,
+      "tool_result": 15
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "b8525f852247afcff255-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 58,
+      "chunks": [
+        {
+          "path": "b8525f852247afcff255-part-0001.json",
+          "message_count": 38
+        },
+        {
+          "path": "b8525f852247afcff255-part-0002.json",
+          "message_count": 20
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "b8525f852247afcff255-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "b8525f852247afcff255-part-0002.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "b8525f852247afcff255-part-0002.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-cron-analyzing-done-process-exited-cleanly-w-b-data-available-exp-id-eval-llam-copy-2.md"
+}

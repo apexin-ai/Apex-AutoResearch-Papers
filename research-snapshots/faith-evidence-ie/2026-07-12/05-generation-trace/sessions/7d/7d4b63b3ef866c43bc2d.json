@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "id": "7d4b63b3ef866c43bc2d",
+  "project": "faith-evidence-ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I need to extract training metrics time series from experiment logs for the faith-evidence-ie project. The project is at",
+  "task_key": "agent-a6bbf99867cc07b16",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-a6bbf99867cc07b16.jsonl",
+    "occurrence": 1,
+    "bytes": 584160,
+    "sha256": "20702674d81262f7fb9101ba55ac4681627a5053aa8f2a6ee6fca9c24114dc51"
+  },
+  "statistics": {
+    "messages": 221,
+    "user_turns": 1,
+    "tool_calls": 89,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 41,
+      "tool_call": 89,
+      "tool_result": 89
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 221,
+      "chunks": [
+        {
+          "path": "7d4b63b3ef866c43bc2d-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "7d4b63b3ef866c43bc2d-part-0002.json",
+          "message_count": 41
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-need-to-extract-training-metrics-time-series-from-experiment-logs-for-the-fa.md"
+}

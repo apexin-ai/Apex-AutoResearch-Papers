@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "id": "514274ce2638b63b5dcf",
+  "project": "faith-evidence-ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> 项目 faith-evidence-ie. 关键路径: merge_shards.py → rsft_score_filter.py (--top_k 1) → rsft_trainer.py (单卡, --",
+  "task_key": "77be1f84-d31d-4dd7-adf0-dc773d98b3f5",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/77be1f84-d31d-4dd7-adf0-dc773d98b3f5.jsonl",
+    "occurrence": 1,
+    "bytes": 1064338,
+    "sha256": "058edf840f6e2c12ed9267755d77e05bfb413f059bad6264947119d5b572894e"
+  },
+  "statistics": {
+    "messages": 486,
+    "user_turns": 1,
+    "tool_calls": 151,
+    "roles": {
+      "record": 83,
+      "user": 1,
+      "assistant": 100,
+      "tool_call": 151,
+      "tool_result": 151
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "514274ce2638b63b5dcf-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 484,
+      "chunks": [
+        {
+          "path": "514274ce2638b63b5dcf-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "514274ce2638b63b5dcf-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "514274ce2638b63b5dcf-part-0003.json",
+          "message_count": 126
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-faith-evidence-ie-merge-shards-py-rsft-score-filter-py-top-k-1-r.md"
+}

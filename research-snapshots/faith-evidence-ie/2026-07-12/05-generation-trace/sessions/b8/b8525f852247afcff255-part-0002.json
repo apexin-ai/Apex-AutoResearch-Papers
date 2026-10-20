@@ -1,0 +1,1160 @@
+{
+  "schema_version": "1.0",
+  "session_id": "b8525f852247afcff255",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-21T02:41:12.600Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Filters 没返回结果，换个方式查找。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "65576669-bb0e-4c3b-9304-9cd30696f913",
+            "isSidechain": false,
+            "requestId": "req_011CbEwb3T7VLEhiJMvYfjQF",
+            "type": "assistant",
+            "uuid": "ac540470-a81c-4c37-b0dd-45df1e31956b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_15ab4311",
+            "sessionId": "31a63d90-c6fd-457b-9d4d-f23cebe36cb6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Q1dvvf3uvTs5aXMFbebHFi",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1260,
+                "cache_read_input_tokens": 48806,
+                "output_tokens": 277,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1260,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 277,
+                    "cache_read_input_tokens": 48806,
+                    "cache_creation_input_tokens": 1260,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1260
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-21T02:41:13.103Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QBz8TV3ovAn5o5XbF8SgGx",
+              "name": "mcp__agent-ml-research__read_registry",
+              "input": {
+                "project": "faith-evidence-ie",
+                "filters": {
+                  "status": "ANALYZING"
+                },
+                "fields": [
+                  "*"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ac540470-a81c-4c37-b0dd-45df1e31956b",
+            "isSidechain": false,
+            "requestId": "req_011CbEwb3T7VLEhiJMvYfjQF",
+            "type": "assistant",
+            "uuid": "d2400a0a-399b-4397-a461-f541c4828ef5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_15ab4311",
+            "sessionId": "31a63d90-c6fd-457b-9d4d-f23cebe36cb6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Q1dvvf3uvTs5aXMFbebHFi",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1260,
+                "cache_read_input_tokens": 48806,
+                "output_tokens": 277,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1260,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 277,
+                    "cache_read_input_tokens": 48806,
+                    "cache_creation_input_tokens": 1260,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1260
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-21T02:41:13.523Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GNXMVpLiWF1JixYLXkwZeN",
+              "name": "mcp__agent-ml-research__read_registry",
+              "input": {
+                "project": "faith-evidence-ie",
+                "filters": {
+                  "status": "RUNNING"
+                },
+                "fields": [
+                  "*"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d2400a0a-399b-4397-a461-f541c4828ef5",
+            "isSidechain": false,
+            "requestId": "req_011CbEwb3T7VLEhiJMvYfjQF",
+            "type": "assistant",
+            "uuid": "02a1720f-dbab-4ddd-90be-8cef723a029b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_15ab4311",
+            "sessionId": "31a63d90-c6fd-457b-9d4d-f23cebe36cb6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Q1dvvf3uvTs5aXMFbebHFi",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1260,
+                "cache_read_input_tokens": 48806,
+                "output_tokens": 277,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1260,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 277,
+                    "cache_read_input_tokens": 48806,
+                    "cache_creation_input_tokens": 1260,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1260
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-21T02:41:14.095Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QBz8TV3ovAn5o5XbF8SgGx",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_llama_sft_s43_no_evidence_2048_r2\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T22:29:26.346Z\\\", \\\"updated_at\\\": \\\"2026-05-21T02:40:23.445Z\\\", \\\"hypothesis\\\": \\\"方法论一致性重跑：s43 SFT no-evi 2048 eval。上次在 237/247 batch 超时(4h timeout)。timeout 改为 6h。与 s42/s44 2048 matched comparison，验证截断伪影 vs 真实 evidence dependency。\\\", \\\"parent\\\": \\\"eval_llama_sft_s43_no_evidence_2048\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-20T22:29:44.205Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && GPU=1 python -m freige.eval.inference --model_path /root/autodl-tmp/sft_output_llama_3_1_8b_s43 --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 2048 --seed 42 --no-quantize --no_evidence --output_dir /root/autodl-tmp/eval_results/eval_llama_sft_s43_no_evidence_2048\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-21T02:40:19.948Z\\\", \\\"training_hours\\\": 4.18}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && GPU=1 python -m freige.eval.inference --model_path /root/autodl-tmp/sft_output_llama_3_1_8b_s43 --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 2048 --seed 42 --no-quantize --no_evidence --output_dir /root/autodl-tmp/eval_results/eval_llama_sft_s43_no_evidence_2048\\\\\\\"\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"58417\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/eval_llama_sft_s43_no_evidence_2048_r2.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T22:29:47.154Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"pid\\\": \\\"58417\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/eval_llama_sft_s43_no_evidence_2048_r2.log\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T02:40:29.746472+00:00\\\"}]}}}, \\\"count\\\": 1, \\\"total\\\": 1, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9773}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d2400a0a-399b-4397-a461-f541c4828ef5",
+            "isSidechain": false,
+            "promptId": "bd7bef72-fe0e-4b45-9f6c-44814b146f8d",
+            "type": "user",
+            "uuid": "5d95473e-6621-4263-89e3-90917b42dc46",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_llama_sft_s43_no_evidence_2048_r2\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T22:29:26.346Z\\\", \\\"updated_at\\\": \\\"2026-05-21T02:40:23.445Z\\\", \\\"hypothesis\\\": \\\"方法论一致性重跑：s43 SFT no-evi 2048 eval。上次在 237/247 batch 超时(4h timeout)。timeout 改为 6h。与 s42/s44 2048 matched comparison，验证截断伪影 vs 真实 evidence dependency。\\\", \\\"parent\\\": \\\"eval_llama_sft_s43_no_evidence_2048\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-20T22:29:44.205Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && GPU=1 python -m freige.eval.inference --model_path /root/autodl-tmp/sft_output_llama_3_1_8b_s43 --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 2048 --seed 42 --no-quantize --no_evidence --output_dir /root/autodl-tmp/eval_results/eval_llama_sft_s43_no_evidence_2048\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-21T02:40:19.948Z\\\", \\\"training_hours\\\": 4.18}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && GPU=1 python -m freige.eval.inference --model_path /root/autodl-tmp/sft_output_llama_3_1_8b_s43 --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 2048 --seed 42 --no-quantize --no_evidence --output_dir /root/autodl-tmp/eval_results/eval_llama_sft_s43_no_evidence_2048\\\\\\\"\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"58417\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/eval_llama_sft_s43_no_evidence_2048_r2.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T22:29:47.154Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"pid\\\": \\\"58417\\\", \\\"log_path\\\": \\\"~/runs/faith-evidence-ie/eval_llama_sft_s43_no_evidence_2048_r2.log\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T02:40:29.746472+00:00\\\"}]}}}, \\\"count\\\": 1, \\\"total\\\": 1, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9773}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"experiments\": {\"eval_llama_sft_s43_no_evidence_2048_r2\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T22:29:26.346Z\", \"updated_at\": \"2026-05-21T02:40:23.445Z\", \"hypothesis\": \"方法论一致性重跑：s43 SFT no-evi 2048 eval。上次在 237/247 batch 超时(4h timeout)。timeout 改为 6h。与 s42/s44 2048 matched comparison，验证截断伪影 vs 真实 evidence dependency。\", \"parent\": \"eval_llama_sft_s43_no_evidence_2048\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx5090-4x\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-20T22:29:44.205Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && GPU=1 python -m freige.eval.inference --model_path /root/autodl-tmp/sft_output_llama_3_1_8b_s43 --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 2048 --seed 42 --no-quantize --no_evidence --output_dir /root/autodl-tmp/eval_results/eval_llama_sft_s43_no_evidence_2048\\\"\", \"finished_at\": \"2026-05-21T02:40:19.948Z\", \"training_hours\": 4.18}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && GPU=1 python -m freige.eval.inference --model_path /root/autodl-tmp/sft_output_llama_3_1_8b_s43 --base_model /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --data_path /root/autodl-tmp/data/docred --split dev --batch_size 4 --max_new_tokens 2048 --seed 42 --no-quantize --no_evidence --output_dir /root/autodl-tmp/eval_results/eval_llama_sft_s43_no_evidence_2048\\\"\", \"server\": \"rtx5090-4x\", \"gpu\": [\"cuda:1\"], \"pid\": \"58417\", \"log_path\": \"~/runs/faith-evidence-ie/eval_llama_sft_s43_no_evidence_2048_r2.log\", \"submitted_at\": \"2026-05-20T22:29:47.154Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"58417\", \"log_path\": \"~/runs/faith-evidence-ie/eval_llama_sft_s43_no_evidence_2048_r2.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-21T02:40:29.746472+00:00\"}]}}}, \"count\": 1, \"total\": 1, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9773}}"
+              }
+            },
+            "sourceToolAssistantUUID": "d2400a0a-399b-4397-a461-f541c4828ef5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_15ab4311",
+            "sessionId": "31a63d90-c6fd-457b-9d4d-f23cebe36cb6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。 详情: Process exited cleanly, W&B data available  - exp_id: eval_llama_sft_s43_no_evidence_2048_r2 - project: faith-evidence-ie - server: rtx5090-4x -…",
+                "leafUuid": "5d95473e-6621-4263-89e3-90917b42dc46",
+                "sessionId": "31a63d90-c6fd-457b-9d4d-f23cebe36cb6"
+              }
+            }
+          ],
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Analyze experiment results and mark as done",
+                "sessionId": "31a63d90-c6fd-457b-9d4d-f23cebe36cb6"
+              }
+            }
+          ],
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-21T02:41:15.152Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GNXMVpLiWF1JixYLXkwZeN",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_llama_sft_s43_with_evidence_2048\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T00:47:46.702Z\\\", \\\"updated_at\\\": \\\"2026-05-21T00:48:13.215Z\\\", \\\"hypothesis\\\": \\\"matched@2048 methodology: s43 SFT with-evidence eval at max_new_tokens=2048. 配对 s43 no-evi@2048 计算 matched evidence tax。\\\", \\\"parent\\\": \\\"llama_sft_s43_train_eval_r3\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=2 python -m freige.eval.inference --model_path /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b_s43 --data_path /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/eval_results/eval_llama_sft_s43_with_evidence_2048 --batch_size 1 --max_new_tokens 2048 --no-quantize --split dev --seed 42\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred/dev.json\\\", \\\"data_count\\\": 985, \\\"model_name\\\": \\\"Meta-Llama-3.1-8B + s43 SFT adapter (with-evidence)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/sft_output_llama_3_1_8b_s43\\\", \\\"eval_data\\\": \\\"docred dev\\\", \\\"pid\\\": 64391, \\\"gpu\\\": \\\"cuda:2\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/freige/eval_outputs/eval_llama_sft_s43_with_evidence_2048.log\\\"}}, \\\"eval_llama_sft_s44_with_evidence_2048\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T00:46:47.679Z\\\", \\\"updated_at\\\": \\\"2026-05-21T00:47:16.734Z\\\", \\\"hypothesis\\\": \\\"matched@2048 methodology: s44 SFT with-evidence eval at max_new_tokens=2048. 配对 s44 no-evi@2048 (ign_f1=0.4373) 计算 matched evidence tax。s42 control 显示 with-evi@1024→2048 delta=+2.65pp，证明 matched budget 必要。\\\", \\\"parent\\\": \\\"llama_sft_s44_train_eval_r3\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=3 python -m freige.eval.inference --model_path /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b_s44 --data_path /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/eval_results/eval_llama_sft_s44_with_evidence_2048 --batch_size 1 --max_new_tokens 2048 --no-quantize --split dev --seed 42\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"pid\\\": 64023, \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": \\\"docred-dev-full\\\", \\\"model_name\\\": \\\"Meta-Llama-3.1-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/sft_output_llama_3_1_8b_s44\\\", \\\"eval_data\\\": \\\"docred-dev\\\", \\\"log_path\\\": \\\"/tmp/eval_llama_sft_s44_with_evidence_2048.log\\\"}}, \\\"plan017_14b_rsft_eval\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T20:52:44.030Z\\\", \\\"updated_at\\\": \\\"2026-05-20T20:53:06.827Z\\\", \\\"hypothesis\\\": \\\"14B RSFT eval on DocRED dev set. 14B SFT baseline ign_f1=0.5507. Expect RSFT improvement consistent with smaller scales (+2-6pp). Completes scaling table row 4.\\\", \\\"parent\\\": \\\"plan017_14b_rsft_train\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_14b --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b/checkpoint-144 --data_path /root/autodl-tmp/data/docred --split dev --output_dir /root/autodl-tmp/freige/eval_outputs/plan017_14b_rsft_eval --batch_size 1 --max_new_tokens 1024 --no-quantize --seed 42\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred/dev.json\\\", \\\"data_count\\\": 985, \\\"model_name\\\": \\\"Qwen3-14B + SFT(checkpoint-144) + RSFT\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/rsft_output_14b\\\", \\\"eval_data\\\": \\\"DocRED dev set (985 docs, 12275 gold triples)\\\", \\\"pid\\\": 53413, \\\"gpu\\\": \\\"cuda:0\\\", \\\"gpu_mem_used\\\": \\\"32503 MiB\\\", \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output_14b/checkpoint-144\\\", \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen/Qwen3-14B\\\", \\\"nested_lora\\\": true}}}, \\\"count\\\": 3, \\\"total\\\": 3, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0341}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "02a1720f-dbab-4ddd-90be-8cef723a029b",
+            "isSidechain": false,
+            "promptId": "bd7bef72-fe0e-4b45-9f6c-44814b146f8d",
+            "type": "user",
+            "uuid": "6524cd8c-c983-4a42-9408-a120bf486a1f",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_llama_sft_s43_with_evidence_2048\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T00:47:46.702Z\\\", \\\"updated_at\\\": \\\"2026-05-21T00:48:13.215Z\\\", \\\"hypothesis\\\": \\\"matched@2048 methodology: s43 SFT with-evidence eval at max_new_tokens=2048. 配对 s43 no-evi@2048 计算 matched evidence tax。\\\", \\\"parent\\\": \\\"llama_sft_s43_train_eval_r3\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=2 python -m freige.eval.inference --model_path /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b_s43 --data_path /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/eval_results/eval_llama_sft_s43_with_evidence_2048 --batch_size 1 --max_new_tokens 2048 --no-quantize --split dev --seed 42\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred/dev.json\\\", \\\"data_count\\\": 985, \\\"model_name\\\": \\\"Meta-Llama-3.1-8B + s43 SFT adapter (with-evidence)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/sft_output_llama_3_1_8b_s43\\\", \\\"eval_data\\\": \\\"docred dev\\\", \\\"pid\\\": 64391, \\\"gpu\\\": \\\"cuda:2\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/freige/eval_outputs/eval_llama_sft_s43_with_evidence_2048.log\\\"}}, \\\"eval_llama_sft_s44_with_evidence_2048\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T00:46:47.679Z\\\", \\\"updated_at\\\": \\\"2026-05-21T00:47:16.734Z\\\", \\\"hypothesis\\\": \\\"matched@2048 methodology: s44 SFT with-evidence eval at max_new_tokens=2048. 配对 s44 no-evi@2048 (ign_f1=0.4373) 计算 matched evidence tax。s42 control 显示 with-evi@1024→2048 delta=+2.65pp，证明 matched budget 必要。\\\", \\\"parent\\\": \\\"llama_sft_s44_train_eval_r3\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=3 python -m freige.eval.inference --model_path /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b_s44 --data_path /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/eval_results/eval_llama_sft_s44_with_evidence_2048 --batch_size 1 --max_new_tokens 2048 --no-quantize --split dev --seed 42\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"pid\\\": 64023, \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\", \\\"data_count\\\": \\\"docred-dev-full\\\", \\\"model_name\\\": \\\"Meta-Llama-3.1-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/sft_output_llama_3_1_8b_s44\\\", \\\"eval_data\\\": \\\"docred-dev\\\", \\\"log_path\\\": \\\"/tmp/eval_llama_sft_s44_with_evidence_2048.log\\\"}}, \\\"plan017_14b_rsft_eval\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T20:52:44.030Z\\\", \\\"updated_at\\\": \\\"2026-05-20T20:53:06.827Z\\\", \\\"hypothesis\\\": \\\"14B RSFT eval on DocRED dev set. 14B SFT baseline ign_f1=0.5507. Expect RSFT improvement consistent with smaller scales (+2-6pp). Completes scaling table row 4.\\\", \\\"parent\\\": \\\"plan017_14b_rsft_train\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_14b --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b/checkpoint-144 --data_path /root/autodl-tmp/data/docred --split dev --output_dir /root/autodl-tmp/freige/eval_outputs/plan017_14b_rsft_eval --batch_size 1 --max_new_tokens 1024 --no-quantize --seed 42\\\", \\\"server\\\": \\\"rtx5090-4x\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred/dev.json\\\", \\\"data_count\\\": 985, \\\"model_name\\\": \\\"Qwen3-14B + SFT(checkpoint-144) + RSFT\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/rsft_output_14b\\\", \\\"eval_data\\\": \\\"DocRED dev set (985 docs, 12275 gold triples)\\\", \\\"pid\\\": 53413, \\\"gpu\\\": \\\"cuda:0\\\", \\\"gpu_mem_used\\\": \\\"32503 MiB\\\", \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output_14b/checkpoint-144\\\", \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen/Qwen3-14B\\\", \\\"nested_lora\\\": true}}}, \\\"count\\\": 3, \\\"total\\\": 3, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0341}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"experiments\": {\"eval_llama_sft_s43_with_evidence_2048\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T00:47:46.702Z\", \"updated_at\": \"2026-05-21T00:48:13.215Z\", \"hypothesis\": \"matched@2048 methodology: s43 SFT with-evidence eval at max_new_tokens=2048. 配对 s43 no-evi@2048 计算 matched evidence tax。\", \"parent\": \"llama_sft_s43_train_eval_r3\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 python -m freige.eval.inference --model_path /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b_s43 --data_path /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/eval_results/eval_llama_sft_s43_with_evidence_2048 --batch_size 1 --max_new_tokens 2048 --no-quantize --split dev --seed 42\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/docred/dev.json\", \"data_count\": 985, \"model_name\": \"Meta-Llama-3.1-8B + s43 SFT adapter (with-evidence)\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/sft_output_llama_3_1_8b_s43\", \"eval_data\": \"docred dev\", \"pid\": 64391, \"gpu\": \"cuda:2\", \"log_path\": \"/root/autodl-tmp/freige/eval_outputs/eval_llama_sft_s43_with_evidence_2048.log\"}}, \"eval_llama_sft_s44_with_evidence_2048\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T00:46:47.679Z\", \"updated_at\": \"2026-05-21T00:47:16.734Z\", \"hypothesis\": \"matched@2048 methodology: s44 SFT with-evidence eval at max_new_tokens=2048. 配对 s44 no-evi@2048 (ign_f1=0.4373) 计算 matched evidence tax。s42 control 显示 with-evi@1024→2048 delta=+2.65pp，证明 matched budget 必要。\", \"parent\": \"llama_sft_s44_train_eval_r3\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python -m freige.eval.inference --model_path /root/autodl-tmp/models/meta-llama/Meta-Llama-3.1-8B --sft_adapter /root/autodl-tmp/sft_output_llama_3_1_8b_s44 --data_path /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/eval_results/eval_llama_sft_s44_with_evidence_2048 --batch_size 1 --max_new_tokens 2048 --no-quantize --split dev --seed 42\", \"server\": \"rtx5090-4x\", \"gpu\": \"cuda:3\", \"pid\": 64023, \"data_path\": \"/root/autodl-tmp/data/docred\", \"data_count\": \"docred-dev-full\", \"model_name\": \"Meta-Llama-3.1-8B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/sft_output_llama_3_1_8b_s44\", \"eval_data\": \"docred-dev\", \"log_path\": \"/tmp/eval_llama_sft_s44_with_evidence_2048.log\"}}, \"plan017_14b_rsft_eval\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T20:52:44.030Z\", \"updated_at\": \"2026-05-20T20:53:06.827Z\", \"hypothesis\": \"14B RSFT eval on DocRED dev set. 14B SFT baseline ign_f1=0.5507. Expect RSFT improvement consistent with smaller scales (+2-6pp). Completes scaling table row 4.\", \"parent\": \"plan017_14b_rsft_train\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python -m freige.eval.inference --model_path /root/autodl-tmp/rsft_output_14b --base_model /root/autodl-tmp/models/Qwen/Qwen3-14B --sft_adapter /root/autodl-tmp/sft_output_14b/checkpoint-144 --data_path /root/autodl-tmp/data/docred --split dev --output_dir /root/autodl-tmp/freige/eval_outputs/plan017_14b_rsft_eval --batch_size 1 --max_new_tokens 1024 --no-quantize --seed 42\", \"server\": \"rtx5090-4x\", \"data_path\": \"/root/autodl-tmp/data/docred/dev.json\", \"data_count\": 985, \"model_name\": \"Qwen3-14B + SFT(checkpoint-144) + RSFT\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/rsft_output_14b\", \"eval_data\": \"DocRED dev set (985 docs, 12275 gold triples)\", \"pid\": 53413, \"gpu\": \"cuda:0\", \"gpu_mem_used\": \"32503 MiB\", \"sft_adapter\": \"/root/autodl-tmp/sft_output_14b/checkpoint-144\", \"base_model\": \"/root/autodl-tmp/models/Qwen/Qwen3-14B\", \"nested_lora\": true}}}, \"count\": 3, \"total\": 3, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0341}}"
+              }
+            },
+            "sourceToolAssistantUUID": "02a1720f-dbab-4ddd-90be-8cef723a029b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_15ab4311",
+            "sessionId": "31a63d90-c6fd-457b-9d4d-f23cebe36cb6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-21T02:41:23.194Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have the details for the experiment `eval_llama_sft_s43_no_evidence_2048_r2`:\n- Status: ANALYZING\n- Hypothesis: 方法论一致性重跑：s43 SFT no-evi 2048 eval。上次在 237/247 batch 超时(4h timeout)。timeout 改为 6h。与 s42/s44 2048 matched comparison，验证截断伪影 vs 真实 evidence dependency。\n\n\n- Parent: eval_llama_sft_s43_no_evidence_2048\n- Server: rtx5090-4x, GPU: cuda:1\n- Training hours: 4.18h\n- Log path: ~/runs/faith-evidence-ie/eval_llama_sft_s43_no_evidence_2048_r2.log\n\nThe experiment completed successfully. I need to spawn a Worker to SSH into the server and extract the metrics from the logs, then compare them against the related s42 and s44 experiments to validate whether the truncation artifacts are real or tied to evidence dependency.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6524cd8c-c983-4a42-9408-a120bf486a1f",
+            "isSidechain": false,
+            "requestId": "req_011CbEwbZ1cPFGm5rnaGHcyy",
+            "type": "assistant",
+            "uuid": "71d1298c-c575-45a0-b5b1-d3fffdc064ab",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_15ab4311",
+            "sessionId": "31a63d90-c6fd-457b-9d4d-f23cebe36cb6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YaohrVb9jNHWK39qQ9ftPH",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3133,
+                "cache_read_input_tokens": 50066,
+                "output_tokens": 509,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3133,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 509,
+                    "cache_read_input_tokens": 50066,
+                    "cache_creation_input_tokens": 3133,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3133
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-21T02:41:23.238Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "找到实验详情。需要提取结果指标。让我先查相关对比实验的 metrics。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "71d1298c-c575-45a0-b5b1-d3fffdc064ab",
+            "isSidechain": false,
+            "requestId": "req_011CbEwbZ1cPFGm5rnaGHcyy",
+            "type": "assistant",
+            "uuid": "d9d4d44f-bfa6-4734-873b-b0db7785072b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_15ab4311",
+            "sessionId": "31a63d90-c6fd-457b-9d4d-f23cebe36cb6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YaohrVb9jNHWK39qQ9ftPH",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3133,
+                "cache_read_input_tokens": 50066,
+                "output_tokens": 509,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3133,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 509,
+                    "cache_read_input_tokens": 50066,
+                    "cache_creation_input_tokens": 3133,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3133
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-21T02:41:24.032Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019XcfD5NyYbNUhsVidJy6qJ",
+              "name": "mcp__agent-ml-research__read_registry",
+              "input": {
+                "project": "faith-evidence-ie",
+                "filters": {
+                  "status": "DONE"
+                },
+                "fields": [
+                  "status",
+                  "conclusion",
+                  "metrics",
+                  "hypothesis",
+                  "parent"
+                ],
+                "limit": 30
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d9d4d44f-bfa6-4734-873b-b0db7785072b",
+            "isSidechain": false,
+            "requestId": "req_011CbEwbZ1cPFGm5rnaGHcyy",
+            "type": "assistant",
+            "uuid": "9b2996b9-74d1-4ac7-b72c-897ab05ecf7d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_15ab4311",
+            "sessionId": "31a63d90-c6fd-457b-9d4d-f23cebe36cb6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YaohrVb9jNHWK39qQ9ftPH",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3133,
+                "cache_read_input_tokens": 50066,
+                "output_tokens": 509,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3133,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 509,
+                    "cache_read_input_tokens": 50066,
+                    "cache_creation_input_tokens": 3133,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3133
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-21T02:41:25.199Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019XcfD5NyYbNUhsVidJy6qJ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_llama_sft_s42_with_evidence_2048\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"方法论 control: LLaMA SFT s42 with-evidence eval at max_new_tokens=2048. 原 1024 版 ign_f1=0.5384. 预期 delta<1pp, 证明 with-evi 对 token budget 不敏感, 从而验证 no-evi@2048 vs with-evi@1024 的 tax 计算方法论合理。\\\", \\\"parent\\\": \\\"llama_sft_s42\\\", \\\"metrics\\\": {\\\"ign_f1\\\": 0.5649, \\\"f1\\\": 0.5767, \\\"format_ok\\\": 976, \\\"format_ok_rate\\\": 0.9909, \\\"truncated\\\": 147, \\\"predictions\\\": 20302, \\\"evi_f1\\\": 0.803, \\\"edcr\\\": 0.6428, \\\"inference_time_seconds\\\": 10491.7}, \\\"conclusion\\\": \\\"success\\\"}, \\\"plan017_14b_rsft_no_evidence_eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"14B RSFT no-evidence eval. Measures evidence tax at 14B scale. Based on smaller scales, expect RSFT to compress evidence tax variance. SFT 14B ign_f1=0.5507.\\\", \\\"parent\\\": \\\"plan017_14b_rsft_train\\\", \\\"metrics\\\": {\\\"ign_f1\\\": 0.5432, \\\"f1\\\": 0.5536, \\\"ign_precision\\\": 0.5193, \\\"ign_recall\\\": 0.5693, \\\"precision\\\": 0.5414, \\\"recall\\\": 0.5664, \\\"evi_f1\\\": 0, \\\"edcr\\\": 0, \\\"format_ok\\\": 953, \\\"format_ok_rate\\\": 0.9675, \\\"n_total\\\": 985, \\\"n_predictions\\\": 15333, \\\"n_truncated\\\": 106, \\\"tp\\\": 6882, \\\"pred_count\\\": 12711, \\\"gold_count\\\": 12151, \\\"inference_time_seconds\\\": 9427.5}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_llama_sft_s43_no_evidence_2048\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"方法论一致性：s43 SFT no-evi 用 max_new_tokens=2048 重跑。原 1024 版 truncation=38.4%, ign_f1=0.3391。与 s42/s44 2048 版 matched comparison，验证截断伪影 vs 真实退化。seed=42（标准 eval seed）。\\\", \\\"parent\\\": \\\"eval_llama_sft_s43_no_evidence_r2\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"eval_llama_sft_s42_no_evidence_2048\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"方法论一致性：s42 SFT no-evi 用 max_new_tokens=2048 重跑，与 s44 2048 版 matched comparison。原 1024 版 s42 format_ok=88.7% (874/985)，fair tax=+1.35pp。2048 版验证截断对 s42 的影响程度，确保 3-seed evidence tax 在相同条件下比较。\\\", \\\"parent\\\": \\\"eval_llama_sft_s42_no_evidence_std_r2\\\", \\\"metrics\\\": {\\\"ign_f1\\\": 0.521, \\\"f1\\\": 0.5306, \\\"ign_precision\\\": 0.5342, \\\"ign_recall\\\": 0.5085, \\\"format_ok_rate\\\": 0.8873, \\\"n_format_ok\\\": 874, \\\"n_truncated\\\": 201, \\\"truncation_rate\\\": 0.2041, \\\"n_predictions\\\": 23031, \\\"n_documents\\\": 985, \\\"pred_count_dedup\\\": 11109, \\\"fair_tax_pp\\\": 1.2, \\\"fair_subset_docs\\\": 873, \\\"fair_with_evi_ign_f1\\\": 0.5443, \\\"fair_no_evi_ign_f1\\\": 0.5564, \\\"raw_tax_pp\\\": -1.74, \\\"vs_1024_ign_f1_delta\\\": \\\"-0.09pp\\\", \\\"vs_1024_format_ok_delta\\\": \\\"0pp (874→874)\\\", \\\"vs_1024_fair_tax_delta\\\": \\\"-0.14pp (+1.34→+1.20)\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"plan017_14b_rsft_generate_r4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"14B RSFT 生成 resume (r4: ghost file recovery 后继续)。从 doc 2553/3027 继续生成剩余 474 docs。r3 因 rsync 删除 inode 导致写入 ghost file，已通过 /proc/fd 恢复 20424 行数据。\\\", \\\"parent\\\": \\\"plan017_14b_rsft_generate_r3\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"total_lines\\\": 24216, \\\"unique_docs\\\": 3027, \\\"generations_per_doc\\\": 8}}, \\\"eval_llama_sft_s43_no_evidence_r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"LLaMA SFT s43 标准化 no-evidence eval（r2: 超时重试，timeout_hours 从 2h 提高到 3h）。用 s43 SFT adapter + --no_evidence flag 推理，测量 per-seed evidence tax。\\\", \\\"parent\\\": \\\"eval_llama_sft_s43_no_evidence\\\", \\\"metrics\\\": {\\\"ign_f1\\\": 0.3391, \\\"format_compliance\\\": 0.616, \\\"n_truncated\\\": 378}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_llama_sft_s44_no_evidence_2048\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Truncation 诊断：s44 SFT no-evi 截断率 41.7% (411/985) 远高于 s42 (22.2%)，导致 ign_f1=0.3326 异常低。用 max_new_tokens=2048（原 1024）重跑，验证低 ign_f1 是截断伪影还是真实 evidence dependency。如果 2048 版 ign_f1 恢复到 ~0.47-0.52 → 截断 artifact，论文用 2048 数据。\\\", \\\"parent\\\": \\\"eval_llama_sft_s44_no_evidence\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"ign_f1\\\": 0.4373, \\\"f1\\\": 0.4504, \\\"ign_precision\\\": 0.3947, \\\"ign_recall\\\": 0.4902, \\\"format_ok_rate\\\": 0.9919, \\\"n_format_ok\\\": 977, \\\"n_truncated\\\": 246, \\\"truncation_rate\\\": 0.2497, \\\"n_predictions\\\": 28366, \\\"n_documents\\\": 985, \\\"fair_tax_pp\\\": -4.18, \\\"fair_subset_docs\\\": 977, \\\"fair_with_evi_ign_f1\\\": 0.4813, \\\"fair_no_evi_ign_f1\\\": 0.4395, \\\"vs_1024_ign_f1_delta\\\": \\\"+10.47pp\\\", \\\"vs_1024_truncation_delta\\\": \\\"-16.7pp\\\"}}, \\\"d112_rsft_s44_ced_score\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"D112 step 2: CED scoring + k=1 selection on SFT s44 generation candidates. 使用 NLI-DeBERTa 对 N=8 候选打分，format_w=0.2, f1_w=0.4, ced_w=0.4，top_k=1 筛选最优样本用于后续 RSFT 训练。\\\", \\\"parent\\\": \\\"d112_rsft_s44_gen_shard0\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"total_scored\\\": 24216, \\\"selected_count\\\": 3014, \\\"selection_rate\\\": 0.124, \\\"mean_f1\\\": 0.676, \\\"mean_ced\\\": 0.676}}, \\\"plan017_14b_rsft_train\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"14B RSFT LoRA training on CED-scored top_k=1 data (3015 samples). 14B SFT (ign_f1=0.5507) as base, expect RSFT to further improve via rejection sampling on high-quality generations. Completes scaling table 4th row (1.7B→4B→8B→14B).\\\", \\\"metrics\\\": {\\\"train_loss\\\": 0.5005, \\\"mean_token_accuracy\\\": 0.8783, \\\"total_steps\\\": 1131, \\\"runtime_seconds\\\": 3958}, \\\"conclusion\\\": \\\"success\\\"}, \\\"d112_rsft_s44_generate\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"D112 step1: 用 SFT s44 adapter (ign_f1=0.4734, 最强 seed) 生成 N=8 RSFT 候选。验证 RSFT pipeline 从强 SFT base 出发是否能进一步提升，决定 Claim 1 表述强度。\\\", \\\"parent\\\": \\\"wave1_sft_4b_s44_eval_r2\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan017_14b_ced_scoring\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"14B model generates higher quality candidates than 4B, so CED scoring with top_k=1 should yield RSFT training data with higher F1 and CED rewards compared to 4B CED scoring results.\\\", \\\"parent\\\": \\\"plan017_14b_rsft_generate_r4\\\", \\\"metrics\\\": {\\\"total_scored\\\": 24216, \\\"unique_docs_total\\\": 3027, \\\"selected_count\\\": 3015, \\\"unique_docs_selected\\\": 3015, \\\"selection_rate\\\": 0.1245, \\\"all_mean_f1\\\": 0.616, \\\"all_mean_ced\\\": 0.568, \\\"all_mean_combined\\\": 0.673, \\\"selected_mean_f1\\\": 0.73, \\\"selected_mean_ced\\\": 0.69, \\\"selected_mean_combined\\\": 0.768, \\\"selected_median_f1\\\": 0.75, \\\"selected_median_ced\\\": 0.71, \\\"f1_filter_dropped_gens\\\": 497, \\\"f1_filter_dropped_docs\\\": 12, \\\"truncated_count\\\": 1701, \\\"truncated_ratio\\\": 0.07, \\\"truncated_mean_f1\\\": 0.487, \\\"non_truncated_mean_f1\\\": 0.625, \\\"truncation_f1_gap\\\": 0.139, \\\"format_reward_mean\\\": 0.9996, \\\"output_file\\\": \\\"/root/autodl-tmp/rsft_scored_14b/rsft_train.jsonl\\\", \\\"output_size_mb\\\": 9.1, \\\"runtime_hours\\\": 1}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_llama_sft_s44_no_evidence\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"LLaMA SFT s44 标准化 no-evidence eval。补齐 LLaMA SFT 3-seed evidence tax：s42 tax=-1.65pp, s43 RUNNING。s44 with-evidence ign_f1=0.4802。完成后可计算 SFT 3-seed evidence tax mean±std。\\\", \\\"parent\\\": \\\"llama_sft_s44_train_eval_r3\\\", \\\"metrics\\\": {\\\"ign_f1\\\": 0.3326, \\\"f1\\\": 0.3348, \\\"format_compliance\\\": 0.945, \\\"format_ok\\\": 931, \\\"n_documents\\\": 985, \\\"n_truncated\\\": 411}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_llama_rsft_s44_no_evidence\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"LLaMA RSFT s44 no-evidence eval。补齐 LLaMA RSFT 3-seed evidence tax：s42 tax=-1.88pp (ign_f1=0.5526), s43 tax=-1.16pp (ign_f1=0.5546)。s44 with-evidence ign_f1=0.5587。完成后可计算跨家族 RSFT evidence tax mean±std。\\\", \\\"parent\\\": \\\"llama_rsft_s44_pipeline\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"ign_f1\\\": 0.555, \\\"f1\\\": 0.5674, \\\"evi_f1\\\": 0.001, \\\"evi_f1_joint\\\": 0.0001, \\\"edcr\\\": 0.6818, \\\"format_compliance\\\": 0.999, \\\"n_truncated\\\": 178, \\\"n_predictions\\\": 18089, \\\"inference_time_s\\\": 6555.2, \\\"n_documents\\\": 985, \\\"n_format_ok\\\": 984}}, \\\"eval_llama_sft_s43_no_evidence\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"LLaMA SFT s43 标准化 no-evidence eval。用 s43 SFT adapter + --no_evidence flag 推理，测量 per-seed evidence tax，与 s42 no-evidence eval 配对。\\\", \\\"parent\\\": \\\"llama_sft_s43_train_eval_r3\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"migration_bjb2_to_westd\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"全量数据迁移 bjb2-12179 → westd-37389，207G 包含所有 adapters、基座模型、数据集、eval 结果。迁移完成后 4 GPU 并行恢复实验。\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan017_14b_rsft_generate_r3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"14B RSFT 生成 resume (r3: 修正 adapter 路径指向 checkpoint-144)。从 doc 1873 继续生成剩余 1155 docs。r2 因 --sft_adapter 指向顶层目录而非 checkpoint-144 子目录失败。\\\", \\\"parent\\\": \\\"plan017_14b_rsft_generate_r2\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"eval_llama_sft_s42_no_evidence_std_r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"标准化 LLaMA SFT s42 inference-time evidence tax 测量（r2: 修复 SCP 嵌套路径）。用同一 SFT adapter (sft_output_llama_3_1_8b) + --no_evidence flag 推理，与 with-evidence eval (ign_f1=0.5384) 直接对比。\\\", \\\"parent\\\": \\\"eval_llama_sft_s42_no_evidence_std\\\", \\\"metrics\\\": {\\\"ign_f1\\\": 0.5219, \\\"f1\\\": 0.5311, \\\"ign_precision\\\": 0.542, \\\"ign_recall\\\": 0.5031, \\\"evi_f1_joint\\\": 0.0005, \\\"evi_f1_tp\\\": 0.0102, \\\"edcr\\\": 0.58, \\\"format_ok_rate\\\": 0.8873, \\\"n_truncated\\\": 219, \\\"n_predictions\\\": 16292, \\\"inference_time_seconds\\\": 6927.2}, \\\"conclusion\\\": \\\"success\\\"}, \\\"llama_sft_s44_train_eval_r3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"LLaMA-3.1-8B SFT seed44 训练+评估 (r3: westd 新服务器)。补齐 LLaMA SFT baseline 第 3 seed，与 RSFT 3-seed (mean ign_f1=0.5654±0.0052) 对比计算 variance compression。r2 因 AutoDL 数据丢失失败。\\\", \\\"parent\\\": \\\"llama_sft_s44_train_eval_r2\\\", \\\"metrics\\\": {\\\"ign_f1\\\": 0.4802, \\\"rel_f1\\\": 0.4902, \\\"evi_f1_joint\\\": 0.3913, \\\"evi_f1_tp\\\": 0.8502, \\\"edcr\\\": 0.6579, \\\"format_ok\\\": \\\"985/985\\\", \\\"n_truncated\\\": 240, \\\"n_predictions\\\": 14990}, \\\"conclusion\\\": \\\"success\\\"}, \\\"d102_8b_rsft_k1_s43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"D102 方法论修正：8B RSFT k=1 seed43，与 s42 配对验证种子稳定性。k=1 数据（3018 samples），超参与 4B canonical 一致。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"train_loss\\\": 0.3862, \\\"mean_token_accuracy\\\": 0.8735, \\\"epochs\\\": 3, \\\"global_steps\\\": 1134, \\\"runtime_seconds\\\": 2894.88, \\\"data_samples\\\": 3018, \\\"ign_f1\\\": 0.5471, \\\"rel_f1\\\": 0.5651, \\\"evi_f1\\\": 0.818, \\\"edcr\\\": 0.6094, \\\"num_preds\\\": 16226, \\\"truncated\\\": \\\"231/985\\\", \\\"format_ok\\\": \\\"985/985\\\"}}, \\\"d102_8b_rsft_k1_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"D102 方法论修正：8B RSFT 从 k=3 改为 k=1（与论文声明和 4B canonical 一致）。k=1 筛选更严格（3018 samples vs 9041），预期 rel_f1 与 k=3 相当或略有变化，验证 k=1 在 8B 上同样有效。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"train_loss\\\": 0.3877, \\\"mean_token_accuracy\\\": 0.8579, \\\"epochs\\\": 3, \\\"global_steps\\\": 1134, \\\"runtime_seconds\\\": 2915.82, \\\"entropy\\\": 0.5847, \\\"data_samples\\\": 3018}}, \\\"llama_sft_s43_train_eval_r3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"LLaMA-3.1-8B SFT seed43 训练+评估 (r3: westd 新服务器)。补齐 LLaMA SFT baseline 第 2 seed，与 RSFT 3-seed (mean ign_f1=0.5654±0.0052) 对比计算 variance compression。r2 因 AutoDL 数据丢失失败。\\\", \\\"parent\\\": \\\"llama_sft_s43_train_eval_r2\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"ign_f1\\\": 0.5142, \\\"evi_f1_joint\\\": 0.422, \\\"evi_f1_tp\\\": 0.8245, \\\"edcr\\\": 0.5866, \\\"re_p_ign\\\": 0.4917, \\\"re_r_ign\\\": 0.5389, \\\"train_loss_final\\\": 0.521}}, \\\"plan017_14b_rsft_generate_r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"14B RSFT 生成 resume (r2: westd 新服务器)。从 doc 1873 继续生成剩余 1155 docs (进度 62%)。使用修改后的 --resume 参数从 progress.json 恢复。\\\", \\\"parent\\\": \\\"plan017_14b_rsft_generate\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"eval_llama_sft_s42_no_evidence_std\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"标准化 LLaMA SFT s42 inference-time evidence tax 测量。用同一 SFT adapter (sft_output_llama_3_1_8b) + --no_evidence flag 推理，与 with-evidence eval (ign_f1=0.5384) 直接对比。之前的 no-evidence 结果 (ign_f1=0.5452) 来自独立训练的 no-evidence 模型，方法论不一致。\\\", \\\"parent\\\": \\\"plan_016_llama_3_1_8b_sft_eval\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"llama_sft_s44_train_eval_r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"LLaMA-3.1-8B SFT seed44 训练+评估 (r2: 修复 GPU 分配)。补齐 LLaMA SFT baseline 第 2 seed (s42 ign_f1=0.5514)，计算 SFT variance，与 RSFT variance (std=0.0052) 对比验证 variance compression 跨架构有效性。\\\", \\\"parent\\\": \\\"llama_sft_s44_train_eval\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"llama_sft_s43_train_eval_r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"LLaMA-3.1-8B SFT seed43 训练+评估 (r2: 修复 GPU 分配)。补齐 LLaMA SFT baseline 第 3 seed (s42 ign_f1=0.5514)，计算 SFT 3-seed variance，与 RSFT variance (std=0.0052) 对比验证 variance compression 跨架构有效性。\\\", \\\"parent\\\": \\\"llama_sft_s43_train_eval\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"plan017_14b_rsft_generate\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"14B RSFT Step 1: 用 14B SFT adapter (ign_f1=0.5507) 在 DocRED 训练集上生成 N=8 RSFT 候选。验证 RSFT pipeline 在第 4 尺度档 (14B) 的有效性，补齐 scaling table 最后一行。D112 已确认 RSFT pipeline 从强 SFT base 出发可提升 +4.18pp (4B)。\\\", \\\"parent\\\": \\\"plan017_14b_sft_eval_r2\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"llama_sft_s44_train_eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"LLaMA-3.1-8B SFT seed44 训练+评估。补齐 LLaMA SFT baseline 第 2 seed，用于计算 SFT variance 并与 RSFT variance (std=0.0052) 对比，验证 RSFT variance compression 跨架构有效性。LLaMA SFT s42 ign_f1=0.5514。\\\", \\\"parent\\\": \\\"llama_rsft_s44_pipeline\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"llama_sft_s43_train_eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"LLaMA-3.1-8B SFT seed43 训练+评估。补齐 LLaMA SFT baseline 第 3 seed (s42 ign_f1=0.5514)，计算 SFT 3-seed variance，与 RSFT variance (std=0.0052) 对比验证 variance compression 跨架构有效性。\\\", \\\"parent\\\": \\\"eval_llama_rsft_s43_no_evidence\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"eval_llama_rsft_s43_no_evidence\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"LLaMA-3.1-8B RSFT s43 no-evidence eval: 测量 LLaMA RSFT s43 的 evidence tax。With-evidence ign_f1=0.5662。对比 s42 evidence tax (-3.13pp) 看 seed 稳定性。跨家族 evidence tax 第 2 seed。\\\", \\\"parent\\\": \\\"eval_llama_rsft_k1_s43\\\", \\\"metrics\\\": {\\\"ign_f1\\\": 0.5546, \\\"f1\\\": 0.567, \\\"evi_f1\\\": 0, \\\"evi_f1_tp\\\": 0, \\\"evi_f1_joint\\\": 0, \\\"edcr\\\": 0, \\\"format_compliance\\\": 0.998, \\\"n_truncated\\\": 183, \\\"n_predictions\\\": 18008, \\\"inference_time_seconds\\\": 7798, \\\"n_documents\\\": 985, \\\"n_format_ok\\\": 983}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"llama_rsft_s44_pipeline\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"LLaMA-3.1-8B RSFT s44 full pipeline: 补齐第 3 个 seed，计算 LLaMA RSFT 3-seed mean 和 variance compression。s42 ign_f1=0.5839, s43 ign_f1=0.5662。Method A: 复用 s42 CED-scored data (2952 samples)，只变 RSFT training seed=44。\\\", \\\"parent\\\": \\\"seed_llama_rsft_k1_s43\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"ign_f1\\\": 0.5587, \\\"f1\\\": 0.5706, \\\"evi_f1_joint\\\": 0.4609, \\\"evi_f1_tp\\\": 0.8328, \\\"edcr\\\": 0.5829, \\\"ign_precision\\\": 0.5574, \\\"ign_recall\\\": 0.5601, \\\"format_ok_rate\\\": 1, \\\"n_truncated\\\": 166, \\\"n_predictions\\\": 14685}}}, \\\"count\\\": 30, \\\"total\\\": 288, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1305}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9b2996b9-74d1-4ac7-b72c-897ab05ecf7d",
+            "isSidechain": false,
+            "promptId": "bd7bef72-fe0e-4b45-9f6c-44814b146f8d",
+            "type": "user",
+            "uuid": "58430eb4-9d73-4b4a-8b23-464ae2714cc1",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_llama_sft_s42_with_evidence_2048\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"方法论 control: LLaMA SFT s42 with-evidence eval at max_new_tokens=2048. 原 1024 版 ign_f1=0.5384. 预期 delta<1pp, 证明 with-evi 对 token budget 不敏感, 从而验证 no-evi@2048 vs with-evi@1024 的 tax 计算方法论合理。\\\", \\\"parent\\\": \\\"llama_sft_s42\\\", \\\"metrics\\\": {\\\"ign_f1\\\": 0.5649, \\\"f1\\\": 0.5767, \\\"format_ok\\\": 976, \\\"format_ok_rate\\\": 0.9909, \\\"truncated\\\": 147, \\\"predictions\\\": 20302, \\\"evi_f1\\\": 0.803, \\\"edcr\\\": 0.6428, \\\"inference_time_seconds\\\": 10491.7}, \\\"conclusion\\\": \\\"success\\\"}, \\\"plan017_14b_rsft_no_evidence_eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"14B RSFT no-evidence eval. Measures evidence tax at 14B scale. Based on smaller scales, expect RSFT to compress evidence tax variance. SFT 14B ign_f1=0.5507.\\\", \\\"parent\\\": \\\"plan017_14b_rsft_train\\\", \\\"metrics\\\": {\\\"ign_f1\\\": 0.5432, \\\"f1\\\": 0.5536, \\\"ign_precision\\\": 0.5193, \\\"ign_recall\\\": 0.5693, \\\"precision\\\": 0.5414, \\\"recall\\\": 0.5664, \\\"evi_f1\\\": 0, \\\"edcr\\\": 0, \\\"format_ok\\\": 953, \\\"format_ok_rate\\\": 0.9675, \\\"n_total\\\": 985, \\\"n_predictions\\\": 15333, \\\"n_truncated\\\": 106, \\\"tp\\\": 6882, \\\"pred_count\\\": 12711, \\\"gold_count\\\": 12151, \\\"inference_time_seconds\\\": 9427.5}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_llama_sft_s43_no_evidence_2048\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"方法论一致性：s43 SFT no-evi 用 max_new_tokens=2048 重跑。原 1024 版 truncation=38.4%, ign_f1=0.3391。与 s42/s44 2048 版 matched comparison，验证截断伪影 vs 真实退化。seed=42（标准 eval seed）。\\\", \\\"parent\\\": \\\"eval_llama_sft_s43_no_evidence_r2\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"eval_llama_sft_s42_no_evidence_2048\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"方法论一致性：s42 SFT no-evi 用 max_new_tokens=2048 重跑，与 s44 2048 版 matched comparison。原 1024 版 s42 format_ok=88.7% (874/985)，fair tax=+1.35pp。2048 版验证截断对 s42 的影响程度，确保 3-seed evidence tax 在相同条件下比较。\\\", \\\"parent\\\": \\\"eval_llama_sft_s42_no_evidence_std_r2\\\", \\\"metrics\\\": {\\\"ign_f1\\\": 0.521, \\\"f1\\\": 0.5306, \\\"ign_precision\\\": 0.5342, \\\"ign_recall\\\": 0.5085, \\\"format_ok_rate\\\": 0.8873, \\\"n_format_ok\\\": 874, \\\"n_truncated\\\": 201, \\\"truncation_rate\\\": 0.2041, \\\"n_predictions\\\": 23031, \\\"n_documents\\\": 985, \\\"pred_count_dedup\\\": 11109, \\\"fair_tax_pp\\\": 1.2, \\\"fair_subset_docs\\\": 873, \\\"fair_with_evi_ign_f1\\\": 0.5443, \\\"fair_no_evi_ign_f1\\\": 0.5564, \\\"raw_tax_pp\\\": -1.74, \\\"vs_1024_ign_f1_delta\\\": \\\"-0.09pp\\\", \\\"vs_1024_format_ok_delta\\\": \\\"0pp (874→874)\\\", \\\"vs_1024_fair_tax_delta\\\": \\\"-0.14pp (+1.34→+1.20)\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"plan017_14b_rsft_generate_r4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"14B RSFT 生成 resume (r4: ghost file recovery 后继续)。从 doc 2553/3027 继续生成剩余 474 docs。r3 因 rsync 删除 inode 导致写入 ghost file，已通过 /proc/fd 恢复 20424 行数据。\\\", \\\"parent\\\": \\\"plan017_14b_rsft_generate_r3\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"total_lines\\\": 24216, \\\"unique_docs\\\": 3027, \\\"generations_per_doc\\\": 8}}, \\\"eval_llama_sft_s43_no_evidence_r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"LLaMA SFT s43 标准化 no-evidence eval（r2: 超时重试，timeout_hours 从 2h 提高到 3h）。用 s43 SFT adapter + --no_evidence flag 推理，测量 per-seed evidence tax。\\\", \\\"parent\\\": \\\"eval_llama_sft_s43_no_evidence\\\", \\\"metrics\\\": {\\\"ign_f1\\\": 0.3391, \\\"format_compliance\\\": 0.616, \\\"n_truncated\\\": 378}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_llama_sft_s44_no_evidence_2048\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Truncation 诊断：s44 SFT no-evi 截断率 41.7% (411/985) 远高于 s42 (22.2%)，导致 ign_f1=0.3326 异常低。用 max_new_tokens=2048（原 1024）重跑，验证低 ign_f1 是截断伪影还是真实 evidence dependency。如果 2048 版 ign_f1 恢复到 ~0.47-0.52 → 截断 artifact，论文用 2048 数据。\\\", \\\"parent\\\": \\\"eval_llama_sft_s44_no_evidence\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"ign_f1\\\": 0.4373, \\\"f1\\\": 0.4504, \\\"ign_precision\\\": 0.3947, \\\"ign_recall\\\": 0.4902, \\\"format_ok_rate\\\": 0.9919, \\\"n_format_ok\\\": 977, \\\"n_truncated\\\": 246, \\\"truncation_rate\\\": 0.2497, \\\"n_predictions\\\": 28366, \\\"n_documents\\\": 985, \\\"fair_tax_pp\\\": -4.18, \\\"fair_subset_docs\\\": 977, \\\"fair_with_evi_ign_f1\\\": 0.4813, \\\"fair_no_evi_ign_f1\\\": 0.4395, \\\"vs_1024_ign_f1_delta\\\": \\\"+10.47pp\\\", \\\"vs_1024_truncation_delta\\\": \\\"-16.7pp\\\"}}, \\\"d112_rsft_s44_ced_score\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"D112 step 2: CED scoring + k=1 selection on SFT s44 generation candidates. 使用 NLI-DeBERTa 对 N=8 候选打分，format_w=0.2, f1_w=0.4, ced_w=0.4，top_k=1 筛选最优样本用于后续 RSFT 训练。\\\", \\\"parent\\\": \\\"d112_rsft_s44_gen_shard0\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"total_scored\\\": 24216, \\\"selected_count\\\": 3014, \\\"selection_rate\\\": 0.124, \\\"mean_f1\\\": 0.676, \\\"mean_ced\\\": 0.676}}, \\\"plan017_14b_rsft_train\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"14B RSFT LoRA training on CED-scored top_k=1 data (3015 samples). 14B SFT (ign_f1=0.5507) as base, expect RSFT to further improve via rejection sampling on high-quality generations. Completes scaling table 4th row (1.7B→4B→8B→14B).\\\", \\\"metrics\\\": {\\\"train_loss\\\": 0.5005, \\\"mean_token_accuracy\\\": 0.8783, \\\"total_steps\\\": 1131, \\\"runtime_seconds\\\": 3958}, \\\"conclusion\\\": \\\"success\\\"}, \\\"d112_rsft_s44_generate\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"D112 step1: 用 SFT s44 adapter (ign_f1=0.4734, 最强 seed) 生成 N=8 RSFT 候选。验证 RSFT pipeline 从强 SFT base 出发是否能进一步提升，决定 Claim 1 表述强度。\\\", \\\"parent\\\": \\\"wave1_sft_4b_s44_eval_r2\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan017_14b_ced_scoring\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"14B model generates higher quality candidates than 4B, so CED scoring with top_k=1 should yield RSFT training data with higher F1 and CED rewards compared to 4B CED scoring results.\\\", \\\"parent\\\": \\\"plan017_14b_rsft_generate_r4\\\", \\\"metrics\\\": {\\\"total_scored\\\": 24216, \\\"unique_docs_total\\\": 3027, \\\"selected_count\\\": 3015, \\\"unique_docs_selected\\\": 3015, \\\"selection_rate\\\": 0.1245, \\\"all_mean_f1\\\": 0.616, \\\"all_mean_ced\\\": 0.568, \\\"all_mean_combined\\\": 0.673, \\\"selected_mean_f1\\\": 0.73, \\\"selected_mean_ced\\\": 0.69, \\\"selected_mean_combined\\\": 0.768, \\\"selected_median_f1\\\": 0.75, \\\"selected_median_ced\\\": 0.71, \\\"f1_filter_dropped_gens\\\": 497, \\\"f1_filter_dropped_docs\\\": 12, \\\"truncated_count\\\": 1701, \\\"truncated_ratio\\\": 0.07, \\\"truncated_mean_f1\\\": 0.487, \\\"non_truncated_mean_f1\\\": 0.625, \\\"truncation_f1_gap\\\": 0.139, \\\"format_reward_mean\\\": 0.9996, \\\"output_file\\\": \\\"/root/autodl-tmp/rsft_scored_14b/rsft_train.jsonl\\\", \\\"output_size_mb\\\": 9.1, \\\"runtime_hours\\\": 1}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_llama_sft_s44_no_evidence\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"LLaMA SFT s44 标准化 no-evidence eval。补齐 LLaMA SFT 3-seed evidence tax：s42 tax=-1.65pp, s43 RUNNING。s44 with-evidence ign_f1=0.4802。完成后可计算 SFT 3-seed evidence tax mean±std。\\\", \\\"parent\\\": \\\"llama_sft_s44_train_eval_r3\\\", \\\"metrics\\\": {\\\"ign_f1\\\": 0.3326, \\\"f1\\\": 0.3348, \\\"format_compliance\\\": 0.945, \\\"format_ok\\\": 931, \\\"n_documents\\\": 985, \\\"n_truncated\\\": 411}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_llama_rsft_s44_no_evidence\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"LLaMA RSFT s44 no-evidence eval。补齐 LLaMA RSFT 3-seed evidence tax：s42 tax=-1.88pp (ign_f1=0.5526), s43 tax=-1.16pp (ign_f1=0.5546)。s44 with-evidence ign_f1=0.5587。完成后可计算跨家族 RSFT evidence tax mean±std。\\\", \\\"parent\\\": \\\"llama_rsft_s44_pipeline\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"ign_f1\\\": 0.555, \\\"f1\\\": 0.5674, \\\"evi_f1\\\": 0.001, \\\"evi_f1_joint\\\": 0.0001, \\\"edcr\\\": 0.6818, \\\"format_compliance\\\": 0.999, \\\"n_truncated\\\": 178, \\\"n_predictions\\\": 18089, \\\"inference_time_s\\\": 6555.2, \\\"n_documents\\\": 985, \\\"n_format_ok\\\": 984}}, \\\"eval_llama_sft_s43_no_evidence\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"LLaMA SFT s43 标准化 no-evidence eval。用 s43 SFT adapter + --no_evidence flag 推理，测量 per-seed evidence tax，与 s42 no-evidence eval 配对。\\\", \\\"parent\\\": \\\"llama_sft_s43_train_eval_r3\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"migration_bjb2_to_westd\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"全量数据迁移 bjb2-12179 → westd-37389，207G 包含所有 adapters、基座模型、数据集、eval 结果。迁移完成后 4 GPU 并行恢复实验。\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan017_14b_rsft_generate_r3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"14B RSFT 生成 resume (r3: 修正 adapter 路径指向 checkpoint-144)。从 doc 1873 继续生成剩余 1155 docs。r2 因 --sft_adapter 指向顶层目录而非 checkpoint-144 子目录失败。\\\", \\\"parent\\\": \\\"plan017_14b_rsft_generate_r2\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"eval_llama_sft_s42_no_evidence_std_r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"标准化 LLaMA SFT s42 inference-time evidence tax 测量（r2: 修复 SCP 嵌套路径）。用同一 SFT adapter (sft_output_llama_3_1_8b) + --no_evidence flag 推理，与 with-evidence eval (ign_f1=0.5384) 直接对比。\\\", \\\"parent\\\": \\\"eval_llama_sft_s42_no_evidence_std\\\", \\\"metrics\\\": {\\\"ign_f1\\\": 0.5219, \\\"f1\\\": 0.5311, \\\"ign_precision\\\": 0.542, \\\"ign_recall\\\": 0.5031, \\\"evi_f1_joint\\\": 0.0005, \\\"evi_f1_tp\\\": 0.0102, \\\"edcr\\\": 0.58, \\\"format_ok_rate\\\": 0.8873, \\\"n_truncated\\\": 219, \\\"n_predictions\\\": 16292, \\\"inference_time_seconds\\\": 6927.2}, \\\"conclusion\\\": \\\"success\\\"}, \\\"llama_sft_s44_train_eval_r3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"LLaMA-3.1-8B SFT seed44 训练+评估 (r3: westd 新服务器)。补齐 LLaMA SFT baseline 第 3 seed，与 RSFT 3-seed (mean ign_f1=0.5654±0.0052) 对比计算 variance compression。r2 因 AutoDL 数据丢失失败。\\\", \\\"parent\\\": \\\"llama_sft_s44_train_eval_r2\\\", \\\"metrics\\\": {\\\"ign_f1\\\": 0.4802, \\\"rel_f1\\\": 0.4902, \\\"evi_f1_joint\\\": 0.3913, \\\"evi_f1_tp\\\": 0.8502, \\\"edcr\\\": 0.6579, \\\"format_ok\\\": \\\"985/985\\\", \\\"n_truncated\\\": 240, \\\"n_predictions\\\": 14990}, \\\"conclusion\\\": \\\"success\\\"}, \\\"d102_8b_rsft_k1_s43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"D102 方法论修正：8B RSFT k=1 seed43，与 s42 配对验证种子稳定性。k=1 数据（3018 samples），超参与 4B canonical 一致。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"train_loss\\\": 0.3862, \\\"mean_token_accuracy\\\": 0.8735, \\\"epochs\\\": 3, \\\"global_steps\\\": 1134, \\\"runtime_seconds\\\": 2894.88, \\\"data_samples\\\": 3018, \\\"ign_f1\\\": 0.5471, \\\"rel_f1\\\": 0.5651, \\\"evi_f1\\\": 0.818, \\\"edcr\\\": 0.6094, \\\"num_preds\\\": 16226, \\\"truncated\\\": \\\"231/985\\\", \\\"format_ok\\\": \\\"985/985\\\"}}, \\\"d102_8b_rsft_k1_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"D102 方法论修正：8B RSFT 从 k=3 改为 k=1（与论文声明和 4B canonical 一致）。k=1 筛选更严格（3018 samples vs 9041），预期 rel_f1 与 k=3 相当或略有变化，验证 k=1 在 8B 上同样有效。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"train_loss\\\": 0.3877, \\\"mean_token_accuracy\\\": 0.8579, \\\"epochs\\\": 3, \\\"global_steps\\\": 1134, \\\"runtime_seconds\\\": 2915.82, \\\"entropy\\\": 0.5847, \\\"data_samples\\\": 3018}}, \\\"llama_sft_s43_train_eval_r3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"LLaMA-3.1-8B SFT seed43 训练+评估 (r3: westd 新服务器)。补齐 LLaMA SFT baseline 第 2 seed，与 RSFT 3-seed (mean ign_f1=0.5654±0.0052) 对比计算 variance compression。r2 因 AutoDL 数据丢失失败。\\\", \\\"parent\\\": \\\"llama_sft_s43_train_eval_r2\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"ign_f1\\\": 0.5142, \\\"evi_f1_joint\\\": 0.422, \\\"evi_f1_tp\\\": 0.8245, \\\"edcr\\\": 0.5866, \\\"re_p_ign\\\": 0.4917, \\\"re_r_ign\\\": 0.5389, \\\"train_loss_final\\\": 0.521}}, \\\"plan017_14b_rsft_generate_r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"14B RSFT 生成 resume (r2: westd 新服务器)。从 doc 1873 继续生成剩余 1155 docs (进度 62%)。使用修改后的 --resume 参数从 progress.json 恢复。\\\", \\\"parent\\\": \\\"plan017_14b_rsft_generate\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"eval_llama_sft_s42_no_evidence_std\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"标准化 LLaMA SFT s42 inference-time evidence tax 测量。用同一 SFT adapter (sft_output_llama_3_1_8b) + --no_evidence flag 推理，与 with-evidence eval (ign_f1=0.5384) 直接对比。之前的 no-evidence 结果 (ign_f1=0.5452) 来自独立训练的 no-evidence 模型，方法论不一致。\\\", \\\"parent\\\": \\\"plan_016_llama_3_1_8b_sft_eval\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"llama_sft_s44_train_eval_r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"LLaMA-3.1-8B SFT seed44 训练+评估 (r2: 修复 GPU 分配)。补齐 LLaMA SFT baseline 第 2 seed (s42 ign_f1=0.5514)，计算 SFT variance，与 RSFT variance (std=0.0052) 对比验证 variance compression 跨架构有效性。\\\", \\\"parent\\\": \\\"llama_sft_s44_train_eval\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"llama_sft_s43_train_eval_r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"LLaMA-3.1-8B SFT seed43 训练+评估 (r2: 修复 GPU 分配)。补齐 LLaMA SFT baseline 第 3 seed (s42 ign_f1=0.5514)，计算 SFT 3-seed variance，与 RSFT variance (std=0.0052) 对比验证 variance compression 跨架构有效性。\\\", \\\"parent\\\": \\\"llama_sft_s43_train_eval\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"plan017_14b_rsft_generate\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"14B RSFT Step 1: 用 14B SFT adapter (ign_f1=0.5507) 在 DocRED 训练集上生成 N=8 RSFT 候选。验证 RSFT pipeline 在第 4 尺度档 (14B) 的有效性，补齐 scaling table 最后一行。D112 已确认 RSFT pipeline 从强 SFT base 出发可提升 +4.18pp (4B)。\\\", \\\"parent\\\": \\\"plan017_14b_sft_eval_r2\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"llama_sft_s44_train_eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"LLaMA-3.1-8B SFT seed44 训练+评估。补齐 LLaMA SFT baseline 第 2 seed，用于计算 SFT variance 并与 RSFT variance (std=0.0052) 对比，验证 RSFT variance compression 跨架构有效性。LLaMA SFT s42 ign_f1=0.5514。\\\", \\\"parent\\\": \\\"llama_rsft_s44_pipeline\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"llama_sft_s43_train_eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"LLaMA-3.1-8B SFT seed43 训练+评估。补齐 LLaMA SFT baseline 第 3 seed (s42 ign_f1=0.5514)，计算 SFT 3-seed variance，与 RSFT variance (std=0.0052) 对比验证 variance compression 跨架构有效性。\\\", \\\"parent\\\": \\\"eval_llama_rsft_s43_no_evidence\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"eval_llama_rsft_s43_no_evidence\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"LLaMA-3.1-8B RSFT s43 no-evidence eval: 测量 LLaMA RSFT s43 的 evidence tax。With-evidence ign_f1=0.5662。对比 s42 evidence tax (-3.13pp) 看 seed 稳定性。跨家族 evidence tax 第 2 seed。\\\", \\\"parent\\\": \\\"eval_llama_rsft_k1_s43\\\", \\\"metrics\\\": {\\\"ign_f1\\\": 0.5546, \\\"f1\\\": 0.567, \\\"evi_f1\\\": 0, \\\"evi_f1_tp\\\": 0, \\\"evi_f1_joint\\\": 0, \\\"edcr\\\": 0, \\\"format_compliance\\\": 0.998, \\\"n_truncated\\\": 183, \\\"n_predictions\\\": 18008, \\\"inference_time_seconds\\\": 7798, \\\"n_documents\\\": 985, \\\"n_format_ok\\\": 983}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"llama_rsft_s44_pipeline\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"LLaMA-3.1-8B RSFT s44 full pipeline: 补齐第 3 个 seed，计算 LLaMA RSFT 3-seed mean 和 variance compression。s42 ign_f1=0.5839, s43 ign_f1=0.5662。Method A: 复用 s42 CED-scored data (2952 samples)，只变 RSFT training seed=44。\\\", \\\"parent\\\": \\\"seed_llama_rsft_k1_s43\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"ign_f1\\\": 0.5587, \\\"f1\\\": 0.5706, \\\"evi_f1_joint\\\": 0.4609, \\\"evi_f1_tp\\\": 0.8328, \\\"edcr\\\": 0.5829, \\\"ign_precision\\\": 0.5574, \\\"ign_recall\\\": 0.5601, \\\"format_ok_rate\\\": 1, \\\"n_truncated\\\": 166, \\\"n_predictions\\\": 14685}}}, \\\"count\\\": 30, \\\"total\\\": 288, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1305}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"experiments\": {\"eval_llama_sft_s42_with_evidence_2048\": {\"status\": \"DONE\", \"hypothesis\": \"方法论 control: LLaMA SFT s42 with-evidence eval at max_new_tokens=2048. 原 1024 版 ign_f1=0.5384. 预期 delta<1pp, 证明 with-evi 对 token budget 不敏感, 从而验证 no-evi@2048 vs with-evi@1024 的 tax 计算方法论合理。\", \"parent\": \"llama_sft_s42\", \"metrics\": {\"ign_f1\": 0.5649, \"f1\": 0.5767, \"format_ok\": 976, \"format_ok_rate\": 0.9909, \"truncated\": 147, \"predictions\": 20302, \"evi_f1\": 0.803, \"edcr\": 0.6428, \"inference_time_seconds\": 10491.7}, \"conclusion\": \"success\"}, \"plan017_14b_rsft_no_evidence_eval\": {\"status\": \"DONE\", \"hypothesis\": \"14B RSFT no-evidence eval. Measures evidence tax at 14B scale. Based on smaller scales, expect RSFT to compress evidence tax variance. SFT 14B ign_f1=0.5507.\", \"parent\": \"plan017_14b_rsft_train\", \"metrics\": {\"ign_f1\": 0.5432, \"f1\": 0.5536, \"ign_precision\": 0.5193, \"ign_recall\": 0.5693, \"precision\": 0.5414, \"recall\": 0.5664, \"evi_f1\": 0, \"edcr\": 0, \"format_ok\": 953, \"format_ok_rate\": 0.9675, \"n_total\": 985, \"n_predictions\": 15333, \"n_truncated\": 106, \"tp\": 6882, \"pred_count\": 12711, \"gold_count\": 12151, \"inference_time_seconds\": 9427.5}, \"conclusion\": \"success\"}, \"eval_llama_sft_s43_no_evidence_2048\": {\"status\": \"DONE\", \"hypothesis\": \"方法论一致性：s43 SFT no-evi 用 max_new_tokens=2048 重跑。原 1024 版 truncation=38.4%, ign_f1=0.3391。与 s42/s44 2048 版 matched comparison，验证截断伪影 vs 真实退化。seed=42（标准 eval seed）。\", \"parent\": \"eval_llama_sft_s43_no_evidence_r2\", \"conclusion\": \"failed\"}, \"eval_llama_sft_s42_no_evidence_2048\": {\"status\": \"DONE\", \"hypothesis\": \"方法论一致性：s42 SFT no-evi 用 max_new_tokens=2048 重跑，与 s44 2048 版 matched comparison。原 1024 版 s42 format_ok=88.7% (874/985)，fair tax=+1.35pp。2048 版验证截断对 s42 的影响程度，确保 3-seed evidence tax 在相同条件下比较。\", \"parent\": \"eval_llama_sft_s42_no_evidence_std_r2\", \"metrics\": {\"ign_f1\": 0.521, \"f1\": 0.5306, \"ign_precision\": 0.5342, \"ign_recall\": 0.5085, \"format_ok_rate\": 0.8873, \"n_format_ok\": 874, \"n_truncated\": 201, \"truncation_rate\": 0.2041, \"n_predictions\": 23031, \"n_documents\": 985, \"pred_count_dedup\": 11109, \"fair_tax_pp\": 1.2, \"fair_subset_docs\": 873, \"fair_with_evi_ign_f1\": 0.5443, \"fair_no_evi_ign_f1\": 0.5564, \"raw_tax_pp\": -1.74, \"vs_1024_ign_f1_delta\": \"-0.09pp\", \"vs_1024_format_ok_delta\": \"0pp (874→874)\", \"vs_1024_fair_tax_delta\": \"-0.14pp (+1.34→+1.20)\"}, \"conclusion\": \"success\"}, \"plan017_14b_rsft_generate_r4\": {\"status\": \"DONE\", \"hypothesis\": \"14B RSFT 生成 resume (r4: ghost file recovery 后继续)。从 doc 2553/3027 继续生成剩余 474 docs。r3 因 rsync 删除 inode 导致写入 ghost file，已通过 /proc/fd 恢复 20424 行数据。\", \"parent\": \"plan017_14b_rsft_generate_r3\", \"conclusion\": \"success\", \"metrics\": {\"total_lines\": 24216, \"unique_docs\": 3027, \"generations_per_doc\": 8}}, \"eval_llama_sft_s43_no_evidence_r2\": {\"status\": \"DONE\", \"hypothesis\": \"LLaMA SFT s43 标准化 no-evidence eval（r2: 超时重试，timeout_hours 从 2h 提高到 3h）。用 s43 SFT adapter + --no_evidence flag 推理，测量 per-seed evidence tax。\", \"parent\": \"eval_llama_sft_s43_no_evidence\", \"metrics\": {\"ign_f1\": 0.3391, \"format_compliance\": 0.616, \"n_truncated\": 378}, \"conclusion\": \"success\"}, \"eval_llama_sft_s44_no_evidence_2048\": {\"status\": \"DONE\", \"hypothesis\": \"Truncation 诊断：s44 SFT no-evi 截断率 41.7% (411/985) 远高于 s42 (22.2%)，导致 ign_f1=0.3326 异常低。用 max_new_tokens=2048（原 1024）重跑，验证低 ign_f1 是截断伪影还是真实 evidence dependency。如果 2048 版 ign_f1 恢复到 ~0.47-0.52 → 截断 artifact，论文用 2048 数据。\", \"parent\": \"eval_llama_sft_s44_no_evidence\", \"conclusion\": \"success\", \"metrics\": {\"ign_f1\": 0.4373, \"f1\": 0.4504, \"ign_precision\": 0.3947, \"ign_recall\": 0.4902, \"format_ok_rate\": 0.9919, \"n_format_ok\": 977, \"n_truncated\": 246, \"truncation_rate\": 0.2497, \"n_predictions\": 28366, \"n_documents\": 985, \"fair_tax_pp\": -4.18, \"fair_subset_docs\": 977, \"fair_with_evi_ign_f1\": 0.4813, \"fair_no_evi_ign_f1\": 0.4395, \"vs_1024_ign_f1_delta\": \"+10.47pp\", \"vs_1024_truncation_delta\": \"-16.7pp\"}}, \"d112_rsft_s44_ced_score\": {\"status\": \"DONE\", \"hypothesis\": \"D112 step 2: CED scoring + k=1 selection on SFT s44 generation candidates. 使用 NLI-DeBERTa 对 N=8 候选打分，format_w=0.2, f1_w=0.4, ced_w=0.4，top_k=1 筛选最优样本用于后续 RSFT 训练。\", \"parent\": \"d112_rsft_s44_gen_shard0\", \"conclusion\": \"success\", \"metrics\": {\"total_scored\": 24216, \"selected_count\": 3014, \"selection_rate\": 0.124, \"mean_f1\": 0.676, \"mean_ced\": 0.676}}, \"plan017_14b_rsft_train\": {\"status\": \"DONE\", \"hypothesis\": \"14B RSFT LoRA training on CED-scored top_k=1 data (3015 samples). 14B SFT (ign_f1=0.5507) as base, expect RSFT to further improve via rejection sampling on high-quality generations. Completes scaling table 4th row (1.7B→4B→8B→14B).\", \"metrics\": {\"train_loss\": 0.5005, \"mean_token_accuracy\": 0.8783, \"total_steps\": 1131, \"runtime_seconds\": 3958}, \"conclusion\": \"success\"}, \"d112_rsft_s44_generate\": {\"status\": \"DONE\", \"hypothesis\": \"D112 step1: 用 SFT s44 adapter (ign_f1=0.4734, 最强 seed) 生成 N=8 RSFT 候选。验证 RSFT pipeline 从强 SFT base 出发是否能进一步提升，决定 Claim 1 表述强度。\", \"parent\": \"wave1_sft_4b_s44_eval_r2\", \"conclusion\": \"success\"}, \"plan017_14b_ced_scoring\": {\"status\": \"DONE\", \"hypothesis\": \"14B model generates higher quality candidates than 4B, so CED scoring with top_k=1 should yield RSFT training data with higher F1 and CED rewards compared to 4B CED scoring results.\", \"parent\": \"plan017_14b_rsft_generate_r4\", \"metrics\": {\"total_scored\": 24216, \"unique_docs_total\": 3027, \"selected_count\": 3015, \"unique_docs_selected\": 3015, \"selection_rate\": 0.1245, \"all_mean_f1\": 0.616, \"all_mean_ced\": 0.568, \"all_mean_combined\": 0.673, \"selected_mean_f1\": 0.73, \"selected_mean_ced\": 0.69, \"selected_mean_combined\": 0.768, \"selected_median_f1\": 0.75, \"selected_median_ced\": 0.71, \"f1_filter_dropped_gens\": 497, \"f1_filter_dropped_docs\": 12, \"truncated_count\": 1701, \"truncated_ratio\": 0.07, \"truncated_mean_f1\": 0.487, \"non_truncated_mean_f1\": 0.625, \"truncation_f1_gap\": 0.139, \"format_reward_mean\": 0.9996, \"output_file\": \"/root/autodl-tmp/rsft_scored_14b/rsft_train.jsonl\", \"output_size_mb\": 9.1, \"runtime_hours\": 1}, \"conclusion\": \"success\"}, \"eval_llama_sft_s44_no_evidence\": {\"status\": \"DONE\", \"hypothesis\": \"LLaMA SFT s44 标准化 no-evidence eval。补齐 LLaMA SFT 3-seed evidence tax：s42 tax=-1.65pp, s43 RUNNING。s44 with-evidence ign_f1=0.4802。完成后可计算 SFT 3-seed evidence tax mean±std。\", \"parent\": \"llama_sft_s44_train_eval_r3\", \"metrics\": {\"ign_f1\": 0.3326, \"f1\": 0.3348, \"format_compliance\": 0.945, \"format_ok\": 931, \"n_documents\": 985, \"n_truncated\": 411}, \"conclusion\": \"success\"}, \"eval_llama_rsft_s44_no_evidence\": {\"status\": \"DONE\", \"hypothesis\": \"LLaMA RSFT s44 no-evidence eval。补齐 LLaMA RSFT 3-seed evidence tax：s42 tax=-1.88pp (ign_f1=0.5526), s43 tax=-1.16pp (ign_f1=0.5546)。s44 with-evidence ign_f1=0.5587。完成后可计算跨家族 RSFT evidence tax mean±std。\", \"parent\": \"llama_rsft_s44_pipeline\", \"conclusion\": \"success\", \"metrics\": {\"ign_f1\": 0.555, \"f1\": 0.5674, \"evi_f1\": 0.001, \"evi_f1_joint\": 0.0001, \"edcr\": 0.6818, \"format_compliance\": 0.999, \"n_truncated\": 178, \"n_predictions\": 18089, \"inference_time_s\": 6555.2, \"n_documents\": 985, \"n_format_ok\": 984}}, \"eval_llama_sft_s43_no_evidence\": {\"status\": \"DONE\", \"hypothesis\": \"LLaMA SFT s43 标准化 no-evidence eval。用 s43 SFT adapter + --no_evidence flag 推理，测量 per-seed evidence tax，与 s42 no-evidence eval 配对。\", \"parent\": \"llama_sft_s43_train_eval_r3\", \"conclusion\": \"failed\"}, \"migration_bjb2_to_westd\": {\"status\": \"DONE\", \"hypothesis\": \"全量数据迁移 bjb2-12179 → westd-37389，207G 包含所有 adapters、基座模型、数据集、eval 结果。迁移完成后 4 GPU 并行恢复实验。\", \"conclusion\": \"success\"}, \"plan017_14b_rsft_generate_r3\": {\"status\": \"DONE\", \"hypothesis\": \"14B RSFT 生成 resume (r3: 修正 adapter 路径指向 checkpoint-144)。从 doc 1873 继续生成剩余 1155 docs。r2 因 --sft_adapter 指向顶层目录而非 checkpoint-144 子目录失败。\", \"parent\": \"plan017_14b_rsft_generate_r2\", \"conclusion\": \"killed\"}, \"eval_llama_sft_s42_no_evidence_std_r2\": {\"status\": \"DONE\", \"hypothesis\": \"标准化 LLaMA SFT s42 inference-time evidence tax 测量（r2: 修复 SCP 嵌套路径）。用同一 SFT adapter (sft_output_llama_3_1_8b) + --no_evidence flag 推理，与 with-evidence eval (ign_f1=0.5384) 直接对比。\", \"parent\": \"eval_llama_sft_s42_no_evidence_std\", \"metrics\": {\"ign_f1\": 0.5219, \"f1\": 0.5311, \"ign_precision\": 0.542, \"ign_recall\": 0.5031, \"evi_f1_joint\": 0.0005, \"evi_f1_tp\": 0.0102, \"edcr\": 0.58, \"format_ok_rate\": 0.8873, \"n_truncated\": 219, \"n_predictions\": 16292, \"inference_time_seconds\": 6927.2}, \"conclusion\": \"success\"}, \"llama_sft_s44_train_eval_r3\": {\"status\": \"DONE\", \"hypothesis\": \"LLaMA-3.1-8B SFT seed44 训练+评估 (r3: westd 新服务器)。补齐 LLaMA SFT baseline 第 3 seed，与 RSFT 3-seed (mean ign_f1=0.5654±0.0052) 对比计算 variance compression。r2 因 AutoDL 数据丢失失败。\", \"parent\": \"llama_sft_s44_train_eval_r2\", \"metrics\": {\"ign_f1\": 0.4802, \"rel_f1\": 0.4902, \"evi_f1_joint\": 0.3913, \"evi_f1_tp\": 0.8502, \"edcr\": 0.6579, \"format_ok\": \"985/985\", \"n_truncated\": 240, \"n_predictions\": 14990}, \"conclusion\": \"success\"}, \"d102_8b_rsft_k1_s43\": {\"status\": \"DONE\", \"hypothesis\": \"D102 方法论修正：8B RSFT k=1 seed43，与 s42 配对验证种子稳定性。k=1 数据（3018 samples），超参与 4B canonical 一致。\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 0.3862, \"mean_token_accuracy\": 0.8735, \"epochs\": 3, \"global_steps\": 1134, \"runtime_seconds\": 2894.88, \"data_samples\": 3018, \"ign_f1\": 0.5471, \"rel_f1\": 0.5651, \"evi_f1\": 0.818, \"edcr\": 0.6094, \"num_preds\": 16226, \"truncated\": \"231/985\", \"format_ok\": \"985/985\"}}, \"d102_8b_rsft_k1_s42\": {\"status\": \"DONE\", \"hypothesis\": \"D102 方法论修正：8B RSFT 从 k=3 改为 k=1（与论文声明和 4B canonical 一致）。k=1 筛选更严格（3018 samples vs 9041），预期 rel_f1 与 k=3 相当或略有变化，验证 k=1 在 8B 上同样有效。\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 0.3877, \"mean_token_accuracy\": 0.8579, \"epochs\": 3, \"global_steps\": 1134, \"runtime_seconds\": 2915.82, \"entropy\": 0.5847, \"data_samples\": 3018}}, \"llama_sft_s43_train_eval_r3\": {\"status\": \"DONE\", \"hypothesis\": \"LLaMA-3.1-8B SFT seed43 训练+评估 (r3: westd 新服务器)。补齐 LLaMA SFT baseline 第 2 seed，与 RSFT 3-seed (mean ign_f1=0.5654±0.0052) 对比计算 variance compression。r2 因 AutoDL 数据丢失失败。\", \"parent\": \"llama_sft_s43_train_eval_r2\", \"conclusion\": \"success\", \"metrics\": {\"ign_f1\": 0.5142, \"evi_f1_joint\": 0.422, \"evi_f1_tp\": 0.8245, \"edcr\": 0.5866, \"re_p_ign\": 0.4917, \"re_r_ign\": 0.5389, \"train_loss_final\": 0.521}}, \"plan017_14b_rsft_generate_r2\": {\"status\": \"DONE\", \"hypothesis\": \"14B RSFT 生成 resume (r2: westd 新服务器)。从 doc 1873 继续生成剩余 1155 docs (进度 62%)。使用修改后的 --resume 参数从 progress.json 恢复。\", \"parent\": \"plan017_14b_rsft_generate\", \"conclusion\": \"failed\"}, \"eval_llama_sft_s42_no_evidence_std\": {\"status\": \"DONE\", \"hypothesis\": \"标准化 LLaMA SFT s42 inference-time evidence tax 测量。用同一 SFT adapter (sft_output_llama_3_1_8b) + --no_evidence flag 推理，与 with-evidence eval (ign_f1=0.5384) 直接对比。之前的 no-evidence 结果 (ign_f1=0.5452) 来自独立训练的 no-evidence 模型，方法论不一致。\", \"parent\": \"plan_016_llama_3_1_8b_sft_eval\", \"conclusion\": \"failed\"}, \"llama_sft_s44_train_eval_r2\": {\"status\": \"DONE\", \"hypothesis\": \"LLaMA-3.1-8B SFT seed44 训练+评估 (r2: 修复 GPU 分配)。补齐 LLaMA SFT baseline 第 2 seed (s42 ign_f1=0.5514)，计算 SFT variance，与 RSFT variance (std=0.0052) 对比验证 variance compression 跨架构有效性。\", \"parent\": \"llama_sft_s44_train_eval\", \"conclusion\": \"failed\"}, \"llama_sft_s43_train_eval_r2\": {\"status\": \"DONE\", \"hypothesis\": \"LLaMA-3.1-8B SFT seed43 训练+评估 (r2: 修复 GPU 分配)。补齐 LLaMA SFT baseline 第 3 seed (s42 ign_f1=0.5514)，计算 SFT 3-seed variance，与 RSFT variance (std=0.0052) 对比验证 variance compression 跨架构有效性。\", \"parent\": \"llama_sft_s43_train_eval\", \"conclusion\": \"failed\"}, \"plan017_14b_rsft_generate\": {\"status\": \"DONE\", \"hypothesis\": \"14B RSFT Step 1: 用 14B SFT adapter (ign_f1=0.5507) 在 DocRED 训练集上生成 N=8 RSFT 候选。验证 RSFT pipeline 在第 4 尺度档 (14B) 的有效性，补齐 scaling table 最后一行。D112 已确认 RSFT pipeline 从强 SFT base 出发可提升 +4.18pp (4B)。\", \"parent\": \"plan017_14b_sft_eval_r2\", \"conclusion\": \"failed\"}, \"llama_sft_s44_train_eval\": {\"status\": \"DONE\", \"hypothesis\": \"LLaMA-3.1-8B SFT seed44 训练+评估。补齐 LLaMA SFT baseline 第 2 seed，用于计算 SFT variance 并与 RSFT variance (std=0.0052) 对比，验证 RSFT variance compression 跨架构有效性。LLaMA SFT s42 ign_f1=0.5514。\", \"parent\": \"llama_rsft_s44_pipeline\", \"conclusion\": \"failed\"}, \"llama_sft_s43_train_eval\": {\"status\": \"DONE\", \"hypothesis\": \"LLaMA-3.1-8B SFT seed43 训练+评估。补齐 LLaMA SFT baseline 第 3 seed (s42 ign_f1=0.5514)，计算 SFT 3-seed variance，与 RSFT variance (std=0.0052) 对比验证 variance compression 跨架构有效性。\", \"parent\": \"eval_llama_rsft_s43_no_evidence\", \"conclusion\": \"failed\"}, \"eval_llama_rsft_s43_no_evidence\": {\"status\": \"DONE\", \"hypothesis\": \"LLaMA-3.1-8B RSFT s43 no-evidence eval: 测量 LLaMA RSFT s43 的 evidence tax。With-evidence ign_f1=0.5662。对比 s42 evidence tax (-3.13pp) 看 seed 稳定性。跨家族 evidence tax 第 2 seed。\", \"parent\": \"eval_llama_rsft_k1_s43\", \"metrics\": {\"ign_f1\": 0.5546, \"f1\": 0.567, \"evi_f1\": 0, \"evi_f1_tp\": 0, \"evi_f1_joint\": 0, \"edcr\": 0, \"format_compliance\": 0.998, \"n_truncated\": 183, \"n_predictions\": 18008, \"inference_time_seconds\": 7798, \"n_documents\": 985, \"n_format_ok\": 983}, \"conclusion\": \"negative\"}, \"llama_rsft_s44_pipeline\": {\"status\": \"DONE\", \"hypothesis\": \"LLaMA-3.1-8B RSFT s44 full pipeline: 补齐第 3 个 seed，计算 LLaMA RSFT 3-seed mean 和 variance compression。s42 ign_f1=0.5839, s43 ign_f1=0.5662。Method A: 复用 s42 CED-scored data (2952 samples)，只变 RSFT training seed=44。\", \"parent\": \"seed_llama_rsft_k1_s43\", \"conclusion\": \"success\", \"metrics\": {\"ign_f1\": 0.5587, \"f1\": 0.5706, \"evi_f1_joint\": 0.4609, \"evi_f1_tp\": 0.8328, \"edcr\": 0.5829, \"ign_precision\": 0.5574, \"ign_recall\": 0.5601, \"format_ok_rate\": 1, \"n_truncated\": 166, \"n_predictions\": 14685}}}, \"count\": 30, \"total\": 288, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1305}}"
+              }
+            },
+            "sourceToolAssistantUUID": "9b2996b9-74d1-4ac7-b72c-897ab05ecf7d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_15ab4311",
+            "sessionId": "31a63d90-c6fd-457b-9d4d-f23cebe36cb6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。 详情: Process exited cleanly, W&B data available  - exp_id: eval_llama_sft_s43_no_evidence_2048_r2 - project: faith-evidence-ie - server: rtx5090-4x -…",
+                "leafUuid": "58430eb4-9d73-4b4a-8b23-464ae2714cc1",
+                "sessionId": "31a63d90-c6fd-457b-9d4d-f23cebe36cb6"
+              }
+            }
+          ],
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Analyze experiment results and mark as done",
+                "sessionId": "31a63d90-c6fd-457b-9d4d-f23cebe36cb6"
+              }
+            }
+          ],
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-21T02:41:34.548Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have the context. Key data points for matched@2048 comparison:\n\n**LLaMA SFT no-evidence @2048:**\n- s42: ign_f1 = 0.5210, format_ok_rate = 0.8873\n- s43: ANALYZING (this experiment - eval_llama_sft_s43_no_evidence_2048_r2)\n- s44: ign_f1 = 0.4373, format_ok_rate = 0.9919\n\n\n- s42 with evidence shows improvement to ign_f1 = 0.5649, while s43 and s44 are still running\n\nI need to spawn a Worker to SSH into rtx5090-4x and pull the eval logs for s43 no-evidence, extracting the ign_f1 and format metrics so I can complete the comparison.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "58430eb4-9d73-4b4a-8b23-464ae2714cc1",
+            "isSidechain": false,
+            "requestId": "req_011CbEwcHheBxJNhVaEX7mZi",
+            "type": "assistant",
+            "uuid": "b23941ee-6ec5-4309-a8eb-99685f12bd1a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_15ab4311",
+            "sessionId": "31a63d90-c6fd-457b-9d4d-f23cebe36cb6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011PY4RMVD9uNiq6MW4DZQGx",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7669,
+                "cache_read_input_tokens": 53199,
+                "output_tokens": 987,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 7669,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 987,
+                    "cache_read_input_tokens": 53199,
+                    "cache_creation_input_tokens": 7669,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 7669
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-21T02:41:34.807Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "派 Worker 读取实验日志和结果，提取 metrics。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b23941ee-6ec5-4309-a8eb-99685f12bd1a",
+            "isSidechain": false,
+            "requestId": "req_011CbEwcHheBxJNhVaEX7mZi",
+            "type": "assistant",
+            "uuid": "e02fdfc2-3d0b-4fba-8adb-dded910710a1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_15ab4311",
+            "sessionId": "31a63d90-c6fd-457b-9d4d-f23cebe36cb6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011PY4RMVD9uNiq6MW4DZQGx",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7669,
+                "cache_read_input_tokens": 53199,
+                "output_tokens": 987,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 7669,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 987,
+                    "cache_read_input_tokens": 53199,
+                    "cache_creation_input_tokens": 7669,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 7669
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-21T02:41:44.545Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FvmBiAfFHSBiiR2rkDAifv",
+              "name": "mcp__agent-ml-research__spawn_worker",
+              "input": {
+                "task_type": "analysis:eval_llama_sft_s43_no_evidence_2048_r2",
+                "project": "faith-evidence-ie",
+                "task_prompt": "## 任务\n分析实验 `eval_llama_sft_s43_no_evidence_2048_r2` 的结果，提取所有关键 metrics。\n\n## 服务器信息\n- Server: rtx5090-4x\n- Log path: ~/runs/faith-evidence-ie/eval_llama_sft_s43_no_evidence_2048_r2.log\n- Output dir: /root/autodl-tmp/eval_results/eval_llama_sft_s43_no_evidence_2048\n\n## 需要提取的 metrics\n1. ign_f1, f1, ign_precision, ign_recall\n2. format_ok_rate, n_format_ok, n_documents\n3. n_truncated, truncation_rate\n4. n_predictions\n5. evi_f1 (应该是 0 因为 no_evidence)\n6. inference_time_seconds\n7. 任何其他可用的 eval metrics\n\n## 步骤\n1. SSH 到 rtx5090-4x 读取 log 文件最后 100 行（尾部通常有汇总）\n2. 检查 output_dir 下的 eval_results.json 或类似结果文件\n3. 如果有 fair comparison 子集分析（fair_tax_pp），也提取\n\n## 对比上下文（供参考）\n- s42 no-evi@2048: ign_f1=0.5210, format_ok=0.8873, truncated=201\n- s44 no-evi@2048: ign_f1=0.4373, format_ok=0.9919, truncated=246\n- s42 with-evi@2048: ign_f1=0.5649\n\n## 输出格式\n列出所有提取到的 metrics 值（精确数值），加上你对数据质量的判断。",
+                "tool_groups": [
+                  "ssh"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e02fdfc2-3d0b-4fba-8adb-dded910710a1",
+            "isSidechain": false,
+            "requestId": "req_011CbEwcHheBxJNhVaEX7mZi",
+            "type": "assistant",
+            "uuid": "3b12edb9-646e-477d-a136-6fea9e0eb876",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_15ab4311",
+            "sessionId": "31a63d90-c6fd-457b-9d4d-f23cebe36cb6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011PY4RMVD9uNiq6MW4DZQGx",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7669,
+                "cache_read_input_tokens": 53199,
+                "output_tokens": 987,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 7669,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 987,
+                    "cache_read_input_tokens": 53199,
+                    "cache_creation_input_tokens": 7669,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 7669
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-21T02:41:48.285Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FvmBiAfFHSBiiR2rkDAifv",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_eval_llama_sft_s43_no_evidence_2048_r2_20260521T024145\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_analysis_eval_llama_sft_s43_no_evidence_2048_r2_20260521T024145.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_analysis_eval_llama_sft_s43_no_evidence_2048_r2_20260521T024145 started. Use get_worker_status('worker_analysis_eval_llama_sft_s43_no_evidence_2048_r2_20260521T024145') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3b12edb9-646e-477d-a136-6fea9e0eb876",
+            "isSidechain": false,
+            "promptId": "bd7bef72-fe0e-4b45-9f6c-44814b146f8d",
+            "type": "user",
+            "uuid": "5918476c-e470-4461-b79b-a5f2829e5b18",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_eval_llama_sft_s43_no_evidence_2048_r2_20260521T024145\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_analysis_eval_llama_sft_s43_no_evidence_2048_r2_20260521T024145.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_analysis_eval_llama_sft_s43_no_evidence_2048_r2_20260521T024145 started. Use get_worker_status('worker_analysis_eval_llama_sft_s43_no_evidence_2048_r2_20260521T024145') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_eval_llama_sft_s43_no_evidence_2048_r2_20260521T024145\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/logs/workers/worker_analysis_eval_llama_sft_s43_no_evidence_2048_r2_20260521T024145.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_eval_llama_sft_s43_no_evidence_2048_r2_20260521T024145 started. Use get_worker_status('worker_analysis_eval_llama_sft_s43_no_evidence_2048_r2_20260521T024145') to check progress.\"}, \"error\": null, \"metadata\": {}}"
+              }
+            },
+            "sourceToolAssistantUUID": "3b12edb9-646e-477d-a136-6fea9e0eb876",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_15ab4311",
+            "sessionId": "31a63d90-c6fd-457b-9d4d-f23cebe36cb6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Analyze experiment results and mark as done",
+                "sessionId": "31a63d90-c6fd-457b-9d4d-f23cebe36cb6"
+              }
+            }
+          ],
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-21T02:42:09.335Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-21T02:42:09.335Z",
+                "sessionId": "31a63d90-c6fd-457b-9d4d-f23cebe36cb6",
+                "content": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。\n详情: Process exited cleanly, W&B data available\n\n- exp_id: eval_llama_sft_s43_no_evidence_2048_r2\n- project: faith-evidence-ie\n- server: rtx5090-4x\n- log_path: ~/runs/faith-evidence-ie/eval_llama_sft_s43_no_evidence_2048_r2.log"
+              }
+            }
+          ],
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-21T02:42:09.335Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-21T02:42:09.335Z",
+                "sessionId": "31a63d90-c6fd-457b-9d4d-f23cebe36cb6"
+              }
+            }
+          ],
+          "id": "event-000060"
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "messages": [
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-21T02:42:09.325Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Continue from where you left off."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5918476c-e470-4461-b79b-a5f2829e5b18",
+            "isSidechain": false,
+            "promptId": "876392f3-dd26-4ec6-9713-d7b1ee3bb8ca",
+            "type": "user",
+            "isMeta": true,
+            "uuid": "9cb7a3e8-2926-4cbb-82a1-11c5d182ff6e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_15ab4311",
+            "sessionId": "31a63d90-c6fd-457b-9d4d-f23cebe36cb6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-21T02:42:09.326Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9cb7a3e8-2926-4cbb-82a1-11c5d182ff6e",
+            "isSidechain": false,
+            "type": "assistant",
+            "uuid": "ea5d60ea-0eb0-4703-8968-8f356018466d",
+            "isApiErrorMessage": false,
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_15ab4311",
+            "sessionId": "31a63d90-c6fd-457b-9d4d-f23cebe36cb6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "id": "77731cd3-723c-4807-8b36-3815483b3c89",
+              "container": null,
+              "model": "<synthetic>",
+              "stop_reason": "stop_sequence",
+              "stop_sequence": "",
+              "type": "message",
+              "usage": {
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 0,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": null,
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": null,
+                "iterations": null,
+                "speed": null
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000062"
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "messages": [
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-21T02:42:09.509Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。\n详情: Process exited cleanly, W&B data available\n\n- exp_id: eval_llama_sft_s43_no_evidence_2048_r2\n- project: faith-evidence-ie\n- server: rtx5090-4x\n- log_path: ~/runs/faith-evidence-ie/eval_llama_sft_s43_no_evidence_2048_r2.log"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ea5d60ea-0eb0-4703-8968-8f356018466d",
+            "isSidechain": false,
+            "promptId": "876392f3-dd26-4ec6-9713-d7b1ee3bb8ca",
+            "type": "user",
+            "uuid": "1622ed6a-f1a1-4b5b-bbbe-dbfbe8857122",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_15ab4311",
+            "sessionId": "31a63d90-c6fd-457b-9d4d-f23cebe36cb6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Analyze experiment results and mark as done",
+                "sessionId": "31a63d90-c6fd-457b-9d4d-f23cebe36cb6"
+              }
+            }
+          ],
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-21T18:43:30.359Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-21T18:43:30.359Z",
+                "sessionId": "31a63d90-c6fd-457b-9d4d-f23cebe36cb6",
+                "content": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+              }
+            }
+          ],
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-21T18:43:30.359Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-21T18:43:30.359Z",
+                "sessionId": "31a63d90-c6fd-457b-9d4d-f23cebe36cb6"
+              }
+            }
+          ],
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-21T18:43:30.350Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1622ed6a-f1a1-4b5b-bbbe-dbfbe8857122",
+            "isSidechain": false,
+            "type": "assistant",
+            "uuid": "70aef53e-c9c6-48ca-99b6-b6164f0881fc",
+            "isApiErrorMessage": false,
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_15ab4311",
+            "sessionId": "31a63d90-c6fd-457b-9d4d-f23cebe36cb6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "id": "1ec02b1d-01f0-4089-8dc0-c4ff5fd234c8",
+              "container": null,
+              "model": "<synthetic>",
+              "stop_reason": "stop_sequence",
+              "stop_sequence": "",
+              "type": "message",
+              "usage": {
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 0,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": null,
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": null,
+                "iterations": null,
+                "speed": null
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000067"
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "messages": [
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-21T18:43:30.485Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "70aef53e-c9c6-48ca-99b6-b6164f0881fc",
+            "isSidechain": false,
+            "promptId": "0ae27a3d-ce6f-4758-bf5f-664ad52c989b",
+            "type": "user",
+            "uuid": "a22f5fa3-07d4-4732-aeb1-517eb2649814",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/agent_15ab4311",
+            "sessionId": "31a63d90-c6fd-457b-9d4d-f23cebe36cb6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000068"
+        }
+      ]
+    }
+  ]
+}

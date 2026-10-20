@@ -1,0 +1,337 @@
+{
+  "schema_version": "1.0",
+  "id": "802d686a14942323d85a",
+  "project": "faith-evidence-ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Read the file /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml. It may be large ",
+  "task_key": "agent-aa4b314c46a7a4af9",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-aa4b314c46a7a4af9.jsonl",
+    "occurrence": 1,
+    "bytes": 48367,
+    "sha256": "64a3c6a0d80bad50ff7a996b39c44c68ae83fd37cf5ab4c05399c1e704b21e1e"
+  },
+  "statistics": {
+    "messages": 5,
+    "user_turns": 1,
+    "tool_calls": 1,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "tool_call": 1,
+      "tool_result": 1,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T22:21:32.709Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Read the file /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml. It may be large — read the first 500 lines. Return the content as-is."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "77e57ea8-d2a5-4c16-a519-33c0c460a3f5",
+            "agentId": "aa4b314c46a7a4af9",
+            "type": "user",
+            "uuid": "ce984836-2b36-49f5-bee1-702c4a4a5921",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/reviewer_3281a603",
+            "sessionId": "15013e53-b26f-4bd4-b301-91c5285b50b8",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "kind-mixing-pearl"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-23T22:21:32.711Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "ce984836-2b36-49f5-bee1-702c4a4a5921",
+                "isSidechain": true,
+                "agentId": "aa4b314c46a7a4af9",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__check_figures_and_layout",
+                    "mcp__agent-ml-research__cleanup_pdf_images",
+                    "mcp__agent-ml-research__compute_coverage_matrix",
+                    "mcp__agent-ml-research__fetch_wandb_metrics",
+                    "mcp__agent-ml-research__get_gpu_health",
+                    "mcp__agent-ml-research__get_project_resource_usage",
+                    "mcp__agent-ml-research__list_constraints",
+                    "mcp__agent-ml-research__pdf_to_images",
+                    "mcp__agent-ml-research__read_experiment_plan_with_status",
+                    "mcp__agent-ml-research__read_matrix",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__read_roadmap",
+                    "mcp__agent-ml-research__reviewer_post_to_director",
+                    "mcp__agent-ml-research__ssh_read_only",
+                    "mcp__agent-ml-research__tail_training_logs"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__check_figures_and_layout",
+                    "mcp__agent-ml-research__cleanup_pdf_images",
+                    "mcp__agent-ml-research__compute_coverage_matrix",
+                    "mcp__agent-ml-research__fetch_wandb_metrics",
+                    "mcp__agent-ml-research__get_gpu_health",
+                    "mcp__agent-ml-research__get_project_resource_usage",
+                    "mcp__agent-ml-research__list_constraints",
+                    "mcp__agent-ml-research__pdf_to_images",
+                    "mcp__agent-ml-research__read_experiment_plan_with_status",
+                    "mcp__agent-ml-research__read_matrix",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__read_roadmap",
+                    "mcp__agent-ml-research__reviewer_post_to_director",
+                    "mcp__agent-ml-research__ssh_read_only",
+                    "mcp__agent-ml-research__tail_training_logs"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "2a738f27-f0e1-4a4d-ac5e-328b2835c3e7",
+                "timestamp": "2026-05-23T22:21:32.711Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/reviewer_3281a603",
+                "sessionId": "15013e53-b26f-4bd4-b301-91c5285b50b8",
+                "version": "2.1.126",
+                "gitBranch": "HEAD",
+                "slug": "kind-mixing-pearl"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-23T22:21:39.567Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0116awHTiZjPaQjKgQ2bKUyH",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml",
+                "limit": 500
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2a738f27-f0e1-4a4d-ac5e-328b2835c3e7",
+            "isSidechain": true,
+            "agentId": "aa4b314c46a7a4af9",
+            "requestId": "req_011CbLHDeKLR99GNgjyKJ6zm",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c47bbf0e-1fea-46c3-ad72-9006d4d74082",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/reviewer_3281a603",
+            "sessionId": "15013e53-b26f-4bd4-b301-91c5285b50b8",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "kind-mixing-pearl",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014mvZQuo7Y3wsgcDr1GroBh",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 16233,
+                "cache_read_input_tokens": 8260,
+                "output_tokens": 101,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 16233
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 101,
+                    "cache_read_input_tokens": 8260,
+                    "cache_creation_input_tokens": 16233,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 16233,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-23T22:21:39.577Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0116awHTiZjPaQjKgQ2bKUyH",
+              "type": "tool_result",
+              "content": "1\tbaseline: null\n2\texperiments:\n3\t  mvp1_ced_signal:\n4\t    status: DONE\n5\t    retry_count: 0\n6\t    created_at: '2026-05-14T04:48:46.220Z'\n7\t    updated_at: '2026-05-14T05:48:05.545Z'\n8\t    spec:\n9\t      command: bash -c \"source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache\n10\t        && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\n11\t        && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh\n12\t        && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES='' python\n13\t        -m freige.analysis.ced_signal_validation --data_dir /root/autodl-tmp/data/docred\n14\t        --output_dir /root/autodl-tmp/mvp1_results --split dev --nli_model cross-encoder/nli-deberta-v3-base\n15\t        --tau 0.5 --batch_size 32\"\n16\t      server: rtx5090-4x\n17\t      gpu:\n18\t      - cuda:0\n19\t      pid: '4491'\n20\t      log_path: ~/runs/faith-evidence-ie/mvp1_ced_signal.log\n21\t      submitted_at: '2026-05-14T05:21:30.878Z'\n22\t      submitted_via: submit_training_job\n23\t      backend: tmux\n24\t      account: root\n25\t      data_count: 6830\n26\t      model_name: cross-encoder/nli-deberta-v3-base\n27\t      data_path: /root/autodl-tmp/data/docred/\n28\t      seed: 42\n29\t      checkpoint_path: /root/autodl-tmp/mvp1_results/\n30\t      wall_clock_seconds: 1594.7\n31\t      gpu_hours: 0.44\n32\t    conclusion: success\n33\t    metrics:\n34\t      mean_margin: 0.48\n35\t      discrimination_accuracy: 0.815\n36\t      pearson_r_margin_jaccard: 0.34\n37\t      pass: true\n38\t    completed_at: '2026-05-14T05:48:05.545Z'\n39\t  smoke_test_grpo:\n40\t    status: DONE\n41\t    retry_count: 0\n42\t    created_at: '2026-05-14T05:20:00.970Z'\n43\t    updated_at: '2026-05-14T06:09:18.626Z'\n44\t    spec:\n45\t      command: bash -c \"source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache\n46\t        && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\n47\t        && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh\n48\t        && conda activate base && cd /root/autodl-tmp && accelerate launch --num_processes\n49\t        4 --mixed_precision bf16 -m freige.training.smoke_test\"\n50\t      server: rtx5090-4x\n51\t      gpu:\n52\t      - cuda:0\n53\t      - cuda:1\n54\t      - cuda:2\n55\t      - cuda:3\n56\t      pid: '9823'\n57\t      log_path: ~/runs/faith-evidence-ie/smoke_test_grpo.log\n58\t      submitted_at: '2026-05-14T05:54:45.178Z'\n59\t      submitted_via: submit_training_job\n60\t      backend: tmux\n61\t      account: root\n62\t      checkpoint_path: N/A (smoke test)\n63\t      wall_clock_seconds: 873.4\n64\t      gpu_hours: 0.97\n65\t    conclusion: success\n66\t    completed_at: '2026-05-14T06:09:18.626Z'\n67\t  mvp2_sft_warmup:\n68\t    status: DONE\n69\t    retry_count: 0\n70\t    created_at: '2026-05-14T06:09:47.819Z'\n71\t    updated_at: '2026-05-14T07:10:19.285Z'\n72\t    spec:\n73\t      command: accelerate launch --config_file freige/configs/accelerate_4gpu.yaml\n74\t        -m freige.training.sft_trainer --model_name /root/autodl-tmp/models/Qwen3-4B\n75\t        --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/sft_output\n76\t        --deepspeed freige/configs/deepspeed_zero2.json --num_epochs 3 --per_device_batch_size\n77\t        1 --gradient_accumulation_steps 16 --learning_rate 2e-4 --max_length 4096\n78\t        --seed 42\n79\t      server: rtx5090-4x\n80\t      gpu:\n81\t      - cuda:0\n82\t      - cuda:1\n83\t      - cuda:2\n84\t      - cuda:3\n85\t      pid: '16221'\n86\t      log_path: ~/runs/faith-evidence-ie/mvp2_sft_warmup.log\n87\t      submitted_at: '2026-05-14T06:22:10.453Z'\n88\t      submitted_via: submit_training_job\n89\t      backend: tmux\n90\t      account: root\n91\t      data_path: /root/autodl-tmp/data/docred\n92\t      data_count:\n93\t        train: 3027\n94\t        dev: 985\n95\t      model_name: Qwen3-4B\n96\t      seed: 42\n97\t      gpu_model: RTX 5090 32GB x4\n98\t      lora_rank: 64\n99\t      lora_alpha: 128\n100\t      quantization: 4-bit NF4 QLoRA\n101\t      deepspeed: ZeRO-2 + CPU offload\n102\t      effective_batch_size: 64\n103\t      checkpoint_path: /root/autodl-tmp/sft_output\n104\t      wall_clock_seconds: 2888.8\n105\t      gpu_hours: 3.21\n106\t    conclusion: success\n107\t    metrics:\n108\t      eval_loss: 0.72\n109\t      accuracy: 0.835\n110\t    completed_at: '2026-05-14T07:10:19.285Z'\n111\t  precompute_nli_train:\n112\t    status: DONE\n113\t    retry_count: 0\n114\t    created_at: '2026-05-14T07:05:48.887Z'\n115\t    updated_at: '2026-05-14T07:35:24.549Z'\n116\t    spec:\n117\t      command: bash -c \"source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache\n118\t        && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\n119\t        && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh\n120\t        && conda activate base && cd /root/autodl-tmp && python precompute_nli.py\"\n121\t      server: gpu-5090-4x-1\n122\t      gpu:\n123\t      - cuda:0\n124\t      pid: '19212'\n125\t      log_path: ~/runs/faith-evidence-ie/precompute_nli_train.log\n126\t      submitted_at: '2026-05-14T07:05:58.458Z'\n127\t      submitted_via: submit_training_job\n128\t      backend: tmux\n129\t      account: root\n130\t      checkpoint_path: /root/autodl-tmp/nli_cache/\n131\t      wall_clock_seconds: 1766.1\n132\t      gpu_hours: 0.49\n133\t    conclusion: success\n134\t    completed_at: '2026-05-14T07:35:24.549Z'\n135\t  mvp2_grpo_ced:\n136\t    status: DONE\n137\t    retry_count: 0\n138\t    created_at: '2026-05-14T07:10:31.165Z'\n139\t    updated_at: '2026-05-22T19:39:11.160Z'\n140\t    spec:\n141\t      command: bash -c \"source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache\n142\t        && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\n143\t        && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh\n144\t        && conda activate base && cd /root/autodl-tmp && accelerate launch --config_file\n145\t        freige/configs/accelerate_4gpu.yaml -m freige.training.grpo_trainer --model_name\n146\t        /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output\n147\t        --data_dir /root/autodl-tmp/data/docred --stage 3 --tau_start 0.3 --tau_end\n148\t        0.5 --output_dir /root/autodl-tmp/grpo_s3 --num_generations 4 --reward_device\n149\t        cpu --per_device_batch_size 1 --gradient_accumulation_steps 16 --num_epochs\n150\t        1 --learning_rate 5e-5 --seed 42 --wandb_run_name grpo-s3-ced\"\n151\t      server: rtx5090-4x\n152\t      gpu:\n153\t      - cuda:0\n154\t      - cuda:1\n155\t      - cuda:2\n156\t      - cuda:3\n157\t      pid: '20973'\n158\t      log_path: ~/runs/faith-evidence-ie/mvp2_grpo_ced.log\n159\t      submitted_at: '2026-05-14T07:19:59.045Z'\n160\t      submitted_via: submit_training_job\n161\t      backend: tmux\n162\t      account: root\n163\t      wall_clock_seconds: 2189.9\n164\t      gpu_hours: 2.43\n165\t    reproduce:\n166\t      finished_at: '2026-05-14T07:56:28.316Z'\n167\t    failure_reason: EXIT_CODE=1 (generic error — check log tail)\n168\t    conclusion: failed\n169\t    completed_at: '2026-05-14T07:56:28.916Z'\n170\t    extra:\n171\t      hook_events:\n172\t      - event: on_failed\n173\t        action: agent\n174\t        ts: '2026-05-14T07:56:29.797308+00:00'\n175\t    notes: '[ARCHIVED] superseded by final pipeline (plan017/plan019 series)'\n176\t  mvp2_grpo_flatnli:\n177\t    status: DONE\n178\t    retry_count: 0\n179\t    created_at: '2026-05-14T07:10:33.848Z'\n180\t    updated_at: '2026-05-22T19:39:39.362Z'\n181\t    spec:\n182\t      command: python -m freige.training.grpo_trainer --stage 2 --ced_reward_weight\n183\t        1.0 --format_reward_weight 0.3 --f1_reward_weight 3.0 --num_iterations 1 --kl_coef\n184\t        0.05 --lr 5e-5\n185\t      server: rtx5090-4x\n186\t      gpu:\n187\t      - cuda:3\n188\t      pid: '47722'\n189\t      log_path: ~/runs/faith-evidence-ie/mvp2_grpo_flatnli.log\n190\t      submitted_at: '2026-05-14T11:48:54.086Z'\n191\t      submitted_via: submit_training_job\n192\t      backend: tmux\n193\t      account: root\n194\t      data_path: /root/autodl-tmp/data/docred\n195\t      data_count:\n196\t        train: 3027\n197\t        dev: 985\n198\t      model_name: Qwen3-4B\n199\t      seed: 42\n200\t      hypothesis: Flat-NLI reward improves Evi-F1 over extraction-only but less than\n201\t        CED\n202\t      parent: mvp2_sft_warmup\n203\t      checkpoint_source: /root/autodl-tmp/sft_output\n204\t      eval_data: /root/autodl-tmp/data/docred\n205\t      hyperparams:\n206\t        learning_rate: 5e-5\n207\t        kl_coef: 0.05\n208\t        num_iterations: 1\n209\t        format_reward_weight: 0.3\n210\t        f1_reward_weight: 3\n211\t        ced_reward_weight: 1\n212\t      wall_clock_seconds: 1188.0\n213\t      gpu_hours: 0.33\n214\t    hypothesis: Flat-NLI reward (non-contrastive) improves Evi-F1 over extraction-only\n215\t      but less than CED — validates contrastive component's incremental value\n216\t    conclusion: failed\n217\t    completed_at: '2026-05-14T12:08:42.058Z'\n218\t    notes: '[ARCHIVED] superseded by final pipeline (plan017/plan019 series)'\n219\t  mvp2_grpo_extract:\n220\t    status: DONE\n221\t    retry_count: 0\n222\t    created_at: '2026-05-14T07:10:35.796Z'\n223\t    updated_at: '2026-05-22T19:39:34.680Z'\n224\t    spec:\n225\t      command: python -m freige.training.grpo_trainer --stage 1 --ced_reward_weight\n226\t        0.0 --format_reward_weight 0.3 --f1_reward_weight 3.0 --num_iterations 1 --kl_coef\n227\t        0.05 --lr 5e-5\n228\t      server: rtx5090-4x\n229\t      gpu:\n230\t      - cuda:2\n231\t      pid: '47561'\n232\t      log_path: ~/runs/faith-evidence-ie/mvp2_grpo_extract.log\n233\t      submitted_at: '2026-05-14T11:48:50.108Z'\n234\t      submitted_via: submit_training_job\n235\t      backend: tmux\n236\t      account: root\n237\t      data_path: /root/autodl-tmp/data/docred/train_annotated.json\n238\t      data_count: 3027\n239\t      model_name: Qwen3-4B (QLoRA from SFT warmup)\n240\t      seed: 42\n241\t      hypothesis: Extraction-only reward (format+F1, no CED) establishes GRPO baseline\n242\t      parent: mvp2_sft_warmup\n243\t      checkpoint_source: /root/autodl-tmp/sft_output\n244\t      eval_data: /root/autodl-tmp/data/docred\n245\t      hyperparams:\n246\t        learning_rate: 5e-5\n247\t        kl_coef: 0.05\n248\t        num_iterations: 1\n249\t        format_reward_weight: 0.3\n250\t        f1_reward_weight: 3\n251\t        ced_reward_weight: 0\n252\t      wall_clock_seconds: 1479.2\n253\t      gpu_hours: 0.41\n254\t    hypothesis: Extraction-only reward (format+F1, no CED) establishes GRPO baseline\n255\t      — CED r3 should exceed this on Evi-F1\n256\t    reproduce:\n257\t      finished_at: '2026-05-14T12:03:50.563Z'\n258\t    extra:\n259\t      hook_events:\n260\t      - event: on_complete\n261\t        action: agent\n262\t        ts: '2026-05-14T12:03:51.381207+00:00'\n263\t    conclusion: failed\n264\t    completed_at: '2026-05-14T12:13:29.284Z'\n265\t    notes: '[ARCHIVED] superseded by final pipeline (plan017/plan019 series)'\n266\t  mvp2_sft_eval:\n267\t    status: DONE\n268\t    retry_count: 0\n269\t    created_at: '2026-05-14T07:10:37.449Z'\n270\t    updated_at: '2026-05-22T19:39:51.204Z'\n271\t    spec:\n272\t      command: python -m freige.eval.inference --model_path sft_output --base_model\n273\t        Qwen3-4B --split dev\n274\t      server: rtx5090-4x\n275\t      gpu:\n276\t      - cuda:1\n277\t      pid: '47293'\n278\t      log_path: ~/runs/faith-evidence-ie/mvp2_sft_eval.log\n279\t      submitted_at: '2026-05-14T11:48:46.335Z'\n280\t      submitted_via: submit_training_job\n281\t      backend: tmux\n282\t      account: root\n283\t      data_path: /root/autodl-tmp/data/docred\n284\t      data_count:\n285\t        dev: 985\n286\t      model_name: Qwen3-4B\n287\t      seed: 42\n288\t      hypothesis: SFT baseline eval on DocRED dev set\n289\t      parent: mvp2_sft_warmup\n290\t      checkpoint_source: /root/autodl-tmp/sft_output\n291\t      eval_data: /root/autodl-tmp/data/docred/dev.json\n292\t      wall_clock_seconds: 3416.3\n293\t      gpu_hours: 0.95\n294\t    conclusion: killed\n295\t    reproduce:\n296\t      finished_at: '2026-05-14T12:45:42.027Z'\n297\t    failure_reason: EXIT_CODE=129 (non-zero)\n298\t    completed_at: '2026-05-14T12:45:42.659Z'\n299\t    extra:\n300\t      hook_events:\n301\t      - event: on_failed\n302\t        action: agent\n303\t        ts: '2026-05-14T12:45:43.534491+00:00'\n304\t    notes: '[ARCHIVED] superseded by final pipeline (plan017/plan019 series)'\n305\t  mvp2_grpo_ced_r1:\n306\t    status: DONE\n307\t    retry_count: 0\n308\t    created_at: '2026-05-14T08:02:41.858Z'\n309\t    updated_at: '2026-05-22T19:39:22.865Z'\n310\t    spec:\n311\t      command: bash -c \"source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache\n312\t        && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\n313\t        && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh\n314\t        && conda activate base && cd /root/autodl-tmp && accelerate launch --config_file\n315\t        freige/configs/accelerate_4gpu.yaml -m freige.training.grpo_trainer --model_name\n316\t        /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output\n317\t        --data_dir /root/autodl-tmp/data/docred --stage 3 --tau_start 0.3 --tau_end\n318\t        0.5 --output_dir /root/autodl-tmp/grpo_s3 --num_generations 4 --reward_device\n319\t        cpu --per_device_batch_size 1 --gradient_accumulation_steps 16 --num_epochs\n320\t        1 --learning_rate 5e-5 --seed 42 --wandb_run_name grpo-s3-ced-r1\"\n321\t      server: rtx5090-4x\n322\t      gpu:\n323\t      - cuda:0\n324\t      - cuda:1\n325\t      - cuda:2\n326\t      - cuda:3\n327\t      pid: '24122'\n328\t      log_path: ~/runs/faith-evidence-ie/mvp2_grpo_ced_r1.log\n329\t      submitted_at: '2026-05-14T08:02:41.839Z'\n330\t      submitted_via: submit_training_job\n331\t      backend: tmux\n332\t      account: root\n333\t      data_path: /root/autodl-tmp/data/docred\n334\t      data_count:\n335\t        train: 3027\n336\t        dev: 985\n337\t      model_name: Qwen3-4B\n338\t      seed: 42\n339\t      hypothesis: CED reward improves Evi-F1 over flat-NLI and extraction-only baselines\n340\t      wall_clock_seconds: 8641.6\n341\t      gpu_hours: 9.6\n342\t    conclusion: killed\n343\t    notes: '[ARCHIVED] superseded by final pipeline (plan017/plan019 series)'\n344\t    completed_at: '2026-05-14T10:26:43.488Z'\n345\t  mvp2_grpo_ced_r2:\n346\t    status: DONE\n347\t    retry_count: 0\n348\t    created_at: '2026-05-14T10:58:11.663Z'\n349\t    updated_at: '2026-05-22T19:39:30.198Z'\n350\t    spec:\n351\t      command: accelerate launch --config_file freige/configs/accelerate_4gpu.yaml\n352\t        -m freige.training.grpo_trainer --model_name Qwen3-4B --learning_rate 2e-5\n353\t        --kl_coef 0.05 --save_steps 20 --format_reward_weight 0.3 --f1_reward_weight\n354\t        3.0 --ced_reward_weight 1.0 --num_iterations 2\n355\t      server: rtx5090-4x\n356\t      data_path: /root/autodl-tmp/data/docred\n357\t      data_count:\n358\t        train: 3027\n359\t        dev: 985\n360\t      model_name: Qwen3-4B\n361\t      seed: 42\n362\t      hypothesis: CED reward with balanced weights (format×0.3, f1×3.0, ced×1.0) +\n363\t        KL=0.05 + save_steps=20 + num_iterations=2 prevents mode collapse and improves\n364\t        Evi-F1\n365\t      parent: mvp2_grpo_ced_r1\n366\t      hyperparams:\n367\t        learning_rate: 2e-5\n368\t        kl_coef: 0.05\n369\t        save_steps: 20\n370\t        num_iterations: 2\n371\t        format_reward_weight: 0.3\n372\t        f1_reward_weight: 3\n373\t        ced_reward_weight: 1\n374\t        per_device_batch_size: 1\n375\t        gradient_accumulation_steps: 16\n376\t        num_generations: 4\n377\t    reproduce:\n378\t      finished_at: '2026-05-14T11:26:47.993Z'\n379\t    failure_reason: EXIT_CODE=137 (SIGKILL — OOM killer or manual kill)\n380\t    conclusion: killed\n381\t    completed_at: '2026-05-14T11:26:48.502Z'\n382\t    extra:\n383\t      hook_events:\n384\t      - event: on_failed\n385\t        action: agent\n386\t        ts: '2026-05-14T11:26:49.285684+00:00'\n387\t    notes: '[ARCHIVED] superseded by final pipeline (plan017/plan019 series)'\n388\t  mvp2_grpo_ced_r3:\n389\t    status: DONE\n390\t    retry_count: 0\n391\t    created_at: '2026-05-14T11:47:53.099Z'\n392\t    updated_at: '2026-05-22T19:39:31.683Z'\n393\t    spec:\n394\t      command: python -m freige.training.grpo_trainer --stage 3 --num_iterations 1\n395\t        --kl_coef 0.05 --save_steps 20 --format_reward_weight 0.3 --f1_reward_weight\n396\t        3.0 --ced_reward_weight 1.0 --max_kl 100 --lr 5e-5\n397\t      server: rtx5090-4x\n398\t      gpu:\n399\t      - cuda:0\n400\t      pid: '47136'\n401\t      log_path: ~/runs/faith-evidence-ie/mvp2_grpo_ced_r3.log\n402\t      submitted_at: '2026-05-14T11:48:42.598Z'\n403\t      submitted_via: submit_training_job\n404\t      backend: tmux\n405\t      account: root\n406\t      data_path: /root/autodl-tmp/data/docred\n407\t      data_count:\n408\t        train: 3027\n409\t        dev: 985\n410\t      model_name: Qwen3-4B\n411\t      seed: 42\n412\t      hypothesis: Reward weighting (format×0.3, f1×3.0, ced×1.0) with stable training\n413\t        (num_iterations=1, KL early stop) improves Evi-F1\n414\t      parent: mvp2_grpo_ced_r1\n415\t      checkpoint_source: /root/autodl-tmp/sft_output\n416\t      eval_data: /root/autodl-tmp/data/docred\n417\t      hyperparams:\n418\t        learning_rate: 5e-5\n419\t        kl_coef: 0.05\n420\t        save_steps: 20\n421\t        num_iterations: 1\n422\t        format_reward_weight: 0.3\n423\t        f1_reward_weight: 3\n424\t        ced_reward_weight: 1\n425\t        max_kl: 100\n426\t      wall_clock_seconds: 1061.5\n427\t      gpu_hours: 0.29\n428\t    hypothesis: CED reward with balanced weights (format×0.3, f1×3.0, ced×1.0) + stable\n429\t      training (num_iterations=1, KL early stop at 100) + kl_coef=0.05 improves Evi-F1\n430\t      over SFT baseline\n431\t    reproduce:\n432\t      finished_at: '2026-05-14T12:06:23.600Z'\n433\t    failure_reason: EXIT_CODE=129 (non-zero)\n434\t    conclusion: failed\n435\t    completed_at: '2026-05-14T12:06:24.147Z'\n436\t    extra:\n437\t      hook_events:\n438\t      - event: on_failed\n439\t        action: agent\n440\t        ts: '2026-05-14T12:06:25.189118+00:00'\n441\t    notes: '[ARCHIVED] superseded by final pipeline (plan017/plan019 series)'\n442\t  mvp2_grpo_ced_r4:\n443\t    status: DONE\n444\t    retry_count: 0\n445\t    created_at: '2026-05-14T12:10:15.698Z'\n446\t    updated_at: '2026-05-22T19:39:33.220Z'\n447\t    spec:\n448\t      command: python -m freige.training.grpo_trainer --stage 3 --kl_coef 0.0 --num_iterations\n449\t        1 --save_steps 20 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight\n450\t        1.0 --lr 5e-5 --gradient_accumulation_steps 16 --num_generations 4\n451\t      server: rtx5090-4x\n452\t      gpu:\n453\t      - cuda:0\n454\t      pid: '50529'\n455\t      log_path: ~/runs/faith-evidence-ie/mvp2_grpo_ced_r4.log\n456\t      submitted_at: '2026-05-14T12:10:15.624Z'\n457\t      submitted_via: submit_training_job\n458\t      backend: tmux\n459\t      account: root\n460\t      data_path: /root/autodl-tmp/data/docred\n461\t      data_count:\n462\t        train: 3027\n463\t        dev: 985\n464\t      model_name: Qwen3-4B\n465\t      seed: 42\n466\t      hypothesis: CED reward (format×0.3, f1×3.0, ced×1.0) with kl_coef=0 (D008 fix)\n467\t        achieves Evi-F1 improvement over SFT baseline\n468\t      parent: mvp2_grpo_ced_r3\n469\t      checkpoint_source: /root/autodl-tmp/sft_output\n470\t      eval_data: /root/autodl-tmp/data/docred\n471\t      hyperparams:\n472\t        learning_rate: 5e-5\n473\t        kl_coef: 0\n474\t        save_steps: 20\n475\t        num_iterations: 1\n476\t        format_reward_weight: 0.3\n477\t        f1_reward_weight: 3\n478\t        ced_reward_weight: 1\n479\t        per_device_batch_size: 1\n480\t        gradient_accumulation_steps: 16\n481\t        num_generations: 4\n482\t        quantization: QLoRA 4-bit NF4\n483\t      wall_clock_seconds: 1169.5\n484\t      gpu_hours: 0.32\n485\t    conclusion: killed\n486\t    completed_at: '2026-05-14T12:29:45.113Z'\n487\t    notes: '[ARCHIVED] superseded by final pipeline (plan017/plan019 series)'\n488\t  mvp2_grpo_extract_r2:\n489\t    status: DONE\n490\t    retry_count: 0\n491\t    created_at: '2026-05-14T12:10:19.532Z'\n492\t    updated_at: '2026-05-22T19:39:36.371Z'\n493\t    spec:\n494\t      command: python -m freige.training.grpo_trainer --stage 1 --kl_coef 0.0 --num_iterations\n495\t        1 --save_steps 20 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight\n496\t        0.0 --lr 5e-5 --gradient_accumulation_steps 16 --num_generations 4\n497\t      server: rtx5090-4x\n498\t      gpu:\n499\t      - cuda:2\n500\t      pid: '50670'"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c47bbf0e-1fea-46c3-ad72-9006d4d74082",
+            "isSidechain": true,
+            "promptId": "77e57ea8-d2a5-4c16-a519-33c0c460a3f5",
+            "agentId": "aa4b314c46a7a4af9",
+            "type": "user",
+            "uuid": "63ffe9f7-ae10-43cd-8db6-af7976c52da0",
+            "sourceToolAssistantUUID": "c47bbf0e-1fea-46c3-ad72-9006d4d74082",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/reviewer_3281a603",
+            "sessionId": "15013e53-b26f-4bd4-b301-91c5285b50b8",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "kind-mixing-pearl"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-23T22:23:17.135Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "以下是 `/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/registry.yaml` 前 500 行的内容：\n\n```yaml\nbaseline: null\nexperiments:\n  mvp1_ced_signal:\n    status: DONE\n    retry_count: 0\n    created_at: '2026-05-14T04:48:46.220Z'\n    updated_at: '2026-05-14T05:48:05.545Z'\n    spec:\n      command: bash -c \"source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache\n        && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\n        && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh\n        && conda activate base && cd /root/autodl-tmp && CUDA_VISIBLE_DEVICES='' python\n        -m freige.analysis.ced_signal_validation --data_dir /root/autodl-tmp/data/docred\n        --output_dir /root/autodl-tmp/mvp1_results --split dev --nli_model cross-encoder/nli-deberta-v3-base\n        --tau 0.5 --batch_size 32\"\n      server: rtx5090-4x\n      gpu:\n      - cuda:0\n      pid: '4491'\n      log_path: ~/runs/faith-evidence-ie/mvp1_ced_signal.log\n      submitted_at: '2026-05-14T05:21:30.878Z'\n      submitted_via: submit_training_job\n      backend: tmux\n      account: root\n      data_count: 6830\n      model_name: cross-encoder/nli-deberta-v3-base\n      data_path: /root/autodl-tmp/data/docred/\n      seed: 42\n      checkpoint_path: /root/autodl-tmp/mvp1_results/\n      wall_clock_seconds: 1594.7\n      gpu_hours: 0.44\n    conclusion: success\n    metrics:\n      mean_margin: 0.48\n      discrimination_accuracy: 0.815\n      pearson_r_margin_jaccard: 0.34\n      pass: true\n    completed_at: '2026-05-14T05:48:05.545Z'\n  smoke_test_grpo:\n    status: DONE\n    retry_count: 0\n    created_at: '2026-05-14T05:20:00.970Z'\n    updated_at: '2026-05-14T06:09:18.626Z'\n    spec:\n      command: bash -c \"source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache\n        && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\n        && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh\n        && conda activate base && cd /root/autodl-tmp && accelerate launch --num_processes\n        4 --mixed_precision bf16 -m freige.training.smoke_test\"\n      server: rtx5090-4x\n      gpu:\n      - cuda:0\n      - cuda:1\n      - cuda:2\n      - cuda:3\n      pid: '9823'\n      log_path: ~/runs/faith-evidence-ie/smoke_test_grpo.log\n      submitted_at: '2026-05-14T05:54:45.178Z'\n      submitted_via: submit_training_job\n      backend: tmux\n      account: root\n      checkpoint_path: N/A (smoke test)\n      wall_clock_seconds: 873.4\n      gpu_hours: 0.97\n    conclusion: success\n    completed_at: '2026-05-14T06:09:18.626Z'\n  mvp2_sft_warmup:\n    status: DONE\n    retry_count: 0\n    created_at: '2026-05-14T06:09:47.819Z'\n    updated_at: '2026-05-14T07:10:19.285Z'\n    spec:\n      command: accelerate launch --config_file freige/configs/accelerate_4gpu.yaml\n        -m freige.training.sft_trainer --model_name /root/autodl-tmp/models/Qwen3-4B\n        --data_dir /root/autodl-tmp/data/docred --output_dir /root/autodl-tmp/sft_output\n        --deepspeed freige/configs/deepspeed_zero2.json --num_epochs 3 --per_device_batch_size\n        1 --gradient_accumulation_steps 16 --learning_rate 2e-4 --max_length 4096\n        --seed 42\n      server: rtx5090-4x\n      gpu:\n      - cuda:0\n      - cuda:1\n      - cuda:2\n      - cuda:3\n      pid: '16221'\n      log_path: ~/runs/faith-evidence-ie/mvp2_sft_warmup.log\n      submitted_at: '2026-05-14T06:22:10.453Z'\n      submitted_via: submit_training_job\n      backend: tmux\n      account: root\n      data_path: /root/autodl-tmp/data/docred\n      data_count:\n        train: 3027\n        dev: 985\n      model_name: Qwen3-4B\n      seed: 42\n      gpu_model: RTX 5090 32GB x4\n      lora_rank: 64\n      lora_alpha: 128\n      quantization: 4-bit NF4 QLoRA\n      deepspeed: ZeRO-2 + CPU offload\n      effective_batch_size: 64\n      checkpoint_path: /root/autodl-tmp/sft_output\n      wall_clock_seconds: 2888.8\n      gpu_hours: 3.21\n    conclusion: success\n    metrics:\n      eval_loss: 0.72\n      accuracy: 0.835\n    completed_at: '2026-05-14T07:10:19.285Z'\n  precompute_nli_train:\n    status: DONE\n    retry_count: 0\n    created_at: '2026-05-14T07:05:48.887Z'\n    updated_at: '2026-05-14T07:35:24.549Z'\n    spec:\n      command: bash -c \"source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache\n        && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\n        && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh\n        && conda activate base && cd /root/autodl-tmp && python precompute_nli.py\"\n      server: gpu-5090-4x-1\n      gpu:\n      - cuda:0\n      pid: '19212'\n      log_path: ~/runs/faith-evidence-ie/precompute_nli_train.log\n      submitted_at: '2026-05-14T07:05:58.458Z'\n      submitted_via: submit_training_job\n      backend: tmux\n      account: root\n      checkpoint_path: /root/autodl-tmp/nli_cache/\n      wall_clock_seconds: 1766.1\n      gpu_hours: 0.49\n    conclusion: success\n    completed_at: '2026-05-14T07:35:24.549Z'\n  mvp2_grpo_ced:\n    status: DONE\n    retry_count: 0\n    created_at: '2026-05-14T07:10:31.165Z'\n    updated_at: '2026-05-22T19:39:11.160Z'\n    spec:\n      command: bash -c \"source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache\n        && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\n        && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh\n        && conda activate base && cd /root/autodl-tmp && accelerate launch --config_file\n        freige/configs/accelerate_4gpu.yaml -m freige.training.grpo_trainer --model_name\n        /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output\n        --data_dir /root/autodl-tmp/data/docred --stage 3 --tau_start 0.3 --tau_end\n        0.5 --output_dir /root/autodl-tmp/grpo_s3 --num_generations 4 --reward_device\n        cpu --per_device_batch_size 1 --gradient_accumulation_steps 16 --num_epochs\n        1 --learning_rate 5e-5 --seed 42 --wandb_run_name grpo-s3-ced\"\n      server: rtx5090-4x\n      gpu:\n      - cuda:0\n      - cuda:1\n      - cuda:2\n      - cuda:3\n      pid: '20973'\n      log_path: ~/runs/faith-evidence-ie/mvp2_grpo_ced.log\n      submitted_at: '2026-05-14T07:19:59.045Z'\n      submitted_via: submit_training_job\n      backend: tmux\n      account: root\n      wall_clock_seconds: 2189.9\n      gpu_hours: 2.43\n    reproduce:\n      finished_at: '2026-05-14T07:56:28.316Z'\n    failure_reason: EXIT_CODE=1 (generic error — check log tail)\n    conclusion: failed\n    completed_at: '2026-05-14T07:56:28.916Z'\n    extra:\n      hook_events:\n      - event: on_failed\n        action: agent\n        ts: '2026-05-14T07:56:29.797308+00:00'\n    notes: '[ARCHIVED] superseded by final pipeline (plan017/plan019 series)'\n  mvp2_grpo_flatnli:\n    status: DONE\n    retry_count: 0\n    created_at: '2026-05-14T07:10:33.848Z'\n    updated_at: '2026-05-22T19:39:39.362Z'\n    spec:\n      command: python -m freige.training.grpo_trainer --stage 2 --ced_reward_weight\n        1.0 --format_reward_weight 0.3 --f1_reward_weight 3.0 --num_iterations 1 --kl_coef\n        0.05 --lr 5e-5\n      server: rtx5090-4x\n      gpu:\n      - cuda:3\n      pid: '47722'\n      log_path: ~/runs/faith-evidence-ie/mvp2_grpo_flatnli.log\n      submitted_at: '2026-05-14T11:48:54.086Z'\n      submitted_via: submit_training_job\n      backend: tmux\n      account: root\n      data_path: /root/autodl-tmp/data/docred\n      data_count:\n        train: 3027\n        dev: 985\n      model_name: Qwen3-4B\n      seed: 42\n      hypothesis: Flat-NLI reward improves Evi-F1 over extraction-only but less than\n        CED\n      parent: mvp2_sft_warmup\n      checkpoint_source: /root/autodl-tmp/sft_output\n      eval_data: /root/autodl-tmp/data/docred\n      hyperparams:\n        learning_rate: 5e-5\n        kl_coef: 0.05\n        num_iterations: 1\n        format_reward_weight: 0.3\n        f1_reward_weight: 3\n        ced_reward_weight: 1\n      wall_clock_seconds: 1188.0\n      gpu_hours: 0.33\n    hypothesis: Flat-NLI reward (non-contrastive) improves Evi-F1 over extraction-only\n      but less than CED — validates contrastive component's incremental value\n    conclusion: failed\n    completed_at: '2026-05-14T12:08:42.058Z'\n    notes: '[ARCHIVED] superseded by final pipeline (plan017/plan019 series)'\n  mvp2_grpo_extract:\n    status: DONE\n    retry_count: 0\n    created_at: '2026-05-14T07:10:35.796Z'\n    updated_at: '2026-05-22T19:39:34.680Z'\n    spec:\n      command: python -m freige.training.grpo_trainer --stage 1 --ced_reward_weight\n        0.0 --format_reward_weight 0.3 --f1_reward_weight 3.0 --num_iterations 1 --kl_coef\n        0.05 --lr 5e-5\n      server: rtx5090-4x\n      gpu:\n      - cuda:2\n      pid: '47561'\n      log_path: ~/runs/faith-evidence-ie/mvp2_grpo_extract.log\n      submitted_at: '2026-05-14T11:48:50.108Z'\n      submitted_via: submit_training_job\n      backend: tmux\n      account: root\n      data_path: /root/autodl-tmp/data/docred/train_annotated.json\n      data_count: 3027\n      model_name: Qwen3-4B (QLoRA from SFT warmup)\n      seed: 42\n      hypothesis: Extraction-only reward (format+F1, no CED) establishes GRPO baseline\n      parent: mvp2_sft_warmup\n      checkpoint_source: /root/autodl-tmp/sft_output\n      eval_data: /root/autodl-tmp/data/docred\n      hyperparams:\n        learning_rate: 5e-5\n        kl_coef: 0.05\n        num_iterations: 1\n        format_reward_weight: 0.3\n        f1_reward_weight: 3\n        ced_reward_weight: 0\n      wall_clock_seconds: 1479.2\n      gpu_hours: 0.41\n    hypothesis: Extraction-only reward (format+F1, no CED) establishes GRPO baseline\n      — CED r3 should exceed this on Evi-F1\n    reproduce:\n      finished_at: '2026-05-14T12:03:50.563Z'\n    extra:\n      hook_events:\n      - event: on_complete\n        action: agent\n        ts: '2026-05-14T12:03:51.381207+00:00'\n    conclusion: failed\n    completed_at: '2026-05-14T12:13:29.284Z'\n    notes: '[ARCHIVED] superseded by final pipeline (plan017/plan019 series)'\n  mvp2_sft_eval:\n    status: DONE\n    retry_count: 0\n    created_at: '2026-05-14T07:10:37.449Z'\n    updated_at: '2026-05-22T19:39:51.204Z'\n    spec:\n      command: python -m freige.eval.inference --model_path sft_output --base_model\n        Qwen3-4B --split dev\n      server: rtx5090-4x\n      gpu:\n      - cuda:1\n      pid: '47293'\n      log_path: ~/runs/faith-evidence-ie/mvp2_sft_eval.log\n      submitted_at: '2026-05-14T11:48:46.335Z'\n      submitted_via: submit_training_job\n      backend: tmux\n      account: root\n      data_path: /root/autodl-tmp/data/docred\n      data_count:\n        dev: 985\n      model_name: Qwen3-4B\n      seed: 42\n      hypothesis: SFT baseline eval on DocRED dev set\n      parent: mvp2_sft_warmup\n      checkpoint_source: /root/autodl-tmp/sft_output\n      eval_data: /root/autodl-tmp/data/docred/dev.json\n      wall_clock_seconds: 3416.3\n      gpu_hours: 0.95\n    conclusion: killed\n    reproduce:\n      finished_at: '2026-05-14T12:45:42.027Z'\n    failure_reason: EXIT_CODE=129 (non-zero)\n    completed_at: '2026-05-14T12:45:42.659Z'\n    extra:\n      hook_events:\n      - event: on_failed\n        action: agent\n        ts: '2026-05-14T12:45:43.534491+00:00'\n    notes: '[ARCHIVED] superseded by final pipeline (plan017/plan019 series)'\n  mvp2_grpo_ced_r1:\n    status: DONE\n    retry_count: 0\n    created_at: '2026-05-14T08:02:41.858Z'\n    updated_at: '2026-05-22T19:39:22.865Z'\n    spec:\n      command: bash -c \"source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache\n        && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\n        && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh\n        && conda activate base && cd /root/autodl-tmp && accelerate launch --config_file\n        freige/configs/accelerate_4gpu.yaml -m freige.training.grpo_trainer --model_name\n        /root/autodl-tmp/models/Qwen3-4B --sft_adapter /root/autodl-tmp/sft_output\n        --data_dir /root/autodl-tmp/data/docred --stage 3 --tau_start 0.3 --tau_end\n        0.5 --output_dir /root/autodl-tmp/grpo_s3 --num_generations 4 --reward_device\n        cpu --per_device_batch_size 1 --gradient_accumulation_steps 16 --num_epochs\n        1 --learning_rate 5e-5 --seed 42 --wandb_run_name grpo-s3-ced-r1\"\n      server: rtx5090-4x\n      gpu:\n      - cuda:0\n      - cuda:1\n      - cuda:2\n      - cuda:3\n      pid: '24122'\n      log_path: ~/runs/faith-evidence-ie/mvp2_grpo_ced_r1.log\n      submitted_at: '2026-05-14T08:02:41.839Z'\n      submitted_via: submit_training_job\n      backend: tmux\n      account: root\n      data_path: /root/autodl-tmp/data/docred\n      data_count:\n        train: 3027\n        dev: 985\n      model_name: Qwen3-4B\n      seed: 42\n      hypothesis: CED reward improves Evi-F1 over flat-NLI and extraction-only baselines\n      wall_clock_seconds: 8641.6\n      gpu_hours: 9.6\n    conclusion: killed\n    notes: '[ARCHIVED] superseded by final pipeline (plan017/plan019 series)'\n    completed_at: '2026-05-14T10:26:43.488Z'\n  mvp2_grpo_ced_r2:\n    status: DONE\n    retry_count: 0\n    created_at: '2026-05-14T10:58:11.663Z'\n    updated_at: '2026-05-22T19:39:30.198Z'\n    spec:\n      command: accelerate launch --config_file freige/configs/accelerate_4gpu.yaml\n        -m freige.training.grpo_trainer --model_name Qwen3-4B --learning_rate 2e-5\n        --kl_coef 0.05 --save_steps 20 --format_reward_weight 0.3 --f1_reward_weight\n        3.0 --ced_reward_weight 1.0 --num_iterations 2\n      server: rtx5090-4x\n      data_path: /root/autodl-tmp/data/docred\n      data_count:\n        train: 3027\n        dev: 985\n      model_name: Qwen3-4B\n      seed: 42\n      hypothesis: CED reward with balanced weights (format×0.3, f1×3.0, ced×1.0) +\n        KL=0.05 + save_steps=20 + num_iterations=2 prevents mode collapse and improves\n        Evi-F1\n      parent: mvp2_grpo_ced_r1\n      hyperparams:\n        learning_rate: 2e-5\n        kl_coef: 0.05\n        save_steps: 20\n        num_iterations: 2\n        format_reward_weight: 0.3\n        f1_reward_weight: 3\n        ced_reward_weight: 1\n        per_device_batch_size: 1\n        gradient_accumulation_steps: 16\n        num_generations: 4\n    reproduce:\n      finished_at: '2026-05-14T11:26:47.993Z'\n    failure_reason: EXIT_CODE=137 (SIGKILL — OOM killer or manual kill)\n    conclusion: killed\n    completed_at: '2026-05-14T11:26:48.502Z'\n    extra:\n      hook_events:\n      - event: on_failed\n        action: agent\n        ts: '2026-05-14T11:26:49.285684+00:00'\n    notes: '[ARCHIVED] superseded by final pipeline (plan017/plan019 series)'\n  mvp2_grpo_ced_r3:\n    status: DONE\n    retry_count: 0\n    created_at: '2026-05-14T11:47:53.099Z'\n    updated_at: '2026-05-22T19:39:31.683Z'\n    spec:\n      command: python -m freige.training.grpo_trainer --stage 3 --num_iterations 1\n        --kl_coef 0.05 --save_steps 20 --format_reward_weight 0.3 --f1_reward_weight\n        3.0 --ced_reward_weight 1.0 --max_kl 100 --lr 5e-5\n      server: rtx5090-4x\n      gpu:\n      - cuda:0\n      pid: '47136'\n      log_path: ~/runs/faith-evidence-ie/mvp2_grpo_ced_r3.log\n      submitted_at: '2026-05-14T11:48:42.598Z'\n      submitted_via: submit_training_job\n      backend: tmux\n      account: root\n      data_path: /root/autodl-tmp/data/docred\n      data_count:\n        train: 3027\n        dev: 985\n      model_name: Qwen3-4B\n      seed: 42\n      hypothesis: Reward weighting (format×0.3, f1×3.0, ced×1.0) with stable training\n        (num_iterations=1, KL early stop) improves Evi-F1\n      parent: mvp2_grpo_ced_r1\n      checkpoint_source: /root/autodl-tmp/sft_output\n      eval_data: /root/autodl-tmp/data/docred\n      hyperparams:\n        learning_rate: 5e-5\n        kl_coef: 0.05\n        save_steps: 20\n        num_iterations: 1\n        format_reward_weight: 0.3\n        f1_reward_weight: 3\n        ced_reward_weight: 1\n        max_kl: 100\n      wall_clock_seconds: 1061.5\n      gpu_hours: 0.29\n    hypothesis: CED reward with balanced weights (format×0.3, f1×3.0, ced×1.0) + stable\n      training (num_iterations=1, KL early stop at 100) + kl_coef=0.05 improves Evi-F1\n      over SFT baseline\n    reproduce:\n      finished_at: '2026-05-14T12:06:23.600Z'\n    failure_reason: EXIT_CODE=129 (non-zero)\n    conclusion: failed\n    completed_at: '2026-05-14T12:06:24.147Z'\n    extra:\n      hook_events:\n      - event: on_failed\n        action: agent\n        ts: '2026-05-14T12:06:25.189118+00:00'\n    notes: '[ARCHIVED] superseded by final pipeline (plan017/plan019 series)'\n  mvp2_grpo_ced_r4:\n    status: DONE\n    retry_count: 0\n    created_at: '2026-05-14T12:10:15.698Z'\n    updated_at: '2026-05-22T19:39:33.220Z'\n    spec:\n      command: python -m freige.training.grpo_trainer --stage 3 --kl_coef 0.0 --num_iterations\n        1 --save_steps 20 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight\n        1.0 --lr 5e-5 --gradient_accumulation_steps 16 --num_generations 4\n      server: rtx5090-4x\n      gpu:\n      - cuda:0\n      pid: '50529'\n      log_path: ~/runs/faith-evidence-ie/mvp2_grpo_ced_r4.log\n      submitted_at: '2026-05-14T12:10:15.624Z'\n      submitted_via: submit_training_job\n      backend: tmux\n      account: root\n      data_path: /root/autodl-tmp/data/docred\n      data_count:\n        train: 3027\n        dev: 985\n      model_name: Qwen3-4B\n      seed: 42\n      hypothesis: CED reward (format×0.3, f1×3.0, ced×1.0) with kl_coef=0 (D008 fix)\n        achieves Evi-F1 improvement over SFT baseline\n      parent: mvp2_grpo_ced_r3\n      checkpoint_source: /root/autodl-tmp/sft_output\n      eval_data: /root/autodl-tmp/data/docred\n      hyperparams:\n        learning_rate: 5e-5\n        kl_coef: 0\n        save_steps: 20\n        num_iterations: 1\n        format_reward_weight: 0.3\n        f1_reward_weight: 3\n        ced_reward_weight: 1\n        per_device_batch_size: 1\n        gradient_accumulation_steps: 16\n        num_generations: 4\n        quantization: QLoRA 4-bit NF4\n      wall_clock_seconds: 1169.5\n      gpu_hours: 0.32\n    conclusion: killed\n    completed_at: '2026-05-14T12:29:45.113Z'\n    notes: '[ARCHIVED] superseded by final pipeline (plan017/plan019 series)'\n  mvp2_grpo_extract_r2:\n    status: DONE\n    retry_count: 0\n    created_at: '2026-05-14T12:10:19.532Z'\n    updated_at: '2026-05-22T19:39:36.371Z'\n    spec:\n      command: python -m freige.training.grpo_trainer --stage 1 --kl_coef 0.0 --num_iterations\n        1 --save_steps 20 --format_reward_weight 0.3 --f1_reward_weight 3.0 --ced_reward_weight\n        0.0 --lr 5e-5 --gradient_accumulation_steps 16 --num_generations 4\n      server: rtx5090-4x\n      gpu:\n      - cuda:2\n      pid: '50670'\n```\n\nThe file continues beyond line 500. The first 500 lines contain 14 experiments: `mvp1_ced_signal`, `smoke_test_grpo`, `mvp2_sft_warmup`, `precompute_nli_train`, `mvp2_grpo_ced`, `mvp2_grpo_flatnli`, `mvp2_grpo_extract`, `mvp2_sft_eval`, `mvp2_grpo_ced_r1`, `mvp2_grpo_ced_r2`, `mvp2_grpo_ced_r3`, `mvp2_grpo_ced_r4`, `mvp2_grpo_extract_r2` (partial). Most early MVP experiments are archived and superseded by later pipeline runs. Many early GRPO experiments failed or were killed (OOM, exit codes)."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "63ffe9f7-ae10-43cd-8db6-af7976c52da0",
+            "isSidechain": true,
+            "agentId": "aa4b314c46a7a4af9",
+            "requestId": "req_011CbLHEB1JMj7GxnfMR8VPb",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "f2ed55f2-b1e1-4e43-bdfd-4e9d94f5e05f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/.claude/sessions/reviewer_3281a603",
+            "sessionId": "15013e53-b26f-4bd4-b301-91c5285b50b8",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "kind-mixing-pearl",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ALyKLw5UaQU4Ethrs4DJDt",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 9313,
+                "cache_read_input_tokens": 24493,
+                "output_tokens": 7622,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 9313
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 7622,
+                    "cache_read_input_tokens": 24493,
+                    "cache_creation_input_tokens": 9313,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 9313,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        }
+      ],
+      "message_count": 5
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-read-the-file-home-ubuntu-agent-ml-research-idea-gen-0513-6-projects-faith-evi-copy-2.md"
+}

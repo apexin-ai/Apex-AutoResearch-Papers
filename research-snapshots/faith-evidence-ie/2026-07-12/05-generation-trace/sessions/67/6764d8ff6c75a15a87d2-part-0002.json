@@ -1,0 +1,2632 @@
+{
+  "schema_version": "1.0",
+  "session_id": "6764d8ff6c75a15a87d2",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-18T13:49:57.082Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014nwjVMSfnzomA6giBFdzE2",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"paired_ttest_seed_level\\\\\\\": {\\\\n    \\\\\\\"description\\\\\\\": \\\\\\\"Paired t-test across 4 random seeds (s42,s43,s44,s45)\\\\\\\",\\\\n    \\\\\\\"note\\\\\\\": \\\\\\\"Per-document paired t-test unavailable (predictions.json not saved in reeval runs)\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": {\\\\n      \\\\\\\"metric\\\\\\\": \\\\\\\"rel_f1\\\\\\\",\\\\n      \\\\\\\"n_pairs\\\\\\\": 4,\\\\n      \\\\\\\"mean_x\\\\\\\": 0.456325,\\\\n      \\\\\\\"mean_y\\\\\\\": 0.45717500000000005,\\\\n      \\\\\\\"mean_diff\\\\\\\": -0.0008500000000000035,\\\\n      \\\\\\\"std_diff\\\\\\\": 0.002355843797877943,\\\\n      \\\\\\\"se\\\\\\\": 0.0011779218989389714,\\\\n      \\\\\\\"t_stat\\\\\\\": -0.7216098119626201,\\\\n      \\\\\\\"p_value\\\\\\\": 0.5226909565400892,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        -0.004598673195191102,\\\\n        0.002898673195191095\\\\n      ],\\\\n      \\\\\\\"cohens_d\\\\\\\": -0.36080490598131004,\\\\n      \\\\\\\"significant_05\\\\\\\": false\\\\n    },\\\\n    \\\\\\\"ign_f1\\\\\\\": {\\\\n      \\\\\\\"metric\\\\\\\": \\\\\\\"ign_f1\\\\\\\",\\\\n      \\\\\\\"n_pairs\\\\\\\": 4,\\\\n      \\\\\\\"mean_x\\\\\\\": 0.446525,\\\\n      \\\\\\\"mean_y\\\\\\\": 0.449625,\\\\n      \\\\\\\"mean_diff\\\\\\\": -0.0030999999999999917,\\\\n      \\\\\\\"std_diff\\\\\\\": 0.005438749856354872,\\\\n      \\\\\\\"se\\\\\\\": 0.002719374928177436,\\\\n      \\\\\\\"t_stat\\\\\\\": -1.1399678535970235,\\\\n      \\\\\\\"p_value\\\\\\\": 0.3370730530045863,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        -0.011754264692859421,\\\\n        0.005554264692859438\\\\n      ],\\\\n      \\\\\\\"cohens_d\\\\\\\": -0.5699839267985117,\\\\n      \\\\\\\"significant_05\\\\\\\": false\\\\n    },\\\\n    \\\\\\\"evi_f1\\\\\\\": {\\\\n      \\\\\\\"metric\\\\\\\": \\\\\\\"evi_f1\\\\\\\",\\\\n      \\\\\\\"n_pairs\\\\\\\": 4,\\\\n      \\\\\\\"mean_x\\\\\\\": 0.81155,\\\\n      \\\\\\\"mean_y\\\\\\\": 0.810925,\\\\n      \\\\\\\"mean_diff\\\\\\\": 0.0006250000000000144,\\\\n      \\\\\\\"std_diff\\\\\\\": 0.008701101462841766,\\\\n      \\\\\\\"se\\\\\\\": 0.004350550731420883,\\\\n      \\\\\\\"t_stat\\\\\\\": 0.14365997285954887,\\\\n      \\\\\\\"p_value\\\\\\\": 0.8948761618707622,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        -0.013220394101159707,\\\\n        0.014470394101159736\\\\n      ],\\\\n      \\\\\\\"cohens_d\\\\\\\": 0.07182998642977442,\\\\n      \\\\\\\"significant_05\\\\\\\": false\\\\n    },\\\\n    \\\\\\\"edcr\\\\\\\": {\\\\n      \\\\\\\"metric\\\\\\\": \\\\\\\"edcr\\\\\\\",\\\\n      \\\\\\\"n_pairs\\\\\\\": 4,\\\\n      \\\\\\\"mean_x\\\\\\\": 0.6502749999999999,\\\\n      \\\\\\\"mean_y\\\\\\\": 0.6497250000000001,\\\\n      \\\\\\\"mean_diff\\\\\\\": 0.0005499999999999949,\\\\n      \\\\\\\"std_diff\\\\\\\": 0.007424957912338623,\\\\n      \\\\\\\"se\\\\\\\": 0.0037124789561693117,\\\\n      \\\\\\\"t_stat\\\\\\\": 0.14814898791170725,\\\\n      \\\\\\\"p_value\\\\\\\": 0.8916226056568638,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        -0.011264764937504546,\\\\n        0.012364764937504536\\\\n      ],\\\\n      \\\\\\\"cohens_d\\\\\\\": 0.07407449395585362,\\\\n      \\\\\\\"significant_05\\\\\\\": false\\\\n    }\\\\n  },\\\\n  \\\\\\\"bootstrap_analysis\\\\\\\": {\\\\n    \\\\\\\"rel_f1\\\\\\\": {\\\\n      \\\\\\\"method\\\\\\\": \\\\\\\"bootstrap_paired\\\\\\\",\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 10000,\\\\n      \\\\\\\"mean_diff\\\\\\\": -0.0008495000000000344,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        -0.00275000000000003,\\\\n        0.0010499999999999954\\\\n      ],\\\\n      \\\\\\\"p_value_approx\\\\\\\": 0.3688,\\\\n      \\\\\\\"contains_zero\\\\\\\": true\\\\n    },\\\\n    \\\\\\\"ign_f1\\\\\\\": {\\\\n      \\\\\\\"method\\\\\\\": \\\\\\\"bootstrap_paired\\\\\\\",\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 10000,\\\\n      \\\\\\\"mean_diff\\\\\\\": -0.003089957500000002,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        -0.008275000000000088,\\\\n        0.0005000000000000004\\\\n      ],\\\\n      \\\\\\\"p_value_approx\\\\\\\": 0.1498,\\\\n      \\\\\\\"contains_zero\\\\\\\": true\\\\n    }\\\\n  },\\\\n  \\\\\\\"power_analysis\\\\\\\": {\\\\n    \\\\\\\"rel_f1\\\\\\\": {\\\\n      \\\\\\\"observed_cohens_d\\\\\\\": -0.36080490598131004,\\\\n      \\\\\\\"post_hoc_power\\\\\\\": 0.08189018757508401,\\\\n      \\\\\\\"n_for_80pct_power\\\\\\\": 61,\\\\n      \\\\\\\"interpretation\\\\\\\": \\\\\\\"low power - but effect is negligible\\\\\\\"\\\\n    },\\\\n    \\\\\\\"ign_f1\\\\\\\": {\\\\n      \\\\\\\"observed_cohens_d\\\\\\\": -0.5699839267985117,\\\\n      \\\\\\\"post_hoc_power\\\\\\\": 0.1295905454840261,\\\\n      \\\\\\\"n_for_80pct_power\\\\\\\": 25,\\\\n      \\\\\\\"interpretation\\\\\\\": \\\\\\\"adequate\\\\\\\"\\\\n    }\\\\n  },\\\\n  \\\\\\\"baseline_comparison\\\\\\\": {\\\\n    \\\\\\\"ced_vs_sft\\\\\\\": {\\\\n      \\\\\\\"rel_f1\\\\\\\": {\\\\n        \\\\\\\"metric\\\\\\\": \\\\\\\"rel_f1\\\\\\\",\\\\n        \\\\\\\"mean\\\\\\\": 0.456325,\\\\n        \\\\\\\"baseline\\\\\\\": 0.4049,\\\\n        \\\\\\\"mean_diff\\\\\\\": 0.051425000000000026,\\\\n        \\\\\\\"t_stat\\\\\\\": 18.44787404947319,\\\\n        \\\\\\\"p_value\\\\\\\": 0.00034758155430742095,\\\\n        \\\\\\\"ci_95\\\\\\\": [\\\\n          0.4474536633456884,\\\\n          0.46519633665431154\\\\n        ],\\\\n        \\\\\\\"cohens_d\\\\\\\": 9.223937024736598,\\\\n        \\\\\\\"significant_05\\\\\\\": true\\\\n      },\\\\n      \\\\\\\"ign_f1\\\\\\\": {\\\\n        \\\\\\\"metric\\\\\\\": \\\\\\\"ign_f1\\\\\\\",\\\\n        \\\\\\\"mean\\\\\\\": 0.446525,\\\\n        \\\\\\\"baseline\\\\\\\": 0.3974,\\\\n        \\\\\\\"mean_diff\\\\\\\": 0.04912500000000003,\\\\n        \\\\\\\"t_stat\\\\\\\": 19.4325993338621,\\\\n        \\\\\\\"p_value\\\\\\\": 0.0002976824616028895,\\\\n        \\\\\\\"ci_95\\\\\\\": [\\\\n          0.4384798758217519,\\\\n          0.4545701241782481\\\\n        ],\\\\n        \\\\\\\"cohens_d\\\\\\\": 9.71629966693105,\\\\n        \\\\\\\"significant_05\\\\\\\": true\\\\n      }\\\\n    },\\\\n    \\\\\\\"flat_nli_vs_sft\\\\\\\": {\\\\n      \\\\\\\"rel_f1\\\\\\\": {\\\\n        \\\\\\\"metric\\\\\\\": \\\\\\\"rel_f1\\\\\\\",\\\\n        \\\\\\\"mean\\\\\\\": 0.45717500000000005,\\\\n        \\\\\\\"baseline\\\\\\\": 0.4049,\\\\n        \\\\\\\"mean_diff\\\\\\\": 0.05227500000000003,\\\\n        \\\\\\\"t_stat\\\\\\\": 29.16665039113318,\\\\n        \\\\\\\"p_value\\\\\\\": 8.850672302601502e-05,\\\\n        \\\\\\\"ci_95\\\\\\\": [\\\\n          0.4514711437677026,\\\\n          0.4628788562322975\\\\n        ],\\\\n        \\\\\\\"cohens_d\\\\\\\": 14.583325195566578,\\\\n        \\\\\\\"significant_05\\\\\\\": true\\\\n      },\\\\n      \\\\\\\"ign_f1\\\\\\\": {\\\\n        \\\\\\\"metric\\\\\\\": \\\\\\\"ign_f1\\\\\\\",\\\\n        \\\\\\\"mean\\\\\\\": 0.449625,\\\\n        \\\\\\\"baseline\\\\\\\": 0.3974,\\\\n        \\\\\\\"mean_diff\\\\\\\": 0.05222500000000002,\\\\n        \\\\\\\"t_stat\\\\\\\": 29.492826058512424,\\\\n        \\\\\\\"p_value\\\\\\\": 8.56105042620816e-05,\\\\n        \\\\\\\"ci_95\\\\\\\": [\\\\n          0.4439896208076601,\\\\n          0.4552603791923399\\\\n        ],\\\\n        \\\\\\\"cohens_d\\\\\\\": 14.746413029256212,\\\\n        \\\\\\\"significant_05\\\\\\\": true\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"per_seed_summary\\\\\\\": {\\\\n    \\\\\\\"seeds\\\\\\\": [\\\\n      42,\\\\n      43,\\\\n      44,\\\\n      45\\\\n    ],\\\\n    \\\\\\\"ced_rel_f1\\\\\\\": [\\\\n      0.4517,\\\\n      0.4601,\\\\n      0.4621,\\\\n      0.4514\\\\n    ],\\\\n    \\\\\\\"flat_nli_rel_f1\\\\\\\": [\\\\n      0.4535,\\\\n      0.4586,\\\\n      0.4615,\\\\n      0.4551\\\\n    ],\\\\n    \\\\\\\"sft_baseline_rel_f1\\\\\\\": 0.4049,\\\\n    \\\\\\\"ced_mean\\\\\\\": 0.456325,\\\\n    \\\\\\\"flat_nli_mean\\\\\\\": 0.45717500000000005,\\\\n    \\\\\\\"ced_std\\\\\\\": 0.005575168158898887,\\\\n    \\\\\\\"flat_nli_std\\\\\\\": 0.003584573428828972\\\\n  },\\\\n  \\\\\\\"conclusion\\\\\\\": \\\\\\\"indistinguishable\\\\\\\",\\\\n  \\\\\\\"reasoning\\\\\\\": \\\\\\\"Paired t-test p=0.5227 (>0.05), bootstrap 95% CI [-0.0028, 0.0010] contains zero, Cohen's d=-0.361 (negligible effect). CED and flat-NLI RSFT are statistically indistinguishable.\\\\\\\",\\\\n  \\\\\\\"protocol\\\\\\\": \\\\\\\"D076 unified: batch_size=4, --no-quantize, --sft_adapter, max_new_tokens=1024\\\\\\\",\\\\n  \\\\\\\"analysis_level\\\\\\\": \\\\\\\"seed-level (n=4). Per-document analysis unavailable due to missing predictions.json in reeval outputs.\\\\\\\",\\\\n  \\\\\\\"recommendation_for_d078\\\\\\\": \\\\\\\"CED and flat-NLI produce equivalent rel_f1. Choose based on other criteria (training cost, evidence quality, interpretability). Both significantly outperform SFT baseline.\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f4dc6517-3a8f-4c31-a815-8aa7a86ff773",
+            "isSidechain": false,
+            "promptId": "35327ab0-18d6-4766-ab31-77f6fd614eea",
+            "type": "user",
+            "uuid": "c6a855c4-7122-4a43-82e8-82302b72ca55",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"paired_ttest_seed_level\\\\\\\": {\\\\n    \\\\\\\"description\\\\\\\": \\\\\\\"Paired t-test across 4 random seeds (s42,s43,s44,s45)\\\\\\\",\\\\n    \\\\\\\"note\\\\\\\": \\\\\\\"Per-document paired t-test unavailable (predictions.json not saved in reeval runs)\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": {\\\\n      \\\\\\\"metric\\\\\\\": \\\\\\\"rel_f1\\\\\\\",\\\\n      \\\\\\\"n_pairs\\\\\\\": 4,\\\\n      \\\\\\\"mean_x\\\\\\\": 0.456325,\\\\n      \\\\\\\"mean_y\\\\\\\": 0.45717500000000005,\\\\n      \\\\\\\"mean_diff\\\\\\\": -0.0008500000000000035,\\\\n      \\\\\\\"std_diff\\\\\\\": 0.002355843797877943,\\\\n      \\\\\\\"se\\\\\\\": 0.0011779218989389714,\\\\n      \\\\\\\"t_stat\\\\\\\": -0.7216098119626201,\\\\n      \\\\\\\"p_value\\\\\\\": 0.5226909565400892,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        -0.004598673195191102,\\\\n        0.002898673195191095\\\\n      ],\\\\n      \\\\\\\"cohens_d\\\\\\\": -0.36080490598131004,\\\\n      \\\\\\\"significant_05\\\\\\\": false\\\\n    },\\\\n    \\\\\\\"ign_f1\\\\\\\": {\\\\n      \\\\\\\"metric\\\\\\\": \\\\\\\"ign_f1\\\\\\\",\\\\n      \\\\\\\"n_pairs\\\\\\\": 4,\\\\n      \\\\\\\"mean_x\\\\\\\": 0.446525,\\\\n      \\\\\\\"mean_y\\\\\\\": 0.449625,\\\\n      \\\\\\\"mean_diff\\\\\\\": -0.0030999999999999917,\\\\n      \\\\\\\"std_diff\\\\\\\": 0.005438749856354872,\\\\n      \\\\\\\"se\\\\\\\": 0.002719374928177436,\\\\n      \\\\\\\"t_stat\\\\\\\": -1.1399678535970235,\\\\n      \\\\\\\"p_value\\\\\\\": 0.3370730530045863,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        -0.011754264692859421,\\\\n        0.005554264692859438\\\\n      ],\\\\n      \\\\\\\"cohens_d\\\\\\\": -0.5699839267985117,\\\\n      \\\\\\\"significant_05\\\\\\\": false\\\\n    },\\\\n    \\\\\\\"evi_f1\\\\\\\": {\\\\n      \\\\\\\"metric\\\\\\\": \\\\\\\"evi_f1\\\\\\\",\\\\n      \\\\\\\"n_pairs\\\\\\\": 4,\\\\n      \\\\\\\"mean_x\\\\\\\": 0.81155,\\\\n      \\\\\\\"mean_y\\\\\\\": 0.810925,\\\\n      \\\\\\\"mean_diff\\\\\\\": 0.0006250000000000144,\\\\n      \\\\\\\"std_diff\\\\\\\": 0.008701101462841766,\\\\n      \\\\\\\"se\\\\\\\": 0.004350550731420883,\\\\n      \\\\\\\"t_stat\\\\\\\": 0.14365997285954887,\\\\n      \\\\\\\"p_value\\\\\\\": 0.8948761618707622,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        -0.013220394101159707,\\\\n        0.014470394101159736\\\\n      ],\\\\n      \\\\\\\"cohens_d\\\\\\\": 0.07182998642977442,\\\\n      \\\\\\\"significant_05\\\\\\\": false\\\\n    },\\\\n    \\\\\\\"edcr\\\\\\\": {\\\\n      \\\\\\\"metric\\\\\\\": \\\\\\\"edcr\\\\\\\",\\\\n      \\\\\\\"n_pairs\\\\\\\": 4,\\\\n      \\\\\\\"mean_x\\\\\\\": 0.6502749999999999,\\\\n      \\\\\\\"mean_y\\\\\\\": 0.6497250000000001,\\\\n      \\\\\\\"mean_diff\\\\\\\": 0.0005499999999999949,\\\\n      \\\\\\\"std_diff\\\\\\\": 0.007424957912338623,\\\\n      \\\\\\\"se\\\\\\\": 0.0037124789561693117,\\\\n      \\\\\\\"t_stat\\\\\\\": 0.14814898791170725,\\\\n      \\\\\\\"p_value\\\\\\\": 0.8916226056568638,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        -0.011264764937504546,\\\\n        0.012364764937504536\\\\n      ],\\\\n      \\\\\\\"cohens_d\\\\\\\": 0.07407449395585362,\\\\n      \\\\\\\"significant_05\\\\\\\": false\\\\n    }\\\\n  },\\\\n  \\\\\\\"bootstrap_analysis\\\\\\\": {\\\\n    \\\\\\\"rel_f1\\\\\\\": {\\\\n      \\\\\\\"method\\\\\\\": \\\\\\\"bootstrap_paired\\\\\\\",\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 10000,\\\\n      \\\\\\\"mean_diff\\\\\\\": -0.0008495000000000344,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        -0.00275000000000003,\\\\n        0.0010499999999999954\\\\n      ],\\\\n      \\\\\\\"p_value_approx\\\\\\\": 0.3688,\\\\n      \\\\\\\"contains_zero\\\\\\\": true\\\\n    },\\\\n    \\\\\\\"ign_f1\\\\\\\": {\\\\n      \\\\\\\"method\\\\\\\": \\\\\\\"bootstrap_paired\\\\\\\",\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 10000,\\\\n      \\\\\\\"mean_diff\\\\\\\": -0.003089957500000002,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        -0.008275000000000088,\\\\n        0.0005000000000000004\\\\n      ],\\\\n      \\\\\\\"p_value_approx\\\\\\\": 0.1498,\\\\n      \\\\\\\"contains_zero\\\\\\\": true\\\\n    }\\\\n  },\\\\n  \\\\\\\"power_analysis\\\\\\\": {\\\\n    \\\\\\\"rel_f1\\\\\\\": {\\\\n      \\\\\\\"observed_cohens_d\\\\\\\": -0.36080490598131004,\\\\n      \\\\\\\"post_hoc_power\\\\\\\": 0.08189018757508401,\\\\n      \\\\\\\"n_for_80pct_power\\\\\\\": 61,\\\\n      \\\\\\\"interpretation\\\\\\\": \\\\\\\"low power - but effect is negligible\\\\\\\"\\\\n    },\\\\n    \\\\\\\"ign_f1\\\\\\\": {\\\\n      \\\\\\\"observed_cohens_d\\\\\\\": -0.5699839267985117,\\\\n      \\\\\\\"post_hoc_power\\\\\\\": 0.1295905454840261,\\\\n      \\\\\\\"n_for_80pct_power\\\\\\\": 25,\\\\n      \\\\\\\"interpretation\\\\\\\": \\\\\\\"adequate\\\\\\\"\\\\n    }\\\\n  },\\\\n  \\\\\\\"baseline_comparison\\\\\\\": {\\\\n    \\\\\\\"ced_vs_sft\\\\\\\": {\\\\n      \\\\\\\"rel_f1\\\\\\\": {\\\\n        \\\\\\\"metric\\\\\\\": \\\\\\\"rel_f1\\\\\\\",\\\\n        \\\\\\\"mean\\\\\\\": 0.456325,\\\\n        \\\\\\\"baseline\\\\\\\": 0.4049,\\\\n        \\\\\\\"mean_diff\\\\\\\": 0.051425000000000026,\\\\n        \\\\\\\"t_stat\\\\\\\": 18.44787404947319,\\\\n        \\\\\\\"p_value\\\\\\\": 0.00034758155430742095,\\\\n        \\\\\\\"ci_95\\\\\\\": [\\\\n          0.4474536633456884,\\\\n          0.46519633665431154\\\\n        ],\\\\n        \\\\\\\"cohens_d\\\\\\\": 9.223937024736598,\\\\n        \\\\\\\"significant_05\\\\\\\": true\\\\n      },\\\\n      \\\\\\\"ign_f1\\\\\\\": {\\\\n        \\\\\\\"metric\\\\\\\": \\\\\\\"ign_f1\\\\\\\",\\\\n        \\\\\\\"mean\\\\\\\": 0.446525,\\\\n        \\\\\\\"baseline\\\\\\\": 0.3974,\\\\n        \\\\\\\"mean_diff\\\\\\\": 0.04912500000000003,\\\\n        \\\\\\\"t_stat\\\\\\\": 19.4325993338621,\\\\n        \\\\\\\"p_value\\\\\\\": 0.0002976824616028895,\\\\n        \\\\\\\"ci_95\\\\\\\": [\\\\n          0.4384798758217519,\\\\n          0.4545701241782481\\\\n        ],\\\\n        \\\\\\\"cohens_d\\\\\\\": 9.71629966693105,\\\\n        \\\\\\\"significant_05\\\\\\\": true\\\\n      }\\\\n    },\\\\n    \\\\\\\"flat_nli_vs_sft\\\\\\\": {\\\\n      \\\\\\\"rel_f1\\\\\\\": {\\\\n        \\\\\\\"metric\\\\\\\": \\\\\\\"rel_f1\\\\\\\",\\\\n        \\\\\\\"mean\\\\\\\": 0.45717500000000005,\\\\n        \\\\\\\"baseline\\\\\\\": 0.4049,\\\\n        \\\\\\\"mean_diff\\\\\\\": 0.05227500000000003,\\\\n        \\\\\\\"t_stat\\\\\\\": 29.16665039113318,\\\\n        \\\\\\\"p_value\\\\\\\": 8.850672302601502e-05,\\\\n        \\\\\\\"ci_95\\\\\\\": [\\\\n          0.4514711437677026,\\\\n          0.4628788562322975\\\\n        ],\\\\n        \\\\\\\"cohens_d\\\\\\\": 14.583325195566578,\\\\n        \\\\\\\"significant_05\\\\\\\": true\\\\n      },\\\\n      \\\\\\\"ign_f1\\\\\\\": {\\\\n        \\\\\\\"metric\\\\\\\": \\\\\\\"ign_f1\\\\\\\",\\\\n        \\\\\\\"mean\\\\\\\": 0.449625,\\\\n        \\\\\\\"baseline\\\\\\\": 0.3974,\\\\n        \\\\\\\"mean_diff\\\\\\\": 0.05222500000000002,\\\\n        \\\\\\\"t_stat\\\\\\\": 29.492826058512424,\\\\n        \\\\\\\"p_value\\\\\\\": 8.56105042620816e-05,\\\\n        \\\\\\\"ci_95\\\\\\\": [\\\\n          0.4439896208076601,\\\\n          0.4552603791923399\\\\n        ],\\\\n        \\\\\\\"cohens_d\\\\\\\": 14.746413029256212,\\\\n        \\\\\\\"significant_05\\\\\\\": true\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"per_seed_summary\\\\\\\": {\\\\n    \\\\\\\"seeds\\\\\\\": [\\\\n      42,\\\\n      43,\\\\n      44,\\\\n      45\\\\n    ],\\\\n    \\\\\\\"ced_rel_f1\\\\\\\": [\\\\n      0.4517,\\\\n      0.4601,\\\\n      0.4621,\\\\n      0.4514\\\\n    ],\\\\n    \\\\\\\"flat_nli_rel_f1\\\\\\\": [\\\\n      0.4535,\\\\n      0.4586,\\\\n      0.4615,\\\\n      0.4551\\\\n    ],\\\\n    \\\\\\\"sft_baseline_rel_f1\\\\\\\": 0.4049,\\\\n    \\\\\\\"ced_mean\\\\\\\": 0.456325,\\\\n    \\\\\\\"flat_nli_mean\\\\\\\": 0.45717500000000005,\\\\n    \\\\\\\"ced_std\\\\\\\": 0.005575168158898887,\\\\n    \\\\\\\"flat_nli_std\\\\\\\": 0.003584573428828972\\\\n  },\\\\n  \\\\\\\"conclusion\\\\\\\": \\\\\\\"indistinguishable\\\\\\\",\\\\n  \\\\\\\"reasoning\\\\\\\": \\\\\\\"Paired t-test p=0.5227 (>0.05), bootstrap 95% CI [-0.0028, 0.0010] contains zero, Cohen's d=-0.361 (negligible effect). CED and flat-NLI RSFT are statistically indistinguishable.\\\\\\\",\\\\n  \\\\\\\"protocol\\\\\\\": \\\\\\\"D076 unified: batch_size=4, --no-quantize, --sft_adapter, max_new_tokens=1024\\\\\\\",\\\\n  \\\\\\\"analysis_level\\\\\\\": \\\\\\\"seed-level (n=4). Per-document analysis unavailable due to missing predictions.json in reeval outputs.\\\\\\\",\\\\n  \\\\\\\"recommendation_for_d078\\\\\\\": \\\\\\\"CED and flat-NLI produce equivalent rel_f1. Choose based on other criteria (training cost, evidence quality, interpretability). Both significantly outperform SFT baseline.\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"paired_ttest_seed_level\\\": {\\n    \\\"description\\\": \\\"Paired t-test across 4 random seeds (s42,s43,s44,s45)\\\",\\n    \\\"note\\\": \\\"Per-document paired t-test unavailable (predictions.json not saved in reeval runs)\\\",\\n    \\\"rel_f1\\\": {\\n      \\\"metric\\\": \\\"rel_f1\\\",\\n      \\\"n_pairs\\\": 4,\\n      \\\"mean_x\\\": 0.456325,\\n      \\\"mean_y\\\": 0.45717500000000005,\\n      \\\"mean_diff\\\": -0.0008500000000000035,\\n      \\\"std_diff\\\": 0.002355843797877943,\\n      \\\"se\\\": 0.0011779218989389714,\\n      \\\"t_stat\\\": -0.7216098119626201,\\n      \\\"p_value\\\": 0.5226909565400892,\\n      \\\"ci_95\\\": [\\n        -0.004598673195191102,\\n        0.002898673195191095\\n      ],\\n      \\\"cohens_d\\\": -0.36080490598131004,\\n      \\\"significant_05\\\": false\\n    },\\n    \\\"ign_f1\\\": {\\n      \\\"metric\\\": \\\"ign_f1\\\",\\n      \\\"n_pairs\\\": 4,\\n      \\\"mean_x\\\": 0.446525,\\n      \\\"mean_y\\\": 0.449625,\\n      \\\"mean_diff\\\": -0.0030999999999999917,\\n      \\\"std_diff\\\": 0.005438749856354872,\\n      \\\"se\\\": 0.002719374928177436,\\n      \\\"t_stat\\\": -1.1399678535970235,\\n      \\\"p_value\\\": 0.3370730530045863,\\n      \\\"ci_95\\\": [\\n        -0.011754264692859421,\\n        0.005554264692859438\\n      ],\\n      \\\"cohens_d\\\": -0.5699839267985117,\\n      \\\"significant_05\\\": false\\n    },\\n    \\\"evi_f1\\\": {\\n      \\\"metric\\\": \\\"evi_f1\\\",\\n      \\\"n_pairs\\\": 4,\\n      \\\"mean_x\\\": 0.81155,\\n      \\\"mean_y\\\": 0.810925,\\n      \\\"mean_diff\\\": 0.0006250000000000144,\\n      \\\"std_diff\\\": 0.008701101462841766,\\n      \\\"se\\\": 0.004350550731420883,\\n      \\\"t_stat\\\": 0.14365997285954887,\\n      \\\"p_value\\\": 0.8948761618707622,\\n      \\\"ci_95\\\": [\\n        -0.013220394101159707,\\n        0.014470394101159736\\n      ],\\n      \\\"cohens_d\\\": 0.07182998642977442,\\n      \\\"significant_05\\\": false\\n    },\\n    \\\"edcr\\\": {\\n      \\\"metric\\\": \\\"edcr\\\",\\n      \\\"n_pairs\\\": 4,\\n      \\\"mean_x\\\": 0.6502749999999999,\\n      \\\"mean_y\\\": 0.6497250000000001,\\n      \\\"mean_diff\\\": 0.0005499999999999949,\\n      \\\"std_diff\\\": 0.007424957912338623,\\n      \\\"se\\\": 0.0037124789561693117,\\n      \\\"t_stat\\\": 0.14814898791170725,\\n      \\\"p_value\\\": 0.8916226056568638,\\n      \\\"ci_95\\\": [\\n        -0.011264764937504546,\\n        0.012364764937504536\\n      ],\\n      \\\"cohens_d\\\": 0.07407449395585362,\\n      \\\"significant_05\\\": false\\n    }\\n  },\\n  \\\"bootstrap_analysis\\\": {\\n    \\\"rel_f1\\\": {\\n      \\\"method\\\": \\\"bootstrap_paired\\\",\\n      \\\"n_bootstrap\\\": 10000,\\n      \\\"mean_diff\\\": -0.0008495000000000344,\\n      \\\"ci_95\\\": [\\n        -0.00275000000000003,\\n        0.0010499999999999954\\n      ],\\n      \\\"p_value_approx\\\": 0.3688,\\n      \\\"contains_zero\\\": true\\n    },\\n    \\\"ign_f1\\\": {\\n      \\\"method\\\": \\\"bootstrap_paired\\\",\\n      \\\"n_bootstrap\\\": 10000,\\n      \\\"mean_diff\\\": -0.003089957500000002,\\n      \\\"ci_95\\\": [\\n        -0.008275000000000088,\\n        0.0005000000000000004\\n      ],\\n      \\\"p_value_approx\\\": 0.1498,\\n      \\\"contains_zero\\\": true\\n    }\\n  },\\n  \\\"power_analysis\\\": {\\n    \\\"rel_f1\\\": {\\n      \\\"observed_cohens_d\\\": -0.36080490598131004,\\n      \\\"post_hoc_power\\\": 0.08189018757508401,\\n      \\\"n_for_80pct_power\\\": 61,\\n      \\\"interpretation\\\": \\\"low power - but effect is negligible\\\"\\n    },\\n    \\\"ign_f1\\\": {\\n      \\\"observed_cohens_d\\\": -0.5699839267985117,\\n      \\\"post_hoc_power\\\": 0.1295905454840261,\\n      \\\"n_for_80pct_power\\\": 25,\\n      \\\"interpretation\\\": \\\"adequate\\\"\\n    }\\n  },\\n  \\\"baseline_comparison\\\": {\\n    \\\"ced_vs_sft\\\": {\\n      \\\"rel_f1\\\": {\\n        \\\"metric\\\": \\\"rel_f1\\\",\\n        \\\"mean\\\": 0.456325,\\n        \\\"baseline\\\": 0.4049,\\n        \\\"mean_diff\\\": 0.051425000000000026,\\n        \\\"t_stat\\\": 18.44787404947319,\\n        \\\"p_value\\\": 0.00034758155430742095,\\n        \\\"ci_95\\\": [\\n          0.4474536633456884,\\n          0.46519633665431154\\n        ],\\n        \\\"cohens_d\\\": 9.223937024736598,\\n        \\\"significant_05\\\": true\\n      },\\n      \\\"ign_f1\\\": {\\n        \\\"metric\\\": \\\"ign_f1\\\",\\n        \\\"mean\\\": 0.446525,\\n        \\\"baseline\\\": 0.3974,\\n        \\\"mean_diff\\\": 0.04912500000000003,\\n        \\\"t_stat\\\": 19.4325993338621,\\n        \\\"p_value\\\": 0.0002976824616028895,\\n        \\\"ci_95\\\": [\\n          0.4384798758217519,\\n          0.4545701241782481\\n        ],\\n        \\\"cohens_d\\\": 9.71629966693105,\\n        \\\"significant_05\\\": true\\n      }\\n    },\\n    \\\"flat_nli_vs_sft\\\": {\\n      \\\"rel_f1\\\": {\\n        \\\"metric\\\": \\\"rel_f1\\\",\\n        \\\"mean\\\": 0.45717500000000005,\\n        \\\"baseline\\\": 0.4049,\\n        \\\"mean_diff\\\": 0.05227500000000003,\\n        \\\"t_stat\\\": 29.16665039113318,\\n        \\\"p_value\\\": 8.850672302601502e-05,\\n        \\\"ci_95\\\": [\\n          0.4514711437677026,\\n          0.4628788562322975\\n        ],\\n        \\\"cohens_d\\\": 14.583325195566578,\\n        \\\"significant_05\\\": true\\n      },\\n      \\\"ign_f1\\\": {\\n        \\\"metric\\\": \\\"ign_f1\\\",\\n        \\\"mean\\\": 0.449625,\\n        \\\"baseline\\\": 0.3974,\\n        \\\"mean_diff\\\": 0.05222500000000002,\\n        \\\"t_stat\\\": 29.492826058512424,\\n        \\\"p_value\\\": 8.56105042620816e-05,\\n        \\\"ci_95\\\": [\\n          0.4439896208076601,\\n          0.4552603791923399\\n        ],\\n        \\\"cohens_d\\\": 14.746413029256212,\\n        \\\"significant_05\\\": true\\n      }\\n    }\\n  },\\n  \\\"per_seed_summary\\\": {\\n    \\\"seeds\\\": [\\n      42,\\n      43,\\n      44,\\n      45\\n    ],\\n    \\\"ced_rel_f1\\\": [\\n      0.4517,\\n      0.4601,\\n      0.4621,\\n      0.4514\\n    ],\\n    \\\"flat_nli_rel_f1\\\": [\\n      0.4535,\\n      0.4586,\\n      0.4615,\\n      0.4551\\n    ],\\n    \\\"sft_baseline_rel_f1\\\": 0.4049,\\n    \\\"ced_mean\\\": 0.456325,\\n    \\\"flat_nli_mean\\\": 0.45717500000000005,\\n    \\\"ced_std\\\": 0.005575168158898887,\\n    \\\"flat_nli_std\\\": 0.003584573428828972\\n  },\\n  \\\"conclusion\\\": \\\"indistinguishable\\\",\\n  \\\"reasoning\\\": \\\"Paired t-test p=0.5227 (>0.05), bootstrap 95% CI [-0.0028, 0.0010] contains zero, Cohen's d=-0.361 (negligible effect). CED and flat-NLI RSFT are statistically indistinguishable.\\\",\\n  \\\"protocol\\\": \\\"D076 unified: batch_size=4, --no-quantize, --sft_adapter, max_new_tokens=1024\\\",\\n  \\\"analysis_level\\\": \\\"seed-level (n=4). Per-document analysis unavailable due to missing predictions.json in reeval outputs.\\\",\\n  \\\"recommendation_for_d078\\\": \\\"CED and flat-NLI produce equivalent rel_f1. Choose based on other criteria (training cost, evidence quality, interpretability). Both significantly outperform SFT baseline.\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"
+              }
+            },
+            "sourceToolAssistantUUID": "f4dc6517-3a8f-4c31-a815-8aa7a86ff773",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "df7c596b-b653-4201-8641-a54c4b01eb24",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-18T13:50:03.480Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0191o2148SBcNS5abLdavKMH",
+              "name": "Bash",
+              "input": {
+                "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-6-projects-faith-evidence-ie/df7c596b-b653-4201-8641-a54c4b01eb24/tool-results/mcp-agent-ml-research-read_registry-1779112124606.txt | python3 -c \"\nimport json, sys\nraw = sys.stdin.read()\ndata = json.loads(raw)\nresult_str = data['result']\nresult = json.loads(result_str)\nprint(type(result))\nif isinstance(result, dict):\n    print('Keys:', list(result.keys())[:20])\n    for k, v in result.items():\n        if isinstance(v, dict):\n            eid = v.get('exp_id','').lower()\n            if 'sft' in eid or 'baseline' in eid or 'd076' in eid or 'plan_014' in eid:\n                print(f'\\\\n=== {k}: {v.get(\\\"exp_id\\\")} ===')\n                print(json.dumps(v, indent=2, default=str)[:2000])\n\" 2>&1 | head -400",
+                "description": "Parse registry dict structure for SFT experiments"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c6a855c4-7122-4a43-82e8-82302b72ca55",
+            "isSidechain": false,
+            "requestId": "req_011CbA98fXQHopHm3VmLgMsz",
+            "type": "assistant",
+            "uuid": "df2ff0c3-1963-4cc0-a0ab-97320ac49e58",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "df7c596b-b653-4201-8641-a54c4b01eb24",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DTt2UAFkU7Zba12KVdC9EK",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7302,
+                "cache_read_input_tokens": 38271,
+                "output_tokens": 1728,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 7302,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1728,
+                    "cache_read_input_tokens": 38271,
+                    "cache_creation_input_tokens": 7302,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 7302
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-18T13:50:03.617Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0191o2148SBcNS5abLdavKMH",
+              "type": "tool_result",
+              "content": "<class 'dict'>\nKeys: ['success', 'data', 'error', 'metadata']",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "df2ff0c3-1963-4cc0-a0ab-97320ac49e58",
+            "isSidechain": false,
+            "promptId": "35327ab0-18d6-4766-ab31-77f6fd614eea",
+            "type": "user",
+            "uuid": "b534296f-a3a5-452d-a1ff-ba09b1fd1efd",
+            "toolUseResult": {
+              "stdout": "<class 'dict'>\nKeys: ['success', 'data', 'error', 'metadata']",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            },
+            "sourceToolAssistantUUID": "df2ff0c3-1963-4cc0-a0ab-97320ac49e58",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "df7c596b-b653-4201-8641-a54c4b01eb24",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-18T13:50:03.621Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "b534296f-a3a5-452d-a1ff-ba09b1fd1efd",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "5f9eacef-50f5-4020-9310-5dfbc0d42877",
+                "timestamp": "2026-05-18T13:50:03.621Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+                "sessionId": "df7c596b-b653-4201-8641-a54c4b01eb24",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "5f9eacef-50f5-4020-9310-5dfbc0d42877",
+                "sessionId": "df7c596b-b653-4201-8641-a54c4b01eb24"
+              }
+            }
+          ],
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Verify 4B Evidence Tax numerical sources",
+                "sessionId": "df7c596b-b653-4201-8641-a54c4b01eb24"
+              }
+            }
+          ],
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-18T13:50:33.862Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have a much clearer picture. Let me also check the `sft_no_evidence` directory for its metrics_v2.json to confirm the 47.36% value.\n\nKey findings so far:\n\n**The paper_metrics_corrected.md reveals everything:**\n\n| Method | F1 | Ign-F1 |\n|--------|------|--------|\n| SFT baseline (evidence) | 41.06 | **40.36** |\n| SFT no-evidence | 48.93 | **47.36** |\n\nSo from `paper_metrics_corrected.md`:\n\n\n- SFT baseline ign_f1 = **40.36%** (not 39.86% or 41.06%)\n- SFT no-evidence ign_f1 = **47.36%**\n- Tax = 47.36 - 40.36 = **7.00pp**\n\nBut the task specifies canonical is 39.86% → tax 7.5pp. Where does 39.86% come from? Let me check the `d076_paired_ttest_report.json` file to see if there's a different baseline value there.\n\nLooking at the D076 protocol, it uses ign_f1 = 39.74% from the `sft_baseline_d076_reeval` directory. Now I need to find where the 47.36% for no-evidence comes from by checking the `sft_no_evidence` directory's metrics files.\n\nTracing through the different metric files, I'm seeing that `sft_baseline_noquant/metrics.json` (v1) had a bug where ign_f1 incorrectly matched f1 at 41.06%, but the corrected `metrics_v2.json` shows the proper ign_f1 value of 40.36%. I'm noticing a discrepancy in the no-evidence metrics—the v1 file shows ign_f1 matching f1 at 48.93%, which looks like a bug, but the paper lists 47.36% for that same model. Let me check the v2 version to see which is correct. I'm seeing a discrepancy with the canonical 39.86% figure — the closest match I can find is 39.74% from the d076_reeval metrics, but that's not an exact match. Let me check if there's another evaluation directory or if the paper's reported number comes from a different rounding or source file I haven't examined yet.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5f9eacef-50f5-4020-9310-5dfbc0d42877",
+            "isSidechain": false,
+            "requestId": "req_011CbA9AqkNNik84F3yEMKRj",
+            "type": "assistant",
+            "uuid": "71158c6c-5b6f-4b4a-8f81-8d7f2a4d8d3f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "df7c596b-b653-4201-8641-a54c4b01eb24",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VPrQQxUNynxHxVBHxc5hg3",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 13511,
+                "cache_read_input_tokens": 45573,
+                "output_tokens": 1923,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 13511,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1923,
+                    "cache_read_input_tokens": 45573,
+                    "cache_creation_input_tokens": 13511,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 13511
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              }
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-18T13:50:34.416Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me check a few more files to trace the exact 39.86% and 47.36% sources."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "71158c6c-5b6f-4b4a-8f81-8d7f2a4d8d3f",
+            "isSidechain": false,
+            "requestId": "req_011CbA9AqkNNik84F3yEMKRj",
+            "type": "assistant",
+            "uuid": "570eabb5-6184-41b5-8253-00e361c6eca1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "df7c596b-b653-4201-8641-a54c4b01eb24",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VPrQQxUNynxHxVBHxc5hg3",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 13511,
+                "cache_read_input_tokens": 45573,
+                "output_tokens": 1923,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 13511,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1923,
+                    "cache_read_input_tokens": 45573,
+                    "cache_creation_input_tokens": 13511,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 13511
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              }
+            }
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-18T13:50:35.336Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LxtWUg6vzExk8ZaJS6QrHV",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "ls -la /root/autodl-tmp/eval_results/sft_no_evidence/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "570eabb5-6184-41b5-8253-00e361c6eca1",
+            "isSidechain": false,
+            "requestId": "req_011CbA9AqkNNik84F3yEMKRj",
+            "type": "assistant",
+            "uuid": "eba8caa8-e8c2-4f79-8bfe-10bd506c3d89",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "df7c596b-b653-4201-8641-a54c4b01eb24",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VPrQQxUNynxHxVBHxc5hg3",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 13511,
+                "cache_read_input_tokens": 45573,
+                "output_tokens": 1923,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 13511,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1923,
+                    "cache_read_input_tokens": 45573,
+                    "cache_creation_input_tokens": 13511,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 13511
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              }
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-18T13:50:35.654Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LxtWUg6vzExk8ZaJS6QrHV",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 20\\\\ndrwxr-xr-x  2 root root   61 May 16 16:13 .\\\\ndrwxr-xr-x 89 root root 8192 May 18 20:44 ..\\\\n-rw-r--r--  1 root root 1342 May 16 02:29 metrics.json\\\\n-rw-r--r--  1 root root 1409 May 16 13:27 metrics_v2.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "eba8caa8-e8c2-4f79-8bfe-10bd506c3d89",
+            "isSidechain": false,
+            "promptId": "35327ab0-18d6-4766-ab31-77f6fd614eea",
+            "type": "user",
+            "uuid": "3f58e050-8751-4b0b-b7d7-3933351f2b20",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 20\\\\ndrwxr-xr-x  2 root root   61 May 16 16:13 .\\\\ndrwxr-xr-x 89 root root 8192 May 18 20:44 ..\\\\n-rw-r--r--  1 root root 1342 May 16 02:29 metrics.json\\\\n-rw-r--r--  1 root root 1409 May 16 13:27 metrics_v2.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"total 20\\ndrwxr-xr-x  2 root root   61 May 16 16:13 .\\ndrwxr-xr-x 89 root root 8192 May 18 20:44 ..\\n-rw-r--r--  1 root root 1342 May 16 02:29 metrics.json\\n-rw-r--r--  1 root root 1409 May 16 13:27 metrics_v2.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"
+              }
+            },
+            "sourceToolAssistantUUID": "eba8caa8-e8c2-4f79-8bfe-10bd506c3d89",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "df7c596b-b653-4201-8641-a54c4b01eb24",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-18T13:50:36.293Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SshtpKcXYJaHiD73oZybZW",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "cat /root/autodl-tmp/eval_results/cross_method_table.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3f58e050-8751-4b0b-b7d7-3933351f2b20",
+            "isSidechain": false,
+            "requestId": "req_011CbA9AqkNNik84F3yEMKRj",
+            "type": "assistant",
+            "uuid": "b8daa340-d464-43cc-a648-a817c00734f9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "df7c596b-b653-4201-8641-a54c4b01eb24",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VPrQQxUNynxHxVBHxc5hg3",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 13511,
+                "cache_read_input_tokens": 45573,
+                "output_tokens": 1923,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 13511,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1923,
+                    "cache_read_input_tokens": 45573,
+                    "cache_creation_input_tokens": 13511,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 13511
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              }
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-18T13:50:36.598Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SshtpKcXYJaHiD73oZybZW",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"SFT baseline (quant)\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4057,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.7979,\\\\n    \\\\\\\"edcr\\\\\\\": 0.7118,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 0.0,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": 0.0,\\\\n    \\\\\\\"precision\\\\\\\": 0.4043,\\\\n    \\\\\\\"recall\\\\\\\": 0.407,\\\\n    \\\\\\\"n_predictions\\\\\\\": 18815,\\\\n    \\\\\\\"n_truncated\\\\\\\": 367\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"SFT baseline (noquant)\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4106,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8013,\\\\n    \\\\\\\"edcr\\\\\\\": 0.7039,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0.3216,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 0.5,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -0.79,\\\\n    \\\\\\\"precision\\\\\\\": 0.4198,\\\\n    \\\\\\\"recall\\\\\\\": 0.4019,\\\\n    \\\\\\\"n_predictions\\\\\\\": 16774,\\\\n    \\\\\\\"n_truncated\\\\\\\": 288\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"SFT no-evidence\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4893,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.0,\\\\n    \\\\\\\"edcr\\\\\\\": 0.0,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0.0,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 8.36,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -71.18,\\\\n    \\\\\\\"precision\\\\\\\": 0.4884,\\\\n    \\\\\\\"recall\\\\\\\": 0.4902,\\\\n    \\\\\\\"n_predictions\\\\\\\": 21064,\\\\n    \\\\\\\"n_truncated\\\\\\\": 298\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"RSFT-CED (s42, 3ep)\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4449,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8187,\\\\n    \\\\\\\"edcr\\\\\\\": 0.6565,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 3.92,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -5.53,\\\\n    \\\\\\\"precision\\\\\\\": 0.4607,\\\\n    \\\\\\\"recall\\\\\\\": 0.4302,\\\\n    \\\\\\\"n_predictions\\\\\\\": 15307,\\\\n    \\\\\\\"n_truncated\\\\\\\": 213\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"RSFT-CED (s43, 3ep)\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4683,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8156,\\\\n    \\\\\\\"edcr\\\\\\\": 0.6388,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 6.26,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -7.3,\\\\n    \\\\\\\"precision\\\\\\\": 0.4817,\\\\n    \\\\\\\"recall\\\\\\\": 0.4556,\\\\n    \\\\\\\"n_predictions\\\\\\\": 14970,\\\\n    \\\\\\\"n_truncated\\\\\\\": 171\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"RSFT-CED (s44, 3ep)\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4655,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8087,\\\\n    \\\\\\\"edcr\\\\\\\": 0.635,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 5.98,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -7.67,\\\\n    \\\\\\\"precision\\\\\\\": 0.4798,\\\\n    \\\\\\\"recall\\\\\\\": 0.4521,\\\\n    \\\\\\\"n_predictions\\\\\\\": 15202,\\\\n    \\\\\\\"n_truncated\\\\\\\": 189\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"RSFT-CED (r2a, 1ep)\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4494,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8108,\\\\n    \\\\\\\"edcr\\\\\\\": 0.6641,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 4.37,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -4.76,\\\\n    \\\\\\\"precision\\\\\\\": 0.4512,\\\\n    \\\\\\\"recall\\\\\\\": 0.4475,\\\\n    \\\\\\\"n_predictions\\\\\\\": 15482,\\\\n    \\\\\\\"n_truncated\\\\\\\": 208\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"RSFT-CED (r2b, a=32)\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4493,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8128,\\\\n    \\\\\\\"edcr\\\\\\\": 0.6609,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 4.37,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -5.08,\\\\n    \\\\\\\"precision\\\\\\\": 0.4566,\\\\n    \\\\\\\"recall\\\\\\\": 0.4424,\\\\n    \\\\\\\"n_predictions\\\\\\\": 14829,\\\\n    \\\\\\\"n_truncated\\\\\\\": 179\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"RSFT-flatNLI (s42)\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4539,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8043,\\\\n    \\\\\\\"edcr\\\\\\\": 0.6431,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0.3544,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 4.82,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -6.87,\\\\n    \\\\\\\"precision\\\\\\\": 0.4671,\\\\n    \\\\\\\"recall\\\\\\\": 0.4414,\\\\n    \\\\\\\"n_predictions\\\\\\\": 15294,\\\\n    \\\\\\\"n_truncated\\\\\\\": 199\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"CED-reranker (N=8)\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4864,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8188,\\\\n    \\\\\\\"edcr\\\\\\\": 0.6156,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 8.07,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -9.62,\\\\n    \\\\\\\"precision\\\\\\\": 0.4913,\\\\n    \\\\\\\"recall\\\\\\\": 0.4815,\\\\n    \\\\\\\"n_predictions\\\\\\\": 14782,\\\\n    \\\\\\\"n_truncated\\\\\\\": null\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"GRPO bf16 (G=8, ckpt100)\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4549,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8086,\\\\n    \\\\\\\"edcr\\\\\\\": 0.6318,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0.3571,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 4.93,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -8.0,\\\\n    \\\\\\\"precision\\\\\\\": 0.5042,\\\\n    \\\\\\\"recall\\\\\\\": 0.4145,\\\\n    \\\\\\\"n_predictions\\\\\\\": 10701,\\\\n    \\\\\\\"n_truncated\\\\\\\": 61\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"RSFT-CED 3-seed mean\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4596,\\\\n    \\\\\\\"rel_f1_std\\\\\\\": 0.0128,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8144,\\\\n    \\\\\\\"evi_f1_std\\\\\\\": 0.0051,\\\\n    \\\\\\\"edcr\\\\\\\": 0.6434,\\\\n    \\\\\\\"edcr_std\\\\\\\": 0.0114\\\\n  }\\\\n]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.29}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b8daa340-d464-43cc-a648-a817c00734f9",
+            "isSidechain": false,
+            "promptId": "35327ab0-18d6-4766-ab31-77f6fd614eea",
+            "type": "user",
+            "uuid": "7916c94c-2192-4979-ae74-15cd651c16ff",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"SFT baseline (quant)\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4057,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.7979,\\\\n    \\\\\\\"edcr\\\\\\\": 0.7118,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 0.0,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": 0.0,\\\\n    \\\\\\\"precision\\\\\\\": 0.4043,\\\\n    \\\\\\\"recall\\\\\\\": 0.407,\\\\n    \\\\\\\"n_predictions\\\\\\\": 18815,\\\\n    \\\\\\\"n_truncated\\\\\\\": 367\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"SFT baseline (noquant)\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4106,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8013,\\\\n    \\\\\\\"edcr\\\\\\\": 0.7039,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0.3216,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 0.5,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -0.79,\\\\n    \\\\\\\"precision\\\\\\\": 0.4198,\\\\n    \\\\\\\"recall\\\\\\\": 0.4019,\\\\n    \\\\\\\"n_predictions\\\\\\\": 16774,\\\\n    \\\\\\\"n_truncated\\\\\\\": 288\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"SFT no-evidence\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4893,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.0,\\\\n    \\\\\\\"edcr\\\\\\\": 0.0,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0.0,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 8.36,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -71.18,\\\\n    \\\\\\\"precision\\\\\\\": 0.4884,\\\\n    \\\\\\\"recall\\\\\\\": 0.4902,\\\\n    \\\\\\\"n_predictions\\\\\\\": 21064,\\\\n    \\\\\\\"n_truncated\\\\\\\": 298\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"RSFT-CED (s42, 3ep)\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4449,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8187,\\\\n    \\\\\\\"edcr\\\\\\\": 0.6565,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 3.92,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -5.53,\\\\n    \\\\\\\"precision\\\\\\\": 0.4607,\\\\n    \\\\\\\"recall\\\\\\\": 0.4302,\\\\n    \\\\\\\"n_predictions\\\\\\\": 15307,\\\\n    \\\\\\\"n_truncated\\\\\\\": 213\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"RSFT-CED (s43, 3ep)\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4683,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8156,\\\\n    \\\\\\\"edcr\\\\\\\": 0.6388,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 6.26,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -7.3,\\\\n    \\\\\\\"precision\\\\\\\": 0.4817,\\\\n    \\\\\\\"recall\\\\\\\": 0.4556,\\\\n    \\\\\\\"n_predictions\\\\\\\": 14970,\\\\n    \\\\\\\"n_truncated\\\\\\\": 171\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"RSFT-CED (s44, 3ep)\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4655,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8087,\\\\n    \\\\\\\"edcr\\\\\\\": 0.635,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 5.98,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -7.67,\\\\n    \\\\\\\"precision\\\\\\\": 0.4798,\\\\n    \\\\\\\"recall\\\\\\\": 0.4521,\\\\n    \\\\\\\"n_predictions\\\\\\\": 15202,\\\\n    \\\\\\\"n_truncated\\\\\\\": 189\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"RSFT-CED (r2a, 1ep)\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4494,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8108,\\\\n    \\\\\\\"edcr\\\\\\\": 0.6641,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 4.37,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -4.76,\\\\n    \\\\\\\"precision\\\\\\\": 0.4512,\\\\n    \\\\\\\"recall\\\\\\\": 0.4475,\\\\n    \\\\\\\"n_predictions\\\\\\\": 15482,\\\\n    \\\\\\\"n_truncated\\\\\\\": 208\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"RSFT-CED (r2b, a=32)\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4493,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8128,\\\\n    \\\\\\\"edcr\\\\\\\": 0.6609,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 4.37,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -5.08,\\\\n    \\\\\\\"precision\\\\\\\": 0.4566,\\\\n    \\\\\\\"recall\\\\\\\": 0.4424,\\\\n    \\\\\\\"n_predictions\\\\\\\": 14829,\\\\n    \\\\\\\"n_truncated\\\\\\\": 179\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"RSFT-flatNLI (s42)\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4539,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8043,\\\\n    \\\\\\\"edcr\\\\\\\": 0.6431,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0.3544,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 4.82,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -6.87,\\\\n    \\\\\\\"precision\\\\\\\": 0.4671,\\\\n    \\\\\\\"recall\\\\\\\": 0.4414,\\\\n    \\\\\\\"n_predictions\\\\\\\": 15294,\\\\n    \\\\\\\"n_truncated\\\\\\\": 199\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"CED-reranker (N=8)\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4864,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8188,\\\\n    \\\\\\\"edcr\\\\\\\": 0.6156,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 8.07,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -9.62,\\\\n    \\\\\\\"precision\\\\\\\": 0.4913,\\\\n    \\\\\\\"recall\\\\\\\": 0.4815,\\\\n    \\\\\\\"n_predictions\\\\\\\": 14782,\\\\n    \\\\\\\"n_truncated\\\\\\\": null\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"GRPO bf16 (G=8, ckpt100)\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4549,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8086,\\\\n    \\\\\\\"edcr\\\\\\\": 0.6318,\\\\n    \\\\\\\"evi_f1_joint\\\\\\\": 0.3571,\\\\n    \\\\\\\"delta_rel_f1_pp\\\\\\\": 4.93,\\\\n    \\\\\\\"delta_edcr_pp\\\\\\\": -8.0,\\\\n    \\\\\\\"precision\\\\\\\": 0.5042,\\\\n    \\\\\\\"recall\\\\\\\": 0.4145,\\\\n    \\\\\\\"n_predictions\\\\\\\": 10701,\\\\n    \\\\\\\"n_truncated\\\\\\\": 61\\\\n  },\\\\n  {\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"RSFT-CED 3-seed mean\\\\\\\",\\\\n    \\\\\\\"rel_f1\\\\\\\": 0.4596,\\\\n    \\\\\\\"rel_f1_std\\\\\\\": 0.0128,\\\\n    \\\\\\\"evi_f1\\\\\\\": 0.8144,\\\\n    \\\\\\\"evi_f1_std\\\\\\\": 0.0051,\\\\n    \\\\\\\"edcr\\\\\\\": 0.6434,\\\\n    \\\\\\\"edcr_std\\\\\\\": 0.0114\\\\n  }\\\\n]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.29}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"method\\\": \\\"SFT baseline (quant)\\\",\\n    \\\"rel_f1\\\": 0.4057,\\n    \\\"evi_f1\\\": 0.7979,\\n    \\\"edcr\\\": 0.7118,\\n    \\\"evi_f1_joint\\\": 0,\\n    \\\"delta_rel_f1_pp\\\": 0.0,\\n    \\\"delta_edcr_pp\\\": 0.0,\\n    \\\"precision\\\": 0.4043,\\n    \\\"recall\\\": 0.407,\\n    \\\"n_predictions\\\": 18815,\\n    \\\"n_truncated\\\": 367\\n  },\\n  {\\n    \\\"method\\\": \\\"SFT baseline (noquant)\\\",\\n    \\\"rel_f1\\\": 0.4106,\\n    \\\"evi_f1\\\": 0.8013,\\n    \\\"edcr\\\": 0.7039,\\n    \\\"evi_f1_joint\\\": 0.3216,\\n    \\\"delta_rel_f1_pp\\\": 0.5,\\n    \\\"delta_edcr_pp\\\": -0.79,\\n    \\\"precision\\\": 0.4198,\\n    \\\"recall\\\": 0.4019,\\n    \\\"n_predictions\\\": 16774,\\n    \\\"n_truncated\\\": 288\\n  },\\n  {\\n    \\\"method\\\": \\\"SFT no-evidence\\\",\\n    \\\"rel_f1\\\": 0.4893,\\n    \\\"evi_f1\\\": 0.0,\\n    \\\"edcr\\\": 0.0,\\n    \\\"evi_f1_joint\\\": 0.0,\\n    \\\"delta_rel_f1_pp\\\": 8.36,\\n    \\\"delta_edcr_pp\\\": -71.18,\\n    \\\"precision\\\": 0.4884,\\n    \\\"recall\\\": 0.4902,\\n    \\\"n_predictions\\\": 21064,\\n    \\\"n_truncated\\\": 298\\n  },\\n  {\\n    \\\"method\\\": \\\"RSFT-CED (s42, 3ep)\\\",\\n    \\\"rel_f1\\\": 0.4449,\\n    \\\"evi_f1\\\": 0.8187,\\n    \\\"edcr\\\": 0.6565,\\n    \\\"evi_f1_joint\\\": 0,\\n    \\\"delta_rel_f1_pp\\\": 3.92,\\n    \\\"delta_edcr_pp\\\": -5.53,\\n    \\\"precision\\\": 0.4607,\\n    \\\"recall\\\": 0.4302,\\n    \\\"n_predictions\\\": 15307,\\n    \\\"n_truncated\\\": 213\\n  },\\n  {\\n    \\\"method\\\": \\\"RSFT-CED (s43, 3ep)\\\",\\n    \\\"rel_f1\\\": 0.4683,\\n    \\\"evi_f1\\\": 0.8156,\\n    \\\"edcr\\\": 0.6388,\\n    \\\"evi_f1_joint\\\": 0,\\n    \\\"delta_rel_f1_pp\\\": 6.26,\\n    \\\"delta_edcr_pp\\\": -7.3,\\n    \\\"precision\\\": 0.4817,\\n    \\\"recall\\\": 0.4556,\\n    \\\"n_predictions\\\": 14970,\\n    \\\"n_truncated\\\": 171\\n  },\\n  {\\n    \\\"method\\\": \\\"RSFT-CED (s44, 3ep)\\\",\\n    \\\"rel_f1\\\": 0.4655,\\n    \\\"evi_f1\\\": 0.8087,\\n    \\\"edcr\\\": 0.635,\\n    \\\"evi_f1_joint\\\": 0,\\n    \\\"delta_rel_f1_pp\\\": 5.98,\\n    \\\"delta_edcr_pp\\\": -7.67,\\n    \\\"precision\\\": 0.4798,\\n    \\\"recall\\\": 0.4521,\\n    \\\"n_predictions\\\": 15202,\\n    \\\"n_truncated\\\": 189\\n  },\\n  {\\n    \\\"method\\\": \\\"RSFT-CED (r2a, 1ep)\\\",\\n    \\\"rel_f1\\\": 0.4494,\\n    \\\"evi_f1\\\": 0.8108,\\n    \\\"edcr\\\": 0.6641,\\n    \\\"evi_f1_joint\\\": 0,\\n    \\\"delta_rel_f1_pp\\\": 4.37,\\n    \\\"delta_edcr_pp\\\": -4.76,\\n    \\\"precision\\\": 0.4512,\\n    \\\"recall\\\": 0.4475,\\n    \\\"n_predictions\\\": 15482,\\n    \\\"n_truncated\\\": 208\\n  },\\n  {\\n    \\\"method\\\": \\\"RSFT-CED (r2b, a=32)\\\",\\n    \\\"rel_f1\\\": 0.4493,\\n    \\\"evi_f1\\\": 0.8128,\\n    \\\"edcr\\\": 0.6609,\\n    \\\"evi_f1_joint\\\": 0,\\n    \\\"delta_rel_f1_pp\\\": 4.37,\\n    \\\"delta_edcr_pp\\\": -5.08,\\n    \\\"precision\\\": 0.4566,\\n    \\\"recall\\\": 0.4424,\\n    \\\"n_predictions\\\": 14829,\\n    \\\"n_truncated\\\": 179\\n  },\\n  {\\n    \\\"method\\\": \\\"RSFT-flatNLI (s42)\\\",\\n    \\\"rel_f1\\\": 0.4539,\\n    \\\"evi_f1\\\": 0.8043,\\n    \\\"edcr\\\": 0.6431,\\n    \\\"evi_f1_joint\\\": 0.3544,\\n    \\\"delta_rel_f1_pp\\\": 4.82,\\n    \\\"delta_edcr_pp\\\": -6.87,\\n    \\\"precision\\\": 0.4671,\\n    \\\"recall\\\": 0.4414,\\n    \\\"n_predictions\\\": 15294,\\n    \\\"n_truncated\\\": 199\\n  },\\n  {\\n    \\\"method\\\": \\\"CED-reranker (N=8)\\\",\\n    \\\"rel_f1\\\": 0.4864,\\n    \\\"evi_f1\\\": 0.8188,\\n    \\\"edcr\\\": 0.6156,\\n    \\\"evi_f1_joint\\\": 0,\\n    \\\"delta_rel_f1_pp\\\": 8.07,\\n    \\\"delta_edcr_pp\\\": -9.62,\\n    \\\"precision\\\": 0.4913,\\n    \\\"recall\\\": 0.4815,\\n    \\\"n_predictions\\\": 14782,\\n    \\\"n_truncated\\\": null\\n  },\\n  {\\n    \\\"method\\\": \\\"GRPO bf16 (G=8, ckpt100)\\\",\\n    \\\"rel_f1\\\": 0.4549,\\n    \\\"evi_f1\\\": 0.8086,\\n    \\\"edcr\\\": 0.6318,\\n    \\\"evi_f1_joint\\\": 0.3571,\\n    \\\"delta_rel_f1_pp\\\": 4.93,\\n    \\\"delta_edcr_pp\\\": -8.0,\\n    \\\"precision\\\": 0.5042,\\n    \\\"recall\\\": 0.4145,\\n    \\\"n_predictions\\\": 10701,\\n    \\\"n_truncated\\\": 61\\n  },\\n  {\\n    \\\"method\\\": \\\"RSFT-CED 3-seed mean\\\",\\n    \\\"rel_f1\\\": 0.4596,\\n    \\\"rel_f1_std\\\": 0.0128,\\n    \\\"evi_f1\\\": 0.8144,\\n    \\\"evi_f1_std\\\": 0.0051,\\n    \\\"edcr\\\": 0.6434,\\n    \\\"edcr_std\\\": 0.0114\\n  }\\n]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.29}}"
+              }
+            },
+            "sourceToolAssistantUUID": "b8daa340-d464-43cc-a648-a817c00734f9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "df7c596b-b653-4201-8641-a54c4b01eb24",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-18T13:50:37.045Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01X17thjkM8nmEth59fsdJ74",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "find /root/autodl-tmp/freige/paper -name \"*.tex\" -type f",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7916c94c-2192-4979-ae74-15cd651c16ff",
+            "isSidechain": false,
+            "requestId": "req_011CbA9AqkNNik84F3yEMKRj",
+            "type": "assistant",
+            "uuid": "dae2fc4c-a70b-4b74-8fff-eb8dd65b83db",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "df7c596b-b653-4201-8641-a54c4b01eb24",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VPrQQxUNynxHxVBHxc5hg3",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 13511,
+                "cache_read_input_tokens": 45573,
+                "output_tokens": 1923,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 13511,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1923,
+                    "cache_read_input_tokens": 45573,
+                    "cache_creation_input_tokens": 13511,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 13511
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              }
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "dae2fc4c-a70b-4b74-8fff-eb8dd65b83db",
+                "sessionId": "df7c596b-b653-4201-8641-a54c4b01eb24"
+              }
+            }
+          ],
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Verify 4B Evidence Tax numerical sources",
+                "sessionId": "df7c596b-b653-4201-8641-a54c4b01eb24"
+              }
+            }
+          ],
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-18T13:50:37.372Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01X17thjkM8nmEth59fsdJ74",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"find: '/root/autodl-tmp/freige/paper': No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dae2fc4c-a70b-4b74-8fff-eb8dd65b83db",
+            "isSidechain": false,
+            "promptId": "35327ab0-18d6-4766-ab31-77f6fd614eea",
+            "type": "user",
+            "uuid": "27e26ee8-49b9-423e-b4a2-6b46d867e6c2",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"find: '/root/autodl-tmp/freige/paper': No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"find: '/root/autodl-tmp/freige/paper': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.31}}"
+              }
+            },
+            "sourceToolAssistantUUID": "dae2fc4c-a70b-4b74-8fff-eb8dd65b83db",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "df7c596b-b653-4201-8641-a54c4b01eb24",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-18T13:50:40.865Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now let me check `sft_no_evidence/metrics_v2.json` which should have the 47.36% value, and search for the paper LaTeX files.",
+              "signature": "ErgCClkIDRgCKkBmHAk4CAzG/J4Jl89TvZnIBfdlqlHXsjQveaL6CqC4SXe6W+v54O8ZLboFker6SsiXr5en9p9ymZ3PvWx+t/VDMg9jbGF1ZGUtb3B1cy00LTY4ABIMjuO5SAlH5pVzABifGgyAfJaw1kNGWWKteGoiMMt6+ofax0Mc9X/GCCBmFI0VDd1EuTnJbSMxmVRE6MRaVNd+edkQrag9GmQXZ5fnPyqMAeDHX8BUYndgo4nd1Xz0fIg6vww3sJwkHho2uPGeQ/hUAWR62or/Kd6upI553+2ENMubn24yybgwxmzox+8lS9NgxivnQdw+17qRfsb8vjSPAmTHS8CaJqmpEFSHoXEhNC7/ShvJ/DelNmSaNg2AIJuLZwp6qzk2/YgitF8lPDzpKXa9d6TEw5VQm1QnGAE="
+            }
+          ],
+          "metadata": {
+            "parentUuid": "27e26ee8-49b9-423e-b4a2-6b46d867e6c2",
+            "isSidechain": false,
+            "requestId": "req_011CbA9DL6FKZPdNw9U6ELCs",
+            "type": "assistant",
+            "uuid": "d08c868a-9851-4232-8a7f-031167915904",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "df7c596b-b653-4201-8641-a54c4b01eb24",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014fLqDpeNfVWQW1d4ABNHoR",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4930,
+                "cache_read_input_tokens": 59084,
+                "output_tokens": 424,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 4930,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 424,
+                    "cache_read_input_tokens": 59084,
+                    "cache_creation_input_tokens": 4930,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 4930
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-18T13:50:41.334Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QYUbfqxNQwmuhUbQcitEqy",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "cat /root/autodl-tmp/eval_results/sft_no_evidence/metrics_v2.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d08c868a-9851-4232-8a7f-031167915904",
+            "isSidechain": false,
+            "requestId": "req_011CbA9DL6FKZPdNw9U6ELCs",
+            "type": "assistant",
+            "uuid": "b8211e63-9884-4dde-9ccc-bd2471c18214",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "df7c596b-b653-4201-8641-a54c4b01eb24",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014fLqDpeNfVWQW1d4ABNHoR",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4930,
+                "cache_read_input_tokens": 59084,
+                "output_tokens": 424,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 4930,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 424,
+                    "cache_read_input_tokens": 59084,
+                    "cache_creation_input_tokens": 4930,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 4930
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-18T13:50:41.670Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QYUbfqxNQwmuhUbQcitEqy",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"precision\\\\\\\": 0.48835683830764187,\\\\n  \\\\\\\"recall\\\\\\\": 0.4901654184840754,\\\\n  \\\\\\\"f1\\\\\\\": 0.4892594570172916,\\\\n  \\\\\\\"ign_precision\\\\\\\": 0.463574400283261,\\\\n  \\\\\\\"ign_recall\\\\\\\": 0.4839663617040939,\\\\n  \\\\\\\"ign_f1\\\\\\\": 0.4735509539741387,\\\\n  \\\\\\\"tp\\\\\\\": 5956,\\\\n  \\\\\\\"pred_count\\\\\\\": 12196,\\\\n  \\\\\\\"gold_count\\\\\\\": 12151,\\\\n  \\\\\\\"evi_precision\\\\\\\": 0.0,\\\\n  \\\\\\\"evi_recall\\\\\\\": 0.0,\\\\n  \\\\\\\"evi_f1\\\\\\\": 0.0,\\\\n  \\\\\\\"n_evaluated\\\\\\\": 0,\\\\n  \\\\\\\"edcr\\\\\\\": 0.0,\\\\n  \\\\\\\"n_distractor_citations\\\\\\\": 0,\\\\n  \\\\\\\"n_total_citations\\\\\\\": 0,\\\\n  \\\\\\\"evi_joint_precision\\\\\\\": 0.0,\\\\n  \\\\\\\"evi_joint_recall\\\\\\\": 0.0,\\\\n  \\\\\\\"evi_f1_joint\\\\\\\": 0.0,\\\\n  \\\\\\\"evi_tp\\\\\\\": 0,\\\\n  \\\\\\\"evi_pred_total\\\\\\\": 0,\\\\n  \\\\\\\"evi_gold_total\\\\\\\": 19261,\\\\n  \\\\\\\"format_compliance_rate\\\\\\\": 0.9918781725888325,\\\\n  \\\\\\\"field_compliance_rate\\\\\\\": 0.0,\\\\n  \\\\\\\"evidence_format_rate\\\\\\\": 0.0,\\\\n  \\\\\\\"n_total\\\\\\\": 985,\\\\n  \\\\\\\"n_parseable\\\\\\\": 977,\\\\n  \\\\\\\"n_field_complete\\\\\\\": 0,\\\\n  \\\\\\\"n_evidence_valid\\\\\\\": 0,\\\\n  \\\\\\\"n_documents\\\\\\\": 985,\\\\n  \\\\\\\"n_predictions\\\\\\\": 21064,\\\\n  \\\\\\\"n_truncated\\\\\\\": 298,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 977,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 0.9918781725888325,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 4103.8,\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_no_evidence_output\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen3-4B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": null,\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/docred\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/sft_no_evidence\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 16,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 1024,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"dev\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"no_evidence\\\\\\\": true,\\\\n    \\\\\\\"quantize\\\\\\\": false\\\\n  },\\\\n  \\\\\\\"_note\\\\\\\": \\\\\\\"Recomputed with fixed Ign-F1 (doc_id-free train_facts)\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b8211e63-9884-4dde-9ccc-bd2471c18214",
+            "isSidechain": false,
+            "promptId": "35327ab0-18d6-4766-ab31-77f6fd614eea",
+            "type": "user",
+            "uuid": "603fb941-acf3-414e-93de-6ad0fbc520fb",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"precision\\\\\\\": 0.48835683830764187,\\\\n  \\\\\\\"recall\\\\\\\": 0.4901654184840754,\\\\n  \\\\\\\"f1\\\\\\\": 0.4892594570172916,\\\\n  \\\\\\\"ign_precision\\\\\\\": 0.463574400283261,\\\\n  \\\\\\\"ign_recall\\\\\\\": 0.4839663617040939,\\\\n  \\\\\\\"ign_f1\\\\\\\": 0.4735509539741387,\\\\n  \\\\\\\"tp\\\\\\\": 5956,\\\\n  \\\\\\\"pred_count\\\\\\\": 12196,\\\\n  \\\\\\\"gold_count\\\\\\\": 12151,\\\\n  \\\\\\\"evi_precision\\\\\\\": 0.0,\\\\n  \\\\\\\"evi_recall\\\\\\\": 0.0,\\\\n  \\\\\\\"evi_f1\\\\\\\": 0.0,\\\\n  \\\\\\\"n_evaluated\\\\\\\": 0,\\\\n  \\\\\\\"edcr\\\\\\\": 0.0,\\\\n  \\\\\\\"n_distractor_citations\\\\\\\": 0,\\\\n  \\\\\\\"n_total_citations\\\\\\\": 0,\\\\n  \\\\\\\"evi_joint_precision\\\\\\\": 0.0,\\\\n  \\\\\\\"evi_joint_recall\\\\\\\": 0.0,\\\\n  \\\\\\\"evi_f1_joint\\\\\\\": 0.0,\\\\n  \\\\\\\"evi_tp\\\\\\\": 0,\\\\n  \\\\\\\"evi_pred_total\\\\\\\": 0,\\\\n  \\\\\\\"evi_gold_total\\\\\\\": 19261,\\\\n  \\\\\\\"format_compliance_rate\\\\\\\": 0.9918781725888325,\\\\n  \\\\\\\"field_compliance_rate\\\\\\\": 0.0,\\\\n  \\\\\\\"evidence_format_rate\\\\\\\": 0.0,\\\\n  \\\\\\\"n_total\\\\\\\": 985,\\\\n  \\\\\\\"n_parseable\\\\\\\": 977,\\\\n  \\\\\\\"n_field_complete\\\\\\\": 0,\\\\n  \\\\\\\"n_evidence_valid\\\\\\\": 0,\\\\n  \\\\\\\"n_documents\\\\\\\": 985,\\\\n  \\\\\\\"n_predictions\\\\\\\": 21064,\\\\n  \\\\\\\"n_truncated\\\\\\\": 298,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 977,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 0.9918781725888325,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 4103.8,\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_no_evidence_output\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen3-4B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": null,\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/docred\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/sft_no_evidence\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 16,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 1024,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"dev\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"no_evidence\\\\\\\": true,\\\\n    \\\\\\\"quantize\\\\\\\": false\\\\n  },\\\\n  \\\\\\\"_note\\\\\\\": \\\\\\\"Recomputed with fixed Ign-F1 (doc_id-free train_facts)\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.48835683830764187,\\n  \\\"recall\\\": 0.4901654184840754,\\n  \\\"f1\\\": 0.4892594570172916,\\n  \\\"ign_precision\\\": 0.463574400283261,\\n  \\\"ign_recall\\\": 0.4839663617040939,\\n  \\\"ign_f1\\\": 0.4735509539741387,\\n  \\\"tp\\\": 5956,\\n  \\\"pred_count\\\": 12196,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.0,\\n  \\\"evi_recall\\\": 0.0,\\n  \\\"evi_f1\\\": 0.0,\\n  \\\"n_evaluated\\\": 0,\\n  \\\"edcr\\\": 0.0,\\n  \\\"n_distractor_citations\\\": 0,\\n  \\\"n_total_citations\\\": 0,\\n  \\\"evi_joint_precision\\\": 0.0,\\n  \\\"evi_joint_recall\\\": 0.0,\\n  \\\"evi_f1_joint\\\": 0.0,\\n  \\\"evi_tp\\\": 0,\\n  \\\"evi_pred_total\\\": 0,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 0.9918781725888325,\\n  \\\"field_compliance_rate\\\": 0.0,\\n  \\\"evidence_format_rate\\\": 0.0,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 977,\\n  \\\"n_field_complete\\\": 0,\\n  \\\"n_evidence_valid\\\": 0,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 21064,\\n  \\\"n_truncated\\\": 298,\\n  \\\"n_format_ok\\\": 977,\\n  \\\"format_ok_rate\\\": 0.9918781725888325,\\n  \\\"inference_time_seconds\\\": 4103.8,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/sft_no_evidence_output\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": null,\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/sft_no_evidence\\\",\\n    \\\"batch_size\\\": 16,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 42,\\n    \\\"no_evidence\\\": true,\\n    \\\"quantize\\\": false\\n  },\\n  \\\"_note\\\": \\\"Recomputed with fixed Ign-F1 (doc_id-free train_facts)\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+              }
+            },
+            "sourceToolAssistantUUID": "b8211e63-9884-4dde-9ccc-bd2471c18214",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "df7c596b-b653-4201-8641-a54c4b01eb24",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-18T13:50:42.293Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019nrzxMwoK9Nqz5fuSwRoBR",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "find /root/autodl-tmp/freige -name \"*.tex\" -type f",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "603fb941-acf3-414e-93de-6ad0fbc520fb",
+            "isSidechain": false,
+            "requestId": "req_011CbA9DL6FKZPdNw9U6ELCs",
+            "type": "assistant",
+            "uuid": "12c75bcd-58dd-4c8d-9d6f-45bff4f9587f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "df7c596b-b653-4201-8641-a54c4b01eb24",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014fLqDpeNfVWQW1d4ABNHoR",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4930,
+                "cache_read_input_tokens": 59084,
+                "output_tokens": 424,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 4930,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 424,
+                    "cache_read_input_tokens": 59084,
+                    "cache_creation_input_tokens": 4930,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 4930
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-18T13:50:42.615Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019nrzxMwoK9Nqz5fuSwRoBR",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "12c75bcd-58dd-4c8d-9d6f-45bff4f9587f",
+            "isSidechain": false,
+            "promptId": "35327ab0-18d6-4766-ab31-77f6fd614eea",
+            "type": "user",
+            "uuid": "b4751baa-5782-4b29-95b9-489382a9be9c",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"
+              }
+            },
+            "sourceToolAssistantUUID": "12c75bcd-58dd-4c8d-9d6f-45bff4f9587f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "df7c596b-b653-4201-8641-a54c4b01eb24",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-18T13:50:43.293Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UHfQcf8wgF1Ga4mCqMd3qg",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b71b9905-a60a-478c-90da-933b149f1791",
+            "isSidechain": false,
+            "promptId": "35327ab0-18d6-4766-ab31-77f6fd614eea",
+            "type": "user",
+            "uuid": "8b1d3104-bbbd-43dc-8d4d-6b933d309bc1",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            },
+            "sourceToolAssistantUUID": "b71b9905-a60a-478c-90da-933b149f1791",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "df7c596b-b653-4201-8641-a54c4b01eb24",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-18T13:50:43.278Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UHfQcf8wgF1Ga4mCqMd3qg",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "grep -r \"39.86\\|3986\\|39\\.86\" /root/autodl-tmp/eval_results/ --include=\"*.json\" --include=\"*.md\" --include=\"*.tex\" -l",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b4751baa-5782-4b29-95b9-489382a9be9c",
+            "isSidechain": false,
+            "requestId": "req_011CbA9DL6FKZPdNw9U6ELCs",
+            "type": "assistant",
+            "uuid": "b71b9905-a60a-478c-90da-933b149f1791",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "df7c596b-b653-4201-8641-a54c4b01eb24",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014fLqDpeNfVWQW1d4ABNHoR",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4930,
+                "cache_read_input_tokens": 59084,
+                "output_tokens": 424,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 4930,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 424,
+                    "cache_read_input_tokens": 59084,
+                    "cache_creation_input_tokens": 4930,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 4930
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-18T13:50:47.433Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The `sft_no_evidence/metrics_v2.json` shows ign_f1 = 0.4735509539741387 ≈ **47.36%** (when rounded to 2 decimal places). So 47.36% comes from this file.\n\nNow let me find 39.86%. Let me grep for it in the eval_results directory.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8b1d3104-bbbd-43dc-8d4d-6b933d309bc1",
+            "isSidechain": false,
+            "requestId": "req_011CbA9DmYSbp4Xh7SrYh7WH",
+            "type": "assistant",
+            "uuid": "7f5d9965-0032-41d1-8fc4-4d138955f11d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "df7c596b-b653-4201-8641-a54c4b01eb24",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015g8UJX9fcTRdE1xYS2dTL2",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1687,
+                "cache_read_input_tokens": 64014,
+                "output_tokens": 444,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1687,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 444,
+                    "cache_read_input_tokens": 64014,
+                    "cache_creation_input_tokens": 1687,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1687
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-18T13:50:48.384Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014cSuNATT9TFDNqe7wRxK8T",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "grep -r \"39.86\" /root/autodl-tmp/eval_results/ -l",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7f5d9965-0032-41d1-8fc4-4d138955f11d",
+            "isSidechain": false,
+            "requestId": "req_011CbA9DmYSbp4Xh7SrYh7WH",
+            "type": "assistant",
+            "uuid": "e9222f06-d9a2-4f27-966a-f1a90b194f4c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "df7c596b-b653-4201-8641-a54c4b01eb24",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015g8UJX9fcTRdE1xYS2dTL2",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1687,
+                "cache_read_input_tokens": 64014,
+                "output_tokens": 444,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1687,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 444,
+                    "cache_read_input_tokens": 64014,
+                    "cache_creation_input_tokens": 1687,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1687
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-18T13:50:48.854Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014cSuNATT9TFDNqe7wRxK8T",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/eval_results/lr5e6_r1_ckpt40/checkpoint-40/metrics.json\\\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt40/checkpoint-40/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt40/summary.json\\\\n/root/autodl-tmp/eval_results/grpo_g8_bf16/checkpoint-90/metrics.json\\\\n/root/autodl-tmp/eval_results/grpo_g8_bf16/checkpoint-90/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/dpo_ced_1ep/metrics.json\\\\n/root/autodl-tmp/eval_results/dpo_ced_1ep/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/sft_no_evidence_noquant/metrics.json\\\\n/root/autodl-tmp/eval_results/sft_no_evidence_noquant/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/plan_014_no_evidence_eval_d076/metrics.json\\\\n/root/autodl-tmp/eval_results/plan_006_qwen3_8b_rsft_eval.log\\\\n/root/autodl-tmp/eval_results/post_hoc_bm25/bm25_entity_only_k2_metrics.json\\\\n/root/autodl-tmp/eval_results/post_hoc_bm25/bm25_entity_only_k3_metrics.json\\\\n/root/autodl-tmp/eval_results/post_hoc_bm25/bm25_entity_only_oracle_k_metrics.json\\\\n/root/autodl-tmp/eval_results/post_hoc_bm25/bm25_entity_relation_k2_metrics.json\\\\n/root/autodl-tmp/eval_results/post_hoc_bm25/bm25_entity_relation_k3_metrics.json\\\\n/root/autodl-tmp/eval_results/post_hoc_bm25/bm25_entity_relation_oracle_k_metrics.json\\\\n/root/autodl-tmp/eval_results/d102_llama_k1_s42/metrics.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e9222f06-d9a2-4f27-966a-f1a90b194f4c",
+            "isSidechain": false,
+            "promptId": "35327ab0-18d6-4766-ab31-77f6fd614eea",
+            "type": "user",
+            "uuid": "ab15a923-fbd2-46e6-8071-24c5d748b145",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/eval_results/lr5e6_r1_ckpt40/checkpoint-40/metrics.json\\\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt40/checkpoint-40/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt40/summary.json\\\\n/root/autodl-tmp/eval_results/grpo_g8_bf16/checkpoint-90/metrics.json\\\\n/root/autodl-tmp/eval_results/grpo_g8_bf16/checkpoint-90/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/dpo_ced_1ep/metrics.json\\\\n/root/autodl-tmp/eval_results/dpo_ced_1ep/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/sft_no_evidence_noquant/metrics.json\\\\n/root/autodl-tmp/eval_results/sft_no_evidence_noquant/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/plan_014_no_evidence_eval_d076/metrics.json\\\\n/root/autodl-tmp/eval_results/plan_006_qwen3_8b_rsft_eval.log\\\\n/root/autodl-tmp/eval_results/post_hoc_bm25/bm25_entity_only_k2_metrics.json\\\\n/root/autodl-tmp/eval_results/post_hoc_bm25/bm25_entity_only_k3_metrics.json\\\\n/root/autodl-tmp/eval_results/post_hoc_bm25/bm25_entity_only_oracle_k_metrics.json\\\\n/root/autodl-tmp/eval_results/post_hoc_bm25/bm25_entity_relation_k2_metrics.json\\\\n/root/autodl-tmp/eval_results/post_hoc_bm25/bm25_entity_relation_k3_metrics.json\\\\n/root/autodl-tmp/eval_results/post_hoc_bm25/bm25_entity_relation_oracle_k_metrics.json\\\\n/root/autodl-tmp/eval_results/d102_llama_k1_s42/metrics.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/eval_results/lr5e6_r1_ckpt40/checkpoint-40/metrics.json\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt40/checkpoint-40/metrics_v2.json\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt40/summary.json\\n/root/autodl-tmp/eval_results/grpo_g8_bf16/checkpoint-90/metrics.json\\n/root/autodl-tmp/eval_results/grpo_g8_bf16/checkpoint-90/metrics_v2.json\\n/root/autodl-tmp/eval_results/dpo_ced_1ep/metrics.json\\n/root/autodl-tmp/eval_results/dpo_ced_1ep/metrics_v2.json\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43/metrics.json\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43/metrics_v2.json\\n/root/autodl-tmp/eval_results/sft_no_evidence_noquant/metrics.json\\n/root/autodl-tmp/eval_results/sft_no_evidence_noquant/metrics_v2.json\\n/root/autodl-tmp/eval_results/plan_014_no_evidence_eval_d076/metrics.json\\n/root/autodl-tmp/eval_results/plan_006_qwen3_8b_rsft_eval.log\\n/root/autodl-tmp/eval_results/post_hoc_bm25/bm25_entity_only_k2_metrics.json\\n/root/autodl-tmp/eval_results/post_hoc_bm25/bm25_entity_only_k3_metrics.json\\n/root/autodl-tmp/eval_results/post_hoc_bm25/bm25_entity_only_oracle_k_metrics.json\\n/root/autodl-tmp/eval_results/post_hoc_bm25/bm25_entity_relation_k2_metrics.json\\n/root/autodl-tmp/eval_results/post_hoc_bm25/bm25_entity_relation_k3_metrics.json\\n/root/autodl-tmp/eval_results/post_hoc_bm25/bm25_entity_relation_oracle_k_metrics.json\\n/root/autodl-tmp/eval_results/d102_llama_k1_s42/metrics.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+              }
+            },
+            "sourceToolAssistantUUID": "e9222f06-d9a2-4f27-966a-f1a90b194f4c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "df7c596b-b653-4201-8641-a54c4b01eb24",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-18T13:50:49.348Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01P5SskqpMLKZFnv2rzmFZXa",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "grep -r \"0.3986\" /root/autodl-tmp/eval_results/ -l",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ab15a923-fbd2-46e6-8071-24c5d748b145",
+            "isSidechain": false,
+            "requestId": "req_011CbA9DmYSbp4Xh7SrYh7WH",
+            "type": "assistant",
+            "uuid": "6ddc6538-0926-4bc8-a872-74f22a1fc528",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "df7c596b-b653-4201-8641-a54c4b01eb24",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015g8UJX9fcTRdE1xYS2dTL2",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1687,
+                "cache_read_input_tokens": 64014,
+                "output_tokens": 444,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1687,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 444,
+                    "cache_read_input_tokens": 64014,
+                    "cache_creation_input_tokens": 1687,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1687
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": "2026-05-18T13:50:49.743Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01P5SskqpMLKZFnv2rzmFZXa",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/eval_results/ced_reranker_poc/per_doc_scores.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6ddc6538-0926-4bc8-a872-74f22a1fc528",
+            "isSidechain": false,
+            "promptId": "35327ab0-18d6-4766-ab31-77f6fd614eea",
+            "type": "user",
+            "uuid": "d62d1878-0688-4046-a3e2-6113daee9b23",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/eval_results/ced_reranker_poc/per_doc_scores.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/eval_results/ced_reranker_poc/per_doc_scores.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+              }
+            },
+            "sourceToolAssistantUUID": "6ddc6538-0926-4bc8-a872-74f22a1fc528",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "df7c596b-b653-4201-8641-a54c4b01eb24",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": "2026-05-18T13:50:49.775Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01D5VHGwVMAH3H3awjaU3CGE",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "grep -rn \"39.86\" /root/autodl-tmp/freige/ -l",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d62d1878-0688-4046-a3e2-6113daee9b23",
+            "isSidechain": false,
+            "requestId": "req_011CbA9DmYSbp4Xh7SrYh7WH",
+            "type": "assistant",
+            "uuid": "38f8307c-c363-4888-83da-8948bfb2f99a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "df7c596b-b653-4201-8641-a54c4b01eb24",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015g8UJX9fcTRdE1xYS2dTL2",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1687,
+                "cache_read_input_tokens": 64014,
+                "output_tokens": 444,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1687,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 444,
+                    "cache_read_input_tokens": 64014,
+                    "cache_creation_input_tokens": 1687,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1687
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000093"
+        },
+        {
+          "source_line": 94,
+          "timestamp": "2026-05-18T13:50:50.426Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01D5VHGwVMAH3H3awjaU3CGE",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/freige/training_logs_grpo.json\\\\n/root/autodl-tmp/freige/outputs/rsft_scored_1_7b/rsft_scores.jsonl\\\\n/root/autodl-tmp/freige/outputs/rsft_scored_1_7b/rsft_train.jsonl\\\\n/root/autodl-tmp/freige/outputs/rsft_scored_1_7b_k1/rsft_train.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.64}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "38f8307c-c363-4888-83da-8948bfb2f99a",
+            "isSidechain": false,
+            "promptId": "35327ab0-18d6-4766-ab31-77f6fd614eea",
+            "type": "user",
+            "uuid": "a074e1b9-c142-4221-af33-296267f5a6d9",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/freige/training_logs_grpo.json\\\\n/root/autodl-tmp/freige/outputs/rsft_scored_1_7b/rsft_scores.jsonl\\\\n/root/autodl-tmp/freige/outputs/rsft_scored_1_7b/rsft_train.jsonl\\\\n/root/autodl-tmp/freige/outputs/rsft_scored_1_7b_k1/rsft_train.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.64}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/freige/training_logs_grpo.json\\n/root/autodl-tmp/freige/outputs/rsft_scored_1_7b/rsft_scores.jsonl\\n/root/autodl-tmp/freige/outputs/rsft_scored_1_7b/rsft_train.jsonl\\n/root/autodl-tmp/freige/outputs/rsft_scored_1_7b_k1/rsft_train.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.64}}"
+              }
+            },
+            "sourceToolAssistantUUID": "38f8307c-c363-4888-83da-8948bfb2f99a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "df7c596b-b653-4201-8641-a54c4b01eb24",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000094"
+        },
+        {
+          "source_line": 95,
+          "timestamp": "2026-05-18T13:50:50.431Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "a074e1b9-c142-4221-af33-296267f5a6d9",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "afa24c43-8d70-43e3-8bbd-73a71675abe6",
+                "timestamp": "2026-05-18T13:50:50.431Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+                "sessionId": "df7c596b-b653-4201-8641-a54c4b01eb24",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000095"
+        },
+        {
+          "source_line": 96,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "afa24c43-8d70-43e3-8bbd-73a71675abe6",
+                "sessionId": "df7c596b-b653-4201-8641-a54c4b01eb24"
+              }
+            }
+          ],
+          "id": "event-000096"
+        },
+        {
+          "source_line": 97,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Verify 4B Evidence Tax numerical sources",
+                "sessionId": "df7c596b-b653-4201-8641-a54c4b01eb24"
+              }
+            }
+          ],
+          "id": "event-000097"
+        },
+        {
+          "source_line": 98,
+          "timestamp": "2026-05-18T13:51:15.442Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "\"39.86\" appears in files like `sft_no_evidence_noquant/metrics.json` — that's interesting. Let me check what \"39.86\" refers to in that context. It could be an unrelated field value. The grep for \"39.86\" found many files, but none of them are the SFT evidence baseline metric files.\n\nWait, \"39.86\" doesn't appear in any SFT baseline evidence metrics files. This means 39.86% might not actually exist as an exact metric in any file on disk. It could be:\n1. A rounded/misremembered number\n2. Computed from a different formula\n\n\n3. Written directly in the paper without matching a source file\n\nLet me look at the actual metric values more carefully. Checking the baseline files, I'm seeing ign_f1 values like 0.3974 (39.74%) and 0.4036 (40.36%), but neither of these rounds to exactly 39.86%.\n\nLooking at the paper_table_data.json and the paired t-test report, the D076 evaluation uses 0.3974 as the baseline, while the metrics_v2.json shows 0.4036. The discrepancy suggests the 39.86% figure in the task description might be incorrect or based on a different calculation.\n\nChecking the actual values from D076: evidence gives 39.74% and no-evidence gives 47.21%, which yields a 7.47pp gap that rounds to the stated 7.5pp, so the proportions are consistent even if the exact baseline number differs. I'm working backward from the numbers—if the tax is 7.5pp and no-evidence is 47.36%, that would give exactly 39.86%, so someone may have computed it that way. Let me search the artifacts directory to see if there's a report or analysis that actually references this 39.86% figure.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "afa24c43-8d70-43e3-8bbd-73a71675abe6",
+            "isSidechain": false,
+            "requestId": "req_011CbA9EHsLF3EQTj3yoWu7X",
+            "type": "assistant",
+            "uuid": "8eeed795-b9bd-4bd8-b3d3-20cf57226276",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "df7c596b-b653-4201-8641-a54c4b01eb24",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TbMvgumwFtHFty5AqJPLfS",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1653,
+                "cache_read_input_tokens": 65701,
+                "output_tokens": 1400,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1653,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1400,
+                    "cache_read_input_tokens": 65701,
+                    "cache_creation_input_tokens": 1653,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1653
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              }
+            }
+          },
+          "id": "event-000098"
+        },
+        {
+          "source_line": 99,
+          "timestamp": "2026-05-18T13:51:15.445Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The exact value \"39.86\" doesn't appear in any SFT baseline metrics file. Let me check the artifacts and any paper drafts."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8eeed795-b9bd-4bd8-b3d3-20cf57226276",
+            "isSidechain": false,
+            "requestId": "req_011CbA9EHsLF3EQTj3yoWu7X",
+            "type": "assistant",
+            "uuid": "71dffc03-3723-4328-8f58-63f6add2ad9d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "df7c596b-b653-4201-8641-a54c4b01eb24",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TbMvgumwFtHFty5AqJPLfS",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1653,
+                "cache_read_input_tokens": 65701,
+                "output_tokens": 1400,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1653,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1400,
+                    "cache_read_input_tokens": 65701,
+                    "cache_creation_input_tokens": 1653,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1653
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              }
+            }
+          },
+          "id": "event-000099"
+        },
+        {
+          "source_line": 100,
+          "timestamp": "2026-05-18T13:51:16.002Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SZouPGnVcd4U1QJYouZRb4",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "grep -rn \"39.86\" /root/autodl-tmp/freige/training_logs_grpo.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "71dffc03-3723-4328-8f58-63f6add2ad9d",
+            "isSidechain": false,
+            "requestId": "req_011CbA9EHsLF3EQTj3yoWu7X",
+            "type": "assistant",
+            "uuid": "34554814-3257-482b-89ee-7fb8603e641f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "df7c596b-b653-4201-8641-a54c4b01eb24",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TbMvgumwFtHFty5AqJPLfS",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1653,
+                "cache_read_input_tokens": 65701,
+                "output_tokens": 1400,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1653,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1400,
+                    "cache_read_input_tokens": 65701,
+                    "cache_creation_input_tokens": 1653,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1653
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              }
+            }
+          },
+          "id": "event-000100"
+        },
+        {
+          "source_line": 101,
+          "timestamp": "2026-05-18T13:51:16.314Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SZouPGnVcd4U1QJYouZRb4",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"3027:      \\\\\\\"entropy\\\\\\\": 0.011670458628395863,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "34554814-3257-482b-89ee-7fb8603e641f",
+            "isSidechain": false,
+            "promptId": "35327ab0-18d6-4766-ab31-77f6fd614eea",
+            "type": "user",
+            "uuid": "4f2de99a-051f-44e5-b088-0d7aaf878427",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"3027:      \\\\\\\"entropy\\\\\\\": 0.011670458628395863,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"3027:      \\\"entropy\\\": 0.011670458628395863,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"
+              }
+            },
+            "sourceToolAssistantUUID": "34554814-3257-482b-89ee-7fb8603e641f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "df7c596b-b653-4201-8641-a54c4b01eb24",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000101"
+        },
+        {
+          "source_line": 102,
+          "timestamp": "2026-05-18T13:51:17.837Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01J3rVVKJdjvKcvYjSDUsCj2",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/*.md",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4f2de99a-051f-44e5-b088-0d7aaf878427",
+            "isSidechain": false,
+            "requestId": "req_011CbA9EHsLF3EQTj3yoWu7X",
+            "type": "assistant",
+            "uuid": "30c2b1fb-187e-43ee-b855-914952fadca0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "df7c596b-b653-4201-8641-a54c4b01eb24",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TbMvgumwFtHFty5AqJPLfS",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1653,
+                "cache_read_input_tokens": 65701,
+                "output_tokens": 1400,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1653,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1400,
+                    "cache_read_input_tokens": 65701,
+                    "cache_creation_input_tokens": 1653,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1653
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              }
+            }
+          },
+          "id": "event-000102"
+        },
+        {
+          "source_line": 103,
+          "timestamp": "2026-05-18T13:51:17.863Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01J3rVVKJdjvKcvYjSDUsCj2",
+              "type": "tool_result",
+              "content": "artifacts/_project/report/trl_grpo_stability_research.md\nartifacts/trl_grpo_stability_research.md\nartifacts/kl_analysis_report.md\nartifacts/training_health_check.md\nartifacts/eval_script_audit.md\nartifacts/diag_mvp2_grpo_flatnli_r3.md\nartifacts/_project/report/d024_literature_survey.md\nartifacts/d024_literature_survey.md\nartifacts/ced_stabilizer_literature_survey.md\nartifacts/eval_status_check.md\nartifacts/status_check_loop4.md\nartifacts/training_trajectory_loop4.md\nartifacts/diversity_probe_results.md\nartifacts/rsft_gen_progress_check.md\nartifacts/rsft_pipeline_commands.md\nartifacts/eval_progress_check_0515.md\nartifacts/_project/report/edcr_analysis_r2b.md\nartifacts/edcr_analysis_r2b.md\nartifacts/dream_reports/dream_20260515T120227/best/paper_framing.md\nartifacts/dream_reports/dream_20260515T120227/median/paper_framing.md\nartifacts/dream_reports/dream_20260515T120227/worst/paper_framing.md\nartifacts/dream_reports/dream_20260515T120227/median/review_report.md\nartifacts/dream_reports/dream_20260515T120227/best/review_report.md\nartifacts/dream_reports/dream_20260515T120227/worst/review_report.md\nartifacts/dream_reports/dream_20260515T132059/best/paper_framing.md\nartifacts/dream_reports/dream_20260515T132059/median/paper_framing.md\nartifacts/dream_reports/dream_20260515T132059/worst/paper_framing.md\nartifacts/dream_reports/dream_20260515T132059/best/review_report.md\nartifacts/dream_reports/dream_20260515T132059/median/review_report.md\nartifacts/dream_reports/dream_20260515T132059/worst/review_report.md\nartifacts/related_work_gap_analysis.md\nartifacts/gap_analysis_w3.md\nartifacts/mvp2_eval_rsft_r2b_maxtok1536_r2/report/analyze_maxtok1536_r2.md\nartifacts/diagnose_plan_001.md\nartifacts/cuda3_diagnostic.md\nartifacts/literature_quantization_rl.md\nartifacts/_project/intermediate/test_inference_info.md\nartifacts/_project/data/cross_method_table_summary.md\nartifacts/_project/report/edcr_diagnostic_table.md\nartifacts/_project/report/edcr_analysis.md\nartifacts/edcr_analysis.md\nartifacts/_project/report/plan_003_edcr_cross_method_table.md\nartifacts/plan_003_edcr_cross_method_table.md\nartifacts/plan_012_dpo_ced/report/plan_012_dpo_ced_eval_report.md\nartifacts/_project/report/edcr_diagnostic_table_8b91f9.md\nartifacts/edcr_diagnostic_table.md\nartifacts/_project/intermediate/eval_test_set_readme.md\nartifacts/literature_survey_evidence_overhead.md\nartifacts/plan_012_dpo_ced_1ep_analysis.md\nartifacts/_project/report/related_work_gap_report.md\nartifacts/plan_003/report/plan_003_edcr_diagnostic.md\nartifacts/plan_003_edcr_diagnostic.md\nartifacts/plan_001_flat_nli_seed45/report/plan_001_flat_nli_seed45_analysis.md\nartifacts/plan_003_edcr_diagnostic/intermediate/edcr_diagnostic_preview.md\nartifacts/_project/report/related_work_expansion_report.md\nartifacts/related_work_survey/related_work_expansion_report.md\nartifacts/_project/intermediate/seed_comparison_readme.md\nartifacts/plan_003_edcr_diagnostic/report/edcr_diagnostic_summary.md\nartifacts/_project/report/edcr_diagnostic_table_3bd92e.md\nartifacts/process_check_report.md\nartifacts/topk_ablation_lit_review.md\nartifacts/_project/intermediate/ced_eval_commands.md\nartifacts/ced_eval_commands.md\nartifacts/paper/sections/related_work.md\nartifacts/_project/paper/related_work.md\nartifacts/_project/paper/citation_crosscheck_report.md\nartifacts/_project/report/citation_crosscheck_report.md\nartifacts/_project/report/experiment_summary_table.md\nartifacts/experiment_summary_table.md\nartifacts/metrics_summary_table.md\nartifacts/_project/report/metrics_summary_table.md\nartifacts/_project/report/paper_metrics_table.md\nartifacts/paper_metrics_table.md\nartifacts/_project/report/paper_evidence_table.md\nartifacts/paper_evidence_table.md\nartifacts/eval_progress_20260516.md\nartifacts/_project/paper/paper_main_tables_draft.md\nartifacts/paper_main_tables_draft.md\nartifacts/_project/intermediate/reeval_commands.md\nartifacts/reeval_commands.md\nartifacts/eval_plan_014_no_evidence_r2_analysis.md\nartifacts/evidence_cost_literature_scan.md\nartifacts/eval_rsft_ced_s45/report/eval_rsft_ced_s45_results.md\nartifacts/eval_rsft_ced_s43/report/eval_rsft_ced_s43_results.md\nartifacts/eval_rsft_ced_s43/report/eval_rsft_ced_s43_results_9f92df.md\nartifacts/test_eval_commands.md\nartifacts/d076_seed_status.md\nartifacts/_project/data/paper_table1_data.md\nartifacts/paper_table1_data.md\nartifacts/reeval_ced_s42/report/reeval_ced_s42_analysis.md\nartifacts/dream_reports/dream_20260516T105318/best/paper_framing.md\nartifacts/dream_reports/dream_20260516T105318/median/paper_framing.md\nartifacts/dream_reports/dream_20260516T105318/worst/paper_framing.md\nartifacts/_project/report/d076_paired_ttest_results.md\nartifacts/dream_reports/dream_20260516T105318/best/review_report.md\nartifacts/dream_reports/dream_20260516T105318/median/review_report.md\nartifacts/dream_reports/dream_20260516T105318/worst/review_report.md\nartifacts/_project/report/1_7b_non_truncated_subset_analysis.md\nartifacts/dream_reports/dream_20260516T155803/best/paper_framing.md\nartifacts/dream_reports/dream_20260516T155803/median/paper_framing.md\n(Results are truncated. Consider using a more specific path or pattern.)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "30c2b1fb-187e-43ee-b855-914952fadca0",
+            "isSidechain": false,
+            "promptId": "35327ab0-18d6-4766-ab31-77f6fd614eea",
+            "type": "user",
+            "uuid": "31eab34c-7303-4cdb-b394-c50ae203b4ec",
+            "toolUseResult": {
+              "filenames": [
+                "artifacts/_project/report/trl_grpo_stability_research.md",
+                "artifacts/trl_grpo_stability_research.md",
+                "artifacts/kl_analysis_report.md",
+                "artifacts/training_health_check.md",
+                "artifacts/eval_script_audit.md",
+                "artifacts/diag_mvp2_grpo_flatnli_r3.md",
+                "artifacts/_project/report/d024_literature_survey.md",
+                "artifacts/d024_literature_survey.md",
+                "artifacts/ced_stabilizer_literature_survey.md",
+                "artifacts/eval_status_check.md",
+                "artifacts/status_check_loop4.md",
+                "artifacts/training_trajectory_loop4.md",
+                "artifacts/diversity_probe_results.md",
+                "artifacts/rsft_gen_progress_check.md",
+                "artifacts/rsft_pipeline_commands.md",
+                "artifacts/eval_progress_check_0515.md",
+                "artifacts/_project/report/edcr_analysis_r2b.md",
+                "artifacts/edcr_analysis_r2b.md",
+                "artifacts/dream_reports/dream_20260515T120227/best/paper_framing.md",
+                "artifacts/dream_reports/dream_20260515T120227/median/paper_framing.md",
+                "artifacts/dream_reports/dream_20260515T120227/worst/paper_framing.md",
+                "artifacts/dream_reports/dream_20260515T120227/median/review_report.md",
+                "artifacts/dream_reports/dream_20260515T120227/best/review_report.md",
+                "artifacts/dream_reports/dream_20260515T120227/worst/review_report.md",
+                "artifacts/dream_reports/dream_20260515T132059/best/paper_framing.md",
+                "artifacts/dream_reports/dream_20260515T132059/median/paper_framing.md",
+                "artifacts/dream_reports/dream_20260515T132059/worst/paper_framing.md",
+                "artifacts/dream_reports/dream_20260515T132059/best/review_report.md",
+                "artifacts/dream_reports/dream_20260515T132059/median/review_report.md",
+                "artifacts/dream_reports/dream_20260515T132059/worst/review_report.md",
+                "artifacts/related_work_gap_analysis.md",
+                "artifacts/gap_analysis_w3.md",
+                "artifacts/mvp2_eval_rsft_r2b_maxtok1536_r2/report/analyze_maxtok1536_r2.md",
+                "artifacts/diagnose_plan_001.md",
+                "artifacts/cuda3_diagnostic.md",
+                "artifacts/literature_quantization_rl.md",
+                "artifacts/_project/intermediate/test_inference_info.md",
+                "artifacts/_project/data/cross_method_table_summary.md",
+                "artifacts/_project/report/edcr_diagnostic_table.md",
+                "artifacts/_project/report/edcr_analysis.md",
+                "artifacts/edcr_analysis.md",
+                "artifacts/_project/report/plan_003_edcr_cross_method_table.md",
+                "artifacts/plan_003_edcr_cross_method_table.md",
+                "artifacts/plan_012_dpo_ced/report/plan_012_dpo_ced_eval_report.md",
+                "artifacts/_project/report/edcr_diagnostic_table_8b91f9.md",
+                "artifacts/edcr_diagnostic_table.md",
+                "artifacts/_project/intermediate/eval_test_set_readme.md",
+                "artifacts/literature_survey_evidence_overhead.md",
+                "artifacts/plan_012_dpo_ced_1ep_analysis.md",
+                "artifacts/_project/report/related_work_gap_report.md",
+                "artifacts/plan_003/report/plan_003_edcr_diagnostic.md",
+                "artifacts/plan_003_edcr_diagnostic.md",
+                "artifacts/plan_001_flat_nli_seed45/report/plan_001_flat_nli_seed45_analysis.md",
+                "artifacts/plan_003_edcr_diagnostic/intermediate/edcr_diagnostic_preview.md",
+                "artifacts/_project/report/related_work_expansion_report.md",
+                "artifacts/related_work_survey/related_work_expansion_report.md",
+                "artifacts/_project/intermediate/seed_comparison_readme.md",
+                "artifacts/plan_003_edcr_diagnostic/report/edcr_diagnostic_summary.md",
+                "artifacts/_project/report/edcr_diagnostic_table_3bd92e.md",
+                "artifacts/process_check_report.md",
+                "artifacts/topk_ablation_lit_review.md",
+                "artifacts/_project/intermediate/ced_eval_commands.md",
+                "artifacts/ced_eval_commands.md",
+                "artifacts/paper/sections/related_work.md",
+                "artifacts/_project/paper/related_work.md",
+                "artifacts/_project/paper/citation_crosscheck_report.md",
+                "artifacts/_project/report/citation_crosscheck_report.md",
+                "artifacts/_project/report/experiment_summary_table.md",
+                "artifacts/experiment_summary_table.md",
+                "artifacts/metrics_summary_table.md",
+                "artifacts/_project/report/metrics_summary_table.md",
+                "artifacts/_project/report/paper_metrics_table.md",
+                "artifacts/paper_metrics_table.md",
+                "artifacts/_project/report/paper_evidence_table.md",
+                "artifacts/paper_evidence_table.md",
+                "artifacts/eval_progress_20260516.md",
+                "artifacts/_project/paper/paper_main_tables_draft.md",
+                "artifacts/paper_main_tables_draft.md",
+                "artifacts/_project/intermediate/reeval_commands.md",
+                "artifacts/reeval_commands.md",
+                "artifacts/eval_plan_014_no_evidence_r2_analysis.md",
+                "artifacts/evidence_cost_literature_scan.md",
+                "artifacts/eval_rsft_ced_s45/report/eval_rsft_ced_s45_results.md",
+                "artifacts/eval_rsft_ced_s43/report/eval_rsft_ced_s43_results.md",
+                "artifacts/eval_rsft_ced_s43/report/eval_rsft_ced_s43_results_9f92df.md",
+                "artifacts/test_eval_commands.md",
+                "artifacts/d076_seed_status.md",
+                "artifacts/_project/data/paper_table1_data.md",
+                "artifacts/paper_table1_data.md",
+                "artifacts/reeval_ced_s42/report/reeval_ced_s42_analysis.md",
+                "artifacts/dream_reports/dream_20260516T105318/best/paper_framing.md",
+                "artifacts/dream_reports/dream_20260516T105318/median/paper_framing.md",
+                "artifacts/dream_reports/dream_20260516T105318/worst/paper_framing.md",
+                "artifacts/_project/report/d076_paired_ttest_results.md",
+                "artifacts/dream_reports/dream_20260516T105318/best/review_report.md",
+                "artifacts/dream_reports/dream_20260516T105318/median/review_report.md",
+                "artifacts/dream_reports/dream_20260516T105318/worst/review_report.md",
+                "artifacts/_project/report/1_7b_non_truncated_subset_analysis.md",
+                "artifacts/dream_reports/dream_20260516T155803/best/paper_framing.md",
+                "artifacts/dream_reports/dream_20260516T155803/median/paper_framing.md"
+              ],
+              "durationMs": 14,
+              "numFiles": 100,
+              "truncated": true
+            },
+            "sourceToolAssistantUUID": "30c2b1fb-187e-43ee-b855-914952fadca0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "df7c596b-b653-4201-8641-a54c4b01eb24",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000103"
+        },
+        {
+          "source_line": 104,
+          "timestamp": "2026-05-18T13:51:18.153Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016j13ThVEtZ3MavN6UrcRfq",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx5090-4x",
+                "command": "ls /root/autodl-tmp/freige/artifacts/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "31eab34c-7303-4cdb-b394-c50ae203b4ec",
+            "isSidechain": false,
+            "requestId": "req_011CbA9EHsLF3EQTj3yoWu7X",
+            "type": "assistant",
+            "uuid": "b141627a-3575-4bee-922f-baafb4c2429e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "df7c596b-b653-4201-8641-a54c4b01eb24",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TbMvgumwFtHFty5AqJPLfS",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1653,
+                "cache_read_input_tokens": 65701,
+                "output_tokens": 1400,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1653,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1400,
+                    "cache_read_input_tokens": 65701,
+                    "cache_creation_input_tokens": 1653,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1653
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              }
+            }
+          },
+          "id": "event-000104"
+        },
+        {
+          "source_line": 105,
+          "timestamp": "2026-05-18T13:51:18.470Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016j13ThVEtZ3MavN6UrcRfq",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/freige/artifacts/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b141627a-3575-4bee-922f-baafb4c2429e",
+            "isSidechain": false,
+            "promptId": "35327ab0-18d6-4766-ab31-77f6fd614eea",
+            "type": "user",
+            "uuid": "f98052ed-edc7-4d78-af60-4a1b1f620698",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/freige/artifacts/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/freige/artifacts/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.3}}"
+              }
+            },
+            "sourceToolAssistantUUID": "b141627a-3575-4bee-922f-baafb4c2429e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "df7c596b-b653-4201-8641-a54c4b01eb24",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000105"
+        },
+        {
+          "source_line": 106,
+          "timestamp": "2026-05-18T13:51:21.650Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me search for \"39.86\" in the local artifacts directory.",
+              "signature": "EvYBClkIDRgCKkDKGM/9TdWs9QaCQmNPfIa2O8WL9eYk4bHDbw0B4mtv/oWz5NS6cRIBDY0Fp2GENDgANIhgDH+fSMhDP4uroEG7Mg9jbGF1ZGUtb3B1cy00LTY4ABIMmgsuamG/Yb+/bQr9GgxgaCJRKfkrDIhIBIMiMGMZezMxmndifDUDM/dv2zsO22o7ADUa6+rv83/IdaijhB7GrRimVAk4uL5Mq8Ap+SpLoyYDs+NUMVlvKbBbdZ2PQYm68ixh+pDp9ZTpWvthrns6HDEuSJ7dyADtpLS29abvUkyeu3b/JWECJ/WzL2dWUaN8aU24YGR6esJoGAE="
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f98052ed-edc7-4d78-af60-4a1b1f620698",
+            "isSidechain": false,
+            "requestId": "req_011CbA9GMnXcKf4qCnRCUCz8",
+            "type": "assistant",
+            "uuid": "8dad042b-c21e-4f9c-875f-717c3cc55095",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "df7c596b-b653-4201-8641-a54c4b01eb24",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PL62sxs6AvuP5bwJLVMsKc",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3416,
+                "cache_read_input_tokens": 67354,
+                "output_tokens": 287,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3416,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 287,
+                    "cache_read_input_tokens": 67354,
+                    "cache_creation_input_tokens": 3416,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3416
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "previous_message_not_found"
+                }
+              }
+            }
+          },
+          "id": "event-000106"
+        },
+        {
+          "source_line": 107,
+          "timestamp": "2026-05-18T13:51:22.585Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EYLrGKGT6yGwBLNMqWbbSQ",
+              "name": "Grep",
+              "input": {
+                "pattern": "39\\.86",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts",
+                "output_mode": "content",
+                "head_limit": 30
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8dad042b-c21e-4f9c-875f-717c3cc55095",
+            "isSidechain": false,
+            "requestId": "req_011CbA9GMnXcKf4qCnRCUCz8",
+            "type": "assistant",
+            "uuid": "9547722a-afb8-4d79-9773-e5e9d5b87c22",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "df7c596b-b653-4201-8641-a54c4b01eb24",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PL62sxs6AvuP5bwJLVMsKc",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3416,
+                "cache_read_input_tokens": 67354,
+                "output_tokens": 287,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3416,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 287,
+                    "cache_read_input_tokens": 67354,
+                    "cache_creation_input_tokens": 3416,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3416
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "previous_message_not_found"
+                }
+              }
+            }
+          },
+          "id": "event-000107"
+        },
+        {
+          "source_line": 108,
+          "timestamp": "2026-05-18T13:51:22.618Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EYLrGKGT6yGwBLNMqWbbSQ",
+              "type": "tool_result",
+              "content": "No matches found"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9547722a-afb8-4d79-9773-e5e9d5b87c22",
+            "isSidechain": false,
+            "promptId": "35327ab0-18d6-4766-ab31-77f6fd614eea",
+            "type": "user",
+            "uuid": "b3d78eea-602b-43ba-9c8c-4b34209bb0f4",
+            "toolUseResult": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "",
+              "numLines": 0
+            },
+            "sourceToolAssistantUUID": "9547722a-afb8-4d79-9773-e5e9d5b87c22",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "df7c596b-b653-4201-8641-a54c4b01eb24",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000108"
+        },
+        {
+          "source_line": 109,
+          "timestamp": "2026-05-18T13:51:23.264Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FMWm1wYuo1YsYcAbECGQaP",
+              "type": "tool_result",
+              "content": "artifacts/paper_metrics_table.md:12:| SFT no-evidence | 42 | 48.93 | 48.84 | 49.02 | — | 47.36 | `sft_no_evidence` |\nartifacts/paper_evidence_table.md:17:| eval_plan_014_sft_no_evidence | SFT no-evidence | 42 | 48.93 | 47.36 | — | — | — | standard | Upper bound: no evidence burden |\nartifacts/paper_evidence_table.md:30:- **Evidence generation tax**: Ign-F1 47.36 (no-evidence) → 40.36 (with evidence) = **-7.00pp** cost of faithfulness\nartifacts/paper_evidence_table.md:236:- Paper_framing table has corrected Ign-F1 values that differ from F1 (e.g., SFT no-evidence: Ign-F1=47.36 vs F1=48.93)\nartifacts/paper_evidence_table.md:260:1. **Evidence tax**: 47.36 → 40.36 = -7.00pp Ign-F1 (plan_014 vs noquant SFT)\nartifacts/dream_reports/dream_20260516T155803/best/paper_framing.md:110:| **SFT no-evidence** | **47.36** | 48.93 | **+7.00pp** | **—** | **—** | **—** |\nartifacts/paper_main_tables_draft.md:15:| **SFT (no evidence)** | **47.36** | **48.93** | — | — | — | `eval_plan_014_sft_no_evidence` |\nartifacts/paper_main_tables_draft.md:34:- Evidence tax: 47.36 → 40.36 = **−7.00pp** Ign-F1\nartifacts/paper_main_tables_draft.md:190:1. Evidence tax: 47.36 → 40.36 = −7.00pp Ign-F1 ✓\nartifacts/dream_reports/dream_20260516T155803/meta.yaml:866:        - '47.36'\nartifacts/dream_reports/dream_20260516T155803/worst/paper_framing.md:110:| **SFT no-evidence** | **47.36** | 48.93 | **+7.00pp** | **—** | **—** | **—** |\nartifacts/dream_reports/dream_20260516T155803/worst/paper.tex:64:\\paragraph{SFT Baseline.} Standard supervised fine-tuning on DocRED with gold evidence annotations. SFT with evidence yields Ign-F1=40.36; without evidence (upper bound), Ign-F1=47.36.\nartifacts/_project/report/paper_metrics_table.md:12:| SFT no-evidence | 42 | 48.93 | 48.84 | 49.02 | — | 47.36 | `sft_no_evidence` |\nartifacts/_project/report/paper_evidence_table.md:17:| eval_plan_014_sft_no_evidence | SFT no-evidence | 42 | 48.93 | 47.36 | — | — | — | standard | Upper bound: no evidence burden |\nartifacts/_project/report/paper_evidence_table.md:30:- **Evidence generation tax**: Ign-F1 47.36 (no-evidence) → 40.36 (with evidence) = **-7.00pp** cost of faithfulness\nartifacts/_project/report/paper_evidence_table.md:236:- Paper_framing table has corrected Ign-F1 values that differ from F1 (e.g., SFT no-evidence: Ign-F1=47.36 vs F1=48.93)\nartifacts/_project/report/paper_evidence_table.md:260:1. **Evidence tax**: 47.36 → 40.36 = -7.00pp Ign-F1 (plan_014 vs noquant SFT)\nartifacts/dream_reports/dream_20260516T155803/logs/review_median.log:17:[Omitted long matching line]\nartifacts/_project/paper/paper_main_tables_draft.md:15:| **SFT (no evidence)** | **47.36** | **48.93** | — | — | — | `eval_plan_014_sft_no_evidence` |\nartifacts/_project/paper/paper_main_tables_draft.md:34:- Evidence tax: 47.36 → 40.36 = **−7.00pp** Ign-F1\nartifacts/_project/paper/paper_main_tables_draft.md:190:1. Evidence tax: 47.36 → 40.36 = −7.00pp Ign-F1 ✓\nartifacts/dream_reports/dream_20260516T155803/logs/paper_agent_median.log:6:[Omitted long matching line]\nartifacts/dream_reports/dream_20260516T155803/logs/paper_agent_median.log:7:[Omitted long matching line]\nartifacts/dream_reports/dream_20260516T155803/logs/paper_agent_median.log:11:[Omitted long matching line]\nartifacts/dream_reports/dream_20260516T155803/logs/paper_agent_median.log:12:[Omitted long matching line]\nartifacts/dream_reports/dream_20260516T155803/logs/paper_agent_median.log:17:[Omitted long matching line]\nartifacts/dream_reports/dream_20260516T155803/logs/paper_agent_median.log:19:[Omitted long matching line]\nartifacts/dream_reports/dream_20260516T155803/logs/paper_agent_median.log:25:[Omitted long matching line]\nartifacts/dream_reports/dream_20260516T155803/logs/paper_agent_median.log:27:[Omitted long matching line]\nartifacts/dream_reports/dream_20260516T155803/median/paper_framing.md:110:| **SFT no-evidence** | **47.36** | 48.93 | **+7.00pp** | **—** | **—** | **—** |\n\n[Showing results with pagination = limit: 30]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c9ecf17a-ed02-42a2-a57c-60ca8a022726",
+            "isSidechain": false,
+            "promptId": "35327ab0-18d6-4766-ab31-77f6fd614eea",
+            "type": "user",
+            "uuid": "dca5af5b-dd33-46e1-a0cb-c0be23bc24d6",
+            "toolUseResult": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "artifacts/paper_metrics_table.md:12:| SFT no-evidence | 42 | 48.93 | 48.84 | 49.02 | — | 47.36 | `sft_no_evidence` |\nartifacts/paper_evidence_table.md:17:| eval_plan_014_sft_no_evidence | SFT no-evidence | 42 | 48.93 | 47.36 | — | — | — | standard | Upper bound: no evidence burden |\nartifacts/paper_evidence_table.md:30:- **Evidence generation tax**: Ign-F1 47.36 (no-evidence) → 40.36 (with evidence) = **-7.00pp** cost of faithfulness\nartifacts/paper_evidence_table.md:236:- Paper_framing table has corrected Ign-F1 values that differ from F1 (e.g., SFT no-evidence: Ign-F1=47.36 vs F1=48.93)\nartifacts/paper_evidence_table.md:260:1. **Evidence tax**: 47.36 → 40.36 = -7.00pp Ign-F1 (plan_014 vs noquant SFT)\nartifacts/dream_reports/dream_20260516T155803/best/paper_framing.md:110:| **SFT no-evidence** | **47.36** | 48.93 | **+7.00pp** | **—** | **—** | **—** |\nartifacts/paper_main_tables_draft.md:15:| **SFT (no evidence)** | **47.36** | **48.93** | — | — | — | `eval_plan_014_sft_no_evidence` |\nartifacts/paper_main_tables_draft.md:34:- Evidence tax: 47.36 → 40.36 = **−7.00pp** Ign-F1\nartifacts/paper_main_tables_draft.md:190:1. Evidence tax: 47.36 → 40.36 = −7.00pp Ign-F1 ✓\nartifacts/dream_reports/dream_20260516T155803/meta.yaml:866:        - '47.36'\nartifacts/dream_reports/dream_20260516T155803/worst/paper_framing.md:110:| **SFT no-evidence** | **47.36** | 48.93 | **+7.00pp** | **—** | **—** | **—** |\nartifacts/dream_reports/dream_20260516T155803/worst/paper.tex:64:\\paragraph{SFT Baseline.} Standard supervised fine-tuning on DocRED with gold evidence annotations. SFT with evidence yields Ign-F1=40.36; without evidence (upper bound), Ign-F1=47.36.\nartifacts/_project/report/paper_metrics_table.md:12:| SFT no-evidence | 42 | 48.93 | 48.84 | 49.02 | — | 47.36 | `sft_no_evidence` |\nartifacts/_project/report/paper_evidence_table.md:17:| eval_plan_014_sft_no_evidence | SFT no-evidence | 42 | 48.93 | 47.36 | — | — | — | standard | Upper bound: no evidence burden |\nartifacts/_project/report/paper_evidence_table.md:30:- **Evidence generation tax**: Ign-F1 47.36 (no-evidence) → 40.36 (with evidence) = **-7.00pp** cost of faithfulness\nartifacts/_project/report/paper_evidence_table.md:236:- Paper_framing table has corrected Ign-F1 values that differ from F1 (e.g., SFT no-evidence: Ign-F1=47.36 vs F1=48.93)\nartifacts/_project/report/paper_evidence_table.md:260:1. **Evidence tax**: 47.36 → 40.36 = -7.00pp Ign-F1 (plan_014 vs noquant SFT)\nartifacts/dream_reports/dream_20260516T155803/logs/review_median.log:17:[Omitted long matching line]\nartifacts/_project/paper/paper_main_tables_draft.md:15:| **SFT (no evidence)** | **47.36** | **48.93** | — | — | — | `eval_plan_014_sft_no_evidence` |\nartifacts/_project/paper/paper_main_tables_draft.md:34:- Evidence tax: 47.36 → 40.36 = **−7.00pp** Ign-F1\nartifacts/_project/paper/paper_main_tables_draft.md:190:1. Evidence tax: 47.36 → 40.36 = −7.00pp Ign-F1 ✓\nartifacts/dream_reports/dream_20260516T155803/logs/paper_agent_median.log:6:[Omitted long matching line]\nartifacts/dream_reports/dream_20260516T155803/logs/paper_agent_median.log:7:[Omitted long matching line]\nartifacts/dream_reports/dream_20260516T155803/logs/paper_agent_median.log:11:[Omitted long matching line]\nartifacts/dream_reports/dream_20260516T155803/logs/paper_agent_median.log:12:[Omitted long matching line]\nartifacts/dream_reports/dream_20260516T155803/logs/paper_agent_median.log:17:[Omitted long matching line]\nartifacts/dream_reports/dream_20260516T155803/logs/paper_agent_median.log:19:[Omitted long matching line]\nartifacts/dream_reports/dream_20260516T155803/logs/paper_agent_median.log:25:[Omitted long matching line]\nartifacts/dream_reports/dream_20260516T155803/logs/paper_agent_median.log:27:[Omitted long matching line]\nartifacts/dream_reports/dream_20260516T155803/median/paper_framing.md:110:| **SFT no-evidence** | **47.36** | 48.93 | **+7.00pp** | **—** | **—** | **—** |",
+              "numLines": 30,
+              "appliedLimit": 30
+            },
+            "sourceToolAssistantUUID": "c9ecf17a-ed02-42a2-a57c-60ca8a022726",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "df7c596b-b653-4201-8641-a54c4b01eb24",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000109"
+        },
+        {
+          "source_line": 110,
+          "timestamp": "2026-05-18T13:51:23.231Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FMWm1wYuo1YsYcAbECGQaP",
+              "name": "Grep",
+              "input": {
+                "pattern": "47\\.36",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts",
+                "output_mode": "content",
+                "head_limit": 30
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b3d78eea-602b-43ba-9c8c-4b34209bb0f4",
+            "isSidechain": false,
+            "requestId": "req_011CbA9GMnXcKf4qCnRCUCz8",
+            "type": "assistant",
+            "uuid": "c9ecf17a-ed02-42a2-a57c-60ca8a022726",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "df7c596b-b653-4201-8641-a54c4b01eb24",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PL62sxs6AvuP5bwJLVMsKc",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3416,
+                "cache_read_input_tokens": 67354,
+                "output_tokens": 287,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3416,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 287,
+                    "cache_read_input_tokens": 67354,
+                    "cache_creation_input_tokens": 3416,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3416
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "previous_message_not_found"
+                }
+              }
+            }
+          },
+          "id": "event-000110"
+        },
+        {
+          "source_line": 111,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "dca5af5b-dd33-46e1-a0cb-c0be23bc24d6",
+                "sessionId": "df7c596b-b653-4201-8641-a54c4b01eb24"
+              }
+            }
+          ],
+          "id": "event-000111"
+        },
+        {
+          "source_line": 112,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Verify 4B Evidence Tax numerical sources",
+                "sessionId": "df7c596b-b653-4201-8641-a54c4b01eb24"
+              }
+            }
+          ],
+          "id": "event-000112"
+        },
+        {
+          "source_line": 113,
+          "timestamp": "2026-05-18T13:52:05.673Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The artifacts consistently show:\n- SFT evidence: **40.36** Ign-F1\n- SFT no-evidence: **47.36** Ign-F1\n- Tax: **7.00pp**\n\nThe value \"39.86\" doesn't appear anywhere in the artifacts. The task description mentions \"39.86%\" as the \"论文 canonical\" value, but the actual canonical value used throughout the project is **40.36%**.\n\nLet me now check one more thing — the memory.md mentioned \"4B: +6.15pp\" for the evidence tax, which would correspond to:\n\n\n- 47.21 - 41.06 = 6.15 (using buggy v1 metrics from sft_baseline_noquant and sft_no_evidence_noquant)\n\nNow I'm compiling the complete picture across all three generations of evaluation configs, comparing the different F1 and Ign-F1 metrics (both buggy v1 and fixed v2 versions) for the merged model with batch_size=16.\n\nGenerating markdown table...\n\nLooking at the evidence tax across different configurations, I'm seeing values ranging from 6.15 to 7.87 percentage points. The task mentions a canonical 39.86% for evidence performance, but that doesn't match any of my actual results—the closest is 39.74% from the D076 reeval, so there might be a discrepancy in what was specified versus what I'm actually measuring.\n\nThe real problem I'm uncovering is that there are two major confounds affecting these comparisons: the merged model versus base+adapter setup produces different F1 scores, and the v1 metrics had a bug where ignored-F1 was incorrectly set equal to regular F1 instead of properly excluding training data.\n\nTo get consistent numbers for the paper, I need to either stick with the corrected v2 metrics using the merged model approach (which gives evidence at 40.36% and no-evidence at 47.36% for a 7.00pp difference), or follow the D076 protocol with base+adapter evaluation (yielding 39.74% and 47.21% respectively). The tradeoff is between having the right evaluation methodology versus staying compliant with the original D076 specification.\n\nLooking at the actual data, the D076 evals already have correct ign_f1 values where they differ from regular f1, so I don't need to recompute those. The real question is whether the v2 recomputation for the evidence baseline would give me the same correctness without needing to deviate from D076.\n\nThe buggy 41.06% comes from sft_baseline_noquant where ign_f1 was incorrectly set equal to f1 due to improper filtering of training facts. The 39.86% figure I'm looking for doesn't actually appear in the data I've examined so far.\n\nLooking at the corrected metrics, the paper uses 40.36% for evidence-based performance and 47.36% for no-evidence, giving a 7.00 percentage point gap. The D076 reeval protocol shows slightly different numbers at 39.74% and 47.21% respectively, with a 7.47 percentage point difference.\n\nThe issue is that the earlier 6.15pp claim mixed metrics from different evaluation protocols and used a buggy version of the ignore-F1 calculation. I should recommend using either the D076 protocol values consistently across all comparisons, or the corrected v2 merged-model values, depending on which protocol the paper's RSFT comparisons actually follow.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dca5af5b-dd33-46e1-a0cb-c0be23bc24d6",
+            "isSidechain": false,
+            "requestId": "req_011CbA9GigPAwtztqoec6jbd",
+            "type": "assistant",
+            "uuid": "68935425-b31b-499d-829d-48110fb9dd64",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "df7c596b-b653-4201-8641-a54c4b01eb24",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019MXvQDoyjhnctBgkj1Xjjx",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1936,
+                "cache_read_input_tokens": 70770,
+                "output_tokens": 3307,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1936,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 3307,
+                    "cache_read_input_tokens": 70770,
+                    "cache_creation_input_tokens": 1936,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1936
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000113"
+        },
+        {
+          "source_line": 114,
+          "timestamp": "2026-05-18T13:52:21.594Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have the complete picture. Here's the analysis:\n\n---\n\n## 调查结果\n\n### 三组独立的 4B SFT eval 结果\n\n| 来源 | Evidence ign_f1 | No-evi ign_f1 | Tax | 协议 |\n|---|---|---|---|---|\n| **v1 buggy** (sft_baseline_noquant/metrics.json) | **41.06%** (ign=f1 bug) | — | — | merged model, bs=16 |\n| **v2 fixed** (sft_baseline_noquant/metrics_v2.json + sft_no_evidence/metrics_v2.json) | **40.36%** | **47.36%** | **7.00pp** | merged model, bs=16 |\n| **D076 reeval** (sft_baseline_d076_reeval + sft_no_evidence_noquant) | **39.74%** | **47.21%** | **7.47pp** | base+adapter, bs=4 |\n\n### 41.06% 的来源\n\n- **文件**: `sft_baseline_noquant/metrics.json` (v1)\n- **Config**: model_path=`/root/autodl-tmp/sft_output` (merged model), batch_size=16, seed=42, quantize=false\n- **Bug**: ign_f1 == f1 == 0.4106 — evaluator.py 的 Ign-F1 计算有 bug（train_facts 未按 doc_id 过滤），导致 ign_f1 = f1\n- v2 修正后该 eval 的真实 ign_f1 = **40.36%**\n\n### \"39.86%\" — **不存在于任何 metrics 文件中**\n\n搜遍了 `/root/autodl-tmp/eval_results/` 和本地 artifacts 目录，\"39.86\" 未出现在任何 SFT baseline 的 metrics 文件中。最接近的值是：\n- **39.74%** — `sft_baseline_d076_reeval/metrics.json`（D076 protocol, base+adapter, bs=4）\n- **40.36%** — `sft_baseline_noquant/metrics_v2.json`（merged model, bs=16, 修正后）\n\n任务描述中的 \"39.86%\" 可能是 39.74% 的误记，或是 47.36 - 7.5 = 39.86 的反推。\n\n### 差异根因\n\n两个维度的差异叠加：\n\n1. **Ign-F1 计算 bug**：v1 metrics.json 的 ign_f1 没有排除 train triples（ign_f1=f1），v2 修正后 40.36% → 降幅 0.70pp\n2. **Eval 协议不同**：merged model (bs=16) vs base+adapter (bs=4) 产生不同的生成行为（merged: f1=41.06, adapter: f1=40.49）\n\n### memory.md 中 \"6.15pp\" 的来源\n\n混用了两个不同协议的 buggy 值：\n- sft_baseline_noquant v1 ign_f1 = 41.06%（buggy, merged model）\n- sft_no_evidence_noquant ign_f1 = 47.21%（correct, base+adapter）\n- 47.21 - 41.06 = 6.15pp — **跨协议比较 + 使用 buggy 值，无效**\n\n### 论文当前 canonical 值\n\n`paper_metrics_corrected.md` 和 `paper_main_tables_draft.md` 统一使用 **v2 fixed metrics**：\n- Evidence: **40.36%**（sft_baseline_noquant/metrics_v2.json）\n- No-evidence: **47.36%**（sft_no_evidence/metrics_v2.json）\n- Tax: **7.00pp**\n\n### 推荐\n\n论文应使用 **40.36% / 47.36% / tax 7.00pp**（v2 corrected, merged model, 与 paper_metrics_corrected.md 一致）。\n\n如果 RSFT 对比实验全部遵循 D076 protocol（base+adapter, bs=4），那么 SFT baseline 也应对齐为 **39.74% / 47.21% / tax 7.47pp**。当前 D076 paired t-test 已使用 39.74% 作为 baseline。\n\nmemory.md 中的 \"6.15pp\" 需要修正为 7.00pp（v2）或 7.47pp（D076）。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "68935425-b31b-499d-829d-48110fb9dd64",
+            "isSidechain": false,
+            "requestId": "req_011CbA9GigPAwtztqoec6jbd",
+            "type": "assistant",
+            "uuid": "5f2dc705-5483-4feb-ba2c-12f0fd55a578",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+            "sessionId": "df7c596b-b653-4201-8641-a54c4b01eb24",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019MXvQDoyjhnctBgkj1Xjjx",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1936,
+                "cache_read_input_tokens": 70770,
+                "output_tokens": 3307,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1936,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 3307,
+                    "cache_read_input_tokens": 70770,
+                    "cache_creation_input_tokens": 1936,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1936
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000114"
+        },
+        {
+          "source_line": 115,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "5f2dc705-5483-4feb-ba2c-12f0fd55a578",
+                "sessionId": "df7c596b-b653-4201-8641-a54c4b01eb24"
+              }
+            }
+          ],
+          "id": "event-000115"
+        },
+        {
+          "source_line": 116,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Verify 4B Evidence Tax numerical sources",
+                "sessionId": "df7c596b-b653-4201-8641-a54c4b01eb24"
+              }
+            }
+          ],
+          "id": "event-000116"
+        }
+      ]
+    }
+  ]
+}

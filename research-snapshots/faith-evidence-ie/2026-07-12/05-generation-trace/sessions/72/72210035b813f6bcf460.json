@@ -1,0 +1,82 @@
+{
+  "schema_version": "1.0",
+  "id": "72210035b813f6bcf460",
+  "project": "faith-evidence-ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> shard_3: 657 docs, cuda:3 空闲. 排除 .bak 备份文件. 与 s1/s2 相同参数. </agent_context> <project_context> # 项目: faith",
+  "task_key": "ad80b65f-ba04-4574-8559-2d1b0b2441d9",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/ad80b65f-ba04-4574-8559-2d1b0b2441d9.jsonl",
+    "occurrence": 1,
+    "bytes": 1431523,
+    "sha256": "50f4de8e1ff863263b3d494320f611889b1075c576c878e2882a665182bcb0bb"
+  },
+  "statistics": {
+    "messages": 824,
+    "user_turns": 2,
+    "tool_calls": 315,
+    "roles": {
+      "record": 125,
+      "user": 2,
+      "assistant": 66,
+      "tool_call": 315,
+      "tool_result": 315,
+      "system": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "72210035b813f6bcf460-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 784,
+      "chunks": [
+        {
+          "path": "72210035b813f6bcf460-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "72210035b813f6bcf460-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "72210035b813f6bcf460-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "72210035b813f6bcf460-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "72210035b813f6bcf460-part-0005.json",
+          "message_count": 66
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 38,
+      "chunks": [
+        {
+          "path": "72210035b813f6bcf460-part-0005.json",
+          "message_count": 38
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-shard-3-657-docs-cuda-3-bak-s1-s2-agent-context-project-context.md"
+}
