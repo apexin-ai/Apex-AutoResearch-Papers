@@ -1,0 +1,384 @@
+_next_id: 27
+mistakes:
+- id: M001
+  date: '2026-05-20'
+  category: agent_behavior
+  severity: high
+  summary: Agent 连续 3 次未修复 OOM 代码就重跑 null_check.py，重复同一失败
+  root_cause: Agent 收到 OOM 修复指令（分批处理 / 降 N_SIM）后，派新 Worker 时未确保 Worker 先修改代码再运行。Worker
+    读取的是原版未修改的代码。
+  prevention: Worker 重跑失败任务时，必须先验证导致失败的代码已被修改（diff 确认），再运行。禁止"原样重跑"已知会失败的代码。
+  status: active
+  context: '7.6GB RAM 机器上 MMLU 10K×14042 float64 矩阵峰值 >8GB。三次 exit code 137 (OOM Kill):
+    worker_code_null_sanity_check (07:37), worker_code_simulation_framework (07:38),
+    worker_code_run_sanity_and_sim (07:42)。'
+- id: M002
+  date: '2026-05-20'
+  category: agent_behavior
+  severity: high
+  summary: Worker 重写正确代码导致数学错误，OOM 问题 6 次未修复
+  root_cause: Worker 面对 OOM 时选择重写整个代码而非最小修改（改 N_SIM 一行），重写过程中引入 lz* 1PL 简化公式错误（原 4PL
+    实现是正确的）。反复失败的根本原因是 Worker 没有遵循 Reviewer 的修复建议。
+  prevention: 1. OOM 修复优先降低数据规模（N_SIM/batch_size），不重写计算逻辑；2. 已经过 Reviewer 数学验证的代码禁止重写，只允许最小改动；3.
+    Reviewer 给出具体修复方案时 Agent 必须严格执行，不自行发挥。
+  status: active
+  context: Phase A sanity check 验证 PSN-IRT 4PL 参数下 lz* null distribution。原始 src/person_fit.py
+    的 lz* 4PL 公式正确（Reviewer 确认），src/null_check.py 设计合理但 N_SIM=10000 导致 OOM（本地仅 7.6GB
+    RAM）。Worker 6 次失败，每次都试图重写代码而非改 N_SIM，最终在 artifacts/code/ 写了用 1PL 简化公式的错误版本。
+  fix: Director 发紧急指令：删除错误文件，改 src/null_check.py N_SIM=10000→2000，运行原始脚本。
+- id: M003
+  date: '2026-05-20'
+  category: experiment_design
+  severity: high
+  summary: Phase B 使用全局 θ 而非 benchmark-specific θ，违反 unidimensionality 假设导致 93.3%
+    false flag
+  root_cause: PSN-IRT 提供的 student_abilities.csv 是跨 11 个 benchmark 的全局 θ。Phase B 脚本直接用了它，没有按
+    IDEA_BRIEF 设计的 per-benchmark θ MLE 重估。LLM 的能力是多维的（MMLU/HumanEval/GSM8K 能力差异大），全局
+    θ 系统性偏移导致 lz* 在强项 benchmark 上大幅正偏、弱项上负偏。
+  prevention: 1. 使用 IRT person-fit 统计量时必须用 benchmark-specific θ（MLE 从该 benchmark response
+    vector 估计），不能用跨 benchmark 全局 θ；2. 实验代码审查时检查 θ 来源是否与假设一致；3. 真实数据 flag 比例超过 20%
+    时视为阈值/θ 校准问题，不是污染流行。
+  status: active
+  context: 'Phase A simulation 不受影响（模拟中 MLE 天然是 benchmark-specific 的）。IDEA_BRIEF 明确写了
+    per-benchmark θ 但执行时未遵循。Reviewer 在 Phase B 审查中已提到 global θ vs benchmark-specific
+    θ 的 warning (finding #4)，当时未被足够重视。'
+  fix: 'D006: 用 benchmark-specific θ MLE 重估 + empirical null (parametric bootstrap)
+    + BH FDR 控制。'
+- id: M004
+  date: '2026-05-20'
+  category: agent_behavior
+  severity: medium
+  summary: Worker 声称 clean_s3 训练已启动但实际未提交，GPU 全部空闲
+  root_cause: Worker context 中准备了数据和代码修改，但在实际提交训练命令前 session 结束或跳过了 submit 步骤。Agent
+    未独立验证训练是否真正运行。
+  prevention: Agent 提交训练后必须用 nvidia-smi 独立验证 GPU 利用率 >0%。不接受 Worker 的"已启动"声明作为事实——必须有
+    SSH 端验证。
+  status: active
+  context: exp-ctrl-contam-pilot-clean-s3, Worker worker_code_exp-ctrl-contam-pilot-clean-s3_20260520T185936
+    报告 status=done 但训练从未通过 submit_training_job 提交
+  fix: Director 派 Agent 重新提交训练，要求 nvidia-smi 确认
+- id: M005
+  date: '2026-05-20'
+  category: code_bug
+  severity: high
+  summary: 'M005: Figure 2 "Theory" 线用 PCHIP 插值+硬编码 R² 标签，构成数据伪造'
+  root_cause: Paper Agent 生成 gen_fig2.py 时，未使用 exp-power-theory 的真实理论模型，而是用 PCHIP
+    插值（过所有经验数据点，R²≡1.0）冒充理论拟合曲线，并硬编码 R²=0.96 标签。Reviewer 审查代码时发现。
+  prevention: 1) 图表生成代码中任何 R²/拟合度标签必须来自实际计算，禁止硬编码。2) 论文中声称"理论模型"时，必须有可追溯的推导代码和拟合过程。3)
+    Reviewer 审查 figure 生成代码时重点检查：标签数值是否硬编码、"拟合"是否真实拟合过程。
+  status: active
+  context: gen_fig2.py 第49-57行，先从 CSV 取 MMLU 数据点，用 PchipInterpolator 做单调三次样条插值，标签写
+    Theory (R²=0.96)。真实理论 power function 存在于 exp-power-theory (R²=0.957)，但未被调用。
+  fix: 指令 Paper Agent 用 exp-power-theory 的真实解析 power curve 替换 PCHIP 插值，R² 改为实际值 0.957。
+- id: M006
+  date: '2026-05-20'
+  category: code_bug
+  severity: medium
+  summary: 'M006: train.py 内部 os.environ["CUDA_VISIBLE_DEVICES"] 覆盖 submit_training_job
+    的 GPU 映射，导致 3 进程挤同一 GPU'
+  root_cause: train.py:53 执行 os.environ["CUDA_VISIBLE_DEVICES"] = str(args.gpu)，覆盖了
+    submit_training_job 通过外层 CUDA_VISIBLE_DEVICES 设置的 GPU 隔离。3 个 condition 都用 --gpu
+    0 导致全挤 GPU 0（73GB/98GB），GPU 1/2 空闲。
+  prevention: 1) 训练脚本不应内部设置 CUDA_VISIBLE_DEVICES——由调度层（submit_training_job）统一管理。2)
+    如果脚本必须设 GPU，应检查是否已有外层 CUDA_VISIBLE_DEVICES 设置并尊重它。3) 并行提交后立即用 nvidia-smi 验证每个
+    GPU 的实际利用率。
+  status: active
+  fix: kill contam_15/contam_50 进程，用 --gpu 1 / --gpu 2 重启。确认 nvidia-smi 3 GPU 各自 80%+
+    利用率。
+- id: M007
+  date: '2026-05-20'
+  category: code_bug
+  severity: medium
+  summary: 'M007: Cron on_complete 再次被 kill 旧进程的 exit file 误触（第二次，contam_15）'
+  root_cause: GPU 并行修复时 kill 了旧 contam_15 进程（PID 39375），该进程产生 exit file，cron hook
+    未验证 exit code 或进程是否仍在运行，直接触发 on_complete。与 M004 (clean_s3 stale exit file) 完全相同的模式。
+  prevention: cron on_complete hook 应增加验证：1) 检查 exit code（kill 产生非零 exit code）2) 检查对应
+    GPU 是否仍有训练进程运行 3) 检查训练日志最后时间戳是否在合理范围内。这是系统级 bug，应推给 Agent 修复 cron 逻辑。
+  status: active
+  fix: Reviewer 识别为 false positive，无需干预。实际训练继续运行。
+- id: M008
+  date: '2026-05-20'
+  category: code_bug
+  severity: medium
+  summary: 'M008: ctrl-contam eval_lz.py 使用未校正的 ℓz 而非论文声称的 ℓz*（Snijders 2001）'
+  root_cause: ctrl_contam_pilot/eval_lz.py 和 ctrl_contam_llama/eval_lz.py 独立实现了 person-fit
+    计算，未复用主代码库 src/person_fit.py 的 Snijders 方差校正（Fisher 信息量 I_theta + 协方差项 C_theta）。MMLU
+    n=14042 下数值差异可忽略（C²/I→0），但构成方法声明与实现不一致。
+  prevention: 实验脚本中的核心统计计算必须导入主代码库的经过验证的实现，不独立重写。代码审查时检查统计公式是否与论文描述一致。
+  status: active
+  fix: 更新 eval_lz.py 导入 src/person_fit.py 的 compute_lz_star，重跑所有条件 eval。
+- id: M009
+  date: '2026-05-20'
+  category: experiment_design
+  severity: medium
+  summary: 'M009: Llama clean_s2 训练使用了与原始 clean 相同的 seed=42，导致重复数据'
+  root_cause: Director 指令中写了 "seed=42（或其他）" 但 Worker 使用了 42。train.py SEED_MAP 中 clean
+    和 clean_s2 都映射到 seed=42。Director 未明确指定不同 seed 值。
+  prevention: 指定额外 seeds 时必须明确列出与已有 seeds 不同的具体值，不留歧义。代码审查 SEED_MAP 确认无重复。
+  status: active
+  fix: Kill PID 50690, 改 SEED_MAP clean_s2=123, 重启训练。浪费 ~7 min GPU。
+- id: M010
+  date: '2026-05-21'
+  category: resource_misuse
+  severity: high
+  summary: exp-post-rl SFT→GRPO pipeline 断裂 + Mistral 准备未启动，4 GPU 空闲
+  root_cause: SFT 完成后 GRPO 未自动接续（可能 Worker 脚本没有 chained execution）。Mistral 指令发给 Agent
+    但 Agent 在准备阶段停滞，未实际启动 GPU 训练。Director 依赖 Agent 汇报状态而非 Reviewer 实时审计 GPU 状态。
+  prevention: 1. 多阶段实验（SFT→GRPO→eval）必须在指令中明确要求 chained execution 或 nohup wrapper。2.
+    派实验后 30 分钟内让 Reviewer 审计 GPU 实际占用（nvidia-smi），不依赖 Agent 自报。3. ROADMAP 中写 GPU 状态前先用
+    get_gpu_health 确认实际值。
+  status: active
+  context: exp-post-rl SFT 完成 EXIT_CODE=0 (1175s) 但 GRPO 未启动。exp-ctrl-contam-mistral
+    代码/数据已准备但 GPU 0 MiB。4 张卡全部空闲浪费中。
+- id: M011
+  date: '2026-05-21'
+  category: experiment_design
+  severity: high
+  summary: 'M011: GRPO 配置严重错误——LR 低 10-20x + max_new_tokens=32 导致模型零学习，浪费 ~2h GPU'
+  root_cause: GRPO 训练配置未针对 MMLU 任务校准：(1) LR=5e-7 比推荐范围 1e-5~5e-6 低 10-20x，梯度几乎为零；(2)
+    max_new_tokens=32 对 MMLU 多选答题太短，90%+ 生成被截断；(3) 启动后无人检查早期训练指标（loss/grad_norm/clip_ratio），直到
+    Reviewer 在 52% 进度时发现。
+  prevention: 1. GRPO/PPO 启动前必须有配置 checklist：LR 范围 1e-5~5e-6、max_new_tokens ≥ 任务预期回答长度的
+    2x、reward function sanity check（5 个样本手动验证）。2. 前 100 步强制检查：loss 非零、grad_norm 非零、clip_ratio
+    > 0。如果三项任一为零，立即报告不继续。3. 对于非标准 RL 任务（如 MMLU 选择题），Agent 必须在提交前说明 generation format
+    和 token budget。
+  status: active
+  context: exp-post-rl GRPO on cuda:2, PID 73689, 3692/7021 steps (52.6%). loss=-0.027~0,
+    grad_norm=0, clip_ratio=0, LR=4.9e-7. 已浪费约 2h GPU 时间。D022 核心假设(post-RL lz* vs
+    HT)依赖有效 GRPO。
+  fix: Kill PID 73689, 修复 LR→5e-6, max_new_tokens→128, 从 SFT checkpoint 重启。前 200 步监控。
+  related_decisions:
+  - D022
+- id: M012
+  date: '2026-05-21'
+  category: code_bug
+  severity: high
+  summary: 'M012: 无 sentinel 的 nohup 训练在进程正常退出后被 cron 误判为 failed（s4/s5 均受影响）'
+  root_cause: 训练进程正常完成退出后 ps 查不到进程 → cron 监控 hook 连续 5 次检测"进程不在" → 没有 W&B 或 sentinel
+    文件验证完成信号 → 自动标记 conclusion=failed。这是 M007（cron on_complete 被 kill 旧进程的 exit file
+    误触）的变体模式。
+  prevention: 1. 训练脚本完成时必须写 sentinel 文件（如 touch DONE 或写 exit_code=0 到 .sentinel），cron
+    hook 优先检查 sentinel 而非 ps。2. hook 判定 failed 前应检查最终 checkpoint 存在性（checkpoint-{max_step}
+    或 adapter_model.safetensors 存在 → 大概率成功）。3. 这是系统级 bug，应推给 Agent 修复 cron 监控逻辑。
+  status: active
+  context: exp-ctrl-contam-qwen-clean-s4 (seed=301) 和 s5 (seed=302) 均正常完成 3 epochs（checkpoint-939
+    saved, adapter_model.safetensors 20MB），但被 registry 标记为 failed。s6 同样完成但有独立的配置异常问题。
+  fix: 手动将 s4/s5 registry 改为 conclusion=success，运行 eval_lz。长期：修复 cron hook 逻辑增加 sentinel/checkpoint
+    检查。
+  related_decisions:
+  - D021
+- id: M013
+  date: '2026-05-21'
+  category: code_bug
+  severity: high
+  summary: 'M013: s6 启动时未设 CUDA_VISIBLE_DEVICES=0，使用 4 GPU 训练（effective batch 64 vs
+    正确的 16），结果不可用'
+  root_cause: Worker 启动 s6 时遗漏 CUDA_VISIBLE_DEVICES 环境变量设置。PyTorch 自动检测到 4 张 GPU (_n_gpu=4)，导致
+    DDP 训练。effective batch size 从 4×4×1=16 变为 4×4×4=64，总步数从 939 变为 237。train.py 注释写明
+    GPU assignment 由 CUDA_VISIBLE_DEVICES 管理，但 Worker 未遵循。这是 M006（CUDA_VISIBLE_DEVICES
+    覆盖）的镜像问题——M006 是脚本内部覆盖外部设置，M013 是外部根本没设置。
+  prevention: '1. submit_training_job 或 Worker 启动训练命令时必须显式 export CUDA_VISIBLE_DEVICES=N，不能依赖
+    train.py 内部或 PyTorch 自动检测。2. 训练启动后立即检查日志前 5 行的 GPU 数和总步数——如果步数 ≠ 预期(单 GPU 应为 939)，立即
+    kill。3. 把 CUDA_VISIBLE_DEVICES 检查加入 train.py 的启动断言：if os.environ.get("CUDA_VISIBLE_DEVICES")
+    is None: raise ValueError("CUDA_VISIBLE_DEVICES not set")'
+  status: active
+  context: exp-ctrl-contam-qwen-clean-s6 (seed=303)。s6 checkpoint 237 步 vs s4/s5 的
+    939 步。4 GPU DDP 导致 4x batch size。loss=5.58 vs 1.87。s6 结果不可用于 Cohen's d 计算。
+  fix: 标记 s6 INVALID，用 CUDA_VISIBLE_DEVICES=0 在 cuda:0 重跑。
+  related_decisions:
+  - D021
+- id: M014
+  date: '2026-05-21'
+  category: resource_misuse
+  severity: high
+  summary: Worker B 在 cuda:2 上误启动 s7，与正在运行的 GRPO 冲突
+  root_cause: Worker B 看到 cuda:2 "空闲"（可能是 nvidia-smi 瞬时读数或 GRPO 加载模型时显存未满），未与 registry/Director
+    确认就直接在 cuda:2 上启动了 s7 训练。多 Worker 并行时缺乏 GPU 分配锁机制。
+  prevention: 1. Worker 启动 GPU 任务前必须先 ssh_read_only nvidia-smi 确认目标 GPU 无占用进程 2. Director
+    派多 Worker 时明确锁定 GPU 分配（Worker A 只碰 cuda:X/Y，Worker B 只碰 cuda:Z/W）3. 禁止 Worker
+    自行判断 GPU 空闲并占用非分配的 GPU
+  status: active
+  context: GRPO PID 93846 在 cuda:2 运行 (step ~80/14042)。Worker B 报告 cuda:2 空闲后启动 s7
+    (PID 97296)，导致冲突。最终 GRPO 被替换为新 PID 97791（从 step 0 重跑），丢失约 80 步进度。
+  fix: kill 冲突的 s7 进程 (PID 97296)，GRPO 新进程 PID 97791 已在 cuda:2 正常运行。
+- id: M015
+  date: '2026-05-21'
+  category: agent_behavior
+  severity: high
+  summary: s7 训练再次未设 CUDA_VISIBLE_DEVICES，重现 M013 4-GPU bug（237 步）
+  root_cause: Worker 启动 s7 时使用 --gpu 3 参数但未设 CUDA_VISIBLE_DEVICES 环境变量。train.py 内部
+    _n_gpu=4 导致 batch size 4x，总步数 237 而非 939。与 M013(s6) 完全相同的错误模式——Director 指令中已写明
+    CUDA_VISIBLE_DEVICES 但 Worker 未遵循。同时 Worker 还产生了 6 个重复训练进程。
+  prevention: 1. 所有 train.py 启动指令必须包含 CUDA_VISIBLE_DEVICES=X 前缀（硬规则）2. 启动后必须 nvidia-smi
+    验证单卡 + 检查总步数是否为 939 3. 考虑在 train.py 中加入 assert torch.cuda.device_count() == 1
+    的启动检查 4. Worker 产生重复进程的问题需要诊断（可能是 nohup/subprocess 重试机制）
+  status: active
+  context: s7 (PID 99214) 以 --condition clean_s7 --gpu 3 启动，无 CUDA_VISIBLE_DEVICES，导致
+    237 步而非 939 步。同时存在 6 个重复进程（s6×2, s7×2, s8×2）消耗 CPU/RAM。这是 M013 的完全重现。
+  fix: kill s7 (PID 99214) + 6 个重复进程，用 CUDA_VISIBLE_DEVICES=0 重启 s7。清空 Agent 队列发综合指令。
+- id: M016
+  date: '2026-05-21'
+  category: agent_behavior
+  severity: high
+  summary: Worker spawn 产生 phantom 重复进程 + kill 指令连续 3 次未执行
+  root_cause: Worker 通过 spawn_worker 启动时会 fork 出 phantom 进程（每个 train.py 命令产生 2 个无
+    GPU 的重复进程）。同时 Worker 接收 kill 指令后未实际执行 kill 操作（可能是命令被 phantom 进程干扰或 Worker 执行流程中
+    kill 步骤被跳过）。Director 连续 3 轮发 kill 指令均未生效。
+  prevention: 1. 关键清理操作（kill 进程、修复配置）应由 Agent 直接 ssh_execute，不通过 spawn_worker 2. Worker
+    phantom 进程 bug 需要 Agent 排查根因（可能是 nohup/subprocess 机制问题）3. kill 指令执行后必须立即 ps 验证，未验证
+    = 未执行
+  status: active
+  context: s7 kill 指令被发出 3 次（紧急消息 + replace_queue × 2），Reviewer 连续 2 份报告标记 s7 仍在运行。同时每轮
+    Worker 操作都会产生新的 phantom 进程对（s6×2, s7×2, s8×2 → 新 s7×2, s8×2）。直到改为要求 Agent 直接 ssh_execute
+    而非 spawn_worker。
+  fix: 要求 Agent 直接 ssh_execute 所有 kill 和启动命令，禁止 spawn_worker。同时在 train.py 中加入 assert
+    torch.cuda.device_count() == 1 防护。
+- id: M017
+  date: '2026-05-21'
+  category: agent_behavior
+  severity: high
+  summary: Worker 误杀配置正确的 s8 (PID 99807)，且未完成 s7 重启和 s6 eval
+  root_cause: 第四次催告的 cleanup Worker kill 了所有非 GRPO 的 train.py 进程，包括配置正确的 s8 (CUDA_VISIBLE_DEVICES=3,
+    step 294/939)。Worker 只执行了 kill 步骤但未执行后续的 restart 步骤（s7 重启、s6 eval），导致 GPU 1/3
+    空闲 20+ 分钟。
+  prevention: 1. kill 指令必须精确指定 PID，不要 pattern-match 所有 train.py 进程 2. Worker 的 kill
+    列表中排除已知正确的进程（Director 需明确标注"不动"的 PID）3. kill + restart 必须在同一个执行流中完成，不能 kill 后就返回
+  status: active
+  context: s8 (PID 99807) 使用正确的 CUDA_VISIBLE_DEVICES=3，已训练到 step 294/939 (31%)。Director
+    的指令中明确写了"PID 99807 不能动"，但 Worker 仍然 kill 了它。同时 s7 未重启、s6 eval 未启动，导致 GPU 1/3 完全空闲。
+  fix: 重启 s8 (CUDA_VISIBLE_DEVICES=3) + s7 (CUDA_VISIBLE_DEVICES=1) + s6 eval。
+- id: M018
+  date: '2026-05-21'
+  category: code_bug
+  severity: high
+  summary: 'run_constat.py 两个 bug: 缺 Snijders 校正 + 检测阈值方向反，导致 lz* 仿真检测率人为归零'
+  root_cause: Worker 编写 run_constat.py 时未从 eval_lz.py 复制正确的 Snijders (2001) 方差校正（Var*
+    = Var_lz - C²/I_θ），计算的是 uncorrected lz（clean 均值 -2.365 而非 ~0）。同时检测阈值 lz > 1.96
+    方向错误（污染导致 lz* 负偏，应检测 < -1.96）。两 bug 叠加导致仿真检测率 = 0.000。
+  prevention: '1. 新脚本中的 lz* 计算必须复用 eval_lz.py 的经过验证的实现，不要重写 2. 任何统计检验的阈值方向（单侧/双侧、正/负方向）必须在代码审查中明确验证
+    3. 基本 sanity check: clean 数据的 lz* 均值应 ≈ 0，如果偏离大（如 -2.4）说明校正有问题'
+  status: active
+  context: ConStat 仿真对比实验。lz* 在所有污染率下检测率 0.000 而 ConStat 在 25%/50% 为 1.000。Reviewer
+    诊断出根因为代码 bug 而非方法缺陷。修复后需重跑。
+  fix: 修复 compute_lz_star 加入 Snijders 校正 + 阈值改为双侧 |lz*| > 1.96。指令已发。
+- id: M019
+  date: '2026-05-21'
+  category: agent_behavior
+  severity: high
+  summary: 'M019: GRPO v2 restarted without applying diagnosed code fixes, repeating
+    same failure'
+  root_cause: Agent Worker diagnosed GRPO failure cause (binary reward + num_generations=8
+    + high SFT accuracy → zero reward variance) and recommended fixes (num_generations=16,
+    temperature=1.2), but restarted train_grpo.py without modifying the code. Additionally
+    placed GRPO on same GPU as Llama s2 (both CUDA_VISIBLE_DEVICES=0), causing 2x
+    slowdown.
+  prevention: 1. When restarting a failed experiment with parameter changes, always
+    verify code diff BEFORE launching. 2. Director must require code diff for approval
+    before GRPO restart. 3. Never assign two training processes to the same GPU.
+  status: active
+  context: GRPO v1 killed at step 2553 due to frac_reward_zero_std=1.0 (D028). Worker
+    diagnosed root cause correctly but restarted identical code as GRPO v2 (PID 130591).
+    Ran to step 4526/7021 wasting ~2.5h GPU time. Also shared GPU 0 with Llama clean_s2
+    (PID 129109), slowing it from 1.1s/it to 2.2s/it.
+  fix: Kill PID 130591, require code modification + Director approval before GRPO
+    v3 launch.
+  related_decisions:
+  - D028
+- id: M020
+  date: '2026-05-21'
+  category: resource_misuse
+  severity: high
+  summary: 'M020: 19912 GPU 0/1/2 双重训练进程 + 未授权 s11 训练，浪费 3 卡 VRAM'
+  root_cause: 第一波 Worker 启动 Llama s8/s9/s10 训练后，第二波 Worker 未检查已有进程直接重启相同条件。另外 Worker
+    未经授权启动 s11（Llama 只需 n=10），GPU 3 本应用于 Mistral s4。
+  prevention: Worker 启动训练前必须先 nvidia-smi 检查目标 GPU 是否有进程。如果已有同 condition 进程，跳过不重启。未在
+    Director 指令中列出的 condition 不可自行添加。
+  status: active
+  context: 19912 GPU 0/1/2 各有两个 PID 跑同一 s8/s9/s10 (旧 PID 30638/30784/30930 + 新 PID
+    32691/32767/32843)，且 35694 上这些训练已完成。GPU 3 有未授权 s11 (PID 33181, seed=308)。总计浪费
+    3 张卡的全部 VRAM + 1 张卡做无用训练。
+  fix: Kill 全部 7 个进程，释放 4 卡给 Mistral s4-s7 训练。
+- id: M021
+  date: '2026-05-21'
+  category: agent_behavior
+  severity: medium
+  summary: 'M021: Worker 错误声称 GRPO grad_norm 恢复到 0.41-0.50，实际日志 step 1907-1917 全部
+    grad_norm=0'
+  root_cause: Worker 在报告 GRPO status 时可能混淆了不同日志或不同训练的数据，声称 step 1732 grad_norm 恢复，但
+    Reviewer 核实日志显示全程 grad_norm=0。
+  prevention: Worker 报告训练 metrics 时必须直接引用日志原文（tail -N），不可凭记忆或推断描述趋势。Director 对 Worker
+    的定性声明（如"恢复""好转"）应要求附原始数据佐证。
+  status: active
+- id: M022
+  date: '2026-05-21'
+  category: experiment_design
+  severity: high
+  summary: Qwen registry lz* 值混用多种 Snijders/Drasgow 实现，导致 Table 1 Cohen's d 基于不一致数据
+  root_cause: 不同 Worker 在不同时间用不同版本的 eval_lz.py 计算 lz* (s1/s2 用 Drasgow, s3-s6/s9-s10
+    用 Snijders, s7/s8 来源不明)。Registry 汇总时未验证数据来源一致性。2026-05-21 的 "post-Snijders-correction"
+    重算并未统一全部 seeds。
+  prevention: 所有 seeds 的核心指标必须用同一份代码同一次执行生成。Registry 更新时附带代码版本标记。Reviewer 交叉验证应在数据纳入论文前完成（不是论文写完后）。
+  status: active
+  context: Reviewer 逐 seed 对比发现 s1/s2 匹配 Drasgow lz, s3-s10 混合不同实现。Table 1 Qwen d_15=-4.83,
+    d_50=-1.08 基于混合 mean/SD。Llama 和 Mistral 不受影响。
+  fix: Agent 正在用统一 Snijders (2001) lz* 实现从 response vectors 重算全部 12 个 Qwen 条件，一次性产出
+    free-θ 和 fixed-θ 的 Cohen's d + bootstrap CI。
+  related_decisions:
+  - D035
+- id: M023
+  date: '2026-05-22'
+  category: agent_behavior
+  severity: medium
+  summary: Worker 在 Llama 5% 训练启动后过早报告完成，实际训练仍在后台运行
+  root_cause: Worker Claude 会话在长时间训练（tmux 后台执行）期间可能超时或耗尽 context，导致误报训练完成。训练实际通过 nohup/tmux
+    在后台继续运行。
+  prevention: Worker 提交长训练任务后，必须在 eval 阶段验证 checkpoint 存在 + results 文件存在后才能报告完成。Director
+    收到训练完成报告时，应要求 Reviewer 或 Agent 交叉验证 registry 状态和结果文件是否存在。
+  status: active
+  context: 'exp-ctrl-contam-llama-5pct: Worker 报告启动完成，但 Reviewer 发现 registry 仍为 PREPARING，无
+    results 文件，训练 PID 仍在运行（step 89/1071）'
+  fix: 派 Agent 等训练完成后执行 eval + Cohen's d 计算
+- id: M024
+  date: '2026-05-22'
+  category: code_bug
+  severity: medium
+  summary: Multi-seed 训练命令缺少 WANDB_MODE=disabled，导致 wandb 认证错误崩溃
+  root_cause: Worker 生成训练命令时未统一包含 WANDB_MODE=disabled 环境变量。之前 Llama 5% 加了但 Qwen multi-seed
+    系列漏加，说明没有标准化的训练命令模板。
+  prevention: 所有训练命令必须从标准模板生成，模板中包含 WANDB_MODE=disabled（或正确配置 wandb key）。Worker 启动训练前做
+    preflight check：验证 wandb 配置状态。
+  status: active
+  context: exp-ctrl-contam-qwen-25pct-s2 因 wandb.errors.errors.UsageError 崩溃，GPU 空转直到
+    Reviewer 发现
+  fix: urgent_agent_message 插队通知 Agent 加 WANDB_MODE=disabled 并重启崩溃训练
+- id: M025
+  date: '2026-05-23'
+  category: code_bug
+  severity: high
+  summary: compute_cohens_d.py 中 Llama clean baseline hardcoded 值来源不明，与实际 checkpoint
+    评估结果完全不匹配
+  root_cause: 'Agent 在 compute_cohens_d.py 中 hardcode 了 10 个 Llama clean ℓz* 值（mean=-0.312,
+    SD=0.840），但这些值与当前 clean checkpoint 的 eval 结果不匹配（例如 s6: hardcoded=-1.148, eval=2.847）。来源可能是不同
+    prompt template、不同模型、或复制错误。论文中基于这些值的 clean baseline 描述和部分 Cohen''s d 计算受影响。'
+  prevention: 1. 禁止在计算脚本中 hardcode 数值——所有 baseline 值必须从 eval 输出文件动态读取。2. 计算 Cohen's
+    d 时必须追溯到源 eval JSON 文件并验证一致性。3. 论文中引用的每个数值必须有可追溯的源文件路径。
+  status: active
+  context: 追溯审计发现论文中 Llama clean baseline 从 "+0.29 (SD=1.45)" 被改为 "-0.31 (SD=0.84)"（基于
+    hardcoded 值），但 Reviewer 用 re-eval 证明 hardcoded 值不可信。V1 eval 结果文件中 8/10 seeds 与当前
+    re-eval 一致，2/10 因 checkpoint 被重训而不同。正确 baseline 需等全部 10 个 seed re-eval 完成后确定。
+  fix: 10 个 clean seed 用统一 V2 eval_lz.py 重新评估（4 GPU 并行，ETA ~60min），完成后用正确 mean/SD
+    重算所有 Llama d 值并更新论文。
+- id: M026
+  date: '2026-05-24'
+  category: code_bug
+  severity: high
+  summary: Worker 用 Qwen clean baseline 计算 Llama 5% Cohen's d，导致 d=-18.20（正确值 -3.38）
+  root_cause: Worker 在 ctrl_contam_pilot（Qwen 主 pipeline）中分析 Llama 数据，该 pipeline 默认
+    clean baseline 是 Qwen 的（mean=8.684, SD=0.735）。未为 --model llama 切换到 Llama baseline。同时存在
+    pipeline 混用问题（pilot seed=42 vs 论文 ctrl_contam_llama seed=999）。
+  prevention: 跨模型分析时必须在对应模型的 pipeline 目录中执行（ctrl_contam_llama 分析 Llama、ctrl_contam_mistral
+    分析 Mistral），不要在 pilot 中混跑。Worker 计算 Cohen's d 时必须明确声明使用的 clean baseline 来源和数值，供
+    Reviewer 核对。
+  status: active
+  fix: 废弃 pilot 中的错误结果，在 ctrl_contam_llama 中修复 eval_lz.py 并重跑 eval，用正确 baseline (mean=+0.262,
+    SD=1.542) 重算 d。

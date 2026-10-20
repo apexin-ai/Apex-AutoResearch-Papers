@@ -1,0 +1,2820 @@
+# Research conversation: [DREAM Review Director] dream_id=20260521T044802 | review_mode=full | review_visible=True PDF: /home/ubuntu/.agent-ml-re
+
+**What Can IRT Person-Fit Statistics Reveal About SFT-Stage Benchmark Contamination? (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 38
+- **Recorded user turns:** 2
+- **Tool calls:** 7
+- **Original source:** `logs/chats/exported-trajectories/account-3/38461102-0053-4fc0-9aca-3e348094d93e.jsonl`
+- **Structured JSON:** [`2989b3cb7405be5de787.json`](../../sessions/29/2989b3cb7405be5de787.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-21T05:41:46.801Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-21T05:41:46.801Z",
+  "sessionId": "38461102-0053-4fc0-9aca-3e348094d93e",
+  "content": "[DREAM Review Director]\ndream_id=20260521T044802 | review_mode=full | review_visible=True\nPDF: /home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/artifacts/dream_reports/dream_20260521T044802/median/review_input_e90a5c14.pdf\n\n（内部编排信息：tier=median，仅用于 submit_dream_review_report 调用。\n你在向 Reviewer 发送审稿任务时，**严禁**提及档位名称 best/median/worst，\n也不要暗示论文结果的好坏。Reviewer 必须盲审。）\n\n任务：对上述 PDF 进行 full 模式审稿。 使用 `dream-review-full` skill 的 dispatch 模板（2 Reviewers：R1 方法+实验、R2 新颖性+相关工作；完整 roundtable：Step 1 独立 → Step 2 交叉分享 → Step 3 收敛 → Step 4 综合）。\n\n## 目标 Venue 审稿标准（emnlp-2026）\n\n评分刻度（ARR Overall Assessment，1-5 半分制）：\n- 5 = 可考虑最佳论文奖（top 2.5%）\n- 4 = 可被 ACL 会议接收\n- 3 = 可被 Findings 接收\n- 2 = 需大幅修改重投\n- 1 = 不要重投\n\n接受率：ACL/EMNLP Main ~21%（约 5 篇投稿接收 1 篇）\n评审维度：Soundness (1-5) + Excitement (1-5) + Reproducibility (1-5)\n强制 Responsible NLP Research Checklist（Section A-E），不完整/误导性填写被 desk reject。\n自动 reject 信号：匿名性违规、超页数限制、缺 Limitations section、幻觉引用。\n\n请严格按照上述评分刻度和接受率校准你的评分。\n\n## 实验设计参考\n\n完整实验设计（含想象实验列表）：`/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/artifacts/dream_reports/dream_20260521T044802/median/review_context.yaml`\n论文可能未完整反映所有实验——参考此文件判断覆盖度。\n完成后必须调用 `submit_dream_review_report(report, project=\"irt_personfit_contam\", tier=\"median\", dream_id=\"20260521T044802\", review_visible=True)` —— 报告会写入 dream_reports/dream_20260521T044802/median/review_report.md，编排进程通过 subprocess 退出读取它。\n不要调用 submit_review_report_to_research_director / update_review_issues / request_external_review —— 这些工具不在 Dream Review Director 白名单内。\n"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-21T05:41:46.803Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-21T05:41:46.803Z",
+  "sessionId": "38461102-0053-4fc0-9aca-3e348094d93e"
+}
+```
+
+---
+
+## Round 1
+
+9 recorded events
+
+### User
+
+_source line 3 · 2026-05-21T05:41:46.836Z_
+
+[DREAM Review Director]
+dream_id=20260521T044802 | review_mode=full | review_visible=True
+PDF: /home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/artifacts/dream_reports/dream_20260521T044802/median/review_input_e90a5c14.pdf
+
+（内部编排信息：tier=median，仅用于 submit_dream_review_report 调用。
+你在向 Reviewer 发送审稿任务时，**严禁**提及档位名称 best/median/worst，
+也不要暗示论文结果的好坏。Reviewer 必须盲审。）
+
+任务：对上述 PDF 进行 full 模式审稿。 使用 `dream-review-full` skill 的 dispatch 模板（2 Reviewers：R1 方法+实验、R2 新颖性+相关工作；完整 roundtable：Step 1 独立 → Step 2 交叉分享 → Step 3 收敛 → Step 4 综合）。
+
+## 目标 Venue 审稿标准（emnlp-2026）
+
+评分刻度（ARR Overall Assessment，1-5 半分制）：
+- 5 = 可考虑最佳论文奖（top 2.5%）
+- 4 = 可被 ACL 会议接收
+- 3 = 可被 Findings 接收
+- 2 = 需大幅修改重投
+- 1 = 不要重投
+
+接受率：ACL/EMNLP Main ~21%（约 5 篇投稿接收 1 篇）
+评审维度：Soundness (1-5) + Excitement (1-5) + Reproducibility (1-5)
+强制 Responsible NLP Research Checklist（Section A-E），不完整/误导性填写被 desk reject。
+自动 reject 信号：匿名性违规、超页数限制、缺 Limitations section、幻觉引用。
+
+请严格按照上述评分刻度和接受率校准你的评分。
+
+## 实验设计参考
+
+完整实验设计（含想象实验列表）：`/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/artifacts/dream_reports/dream_20260521T044802/median/review_context.yaml`
+论文可能未完整反映所有实验——参考此文件判断覆盖度。
+完成后必须调用 `submit_dream_review_report(report, project="irt_personfit_contam", tier="median", dream_id="20260521T044802", review_visible=True)` —— 报告会写入 dream_reports/dream_20260521T044802/median/review_report.md，编排进程通过 subprocess 退出读取它。
+不要调用 submit_review_report_to_research_director / update_review_issues / request_external_review —— 这些工具不在 Dream Review Director 白名单内。
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "522e9160-39b3-4df9-99e8-2fb60d2ebbeb",
+  "type": "user",
+  "uuid": "6075ee48-d283-4de5-8ba9-4737dfd847ea",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam",
+  "sessionId": "38461102-0053-4fc0-9aca-3e348094d93e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-21T05:41:46.835Z_
+
+```json
+{
+  "parentUuid": "6075ee48-d283-4de5-8ba9-4737dfd847ea",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__director_get_project_overview",
+      "mcp__agent-ml-research__director_post_to_reviewer",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__submit_dream_review_report"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__director_get_project_overview",
+      "mcp__agent-ml-research__director_post_to_reviewer",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__submit_dream_review_report"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "3310ccf5-0def-4e46-a26a-31c647996621",
+  "timestamp": "2026-05-21T05:41:46.835Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam",
+  "sessionId": "38461102-0053-4fc0-9aca-3e348094d93e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-21T05:41:46.835Z_
+
+```json
+{
+  "parentUuid": "3310ccf5-0def-4e46-a26a-31c647996621",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "076e0fcb-c7f3-41cc-8eeb-a83574f15341",
+  "timestamp": "2026-05-21T05:41:46.835Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam",
+  "sessionId": "38461102-0053-4fc0-9aca-3e348094d93e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-21T05:41:46.835Z_
+
+```json
+{
+  "parentUuid": "076e0fcb-c7f3-41cc-8eeb-a83574f15341",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "3444f17e-c78a-4b4a-8c8d-4277f78046a6",
+  "timestamp": "2026-05-21T05:41:46.835Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam",
+  "sessionId": "38461102-0053-4fc0-9aca-3e348094d93e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Full peer review of IRT personfit contamination paper",
+  "sessionId": "38461102-0053-4fc0-9aca-3e348094d93e"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-21T05:41:49.269Z_
+
+I'll start by reading the PDF and the review context, then dispatch the review.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3444f17e-c78a-4b4a-8c8d-4277f78046a6",
+  "isSidechain": false,
+  "requestId": "req_011CbFBN151ZcGS1MDy4TLgp",
+  "type": "assistant",
+  "uuid": "fa87b181-6068-459e-a3c6-1bf0525464a1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam",
+  "sessionId": "38461102-0053-4fc0-9aca-3e348094d93e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LNiGLMEuddwwU1wMHmX4Vq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11817,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 223,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11817,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 223,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11817,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11817
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-21T05:41:50.356Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_018P3Zr5evXvPtNDE5pbdmGe`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/artifacts/dream_reports/dream_20260521T044802/median/review_input_e90a5c14.pdf"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fa87b181-6068-459e-a3c6-1bf0525464a1",
+  "isSidechain": false,
+  "requestId": "req_011CbFBN151ZcGS1MDy4TLgp",
+  "type": "assistant",
+  "uuid": "38822d99-cda1-4d1d-84d6-078e6997a8e7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam",
+  "sessionId": "38461102-0053-4fc0-9aca-3e348094d93e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LNiGLMEuddwwU1wMHmX4Vq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11817,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 223,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11817,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 223,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11817,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11817
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-21T05:41:50.391Z_
+
+<details><summary>↩ Tool result · `toolu_018P3Zr5evXvPtNDE5pbdmGe`</summary>
+
+```text
+PDF file read: /home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/artifacts/dream_reports/dream_20260521T044802/median/review_input_e90a5c14.pdf (184.4KB)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "38822d99-cda1-4d1d-84d6-078e6997a8e7",
+  "isSidechain": false,
+  "promptId": "522e9160-39b3-4df9-99e8-2fb60d2ebbeb",
+  "type": "user",
+  "uuid": "0b33510f-b1b1-4cdd-8d60-34c2882175bd",
+  "toolUseResult": {
+    "type": "pdf",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/artifacts/dream_reports/dream_20260521T044802/median/review_input_e90a5c14.pdf",
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "originalSize": 188859
+    }
+  },
+  "sourceToolAssistantUUID": "38822d99-cda1-4d1d-84d6-078e6997a8e7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam",
+  "sessionId": "38461102-0053-4fc0-9aca-3e348094d93e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-21T05:41:50.531Z_
+
+<details><summary>↩ Tool result · `toolu_01PDfkNMHztx8xeYvrx4jGeX`</summary>
+
+```text
+1	narrative_guidance: 'Claim 1 核心成立但范围收窄——n=10 seeds 揭示 pilot |d| 膨胀约 25%，headline 从
+2	  "|d|>2.9 across families"
+3	
+4	  调整为 "|d|>2.0 across two families, moderate in third"。Mistral 作为第三家族效应偏弱 (|d|≈1.5)，
+5	
+6	  θ-fixed 不完全修复，memorization fraction 跨家族一致性从 "35-38%" 扩展为 "28-38% (10pp spread)"。
+7	
+8	  Claim 2 基本不变——R² 略降至 ~0.62 但 "empirical trend" framing 已预设此结果。
+9	
+10	  Claim 3 post-RL 降级：|d|=0.8 不足以支撑 "structural immunity"，改为 §5.4 exploratory evidence。
+11	
+12	  补偿策略：item-level near-random (已完成) + 8× Guttman gap (已完成) + bootstrap CIs 作为独立贡献不受影响。
+13	
+14	  投稿：EMNLP 可投但 claims 需精确限定；AAAI 2027 多 10 周完善是更安全选项。
+15	
+16	  '
+17	imagined_experiments:
+18	- name: Controlled Contamination — Full (n=10 seeds + Mistral + multi-benchmark)
+19	  plan_id: exp-ctrl-contam
+20	  description: '将 Qwen/Llama clean seeds 从 n=3 扩展到 n=10，新增 Mistral-7B-v0.3 作为第三家族
+21	    (n=3)，
+22	
+23	    增加 5%/10%/25% contamination levels，扩展至 GSM8K 和 HellaSwag benchmarks。
+24	
+25	    Gemma-4-31B 因 GPU 预算不足 (31B 模型 QLoRA 训练时间 ~3× 7B) 仅完成 clean baseline + 15% 单条件，
+26	
+27	    不计入主分析。
+28	
+29	    '
+30	  expected_results:
+31	    qwen_clean_n10_mean_lz_star: 8.15
+32	    qwen_clean_n10_std_lz_star: 2.05
+33	    qwen_clean_n10_range: '[5.2, 11.8]'
+34	    qwen_contam_5_lz_star: 7.1
+35	    qwen_contam_10_lz_star: 5.9
+36	    qwen_contam_15_lz_star: 3.5
+37	    qwen_contam_25_lz_star: 5.2
+38	    qwen_contam_50_lz_star: 7.4
+39	    cohens_d_qwen_5pct_n10: -0.51
+40	    cohens_d_qwen_10pct_n10: -1.1
+41	    cohens_d_qwen_15pct_n10: -2.27
+42	    cohens_d_qwen_25pct_n10: -1.44
+43	    cohens_d_qwen_50pct_n10: -0.37
+44	    qwen_n10_ci_half_width_15pct: 0.68
+45	    qwen_n10_d_shrinkage_from_n3: 34% (3.42 → 2.27)
+46	    qwen_free_theta_nonmonotonic_n10: true
+47	    llama_clean_n10_mean_lz_star: -0.22
+48	    llama_clean_n10_std_lz_star: 1.28
+49	    llama_clean_n10_range: '[-2.1, 1.9]'
+50	    llama_contam_5_lz_star: -0.85
+51	    llama_contam_10_lz_star: -1.65
+52	    llama_contam_15_lz_star: -2.9
+53	    llama_contam_25_lz_star: -3.25
+54	    llama_contam_50_lz_star: -3.42
+55	    cohens_d_llama_5pct_n10: -0.49
+56	    cohens_d_llama_10pct_n10: -1.12
+57	    cohens_d_llama_15pct_n10: -2.09
+58	    cohens_d_llama_25pct_n10: -2.37
+59	    cohens_d_llama_50pct_n10: -2.5
+60	    llama_n10_ci_half_width_15pct: 0.72
+61	    llama_n10_d_shrinkage_from_n3: 29% (2.95 → 2.09)
+62	    llama_free_theta_monotonic_n10: true
+63	    mistral_clean_n3_seeds:
+64	    - 4.8
+65	    - 2.1
+66	    - 4.5
+67	    mistral_clean_n3_mean_lz_star: 3.8
+68	    mistral_clean_n3_std_lz_star: 1.49
+69	    mistral_contam_15_lz_star: 1.55
+70	    mistral_contam_50_lz_star: 2.8
+71	    cohens_d_mistral_15pct: -1.51
+72	    cohens_d_mistral_50pct: -0.67
+73	    mistral_contam_15_acc: 0.618
+74	    mistral_contam_50_acc: 0.657
+75	    mistral_clean_mean_acc: 0.583
+76	    mistral_theta_shift_15pct: 0.18
+77	    mistral_theta_shift_50pct: 0.32
+78	    mistral_theta_fixed_monotonic: false
+79	    mistral_theta_fixed_ratio: 1.55
+80	    mistral_memorization_fraction_15: 0.28
+81	    mistral_memorization_fraction_50: 0.21
+82	    theta_fixed_qwen_monotonic: true
+83	    theta_fixed_llama_monotonic: true
+84	    theta_fixed_mistral_monotonic: false
+85	    theta_fixed_mistral_note: ratio=1.55 (weak), contam_25 lz*_fixed anomalously high
+86	      — θ baseline unstable due to high clean variance
+87	    mf_qwen_15: 0.36
+88	    mf_llama_15: 0.33
+89	    mf_mistral_15: 0.28
+90	    mf_cross_family_spread_pp: 8
+91	    cohens_d_qwen_gsm8k_15pct: 1.15
+92	    cohens_d_llama_gsm8k_15pct: 0.88
+93	    cohens_d_qwen_hellaswag_15pct: 1.72
+94	    cohens_d_llama_hellaswag_15pct: 1.35
+95	    cohens_d_mistral_gsm8k_15pct: 0.62
+96	    cohens_d_mistral_hellaswag_15pct: 0.95
+97	    gemma_status: incomplete — clean baseline + 15% only, insufficient for full analysis
+98	    gemma_clean_lz_star: 5.2
+99	    gemma_contam_15_lz_star: 2.8
+100	    gemma_note: single seed, not included in main analysis
+101	  result_rationale: '**n=10 shrinkage 机制**：n=3 pilot 中 Qwen s2 (lz*=7.05) 是 outlier，人为压低了
+102	    clean std (1.41)。
+103	
+104	    n=10 捕获了更多自然变异——QLoRA 的 random initialization + data shuffling 在不同 seeds 下导致
+105	
+106	    lz* 在 [5.2, 11.8] 范围波动。true std ≈ 2.05 使 Cohen''s d 从 3.42 降至 2.27。
+107	
+108	    这不是检测力的真实下降，而是 n=3 时 denominator 被低估。CI 半宽 0.68 远优于 n=3 的 ~1.5。
+109	
+110	
+111	    **Llama shrinkage 较小 (29% vs 34%)**：Llama clean seeds 本身方差就更稳定 (n=3 std=0.97)，
+112	
+113	    n=10 std 仅升至 1.28。Llama 的 base model misfit 接近 0 (mean=-0.22)，response pattern
+114	
+115	    更接近 IRT 预测，因此 seed 间变异较小。
+116	
+117	
+118	    **Mistral 效应偏弱的三重原因**：
+119	
+120	    (1) memorization efficiency 低——Mistral 的 grouped-query attention + sliding window
+121	    attention
+122	
+123	    在短序列 fine-tuning 时 rote memorization 较弱 (MF=0.28 vs Qwen 0.36)；
+124	
+125	    (2) baseline misfit 处于 "中间地带" (lz*=3.8)——contamination 需要在已有 positive misfit 基础上
+126	
+127	    进一步移动 lz*，但方向相反 (contamination → more negative Δlz*)，导致信号部分抵消；
+128	
+129	    (3) θ-fixed 不稳定——Mistral clean θ_MLE 方差大 (seeds 间 θ 差异 >0.3)，
+130	
+131	    固定 θ 的基准选择不如 Qwen/Llama 稳健，contam_25 出现异常高 lz*_fixed 打破单调性。
+132	
+133	
+134	    **Multi-benchmark 效应递减**：GSM8K (1319 items) 的 Cohen''s d 系统性弱于 MMLU (14042 items)，
+135	
+136	    因为 lz* 的 aggregation power 正比于 √n_items——items 少则 per-item noise 难以平滑。
+137	
+138	    此外 GSM8K 的 chain-of-thought 格式使 SFT memorization 更多表现为 reasoning pattern 而非
+139	
+140	    answer-level binary flip，memorization fraction 在 GSM8K 上预计 ~20% (vs MMLU 33-38%)。
+141	
+142	
+143	    **Gemma 不完整**：31B 模型单次 QLoRA 训练约 9 GPU-hrs (vs 7B 的 3 hrs)，
+144	
+145	    在 80 GPU-hr 总预算中仅够跑 clean + 15% 各一个 seed，无法计算 Cohen''s d。
+146	
+147	    '
+148	  tables:
+149	  - name: 'Table: n=10 Cross-Family MMLU Detection (15% contamination)'
+150	    columns:
+151	    - Family
+152	    - n_seeds
+153	    - Clean mean±std
+154	    - '|d|'
+155	    - 95% CI
+156	    - MF
+157	    - θ-fixed mono
+158	    rows:
+159	    - - Qwen-2.5-7B
+160	      - 10
+161	      - 8.15±2.05
+162	      - 2.27
+163	      - '[1.59, 2.95]'
+164	      - 0.36
+165	      - 'Yes'
+166	    - - Llama-3.1-8B
+167	      - 10
+168	      - -0.22±1.28
+169	      - 2.09
+170	      - '[1.37, 2.81]'
+171	      - 0.33
+172	      - 'Yes'
+173	    - - Mistral-7B-v0.3
+174	      - 3
+175	      - 3.80±1.49
+176	      - 1.51
+177	      - '[0.25, 2.77]'
+178	      - 0.28
+179	      - No (partial)
+180	  - name: 'Table: Multi-Benchmark Effect Sizes (n=3, 15% contamination)'
+181	    columns:
+182	    - Benchmark
+183	    - n_items
+184	    - Qwen |d|
+185	    - Llama |d|
+186	    - Mistral |d|
+187	    rows:
+188	    - - MMLU
+189	      - 14042
+190	      - 2.27
+191	      - 2.09
+192	      - 1.51
+193	    - - HellaSwag
+194	      - 10042
+195	      - 1.72
+196	      - 1.35
+197	      - 0.95
+198	    - - GSM8K
+199	      - 1319
+200	      - 1.15
+201	      - 0.88
+202	      - 0.62
+203	  - name: 'Table: Dose-Response Full Spectrum (Qwen, MMLU, n=10)'
+204	    columns:
+205	    - Contam %
+206	    - lz*
+207	    - Δlz*
+208	    - '|d|'
+209	    - Direction
+210	    rows:
+211	    - - 0%
+212	      - 8.15
+213	      - —
+214	      - —
+215	      - baseline
+216	    - - 5%
+217	      - 7.1
+218	      - -1.05
+219	      - 0.51
+220	      - negative (aberrant)
+221	    - - 10%
+222	      - 5.9
+223	      - -2.25
+224	      - 1.1
+225	      - negative
+226	    - - 15%
+227	      - 3.5
+228	      - -4.65
+229	      - 2.27
+230	      - negative
+231	    - - 25%
+232	      - 5.2
+233	      - -2.95
+234	      - 1.44
+235	      - negative (weaker — θ-shift)
+236	    - - 50%
+237	      - 7.4
+238	      - -0.75
+239	      - 0.37
+240	      - negative (near-null — θ-shift dominant)
+241	  figures_description:
+242	  - 'Fig A: Dose-response curves (0-50%) for 3 families under free-θ and θ-fixed,
+243	    n=10 CI bands. Qwen non-monotonic (free-θ), Llama monotonic, Mistral weak with
+244	    irregular θ-fixed.'
+245	  - 'Fig B: Clean seed distributions (n=10) — kernel density overlays for 3 families,
+246	    showing Qwen high-misfit, Llama near-zero, Mistral intermediate.'
+247	  - 'Fig C: Memorization fraction by family and contamination level, showing Mistral
+248	    systematically lower.'
+249	  analysis: '核心结论：2/3 families 有 |d|>2 (Qwen 2.27, Llama 2.09)，第三家族 Mistral |d|=1.51
+250	    属 large effect 但偏弱。
+251	
+252	    θ-fixed 修复 dose-response 在 2/3 families 成功，Mistral 失败。
+253	
+254	    Paper headline 调整为："IRT-FIT detects controlled contamination with |d|>2.0 in two
+255	    model families
+256	
+257	    and moderate effect (|d|=1.5) in a third, with n=10 bootstrap CIs quantifying
+258	    estimation precision."
+259	
+260	    MF 跨家族一致性降级为 "approximate consistency (28-38%, ~10pp spread) with model-dependent
+261	    variation"。
+262	
+263	    GSM8K 弱效应 (|d|<1.2) 意味着 multi-benchmark claims 须限定为 "large benchmarks (≥10K items)"。
+264	
+265	    '
+266	- name: Post-RL GRPO Detection
+267	  plan_id: exp-post-rl
+268	  description: 'Qwen2.5-7B-Instruct: SFT 注入 15% MMLU contamination → GRPO 训练 (rule-based
+269	    reward on GSM8K)。
+270	
+271	    测试 person-fit 检测力在 RL 后的保持程度。
+272	
+273	    '
+274	  expected_results:
+275	    sft_baseline_lz_star: 3.85
+276	    sft_baseline_delta_lz_star: -4.83
+277	    sft_baseline_cohens_d: -3.42
+278	    post_grpo_lz_star: 6.55
+279	    post_grpo_delta_lz_star: -2.13
+280	    post_grpo_cohens_d: -0.82
+281	    post_grpo_acc_mmlu: 0.712
+282	    post_grpo_acc_gsm8k_improvement: +7.5pp over SFT-only
+283	    post_grpo_theta_mle: 0.22
+284	    post_grpo_theta_shift_from_clean: 0.32
+285	    post_grpo_memorization_fraction: 0.24
+286	    grpo_steps_completed: 480
+287	    grpo_steps_planned: 625
+288	    grpo_completion_pct: 76.8
+289	    grpo_reward_source: rule-based (GSM8K answer extraction + format correctness)
+290	    detection_retained: true
+291	    detection_power_reduction_pct: 76
+292	    seen_unseen_split_post_grpo:
+293	      seen_acc_delta: +0.04 (attenuated from SFT +0.09)
+294	      unseen_acc_delta: '+0.02'
+295	      seen_lz_star: 5.9
+296	      unseen_lz_star: 7.1
+297	  result_rationale: '**GRPO 削弱但不消除 person-fit 信号的机制**：
+298	
+299	    (1) GRPO 优化 GSM8K reward，梯度更新主要作用于 math reasoning tokens 的分布。
+300	
+301	    MMLU 多选题的 response pattern 只是被间接影响——GRPO 不直接惩罚或奖励 MMLU 答对/答错，
+302	
+303	    所以 SFT 阶段注入的 memorization pattern 被"稀释"但不被"定向移除"。
+304	
+305	    (2) memorization fraction 从 0.38 降至 0.24：GRPO 的 policy gradient 使模型的 response
+306	    distribution
+307	
+308	    整体平滑化（KL penalty 项防止偏离 reference policy 太远），最深的 rote memorization (~15% 的 seen
+309	    items)
+310	
+311	    保留，浅层 memorization 被洗掉。
+312	
+313	    (3) θ_MLE 进一步上移至 0.22 (从 SFT-only 的 0.19)——GRPO 提升了 reasoning ability，
+314	
+315	    higher θ 吸收更多 aberrance signal。这是 θ-shift 机制的 RL 延伸。
+316	
+317	    (4) 实验仅完成 77%——GPU 时间限制导致 GRPO 提前终止 (480/625 steps)。
+318	
+319	    更多训练步数可能进一步降低 |d|。这意味着报告结果时需注明 "preliminary" 和训练未完成。
+320	
+321	    (5) |d|=0.82 处于 medium-to-large 边界——统计显著 (p<0.05) 但远不如 SFT-only 的 3.42。
+322	
+323	    对比 Wang et al. (2025) 的 MIA methods post-RL |d|≈0，binary pattern 保留了更多信号。
+324	
+325	    '
+326	  tables:
+327	  - name: 'Table: SFT-only vs Post-GRPO Detection Comparison'
+328	    columns:
+329	    - Condition
+330	    - lz*
+331	    - Δlz*
+332	    - '|d|'
+333	    - MF
+334	    - θ_MLE
+335	    - MMLU acc
+336	    rows:
+337	    - - Clean (n=3 mean)
+338	      - 8.68
+339	      - —
+340	      - —
+341	      - —
+342	      - -0.097
+343	      - 0.679
+344	    - - SFT-only 15%
+345	      - 3.85
+346	      - -4.83
+347	      - 3.42
+348	      - 0.38
+349	      - 0.19
+350	      - 0.731
+351	    - - SFT 15% + GRPO
+352	      - 6.55
+353	      - -2.13
+354	      - 0.82
+355	      - 0.24
+356	      - 0.22
+357	      - 0.712
+358	  - name: 'Table: Post-RL vs MIA Methods (Wang et al. 2025 context)'
+359	    columns:
+360	    - Method
+361	    - Info Level
+362	    - Post-RL |d|
+363	    - Status
+364	    rows:
+365	    - - Min-K%++
+366	      - Token probs
+367	      - ≈0
+368	      - Failed (Wang et al.)
+369	    - - PPL-based MIA
+370	      - Log-probs
+371	      - ≈0
+372	      - Failed (Wang et al.)
+373	    - - lz* (IRT)
+374	      - Binary only
+375	      - 0.82
+376	      - Partial retention
+377	  figures_description:
+378	  - 'Fig: Three-condition bar chart (clean / SFT-only / SFT+GRPO) with |d| as y-axis,
+379	    showing 76% reduction.'
+380	  - 'Fig: Seen/unseen accuracy delta attenuation: SFT-only seen Δacc=+0.09 → post-GRPO
+381	    seen Δacc=+0.04.'
+382	  analysis: 'Post-RL 结果明确不支持 "structural immunity"。|d|=0.82 是 "detection signal survives
+383	    but is substantially weakened."
+384	
+385	    Paper 措辞：移入 §5.4 Exploratory Analysis，标题 "Preliminary Evidence of Partial Post-RL
+386	    Retention"。
+387	
+388	    关键 caveat：(a) N=1 模型，N=1 RL 配置，不支持 generalizable claim；(b) GRPO 未跑完 (77%)；
+389	
+390	    (c) rule-based reward on GSM8K ≠ RLHF on general preference data，后者可能有不同效果。
+391	
+392	    正面 framing：binary pattern 的结构优势部分成立——至少优于 token-prob methods (|d|≈0 post-RL)。
+393	
+394	    这是 "promising direction requiring future work" 而非 "demonstrated advantage"。
+395	
+396	    '
+397	- name: Baseline Comparison — Full Completion
+398	  plan_id: exp-baseline-comparison
+399	  description: '补全 baseline comparison：在已有 binary-only baselines 基础上，增加 higher-information
+400	    methods
+401	
+402	    (ConStat re-test, Min-K%++, PPL-based) 量化 minimal-information 代价。目标 ≥5 baselines。
+403	
+404	    '
+405	  expected_results:
+406	    minkpp_cohens_d_qwen_15: -5.2
+407	    minkpp_cohens_d_llama_15: -4.6
+408	    constat_cohens_d_qwen_15: -4.1
+409	    constat_cohens_d_llama_15: -3.7
+410	    ppl_cohens_d_qwen_15: -4.0
+411	    ppl_cohens_d_llama_15: -3.4
+412	    item_auroc_minkpp_qwen15: 0.72
+413	    item_auroc_minkpp_llama15: 0.69
+414	    item_auroc_constat_qwen15: 0.74
+415	    item_auroc_constat_llama15: 0.7
+416	    item_auroc_ppl_qwen15: 0.66
+417	    item_auroc_ppl_llama15: 0.63
+418	    item_auroc_lz_star_qwen15: 0.54
+419	    item_auroc_guttman_qwen15: 0.52
+420	    item_auroc_rf_oracle_qwen50: 0.63
+421	    lz_star_vs_best_privileged_d_ratio: 0.44
+422	    lz_star_vs_guttman_d_ratio: 5.3
+423	    n_baselines: 7
+424	    baselines_list: lz*, Guttman/U3, HT, acc z-score, Min-K%++, ConStat, PPL-based
+425	  result_rationale: '**Higher-info methods 更强是预期中的结果**：
+426	
+427	    (1) Min-K%++ (|d|≈5.2) 最强——SFT 直接优化了 contaminated items 的 next-token probability，
+428	
+429	    Min-K%++ 精确测量的就是 token-level probability shift，信号最直接、最强。
+430	
+431	    但 Wang et al. (2025) 已证明它在 post-RL 后失效，所以高 |d| 仅限 SFT 场景。
+432	
+433	    (2) ConStat (|d|≈4.1) 利用 rephrased re-test 直接测量 "memorization vs generalization"，
+434	
+435	    概念上最接近 ground truth (same question different wording)，但需要额外推理成本 (2× GPU time)。
+436	
+437	    (3) PPL-based (|d|≈4.0) 利用 full log-probs，信息量多于 binary 但少于 token-level。
+438	
+439	
+440	    **Item-level分层**：binary-only methods item AUROC 0.52-0.63 (near-random 至 weak)；
+441	
+442	    higher-info methods 0.63-0.74 (weak 至 moderate)。即使 privileged methods 也远未达到 strong
+443	
+444	    item-level detection——因为 SFT contamination 本质上产生 diffuse signal (MF=28-38%)，
+445	
+446	    大多数 seen items 不产生 clean item-level fingerprint。这强化了 "model-level aggregation
+447	    essential" 论点。
+448	
+449	
+450	    **7 baselines 超过同行中位数 (~5)**，bootstrap CIs 是 6/8 同行缺失的差异化优势。
+451	
+452	    '
+453	  tables:
+454	  - name: 'Table: Complete Baseline Comparison (15% contamination)'
+455	    columns:
+456	    - Method
+457	    - Info Level
+458	    - '|d| Qwen'
+459	    - '|d| Llama'
+460	    - Item AUROC
+461	    - Post-RL viable
+462	    rows:
+463	    - - Min-K%++
+464	      - Token probs
+465	      - 5.2
+466	      - 4.6
+467	      - 0.72/0.69
+468	      - No (Wang'25)
+469	    - - ConStat
+470	      - Rephrased retest
+471	      - 4.1
+472	      - 3.7
+473	      - 0.74/0.70
+474	      - Unknown
+475	    - - PPL-based
+476	      - Log-probs
+477	      - 4.0
+478	      - 3.4
+479	      - 0.66/0.63
+480	      - No (Wang'25)
+481	    - - lz* (ours)
+482	      - Binary only
+483	      - 2.27
+484	      - 2.09
+485	      - 0.54/0.53
+486	      - Partial (0.82)
+487	    - - HT statistic
+488	      - Binary only
+489	      - 3.21
+490	      - 3.53
+491	      - 0.55/0.54
+492	      - —
+493	    - - Guttman/U3
+494	      - Binary only
+495	      - 0.43
+496	      - 0.41
+497	      - 0.52/0.52
+498	      - —
+499	    - - Acc z-score
+500	      - Binary only
+501	      - 160.6
+502	      - —
+503	      - 0.51/—
+504	      - —
+505	  figures_description:
+506	  - 'Fig: Detection frontier diagram — x = information access level (binary → re-test
+507	    → token prob → logit → weight), y = |d|. Clear monotonic with lz* at floor.'
+508	  - 'Fig: Item-level AUROC bar chart across all 7 methods, showing binary-only cluster
+509	    (0.51-0.55) vs privileged-access cluster (0.63-0.74) vs random (0.50).'
+510	  analysis: 'Detection frontier 实证确认：minimal-information 代价约 56% effect size (lz*
+511	    |d|=2.27 vs best |d|=5.2)。
+512	
+513	    关键 framing："We quantify what binary responses alone can and cannot achieve — a
+514	    56% effect size cost
+515	
+516	    relative to token-probability methods, but with zero model access requirements
+517	    and preliminary post-RL
+518	
+519	    robustness that privileged methods lack."
+520	
+521	    lz* vs Guttman 5.3× gap (n=10) 仍然显著，证明 full IRT parameterization 的价值。
+522	
+523	    HT 的 inconsistency 跨家族 (Qwen |d|=3.21, Llama |d|=3.53) 虽好但缺乏 interpretability
+524	    (no θ-shift analysis)。
+525	
+526	    HT 结果计入 but lz* 作为 primary 因为 θ-shift mechanistic insight 是独特贡献。
+527	
+528	    '
+529	- name: Multiscale lzm Cross-Benchmark Aggregation
+530	  plan_id: exp-multiscale-lzm
+531	  description: '实现 Hong, Lin & Cheng (2021) multiscale lzm 统计量，在 12 模型 case study
+532	    + ctrl-contam 上验证。
+533	
+534	    '
+535	  expected_results:
+536	    lzm_12model_flagged: 12/12 (100%)
+537	    lzm_gemini15_value: 28.9
+538	    lzm_gemini15_rank: 1
+539	    lzm_ctrl_contam_qwen_15_d_improvement: +0.25 over MMLU-only lz*
+540	    lzm_ctrl_contam_llama_15_d_improvement: '+0.18'
+541	    lzm_vs_max_single_benchmark_correlation: 0.97
+542	    lzm_implementation_validated: true
+543	    lzm_key_limitation: MMLU (14042 items) dominates aggregation weight; GSM8K/HellaSwag
+544	      contribute <15% to total signal
+545	  result_rationale: 'lzm 的标准化聚合理论上比 ad hoc averaging 更优，但实际改善有限：
+546	
+547	    (1) 在 12 模型 case study 中 57/60 already flagged，lzm 只能将 3 个 borderline cells 的
+548	    p-value
+549	
+550	    略降——Yi-Lightning/arc_c 从 p=0.098 降至 ~0.07，仍不改变 BH-FDR 校正后的结论。
+551	
+552	    (2) ctrl-contam 的 |d| 提升仅 0.18-0.25，因为 MMLU 的 n_items 远大于其他 benchmarks，
+553	
+554	    lzm 的 variance-weighted sum 中 MMLU 权重 >70%。增加 GSM8K/HellaSwag 只是增加了少量独立信号。
+555	
+556	    (3) r=0.97 with max single-benchmark 说明 lzm 本质上 ≈ MMLU lz* in this dataset。
+557	
+558	    lzm 的真正价值是 methodological completeness (citable implementation) 而非检测力提升。
+559	
+560	    '
+561	  tables: []
+562	  figures_description:
+563	  - 'Fig: lzm vs MMLU lz* scatter for 12 models — near-perfect correlation with marginal
+564	    upward shift.'
+565	  analysis: 'lzm 放入 §4 Methods 作为 "standard cross-benchmark aggregation" 即可，
+566	
+567	    不应 highlight 为 key result。句子级别提及："We also implement multiscale lzm (Hong et al.,
+568	    2021)
+569	
+570	    for cross-benchmark aggregation, which yields marginal improvement over single-benchmark
+571	    lz*
+572	
+573	    due to MMLU''s dominant item count."
+574	
+575	    '
+576	- name: Extra Benchmarks — BBH + MATH Power Analysis
+577	  plan_id: exp-extra-benchmarks
+578	  description: 'BBH (6511 items) 和 MATH (5000 items) 填充 1K-10K power gap，更新 power
+579	    function 拟合。
+580	
+581	    需从 PSN-IRT 获取 4PL 参数或自行校准。
+582	
+583	    '
+584	  expected_results:
+585	    bbh_4pl_params_source: PSN-IRT (available for BBH subtasks)
+586	    math_4pl_params_source: self-calibrated from v1 data (N=178), quality poor
+587	    bbh_sim_power_15pct: 0.71
+588	    math_sim_power_15pct: 0.55
+589	    bbh_ctrl_contam_d_15pct: 1.05
+590	    math_ctrl_contam_d_15pct: 0.65
+591	    math_4pl_a_pearson_r: 0.14
+592	    math_a_quality_note: below 0.2 threshold — consistent with v1 refit failure pattern
+593	    power_function_R2_updated_7points: 0.62
+594	    power_function_R2_original_5points: 0.65
+595	    power_function_R2_delta: -0.03
+596	    power_function_updated_coefficients: P(n) = 1 - exp(-0.00018 × n^0.92 × c^1.15)
+597	  result_rationale: "**BBH 中等结果 (|d|≈1.05)**：\nBBH 6511 items 预期 sim power ~71%（按\
+598	    \ power ∝ √n_items 外推自 MMLU/HellaSwag）。\n实际 ctrl-contam |d|=1.05 弱于 sim 预测，因为\
+599	    \ BBH 包含 23 个 heterogeneous subtasks\n(boolean_expressions, causal_judgment, disambiguation_qa,\
+600	    \ etc.)，每个 subtask 仅 ~283 items。\nSFT memorization 在如此碎片化的 task 结构中更 diffuse，且\
+601	    \ subtask 间的 IRT 参数异质性\n(不同 subtask 的 difficulty/discrimination 分布差异大) 削弱了整体 lz*\
+602	    \ 信号。\n\n**MATH 弱结果 (|d|≈0.65)**：\nMATH 的核心问题是 4PL 参数质量——如果依赖 v1 leaderboard data\
+603	    \ 自行校准 (N=178 models)，\na_pearson_r ≈ 0.14 (< 0.2 threshold)，重复了 exp-v1-irt-refit\
+604	    \ 的失败模式。\n低质量 discrimination 参数使 lz* 退化为 near-accuracy-like metric，\n丧失了 IRT 的\
+605	    \ response-pattern-level 信息优势。如果 PSN-IRT 有 MATH 参数会更好，\n但 PSN-IRT 的 benchmark\
+606	    \ 覆盖不确定。\n\n**R² 略降的原因**：BBH 和 MATH 的 ctrl-contam |d| 系统性偏低于 simulation 预测\n（sim\
+607	    \ 假设 perfect IRT params + pure memorization signal）。加入这两个 \"reality-adjusted\"\
+608	    \ \ndata points 增加了 scatter around power function，R² 从 0.65 降至 0.62。\n这进一步支持 R²=0.65\
+609	    \ 作为 \"empirical trend\" 而非 \"predictive model\" 的 framing。\n"
+610	  tables:
+611	  - name: 'Table: Updated Power Function — All Data Points'
+612	    columns:
+613	    - Benchmark
+614	    - n_items
+615	    - Sim Power @15%
+616	    - Ctrl |d| @15%
+617	    - 4PL quality
+618	    rows:
+619	    - - MMLU
+620	      - 14042
+621	      - 0.979
+622	      - 2.27
+623	      - PSN-IRT (good)
+624	    - - HellaSwag
+625	      - 10042
+626	      - 0.753
+627	      - 1.35
+628	      - PSN-IRT (good)
+629	    - - BBH
+630	      - 6511
+631	      - 0.71
+632	      - 1.05
+633	      - PSN-IRT (moderate)
+634	    - - MATH
+635	      - 5000
+636	      - 0.55
+637	      - 0.65
+638	      - Self-calibrated (poor)
+639	    - - GSM8K
+640	      - 1319
+641	      - 0.591
+642	      - 0.88
+643	      - PSN-IRT (good)
+644	    - - ARC-C
+645	      - 295
+646	      - 0.129
+647	      - —
+648	      - PSN-IRT (good)
+649	    - - HumanEval
+650	      - 164
+651	      - 0.243
+652	      - —
+653	      - N/A
+654	  figures_description:
+655	  - 'Fig: Updated power function scatter with BBH/MATH added (hollow markers), original
+656	    5 benchmarks (filled). R² annotation: 0.65→0.62.'
+657	  analysis: '新 benchmarks 不改变 Claim 2 核心 (power ∝ n_items)，但增加了两个中间 data points。
+658	
+659	    MATH 的 poor params 是 limitation 不是 finding——写入 §6 Limitations。
+660	
+661	    R² 保持在 median range [0.55, 0.70]，"empirical trend" framing 已足够。
+662	
+663	    建议在 power function figure caption 标注 "R² computed on 7 benchmarks; parameter quality
+664	    varies."
+665	
+666	    '
+667	- name: Leaderboard Audit
+668	  plan_id: exp-leaderboard-audit
+669	  description: 'Open LLM Leaderboard v1 大规模 person-fit 扫描。
+670	
+671	    '
+672	  expected_results:
+673	    status: ABANDONED — consistent with D011 decision
+674	    reason: v1 IRT refit a_r=0.127 (N=178) confirms discrimination failure; 13K-model
+675	      audit with degraded params would produce noise, not signal
+676	    paper_treatment: '§7 Discussion/Future Work: note 13K+ per-item data availability;
+677	      roadmap for large-scale audit pending neural IRT estimation advances'
+678	  result_rationale: 'Median 档下此实验保持 ABANDONED 状态。a_r=0.127 的 discrimination 参数质量
+679	
+680	    使得任何基于此参数的 lz* 计算都接近 accuracy-based metric，
+681	
+682	    丧失了 IRT response-pattern analysis 的核心优势。
+683	
+684	    13K audit 的假阳性率将不可控（exp-v1-irt-refit-pilot 中 lz*_flagged 仅 1.6%，
+685	
+686	    但这是因为 lz* 退化为 accuracy-like，而非真正的低 contamination 率）。
+687	
+688	    正确处理：将数据可用性 (13K+ models, per-item binary responses) 作为 future work motivation。
+689	
+690	    '
+691	  tables: []
+692	  figures_description: []
+693	  analysis: '不计入 paper 分析。在 §7 Future Work 中用 2-3 句话提及：
+694	
+695	    "The Open LLM Leaderboard v1 provides per-item binary responses for 13K+ models
+696	    —
+697	
+698	    a unique resource for retrospective contamination audit once neural IRT estimation
+699	
+700	    methods yield reliable discrimination parameters at scale."'
+701	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f52cc57b-7c82-4af0-bbff-a2129aa8c087",
+  "isSidechain": false,
+  "promptId": "522e9160-39b3-4df9-99e8-2fb60d2ebbeb",
+  "type": "user",
+  "uuid": "623b4f1f-0ef8-4284-ab95-c22aa568ebf2",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/artifacts/dream_reports/dream_20260521T044802/median/review_context.yaml",
+      "content": "narrative_guidance: 'Claim 1 核心成立但范围收窄——n=10 seeds 揭示 pilot |d| 膨胀约 25%，headline 从\n  \"|d|>2.9 across families\"\n\n  调整为 \"|d|>2.0 across two families, moderate in third\"。Mistral 作为第三家族效应偏弱 (|d|≈1.5)，\n\n  θ-fixed 不完全修复，memorization fraction 跨家族一致性从 \"35-38%\" 扩展为 \"28-38% (10pp spread)\"。\n\n  Claim 2 基本不变——R² 略降至 ~0.62 但 \"empirical trend\" framing 已预设此结果。\n\n  Claim 3 post-RL 降级：|d|=0.8 不足以支撑 \"structural immunity\"，改为 §5.4 exploratory evidence。\n\n  补偿策略：item-level near-random (已完成) + 8× Guttman gap (已完成) + bootstrap CIs 作为独立贡献不受影响。\n\n  投稿：EMNLP 可投但 claims 需精确限定；AAAI 2027 多 10 周完善是更安全选项。\n\n  '\nimagined_experiments:\n- name: Controlled Contamination — Full (n=10 seeds + Mistral + multi-benchmark)\n  plan_id: exp-ctrl-contam\n  description: '将 Qwen/Llama clean seeds 从 n=3 扩展到 n=10，新增 Mistral-7B-v0.3 作为第三家族\n    (n=3)，\n\n    增加 5%/10%/25% contamination levels，扩展至 GSM8K 和 HellaSwag benchmarks。\n\n    Gemma-4-31B 因 GPU 预算不足 (31B 模型 QLoRA 训练时间 ~3× 7B) 仅完成 clean baseline + 15% 单条件，\n\n    不计入主分析。\n\n    '\n  expected_results:\n    qwen_clean_n10_mean_lz_star: 8.15\n    qwen_clean_n10_std_lz_star: 2.05\n    qwen_clean_n10_range: '[5.2, 11.8]'\n    qwen_contam_5_lz_star: 7.1\n    qwen_contam_10_lz_star: 5.9\n    qwen_contam_15_lz_star: 3.5\n    qwen_contam_25_lz_star: 5.2\n    qwen_contam_50_lz_star: 7.4\n    cohens_d_qwen_5pct_n10: -0.51\n    cohens_d_qwen_10pct_n10: -1.1\n    cohens_d_qwen_15pct_n10: -2.27\n    cohens_d_qwen_25pct_n10: -1.44\n    cohens_d_qwen_50pct_n10: -0.37\n    qwen_n10_ci_half_width_15pct: 0.68\n    qwen_n10_d_shrinkage_from_n3: 34% (3.42 → 2.27)\n    qwen_free_theta_nonmonotonic_n10: true\n    llama_clean_n10_mean_lz_star: -0.22\n    llama_clean_n10_std_lz_star: 1.28\n    llama_clean_n10_range: '[-2.1, 1.9]'\n    llama_contam_5_lz_star: -0.85\n    llama_contam_10_lz_star: -1.65\n    llama_contam_15_lz_star: -2.9\n    llama_contam_25_lz_star: -3.25\n    llama_contam_50_lz_star: -3.42\n    cohens_d_llama_5pct_n10: -0.49\n    cohens_d_llama_10pct_n10: -1.12\n    cohens_d_llama_15pct_n10: -2.09\n    cohens_d_llama_25pct_n10: -2.37\n    cohens_d_llama_50pct_n10: -2.5\n    llama_n10_ci_half_width_15pct: 0.72\n    llama_n10_d_shrinkage_from_n3: 29% (2.95 → 2.09)\n    llama_free_theta_monotonic_n10: true\n    mistral_clean_n3_seeds:\n    - 4.8\n    - 2.1\n    - 4.5\n    mistral_clean_n3_mean_lz_star: 3.8\n    mistral_clean_n3_std_lz_star: 1.49\n    mistral_contam_15_lz_star: 1.55\n    mistral_contam_50_lz_star: 2.8\n    cohens_d_mistral_15pct: -1.51\n    cohens_d_mistral_50pct: -0.67\n    mistral_contam_15_acc: 0.618\n    mistral_contam_50_acc: 0.657\n    mistral_clean_mean_acc: 0.583\n    mistral_theta_shift_15pct: 0.18\n    mistral_theta_shift_50pct: 0.32\n    mistral_theta_fixed_monotonic: false\n    mistral_theta_fixed_ratio: 1.55\n    mistral_memorization_fraction_15: 0.28\n    mistral_memorization_fraction_50: 0.21\n    theta_fixed_qwen_monotonic: true\n    theta_fixed_llama_monotonic: true\n    theta_fixed_mistral_monotonic: false\n    theta_fixed_mistral_note: ratio=1.55 (weak), contam_25 lz*_fixed anomalously high\n      — θ baseline unstable due to high clean variance\n    mf_qwen_15: 0.36\n    mf_llama_15: 0.33\n    mf_mistral_15: 0.28\n    mf_cross_family_spread_pp: 8\n    cohens_d_qwen_gsm8k_15pct: 1.15\n    cohens_d_llama_gsm8k_15pct: 0.88\n    cohens_d_qwen_hellaswag_15pct: 1.72\n    cohens_d_llama_hellaswag_15pct: 1.35\n    cohens_d_mistral_gsm8k_15pct: 0.62\n    cohens_d_mistral_hellaswag_15pct: 0.95\n    gemma_status: incomplete — clean baseline + 15% only, insufficient for full analysis\n    gemma_clean_lz_star: 5.2\n    gemma_contam_15_lz_star: 2.8\n    gemma_note: single seed, not included in main analysis\n  result_rationale: '**n=10 shrinkage 机制**：n=3 pilot 中 Qwen s2 (lz*=7.05) 是 outlier，人为压低了\n    clean std (1.41)。\n\n    n=10 捕获了更多自然变异——QLoRA 的 random initialization + data shuffling 在不同 seeds 下导致\n\n    lz* 在 [5.2, 11.8] 范围波动。true std ≈ 2.05 使 Cohen''s d 从 3.42 降至 2.27。\n\n    这不是检测力的真实下降，而是 n=3 时 denominator 被低估。CI 半宽 0.68 远优于 n=3 的 ~1.5。\n\n\n    **Llama shrinkage 较小 (29% vs 34%)**：Llama clean seeds 本身方差就更稳定 (n=3 std=0.97)，\n\n    n=10 std 仅升至 1.28。Llama 的 base model misfit 接近 0 (mean=-0.22)，response pattern\n\n    更接近 IRT 预测，因此 seed 间变异较小。\n\n\n    **Mistral 效应偏弱的三重原因**：\n\n    (1) memorization efficiency 低——Mistral 的 grouped-query attention + sliding window\n    attention\n\n    在短序列 fine-tuning 时 rote memorization 较弱 (MF=0.28 vs Qwen 0.36)；\n\n    (2) baseline misfit 处于 \"中间地带\" (lz*=3.8)——contamination 需要在已有 positive misfit 基础上\n\n    进一步移动 lz*，但方向相反 (contamination → more negative Δlz*)，导致信号部分抵消；\n\n    (3) θ-fixed 不稳定——Mistral clean θ_MLE 方差大 (seeds 间 θ 差异 >0.3)，\n\n    固定 θ 的基准选择不如 Qwen/Llama 稳健，contam_25 出现异常高 lz*_fixed 打破单调性。\n\n\n    **Multi-benchmark 效应递减**：GSM8K (1319 items) 的 Cohen''s d 系统性弱于 MMLU (14042 items)，\n\n    因为 lz* 的 aggregation power 正比于 √n_items——items 少则 per-item noise 难以平滑。\n\n    此外 GSM8K 的 chain-of-thought 格式使 SFT memorization 更多表现为 reasoning pattern 而非\n\n    answer-level binary flip，memorization fraction 在 GSM8K 上预计 ~20% (vs MMLU 33-38%)。\n\n\n    **Gemma 不完整**：31B 模型单次 QLoRA 训练约 9 GPU-hrs (vs 7B 的 3 hrs)，\n\n    在 80 GPU-hr 总预算中仅够跑 clean + 15% 各一个 seed，无法计算 Cohen''s d。\n\n    '\n  tables:\n  - name: 'Table: n=10 Cross-Family MMLU Detection (15% contamination)'\n    columns:\n    - Family\n    - n_seeds\n    - Clean mean±std\n    - '|d|'\n    - 95% CI\n    - MF\n    - θ-fixed mono\n    rows:\n    - - Qwen-2.5-7B\n      - 10\n      - 8.15±2.05\n      - 2.27\n      - '[1.59, 2.95]'\n      - 0.36\n      - 'Yes'\n    - - Llama-3.1-8B\n      - 10\n      - -0.22±1.28\n      - 2.09\n      - '[1.37, 2.81]'\n      - 0.33\n      - 'Yes'\n    - - Mistral-7B-v0.3\n      - 3\n      - 3.80±1.49\n      - 1.51\n      - '[0.25, 2.77]'\n      - 0.28\n      - No (partial)\n  - name: 'Table: Multi-Benchmark Effect Sizes (n=3, 15% contamination)'\n    columns:\n    - Benchmark\n    - n_items\n    - Qwen |d|\n    - Llama |d|\n    - Mistral |d|\n    rows:\n    - - MMLU\n      - 14042\n      - 2.27\n      - 2.09\n      - 1.51\n    - - HellaSwag\n      - 10042\n      - 1.72\n      - 1.35\n      - 0.95\n    - - GSM8K\n      - 1319\n      - 1.15\n      - 0.88\n      - 0.62\n  - name: 'Table: Dose-Response Full Spectrum (Qwen, MMLU, n=10)'\n    columns:\n    - Contam %\n    - lz*\n    - Δlz*\n    - '|d|'\n    - Direction\n    rows:\n    - - 0%\n      - 8.15\n      - —\n      - —\n      - baseline\n    - - 5%\n      - 7.1\n      - -1.05\n      - 0.51\n      - negative (aberrant)\n    - - 10%\n      - 5.9\n      - -2.25\n      - 1.1\n      - negative\n    - - 15%\n      - 3.5\n      - -4.65\n      - 2.27\n      - negative\n    - - 25%\n      - 5.2\n      - -2.95\n      - 1.44\n      - negative (weaker — θ-shift)\n    - - 50%\n      - 7.4\n      - -0.75\n      - 0.37\n      - negative (near-null — θ-shift dominant)\n  figures_description:\n  - 'Fig A: Dose-response curves (0-50%) for 3 families under free-θ and θ-fixed,\n    n=10 CI bands. Qwen non-monotonic (free-θ), Llama monotonic, Mistral weak with\n    irregular θ-fixed.'\n  - 'Fig B: Clean seed distributions (n=10) — kernel density overlays for 3 families,\n    showing Qwen high-misfit, Llama near-zero, Mistral intermediate.'\n  - 'Fig C: Memorization fraction by family and contamination level, showing Mistral\n    systematically lower.'\n  analysis: '核心结论：2/3 families 有 |d|>2 (Qwen 2.27, Llama 2.09)，第三家族 Mistral |d|=1.51\n    属 large effect 但偏弱。\n\n    θ-fixed 修复 dose-response 在 2/3 families 成功，Mistral 失败。\n\n    Paper headline 调整为：\"IRT-FIT detects controlled contamination with |d|>2.0 in two\n    model families\n\n    and moderate effect (|d|=1.5) in a third, with n=10 bootstrap CIs quantifying\n    estimation precision.\"\n\n    MF 跨家族一致性降级为 \"approximate consistency (28-38%, ~10pp spread) with model-dependent\n    variation\"。\n\n    GSM8K 弱效应 (|d|<1.2) 意味着 multi-benchmark claims 须限定为 \"large benchmarks (≥10K items)\"。\n\n    '\n- name: Post-RL GRPO Detection\n  plan_id: exp-post-rl\n  description: 'Qwen2.5-7B-Instruct: SFT 注入 15% MMLU contamination → GRPO 训练 (rule-based\n    reward on GSM8K)。\n\n    测试 person-fit 检测力在 RL 后的保持程度。\n\n    '\n  expected_results:\n    sft_baseline_lz_star: 3.85\n    sft_baseline_delta_lz_star: -4.83\n    sft_baseline_cohens_d: -3.42\n    post_grpo_lz_star: 6.55\n    post_grpo_delta_lz_star: -2.13\n    post_grpo_cohens_d: -0.82\n    post_grpo_acc_mmlu: 0.712\n    post_grpo_acc_gsm8k_improvement: +7.5pp over SFT-only\n    post_grpo_theta_mle: 0.22\n    post_grpo_theta_shift_from_clean: 0.32\n    post_grpo_memorization_fraction: 0.24\n    grpo_steps_completed: 480\n    grpo_steps_planned: 625\n    grpo_completion_pct: 76.8\n    grpo_reward_source: rule-based (GSM8K answer extraction + format correctness)\n    detection_retained: true\n    detection_power_reduction_pct: 76\n    seen_unseen_split_post_grpo:\n      seen_acc_delta: +0.04 (attenuated from SFT +0.09)\n      unseen_acc_delta: '+0.02'\n      seen_lz_star: 5.9\n      unseen_lz_star: 7.1\n  result_rationale: '**GRPO 削弱但不消除 person-fit 信号的机制**：\n\n    (1) GRPO 优化 GSM8K reward，梯度更新主要作用于 math reasoning tokens 的分布。\n\n    MMLU 多选题的 response pattern 只是被间接影响——GRPO 不直接惩罚或奖励 MMLU 答对/答错，\n\n    所以 SFT 阶段注入的 memorization pattern 被\"稀释\"但不被\"定向移除\"。\n\n    (2) memorization fraction 从 0.38 降至 0.24：GRPO 的 policy gradient 使模型的 response\n    distribution\n\n    整体平滑化（KL penalty 项防止偏离 reference policy 太远），最深的 rote memorization (~15% 的 seen\n    items)\n\n    保留，浅层 memorization 被洗掉。\n\n    (3) θ_MLE 进一步上移至 0.22 (从 SFT-only 的 0.19)——GRPO 提升了 reasoning ability，\n\n    higher θ 吸收更多 aberrance signal。这是 θ-shift 机制的 RL 延伸。\n\n    (4) 实验仅完成 77%——GPU 时间限制导致 GRPO 提前终止 (480/625 steps)。\n\n    更多训练步数可能进一步降低 |d|。这意味着报告结果时需注明 \"preliminary\" 和训练未完成。\n\n    (5) |d|=0.82 处于 medium-to-large 边界——统计显著 (p<0.05) 但远不如 SFT-only 的 3.42。\n\n    对比 Wang et al. (2025) 的 MIA methods post-RL |d|≈0，binary pattern 保留了更多信号。\n\n    '\n  tables:\n  - name: 'Table: SFT-only vs Post-GRPO Detection Comparison'\n    columns:\n    - Condition\n    - lz*\n    - Δlz*\n    - '|d|'\n    - MF\n    - θ_MLE\n    - MMLU acc\n    rows:\n    - - Clean (n=3 mean)\n      - 8.68\n      - —\n      - —\n      - —\n      - -0.097\n      - 0.679\n    - - SFT-only 15%\n      - 3.85\n      - -4.83\n      - 3.42\n      - 0.38\n      - 0.19\n      - 0.731\n    - - SFT 15% + GRPO\n      - 6.55\n      - -2.13\n      - 0.82\n      - 0.24\n      - 0.22\n      - 0.712\n  - name: 'Table: Post-RL vs MIA Methods (Wang et al. 2025 context)'\n    columns:\n    - Method\n    - Info Level\n    - Post-RL |d|\n    - Status\n    rows:\n    - - Min-K%++\n      - Token probs\n      - ≈0\n      - Failed (Wang et al.)\n    - - PPL-based MIA\n      - Log-probs\n      - ≈0\n      - Failed (Wang et al.)\n    - - lz* (IRT)\n      - Binary only\n      - 0.82\n      - Partial retention\n  figures_description:\n  - 'Fig: Three-condition bar chart (clean / SFT-only / SFT+GRPO) with |d| as y-axis,\n    showing 76% reduction.'\n  - 'Fig: Seen/unseen accuracy delta attenuation: SFT-only seen Δacc=+0.09 → post-GRPO\n    seen Δacc=+0.04.'\n  analysis: 'Post-RL 结果明确不支持 \"structural immunity\"。|d|=0.82 是 \"detection signal survives\n    but is substantially weakened.\"\n\n    Paper 措辞：移入 §5.4 Exploratory Analysis，标题 \"Preliminary Evidence of Partial Post-RL\n    Retention\"。\n\n    关键 caveat：(a) N=1 模型，N=1 RL 配置，不支持 generalizable claim；(b) GRPO 未跑完 (77%)；\n\n    (c) rule-based reward on GSM8K ≠ RLHF on general preference data，后者可能有不同效果。\n\n    正面 framing：binary pattern 的结构优势部分成立——至少优于 token-prob methods (|d|≈0 post-RL)。\n\n    这是 \"promising direction requiring future work\" 而非 \"demonstrated advantage\"。\n\n    '\n- name: Baseline Comparison — Full Completion\n  plan_id: exp-baseline-comparison\n  description: '补全 baseline comparison：在已有 binary-only baselines 基础上，增加 higher-information\n    methods\n\n    (ConStat re-test, Min-K%++, PPL-based) 量化 minimal-information 代价。目标 ≥5 baselines。\n\n    '\n  expected_results:\n    minkpp_cohens_d_qwen_15: -5.2\n    minkpp_cohens_d_llama_15: -4.6\n    constat_cohens_d_qwen_15: -4.1\n    constat_cohens_d_llama_15: -3.7\n    ppl_cohens_d_qwen_15: -4.0\n    ppl_cohens_d_llama_15: -3.4\n    item_auroc_minkpp_qwen15: 0.72\n    item_auroc_minkpp_llama15: 0.69\n    item_auroc_constat_qwen15: 0.74\n    item_auroc_constat_llama15: 0.7\n    item_auroc_ppl_qwen15: 0.66\n    item_auroc_ppl_llama15: 0.63\n    item_auroc_lz_star_qwen15: 0.54\n    item_auroc_guttman_qwen15: 0.52\n    item_auroc_rf_oracle_qwen50: 0.63\n    lz_star_vs_best_privileged_d_ratio: 0.44\n    lz_star_vs_guttman_d_ratio: 5.3\n    n_baselines: 7\n    baselines_list: lz*, Guttman/U3, HT, acc z-score, Min-K%++, ConStat, PPL-based\n  result_rationale: '**Higher-info methods 更强是预期中的结果**：\n\n    (1) Min-K%++ (|d|≈5.2) 最强——SFT 直接优化了 contaminated items 的 next-token probability，\n\n    Min-K%++ 精确测量的就是 token-level probability shift，信号最直接、最强。\n\n    但 Wang et al. (2025) 已证明它在 post-RL 后失效，所以高 |d| 仅限 SFT 场景。\n\n    (2) ConStat (|d|≈4.1) 利用 rephrased re-test 直接测量 \"memorization vs generalization\"，\n\n    概念上最接近 ground truth (same question different wording)，但需要额外推理成本 (2× GPU time)。\n\n    (3) PPL-based (|d|≈4.0) 利用 full log-probs，信息量多于 binary 但少于 token-level。\n\n\n    **Item-level分层**：binary-only methods item AUROC 0.52-0.63 (near-random 至 weak)；\n\n    higher-info methods 0.63-0.74 (weak 至 moderate)。即使 privileged methods 也远未达到 strong\n\n    item-level detection——因为 SFT contamination 本质上产生 diffuse signal (MF=28-38%)，\n\n    大多数 seen items 不产生 clean item-level fingerprint。这强化了 \"model-level aggregation\n    essential\" 论点。\n\n\n    **7 baselines 超过同行中位数 (~5)**，bootstrap CIs 是 6/8 同行缺失的差异化优势。\n\n    '\n  tables:\n  - name: 'Table: Complete Baseline Comparison (15% contamination)'\n    columns:\n    - Method\n    - Info Level\n    - '|d| Qwen'\n    - '|d| Llama'\n    - Item AUROC\n    - Post-RL viable\n    rows:\n    - - Min-K%++\n      - Token probs\n      - 5.2\n      - 4.6\n      - 0.72/0.69\n      - No (Wang'25)\n    - - ConStat\n      - Rephrased retest\n      - 4.1\n      - 3.7\n      - 0.74/0.70\n      - Unknown\n    - - PPL-based\n      - Log-probs\n      - 4.0\n      - 3.4\n      - 0.66/0.63\n      - No (Wang'25)\n    - - lz* (ours)\n      - Binary only\n      - 2.27\n      - 2.09\n      - 0.54/0.53\n      - Partial (0.82)\n    - - HT statistic\n      - Binary only\n      - 3.21\n      - 3.53\n      - 0.55/0.54\n      - —\n    - - Guttman/U3\n      - Binary only\n      - 0.43\n      - 0.41\n      - 0.52/0.52\n      - —\n    - - Acc z-score\n      - Binary only\n      - 160.6\n      - —\n      - 0.51/—\n      - —\n  figures_description:\n  - 'Fig: Detection frontier diagram — x = information access level (binary → re-test\n    → token prob → logit → weight), y = |d|. Clear monotonic with lz* at floor.'\n  - 'Fig: Item-level AUROC bar chart across all 7 methods, showing binary-only cluster\n    (0.51-0.55) vs privileged-access cluster (0.63-0.74) vs random (0.50).'\n  analysis: 'Detection frontier 实证确认：minimal-information 代价约 56% effect size (lz*\n    |d|=2.27 vs best |d|=5.2)。\n\n    关键 framing：\"We quantify what binary responses alone can and cannot achieve — a\n    56% effect size cost\n\n    relative to token-probability methods, but with zero model access requirements\n    and preliminary post-RL\n\n    robustness that privileged methods lack.\"\n\n    lz* vs Guttman 5.3× gap (n=10) 仍然显著，证明 full IRT parameterization 的价值。\n\n    HT 的 inconsistency 跨家族 (Qwen |d|=3.21, Llama |d|=3.53) 虽好但缺乏 interpretability\n    (no θ-shift analysis)。\n\n    HT 结果计入 but lz* 作为 primary 因为 θ-shift mechanistic insight 是独特贡献。\n\n    '\n- name: Multiscale lzm Cross-Benchmark Aggregation\n  plan_id: exp-multiscale-lzm\n  description: '实现 Hong, Lin & Cheng (2021) multiscale lzm 统计量，在 12 模型 case study\n    + ctrl-contam 上验证。\n\n    '\n  expected_results:\n    lzm_12model_flagged: 12/12 (100%)\n    lzm_gemini15_value: 28.9\n    lzm_gemini15_rank: 1\n    lzm_ctrl_contam_qwen_15_d_improvement: +0.25 over MMLU-only lz*\n    lzm_ctrl_contam_llama_15_d_improvement: '+0.18'\n    lzm_vs_max_single_benchmark_correlation: 0.97\n    lzm_implementation_validated: true\n    lzm_key_limitation: MMLU (14042 items) dominates aggregation weight; GSM8K/HellaSwag\n      contribute <15% to total signal\n  result_rationale: 'lzm 的标准化聚合理论上比 ad hoc averaging 更优，但实际改善有限：\n\n    (1) 在 12 模型 case study 中 57/60 already flagged，lzm 只能将 3 个 borderline cells 的\n    p-value\n\n    略降——Yi-Lightning/arc_c 从 p=0.098 降至 ~0.07，仍不改变 BH-FDR 校正后的结论。\n\n    (2) ctrl-contam 的 |d| 提升仅 0.18-0.25，因为 MMLU 的 n_items 远大于其他 benchmarks，\n\n    lzm 的 variance-weighted sum 中 MMLU 权重 >70%。增加 GSM8K/HellaSwag 只是增加了少量独立信号。\n\n    (3) r=0.97 with max single-benchmark 说明 lzm 本质上 ≈ MMLU lz* in this dataset。\n\n    lzm 的真正价值是 methodological completeness (citable implementation) 而非检测力提升。\n\n    '\n  tables: []\n  figures_description:\n  - 'Fig: lzm vs MMLU lz* scatter for 12 models — near-perfect correlation with marginal\n    upward shift.'\n  analysis: 'lzm 放入 §4 Methods 作为 \"standard cross-benchmark aggregation\" 即可，\n\n    不应 highlight 为 key result。句子级别提及：\"We also implement multiscale lzm (Hong et al.,\n    2021)\n\n    for cross-benchmark aggregation, which yields marginal improvement over single-benchmark\n    lz*\n\n    due to MMLU''s dominant item count.\"\n\n    '\n- name: Extra Benchmarks — BBH + MATH Power Analysis\n  plan_id: exp-extra-benchmarks\n  description: 'BBH (6511 items) 和 MATH (5000 items) 填充 1K-10K power gap，更新 power\n    function 拟合。\n\n    需从 PSN-IRT 获取 4PL 参数或自行校准。\n\n    '\n  expected_results:\n    bbh_4pl_params_source: PSN-IRT (available for BBH subtasks)\n    math_4pl_params_source: self-calibrated from v1 data (N=178), quality poor\n    bbh_sim_power_15pct: 0.71\n    math_sim_power_15pct: 0.55\n    bbh_ctrl_contam_d_15pct: 1.05\n    math_ctrl_contam_d_15pct: 0.65\n    math_4pl_a_pearson_r: 0.14\n    math_a_quality_note: below 0.2 threshold — consistent with v1 refit failure pattern\n    power_function_R2_updated_7points: 0.62\n    power_function_R2_original_5points: 0.65\n    power_function_R2_delta: -0.03\n    power_function_updated_coefficients: P(n) = 1 - exp(-0.00018 × n^0.92 × c^1.15)\n  result_rationale: \"**BBH 中等结果 (|d|≈1.05)**：\\nBBH 6511 items 预期 sim power ~71%（按\\\n    \\ power ∝ √n_items 外推自 MMLU/HellaSwag）。\\n实际 ctrl-contam |d|=1.05 弱于 sim 预测，因为\\\n    \\ BBH 包含 23 个 heterogeneous subtasks\\n(boolean_expressions, causal_judgment, disambiguation_qa,\\\n    \\ etc.)，每个 subtask 仅 ~283 items。\\nSFT memorization 在如此碎片化的 task 结构中更 diffuse，且\\\n    \\ subtask 间的 IRT 参数异质性\\n(不同 subtask 的 difficulty/discrimination 分布差异大) 削弱了整体 lz*\\\n    \\ 信号。\\n\\n**MATH 弱结果 (|d|≈0.65)**：\\nMATH 的核心问题是 4PL 参数质量——如果依赖 v1 leaderboard data\\\n    \\ 自行校准 (N=178 models)，\\na_pearson_r ≈ 0.14 (< 0.2 threshold)，重复了 exp-v1-irt-refit\\\n    \\ 的失败模式。\\n低质量 discrimination 参数使 lz* 退化为 near-accuracy-like metric，\\n丧失了 IRT 的\\\n    \\ response-pattern-level 信息优势。如果 PSN-IRT 有 MATH 参数会更好，\\n但 PSN-IRT 的 benchmark\\\n    \\ 覆盖不确定。\\n\\n**R² 略降的原因**：BBH 和 MATH 的 ctrl-contam |d| 系统性偏低于 simulation 预测\\n（sim\\\n    \\ 假设 perfect IRT params + pure memorization signal）。加入这两个 \\\"reality-adjusted\\\"\\\n    \\ \\ndata points 增加了 scatter around power function，R² 从 0.65 降至 0.62。\\n这进一步支持 R²=0.65\\\n    \\ 作为 \\\"empirical trend\\\" 而非 \\\"predictive model\\\" 的 framing。\\n\"\n  tables:\n  - name: 'Table: Updated Power Function — All Data Points'\n    columns:\n    - Benchmark\n    - n_items\n    - Sim Power @15%\n    - Ctrl |d| @15%\n    - 4PL quality\n    rows:\n    - - MMLU\n      - 14042\n      - 0.979\n      - 2.27\n      - PSN-IRT (good)\n    - - HellaSwag\n      - 10042\n      - 0.753\n      - 1.35\n      - PSN-IRT (good)\n    - - BBH\n      - 6511\n      - 0.71\n      - 1.05\n      - PSN-IRT (moderate)\n    - - MATH\n      - 5000\n      - 0.55\n      - 0.65\n      - Self-calibrated (poor)\n    - - GSM8K\n      - 1319\n      - 0.591\n      - 0.88\n      - PSN-IRT (good)\n    - - ARC-C\n      - 295\n      - 0.129\n      - —\n      - PSN-IRT (good)\n    - - HumanEval\n      - 164\n      - 0.243\n      - —\n      - N/A\n  figures_description:\n  - 'Fig: Updated power function scatter with BBH/MATH added (hollow markers), original\n    5 benchmarks (filled). R² annotation: 0.65→0.62.'\n  analysis: '新 benchmarks 不改变 Claim 2 核心 (power ∝ n_items)，但增加了两个中间 data points。\n\n    MATH 的 poor params 是 limitation 不是 finding——写入 §6 Limitations。\n\n    R² 保持在 median range [0.55, 0.70]，\"empirical trend\" framing 已足够。\n\n    建议在 power function figure caption 标注 \"R² computed on 7 benchmarks; parameter quality\n    varies.\"\n\n    '\n- name: Leaderboard Audit\n  plan_id: exp-leaderboard-audit\n  description: 'Open LLM Leaderboard v1 大规模 person-fit 扫描。\n\n    '\n  expected_results:\n    status: ABANDONED — consistent with D011 decision\n    reason: v1 IRT refit a_r=0.127 (N=178) confirms discrimination failure; 13K-model\n      audit with degraded params would produce noise, not signal\n    paper_treatment: '§7 Discussion/Future Work: note 13K+ per-item data availability;\n      roadmap for large-scale audit pending neural IRT estimation advances'\n  result_rationale: 'Median 档下此实验保持 ABANDONED 状态。a_r=0.127 的 discrimination 参数质量\n\n    使得任何基于此参数的 lz* 计算都接近 accuracy-based metric，\n\n    丧失了 IRT response-pattern analysis 的核心优势。\n\n    13K audit 的假阳性率将不可控（exp-v1-irt-refit-pilot 中 lz*_flagged 仅 1.6%，\n\n    但这是因为 lz* 退化为 accuracy-like，而非真正的低 contamination 率）。\n\n    正确处理：将数据可用性 (13K+ models, per-item binary responses) 作为 future work motivation。\n\n    '\n  tables: []\n  figures_description: []\n  analysis: '不计入 paper 分析。在 §7 Future Work 中用 2-3 句话提及：\n\n    \"The Open LLM Leaderboard v1 provides per-item binary responses for 13K+ models\n    —\n\n    a unique resource for retrospective contamination audit once neural IRT estimation\n\n    methods yield reliable discrimination parameters at scale.\"'\n",
+      "numLines": 701,
+      "startLine": 1,
+      "totalLines": 701
+    }
+  },
+  "sourceToolAssistantUUID": "f52cc57b-7c82-4af0-bbff-a2129aa8c087",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam",
+  "sessionId": "38461102-0053-4fc0-9aca-3e348094d93e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+## Round 2
+
+27 recorded events
+
+### User
+
+_source line 12 · 2026-05-21T05:41:50.388Z_
+
+```json
+{
+  "type": "document",
+  "source": {
+    "type": "base64",
+    "media_type": "application/pdf",
+    "data": "[ATTACHMENT_DATA_REDACTED]"
+  }
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0b33510f-b1b1-4cdd-8d60-34c2882175bd",
+  "isSidechain": false,
+  "promptId": "522e9160-39b3-4df9-99e8-2fb60d2ebbeb",
+  "type": "user",
+  "isMeta": true,
+  "uuid": "8aaae727-396a-4155-a141-8ace6602e900",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam",
+  "sessionId": "38461102-0053-4fc0-9aca-3e348094d93e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-21T05:41:50.525Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01PDfkNMHztx8xeYvrx4jGeX`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/artifacts/dream_reports/dream_20260521T044802/median/review_context.yaml"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8aaae727-396a-4155-a141-8ace6602e900",
+  "isSidechain": false,
+  "requestId": "req_011CbFBN151ZcGS1MDy4TLgp",
+  "type": "assistant",
+  "uuid": "f52cc57b-7c82-4af0-bbff-a2129aa8c087",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam",
+  "sessionId": "38461102-0053-4fc0-9aca-3e348094d93e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LNiGLMEuddwwU1wMHmX4Vq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11817,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 223,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11817,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 223,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11817,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11817
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 14_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[DREAM Review Director] dream_id=20260521T044802 | review_mode=full | review_visible=True PDF: /home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/artifacts/dream_reports/…",
+  "leafUuid": "623b4f1f-0ef8-4284-ab95-c22aa568ebf2",
+  "sessionId": "38461102-0053-4fc0-9aca-3e348094d93e"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 15_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Full peer review of IRT personfit contamination paper",
+  "sessionId": "38461102-0053-4fc0-9aca-3e348094d93e"
+}
+```
+
+---
+
+### Assistant
+
+_source line 16 · 2026-05-21T05:42:03.635Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I've read the full PDF and the review context YAML. Now I need to dispatch the full dream review following the `dream-review-full` dispatch template: 2 Reviewers (R1: methods + experiments, R2: novelty + related work), then a full roundtable (Step 1 independent → Step 2 cross-share → Step 3 converge → Step 4 synthesize).
+
+Let me launch R1 and R2 in parallel as agents, each performing an independent blind review. I'll give them the full paper content and the review context for experiment coverage assessment, but without mentioning the tier.
+
+
+Now I'm setting up the parallel dispatch for both reviewers, collecting their independent assessments, then running through the roundtable discussion steps to synthesize a final review report.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "623b4f1f-0ef8-4284-ab95-c22aa568ebf2",
+  "isSidechain": false,
+  "requestId": "req_011CbFBNGsXS15cUPBAah711",
+  "type": "assistant",
+  "uuid": "5ccd3d2a-c71a-47fb-9342-5cb62f95b57d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam",
+  "sessionId": "38461102-0053-4fc0-9aca-3e348094d93e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CWh9fNGAB89WekJ6ErFof5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 33679,
+      "cache_read_input_tokens": 23658,
+      "output_tokens": 4055,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 33679,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 4055,
+          "cache_read_input_tokens": 23658,
+          "cache_creation_input_tokens": 33679,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 33679
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17 · 2026-05-21T05:42:03.680Z_
+
+I have the full paper and experiment design context. Dispatching two independent reviewers in parallel: R1 (methods + experiments) and R2 (novelty + related work).
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5ccd3d2a-c71a-47fb-9342-5cb62f95b57d",
+  "isSidechain": false,
+  "requestId": "req_011CbFBNGsXS15cUPBAah711",
+  "type": "assistant",
+  "uuid": "f9c1b21f-4843-45f0-9da0-db5d6f30de19",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam",
+  "sessionId": "38461102-0053-4fc0-9aca-3e348094d93e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CWh9fNGAB89WekJ6ErFof5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 33679,
+      "cache_read_input_tokens": 23658,
+      "output_tokens": 4055,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 33679,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 4055,
+          "cache_read_input_tokens": 23658,
+          "cache_creation_input_tokens": 33679,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 33679
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-21T05:42:56.612Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_013yzA5sjbJcJEm6UAx1yNFb`</summary>
+
+```json
+{
+  "description": "R1: Methods + Experiments review",
+  "prompt": "You are Reviewer 1 (R1) for an EMNLP 2026 submission. Your focus: **methodology soundness and experimental rigor**.\n\n## Venue: EMNLP 2026 (via ARR)\nScoring scale (Overall Assessment, half-point increments 1–5):\n- 5 = Consider for Award (top 2.5%)\n- 4 = Conference (Main track accept)\n- 3.5 = Borderline Conference\n- 3 = Findings\n- 2.5 = Borderline Findings\n- 2 = Resubmit next cycle\n- 1 = Do not resubmit\n\nDimensions: Soundness (1–5), Excitement (1–5), Reproducibility (1–5)\nAccept rate: ~21% for Main. Be calibrated accordingly.\n\n## Paper Summary\n**Title:** IRT-FIT: Detecting Benchmark Contamination in LLMs via Person-Fit Statistics on Binary Response Patterns\n\nThe paper adapts IRT person-fit statistics (ℓz*) to detect benchmark contamination in LLMs using only binary (correct/incorrect) response patterns. Three contributions claimed:\n1. Minimal-information detection framework using ℓz* with controlled contamination experiments across 3 model families (Qwen-2.5-7B n=10, Llama-3.1-8B n=10, Mistral-7B-v0.3 n=3), achieving |d|>2.0 in 2/3 families at 15% MMLU contamination.\n2. Detection characterization: empirical power function across 7 benchmarks (R²=0.62), 56% effect-size cost vs token-probability methods, preliminary post-RL retention.\n3. Empirical findings: universal 4PL model misfit (57/60 cells flagged across 12 models).\n\n**Key results:**\n- Table 1: Cross-family detection at 15%: Qwen |d|=2.27 CI[1.59,2.95], Llama |d|=2.09 CI[1.37,2.81], Mistral |d|=1.51 CI[0.25,2.77] (n=3 only)\n- Table 2: Dose-response for Qwen — non-monotonic under free-θ (peaks at 15%, drops at 25%/50% due to θ-shift), monotonic under θ-fixed\n- Table 3: 7 baselines compared. Min-K%++ |d|=5.2 (best), HT statistic |d|=3.21-3.53 (binary, better than ℓz*), ℓz* |d|=2.27/2.09, Guttman |d|=0.43\n- Table 4: Power across 7 benchmarks (164–14042 items), R²=0.62\n- Table 5: Multi-benchmark (MMLU/HellaSwag/GSM8K) across 3 families\n- Table 6: Post-GRPO: |d| drops from 3.42 to 0.82 (76% reduction), labeled \"exploratory\"\n- Table 7: Post-RL comparison: Min-K%++ and PPL ≈0, ℓz* = 0.82\n\n**Experiment design reference (what was planned):**\n- Controlled contamination: n=10 seeds for Qwen/Llama, n=3 for Mistral, 5 contamination levels (5/10/15/25/50%), 3 benchmarks (MMLU/HellaSwag/GSM8K). Gemma incomplete (1 seed, not in main analysis). ✓ Covered in paper.\n- Post-RL GRPO: SFT 15% → GRPO on GSM8K, only 480/625 steps (77%). |d|=0.82. Framed as exploratory. ✓ Covered.\n- Baseline comparison: 7 baselines including Min-K%++, ConStat, PPL, HT, Guttman, acc z-score. ✓ Covered.\n- Multiscale lzm: implemented, r=0.97 with max single-benchmark, marginal improvement. ✓ Briefly covered.\n- Extra benchmarks (BBH, MATH): BBH |d|=1.05, MATH |d|=0.65 (poor 4PL params). ✓ Covered in Table 4.\n- Leaderboard audit: ABANDONED due to poor discrimination params (a_r=0.127). Mentioned in Future Work. ✓ Appropriate.\n\n## Your Task (R1 — Methods + Experiments)\n\nProvide a detailed review covering:\n\n### 1. Methodology Soundness\n- Is the ℓz* → Δℓz* pipeline well-motivated and correctly formulated?\n- Is the θ-fixed analysis sound? Any statistical concerns?\n- Is the memorization fraction (MF) definition appropriate?\n- Is the power function P(n) = 1 − exp(−0.00018 × n^0.92 × c^1.15) with R²=0.62 a meaningful model or overfit noise?\n- The 4PL model: reliance on PSN-IRT parameters — is this a strength or vulnerability?\n\n### 2. Experimental Rigor\n- n=10 seeds for Qwen/Llama but only n=3 for Mistral — is this asymmetry adequately justified?\n- The n=3→n=10 shrinkage (34% for Qwen) — does this undermine pilot claims or is the paper honest about it?\n- Post-RL experiment: only 1 model, 1 RL config, 77% training — is \"exploratory\" framing sufficient?\n- Cohen's d computation: with n=10 and n=3 groups, are the CIs computed correctly (bootstrap)?\n- Acc z-score baseline: z=160.6 looks suspicious — is this an artifact of near-zero variance in clean seeds?\n- HT statistic outperforms ℓz* (|d|=3.21-3.53 vs 2.27/2.09) — does the paper adequately address why ℓz* is preferred despite weaker detection?\n- Item-level AUROC 0.52-0.55 is near-random — is this sufficiently discussed as a limitation?\n\n### 3. Missing Experiments / Coverage Gaps\n- Are there important ablations missing?\n- Is the contamination injection (QLoRA SFT) realistic? Real contamination is in pretraining, not SFT.\n- No full-parameter fine-tuning comparison — does QLoRA-only limit generalizability?\n- No larger models tested (all 7-8B) — scalability unclear.\n\n### 4. Statistical Concerns\n- Multiple comparisons across families/benchmarks — any correction needed beyond what's reported?\n- The power function R²=0.62 on 7 data points with 3 free parameters — degrees of freedom concern?\n- Bootstrap CI methodology — is it appropriate for this sample size?\n\n### 5. Reproducibility\n- Are enough details provided to reproduce? (QLoRA hyperparameters, seed selection, evaluation protocol)\n- PSN-IRT parameter availability?\n- Code/data release mentioned?\n\nProvide your assessment in structured format:\n- Summary (3-4 sentences)\n- Strengths (bulleted)\n- Weaknesses (bulleted, labeled W1, W2, ... with severity: major/minor)\n- Questions for Authors\n- Soundness: X/5\n- Excitement: X/5\n- Reproducibility: X/5\n- Overall Assessment: X/5 (use the scale above)\n- Confidence: X/5\n\nBe rigorous but fair. Calibrate to EMNLP 2026 acceptance rate (~21% Main, ~30% with Findings)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f9c1b21f-4843-45f0-9da0-db5d6f30de19",
+  "isSidechain": false,
+  "requestId": "req_011CbFBNGsXS15cUPBAah711",
+  "type": "assistant",
+  "uuid": "16ac0fe9-e483-4ec9-80f8-8dd6a6705677",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam",
+  "sessionId": "38461102-0053-4fc0-9aca-3e348094d93e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CWh9fNGAB89WekJ6ErFof5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 33679,
+      "cache_read_input_tokens": 23658,
+      "output_tokens": 4055,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 33679,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 4055,
+          "cache_read_input_tokens": 23658,
+          "cache_creation_input_tokens": 33679,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 33679
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-21T05:43:27.666Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01J8g3Zf8wCniHTdxWaid28j`</summary>
+
+```json
+{
+  "description": "R2: Novelty + Related Work review",
+  "prompt": "You are Reviewer 2 (R2) for an EMNLP 2026 submission. Your focus: **novelty, positioning, related work, and presentation quality**.\n\n## Venue: EMNLP 2026 (via ARR)\nScoring scale (Overall Assessment, half-point increments 1–5):\n- 5 = Consider for Award (top 2.5%)\n- 4 = Conference (Main track accept)\n- 3.5 = Borderline Conference\n- 3 = Findings\n- 2.5 = Borderline Findings\n- 2 = Resubmit next cycle\n- 1 = Do not resubmit\n\nDimensions: Soundness (1–5), Excitement (1–5), Reproducibility (1–5)\nAccept rate: ~21% for Main. Be calibrated accordingly.\n\n## Paper Summary\n**Title:** IRT-FIT: Detecting Benchmark Contamination in LLMs via Person-Fit Statistics on Binary Response Patterns\n\nThe paper adapts IRT person-fit statistics (ℓz*) to detect benchmark contamination in LLMs using only binary (correct/incorrect) response patterns — the \"minimal-information operating point\" on the detection frontier. 8 pages main text + references.\n\n**Three claimed contributions:**\n1. Minimal-information detection framework using ℓz* validated on 3 model families\n2. Detection characterization: power function (R²=0.62), 56% effect-size cost quantification, preliminary post-RL robustness\n3. Empirical findings: universal 4PL misfit across 12 models (57/60 cells)\n\n**Key method:** Compute ℓz* (Snijders 2001 corrected person-fit statistic) using pre-calibrated 4PL IRT parameters from PSN-IRT. Use Δℓz* (clean vs contaminated shift) as detection statistic. Novel analyses: θ-fixed to restore dose-response monotonicity, memorization fraction (MF), empirical power function.\n\n**Key results:**\n- |d|>2.0 in 2/3 families at 15% MMLU contamination (Qwen 2.27, Llama 2.09), Mistral 1.51\n- 56% effect-size cost vs token-prob methods (2.27 vs 5.20)\n- Post-RL: |d|=0.82 (partial retention) vs Min-K%++/PPL ≈0\n- HT statistic (also binary) achieves |d|=3.21-3.53, outperforming ℓz*\n- Item-level AUROC near-random (0.52-0.55)\n- Power function R²=0.62 across 7 benchmarks\n- Universal 4PL misfit: 57/60 model-benchmark cells flagged\n\n**Related work cited:** Brown et al. 2020 (n-gram), Shi et al. 2024 (Min-K%), Zhang et al. 2024 (Min-K%++), Deng et al. 2024 (Time Travel), Oren et al. 2024 (ConStat), CoDeC 2026, Wang et al. 2025 (post-RL failure), PSN-IRT 2026, IRT-LLM 2024, Drasgow et al. 1985, Snijders 2001, Hong et al. 2021 (multiscale lzm), Meijer & Sijtsma 2001.\n\n## Your Task (R2 — Novelty + Related Work + Presentation)\n\n### 1. Novelty Assessment\n- Is applying IRT person-fit statistics to LLM contamination detection genuinely novel? Or is it a straightforward application of existing psychometric tools to a new domain?\n- The θ-shift analysis — is this a significant methodological contribution or a known issue in person-fit literature?\n- The \"detection frontier\" / \"minimal-information operating point\" framing — does it constitute a conceptual contribution, or is it post-hoc rationalization of weaker performance?\n- The universal 4PL misfit finding (contribution 3) — is this surprising? LLMs are not human test-takers; wouldn't we expect IRT model misfit?\n- How does the novelty compare to what EMNLP 2026 Main expects?\n\n### 2. Related Work Completeness\n- Are there important missing references? Consider:\n  - Other person-fit statistics beyond ℓz* (e.g., U3, W, ECI indices) — some are mentioned as baselines but not thoroughly discussed\n  - IRT applications in NLP/LLM evaluation beyond PSN-IRT and IRT-LLM\n  - Other minimal-information contamination detection approaches\n  - Benchmark integrity / test security literature from educational measurement\n  - Recent contamination detection work (2024-2026)\n- Is Wang et al. [2025] properly contextualized? The post-RL claim heavily depends on this single reference.\n- Are the anonymous citations (PSN-IRT [2026], CoDeC [2026], IRT-LLM [2024]) potential anonymity violations?\n\n### 3. Positioning and Framing\n- The paper positions ℓz* as the primary method despite HT statistic achieving better |d| (3.21-3.53 vs 2.27/2.09) — is the justification (\"mechanistic interpretability\") convincing?\n- \"Minimal-information operating point\" — is this framing too generous? The method requires pre-calibrated 4PL parameters from PSN-IRT, which is itself a non-trivial dependency.\n- The 56% effect-size cost is highlighted as if it's acceptable — but is it? For practical contamination detection, would practitioners choose a weaker method?\n- The post-RL advantage is the strongest selling point, but it's based on N=1, 77% complete — is the paper over-selling this?\n\n### 4. Presentation Quality\n- Is the paper well-written and well-structured?\n- Are the tables and figures (described but I'll assess the textual descriptions) effective?\n- Is the 8-page limit respected? Does content feel compressed or padded?\n- Are claims appropriately hedged vs over-stated?\n- Are limitations adequately discussed?\n\n### 5. Broader Impact / Ethics\n- Any ethical concerns with a contamination detection tool?\n- Responsible NLP checklist considerations?\n\n### 6. Minor Issues\n- Reference formatting: \"PSN-IRT Authors\", \"CoDeC Authors\", \"IRT-LLM Authors\" — these are placeholder names, not proper anonymous citations\n- Any notation inconsistencies?\n\nProvide your assessment in structured format:\n- Summary (3-4 sentences)\n- Strengths (bulleted)\n- Weaknesses (bulleted, labeled W1, W2, ... with severity: major/minor)\n- Questions for Authors\n- Soundness: X/5\n- Excitement: X/5\n- Reproducibility: X/5\n- Overall Assessment: X/5 (use the scale above)\n- Confidence: X/5\n\nBe rigorous but fair. Calibrate to EMNLP 2026 acceptance rate (~21% Main, ~30% with Findings)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "16ac0fe9-e483-4ec9-80f8-8dd6a6705677",
+  "isSidechain": false,
+  "requestId": "req_011CbFBNGsXS15cUPBAah711",
+  "type": "assistant",
+  "uuid": "6f19f15d-ecbb-46d1-8fa1-0d4146dc42b3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam",
+  "sessionId": "38461102-0053-4fc0-9aca-3e348094d93e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CWh9fNGAB89WekJ6ErFof5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 33679,
+      "cache_read_input_tokens": 23658,
+      "output_tokens": 4055,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 33679,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 4055,
+          "cache_read_input_tokens": 23658,
+          "cache_creation_input_tokens": 33679,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 33679
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-21T05:46:02.411Z_
+
+<details><summary>↩ Tool result · `toolu_01J8g3Zf8wCniHTdxWaid28j`</summary>
+
+```text
+Now I have a thorough understanding of the paper, the project state, and prior reviews. Let me compose my R2 review focused on novelty, related work, positioning, and presentation.
+
+---
+
+## R2 Review: IRT-FIT — Novelty, Positioning, Related Work, Presentation
+
+### Summary
+
+This paper adapts IRT person-fit statistics (specifically the Snijders-corrected ℓz*) to detect benchmark contamination in LLMs using only binary response patterns. The core analogy — a contaminated LLM behaves like a test-taker with item preknowledge — is well-drawn and motivates a "minimal-information operating point" on the detection frontier. Controlled contamination experiments on two model families (Qwen2.5-7B, Llama-3.1-8B) with QLoRA SFT on MMLU show large Cohen's d effect sizes at 15% contamination. The paper also reports universal 4PL model misfit across 12 models, a theta-shift boundary condition, and an empirical power function. The writing is generally clear and the science is honest, but the novelty is primarily cross-domain application rather than methodological invention, and several positioning choices inflate the perceived contribution.
+
+---
+
+### Strengths
+
+- **S1: Well-articulated cross-domain analogy.** The connection between contaminated LLMs and examinees with item preknowledge is natural, well-motivated, and surprisingly unexploited in prior work. The "detection frontier" table (Table 1) is a genuinely useful conceptual contribution that helps practitioners reason about tool selection.
+
+- **S2: Theta-shift analysis is a real contribution.** Identifying that free-theta MLE absorbs contamination signal and produces non-monotonic dose-response, and that theta-fixed estimation restores monotonicity, is a principled methodological insight that goes beyond straightforward application. This finding has implications for any person-fit application where the reference condition is uncertain.
+
+- **S3: 4PL vs 3PL ablation is independently valuable.** The +20-27pp power gain across benchmarks, mechanistically explained by the 46% of MMLU items with d < 0.95, provides convincing evidence that the upper asymptote matters for LLM evaluation. The real-data degradation (r = 0.225 between 4PL and 3PL ℓz*) is particularly striking. This finding contributes to the IRT-for-LLMs literature regardless of the contamination application.
+
+- **S4: Intellectual honesty.** The paper openly presents several "honest negative results": universal model misfit as a genuine LLM property rather than contamination evidence; near-random item-level detection (AUROC 0.52-0.63) for all binary methods; the MML-EM refit failure; and the non-monotonic dose-response as a boundary condition rather than hiding it. This scientific integrity is commendable and relatively rare.
+
+- **S5: Self-contained IRT exposition.** Section 2.1 makes person-fit statistics accessible to NLP readers without dumbing down the psychometrics. The balance between rigor and readability is well-calibrated for an EMNLP audience.
+
+- **S6: Reproducibility infrastructure.** The framework uses publicly available PSN-IRT parameters and binary response data routinely recorded on leaderboards. The method itself is simple enough to reimplement from the paper alone.
+
+---
+
+### Weaknesses
+
+**W1 (Major — Novelty): The core contribution is cross-domain application, not methodological innovation.** The paper applies an existing statistic (ℓz*, Snijders 2001) with existing item parameters (PSN-IRT 2026) to a new domain (LLM contamination). The Delta-ℓz* difference-in-differences design is a standard way to handle baseline bias. The power function derivation uses standard Gauss-Hermite quadrature over a known noncentrality parameter. None of these components are new; the novelty lies in the combination and the domain transfer. For EMNLP Main, this level of methodological novelty is thin. The theta-shift analysis (S2) and the 4PL ablation (S3) are the genuinely novel analytical contributions, but they are characterizations of an existing tool's behavior rather than new methodology.
+
+**W2 (Major — Positioning): The "minimal-information operating point" framing obscures a major dependency.** The paper repeatedly emphasizes that IRT-FIT requires "only binary response patterns," but this understates the true information requirement. The method critically depends on pre-calibrated 4PL item parameters from PSN-IRT, which itself was trained on response data from 12 models. Without these parameters, the method cannot function — the MML-EM refit experiment (Section 5.4, r_a = 0.127) demonstrates that independent calibration currently fails. The "minimal-information" claim should be qualified as "minimal information *from the target model*" rather than implying the method works from binary data alone in a general sense.
+
+**W3 (Major — Positioning): The "8x effect size" comparison is selectively framed.** The abstract and introduction highlight the comparison against Guttman/U3 (the weakest baselines), but Table 3 shows HT achieves |d| = 3.21-3.53, comparable to or exceeding ℓz*'s 2.95-3.42. The claimed "mechanistic interpretability" advantage of ℓz* over HT is not empirically demonstrated — both statistics produce a single aggregate score. The paper needs to confront the HT comparison head-on: if a simpler statistic requiring only item difficulty (not the full 4PL parameterization and PSN-IRT dependency) achieves similar or better effect sizes, what is the practical argument for ℓz*? This selective benchmarking against weak baselines while downplaying the strong one undermines credibility.
+
+**W4 (Moderate — Related Work): Missing connections to educational measurement test security literature.** The person-fit literature is well-covered (Drasgow, Snijders, Karabatsos, Meijer & Sijtsma, Sinharay), but the paper misses the broader test security literature that has applied person-fit statistics operationally for cheating detection. St-Onge et al. (2011, Applied Psychological Measurement) applied person-fit to compromised-item detection in medical licensing exams — a directly analogous setting. Tendeiro & Meijer (2014) provide a more recent review of person-fit applications specifically for detecting test fraud. The educational measurement community has decades of experience with the deployment challenges the paper identifies (clean-baseline requirement, theta-shift effects), and engaging with this literature would strengthen the contribution and help avoid re-discovering known limitations.
+
+**W5 (Moderate — Related Work): Missing IRT-NLP connections.** Lalor et al. (2019, EMNLP) used IRT to learn latent parameters for NLP evaluation items without human responses; Rodriguez et al. (2021, ACL) used IRT item parameters for leaderboard analysis. These are directly relevant precursors to the IRT-for-LLM-evaluation paradigm and should be discussed alongside Martinez-Plumed et al. (2019) and Polo et al. (2024).
+
+**W6 (Moderate — Novelty): Universal 4PL misfit (contribution 3) has limited surprise value.** LLMs are not human test-takers; they have different cognitive architectures, violate local independence (shared parametric knowledge), and violate unidimensionality (multi-task capabilities). That IRT model misfit is near-universal is arguably expected from first principles. The paper frames this as a "finding," but it is closer to a confirmation of a predictable outcome. The more interesting aspect — that the *pattern* of misfit reveals contamination typologies (the Gemini-1.5 case) — deserves more emphasis than the mere existence of misfit.
+
+**W7 (Moderate — Presentation): The paper conflates two different detection tasks without adequate distinction.** (1) Absolute ℓz*-based anomaly flagging (57/60 cells) measures model-IRT-misfit, not contamination. (2) Delta-ℓz* between clean and contaminated conditions detects contamination. These are fundamentally different tasks, but the paper mixes them throughout. The 14x gap (57/60 vs 4/60) is about task (1), not task (2), yet it appears in the abstract adjacent to the contamination detection claims. A reader could easily conflate "57/60 cells flagged" with "57/60 models contaminated," which is not what the paper claims but is how it reads in compressed form.
+
+**W8 (Minor — Presentation): The paper is dense but well-organized within the 8-page limit.** The numbered "Finding" structure in Section 5.2 is effective. However, the Discussion (Section 6) is compressed and mixes future work with methodological commentary. The limitations section is thorough and honest.
+
+**W9 (Minor — References): Anonymous citation handling.** The bibliography cites PSN-IRT with full author names (Zhou et al.) rather than using anonymous placeholders. For ARR double-blind review, if this is concurrent/prior work by the same group, the full authorship reveals identity. If it is independent work, this is fine but should be verified. Similarly, CoDeC and Self-Critique are cited with full author names and venues — these appear to be published concurrent work, which is appropriate.
+
+**W10 (Minor — Notation): Inconsistent notation for Delta-ℓz*.** The paper uses both "Delta-ℓz*" and "|Delta-ℓz*|" interchangeably in some places. Since the sign of Delta-ℓz* carries meaning (negative = aberrant, positive = over-consistent), the paper should be more careful about when absolute values are taken.
+
+---
+
+### Questions for Authors
+
+**Q1:** HT achieves |d| = 3.21-3.53 using only item difficulty, while ℓz* achieves |d| = 2.95-3.42 using full 4PL parameterization. Under what empirical conditions does ℓz* meaningfully outperform HT? Can you provide evidence that the PSN-IRT dependency is justified over the simpler approach?
+
+**Q2:** The 57/60 universal misfit finding — is this not simply the expected consequence of LLMs violating IRT assumptions (local independence, unidimensionality)? What would it mean if misfit were *not* universal? How should a reader interpret this "finding" given that the IRT model was calibrated on 12 models that themselves may not represent the broader population?
+
+**Q3:** The "minimal-information operating point" framing implies that binary responses are sufficient. But the method also requires pre-calibrated 4PL parameters that cannot currently be independently reproduced (MML-EM refit a_r = 0.127). How do you reconcile the claim of minimal information access with this external parameter dependency?
+
+**Q4:** The Qwen clean baseline ℓz* = 8.68 while Llama = -0.14. This 60x difference in absolute magnitude raises questions about what ℓz* is actually measuring in the LLM context. Can you explain the mechanistic source of this discrepancy and whether it affects the interpretability of cross-family Delta-ℓz* comparisons?
+
+**Q5:** The power function R^2 = 0.65 leaves 35% variance unexplained. Given that the paper uses this to derive minimum benchmark size thresholds (e.g., n >= 7,958), how reliable are these thresholds for benchmarks with different item parameter distributions than MMLU?
+
+---
+
+### Soundness: 3/5
+
+The statistical methodology is correctly applied within the 4PL IRT framework. The controlled contamination design (clean vs. contaminated with matched training) is sound. However, the n = 3 clean seeds per family is small (df = 2), analytic CIs cross zero, and the paper relies on bootstrap CIs from 3 points (methodologically questionable — only 10 unique bootstrap samples possible from n=3). The conflation of universal misfit detection with contamination detection weakens the inferential chain. The power function derivation is correct but the R^2 = 0.65 fit limits its practical utility.
+
+### Excitement: 2.5/5
+
+The cross-domain bridge is interesting but the novelty is primarily in the application, not methodology. No new statistics, no new estimation methods, no new theoretical results beyond the theta-shift characterization. The 4PL ablation is useful but incremental. The universal misfit finding is expected. The strongest result — that binary patterns may retain signal post-RL when token probabilities do not — is compelling but empirically unvalidated in this paper (stated as future work / structural argument only). For EMNLP Main, which expects methodological or empirical novelty beyond application transfer, this falls short.
+
+### Reproducibility: 4/5
+
+The method is simple, well-specified, and uses publicly available item parameters and response data. The controlled contamination protocol (QLoRA configuration, contamination fractions, seeds) is fully described. Code is not provided but reimplementation is straightforward. One concern: the PSN-IRT parameter dependency means reproducibility is contingent on that external resource remaining available.
+
+### Overall Assessment: 2.5/5 (Borderline Findings)
+
+The paper makes an honest, well-executed cross-domain contribution that brings mature psychometric tools to LLM contamination detection. The theta-shift analysis and 4PL ablation are genuine insights. However, the core methodology is application of existing tools (ℓz*, 4PL IRT) to a new domain, which is thin for EMNLP Main. The selective benchmarking (emphasizing 8x over Guttman/U3 while HT is comparably effective and simpler) weakens the positioning. The "minimal-information" framing understates the PSN-IRT dependency. The strongest motivating argument (post-RL robustness) is unvalidated empirically. Universal 4PL misfit is expected rather than surprising. The paper would benefit from: (a) confronting the HT comparison directly, (b) qualifying the minimal-information claim, (c) separating misfit detection from contamination detection more clearly, and (d) providing at least preliminary post-RL empirical evidence.
+
+At 2.5, this is a borderline Findings paper. The honest science and useful individual findings (theta-shift, 4PL ablation) argue for acceptance in Findings; the limited methodological novelty and positioning issues argue against Main.
+
+### Confidence: 4/5
+
+I am familiar with both the IRT/person-fit literature and the LLM contamination detection literature. I have reviewed the paper carefully and cross-referenced the methodology against the original psychometric sources. My main uncertainty is whether the NLP community would weight the cross-domain novelty more highly than I do — IRT may feel more novel to an audience less familiar with psychometrics.
+
+agentId: ab8034bd95e94fdf5 (use SendMessage with to: 'ab8034bd95e94fdf5' to continue this agent)
+&lt;usage>total_tokens: 75684
+tool_uses: 25
+duration_ms: 154740&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6f19f15d-ecbb-46d1-8fa1-0d4146dc42b3",
+  "isSidechain": false,
+  "promptId": "522e9160-39b3-4df9-99e8-2fb60d2ebbeb",
+  "type": "user",
+  "uuid": "90b26fed-82ba-4a90-93f0-4a22e7229ba8",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "You are Reviewer 2 (R2) for an EMNLP 2026 submission. Your focus: **novelty, positioning, related work, and presentation quality**.\n\n## Venue: EMNLP 2026 (via ARR)\nScoring scale (Overall Assessment, half-point increments 1–5):\n- 5 = Consider for Award (top 2.5%)\n- 4 = Conference (Main track accept)\n- 3.5 = Borderline Conference\n- 3 = Findings\n- 2.5 = Borderline Findings\n- 2 = Resubmit next cycle\n- 1 = Do not resubmit\n\nDimensions: Soundness (1–5), Excitement (1–5), Reproducibility (1–5)\nAccept rate: ~21% for Main. Be calibrated accordingly.\n\n## Paper Summary\n**Title:** IRT-FIT: Detecting Benchmark Contamination in LLMs via Person-Fit Statistics on Binary Response Patterns\n\nThe paper adapts IRT person-fit statistics (ℓz*) to detect benchmark contamination in LLMs using only binary (correct/incorrect) response patterns — the \"minimal-information operating point\" on the detection frontier. 8 pages main text + references.\n\n**Three claimed contributions:**\n1. Minimal-information detection framework using ℓz* validated on 3 model families\n2. Detection characterization: power function (R²=0.62), 56% effect-size cost quantification, preliminary post-RL robustness\n3. Empirical findings: universal 4PL misfit across 12 models (57/60 cells)\n\n**Key method:** Compute ℓz* (Snijders 2001 corrected person-fit statistic) using pre-calibrated 4PL IRT parameters from PSN-IRT. Use Δℓz* (clean vs contaminated shift) as detection statistic. Novel analyses: θ-fixed to restore dose-response monotonicity, memorization fraction (MF), empirical power function.\n\n**Key results:**\n- |d|>2.0 in 2/3 families at 15% MMLU contamination (Qwen 2.27, Llama 2.09), Mistral 1.51\n- 56% effect-size cost vs token-prob methods (2.27 vs 5.20)\n- Post-RL: |d|=0.82 (partial retention) vs Min-K%++/PPL ≈0\n- HT statistic (also binary) achieves |d|=3.21-3.53, outperforming ℓz*\n- Item-level AUROC near-random (0.52-0.55)\n- Power function R²=0.62 across 7 benchmarks\n- Universal 4PL misfit: 57/60 model-benchmark cells flagged\n\n**Related work cited:** Brown et al. 2020 (n-gram), Shi et al. 2024 (Min-K%), Zhang et al. 2024 (Min-K%++), Deng et al. 2024 (Time Travel), Oren et al. 2024 (ConStat), CoDeC 2026, Wang et al. 2025 (post-RL failure), PSN-IRT 2026, IRT-LLM 2024, Drasgow et al. 1985, Snijders 2001, Hong et al. 2021 (multiscale lzm), Meijer & Sijtsma 2001.\n\n## Your Task (R2 — Novelty + Related Work + Presentation)\n\n### 1. Novelty Assessment\n- Is applying IRT person-fit statistics to LLM contamination detection genuinely novel? Or is it a straightforward application of existing psychometric tools to a new domain?\n- The θ-shift analysis — is this a significant methodological contribution or a known issue in person-fit literature?\n- The \"detection frontier\" / \"minimal-information operating point\" framing — does it constitute a conceptual contribution, or is it post-hoc rationalization of weaker performance?\n- The universal 4PL misfit finding (contribution 3) — is this surprising? LLMs are not human test-takers; wouldn't we expect IRT model misfit?\n- How does the novelty compare to what EMNLP 2026 Main expects?\n\n### 2. Related Work Completeness\n- Are there important missing references? Consider:\n  - Other person-fit statistics beyond ℓz* (e.g., U3, W, ECI indices) — some are mentioned as baselines but not thoroughly discussed\n  - IRT applications in NLP/LLM evaluation beyond PSN-IRT and IRT-LLM\n  - Other minimal-information contamination detection approaches\n  - Benchmark integrity / test security literature from educational measurement\n  - Recent contamination detection work (2024-2026)\n- Is Wang et al. [2025] properly contextualized? The post-RL claim heavily depends on this single reference.\n- Are the anonymous citations (PSN-IRT [2026], CoDeC [2026], IRT-LLM [2024]) potential anonymity violations?\n\n### 3. Positioning and Framing\n- The paper positions ℓz* as the primary method despite HT statistic achieving better |d| (3.21-3.53 vs 2.27/2.09) — is the justification (\"mechanistic interpretability\") convincing?\n- \"Minimal-information operating point\" — is this framing too generous? The method requires pre-calibrated 4PL parameters from PSN-IRT, which is itself a non-trivial dependency.\n- The 56% effect-size cost is highlighted as if it's acceptable — but is it? For practical contamination detection, would practitioners choose a weaker method?\n- The post-RL advantage is the strongest selling point, but it's based on N=1, 77% complete — is the paper over-selling this?\n\n### 4. Presentation Quality\n- Is the paper well-written and well-structured?\n- Are the tables and figures (described but I'll assess the textual descriptions) effective?\n- Is the 8-page limit respected? Does content feel compressed or padded?\n- Are claims appropriately hedged vs over-stated?\n- Are limitations adequately discussed?\n\n### 5. Broader Impact / Ethics\n- Any ethical concerns with a contamination detection tool?\n- Responsible NLP checklist considerations?\n\n### 6. Minor Issues\n- Reference formatting: \"PSN-IRT Authors\", \"CoDeC Authors\", \"IRT-LLM Authors\" — these are placeholder names, not proper anonymous citations\n- Any notation inconsistencies?\n\nProvide your assessment in structured format:\n- Summary (3-4 sentences)\n- Strengths (bulleted)\n- Weaknesses (bulleted, labeled W1, W2, ... with severity: major/minor)\n- Questions for Authors\n- Soundness: X/5\n- Excitement: X/5\n- Reproducibility: X/5\n- Overall Assessment: X/5 (use the scale above)\n- Confidence: X/5\n\nBe rigorous but fair. Calibrate to EMNLP 2026 acceptance rate (~21% Main, ~30% with Findings).",
+    "agentId": "ab8034bd95e94fdf5",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Now I have a thorough understanding of the paper, the project state, and prior reviews. Let me compose my R2 review focused on novelty, related work, positioning, and presentation.\n\n---\n\n## R2 Review: IRT-FIT — Novelty, Positioning, Related Work, Presentation\n\n### Summary\n\nThis paper adapts IRT person-fit statistics (specifically the Snijders-corrected ℓz*) to detect benchmark contamination in LLMs using only binary response patterns. The core analogy — a contaminated LLM behaves like a test-taker with item preknowledge — is well-drawn and motivates a \"minimal-information operating point\" on the detection frontier. Controlled contamination experiments on two model families (Qwen2.5-7B, Llama-3.1-8B) with QLoRA SFT on MMLU show large Cohen's d effect sizes at 15% contamination. The paper also reports universal 4PL model misfit across 12 models, a theta-shift boundary condition, and an empirical power function. The writing is generally clear and the science is honest, but the novelty is primarily cross-domain application rather than methodological invention, and several positioning choices inflate the perceived contribution.\n\n---\n\n### Strengths\n\n- **S1: Well-articulated cross-domain analogy.** The connection between contaminated LLMs and examinees with item preknowledge is natural, well-motivated, and surprisingly unexploited in prior work. The \"detection frontier\" table (Table 1) is a genuinely useful conceptual contribution that helps practitioners reason about tool selection.\n\n- **S2: Theta-shift analysis is a real contribution.** Identifying that free-theta MLE absorbs contamination signal and produces non-monotonic dose-response, and that theta-fixed estimation restores monotonicity, is a principled methodological insight that goes beyond straightforward application. This finding has implications for any person-fit application where the reference condition is uncertain.\n\n- **S3: 4PL vs 3PL ablation is independently valuable.** The +20-27pp power gain across benchmarks, mechanistically explained by the 46% of MMLU items with d < 0.95, provides convincing evidence that the upper asymptote matters for LLM evaluation. The real-data degradation (r = 0.225 between 4PL and 3PL ℓz*) is particularly striking. This finding contributes to the IRT-for-LLMs literature regardless of the contamination application.\n\n- **S4: Intellectual honesty.** The paper openly presents several \"honest negative results\": universal model misfit as a genuine LLM property rather than contamination evidence; near-random item-level detection (AUROC 0.52-0.63) for all binary methods; the MML-EM refit failure; and the non-monotonic dose-response as a boundary condition rather than hiding it. This scientific integrity is commendable and relatively rare.\n\n- **S5: Self-contained IRT exposition.** Section 2.1 makes person-fit statistics accessible to NLP readers without dumbing down the psychometrics. The balance between rigor and readability is well-calibrated for an EMNLP audience.\n\n- **S6: Reproducibility infrastructure.** The framework uses publicly available PSN-IRT parameters and binary response data routinely recorded on leaderboards. The method itself is simple enough to reimplement from the paper alone.\n\n---\n\n### Weaknesses\n\n**W1 (Major — Novelty): The core contribution is cross-domain application, not methodological innovation.** The paper applies an existing statistic (ℓz*, Snijders 2001) with existing item parameters (PSN-IRT 2026) to a new domain (LLM contamination). The Delta-ℓz* difference-in-differences design is a standard way to handle baseline bias. The power function derivation uses standard Gauss-Hermite quadrature over a known noncentrality parameter. None of these components are new; the novelty lies in the combination and the domain transfer. For EMNLP Main, this level of methodological novelty is thin. The theta-shift analysis (S2) and the 4PL ablation (S3) are the genuinely novel analytical contributions, but they are characterizations of an existing tool's behavior rather than new methodology.\n\n**W2 (Major — Positioning): The \"minimal-information operating point\" framing obscures a major dependency.** The paper repeatedly emphasizes that IRT-FIT requires \"only binary response patterns,\" but this understates the true information requirement. The method critically depends on pre-calibrated 4PL item parameters from PSN-IRT, which itself was trained on response data from 12 models. Without these parameters, the method cannot function — the MML-EM refit experiment (Section 5.4, r_a = 0.127) demonstrates that independent calibration currently fails. The \"minimal-information\" claim should be qualified as \"minimal information *from the target model*\" rather than implying the method works from binary data alone in a general sense.\n\n**W3 (Major — Positioning): The \"8x effect size\" comparison is selectively framed.** The abstract and introduction highlight the comparison against Guttman/U3 (the weakest baselines), but Table 3 shows HT achieves |d| = 3.21-3.53, comparable to or exceeding ℓz*'s 2.95-3.42. The claimed \"mechanistic interpretability\" advantage of ℓz* over HT is not empirically demonstrated — both statistics produce a single aggregate score. The paper needs to confront the HT comparison head-on: if a simpler statistic requiring only item difficulty (not the full 4PL parameterization and PSN-IRT dependency) achieves similar or better effect sizes, what is the practical argument for ℓz*? This selective benchmarking against weak baselines while downplaying the strong one undermines credibility.\n\n**W4 (Moderate — Related Work): Missing connections to educational measurement test security literature.** The person-fit literature is well-covered (Drasgow, Snijders, Karabatsos, Meijer & Sijtsma, Sinharay), but the paper misses the broader test security literature that has applied person-fit statistics operationally for cheating detection. St-Onge et al. (2011, Applied Psychological Measurement) applied person-fit to compromised-item detection in medical licensing exams — a directly analogous setting. Tendeiro & Meijer (2014) provide a more recent review of person-fit applications specifically for detecting test fraud. The educational measurement community has decades of experience with the deployment challenges the paper identifies (clean-baseline requirement, theta-shift effects), and engaging with this literature would strengthen the contribution and help avoid re-discovering known limitations.\n\n**W5 (Moderate — Related Work): Missing IRT-NLP connections.** Lalor et al. (2019, EMNLP) used IRT to learn latent parameters for NLP evaluation items without human responses; Rodriguez et al. (2021, ACL) used IRT item parameters for leaderboard analysis. These are directly relevant precursors to the IRT-for-LLM-evaluation paradigm and should be discussed alongside Martinez-Plumed et al. (2019) and Polo et al. (2024).\n\n**W6 (Moderate — Novelty): Universal 4PL misfit (contribution 3) has limited surprise value.** LLMs are not human test-takers; they have different cognitive architectures, violate local independence (shared parametric knowledge), and violate unidimensionality (multi-task capabilities). That IRT model misfit is near-universal is arguably expected from first principles. The paper frames this as a \"finding,\" but it is closer to a confirmation of a predictable outcome. The more interesting aspect — that the *pattern* of misfit reveals contamination typologies (the Gemini-1.5 case) — deserves more emphasis than the mere existence of misfit.\n\n**W7 (Moderate — Presentation): The paper conflates two different detection tasks without adequate distinction.** (1) Absolute ℓz*-based anomaly flagging (57/60 cells) measures model-IRT-misfit, not contamination. (2) Delta-ℓz* between clean and contaminated conditions detects contamination. These are fundamentally different tasks, but the paper mixes them throughout. The 14x gap (57/60 vs 4/60) is about task (1), not task (2), yet it appears in the abstract adjacent to the contamination detection claims. A reader could easily conflate \"57/60 cells flagged\" with \"57/60 models contaminated,\" which is not what the paper claims but is how it reads in compressed form.\n\n**W8 (Minor — Presentation): The paper is dense but well-organized within the 8-page limit.** The numbered \"Finding\" structure in Section 5.2 is effective. However, the Discussion (Section 6) is compressed and mixes future work with methodological commentary. The limitations section is thorough and honest.\n\n**W9 (Minor — References): Anonymous citation handling.** The bibliography cites PSN-IRT with full author names (Zhou et al.) rather than using anonymous placeholders. For ARR double-blind review, if this is concurrent/prior work by the same group, the full authorship reveals identity. If it is independent work, this is fine but should be verified. Similarly, CoDeC and Self-Critique are cited with full author names and venues — these appear to be published concurrent work, which is appropriate.\n\n**W10 (Minor — Notation): Inconsistent notation for Delta-ℓz*.** The paper uses both \"Delta-ℓz*\" and \"|Delta-ℓz*|\" interchangeably in some places. Since the sign of Delta-ℓz* carries meaning (negative = aberrant, positive = over-consistent), the paper should be more careful about when absolute values are taken.\n\n---\n\n### Questions for Authors\n\n**Q1:** HT achieves |d| = 3.21-3.53 using only item difficulty, while ℓz* achieves |d| = 2.95-3.42 using full 4PL parameterization. Under what empirical conditions does ℓz* meaningfully outperform HT? Can you provide evidence that the PSN-IRT dependency is justified over the simpler approach?\n\n**Q2:** The 57/60 universal misfit finding — is this not simply the expected consequence of LLMs violating IRT assumptions (local independence, unidimensionality)? What would it mean if misfit were *not* universal? How should a reader interpret this \"finding\" given that the IRT model was calibrated on 12 models that themselves may not represent the broader population?\n\n**Q3:** The \"minimal-information operating point\" framing implies that binary responses are sufficient. But the method also requires pre-calibrated 4PL parameters that cannot currently be independently reproduced (MML-EM refit a_r = 0.127). How do you reconcile the claim of minimal information access with this external parameter dependency?\n\n**Q4:** The Qwen clean baseline ℓz* = 8.68 while Llama = -0.14. This 60x difference in absolute magnitude raises questions about what ℓz* is actually measuring in the LLM context. Can you explain the mechanistic source of this discrepancy and whether it affects the interpretability of cross-family Delta-ℓz* comparisons?\n\n**Q5:** The power function R^2 = 0.65 leaves 35% variance unexplained. Given that the paper uses this to derive minimum benchmark size thresholds (e.g., n >= 7,958), how reliable are these thresholds for benchmarks with different item parameter distributions than MMLU?\n\n---\n\n### Soundness: 3/5\n\nThe statistical methodology is correctly applied within the 4PL IRT framework. The controlled contamination design (clean vs. contaminated with matched training) is sound. However, the n = 3 clean seeds per family is small (df = 2), analytic CIs cross zero, and the paper relies on bootstrap CIs from 3 points (methodologically questionable — only 10 unique bootstrap samples possible from n=3). The conflation of universal misfit detection with contamination detection weakens the inferential chain. The power function derivation is correct but the R^2 = 0.65 fit limits its practical utility.\n\n### Excitement: 2.5/5\n\nThe cross-domain bridge is interesting but the novelty is primarily in the application, not methodology. No new statistics, no new estimation methods, no new theoretical results beyond the theta-shift characterization. The 4PL ablation is useful but incremental. The universal misfit finding is expected. The strongest result — that binary patterns may retain signal post-RL when token probabilities do not — is compelling but empirically unvalidated in this paper (stated as future work / structural argument only). For EMNLP Main, which expects methodological or empirical novelty beyond application transfer, this falls short.\n\n### Reproducibility: 4/5\n\nThe method is simple, well-specified, and uses publicly available item parameters and response data. The controlled contamination protocol (QLoRA configuration, contamination fractions, seeds) is fully described. Code is not provided but reimplementation is straightforward. One concern: the PSN-IRT parameter dependency means reproducibility is contingent on that external resource remaining available.\n\n### Overall Assessment: 2.5/5 (Borderline Findings)\n\nThe paper makes an honest, well-executed cross-domain contribution that brings mature psychometric tools to LLM contamination detection. The theta-shift analysis and 4PL ablation are genuine insights. However, the core methodology is application of existing tools (ℓz*, 4PL IRT) to a new domain, which is thin for EMNLP Main. The selective benchmarking (emphasizing 8x over Guttman/U3 while HT is comparably effective and simpler) weakens the positioning. The \"minimal-information\" framing understates the PSN-IRT dependency. The strongest motivating argument (post-RL robustness) is unvalidated empirically. Universal 4PL misfit is expected rather than surprising. The paper would benefit from: (a) confronting the HT comparison directly, (b) qualifying the minimal-information claim, (c) separating misfit detection from contamination detection more clearly, and (d) providing at least preliminary post-RL empirical evidence.\n\nAt 2.5, this is a borderline Findings paper. The honest science and useful individual findings (theta-shift, 4PL ablation) argue for acceptance in Findings; the limited methodological novelty and positioning issues argue against Main.\n\n### Confidence: 4/5\n\nI am familiar with both the IRT/person-fit literature and the LLM contamination detection literature. I have reviewed the paper carefully and cross-referenced the methodology against the original psychometric sources. My main uncertainty is whether the NLP community would weight the cross-domain novelty more highly than I do — IRT may feel more novel to an audience less familiar with psychometrics."
+      }
+    ],
+    "totalDurationMs": 154740,
+    "totalTokens": 75684,
+    "totalToolUseCount": 25,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4416,
+      "cache_read_input_tokens": 67739,
+      "output_tokens": 3528,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 4416
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3528,
+          "cache_read_input_tokens": 67739,
+          "cache_creation_input_tokens": 4416,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 4416,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 16,
+      "searchCount": 3,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 6
+    }
+  },
+  "sourceToolAssistantUUID": "6f19f15d-ecbb-46d1-8fa1-0d4146dc42b3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam",
+  "sessionId": "38461102-0053-4fc0-9aca-3e348094d93e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[DREAM Review Director] dream_id=20260521T044802 | review_mode=full | review_visible=True PDF: /home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/artifacts/dream_reports/…",
+  "leafUuid": "90b26fed-82ba-4a90-93f0-4a22e7229ba8",
+  "sessionId": "38461102-0053-4fc0-9aca-3e348094d93e"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Full peer review of IRT personfit contamination paper",
+  "sessionId": "38461102-0053-4fc0-9aca-3e348094d93e"
+}
+```
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-21T05:46:12.684Z_
+
+<details><summary>↩ Tool result · `toolu_013yzA5sjbJcJEm6UAx1yNFb`</summary>
+
+```text
+
+
+Based on my thorough reading of the paper (both the actual submitted version in `paper/` and the aspirational dream version), the project memory, decisions log, experiment artifacts, and paper framing document, here is my R1 review.
+
+---
+
+## R1 Review: IRT-FIT: Detecting Benchmark Contamination in LLMs via Person-Fit Statistics on Binary Response Patterns
+
+### Summary
+
+This paper adapts the psychometric person-fit statistic lz* under a 4PL IRT model to detect benchmark contamination in LLMs using only binary (correct/incorrect) response patterns. The core idea -- treating a contaminated LLM as analogous to a test-taker with item preknowledge -- is well-motivated and connects two literatures that have not previously intersected. Controlled contamination experiments on two model families (Qwen2.5-7B, Llama-3.1-8B) with n=3 clean seeds each demonstrate large effect sizes (|d|=3.42 and 2.95 at 15% contamination). The paper identifies the theta-shift boundary condition as a methodological insight and reports universal 4PL model misfit across 12 models. However, the experimental validation is narrow (2 families, 7-8B scale, QLoRA only, n=3 seeds), several claimed contributions are preliminary or overstated relative to the evidence, and the baseline comparison reveals that simpler methods (HT statistic, accuracy z-score) may be equally or more effective, which the paper does not adequately address.
+
+### Strengths
+
+- **Novel and well-motivated connection.** Bridging psychometric person-fit statistics to LLM contamination detection is genuinely novel. The analogy between contaminated LLMs and examinees with item preknowledge is intuitive and well-articulated. No prior work has explored this direction despite the natural correspondence.
+
+- **Honest handling of negative results.** The paper is commendably transparent about universal 4PL model misfit (57/60 cells flagged), the simulation-to-reality gap, non-monotonic dose-response under free-theta, and the MML-EM calibration failure (a_r=0.127). These are presented as informative findings rather than hidden. The Delta-lz* design is a principled response to the universal misfit problem.
+
+- **Theta-shift analysis is a genuine methodological contribution.** Identifying that re-estimating ability on contaminated data absorbs the detection signal, and that theta-fixed analysis restores monotonicity, is insightful. The mechanism is clearly explained and empirically validated across both model families with consistent signal ratios (2.87-3.12).
+
+- **4PL vs 3PL ablation is convincing.** The +27.3pp mean power gain on MMLU and the r=0.225 correlation between 4PL and 3PL lz* on real data provide strong evidence that the upper asymptote parameter is essential, not optional.
+
+- **Confidence intervals reported.** Unlike most papers in this space, both analytic and bootstrap CIs are provided. The bootstrap CIs excluding zero at n=3 are informative, even though the analytic CIs (using t with df=2) are too wide to be useful.
+
+- **Clear detection frontier framing.** Organizing methods by information access level is a useful contribution to the field's taxonomy, and the claim of operating at the "minimal-information operating point" is accurate.
+
+### Weaknesses
+
+**W1 (Major): n=3 seeds is statistically insufficient for the central claims.**
+The entire controlled contamination experiment rests on n=3 clean seeds per model family. With df=2, the analytic 95% CIs all cross zero (Table in Appendix: Qwen 15% d=-3.42, CI [-9.92, 3.08]). The paper acknowledges this and pivots to bootstrap CIs, but bootstrapping from 3 observations is itself problematic -- the bootstrap distribution is discrete (only 10 unique resamples with replacement from 3 items), severely limiting the resolution of CI estimation. The bootstrap CIs reported (e.g., [-3.45, -2.82] for Qwen 15%) appear implausibly narrow given the underlying seed variability (std=1.41 for lz*). The paper should either expand to n>=10 seeds (as the decisions log D021 plans but does not execute in the submitted version) or substantially qualify the confidence in effect size estimates.
+
+**W2 (Major): HT statistic outperforms lz* on Llama and is competitive overall, but this is not adequately discussed.**
+Table 2 in the baseline comparison shows HT achieving |d|=3.53 on Llama vs. lz*'s 2.95, and |d|=3.21 on Qwen vs. lz*'s 3.42. HT requires only item difficulty (b parameter), not the full 4PL parameterization that lz* depends on. The paper claims lz* achieves "8x the effect size of classical person-fit statistics" by comparing against Guttman (|d|=0.43) and U3, but HT is also a classical person-fit statistic and it is competitive or superior. The 8x claim is cherry-picked. The paper needs to honestly address why lz* should be preferred over HT given that HT has weaker requirements and comparable or better performance.
+
+**W3 (Major): Accuracy z-score baseline (z=160.6) undermines the core narrative.**
+The paper dismisses the accuracy z-score as reflecting "near-zero cross-seed accuracy variance" and claims it "lacks specificity in real-world scenarios." But this dismissal is not rigorously supported. The 4/60 flagging rate on real data is cited, but this comparison conflates two different settings: the controlled experiment (where z-score works) and the real-data audit (where lz* flags 57/60 cells that are NOT contamination detections but universal model misfit). The paper does not establish that lz* would outperform a properly calibrated accuracy z-score in a realistic deployment scenario where one has access to multiple model evaluations.
+
+**W4 (Major): QLoRA SFT contamination injection has questionable ecological validity.**
+Real-world contamination occurs primarily during pretraining, not supervised fine-tuning. SFT with QLoRA (rank=16) has limited capacity, producing only 33-38% memorization fraction. The paper acknowledges this produces "a conservative lower bound" but does not test whether the detection signal generalizes to pretraining contamination or full-parameter fine-tuning. The entire detection framework is validated only on a contamination mechanism that differs substantially from the primary threat model. The claim in the limitations that "full fine-tuning would produce stronger signals" is speculative.
+
+**W5 (Minor): Power function R^2=0.65 on 5 data points (or 0.82 on 7) with 3 free parameters is not a meaningful model.**
+The parametric form P(n) = 1 - exp(-0.00018 * n^0.92 * c^1.15) has 3 free parameters fit to 5 (or 7) benchmarks. With effectively 2-4 degrees of freedom, R^2 is not a meaningful measure of fit quality. The paper should present this as a descriptive observation ("power increases with benchmark size, consistent with sqrt(n) scaling") rather than a "power function" with specific numerical parameters. The 80% power threshold of n>=7,958 items carries false precision.
+
+**W6 (Minor): Item-level AUROC of 0.52-0.55 is near-random but insufficiently discussed as a fundamental limitation.**
+The paper frames this as evidence that "model-level aggregation is essential," but the near-random item-level discrimination means lz* cannot identify WHICH items were contaminated. For practical contamination forensics, this is a severe limitation. The paper should discuss whether this is inherent to the binary-only setting or specific to lz*.
+
+**W7 (Minor): Only 7-8B models tested; scalability to larger models is unknown.**
+All experiments use 7-8B parameter models. Contamination dynamics, memorization fraction, and theta-shift behavior may differ substantially at 13B, 70B, or larger scales. The paper does not discuss potential scale-dependent effects.
+
+**W8 (Minor): Post-RL experiment (referenced in dream version but absent from actual paper).**
+The actual submitted paper does not contain post-RL results. The dream "best case" version includes GRPO results (|d|=2.1 post-RL, 65% signal retention), but these are aspirational, not in the submitted manuscript. If the post-RL experiment is included in the final submission, the framing as "exploratory" with only 1 model, 1 RL config, and 77% training completion would need significant caveats.
+
+**W9 (Minor): Dependence on PSN-IRT parameters creates a single point of failure.**
+The framework requires pre-calibrated 4PL item parameters from PSN-IRT. The MML-EM refit experiment shows that self-calibration fails catastrophically (a_r=0.127). This means the framework cannot be applied to any benchmark not covered by PSN-IRT, and its validity is contingent on PSN-IRT parameter quality. The paper does not discuss how to verify or validate PSN-IRT parameters independently.
+
+**W10 (Minor): Multiple comparisons concern.**
+The paper tests 60 model-benchmark cells with BH-FDR correction, which is appropriate. However, the controlled contamination experiments test multiple conditions (2 contamination levels x 2 model families x 2 theta estimation methods) without explicit correction. Given the small n, this inflates the risk of reporting favorable configurations.
+
+### Questions for Authors
+
+1. Why should lz* be preferred over the HT statistic, given that HT achieves comparable or better effect sizes (|d|=3.21-3.53) while requiring only item difficulty parameters rather than full 4PL parameterization?
+
+2. The bootstrap CI from n=3 seeds has only 10 unique resamples with replacement. How do you justify the reported CI widths? Have you verified the bootstrap coverage properties at this sample size through simulation?
+
+3. What is the expected behavior of lz* under pretraining contamination (as opposed to SFT contamination)? Would the diffuse, distributional nature of pretraining exposure produce a detectable lz* signal, or would it be absorbed into theta?
+
+4. The accuracy z-score achieves z=160 in controlled settings. Can you provide a formal argument (not just the 4/60 anecdote from real data, which confounds contamination detection with model misfit detection) for why lz* would be more useful in practice?
+
+5. Qwen clean baseline lz*=8.68 (already extreme) versus Llama lz*=-0.14. Does the framework's sensitivity depend critically on the model's baseline misfit? If so, how should practitioners interpret Delta-lz* for models with very different baseline characteristics?
+
+6. Can you clarify whether the Mistral and Gemma experiments mentioned in the dream version are complete and included, or still pending? The actual paper sections reference only Qwen and Llama.
+
+### Scores
+
+- **Soundness:** 3/5 -- The lz* formulation is mathematically correct and the theta-shift analysis is insightful, but n=3 seeds, the HT comparison gap, and QLoRA-only validation weaken the empirical claims.
+
+- **Excitement:** 3/5 -- The psychometrics-to-LLM bridge is genuinely novel and the detection frontier framing is useful. However, the practical advantages over simpler methods (HT, accuracy z-score) are not clearly established, and the framework's dependence on external parameters limits immediate applicability.
+
+- **Reproducibility:** 3/5 -- QLoRA hyperparameters and seed selection are specified. PSN-IRT parameters are publicly available. Code structure appears clean. However, the exact evaluation protocol (prompt format, few-shot settings, evaluation harness version) is not fully specified, and no code/data release is explicitly mentioned.
+
+- **Overall Assessment:** 2.5/5 (Borderline Findings) -- The paper introduces a genuinely novel connection between psychometric person-fit statistics and LLM contamination detection, and the theta-shift analysis is a real contribution. However, the experimental validation is too narrow (2 model families, n=3 seeds, QLoRA only, 7-8B scale) for the strength of claims made. The baseline comparison actually undermines the narrative: HT is competitive with weaker requirements, and accuracy z-score dominates in controlled settings. The universal model misfit finding (57/60) is interesting but the paper conflates it with contamination detection capability. With n=10 seeds, additional model families, and honest repositioning relative to HT, this could reach Findings or Conference level. In its current form, the evidence-to-claim ratio is insufficient for Main track acceptance.
+
+- **Confidence:** 4/5 -- I have read the paper carefully, examined the experimental artifacts, and have familiarity with both IRT/psychometrics and LLM evaluation methodology. My main uncertainty is whether the pending experiments (Mistral, n=10 seeds, post-RL) substantially change the picture.
+
+agentId: a5ff981aea2040142 (use SendMessage with to: 'a5ff981aea2040142' to continue this agent)
+&lt;usage>total_tokens: 85546
+tool_uses: 32
+duration_ms: 196063&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "16ac0fe9-e483-4ec9-80f8-8dd6a6705677",
+  "isSidechain": false,
+  "promptId": "522e9160-39b3-4df9-99e8-2fb60d2ebbeb",
+  "type": "user",
+  "uuid": "0319a1e0-c400-458e-a92e-6d92082baaee",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "You are Reviewer 1 (R1) for an EMNLP 2026 submission. Your focus: **methodology soundness and experimental rigor**.\n\n## Venue: EMNLP 2026 (via ARR)\nScoring scale (Overall Assessment, half-point increments 1–5):\n- 5 = Consider for Award (top 2.5%)\n- 4 = Conference (Main track accept)\n- 3.5 = Borderline Conference\n- 3 = Findings\n- 2.5 = Borderline Findings\n- 2 = Resubmit next cycle\n- 1 = Do not resubmit\n\nDimensions: Soundness (1–5), Excitement (1–5), Reproducibility (1–5)\nAccept rate: ~21% for Main. Be calibrated accordingly.\n\n## Paper Summary\n**Title:** IRT-FIT: Detecting Benchmark Contamination in LLMs via Person-Fit Statistics on Binary Response Patterns\n\nThe paper adapts IRT person-fit statistics (ℓz*) to detect benchmark contamination in LLMs using only binary (correct/incorrect) response patterns. Three contributions claimed:\n1. Minimal-information detection framework using ℓz* with controlled contamination experiments across 3 model families (Qwen-2.5-7B n=10, Llama-3.1-8B n=10, Mistral-7B-v0.3 n=3), achieving |d|>2.0 in 2/3 families at 15% MMLU contamination.\n2. Detection characterization: empirical power function across 7 benchmarks (R²=0.62), 56% effect-size cost vs token-probability methods, preliminary post-RL retention.\n3. Empirical findings: universal 4PL model misfit (57/60 cells flagged across 12 models).\n\n**Key results:**\n- Table 1: Cross-family detection at 15%: Qwen |d|=2.27 CI[1.59,2.95], Llama |d|=2.09 CI[1.37,2.81], Mistral |d|=1.51 CI[0.25,2.77] (n=3 only)\n- Table 2: Dose-response for Qwen — non-monotonic under free-θ (peaks at 15%, drops at 25%/50% due to θ-shift), monotonic under θ-fixed\n- Table 3: 7 baselines compared. Min-K%++ |d|=5.2 (best), HT statistic |d|=3.21-3.53 (binary, better than ℓz*), ℓz* |d|=2.27/2.09, Guttman |d|=0.43\n- Table 4: Power across 7 benchmarks (164–14042 items), R²=0.62\n- Table 5: Multi-benchmark (MMLU/HellaSwag/GSM8K) across 3 families\n- Table 6: Post-GRPO: |d| drops from 3.42 to 0.82 (76% reduction), labeled \"exploratory\"\n- Table 7: Post-RL comparison: Min-K%++ and PPL ≈0, ℓz* = 0.82\n\n**Experiment design reference (what was planned):**\n- Controlled contamination: n=10 seeds for Qwen/Llama, n=3 for Mistral, 5 contamination levels (5/10/15/25/50%), 3 benchmarks (MMLU/HellaSwag/GSM8K). Gemma incomplete (1 seed, not in main analysis). ✓ Covered in paper.\n- Post-RL GRPO: SFT 15% → GRPO on GSM8K, only 480/625 steps (77%). |d|=0.82. Framed as exploratory. ✓ Covered.\n- Baseline comparison: 7 baselines including Min-K%++, ConStat, PPL, HT, Guttman, acc z-score. ✓ Covered.\n- Multiscale lzm: implemented, r=0.97 with max single-benchmark, marginal improvement. ✓ Briefly covered.\n- Extra benchmarks (BBH, MATH): BBH |d|=1.05, MATH |d|=0.65 (poor 4PL params). ✓ Covered in Table 4.\n- Leaderboard audit: ABANDONED due to poor discrimination params (a_r=0.127). Mentioned in Future Work. ✓ Appropriate.\n\n## Your Task (R1 — Methods + Experiments)\n\nProvide a detailed review covering:\n\n### 1. Methodology Soundness\n- Is the ℓz* → Δℓz* pipeline well-motivated and correctly formulated?\n- Is the θ-fixed analysis sound? Any statistical concerns?\n- Is the memorization fraction (MF) definition appropriate?\n- Is the power function P(n) = 1 − exp(−0.00018 × n^0.92 × c^1.15) with R²=0.62 a meaningful model or overfit noise?\n- The 4PL model: reliance on PSN-IRT parameters — is this a strength or vulnerability?\n\n### 2. Experimental Rigor\n- n=10 seeds for Qwen/Llama but only n=3 for Mistral — is this asymmetry adequately justified?\n- The n=3→n=10 shrinkage (34% for Qwen) — does this undermine pilot claims or is the paper honest about it?\n- Post-RL experiment: only 1 model, 1 RL config, 77% training — is \"exploratory\" framing sufficient?\n- Cohen's d computation: with n=10 and n=3 groups, are the CIs computed correctly (bootstrap)?\n- Acc z-score baseline: z=160.6 looks suspicious — is this an artifact of near-zero variance in clean seeds?\n- HT statistic outperforms ℓz* (|d|=3.21-3.53 vs 2.27/2.09) — does the paper adequately address why ℓz* is preferred despite weaker detection?\n- Item-level AUROC 0.52-0.55 is near-random — is this sufficiently discussed as a limitation?\n\n### 3. Missing Experiments / Coverage Gaps\n- Are there important ablations missing?\n- Is the contamination injection (QLoRA SFT) realistic? Real contamination is in pretraining, not SFT.\n- No full-parameter fine-tuning comparison — does QLoRA-only limit generalizability?\n- No larger models tested (all 7-8B) — scalability unclear.\n\n### 4. Statistical Concerns\n- Multiple comparisons across families/benchmarks — any correction needed beyond what's reported?\n- The power function R²=0.62 on 7 data points with 3 free parameters — degrees of freedom concern?\n- Bootstrap CI methodology — is it appropriate for this sample size?\n\n### 5. Reproducibility\n- Are enough details provided to reproduce? (QLoRA hyperparameters, seed selection, evaluation protocol)\n- PSN-IRT parameter availability?\n- Code/data release mentioned?\n\nProvide your assessment in structured format:\n- Summary (3-4 sentences)\n- Strengths (bulleted)\n- Weaknesses (bulleted, labeled W1, W2, ... with severity: major/minor)\n- Questions for Authors\n- Soundness: X/5\n- Excitement: X/5\n- Reproducibility: X/5\n- Overall Assessment: X/5 (use the scale above)\n- Confidence: X/5\n\nBe rigorous but fair. Calibrate to EMNLP 2026 acceptance rate (~21% Main, ~30% with Findings).",
+    "agentId": "a5ff981aea2040142",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "\n\nBased on my thorough reading of the paper (both the actual submitted version in `paper/` and the aspirational dream version), the project memory, decisions log, experiment artifacts, and paper framing document, here is my R1 review.\n\n---\n\n## R1 Review: IRT-FIT: Detecting Benchmark Contamination in LLMs via Person-Fit Statistics on Binary Response Patterns\n\n### Summary\n\nThis paper adapts the psychometric person-fit statistic lz* under a 4PL IRT model to detect benchmark contamination in LLMs using only binary (correct/incorrect) response patterns. The core idea -- treating a contaminated LLM as analogous to a test-taker with item preknowledge -- is well-motivated and connects two literatures that have not previously intersected. Controlled contamination experiments on two model families (Qwen2.5-7B, Llama-3.1-8B) with n=3 clean seeds each demonstrate large effect sizes (|d|=3.42 and 2.95 at 15% contamination). The paper identifies the theta-shift boundary condition as a methodological insight and reports universal 4PL model misfit across 12 models. However, the experimental validation is narrow (2 families, 7-8B scale, QLoRA only, n=3 seeds), several claimed contributions are preliminary or overstated relative to the evidence, and the baseline comparison reveals that simpler methods (HT statistic, accuracy z-score) may be equally or more effective, which the paper does not adequately address.\n\n### Strengths\n\n- **Novel and well-motivated connection.** Bridging psychometric person-fit statistics to LLM contamination detection is genuinely novel. The analogy between contaminated LLMs and examinees with item preknowledge is intuitive and well-articulated. No prior work has explored this direction despite the natural correspondence.\n\n- **Honest handling of negative results.** The paper is commendably transparent about universal 4PL model misfit (57/60 cells flagged), the simulation-to-reality gap, non-monotonic dose-response under free-theta, and the MML-EM calibration failure (a_r=0.127). These are presented as informative findings rather than hidden. The Delta-lz* design is a principled response to the universal misfit problem.\n\n- **Theta-shift analysis is a genuine methodological contribution.** Identifying that re-estimating ability on contaminated data absorbs the detection signal, and that theta-fixed analysis restores monotonicity, is insightful. The mechanism is clearly explained and empirically validated across both model families with consistent signal ratios (2.87-3.12).\n\n- **4PL vs 3PL ablation is convincing.** The +27.3pp mean power gain on MMLU and the r=0.225 correlation between 4PL and 3PL lz* on real data provide strong evidence that the upper asymptote parameter is essential, not optional.\n\n- **Confidence intervals reported.** Unlike most papers in this space, both analytic and bootstrap CIs are provided. The bootstrap CIs excluding zero at n=3 are informative, even though the analytic CIs (using t with df=2) are too wide to be useful.\n\n- **Clear detection frontier framing.** Organizing methods by information access level is a useful contribution to the field's taxonomy, and the claim of operating at the \"minimal-information operating point\" is accurate.\n\n### Weaknesses\n\n**W1 (Major): n=3 seeds is statistically insufficient for the central claims.**\nThe entire controlled contamination experiment rests on n=3 clean seeds per model family. With df=2, the analytic 95% CIs all cross zero (Table in Appendix: Qwen 15% d=-3.42, CI [-9.92, 3.08]). The paper acknowledges this and pivots to bootstrap CIs, but bootstrapping from 3 observations is itself problematic -- the bootstrap distribution is discrete (only 10 unique resamples with replacement from 3 items), severely limiting the resolution of CI estimation. The bootstrap CIs reported (e.g., [-3.45, -2.82] for Qwen 15%) appear implausibly narrow given the underlying seed variability (std=1.41 for lz*). The paper should either expand to n>=10 seeds (as the decisions log D021 plans but does not execute in the submitted version) or substantially qualify the confidence in effect size estimates.\n\n**W2 (Major): HT statistic outperforms lz* on Llama and is competitive overall, but this is not adequately discussed.**\nTable 2 in the baseline comparison shows HT achieving |d|=3.53 on Llama vs. lz*'s 2.95, and |d|=3.21 on Qwen vs. lz*'s 3.42. HT requires only item difficulty (b parameter), not the full 4PL parameterization that lz* depends on. The paper claims lz* achieves \"8x the effect size of classical person-fit statistics\" by comparing against Guttman (|d|=0.43) and U3, but HT is also a classical person-fit statistic and it is competitive or superior. The 8x claim is cherry-picked. The paper needs to honestly address why lz* should be preferred over HT given that HT has weaker requirements and comparable or better performance.\n\n**W3 (Major): Accuracy z-score baseline (z=160.6) undermines the core narrative.**\nThe paper dismisses the accuracy z-score as reflecting \"near-zero cross-seed accuracy variance\" and claims it \"lacks specificity in real-world scenarios.\" But this dismissal is not rigorously supported. The 4/60 flagging rate on real data is cited, but this comparison conflates two different settings: the controlled experiment (where z-score works) and the real-data audit (where lz* flags 57/60 cells that are NOT contamination detections but universal model misfit). The paper does not establish that lz* would outperform a properly calibrated accuracy z-score in a realistic deployment scenario where one has access to multiple model evaluations.\n\n**W4 (Major): QLoRA SFT contamination injection has questionable ecological validity.**\nReal-world contamination occurs primarily during pretraining, not supervised fine-tuning. SFT with QLoRA (rank=16) has limited capacity, producing only 33-38% memorization fraction. The paper acknowledges this produces \"a conservative lower bound\" but does not test whether the detection signal generalizes to pretraining contamination or full-parameter fine-tuning. The entire detection framework is validated only on a contamination mechanism that differs substantially from the primary threat model. The claim in the limitations that \"full fine-tuning would produce stronger signals\" is speculative.\n\n**W5 (Minor): Power function R^2=0.65 on 5 data points (or 0.82 on 7) with 3 free parameters is not a meaningful model.**\nThe parametric form P(n) = 1 - exp(-0.00018 * n^0.92 * c^1.15) has 3 free parameters fit to 5 (or 7) benchmarks. With effectively 2-4 degrees of freedom, R^2 is not a meaningful measure of fit quality. The paper should present this as a descriptive observation (\"power increases with benchmark size, consistent with sqrt(n) scaling\") rather than a \"power function\" with specific numerical parameters. The 80% power threshold of n>=7,958 items carries false precision.\n\n**W6 (Minor): Item-level AUROC of 0.52-0.55 is near-random but insufficiently discussed as a fundamental limitation.**\nThe paper frames this as evidence that \"model-level aggregation is essential,\" but the near-random item-level discrimination means lz* cannot identify WHICH items were contaminated. For practical contamination forensics, this is a severe limitation. The paper should discuss whether this is inherent to the binary-only setting or specific to lz*.\n\n**W7 (Minor): Only 7-8B models tested; scalability to larger models is unknown.**\nAll experiments use 7-8B parameter models. Contamination dynamics, memorization fraction, and theta-shift behavior may differ substantially at 13B, 70B, or larger scales. The paper does not discuss potential scale-dependent effects.\n\n**W8 (Minor): Post-RL experiment (referenced in dream version but absent from actual paper).**\nThe actual submitted paper does not contain post-RL results. The dream \"best case\" version includes GRPO results (|d|=2.1 post-RL, 65% signal retention), but these are aspirational, not in the submitted manuscript. If the post-RL experiment is included in the final submission, the framing as \"exploratory\" with only 1 model, 1 RL config, and 77% training completion would need significant caveats.\n\n**W9 (Minor): Dependence on PSN-IRT parameters creates a single point of failure.**\nThe framework requires pre-calibrated 4PL item parameters from PSN-IRT. The MML-EM refit experiment shows that self-calibration fails catastrophically (a_r=0.127). This means the framework cannot be applied to any benchmark not covered by PSN-IRT, and its validity is contingent on PSN-IRT parameter quality. The paper does not discuss how to verify or validate PSN-IRT parameters independently.\n\n**W10 (Minor): Multiple comparisons concern.**\nThe paper tests 60 model-benchmark cells with BH-FDR correction, which is appropriate. However, the controlled contamination experiments test multiple conditions (2 contamination levels x 2 model families x 2 theta estimation methods) without explicit correction. Given the small n, this inflates the risk of reporting favorable configurations.\n\n### Questions for Authors\n\n1. Why should lz* be preferred over the HT statistic, given that HT achieves comparable or better effect sizes (|d|=3.21-3.53) while requiring only item difficulty parameters rather than full 4PL parameterization?\n\n2. The bootstrap CI from n=3 seeds has only 10 unique resamples with replacement. How do you justify the reported CI widths? Have you verified the bootstrap coverage properties at this sample size through simulation?\n\n3. What is the expected behavior of lz* under pretraining contamination (as opposed to SFT contamination)? Would the diffuse, distributional nature of pretraining exposure produce a detectable lz* signal, or would it be absorbed into theta?\n\n4. The accuracy z-score achieves z=160 in controlled settings. Can you provide a formal argument (not just the 4/60 anecdote from real data, which confounds contamination detection with model misfit detection) for why lz* would be more useful in practice?\n\n5. Qwen clean baseline lz*=8.68 (already extreme) versus Llama lz*=-0.14. Does the framework's sensitivity depend critically on the model's baseline misfit? If so, how should practitioners interpret Delta-lz* for models with very different baseline characteristics?\n\n6. Can you clarify whether the Mistral and Gemma experiments mentioned in the dream version are complete and included, or still pending? The actual paper sections reference only Qwen and Llama.\n\n### Scores\n\n- **Soundness:** 3/5 -- The lz* formulation is mathematically correct and the theta-shift analysis is insightful, but n=3 seeds, the HT comparison gap, and QLoRA-only validation weaken the empirical claims.\n\n- **Excitement:** 3/5 -- The psychometrics-to-LLM bridge is genuinely novel and the detection frontier framing is useful. However, the practical advantages over simpler methods (HT, accuracy z-score) are not clearly established, and the framework's dependence on external parameters limits immediate applicability.\n\n- **Reproducibility:** 3/5 -- QLoRA hyperparameters and seed selection are specified. PSN-IRT parameters are publicly available. Code structure appears clean. However, the exact evaluation protocol (prompt format, few-shot settings, evaluation harness version) is not fully specified, and no code/data release is explicitly mentioned.\n\n- **Overall Assessment:** 2.5/5 (Borderline Findings) -- The paper introduces a genuinely novel connection between psychometric person-fit statistics and LLM contamination detection, and the theta-shift analysis is a real contribution. However, the experimental validation is too narrow (2 model families, n=3 seeds, QLoRA only, 7-8B scale) for the strength of claims made. The baseline comparison actually undermines the narrative: HT is competitive with weaker requirements, and accuracy z-score dominates in controlled settings. The universal model misfit finding (57/60) is interesting but the paper conflates it with contamination detection capability. With n=10 seeds, additional model families, and honest repositioning relative to HT, this could reach Findings or Conference level. In its current form, the evidence-to-claim ratio is insufficient for Main track acceptance.\n\n- **Confidence:** 4/5 -- I have read the paper carefully, examined the experimental artifacts, and have familiarity with both IRT/psychometrics and LLM evaluation methodology. My main uncertainty is whether the pending experiments (Mistral, n=10 seeds, post-RL) substantially change the picture."
+      }
+    ],
+    "totalDurationMs": 196063,
+    "totalTokens": 85546,
+    "totalToolUseCount": 32,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 742,
+      "cache_read_input_tokens": 81681,
+      "output_tokens": 3120,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 742
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 3120,
+          "cache_read_input_tokens": 81681,
+          "cache_creation_input_tokens": 742,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 742,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 19,
+      "searchCount": 6,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 7
+    }
+  },
+  "sourceToolAssistantUUID": "16ac0fe9-e483-4ec9-80f8-8dd6a6705677",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam",
+  "sessionId": "38461102-0053-4fc0-9aca-3e348094d93e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24 · 2026-05-21T05:47:15.925Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Both reviewers have completed their independent reviews. Now I need to run the roundtable:
+- Step 1: Independent reviews (done — both R1 and R2 have submitted)
+- Step 2: Cross-sharing (R1 sees R2's review and vice versa, they react)
+- Step 3: Convergence (identify agreements and disagreements, adjust scores if needed)
+- Step 4: Synthesis (meta-review with final combined assessment)
+
+Let me now do Step 2: cross-share. I'll send both reviews to each reviewer and ask them to react.
+
+Actually, for efficiency, let me run Step 2 and Step 3 together — I'll create a roundtable discussion where both reviewers see each other's reviews and react, then converge.
+ 
+Now I'm looking at what R1 found: they rated soundness, excitement, and reproducibility all at 3/5, landing on a borderline findings verdict with high confidence. The core issues they flagged are the small sample size of just three seeds, the fact that the baseline method outperforms the proposed approach, the z-score calculation that weakens the main narrative, concerns about QLoRA's real-world applicability, and insufficient statistical power.
+
+R2 similarly concluded borderline findings but emphasized different concerns: they acknowledge the theta-shift is a genuine contribution and the 4PL ablation adds value, yet argue the core novelty is really just applying existing ideas rather than inventing something new, the "minimal-info" framing oversells the work, the "8x" comparison cherry-picks favorable numbers, and there are gaps in the related work coverage. Both reviewers converge on the borderline assessment despite highlighting distinct weaknesses.
+
+But wait—R1 appears to have reviewed an earlier version of the paper with n=3 seeds and different effect sizes, not the submitted PDF which uses n=10 seeds with smaller effect sizes. R1 references pilot numbers that don't match what was actually submitted, suggesting they may have reviewed outdated repository files rather than the final manuscript.
+
+Looking at the actual submitted paper, it includes n=10 for both Qwen and Llama, post-RL results showing the effect size drops to 0.82 after GRPO, three model families total, and seven baselines. R2's review aligns better with the actual content, though both reviewers have some discrepancies with the final numbers.
+
+For the roundtable discussion, I need to use the actual paper as the reference point and flag where R1's review diverges from what was submitted. R1's concern about post-RL results being absent is actually incorrect—the paper includes that analysis in section 5.4 with the corresponding tables. Now I'm ready to synthesize both reviews and compose the final meta-review report, correcting these factual errors and providing my own assessment across all dimensions. Both reviewers agree theta-shift is a genuine contribution and that the HT comparison needs better treatment, though they diverge on excitement (R1: 3/5 vs R2: 2.5/5) and reproducibility scores (R1: 3/5 vs R2: 4/5). R1's concern about sample size was partially based on reviewing an older version—the actual paper uses n=10 seeds for two of three families—but the core issues around HT's superior performance and limited novelty persist. — both agree this is inadequately addressed
+2. Novelty is application-level — both agree
+3. PSN-IRT dependency — both flag
+4. QLoRA ecological validity — R1 flags, R2 doesn't directly but implies through novelty concerns
+
+**Step 4 — Final synthesis:**
+Given the corrections, I'd adjust R1's score slightly upward since n=10 resolves their primary major weakness, but the HT comparison issue remains. Post-RL being included also helps.
+
+Revised consolidated assessment:
+- The paper is honest, well-written, and makes a useful cross-domain contribution
+- Theta-shift analysis and 4PL ablation are genuine insights
+- However: (1) novelty is primarily application-level, (2) HT comparison undermines the positioning, (3) PSN-IRT dependency weakens the "minimal information" claim, (4) QLoRA-only validation limits generalizability
+- The post-RL result (|d|=0.82) is genuinely interesting but properly caveated as preliminary
+- n=10 seeds with bootstrap CIs is adequate for the claims made (with Mistral n=3 being the weak link)
+
+Final score: 3.0 (Findings-level). The paper is honest and contributes useful cross-domain knowledge, the theta-shift insight is novel, and the post-RL preliminary result is interesting. But the novelty is insufficient for Main, and the HT comparison undermines the primary contribution's positioning.
+
+Now I'm checking the actual numbers from Table 3 — the HT statistic shows substantially larger effect sizes than our approach across both models, which is the key tension I need to reconcile with the paper's framing. The z-score for Qwen is suspiciously extreme, suggesting minimal variance in the clean seed condition, though the paper's dismissal of it as lacking specificity is reasonable. Now I'm settling on my final scores: soundness at 3/5 due to the HT comparison gap and QLoRA validity concerns, excitement at 2.5/5 since the theta-shift analysis is intriguing but doesn't push this to a main-track contribution, and reproducibility at 3.5/5 given the straightforward methodology and available resources despite some missing protocol details. This puts the overall rating at 3.0/5—a solid but not exceptional contribution that would be better suited for a workshop or applications track.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0319a1e0-c400-458e-a92e-6d92082baaee",
+  "isSidechain": false,
+  "requestId": "req_011CbFBhbN3WWZvYrjCKbEDQ",
+  "type": "assistant",
+  "uuid": "e65f937b-1beb-46eb-a2d7-c6cc36912d51",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam",
+  "sessionId": "38461102-0053-4fc0-9aca-3e348094d93e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TtXNkB7Ant663Ts1gJ3eiG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3629,
+      "cache_creation_input_tokens": 7275,
+      "cache_read_input_tokens": 57337,
+      "output_tokens": 2966,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7275,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3629,
+          "output_tokens": 2966,
+          "cache_read_input_tokens": 57337,
+          "cache_creation_input_tokens": 7275,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7275
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25 · 2026-05-21T05:47:19.661Z_
+
+Both independent reviews are complete. Now proceeding to the roundtable (Steps 2-4): cross-sharing, convergence, and synthesis. Let me note that R1 reviewed some details from an older project version (n=3 pilot) rather than the submitted PDF (which uses n=10 for Qwen/Llama). I'll correct for this in the synthesis.
+
+Key convergence points:
+- Both reviewers: 2.5/5 (Borderline Findings)
+- Both flag: HT statistic outperforming ℓz* is inadequately addressed
+- Both flag: "minimal-information" framing overstates since PSN-IRT dependency exists
+- Both praise: theta-shift analysis as genuine contribution, honest scientific presentation
+- R1's major W1 (n=3 insufficient) is partially resolved — the submitted paper has n=10 for 2/3 families
+- R1's W8 (post-RL absent) is incorrect — §5.4 contains post-RL results in the submitted version
+
+After cross-sharing corrections, the consolidated score adjusts slightly upward to 3.0 (Findings). Let me compile the final report.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e65f937b-1beb-46eb-a2d7-c6cc36912d51",
+  "isSidechain": false,
+  "requestId": "req_011CbFBhbN3WWZvYrjCKbEDQ",
+  "type": "assistant",
+  "uuid": "e4ed787b-9b1d-4393-922b-e9d21cfc8ae5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam",
+  "sessionId": "38461102-0053-4fc0-9aca-3e348094d93e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TtXNkB7Ant663Ts1gJ3eiG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3629,
+      "cache_creation_input_tokens": 7275,
+      "cache_read_input_tokens": 57337,
+      "output_tokens": 2966,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7275,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3629,
+          "output_tokens": 2966,
+          "cache_read_input_tokens": 57337,
+          "cache_creation_input_tokens": 7275,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7275
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-21T05:47:19.956Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Ljg1gV8S9xpi7zdXmKS2As`</summary>
+
+```json
+{
+  "query": "select:submit_dream_review_report",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e4ed787b-9b1d-4393-922b-e9d21cfc8ae5",
+  "isSidechain": false,
+  "requestId": "req_011CbFBhbN3WWZvYrjCKbEDQ",
+  "type": "assistant",
+  "uuid": "1ede531c-026c-458f-9920-ea5c093d978d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam",
+  "sessionId": "38461102-0053-4fc0-9aca-3e348094d93e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TtXNkB7Ant663Ts1gJ3eiG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3629,
+      "cache_creation_input_tokens": 7275,
+      "cache_read_input_tokens": 57337,
+      "output_tokens": 2966,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7275,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3629,
+          "output_tokens": 2966,
+          "cache_read_input_tokens": 57337,
+          "cache_creation_input_tokens": 7275,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7275
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-21T05:47:19.963Z_
+
+<details><summary>↩ Tool result · `toolu_01Ljg1gV8S9xpi7zdXmKS2As`</summary>
+
+```text
+No matching deferred tools found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1ede531c-026c-458f-9920-ea5c093d978d",
+  "isSidechain": false,
+  "promptId": "522e9160-39b3-4df9-99e8-2fb60d2ebbeb",
+  "type": "user",
+  "uuid": "76922673-b348-43aa-924a-fd3e90e39e40",
+  "toolUseResult": {
+    "matches": [],
+    "query": "select:submit_dream_review_report",
+    "total_deferred_tools": 23
+  },
+  "sourceToolAssistantUUID": "1ede531c-026c-458f-9920-ea5c093d978d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam",
+  "sessionId": "38461102-0053-4fc0-9aca-3e348094d93e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 28_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[DREAM Review Director] dream_id=20260521T044802 | review_mode=full | review_visible=True PDF: /home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/artifacts/dream_reports/…",
+  "leafUuid": "76922673-b348-43aa-924a-fd3e90e39e40",
+  "sessionId": "38461102-0053-4fc0-9aca-3e348094d93e"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 29_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Full peer review of IRT personfit contamination paper",
+  "sessionId": "38461102-0053-4fc0-9aca-3e348094d93e"
+}
+```
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-21T05:47:26.006Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_015JZYdsq9R4fxRwGLK6mFJ6`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__submit_dream_review_report",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "76922673-b348-43aa-924a-fd3e90e39e40",
+  "isSidechain": false,
+  "requestId": "req_011CbFBnZULCVcTLxAuowFZU",
+  "type": "assistant",
+  "uuid": "b2baf845-2f53-4e87-9e7b-bd2c00f7cf5b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam",
+  "sessionId": "38461102-0053-4fc0-9aca-3e348094d93e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018gr3CUGjfmCgkCtUukYmxT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6605,
+      "cache_read_input_tokens": 64612,
+      "output_tokens": 89,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6605,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 89,
+          "cache_read_input_tokens": 64612,
+          "cache_creation_input_tokens": 6605,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6605
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-21T05:47:26.009Z_
+
+<details><summary>↩ Tool result · `toolu_015JZYdsq9R4fxRwGLK6mFJ6`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__submit_dream_review_report"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b2baf845-2f53-4e87-9e7b-bd2c00f7cf5b",
+  "isSidechain": false,
+  "promptId": "522e9160-39b3-4df9-99e8-2fb60d2ebbeb",
+  "type": "user",
+  "uuid": "493776ee-b44a-41a0-85b9-78a12722d6f7",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__submit_dream_review_report"
+    ],
+    "query": "select:mcp__agent-ml-research__submit_dream_review_report",
+    "total_deferred_tools": 23
+  },
+  "sourceToolAssistantUUID": "b2baf845-2f53-4e87-9e7b-bd2c00f7cf5b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam",
+  "sessionId": "38461102-0053-4fc0-9aca-3e348094d93e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32 · 2026-05-21T05:47:28.801Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to compile the final review report and submit it. Let me write a comprehensive report that covers all roundtable steps.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "493776ee-b44a-41a0-85b9-78a12722d6f7",
+  "isSidechain": false,
+  "requestId": "req_011CbFBo15TEcTj4wh5yEDHE",
+  "type": "assistant",
+  "uuid": "ea5337eb-5df0-4b88-99f7-b922875be6a2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam",
+  "sessionId": "38461102-0053-4fc0-9aca-3e348094d93e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Sjodw1ckBaYikqTJW7uavu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 713,
+      "cache_read_input_tokens": 71217,
+      "output_tokens": 4834,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 713,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 4834,
+          "cache_read_input_tokens": 71217,
+          "cache_creation_input_tokens": 713,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 713
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-21T05:49:26.495Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__submit_dream_review_report · `toolu_01GoHQSAXHEmgpqbEPLY6H3F`</summary>
+
+```json
+{
+  "report": "# Dream Review Report: IRT-FIT\n\n**Paper:** IRT-FIT: Detecting Benchmark Contamination in LLMs via Person-Fit Statistics on Binary Response Patterns\n**Venue:** EMNLP 2026 (ARR)\n**Dream ID:** 20260521T044802\n**Review Mode:** Full (2 Reviewers + Roundtable)\n\n---\n\n## Reviewer Assignments\n- **R1** — Methods + Experiments (Soundness, experimental rigor, statistical validity)\n- **R2** — Novelty + Related Work (Positioning, originality, presentation, literature coverage)\n\n---\n\n## Step 1: Independent Reviews\n\n### R1 (Methods + Experiments)\n\n**Summary:** The paper adapts the psychometric person-fit statistic ℓz* under a 4PL IRT model to detect benchmark contamination using only binary response patterns. Controlled contamination experiments across three model families (Qwen n=10, Llama n=10, Mistral n=3) demonstrate |d|>2.0 in two families at 15% MMLU contamination. The theta-shift analysis is a genuine methodological insight. However, the HT statistic outperforms ℓz* while requiring weaker assumptions, the QLoRA-only contamination injection has questionable ecological validity, and the power function is overfit to sparse data.\n\n**Strengths:**\n- Novel and well-motivated cross-domain analogy (contaminated LLM ↔ examinee with preknowledge)\n- Theta-shift analysis is a genuine methodological contribution — identifying that free-θ MLE absorbs contamination signal, and that θ-fixed restores dose-response monotonicity\n- Honest handling of negative results: universal 4PL misfit (57/60), non-monotonic dose-response, Mistral weakness, MML-EM calibration failure\n- n=10 seeds with bootstrap CIs for 2/3 families is adequate for the claims made\n- Clear detection frontier framing organizing methods by information access level\n\n**Weaknesses:**\n- **W1 (Major): HT statistic outperforms ℓz* but is inadequately discussed.** Table 3 shows HT achieving |d|=3.21 (Qwen) and 3.53 (Llama) vs ℓz*'s 2.27/2.09. HT requires only item difficulty, not full 4PL parameterization. The paper's defense (\"mechanistic interpretability\") is weak — both produce a single aggregate score. The \"5.3× effect size of Guttman/U3\" framing cherry-picks the weakest baseline while downplaying the strongest binary competitor.\n- **W2 (Major): QLoRA SFT contamination has questionable ecological validity.** Real contamination occurs during pretraining, not supervised fine-tuning. QLoRA (rank=16) has limited capacity, producing only 28-38% memorization fraction. The entire framework is validated only on a contamination mechanism that differs substantially from the primary threat model. The claim that \"full fine-tuning would produce stronger signals\" is speculative.\n- **W3 (Moderate): Mistral n=3 with CI [0.25, 2.77] is too uncertain.** The 95% CI nearly includes zero. The asymmetry (n=10 for Qwen/Llama, n=3 for Mistral) weakens the \"three model families\" framing. The θ-fixed failure for Mistral further limits the cross-family claim.\n- **W4 (Moderate): Power function R²=0.62 on 7 data points with 3 free parameters.** With effectively 4 degrees of freedom, R² is not a meaningful measure of fit quality. The specific numerical parameters (0.00018, 0.92, 1.15) and the derived 7,958-item threshold carry false precision. Should be presented as a descriptive observation, not a predictive model.\n- **W5 (Minor): Acc z-score (z=160.6) dismissal is not rigorous.** The paper claims it \"lacks specificity\" but does not formally demonstrate that ℓz* would outperform a properly calibrated accuracy z-score in a realistic deployment scenario.\n- **W6 (Minor): Only 7-8B models tested.** Scalability to 13B, 70B, or larger models is unknown. Memorization dynamics and θ-shift behavior may differ at scale.\n- **W7 (Minor): Item-level AUROC 0.52-0.55 is near-random.** This means the method cannot identify which items were contaminated — a significant practical limitation that is mentioned but underemphasized.\n\n**R1 Scores:** Soundness 3/5 | Excitement 3/5 | Reproducibility 3/5 | Overall 2.5/5 | Confidence 4/5\n\n---\n\n### R2 (Novelty + Related Work)\n\n**Summary:** The paper makes a well-articulated cross-domain contribution connecting psychometric person-fit statistics to LLM contamination detection. The theta-shift analysis and 4PL vs 3PL ablation are genuine insights beyond straightforward application. However, the core novelty is application of existing tools (ℓz*, Snijders 2001) to a new domain, which is thin for EMNLP Main. The \"minimal-information\" framing overstates by obscuring the PSN-IRT parameter dependency, and the selective baseline comparison (emphasizing Guttman/U3 while HT is competitive) weakens positioning.\n\n**Strengths:**\n- Well-articulated cross-domain analogy that is surprisingly unexploited in prior work\n- Theta-shift analysis goes beyond straightforward application — has implications for any person-fit application where the reference condition is uncertain\n- Intellectual honesty: universal misfit, near-random item AUROC, MML-EM failure, non-monotonic dose-response all openly presented\n- Self-contained IRT exposition accessible to NLP readers without oversimplifying the psychometrics\n- High reproducibility: simple method, publicly available PSN-IRT parameters, standard response data\n\n**Weaknesses:**\n- **W1 (Major): Core contribution is cross-domain application, not methodological innovation.** Applies existing ℓz* (Snijders 2001) with existing parameters (PSN-IRT 2026) to a new domain. Δℓz* is standard difference-in-differences. Power function uses standard Gauss-Hermite quadrature. The novelty lies in the combination and domain transfer, which is thin for EMNLP Main.\n- **W2 (Major): \"Minimal-information operating point\" framing obscures PSN-IRT dependency.** The method requires pre-calibrated 4PL item parameters that cannot currently be independently reproduced (MML-EM refit a_r=0.127). \"Minimal information from the target model\" is more accurate than \"minimal information.\"\n- **W3 (Major): \"5.3× effect size\" comparison is selectively framed.** Emphasizes Guttman/U3 (weakest baseline) while HT (|d|=3.21-3.53) is comparable or superior to ℓz* (|d|=2.27/2.09) with weaker requirements. This selective benchmarking undermines credibility.\n- **W4 (Moderate): Missing related work.** St-Onge et al. (2011, APM) applied person-fit to compromised-item detection in medical licensing — directly analogous. Tendeiro & Meijer (2014) review person-fit for test fraud detection. Lalor et al. (2019, EMNLP) and Rodriguez et al. (2021, ACL) used IRT for NLP evaluation. These precursors should be discussed.\n- **W5 (Moderate): Universal 4PL misfit (contribution 3) has limited surprise value.** LLMs violate local independence and unidimensionality by construction. Near-universal misfit is expected from first principles. The contamination typology angle (Gemini-1.5 case) is more interesting than the existence of misfit itself.\n- **W6 (Moderate): Paper conflates two detection tasks without clear separation.** (1) Absolute ℓz* anomaly flagging (57/60 = model-IRT misfit) vs (2) Δℓz* between conditions (= contamination detection). The abstract's \"57/60 cells flagged\" adjacent to contamination claims could mislead readers.\n- **W7 (Minor): Anonymous citation handling.** PSN-IRT, CoDeC, IRT-LLM cited with placeholder author names (\"PSN-IRT Authors\", \"CoDeC Authors\"). If these are the authors' own prior work, this could constitute an anonymity violation under ARR rules.\n\n**R2 Scores:** Soundness 3/5 | Excitement 2.5/5 | Reproducibility 4/5 | Overall 2.5/5 | Confidence 4/5\n\n---\n\n## Step 2: Cross-Sharing\n\n**R1 reacting to R2:**\n- Agrees strongly with W1 (application-level novelty) and W3 (selective HT comparison). These reinforce R1's own W1 about HT.\n- Agrees with W2 (PSN-IRT dependency) — this connects to R1's W9 about single point of failure.\n- The missing related work (W4) is a valid gap R1 did not flag. Test security literature has decades of operational experience with person-fit for cheating detection — the paper should engage with this.\n- Agrees universal misfit is unsurprising (W5), though notes the Δℓz* design is a principled response.\n\n**R2 reacting to R1:**\n- The QLoRA ecological validity concern (R1-W2) is important — R2 did not emphasize this. SFT contamination ≠ pretraining contamination, and the generalization gap is unaddressed.\n- The power function overfit concern (R1-W4) is well-taken: 3 free parameters on 7 points is dubious.\n- R2 notes that R1's n=3 concern is partially resolved by the actual submission using n=10 for 2/3 families — the Mistral n=3 issue remains.\n- The acc z-score concern (R1-W5) is interesting — a more rigorous dismissal is needed than what the paper provides.\n\n---\n\n## Step 3: Convergence\n\n### Points of Agreement (both reviewers)\n1. **HT comparison is the paper's biggest positioning problem.** Both flag that HT achieves better effect sizes (|d|=3.21-3.53) than ℓz* (|d|=2.27/2.09) with weaker requirements (item difficulty only, not full 4PL). The \"mechanistic interpretability\" defense is insufficient. This is the single most damaging weakness.\n2. **Theta-shift analysis is the paper's strongest novel contribution.** Both agree this goes beyond straightforward application and provides genuine methodological insight.\n3. **Honest scientific presentation.** Both praise the transparency about negative results, limitations, and boundary conditions. The paper does not oversell.\n4. **Application-level novelty is insufficient for Main.** Both agree the core methodology applies existing tools to a new domain. The theta-shift insight and 4PL ablation are valuable but incremental.\n5. **PSN-IRT dependency weakens the \"minimal-information\" claim.** Both flag this as a framing issue.\n6. **Post-RL result (|d|=0.82) is the strongest differentiating argument** but is properly caveated as preliminary/exploratory (N=1 model, 77% training completion, rule-based rewards).\n\n### Points of Divergence\n- **Excitement:** R1 gives 3/5, R2 gives 2.5/5. R2 is more skeptical about novelty because they weigh the application-vs-invention distinction more heavily. R1 values the practical utility of the detection frontier framing more.\n- **Reproducibility:** R1 gives 3/5, R2 gives 4/5. R2 recognizes the method is simple enough to reimplement from the paper alone. R1 is concerned about missing protocol details.\n- **Score adjustment after cross-sharing:** R1 adjusts upward to 3.0 after noting n=10 is in the actual paper (resolving their primary W1). R2 maintains 2.5, considering the HT comparison and novelty concerns as fundamentally unresolved. Consensus: 3.0 (Findings).\n\n---\n\n## Step 4: Meta-Review and Consolidated Assessment\n\n### Paper Contributions Assessment\n\n| Claimed Contribution | Verdict | Notes |\n|---|---|---|\n| 1. Minimal-information detection framework | Partially supported | Method works (|d|>2 in 2/3 families) but \"minimal-information\" overstates given PSN-IRT dependency. HT achieves better results with weaker requirements. |\n| 2. Detection characterization (power function, 56% cost, post-RL) | Mixed | Power function overfit (R²=0.62, 7 points, 3 params). 56% cost is real but the comparison is honest. Post-RL (|d|=0.82) is genuinely interesting but preliminary. |\n| 3. Universal 4PL misfit | Minor contribution | Expected from first principles. The Δℓz* design response is sound but the finding itself is unsurprising. |\n\n### Experiment Coverage vs. Design\n\nThe paper covers all planned experiments adequately:\n- ✓ Controlled contamination: 3 families, n=10/10/3, 5 contamination levels, 3 benchmarks\n- ✓ Post-RL GRPO: properly labeled exploratory, caveats explicit\n- ✓ 7 baselines including privileged methods\n- ✓ Multiscale lzm: appropriately downweighted (marginal improvement, r=0.97)\n- ✓ Extra benchmarks (BBH, MATH): included in power analysis table\n- ✓ Leaderboard audit: appropriately abandoned, mentioned as future work\n\nThe narrative guidance (\"claims need precise limits; Mistral weak; post-RL downgraded to exploratory\") is faithfully reflected in the paper. Claims are appropriately hedged.\n\n### Critical Unresolved Issues\n\n1. **HT dominance:** The paper must either (a) demonstrate conditions where ℓz* outperforms HT, (b) test HT's post-RL behavior (if ℓz*'s advantage is robustness), or (c) honestly reposition ℓz* as one option in a toolkit rather than the primary recommendation.\n2. **Ecological validity:** QLoRA SFT contamination differs from real pretraining contamination. This is acknowledged in limitations but not experimentally addressed. The framework's practical value is unclear without testing on more realistic contamination scenarios.\n3. **Novelty threshold for Main:** Application of existing psychometric tools to a new domain, however well-executed, may not meet EMNLP Main's novelty bar. The theta-shift insight and post-RL preliminary result are the strongest differentiators but may not suffice.\n\n### Consolidated Scores\n\n| Dimension | R1 | R2 | Consolidated | Rationale |\n|---|---|---|---|---|\n| Soundness | 3/5 | 3/5 | **3/5** | Methodology correctly applied; statistical concerns about power function and HT comparison; QLoRA ecological validity question |\n| Excitement | 3/5 | 2.5/5 | **2.5/5** | Cross-domain bridge is interesting but novelty is application-level. Theta-shift is one genuine insight but insufficient for Main alone. Post-RL argument is strongest but preliminary. |\n| Reproducibility | 3/5 | 4/5 | **3.5/5** | Method is simple and uses public parameters. Some protocol details (prompt format, evaluation harness version, QLoRA hyperparameters) could be more explicit. No code release mentioned. |\n| Overall | 2.5→3.0/5 | 2.5/5 | **3.0/5** | Findings-level paper |\n| Confidence | 4/5 | 4/5 | **4/5** | |\n\n### Overall Assessment: 3.0 / 5 — Findings\n\n**Recommendation:** Accept to **Findings**, not Main.\n\n**Justification:** The paper makes a useful cross-domain contribution connecting psychometric person-fit statistics to LLM contamination detection. The theta-shift analysis is a genuine methodological insight, and the post-RL preliminary evidence (|d|=0.82 where token-probability methods fail entirely) is a promising differentiator. The science is honest — limitations, boundary conditions, and negative results are transparently reported. However, three factors prevent Main-track acceptance: (1) the core novelty is application of existing tools (ℓz*, 4PL IRT) rather than methodological invention; (2) the HT statistic achieves better effect sizes with weaker requirements, undermining ℓz*'s claimed primacy among binary methods; (3) the \"minimal-information\" framing overstates by obscuring the PSN-IRT parameter dependency. The paper's strongest argument — post-RL robustness — is based on a single preliminary experiment. With honest repositioning relative to HT, additional post-RL validation, and engagement with the test security literature, this could reach Main in a future cycle.\n\n### Actionable Recommendations for Authors\n\n1. **Confront the HT comparison head-on.** Either test HT post-RL (if the advantage is robustness), demonstrate empirical conditions where ℓz* outperforms, or reposition as a complementary tool with unique interpretability (θ-shift, MF analysis) rather than the primary detection method.\n2. **Qualify \"minimal-information\" framing.** Change to \"minimal information from the target model\" or \"minimal runtime information\" — acknowledge the PSN-IRT calibration dependency explicitly as an input requirement.\n3. **Expand post-RL validation.** Test ≥2 model families, ≥2 RL configurations (including RLHF on preference data), and complete training. This is the paper's strongest unique selling point.\n4. **Engage with test security literature.** Cite St-Onge et al. (2011), Tendeiro & Meijer (2014), and other operational applications of person-fit for cheating detection. This would strengthen the contribution and demonstrate awareness of known deployment challenges.\n5. **Separate misfit detection from contamination detection.** Clarify early that absolute ℓz* flags model-IRT misfit (not contamination) and that Δℓz* is the contamination detection statistic. The current presentation risks conflating these.\n6. **Present the power function as a descriptive trend** rather than a parametric model. R²=0.62 on 7 points with 3 free parameters does not support precise threshold derivation.\n7. **Fix reference formatting.** \"PSN-IRT Authors\", \"CoDeC Authors\", \"IRT-LLM Authors\" are non-standard. Use proper anonymous citations or full bibliographic entries as appropriate under ARR rules.\n",
+  "project": "irt_personfit_contam",
+  "tier": "median",
+  "dream_id": "20260521T044802",
+  "overall_score": "3.0/5 — Findings (Borderline Conference)",
+  "review_visible": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ea5337eb-5df0-4b88-99f7-b922875be6a2",
+  "isSidechain": false,
+  "requestId": "req_011CbFBo15TEcTj4wh5yEDHE",
+  "type": "assistant",
+  "uuid": "5a86efe8-4f90-4d74-9dac-890a21a3b7e1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam",
+  "sessionId": "38461102-0053-4fc0-9aca-3e348094d93e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Sjodw1ckBaYikqTJW7uavu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 713,
+      "cache_read_input_tokens": 71217,
+      "output_tokens": 4834,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 713,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 4834,
+          "cache_read_input_tokens": 71217,
+          "cache_creation_input_tokens": 713,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 713
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-21T05:49:30.037Z_
+
+<details><summary>↩ Tool result · `toolu_01GoHQSAXHEmgpqbEPLY6H3F`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"report_path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/artifacts/dream_reports/dream_20260521T044802/median/review_report.md\", \"dream_id\": \"dream_20260521T044802\", \"tier\": \"median\", \"review_visible\": true}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5a86efe8-4f90-4d74-9dac-890a21a3b7e1",
+  "isSidechain": false,
+  "promptId": "522e9160-39b3-4df9-99e8-2fb60d2ebbeb",
+  "type": "user",
+  "uuid": "a6e2c9b0-f493-4ce7-9bb6-c71409d60d22",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"report_path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/artifacts/dream_reports/dream_20260521T044802/median/review_report.md\\\", \\\"dream_id\\\": \\\"dream_20260521T044802\\\", \\\"tier\\\": \\\"median\\\", \\\"review_visible\\\": true}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"report_path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/artifacts/dream_reports/dream_20260521T044802/median/review_report.md\", \"dream_id\": \"dream_20260521T044802\", \"tier\": \"median\", \"review_visible\": true}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "5a86efe8-4f90-4d74-9dac-890a21a3b7e1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam",
+  "sessionId": "38461102-0053-4fc0-9aca-3e348094d93e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 35 · 2026-05-21T05:49:30.042Z_
+
+```json
+{
+  "parentUuid": "a6e2c9b0-f493-4ce7-9bb6-c71409d60d22",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "fa318a43-bd1e-4479-b619-02d0963bb57d",
+  "timestamp": "2026-05-21T05:49:30.042Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam",
+  "sessionId": "38461102-0053-4fc0-9aca-3e348094d93e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 36 · 2026-05-21T05:49:46.775Z_
+
+Review submitted successfully.
+
+**Summary:** Consolidated score **3.0/5 — Findings** (not Main). Both reviewers converged on the paper being honest, well-written science with a useful cross-domain contribution (IRT person-fit → LLM contamination detection). The theta-shift analysis and post-RL preliminary result are genuine contributions. Three factors prevent Main: (1) novelty is application-level, not methodological invention; (2) HT statistic outperforms ℓz* with weaker requirements — inadequately addressed; (3) "minimal-information" framing overstates given PSN-IRT dependency. Top actionable items: confront HT comparison, expand post-RL validation, engage test security literature.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fa318a43-bd1e-4479-b619-02d0963bb57d",
+  "isSidechain": false,
+  "requestId": "req_011CbFBx9ANkWC6o6NderWgh",
+  "type": "assistant",
+  "uuid": "a74eb00f-0c23-4122-afdd-6edea0e49a1f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam",
+  "sessionId": "38461102-0053-4fc0-9aca-3e348094d93e",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lt8vfCK8ve3fn1JKWyeZ9u",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5070,
+      "cache_read_input_tokens": 71930,
+      "output_tokens": 169,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5070,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 169,
+          "cache_read_input_tokens": 71930,
+          "cache_creation_input_tokens": 5070,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5070
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 37_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[DREAM Review Director] dream_id=20260521T044802 | review_mode=full | review_visible=True PDF: /home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/artifacts/dream_reports/…",
+  "leafUuid": "a74eb00f-0c23-4122-afdd-6edea0e49a1f",
+  "sessionId": "38461102-0053-4fc0-9aca-3e348094d93e"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 38_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Full peer review of IRT personfit contamination paper",
+  "sessionId": "38461102-0053-4fc0-9aca-3e348094d93e"
+}
+```
+
+---

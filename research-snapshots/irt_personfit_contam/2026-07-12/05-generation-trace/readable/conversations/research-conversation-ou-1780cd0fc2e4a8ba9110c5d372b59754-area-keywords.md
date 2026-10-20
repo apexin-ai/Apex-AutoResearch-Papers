@@ -1,0 +1,1930 @@
+# Research conversation: [飞书用户 游承松 (ou_1780cd0fc2e4a8ba9110c5d372b59754)]: 给我这篇合法的area keywords
+
+**What Can IRT Person-Fit Statistics Reveal About SFT-Stage Benchmark Contamination? (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 33
+- **Recorded user turns:** 1
+- **Tool calls:** 7
+- **Original source:** `logs/chats/exported-trajectories/account-2/d46361cc-0bf6-4307-afff-1aca5ca71e60.jsonl`
+- **Structured JSON:** [`031d73436efd68fae000.json`](../../sessions/03/031d73436efd68fae000.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-26T11:03:26.254Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-26T11:03:26.254Z",
+  "sessionId": "d46361cc-0bf6-4307-afff-1aca5ca71e60",
+  "content": "[飞书用户 游承松 (ou_1780cd0fc2e4a8ba9110c5d372b59754)]: 给我这篇合法的area keywords"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-26T11:03:26.257Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-26T11:03:26.257Z",
+  "sessionId": "d46361cc-0bf6-4307-afff-1aca5ca71e60"
+}
+```
+
+---
+
+## Round 1
+
+31 recorded events
+
+### User
+
+_source line 3 · 2026-05-26T11:03:26.293Z_
+
+[飞书用户 游承松 (ou_1780cd0fc2e4a8ba9110c5d372b59754)]: 给我这篇合法的area keywords
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "f3001dec-40e1-42d5-8ac9-b32b7d95da7b",
+  "type": "user",
+  "uuid": "2958205d-f853-44fe-8df0-d6dc201aac0a",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/director_15982409",
+  "sessionId": "d46361cc-0bf6-4307-afff-1aca5ca71e60",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-26T11:03:26.293Z_
+
+```json
+{
+  "parentUuid": "2958205d-f853-44fe-8df0-d6dc201aac0a",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__add_constraint",
+      "mcp__agent-ml-research__approve_experiment",
+      "mcp__agent-ml-research__approve_secret_request",
+      "mcp__agent-ml-research__archive_project",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_agent_queue_item",
+      "mcp__agent-ml-research__cancel_pending_director_messages",
+      "mcp__agent-ml-research__check_credentials",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__complete_mvp",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__create_project",
+      "mcp__agent-ml-research__delete_secret",
+      "mcp__agent-ml-research__director_allocate_gpus",
+      "mcp__agent-ml-research__director_get_project_overview",
+      "mcp__agent-ml-research__director_post_to_main_agent",
+      "mcp__agent-ml-research__director_post_to_manager",
+      "mcp__agent-ml-research__director_post_to_paper_agent",
+      "mcp__agent-ml-research__director_reply_to_user",
+      "mcp__agent-ml-research__distill_papers",
+      "mcp__agent-ml-research__dream_simulate",
+      "mcp__agent-ml-research__feishu_read_chat_history",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__feishu_upload_file",
+      "mcp__agent-ml-research__get_agent_queue_status",
+      "mcp__agent-ml-research__get_distill_status",
+      "mcp__agent-ml-research__get_dream_status",
+      "mcp__agent-ml-research__get_dream_trend",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_project_status",
+      "mcp__agent-ml-research__get_resource_inventory",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__keepalive_respond",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__list_projects",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_secrets",
+      "mcp__agent-ml-research__list_ssh_hosts",
+      "mcp__agent-ml-research__list_workspace_projects",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__log_decision",
+      "mcp__agent-ml-research__log_mistake",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__paper_compile_and_check",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__post_to_reviewer",
+      "mcp__agent-ml-research__ralph_respond",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_mistakes",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__register_server",
+      "mcp__agent-ml-research__reject_experiment",
+      "mcp__agent-ml-research__reject_secret_request",
+      "mcp__agent-ml-research__remove_constraint",
+      "mcp__agent-ml-research__remove_server",
+      "mcp__agent-ml-research__replace_agent_queue",
+      "mcp__agent-ml-research__request_study_approval",
+      "mcp__agent-ml-research__research_director_post_to_study_director",
+      "mcp__agent-ml-research__should_skip_dream",
+      "mcp__agent-ml-research__store_secret",
+      "mcp__agent-ml-research__submit_paper_to_review",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_project_config",
+      "mcp__agent-ml-research__update_review_issues",
+      "mcp__agent-ml-research__update_roadmap",
+      "mcp__agent-ml-research__update_skill",
+      "mcp__agent-ml-research__upgrade_to_dual_group",
+      "mcp__agent-ml-research__urgent_agent_message"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__add_constraint",
+      "mcp__agent-ml-research__approve_experiment",
+      "mcp__agent-ml-research__approve_secret_request",
+      "mcp__agent-ml-research__archive_project",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_agent_queue_item",
+      "mcp__agent-ml-research__cancel_pending_director_messages",
+      "mcp__agent-ml-research__check_credentials",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__complete_mvp",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__create_project",
+      "mcp__agent-ml-research__delete_secret",
+      "mcp__agent-ml-research__director_allocate_gpus",
+      "mcp__agent-ml-research__director_get_project_overview",
+      "mcp__agent-ml-research__director_post_to_main_agent",
+      "mcp__agent-ml-research__director_post_to_manager",
+      "mcp__agent-ml-research__director_post_to_paper_agent",
+      "mcp__agent-ml-research__director_reply_to_user",
+      "mcp__agent-ml-research__distill_papers",
+      "mcp__agent-ml-research__dream_simulate",
+      "mcp__agent-ml-research__feishu_read_chat_history",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__feishu_upload_file",
+      "mcp__agent-ml-research__get_agent_queue_status",
+      "mcp__agent-ml-research__get_distill_status",
+      "mcp__agent-ml-research__get_dream_status",
+      "mcp__agent-ml-research__get_dream_trend",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_project_status",
+      "mcp__agent-ml-research__get_resource_inventory",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__keepalive_respond",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__list_projects",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_secrets",
+      "mcp__agent-ml-research__list_ssh_hosts",
+      "mcp__agent-ml-research__list_workspace_projects",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__log_decision",
+      "mcp__agent-ml-research__log_mistake",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__paper_compile_and_check",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__post_to_reviewer",
+      "mcp__agent-ml-research__ralph_respond",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_mistakes",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__register_server",
+      "mcp__agent-ml-research__reject_experiment",
+      "mcp__agent-ml-research__reject_secret_request",
+      "mcp__agent-ml-research__remove_constraint",
+      "mcp__agent-ml-research__remove_server",
+      "mcp__agent-ml-research__replace_agent_queue",
+      "mcp__agent-ml-research__request_study_approval",
+      "mcp__agent-ml-research__research_director_post_to_study_director",
+      "mcp__agent-ml-research__should_skip_dream",
+      "mcp__agent-ml-research__store_secret",
+      "mcp__agent-ml-research__submit_paper_to_review",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_project_config",
+      "mcp__agent-ml-research__update_review_issues",
+      "mcp__agent-ml-research__update_roadmap",
+      "mcp__agent-ml-research__update_skill",
+      "mcp__agent-ml-research__upgrade_to_dual_group",
+      "mcp__agent-ml-research__urgent_agent_message"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "69e1bcfd-594a-428c-bac9-4a6d6eee4b0d",
+  "timestamp": "2026-05-26T11:03:26.293Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/director_15982409",
+  "sessionId": "d46361cc-0bf6-4307-afff-1aca5ca71e60",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-26T11:03:26.293Z_
+
+```json
+{
+  "parentUuid": "69e1bcfd-594a-428c-bac9-4a6d6eee4b0d",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "5b13fdb5-6ac2-4802-ab99-c2e637fc3bc3",
+  "timestamp": "2026-05-26T11:03:26.293Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/director_15982409",
+  "sessionId": "d46361cc-0bf6-4307-afff-1aca5ca71e60",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-26T11:03:26.293Z_
+
+```json
+{
+  "parentUuid": "5b13fdb5-6ac2-4802-ab99-c2e637fc3bc3",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "252acbaa-6d10-42c3-a770-e5c58d68825a",
+  "timestamp": "2026-05-26T11:03:26.293Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/director_15982409",
+  "sessionId": "d46361cc-0bf6-4307-afff-1aca5ca71e60",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Retrieve legal area keywords list",
+  "sessionId": "d46361cc-0bf6-4307-afff-1aca5ca71e60"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-26T11:03:30.747Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user is asking for the legitimate/valid area keywords for this paper. This is likely about submitting to a conference (EMNLP 2026 based on the project config). I need to understand what the paper is about first, then suggest appropriate area keywords.
+
+Let me check the paper framing and project status to understand the paper's topic.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "252acbaa-6d10-42c3-a770-e5c58d68825a",
+  "isSidechain": false,
+  "requestId": "req_011CbR4wDrqsZw4oSJoy2e7z",
+  "type": "assistant",
+  "uuid": "52b74773-6131-43a0-bebd-e350dbfa2b2c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/director_15982409",
+  "sessionId": "d46361cc-0bf6-4307-afff-1aca5ca71e60",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019aAFZDB4PZBPmM1D4Yiq6s",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 40852,
+      "output_tokens": 169,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 169,
+          "cache_read_input_tokens": 40852,
+          "cache_creation_input_tokens": 0,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-26T11:03:31.117Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_0193FAKujdV96uTbKmNcnsK4`</summary>
+
+```json
+{
+  "query": "select:read_project_file",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "52b74773-6131-43a0-bebd-e350dbfa2b2c",
+  "isSidechain": false,
+  "requestId": "req_011CbR4wDrqsZw4oSJoy2e7z",
+  "type": "assistant",
+  "uuid": "ded2cad0-d23e-4014-8fd6-6d6018cd0051",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/director_15982409",
+  "sessionId": "d46361cc-0bf6-4307-afff-1aca5ca71e60",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019aAFZDB4PZBPmM1D4Yiq6s",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 40852,
+      "output_tokens": 169,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 169,
+          "cache_read_input_tokens": 40852,
+          "cache_creation_input_tokens": 0,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-26T11:03:31.126Z_
+
+<details><summary>↩ Tool result · `toolu_0193FAKujdV96uTbKmNcnsK4`</summary>
+
+```text
+No matching deferred tools found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ded2cad0-d23e-4014-8fd6-6d6018cd0051",
+  "isSidechain": false,
+  "promptId": "f3001dec-40e1-42d5-8ac9-b32b7d95da7b",
+  "type": "user",
+  "uuid": "12fe3ce9-c60d-47ba-9f01-85e5a5da7ad1",
+  "toolUseResult": {
+    "matches": [],
+    "query": "select:read_project_file",
+    "total_deferred_tools": 99
+  },
+  "sourceToolAssistantUUID": "ded2cad0-d23e-4014-8fd6-6d6018cd0051",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/director_15982409",
+  "sessionId": "d46361cc-0bf6-4307-afff-1aca5ca71e60",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-26T11:03:33.850Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01CfwqaJCjeEvMinCzGAqEou`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "12fe3ce9-c60d-47ba-9f01-85e5a5da7ad1",
+  "isSidechain": false,
+  "requestId": "req_011CbR4wadWCEgXtnKQ174Fs",
+  "type": "assistant",
+  "uuid": "5ced2c5b-1f14-49d9-a033-0d4b9a4c16dc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/director_15982409",
+  "sessionId": "d46361cc-0bf6-4307-afff-1aca5ca71e60",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H7rPSowMzkNrD7vK2E1Bem",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 188,
+      "cache_read_input_tokens": 40852,
+      "output_tokens": 87,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 188,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 87,
+          "cache_read_input_tokens": 40852,
+          "cache_creation_input_tokens": 188,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 188
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-26T11:03:33.855Z_
+
+<details><summary>↩ Tool result · `toolu_01CfwqaJCjeEvMinCzGAqEou`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5ced2c5b-1f14-49d9-a033-0d4b9a4c16dc",
+  "isSidechain": false,
+  "promptId": "f3001dec-40e1-42d5-8ac9-b32b7d95da7b",
+  "type": "user",
+  "uuid": "55a1bfcd-8dea-413f-bb09-53e9bab940e3",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__read_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__read_project_file",
+    "total_deferred_tools": 99
+  },
+  "sourceToolAssistantUUID": "5ced2c5b-1f14-49d9-a033-0d4b9a4c16dc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/director_15982409",
+  "sessionId": "d46361cc-0bf6-4307-afff-1aca5ca71e60",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-26T11:03:35.988Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01KFgw6whZ5f7xthiZvRQ2fs`</summary>
+
+```json
+{
+  "project": "irt_personfit_contam",
+  "file": "paper_framing.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "55a1bfcd-8dea-413f-bb09-53e9bab940e3",
+  "isSidechain": false,
+  "requestId": "req_011CbR4wnPSCg2wXUKP71U2B",
+  "type": "assistant",
+  "uuid": "a87318b2-c0bf-4a4f-a8f3-5f0c874a3b06",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/director_15982409",
+  "sessionId": "d46361cc-0bf6-4307-afff-1aca5ca71e60",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q5oWQgLfTs63tUbL9sfEm8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 433,
+      "cache_read_input_tokens": 41040,
+      "output_tokens": 113,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 433,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 113,
+          "cache_read_input_tokens": 41040,
+          "cache_creation_input_tokens": 433,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 433
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-26T11:03:36.011Z_
+
+<details><summary>↩ Tool result · `toolu_01KFgw6whZ5f7xthiZvRQ2fs`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/paper_framing.md\", \"content\": \"# Paper Framing — irt_personfit_contam\\n\\n## Target Venue\\n- Primary: EMNLP 2026 Main (用户确认；ARR submission DDL 5/25 — 需确认可行性)\\n- Fallback: AAAI 2027 (abstract 7/21, full paper 7/28, ~10 weeks)\\n- Backup: ICLR 2027 (~Sep 2026, ~17 weeks)\\n\\n## Core Reframe (D031, 2026-05-21)\\n\\n**旧 narrative**: \\\"ℓz* 作为 LLM contamination 检测工具\\\"\\n**新 narrative**: \\\"首次系统刻画 IRT person-fit 在 LLM benchmark contamination 检测中的行为边界\\\"\\n\\n贡献不是 \\\"提出检测方法\\\"，而是 \\\"回答: binary response patterns 能检测到什么？在什么条件下？什么条件下失效？\\\" 这是 characterization paper, 不是 tool paper。\\n\\n## Core Claims (3 条, n=10 updated)\\n\\n**Claim 1 (Boundary Conditions of IRT Person-Fit for Contamination Detection)**:\\nIRT person-fit statistics detect SFT contamination with large effect sizes across three model families and two benchmarks (all 8 Cohen's d CIs exclude zero, n=10 per condition). However, detection power is modulated by boundary conditions that we systematically characterize: (a) **θ-shift absorption** — contamination raises θ_MLE, and high-baseline-accuracy models (Qwen 83%) absorb more signal (d_50=1.08) than low-baseline models (Llama 59%, d_50=2.50); (b) **inverted-U dose-response** — under free-θ estimation, Qwen shows non-monotonic detection (d_15=4.83 > d_50=1.08), while z-score increases monotonically; (c) **benchmark size × θ-boundary interaction** — ARC-C (295 items) shows d_50=5.30 vs MMLU d_50=1.08 due to θ estimation ceiling effects. The **detection-diagnosis tradeoff**: z-score |d| >> HT |d| ≥ lz* |d| (Qwen 15%: z=42, HT=7.3, lz*=4.8). Simpler statistics detect more powerfully, but only lz* enables diagnostic characterization (seen/unseen decomposition, θ-shift mechanism, inverted-U). HT also exhibits inverted-U (Qwen HT d_15=7.3 >> d_50=1.7), confirming θ-shift absorption affects all person-fit statistics. **Post-RL (D033/D034)**: GRPO training erases accuracy-based signal (seen/unseen gap 11pp→0.2pp) but ℓz* pattern gap persists (~3.3) — a hard boundary for accuracy-based methods with residual structure in response patterns. N=1 model (Qwen), caveat in Limitations.\\n\\n**Claim 2 (Detection Characterization + Baselines)**:\\nDetection power follows an empirical power function with benchmark size (R²=0.65, upper bound). ARC-C (295 items) validates cross-benchmark applicability. **Degradation chain baseline comparison**: at detection level, HT (difficulty-only) matches ℓz* (full 4PL); accuracy z-score also detects in controlled settings (z=56.7 at contam_50). But z-score cannot capture inverted-U (monotonically increases), seen/unseen decomposition, or θ-shift mechanism. ℓz*'s unique value: (i) parametric null ≈N(0,1) enables direct hypothesis testing; (ii) Snijders correction compensates θ estimation error; (iii) 4-parameter item weighting handles cross-subject heterogeneity. Item-level detection near-random for ALL binary methods (AUROC 0.52–0.63) — contamination signal is diffuse, model-level aggregation essential.\\n\\n**Claim 3 (Empirical Findings from Real LLM Data)**:\\n(a) **Universal 4PL model misfit** — 57/60 cells flagged (|lz*| >> 5), LLM response patterns fundamentally violate IRT assumptions. Motivates Δlz* design. (b) **Cross-family baseline divergence** — clean lz* spans ~9σ (Qwen +8.28, Mistral +5.42, Llama -0.14), precluding absolute threshold detection. Relative detection (Δlz*/Cohen's d) is essential. (c) **PSN-IRT 12-model case study** with validated 4PL parameters.\\n\\n## Story Spine\\n\\n**Problem**: Benchmark contamination undermines LLM evaluation reliability. As benchmarks proliferate and training corpora grow, contamination risk increases, but all existing detection methods require privileged access — training data (n-gram overlap), token probabilities (Min-K%, MIA), model weights (internal probing), or specially crafted prompts (Time Travel). A contaminated LLM is functionally analogous to an examinee with item preknowledge, yet no work has connected the mature psychometric literature on cheating detection to LLM benchmark integrity.\\n\\n**Existing approaches & gaps**: Detection methods circa 2026 span five families: time-based partition, MIA/Min-K%++ (ICLR 2024), Time Travel probing (ICLR 2024 Spotlight), ConStat performance-based testing (NeurIPS 2024), and CoDeC in-context learning effects (ICLR 2026). Wang et al. (2025) show all MIA-based methods fail under post-RL contamination. Critically, ALL require more than binary response patterns — no method operates at the minimal-information level.\\n\\n**Our framing**: We establish the minimal-information operating point on the contamination detection frontier. By repurposing IRT person-fit statistics — developed over decades for detecting exam cheating — we ask: \\\"What can be detected from binary response patterns alone?\\\" We show: (1) in simulation, person-fit statistics achieve high detection power (97.9% on MMLU-scale benchmarks) with well-calibrated null distributions; (2) in real LLM data, response patterns universally deviate from 4PL predictions — the statistical framework is sound, but LLMs genuinely violate IRT assumptions (local independence, unidimensionality), producing extreme lz* values across nearly all models; (3) controlled contamination experiments leverage this by measuring Δlz* between clean and contaminated models — since the null is well-calibrated, within-model shifts are statistically interpretable. The universal model misfit finding is itself a contribution — it reveals that LLM response patterns are fundamentally different from classical test-taker patterns.\\n\\n**Headline result template (D031 reframed)**: \\\"We systematically characterize the behavior of IRT person-fit statistics for LLM benchmark contamination detection. Using controlled contamination (QLoRA SFT) across three model families (Qwen, Llama, Mistral) and two benchmarks (MMLU, ARC-C), we find: (1) ℓz* detects contamination with large effect sizes (all 8 Cohen's d CIs exclude zero, n=10), but a degradation chain (4PL→HT→z-score) reveals full IRT parameterization is unnecessary for mere detection; (2) ℓz*'s unique value lies in characterizing boundary conditions — inverted-U dose-response (model-dependent, driven by θ-shift absorption), benchmark-size × θ-boundary interactions, and model-specific detection profiles; (3) post-RL training erases accuracy-based signals but ℓz* pattern structure persists, defining a hard boundary for accuracy-based methods. We provide the first systematic mapping of where IRT person-fit works, where it degrades, and why.\\\"\\n\\n## Venue Fit Risks\\n\\n- **EMNLP**: NLP evaluation methodology fits well. Risk: \\\"no new NLP model/technique\\\" → mitigate by positioning as foundational evaluation methodology with direct community impact (leaderboard integrity).\\n- **AAAI**: PSN-IRT was AAAI 2026 Oral — strong psychometrics+AI audience. Risk: less NLP-specific reviewer pool.\\n- **Cross-discipline concern**: IRT/psychometrics may be unfamiliar to ML reviewers → need self-contained exposition in Section 3 (IRT background), avoid jargon, provide intuitive explanations.\\n\\n## Anticipated Reviewer Concerns & Planned Responses\\n\\n| # | Concern | Response Strategy | Supporting Experiment |\\n|---|---------|------------------|----------------------|\\n| R1 | \\\"Just applying existing IRT to LLMs\\\" | Frame as establishing new operating point, not cross-domain transfer. Person-fit for contamination is unexplored. Downgrade \\\"cross-domain\\\" from contribution to background. | — |\\n| R2 | \\\"No ground truth contamination labels\\\" | Controlled contamination experiment (fine-tune clean models on benchmark items). Phase B anomalies are converging evidence, not proof. | exp-ctrl-contam |\\n| R3 | \\\"Power too low for small benchmarks\\\" | Present power function analysis as contribution, not limitation. Derive theoretical relationship. | exp-power-theory |\\n| R4 | \\\"Only 12 models\\\" | 12 models with validated 4PL parameters provide detailed anomaly profiles. Universal misfit (57/60 flagged) spans sufficient models to establish the pattern. 13K+ v1 per-item data availability discussed as future work. Ctrl-contam covers 4-5 model families. | exp-ctrl-contam, phase_b_personfit |\\n| R5 | \\\"SFT generalization smooths signal\\\" | Controlled experiment includes domain-level analysis. Discuss hard-item contamination resistance. | exp-ctrl-contam |\\n| R6 | \\\"Absolute lz* thresholds don't work on real data\\\" | Bootstrap null is well-calibrated (KS pass for large benchmarks); the issue is LLMs genuinely deviate from 4PL. Universal model misfit is a finding, not an artifact. Δlz* leverages the well-calibrated null for within-model comparisons. | exp-ctrl-contam, exp-empirical-null |\\n| R7 | \\\"Post-RL contamination?\\\" | **RESOLVED (D033/D034)**: GRPO v3 falsified post-RL robustness — accuracy gap erased (83.1%→73.2% seen, gap 0.2pp). But ℓz* pattern gap persists (~3.3). Frame as negative-as-contribution: \\\"hard boundary for accuracy-based binary methods\\\" + \\\"residual response pattern structure post-RL.\\\" N=1 model caveat in Limitations. | exp-post-rl-v3 |\\n| R8 | \\\"4PL vs 3PL — does d parameter matter?\\\" | Ablation comparing 4PL vs 3PL(d=1) detection sensitivity. | exp-4pl-ablation |\\n| R9 | \\\"No same-level binary-only baselines\\\" | **UPDATED (n=10)**: Detection power hierarchy: z-score |d|>>HT |d|≥lz* |d|. Qwen 15%: z=42.3, HT=7.3, lz*=4.8. HT also shows inverted-U. Item-level: all methods near-random (AUROC 0.52–0.63). Framing: simpler statistics detect better, but lz* uniquely enables diagnostic characterization. | exp-baseline-comparison |\\n| R12 | \\\"HT > ℓz* for detection — why use ℓz*?\\\" | **RESOLVED via detection-diagnosis tradeoff (n=10 data)**: HT |d| ≥ lz* |d| confirmed — HT is actually BETTER at detection. But lz*'s value is diagnostic: (i) parametric null ≈N(0,1) for hypothesis testing; (ii) Snijders correction compensates θ estimation error; (iii) θ-fixed analysis quantifies absorption (Qwen d 1.08→14.52); (iv) seen/unseen decomposition. Paper frames as: \\\"detection-diagnosis tradeoff — use z-score/HT to detect, use lz* to characterize.\\\" | exp-baseline-comparison, exp-post-rl-v3 |\\n| R13 | \\\"Minimal-information overstates\\\" | **[Dream D2 三档一致]** \\\"Minimal-information operating point\\\" obscures PSN-IRT 4PL parameter dependency. Reframe to \\\"minimal information **from the target model**\\\" or \\\"minimal runtime information\\\" — explicitly acknowledge PSN-IRT calibration as an external input requirement. | — |\\n| R10 | \\\"Leaderboard audit baseline unreliable\\\" | Leaderboard audit abandoned (D011). ctrl-contam is the validated detection. 12-model case study uses PSN-IRT validated parameters directly (no baseline estimation needed). v1 data availability noted as future work. | exp-ctrl-contam |\\n| R11 | \\\"Power function is upper bound\\\" | Report both theoretical upper bound AND adjusted power (memorization fraction from ctrl-contam seen/unseen split). Gap = SFT generalization effect quantification. | exp-ctrl-contam, exp-power-theory |\\n\\n## Key Narrative Elements (from External Review + Distillation)\\n\\n1. **Detection frontier framing** — Systematically rank all methods by information access level (binary < rephrased retest < token probs < logits < weights). IRT-FIT defines the bottom of this frontier.\\n2. **Definitional pivot (à la ConStat)** — \\\"All prior contamination detection methods require privileged access. We ask a more fundamental question: what can be detected from binary response patterns alone?\\\" This reframes our work as problem reformulation, not just cross-domain transfer.\\n3. **Post-RL as hard boundary (D033/D034)** — GRPO v3 erases accuracy-based contamination signal (seen/unseen gap 11pp→0.2pp). Wang et al. (ICLR 2026) shows all 10 log-prob methods ≈ random on RL-trained models. Binary accuracy-based methods (including ℓz* at detection level) also fail. BUT: ℓz* seen/unseen pattern gap persists (~3.3) post-RL — response pattern structure survives even when accuracy signal is erased. Frame as: \\\"RL post-training defines a hard boundary for accuracy-based detection, but response-pattern-level structure may persist.\\\" NOT \\\"RL-robustness as structural advantage\\\" (falsified by D033).\\n4. **Scalability potential (deferred to future work)** — 13K+ v1 per-item data publicly available. IRT-FIT is uniquely suited for retrospective audit (only needs archival binary data). BUT: current paper does NOT include large-scale audit (D011: IRT refit failed). Mention data availability + roadmap in Discussion/Future Work. NEVER claim \\\"leaderboard audit\\\" or \\\"large-scale detection\\\" in current paper.\\n5. **Inverted-U as empirical characterization** — Derive from: (a) contamination→0%: signal drowned in sampling noise; (b) contamination→100%: identifiability collapse. Simulation fit R²=0.957; real-data fit R²=0.65 (gap due to SFT generalization). Frame as \\\"empirical trend\\\" not \\\"theory/law.\\\"\\n6. **Baseline comparison as evidence for model-level aggregation** — Item-level detection is near-random for ALL binary-only methods (including oracle RF). This is NOT a weakness — it reveals that contamination signal is diffuse (memorization fraction ~35%). Model-level lz* aggregates 14K weak signals into |d|>2.9. Frame item-level weakness as supporting evidence: \\\"any method that aggregates is better than any method that localizes.\\\" lz* vs Guttman/U3 8× gap proves IRT parameterization matters. acc z-score is sensitive but non-specific (sensitivity-specificity tradeoff).\\n7. **Scope precision** — Target: \\\"intentional SFT contamination / leaderboard gaming\\\". Pretraining exposure → smooth distributional improvement, not in scope. Honest scoping > vague claims.\\n8. **Terminology guard** — NEVER use \\\"binary information bottleneck\\\" or \\\"information-theoretic lower bound for all binary-only methods.\\\" We can only claim lz* (a specific statistic) has limitations under SFT generalization — NOT that all binary-only methods fail. Correct framing: \\\"IRT person-fit as a principled framework at the minimal-information operating point.\\\"\\n9. **Memorization fraction cross-family consistency** — MF is 35–38% at 15% contamination across Qwen (0.38) and Llama (0.35), only 3pp difference. Consistency strengthens generalizability. MF may vary with contamination mechanism (full FT vs QLoRA), model capacity, and benchmark difficulty — acknowledge in Limitations as deployment bootstrapping problem.\\n10. **Validation hierarchy** — ctrl-contam = primary validation (ground truth, same model clean vs contaminated); 12-model case study = empirical findings (no ground truth, but validated parameters); v1 data = future work roadmap. Paper structure should reflect this priority.\\n9. **lz* measures memorization, not generalization** — lz* detects aberrant patterns (memorization signature), not smooth ability improvement (generalization). This is a feature: it distinguishes genuine learning from rote memorization. Power function gives upper bound; ctrl-contam measures actual memorization fraction.\\n10. **Negative results as contributions** — D007 (universal misfit) and D008 (empirical null well-calibrated) are \\\"honest negative results that become positive contributions\\\": universal misfit is a novel finding about LLM response patterns; the simulation-reality gap motivates Δlz* and quantifies SFT generalization. D011 (MML-EM refit failure) is a methodological caveat (classical vs neural IRT sample requirements). D009 (item alignment) is a data engineering detail (1 sentence in Data section). Present negatives with the framing: \\\"the gap between where IRT works perfectly (simulation) and where it struggles (real LLM data) is itself informative.\\\"\\n11. **ctrl-contam actual results (D015)** — contam_15 |d|=3.85 (strong), contam_50 non-monotonic under free-θ but **monotonic under θ-fixed** (ratio=2.93). θ-shift is the mechanism: contamination→higher θ_MLE→absorbs aberrance signal. Frame as \\\"principled detection with quantified operating characteristics + θ-shift boundary condition.\\\" Headline: \\\"We don't just detect — we characterize, including the conditions under which detection degrades.\\\" Do NOT claim \\\"state-of-the-art detection.\\\"\\n12. **θ-shift as methodological contribution (D015)** — Person-fit sensitivity degrades when θ is re-estimated on contaminated data. This is a novel finding for contamination detection: (a) θ-fixed analysis recovers monotonic dose-response, (b) the θ-shift magnitude (0.47 at 50% contamination) quantifies the confound, (c) practical implication: use pre-contamination θ baseline or cross-validated θ. Present as a contribution, not a limitation.\\n13. **Cross-family baseline lz* divergence (Reviewer WARNING)** — Clean lz* spans ~9σ: Qwen +8.68, Mistral +5.42, Llama -0.14. 固定阈值检测失效（Qwen contam_15 lz*=+3.85 仍为正值）。论文必须：(a) 明确 IRT-FIT 是相对检测（Δlz*/Cohen's d），非绝对阈值；(b) 展示 clean baseline lz* 跨家族差异表；(c) 预防性回答\\\"contam_15 lz*=+3.85 为正值为何算污染\\\"（因为 Δlz*=-4.83 是大效应）；(d) lz* baseline 作为\\\"模型内部一致性\\\"指标——Mistral acc 最低(0.514)但 lz* 第二高(+5.42)，说明 lz* 捕捉 difficulty-ordering 一致性而非准确率。\\n14. **Inverted-U 是模型相关的** — Qwen 在 15%→50% 区间出现强 inversion（Δlz* 50%=-1.39 << 15%=-4.83），Llama 和 Mistral 在此区间 Δlz* 单调增大。Inverted-U 在 free-θ 下由 baseline misfit 调制——高 baseline lz* (Qwen +8.68) 的模型更容易出现 non-monotonicity。论文不能 claim inverted-U 为 universal phenomenon，需加 model-dependent caveat。θ-fixed 分析仍恢复所有家族的 monotonicity — 这是 θ-fixed 贡献的关键证据。\\n15. **seen/unseen split as strongest signal** — contam_15 seen lz*≈0 (memorized items look \\\"normal\\\") vs unseen lz*=3.1. This is the clearest contamination fingerprint: items that should produce aberrant responses instead produce expected responses. More interpretable than aggregate Δlz*.\\n\\n## Writing Strategy (from Distillation)\\n\\n- **Story type**: \\\"跨界迁移型\\\" — unused in 0/8 peer papers. Our unique angle.\\n- **Figure 1**: Problem illustration (dual-panel: contaminated vs clean response pattern). Use psychometric hook — impossible response pattern (hard items right, easy wrong).\\n- **Contribution structure**: 3 contributions (method + characterization + empirical findings), escalating scope. Standard in 5/8 papers.\\n- **Result tables**: Row=methods, col=datasets×metrics. Bold-best. Average column.\\n- **Numbered findings**: Adopt PSN-IRT's \\\"Key Discoveries\\\" strategy for scannable presentation.\\n- **CIs as differentiator**: 6/8 peer papers report no variance. Our bootstrap CIs are a competitive advantage.\\n- **Baseline count**: Peer median ~5. Target ≥5 baselines.\\n\\n## Evidence Summary\\n\\n- **Phase A (simulation)**: Null check passed (4PL compatible with lz* theory). MMLU power@15%=97.9%. Power ∝ n_items confirmed. Simulation results stand — they establish theoretical detection capacity within the 4PL model.\\n- **Phase B (real data)**: Gemini-1.5 MMLU acc=1.000, θ=0.78, lz*=+31.81. Cross-benchmark anomaly profiles identified.\\n- **Empirical null analysis (exp-empirical-null)**: Bootstrap null calibration is benchmark-size dependent — large benchmarks well-calibrated (MMLU: mean bias 0.041, std 1.003, KS reject 8.3%; HellaSwag: 8.3%), small benchmarks poorly calibrated (HumanEval: 75%, ARC-C: 58.3%; overall KS reject 40%, 24/60). The statistical framework is sound for large benchmarks (n>10K). 57/60 real-data cells flagged because LLM lz* values are genuinely extreme (|lz*| >> 5) — this reflects **universal 4PL model misfit** (LLM response patterns violate IRT assumptions), not contamination-specific detection. **Important**: 57/60 vs accuracy z-score 4/60 demonstrates lz* captures response-pattern information beyond aggregate accuracy (evidence for Claim 3a universal misfit), NOT contamination detection superiority. Contamination detection evidence comes from simulation (lz* AUROC 0.675 vs ML 0.575 at 5%) and ctrl-contam (d=3.42, n=3, ddof=1, ℓz*-corrected).\\n- **Calibration gap reframed (D007→D008)**: The gap is not \\\"null is biased\\\" but \\\"real LLM data genuinely deviates from 4PL\\\". This strengthens Δlz* approach: well-calibrated null means within-model shifts are statistically meaningful.\\n- **Controlled contamination — FINAL n=10 data (2026-05-21 recalculated, Snijders-corrected)**:\\n\\n  | Model | Benchmark | d(15%) | 95% CI | d(50%) | 95% CI |\\n  |-------|-----------|--------|--------|--------|--------|\\n  | Qwen 2.5-7B | MMLU | 4.83 | [2.94, 14.29] | 1.08 | [0.30, 3.93] |\\n  | Llama 3.1-8B | MMLU | 2.27 | [1.56, 4.63] | 2.50 | [1.76, 5.19] |\\n  | Mistral 7B v0.3 | MMLU | 2.64 | [1.49, 7.38] | 3.50 | [2.09, 9.59] |\\n  | Qwen 2.5-7B | ARC-C | 3.16 | [2.01, 9.54] | 5.30 | [3.64, 15.49] |\\n\\n  All 8 CIs exclude zero. **Qwen contam_50 CI [0.30, 3.93] — lower bound near zero due to inverted-U (θ-shift absorption). Must be honestly reported + θ-fixed analysis presented as remedy.**\\n\\n  Key patterns: (a) Qwen inverted-U (d_15=4.83 > d_50=1.08), Llama/Mistral monotonic (d_50 > d_15); (b) θ-shift absorption modulated by baseline accuracy (Qwen 83% >> Llama 59%); (c) ARC-C d_50=5.30 >> MMLU d_50=1.08 (benchmark size × θ-boundary); (d) Degradation chain: HT achieves |d| within 0.3 of ℓz*, z-score also detects (z=56.7 at contam_50).\\n\\n  **Note**: n=10 recalculation changed values from earlier n=3 reports (e.g., Qwen d_15 was 3.42→4.83 due to Snijders correction factor recalculation with 10 seeds). Registry n=10 version is authoritative.\\n\\n- **GRPO Post-RL (D033/D034)**: Qwen 2.5-7B, GRPO after SFT contamination.\\n  - acc_seen: 83.1% → 73.0% → 73.1% → 73.2% (step 0/500/1000/1500)\\n  - acc_unseen: 73.1% (stable) → gap erased by step 500\\n  - ℓz* seen/unseen gap: 3.67 → 3.59 → 3.32 (pattern persists after accuracy erasure)\\n  - **Conclusion**: accuracy-based detection = hard boundary post-RL; pattern-level structure persists. N=1 model, Limitations caveat.\\n\\n- **z-score baseline (D032)**: z-score detects contamination in ctrl-contam (z=56.7 at contam_50, trivially significant). BUT: z-score monotonically increases with contamination dose, cannot capture inverted-U phenomenon. Confirms degradation chain at detection level; ℓz* value is characterization, not detection.\\n\\n- **4PL real-data degradation**: 3PL(d=1) vs 4PL lz* correlation r=0.225, RMSE=68.41. d parameter essential for high-ability models (DeepSeek-V3 Δ=357). Complements simulation ablation (+14-27pp power gain).\\n\", \"total_chars\": 21960, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a87318b2-c0bf-4a4f-a8f3-5f0c874a3b06",
+  "isSidechain": false,
+  "promptId": "f3001dec-40e1-42d5-8ac9-b32b7d95da7b",
+  "type": "user",
+  "uuid": "9406e962-d929-484c-93fb-b705e727154f",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — irt_personfit_contam\\\\n\\\\n## Target Venue\\\\n- Primary: EMNLP 2026 Main (用户确认；ARR submission DDL 5/25 — 需确认可行性)\\\\n- Fallback: AAAI 2027 (abstract 7/21, full paper 7/28, ~10 weeks)\\\\n- Backup: ICLR 2027 (~Sep 2026, ~17 weeks)\\\\n\\\\n## Core Reframe (D031, 2026-05-21)\\\\n\\\\n**旧 narrative**: \\\\\\\"ℓz* 作为 LLM contamination 检测工具\\\\\\\"\\\\n**新 narrative**: \\\\\\\"首次系统刻画 IRT person-fit 在 LLM benchmark contamination 检测中的行为边界\\\\\\\"\\\\n\\\\n贡献不是 \\\\\\\"提出检测方法\\\\\\\"，而是 \\\\\\\"回答: binary response patterns 能检测到什么？在什么条件下？什么条件下失效？\\\\\\\" 这是 characterization paper, 不是 tool paper。\\\\n\\\\n## Core Claims (3 条, n=10 updated)\\\\n\\\\n**Claim 1 (Boundary Conditions of IRT Person-Fit for Contamination Detection)**:\\\\nIRT person-fit statistics detect SFT contamination with large effect sizes across three model families and two benchmarks (all 8 Cohen's d CIs exclude zero, n=10 per condition). However, detection power is modulated by boundary conditions that we systematically characterize: (a) **θ-shift absorption** — contamination raises θ_MLE, and high-baseline-accuracy models (Qwen 83%) absorb more signal (d_50=1.08) than low-baseline models (Llama 59%, d_50=2.50); (b) **inverted-U dose-response** — under free-θ estimation, Qwen shows non-monotonic detection (d_15=4.83 > d_50=1.08), while z-score increases monotonically; (c) **benchmark size × θ-boundary interaction** — ARC-C (295 items) shows d_50=5.30 vs MMLU d_50=1.08 due to θ estimation ceiling effects. The **detection-diagnosis tradeoff**: z-score |d| >> HT |d| ≥ lz* |d| (Qwen 15%: z=42, HT=7.3, lz*=4.8). Simpler statistics detect more powerfully, but only lz* enables diagnostic characterization (seen/unseen decomposition, θ-shift mechanism, inverted-U). HT also exhibits inverted-U (Qwen HT d_15=7.3 >> d_50=1.7), confirming θ-shift absorption affects all person-fit statistics. **Post-RL (D033/D034)**: GRPO training erases accuracy-based signal (seen/unseen gap 11pp→0.2pp) but ℓz* pattern gap persists (~3.3) — a hard boundary for accuracy-based methods with residual structure in response patterns. N=1 model (Qwen), caveat in Limitations.\\\\n\\\\n**Claim 2 (Detection Characterization + Baselines)**:\\\\nDetection power follows an empirical power function with benchmark size (R²=0.65, upper bound). ARC-C (295 items) validates cross-benchmark applicability. **Degradation chain baseline comparison**: at detection level, HT (difficulty-only) matches ℓz* (full 4PL); accuracy z-score also detects in controlled settings (z=56.7 at contam_50). But z-score cannot capture inverted-U (monotonically increases), seen/unseen decomposition, or θ-shift mechanism. ℓz*'s unique value: (i) parametric null ≈N(0,1) enables direct hypothesis testing; (ii) Snijders correction compensates θ estimation error; (iii) 4-parameter item weighting handles cross-subject heterogeneity. Item-level detection near-random for ALL binary methods (AUROC 0.52–0.63) — contamination signal is diffuse, model-level aggregation essential.\\\\n\\\\n**Claim 3 (Empirical Findings from Real LLM Data)**:\\\\n(a) **Universal 4PL model misfit** — 57/60 cells flagged (|lz*| >> 5), LLM response patterns fundamentally violate IRT assumptions. Motivates Δlz* design. (b) **Cross-family baseline divergence** — clean lz* spans ~9σ (Qwen +8.28, Mistral +5.42, Llama -0.14), precluding absolute threshold detection. Relative detection (Δlz*/Cohen's d) is essential. (c) **PSN-IRT 12-model case study** with validated 4PL parameters.\\\\n\\\\n## Story Spine\\\\n\\\\n**Problem**: Benchmark contamination undermines LLM evaluation reliability. As benchmarks proliferate and training corpora grow, contamination risk increases, but all existing detection methods require privileged access — training data (n-gram overlap), token probabilities (Min-K%, MIA), model weights (internal probing), or specially crafted prompts (Time Travel). A contaminated LLM is functionally analogous to an examinee with item preknowledge, yet no work has connected the mature psychometric literature on cheating detection to LLM benchmark integrity.\\\\n\\\\n**Existing approaches & gaps**: Detection methods circa 2026 span five families: time-based partition, MIA/Min-K%++ (ICLR 2024), Time Travel probing (ICLR 2024 Spotlight), ConStat performance-based testing (NeurIPS 2024), and CoDeC in-context learning effects (ICLR 2026). Wang et al. (2025) show all MIA-based methods fail under post-RL contamination. Critically, ALL require more than binary response patterns — no method operates at the minimal-information level.\\\\n\\\\n**Our framing**: We establish the minimal-information operating point on the contamination detection frontier. By repurposing IRT person-fit statistics — developed over decades for detecting exam cheating — we ask: \\\\\\\"What can be detected from binary response patterns alone?\\\\\\\" We show: (1) in simulation, person-fit statistics achieve high detection power (97.9% on MMLU-scale benchmarks) with well-calibrated null distributions; (2) in real LLM data, response patterns universally deviate from 4PL predictions — the statistical framework is sound, but LLMs genuinely violate IRT assumptions (local independence, unidimensionality), producing extreme lz* values across nearly all models; (3) controlled contamination experiments leverage this by measuring Δlz* between clean and contaminated models — since the null is well-calibrated, within-model shifts are statistically interpretable. The universal model misfit finding is itself a contribution — it reveals that LLM response patterns are fundamentally different from classical test-taker patterns.\\\\n\\\\n**Headline result template (D031 reframed)**: \\\\\\\"We systematically characterize the behavior of IRT person-fit statistics for LLM benchmark contamination detection. Using controlled contamination (QLoRA SFT) across three model families (Qwen, Llama, Mistral) and two benchmarks (MMLU, ARC-C), we find: (1) ℓz* detects contamination with large effect sizes (all 8 Cohen's d CIs exclude zero, n=10), but a degradation chain (4PL→HT→z-score) reveals full IRT parameterization is unnecessary for mere detection; (2) ℓz*'s unique value lies in characterizing boundary conditions — inverted-U dose-response (model-dependent, driven by θ-shift absorption), benchmark-size × θ-boundary interactions, and model-specific detection profiles; (3) post-RL training erases accuracy-based signals but ℓz* pattern structure persists, defining a hard boundary for accuracy-based methods. We provide the first systematic mapping of where IRT person-fit works, where it degrades, and why.\\\\\\\"\\\\n\\\\n## Venue Fit Risks\\\\n\\\\n- **EMNLP**: NLP evaluation methodology fits well. Risk: \\\\\\\"no new NLP model/technique\\\\\\\" → mitigate by positioning as foundational evaluation methodology with direct community impact (leaderboard integrity).\\\\n- **AAAI**: PSN-IRT was AAAI 2026 Oral — strong psychometrics+AI audience. Risk: less NLP-specific reviewer pool.\\\\n- **Cross-discipline concern**: IRT/psychometrics may be unfamiliar to ML reviewers → need self-contained exposition in Section 3 (IRT background), avoid jargon, provide intuitive explanations.\\\\n\\\\n## Anticipated Reviewer Concerns & Planned Responses\\\\n\\\\n| # | Concern | Response Strategy | Supporting Experiment |\\\\n|---|---------|------------------|----------------------|\\\\n| R1 | \\\\\\\"Just applying existing IRT to LLMs\\\\\\\" | Frame as establishing new operating point, not cross-domain transfer. Person-fit for contamination is unexplored. Downgrade \\\\\\\"cross-domain\\\\\\\" from contribution to background. | — |\\\\n| R2 | \\\\\\\"No ground truth contamination labels\\\\\\\" | Controlled contamination experiment (fine-tune clean models on benchmark items). Phase B anomalies are converging evidence, not proof. | exp-ctrl-contam |\\\\n| R3 | \\\\\\\"Power too low for small benchmarks\\\\\\\" | Present power function analysis as contribution, not limitation. Derive theoretical relationship. | exp-power-theory |\\\\n| R4 | \\\\\\\"Only 12 models\\\\\\\" | 12 models with validated 4PL parameters provide detailed anomaly profiles. Universal misfit (57/60 flagged) spans sufficient models to establish the pattern. 13K+ v1 per-item data availability discussed as future work. Ctrl-contam covers 4-5 model families. | exp-ctrl-contam, phase_b_personfit |\\\\n| R5 | \\\\\\\"SFT generalization smooths signal\\\\\\\" | Controlled experiment includes domain-level analysis. Discuss hard-item contamination resistance. | exp-ctrl-contam |\\\\n| R6 | \\\\\\\"Absolute lz* thresholds don't work on real data\\\\\\\" | Bootstrap null is well-calibrated (KS pass for large benchmarks); the issue is LLMs genuinely deviate from 4PL. Universal model misfit is a finding, not an artifact. Δlz* leverages the well-calibrated null for within-model comparisons. | exp-ctrl-contam, exp-empirical-null |\\\\n| R7 | \\\\\\\"Post-RL contamination?\\\\\\\" | **RESOLVED (D033/D034)**: GRPO v3 falsified post-RL robustness — accuracy gap erased (83.1%→73.2% seen, gap 0.2pp). But ℓz* pattern gap persists (~3.3). Frame as negative-as-contribution: \\\\\\\"hard boundary for accuracy-based binary methods\\\\\\\" + \\\\\\\"residual response pattern structure post-RL.\\\\\\\" N=1 model caveat in Limitations. | exp-post-rl-v3 |\\\\n| R8 | \\\\\\\"4PL vs 3PL — does d parameter matter?\\\\\\\" | Ablation comparing 4PL vs 3PL(d=1) detection sensitivity. | exp-4pl-ablation |\\\\n| R9 | \\\\\\\"No same-level binary-only baselines\\\\\\\" | **UPDATED (n=10)**: Detection power hierarchy: z-score |d|>>HT |d|≥lz* |d|. Qwen 15%: z=42.3, HT=7.3, lz*=4.8. HT also shows inverted-U. Item-level: all methods near-random (AUROC 0.52–0.63). Framing: simpler statistics detect better, but lz* uniquely enables diagnostic characterization. | exp-baseline-comparison |\\\\n| R12 | \\\\\\\"HT > ℓz* for detection — why use ℓz*?\\\\\\\" | **RESOLVED via detection-diagnosis tradeoff (n=10 data)**: HT |d| ≥ lz* |d| confirmed — HT is actually BETTER at detection. But lz*'s value is diagnostic: (i) parametric null ≈N(0,1) for hypothesis testing; (ii) Snijders correction compensates θ estimation error; (iii) θ-fixed analysis quantifies absorption (Qwen d 1.08→14.52); (iv) seen/unseen decomposition. Paper frames as: \\\\\\\"detection-diagnosis tradeoff — use z-score/HT to detect, use lz* to characterize.\\\\\\\" | exp-baseline-comparison, exp-post-rl-v3 |\\\\n| R13 | \\\\\\\"Minimal-information overstates\\\\\\\" | **[Dream D2 三档一致]** \\\\\\\"Minimal-information operating point\\\\\\\" obscures PSN-IRT 4PL parameter dependency. Reframe to \\\\\\\"minimal information **from the target model**\\\\\\\" or \\\\\\\"minimal runtime information\\\\\\\" — explicitly acknowledge PSN-IRT calibration as an external input requirement. | — |\\\\n| R10 | \\\\\\\"Leaderboard audit baseline unreliable\\\\\\\" | Leaderboard audit abandoned (D011). ctrl-contam is the validated detection. 12-model case study uses PSN-IRT validated parameters directly (no baseline estimation needed). v1 data availability noted as future work. | exp-ctrl-contam |\\\\n| R11 | \\\\\\\"Power function is upper bound\\\\\\\" | Report both theoretical upper bound AND adjusted power (memorization fraction from ctrl-contam seen/unseen split). Gap = SFT generalization effect quantification. | exp-ctrl-contam, exp-power-theory |\\\\n\\\\n## Key Narrative Elements (from External Review + Distillation)\\\\n\\\\n1. **Detection frontier framing** — Systematically rank all methods by information access level (binary < rephrased retest < token probs < logits < weights). IRT-FIT defines the bottom of this frontier.\\\\n2. **Definitional pivot (à la ConStat)** — \\\\\\\"All prior contamination detection methods require privileged access. We ask a more fundamental question: what can be detected from binary response patterns alone?\\\\\\\" This reframes our work as problem reformulation, not just cross-domain transfer.\\\\n3. **Post-RL as hard boundary (D033/D034)** — GRPO v3 erases accuracy-based contamination signal (seen/unseen gap 11pp→0.2pp). Wang et al. (ICLR 2026) shows all 10 log-prob methods ≈ random on RL-trained models. Binary accuracy-based methods (including ℓz* at detection level) also fail. BUT: ℓz* seen/unseen pattern gap persists (~3.3) post-RL — response pattern structure survives even when accuracy signal is erased. Frame as: \\\\\\\"RL post-training defines a hard boundary for accuracy-based detection, but response-pattern-level structure may persist.\\\\\\\" NOT \\\\\\\"RL-robustness as structural advantage\\\\\\\" (falsified by D033).\\\\n4. **Scalability potential (deferred to future work)** — 13K+ v1 per-item data publicly available. IRT-FIT is uniquely suited for retrospective audit (only needs archival binary data). BUT: current paper does NOT include large-scale audit (D011: IRT refit failed). Mention data availability + roadmap in Discussion/Future Work. NEVER claim \\\\\\\"leaderboard audit\\\\\\\" or \\\\\\\"large-scale detection\\\\\\\" in current paper.\\\\n5. **Inverted-U as empirical characterization** — Derive from: (a) contamination→0%: signal drowned in sampling noise; (b) contamination→100%: identifiability collapse. Simulation fit R²=0.957; real-data fit R²=0.65 (gap due to SFT generalization). Frame as \\\\\\\"empirical trend\\\\\\\" not \\\\\\\"theory/law.\\\\\\\"\\\\n6. **Baseline comparison as evidence for model-level aggregation** — Item-level detection is near-random for ALL binary-only methods (including oracle RF). This is NOT a weakness — it reveals that contamination signal is diffuse (memorization fraction ~35%). Model-level lz* aggregates 14K weak signals into |d|>2.9. Frame item-level weakness as supporting evidence: \\\\\\\"any method that aggregates is better than any method that localizes.\\\\\\\" lz* vs Guttman/U3 8× gap proves IRT parameterization matters. acc z-score is sensitive but non-specific (sensitivity-specificity tradeoff).\\\\n7. **Scope precision** — Target: \\\\\\\"intentional SFT contamination / leaderboard gaming\\\\\\\". Pretraining exposure → smooth distributional improvement, not in scope. Honest scoping > vague claims.\\\\n8. **Terminology guard** — NEVER use \\\\\\\"binary information bottleneck\\\\\\\" or \\\\\\\"information-theoretic lower bound for all binary-only methods.\\\\\\\" We can only claim lz* (a specific statistic) has limitations under SFT generalization — NOT that all binary-only methods fail. Correct framing: \\\\\\\"IRT person-fit as a principled framework at the minimal-information operating point.\\\\\\\"\\\\n9. **Memorization fraction cross-family consistency** — MF is 35–38% at 15% contamination across Qwen (0.38) and Llama (0.35), only 3pp difference. Consistency strengthens generalizability. MF may vary with contamination mechanism (full FT vs QLoRA), model capacity, and benchmark difficulty — acknowledge in Limitations as deployment bootstrapping problem.\\\\n10. **Validation hierarchy** — ctrl-contam = primary validation (ground truth, same model clean vs contaminated); 12-model case study = empirical findings (no ground truth, but validated parameters); v1 data = future work roadmap. Paper structure should reflect this priority.\\\\n9. **lz* measures memorization, not generalization** — lz* detects aberrant patterns (memorization signature), not smooth ability improvement (generalization). This is a feature: it distinguishes genuine learning from rote memorization. Power function gives upper bound; ctrl-contam measures actual memorization fraction.\\\\n10. **Negative results as contributions** — D007 (universal misfit) and D008 (empirical null well-calibrated) are \\\\\\\"honest negative results that become positive contributions\\\\\\\": universal misfit is a novel finding about LLM response patterns; the simulation-reality gap motivates Δlz* and quantifies SFT generalization. D011 (MML-EM refit failure) is a methodological caveat (classical vs neural IRT sample requirements). D009 (item alignment) is a data engineering detail (1 sentence in Data section). Present negatives with the framing: \\\\\\\"the gap between where IRT works perfectly (simulation) and where it struggles (real LLM data) is itself informative.\\\\\\\"\\\\n11. **ctrl-contam actual results (D015)** — contam_15 |d|=3.85 (strong), contam_50 non-monotonic under free-θ but **monotonic under θ-fixed** (ratio=2.93). θ-shift is the mechanism: contamination→higher θ_MLE→absorbs aberrance signal. Frame as \\\\\\\"principled detection with quantified operating characteristics + θ-shift boundary condition.\\\\\\\" Headline: \\\\\\\"We don't just detect — we characterize, including the conditions under which detection degrades.\\\\\\\" Do NOT claim \\\\\\\"state-of-the-art detection.\\\\\\\"\\\\n12. **θ-shift as methodological contribution (D015)** — Person-fit sensitivity degrades when θ is re-estimated on contaminated data. This is a novel finding for contamination detection: (a) θ-fixed analysis recovers monotonic dose-response, (b) the θ-shift magnitude (0.47 at 50% contamination) quantifies the confound, (c) practical implication: use pre-contamination θ baseline or cross-validated θ. Present as a contribution, not a limitation.\\\\n13. **Cross-family baseline lz* divergence (Reviewer WARNING)** — Clean lz* spans ~9σ: Qwen +8.68, Mistral +5.42, Llama -0.14. 固定阈值检测失效（Qwen contam_15 lz*=+3.85 仍为正值）。论文必须：(a) 明确 IRT-FIT 是相对检测（Δlz*/Cohen's d），非绝对阈值；(b) 展示 clean baseline lz* 跨家族差异表；(c) 预防性回答\\\\\\\"contam_15 lz*=+3.85 为正值为何算污染\\\\\\\"（因为 Δlz*=-4.83 是大效应）；(d) lz* baseline 作为\\\\\\\"模型内部一致性\\\\\\\"指标——Mistral acc 最低(0.514)但 lz* 第二高(+5.42)，说明 lz* 捕捉 difficulty-ordering 一致性而非准确率。\\\\n14. **Inverted-U 是模型相关的** — Qwen 在 15%→50% 区间出现强 inversion（Δlz* 50%=-1.39 << 15%=-4.83），Llama 和 Mistral 在此区间 Δlz* 单调增大。Inverted-U 在 free-θ 下由 baseline misfit 调制——高 baseline lz* (Qwen +8.68) 的模型更容易出现 non-monotonicity。论文不能 claim inverted-U 为 universal phenomenon，需加 model-dependent caveat。θ-fixed 分析仍恢复所有家族的 monotonicity — 这是 θ-fixed 贡献的关键证据。\\\\n15. **seen/unseen split as strongest signal** — contam_15 seen lz*≈0 (memorized items look \\\\\\\"normal\\\\\\\") vs unseen lz*=3.1. This is the clearest contamination fingerprint: items that should produce aberrant responses instead produce expected responses. More interpretable than aggregate Δlz*.\\\\n\\\\n## Writing Strategy (from Distillation)\\\\n\\\\n- **Story type**: \\\\\\\"跨界迁移型\\\\\\\" — unused in 0/8 peer papers. Our unique angle.\\\\n- **Figure 1**: Problem illustration (dual-panel: contaminated vs clean response pattern). Use psychometric hook — impossible response pattern (hard items right, easy wrong).\\\\n- **Contribution structure**: 3 contributions (method + characterization + empirical findings), escalating scope. Standard in 5/8 papers.\\\\n- **Result tables**: Row=methods, col=datasets×metrics. Bold-best. Average column.\\\\n- **Numbered findings**: Adopt PSN-IRT's \\\\\\\"Key Discoveries\\\\\\\" strategy for scannable presentation.\\\\n- **CIs as differentiator**: 6/8 peer papers report no variance. Our bootstrap CIs are a competitive advantage.\\\\n- **Baseline count**: Peer median ~5. Target ≥5 baselines.\\\\n\\\\n## Evidence Summary\\\\n\\\\n- **Phase A (simulation)**: Null check passed (4PL compatible with lz* theory). MMLU power@15%=97.9%. Power ∝ n_items confirmed. Simulation results stand — they establish theoretical detection capacity within the 4PL model.\\\\n- **Phase B (real data)**: Gemini-1.5 MMLU acc=1.000, θ=0.78, lz*=+31.81. Cross-benchmark anomaly profiles identified.\\\\n- **Empirical null analysis (exp-empirical-null)**: Bootstrap null calibration is benchmark-size dependent — large benchmarks well-calibrated (MMLU: mean bias 0.041, std 1.003, KS reject 8.3%; HellaSwag: 8.3%), small benchmarks poorly calibrated (HumanEval: 75%, ARC-C: 58.3%; overall KS reject 40%, 24/60). The statistical framework is sound for large benchmarks (n>10K). 57/60 real-data cells flagged because LLM lz* values are genuinely extreme (|lz*| >> 5) — this reflects **universal 4PL model misfit** (LLM response patterns violate IRT assumptions), not contamination-specific detection. **Important**: 57/60 vs accuracy z-score 4/60 demonstrates lz* captures response-pattern information beyond aggregate accuracy (evidence for Claim 3a universal misfit), NOT contamination detection superiority. Contamination detection evidence comes from simulation (lz* AUROC 0.675 vs ML 0.575 at 5%) and ctrl-contam (d=3.42, n=3, ddof=1, ℓz*-corrected).\\\\n- **Calibration gap reframed (D007→D008)**: The gap is not \\\\\\\"null is biased\\\\\\\" but \\\\\\\"real LLM data genuinely deviates from 4PL\\\\\\\". This strengthens Δlz* approach: well-calibrated null means within-model shifts are statistically meaningful.\\\\n- **Controlled contamination — FINAL n=10 data (2026-05-21 recalculated, Snijders-corrected)**:\\\\n\\\\n  | Model | Benchmark | d(15%) | 95% CI | d(50%) | 95% CI |\\\\n  |-------|-----------|--------|--------|--------|--------|\\\\n  | Qwen 2.5-7B | MMLU | 4.83 | [2.94, 14.29] | 1.08 | [0.30, 3.93] |\\\\n  | Llama 3.1-8B | MMLU | 2.27 | [1.56, 4.63] | 2.50 | [1.76, 5.19] |\\\\n  | Mistral 7B v0.3 | MMLU | 2.64 | [1.49, 7.38] | 3.50 | [2.09, 9.59] |\\\\n  | Qwen 2.5-7B | ARC-C | 3.16 | [2.01, 9.54] | 5.30 | [3.64, 15.49] |\\\\n\\\\n  All 8 CIs exclude zero. **Qwen contam_50 CI [0.30, 3.93] — lower bound near zero due to inverted-U (θ-shift absorption). Must be honestly reported + θ-fixed analysis presented as remedy.**\\\\n\\\\n  Key patterns: (a) Qwen inverted-U (d_15=4.83 > d_50=1.08), Llama/Mistral monotonic (d_50 > d_15); (b) θ-shift absorption modulated by baseline accuracy (Qwen 83% >> Llama 59%); (c) ARC-C d_50=5.30 >> MMLU d_50=1.08 (benchmark size × θ-boundary); (d) Degradation chain: HT achieves |d| within 0.3 of ℓz*, z-score also detects (z=56.7 at contam_50).\\\\n\\\\n  **Note**: n=10 recalculation changed values from earlier n=3 reports (e.g., Qwen d_15 was 3.42→4.83 due to Snijders correction factor recalculation with 10 seeds). Registry n=10 version is authoritative.\\\\n\\\\n- **GRPO Post-RL (D033/D034)**: Qwen 2.5-7B, GRPO after SFT contamination.\\\\n  - acc_seen: 83.1% → 73.0% → 73.1% → 73.2% (step 0/500/1000/1500)\\\\n  - acc_unseen: 73.1% (stable) → gap erased by step 500\\\\n  - ℓz* seen/unseen gap: 3.67 → 3.59 → 3.32 (pattern persists after accuracy erasure)\\\\n  - **Conclusion**: accuracy-based detection = hard boundary post-RL; pattern-level structure persists. N=1 model, Limitations caveat.\\\\n\\\\n- **z-score baseline (D032)**: z-score detects contamination in ctrl-contam (z=56.7 at contam_50, trivially significant). BUT: z-score monotonically increases with contamination dose, cannot capture inverted-U phenomenon. Confirms degradation chain at detection level; ℓz* value is characterization, not detection.\\\\n\\\\n- **4PL real-data degradation**: 3PL(d=1) vs 4PL lz* correlation r=0.225, RMSE=68.41. d parameter essential for high-ability models (DeepSeek-V3 Δ=357). Complements simulation ablation (+14-27pp power gain).\\\\n\\\", \\\"total_chars\\\": 21960, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/paper_framing.md\", \"content\": \"# Paper Framing — irt_personfit_contam\\n\\n## Target Venue\\n- Primary: EMNLP 2026 Main (用户确认；ARR submission DDL 5/25 — 需确认可行性)\\n- Fallback: AAAI 2027 (abstract 7/21, full paper 7/28, ~10 weeks)\\n- Backup: ICLR 2027 (~Sep 2026, ~17 weeks)\\n\\n## Core Reframe (D031, 2026-05-21)\\n\\n**旧 narrative**: \\\"ℓz* 作为 LLM contamination 检测工具\\\"\\n**新 narrative**: \\\"首次系统刻画 IRT person-fit 在 LLM benchmark contamination 检测中的行为边界\\\"\\n\\n贡献不是 \\\"提出检测方法\\\"，而是 \\\"回答: binary response patterns 能检测到什么？在什么条件下？什么条件下失效？\\\" 这是 characterization paper, 不是 tool paper。\\n\\n## Core Claims (3 条, n=10 updated)\\n\\n**Claim 1 (Boundary Conditions of IRT Person-Fit for Contamination Detection)**:\\nIRT person-fit statistics detect SFT contamination with large effect sizes across three model families and two benchmarks (all 8 Cohen's d CIs exclude zero, n=10 per condition). However, detection power is modulated by boundary conditions that we systematically characterize: (a) **θ-shift absorption** — contamination raises θ_MLE, and high-baseline-accuracy models (Qwen 83%) absorb more signal (d_50=1.08) than low-baseline models (Llama 59%, d_50=2.50); (b) **inverted-U dose-response** — under free-θ estimation, Qwen shows non-monotonic detection (d_15=4.83 > d_50=1.08), while z-score increases monotonically; (c) **benchmark size × θ-boundary interaction** — ARC-C (295 items) shows d_50=5.30 vs MMLU d_50=1.08 due to θ estimation ceiling effects. The **detection-diagnosis tradeoff**: z-score |d| >> HT |d| ≥ lz* |d| (Qwen 15%: z=42, HT=7.3, lz*=4.8). Simpler statistics detect more powerfully, but only lz* enables diagnostic characterization (seen/unseen decomposition, θ-shift mechanism, inverted-U). HT also exhibits inverted-U (Qwen HT d_15=7.3 >> d_50=1.7), confirming θ-shift absorption affects all person-fit statistics. **Post-RL (D033/D034)**: GRPO training erases accuracy-based signal (seen/unseen gap 11pp→0.2pp) but ℓz* pattern gap persists (~3.3) — a hard boundary for accuracy-based methods with residual structure in response patterns. N=1 model (Qwen), caveat in Limitations.\\n\\n**Claim 2 (Detection Characterization + Baselines)**:\\nDetection power follows an empirical power function with benchmark size (R²=0.65, upper bound). ARC-C (295 items) validates cross-benchmark applicability. **Degradation chain baseline comparison**: at detection level, HT (difficulty-only) matches ℓz* (full 4PL); accuracy z-score also detects in controlled settings (z=56.7 at contam_50). But z-score cannot capture inverted-U (monotonically increases), seen/unseen decomposition, or θ-shift mechanism. ℓz*'s unique value: (i) parametric null ≈N(0,1) enables direct hypothesis testing; (ii) Snijders correction compensates θ estimation error; (iii) 4-parameter item weighting handles cross-subject heterogeneity. Item-level detection near-random for ALL binary methods (AUROC 0.52–0.63) — contamination signal is diffuse, model-level aggregation essential.\\n\\n**Claim 3 (Empirical Findings from Real LLM Data)**:\\n(a) **Universal 4PL model misfit** — 57/60 cells flagged (|lz*| >> 5), LLM response patterns fundamentally violate IRT assumptions. Motivates Δlz* design. (b) **Cross-family baseline divergence** — clean lz* spans ~9σ (Qwen +8.28, Mistral +5.42, Llama -0.14), precluding absolute threshold detection. Relative detection (Δlz*/Cohen's d) is essential. (c) **PSN-IRT 12-model case study** with validated 4PL parameters.\\n\\n## Story Spine\\n\\n**Problem**: Benchmark contamination undermines LLM evaluation reliability. As benchmarks proliferate and training corpora grow, contamination risk increases, but all existing detection methods require privileged access — training data (n-gram overlap), token probabilities (Min-K%, MIA), model weights (internal probing), or specially crafted prompts (Time Travel). A contaminated LLM is functionally analogous to an examinee with item preknowledge, yet no work has connected the mature psychometric literature on cheating detection to LLM benchmark integrity.\\n\\n**Existing approaches & gaps**: Detection methods circa 2026 span five families: time-based partition, MIA/Min-K%++ (ICLR 2024), Time Travel probing (ICLR 2024 Spotlight), ConStat performance-based testing (NeurIPS 2024), and CoDeC in-context learning effects (ICLR 2026). Wang et al. (2025) show all MIA-based methods fail under post-RL contamination. Critically, ALL require more than binary response patterns — no method operates at the minimal-information level.\\n\\n**Our framing**: We establish the minimal-information operating point on the contamination detection frontier. By repurposing IRT person-fit statistics — developed over decades for detecting exam cheating — we ask: \\\"What can be detected from binary response patterns alone?\\\" We show: (1) in simulation, person-fit statistics achieve high detection power (97.9% on MMLU-scale benchmarks) with well-calibrated null distributions; (2) in real LLM data, response patterns universally deviate from 4PL predictions — the statistical framework is sound, but LLMs genuinely violate IRT assumptions (local independence, unidimensionality), producing extreme lz* values across nearly all models; (3) controlled contamination experiments leverage this by measuring Δlz* between clean and contaminated models — since the null is well-calibrated, within-model shifts are statistically interpretable. The universal model misfit finding is itself a contribution — it reveals that LLM response patterns are fundamentally different from classical test-taker patterns.\\n\\n**Headline result template (D031 reframed)**: \\\"We systematically characterize the behavior of IRT person-fit statistics for LLM benchmark contamination detection. Using controlled contamination (QLoRA SFT) across three model families (Qwen, Llama, Mistral) and two benchmarks (MMLU, ARC-C), we find: (1) ℓz* detects contamination with large effect sizes (all 8 Cohen's d CIs exclude zero, n=10), but a degradation chain (4PL→HT→z-score) reveals full IRT parameterization is unnecessary for mere detection; (2) ℓz*'s unique value lies in characterizing boundary conditions — inverted-U dose-response (model-dependent, driven by θ-shift absorption), benchmark-size × θ-boundary interactions, and model-specific detection profiles; (3) post-RL training erases accuracy-based signals but ℓz* pattern structure persists, defining a hard boundary for accuracy-based methods. We provide the first systematic mapping of where IRT person-fit works, where it degrades, and why.\\\"\\n\\n## Venue Fit Risks\\n\\n- **EMNLP**: NLP evaluation methodology fits well. Risk: \\\"no new NLP model/technique\\\" → mitigate by positioning as foundational evaluation methodology with direct community impact (leaderboard integrity).\\n- **AAAI**: PSN-IRT was AAAI 2026 Oral — strong psychometrics+AI audience. Risk: less NLP-specific reviewer pool.\\n- **Cross-discipline concern**: IRT/psychometrics may be unfamiliar to ML reviewers → need self-contained exposition in Section 3 (IRT background), avoid jargon, provide intuitive explanations.\\n\\n## Anticipated Reviewer Concerns & Planned Responses\\n\\n| # | Concern | Response Strategy | Supporting Experiment |\\n|---|---------|------------------|----------------------|\\n| R1 | \\\"Just applying existing IRT to LLMs\\\" | Frame as establishing new operating point, not cross-domain transfer. Person-fit for contamination is unexplored. Downgrade \\\"cross-domain\\\" from contribution to background. | — |\\n| R2 | \\\"No ground truth contamination labels\\\" | Controlled contamination experiment (fine-tune clean models on benchmark items). Phase B anomalies are converging evidence, not proof. | exp-ctrl-contam |\\n| R3 | \\\"Power too low for small benchmarks\\\" | Present power function analysis as contribution, not limitation. Derive theoretical relationship. | exp-power-theory |\\n| R4 | \\\"Only 12 models\\\" | 12 models with validated 4PL parameters provide detailed anomaly profiles. Universal misfit (57/60 flagged) spans sufficient models to establish the pattern. 13K+ v1 per-item data availability discussed as future work. Ctrl-contam covers 4-5 model families. | exp-ctrl-contam, phase_b_personfit |\\n| R5 | \\\"SFT generalization smooths signal\\\" | Controlled experiment includes domain-level analysis. Discuss hard-item contamination resistance. | exp-ctrl-contam |\\n| R6 | \\\"Absolute lz* thresholds don't work on real data\\\" | Bootstrap null is well-calibrated (KS pass for large benchmarks); the issue is LLMs genuinely deviate from 4PL. Universal model misfit is a finding, not an artifact. Δlz* leverages the well-calibrated null for within-model comparisons. | exp-ctrl-contam, exp-empirical-null |\\n| R7 | \\\"Post-RL contamination?\\\" | **RESOLVED (D033/D034)**: GRPO v3 falsified post-RL robustness — accuracy gap erased (83.1%→73.2% seen, gap 0.2pp). But ℓz* pattern gap persists (~3.3). Frame as negative-as-contribution: \\\"hard boundary for accuracy-based binary methods\\\" + \\\"residual response pattern structure post-RL.\\\" N=1 model caveat in Limitations. | exp-post-rl-v3 |\\n| R8 | \\\"4PL vs 3PL — does d parameter matter?\\\" | Ablation comparing 4PL vs 3PL(d=1) detection sensitivity. | exp-4pl-ablation |\\n| R9 | \\\"No same-level binary-only baselines\\\" | **UPDATED (n=10)**: Detection power hierarchy: z-score |d|>>HT |d|≥lz* |d|. Qwen 15%: z=42.3, HT=7.3, lz*=4.8. HT also shows inverted-U. Item-level: all methods near-random (AUROC 0.52–0.63). Framing: simpler statistics detect better, but lz* uniquely enables diagnostic characterization. | exp-baseline-comparison |\\n| R12 | \\\"HT > ℓz* for detection — why use ℓz*?\\\" | **RESOLVED via detection-diagnosis tradeoff (n=10 data)**: HT |d| ≥ lz* |d| confirmed — HT is actually BETTER at detection. But lz*'s value is diagnostic: (i) parametric null ≈N(0,1) for hypothesis testing; (ii) Snijders correction compensates θ estimation error; (iii) θ-fixed analysis quantifies absorption (Qwen d 1.08→14.52); (iv) seen/unseen decomposition. Paper frames as: \\\"detection-diagnosis tradeoff — use z-score/HT to detect, use lz* to characterize.\\\" | exp-baseline-comparison, exp-post-rl-v3 |\\n| R13 | \\\"Minimal-information overstates\\\" | **[Dream D2 三档一致]** \\\"Minimal-information operating point\\\" obscures PSN-IRT 4PL parameter dependency. Reframe to \\\"minimal information **from the target model**\\\" or \\\"minimal runtime information\\\" — explicitly acknowledge PSN-IRT calibration as an external input requirement. | — |\\n| R10 | \\\"Leaderboard audit baseline unreliable\\\" | Leaderboard audit abandoned (D011). ctrl-contam is the validated detection. 12-model case study uses PSN-IRT validated parameters directly (no baseline estimation needed). v1 data availability noted as future work. | exp-ctrl-contam |\\n| R11 | \\\"Power function is upper bound\\\" | Report both theoretical upper bound AND adjusted power (memorization fraction from ctrl-contam seen/unseen split). Gap = SFT generalization effect quantification. | exp-ctrl-contam, exp-power-theory |\\n\\n## Key Narrative Elements (from External Review + Distillation)\\n\\n1. **Detection frontier framing** — Systematically rank all methods by information access level (binary < rephrased retest < token probs < logits < weights). IRT-FIT defines the bottom of this frontier.\\n2. **Definitional pivot (à la ConStat)** — \\\"All prior contamination detection methods require privileged access. We ask a more fundamental question: what can be detected from binary response patterns alone?\\\" This reframes our work as problem reformulation, not just cross-domain transfer.\\n3. **Post-RL as hard boundary (D033/D034)** — GRPO v3 erases accuracy-based contamination signal (seen/unseen gap 11pp→0.2pp). Wang et al. (ICLR 2026) shows all 10 log-prob methods ≈ random on RL-trained models. Binary accuracy-based methods (including ℓz* at detection level) also fail. BUT: ℓz* seen/unseen pattern gap persists (~3.3) post-RL — response pattern structure survives even when accuracy signal is erased. Frame as: \\\"RL post-training defines a hard boundary for accuracy-based detection, but response-pattern-level structure may persist.\\\" NOT \\\"RL-robustness as structural advantage\\\" (falsified by D033).\\n4. **Scalability potential (deferred to future work)** — 13K+ v1 per-item data publicly available. IRT-FIT is uniquely suited for retrospective audit (only needs archival binary data). BUT: current paper does NOT include large-scale audit (D011: IRT refit failed). Mention data availability + roadmap in Discussion/Future Work. NEVER claim \\\"leaderboard audit\\\" or \\\"large-scale detection\\\" in current paper.\\n5. **Inverted-U as empirical characterization** — Derive from: (a) contamination→0%: signal drowned in sampling noise; (b) contamination→100%: identifiability collapse. Simulation fit R²=0.957; real-data fit R²=0.65 (gap due to SFT generalization). Frame as \\\"empirical trend\\\" not \\\"theory/law.\\\"\\n6. **Baseline comparison as evidence for model-level aggregation** — Item-level detection is near-random for ALL binary-only methods (including oracle RF). This is NOT a weakness — it reveals that contamination signal is diffuse (memorization fraction ~35%). Model-level lz* aggregates 14K weak signals into |d|>2.9. Frame item-level weakness as supporting evidence: \\\"any method that aggregates is better than any method that localizes.\\\" lz* vs Guttman/U3 8× gap proves IRT parameterization matters. acc z-score is sensitive but non-specific (sensitivity-specificity tradeoff).\\n7. **Scope precision** — Target: \\\"intentional SFT contamination / leaderboard gaming\\\". Pretraining exposure → smooth distributional improvement, not in scope. Honest scoping > vague claims.\\n8. **Terminology guard** — NEVER use \\\"binary information bottleneck\\\" or \\\"information-theoretic lower bound for all binary-only methods.\\\" We can only claim lz* (a specific statistic) has limitations under SFT generalization — NOT that all binary-only methods fail. Correct framing: \\\"IRT person-fit as a principled framework at the minimal-information operating point.\\\"\\n9. **Memorization fraction cross-family consistency** — MF is 35–38% at 15% contamination across Qwen (0.38) and Llama (0.35), only 3pp difference. Consistency strengthens generalizability. MF may vary with contamination mechanism (full FT vs QLoRA), model capacity, and benchmark difficulty — acknowledge in Limitations as deployment bootstrapping problem.\\n10. **Validation hierarchy** — ctrl-contam = primary validation (ground truth, same model clean vs contaminated); 12-model case study = empirical findings (no ground truth, but validated parameters); v1 data = future work roadmap. Paper structure should reflect this priority.\\n9. **lz* measures memorization, not generalization** — lz* detects aberrant patterns (memorization signature), not smooth ability improvement (generalization). This is a feature: it distinguishes genuine learning from rote memorization. Power function gives upper bound; ctrl-contam measures actual memorization fraction.\\n10. **Negative results as contributions** — D007 (universal misfit) and D008 (empirical null well-calibrated) are \\\"honest negative results that become positive contributions\\\": universal misfit is a novel finding about LLM response patterns; the simulation-reality gap motivates Δlz* and quantifies SFT generalization. D011 (MML-EM refit failure) is a methodological caveat (classical vs neural IRT sample requirements). D009 (item alignment) is a data engineering detail (1 sentence in Data section). Present negatives with the framing: \\\"the gap between where IRT works perfectly (simulation) and where it struggles (real LLM data) is itself informative.\\\"\\n11. **ctrl-contam actual results (D015)** — contam_15 |d|=3.85 (strong), contam_50 non-monotonic under free-θ but **monotonic under θ-fixed** (ratio=2.93). θ-shift is the mechanism: contamination→higher θ_MLE→absorbs aberrance signal. Frame as \\\"principled detection with quantified operating characteristics + θ-shift boundary condition.\\\" Headline: \\\"We don't just detect — we characterize, including the conditions under which detection degrades.\\\" Do NOT claim \\\"state-of-the-art detection.\\\"\\n12. **θ-shift as methodological contribution (D015)** — Person-fit sensitivity degrades when θ is re-estimated on contaminated data. This is a novel finding for contamination detection: (a) θ-fixed analysis recovers monotonic dose-response, (b) the θ-shift magnitude (0.47 at 50% contamination) quantifies the confound, (c) practical implication: use pre-contamination θ baseline or cross-validated θ. Present as a contribution, not a limitation.\\n13. **Cross-family baseline lz* divergence (Reviewer WARNING)** — Clean lz* spans ~9σ: Qwen +8.68, Mistral +5.42, Llama -0.14. 固定阈值检测失效（Qwen contam_15 lz*=+3.85 仍为正值）。论文必须：(a) 明确 IRT-FIT 是相对检测（Δlz*/Cohen's d），非绝对阈值；(b) 展示 clean baseline lz* 跨家族差异表；(c) 预防性回答\\\"contam_15 lz*=+3.85 为正值为何算污染\\\"（因为 Δlz*=-4.83 是大效应）；(d) lz* baseline 作为\\\"模型内部一致性\\\"指标——Mistral acc 最低(0.514)但 lz* 第二高(+5.42)，说明 lz* 捕捉 difficulty-ordering 一致性而非准确率。\\n14. **Inverted-U 是模型相关的** — Qwen 在 15%→50% 区间出现强 inversion（Δlz* 50%=-1.39 << 15%=-4.83），Llama 和 Mistral 在此区间 Δlz* 单调增大。Inverted-U 在 free-θ 下由 baseline misfit 调制——高 baseline lz* (Qwen +8.68) 的模型更容易出现 non-monotonicity。论文不能 claim inverted-U 为 universal phenomenon，需加 model-dependent caveat。θ-fixed 分析仍恢复所有家族的 monotonicity — 这是 θ-fixed 贡献的关键证据。\\n15. **seen/unseen split as strongest signal** — contam_15 seen lz*≈0 (memorized items look \\\"normal\\\") vs unseen lz*=3.1. This is the clearest contamination fingerprint: items that should produce aberrant responses instead produce expected responses. More interpretable than aggregate Δlz*.\\n\\n## Writing Strategy (from Distillation)\\n\\n- **Story type**: \\\"跨界迁移型\\\" — unused in 0/8 peer papers. Our unique angle.\\n- **Figure 1**: Problem illustration (dual-panel: contaminated vs clean response pattern). Use psychometric hook — impossible response pattern (hard items right, easy wrong).\\n- **Contribution structure**: 3 contributions (method + characterization + empirical findings), escalating scope. Standard in 5/8 papers.\\n- **Result tables**: Row=methods, col=datasets×metrics. Bold-best. Average column.\\n- **Numbered findings**: Adopt PSN-IRT's \\\"Key Discoveries\\\" strategy for scannable presentation.\\n- **CIs as differentiator**: 6/8 peer papers report no variance. Our bootstrap CIs are a competitive advantage.\\n- **Baseline count**: Peer median ~5. Target ≥5 baselines.\\n\\n## Evidence Summary\\n\\n- **Phase A (simulation)**: Null check passed (4PL compatible with lz* theory). MMLU power@15%=97.9%. Power ∝ n_items confirmed. Simulation results stand — they establish theoretical detection capacity within the 4PL model.\\n- **Phase B (real data)**: Gemini-1.5 MMLU acc=1.000, θ=0.78, lz*=+31.81. Cross-benchmark anomaly profiles identified.\\n- **Empirical null analysis (exp-empirical-null)**: Bootstrap null calibration is benchmark-size dependent — large benchmarks well-calibrated (MMLU: mean bias 0.041, std 1.003, KS reject 8.3%; HellaSwag: 8.3%), small benchmarks poorly calibrated (HumanEval: 75%, ARC-C: 58.3%; overall KS reject 40%, 24/60). The statistical framework is sound for large benchmarks (n>10K). 57/60 real-data cells flagged because LLM lz* values are genuinely extreme (|lz*| >> 5) — this reflects **universal 4PL model misfit** (LLM response patterns violate IRT assumptions), not contamination-specific detection. **Important**: 57/60 vs accuracy z-score 4/60 demonstrates lz* captures response-pattern information beyond aggregate accuracy (evidence for Claim 3a universal misfit), NOT contamination detection superiority. Contamination detection evidence comes from simulation (lz* AUROC 0.675 vs ML 0.575 at 5%) and ctrl-contam (d=3.42, n=3, ddof=1, ℓz*-corrected).\\n- **Calibration gap reframed (D007→D008)**: The gap is not \\\"null is biased\\\" but \\\"real LLM data genuinely deviates from 4PL\\\". This strengthens Δlz* approach: well-calibrated null means within-model shifts are statistically meaningful.\\n- **Controlled contamination — FINAL n=10 data (2026-05-21 recalculated, Snijders-corrected)**:\\n\\n  | Model | Benchmark | d(15%) | 95% CI | d(50%) | 95% CI |\\n  |-------|-----------|--------|--------|--------|--------|\\n  | Qwen 2.5-7B | MMLU | 4.83 | [2.94, 14.29] | 1.08 | [0.30, 3.93] |\\n  | Llama 3.1-8B | MMLU | 2.27 | [1.56, 4.63] | 2.50 | [1.76, 5.19] |\\n  | Mistral 7B v0.3 | MMLU | 2.64 | [1.49, 7.38] | 3.50 | [2.09, 9.59] |\\n  | Qwen 2.5-7B | ARC-C | 3.16 | [2.01, 9.54] | 5.30 | [3.64, 15.49] |\\n\\n  All 8 CIs exclude zero. **Qwen contam_50 CI [0.30, 3.93] — lower bound near zero due to inverted-U (θ-shift absorption). Must be honestly reported + θ-fixed analysis presented as remedy.**\\n\\n  Key patterns: (a) Qwen inverted-U (d_15=4.83 > d_50=1.08), Llama/Mistral monotonic (d_50 > d_15); (b) θ-shift absorption modulated by baseline accuracy (Qwen 83% >> Llama 59%); (c) ARC-C d_50=5.30 >> MMLU d_50=1.08 (benchmark size × θ-boundary); (d) Degradation chain: HT achieves |d| within 0.3 of ℓz*, z-score also detects (z=56.7 at contam_50).\\n\\n  **Note**: n=10 recalculation changed values from earlier n=3 reports (e.g., Qwen d_15 was 3.42→4.83 due to Snijders correction factor recalculation with 10 seeds). Registry n=10 version is authoritative.\\n\\n- **GRPO Post-RL (D033/D034)**: Qwen 2.5-7B, GRPO after SFT contamination.\\n  - acc_seen: 83.1% → 73.0% → 73.1% → 73.2% (step 0/500/1000/1500)\\n  - acc_unseen: 73.1% (stable) → gap erased by step 500\\n  - ℓz* seen/unseen gap: 3.67 → 3.59 → 3.32 (pattern persists after accuracy erasure)\\n  - **Conclusion**: accuracy-based detection = hard boundary post-RL; pattern-level structure persists. N=1 model, Limitations caveat.\\n\\n- **z-score baseline (D032)**: z-score detects contamination in ctrl-contam (z=56.7 at contam_50, trivially significant). BUT: z-score monotonically increases with contamination dose, cannot capture inverted-U phenomenon. Confirms degradation chain at detection level; ℓz* value is characterization, not detection.\\n\\n- **4PL real-data degradation**: 3PL(d=1) vs 4PL lz* correlation r=0.225, RMSE=68.41. d parameter essential for high-ability models (DeepSeek-V3 Δ=357). Complements simulation ablation (+14-27pp power gain).\\n\", \"total_chars\": 21960, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "a87318b2-c0bf-4a4f-a8f3-5f0c874a3b06",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/director_15982409",
+  "sessionId": "d46361cc-0bf6-4307-afff-1aca5ca71e60",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 15_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[飞书用户 游承松 (ou_1780cd0fc2e4a8ba9110c5d372b59754)]: 给我这篇合法的area keywords",
+  "leafUuid": "9406e962-d929-484c-93fb-b705e727154f",
+  "sessionId": "d46361cc-0bf6-4307-afff-1aca5ca71e60"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 16_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Retrieve legal area keywords list",
+  "sessionId": "d46361cc-0bf6-4307-afff-1aca5ca71e60"
+}
+```
+
+---
+
+### Assistant
+
+_source line 17 · 2026-05-26T11:03:50.049Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user is asking for the legitimate area keywords for this paper submission. Based on the paper framing, this is about:
+
+1. IRT (Item Response Theory) person-fit statistics for LLM benchmark contamination detection
+2. Target venue: EMNLP 2026
+
+I need to find EMNLP 2026's area keywords. Let me search for the current EMNLP 2026 areas/tracks. EMNLP 2026 goes through ARR (ACL Rolling Review), so the area keywords would be the ARR submission areas.
+
+Let me think about what areas this paper fits into based on the ARR/EMNLP system. The standard ARR areas include things like:
+
+
+- Interpretability and Analysis of Models for NLP
+- Resources and Evaluation
+- Machine Learning for NLP
+- Large Language Models
+- Ethics, Bias, and Fairness (maybe tangentially)
+
+I should do a web search to get the current ARR/EMNLP 2026 area keywords to make sure I'm giving accurate information.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9406e962-d929-484c-93fb-b705e727154f",
+  "isSidechain": false,
+  "requestId": "req_011CbR4wwQfNF9wLPh8GkRts",
+  "type": "assistant",
+  "uuid": "65757450-029c-4c69-bda8-bdaa8e8e8565",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/director_15982409",
+  "sessionId": "d46361cc-0bf6-4307-afff-1aca5ca71e60",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014oMYYeMCNfS6htJrY79UdN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7455,
+      "cache_read_input_tokens": 41473,
+      "output_tokens": 405,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7455,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 405,
+          "cache_read_input_tokens": 41473,
+          "cache_creation_input_tokens": 7455,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7455
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18 · 2026-05-26T11:03:50.062Z_
+
+Let me search for the current ARR/EMNLP 2026 area keywords.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "65757450-029c-4c69-bda8-bdaa8e8e8565",
+  "isSidechain": false,
+  "requestId": "req_011CbR4wwQfNF9wLPh8GkRts",
+  "type": "assistant",
+  "uuid": "87ddd986-9c54-4e8d-b314-14cd3d268697",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/director_15982409",
+  "sessionId": "d46361cc-0bf6-4307-afff-1aca5ca71e60",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014oMYYeMCNfS6htJrY79UdN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7455,
+      "cache_read_input_tokens": 41473,
+      "output_tokens": 405,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7455,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 405,
+          "cache_read_input_tokens": 41473,
+          "cache_creation_input_tokens": 7455,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7455
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-26T11:03:50.116Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01H3nofnfc1BcGZHCr1PKTTU`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "87ddd986-9c54-4e8d-b314-14cd3d268697",
+  "isSidechain": false,
+  "requestId": "req_011CbR4wwQfNF9wLPh8GkRts",
+  "type": "assistant",
+  "uuid": "0f517253-9c88-4b50-93b6-5280af373b8c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/director_15982409",
+  "sessionId": "d46361cc-0bf6-4307-afff-1aca5ca71e60",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014oMYYeMCNfS6htJrY79UdN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7455,
+      "cache_read_input_tokens": 41473,
+      "output_tokens": 405,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7455,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 405,
+          "cache_read_input_tokens": 41473,
+          "cache_creation_input_tokens": 7455,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7455
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-26T11:03:50.125Z_
+
+<details><summary>↩ Tool result · `toolu_01H3nofnfc1BcGZHCr1PKTTU`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0f517253-9c88-4b50-93b6-5280af373b8c",
+  "isSidechain": false,
+  "promptId": "f3001dec-40e1-42d5-8ac9-b32b7d95da7b",
+  "type": "user",
+  "uuid": "5dd67ce7-0ab3-445b-acb7-7ade58296879",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 99
+  },
+  "sourceToolAssistantUUID": "0f517253-9c88-4b50-93b6-5280af373b8c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/director_15982409",
+  "sessionId": "d46361cc-0bf6-4307-afff-1aca5ca71e60",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-26T11:03:52.140Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019aL9Wzrdu5GUA8q7FVbrBX`</summary>
+
+```json
+{
+  "query": "ARR ACL Rolling Review 2026 area keywords submission tracks list"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5dd67ce7-0ab3-445b-acb7-7ade58296879",
+  "isSidechain": false,
+  "requestId": "req_011CbR4xyyjF4366RTSioX2W",
+  "type": "assistant",
+  "uuid": "027d8795-e640-4220-acd2-eec92c0efcbd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/director_15982409",
+  "sessionId": "d46361cc-0bf6-4307-afff-1aca5ca71e60",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GcNiu5Se3rWjZyNSAcQs87",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 931,
+      "cache_read_input_tokens": 48928,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 931,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 48928,
+          "cache_creation_input_tokens": 931,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 931
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-26T11:04:00.991Z_
+
+<details><summary>↩ Tool result · `toolu_019aL9Wzrdu5GUA8q7FVbrBX`</summary>
+
+```text
+Web search results for query: "ARR ACL Rolling Review 2026 area keywords submission tracks list"
+
+Links: [{"title":"Area Keywords at ARR – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/areas"},{"title":"ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/"},{"title":"CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/cfp"},{"title":"ACL ARR | OpenReview","url":"https://openreview.net/group?id=aclweb.org%2FACL%2FARR"},{"title":"Authors Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/authors"},{"title":"ARR Changelog – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/changelog"},{"title":"Dates and Venues – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/dates"},{"title":"Main Conference - ACL 2026","url":"https://2026.aclweb.org/calls/main_conference_papers/"},{"title":"How ARR works – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/reviewing"},{"title":"Submission Form Fields – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/submissionform"}]
+
+Based on the search results, I found information about ARR ACL Rolling Review 2026 area keywords and submission tracks:
+
+## 2026 Track Updates
+
+Starting from March 2026, the following tracks will be used, based on input from ACL'26 and EMNLP'26 program chairs.
+
+## Available Resources
+
+The search results indicate that there is a list of track keywords to help select the right track for authors making submissions. Additionally, track areas include Dialogue and Interactive Systems (with keywords like spoken dialogue systems, evaluation and metrics, task-oriented, bias/toxicity, factuality, retrieval, knowledge augmented, commonsense reasoning, interactive storytelling, embodied agents, applications, multi-modal dialogue systems, grounded dialog, multilingual/low resource, dialogue state tracking, conversational modeling) and Discourse and Pragmatics (with keywords like anaphora resolution, coreference resolution, bridging resolution, coherence, cohesion, discourse relations, discourse parsing, dialogue, conversation, discourse and multilinguality, argument mining, communication, discourse-level inference, inter-sentential reasoning, pragmatic inference and reasoning).
+
+For the complete and detailed list of all 2026 area keywords and submission tracks, you can visit the official ARR website at http://aclrollingreview.org/areas, which provides the comprehensive listing with all track names, keywords, and guidance for selecting the appropriate area for your submission.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "027d8795-e640-4220-acd2-eec92c0efcbd",
+  "isSidechain": false,
+  "promptId": "f3001dec-40e1-42d5-8ac9-b32b7d95da7b",
+  "type": "user",
+  "uuid": "f7d348bf-1dc8-4a88-a604-2653bfa27a5f",
+  "toolUseResult": {
+    "query": "ARR ACL Rolling Review 2026 area keywords submission tracks list",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QsD3QQCZ42kG1fVGjizifW",
+        "content": [
+          {
+            "title": "Area Keywords at ARR – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/areas"
+          },
+          {
+            "title": "ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/"
+          },
+          {
+            "title": "CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/cfp"
+          },
+          {
+            "title": "ACL ARR | OpenReview",
+            "url": "https://openreview.net/group?id=aclweb.org%2FACL%2FARR"
+          },
+          {
+            "title": "Authors Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/authors"
+          },
+          {
+            "title": "ARR Changelog – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/changelog"
+          },
+          {
+            "title": "Dates and Venues – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "Main Conference - ACL 2026",
+            "url": "https://2026.aclweb.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "How ARR works – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/reviewing"
+          },
+          {
+            "title": "Submission Form Fields – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/submissionform"
+          }
+        ]
+      },
+      "Based on the search results, I found information about ARR ACL Rolling Review 2026 area keywords and submission tracks:\n\n## 2026 Track Updates\n\nStarting from March 2026, the following tracks will be used, based on input from ACL'26 and EMNLP'26 program chairs.\n\n## Available Resources\n\nThe search results indicate that there is a list of track keywords to help select the right track for authors making submissions. Additionally, track areas include Dialogue and Interactive Systems (with keywords like spoken dialogue systems, evaluation and metrics, task-oriented, bias/toxicity, factuality, retrieval, knowledge augmented, commonsense reasoning, interactive storytelling, embodied agents, applications, multi-modal dialogue systems, grounded dialog, multilingual/low resource, dialogue state tracking, conversational modeling) and Discourse and Pragmatics (with keywords like anaphora resolution, coreference resolution, bridging resolution, coherence, cohesion, discourse relations, discourse parsing, dialogue, conversation, discourse and multilinguality, argument mining, communication, discourse-level inference, inter-sentential reasoning, pragmatic inference and reasoning).\n\nFor the complete and detailed list of all 2026 area keywords and submission tracks, you can visit the official ARR website at http://aclrollingreview.org/areas, which provides the comprehensive listing with all track names, keywords, and guidance for selecting the appropriate area for your submission."
+    ],
+    "durationSeconds": 8.845662459
+  },
+  "sourceToolAssistantUUID": "027d8795-e640-4220-acd2-eec92c0efcbd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/director_15982409",
+  "sessionId": "d46361cc-0bf6-4307-afff-1aca5ca71e60",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23 · 2026-05-26T11:04:04.256Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The search results gave me partial information. Let me fetch the actual ARR areas page to get the complete list.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f7d348bf-1dc8-4a88-a604-2653bfa27a5f",
+  "isSidechain": false,
+  "requestId": "req_011CbR4yn6t1wiub5JvEYu3U",
+  "type": "assistant",
+  "uuid": "73a8a4ea-353e-4311-ba4e-e2f7cb4b1eeb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/director_15982409",
+  "sessionId": "d46361cc-0bf6-4307-afff-1aca5ca71e60",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Pz5D7Zvcmh59AejvK4gEMJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 848,
+      "cache_read_input_tokens": 49859,
+      "output_tokens": 114,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 848,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 114,
+          "cache_read_input_tokens": 49859,
+          "cache_creation_input_tokens": 848,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 848
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-26T11:04:04.284Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01PDqJ7yFhQfNDitXXZwb81E`</summary>
+
+```json
+{
+  "query": "select:WebFetch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "73a8a4ea-353e-4311-ba4e-e2f7cb4b1eeb",
+  "isSidechain": false,
+  "requestId": "req_011CbR4yn6t1wiub5JvEYu3U",
+  "type": "assistant",
+  "uuid": "ee89c8c2-1fb7-4d18-9592-1b8f4bd492ff",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/director_15982409",
+  "sessionId": "d46361cc-0bf6-4307-afff-1aca5ca71e60",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Pz5D7Zvcmh59AejvK4gEMJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 848,
+      "cache_read_input_tokens": 49859,
+      "output_tokens": 114,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 848,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 114,
+          "cache_read_input_tokens": 49859,
+          "cache_creation_input_tokens": 848,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 848
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-26T11:04:04.289Z_
+
+<details><summary>↩ Tool result · `toolu_01PDqJ7yFhQfNDitXXZwb81E`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ee89c8c2-1fb7-4d18-9592-1b8f4bd492ff",
+  "isSidechain": false,
+  "promptId": "f3001dec-40e1-42d5-8ac9-b32b7d95da7b",
+  "type": "user",
+  "uuid": "c124c426-5cfe-400e-b23c-08069bb1068c",
+  "toolUseResult": {
+    "matches": [
+      "WebFetch"
+    ],
+    "query": "select:WebFetch",
+    "total_deferred_tools": 99
+  },
+  "sourceToolAssistantUUID": "ee89c8c2-1fb7-4d18-9592-1b8f4bd492ff",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/director_15982409",
+  "sessionId": "d46361cc-0bf6-4307-afff-1aca5ca71e60",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-26T11:04:07.609Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_018zmDWRjCgACvnXLYkP7qJk`</summary>
+
+```json
+{
+  "url": "https://aclrollingreview.org/areas",
+  "prompt": "List ALL area/track names and their keywords. I need the complete list of every track name and every keyword under each track. Output the full list verbatim, do not summarize or skip any tracks."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c124c426-5cfe-400e-b23c-08069bb1068c",
+  "isSidechain": false,
+  "requestId": "req_011CbR4z2WoZDznNSe6rMJbL",
+  "type": "assistant",
+  "uuid": "3b10bd3c-e13d-4ecd-8e06-d3f54b217626",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/director_15982409",
+  "sessionId": "d46361cc-0bf6-4307-afff-1aca5ca71e60",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NY7BJYXS22bYLu3wG43apK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 633,
+      "cache_read_input_tokens": 50707,
+      "output_tokens": 123,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 633,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 123,
+          "cache_read_input_tokens": 50707,
+          "cache_creation_input_tokens": 633,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 633
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-26T11:04:28.451Z_
+
+<details><summary>↩ Tool result · `toolu_018zmDWRjCgACvnXLYkP7qJk`</summary>
+
+```text
+# ARR Area Tracks and Keywords
+
+**Clinical and Biomedical Applications**: "biomedical knowledge extraction, discovery, and text mining; biomedical question answering; clinical and biomedical language models; clinical dialogue systems; clinical and biomedical text summarisation; NLP tools for biomedical knowledge graphs, clinical decision support, clinical coding, drug adverse event discovery, mental health; phrase mining and disease association; regulatory and ethical considerations"
+
+**Computational Social Science and Cultural Analytics**: "human behavior analysis; stance detection; frame detection and analysis; hate-speech detection; misinformation detection and analysis; psycho-demographic trait prediction; emotion detection and analysis; emoji prediction and analysis; language/cultural bias analysis; sociolinguistics; NLP tools for social analysis; quantitative analyses of news and/or social media"
+
+**Dialogue and Interactive Systems**: "spoken dialogue systems; evaluation and metrics; task-oriented; bias/toxicity; factuality; retrieval; knowledge augmented; commonsense reasoning; interactive storytelling; embodied agents; applications; multi-modal dialogue systems; grounded dialog; multilingual / low resource; dialogue state tracking; conversational modeling"
+
+**Discourse and Pragmatics**: "anaphora resolution; coreference resolution; bridging resolution; coherence; cohesion; discourse relations; discourse parsing; dialogue; conversation; discourse and multilinguality; argument mining; communication; discourse-level inference; inter-sentential reasoning; pragmatic inference and reasoning"
+
+**Efficient Methods for NLP**: "quantization; pruning; distillation; parameter-efficient-training; data-efficient training; data augmentation; LLM efficiency; NLP in resource-constrained settings"
+
+**Ethics, Bias, and Fairness**: "data ethics; model alignment; model bias/fairness evaluation; model bias/unfairness mitigation; ethical considerations in NLP applications; transparency; policy and governance; reflections and critiques"
+
+**Generation**: "human evaluation; automatic evaluation; multilingualism; efficient models; few-shot generation; analysis; domain adaptation; data-to-text generation; text-to-text generation; inference methods; model architectures; retrieval-augmented generation; interactive and collaborative generation"
+
+**Human-Centered NLP and Human-AI Interaction**: "human-AI interaction/cooperation; human-in-the-loop; human-centered evaluation; user-centered design; value-centered design; human factors in NLP; participatory/community-based NLP; values and culture"
+
+**Information Extraction**: "named entity recognition and relation extraction; event extraction; open information extraction; knowledge base construction; entity linking/disambiguation; document-level extraction; multilingual extraction; zero/few-shot extraction"
+
+**Information Retrieval and Text Mining**: "passage retrieval; dense retrieval; document representation; hashing; re-ranking; pre-training; contrastive learning; retrieval for RAG"
+
+**Interpretability and Analysis of Models for NLP**: "adversarial attacks/examples/training; calibration/uncertainty; counterfactual/contrastive explanations; data influence; data shortcuts/artifacts; explanation faithfulness; feature attribution; free-text/natural language explanations; hardness of samples; hierarchical & concept explanations; human-subject application-grounded evaluations; knowledge tracing/discovering/inducing; model editing; probing; robustness; topic modeling"
+
+**Language Modeling**: "adversarial attacks; chain-of-thought; fine-tuning; continual learning; hallucinations; neurosymbolic approaches; pre-training; privacy; prompting; safety; scaling; security; sparse models; red teaming; retrieval-augmented language models; robustness; transfer; watermarking"
+
+**LLM agents**: "tool use; function calling; multi-modal agents; multi-agent systems; planning in agents; agent communication; agent coordination and negotiation; environment interaction; agent memory; reinforcement learning in agents; LLM-based controllers; agent evaluation; grounded agents; embodied agents"
+
+**Linguistic Theories, Cognitive Modeling, and Psycholinguistics**: "linguistic theories; cognitive modeling; computational psycholinguistics"
+
+**Machine Learning for NLP**: "graph-based methods; knowledge-augmented methods; multi-task learning; self-supervised learning; contrastive learning; generative models; data augmentation; word embeddings; structured prediction; transfer learning / domain adaptation; representation learning; generalization; few-shot learning; reinforcement learning; optimization methods; continual learning; adversarial training; meta learning; causality; graphical models; human-in-the-loop / active learning"
+
+**Machine Translation**: "automatic evaluation; biases; domain adaptation; efficient inference for MT; efficient MT training; few-shot/zero-shot MT; human evaluation; interactive MT; MT deployment and maintenance; MT theory; modeling; multilingual MT; multimodality; online adaptation for MT; parallel decoding/non-autoregressive MT; pre-training for MT; scaling; speech translation; switch-code translation; vocabulary learning"
+
+**Multilingualism and Cross-Lingual NLP**: "code-switching; mixed language; multilingualism; language contact; language change; linguistic variation; cross-lingual transfer; multilingual representations; multilingual pre-training; multilingual benchmarks; multilingual evaluation; dialects and language varieties; less-resourced languages; endangered languages; indigenous languages; minoritized languages; language documentation; resources for less-resourced languages; software and tools"
+
+**Multimodality and Language Grounding to Vision, Robotics and Beyond**: "vision language navigation; cross-modal pretraining; image text matching; cross-modal content generation; vision question answering; cross-modal application; cross-modal information extraction; cross-modal machine translation; automatic speech recognition; spoken language understanding; spoken language translation; spoken language grounding; speech and vision; QA via spoken queries; spoken dialog; video processing; speech technologies; multimodality"
+
+**NLP and Code Models**: language-to-code generation, code-to-language generation, and "other topics which explicitly involve natural language as a central element in the paper contribution"
+
+**NLP and Symbolic Reasoning**: "natural language AND symbolic reasoning topics (e.g. mathematical / symbolic /neurosymbolic / logical reasoning, symbolic AI, logical neural networks, differentiable inductive logic programming, neural theorem provers, knowledge graph embeddings, Markov logics), as long as there is a clear contribution to computational processing of natural language"
+
+**NLP Applications**: "educational applications, essay scoring; financial/business NLP; grammatical error correction, hate speech detection; historical NLP; NLP for knowledge graphs; legal NLP; multimodal applications; code generation and understanding; fact checking, rumor/misinformation detection; security/privacy; NLP for social good"
+
+**Phonology, Morphology, and Word Segmentation**: "morphological inflection; paradigm induction; morphological segmentation; subword representations; chinese segmentation; lemmatization; finite-state morphology; morphological analysis; phonology; grapheme-to-phoneme conversion; pronunciation modeling"
+
+**Question Answering**: "commonsense QA; reading comprehension; logical reasoning; multimodal QA; knowledge base QA; semantic parsing; multihop QA; biomedical QA; multilingual QA; interpretability; generalization; reasoning; conversational QA; few-shot QA; math QA; table QA; open-domain QA; question generation; RAG for QA"
+
+**Resources and Evaluation**: "corpus creation; benchmarking; language resources; multilingual corpora; lexicon creation; automatic creation and evaluation of language resources; NLP datasets; automatic evaluation of datasets; evaluation methodologies; evaluation; datasets for low resource languages; metrics; reproducibility; statistical testing for evaluation"
+
+**Semantics: Lexical and Sentence-Level**: "polysemy; lexical relationships; textual entailment; compositionality; multi-word expressions; metaphor; lexical semantic change; word embeddings; lexical resources; paraphrase recognition; textual entailment; natural language inference; semantic textual similarity; phrase/sentence embedding; paraphrasing; text simplification; word/phrase alignment"
+
+**Sentiment Analysis, Stylistic Analysis, and Argument Mining**: "applications; argument generation; argument mining; argument schemes and reasoning; argument quality assessment; computational affective science; stance detection; style analysis; style adaptation; rhetoric and framing"
+
+**Speech Recognition, Text-to-Speech and Spoken Language Understanding**: "automatic speech recognition; speech technologies; spoken dialog; spoken language grounding; speech and vision; spoken language translation; spoken language understanding; QA via spoken queries"
+
+**Summarization**: "extractive summarisation; abstractive summarisation; multimodal summarization; multilingual summarisation; conversational summarization; query-focused summarization; multi-document summarization; long-form summarization; sentence compression; few-shot summarisation; architectures; evaluation; factuality"
+
+**Syntax: Tagging, Chunking and Parsing**: "chunking, constituency parsing; deep syntax parsing; dependency parsing; grammar and knowledge-based approaches; hierarchical structure prediction; low-resources languages pos tagging, parsing and related tasks; massively multilingual oriented approaches; morphologically-rich languages pos tagging, parsing and related tasks; multi-task approaches (large definition); optimized annotations or data set for morpho-syntax related tasks; parsing algorithms (symbolic, theoretical results); part-of-speech tagging; semantic parsing; shallow-parsing; syntax-to-semantic interface"
+
+**Special Theme Track**: "this is conference-specific, it is usually described in the CFP for each conference"
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3b10bd3c-e13d-4ecd-8e06-d3f54b217626",
+  "isSidechain": false,
+  "promptId": "f3001dec-40e1-42d5-8ac9-b32b7d95da7b",
+  "type": "user",
+  "uuid": "e6eb5d0d-534a-4841-b574-935167848e38",
+  "toolUseResult": {
+    "bytes": 26054,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# ARR Area Tracks and Keywords\n\n**Clinical and Biomedical Applications**: \"biomedical knowledge extraction, discovery, and text mining; biomedical question answering; clinical and biomedical language models; clinical dialogue systems; clinical and biomedical text summarisation; NLP tools for biomedical knowledge graphs, clinical decision support, clinical coding, drug adverse event discovery, mental health; phrase mining and disease association; regulatory and ethical considerations\"\n\n**Computational Social Science and Cultural Analytics**: \"human behavior analysis; stance detection; frame detection and analysis; hate-speech detection; misinformation detection and analysis; psycho-demographic trait prediction; emotion detection and analysis; emoji prediction and analysis; language/cultural bias analysis; sociolinguistics; NLP tools for social analysis; quantitative analyses of news and/or social media\"\n\n**Dialogue and Interactive Systems**: \"spoken dialogue systems; evaluation and metrics; task-oriented; bias/toxicity; factuality; retrieval; knowledge augmented; commonsense reasoning; interactive storytelling; embodied agents; applications; multi-modal dialogue systems; grounded dialog; multilingual / low resource; dialogue state tracking; conversational modeling\"\n\n**Discourse and Pragmatics**: \"anaphora resolution; coreference resolution; bridging resolution; coherence; cohesion; discourse relations; discourse parsing; dialogue; conversation; discourse and multilinguality; argument mining; communication; discourse-level inference; inter-sentential reasoning; pragmatic inference and reasoning\"\n\n**Efficient Methods for NLP**: \"quantization; pruning; distillation; parameter-efficient-training; data-efficient training; data augmentation; LLM efficiency; NLP in resource-constrained settings\"\n\n**Ethics, Bias, and Fairness**: \"data ethics; model alignment; model bias/fairness evaluation; model bias/unfairness mitigation; ethical considerations in NLP applications; transparency; policy and governance; reflections and critiques\"\n\n**Generation**: \"human evaluation; automatic evaluation; multilingualism; efficient models; few-shot generation; analysis; domain adaptation; data-to-text generation; text-to-text generation; inference methods; model architectures; retrieval-augmented generation; interactive and collaborative generation\"\n\n**Human-Centered NLP and Human-AI Interaction**: \"human-AI interaction/cooperation; human-in-the-loop; human-centered evaluation; user-centered design; value-centered design; human factors in NLP; participatory/community-based NLP; values and culture\"\n\n**Information Extraction**: \"named entity recognition and relation extraction; event extraction; open information extraction; knowledge base construction; entity linking/disambiguation; document-level extraction; multilingual extraction; zero/few-shot extraction\"\n\n**Information Retrieval and Text Mining**: \"passage retrieval; dense retrieval; document representation; hashing; re-ranking; pre-training; contrastive learning; retrieval for RAG\"\n\n**Interpretability and Analysis of Models for NLP**: \"adversarial attacks/examples/training; calibration/uncertainty; counterfactual/contrastive explanations; data influence; data shortcuts/artifacts; explanation faithfulness; feature attribution; free-text/natural language explanations; hardness of samples; hierarchical & concept explanations; human-subject application-grounded evaluations; knowledge tracing/discovering/inducing; model editing; probing; robustness; topic modeling\"\n\n**Language Modeling**: \"adversarial attacks; chain-of-thought; fine-tuning; continual learning; hallucinations; neurosymbolic approaches; pre-training; privacy; prompting; safety; scaling; security; sparse models; red teaming; retrieval-augmented language models; robustness; transfer; watermarking\"\n\n**LLM agents**: \"tool use; function calling; multi-modal agents; multi-agent systems; planning in agents; agent communication; agent coordination and negotiation; environment interaction; agent memory; reinforcement learning in agents; LLM-based controllers; agent evaluation; grounded agents; embodied agents\"\n\n**Linguistic Theories, Cognitive Modeling, and Psycholinguistics**: \"linguistic theories; cognitive modeling; computational psycholinguistics\"\n\n**Machine Learning for NLP**: \"graph-based methods; knowledge-augmented methods; multi-task learning; self-supervised learning; contrastive learning; generative models; data augmentation; word embeddings; structured prediction; transfer learning / domain adaptation; representation learning; generalization; few-shot learning; reinforcement learning; optimization methods; continual learning; adversarial training; meta learning; causality; graphical models; human-in-the-loop / active learning\"\n\n**Machine Translation**: \"automatic evaluation; biases; domain adaptation; efficient inference for MT; efficient MT training; few-shot/zero-shot MT; human evaluation; interactive MT; MT deployment and maintenance; MT theory; modeling; multilingual MT; multimodality; online adaptation for MT; parallel decoding/non-autoregressive MT; pre-training for MT; scaling; speech translation; switch-code translation; vocabulary learning\"\n\n**Multilingualism and Cross-Lingual NLP**: \"code-switching; mixed language; multilingualism; language contact; language change; linguistic variation; cross-lingual transfer; multilingual representations; multilingual pre-training; multilingual benchmarks; multilingual evaluation; dialects and language varieties; less-resourced languages; endangered languages; indigenous languages; minoritized languages; language documentation; resources for less-resourced languages; software and tools\"\n\n**Multimodality and Language Grounding to Vision, Robotics and Beyond**: \"vision language navigation; cross-modal pretraining; image text matching; cross-modal content generation; vision question answering; cross-modal application; cross-modal information extraction; cross-modal machine translation; automatic speech recognition; spoken language understanding; spoken language translation; spoken language grounding; speech and vision; QA via spoken queries; spoken dialog; video processing; speech technologies; multimodality\"\n\n**NLP and Code Models**: language-to-code generation, code-to-language generation, and \"other topics which explicitly involve natural language as a central element in the paper contribution\"\n\n**NLP and Symbolic Reasoning**: \"natural language AND symbolic reasoning topics (e.g. mathematical / symbolic /neurosymbolic / logical reasoning, symbolic AI, logical neural networks, differentiable inductive logic programming, neural theorem provers, knowledge graph embeddings, Markov logics), as long as there is a clear contribution to computational processing of natural language\"\n\n**NLP Applications**: \"educational applications, essay scoring; financial/business NLP; grammatical error correction, hate speech detection; historical NLP; NLP for knowledge graphs; legal NLP; multimodal applications; code generation and understanding; fact checking, rumor/misinformation detection; security/privacy; NLP for social good\"\n\n**Phonology, Morphology, and Word Segmentation**: \"morphological inflection; paradigm induction; morphological segmentation; subword representations; chinese segmentation; lemmatization; finite-state morphology; morphological analysis; phonology; grapheme-to-phoneme conversion; pronunciation modeling\"\n\n**Question Answering**: \"commonsense QA; reading comprehension; logical reasoning; multimodal QA; knowledge base QA; semantic parsing; multihop QA; biomedical QA; multilingual QA; interpretability; generalization; reasoning; conversational QA; few-shot QA; math QA; table QA; open-domain QA; question generation; RAG for QA\"\n\n**Resources and Evaluation**: \"corpus creation; benchmarking; language resources; multilingual corpora; lexicon creation; automatic creation and evaluation of language resources; NLP datasets; automatic evaluation of datasets; evaluation methodologies; evaluation; datasets for low resource languages; metrics; reproducibility; statistical testing for evaluation\"\n\n**Semantics: Lexical and Sentence-Level**: \"polysemy; lexical relationships; textual entailment; compositionality; multi-word expressions; metaphor; lexical semantic change; word embeddings; lexical resources; paraphrase recognition; textual entailment; natural language inference; semantic textual similarity; phrase/sentence embedding; paraphrasing; text simplification; word/phrase alignment\"\n\n**Sentiment Analysis, Stylistic Analysis, and Argument Mining**: \"applications; argument generation; argument mining; argument schemes and reasoning; argument quality assessment; computational affective science; stance detection; style analysis; style adaptation; rhetoric and framing\"\n\n**Speech Recognition, Text-to-Speech and Spoken Language Understanding**: \"automatic speech recognition; speech technologies; spoken dialog; spoken language grounding; speech and vision; spoken language translation; spoken language understanding; QA via spoken queries\"\n\n**Summarization**: \"extractive summarisation; abstractive summarisation; multimodal summarization; multilingual summarisation; conversational summarization; query-focused summarization; multi-document summarization; long-form summarization; sentence compression; few-shot summarisation; architectures; evaluation; factuality\"\n\n**Syntax: Tagging, Chunking and Parsing**: \"chunking, constituency parsing; deep syntax parsing; dependency parsing; grammar and knowledge-based approaches; hierarchical structure prediction; low-resources languages pos tagging, parsing and related tasks; massively multilingual oriented approaches; morphologically-rich languages pos tagging, parsing and related tasks; multi-task approaches (large definition); optimized annotations or data set for morpho-syntax related tasks; parsing algorithms (symbolic, theoretical results); part-of-speech tagging; semantic parsing; shallow-parsing; syntax-to-semantic interface\"\n\n**Special Theme Track**: \"this is conference-specific, it is usually described in the CFP for each conference\"",
+    "durationMs": 20839,
+    "url": "https://aclrollingreview.org/areas"
+  },
+  "sourceToolAssistantUUID": "3b10bd3c-e13d-4ecd-8e06-d3f54b217626",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/director_15982409",
+  "sessionId": "d46361cc-0bf6-4307-afff-1aca5ca71e60",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 28_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[飞书用户 游承松 (ou_1780cd0fc2e4a8ba9110c5d372b59754)]: 给我这篇合法的area keywords",
+  "leafUuid": "e6eb5d0d-534a-4841-b574-935167848e38",
+  "sessionId": "d46361cc-0bf6-4307-afff-1aca5ca71e60"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 29_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Retrieve legal area keywords list",
+  "sessionId": "d46361cc-0bf6-4307-afff-1aca5ca71e60"
+}
+```
+
+---
+
+### Assistant
+
+_source line 30 · 2026-05-26T11:04:39.928Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the complete list of ARR area tracks. Based on the paper's content (IRT person-fit statistics for LLM benchmark contamination detection), the most relevant areas would be:
+
+1. **Resources and Evaluation** - The paper is fundamentally about evaluation methodology (benchmark contamination detection, evaluation metrics, statistical testing for evaluation). Keywords match: "evaluation methodologies; evaluation; metrics; statistical testing for evaluation; benchmarking"
+
+2. **Interpretability and Analysis of Models for NLP** - The paper analyzes model behavior patterns, characterizes boundary conditions. Keywords: "knowledge tracing/discovering/inducing; robustness"
+
+
+3. **Machine Learning for NLP** - Some general ML methodology aspects, though less directly relevant.
+
+4. **NLP Applications** - Could tangentially fit under "fact checking, rumor/misinformation detection," but contamination detection is primarily evaluation-focused.
+
+5. **Language Modeling** - The paper deals with LLMs, but it's not about language modeling itself. Keywords like "robustness" or "security" could apply tangentially.
+
+**Resources and Evaluation** is the clearest fit since the paper centers on evaluation methodology, contamination detection as an evaluation integrity issue, benchmarking, and statistical testing, with **Interpretability and Analysis of Models for NLP** as a secondary match for its analysis of model response patterns.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e6eb5d0d-534a-4841-b574-935167848e38",
+  "isSidechain": false,
+  "requestId": "req_011CbR51oX1pkk91ZtuWQQhG",
+  "type": "assistant",
+  "uuid": "15419eda-10b0-4930-a794-04a106178d97",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/director_15982409",
+  "sessionId": "d46361cc-0bf6-4307-afff-1aca5ca71e60",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018m8QBYNvTDza8cKsGdFn2L",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2299,
+      "cache_read_input_tokens": 51340,
+      "output_tokens": 696,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2299,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 696,
+          "cache_read_input_tokens": 51340,
+          "cache_creation_input_tokens": 2299,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2299
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31 · 2026-05-26T11:04:46.219Z_
+
+基于论文内容（IRT person-fit 用于 LLM benchmark contamination 检测的系统性刻画），最合适的 area 排序：
+
+**首选：Resources and Evaluation**
+- 关键词直接匹配：evaluation methodologies; benchmarking; metrics; statistical testing for evaluation
+- 论文核心是评估方法论（contamination detection 作为 benchmark integrity 工具），这是最自然的归属
+
+**次选：Interpretability and Analysis of Models for NLP**
+- 关键词匹配：knowledge tracing/discovering/inducing; robustness; calibration/uncertainty
+- 论文刻画 LLM response patterns 的行为边界、θ-shift 机制分析，属于模型行为分析
+
+**备选（如果前两个 reviewer pool 不理想）：**
+- **Machine Learning for NLP** — 如果想强调 IRT 作为统计方法的跨领域应用角度
+- **Language Modeling** — 关键词含 security、robustness，contamination 可归入 benchmark security
+
+**建议选 Resources and Evaluation**，这个 track 的 reviewer 最熟悉 evaluation methodology 类工作，也最能理解 "characterization paper" 的贡献类型。
+
+Sources:
+- [Area Keywords at ARR](http://aclrollingreview.org/areas)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "15419eda-10b0-4930-a794-04a106178d97",
+  "isSidechain": false,
+  "requestId": "req_011CbR51oX1pkk91ZtuWQQhG",
+  "type": "assistant",
+  "uuid": "da3987fc-83d9-49c7-ac2e-3c5041097f8b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/director_15982409",
+  "sessionId": "d46361cc-0bf6-4307-afff-1aca5ca71e60",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018m8QBYNvTDza8cKsGdFn2L",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2299,
+      "cache_read_input_tokens": 51340,
+      "output_tokens": 696,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2299,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 696,
+          "cache_read_input_tokens": 51340,
+          "cache_creation_input_tokens": 2299,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2299
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 32_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[飞书用户 游承松 (ou_1780cd0fc2e4a8ba9110c5d372b59754)]: 给我这篇合法的area keywords",
+  "leafUuid": "da3987fc-83d9-49c7-ac2e-3c5041097f8b",
+  "sessionId": "d46361cc-0bf6-4307-afff-1aca5ca71e60"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 33_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Retrieve legal area keywords list",
+  "sessionId": "d46361cc-0bf6-4307-afff-1aca5ca71e60"
+}
+```
+
+---

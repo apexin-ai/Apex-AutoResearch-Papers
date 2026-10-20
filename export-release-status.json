@@ -232,6 +232,17 @@
           "paper_pdf": null,
           "code_count": 5,
           "trace_count": 1313
+        },
+        "irt_personfit_contam": {
+          "status": "uploaded",
+          "project": "irt_personfit_contam",
+          "collection": "irt_personfit_contam--export-20260712",
+          "snapshot": true,
+          "derived_archive_sha256": "8f80400456677b8fd0dbae697623c19c74f3f890be6ef445740d90e3f1a4281e",
+          "indexed_members": 553,
+          "paper_pdf": null,
+          "code_count": 5,
+          "trace_count": 548
         }
       },
       "status": "in_progress",

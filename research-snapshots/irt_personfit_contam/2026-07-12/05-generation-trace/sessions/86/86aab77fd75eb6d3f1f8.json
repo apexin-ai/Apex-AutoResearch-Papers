@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.0",
+  "id": "86aab77fd75eb6d3f1f8",
+  "project": "irt_personfit_contam--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: irt_personfit_contam ## 运行环境 - 服务器名: westd-35694 - SSH 账户: root（调用 ssh_execute / submit_training",
+  "task_key": "1f434a35-426e-4469-8648-cf8642d0c342",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/1f434a35-426e-4469-8648-cf8642d0c342.jsonl",
+    "occurrence": 1,
+    "bytes": 989609,
+    "sha256": "ad78f1f0696be91d2b472eb82c234e3e7a20ff07a53b3f1a932738bd339c55b7"
+  },
+  "statistics": {
+    "messages": 565,
+    "user_turns": 1,
+    "tool_calls": 217,
+    "roles": {
+      "record": 86,
+      "user": 1,
+      "assistant": 44,
+      "tool_call": 217,
+      "tool_result": 217
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "86aab77fd75eb6d3f1f8-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 563,
+      "chunks": [
+        {
+          "path": "86aab77fd75eb6d3f1f8-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "86aab77fd75eb6d3f1f8-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "86aab77fd75eb6d3f1f8-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "86aab77fd75eb6d3f1f8-part-0004.json",
+          "message_count": 25
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-irt-personfit-contam-westd-35694-ssh-root-ssh-execute-submit-t-copy-118.md"
+}

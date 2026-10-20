@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "6c3123ab88f84b8eb380",
+  "project": "irt_personfit_contam--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: 项目：irt_personfit_contam Venue：emnlp-2026 论文目录：/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_",
+  "task_key": "70d06456-fa81-46ab-b458-a299f60eca51",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/70d06456-fa81-46ab-b458-a299f60eca51.jsonl",
+    "occurrence": 1,
+    "bytes": 611304,
+    "sha256": "150e95c5a05e061b521763ba49a9a4026f202463c8e796bba41aeb86be9db779"
+  },
+  "statistics": {
+    "messages": 106,
+    "user_turns": 1,
+    "tool_calls": 32,
+    "roles": {
+      "record": 28,
+      "user": 1,
+      "assistant": 13,
+      "tool_call": 32,
+      "tool_result": 32
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "6c3123ab88f84b8eb380-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 104,
+      "chunks": [
+        {
+          "path": "6c3123ab88f84b8eb380-part-0001.json",
+          "message_count": 93
+        },
+        {
+          "path": "6c3123ab88f84b8eb380-part-0002.json",
+          "message_count": 11
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-irt-personfit-contam-venue-emnlp-2026-home-ubuntu-agent-ml-research-be-idea-ge-copy-3.md"
+}

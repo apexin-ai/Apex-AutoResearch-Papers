@@ -1,0 +1,278 @@
+{
+  "schema_version": "1.0",
+  "id": "7f8d8b435005bcc758b5",
+  "project": "irt_personfit_contam--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [WORKER DONE] Worker worker_ops_rebuttal-llama5-check_20260524T035124 已完成（status=done）。用 `get_worker_status('worker_ops_",
+  "task_key": "1b6ddab9-8596-412f-a6d3-5fd406199f1e",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/1b6ddab9-8596-412f-a6d3-5fd406199f1e.jsonl",
+    "occurrence": 1,
+    "bytes": 643901,
+    "sha256": "1fb36a39595d70a2d86302bf0264cea1c1a1254f69e498e7d9fbd7784880d200"
+  },
+  "statistics": {
+    "messages": 311,
+    "user_turns": 21,
+    "tool_calls": 78,
+    "roles": {
+      "record": 74,
+      "user": 21,
+      "assistant": 65,
+      "tool_call": 78,
+      "tool_result": 73
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "7f8d8b435005bcc758b5-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 71,
+      "chunks": [
+        {
+          "path": "7f8d8b435005bcc758b5-part-0001.json",
+          "message_count": 71
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "7f8d8b435005bcc758b5-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 31,
+      "chunks": [
+        {
+          "path": "7f8d8b435005bcc758b5-part-0001.json",
+          "message_count": 31
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "7f8d8b435005bcc758b5-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 56,
+      "chunks": [
+        {
+          "path": "7f8d8b435005bcc758b5-part-0001.json",
+          "message_count": 56
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "7f8d8b435005bcc758b5-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "boundary": "recorded_user_message",
+      "message_count": 13,
+      "chunks": [
+        {
+          "path": "7f8d8b435005bcc758b5-part-0001.json",
+          "message_count": 13
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "7f8d8b435005bcc758b5-part-0001.json",
+          "message_count": 1
+        },
+        {
+          "path": "7f8d8b435005bcc758b5-part-0002.json",
+          "message_count": 1
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "boundary": "recorded_user_message",
+      "message_count": 13,
+      "chunks": [
+        {
+          "path": "7f8d8b435005bcc758b5-part-0002.json",
+          "message_count": 13
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "boundary": "recorded_user_message",
+      "message_count": 18,
+      "chunks": [
+        {
+          "path": "7f8d8b435005bcc758b5-part-0002.json",
+          "message_count": 18
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "7f8d8b435005bcc758b5-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "7f8d8b435005bcc758b5-part-0002.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "boundary": "recorded_user_message",
+      "message_count": 12,
+      "chunks": [
+        {
+          "path": "7f8d8b435005bcc758b5-part-0002.json",
+          "message_count": 12
+        }
+      ]
+    },
+    {
+      "number": 14,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "7f8d8b435005bcc758b5-part-0002.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 15,
+      "boundary": "recorded_user_message",
+      "message_count": 24,
+      "chunks": [
+        {
+          "path": "7f8d8b435005bcc758b5-part-0002.json",
+          "message_count": 24
+        }
+      ]
+    },
+    {
+      "number": 16,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "7f8d8b435005bcc758b5-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 17,
+      "boundary": "recorded_user_message",
+      "message_count": 12,
+      "chunks": [
+        {
+          "path": "7f8d8b435005bcc758b5-part-0002.json",
+          "message_count": 12
+        }
+      ]
+    },
+    {
+      "number": 18,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "7f8d8b435005bcc758b5-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 19,
+      "boundary": "recorded_user_message",
+      "message_count": 29,
+      "chunks": [
+        {
+          "path": "7f8d8b435005bcc758b5-part-0002.json",
+          "message_count": 29
+        }
+      ]
+    },
+    {
+      "number": 20,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "7f8d8b435005bcc758b5-part-0002.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 21,
+      "boundary": "recorded_user_message",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "7f8d8b435005bcc758b5-part-0002.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-worker-done-worker-worker-ops-rebuttal-llama5-check-20260524t035124-status-don.md"
+}

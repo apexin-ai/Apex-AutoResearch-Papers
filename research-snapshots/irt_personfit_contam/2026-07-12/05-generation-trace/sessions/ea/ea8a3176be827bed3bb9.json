@@ -1,0 +1,256 @@
+{
+  "schema_version": "1.0",
+  "id": "ea8a3176be827bed3bb9",
+  "project": "irt_personfit_contam--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [Reviewer 回复]: [severity: info] Worker mistral_contam_25 分析审查 — PASS **训练确认**: 1596 steps (3 × 532), EXIT_CODE=0, adapte",
+  "task_key": "674f1957-7b20-4997-b33b-73c0959e98d5",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/674f1957-7b20-4997-b33b-73c0959e98d5.jsonl",
+    "occurrence": 1,
+    "bytes": 728007,
+    "sha256": "9ad494a26da44468169686079bd4ca9163fd2ab309a6f7585605d0530ebb7080"
+  },
+  "statistics": {
+    "messages": 198,
+    "user_turns": 19,
+    "tool_calls": 38,
+    "roles": {
+      "record": 61,
+      "user": 19,
+      "assistant": 42,
+      "tool_call": 38,
+      "tool_result": 38
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "ea8a3176be827bed3bb9-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 22,
+      "chunks": [
+        {
+          "path": "ea8a3176be827bed3bb9-part-0001.json",
+          "message_count": 22
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "ea8a3176be827bed3bb9-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 78,
+      "chunks": [
+        {
+          "path": "ea8a3176be827bed3bb9-part-0001.json",
+          "message_count": 78
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "ea8a3176be827bed3bb9-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "ea8a3176be827bed3bb9-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "message_count": 17,
+      "chunks": [
+        {
+          "path": "ea8a3176be827bed3bb9-part-0001.json",
+          "message_count": 17
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "ea8a3176be827bed3bb9-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "ea8a3176be827bed3bb9-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "ea8a3176be827bed3bb9-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "ea8a3176be827bed3bb9-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "boundary": "recorded_user_message",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "ea8a3176be827bed3bb9-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "ea8a3176be827bed3bb9-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "ea8a3176be827bed3bb9-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 14,
+      "boundary": "recorded_user_message",
+      "message_count": 20,
+      "chunks": [
+        {
+          "path": "ea8a3176be827bed3bb9-part-0001.json",
+          "message_count": 7
+        },
+        {
+          "path": "ea8a3176be827bed3bb9-part-0002.json",
+          "message_count": 13
+        }
+      ]
+    },
+    {
+      "number": 15,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "ea8a3176be827bed3bb9-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 16,
+      "boundary": "recorded_user_message",
+      "message_count": 13,
+      "chunks": [
+        {
+          "path": "ea8a3176be827bed3bb9-part-0002.json",
+          "message_count": 13
+        }
+      ]
+    },
+    {
+      "number": 17,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "ea8a3176be827bed3bb9-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 18,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "ea8a3176be827bed3bb9-part-0002.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 19,
+      "boundary": "recorded_user_message",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "ea8a3176be827bed3bb9-part-0002.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-reviewer-severity-info-worker-mistral-contam-25-pass-1596-steps-3-532-exit-cod.md"
+}

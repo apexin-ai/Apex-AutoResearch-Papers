@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "1bc6f484aacb86843233",
+  "project": "irt_personfit_contam--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> 项目: irt_personfit_contam — IRT person-fit (lz*) 检测 LLM benchmark 污染。exp_id: exp-ctrl-contam-qwen-5pct。服务",
+  "task_key": "24266afb-f7de-41d2-9c7a-a3134e3ef3d5",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/24266afb-f7de-41d2-9c7a-a3134e3ef3d5.jsonl",
+    "occurrence": 1,
+    "bytes": 786514,
+    "sha256": "aae6901e64d3e51d59dc400e56dfa689876b876788ad8dc18e87d58c4b0eb3a0"
+  },
+  "statistics": {
+    "messages": 276,
+    "user_turns": 1,
+    "tool_calls": 80,
+    "roles": {
+      "record": 58,
+      "user": 1,
+      "assistant": 57,
+      "tool_call": 80,
+      "tool_result": 80
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "1bc6f484aacb86843233-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 274,
+      "chunks": [
+        {
+          "path": "1bc6f484aacb86843233-part-0001.json",
+          "message_count": 150
+        },
+        {
+          "path": "1bc6f484aacb86843233-part-0002.json",
+          "message_count": 124
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-irt-personfit-contam-irt-person-fit-lz-llm-benchmark-exp-id-exp.md"
+}

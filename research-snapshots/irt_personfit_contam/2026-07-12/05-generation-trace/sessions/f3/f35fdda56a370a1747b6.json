@@ -1,0 +1,113 @@
+{
+  "schema_version": "1.0",
+  "id": "f35fdda56a370a1747b6",
+  "project": "irt_personfit_contam--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> 项目: irt_personfit_contam — IRT person-fit (lz*) 检测 LLM benchmark 污染。exp_id: exp-ctrl-contam-llama-25pct。",
+  "task_key": "c23da94e-5447-4054-8988-510bd101df20",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/c23da94e-5447-4054-8988-510bd101df20.jsonl",
+    "occurrence": 1,
+    "bytes": 11315706,
+    "sha256": "233ff8ab3433e3b2f85b9f70cd6f12bfdf35cf12550e2d99b1ab9ec1231decdc"
+  },
+  "statistics": {
+    "messages": 1671,
+    "user_turns": 3,
+    "tool_calls": 655,
+    "roles": {
+      "record": 253,
+      "user": 3,
+      "assistant": 104,
+      "tool_call": 655,
+      "tool_result": 655,
+      "system": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "f35fdda56a370a1747b6-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 1011,
+      "chunks": [
+        {
+          "path": "f35fdda56a370a1747b6-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "f35fdda56a370a1747b6-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "f35fdda56a370a1747b6-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "f35fdda56a370a1747b6-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "f35fdda56a370a1747b6-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "f35fdda56a370a1747b6-part-0006.json",
+          "message_count": 113
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 657,
+      "chunks": [
+        {
+          "path": "f35fdda56a370a1747b6-part-0006.json",
+          "message_count": 67
+        },
+        {
+          "path": "f35fdda56a370a1747b6-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "f35fdda56a370a1747b6-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "f35fdda56a370a1747b6-part-0009.json",
+          "message_count": 180
+        },
+        {
+          "path": "f35fdda56a370a1747b6-part-0010.json",
+          "message_count": 50
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "f35fdda56a370a1747b6-part-0010.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-irt-personfit-contam-irt-person-fit-lz-llm-benchmark-exp-id-exp-copy-2.md"
+}

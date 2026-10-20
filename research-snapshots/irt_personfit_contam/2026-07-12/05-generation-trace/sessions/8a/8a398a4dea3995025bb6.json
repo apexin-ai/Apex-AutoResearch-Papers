@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "8a398a4dea3995025bb6",
+  "project": "irt_personfit_contam--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: 执行项目轨迹扫描，将报告写入 /home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/scan_reports/layer2_2026",
+  "task_key": "f5c096ca-3fd2-4f1d-bd69-413288bd7fb8",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/f5c096ca-3fd2-4f1d-bd69-413288bd7fb8.jsonl",
+    "occurrence": 1,
+    "bytes": 1014600,
+    "sha256": "70fe8fdbfb065ed92013c10670675db73971690c9526647736da7e0f2ec29c7a"
+  },
+  "statistics": {
+    "messages": 167,
+    "user_turns": 1,
+    "tool_calls": 65,
+    "roles": {
+      "record": 30,
+      "user": 1,
+      "assistant": 6,
+      "tool_call": 65,
+      "tool_result": 65
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "8a398a4dea3995025bb6-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 165,
+      "chunks": [
+        {
+          "path": "8a398a4dea3995025bb6-part-0001.json",
+          "message_count": 104
+        },
+        {
+          "path": "8a398a4dea3995025bb6-part-0002.json",
+          "message_count": 61
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-home-ubuntu-agent-ml-research-be-idea-gen-0519-3-projects-irt-personfit-contam.md"
+}

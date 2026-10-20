@@ -1,0 +1,92 @@
+{
+  "schema_version": "1.0",
+  "id": "8ceac2e41db43be9c9be",
+  "project": "irt_personfit_contam--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> Mistral contam_5 训练已完成。eval_lz.py 之前已修复为 SEEN_ITEMS_MAP 字典查找。 Mistral clean baseline: free-θ mean=4.024,",
+  "task_key": "2ebbcebb-7155-4b81-aa92-2661a0163d6c",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/2ebbcebb-7155-4b81-aa92-2661a0163d6c.jsonl",
+    "occurrence": 1,
+    "bytes": 1030204,
+    "sha256": "14d6528294e5e605703f9149ca252a384b9540e67ec5ec6d5a81fc340e3de4dd"
+  },
+  "statistics": {
+    "messages": 788,
+    "user_turns": 3,
+    "tool_calls": 307,
+    "roles": {
+      "record": 114,
+      "user": 3,
+      "assistant": 57,
+      "tool_call": 307,
+      "tool_result": 307
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "8ceac2e41db43be9c9be-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 779,
+      "chunks": [
+        {
+          "path": "8ceac2e41db43be9c9be-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "8ceac2e41db43be9c9be-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "8ceac2e41db43be9c9be-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "8ceac2e41db43be9c9be-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "8ceac2e41db43be9c9be-part-0005.json",
+          "message_count": 61
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "8ceac2e41db43be9c9be-part-0005.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "8ceac2e41db43be9c9be-part-0005.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-mistral-contam-5-eval-lz-py-seen-items-map-mistral-clean-baselin.md"
+}

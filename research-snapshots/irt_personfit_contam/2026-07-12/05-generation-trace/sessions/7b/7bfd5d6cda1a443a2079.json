@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "id": "7bfd5d6cda1a443a2079",
+  "project": "irt_personfit_contam--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Execute the following bash commands to sync an anonymous GitHub repo. DO NOT use any MCP tools, DO NOT spawn any workers",
+  "task_key": "agent-a1ad5c2fb9554b3a4",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/agent-a1ad5c2fb9554b3a4.jsonl",
+    "occurrence": 1,
+    "bytes": 429825,
+    "sha256": "6b6273d10b3a31b1fb2c0c3fb0d61670e9ef1f8a3932ea8c0cab10311ed9ea4f"
+  },
+  "statistics": {
+    "messages": 319,
+    "user_turns": 1,
+    "tool_calls": 129,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 59,
+      "tool_call": 129,
+      "tool_result": 129
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 319,
+      "chunks": [
+        {
+          "path": "7bfd5d6cda1a443a2079-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "7bfd5d6cda1a443a2079-part-0002.json",
+          "message_count": 139
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-execute-the-following-bash-commands-to-sync-an-anonymous-github-repo-do-not-us.md"
+}

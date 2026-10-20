@@ -1,0 +1,776 @@
+# Research conversation: 你是一位经验丰富的 ML 研究者。基于以下研究信息，为 Dream 模拟定义三档场景。 你需要同时定义 best / median / worst 三档： 1. 每档的核心假设（哪些假设成立/不成立） 2. 每档的关键实验指标预期范围（确保
+
+**What Can IRT Person-Fit Statistics Reveal About SFT-Stage Benchmark Contamination? (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 11
+- **Recorded user turns:** 1
+- **Tool calls:** 0
+- **Original source:** `logs/chats/exported-trajectories/account-3/68299574-1bd8-494a-96a7-221fdfee3206.jsonl`
+- **Structured JSON:** [`6fd51c69c37c463ceab3.json`](../../sessions/6f/6fd51c69c37c463ceab3.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-20T09:26:22.368Z_
+
+````json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-20T09:26:22.368Z",
+  "sessionId": "68299574-1bd8-494a-96a7-221fdfee3206",
+  "content": "你是一位经验丰富的 ML 研究者。基于以下研究信息，为 Dream 模拟定义三档场景。\n\n你需要同时定义 best / median / worst 三档：\n1. 每档的核心假设（哪些假设成立/不成立）\n2. 每档的关键实验指标预期范围（确保 best ≥ median ≥ worst 一致性）\n3. 每档的论文叙事方向——\n   - best: 原始 framing 完全成立，claims 无需调整\n   - median: 部分假设未完全验证，需要调整 claims 强度或补充实验\n   - worst: 核心假设不成立，需要找到新的 angle 来 reframe（但仍冲同一 venue，不降级目标）\n\n三档的具体含义不预设——根据这个研究的 paper_framing、已有数据和方法特性\n自行判断。但必须确保三档之间的数字和叙事逻辑一致。\n\n# Project context\nproject: irt_personfit_contam\nfocus: 重点评估：(1) 双侧检测框架是否足够新颖作为独立贡献 (2) 仅 12 模型 + 5 benchmarks 是否 scope 太窄 (3) Gemini-1.5 case study 是否足够有说服力（无 ground truth）(4) 控制实验设计是否能回应 \"no ground truth\" 的审稿意见\n\n## paper_framing.md\n\n# Paper Framing — irt_personfit_contam\n\n## Target Venue\n- Primary: EMNLP 2026 Main (用户确认；ARR submission DDL 5/25 — 需确认可行性)\n- Fallback: AAAI 2027 (abstract 7/21, full paper 7/28, ~10 weeks)\n- Backup: ICLR 2027 (~Sep 2026, ~17 weeks)\n\n## Core Claims (3 条)\n\n**Claim 1 (Minimal-Information Detection + Calibration Gap)**:\nIRT person-fit statistics provide a principled contamination detection framework at the minimal-information operating point — requiring only binary response patterns. Simulation establishes high theoretical detection power (97.9% on MMLU-scale benchmarks). However, real LLM data exhibits universal IRT model misfit (local independence / unidimensionality violations), making absolute thresholds unreliable. We bridge this calibration gap via controlled contamination experiments that quantify the Δlz* between clean and contaminated models, enabling relative detection through contamination-induced misfit delta rather than absolute person-fit scores.\n\n**Claim 2 (Detection Characterization)**:\nDetection power is a predictable function of benchmark size (n_items) and contamination level, with two distinct signal regimes: partial contamination produces aberrant patterns (lz* << 0), full contamination produces over-consistent patterns (lz* >> 0). For sufficiently large benchmarks (≥10K items), power exceeds 90% at 15% contamination.\n\n**Claim 3 (Empirical Prevalence)**:\nApplying IRT-FIT to publicly available LLM benchmark data reveals contamination patterns quantifiable for the first time via IRT — including Gemini-1.5's 100% MMLU accuracy (lz*=+34.75, θ=0.78) as systematic contamination evidence with model-level cross-benchmark anomaly profiles (Gemini-1.5 flagged on 4/5 benchmarks). Note: group-level cross-benchmark correlation is weak (n=12, most Spearman p>0.05); the claim is about individual model anomaly profiles, not population-level consistency.\n\n## Story Spine\n\n**Problem**: Benchmark contamination undermines LLM evaluation reliability. As benchmarks proliferate and training corpora grow, contamination risk increases, but all existing detection methods require privileged access — training data (n-gram overlap), token probabilities (Min-K%, MIA), model weights (internal probing), or specially crafted prompts (Time Travel). A contaminated LLM is functionally analogous to an examinee with item preknowledge, yet no work has connected the mature psychometric literature on cheating detection to LLM benchmark integrity.\n\n**Existing approaches & gaps**: Detection methods circa 2026 span five families: time-based partition, MIA/Min-K%++ (ICLR 2024), Time Travel probing (ICLR 2024 Spotlight), ConStat performance-based testing (NeurIPS 2024), and CoDeC in-context learning effects (ICLR 2026). Wang et al. (2025) show all MIA-based methods fail under post-RL contamination. Critically, ALL require more than binary response patterns — no method operates at the minimal-information level.\n\n**Our framing**: We establish the minimal-information operating point on the contamination detection frontier. By repurposing IRT person-fit statistics — developed over decades for detecting exam cheating — we ask: \"What can be detected from binary response patterns alone?\" We show: (1) in simulation, person-fit statistics achieve high detection power (97.9% on MMLU-scale benchmarks); (2) in real LLM data, universal IRT model misfit creates a calibration gap that prevents absolute threshold detection; (3) controlled contamination experiments bridge this gap by quantifying the misfit delta (Δlz*) between clean and contaminated models. The calibration gap itself is a contribution — it reveals that LLM response patterns are fundamentally different from classical test-taker patterns, violating local independence assumptions.\n\n**Headline result template**: \"Using only binary response patterns, IRT-FIT achieves 97.9% simulated detection power on MMLU (14K items). Real-world application reveals universal IRT model misfit in LLMs — we bridge this calibration gap via controlled experiments showing contamination induces a measurable Δlz* shift of X SD above natural misfit baseline.\"\n\n## Venue Fit Risks\n\n- **EMNLP**: NLP evaluation methodology fits well. Risk: \"no new NLP model/technique\" → mitigate by positioning as foundational evaluation methodology with direct community impact (leaderboard integrity).\n- **AAAI**: PSN-IRT was AAAI 2026 Oral — strong psychometrics+AI audience. Risk: less NLP-specific reviewer pool.\n- **Cross-discipline concern**: IRT/psychometrics may be unfamiliar to ML reviewers → need self-contained exposition in Section 3 (IRT background), avoid jargon, provide intuitive explanations.\n\n## Anticipated Reviewer Concerns & Planned Responses\n\n| # | Concern | Response Strategy | Supporting Experiment |\n|---|---------|------------------|----------------------|\n| R1 | \"Just applying existing IRT to LLMs\" | Frame as establishing new operating point, not cross-domain transfer. Person-fit for contamination is unexplored. Downgrade \"cross-domain\" from contribution to background. | — |\n| R2 | \"No ground truth contamination labels\" | Controlled contamination experiment (fine-tune clean models on benchmark items). Phase B anomalies are converging evidence, not proof. | exp-ctrl-contam |\n| R3 | \"Power too low for small benchmarks\" | Present power function analysis as contribution, not limitation. Derive theoretical relationship. | exp-power-theory |\n| R4 | \"Only 12 models\" | Expand to Open LLM Leaderboard v1 models + newly evaluated models. | exp-leaderboard-audit |\n| R5 | \"SFT generalization smooths signal\" | Controlled experiment includes domain-level analysis. Discuss hard-item contamination resistance. | exp-ctrl-contam |\n| R6 | \"Absolute lz* thresholds don't work on real data\" | Honest finding: universal model misfit makes absolute thresholds unreliable. Controlled calibration (Δlz*) solves this. The calibration gap itself is a contribution. | exp-ctrl-contam |\n| R7 | \"Post-RL contamination?\" | Hypothesis test: GRPO after SFT contamination on Qwen 3.5-9B. | exp-post-rl |\n| R8 | \"4PL vs 3PL — does d parameter matter?\" | Ablation comparing 4PL vs 3PL(d=1) detection sensitivity. | exp-4pl-ablation |\n\n## Key Narrative Elements (from External Review)\n\n1. **Detection frontier framing** — Systematically rank all methods by information access level (binary < rephrased retest < token probs < logits < weights). IRT-FIT defines the bottom of this frontier.\n2. **Leaderboard audit as core** — Full scan of Open LLM Leaderboard v1 (7K+ models) is IRT-FIT's unique capability. ConStat needs re-test, gray-box needs live model access. This is the biggest differentiator.\n3. **Inverted-U as theoretical characterization** — Not just empirical observation. Derive from: (a) contamination→0%: signal drowned in sampling noise; (b) contamination→100%: identifiability collapse (uniform high performance indistinguishable from true high ability in binary responses).\n4. **Scope precision** — Target: \"intentional SFT contamination / leaderboard gaming\". Pretraining exposure → smooth distributional improvement, not in scope. Honest scoping > vague claims.\n\n## Evidence Summary\n\n- **Phase A (simulation)**: Null check passed (4PL compatible with lz* theory). MMLU power@15%=97.9%. Power ∝ n_items confirmed. Simulation results stand — they establish theoretical detection capacity within the 4PL model.\n- **Phase B (real data)**: Gemini-1.5 MMLU acc=1.000, θ=0.78, lz*=+34.75. Cross-benchmark anomaly profiles identified.\n- **Calibration gap (D007)**: Absolute lz* thresholds flag 95% of (model, benchmark) cells — universal IRT model misfit, not contamination. Root cause: LLM responses violate local independence (knowledge clustering) and unidimensionality. Simulation-to-real-data gap is itself a finding.\n- **Path forward**: Controlled experiments (exp-ctrl-contam) measure Δlz* between clean and contaminated models. Relative delta approach replaces absolute thresholds.\n\n\n## experiment_plan (with registry status)\n\n- id: exp-two-sided\n  claim: 2\n  description: 实现双侧检测框架：|lz*| > threshold 或分别设正/负阈值。用 Phase B 数据验证（Gemini-1.5 case\n    study）。包括 bootstrap confidence interval 和 FDR 控制。\n  priority: P0\n  gpu_budget_hours: 0\n  deps: []\n  status: planned\n  notes: CPU only. 基于已有 Phase B personfit_matrix.csv 重新分析。\n- id: exp-extended-sim\n  claim: 2\n  description: 扩展 Phase A 模拟：添加 60%/75%/90% contamination levels，修复 100% NaN 处理（让\n    MLE boundary θ=4.0 正常计算 lz*），精确刻画 inverted-U 拐点。同时计算 two-sided power curves（正向\n    lz*>1.96 和负向 lz*<-1.96 分别的 detection rate），量化 Claim 2 的 dual-regime signal structure。\n  priority: P0\n  gpu_budget_hours: 0\n  deps:\n  - exp-two-sided\n  status: planned\n  notes: CPU only. 依赖 exp-two-sided 的双侧框架定义。\n- id: exp-ctrl-contam-pilot\n  claim: 1,2,3\n  description: 快速验证：Qwen3.5-9B × 3 levels (0%/15%/50%) × MMLU only。测量 Δlz*(clean→contaminated)\n    是否显著。这是论文 go/no-go 信号——如果 Δlz* 不显著则需 pivot。\n  priority: P0-CRITICAL\n  gpu_budget_hours: 10\n  deps: []\n  status: planned\n  notes: GPU 恢复后第一优先。1× RTX 5090 (~8GB for Qwen3.5-9B QLoRA). 3 runs × ~3 hrs = ~10\n    GPU-hrs. MMLU only 先跑因为 n_items 最大(14K), signal 最强。\n- id: exp-ctrl-contam\n  claim: 1,2,3\n  description: 完整控制实验：在 Qwen3.5-9B 和 Gemma-4-31B 上，用 QLoRA SFT 注入 0%/5%/10%/15%/25%/50%\n    benchmark items，测量 Δlz* 全谱。建立 ground-truth contamination → Δlz* 映射。\n  priority: P0\n  gpu_budget_hours: 80\n  deps:\n  - exp-ctrl-contam-pilot\n  status: planned\n  notes: 'Qwen3.5-9B: 1× RTX 5090 (~8GB). Gemma-4-31B: 1× RTX 5090 (~20GB). 2 模型 ×\n    6 levels × ~3-7 hrs = ~60-80 GPU-hrs.'\n- id: exp-power-theory\n  claim: 2\n  description: 推导 power 与 n_items 的解析关系（基于 Snijders 2001 lz* 方差公式）。验证理论曲线与 Phase A\n    模拟结果的拟合度。将 inverted-U 从经验观察升级为理论命题。\n  priority: P0\n  gpu_budget_hours: 0\n  deps:\n  - exp-extended-sim\n  status: planned\n  notes: 纯理论推导 + 数值验证。CPU only.\n- id: exp-leaderboard-data-recon\n  claim: 3\n  description: Open LLM Leaderboard v1 数据可用性调研：确认 HuggingFace open-llm-leaderboard-old/results\n    是否包含 per-item binary response logs（不仅是 aggregate scores）。如果可用，评估数据量（多少模型有 per-item\n    data）、格式、覆盖的 benchmarks。如果不可用，估算自己跑推理的 GPU 预算增量。\n  priority: P0\n  gpu_budget_hours: 0\n  deps: []\n  status: planned\n  notes: 纯调研，CPU only。结果直接决定 exp-leaderboard-audit 的可行性和 GPU 预算。\n- id: exp-leaderboard-audit\n  claim: 3\n  description: Open LLM Leaderboard v1 大规模扫描：对所有可用模型计算 person-fit。绘制 per-benchmark\n    污染率随时间趋势。\n  priority: P1\n  gpu_budget_hours: 20\n  deps:\n  - exp-two-sided\n  - exp-leaderboard-data-recon\n  status: planned\n  notes: GPU 预算取决于 data-recon 结果。如果 per-item logs 可用则 ~20 GPU-hrs（纯计算），不可用则 200+ GPU-hrs（需跑推理）。\n- id: exp-4pl-ablation\n  claim: 1\n  description: 4PL vs 3PL(d=1) ablation：比较两种参数化下的检测灵敏度差异。量化 feasibility parameter\n    d 对 false alarm 和 detection power 的影响。\n  priority: P1\n  gpu_budget_hours: 0\n  deps:\n  - exp-extended-sim\n  status: planned\n  notes: CPU only. 用已有 PSN-IRT 参数，固定 d=1 重新计算。\n- id: exp-baseline-comparison\n  claim: 1\n  description: 与现有方法对比（ConStat, Min-K%++）：在控制实验的 ground-truth contaminated models\n    上，比较 IRT-FIT vs baselines 的 AUROC/Type-I error。量化 minimal-information 的代价（power\n    损失）。\n  priority: P0-end\n  gpu_budget_hours: 30\n  deps:\n  - exp-ctrl-contam\n  status: planned\n  notes: Claim 1 的可信度依赖此对比。exp-ctrl-contam 完成后立即执行。ConStat 需要 re-test，Min-K%++ 需要\n    token probabilities。\n- id: exp-multiscale-lzm\n  claim: 1,3\n  description: 实现 multiscale lzm 统计量（Hong, Lin & Cheng, 2021）——跨 benchmark 聚合的标准化\n    lz* 总分，提供整体污染指标。在 PSN-IRT 12 模型 + 控制实验模型上验证。\n  priority: P1\n  gpu_budget_hours: 0\n  deps:\n  - exp-two-sided\n  status: planned\n  notes: CPU only. 需要实现 lzm 公式。\n- id: exp-post-rl\n  claim: 1\n  description: Post-RL 假设检验：在 Qwen3.5-9B 上先 SFT 污染再 GRPO 训练，测试 person-fit 是否在 RL 后仍保持检测力。回应\n    Wang et al. (2025) 的 MIA 失效问题。\n  priority: P2\n  gpu_budget_hours: 40\n  deps:\n  - exp-ctrl-contam\n  status: planned\n  notes: GRPO 训练需要 reward model 或 rule-based reward。可能需要 2× RTX 5090。\n- id: exp-extra-benchmarks\n  claim: 2,3\n  description: 扩展 benchmark：BBH (6,511 items) 和 MATH (5,000 items) 填充 1K-10K items\n    的 power gap。需要获取 4PL 参数（PSN-IRT 可能已有）。\n  priority: P2\n  gpu_budget_hours: 10\n  deps:\n  - exp-extended-sim\n  status: planned\n  notes: 取决于 PSN-IRT 是否包含这些 benchmark 的参数。如果没有，需要自己校准 4PL（GPU + 大量推理）。\n- id: exp-domain-analysis\n  claim: 3\n  description: MMLU domain-level 分析：按 subject category 分别计算 person-fit，识别 Gemini-1.5\n    的 MMLU 污染是全面的还是集中在特定 domain。\n  priority: P2\n  gpu_budget_hours: 0\n  deps:\n  - exp-two-sided\n  status: planned\n  notes: CPU only. 需要 MMLU item-to-domain 映射。\n\n\n## registry (completed experiments)\n\n- exp_id: sim_001\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    null_check:\n      all_pass: true\n      gsm8k_ks_p: 0.098\n      hellaswag_ks_p: 0.224\n      mmlu_ks_p: 0.594\n    simulation_power_at_15pct:\n      mmlu: 0.979\n      hellaswag: 0.733\n      gsm8k: 0.578\n      arc_c: 0.129\n      humaneval: 0.243\n    global_pass: false\n    inverted_u_all_benchmarks: true\n    pass_count_large_80pct: 1/3 (mmlu only)\n- exp_id: phase_b_personfit\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    lz_star_sd_all_gt_0.5: true\n    mmlu_lz_star_mean: 24.19\n    mmlu_lz_star_sd: 16.47\n    hellaswag_lz_star_mean: 20.09\n    hellaswag_lz_star_sd: 17.59\n    gsm8k_lz_star_mean: 8.22\n    gsm8k_lz_star_sd: 8.97\n    gemini15_mmlu_lz_star: 34.75\n    gemini15_mmlu_accuracy: 1\n    gemini15_mmlu_theta: 0.78\n    gemini15_flagged_benchmarks: 3/5 (HellaSwag, GSM8K, HumanEval negative lz*)\n    cross_benchmark_spearman_significant: 1/10 (GSM8K vs HumanEval rho=0.62 p=0.031)\n    n_models: 12\n    n_benchmarks: 5\n- exp_id: exp-two-sided\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    flagged_rate: 57/60 (95.0%)\n    n_boot: 1000\n    fdr_alpha: 0.05\n    flagged_positive: 51\n    flagged_negative: 6\n    unflagged: 3\n    unflagged_cells: Yi-Lightning/arc_c (p=0.098), 360GPT2-Pro/humaneval (p=0.134),\n      Yi-Lightning/humaneval (p=0.181)\n    gemini15_mmlu_lz_star_v2: 31.815\n    gemini15_mmlu_theta_bench: 4\n    gemini15_mmlu_p_emp: 0\n    key_finding: Benchmark-specific θ + bootstrap + FDR does NOT reduce flagging.\n      LLMs universally violate 4PL assumptions.\n\n# 输出格式（YAML，仅输出一个 ```yaml 块，不要任何额外说明文字）\n\n```yaml\ntiers:\n  best:\n    meaning: \"...\"\n    key_assumptions: [...]\n    number_ranges: {metric_a: [low, high], metric_b: [...]}\n    narrative_direction: \"...\"\n  median:\n    meaning: \"...\"\n    ...\n  worst:\n    meaning: \"...\"\n    ...\n```\n"
+}
+````
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-20T09:26:22.373Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-20T09:26:22.373Z",
+  "sessionId": "68299574-1bd8-494a-96a7-221fdfee3206"
+}
+```
+
+---
+
+## Round 1
+
+9 recorded events
+
+### User
+
+_source line 3 · 2026-05-20T09:26:22.409Z_
+
+你是一位经验丰富的 ML 研究者。基于以下研究信息，为 Dream 模拟定义三档场景。
+
+你需要同时定义 best / median / worst 三档：
+1. 每档的核心假设（哪些假设成立/不成立）
+2. 每档的关键实验指标预期范围（确保 best ≥ median ≥ worst 一致性）
+3. 每档的论文叙事方向——
+   - best: 原始 framing 完全成立，claims 无需调整
+   - median: 部分假设未完全验证，需要调整 claims 强度或补充实验
+   - worst: 核心假设不成立，需要找到新的 angle 来 reframe（但仍冲同一 venue，不降级目标）
+
+三档的具体含义不预设——根据这个研究的 paper_framing、已有数据和方法特性
+自行判断。但必须确保三档之间的数字和叙事逻辑一致。
+
+# Project context
+project: irt_personfit_contam
+focus: 重点评估：(1) 双侧检测框架是否足够新颖作为独立贡献 (2) 仅 12 模型 + 5 benchmarks 是否 scope 太窄 (3) Gemini-1.5 case study 是否足够有说服力（无 ground truth）(4) 控制实验设计是否能回应 "no ground truth" 的审稿意见
+
+## paper_framing.md
+
+# Paper Framing — irt_personfit_contam
+
+## Target Venue
+- Primary: EMNLP 2026 Main (用户确认；ARR submission DDL 5/25 — 需确认可行性)
+- Fallback: AAAI 2027 (abstract 7/21, full paper 7/28, ~10 weeks)
+- Backup: ICLR 2027 (~Sep 2026, ~17 weeks)
+
+## Core Claims (3 条)
+
+**Claim 1 (Minimal-Information Detection + Calibration Gap)**:
+IRT person-fit statistics provide a principled contamination detection framework at the minimal-information operating point — requiring only binary response patterns. Simulation establishes high theoretical detection power (97.9% on MMLU-scale benchmarks). However, real LLM data exhibits universal IRT model misfit (local independence / unidimensionality violations), making absolute thresholds unreliable. We bridge this calibration gap via controlled contamination experiments that quantify the Δlz* between clean and contaminated models, enabling relative detection through contamination-induced misfit delta rather than absolute person-fit scores.
+
+**Claim 2 (Detection Characterization)**:
+Detection power is a predictable function of benchmark size (n_items) and contamination level, with two distinct signal regimes: partial contamination produces aberrant patterns (lz* << 0), full contamination produces over-consistent patterns (lz* >> 0). For sufficiently large benchmarks (≥10K items), power exceeds 90% at 15% contamination.
+
+**Claim 3 (Empirical Prevalence)**:
+Applying IRT-FIT to publicly available LLM benchmark data reveals contamination patterns quantifiable for the first time via IRT — including Gemini-1.5's 100% MMLU accuracy (lz*=+34.75, θ=0.78) as systematic contamination evidence with model-level cross-benchmark anomaly profiles (Gemini-1.5 flagged on 4/5 benchmarks). Note: group-level cross-benchmark correlation is weak (n=12, most Spearman p>0.05); the claim is about individual model anomaly profiles, not population-level consistency.
+
+## Story Spine
+
+**Problem**: Benchmark contamination undermines LLM evaluation reliability. As benchmarks proliferate and training corpora grow, contamination risk increases, but all existing detection methods require privileged access — training data (n-gram overlap), token probabilities (Min-K%, MIA), model weights (internal probing), or specially crafted prompts (Time Travel). A contaminated LLM is functionally analogous to an examinee with item preknowledge, yet no work has connected the mature psychometric literature on cheating detection to LLM benchmark integrity.
+
+**Existing approaches & gaps**: Detection methods circa 2026 span five families: time-based partition, MIA/Min-K%++ (ICLR 2024), Time Travel probing (ICLR 2024 Spotlight), ConStat performance-based testing (NeurIPS 2024), and CoDeC in-context learning effects (ICLR 2026). Wang et al. (2025) show all MIA-based methods fail under post-RL contamination. Critically, ALL require more than binary response patterns — no method operates at the minimal-information level.
+
+**Our framing**: We establish the minimal-information operating point on the contamination detection frontier. By repurposing IRT person-fit statistics — developed over decades for detecting exam cheating — we ask: "What can be detected from binary response patterns alone?" We show: (1) in simulation, person-fit statistics achieve high detection power (97.9% on MMLU-scale benchmarks); (2) in real LLM data, universal IRT model misfit creates a calibration gap that prevents absolute threshold detection; (3) controlled contamination experiments bridge this gap by quantifying the misfit delta (Δlz*) between clean and contaminated models. The calibration gap itself is a contribution — it reveals that LLM response patterns are fundamentally different from classical test-taker patterns, violating local independence assumptions.
+
+**Headline result template**: "Using only binary response patterns, IRT-FIT achieves 97.9% simulated detection power on MMLU (14K items). Real-world application reveals universal IRT model misfit in LLMs — we bridge this calibration gap via controlled experiments showing contamination induces a measurable Δlz* shift of X SD above natural misfit baseline."
+
+## Venue Fit Risks
+
+- **EMNLP**: NLP evaluation methodology fits well. Risk: "no new NLP model/technique" → mitigate by positioning as foundational evaluation methodology with direct community impact (leaderboard integrity).
+- **AAAI**: PSN-IRT was AAAI 2026 Oral — strong psychometrics+AI audience. Risk: less NLP-specific reviewer pool.
+- **Cross-discipline concern**: IRT/psychometrics may be unfamiliar to ML reviewers → need self-contained exposition in Section 3 (IRT background), avoid jargon, provide intuitive explanations.
+
+## Anticipated Reviewer Concerns & Planned Responses
+
+| # | Concern | Response Strategy | Supporting Experiment |
+|---|---------|------------------|----------------------|
+| R1 | "Just applying existing IRT to LLMs" | Frame as establishing new operating point, not cross-domain transfer. Person-fit for contamination is unexplored. Downgrade "cross-domain" from contribution to background. | — |
+| R2 | "No ground truth contamination labels" | Controlled contamination experiment (fine-tune clean models on benchmark items). Phase B anomalies are converging evidence, not proof. | exp-ctrl-contam |
+| R3 | "Power too low for small benchmarks" | Present power function analysis as contribution, not limitation. Derive theoretical relationship. | exp-power-theory |
+| R4 | "Only 12 models" | Expand to Open LLM Leaderboard v1 models + newly evaluated models. | exp-leaderboard-audit |
+| R5 | "SFT generalization smooths signal" | Controlled experiment includes domain-level analysis. Discuss hard-item contamination resistance. | exp-ctrl-contam |
+| R6 | "Absolute lz* thresholds don't work on real data" | Honest finding: universal model misfit makes absolute thresholds unreliable. Controlled calibration (Δlz*) solves this. The calibration gap itself is a contribution. | exp-ctrl-contam |
+| R7 | "Post-RL contamination?" | Hypothesis test: GRPO after SFT contamination on Qwen 3.5-9B. | exp-post-rl |
+| R8 | "4PL vs 3PL — does d parameter matter?" | Ablation comparing 4PL vs 3PL(d=1) detection sensitivity. | exp-4pl-ablation |
+
+## Key Narrative Elements (from External Review)
+
+1. **Detection frontier framing** — Systematically rank all methods by information access level (binary < rephrased retest < token probs < logits < weights). IRT-FIT defines the bottom of this frontier.
+2. **Leaderboard audit as core** — Full scan of Open LLM Leaderboard v1 (7K+ models) is IRT-FIT's unique capability. ConStat needs re-test, gray-box needs live model access. This is the biggest differentiator.
+3. **Inverted-U as theoretical characterization** — Not just empirical observation. Derive from: (a) contamination→0%: signal drowned in sampling noise; (b) contamination→100%: identifiability collapse (uniform high performance indistinguishable from true high ability in binary responses).
+4. **Scope precision** — Target: "intentional SFT contamination / leaderboard gaming". Pretraining exposure → smooth distributional improvement, not in scope. Honest scoping > vague claims.
+
+## Evidence Summary
+
+- **Phase A (simulation)**: Null check passed (4PL compatible with lz* theory). MMLU power@15%=97.9%. Power ∝ n_items confirmed. Simulation results stand — they establish theoretical detection capacity within the 4PL model.
+- **Phase B (real data)**: Gemini-1.5 MMLU acc=1.000, θ=0.78, lz*=+34.75. Cross-benchmark anomaly profiles identified.
+- **Calibration gap (D007)**: Absolute lz* thresholds flag 95% of (model, benchmark) cells — universal IRT model misfit, not contamination. Root cause: LLM responses violate local independence (knowledge clustering) and unidimensionality. Simulation-to-real-data gap is itself a finding.
+- **Path forward**: Controlled experiments (exp-ctrl-contam) measure Δlz* between clean and contaminated models. Relative delta approach replaces absolute thresholds.
+
+
+## experiment_plan (with registry status)
+
+- id: exp-two-sided
+  claim: 2
+  description: 实现双侧检测框架：|lz*| > threshold 或分别设正/负阈值。用 Phase B 数据验证（Gemini-1.5 case
+    study）。包括 bootstrap confidence interval 和 FDR 控制。
+  priority: P0
+  gpu_budget_hours: 0
+  deps: []
+  status: planned
+  notes: CPU only. 基于已有 Phase B personfit_matrix.csv 重新分析。
+- id: exp-extended-sim
+  claim: 2
+  description: 扩展 Phase A 模拟：添加 60%/75%/90% contamination levels，修复 100% NaN 处理（让
+    MLE boundary θ=4.0 正常计算 lz*），精确刻画 inverted-U 拐点。同时计算 two-sided power curves（正向
+    lz*>1.96 和负向 lz*<-1.96 分别的 detection rate），量化 Claim 2 的 dual-regime signal structure。
+  priority: P0
+  gpu_budget_hours: 0
+  deps:
+  - exp-two-sided
+  status: planned
+  notes: CPU only. 依赖 exp-two-sided 的双侧框架定义。
+- id: exp-ctrl-contam-pilot
+  claim: 1,2,3
+  description: 快速验证：Qwen3.5-9B × 3 levels (0%/15%/50%) × MMLU only。测量 Δlz*(clean→contaminated)
+    是否显著。这是论文 go/no-go 信号——如果 Δlz* 不显著则需 pivot。
+  priority: P0-CRITICAL
+  gpu_budget_hours: 10
+  deps: []
+  status: planned
+  notes: GPU 恢复后第一优先。1× RTX 5090 (~8GB for Qwen3.5-9B QLoRA). 3 runs × ~3 hrs = ~10
+    GPU-hrs. MMLU only 先跑因为 n_items 最大(14K), signal 最强。
+- id: exp-ctrl-contam
+  claim: 1,2,3
+  description: 完整控制实验：在 Qwen3.5-9B 和 Gemma-4-31B 上，用 QLoRA SFT 注入 0%/5%/10%/15%/25%/50%
+    benchmark items，测量 Δlz* 全谱。建立 ground-truth contamination → Δlz* 映射。
+  priority: P0
+  gpu_budget_hours: 80
+  deps:
+  - exp-ctrl-contam-pilot
+  status: planned
+  notes: 'Qwen3.5-9B: 1× RTX 5090 (~8GB). Gemma-4-31B: 1× RTX 5090 (~20GB). 2 模型 ×
+    6 levels × ~3-7 hrs = ~60-80 GPU-hrs.'
+- id: exp-power-theory
+  claim: 2
+  description: 推导 power 与 n_items 的解析关系（基于 Snijders 2001 lz* 方差公式）。验证理论曲线与 Phase A
+    模拟结果的拟合度。将 inverted-U 从经验观察升级为理论命题。
+  priority: P0
+  gpu_budget_hours: 0
+  deps:
+  - exp-extended-sim
+  status: planned
+  notes: 纯理论推导 + 数值验证。CPU only.
+- id: exp-leaderboard-data-recon
+  claim: 3
+  description: Open LLM Leaderboard v1 数据可用性调研：确认 HuggingFace open-llm-leaderboard-old/results
+    是否包含 per-item binary response logs（不仅是 aggregate scores）。如果可用，评估数据量（多少模型有 per-item
+    data）、格式、覆盖的 benchmarks。如果不可用，估算自己跑推理的 GPU 预算增量。
+  priority: P0
+  gpu_budget_hours: 0
+  deps: []
+  status: planned
+  notes: 纯调研，CPU only。结果直接决定 exp-leaderboard-audit 的可行性和 GPU 预算。
+- id: exp-leaderboard-audit
+  claim: 3
+  description: Open LLM Leaderboard v1 大规模扫描：对所有可用模型计算 person-fit。绘制 per-benchmark
+    污染率随时间趋势。
+  priority: P1
+  gpu_budget_hours: 20
+  deps:
+  - exp-two-sided
+  - exp-leaderboard-data-recon
+  status: planned
+  notes: GPU 预算取决于 data-recon 结果。如果 per-item logs 可用则 ~20 GPU-hrs（纯计算），不可用则 200+ GPU-hrs（需跑推理）。
+- id: exp-4pl-ablation
+  claim: 1
+  description: 4PL vs 3PL(d=1) ablation：比较两种参数化下的检测灵敏度差异。量化 feasibility parameter
+    d 对 false alarm 和 detection power 的影响。
+  priority: P1
+  gpu_budget_hours: 0
+  deps:
+  - exp-extended-sim
+  status: planned
+  notes: CPU only. 用已有 PSN-IRT 参数，固定 d=1 重新计算。
+- id: exp-baseline-comparison
+  claim: 1
+  description: 与现有方法对比（ConStat, Min-K%++）：在控制实验的 ground-truth contaminated models
+    上，比较 IRT-FIT vs baselines 的 AUROC/Type-I error。量化 minimal-information 的代价（power
+    损失）。
+  priority: P0-end
+  gpu_budget_hours: 30
+  deps:
+  - exp-ctrl-contam
+  status: planned
+  notes: Claim 1 的可信度依赖此对比。exp-ctrl-contam 完成后立即执行。ConStat 需要 re-test，Min-K%++ 需要
+    token probabilities。
+- id: exp-multiscale-lzm
+  claim: 1,3
+  description: 实现 multiscale lzm 统计量（Hong, Lin & Cheng, 2021）——跨 benchmark 聚合的标准化
+    lz* 总分，提供整体污染指标。在 PSN-IRT 12 模型 + 控制实验模型上验证。
+  priority: P1
+  gpu_budget_hours: 0
+  deps:
+  - exp-two-sided
+  status: planned
+  notes: CPU only. 需要实现 lzm 公式。
+- id: exp-post-rl
+  claim: 1
+  description: Post-RL 假设检验：在 Qwen3.5-9B 上先 SFT 污染再 GRPO 训练，测试 person-fit 是否在 RL 后仍保持检测力。回应
+    Wang et al. (2025) 的 MIA 失效问题。
+  priority: P2
+  gpu_budget_hours: 40
+  deps:
+  - exp-ctrl-contam
+  status: planned
+  notes: GRPO 训练需要 reward model 或 rule-based reward。可能需要 2× RTX 5090。
+- id: exp-extra-benchmarks
+  claim: 2,3
+  description: 扩展 benchmark：BBH (6,511 items) 和 MATH (5,000 items) 填充 1K-10K items
+    的 power gap。需要获取 4PL 参数（PSN-IRT 可能已有）。
+  priority: P2
+  gpu_budget_hours: 10
+  deps:
+  - exp-extended-sim
+  status: planned
+  notes: 取决于 PSN-IRT 是否包含这些 benchmark 的参数。如果没有，需要自己校准 4PL（GPU + 大量推理）。
+- id: exp-domain-analysis
+  claim: 3
+  description: MMLU domain-level 分析：按 subject category 分别计算 person-fit，识别 Gemini-1.5
+    的 MMLU 污染是全面的还是集中在特定 domain。
+  priority: P2
+  gpu_budget_hours: 0
+  deps:
+  - exp-two-sided
+  status: planned
+  notes: CPU only. 需要 MMLU item-to-domain 映射。
+
+
+## registry (completed experiments)
+
+- exp_id: sim_001
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    null_check:
+      all_pass: true
+      gsm8k_ks_p: 0.098
+      hellaswag_ks_p: 0.224
+      mmlu_ks_p: 0.594
+    simulation_power_at_15pct:
+      mmlu: 0.979
+      hellaswag: 0.733
+      gsm8k: 0.578
+      arc_c: 0.129
+      humaneval: 0.243
+    global_pass: false
+    inverted_u_all_benchmarks: true
+    pass_count_large_80pct: 1/3 (mmlu only)
+- exp_id: phase_b_personfit
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    lz_star_sd_all_gt_0.5: true
+    mmlu_lz_star_mean: 24.19
+    mmlu_lz_star_sd: 16.47
+    hellaswag_lz_star_mean: 20.09
+    hellaswag_lz_star_sd: 17.59
+    gsm8k_lz_star_mean: 8.22
+    gsm8k_lz_star_sd: 8.97
+    gemini15_mmlu_lz_star: 34.75
+    gemini15_mmlu_accuracy: 1
+    gemini15_mmlu_theta: 0.78
+    gemini15_flagged_benchmarks: 3/5 (HellaSwag, GSM8K, HumanEval negative lz*)
+    cross_benchmark_spearman_significant: 1/10 (GSM8K vs HumanEval rho=0.62 p=0.031)
+    n_models: 12
+    n_benchmarks: 5
+- exp_id: exp-two-sided
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    flagged_rate: 57/60 (95.0%)
+    n_boot: 1000
+    fdr_alpha: 0.05
+    flagged_positive: 51
+    flagged_negative: 6
+    unflagged: 3
+    unflagged_cells: Yi-Lightning/arc_c (p=0.098), 360GPT2-Pro/humaneval (p=0.134),
+      Yi-Lightning/humaneval (p=0.181)
+    gemini15_mmlu_lz_star_v2: 31.815
+    gemini15_mmlu_theta_bench: 4
+    gemini15_mmlu_p_emp: 0
+    key_finding: Benchmark-specific θ + bootstrap + FDR does NOT reduce flagging.
+      LLMs universally violate 4PL assumptions.
+
+# 输出格式（YAML，仅输出一个 ```yaml 块，不要任何额外说明文字）
+
+```yaml
+tiers:
+  best:
+    meaning: "..."
+    key_assumptions: [...]
+    number_ranges: {metric_a: [low, high], metric_b: [...]}
+    narrative_direction: "..."
+  median:
+    meaning: "..."
+    ...
+  worst:
+    meaning: "..."
+    ...
+```
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "719d4210-009d-4144-9646-66e20c39d62c",
+  "type": "user",
+  "uuid": "b6066e4a-f0e7-495b-aeec-5bbff9da21c9",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3",
+  "sessionId": "68299574-1bd8-494a-96a7-221fdfee3206",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-20T09:26:22.406Z_
+
+```json
+{
+  "parentUuid": "b6066e4a-f0e7-495b-aeec-5bbff9da21c9",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "369fd238-b2ac-4bb3-afdc-2ddfa82c7c41",
+  "timestamp": "2026-05-20T09:26:22.406Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3",
+  "sessionId": "68299574-1bd8-494a-96a7-221fdfee3206",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-20T09:26:22.406Z_
+
+```json
+{
+  "parentUuid": "369fd238-b2ac-4bb3-afdc-2ddfa82c7c41",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "3f0b7949-f1d6-4c55-b02e-3f3ef25425d5",
+  "timestamp": "2026-05-20T09:26:22.406Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3",
+  "sessionId": "68299574-1bd8-494a-96a7-221fdfee3206",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是一位经验丰富的 ML 研究者。基于以下研究信息，为 Dream 模拟定义三档场景。  你需要同时定义 best / median / worst 三档： 1. 每档的核心假设（哪些假设成立/不成立） 2. 每档的关键实验指标预期范围（确保 best ≥ median ≥ worst 一致性） 3. 每档的论文叙事方向——    - best: 原始 framing 完全成立，claims 无需…",
+  "leafUuid": "3f0b7949-f1d6-4c55-b02e-3f3ef25425d5",
+  "sessionId": "68299574-1bd8-494a-96a7-221fdfee3206"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Define three-tier scenarios for IRT contamination detection paper",
+  "sessionId": "68299574-1bd8-494a-96a7-221fdfee3206"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-20T09:27:03.269Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze this research project carefully to define three tiers of scenarios for a Dream simulation.
+
+The project is about using IRT (Item Response Theory) person-fit statistics to detect benchmark contamination in LLMs. Let me understand the key elements:
+
+1. **Core method**: Using lz* person-fit statistics from psychometrics to detect benchmark contamination, operating at the "minimal-information" point (only binary response patterns needed).
+
+2. **Current state**:
+   - Simulation (Phase A): Works well theoretically - 97.9% power on MMLU at 15% contamination
+   - Real data (Phase B): Universal IRT model misfit - 95% of cells flagged, making absolute thresholds useless
+   - The calibration gap is identified - need controlled experiments (Δlz*) to bridge it
+
+3. **Critical pending experiments**: The pilot experiment is the go/no-go test—does injecting known contamination actually produce measurable shifts in Δlz*? If that works, I can move forward with the full controlled experiment, then scale to leaderboard audits and baseline comparisons against ConStat and Min-K%++, while also deriving the theoretical power characteristics.
+
+The real uncertainties boil down to whether the signal is strong enough to detect across different contamination levels, whether IRT-FIT holds up against existing methods, whether the leaderboard audit scales, and whether post-RL contamination stays detectable. In the best case, Δlz* shows a clear dose-response relationship, baselines look competitive, and the theory holds. More realistically, the effect might be smaller or only emerge at higher contamination levels, work better on large benchmarks than small ones, and require some claim adjustments based on what the data actually shows.
+
+Now I'm defining the specific metrics I need to track: effect size between clean and contaminated models, detection accuracy across different contamination levels, how the approach compares to baselines, the scale of the leaderboard audit, and whether anomaly patterns correlate across benchmarks. Looking at the leaderboard audit criteria, I'm considering what happens when per-item data becomes scarce—at some point we'd need to run inference ourselves, which gets expensive fast. Then I'm sketching out three narrative arcs depending on how the results shake out. The best case tells a clean story about IRT person-fit as a practical detector that works in controlled settings and reveals real contamination patterns at scale. The median case is more cautious, acknowledging that absolute thresholds don't generalize across models but relative comparisons still work for heavily contaminated benchmarks, with the calibration analysis serving as a foundation for future work. The worst case would require rethinking the whole approach.
+
+Actually, if we're still aiming for EMNLP even with limited data, I could reframe this around why psychometric models fundamentally break down for LLMs—the violations of local independence and unidimensionality become the actual contribution. The calibration gap itself becomes the main finding, paired with theoretical power analysis showing what detection would require.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3f0b7949-f1d6-4c55-b02e-3f3ef25425d5",
+  "isSidechain": false,
+  "requestId": "req_011CbDagS1NN9p1NdBhv4Wxw",
+  "type": "assistant",
+  "uuid": "35bf927d-3c51-4e75-a466-8fe7427253f9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3",
+  "sessionId": "68299574-1bd8-494a-96a7-221fdfee3206",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012cotZhyujqjyA5CVTC2VYg",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11170,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 3870,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11170,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 3870,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11170,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11170
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-20T09:27:48.132Z_
+
+```yaml
+tiers:
+  best:
+    meaning: "Δlz* 控制实验完全验证——注入已知污染后 lz* 偏移大且单调，三条 Claims 原样成立"
+    key_assumptions:
+      - "SFT 注入污染后 Δlz* 效应量大（Cohen's d > 2.0），clean vs contaminated 明确可分"
+      - "Δlz* 与污染比例呈单调关系（dose-response），inverted-U 拐点可复现且与理论推导吻合"
+      - "跨模型泛化：Qwen3.5-9B 和 Gemma-4-31B 上趋势一致，非模型特异性"
+      - "Leaderboard per-item data 可用（≥500 模型），大规模审计可执行"
+      - "Baseline 对比：IRT-FIT AUROC 与 ConStat/Min-K%++ 差距 <10%（在 minimal-info 约束下接近 gray-box 表现）"
+    number_ranges:
+      delta_lz_star_cohen_d_at_15pct_mmlu: [2.0, 5.0]
+      controlled_auroc_at_15pct_mmlu: [0.90, 0.99]
+      controlled_auroc_at_5pct_mmlu: [0.70, 0.90]
+      power_delta_method_at_15pct_mmlu: [0.85, 0.97]
+      baseline_auroc_gap_vs_constat: [-0.05, 0.05]
+      leaderboard_models_with_peritem_data: [500, 7000]
+      leaderboard_flagged_rate_relative: [0.05, 0.25]
+      cross_benchmark_spearman_in_ctrl: [0.6, 0.9]
+      inverted_u_theoretical_fit_r2: [0.90, 0.99]
+    narrative_direction: >
+      原始 framing 完全成立。Claim 1: minimal-information detection 经控制实验验证，Δlz* 提供
+      可靠的相对检测信号，calibration gap 被 bridged。Claim 2: inverted-U 从经验升级为理论命题，
+      dose-response 曲线在两个模型上复现。Claim 3: leaderboard 大规模审计揭示生态系统级污染趋势，
+      Gemini-1.5 case study 由控制实验的 Δlz* 基线提供定量支撑。Headline: "IRT-FIT achieves
+      AUROC>0.9 at 15% contamination using only binary responses, and a leaderboard-wide
+      audit reveals X% of models exhibit contamination-consistent misfit."
+
+  median:
+    meaning: "Δlz* 可检测但效应量中等——高污染/大 benchmark 有效，低污染/小 benchmark 失败，需收窄 claims"
+    key_assumptions:
+      - "SFT 注入污染后 Δlz* 存在但效应量中等（Cohen's d 0.8–2.0），仅在 ≥15% 污染 + ≥5K items 条件下可靠分离"
+      - "5% 污染水平检测力不足（AUROC<0.70），小 benchmark（ARC-C, HumanEval）Δlz* 不显著"
+      - "SFT 泛化效应部分平滑信号：domain 内准确率提升 dilute aberrance pattern"
+      - "Leaderboard per-item data 部分可用（100–500 模型）或需补充推理"
+      - "Baseline 对比：IRT-FIT AUROC 低于 ConStat 10–20%，minimal-info 代价可量化但不可忽略"
+      - "跨模型不完全一致：两个模型 Δlz* 方向一致但幅度差异大"
+    number_ranges:
+      delta_lz_star_cohen_d_at_15pct_mmlu: [0.8, 2.0]
+      controlled_auroc_at_15pct_mmlu: [0.70, 0.90]
+      controlled_auroc_at_5pct_mmlu: [0.50, 0.70]
+      power_delta_method_at_15pct_mmlu: [0.55, 0.85]
+      baseline_auroc_gap_vs_constat: [-0.20, -0.10]
+      leaderboard_models_with_peritem_data: [100, 500]
+      leaderboard_flagged_rate_relative: [0.10, 0.40]
+      cross_benchmark_spearman_in_ctrl: [0.3, 0.6]
+      inverted_u_theoretical_fit_r2: [0.75, 0.90]
+    narrative_direction: >
+      Claims 需要 scope 收窄但核心 framing 保留。Claim 1 调整为："IRT-FIT 在 minimal-information
+      operating point 提供有条件的检测能力——大 benchmark（≥5K items）+ 中高污染（≥15%）场景下
+      AUROC 达到 0.7–0.9，代价是相比 gray-box 方法损失 10–20% AUROC。" 这个 power-information
+      tradeoff 本身成为贡献——首次量化 minimal-info 的代价。Claim 2 保留 inverted-U 理论但
+      增加 boundary condition（n_items threshold）。Claim 3 缩小 leaderboard audit 规模，
+      Gemini-1.5 case study 作为 converging evidence 而非 definitive proof。新增贡献：
+      calibration gap 的系统刻画 + power-information frontier 的量化分析。论文从 "practical
+      detector" 调整为 "principled framework with characterized operating envelope"。
+
+  worst:
+    meaning: "Δlz* 在控制实验中不显著或方向不一致——SFT 泛化完全平滑 aberrance signal，核心假设失败"
+    key_assumptions:
+      - "SFT 污染后 Δlz* 效应量小（Cohen's d < 0.8）或方向不一致（有时变正有时变负）"
+      - "SFT 泛化效应主导：模型学到 domain knowledge 而非 item-specific pattern，lz* 的变化与 θ 提升不可分离"
+      - "AUROC 在所有污染水平均 <0.70，无法与随机分类器拉开差距"
+      - "两个模型结果不一致：一个有信号另一个没有，无法 claim 泛化性"
+      - "Leaderboard per-item data 不可用，大规模审计在 GPU 预算内不可行"
+    number_ranges:
+      delta_lz_star_cohen_d_at_15pct_mmlu: [0.0, 0.8]
+      controlled_auroc_at_15pct_mmlu: [0.50, 0.70]
+      controlled_auroc_at_5pct_mmlu: [0.45, 0.55]
+      power_delta_method_at_15pct_mmlu: [0.10, 0.55]
+      baseline_auroc_gap_vs_constat: [-0.35, -0.20]
+      leaderboard_models_with_peritem_data: [0, 100]
+      leaderboard_flagged_rate_relative: [0.30, 0.95]
+      cross_benchmark_spearman_in_ctrl: [-0.1, 0.3]
+      inverted_u_theoretical_fit_r2: [0.50, 0.75]
+    narrative_direction: >
+      核心检测假设不成立，需 reframe。新 angle："Why Psychometric Aberrance Models Break for
+      LLMs — and What This Reveals About LLM Cognition." 三条新 Claims：(1) LLM 响应模式
+      系统性违反 IRT 局部独立性和单维性假设——这不是噪声而是 LLM 知识结构的指纹（universal misfit
+      的定量刻画成为核心贡献）；(2) SFT 污染通过泛化效应产生与 ability 提升不可区分的 lz* 变化，
+      揭示 SFT 的知识迁移机制——contamination 不是 item memorization 而是 domain learning，
+      这解释了为什么所有 binary-response 方法（不仅 IRT）在 SFT 后天然受限；(3) 理论 power 分析
+      建立 detection information hierarchy 的 lower bound——证明 binary response 的信息量不
+      足以可靠分离 contamination 与 ability，为社区 justify 了 gray-box 方法的必要性。论文从
+      "detection tool" 转为 "impossibility characterization + cognitive diagnostic"，
+      仍适合 EMNLP（evaluation methodology track）。卖点：不是 "我们的方法 work"，而是 "我们
+      证明了这个 operating point 的 fundamental limitation 并解释了 why"。
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "35bf927d-3c51-4e75-a466-8fe7427253f9",
+  "isSidechain": false,
+  "requestId": "req_011CbDagS1NN9p1NdBhv4Wxw",
+  "type": "assistant",
+  "uuid": "41225b73-0bb3-439b-bce1-49f17f1e8cbf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3",
+  "sessionId": "68299574-1bd8-494a-96a7-221fdfee3206",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012cotZhyujqjyA5CVTC2VYg",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11170,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 3870,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11170,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 3870,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11170,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11170
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 10_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是一位经验丰富的 ML 研究者。基于以下研究信息，为 Dream 模拟定义三档场景。  你需要同时定义 best / median / worst 三档： 1. 每档的核心假设（哪些假设成立/不成立） 2. 每档的关键实验指标预期范围（确保 best ≥ median ≥ worst 一致性） 3. 每档的论文叙事方向——    - best: 原始 framing 完全成立，claims 无需…",
+  "leafUuid": "41225b73-0bb3-439b-bce1-49f17f1e8cbf",
+  "sessionId": "68299574-1bd8-494a-96a7-221fdfee3206"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 11_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Define three-tier scenarios for IRT contamination detection paper",
+  "sessionId": "68299574-1bd8-494a-96a7-221fdfee3206"
+}
+```
+
+---

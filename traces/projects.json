@@ -856,6 +856,19 @@
       }
     },
     {
+      "project": "irt_personfit_contam--export-20260712",
+      "title": "What Can IRT Person-Fit Statistics Reveal About SFT-Stage Benchmark Contamination? (July export snapshot)",
+      "catalog": "../research-snapshots/irt_personfit_contam/2026-07-12/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 548,
+        "messages": 97013,
+        "user_turns": 3557,
+        "tool_calls": 28325,
+        "unparsed_lines": 0,
+        "conversation": 548
+      }
+    },
+    {
       "project": "meta_brain_lora_routing",
       "title": "Meta-Brain: Perturbation-Diagnostic Routing of LoRA Experts for Parameter-E cient VLA Robustness",
       "catalog": "../paper-assets/meta_brain_lora_routing/05-generation-trace/catalog.json",

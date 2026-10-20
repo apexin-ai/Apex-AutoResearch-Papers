@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "id": "88736552f20c97aa5809",
+  "project": "irt_personfit_contam--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Read files on server westd-35694 (account=root) using ssh_read_only to verify Llama and Mistral single-seed free-theta d",
+  "task_key": "agent-a7b555266056335d2",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/agent-a7b555266056335d2.jsonl",
+    "occurrence": 1,
+    "bytes": 622969,
+    "sha256": "7c5523b1012e52d0035e7b1e2e8c10d501faf936a5c09c009e624fd2a1fc7f77"
+  },
+  "statistics": {
+    "messages": 279,
+    "user_turns": 1,
+    "tool_calls": 117,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 43,
+      "tool_call": 117,
+      "tool_result": 117
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 279,
+      "chunks": [
+        {
+          "path": "88736552f20c97aa5809-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "88736552f20c97aa5809-part-0002.json",
+          "message_count": 99
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-read-files-on-server-westd-35694-account-root-using-ssh-read-only-to-verify-ll.md"
+}

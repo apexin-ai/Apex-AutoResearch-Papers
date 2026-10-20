@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0",
+  "id": "f77944966b88ec8cd6f8",
+  "project": "irt_personfit_contam--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: irt_personfit_contam ## 运行环境 - 服务器名: westd-35694 - SSH 账户: root（调用 ssh_execute / submit_training",
+  "task_key": "289b2f2b-8979-4371-9aa4-dc1258b804df",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/289b2f2b-8979-4371-9aa4-dc1258b804df.jsonl",
+    "occurrence": 1,
+    "bytes": 1280069,
+    "sha256": "e73b4f07963743f5ea0ee9b84894e7994ed63d80d2fbc58342f9c240b5262f10"
+  },
+  "statistics": {
+    "messages": 900,
+    "user_turns": 1,
+    "tool_calls": 363,
+    "roles": {
+      "record": 121,
+      "user": 1,
+      "assistant": 52,
+      "tool_call": 363,
+      "tool_result": 363
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "f77944966b88ec8cd6f8-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 898,
+      "chunks": [
+        {
+          "path": "f77944966b88ec8cd6f8-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "f77944966b88ec8cd6f8-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "f77944966b88ec8cd6f8-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "f77944966b88ec8cd6f8-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "f77944966b88ec8cd6f8-part-0005.json",
+          "message_count": 180
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-irt-personfit-contam-westd-35694-ssh-root-ssh-execute-submit-t-copy-99.md"
+}

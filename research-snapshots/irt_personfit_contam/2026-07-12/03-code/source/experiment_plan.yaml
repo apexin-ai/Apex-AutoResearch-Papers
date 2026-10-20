@@ -1,0 +1,164 @@
+experiments:
+  # === P0: Must-do (headline results) ===
+
+  - id: exp-two-sided
+    registry_id: exp-two-sided
+    claim: 2
+    description: "实现双侧检测框架：|lz*| > threshold 或分别设正/负阈值。用 Phase B 数据验证（Gemini-1.5 case study）。包括 bootstrap confidence interval 和 FDR 控制。"
+    priority: P0
+    gpu_budget_hours: 0
+    deps: []
+    status: planned
+    notes: "CPU only. 基于已有 Phase B personfit_matrix.csv 重新分析。"
+
+  - id: exp-extended-sim
+    registry_id: exp-extended-sim
+    claim: 2
+    description: "扩展 Phase A 模拟：添加 60%/75%/90% contamination levels，修复 100% NaN 处理（让 MLE boundary θ=4.0 正常计算 lz*），精确刻画 inverted-U 拐点。同时计算 two-sided power curves（正向 lz*>1.96 和负向 lz*<-1.96 分别的 detection rate），量化 Claim 2 的 dual-regime signal structure。"
+    priority: P0
+    gpu_budget_hours: 0
+    deps: [exp-two-sided]
+    status: planned
+    notes: "CPU only. 依赖 exp-two-sided 的双侧框架定义。"
+
+  - id: exp-ctrl-contam-pilot
+    claim: "1,2,3"
+    description: "快速验证：Qwen3.5-9B × 4 conditions (0%-seed1/0%-seed2/15%/50%) × MMLU only。测量 Δlz*(clean→contaminated) 是否显著。增加第二个 0% seed 作为 clean-vs-clean noise floor baseline (Reviewer Q2/Q4)。Eval 时区分 seen/unseen items 以实测 memorization fraction (Reviewer Q3/W9)。这是论文 go/no-go 信号。"
+    priority: P0-CRITICAL
+    gpu_budget_hours: 12
+    deps: []
+    status: planned
+    notes: "GPU 恢复后第一优先。4 conditions × ~3 hrs = ~12 GPU-hrs (+2h for second 0% seed)。关键输出: (a) Δlz* 显著性, (b) clean-vs-clean Δlz* ≈ 0 验证, (c) memorization fraction = (Δacc_seen - Δacc_unseen)/Δacc_seen, (d) adjusted power = theory × memorization fraction。D010 要求。"
+
+  - id: exp-ctrl-contam
+    claim: "1,2,3"
+    description: "完整控制实验：在 4 个模型上用 QLoRA SFT 注入 0%/5%/10%/15%/25%/50% benchmark items，测量 Δlz* 全谱。建立 ground-truth contamination → Δlz* 映射。"
+    priority: P0
+    gpu_budget_hours: 80
+    deps: [exp-ctrl-contam-pilot]
+    status: planned
+    notes: "模型: Qwen3.5-9B + Gemma-4-31B + Llama-3.1-8B + Mistral-7B-v0.3。Benchmark: MMLU + GSM8K + HellaSwag。4 模型 × 6 levels × 3 benchmarks。"
+
+  - id: exp-empirical-null
+    registry_id: exp-empirical-null
+    claim: 1
+    description: "Bootstrap empirical null 分析：量化 lz* 在真实 LLM 数据上的 systematic bias（null mean ≠ 0, null std ≠ 1），为 Calibration Gap Analysis 提供定量证据。包含 Q-Q plots、KS tests、bias 量化表、unflagged cells 深度分析。"
+    priority: P0
+    gpu_budget_hours: 0
+    deps: [exp-two-sided]
+    status: planned
+    notes: "CPU only. 复用 exp-two-sided v2 的 bootstrap 逻辑，但保存完整中间分布。~2h 开发+运行。"
+
+  - id: exp-power-theory
+    registry_id: exp-power-theory
+    claim: 2
+    description: "推导 power 与 n_items 的解析关系（基于 Snijders 2001 lz* 方差公式）。验证理论曲线与 Phase A 模拟结果的拟合度。将 inverted-U 从经验观察升级为理论命题。"
+    priority: P1
+    gpu_budget_hours: 0
+    deps: [exp-extended-sim]
+    status: planned
+    notes: "纯理论推导 + 数值验证。CPU only."
+
+  # === P1: Important (robustness + differentiation) ===
+
+  - id: exp-leaderboard-data-recon
+    registry_id: exp-leaderboard-data-recon
+    claim: 3
+    description: "Open LLM Leaderboard v1 数据可用性调研：确认 HuggingFace open-llm-leaderboard-old/results 是否包含 per-item binary response logs（不仅是 aggregate scores）。如果可用，评估数据量（多少模型有 per-item data）、格式、覆盖的 benchmarks。如果不可用，估算自己跑推理的 GPU 预算增量。"
+    priority: P0
+    gpu_budget_hours: 0
+    deps: []
+    status: planned
+    notes: "纯调研，CPU only。结果直接决定 exp-leaderboard-audit 的可行性和 GPU 预算。"
+
+  - id: exp-leaderboard-audit
+    claim: 3
+    description: "Open LLM Leaderboard v1 大规模扫描：对所有可用模型计算 person-fit。绘制 per-benchmark 污染率随时间趋势。"
+    priority: ABANDONED
+    gpu_budget_hours: 20
+    deps: [exp-two-sided, exp-leaderboard-data-recon]
+    status: abandoned
+    notes: "D011: v1-irt-refit a_r=0.111 + item alignment 54.56% → 13K audit 不可行。数据可用性写入 Discussion/Future Work。"
+
+  - id: exp-natural-experiment
+    claim: 3
+    description: "v1 leaderboard base→chat model pairs 自然实验：计算 Δlz* = lz*(chat) - lz*(base) 作为 SFT 效应代理。"
+    priority: P2-optional
+    gpu_budget_hours: 0
+    deps: [exp-v1-irt-refit-pilot]
+    status: deprioritized
+    notes: "D013: a_r=0.111 导致 lz*≈accuracy-like, 仅 4-5 pairs 无统计检验能力。Reviewer 终审建议降级。"
+
+  - id: exp-v1-irt-refit-expanded
+    claim: 3
+    description: "扩大 v1 IRT 重拟合样本量至 N≥500，验证 pilot N=63 的 a_r=0.111 是否因样本量不足。最终关闭 Path D。"
+    priority: P0
+    gpu_budget_hours: 0
+    deps: [exp-v1-irt-refit-pilot]
+    status: assigned
+    notes: "CPU only. Reviewer 要求 N≥500 才能最终结论 Path D。阈值：a_r>0.4=可行, a_r<0.2=dead。"
+
+  - id: exp-4pl-ablation
+    claim: 1
+    description: "4PL vs 3PL(d=1) ablation：比较两种参数化下的检测灵敏度差异。量化 feasibility parameter d 对 false alarm 和 detection power 的影响。"
+    priority: P2
+    gpu_budget_hours: 0
+    deps: [exp-extended-sim]
+    status: planned
+    notes: "CPU only. 用已有 PSN-IRT 参数，固定 d=1 重新计算。"
+
+  - id: exp-baseline-comparison
+    claim: 1
+    description: "与现有方法对比（≥5 baselines）：在控制实验的 ground-truth contaminated models 上，比较 IRT-FIT vs baselines 的 AUROC/Type-I error。Baselines: (1) ConStat (re-test), (2) Min-K%++ (token probs), (3) accuracy z-score (已完成, CPU), (4) PPL-based detection (log-prob family 代表, 预期 RL-robust 测试中失败), (5) random baseline。量化 minimal-information 的代价（power 损失）。报告 bootstrap CIs（同行 6/8 不报告方差，这是我们的差异化优势）。"
+    priority: P0-end
+    gpu_budget_hours: 30
+    deps: [exp-ctrl-contam]
+    status: planned
+    notes: "蒸馏显示同行 baseline 中位数 ~5 个。accuracy z-score 已完成(CPU)。ConStat 需 re-test, Min-K%++ 需 token probs, PPL 需 log-probs。exp-ctrl-contam 完成后立即执行。"
+
+  - id: exp-multiscale-lzm
+    claim: "1,3"
+    description: "实现 multiscale lzm 统计量（Hong, Lin & Cheng, 2021）——跨 benchmark 聚合的标准化 lz* 总分，提供整体污染指标。在 PSN-IRT 12 模型 + 控制实验模型上验证。"
+    priority: P2
+    gpu_budget_hours: 0
+    deps: [exp-two-sided]
+    status: planned
+    notes: "CPU only. 需要实现 lzm 公式。"
+
+  # === P2: Nice-to-have (expanded scope) ===
+
+  - id: exp-post-rl
+    claim: 1
+    description: "Post-RL 假设检验：在 Qwen3.5-9B 上先 SFT 污染再 GRPO 训练，测试 person-fit 是否在 RL 后仍保持检测力。回应 Wang et al. (2025) 的 MIA 失效问题。"
+    priority: P2
+    gpu_budget_hours: 40
+    deps: [exp-ctrl-contam]
+    status: planned
+    notes: "GRPO 训练需要 reward model 或 rule-based reward。可能需要 2× RTX 5090。"
+
+  - id: exp-extra-benchmarks
+    claim: "2,3"
+    description: "扩展 benchmark：BBH (6,511 items) 和 MATH (5,000 items) 填充 1K-10K items 的 power gap。需要获取 4PL 参数（PSN-IRT 可能已有）。"
+    priority: P2
+    gpu_budget_hours: 10
+    deps: [exp-extended-sim]
+    status: planned
+    notes: "取决于 PSN-IRT 是否包含这些 benchmark 的参数。如果没有，需要自己校准 4PL（GPU + 大量推理）。"
+
+  - id: exp-domain-analysis
+    claim: 3
+    description: "MMLU domain-level 分析：按 subject category 分别计算 person-fit，识别 Gemini-1.5 的 MMLU 污染是全面的还是集中在特定 domain。"
+    priority: P2
+    gpu_budget_hours: 0
+    deps: [exp-two-sided]
+    status: planned
+    notes: "CPU only. 需要 MMLU item-to-domain 映射。"
+
+# === GPU Budget Summary (post-D011/D013) ===
+# P0: ~92 GPU-hrs (ctrl-contam-pilot 12 + ctrl-contam 80)
+# P0-end: ~30 GPU-hrs (baseline-comparison, 依赖 ctrl-contam)
+# P2: ~50 GPU-hrs (post-rl 40 + extra-benchmarks 10) — DDL 压力下不现实
+# ABANDONED: exp-leaderboard-audit (D011)
+# Total active: ~122 GPU-hrs
+# Available: 4× RTX 5090 32GB (bjb2-36806, SSH 不通)
+# 已用: 0 GPU-hrs

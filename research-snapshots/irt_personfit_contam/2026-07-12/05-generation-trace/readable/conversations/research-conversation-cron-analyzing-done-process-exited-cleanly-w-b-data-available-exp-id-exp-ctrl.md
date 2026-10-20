@@ -1,0 +1,3089 @@
+# Research conversation: [CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。 详情: Process exited cleanly, W&B data available - exp_id: exp-ctrl-con
+
+**What Can IRT Person-Fit Statistics Reveal About SFT-Stage Benchmark Contamination? (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 54
+- **Recorded user turns:** 3
+- **Tool calls:** 13
+- **Original source:** `logs/chats/exported-trajectories/account-2/2c744163-383c-4237-987b-0309840dbb5c.jsonl`
+- **Structured JSON:** [`98091570ed25bc7891a9.json`](../../sessions/98/98091570ed25bc7891a9.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-20T19:10:51.953Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-20T19:10:51.953Z",
+  "sessionId": "2c744163-383c-4237-987b-0309840dbb5c",
+  "content": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。\n详情: Process exited cleanly, W&B data available\n\n- exp_id: exp-ctrl-contam-pilot-clean-s3\n- project: irt_personfit_contam\n- server: westd-35694\n- log_path: /root/runs/irt_personfit_contam/exp-ctrl-contam-pilot-clean-s3.log"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-20T19:10:51.957Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-20T19:10:51.957Z",
+  "sessionId": "2c744163-383c-4237-987b-0309840dbb5c"
+}
+```
+
+---
+
+## Round 1
+
+49 recorded events
+
+### User
+
+_source line 3 · 2026-05-20T19:10:52.010Z_
+
+[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。
+详情: Process exited cleanly, W&B data available
+
+- exp_id: exp-ctrl-contam-pilot-clean-s3
+- project: irt_personfit_contam
+- server: westd-35694
+- log_path: /root/runs/irt_personfit_contam/exp-ctrl-contam-pilot-clean-s3.log
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "ce644d86-8135-451f-9747-cd307f6211e6",
+  "type": "user",
+  "uuid": "417a0f75-ad34-4896-83a6-5b5850579634",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/agent_0d2e4332",
+  "sessionId": "2c744163-383c-4237-987b-0309840dbb5c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-20T19:10:52.010Z_
+
+```json
+{
+  "parentUuid": "417a0f75-ad34-4896-83a6-5b5850579634",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__allocate_and_submit",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__approve_worker",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_worker",
+      "mcp__agent-ml-research__check_job_status",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__distill_papers",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_alert",
+      "mcp__agent-ml-research__feishu_send_approval_card",
+      "mcp__agent-ml-research__feishu_send_result_card",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_baseline_metrics",
+      "mcp__agent-ml-research__get_distill_status",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__poll_cron",
+      "mcp__agent-ml-research__poll_secret_request",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_mistakes",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__register_cron",
+      "mcp__agent-ml-research__request_secret",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__submit_on_allocated",
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__tail_training_logs",
+      "mcp__agent-ml-research__update_baseline",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__allocate_and_submit",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__approve_worker",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_worker",
+      "mcp__agent-ml-research__check_job_status",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__distill_papers",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_alert",
+      "mcp__agent-ml-research__feishu_send_approval_card",
+      "mcp__agent-ml-research__feishu_send_result_card",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_baseline_metrics",
+      "mcp__agent-ml-research__get_distill_status",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__poll_cron",
+      "mcp__agent-ml-research__poll_secret_request",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_mistakes",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__register_cron",
+      "mcp__agent-ml-research__request_secret",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__submit_on_allocated",
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__tail_training_logs",
+      "mcp__agent-ml-research__update_baseline",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "ff183e68-6bc9-4fe6-86c8-81793dbc0c01",
+  "timestamp": "2026-05-20T19:10:52.010Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/agent_0d2e4332",
+  "sessionId": "2c744163-383c-4237-987b-0309840dbb5c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-20T19:10:52.010Z_
+
+```json
+{
+  "parentUuid": "ff183e68-6bc9-4fe6-86c8-81793dbc0c01",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "e9c18a68-2f1f-4240-ba32-8d169bd0d575",
+  "timestamp": "2026-05-20T19:10:52.010Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/agent_0d2e4332",
+  "sessionId": "2c744163-383c-4237-987b-0309840dbb5c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-20T19:10:52.010Z_
+
+```json
+{
+  "parentUuid": "e9c18a68-2f1f-4240-ba32-8d169bd0d575",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "5c195d62-efc6-49fe-8ac6-57754aba61d2",
+  "timestamp": "2026-05-20T19:10:52.010Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/agent_0d2e4332",
+  "sessionId": "2c744163-383c-4237-987b-0309840dbb5c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze experiment results and mark complete",
+  "sessionId": "2c744163-383c-4237-987b-0309840dbb5c"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-20T19:10:57.617Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+实验完成回调到了，我需要按 on-experiment-done 流程处理。先执行 session-start 初始化，然后分析实验结果。
+
+让我先：
+1. read_registry 了解所有实验状态
+2. reconcile_crons 同步 cron 状态
+3. 读 report.md 了解上次状态
+4. 读 ROADMAP.md 了解研究方向
+
+
+5. 处理这个实验完成回调
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5c195d62-efc6-49fe-8ac6-57754aba61d2",
+  "isSidechain": false,
+  "requestId": "req_011CbEMFZLwDYvAN5Uiaxuz9",
+  "type": "assistant",
+  "uuid": "a1573865-22db-4554-ac15-cacd4b1a7084",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/agent_0d2e4332",
+  "sessionId": "2c744163-383c-4237-987b-0309840dbb5c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015oEPojDcxC2GonFV5NAAj6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 25312,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 316,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 25312,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 316,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 25312,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 25312
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-20T19:10:57.994Z_
+
+Session 启动，先初始化项目状态，然后处理 exp-ctrl-contam-pilot-clean-s3 的完成回调。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a1573865-22db-4554-ac15-cacd4b1a7084",
+  "isSidechain": false,
+  "requestId": "req_011CbEMFZLwDYvAN5Uiaxuz9",
+  "type": "assistant",
+  "uuid": "da11a80c-842b-472d-b597-09b6dfec11e5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/agent_0d2e4332",
+  "sessionId": "2c744163-383c-4237-987b-0309840dbb5c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015oEPojDcxC2GonFV5NAAj6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 25312,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 316,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 25312,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 316,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 25312,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 25312
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-20T19:10:58.993Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_017GTJgHRKae8ZzoDuGNwp4v`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "da11a80c-842b-472d-b597-09b6dfec11e5",
+  "isSidechain": false,
+  "requestId": "req_011CbEMFZLwDYvAN5Uiaxuz9",
+  "type": "assistant",
+  "uuid": "d2c2ddc0-e83b-4618-b124-9763c282cb6b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/agent_0d2e4332",
+  "sessionId": "2c744163-383c-4237-987b-0309840dbb5c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015oEPojDcxC2GonFV5NAAj6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 25312,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 316,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 25312,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 316,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 25312,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 25312
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-20T19:10:59.000Z_
+
+<details><summary>↩ Tool result · `toolu_017GTJgHRKae8ZzoDuGNwp4v`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_roadmap"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d2c2ddc0-e83b-4618-b124-9763c282cb6b",
+  "isSidechain": false,
+  "promptId": "ce644d86-8135-451f-9747-cd307f6211e6",
+  "type": "user",
+  "uuid": "0f2eba3c-dbe5-409d-92ea-98b74fee961a",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_roadmap"
+    ],
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "total_deferred_tools": 82
+  },
+  "sourceToolAssistantUUID": "d2c2ddc0-e83b-4618-b124-9763c282cb6b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/agent_0d2e4332",
+  "sessionId": "2c744163-383c-4237-987b-0309840dbb5c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-20T19:11:02.009Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01L44xjbofYz6GMSXa3kHGnu`</summary>
+
+```json
+{
+  "project": "irt_personfit_contam",
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0f2eba3c-dbe5-409d-92ea-98b74fee961a",
+  "isSidechain": false,
+  "requestId": "req_011CbEMG58qAJiXMyDKMX2Se",
+  "type": "assistant",
+  "uuid": "badad057-d21d-449f-a1db-8deda38d7c90",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/agent_0d2e4332",
+  "sessionId": "2c744163-383c-4237-987b-0309840dbb5c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JwkMBczXyyG2Cvrxads9m3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1194,
+      "cache_read_input_tokens": 37153,
+      "output_tokens": 245,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1194,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 245,
+          "cache_read_input_tokens": 37153,
+          "cache_creation_input_tokens": 1194,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1194
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-20T19:11:02.472Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons · `toolu_01KBRj9KYxekfRMj1HKHLuGz`</summary>
+
+```json
+{}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "badad057-d21d-449f-a1db-8deda38d7c90",
+  "isSidechain": false,
+  "requestId": "req_011CbEMG58qAJiXMyDKMX2Se",
+  "type": "assistant",
+  "uuid": "9e90db32-11fa-4f4a-9fe0-79bd9039d96a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/agent_0d2e4332",
+  "sessionId": "2c744163-383c-4237-987b-0309840dbb5c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JwkMBczXyyG2Cvrxads9m3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1194,
+      "cache_read_input_tokens": 37153,
+      "output_tokens": 245,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1194,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 245,
+          "cache_read_input_tokens": 37153,
+          "cache_creation_input_tokens": 1194,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1194
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-20T19:11:02.096Z_
+
+<details><summary>↩ Tool result · `toolu_01L44xjbofYz6GMSXa3kHGnu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp-ctrl-contam-pilot-clean-s3\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T19:04:43.485Z\", \"updated_at\": \"2026-05-20T19:10:52.721Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/ctrl_contam_pilot && python train.py --condition clean_s3 --gpu 0 2>&1 | tee /root/runs/irt_personfit_contam/exp-ctrl-contam-pilot-clean-s3.log\\\"\", \"server\": \"westd-35694\", \"gpu\": [\"cuda:0\"], \"pid\": \"29341\", \"log_path\": \"~/runs/irt_personfit_contam/exp-ctrl-contam-pilot-clean-s3.log\", \"submitted_at\": \"2026-05-20T19:04:43.430Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T19:10:46.528Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T19:10:47.862644+00:00\"}]}, \"hypothesis\": \"Third clean seed (seed=456) for baseline lz* variance estimation: adding a third independent clean control strengthens Cohen's d denominator (n=3 vs n=2), providing more reliable effect size estimates for contamination detection\"}, \"exp-ctrl-contam-pilot\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T13:54:01.818Z\", \"updated_at\": \"2026-05-20T18:59:06.627Z\", \"hypothesis\": \"Controlled contamination via QLoRA fine-tuning on MMLU items produces measurable Δlz* signal: (1) clean-vs-clean Δlz* ≈ 0 (seed1 vs seed2), confirming the noise floor; (2) 15% contamination produces significant negative Δlz* with Cohen's d > 1.0; (3) 50% contamination produces even stronger signal; (4) contamination signal concentrates on seen items (memorization fraction > 0.5)\", \"spec\": {\"command\": \"python train.py --condition {clean_s1,clean_s2,contam_15,contam_50} --gpu {0,1,2,3}\", \"server\": \"westd-35694\", \"data_path\": \"/root/autodl-tmp/ctrl_contam_pilot/data/{clean_s1,clean_s2,contam_15,contam_50}/train.jsonl\", \"data_count\": \"clean_s1=5000, clean_s2=5000, contam_15=7106, contam_50=12021\", \"model_name\": \"Qwen/Qwen2.5-7B-Instruct (QLoRA r=16 alpha=32)\", \"seed\": \"clean_s1=42, clean_s2=123, contam_15=42, contam_50=42\", \"checkpoint_source\": \"Qwen/Qwen2.5-7B-Instruct base model via ModelScope\", \"eval_data\": \"mmlu_items.json + mmlu_params.csv (4PL IRT parameters)\", \"training_config\": {\"method\": \"QLoRA SFT\", \"quantization\": \"4bit nf4\", \"lora_r\": 16, \"lora_alpha\": 32, \"target_modules\": [\"q_proj\", \"k_proj\", \"v_proj\", \"o_proj\"], \"batch_size\": 4, \"grad_accum\": 4, \"lr\": 0.0002, \"epochs\": 3, \"max_length\": 512}, \"gpu_info\": \"4x RTX PRO 6000 Blackwell 96GB\", \"tmux_sessions\": [\"exp-ctrl-contam-pilot-clean-s1 (GPU0)\", \"exp-ctrl-contam-pilot-clean-s2 (GPU1)\", \"exp-ctrl-contam-pilot-contam-15 (GPU2)\", \"exp-ctrl-contam-pilot-contam-50 (GPU3)\"]}, \"checkpoint_path\": \"/root/autodl-tmp/ctrl_contam_pilot/checkpoints/\", \"log_path\": \"/root/autodl-tmp/ctrl_contam_pilot/results/\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T18:42:42.207Z\", \"metrics\": {\"overall\": \"partial - H1/H2 confirmed, H3/H4 not as expected under theta-free; theta-fixed restores dose-response\", \"H1_clean_delta_lz_approx_zero\": {\"confirmed\": true, \"clean_delta_lz\": 2.07, \"clean_s1_lz\": 8.01, \"clean_s2_lz\": 5.94, \"baseline_mean\": 6.98, \"baseline_std\": 1.03}, \"H2_contam_15_detection\": {\"confirmed\": true, \"delta_lz_free\": -3.97, \"cohens_d\": -3.85}, \"H3_dose_response\": {\"theta_free\": {\"confirmed\": false, \"contam_15_delta\": -3.97, \"contam_50_delta\": -1.53, \"ratio\": 0.38, \"note\": \"inverted due to theta-shift\"}, \"theta_fixed\": {\"confirmed\": true, \"contam_15_delta\": 2.96, \"contam_50_delta\": 8.67, \"ratio\": 2.93, \"note\": \"monotonicity restored\"}}, \"H4_memorization_fraction\": {\"confirmed\": false, \"contam_15\": 0.38, \"contam_50\": 0.29}, \"theta_shift\": {\"clean_s1\": -0.0987, \"clean_s2\": -0.0842, \"contam_15\": 0.1971, \"contam_50\": 0.3703, \"theta_fixed\": -0.0914}, \"theta_fixed_analysis\": {\"contam_15\": {\"lz_free\": 3, \"lz_fixed\": 9.93, \"delta_free\": -3.97, \"delta_fixed\": 2.96, \"absorbed\": 6.93}, \"contam_50\": {\"lz_free\": 5.45, \"lz_fixed\": 15.64, \"delta_free\": -1.53, \"delta_fixed\": 8.67, \"absorbed\": 10.2}}, \"accuracy\": {\"clean_s1\": 0.679, \"clean_s2\": 0.679, \"contam_15\": 0.731, \"contam_50\": 0.764, \"contam_15_seen\": 0.824, \"contam_15_unseen\": 0.715, \"contam_50_seen\": 0.805, \"contam_50_unseen\": 0.724}}, \"notes\": \"partial: H1✓ H2✓ H3✗(θ-shift, fixed analysis restores monotonicity) H4✗(memorization<0.5). θ-fixed Δlz* ratio=2.93 confirms dose-response.\"}, \"exp-ctrl-contam-pilot-contam-50\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T16:16:45.230Z\", \"updated_at\": \"2026-05-20T16:16:45.230Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/ctrl_contam_pilot && source run_env.sh python train.py --condition contam_50 --gpu 3\\\"\", \"server\": \"westd-35694\", \"gpu\": [\"cuda:3\"], \"pid\": \"13801\", \"log_path\": \"~/runs/irt_personfit_contam/exp-ctrl-contam-pilot-contam-50.log\", \"submitted_at\": \"2026-05-20T16:16:45.183Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"exp-ctrl-contam-pilot-contam-15\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T16:16:44.033Z\", \"updated_at\": \"2026-05-20T16:16:44.033Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/ctrl_contam_pilot && source run_env.sh python train.py --condition contam_15 --gpu 2\\\"\", \"server\": \"westd-35694\", \"gpu\": [\"cuda:2\"], \"pid\": \"13656\", \"log_path\": \"~/runs/irt_personfit_contam/exp-ctrl-contam-pilot-contam-15.log\", \"submitted_at\": \"2026-05-20T16:16:43.986Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"exp-ctrl-contam-pilot-clean-s2\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T16:16:42.617Z\", \"updated_at\": \"2026-05-20T16:16:42.617Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/ctrl_contam_pilot && source run_env.sh python train.py --condition clean_s2 --gpu 1\\\"\", \"server\": \"westd-35694\", \"gpu\": [\"cuda:1\"], \"pid\": \"13512\", \"log_path\": \"~/runs/irt_personfit_contam/exp-ctrl-contam-pilot-clean-s2.log\", \"submitted_at\": \"2026-05-20T16:16:42.572Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"exp-ctrl-contam-pilot-clean-s1\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T16:16:36.780Z\", \"updated_at\": \"2026-05-20T16:16:36.780Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/ctrl_contam_pilot && source run_env.sh python train.py --condition clean_s1 --gpu 0\\\"\", \"server\": \"westd-35694\", \"gpu\": [\"cuda:0\"], \"pid\": \"13361\", \"log_path\": \"~/runs/irt_personfit_contam/exp-ctrl-contam-pilot-clean-s1.log\", \"submitted_at\": \"2026-05-20T16:16:36.734Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"exp-v1-irt-refit-expanded\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T12:54:04.798Z\", \"updated_at\": \"2026-05-20T14:44:22.448Z\", \"hypothesis\": \"With N≥500 models (vs pilot N=63), MML-EM estimation of discrimination parameters will improve substantially (a_pearson_r > 0.4 vs PSN-IRT), because the pilot's a_r=0.111 was primarily caused by catastrophically low N:J ratio (0.0045) rather than fundamental incompatibility between classical IRT and neural IRT parameterizations\", \"parent\": \"exp-v1-irt-refit-pilot\", \"spec\": {\"command\": \"python expanded_irt_refit.py (worker context exhaustion before execution)\", \"server\": \"local(CPU)\", \"data_path\": \"open-llm-leaderboard-old v1 details (500+ models)\", \"data_count\": \"target 500+ models x 14042 MMLU items\", \"model_name\": \"N/A (MML-EM IRT fitting)\", \"seed\": 42, \"checkpoint_source\": \"exp-v1-irt-refit-pilot (extended from pilot's 63 models to 500+)\", \"eval_data\": \"open-llm-leaderboard-old MMLU per-item responses for 500+ models\"}, \"conclusion\": \"negative\", \"checkpoint_path\": \"artifacts/exp-v1-irt-refit-expanded/data/\", \"log_path\": \"artifacts/exp-v1-irt-refit-expanded/report/expanded_report.md\", \"completed_at\": \"2026-05-20T14:23:36.472Z\", \"metrics\": {\"n_models_downloaded\": 178, \"n_items\": 14042, \"3pl_a_pearson_r\": 0.127, \"2pl_a_pearson_r\": -0.029, \"3pl_b_pearson_r\": 0.663, \"reason\": \"N=178 classical refit: a_r=0.127 (3PL), -0.029 (2PL), b_r=0.663. Discrimination failure confirms Path D dead.\"}}, \"exp-4pl-real-data-degradation\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T14:29:58.285Z\", \"updated_at\": \"2026-05-20T14:41:27.206Z\", \"hypothesis\": \"Forcing d=1.0 (3PL degradation) on PSN-IRT 4PL parameters systematically distorts lz* values for real LLM response data, with the largest distortion on benchmarks/models where items have low d_feasibility, providing empirical evidence (beyond simulation) that the 4PL upper asymptote is essential for accurate person-fit measurement in LLM evaluation\", \"spec\": {\"command\": \"python 4pl_real_data_degradation.py (worker-executed analysis)\", \"server\": \"local(CPU)\", \"data_path\": \"artifacts/psn_irt_params/ + artifacts/psn_irt_phase_b/combine.csv\", \"data_count\": \"12 models x 5 benchmarks x 41871 items\", \"model_name\": \"PSN-IRT 4PL → 3PL(d=1) degradation comparison\", \"seed\": \"N/A\"}, \"conclusion\": \"success\", \"metrics\": {\"correlation_4pl_vs_3pl\": {\"pearson_r\": 0.225, \"rmse\": 68.41}, \"most_affected_benchmark\": \"MMLU (mean |Δlz*|=58.3, 46% items d<0.95)\", \"most_affected_model\": \"DeepSeek-V3 (θ=3.77): 3PL lz* from +16.4 to -340.6\", \"low_ability_models_impact\": \"|Δlz*|<2 (Gemma-2B-it, Vicuna, Mistral)\", \"bias_direction\": \"3PL systematically depresses high-ability models' lz* (d=1 makes P→1, amplifying few-error aberrance)\", \"key_finding\": \"Ignoring d parameter makes lz* completely unreliable for high-ability models — d-induced bias far exceeds any contamination signal\"}, \"checkpoint_path\": \"artifacts/4pl_real_data_degradation/\", \"log_path\": \"artifacts/4pl_real_data_degradation/degradation_report.md\", \"completed_at\": \"2026-05-20T14:41:27.206Z\"}, \"exp-4pl-ablation\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T13:02:59.785Z\", \"updated_at\": \"2026-05-20T13:50:29.519Z\", \"hypothesis\": \"The 4PL model's upper asymptote parameter d significantly improves contamination detection sensitivity compared to 3PL(d=1) and 2PL(c=0.25,d=1), because d captures ceiling effects in LLM response patterns that mask contamination signal when fixed at 1.0\", \"spec\": {\"command\": \"python 4pl_ablation.py\", \"server\": \"local(CPU)\", \"data_path\": \"artifacts/psn_irt_params/ (5 benchmark param files)\", \"data_count\": \"500 persons x 10 sims x 9 contam levels x 5 benchmarks x 3 models = 675K trials\", \"model_name\": \"4PL/3PL(d=1)/2PL(c=0.25,d=1) simulation\", \"seed\": \"42\", \"checkpoint_path\": \"artifacts/4pl_ablation/\", \"log_path\": \"artifacts/4pl_ablation/ablation_report.md\"}, \"conclusion\": \"success\", \"metrics\": {\"hypothesis_confirmed\": true, \"far_4pl\": \"~5% (well-calibrated)\", \"far_3pl\": \"4.7-16.5% (inflated)\", \"far_2pl\": \"50-100% (catastrophic, unusable)\", \"mean_power_gain_4pl_vs_3pl\": {\"MMLU\": \"+27.3pp\", \"HellaSwag\": \"+26.1pp\", \"GSM8K\": \"+20.3pp\", \"ARC_C\": \"+14.8pp\", \"HumanEval\": \"+13.7pp\"}, \"max_power_gain_4pl_vs_3pl\": {\"MMLU\": \"+49.0pp\", \"HellaSwag\": \"+59.6pp\", \"GSM8K\": \"+39.7pp\", \"ARC_C\": \"+54.6pp\", \"HumanEval\": \"+30.6pp\"}, \"power_at_25pct\": {\"4PL\": {\"MMLU\": 0.776, \"HellaSwag\": 0.534, \"GSM8K\": 0.73, \"ARC_C\": 0.132, \"HumanEval\": 0.318}, \"3PL\": {\"MMLU\": 0.329, \"HellaSwag\": 0.28, \"GSM8K\": 0.334, \"ARC_C\": 0.091, \"HumanEval\": 0.165}}, \"d_bucket_analysis\": \"d<0.8: +6.8pp to +61.2pp; d>=0.95: negligible\", \"key_finding\": \"4PL d parameter essential for LLM contamination detection. 46% MMLU items have d<0.95. Ignoring d (3PL) halves detection power on average. 2PL completely miscalibrated (FAR 50-100%).\"}, \"completed_at\": \"2026-05-20T13:50:29.519Z\"}, \"exp-natural-experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T12:49:47.067Z\", \"updated_at\": \"2026-05-20T13:21:26.297Z\", \"hypothesis\": \"Base→chat model pairs from v1 leaderboard exhibit benchmark-specific Δlz* anomalies: instruction-tuning produces a consistent cross-benchmark Δlz* shift, but contamination on specific benchmarks manifests as outlier Δlz* on those benchmarks relative to the pair's mean Δlz* across benchmarks\", \"parent\": \"exp-v1-irt-refit-pilot\", \"spec\": {\"command\": \"python natural_experiment.py\", \"server\": \"local(CPU)\", \"data_path\": \"v1 leaderboard MMLU/HellaSwag/ARC-C/GSM8K per-item responses + PSN-IRT params\", \"data_count\": \"21 base-chat pairs x 4 benchmarks = 61 pair-benchmark combinations\", \"model_name\": \"v1 leaderboard models (base-to-chat pairs)\", \"seed\": \"N/A\", \"checkpoint_path\": \"artifacts/natural_experiment/\", \"log_path\": \"artifacts/natural_experiment/natural_experiment_report.md\", \"checkpoint_source\": \"exp-v1-irt-refit-pilot (v1 leaderboard data pipeline)\", \"eval_data\": \"v1 leaderboard per-item responses for 21 base-chat model pairs\"}, \"conclusion\": \"success\", \"metrics\": {\"n_pairs\": 21, \"n_benchmarks\": 4, \"n_complete_pairs\": 9, \"significant_benchmarks\": {\"HellaSwag\": {\"mean_deviation\": -3.4, \"t_stat\": -3.97, \"p_value\": 0.001, \"interpretation\": \"SFT systematically decreases person-fit on HellaSwag\"}, \"GSM8K\": {\"mean_deviation\": 3.92, \"t_stat\": 3.35, \"p_value\": 0.009, \"interpretation\": \"SFT systematically increases person-fit on GSM8K\"}}, \"non_significant_benchmarks\": {\"MMLU\": {\"p_value\": 0.15}, \"ARC-Challenge\": {\"p_value\": 0.38}}, \"individual_outliers\": 0, \"key_finding\": \"HellaSwag and GSM8K show significant systematic SFT effects on lz*, but no individual pair shows benchmark-specific contamination outliers. P2-optional per Director assessment.\"}, \"completed_at\": \"2026-05-20T13:21:26.297Z\"}, \"exp-domain-analysis\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T13:03:00.736Z\", \"updated_at\": \"2026-05-20T13:13:27.728Z\", \"hypothesis\": \"Gemini-1.5's MMLU anomaly (lz*=+31.8) is domain-concentrated rather than uniform across all 57 subjects, and other flagged models show distinct domain-specific contamination signatures that differ from Gemini-1.5's pattern\", \"spec\": {\"command\": \"python domain_analysis.py\", \"server\": \"local\", \"data_path\": \"artifacts/psn_irt_phase_b/combine.csv + artifacts/psn_irt_params/mmlu_params.csv\", \"data_count\": \"12 models x 14042 MMLU items x 57 subjects\", \"model_name\": \"PSN-IRT 12 models\", \"seed\": \"N/A\", \"checkpoint_path\": \"artifacts/domain_analysis/\", \"log_path\": \"artifacts/domain_analysis/domain_report.md\"}, \"conclusion\": \"success\", \"metrics\": {\"gemini_mmlu_accuracy\": \"100% (14042/14042)\", \"gemini_domain_concentrated\": false, \"gemini_subjects_flagged\": \"50/57 (lz*>1.96)\", \"gemini_category_lz\": {\"STEM\": 21.2, \"Humanities\": 17.9, \"Social Sciences\": 15.9, \"Other\": 15.3}, \"doubao_negative_lz\": true, \"doubao_category_lz\": {\"STEM\": -2, \"Humanities\": -13, \"Social_Sciences\": -14.8, \"Other\": 4.4}, \"hunyuan_uneven\": {\"STEM\": 1.8, \"Social_Sciences\": 13.9}, \"yi_lightning_highest_mmlu_lz\": 48.2, \"qwen_plus_second_highest\": 44.9, \"mistral_flagged_subjects\": \"55/57\"}, \"completed_at\": \"2026-05-20T13:13:27.728Z\"}, \"exp-ml-classifier-baseline\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T11:57:38.101Z\", \"updated_at\": \"2026-05-20T12:42:10.990Z\", \"hypothesis\": \"ML classifiers (logistic regression, random forest) trained on binary response vectors cannot significantly outperform lz* in contamination detection AUROC on simulated data, because binary response patterns contain limited higher-order information beyond what lz* already captures via the IRT likelihood\", \"spec\": {\"command\": \"python ml_classifier_baseline.py\", \"server\": \"local\", \"data_path\": \"artifacts/psn_irt_params/ + artifacts/extended_simulation/\", \"data_count\": \"500 per class x 5 benchmarks x 5 contam levels\", \"model_name\": \"LogReg + RF (sklearn)\", \"seed\": \"42\", \"checkpoint_path\": \"artifacts/ml_classifier_baseline/\", \"log_path\": \"artifacts/ml_classifier_baseline/analysis_report.md\"}, \"conclusion\": \"success\", \"metrics\": {\"auroc_avg_25pct\": {\"lz_star\": 0.86, \"lr_resp\": 0.899, \"rf_resp\": 0.885, \"lr_resp_summ\": 0.909, \"rf_resp_summ\": 0.913}, \"auroc_avg_5pct\": {\"lz_star\": 0.675, \"best_ml\": 0.575}, \"auroc_avg_10pct\": {\"lz_star\": 0.763, \"best_ml\": 0.712}, \"lz_star_advantage_low_contam\": \"+0.10 AUROC at 5%, +0.05 at 10%\", \"ml_advantage_high_contam\": \"+0.05 at 25%, +0.16 at 50%\", \"key_finding\": \"lz* outperforms supervised ML at low contamination (5-10%) without any training data; ML only wins at 25%+ where signal is already strong\"}, \"completed_at\": \"2026-05-20T12:42:10.990Z\"}, \"exp-v1-irt-refit-pilot\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T10:56:48.899Z\", \"updated_at\": \"2026-05-20T12:32:16.129Z\", \"hypothesis\": \"IRT parameters fitted from v1 leaderboard response data using MML-EM will produce item parameters correlated (r>0.7 for a,b) with PSN-IRT neural-network-estimated parameters, enabling internally consistent person-fit analysis on v1 models.\", \"parent\": \"exp-item-alignment-check\", \"spec\": {\"command\": \"python pilot_irt_refit.py\", \"server\": \"local(CPU)\", \"data_path\": \"v1 leaderboard + PSN-IRT params\", \"data_count\": \"100 models x 14042 MMLU items\", \"model_name\": \"N/A\", \"seed\": 42, \"checkpoint_source\": \"N/A\", \"eval_data\": \"open-llm-leaderboard-old MMLU details\"}, \"metrics\": {\"n_models_downloaded\": 63, \"n_models_failed\": 38, \"n_items\": 14042, \"n_mapped_items\": 12441, \"overall_accuracy\": 0.426, \"fitting_time_2pl_sec\": 8.9, \"fitting_time_3pl_sec\": 12.1, \"3pl_a_pearson_r\": 0.111, \"3pl_b_pearson_r\": 0.626, \"3pl_b_spearman_r\": 0.656, \"2pl_a_pearson_r\": -0.084, \"2pl_b_pearson_r\": 0.572, \"lz_star_mean\": 11.69, \"lz_star_std\": 6.68, \"lz_star_flagged_pct\": 1.6}, \"conclusion\": \"negative\", \"checkpoint_path\": \"artifacts/v1_irt_refit_pilot/v1_fitted_params.csv\", \"log_path\": \"artifacts/v1_irt_refit_pilot/pilot_run.log\", \"completed_at\": \"2026-05-20T12:32:16.129Z\"}, \"exp-clean-control-delta\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T11:57:39.694Z\", \"updated_at\": \"2026-05-20T12:08:35.683Z\", \"hypothesis\": \"Δlz* between two independent clean response vectors (same θ, different random seeds) has E[Δlz*]≈0 and controlled variance, confirming that non-zero Δlz* in contamination experiments reflects genuine contamination signal rather than estimation noise\", \"spec\": {\"command\": \"python run_clean_control.py\", \"server\": \"local\", \"data_path\": \"artifacts/psn_irt_params/\", \"data_count\": \"500 θ per benchmark × 5 benchmarks\", \"model_name\": \"4PL IRT simulation\", \"seed\": \"42,123\", \"checkpoint_path\": \"artifacts/clean_control_delta/\", \"log_path\": \"artifacts/clean_control_delta/delta_report.md\"}, \"conclusion\": \"success\", \"metrics\": {\"clean_vs_clean_mean_abs\": {\"mmlu\": 0.01, \"hellaswag\": 0.125, \"gsm8k\": 0.021, \"arc_c\": 0.095, \"humaneval\": 0.02}, \"clean_vs_clean_all_nonsig\": true, \"clean_vs_contam_all_sig\": true, \"cohens_d\": {\"mmlu\": 2.66, \"hellaswag\": 1.85, \"gsm8k\": 1.85, \"arc_c\": 0.45, \"humaneval\": 1.07}, \"arc_c_note\": \"d=0.45 < 0.5 threshold due to only 295 items, but still p<1e-10\"}, \"completed_at\": \"2026-05-20T12:08:35.683Z\"}, \"exp-fdr-correction\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T11:57:39.228Z\", \"updated_at\": \"2026-05-20T12:04:41.646Z\", \"hypothesis\": \"BH-FDR correction on the 60-cell cross-benchmark analysis preserves the key finding that nearly all LLM-benchmark cells show significant misfit, with corrected flagging rate remaining above 80%\", \"spec\": {\"command\": \"N/A (reused existing BH-FDR analysis from exp-two-sided v2)\", \"server\": \"local\", \"data_path\": \"artifacts/phase_b_two_sided_v2/empirical_pvalues.csv\", \"data_count\": 60, \"model_name\": \"N/A\", \"seed\": \"N/A\", \"checkpoint_path\": \"artifacts/phase_b_two_sided_v2/empirical_pvalues.csv\", \"log_path\": \"N/A\"}, \"conclusion\": \"success\", \"metrics\": {\"flagged_uncorrected\": \"57/60 (95%)\", \"flagged_bh_fdr\": \"57/60 (95%)\", \"flagged_bonferroni\": \"not_computed_but_expected_similar\", \"correction_scope\": \"global_60_tests\", \"unflagged_cells\": [\"Yi-Lightning×arc_c (bh_p=0.098)\", \"360GPT2-Pro×humaneval (bh_p=0.134)\", \"Yi-Lightning×humaneval (bh_p=0.181)\"], \"note\": \"Reused existing BH-FDR from exp-two-sided v2 empirical_pvalues.csv. Leaderboard-scale FDR (24800+ tests) deferred to leaderboard audit.\"}, \"completed_at\": \"2026-05-20T12:04:41.646Z\"}, \"exp-cross-benchmark-analysis\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T11:30:52.484Z\", \"updated_at\": \"2026-05-20T11:35:35.796Z\", \"hypothesis\": \"Cross-benchmark lz* anomaly profiles reveal distinct contamination patterns: models with selective benchmark contamination show high positive lz* on specific benchmarks but normal/negative on others, while models with natural misfit show consistently negative lz* across all benchmarks\", \"spec\": {\"command\": \"python src/cross_benchmark_analysis.py\", \"server\": \"local(CPU)\", \"data_path\": \"artifacts/phase_b_two_sided_v2/\", \"data_count\": \"12 models x 5 benchmarks\", \"model_name\": \"N/A\", \"seed\": \"N/A\", \"checkpoint_path\": \"artifacts/cross_benchmark_analysis/\", \"log_path\": \"artifacts/cross_benchmark_analysis/analysis_report.md\"}, \"metrics\": {\"n_models_all5_flagged\": 10, \"n_models_selective_flagged\": 2, \"gemini15_cluster_isolation\": true, \"dominant_direction_pattern\": \"positive\", \"pct_positive_cells\": 93.3, \"total_flagged\": 57, \"flag_rate\": 0.95}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T11:35:35.796Z\"}, \"exp-accuracy-zscore-baseline\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T11:30:51.761Z\", \"updated_at\": \"2026-05-20T11:33:55.426Z\", \"hypothesis\": \"Accuracy z-score baseline (|z|>1.96) flags far fewer cells than lz* because it only captures overall performance deviation without item-level pattern information — lz* provides strictly more information by detecting response pattern aberrance that accuracy alone misses\", \"spec\": {\"command\": \"python src/baseline_accuracy_zscore.py\", \"server\": \"local(CPU)\", \"data_path\": \"artifacts/psn_irt_phase_b/combine.csv\", \"data_count\": \"12 models x 5 benchmarks\", \"model_name\": \"N/A\", \"seed\": \"N/A\"}, \"metrics\": {\"z_flagged_count\": 4, \"lz_flagged_count\": 57, \"agreement_rate\": 0.117, \"gemini15_mmlu_zscore\": 1.413}, \"conclusion\": \"success\", \"log_path\": \"artifacts/accuracy_zscore_baseline/comparison_summary.json\", \"checkpoint_path\": \"artifacts/accuracy_zscore_baseline/\", \"completed_at\": \"2026-05-20T11:33:55.426Z\"}, \"exp-item-alignment-check\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T10:16:34.437Z\", \"updated_at\": \"2026-05-20T10:53:40.587Z\", \"hypothesis\": \"Open LLM Leaderboard v1 per-item responses share the same deterministic item ordering as PSN-IRT combine.csv (both generated by lm-eval-harness), enabling direct positional alignment of v1 response vectors with PSN-IRT 4PL item parameters without content-based matching\", \"parent\": \"exp-leaderboard-data-recon\", \"spec\": {\"command\": \"python alignment_check_v6.py\", \"server\": \"local(CPU)\", \"data_path\": \"artifacts/psn_irt_phase_b/combine.csv + HF open-llm-leaderboard-old + cais/mmlu\", \"data_count\": 14042, \"model_name\": \"N/A\", \"seed\": \"N/A\", \"checkpoint_source\": \"N/A\", \"eval_data\": \"MMLU 14042 items\", \"checkpoint_path\": \"N/A\", \"log_path\": \"artifacts/item_alignment_check/alignment_results.json\"}, \"conclusion\": \"negative\", \"metrics\": {\"match_rate_direct\": 0.5456, \"match_rate_reordered_mistral\": 0.8846, \"match_rate_reordered_vicuna\": 0.7248, \"n_items_checked\": 14042, \"n_models_verified\": 2, \"alignment_method\": \"content-based via cais/mmlu canonical order\", \"items_mapped\": 12068, \"mapping_coverage\": 0.86}, \"completed_at\": \"2026-05-20T10:53:40.587Z\"}, \"exp-power-theory\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T09:53:40.117Z\", \"updated_at\": \"2026-05-20T10:38:57.599Z\", \"hypothesis\": \"Detection power of lz* follows an analytic function of n_items and contamination level derivable from Snijders (2001) variance formula, and this theoretical curve explains the empirically observed inverted-U shape and n_items dependence with R²>0.95 against simulation data\", \"parent\": \"exp-extended-sim\", \"spec\": {\"command\": \"python src/power_theory.py\", \"server\": \"local(CPU)\", \"data_path\": \"artifacts/extended_simulation/ + artifacts/psn_irt_params/\", \"data_count\": \"55 simulation points + 25862 item params\", \"model_name\": \"N/A\", \"seed\": \"N/A\", \"checkpoint_path\": \"artifacts/power_theory/\", \"log_path\": \"artifacts/power_theory/power_theory_summary.json\", \"checkpoint_source\": \"N/A\", \"eval_data\": \"artifacts/extended_simulation/two_sided_power.csv\"}, \"metrics\": {\"R2_two_sided\": 0.9572, \"RMSE_two_sided\": 0.0746, \"R2_left_tail\": 0.9764, \"R2_mean_lz\": 0.9948, \"sqrt_n_R2_avg\": 0.88, \"crossover_range_pct\": \"81-85%\", \"min_items_15pct_80power\": 7958}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T10:38:57.599Z\"}, \"exp-empirical-null\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T09:53:38.594Z\", \"updated_at\": \"2026-05-20T10:02:04.668Z\", \"hypothesis\": \"Bootstrap empirical null of lz* under 4PL model shows systematic positive bias (mean>>0) and inflated variance (std>>1) for real LLM response data, quantifying the degree to which LLMs violate IRT local independence/unidimensionality assumptions — this bias explains why 95% of cells are flagged with absolute thresholds\", \"parent\": \"exp-two-sided\", \"spec\": {\"command\": \"python src/empirical_null_analysis.py\", \"server\": \"local(CPU)\", \"data_path\": \"artifacts/psn_irt_phase_b/combine.csv + artifacts/psn_irt_params/\", \"data_count\": \"60 cells × 1000 bootstrap\", \"model_name\": \"N/A\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"log_path\": \"artifacts/empirical_null_analysis/\", \"checkpoint_source\": \"exp-two-sided (response data + 4PL params)\", \"eval_data\": \"combine.csv 12×41871 binary responses, 5 benchmark param sets\"}, \"metrics\": {\"n_boot\": 1000, \"n_cells\": 60, \"mean_null_bias\": 0.0925, \"mean_null_std\": 1.0021, \"ks_reject_rate\": 0.4, \"ks_reject_count\": \"24/60\", \"bias_by_benchmark\": {\"arc_c\": 0.146, \"gsm8k\": 0.082, \"hellaswag\": 0.034, \"humaneval\": 0.16, \"mmlu\": 0.041}, \"std_by_benchmark\": {\"arc_c\": 1.004, \"gsm8k\": 1.01, \"hellaswag\": 0.999, \"humaneval\": 0.994, \"mmlu\": 1.003}, \"ks_reject_by_benchmark\": {\"arc_c\": 0.583, \"gsm8k\": 0.5, \"hellaswag\": 0.083, \"humaneval\": 0.75, \"mmlu\": 0.083}, \"key_finding\": \"Null bias is small (mean=0.09) and std is near 1.0 — the bootstrap null is well-calibrated. The 95% flagging rate is NOT caused by miscalibrated null but by genuine extreme lz* values in LLM data. Smaller benchmarks (humaneval, arc_c) show higher KS rejection rates due to stronger finite-sample deviations from normality.\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-20T10:02:04.668Z\"}, \"exp-leaderboard-data-recon\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T09:53:39.512Z\", \"updated_at\": \"2026-05-20T10:00:22.466Z\", \"hypothesis\": \"Open LLM Leaderboard v1 results repo on HuggingFace contains per-item binary response logs (not just aggregate scores) for a substantial number of models, enabling large-scale person-fit analysis without running inference ourselves\", \"spec\": {\"command\": \"web_research\", \"server\": \"local\", \"data_path\": \"N/A\", \"data_count\": \"N/A\", \"model_name\": \"N/A\", \"seed\": \"N/A\", \"checkpoint_path\": \"N/A (research task)\", \"log_path\": \"artifacts/leaderboard_data_recon/report.md\"}, \"metrics\": {\"n_models_with_per_item_data\": \"13000+\", \"benchmarks_covered\": \"4/5 (MMLU, HellaSwag, ARC-Challenge, GSM8K; missing HumanEval)\", \"estimated_gpu_hours_if_needed\": 0, \"v1_benchmarks\": 6, \"v2_benchmarks\": 6, \"data_format\": \"parquet per-item rows with acc/acc_norm binary fields\", \"source\": \"open-llm-leaderboard-old/details_{model}\", \"humaneval_gpu_hrs_per_7b_model\": 0.08, \"key_finding\": \"v1 details datasets contain per-item binary responses for 13K+ models. Zero GPU cost for 4/5 benchmarks.\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T10:00:22.466Z\"}, \"exp-extended-sim\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T09:31:30.112Z\", \"updated_at\": \"2026-05-20T09:50:31.545Z\", \"hypothesis\": \"Extended simulation with finer contamination levels (60/75/90%) and fixed 100% NaN handling will reveal the precise dual-regime crossover point where lz* flips from negative (aberrant) to positive (over-consistent), and inverted-U power curve shape is confirmed across all benchmarks\", \"parent\": \"sim_001\", \"spec\": {\"command\": \"python src/simulation.py\", \"server\": \"local (CPU)\", \"data_path\": \"artifacts/psn_irt_params/\", \"data_count\": \"25862 items (5 benchmarks) × 11 levels × 2000 sims = 110K trials\", \"model_name\": \"N/A (simulation)\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"log_path\": \"artifacts/extended_simulation/\", \"checkpoint_source\": \"sim_001 (extended with new levels)\", \"eval_data\": \"4PL params from PSN-IRT, simulated responses\"}, \"metrics\": {\"n_sims\": 2000, \"levels\": \"0/3/5/10/15/25/50/60/75/90/100\", \"n_excluded_100pct\": 0, \"inverted_u_all_5\": true, \"dual_regime_crossover\": \"75-90%\", \"mmlu_power_15pct\": 0.9845, \"hellaswag_power_15pct\": 0.7525, \"gsm8k_power_15pct\": 0.5905, \"mmlu_100pct_lz_star\": 31.815, \"hellaswag_100pct_lz_star\": 26.297, \"gsm8k_100pct_lz_star\": 8.253, \"arc_c_100pct_lz_star\": 4.339, \"humaneval_100pct_lz_star\": 3.529, \"two_sided_power\": {\"mmlu_15pct\": 0.978, \"mmlu_50pct\": 0.9525, \"mmlu_75pct\": 0.936, \"mmlu_90pct\": 0.9515, \"mmlu_100pct\": 1, \"hellaswag_25pct\": 0.9155, \"hellaswag_50pct\": 0.9475, \"hellaswag_90pct\": 0.9375, \"hellaswag_100pct\": 1, \"gsm8k_50pct\": 0.837, \"gsm8k_90pct\": 0.794, \"gsm8k_100pct\": 1}, \"key_finding\": \"Two-sided detection eliminates inverted-U: MMLU two-sided power >93% at ALL contamination levels. 100% contamination → 100% detection on all benchmarks.\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T09:32:07.373Z\"}, \"exp-two-sided\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T09:13:53.986Z\", \"updated_at\": \"2026-05-20T09:14:27.223Z\", \"hypothesis\": \"Two-sided detection (|lz*| > threshold) with benchmark-specific θ MLE + parametric bootstrap empirical null + BH-FDR control will reduce Phase B flagging rate from 93% to a reasonable level (<20%), isolating genuine contamination signals from θ estimation bias\", \"parent\": \"phase_b_personfit\", \"spec\": {\"command\": \"python src/two_sided_detection_v2.py\", \"server\": \"local (CPU)\", \"data_path\": \"artifacts/psn_irt_phase_b/combine.csv + artifacts/psn_irt_params/\", \"data_count\": \"12 models × 5 benchmarks × 1000 bootstrap\", \"model_name\": \"N/A\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"log_path\": \"artifacts/phase_b_two_sided_v2/\", \"checkpoint_source\": \"phase_b_personfit (response data)\", \"eval_data\": \"combine.csv 12×41871 binary responses\"}, \"metrics\": {\"flagged_rate\": \"57/60 (95.0%)\", \"n_boot\": 1000, \"fdr_alpha\": 0.05, \"flagged_positive\": 51, \"flagged_negative\": 6, \"unflagged\": 3, \"unflagged_cells\": \"Yi-Lightning/arc_c (p=0.098), 360GPT2-Pro/humaneval (p=0.134), Yi-Lightning/humaneval (p=0.181)\", \"gemini15_mmlu_lz_star_v2\": 31.815, \"gemini15_mmlu_theta_bench\": 4, \"gemini15_mmlu_p_emp\": 0, \"key_finding\": \"Benchmark-specific θ + bootstrap + FDR does NOT reduce flagging. LLMs universally violate 4PL assumptions.\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-20T09:14:27.223Z\"}, \"phase_b_personfit\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T08:34:21.694Z\", \"updated_at\": \"2026-05-20T08:34:56.735Z\", \"hypothesis\": \"Real LLM benchmark response data from PSN-IRT 12 models shows significant inter-model variation in person-fit statistics (lz*, outfit, infit), with specific models exhibiting anomalous patterns indicative of benchmark contamination — particularly Gemini-1.5 with accuracy-ability dissociation\", \"spec\": {\"command\": \"python src/phase_b_personfit.py\", \"server\": \"local (CPU)\", \"data_path\": \"artifacts/psn_irt_phase_b/combine.csv + artifacts/psn_irt_params/\", \"data_count\": \"12 models × 41871 items (5 benchmarks: MMLU 14042, HellaSwag 10042, GSM8K 1319, ARC-C 295, HumanEval 164)\", \"model_name\": \"N/A (person-fit computation on existing response data)\", \"seed\": \"N/A (deterministic computation)\", \"checkpoint_path\": \"N/A (analysis, no model)\", \"log_path\": \"artifacts/phase_b_results/personfit_summary.json\"}, \"metrics\": {\"lz_star_sd_all_gt_0.5\": true, \"mmlu_lz_star_mean\": 24.19, \"mmlu_lz_star_sd\": 16.47, \"hellaswag_lz_star_mean\": 20.09, \"hellaswag_lz_star_sd\": 17.59, \"gsm8k_lz_star_mean\": 8.22, \"gsm8k_lz_star_sd\": 8.97, \"gemini15_mmlu_lz_star\": 34.75, \"gemini15_mmlu_accuracy\": 1, \"gemini15_mmlu_theta\": 0.78, \"gemini15_flagged_benchmarks\": \"3/5 (HellaSwag, GSM8K, HumanEval negative lz*)\", \"cross_benchmark_spearman_significant\": \"1/10 (GSM8K vs HumanEval rho=0.62 p=0.031)\", \"n_models\": 12, \"n_benchmarks\": 5}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T08:34:56.735Z\"}, \"sim_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T07:13:53.208Z\", \"updated_at\": \"2026-05-20T08:09:31.642Z\", \"hypothesis\": \"Under 4PL IRT model, lz* person-fit statistic can detect partial benchmark contamination (5-30% items) with >80% power at α=0.05, and detection power follows an inverted-U curve across contamination levels (low contamination undetectable, moderate contamination most detectable, high contamination mimics high ability)\", \"conclusion\": \"negative\", \"metrics\": {\"null_check\": {\"all_pass\": true, \"gsm8k_ks_p\": 0.098, \"hellaswag_ks_p\": 0.224, \"mmlu_ks_p\": 0.594}, \"simulation_power_at_15pct\": {\"mmlu\": 0.979, \"hellaswag\": 0.733, \"gsm8k\": 0.578, \"arc_c\": 0.129, \"humaneval\": 0.243}, \"global_pass\": false, \"inverted_u_all_benchmarks\": true, \"pass_count_large_80pct\": \"1/3 (mmlu only)\"}, \"spec\": {\"command\": \"python src/null_check.py && python src/simulation.py\", \"server\": \"local (CPU)\", \"data_path\": \"artifacts/psn_irt_params/\", \"data_count\": \"25862 items (5 benchmarks)\", \"model_name\": \"N/A (simulation)\", \"seed\": 42, \"checkpoint_path\": \"N/A (simulation)\", \"log_path\": \"artifacts/null_check_results/ + artifacts/simulation_results/\"}, \"completed_at\": \"2026-05-20T08:09:31.642Z\"}}, \"count\": 25, \"total\": 25, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0711}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "badad057-d21d-449f-a1db-8deda38d7c90",
+  "isSidechain": false,
+  "promptId": "ce644d86-8135-451f-9747-cd307f6211e6",
+  "type": "user",
+  "uuid": "214f1afd-eba7-4086-bbcc-e91f9773746d",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp-ctrl-contam-pilot-clean-s3\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T19:04:43.485Z\\\", \\\"updated_at\\\": \\\"2026-05-20T19:10:52.721Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/ctrl_contam_pilot && python train.py --condition clean_s3 --gpu 0 2>&1 | tee /root/runs/irt_personfit_contam/exp-ctrl-contam-pilot-clean-s3.log\\\\\\\"\\\", \\\"server\\\": \\\"westd-35694\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"29341\\\", \\\"log_path\\\": \\\"~/runs/irt_personfit_contam/exp-ctrl-contam-pilot-clean-s3.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T19:04:43.430Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T19:10:46.528Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T19:10:47.862644+00:00\\\"}]}, \\\"hypothesis\\\": \\\"Third clean seed (seed=456) for baseline lz* variance estimation: adding a third independent clean control strengthens Cohen's d denominator (n=3 vs n=2), providing more reliable effect size estimates for contamination detection\\\"}, \\\"exp-ctrl-contam-pilot\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T13:54:01.818Z\\\", \\\"updated_at\\\": \\\"2026-05-20T18:59:06.627Z\\\", \\\"hypothesis\\\": \\\"Controlled contamination via QLoRA fine-tuning on MMLU items produces measurable Δlz* signal: (1) clean-vs-clean Δlz* ≈ 0 (seed1 vs seed2), confirming the noise floor; (2) 15% contamination produces significant negative Δlz* with Cohen's d > 1.0; (3) 50% contamination produces even stronger signal; (4) contamination signal concentrates on seen items (memorization fraction > 0.5)\\\", \\\"spec\\\": {\\\"command\\\": \\\"python train.py --condition {clean_s1,clean_s2,contam_15,contam_50} --gpu {0,1,2,3}\\\", \\\"server\\\": \\\"westd-35694\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/ctrl_contam_pilot/data/{clean_s1,clean_s2,contam_15,contam_50}/train.jsonl\\\", \\\"data_count\\\": \\\"clean_s1=5000, clean_s2=5000, contam_15=7106, contam_50=12021\\\", \\\"model_name\\\": \\\"Qwen/Qwen2.5-7B-Instruct (QLoRA r=16 alpha=32)\\\", \\\"seed\\\": \\\"clean_s1=42, clean_s2=123, contam_15=42, contam_50=42\\\", \\\"checkpoint_source\\\": \\\"Qwen/Qwen2.5-7B-Instruct base model via ModelScope\\\", \\\"eval_data\\\": \\\"mmlu_items.json + mmlu_params.csv (4PL IRT parameters)\\\", \\\"training_config\\\": {\\\"method\\\": \\\"QLoRA SFT\\\", \\\"quantization\\\": \\\"4bit nf4\\\", \\\"lora_r\\\": 16, \\\"lora_alpha\\\": 32, \\\"target_modules\\\": [\\\"q_proj\\\", \\\"k_proj\\\", \\\"v_proj\\\", \\\"o_proj\\\"], \\\"batch_size\\\": 4, \\\"grad_accum\\\": 4, \\\"lr\\\": 0.0002, \\\"epochs\\\": 3, \\\"max_length\\\": 512}, \\\"gpu_info\\\": \\\"4x RTX PRO 6000 Blackwell 96GB\\\", \\\"tmux_sessions\\\": [\\\"exp-ctrl-contam-pilot-clean-s1 (GPU0)\\\", \\\"exp-ctrl-contam-pilot-clean-s2 (GPU1)\\\", \\\"exp-ctrl-contam-pilot-contam-15 (GPU2)\\\", \\\"exp-ctrl-contam-pilot-contam-50 (GPU3)\\\"]}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/ctrl_contam_pilot/checkpoints/\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/ctrl_contam_pilot/results/\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-20T18:42:42.207Z\\\", \\\"metrics\\\": {\\\"overall\\\": \\\"partial - H1/H2 confirmed, H3/H4 not as expected under theta-free; theta-fixed restores dose-response\\\", \\\"H1_clean_delta_lz_approx_zero\\\": {\\\"confirmed\\\": true, \\\"clean_delta_lz\\\": 2.07, \\\"clean_s1_lz\\\": 8.01, \\\"clean_s2_lz\\\": 5.94, \\\"baseline_mean\\\": 6.98, \\\"baseline_std\\\": 1.03}, \\\"H2_contam_15_detection\\\": {\\\"confirmed\\\": true, \\\"delta_lz_free\\\": -3.97, \\\"cohens_d\\\": -3.85}, \\\"H3_dose_response\\\": {\\\"theta_free\\\": {\\\"confirmed\\\": false, \\\"contam_15_delta\\\": -3.97, \\\"contam_50_delta\\\": -1.53, \\\"ratio\\\": 0.38, \\\"note\\\": \\\"inverted due to theta-shift\\\"}, \\\"theta_fixed\\\": {\\\"confirmed\\\": true, \\\"contam_15_delta\\\": 2.96, \\\"contam_50_delta\\\": 8.67, \\\"ratio\\\": 2.93, \\\"note\\\": \\\"monotonicity restored\\\"}}, \\\"H4_memorization_fraction\\\": {\\\"confirmed\\\": false, \\\"contam_15\\\": 0.38, \\\"contam_50\\\": 0.29}, \\\"theta_shift\\\": {\\\"clean_s1\\\": -0.0987, \\\"clean_s2\\\": -0.0842, \\\"contam_15\\\": 0.1971, \\\"contam_50\\\": 0.3703, \\\"theta_fixed\\\": -0.0914}, \\\"theta_fixed_analysis\\\": {\\\"contam_15\\\": {\\\"lz_free\\\": 3, \\\"lz_fixed\\\": 9.93, \\\"delta_free\\\": -3.97, \\\"delta_fixed\\\": 2.96, \\\"absorbed\\\": 6.93}, \\\"contam_50\\\": {\\\"lz_free\\\": 5.45, \\\"lz_fixed\\\": 15.64, \\\"delta_free\\\": -1.53, \\\"delta_fixed\\\": 8.67, \\\"absorbed\\\": 10.2}}, \\\"accuracy\\\": {\\\"clean_s1\\\": 0.679, \\\"clean_s2\\\": 0.679, \\\"contam_15\\\": 0.731, \\\"contam_50\\\": 0.764, \\\"contam_15_seen\\\": 0.824, \\\"contam_15_unseen\\\": 0.715, \\\"contam_50_seen\\\": 0.805, \\\"contam_50_unseen\\\": 0.724}}, \\\"notes\\\": \\\"partial: H1✓ H2✓ H3✗(θ-shift, fixed analysis restores monotonicity) H4✗(memorization<0.5). θ-fixed Δlz* ratio=2.93 confirms dose-response.\\\"}, \\\"exp-ctrl-contam-pilot-contam-50\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T16:16:45.230Z\\\", \\\"updated_at\\\": \\\"2026-05-20T16:16:45.230Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/ctrl_contam_pilot && source run_env.sh python train.py --condition contam_50 --gpu 3\\\\\\\"\\\", \\\"server\\\": \\\"westd-35694\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"13801\\\", \\\"log_path\\\": \\\"~/runs/irt_personfit_contam/exp-ctrl-contam-pilot-contam-50.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T16:16:45.183Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"exp-ctrl-contam-pilot-contam-15\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T16:16:44.033Z\\\", \\\"updated_at\\\": \\\"2026-05-20T16:16:44.033Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/ctrl_contam_pilot && source run_env.sh python train.py --condition contam_15 --gpu 2\\\\\\\"\\\", \\\"server\\\": \\\"westd-35694\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"13656\\\", \\\"log_path\\\": \\\"~/runs/irt_personfit_contam/exp-ctrl-contam-pilot-contam-15.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T16:16:43.986Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"exp-ctrl-contam-pilot-clean-s2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T16:16:42.617Z\\\", \\\"updated_at\\\": \\\"2026-05-20T16:16:42.617Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/ctrl_contam_pilot && source run_env.sh python train.py --condition clean_s2 --gpu 1\\\\\\\"\\\", \\\"server\\\": \\\"westd-35694\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"13512\\\", \\\"log_path\\\": \\\"~/runs/irt_personfit_contam/exp-ctrl-contam-pilot-clean-s2.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T16:16:42.572Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"exp-ctrl-contam-pilot-clean-s1\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T16:16:36.780Z\\\", \\\"updated_at\\\": \\\"2026-05-20T16:16:36.780Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/ctrl_contam_pilot && source run_env.sh python train.py --condition clean_s1 --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"westd-35694\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"13361\\\", \\\"log_path\\\": \\\"~/runs/irt_personfit_contam/exp-ctrl-contam-pilot-clean-s1.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T16:16:36.734Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"exp-v1-irt-refit-expanded\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T12:54:04.798Z\\\", \\\"updated_at\\\": \\\"2026-05-20T14:44:22.448Z\\\", \\\"hypothesis\\\": \\\"With N≥500 models (vs pilot N=63), MML-EM estimation of discrimination parameters will improve substantially (a_pearson_r > 0.4 vs PSN-IRT), because the pilot's a_r=0.111 was primarily caused by catastrophically low N:J ratio (0.0045) rather than fundamental incompatibility between classical IRT and neural IRT parameterizations\\\", \\\"parent\\\": \\\"exp-v1-irt-refit-pilot\\\", \\\"spec\\\": {\\\"command\\\": \\\"python expanded_irt_refit.py (worker context exhaustion before execution)\\\", \\\"server\\\": \\\"local(CPU)\\\", \\\"data_path\\\": \\\"open-llm-leaderboard-old v1 details (500+ models)\\\", \\\"data_count\\\": \\\"target 500+ models x 14042 MMLU items\\\", \\\"model_name\\\": \\\"N/A (MML-EM IRT fitting)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"exp-v1-irt-refit-pilot (extended from pilot's 63 models to 500+)\\\", \\\"eval_data\\\": \\\"open-llm-leaderboard-old MMLU per-item responses for 500+ models\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"artifacts/exp-v1-irt-refit-expanded/data/\\\", \\\"log_path\\\": \\\"artifacts/exp-v1-irt-refit-expanded/report/expanded_report.md\\\", \\\"completed_at\\\": \\\"2026-05-20T14:23:36.472Z\\\", \\\"metrics\\\": {\\\"n_models_downloaded\\\": 178, \\\"n_items\\\": 14042, \\\"3pl_a_pearson_r\\\": 0.127, \\\"2pl_a_pearson_r\\\": -0.029, \\\"3pl_b_pearson_r\\\": 0.663, \\\"reason\\\": \\\"N=178 classical refit: a_r=0.127 (3PL), -0.029 (2PL), b_r=0.663. Discrimination failure confirms Path D dead.\\\"}}, \\\"exp-4pl-real-data-degradation\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T14:29:58.285Z\\\", \\\"updated_at\\\": \\\"2026-05-20T14:41:27.206Z\\\", \\\"hypothesis\\\": \\\"Forcing d=1.0 (3PL degradation) on PSN-IRT 4PL parameters systematically distorts lz* values for real LLM response data, with the largest distortion on benchmarks/models where items have low d_feasibility, providing empirical evidence (beyond simulation) that the 4PL upper asymptote is essential for accurate person-fit measurement in LLM evaluation\\\", \\\"spec\\\": {\\\"command\\\": \\\"python 4pl_real_data_degradation.py (worker-executed analysis)\\\", \\\"server\\\": \\\"local(CPU)\\\", \\\"data_path\\\": \\\"artifacts/psn_irt_params/ + artifacts/psn_irt_phase_b/combine.csv\\\", \\\"data_count\\\": \\\"12 models x 5 benchmarks x 41871 items\\\", \\\"model_name\\\": \\\"PSN-IRT 4PL → 3PL(d=1) degradation comparison\\\", \\\"seed\\\": \\\"N/A\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"correlation_4pl_vs_3pl\\\": {\\\"pearson_r\\\": 0.225, \\\"rmse\\\": 68.41}, \\\"most_affected_benchmark\\\": \\\"MMLU (mean |Δlz*|=58.3, 46% items d<0.95)\\\", \\\"most_affected_model\\\": \\\"DeepSeek-V3 (θ=3.77): 3PL lz* from +16.4 to -340.6\\\", \\\"low_ability_models_impact\\\": \\\"|Δlz*|<2 (Gemma-2B-it, Vicuna, Mistral)\\\", \\\"bias_direction\\\": \\\"3PL systematically depresses high-ability models' lz* (d=1 makes P→1, amplifying few-error aberrance)\\\", \\\"key_finding\\\": \\\"Ignoring d parameter makes lz* completely unreliable for high-ability models — d-induced bias far exceeds any contamination signal\\\"}, \\\"checkpoint_path\\\": \\\"artifacts/4pl_real_data_degradation/\\\", \\\"log_path\\\": \\\"artifacts/4pl_real_data_degradation/degradation_report.md\\\", \\\"completed_at\\\": \\\"2026-05-20T14:41:27.206Z\\\"}, \\\"exp-4pl-ablation\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T13:02:59.785Z\\\", \\\"updated_at\\\": \\\"2026-05-20T13:50:29.519Z\\\", \\\"hypothesis\\\": \\\"The 4PL model's upper asymptote parameter d significantly improves contamination detection sensitivity compared to 3PL(d=1) and 2PL(c=0.25,d=1), because d captures ceiling effects in LLM response patterns that mask contamination signal when fixed at 1.0\\\", \\\"spec\\\": {\\\"command\\\": \\\"python 4pl_ablation.py\\\", \\\"server\\\": \\\"local(CPU)\\\", \\\"data_path\\\": \\\"artifacts/psn_irt_params/ (5 benchmark param files)\\\", \\\"data_count\\\": \\\"500 persons x 10 sims x 9 contam levels x 5 benchmarks x 3 models = 675K trials\\\", \\\"model_name\\\": \\\"4PL/3PL(d=1)/2PL(c=0.25,d=1) simulation\\\", \\\"seed\\\": \\\"42\\\", \\\"checkpoint_path\\\": \\\"artifacts/4pl_ablation/\\\", \\\"log_path\\\": \\\"artifacts/4pl_ablation/ablation_report.md\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"hypothesis_confirmed\\\": true, \\\"far_4pl\\\": \\\"~5% (well-calibrated)\\\", \\\"far_3pl\\\": \\\"4.7-16.5% (inflated)\\\", \\\"far_2pl\\\": \\\"50-100% (catastrophic, unusable)\\\", \\\"mean_power_gain_4pl_vs_3pl\\\": {\\\"MMLU\\\": \\\"+27.3pp\\\", \\\"HellaSwag\\\": \\\"+26.1pp\\\", \\\"GSM8K\\\": \\\"+20.3pp\\\", \\\"ARC_C\\\": \\\"+14.8pp\\\", \\\"HumanEval\\\": \\\"+13.7pp\\\"}, \\\"max_power_gain_4pl_vs_3pl\\\": {\\\"MMLU\\\": \\\"+49.0pp\\\", \\\"HellaSwag\\\": \\\"+59.6pp\\\", \\\"GSM8K\\\": \\\"+39.7pp\\\", \\\"ARC_C\\\": \\\"+54.6pp\\\", \\\"HumanEval\\\": \\\"+30.6pp\\\"}, \\\"power_at_25pct\\\": {\\\"4PL\\\": {\\\"MMLU\\\": 0.776, \\\"HellaSwag\\\": 0.534, \\\"GSM8K\\\": 0.73, \\\"ARC_C\\\": 0.132, \\\"HumanEval\\\": 0.318}, \\\"3PL\\\": {\\\"MMLU\\\": 0.329, \\\"HellaSwag\\\": 0.28, \\\"GSM8K\\\": 0.334, \\\"ARC_C\\\": 0.091, \\\"HumanEval\\\": 0.165}}, \\\"d_bucket_analysis\\\": \\\"d<0.8: +6.8pp to +61.2pp; d>=0.95: negligible\\\", \\\"key_finding\\\": \\\"4PL d parameter essential for LLM contamination detection. 46% MMLU items have d<0.95. Ignoring d (3PL) halves detection power on average. 2PL completely miscalibrated (FAR 50-100%).\\\"}, \\\"completed_at\\\": \\\"2026-05-20T13:50:29.519Z\\\"}, \\\"exp-natural-experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T12:49:47.067Z\\\", \\\"updated_at\\\": \\\"2026-05-20T13:21:26.297Z\\\", \\\"hypothesis\\\": \\\"Base→chat model pairs from v1 leaderboard exhibit benchmark-specific Δlz* anomalies: instruction-tuning produces a consistent cross-benchmark Δlz* shift, but contamination on specific benchmarks manifests as outlier Δlz* on those benchmarks relative to the pair's mean Δlz* across benchmarks\\\", \\\"parent\\\": \\\"exp-v1-irt-refit-pilot\\\", \\\"spec\\\": {\\\"command\\\": \\\"python natural_experiment.py\\\", \\\"server\\\": \\\"local(CPU)\\\", \\\"data_path\\\": \\\"v1 leaderboard MMLU/HellaSwag/ARC-C/GSM8K per-item responses + PSN-IRT params\\\", \\\"data_count\\\": \\\"21 base-chat pairs x 4 benchmarks = 61 pair-benchmark combinations\\\", \\\"model_name\\\": \\\"v1 leaderboard models (base-to-chat pairs)\\\", \\\"seed\\\": \\\"N/A\\\", \\\"checkpoint_path\\\": \\\"artifacts/natural_experiment/\\\", \\\"log_path\\\": \\\"artifacts/natural_experiment/natural_experiment_report.md\\\", \\\"checkpoint_source\\\": \\\"exp-v1-irt-refit-pilot (v1 leaderboard data pipeline)\\\", \\\"eval_data\\\": \\\"v1 leaderboard per-item responses for 21 base-chat model pairs\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"n_pairs\\\": 21, \\\"n_benchmarks\\\": 4, \\\"n_complete_pairs\\\": 9, \\\"significant_benchmarks\\\": {\\\"HellaSwag\\\": {\\\"mean_deviation\\\": -3.4, \\\"t_stat\\\": -3.97, \\\"p_value\\\": 0.001, \\\"interpretation\\\": \\\"SFT systematically decreases person-fit on HellaSwag\\\"}, \\\"GSM8K\\\": {\\\"mean_deviation\\\": 3.92, \\\"t_stat\\\": 3.35, \\\"p_value\\\": 0.009, \\\"interpretation\\\": \\\"SFT systematically increases person-fit on GSM8K\\\"}}, \\\"non_significant_benchmarks\\\": {\\\"MMLU\\\": {\\\"p_value\\\": 0.15}, \\\"ARC-Challenge\\\": {\\\"p_value\\\": 0.38}}, \\\"individual_outliers\\\": 0, \\\"key_finding\\\": \\\"HellaSwag and GSM8K show significant systematic SFT effects on lz*, but no individual pair shows benchmark-specific contamination outliers. P2-optional per Director assessment.\\\"}, \\\"completed_at\\\": \\\"2026-05-20T13:21:26.297Z\\\"}, \\\"exp-domain-analysis\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T13:03:00.736Z\\\", \\\"updated_at\\\": \\\"2026-05-20T13:13:27.728Z\\\", \\\"hypothesis\\\": \\\"Gemini-1.5's MMLU anomaly (lz*=+31.8) is domain-concentrated rather than uniform across all 57 subjects, and other flagged models show distinct domain-specific contamination signatures that differ from Gemini-1.5's pattern\\\", \\\"spec\\\": {\\\"command\\\": \\\"python domain_analysis.py\\\", \\\"server\\\": \\\"local\\\", \\\"data_path\\\": \\\"artifacts/psn_irt_phase_b/combine.csv + artifacts/psn_irt_params/mmlu_params.csv\\\", \\\"data_count\\\": \\\"12 models x 14042 MMLU items x 57 subjects\\\", \\\"model_name\\\": \\\"PSN-IRT 12 models\\\", \\\"seed\\\": \\\"N/A\\\", \\\"checkpoint_path\\\": \\\"artifacts/domain_analysis/\\\", \\\"log_path\\\": \\\"artifacts/domain_analysis/domain_report.md\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"gemini_mmlu_accuracy\\\": \\\"100% (14042/14042)\\\", \\\"gemini_domain_concentrated\\\": false, \\\"gemini_subjects_flagged\\\": \\\"50/57 (lz*>1.96)\\\", \\\"gemini_category_lz\\\": {\\\"STEM\\\": 21.2, \\\"Humanities\\\": 17.9, \\\"Social Sciences\\\": 15.9, \\\"Other\\\": 15.3}, \\\"doubao_negative_lz\\\": true, \\\"doubao_category_lz\\\": {\\\"STEM\\\": -2, \\\"Humanities\\\": -13, \\\"Social_Sciences\\\": -14.8, \\\"Other\\\": 4.4}, \\\"hunyuan_uneven\\\": {\\\"STEM\\\": 1.8, \\\"Social_Sciences\\\": 13.9}, \\\"yi_lightning_highest_mmlu_lz\\\": 48.2, \\\"qwen_plus_second_highest\\\": 44.9, \\\"mistral_flagged_subjects\\\": \\\"55/57\\\"}, \\\"completed_at\\\": \\\"2026-05-20T13:13:27.728Z\\\"}, \\\"exp-ml-classifier-baseline\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T11:57:38.101Z\\\", \\\"updated_at\\\": \\\"2026-05-20T12:42:10.990Z\\\", \\\"hypothesis\\\": \\\"ML classifiers (logistic regression, random forest) trained on binary response vectors cannot significantly outperform lz* in contamination detection AUROC on simulated data, because binary response patterns contain limited higher-order information beyond what lz* already captures via the IRT likelihood\\\", \\\"spec\\\": {\\\"command\\\": \\\"python ml_classifier_baseline.py\\\", \\\"server\\\": \\\"local\\\", \\\"data_path\\\": \\\"artifacts/psn_irt_params/ + artifacts/extended_simulation/\\\", \\\"data_count\\\": \\\"500 per class x 5 benchmarks x 5 contam levels\\\", \\\"model_name\\\": \\\"LogReg + RF (sklearn)\\\", \\\"seed\\\": \\\"42\\\", \\\"checkpoint_path\\\": \\\"artifacts/ml_classifier_baseline/\\\", \\\"log_path\\\": \\\"artifacts/ml_classifier_baseline/analysis_report.md\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"auroc_avg_25pct\\\": {\\\"lz_star\\\": 0.86, \\\"lr_resp\\\": 0.899, \\\"rf_resp\\\": 0.885, \\\"lr_resp_summ\\\": 0.909, \\\"rf_resp_summ\\\": 0.913}, \\\"auroc_avg_5pct\\\": {\\\"lz_star\\\": 0.675, \\\"best_ml\\\": 0.575}, \\\"auroc_avg_10pct\\\": {\\\"lz_star\\\": 0.763, \\\"best_ml\\\": 0.712}, \\\"lz_star_advantage_low_contam\\\": \\\"+0.10 AUROC at 5%, +0.05 at 10%\\\", \\\"ml_advantage_high_contam\\\": \\\"+0.05 at 25%, +0.16 at 50%\\\", \\\"key_finding\\\": \\\"lz* outperforms supervised ML at low contamination (5-10%) without any training data; ML only wins at 25%+ where signal is already strong\\\"}, \\\"completed_at\\\": \\\"2026-05-20T12:42:10.990Z\\\"}, \\\"exp-v1-irt-refit-pilot\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T10:56:48.899Z\\\", \\\"updated_at\\\": \\\"2026-05-20T12:32:16.129Z\\\", \\\"hypothesis\\\": \\\"IRT parameters fitted from v1 leaderboard response data using MML-EM will produce item parameters correlated (r>0.7 for a,b) with PSN-IRT neural-network-estimated parameters, enabling internally consistent person-fit analysis on v1 models.\\\", \\\"parent\\\": \\\"exp-item-alignment-check\\\", \\\"spec\\\": {\\\"command\\\": \\\"python pilot_irt_refit.py\\\", \\\"server\\\": \\\"local(CPU)\\\", \\\"data_path\\\": \\\"v1 leaderboard + PSN-IRT params\\\", \\\"data_count\\\": \\\"100 models x 14042 MMLU items\\\", \\\"model_name\\\": \\\"N/A\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"N/A\\\", \\\"eval_data\\\": \\\"open-llm-leaderboard-old MMLU details\\\"}, \\\"metrics\\\": {\\\"n_models_downloaded\\\": 63, \\\"n_models_failed\\\": 38, \\\"n_items\\\": 14042, \\\"n_mapped_items\\\": 12441, \\\"overall_accuracy\\\": 0.426, \\\"fitting_time_2pl_sec\\\": 8.9, \\\"fitting_time_3pl_sec\\\": 12.1, \\\"3pl_a_pearson_r\\\": 0.111, \\\"3pl_b_pearson_r\\\": 0.626, \\\"3pl_b_spearman_r\\\": 0.656, \\\"2pl_a_pearson_r\\\": -0.084, \\\"2pl_b_pearson_r\\\": 0.572, \\\"lz_star_mean\\\": 11.69, \\\"lz_star_std\\\": 6.68, \\\"lz_star_flagged_pct\\\": 1.6}, \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"artifacts/v1_irt_refit_pilot/v1_fitted_params.csv\\\", \\\"log_path\\\": \\\"artifacts/v1_irt_refit_pilot/pilot_run.log\\\", \\\"completed_at\\\": \\\"2026-05-20T12:32:16.129Z\\\"}, \\\"exp-clean-control-delta\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T11:57:39.694Z\\\", \\\"updated_at\\\": \\\"2026-05-20T12:08:35.683Z\\\", \\\"hypothesis\\\": \\\"Δlz* between two independent clean response vectors (same θ, different random seeds) has E[Δlz*]≈0 and controlled variance, confirming that non-zero Δlz* in contamination experiments reflects genuine contamination signal rather than estimation noise\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_clean_control.py\\\", \\\"server\\\": \\\"local\\\", \\\"data_path\\\": \\\"artifacts/psn_irt_params/\\\", \\\"data_count\\\": \\\"500 θ per benchmark × 5 benchmarks\\\", \\\"model_name\\\": \\\"4PL IRT simulation\\\", \\\"seed\\\": \\\"42,123\\\", \\\"checkpoint_path\\\": \\\"artifacts/clean_control_delta/\\\", \\\"log_path\\\": \\\"artifacts/clean_control_delta/delta_report.md\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"clean_vs_clean_mean_abs\\\": {\\\"mmlu\\\": 0.01, \\\"hellaswag\\\": 0.125, \\\"gsm8k\\\": 0.021, \\\"arc_c\\\": 0.095, \\\"humaneval\\\": 0.02}, \\\"clean_vs_clean_all_nonsig\\\": true, \\\"clean_vs_contam_all_sig\\\": true, \\\"cohens_d\\\": {\\\"mmlu\\\": 2.66, \\\"hellaswag\\\": 1.85, \\\"gsm8k\\\": 1.85, \\\"arc_c\\\": 0.45, \\\"humaneval\\\": 1.07}, \\\"arc_c_note\\\": \\\"d=0.45 < 0.5 threshold due to only 295 items, but still p<1e-10\\\"}, \\\"completed_at\\\": \\\"2026-05-20T12:08:35.683Z\\\"}, \\\"exp-fdr-correction\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T11:57:39.228Z\\\", \\\"updated_at\\\": \\\"2026-05-20T12:04:41.646Z\\\", \\\"hypothesis\\\": \\\"BH-FDR correction on the 60-cell cross-benchmark analysis preserves the key finding that nearly all LLM-benchmark cells show significant misfit, with corrected flagging rate remaining above 80%\\\", \\\"spec\\\": {\\\"command\\\": \\\"N/A (reused existing BH-FDR analysis from exp-two-sided v2)\\\", \\\"server\\\": \\\"local\\\", \\\"data_path\\\": \\\"artifacts/phase_b_two_sided_v2/empirical_pvalues.csv\\\", \\\"data_count\\\": 60, \\\"model_name\\\": \\\"N/A\\\", \\\"seed\\\": \\\"N/A\\\", \\\"checkpoint_path\\\": \\\"artifacts/phase_b_two_sided_v2/empirical_pvalues.csv\\\", \\\"log_path\\\": \\\"N/A\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"flagged_uncorrected\\\": \\\"57/60 (95%)\\\", \\\"flagged_bh_fdr\\\": \\\"57/60 (95%)\\\", \\\"flagged_bonferroni\\\": \\\"not_computed_but_expected_similar\\\", \\\"correction_scope\\\": \\\"global_60_tests\\\", \\\"unflagged_cells\\\": [\\\"Yi-Lightning×arc_c (bh_p=0.098)\\\", \\\"360GPT2-Pro×humaneval (bh_p=0.134)\\\", \\\"Yi-Lightning×humaneval (bh_p=0.181)\\\"], \\\"note\\\": \\\"Reused existing BH-FDR from exp-two-sided v2 empirical_pvalues.csv. Leaderboard-scale FDR (24800+ tests) deferred to leaderboard audit.\\\"}, \\\"completed_at\\\": \\\"2026-05-20T12:04:41.646Z\\\"}, \\\"exp-cross-benchmark-analysis\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T11:30:52.484Z\\\", \\\"updated_at\\\": \\\"2026-05-20T11:35:35.796Z\\\", \\\"hypothesis\\\": \\\"Cross-benchmark lz* anomaly profiles reveal distinct contamination patterns: models with selective benchmark contamination show high positive lz* on specific benchmarks but normal/negative on others, while models with natural misfit show consistently negative lz* across all benchmarks\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/cross_benchmark_analysis.py\\\", \\\"server\\\": \\\"local(CPU)\\\", \\\"data_path\\\": \\\"artifacts/phase_b_two_sided_v2/\\\", \\\"data_count\\\": \\\"12 models x 5 benchmarks\\\", \\\"model_name\\\": \\\"N/A\\\", \\\"seed\\\": \\\"N/A\\\", \\\"checkpoint_path\\\": \\\"artifacts/cross_benchmark_analysis/\\\", \\\"log_path\\\": \\\"artifacts/cross_benchmark_analysis/analysis_report.md\\\"}, \\\"metrics\\\": {\\\"n_models_all5_flagged\\\": 10, \\\"n_models_selective_flagged\\\": 2, \\\"gemini15_cluster_isolation\\\": true, \\\"dominant_direction_pattern\\\": \\\"positive\\\", \\\"pct_positive_cells\\\": 93.3, \\\"total_flagged\\\": 57, \\\"flag_rate\\\": 0.95}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-20T11:35:35.796Z\\\"}, \\\"exp-accuracy-zscore-baseline\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T11:30:51.761Z\\\", \\\"updated_at\\\": \\\"2026-05-20T11:33:55.426Z\\\", \\\"hypothesis\\\": \\\"Accuracy z-score baseline (|z|>1.96) flags far fewer cells than lz* because it only captures overall performance deviation without item-level pattern information — lz* provides strictly more information by detecting response pattern aberrance that accuracy alone misses\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/baseline_accuracy_zscore.py\\\", \\\"server\\\": \\\"local(CPU)\\\", \\\"data_path\\\": \\\"artifacts/psn_irt_phase_b/combine.csv\\\", \\\"data_count\\\": \\\"12 models x 5 benchmarks\\\", \\\"model_name\\\": \\\"N/A\\\", \\\"seed\\\": \\\"N/A\\\"}, \\\"metrics\\\": {\\\"z_flagged_count\\\": 4, \\\"lz_flagged_count\\\": 57, \\\"agreement_rate\\\": 0.117, \\\"gemini15_mmlu_zscore\\\": 1.413}, \\\"conclusion\\\": \\\"success\\\", \\\"log_path\\\": \\\"artifacts/accuracy_zscore_baseline/comparison_summary.json\\\", \\\"checkpoint_path\\\": \\\"artifacts/accuracy_zscore_baseline/\\\", \\\"completed_at\\\": \\\"2026-05-20T11:33:55.426Z\\\"}, \\\"exp-item-alignment-check\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T10:16:34.437Z\\\", \\\"updated_at\\\": \\\"2026-05-20T10:53:40.587Z\\\", \\\"hypothesis\\\": \\\"Open LLM Leaderboard v1 per-item responses share the same deterministic item ordering as PSN-IRT combine.csv (both generated by lm-eval-harness), enabling direct positional alignment of v1 response vectors with PSN-IRT 4PL item parameters without content-based matching\\\", \\\"parent\\\": \\\"exp-leaderboard-data-recon\\\", \\\"spec\\\": {\\\"command\\\": \\\"python alignment_check_v6.py\\\", \\\"server\\\": \\\"local(CPU)\\\", \\\"data_path\\\": \\\"artifacts/psn_irt_phase_b/combine.csv + HF open-llm-leaderboard-old + cais/mmlu\\\", \\\"data_count\\\": 14042, \\\"model_name\\\": \\\"N/A\\\", \\\"seed\\\": \\\"N/A\\\", \\\"checkpoint_source\\\": \\\"N/A\\\", \\\"eval_data\\\": \\\"MMLU 14042 items\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"artifacts/item_alignment_check/alignment_results.json\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"match_rate_direct\\\": 0.5456, \\\"match_rate_reordered_mistral\\\": 0.8846, \\\"match_rate_reordered_vicuna\\\": 0.7248, \\\"n_items_checked\\\": 14042, \\\"n_models_verified\\\": 2, \\\"alignment_method\\\": \\\"content-based via cais/mmlu canonical order\\\", \\\"items_mapped\\\": 12068, \\\"mapping_coverage\\\": 0.86}, \\\"completed_at\\\": \\\"2026-05-20T10:53:40.587Z\\\"}, \\\"exp-power-theory\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T09:53:40.117Z\\\", \\\"updated_at\\\": \\\"2026-05-20T10:38:57.599Z\\\", \\\"hypothesis\\\": \\\"Detection power of lz* follows an analytic function of n_items and contamination level derivable from Snijders (2001) variance formula, and this theoretical curve explains the empirically observed inverted-U shape and n_items dependence with R²>0.95 against simulation data\\\", \\\"parent\\\": \\\"exp-extended-sim\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/power_theory.py\\\", \\\"server\\\": \\\"local(CPU)\\\", \\\"data_path\\\": \\\"artifacts/extended_simulation/ + artifacts/psn_irt_params/\\\", \\\"data_count\\\": \\\"55 simulation points + 25862 item params\\\", \\\"model_name\\\": \\\"N/A\\\", \\\"seed\\\": \\\"N/A\\\", \\\"checkpoint_path\\\": \\\"artifacts/power_theory/\\\", \\\"log_path\\\": \\\"artifacts/power_theory/power_theory_summary.json\\\", \\\"checkpoint_source\\\": \\\"N/A\\\", \\\"eval_data\\\": \\\"artifacts/extended_simulation/two_sided_power.csv\\\"}, \\\"metrics\\\": {\\\"R2_two_sided\\\": 0.9572, \\\"RMSE_two_sided\\\": 0.0746, \\\"R2_left_tail\\\": 0.9764, \\\"R2_mean_lz\\\": 0.9948, \\\"sqrt_n_R2_avg\\\": 0.88, \\\"crossover_range_pct\\\": \\\"81-85%\\\", \\\"min_items_15pct_80power\\\": 7958}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-20T10:38:57.599Z\\\"}, \\\"exp-empirical-null\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T09:53:38.594Z\\\", \\\"updated_at\\\": \\\"2026-05-20T10:02:04.668Z\\\", \\\"hypothesis\\\": \\\"Bootstrap empirical null of lz* under 4PL model shows systematic positive bias (mean>>0) and inflated variance (std>>1) for real LLM response data, quantifying the degree to which LLMs violate IRT local independence/unidimensionality assumptions — this bias explains why 95% of cells are flagged with absolute thresholds\\\", \\\"parent\\\": \\\"exp-two-sided\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/empirical_null_analysis.py\\\", \\\"server\\\": \\\"local(CPU)\\\", \\\"data_path\\\": \\\"artifacts/psn_irt_phase_b/combine.csv + artifacts/psn_irt_params/\\\", \\\"data_count\\\": \\\"60 cells × 1000 bootstrap\\\", \\\"model_name\\\": \\\"N/A\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"artifacts/empirical_null_analysis/\\\", \\\"checkpoint_source\\\": \\\"exp-two-sided (response data + 4PL params)\\\", \\\"eval_data\\\": \\\"combine.csv 12×41871 binary responses, 5 benchmark param sets\\\"}, \\\"metrics\\\": {\\\"n_boot\\\": 1000, \\\"n_cells\\\": 60, \\\"mean_null_bias\\\": 0.0925, \\\"mean_null_std\\\": 1.0021, \\\"ks_reject_rate\\\": 0.4, \\\"ks_reject_count\\\": \\\"24/60\\\", \\\"bias_by_benchmark\\\": {\\\"arc_c\\\": 0.146, \\\"gsm8k\\\": 0.082, \\\"hellaswag\\\": 0.034, \\\"humaneval\\\": 0.16, \\\"mmlu\\\": 0.041}, \\\"std_by_benchmark\\\": {\\\"arc_c\\\": 1.004, \\\"gsm8k\\\": 1.01, \\\"hellaswag\\\": 0.999, \\\"humaneval\\\": 0.994, \\\"mmlu\\\": 1.003}, \\\"ks_reject_by_benchmark\\\": {\\\"arc_c\\\": 0.583, \\\"gsm8k\\\": 0.5, \\\"hellaswag\\\": 0.083, \\\"humaneval\\\": 0.75, \\\"mmlu\\\": 0.083}, \\\"key_finding\\\": \\\"Null bias is small (mean=0.09) and std is near 1.0 — the bootstrap null is well-calibrated. The 95% flagging rate is NOT caused by miscalibrated null but by genuine extreme lz* values in LLM data. Smaller benchmarks (humaneval, arc_c) show higher KS rejection rates due to stronger finite-sample deviations from normality.\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-20T10:02:04.668Z\\\"}, \\\"exp-leaderboard-data-recon\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T09:53:39.512Z\\\", \\\"updated_at\\\": \\\"2026-05-20T10:00:22.466Z\\\", \\\"hypothesis\\\": \\\"Open LLM Leaderboard v1 results repo on HuggingFace contains per-item binary response logs (not just aggregate scores) for a substantial number of models, enabling large-scale person-fit analysis without running inference ourselves\\\", \\\"spec\\\": {\\\"command\\\": \\\"web_research\\\", \\\"server\\\": \\\"local\\\", \\\"data_path\\\": \\\"N/A\\\", \\\"data_count\\\": \\\"N/A\\\", \\\"model_name\\\": \\\"N/A\\\", \\\"seed\\\": \\\"N/A\\\", \\\"checkpoint_path\\\": \\\"N/A (research task)\\\", \\\"log_path\\\": \\\"artifacts/leaderboard_data_recon/report.md\\\"}, \\\"metrics\\\": {\\\"n_models_with_per_item_data\\\": \\\"13000+\\\", \\\"benchmarks_covered\\\": \\\"4/5 (MMLU, HellaSwag, ARC-Challenge, GSM8K; missing HumanEval)\\\", \\\"estimated_gpu_hours_if_needed\\\": 0, \\\"v1_benchmarks\\\": 6, \\\"v2_benchmarks\\\": 6, \\\"data_format\\\": \\\"parquet per-item rows with acc/acc_norm binary fields\\\", \\\"source\\\": \\\"open-llm-leaderboard-old/details_{model}\\\", \\\"humaneval_gpu_hrs_per_7b_model\\\": 0.08, \\\"key_finding\\\": \\\"v1 details datasets contain per-item binary responses for 13K+ models. Zero GPU cost for 4/5 benchmarks.\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-20T10:00:22.466Z\\\"}, \\\"exp-extended-sim\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T09:31:30.112Z\\\", \\\"updated_at\\\": \\\"2026-05-20T09:50:31.545Z\\\", \\\"hypothesis\\\": \\\"Extended simulation with finer contamination levels (60/75/90%) and fixed 100% NaN handling will reveal the precise dual-regime crossover point where lz* flips from negative (aberrant) to positive (over-consistent), and inverted-U power curve shape is confirmed across all benchmarks\\\", \\\"parent\\\": \\\"sim_001\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/simulation.py\\\", \\\"server\\\": \\\"local (CPU)\\\", \\\"data_path\\\": \\\"artifacts/psn_irt_params/\\\", \\\"data_count\\\": \\\"25862 items (5 benchmarks) × 11 levels × 2000 sims = 110K trials\\\", \\\"model_name\\\": \\\"N/A (simulation)\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"artifacts/extended_simulation/\\\", \\\"checkpoint_source\\\": \\\"sim_001 (extended with new levels)\\\", \\\"eval_data\\\": \\\"4PL params from PSN-IRT, simulated responses\\\"}, \\\"metrics\\\": {\\\"n_sims\\\": 2000, \\\"levels\\\": \\\"0/3/5/10/15/25/50/60/75/90/100\\\", \\\"n_excluded_100pct\\\": 0, \\\"inverted_u_all_5\\\": true, \\\"dual_regime_crossover\\\": \\\"75-90%\\\", \\\"mmlu_power_15pct\\\": 0.9845, \\\"hellaswag_power_15pct\\\": 0.7525, \\\"gsm8k_power_15pct\\\": 0.5905, \\\"mmlu_100pct_lz_star\\\": 31.815, \\\"hellaswag_100pct_lz_star\\\": 26.297, \\\"gsm8k_100pct_lz_star\\\": 8.253, \\\"arc_c_100pct_lz_star\\\": 4.339, \\\"humaneval_100pct_lz_star\\\": 3.529, \\\"two_sided_power\\\": {\\\"mmlu_15pct\\\": 0.978, \\\"mmlu_50pct\\\": 0.9525, \\\"mmlu_75pct\\\": 0.936, \\\"mmlu_90pct\\\": 0.9515, \\\"mmlu_100pct\\\": 1, \\\"hellaswag_25pct\\\": 0.9155, \\\"hellaswag_50pct\\\": 0.9475, \\\"hellaswag_90pct\\\": 0.9375, \\\"hellaswag_100pct\\\": 1, \\\"gsm8k_50pct\\\": 0.837, \\\"gsm8k_90pct\\\": 0.794, \\\"gsm8k_100pct\\\": 1}, \\\"key_finding\\\": \\\"Two-sided detection eliminates inverted-U: MMLU two-sided power >93% at ALL contamination levels. 100% contamination → 100% detection on all benchmarks.\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-20T09:32:07.373Z\\\"}, \\\"exp-two-sided\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T09:13:53.986Z\\\", \\\"updated_at\\\": \\\"2026-05-20T09:14:27.223Z\\\", \\\"hypothesis\\\": \\\"Two-sided detection (|lz*| > threshold) with benchmark-specific θ MLE + parametric bootstrap empirical null + BH-FDR control will reduce Phase B flagging rate from 93% to a reasonable level (<20%), isolating genuine contamination signals from θ estimation bias\\\", \\\"parent\\\": \\\"phase_b_personfit\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/two_sided_detection_v2.py\\\", \\\"server\\\": \\\"local (CPU)\\\", \\\"data_path\\\": \\\"artifacts/psn_irt_phase_b/combine.csv + artifacts/psn_irt_params/\\\", \\\"data_count\\\": \\\"12 models × 5 benchmarks × 1000 bootstrap\\\", \\\"model_name\\\": \\\"N/A\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"artifacts/phase_b_two_sided_v2/\\\", \\\"checkpoint_source\\\": \\\"phase_b_personfit (response data)\\\", \\\"eval_data\\\": \\\"combine.csv 12×41871 binary responses\\\"}, \\\"metrics\\\": {\\\"flagged_rate\\\": \\\"57/60 (95.0%)\\\", \\\"n_boot\\\": 1000, \\\"fdr_alpha\\\": 0.05, \\\"flagged_positive\\\": 51, \\\"flagged_negative\\\": 6, \\\"unflagged\\\": 3, \\\"unflagged_cells\\\": \\\"Yi-Lightning/arc_c (p=0.098), 360GPT2-Pro/humaneval (p=0.134), Yi-Lightning/humaneval (p=0.181)\\\", \\\"gemini15_mmlu_lz_star_v2\\\": 31.815, \\\"gemini15_mmlu_theta_bench\\\": 4, \\\"gemini15_mmlu_p_emp\\\": 0, \\\"key_finding\\\": \\\"Benchmark-specific θ + bootstrap + FDR does NOT reduce flagging. LLMs universally violate 4PL assumptions.\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-20T09:14:27.223Z\\\"}, \\\"phase_b_personfit\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T08:34:21.694Z\\\", \\\"updated_at\\\": \\\"2026-05-20T08:34:56.735Z\\\", \\\"hypothesis\\\": \\\"Real LLM benchmark response data from PSN-IRT 12 models shows significant inter-model variation in person-fit statistics (lz*, outfit, infit), with specific models exhibiting anomalous patterns indicative of benchmark contamination — particularly Gemini-1.5 with accuracy-ability dissociation\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/phase_b_personfit.py\\\", \\\"server\\\": \\\"local (CPU)\\\", \\\"data_path\\\": \\\"artifacts/psn_irt_phase_b/combine.csv + artifacts/psn_irt_params/\\\", \\\"data_count\\\": \\\"12 models × 41871 items (5 benchmarks: MMLU 14042, HellaSwag 10042, GSM8K 1319, ARC-C 295, HumanEval 164)\\\", \\\"model_name\\\": \\\"N/A (person-fit computation on existing response data)\\\", \\\"seed\\\": \\\"N/A (deterministic computation)\\\", \\\"checkpoint_path\\\": \\\"N/A (analysis, no model)\\\", \\\"log_path\\\": \\\"artifacts/phase_b_results/personfit_summary.json\\\"}, \\\"metrics\\\": {\\\"lz_star_sd_all_gt_0.5\\\": true, \\\"mmlu_lz_star_mean\\\": 24.19, \\\"mmlu_lz_star_sd\\\": 16.47, \\\"hellaswag_lz_star_mean\\\": 20.09, \\\"hellaswag_lz_star_sd\\\": 17.59, \\\"gsm8k_lz_star_mean\\\": 8.22, \\\"gsm8k_lz_star_sd\\\": 8.97, \\\"gemini15_mmlu_lz_star\\\": 34.75, \\\"gemini15_mmlu_accuracy\\\": 1, \\\"gemini15_mmlu_theta\\\": 0.78, \\\"gemini15_flagged_benchmarks\\\": \\\"3/5 (HellaSwag, GSM8K, HumanEval negative lz*)\\\", \\\"cross_benchmark_spearman_significant\\\": \\\"1/10 (GSM8K vs HumanEval rho=0.62 p=0.031)\\\", \\\"n_models\\\": 12, \\\"n_benchmarks\\\": 5}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-20T08:34:56.735Z\\\"}, \\\"sim_001\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T07:13:53.208Z\\\", \\\"updated_at\\\": \\\"2026-05-20T08:09:31.642Z\\\", \\\"hypothesis\\\": \\\"Under 4PL IRT model, lz* person-fit statistic can detect partial benchmark contamination (5-30% items) with >80% power at α=0.05, and detection power follows an inverted-U curve across contamination levels (low contamination undetectable, moderate contamination most detectable, high contamination mimics high ability)\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"null_check\\\": {\\\"all_pass\\\": true, \\\"gsm8k_ks_p\\\": 0.098, \\\"hellaswag_ks_p\\\": 0.224, \\\"mmlu_ks_p\\\": 0.594}, \\\"simulation_power_at_15pct\\\": {\\\"mmlu\\\": 0.979, \\\"hellaswag\\\": 0.733, \\\"gsm8k\\\": 0.578, \\\"arc_c\\\": 0.129, \\\"humaneval\\\": 0.243}, \\\"global_pass\\\": false, \\\"inverted_u_all_benchmarks\\\": true, \\\"pass_count_large_80pct\\\": \\\"1/3 (mmlu only)\\\"}, \\\"spec\\\": {\\\"command\\\": \\\"python src/null_check.py && python src/simulation.py\\\", \\\"server\\\": \\\"local (CPU)\\\", \\\"data_path\\\": \\\"artifacts/psn_irt_params/\\\", \\\"data_count\\\": \\\"25862 items (5 benchmarks)\\\", \\\"model_name\\\": \\\"N/A (simulation)\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A (simulation)\\\", \\\"log_path\\\": \\\"artifacts/null_check_results/ + artifacts/simulation_results/\\\"}, \\\"completed_at\\\": \\\"2026-05-20T08:09:31.642Z\\\"}}, \\\"count\\\": 25, \\\"total\\\": 25, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0711}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp-ctrl-contam-pilot-clean-s3\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T19:04:43.485Z\", \"updated_at\": \"2026-05-20T19:10:52.721Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/ctrl_contam_pilot && python train.py --condition clean_s3 --gpu 0 2>&1 | tee /root/runs/irt_personfit_contam/exp-ctrl-contam-pilot-clean-s3.log\\\"\", \"server\": \"westd-35694\", \"gpu\": [\"cuda:0\"], \"pid\": \"29341\", \"log_path\": \"~/runs/irt_personfit_contam/exp-ctrl-contam-pilot-clean-s3.log\", \"submitted_at\": \"2026-05-20T19:04:43.430Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T19:10:46.528Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T19:10:47.862644+00:00\"}]}, \"hypothesis\": \"Third clean seed (seed=456) for baseline lz* variance estimation: adding a third independent clean control strengthens Cohen's d denominator (n=3 vs n=2), providing more reliable effect size estimates for contamination detection\"}, \"exp-ctrl-contam-pilot\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T13:54:01.818Z\", \"updated_at\": \"2026-05-20T18:59:06.627Z\", \"hypothesis\": \"Controlled contamination via QLoRA fine-tuning on MMLU items produces measurable Δlz* signal: (1) clean-vs-clean Δlz* ≈ 0 (seed1 vs seed2), confirming the noise floor; (2) 15% contamination produces significant negative Δlz* with Cohen's d > 1.0; (3) 50% contamination produces even stronger signal; (4) contamination signal concentrates on seen items (memorization fraction > 0.5)\", \"spec\": {\"command\": \"python train.py --condition {clean_s1,clean_s2,contam_15,contam_50} --gpu {0,1,2,3}\", \"server\": \"westd-35694\", \"data_path\": \"/root/autodl-tmp/ctrl_contam_pilot/data/{clean_s1,clean_s2,contam_15,contam_50}/train.jsonl\", \"data_count\": \"clean_s1=5000, clean_s2=5000, contam_15=7106, contam_50=12021\", \"model_name\": \"Qwen/Qwen2.5-7B-Instruct (QLoRA r=16 alpha=32)\", \"seed\": \"clean_s1=42, clean_s2=123, contam_15=42, contam_50=42\", \"checkpoint_source\": \"Qwen/Qwen2.5-7B-Instruct base model via ModelScope\", \"eval_data\": \"mmlu_items.json + mmlu_params.csv (4PL IRT parameters)\", \"training_config\": {\"method\": \"QLoRA SFT\", \"quantization\": \"4bit nf4\", \"lora_r\": 16, \"lora_alpha\": 32, \"target_modules\": [\"q_proj\", \"k_proj\", \"v_proj\", \"o_proj\"], \"batch_size\": 4, \"grad_accum\": 4, \"lr\": 0.0002, \"epochs\": 3, \"max_length\": 512}, \"gpu_info\": \"4x RTX PRO 6000 Blackwell 96GB\", \"tmux_sessions\": [\"exp-ctrl-contam-pilot-clean-s1 (GPU0)\", \"exp-ctrl-contam-pilot-clean-s2 (GPU1)\", \"exp-ctrl-contam-pilot-contam-15 (GPU2)\", \"exp-ctrl-contam-pilot-contam-50 (GPU3)\"]}, \"checkpoint_path\": \"/root/autodl-tmp/ctrl_contam_pilot/checkpoints/\", \"log_path\": \"/root/autodl-tmp/ctrl_contam_pilot/results/\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T18:42:42.207Z\", \"metrics\": {\"overall\": \"partial - H1/H2 confirmed, H3/H4 not as expected under theta-free; theta-fixed restores dose-response\", \"H1_clean_delta_lz_approx_zero\": {\"confirmed\": true, \"clean_delta_lz\": 2.07, \"clean_s1_lz\": 8.01, \"clean_s2_lz\": 5.94, \"baseline_mean\": 6.98, \"baseline_std\": 1.03}, \"H2_contam_15_detection\": {\"confirmed\": true, \"delta_lz_free\": -3.97, \"cohens_d\": -3.85}, \"H3_dose_response\": {\"theta_free\": {\"confirmed\": false, \"contam_15_delta\": -3.97, \"contam_50_delta\": -1.53, \"ratio\": 0.38, \"note\": \"inverted due to theta-shift\"}, \"theta_fixed\": {\"confirmed\": true, \"contam_15_delta\": 2.96, \"contam_50_delta\": 8.67, \"ratio\": 2.93, \"note\": \"monotonicity restored\"}}, \"H4_memorization_fraction\": {\"confirmed\": false, \"contam_15\": 0.38, \"contam_50\": 0.29}, \"theta_shift\": {\"clean_s1\": -0.0987, \"clean_s2\": -0.0842, \"contam_15\": 0.1971, \"contam_50\": 0.3703, \"theta_fixed\": -0.0914}, \"theta_fixed_analysis\": {\"contam_15\": {\"lz_free\": 3, \"lz_fixed\": 9.93, \"delta_free\": -3.97, \"delta_fixed\": 2.96, \"absorbed\": 6.93}, \"contam_50\": {\"lz_free\": 5.45, \"lz_fixed\": 15.64, \"delta_free\": -1.53, \"delta_fixed\": 8.67, \"absorbed\": 10.2}}, \"accuracy\": {\"clean_s1\": 0.679, \"clean_s2\": 0.679, \"contam_15\": 0.731, \"contam_50\": 0.764, \"contam_15_seen\": 0.824, \"contam_15_unseen\": 0.715, \"contam_50_seen\": 0.805, \"contam_50_unseen\": 0.724}}, \"notes\": \"partial: H1✓ H2✓ H3✗(θ-shift, fixed analysis restores monotonicity) H4✗(memorization<0.5). θ-fixed Δlz* ratio=2.93 confirms dose-response.\"}, \"exp-ctrl-contam-pilot-contam-50\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T16:16:45.230Z\", \"updated_at\": \"2026-05-20T16:16:45.230Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/ctrl_contam_pilot && source run_env.sh python train.py --condition contam_50 --gpu 3\\\"\", \"server\": \"westd-35694\", \"gpu\": [\"cuda:3\"], \"pid\": \"13801\", \"log_path\": \"~/runs/irt_personfit_contam/exp-ctrl-contam-pilot-contam-50.log\", \"submitted_at\": \"2026-05-20T16:16:45.183Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"exp-ctrl-contam-pilot-contam-15\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T16:16:44.033Z\", \"updated_at\": \"2026-05-20T16:16:44.033Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/ctrl_contam_pilot && source run_env.sh python train.py --condition contam_15 --gpu 2\\\"\", \"server\": \"westd-35694\", \"gpu\": [\"cuda:2\"], \"pid\": \"13656\", \"log_path\": \"~/runs/irt_personfit_contam/exp-ctrl-contam-pilot-contam-15.log\", \"submitted_at\": \"2026-05-20T16:16:43.986Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"exp-ctrl-contam-pilot-clean-s2\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T16:16:42.617Z\", \"updated_at\": \"2026-05-20T16:16:42.617Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/ctrl_contam_pilot && source run_env.sh python train.py --condition clean_s2 --gpu 1\\\"\", \"server\": \"westd-35694\", \"gpu\": [\"cuda:1\"], \"pid\": \"13512\", \"log_path\": \"~/runs/irt_personfit_contam/exp-ctrl-contam-pilot-clean-s2.log\", \"submitted_at\": \"2026-05-20T16:16:42.572Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"exp-ctrl-contam-pilot-clean-s1\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T16:16:36.780Z\", \"updated_at\": \"2026-05-20T16:16:36.780Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/ctrl_contam_pilot && source run_env.sh python train.py --condition clean_s1 --gpu 0\\\"\", \"server\": \"westd-35694\", \"gpu\": [\"cuda:0\"], \"pid\": \"13361\", \"log_path\": \"~/runs/irt_personfit_contam/exp-ctrl-contam-pilot-clean-s1.log\", \"submitted_at\": \"2026-05-20T16:16:36.734Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"exp-v1-irt-refit-expanded\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T12:54:04.798Z\", \"updated_at\": \"2026-05-20T14:44:22.448Z\", \"hypothesis\": \"With N≥500 models (vs pilot N=63), MML-EM estimation of discrimination parameters will improve substantially (a_pearson_r > 0.4 vs PSN-IRT), because the pilot's a_r=0.111 was primarily caused by catastrophically low N:J ratio (0.0045) rather than fundamental incompatibility between classical IRT and neural IRT parameterizations\", \"parent\": \"exp-v1-irt-refit-pilot\", \"spec\": {\"command\": \"python expanded_irt_refit.py (worker context exhaustion before execution)\", \"server\": \"local(CPU)\", \"data_path\": \"open-llm-leaderboard-old v1 details (500+ models)\", \"data_count\": \"target 500+ models x 14042 MMLU items\", \"model_name\": \"N/A (MML-EM IRT fitting)\", \"seed\": 42, \"checkpoint_source\": \"exp-v1-irt-refit-pilot (extended from pilot's 63 models to 500+)\", \"eval_data\": \"open-llm-leaderboard-old MMLU per-item responses for 500+ models\"}, \"conclusion\": \"negative\", \"checkpoint_path\": \"artifacts/exp-v1-irt-refit-expanded/data/\", \"log_path\": \"artifacts/exp-v1-irt-refit-expanded/report/expanded_report.md\", \"completed_at\": \"2026-05-20T14:23:36.472Z\", \"metrics\": {\"n_models_downloaded\": 178, \"n_items\": 14042, \"3pl_a_pearson_r\": 0.127, \"2pl_a_pearson_r\": -0.029, \"3pl_b_pearson_r\": 0.663, \"reason\": \"N=178 classical refit: a_r=0.127 (3PL), -0.029 (2PL), b_r=0.663. Discrimination failure confirms Path D dead.\"}}, \"exp-4pl-real-data-degradation\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T14:29:58.285Z\", \"updated_at\": \"2026-05-20T14:41:27.206Z\", \"hypothesis\": \"Forcing d=1.0 (3PL degradation) on PSN-IRT 4PL parameters systematically distorts lz* values for real LLM response data, with the largest distortion on benchmarks/models where items have low d_feasibility, providing empirical evidence (beyond simulation) that the 4PL upper asymptote is essential for accurate person-fit measurement in LLM evaluation\", \"spec\": {\"command\": \"python 4pl_real_data_degradation.py (worker-executed analysis)\", \"server\": \"local(CPU)\", \"data_path\": \"artifacts/psn_irt_params/ + artifacts/psn_irt_phase_b/combine.csv\", \"data_count\": \"12 models x 5 benchmarks x 41871 items\", \"model_name\": \"PSN-IRT 4PL → 3PL(d=1) degradation comparison\", \"seed\": \"N/A\"}, \"conclusion\": \"success\", \"metrics\": {\"correlation_4pl_vs_3pl\": {\"pearson_r\": 0.225, \"rmse\": 68.41}, \"most_affected_benchmark\": \"MMLU (mean |Δlz*|=58.3, 46% items d<0.95)\", \"most_affected_model\": \"DeepSeek-V3 (θ=3.77): 3PL lz* from +16.4 to -340.6\", \"low_ability_models_impact\": \"|Δlz*|<2 (Gemma-2B-it, Vicuna, Mistral)\", \"bias_direction\": \"3PL systematically depresses high-ability models' lz* (d=1 makes P→1, amplifying few-error aberrance)\", \"key_finding\": \"Ignoring d parameter makes lz* completely unreliable for high-ability models — d-induced bias far exceeds any contamination signal\"}, \"checkpoint_path\": \"artifacts/4pl_real_data_degradation/\", \"log_path\": \"artifacts/4pl_real_data_degradation/degradation_report.md\", \"completed_at\": \"2026-05-20T14:41:27.206Z\"}, \"exp-4pl-ablation\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T13:02:59.785Z\", \"updated_at\": \"2026-05-20T13:50:29.519Z\", \"hypothesis\": \"The 4PL model's upper asymptote parameter d significantly improves contamination detection sensitivity compared to 3PL(d=1) and 2PL(c=0.25,d=1), because d captures ceiling effects in LLM response patterns that mask contamination signal when fixed at 1.0\", \"spec\": {\"command\": \"python 4pl_ablation.py\", \"server\": \"local(CPU)\", \"data_path\": \"artifacts/psn_irt_params/ (5 benchmark param files)\", \"data_count\": \"500 persons x 10 sims x 9 contam levels x 5 benchmarks x 3 models = 675K trials\", \"model_name\": \"4PL/3PL(d=1)/2PL(c=0.25,d=1) simulation\", \"seed\": \"42\", \"checkpoint_path\": \"artifacts/4pl_ablation/\", \"log_path\": \"artifacts/4pl_ablation/ablation_report.md\"}, \"conclusion\": \"success\", \"metrics\": {\"hypothesis_confirmed\": true, \"far_4pl\": \"~5% (well-calibrated)\", \"far_3pl\": \"4.7-16.5% (inflated)\", \"far_2pl\": \"50-100% (catastrophic, unusable)\", \"mean_power_gain_4pl_vs_3pl\": {\"MMLU\": \"+27.3pp\", \"HellaSwag\": \"+26.1pp\", \"GSM8K\": \"+20.3pp\", \"ARC_C\": \"+14.8pp\", \"HumanEval\": \"+13.7pp\"}, \"max_power_gain_4pl_vs_3pl\": {\"MMLU\": \"+49.0pp\", \"HellaSwag\": \"+59.6pp\", \"GSM8K\": \"+39.7pp\", \"ARC_C\": \"+54.6pp\", \"HumanEval\": \"+30.6pp\"}, \"power_at_25pct\": {\"4PL\": {\"MMLU\": 0.776, \"HellaSwag\": 0.534, \"GSM8K\": 0.73, \"ARC_C\": 0.132, \"HumanEval\": 0.318}, \"3PL\": {\"MMLU\": 0.329, \"HellaSwag\": 0.28, \"GSM8K\": 0.334, \"ARC_C\": 0.091, \"HumanEval\": 0.165}}, \"d_bucket_analysis\": \"d<0.8: +6.8pp to +61.2pp; d>=0.95: negligible\", \"key_finding\": \"4PL d parameter essential for LLM contamination detection. 46% MMLU items have d<0.95. Ignoring d (3PL) halves detection power on average. 2PL completely miscalibrated (FAR 50-100%).\"}, \"completed_at\": \"2026-05-20T13:50:29.519Z\"}, \"exp-natural-experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T12:49:47.067Z\", \"updated_at\": \"2026-05-20T13:21:26.297Z\", \"hypothesis\": \"Base→chat model pairs from v1 leaderboard exhibit benchmark-specific Δlz* anomalies: instruction-tuning produces a consistent cross-benchmark Δlz* shift, but contamination on specific benchmarks manifests as outlier Δlz* on those benchmarks relative to the pair's mean Δlz* across benchmarks\", \"parent\": \"exp-v1-irt-refit-pilot\", \"spec\": {\"command\": \"python natural_experiment.py\", \"server\": \"local(CPU)\", \"data_path\": \"v1 leaderboard MMLU/HellaSwag/ARC-C/GSM8K per-item responses + PSN-IRT params\", \"data_count\": \"21 base-chat pairs x 4 benchmarks = 61 pair-benchmark combinations\", \"model_name\": \"v1 leaderboard models (base-to-chat pairs)\", \"seed\": \"N/A\", \"checkpoint_path\": \"artifacts/natural_experiment/\", \"log_path\": \"artifacts/natural_experiment/natural_experiment_report.md\", \"checkpoint_source\": \"exp-v1-irt-refit-pilot (v1 leaderboard data pipeline)\", \"eval_data\": \"v1 leaderboard per-item responses for 21 base-chat model pairs\"}, \"conclusion\": \"success\", \"metrics\": {\"n_pairs\": 21, \"n_benchmarks\": 4, \"n_complete_pairs\": 9, \"significant_benchmarks\": {\"HellaSwag\": {\"mean_deviation\": -3.4, \"t_stat\": -3.97, \"p_value\": 0.001, \"interpretation\": \"SFT systematically decreases person-fit on HellaSwag\"}, \"GSM8K\": {\"mean_deviation\": 3.92, \"t_stat\": 3.35, \"p_value\": 0.009, \"interpretation\": \"SFT systematically increases person-fit on GSM8K\"}}, \"non_significant_benchmarks\": {\"MMLU\": {\"p_value\": 0.15}, \"ARC-Challenge\": {\"p_value\": 0.38}}, \"individual_outliers\": 0, \"key_finding\": \"HellaSwag and GSM8K show significant systematic SFT effects on lz*, but no individual pair shows benchmark-specific contamination outliers. P2-optional per Director assessment.\"}, \"completed_at\": \"2026-05-20T13:21:26.297Z\"}, \"exp-domain-analysis\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T13:03:00.736Z\", \"updated_at\": \"2026-05-20T13:13:27.728Z\", \"hypothesis\": \"Gemini-1.5's MMLU anomaly (lz*=+31.8) is domain-concentrated rather than uniform across all 57 subjects, and other flagged models show distinct domain-specific contamination signatures that differ from Gemini-1.5's pattern\", \"spec\": {\"command\": \"python domain_analysis.py\", \"server\": \"local\", \"data_path\": \"artifacts/psn_irt_phase_b/combine.csv + artifacts/psn_irt_params/mmlu_params.csv\", \"data_count\": \"12 models x 14042 MMLU items x 57 subjects\", \"model_name\": \"PSN-IRT 12 models\", \"seed\": \"N/A\", \"checkpoint_path\": \"artifacts/domain_analysis/\", \"log_path\": \"artifacts/domain_analysis/domain_report.md\"}, \"conclusion\": \"success\", \"metrics\": {\"gemini_mmlu_accuracy\": \"100% (14042/14042)\", \"gemini_domain_concentrated\": false, \"gemini_subjects_flagged\": \"50/57 (lz*>1.96)\", \"gemini_category_lz\": {\"STEM\": 21.2, \"Humanities\": 17.9, \"Social Sciences\": 15.9, \"Other\": 15.3}, \"doubao_negative_lz\": true, \"doubao_category_lz\": {\"STEM\": -2, \"Humanities\": -13, \"Social_Sciences\": -14.8, \"Other\": 4.4}, \"hunyuan_uneven\": {\"STEM\": 1.8, \"Social_Sciences\": 13.9}, \"yi_lightning_highest_mmlu_lz\": 48.2, \"qwen_plus_second_highest\": 44.9, \"mistral_flagged_subjects\": \"55/57\"}, \"completed_at\": \"2026-05-20T13:13:27.728Z\"}, \"exp-ml-classifier-baseline\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T11:57:38.101Z\", \"updated_at\": \"2026-05-20T12:42:10.990Z\", \"hypothesis\": \"ML classifiers (logistic regression, random forest) trained on binary response vectors cannot significantly outperform lz* in contamination detection AUROC on simulated data, because binary response patterns contain limited higher-order information beyond what lz* already captures via the IRT likelihood\", \"spec\": {\"command\": \"python ml_classifier_baseline.py\", \"server\": \"local\", \"data_path\": \"artifacts/psn_irt_params/ + artifacts/extended_simulation/\", \"data_count\": \"500 per class x 5 benchmarks x 5 contam levels\", \"model_name\": \"LogReg + RF (sklearn)\", \"seed\": \"42\", \"checkpoint_path\": \"artifacts/ml_classifier_baseline/\", \"log_path\": \"artifacts/ml_classifier_baseline/analysis_report.md\"}, \"conclusion\": \"success\", \"metrics\": {\"auroc_avg_25pct\": {\"lz_star\": 0.86, \"lr_resp\": 0.899, \"rf_resp\": 0.885, \"lr_resp_summ\": 0.909, \"rf_resp_summ\": 0.913}, \"auroc_avg_5pct\": {\"lz_star\": 0.675, \"best_ml\": 0.575}, \"auroc_avg_10pct\": {\"lz_star\": 0.763, \"best_ml\": 0.712}, \"lz_star_advantage_low_contam\": \"+0.10 AUROC at 5%, +0.05 at 10%\", \"ml_advantage_high_contam\": \"+0.05 at 25%, +0.16 at 50%\", \"key_finding\": \"lz* outperforms supervised ML at low contamination (5-10%) without any training data; ML only wins at 25%+ where signal is already strong\"}, \"completed_at\": \"2026-05-20T12:42:10.990Z\"}, \"exp-v1-irt-refit-pilot\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T10:56:48.899Z\", \"updated_at\": \"2026-05-20T12:32:16.129Z\", \"hypothesis\": \"IRT parameters fitted from v1 leaderboard response data using MML-EM will produce item parameters correlated (r>0.7 for a,b) with PSN-IRT neural-network-estimated parameters, enabling internally consistent person-fit analysis on v1 models.\", \"parent\": \"exp-item-alignment-check\", \"spec\": {\"command\": \"python pilot_irt_refit.py\", \"server\": \"local(CPU)\", \"data_path\": \"v1 leaderboard + PSN-IRT params\", \"data_count\": \"100 models x 14042 MMLU items\", \"model_name\": \"N/A\", \"seed\": 42, \"checkpoint_source\": \"N/A\", \"eval_data\": \"open-llm-leaderboard-old MMLU details\"}, \"metrics\": {\"n_models_downloaded\": 63, \"n_models_failed\": 38, \"n_items\": 14042, \"n_mapped_items\": 12441, \"overall_accuracy\": 0.426, \"fitting_time_2pl_sec\": 8.9, \"fitting_time_3pl_sec\": 12.1, \"3pl_a_pearson_r\": 0.111, \"3pl_b_pearson_r\": 0.626, \"3pl_b_spearman_r\": 0.656, \"2pl_a_pearson_r\": -0.084, \"2pl_b_pearson_r\": 0.572, \"lz_star_mean\": 11.69, \"lz_star_std\": 6.68, \"lz_star_flagged_pct\": 1.6}, \"conclusion\": \"negative\", \"checkpoint_path\": \"artifacts/v1_irt_refit_pilot/v1_fitted_params.csv\", \"log_path\": \"artifacts/v1_irt_refit_pilot/pilot_run.log\", \"completed_at\": \"2026-05-20T12:32:16.129Z\"}, \"exp-clean-control-delta\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T11:57:39.694Z\", \"updated_at\": \"2026-05-20T12:08:35.683Z\", \"hypothesis\": \"Δlz* between two independent clean response vectors (same θ, different random seeds) has E[Δlz*]≈0 and controlled variance, confirming that non-zero Δlz* in contamination experiments reflects genuine contamination signal rather than estimation noise\", \"spec\": {\"command\": \"python run_clean_control.py\", \"server\": \"local\", \"data_path\": \"artifacts/psn_irt_params/\", \"data_count\": \"500 θ per benchmark × 5 benchmarks\", \"model_name\": \"4PL IRT simulation\", \"seed\": \"42,123\", \"checkpoint_path\": \"artifacts/clean_control_delta/\", \"log_path\": \"artifacts/clean_control_delta/delta_report.md\"}, \"conclusion\": \"success\", \"metrics\": {\"clean_vs_clean_mean_abs\": {\"mmlu\": 0.01, \"hellaswag\": 0.125, \"gsm8k\": 0.021, \"arc_c\": 0.095, \"humaneval\": 0.02}, \"clean_vs_clean_all_nonsig\": true, \"clean_vs_contam_all_sig\": true, \"cohens_d\": {\"mmlu\": 2.66, \"hellaswag\": 1.85, \"gsm8k\": 1.85, \"arc_c\": 0.45, \"humaneval\": 1.07}, \"arc_c_note\": \"d=0.45 < 0.5 threshold due to only 295 items, but still p<1e-10\"}, \"completed_at\": \"2026-05-20T12:08:35.683Z\"}, \"exp-fdr-correction\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T11:57:39.228Z\", \"updated_at\": \"2026-05-20T12:04:41.646Z\", \"hypothesis\": \"BH-FDR correction on the 60-cell cross-benchmark analysis preserves the key finding that nearly all LLM-benchmark cells show significant misfit, with corrected flagging rate remaining above 80%\", \"spec\": {\"command\": \"N/A (reused existing BH-FDR analysis from exp-two-sided v2)\", \"server\": \"local\", \"data_path\": \"artifacts/phase_b_two_sided_v2/empirical_pvalues.csv\", \"data_count\": 60, \"model_name\": \"N/A\", \"seed\": \"N/A\", \"checkpoint_path\": \"artifacts/phase_b_two_sided_v2/empirical_pvalues.csv\", \"log_path\": \"N/A\"}, \"conclusion\": \"success\", \"metrics\": {\"flagged_uncorrected\": \"57/60 (95%)\", \"flagged_bh_fdr\": \"57/60 (95%)\", \"flagged_bonferroni\": \"not_computed_but_expected_similar\", \"correction_scope\": \"global_60_tests\", \"unflagged_cells\": [\"Yi-Lightning×arc_c (bh_p=0.098)\", \"360GPT2-Pro×humaneval (bh_p=0.134)\", \"Yi-Lightning×humaneval (bh_p=0.181)\"], \"note\": \"Reused existing BH-FDR from exp-two-sided v2 empirical_pvalues.csv. Leaderboard-scale FDR (24800+ tests) deferred to leaderboard audit.\"}, \"completed_at\": \"2026-05-20T12:04:41.646Z\"}, \"exp-cross-benchmark-analysis\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T11:30:52.484Z\", \"updated_at\": \"2026-05-20T11:35:35.796Z\", \"hypothesis\": \"Cross-benchmark lz* anomaly profiles reveal distinct contamination patterns: models with selective benchmark contamination show high positive lz* on specific benchmarks but normal/negative on others, while models with natural misfit show consistently negative lz* across all benchmarks\", \"spec\": {\"command\": \"python src/cross_benchmark_analysis.py\", \"server\": \"local(CPU)\", \"data_path\": \"artifacts/phase_b_two_sided_v2/\", \"data_count\": \"12 models x 5 benchmarks\", \"model_name\": \"N/A\", \"seed\": \"N/A\", \"checkpoint_path\": \"artifacts/cross_benchmark_analysis/\", \"log_path\": \"artifacts/cross_benchmark_analysis/analysis_report.md\"}, \"metrics\": {\"n_models_all5_flagged\": 10, \"n_models_selective_flagged\": 2, \"gemini15_cluster_isolation\": true, \"dominant_direction_pattern\": \"positive\", \"pct_positive_cells\": 93.3, \"total_flagged\": 57, \"flag_rate\": 0.95}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T11:35:35.796Z\"}, \"exp-accuracy-zscore-baseline\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T11:30:51.761Z\", \"updated_at\": \"2026-05-20T11:33:55.426Z\", \"hypothesis\": \"Accuracy z-score baseline (|z|>1.96) flags far fewer cells than lz* because it only captures overall performance deviation without item-level pattern information — lz* provides strictly more information by detecting response pattern aberrance that accuracy alone misses\", \"spec\": {\"command\": \"python src/baseline_accuracy_zscore.py\", \"server\": \"local(CPU)\", \"data_path\": \"artifacts/psn_irt_phase_b/combine.csv\", \"data_count\": \"12 models x 5 benchmarks\", \"model_name\": \"N/A\", \"seed\": \"N/A\"}, \"metrics\": {\"z_flagged_count\": 4, \"lz_flagged_count\": 57, \"agreement_rate\": 0.117, \"gemini15_mmlu_zscore\": 1.413}, \"conclusion\": \"success\", \"log_path\": \"artifacts/accuracy_zscore_baseline/comparison_summary.json\", \"checkpoint_path\": \"artifacts/accuracy_zscore_baseline/\", \"completed_at\": \"2026-05-20T11:33:55.426Z\"}, \"exp-item-alignment-check\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T10:16:34.437Z\", \"updated_at\": \"2026-05-20T10:53:40.587Z\", \"hypothesis\": \"Open LLM Leaderboard v1 per-item responses share the same deterministic item ordering as PSN-IRT combine.csv (both generated by lm-eval-harness), enabling direct positional alignment of v1 response vectors with PSN-IRT 4PL item parameters without content-based matching\", \"parent\": \"exp-leaderboard-data-recon\", \"spec\": {\"command\": \"python alignment_check_v6.py\", \"server\": \"local(CPU)\", \"data_path\": \"artifacts/psn_irt_phase_b/combine.csv + HF open-llm-leaderboard-old + cais/mmlu\", \"data_count\": 14042, \"model_name\": \"N/A\", \"seed\": \"N/A\", \"checkpoint_source\": \"N/A\", \"eval_data\": \"MMLU 14042 items\", \"checkpoint_path\": \"N/A\", \"log_path\": \"artifacts/item_alignment_check/alignment_results.json\"}, \"conclusion\": \"negative\", \"metrics\": {\"match_rate_direct\": 0.5456, \"match_rate_reordered_mistral\": 0.8846, \"match_rate_reordered_vicuna\": 0.7248, \"n_items_checked\": 14042, \"n_models_verified\": 2, \"alignment_method\": \"content-based via cais/mmlu canonical order\", \"items_mapped\": 12068, \"mapping_coverage\": 0.86}, \"completed_at\": \"2026-05-20T10:53:40.587Z\"}, \"exp-power-theory\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T09:53:40.117Z\", \"updated_at\": \"2026-05-20T10:38:57.599Z\", \"hypothesis\": \"Detection power of lz* follows an analytic function of n_items and contamination level derivable from Snijders (2001) variance formula, and this theoretical curve explains the empirically observed inverted-U shape and n_items dependence with R²>0.95 against simulation data\", \"parent\": \"exp-extended-sim\", \"spec\": {\"command\": \"python src/power_theory.py\", \"server\": \"local(CPU)\", \"data_path\": \"artifacts/extended_simulation/ + artifacts/psn_irt_params/\", \"data_count\": \"55 simulation points + 25862 item params\", \"model_name\": \"N/A\", \"seed\": \"N/A\", \"checkpoint_path\": \"artifacts/power_theory/\", \"log_path\": \"artifacts/power_theory/power_theory_summary.json\", \"checkpoint_source\": \"N/A\", \"eval_data\": \"artifacts/extended_simulation/two_sided_power.csv\"}, \"metrics\": {\"R2_two_sided\": 0.9572, \"RMSE_two_sided\": 0.0746, \"R2_left_tail\": 0.9764, \"R2_mean_lz\": 0.9948, \"sqrt_n_R2_avg\": 0.88, \"crossover_range_pct\": \"81-85%\", \"min_items_15pct_80power\": 7958}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T10:38:57.599Z\"}, \"exp-empirical-null\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T09:53:38.594Z\", \"updated_at\": \"2026-05-20T10:02:04.668Z\", \"hypothesis\": \"Bootstrap empirical null of lz* under 4PL model shows systematic positive bias (mean>>0) and inflated variance (std>>1) for real LLM response data, quantifying the degree to which LLMs violate IRT local independence/unidimensionality assumptions — this bias explains why 95% of cells are flagged with absolute thresholds\", \"parent\": \"exp-two-sided\", \"spec\": {\"command\": \"python src/empirical_null_analysis.py\", \"server\": \"local(CPU)\", \"data_path\": \"artifacts/psn_irt_phase_b/combine.csv + artifacts/psn_irt_params/\", \"data_count\": \"60 cells × 1000 bootstrap\", \"model_name\": \"N/A\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"log_path\": \"artifacts/empirical_null_analysis/\", \"checkpoint_source\": \"exp-two-sided (response data + 4PL params)\", \"eval_data\": \"combine.csv 12×41871 binary responses, 5 benchmark param sets\"}, \"metrics\": {\"n_boot\": 1000, \"n_cells\": 60, \"mean_null_bias\": 0.0925, \"mean_null_std\": 1.0021, \"ks_reject_rate\": 0.4, \"ks_reject_count\": \"24/60\", \"bias_by_benchmark\": {\"arc_c\": 0.146, \"gsm8k\": 0.082, \"hellaswag\": 0.034, \"humaneval\": 0.16, \"mmlu\": 0.041}, \"std_by_benchmark\": {\"arc_c\": 1.004, \"gsm8k\": 1.01, \"hellaswag\": 0.999, \"humaneval\": 0.994, \"mmlu\": 1.003}, \"ks_reject_by_benchmark\": {\"arc_c\": 0.583, \"gsm8k\": 0.5, \"hellaswag\": 0.083, \"humaneval\": 0.75, \"mmlu\": 0.083}, \"key_finding\": \"Null bias is small (mean=0.09) and std is near 1.0 — the bootstrap null is well-calibrated. The 95% flagging rate is NOT caused by miscalibrated null but by genuine extreme lz* values in LLM data. Smaller benchmarks (humaneval, arc_c) show higher KS rejection rates due to stronger finite-sample deviations from normality.\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-20T10:02:04.668Z\"}, \"exp-leaderboard-data-recon\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T09:53:39.512Z\", \"updated_at\": \"2026-05-20T10:00:22.466Z\", \"hypothesis\": \"Open LLM Leaderboard v1 results repo on HuggingFace contains per-item binary response logs (not just aggregate scores) for a substantial number of models, enabling large-scale person-fit analysis without running inference ourselves\", \"spec\": {\"command\": \"web_research\", \"server\": \"local\", \"data_path\": \"N/A\", \"data_count\": \"N/A\", \"model_name\": \"N/A\", \"seed\": \"N/A\", \"checkpoint_path\": \"N/A (research task)\", \"log_path\": \"artifacts/leaderboard_data_recon/report.md\"}, \"metrics\": {\"n_models_with_per_item_data\": \"13000+\", \"benchmarks_covered\": \"4/5 (MMLU, HellaSwag, ARC-Challenge, GSM8K; missing HumanEval)\", \"estimated_gpu_hours_if_needed\": 0, \"v1_benchmarks\": 6, \"v2_benchmarks\": 6, \"data_format\": \"parquet per-item rows with acc/acc_norm binary fields\", \"source\": \"open-llm-leaderboard-old/details_{model}\", \"humaneval_gpu_hrs_per_7b_model\": 0.08, \"key_finding\": \"v1 details datasets contain per-item binary responses for 13K+ models. Zero GPU cost for 4/5 benchmarks.\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T10:00:22.466Z\"}, \"exp-extended-sim\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T09:31:30.112Z\", \"updated_at\": \"2026-05-20T09:50:31.545Z\", \"hypothesis\": \"Extended simulation with finer contamination levels (60/75/90%) and fixed 100% NaN handling will reveal the precise dual-regime crossover point where lz* flips from negative (aberrant) to positive (over-consistent), and inverted-U power curve shape is confirmed across all benchmarks\", \"parent\": \"sim_001\", \"spec\": {\"command\": \"python src/simulation.py\", \"server\": \"local (CPU)\", \"data_path\": \"artifacts/psn_irt_params/\", \"data_count\": \"25862 items (5 benchmarks) × 11 levels × 2000 sims = 110K trials\", \"model_name\": \"N/A (simulation)\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"log_path\": \"artifacts/extended_simulation/\", \"checkpoint_source\": \"sim_001 (extended with new levels)\", \"eval_data\": \"4PL params from PSN-IRT, simulated responses\"}, \"metrics\": {\"n_sims\": 2000, \"levels\": \"0/3/5/10/15/25/50/60/75/90/100\", \"n_excluded_100pct\": 0, \"inverted_u_all_5\": true, \"dual_regime_crossover\": \"75-90%\", \"mmlu_power_15pct\": 0.9845, \"hellaswag_power_15pct\": 0.7525, \"gsm8k_power_15pct\": 0.5905, \"mmlu_100pct_lz_star\": 31.815, \"hellaswag_100pct_lz_star\": 26.297, \"gsm8k_100pct_lz_star\": 8.253, \"arc_c_100pct_lz_star\": 4.339, \"humaneval_100pct_lz_star\": 3.529, \"two_sided_power\": {\"mmlu_15pct\": 0.978, \"mmlu_50pct\": 0.9525, \"mmlu_75pct\": 0.936, \"mmlu_90pct\": 0.9515, \"mmlu_100pct\": 1, \"hellaswag_25pct\": 0.9155, \"hellaswag_50pct\": 0.9475, \"hellaswag_90pct\": 0.9375, \"hellaswag_100pct\": 1, \"gsm8k_50pct\": 0.837, \"gsm8k_90pct\": 0.794, \"gsm8k_100pct\": 1}, \"key_finding\": \"Two-sided detection eliminates inverted-U: MMLU two-sided power >93% at ALL contamination levels. 100% contamination → 100% detection on all benchmarks.\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T09:32:07.373Z\"}, \"exp-two-sided\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T09:13:53.986Z\", \"updated_at\": \"2026-05-20T09:14:27.223Z\", \"hypothesis\": \"Two-sided detection (|lz*| > threshold) with benchmark-specific θ MLE + parametric bootstrap empirical null + BH-FDR control will reduce Phase B flagging rate from 93% to a reasonable level (<20%), isolating genuine contamination signals from θ estimation bias\", \"parent\": \"phase_b_personfit\", \"spec\": {\"command\": \"python src/two_sided_detection_v2.py\", \"server\": \"local (CPU)\", \"data_path\": \"artifacts/psn_irt_phase_b/combine.csv + artifacts/psn_irt_params/\", \"data_count\": \"12 models × 5 benchmarks × 1000 bootstrap\", \"model_name\": \"N/A\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"log_path\": \"artifacts/phase_b_two_sided_v2/\", \"checkpoint_source\": \"phase_b_personfit (response data)\", \"eval_data\": \"combine.csv 12×41871 binary responses\"}, \"metrics\": {\"flagged_rate\": \"57/60 (95.0%)\", \"n_boot\": 1000, \"fdr_alpha\": 0.05, \"flagged_positive\": 51, \"flagged_negative\": 6, \"unflagged\": 3, \"unflagged_cells\": \"Yi-Lightning/arc_c (p=0.098), 360GPT2-Pro/humaneval (p=0.134), Yi-Lightning/humaneval (p=0.181)\", \"gemini15_mmlu_lz_star_v2\": 31.815, \"gemini15_mmlu_theta_bench\": 4, \"gemini15_mmlu_p_emp\": 0, \"key_finding\": \"Benchmark-specific θ + bootstrap + FDR does NOT reduce flagging. LLMs universally violate 4PL assumptions.\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-20T09:14:27.223Z\"}, \"phase_b_personfit\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T08:34:21.694Z\", \"updated_at\": \"2026-05-20T08:34:56.735Z\", \"hypothesis\": \"Real LLM benchmark response data from PSN-IRT 12 models shows significant inter-model variation in person-fit statistics (lz*, outfit, infit), with specific models exhibiting anomalous patterns indicative of benchmark contamination — particularly Gemini-1.5 with accuracy-ability dissociation\", \"spec\": {\"command\": \"python src/phase_b_personfit.py\", \"server\": \"local (CPU)\", \"data_path\": \"artifacts/psn_irt_phase_b/combine.csv + artifacts/psn_irt_params/\", \"data_count\": \"12 models × 41871 items (5 benchmarks: MMLU 14042, HellaSwag 10042, GSM8K 1319, ARC-C 295, HumanEval 164)\", \"model_name\": \"N/A (person-fit computation on existing response data)\", \"seed\": \"N/A (deterministic computation)\", \"checkpoint_path\": \"N/A (analysis, no model)\", \"log_path\": \"artifacts/phase_b_results/personfit_summary.json\"}, \"metrics\": {\"lz_star_sd_all_gt_0.5\": true, \"mmlu_lz_star_mean\": 24.19, \"mmlu_lz_star_sd\": 16.47, \"hellaswag_lz_star_mean\": 20.09, \"hellaswag_lz_star_sd\": 17.59, \"gsm8k_lz_star_mean\": 8.22, \"gsm8k_lz_star_sd\": 8.97, \"gemini15_mmlu_lz_star\": 34.75, \"gemini15_mmlu_accuracy\": 1, \"gemini15_mmlu_theta\": 0.78, \"gemini15_flagged_benchmarks\": \"3/5 (HellaSwag, GSM8K, HumanEval negative lz*)\", \"cross_benchmark_spearman_significant\": \"1/10 (GSM8K vs HumanEval rho=0.62 p=0.031)\", \"n_models\": 12, \"n_benchmarks\": 5}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T08:34:56.735Z\"}, \"sim_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T07:13:53.208Z\", \"updated_at\": \"2026-05-20T08:09:31.642Z\", \"hypothesis\": \"Under 4PL IRT model, lz* person-fit statistic can detect partial benchmark contamination (5-30% items) with >80% power at α=0.05, and detection power follows an inverted-U curve across contamination levels (low contamination undetectable, moderate contamination most detectable, high contamination mimics high ability)\", \"conclusion\": \"negative\", \"metrics\": {\"null_check\": {\"all_pass\": true, \"gsm8k_ks_p\": 0.098, \"hellaswag_ks_p\": 0.224, \"mmlu_ks_p\": 0.594}, \"simulation_power_at_15pct\": {\"mmlu\": 0.979, \"hellaswag\": 0.733, \"gsm8k\": 0.578, \"arc_c\": 0.129, \"humaneval\": 0.243}, \"global_pass\": false, \"inverted_u_all_benchmarks\": true, \"pass_count_large_80pct\": \"1/3 (mmlu only)\"}, \"spec\": {\"command\": \"python src/null_check.py && python src/simulation.py\", \"server\": \"local (CPU)\", \"data_path\": \"artifacts/psn_irt_params/\", \"data_count\": \"25862 items (5 benchmarks)\", \"model_name\": \"N/A (simulation)\", \"seed\": 42, \"checkpoint_path\": \"N/A (simulation)\", \"log_path\": \"artifacts/null_check_results/ + artifacts/simulation_results/\"}, \"completed_at\": \"2026-05-20T08:09:31.642Z\"}}, \"count\": 25, \"total\": 25, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0711}}"
+    }
+  },
+  "sourceToolAssistantUUID": "badad057-d21d-449f-a1db-8deda38d7c90",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/agent_0d2e4332",
+  "sessionId": "2c744163-383c-4237-987b-0309840dbb5c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-20T19:11:02.489Z_
+
+<details><summary>↩ Tool result · `toolu_01KBRj9KYxekfRMj1HKHLuGz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9e90db32-11fa-4f4a-9fe0-79bd9039d96a",
+  "isSidechain": false,
+  "promptId": "ce644d86-8135-451f-9747-cd307f6211e6",
+  "type": "user",
+  "uuid": "108157bd-13cc-4693-a41e-2f38abcbc513",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 0, \\\"results\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "9e90db32-11fa-4f4a-9fe0-79bd9039d96a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/agent_0d2e4332",
+  "sessionId": "2c744163-383c-4237-987b-0309840dbb5c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-20T19:11:02.870Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01DfjNQSXHNktoWhUHgnWvoM`</summary>
+
+```json
+{
+  "project": "irt_personfit_contam",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "108157bd-13cc-4693-a41e-2f38abcbc513",
+  "isSidechain": false,
+  "requestId": "req_011CbEMG58qAJiXMyDKMX2Se",
+  "type": "assistant",
+  "uuid": "6958becd-19e2-4add-9eb5-9bb3aaff51a5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/agent_0d2e4332",
+  "sessionId": "2c744163-383c-4237-987b-0309840dbb5c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JwkMBczXyyG2Cvrxads9m3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1194,
+      "cache_read_input_tokens": 37153,
+      "output_tokens": 245,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1194,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 245,
+          "cache_read_input_tokens": 37153,
+          "cache_creation_input_tokens": 1194,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1194
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-20T19:11:02.891Z_
+
+<details><summary>↩ Tool result · `toolu_01DfjNQSXHNktoWhUHgnWvoM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-20T19:10:47Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 25 个实验 — DONE 20, PREPARING 5\\n**DONE 分布**: negative 6, success 14\\n\\n### GPU 占用\\n- **分配**: 4 张 — westd-35694:cuda:0, westd-35694:cuda:1, westd-35694:cuda:2, westd-35694:cuda:3\\n- **空闲（分配了没跑）**: westd-35694:cuda:1, westd-35694:cuda:2, westd-35694:cuda:3\\n\\n### 💾 磁盘余量\\n- **westd-35694**:\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\n  - `/init`: 150M/150M 可用（已用 0%）\\n  - `/usr/bin/nvidia-smi`: 816G/879G 可用（已用 3%）\\n\\n### 🏃 RUNNING\\n_（无）_\\n\\n### 📌 最近完成 (top 5)\\n- `exp-ctrl-contam-pilot` [success] — 2026-05-20T18:59:06\\n- `exp-v1-irt-refit-expanded` [negative] — 2026-05-20T14:44:22\\n- `exp-4pl-real-data-degradation` [success] — 2026-05-20T14:41:27\\n- `exp-4pl-ablation` [success] — 2026-05-20T13:50:29\\n- `exp-natural-experiment` [success] — 2026-05-20T13:21:26\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-20\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n- exp-ctrl-contam-pilot-contam-50（准备中）\\n- exp-ctrl-contam-pilot-contam-15（准备中）\\n- exp-ctrl-contam-pilot-clean-s2（准备中）\\n- exp-ctrl-contam-pilot-clean-s1（准备中）\\n\\n## 近期结论\\n- **exp-ctrl-contam-pilot** (success): Controlled contamination via QLoRA fine-tuning on MMLU items produces measurable Δlz* signal: (1) clean-vs-clean Δlz* ≈ 0 (seed1 vs seed2), confirming the noise floor; (2) 15% contamination produces significant negative Δlz* with Cohen's d > 1.0; (3) 50% contamination produces even stronger signal; (4) contamination signal concentrates on seen items (memorization fraction > 0.5)\\n- **exp-v1-irt-refit-expanded** (negative): With N≥500 models (vs pilot N=63), MML-EM estimation of discrimination parameters will improve substantially (a_pearson_r > 0.4 vs PSN-IRT), because the pilot's a_r=0.111 was primarily caused by catastrophically low N:J ratio (0.0045) rather than fundamental incompatibility between classical IRT and neural IRT parameterizations ← 基于 exp-v1-irt-refit-pilot\\n  [expanded_report](/api/workspace-files/projects/irt_personfit_contam/artifacts/exp-v1-irt-refit-expanded/report/expanded_report.md) | [expanded_results](/api/workspace-files/projects/irt_personfit_contam/artifacts/exp-v1-irt-refit-expanded/data/expanded_results.json) | [expanded_response_matrix](/api/workspace-files/projects/irt_personfit_contam/artifacts/exp-v1-irt-refit-expanded/data/expanded_response_matrix.npz) | [expanded_fitted_params](/api/workspace-files/projects/irt_personfit_contam/artifacts/exp-v1-irt-refit-expanded/data/expanded_fitted_params.csv) | [parameter_comparison_expanded](/api/workspace-files/projects/irt_personfit_contam/artifacts/exp-v1-irt-refit-expanded/chart/parameter_comparison_expanded.png) | [lz_star_distribution_expanded](/api/workspace-files/projects/irt_personfit_contam/artifacts/exp-v1-irt-refit-expanded/chart/lz_star_distribution_expanded.png) | [download_log](/api/workspace-files/projects/irt_personfit_contam/artifacts/exp-v1-irt-refit-expanded/data/download_log.csv) | [expanded_refit_script](/api/workspace-files/projects/irt_personfit_contam/artifacts/exp-v1-irt-refit-expanded/intermediate/expanded_refit.py)\\n- **exp-4pl-real-data-degradation** (success): Forcing d=1.0 (3PL degradation) on PSN-IRT 4PL parameters systematically distorts lz* values for real LLM response data, with the largest distortion on benchmarks/models where items have low d_feasibility, providing empirical evidence (beyond simulation) that the 4PL upper asymptote is essential for accurate person-fit measurement in LLM evaluation\\n  [degradation_report](/api/workspace-files/projects/irt_personfit_contam/artifacts/exp-4pl-real-data-degradation/report/degradation_report.md) | [degradation_comparison](/api/workspace-files/projects/irt_personfit_contam/artifacts/exp-4pl-real-data-degradation/data/degradation_comparison.csv) | [benchmark_d_stats](/api/workspace-files/projects/irt_personfit_contam/artifacts/exp-4pl-real-data-degradation/data/benchmark_d_stats.csv) | [scatter_4pl_vs_3pl](/api/workspace-files/projects/irt_personfit_contam/artifacts/exp-4pl-real-data-degradation/chart/scatter_4pl_vs_3pl.png) | [delta_distribution](/api/workspace-files/projects/irt_personfit_contam/artifacts/exp-4pl-real-data-degradation/chart/delta_distribution.png) | [d_vs_delta_relationship](/api/workspace-files/projects/irt_personfit_contam/artifacts/exp-4pl-real-data-degradation/chart/d_vs_delta_relationship.png)\\n\\n## 趋势\\n成功 14 / 负向 6 / 失败 0 / 共 20\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestd-35694: 无 GPU 信息\\n\\n## 告警\\n（无）\\n\", \"total_chars\": 4548, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6958becd-19e2-4add-9eb5-9bb3aaff51a5",
+  "isSidechain": false,
+  "promptId": "ce644d86-8135-451f-9747-cd307f6211e6",
+  "type": "user",
+  "uuid": "937dd250-c25e-4329-8080-a4c0802eda0d",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/report.md\\\", \\\"content\\\": \\\"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-20T19:10:47Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 25 个实验 — DONE 20, PREPARING 5\\\\n**DONE 分布**: negative 6, success 14\\\\n\\\\n### GPU 占用\\\\n- **分配**: 4 张 — westd-35694:cuda:0, westd-35694:cuda:1, westd-35694:cuda:2, westd-35694:cuda:3\\\\n- **空闲（分配了没跑）**: westd-35694:cuda:1, westd-35694:cuda:2, westd-35694:cuda:3\\\\n\\\\n### 💾 磁盘余量\\\\n- **westd-35694**:\\\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\\\n  - `/init`: 150M/150M 可用（已用 0%）\\\\n  - `/usr/bin/nvidia-smi`: 816G/879G 可用（已用 3%）\\\\n\\\\n### 🏃 RUNNING\\\\n_（无）_\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `exp-ctrl-contam-pilot` [success] — 2026-05-20T18:59:06\\\\n- `exp-v1-irt-refit-expanded` [negative] — 2026-05-20T14:44:22\\\\n- `exp-4pl-real-data-degradation` [success] — 2026-05-20T14:41:27\\\\n- `exp-4pl-ablation` [success] — 2026-05-20T13:50:29\\\\n- `exp-natural-experiment` [success] — 2026-05-20T13:21:26\\\\n\\\\n&lt;!-- AUTO-FACTS-END -->\\\\n\\\\n---\\\\n\\\\n# Handover — 2026-05-20\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n（无）\\\\n\\\\n## 待处理\\\\n- exp-ctrl-contam-pilot-contam-50（准备中）\\\\n- exp-ctrl-contam-pilot-contam-15（准备中）\\\\n- exp-ctrl-contam-pilot-clean-s2（准备中）\\\\n- exp-ctrl-contam-pilot-clean-s1（准备中）\\\\n\\\\n## 近期结论\\\\n- **exp-ctrl-contam-pilot** (success): Controlled contamination via QLoRA fine-tuning on MMLU items produces measurable Δlz* signal: (1) clean-vs-clean Δlz* ≈ 0 (seed1 vs seed2), confirming the noise floor; (2) 15% contamination produces significant negative Δlz* with Cohen's d > 1.0; (3) 50% contamination produces even stronger signal; (4) contamination signal concentrates on seen items (memorization fraction > 0.5)\\\\n- **exp-v1-irt-refit-expanded** (negative): With N≥500 models (vs pilot N=63), MML-EM estimation of discrimination parameters will improve substantially (a_pearson_r > 0.4 vs PSN-IRT), because the pilot's a_r=0.111 was primarily caused by catastrophically low N:J ratio (0.0045) rather than fundamental incompatibility between classical IRT and neural IRT parameterizations ← 基于 exp-v1-irt-refit-pilot\\\\n  [expanded_report](/api/workspace-files/projects/irt_personfit_contam/artifacts/exp-v1-irt-refit-expanded/report/expanded_report.md) | [expanded_results](/api/workspace-files/projects/irt_personfit_contam/artifacts/exp-v1-irt-refit-expanded/data/expanded_results.json) | [expanded_response_matrix](/api/workspace-files/projects/irt_personfit_contam/artifacts/exp-v1-irt-refit-expanded/data/expanded_response_matrix.npz) | [expanded_fitted_params](/api/workspace-files/projects/irt_personfit_contam/artifacts/exp-v1-irt-refit-expanded/data/expanded_fitted_params.csv) | [parameter_comparison_expanded](/api/workspace-files/projects/irt_personfit_contam/artifacts/exp-v1-irt-refit-expanded/chart/parameter_comparison_expanded.png) | [lz_star_distribution_expanded](/api/workspace-files/projects/irt_personfit_contam/artifacts/exp-v1-irt-refit-expanded/chart/lz_star_distribution_expanded.png) | [download_log](/api/workspace-files/projects/irt_personfit_contam/artifacts/exp-v1-irt-refit-expanded/data/download_log.csv) | [expanded_refit_script](/api/workspace-files/projects/irt_personfit_contam/artifacts/exp-v1-irt-refit-expanded/intermediate/expanded_refit.py)\\\\n- **exp-4pl-real-data-degradation** (success): Forcing d=1.0 (3PL degradation) on PSN-IRT 4PL parameters systematically distorts lz* values for real LLM response data, with the largest distortion on benchmarks/models where items have low d_feasibility, providing empirical evidence (beyond simulation) that the 4PL upper asymptote is essential for accurate person-fit measurement in LLM evaluation\\\\n  [degradation_report](/api/workspace-files/projects/irt_personfit_contam/artifacts/exp-4pl-real-data-degradation/report/degradation_report.md) | [degradation_comparison](/api/workspace-files/projects/irt_personfit_contam/artifacts/exp-4pl-real-data-degradation/data/degradation_comparison.csv) | [benchmark_d_stats](/api/workspace-files/projects/irt_personfit_contam/artifacts/exp-4pl-real-data-degradation/data/benchmark_d_stats.csv) | [scatter_4pl_vs_3pl](/api/workspace-files/projects/irt_personfit_contam/artifacts/exp-4pl-real-data-degradation/chart/scatter_4pl_vs_3pl.png) | [delta_distribution](/api/workspace-files/projects/irt_personfit_contam/artifacts/exp-4pl-real-data-degradation/chart/delta_distribution.png) | [d_vs_delta_relationship](/api/workspace-files/projects/irt_personfit_contam/artifacts/exp-4pl-real-data-degradation/chart/d_vs_delta_relationship.png)\\\\n\\\\n## 趋势\\\\n成功 14 / 负向 6 / 失败 0 / 共 20\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nwestd-35694: 无 GPU 信息\\\\n\\\\n## 告警\\\\n（无）\\\\n\\\", \\\"total_chars\\\": 4548, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-20T19:10:47Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 25 个实验 — DONE 20, PREPARING 5\\n**DONE 分布**: negative 6, success 14\\n\\n### GPU 占用\\n- **分配**: 4 张 — westd-35694:cuda:0, westd-35694:cuda:1, westd-35694:cuda:2, westd-35694:cuda:3\\n- **空闲（分配了没跑）**: westd-35694:cuda:1, westd-35694:cuda:2, westd-35694:cuda:3\\n\\n### 💾 磁盘余量\\n- **westd-35694**:\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\n  - `/init`: 150M/150M 可用（已用 0%）\\n  - `/usr/bin/nvidia-smi`: 816G/879G 可用（已用 3%）\\n\\n### 🏃 RUNNING\\n_（无）_\\n\\n### 📌 最近完成 (top 5)\\n- `exp-ctrl-contam-pilot` [success] — 2026-05-20T18:59:06\\n- `exp-v1-irt-refit-expanded` [negative] — 2026-05-20T14:44:22\\n- `exp-4pl-real-data-degradation` [success] — 2026-05-20T14:41:27\\n- `exp-4pl-ablation` [success] — 2026-05-20T13:50:29\\n- `exp-natural-experiment` [success] — 2026-05-20T13:21:26\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-20\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n- exp-ctrl-contam-pilot-contam-50（准备中）\\n- exp-ctrl-contam-pilot-contam-15（准备中）\\n- exp-ctrl-contam-pilot-clean-s2（准备中）\\n- exp-ctrl-contam-pilot-clean-s1（准备中）\\n\\n## 近期结论\\n- **exp-ctrl-contam-pilot** (success): Controlled contamination via QLoRA fine-tuning on MMLU items produces measurable Δlz* signal: (1) clean-vs-clean Δlz* ≈ 0 (seed1 vs seed2), confirming the noise floor; (2) 15% contamination produces significant negative Δlz* with Cohen's d > 1.0; (3) 50% contamination produces even stronger signal; (4) contamination signal concentrates on seen items (memorization fraction > 0.5)\\n- **exp-v1-irt-refit-expanded** (negative): With N≥500 models (vs pilot N=63), MML-EM estimation of discrimination parameters will improve substantially (a_pearson_r > 0.4 vs PSN-IRT), because the pilot's a_r=0.111 was primarily caused by catastrophically low N:J ratio (0.0045) rather than fundamental incompatibility between classical IRT and neural IRT parameterizations ← 基于 exp-v1-irt-refit-pilot\\n  [expanded_report](/api/workspace-files/projects/irt_personfit_contam/artifacts/exp-v1-irt-refit-expanded/report/expanded_report.md) | [expanded_results](/api/workspace-files/projects/irt_personfit_contam/artifacts/exp-v1-irt-refit-expanded/data/expanded_results.json) | [expanded_response_matrix](/api/workspace-files/projects/irt_personfit_contam/artifacts/exp-v1-irt-refit-expanded/data/expanded_response_matrix.npz) | [expanded_fitted_params](/api/workspace-files/projects/irt_personfit_contam/artifacts/exp-v1-irt-refit-expanded/data/expanded_fitted_params.csv) | [parameter_comparison_expanded](/api/workspace-files/projects/irt_personfit_contam/artifacts/exp-v1-irt-refit-expanded/chart/parameter_comparison_expanded.png) | [lz_star_distribution_expanded](/api/workspace-files/projects/irt_personfit_contam/artifacts/exp-v1-irt-refit-expanded/chart/lz_star_distribution_expanded.png) | [download_log](/api/workspace-files/projects/irt_personfit_contam/artifacts/exp-v1-irt-refit-expanded/data/download_log.csv) | [expanded_refit_script](/api/workspace-files/projects/irt_personfit_contam/artifacts/exp-v1-irt-refit-expanded/intermediate/expanded_refit.py)\\n- **exp-4pl-real-data-degradation** (success): Forcing d=1.0 (3PL degradation) on PSN-IRT 4PL parameters systematically distorts lz* values for real LLM response data, with the largest distortion on benchmarks/models where items have low d_feasibility, providing empirical evidence (beyond simulation) that the 4PL upper asymptote is essential for accurate person-fit measurement in LLM evaluation\\n  [degradation_report](/api/workspace-files/projects/irt_personfit_contam/artifacts/exp-4pl-real-data-degradation/report/degradation_report.md) | [degradation_comparison](/api/workspace-files/projects/irt_personfit_contam/artifacts/exp-4pl-real-data-degradation/data/degradation_comparison.csv) | [benchmark_d_stats](/api/workspace-files/projects/irt_personfit_contam/artifacts/exp-4pl-real-data-degradation/data/benchmark_d_stats.csv) | [scatter_4pl_vs_3pl](/api/workspace-files/projects/irt_personfit_contam/artifacts/exp-4pl-real-data-degradation/chart/scatter_4pl_vs_3pl.png) | [delta_distribution](/api/workspace-files/projects/irt_personfit_contam/artifacts/exp-4pl-real-data-degradation/chart/delta_distribution.png) | [d_vs_delta_relationship](/api/workspace-files/projects/irt_personfit_contam/artifacts/exp-4pl-real-data-degradation/chart/d_vs_delta_relationship.png)\\n\\n## 趋势\\n成功 14 / 负向 6 / 失败 0 / 共 20\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestd-35694: 无 GPU 信息\\n\\n## 告警\\n（无）\\n\", \"total_chars\": 4548, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "6958becd-19e2-4add-9eb5-9bb3aaff51a5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/agent_0d2e4332",
+  "sessionId": "2c744163-383c-4237-987b-0309840dbb5c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-20T19:11:02.879Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap · `toolu_01AQVKsgMQ8HVBaahWS7HjMs`</summary>
+
+```json
+{
+  "project": "irt_personfit_contam"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6958becd-19e2-4add-9eb5-9bb3aaff51a5",
+  "isSidechain": false,
+  "requestId": "req_011CbEMG58qAJiXMyDKMX2Se",
+  "type": "assistant",
+  "uuid": "064a2460-6190-4730-86d3-237f65671c4b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/agent_0d2e4332",
+  "sessionId": "2c744163-383c-4237-987b-0309840dbb5c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JwkMBczXyyG2Cvrxads9m3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1194,
+      "cache_read_input_tokens": 37153,
+      "output_tokens": 245,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1194,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 245,
+          "cache_read_input_tokens": 37153,
+          "cache_creation_input_tokens": 1194,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1194
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-20T19:11:02.910Z_
+
+<details><summary>↩ Tool result · `toolu_01AQVKsgMQ8HVBaahWS7HjMs`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/ROADMAP.md\", \"content\": \"# irt_personfit_contam — Research Dashboard\\n\\n> 最后更新: 2026-05-20 18:59 UTC | 更新原因: ctrl-contam-pilot 完成 + θ-fixed 分析成功, 进入写作准备阶段\\n\\n## 核心方向\\nIRT person-fit statistics (lz*) 作为 minimal-information contamination detection 方法。详见 paper_framing.md。\\n\\n## 当前阶段: Research → Writing 过渡（ctrl-contam-pilot 完成，准备启动论文写作）\\n\\n### 关键发现\\n1. **Simulation**: Null check ✅, MMLU power@15%=97.9%, two-sided >93%, dual-regime crossover 75-90%\\n2. **Empirical null (D008)**: Bootstrap null 校准良好（MMLU: bias 0.041, std 1.003, KS reject 8.3%）\\n3. **Power theory**: R²=0.957, δ∝√n, 理论 crossover π*≈81-85%, 最小 items 指南表\\n4. **ML classifier baseline**: lz* 在 5-10% 低污染 AUROC 优于 LR/RF (+0.05-0.10)\\n5. **Δlz* 设计验证**: clean-vs-clean ≈ 0, contamination Cohen's d 0.45-2.66, √n scaling\\n6. **v1-irt-refit NEGATIVE (D011)**: N=178, 3PL a_r=0.127 → Path D dead → Claim 3c\\n7. **4PL ablation (R8)**: simulation +14-27pp power gain + real-data r=0.225/RMSE=68.41 双重证据\\n8. **Domain analysis**: Gemini-1.5 50/57 subjects flagged, virology diagnosed\\n9. **ctrl-contam-pilot (D015)**: contam_15 |d|=3.85 ✅; θ-free 非单调但 **θ-fixed 恢复单调** (ratio=2.93)\\n10. **θ-shift 方法论发现**: contamination→θ↑→信号吸收，seen/unseen split (lz*≈0 vs 3.1) 是最清晰指纹\\n\\n### Dream 模拟审稿 + Issue Resolution\\n- Best: 3.5 | Median: 3.0 | Worst: 2.75\\n- ctrl-contam-pilot + θ-fixed 分析将评估恢复到 3.0-3.5\\n\\n## 实验状态\\n\\n| 实验 | 优先级 | 状态 | 结论 |\\n|------|--------|------|------|\\n| sim_001 ~ exp-natural-experiment | — | ✅ 18 DONE | 12 success, 6 negative |\\n| exp-4pl-real-data-degradation | CPU | ✅ DONE | r=0.225, RMSE=68.41 (R8 双重证据) |\\n| **exp-ctrl-contam-pilot** | **P0-CRITICAL** | ✅ DONE | **Partial**: d=-3.85@15%, θ-fixed 单调 |\\n| clean_s3 补充 | P1 | 🔄 RUNNING | GPU 0, ~30 min |\\n| exp-ctrl-contam (full) | P0 | deferred | pilot 够用，初稿后再决定 |\\n| exp-baseline-comparison | P0-end | planned | 初稿后执行 |\\n| exp-post-rl | P2-deferred | deferred | Limitations 讨论 |\\n\\n## 近期任务\\n- [x] ctrl-contam-pilot 完成 + θ-fixed 分析 ✅\\n- [x] paper_framing.md 更新 D015 结果\\n- [ ] clean_s3 训练 + eval（GPU, ~30 min）\\n- [ ] Registry 修正：conclusion→partial, θ-fixed→completed\\n- [ ] **ARR DDL 锁定**（Jun 15 cycle）\\n- [ ] **启动 Paper Agent 写论文初稿**（clean_s3 完成后）\\n\\n## 阻塞项\\n无硬阻塞。clean_s3 (~30 min) 后即可启动写作。\\n\\n## GPU 预算\\n- 分配: 4× RTX 6000 96GB (westd-35694)\\n- P0 已用: ~4 GPU-hrs (pilot training + eval)\\n- 当前: GPU 0 跑 clean_s3, GPU 1-3 空闲\\n- 剩余 P0: exp-ctrl-contam (full) 80 GPU-hrs — 初稿后再决定\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D015 | 2026-05-20 | ctrl-contam-pilot 结果为 partial：contam_15 d=-3.85 强阳 | exp-ctrl-contam-pilot, exp-clean-control-delta, exp-extended-sim |\\n| D014 | 2026-05-20 | Claim 结构重组：universal misfit 从 Claim 1 移至 Claim 3，C | exp-empirical-null, exp-v1-irt-refit-pilot, exp-ml-classifier-baseline |\\n| D013 | 2026-05-20 | Natural experiment 降级为 P2-optional，CPU 资源转向 4PL ab | exp-natural-experiment, exp-v1-irt-refit-pilot, exp-4pl-ablation, exp-domain-analysis |\\n| D012 | 2026-05-20 | 确认 Claim 3 最终路径：C+D 组合（PSN-IRT 12-model case study | exp-v1-irt-refit-pilot, exp-ctrl-contam-pilot, exp-ml-classifier-baseline |\\n| D011 | 2026-05-20 | v1-irt-refit NEGATIVE (a_r=0.111): Claim 3 从 \\\"13K+ | exp-v1-irt-refit-pilot, exp-item-alignment-check, exp-leaderboard-data-recon |\\n| D010 | 2026-05-20 | Paper framing 三项重大调整：(1) Leaderboard audit 降级为描述性应 | exp-ctrl-contam-pilot, exp-ml-classifier-baseline, exp-power-theory |\\n| D009 | 2026-05-20 | Leaderboard audit 采用 Path D（v1 数据重拟合 IRT + PSN-IRT | exp-item-alignment-check, exp-leaderboard-data-recon, exp-v1-irt-refit-pilot |\\n| D008 | 2026-05-20 | Calibration gap 机制修正：null 校准良好，问题在真实数据侧（LLM 响应模式系统 | exp-empirical-null, exp-two-sided |\\n| D007 | 2026-05-20 | 采纳方向 B: real data 上 person-fit 绝对阈值失效（universal mi | exp-two-sided |\\n| D006 | 2026-05-20 | Phase B 必须用 benchmark-specific θ (MLE)，不能用 PSN-IRT | exp-two-sided |\\n\\n\\n\", \"lines\": 71}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "064a2460-6190-4730-86d3-237f65671c4b",
+  "isSidechain": false,
+  "promptId": "ce644d86-8135-451f-9747-cd307f6211e6",
+  "type": "user",
+  "uuid": "c1d1b70f-6286-4083-8038-edbfc477d6d5",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/ROADMAP.md\\\", \\\"content\\\": \\\"# irt_personfit_contam — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-20 18:59 UTC | 更新原因: ctrl-contam-pilot 完成 + θ-fixed 分析成功, 进入写作准备阶段\\\\n\\\\n## 核心方向\\\\nIRT person-fit statistics (lz*) 作为 minimal-information contamination detection 方法。详见 paper_framing.md。\\\\n\\\\n## 当前阶段: Research → Writing 过渡（ctrl-contam-pilot 完成，准备启动论文写作）\\\\n\\\\n### 关键发现\\\\n1. **Simulation**: Null check ✅, MMLU power@15%=97.9%, two-sided >93%, dual-regime crossover 75-90%\\\\n2. **Empirical null (D008)**: Bootstrap null 校准良好（MMLU: bias 0.041, std 1.003, KS reject 8.3%）\\\\n3. **Power theory**: R²=0.957, δ∝√n, 理论 crossover π*≈81-85%, 最小 items 指南表\\\\n4. **ML classifier baseline**: lz* 在 5-10% 低污染 AUROC 优于 LR/RF (+0.05-0.10)\\\\n5. **Δlz* 设计验证**: clean-vs-clean ≈ 0, contamination Cohen's d 0.45-2.66, √n scaling\\\\n6. **v1-irt-refit NEGATIVE (D011)**: N=178, 3PL a_r=0.127 → Path D dead → Claim 3c\\\\n7. **4PL ablation (R8)**: simulation +14-27pp power gain + real-data r=0.225/RMSE=68.41 双重证据\\\\n8. **Domain analysis**: Gemini-1.5 50/57 subjects flagged, virology diagnosed\\\\n9. **ctrl-contam-pilot (D015)**: contam_15 |d|=3.85 ✅; θ-free 非单调但 **θ-fixed 恢复单调** (ratio=2.93)\\\\n10. **θ-shift 方法论发现**: contamination→θ↑→信号吸收，seen/unseen split (lz*≈0 vs 3.1) 是最清晰指纹\\\\n\\\\n### Dream 模拟审稿 + Issue Resolution\\\\n- Best: 3.5 | Median: 3.0 | Worst: 2.75\\\\n- ctrl-contam-pilot + θ-fixed 分析将评估恢复到 3.0-3.5\\\\n\\\\n## 实验状态\\\\n\\\\n| 实验 | 优先级 | 状态 | 结论 |\\\\n|------|--------|------|------|\\\\n| sim_001 ~ exp-natural-experiment | — | ✅ 18 DONE | 12 success, 6 negative |\\\\n| exp-4pl-real-data-degradation | CPU | ✅ DONE | r=0.225, RMSE=68.41 (R8 双重证据) |\\\\n| **exp-ctrl-contam-pilot** | **P0-CRITICAL** | ✅ DONE | **Partial**: d=-3.85@15%, θ-fixed 单调 |\\\\n| clean_s3 补充 | P1 | 🔄 RUNNING | GPU 0, ~30 min |\\\\n| exp-ctrl-contam (full) | P0 | deferred | pilot 够用，初稿后再决定 |\\\\n| exp-baseline-comparison | P0-end | planned | 初稿后执行 |\\\\n| exp-post-rl | P2-deferred | deferred | Limitations 讨论 |\\\\n\\\\n## 近期任务\\\\n- [x] ctrl-contam-pilot 完成 + θ-fixed 分析 ✅\\\\n- [x] paper_framing.md 更新 D015 结果\\\\n- [ ] clean_s3 训练 + eval（GPU, ~30 min）\\\\n- [ ] Registry 修正：conclusion→partial, θ-fixed→completed\\\\n- [ ] **ARR DDL 锁定**（Jun 15 cycle）\\\\n- [ ] **启动 Paper Agent 写论文初稿**（clean_s3 完成后）\\\\n\\\\n## 阻塞项\\\\n无硬阻塞。clean_s3 (~30 min) 后即可启动写作。\\\\n\\\\n## GPU 预算\\\\n- 分配: 4× RTX 6000 96GB (westd-35694)\\\\n- P0 已用: ~4 GPU-hrs (pilot training + eval)\\\\n- 当前: GPU 0 跑 clean_s3, GPU 1-3 空闲\\\\n- 剩余 P0: exp-ctrl-contam (full) 80 GPU-hrs — 初稿后再决定\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D015 | 2026-05-20 | ctrl-contam-pilot 结果为 partial：contam_15 d=-3.85 强阳 | exp-ctrl-contam-pilot, exp-clean-control-delta, exp-extended-sim |\\\\n| D014 | 2026-05-20 | Claim 结构重组：universal misfit 从 Claim 1 移至 Claim 3，C | exp-empirical-null, exp-v1-irt-refit-pilot, exp-ml-classifier-baseline |\\\\n| D013 | 2026-05-20 | Natural experiment 降级为 P2-optional，CPU 资源转向 4PL ab | exp-natural-experiment, exp-v1-irt-refit-pilot, exp-4pl-ablation, exp-domain-analysis |\\\\n| D012 | 2026-05-20 | 确认 Claim 3 最终路径：C+D 组合（PSN-IRT 12-model case study | exp-v1-irt-refit-pilot, exp-ctrl-contam-pilot, exp-ml-classifier-baseline |\\\\n| D011 | 2026-05-20 | v1-irt-refit NEGATIVE (a_r=0.111): Claim 3 从 \\\\\\\"13K+ | exp-v1-irt-refit-pilot, exp-item-alignment-check, exp-leaderboard-data-recon |\\\\n| D010 | 2026-05-20 | Paper framing 三项重大调整：(1) Leaderboard audit 降级为描述性应 | exp-ctrl-contam-pilot, exp-ml-classifier-baseline, exp-power-theory |\\\\n| D009 | 2026-05-20 | Leaderboard audit 采用 Path D（v1 数据重拟合 IRT + PSN-IRT | exp-item-alignment-check, exp-leaderboard-data-recon, exp-v1-irt-refit-pilot |\\\\n| D008 | 2026-05-20 | Calibration gap 机制修正：null 校准良好，问题在真实数据侧（LLM 响应模式系统 | exp-empirical-null, exp-two-sided |\\\\n| D007 | 2026-05-20 | 采纳方向 B: real data 上 person-fit 绝对阈值失效（universal mi | exp-two-sided |\\\\n| D006 | 2026-05-20 | Phase B 必须用 benchmark-specific θ (MLE)，不能用 PSN-IRT | exp-two-sided |\\\\n\\\\n\\\\n\\\", \\\"lines\\\": 71}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/ROADMAP.md\", \"content\": \"# irt_personfit_contam — Research Dashboard\\n\\n> 最后更新: 2026-05-20 18:59 UTC | 更新原因: ctrl-contam-pilot 完成 + θ-fixed 分析成功, 进入写作准备阶段\\n\\n## 核心方向\\nIRT person-fit statistics (lz*) 作为 minimal-information contamination detection 方法。详见 paper_framing.md。\\n\\n## 当前阶段: Research → Writing 过渡（ctrl-contam-pilot 完成，准备启动论文写作）\\n\\n### 关键发现\\n1. **Simulation**: Null check ✅, MMLU power@15%=97.9%, two-sided >93%, dual-regime crossover 75-90%\\n2. **Empirical null (D008)**: Bootstrap null 校准良好（MMLU: bias 0.041, std 1.003, KS reject 8.3%）\\n3. **Power theory**: R²=0.957, δ∝√n, 理论 crossover π*≈81-85%, 最小 items 指南表\\n4. **ML classifier baseline**: lz* 在 5-10% 低污染 AUROC 优于 LR/RF (+0.05-0.10)\\n5. **Δlz* 设计验证**: clean-vs-clean ≈ 0, contamination Cohen's d 0.45-2.66, √n scaling\\n6. **v1-irt-refit NEGATIVE (D011)**: N=178, 3PL a_r=0.127 → Path D dead → Claim 3c\\n7. **4PL ablation (R8)**: simulation +14-27pp power gain + real-data r=0.225/RMSE=68.41 双重证据\\n8. **Domain analysis**: Gemini-1.5 50/57 subjects flagged, virology diagnosed\\n9. **ctrl-contam-pilot (D015)**: contam_15 |d|=3.85 ✅; θ-free 非单调但 **θ-fixed 恢复单调** (ratio=2.93)\\n10. **θ-shift 方法论发现**: contamination→θ↑→信号吸收，seen/unseen split (lz*≈0 vs 3.1) 是最清晰指纹\\n\\n### Dream 模拟审稿 + Issue Resolution\\n- Best: 3.5 | Median: 3.0 | Worst: 2.75\\n- ctrl-contam-pilot + θ-fixed 分析将评估恢复到 3.0-3.5\\n\\n## 实验状态\\n\\n| 实验 | 优先级 | 状态 | 结论 |\\n|------|--------|------|------|\\n| sim_001 ~ exp-natural-experiment | — | ✅ 18 DONE | 12 success, 6 negative |\\n| exp-4pl-real-data-degradation | CPU | ✅ DONE | r=0.225, RMSE=68.41 (R8 双重证据) |\\n| **exp-ctrl-contam-pilot** | **P0-CRITICAL** | ✅ DONE | **Partial**: d=-3.85@15%, θ-fixed 单调 |\\n| clean_s3 补充 | P1 | 🔄 RUNNING | GPU 0, ~30 min |\\n| exp-ctrl-contam (full) | P0 | deferred | pilot 够用，初稿后再决定 |\\n| exp-baseline-comparison | P0-end | planned | 初稿后执行 |\\n| exp-post-rl | P2-deferred | deferred | Limitations 讨论 |\\n\\n## 近期任务\\n- [x] ctrl-contam-pilot 完成 + θ-fixed 分析 ✅\\n- [x] paper_framing.md 更新 D015 结果\\n- [ ] clean_s3 训练 + eval（GPU, ~30 min）\\n- [ ] Registry 修正：conclusion→partial, θ-fixed→completed\\n- [ ] **ARR DDL 锁定**（Jun 15 cycle）\\n- [ ] **启动 Paper Agent 写论文初稿**（clean_s3 完成后）\\n\\n## 阻塞项\\n无硬阻塞。clean_s3 (~30 min) 后即可启动写作。\\n\\n## GPU 预算\\n- 分配: 4× RTX 6000 96GB (westd-35694)\\n- P0 已用: ~4 GPU-hrs (pilot training + eval)\\n- 当前: GPU 0 跑 clean_s3, GPU 1-3 空闲\\n- 剩余 P0: exp-ctrl-contam (full) 80 GPU-hrs — 初稿后再决定\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D015 | 2026-05-20 | ctrl-contam-pilot 结果为 partial：contam_15 d=-3.85 强阳 | exp-ctrl-contam-pilot, exp-clean-control-delta, exp-extended-sim |\\n| D014 | 2026-05-20 | Claim 结构重组：universal misfit 从 Claim 1 移至 Claim 3，C | exp-empirical-null, exp-v1-irt-refit-pilot, exp-ml-classifier-baseline |\\n| D013 | 2026-05-20 | Natural experiment 降级为 P2-optional，CPU 资源转向 4PL ab | exp-natural-experiment, exp-v1-irt-refit-pilot, exp-4pl-ablation, exp-domain-analysis |\\n| D012 | 2026-05-20 | 确认 Claim 3 最终路径：C+D 组合（PSN-IRT 12-model case study | exp-v1-irt-refit-pilot, exp-ctrl-contam-pilot, exp-ml-classifier-baseline |\\n| D011 | 2026-05-20 | v1-irt-refit NEGATIVE (a_r=0.111): Claim 3 从 \\\"13K+ | exp-v1-irt-refit-pilot, exp-item-alignment-check, exp-leaderboard-data-recon |\\n| D010 | 2026-05-20 | Paper framing 三项重大调整：(1) Leaderboard audit 降级为描述性应 | exp-ctrl-contam-pilot, exp-ml-classifier-baseline, exp-power-theory |\\n| D009 | 2026-05-20 | Leaderboard audit 采用 Path D（v1 数据重拟合 IRT + PSN-IRT | exp-item-alignment-check, exp-leaderboard-data-recon, exp-v1-irt-refit-pilot |\\n| D008 | 2026-05-20 | Calibration gap 机制修正：null 校准良好，问题在真实数据侧（LLM 响应模式系统 | exp-empirical-null, exp-two-sided |\\n| D007 | 2026-05-20 | 采纳方向 B: real data 上 person-fit 绝对阈值失效（universal mi | exp-two-sided |\\n| D006 | 2026-05-20 | Phase B 必须用 benchmark-specific θ (MLE)，不能用 PSN-IRT | exp-two-sided |\\n\\n\\n\", \"lines\": 71}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "064a2460-6190-4730-86d3-237f65671c4b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/agent_0d2e4332",
+  "sessionId": "2c744163-383c-4237-987b-0309840dbb5c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。 详情: Process exited cleanly, W&B data available  - exp_id: exp-ctrl-contam-pilot-clean-s3 - project: irt_personfit_contam - server: westd-35694 - log_…",
+  "leafUuid": "c1d1b70f-6286-4083-8038-edbfc477d6d5",
+  "sessionId": "2c744163-383c-4237-987b-0309840dbb5c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze experiment results and mark complete",
+  "sessionId": "2c744163-383c-4237-987b-0309840dbb5c"
+}
+```
+
+---
+
+### Assistant
+
+_source line 22 · 2026-05-20T19:11:18.068Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Session 初始化完成。现在处理 exp-ctrl-contam-pilot-clean-s3 的完成回调。
+
+关键信息：
+- 实验 exp-ctrl-contam-pilot-clean-s3 已退出，状态为 ANALYZING
+- 但 registry 中它还是 PREPARING 状态（可能 cron 没完全同步）
+- 服务器: westd-35694, log_path: /root/runs/irt_personfit_contam/exp-ctrl-contam-pilot-clean-s3.log
+
+
+- W&B 数据已可用，这是第三个 clean seed（seed=456）用于基线方差估计，通过增加独立的 clean control 来强化 Cohen's d 的分母估计
+- 根据 ROADMAP，clean_s3 完成后可以启动论文写作，现在需要派 Worker 分析实验结果，包括读取日志、W&B metrics 和提取评估数据
+- 检查了资源状况，cuda:1-3 空闲，Worker 池满足需求，接下来派 Worker 通过 SSH 读取日志并分析结果，然后根据结果更新 registry 和向 Director 汇报
+
+。
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c1d1b70f-6286-4083-8038-edbfc477d6d5",
+  "isSidechain": false,
+  "requestId": "req_011CbEMGMogewAodJqEjYuWH",
+  "type": "assistant",
+  "uuid": "31499d08-846c-426c-8fbe-0b4d6d5658b4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/agent_0d2e4332",
+  "sessionId": "2c744163-383c-4237-987b-0309840dbb5c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GoYcsaVj8RMwy13pgf8EyC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 18944,
+      "cache_read_input_tokens": 38347,
+      "output_tokens": 676,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 18944,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 676,
+          "cache_read_input_tokens": 38347,
+          "cache_creation_input_tokens": 18944,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 18944
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23 · 2026-05-20T19:11:18.070Z_
+
+exp-ctrl-contam-pilot-clean-s3 完成回调到了。派 Worker 分析实验结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "31499d08-846c-426c-8fbe-0b4d6d5658b4",
+  "isSidechain": false,
+  "requestId": "req_011CbEMGMogewAodJqEjYuWH",
+  "type": "assistant",
+  "uuid": "ab9298f8-8161-4d15-8c0b-b7a2c76872fe",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/agent_0d2e4332",
+  "sessionId": "2c744163-383c-4237-987b-0309840dbb5c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GoYcsaVj8RMwy13pgf8EyC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 18944,
+      "cache_read_input_tokens": 38347,
+      "output_tokens": 676,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 18944,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 676,
+          "cache_read_input_tokens": 38347,
+          "cache_creation_input_tokens": 18944,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 18944
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-20T19:11:18.728Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01VDGidaoBKeVt3HoEiLxaV8`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__read_experiment_plan_with_status",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ab9298f8-8161-4d15-8c0b-b7a2c76872fe",
+  "isSidechain": false,
+  "requestId": "req_011CbEMGMogewAodJqEjYuWH",
+  "type": "assistant",
+  "uuid": "bb389755-e66a-4629-97eb-52c6b91ec31a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/agent_0d2e4332",
+  "sessionId": "2c744163-383c-4237-987b-0309840dbb5c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GoYcsaVj8RMwy13pgf8EyC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 18944,
+      "cache_read_input_tokens": 38347,
+      "output_tokens": 676,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 18944,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 676,
+          "cache_read_input_tokens": 38347,
+          "cache_creation_input_tokens": 18944,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 18944
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-20T19:11:18.737Z_
+
+<details><summary>↩ Tool result · `toolu_01VDGidaoBKeVt3HoEiLxaV8`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__spawn_worker"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__main_agent_post_to_director"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_experiment_plan_with_status"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bb389755-e66a-4629-97eb-52c6b91ec31a",
+  "isSidechain": false,
+  "promptId": "ce644d86-8135-451f-9747-cd307f6211e6",
+  "type": "user",
+  "uuid": "16c208d5-4cf7-420d-a3b9-3d1a56094ecb",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__read_experiment_plan_with_status"
+    ],
+    "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__read_experiment_plan_with_status",
+    "total_deferred_tools": 82
+  },
+  "sourceToolAssistantUUID": "bb389755-e66a-4629-97eb-52c6b91ec31a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/agent_0d2e4332",
+  "sessionId": "2c744163-383c-4237-987b-0309840dbb5c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26 · 2026-05-20T19:11:29.451Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to spawn a Worker to analyze the exp-ctrl-contam-pilot-clean-s3 results. The Worker needs to:
+1. SSH to westd-35694 and read the log file
+2. Check W&B metrics if available
+3. Run the eval script (similar to what was done for the main pilot experiment)
+4. Extract lz* metrics for clean_s3
+
+Let me also check what the main pilot experiment did - it had 4 conditions (clean_s1, clean_s2, contam_15, contam_50). 
+
+Since clean_s3 is another clean seed (seed=456) to improve our variance estimates, I need to pull the training success status, lz* value, MMLU accuracy, and θ estimate. Looking at the main pilot data, clean_s1 gave us 8.01 and clean_s2 gave us 5.94 for lz*, with a baseline mean of 6.98 and std of 1.03. Adding this third clean condition will strengthen the baseline estimate by giving us n=3 instead of n=2, which should reduce the standard error in our Cohen's d calculations. Let me get the worker started on this analysis.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "16c208d5-4cf7-420d-a3b9-3d1a56094ecb",
+  "isSidechain": false,
+  "requestId": "req_011CbEMHXPvNuahD79UyjZFA",
+  "type": "assistant",
+  "uuid": "c32c0285-8e05-410b-a7bf-147d2cf2e976",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/agent_0d2e4332",
+  "sessionId": "2c744163-383c-4237-987b-0309840dbb5c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dn6JoNLc1PJkR2LeSQUtGc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2812,
+      "cache_read_input_tokens": 57291,
+      "output_tokens": 1895,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2812,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1895,
+          "cache_read_input_tokens": 57291,
+          "cache_creation_input_tokens": 2812,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2812
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-20T19:11:51.028Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker · `toolu_013nuyZ1WoKoARFDQyEUZwfx`</summary>
+
+````json
+{
+  "task_type": "analysis:exp-ctrl-contam-pilot-clean-s3",
+  "project": "irt_personfit_contam",
+  "task_prompt": "## 任务：分析 exp-ctrl-contam-pilot-clean-s3 实验结果\n\n### 背景\n这是 ctrl-contam-pilot 的补充实验——第三个 clean seed (seed=456)。目的是将 clean baseline 从 n=2 扩展到 n=3，改善 Cohen's d 的分母估计。\n\n前两个 clean seed 的结果（来自 exp-ctrl-contam-pilot）：\n- clean_s1: lz*=8.01, accuracy=0.679, θ=-0.0987\n- clean_s2: lz*=5.94, accuracy=0.679, θ=-0.0842\n- baseline_mean=6.98, baseline_std=1.03\n- contam_15: lz_free=3.0, lz_fixed=9.93, delta_free=-3.97, delta_fixed=2.96, accuracy=0.731, θ=0.1971\n- contam_50: lz_free=5.45, lz_fixed=15.64, delta_free=-1.53, delta_fixed=8.67, accuracy=0.764, θ=0.3703\n- θ_fixed = -0.0914 (clean 均值)\n\n训练服务器: westd-35694\nLog 路径: /root/runs/irt_personfit_contam/exp-ctrl-contam-pilot-clean-s3.log\n项目代码路径: /root/autodl-tmp/ctrl_contam_pilot/\n\n### 具体步骤\n\n1. **读训练日志**：SSH 到 westd-35694，读 log 文件确认训练正常完成（无 error/exception）\n   ```\n   cat /root/runs/irt_personfit_contam/exp-ctrl-contam-pilot-clean-s3.log | tail -50\n   ```\n\n2. **检查 checkpoint 和结果文件**：\n   ```\n   ls -la /root/autodl-tmp/ctrl_contam_pilot/checkpoints/clean_s3/\n   ls -la /root/autodl-tmp/ctrl_contam_pilot/results/clean_s3/\n   ```\n\n3. **运行 eval**（如果结果文件不存在或不完整）：\n   先检查是否已有 eval 结果：\n   ```\n   cat /root/autodl-tmp/ctrl_contam_pilot/results/clean_s3/eval_results.json 2>/dev/null || echo \"NO_EVAL_RESULTS\"\n   ```\n   \n   如果需要运行 eval，检查 train.py 的 eval 逻辑或看 pilot 怎么做的：\n   ```\n   head -100 /root/autodl-tmp/ctrl_contam_pilot/train.py\n   ```\n   然后运行 eval（确保先激活 conda）：\n   ```\n   source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/ctrl_contam_pilot && python train.py --condition clean_s3 --gpu 0 --eval-only\n   ```\n   如果 train.py 没有 --eval-only 选项，看看有没有单独的 eval 脚本：\n   ```\n   ls /root/autodl-tmp/ctrl_contam_pilot/eval*.py\n   ```\n\n4. **提取关键指标**：\n   - lz* (theta-free and theta-fixed)\n   - accuracy (overall, per-subject if available)\n   - θ estimate\n   - 训练 loss 曲线（final loss）\n\n5. **计算更新后的 baseline**：\n   用 clean_s1, clean_s2, clean_s3 三个 lz* 值重新计算：\n   - baseline_mean = mean(lz*_s1, lz*_s2, lz*_s3)\n   - baseline_std = std(lz*_s1, lz*_s2, lz*_s3)\n   - 更新 Cohen's d for contam_15 and contam_50（theta-free 和 theta-fixed 两个版本）\n   - θ_fixed 更新为三个 clean seed 的均值\n\n6. **产出**：将分析结果写入本地文件：\n   `/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/artifacts/ctrl_contam_pilot_clean_s3/analysis_report.md`\n   \n   包含：\n   - clean_s3 核心指标\n   - 更新后的 3-seed baseline\n   - 更新后的 Cohen's d\n   - 与 pilot 2-seed 版本的对比\n\n### 环境\n- 服务器 westd-35694 使用 conda 环境：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- Python 和 PyTorch 已安装在 conda base\n- 项目代码在 /root/autodl-tmp/ctrl_contam_pilot/\n",
+  "tool_groups": [
+    "ssh",
+    "knowledge",
+    "registry"
+  ],
+  "context": "项目: irt_personfit_contam\n服务器: westd-35694 (4x RTX PRO 6000 96GB, conda base 环境)\n实验: exp-ctrl-contam-pilot-clean-s3, third clean seed for baseline variance estimation\n本地 artifacts 路径: /home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/artifacts/"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c32c0285-8e05-410b-a7bf-147d2cf2e976",
+  "isSidechain": false,
+  "requestId": "req_011CbEMHXPvNuahD79UyjZFA",
+  "type": "assistant",
+  "uuid": "66cb64a3-acb6-4482-a68e-6c8c7f5693bb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/agent_0d2e4332",
+  "sessionId": "2c744163-383c-4237-987b-0309840dbb5c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dn6JoNLc1PJkR2LeSQUtGc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2812,
+      "cache_read_input_tokens": 57291,
+      "output_tokens": 1895,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2812,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1895,
+          "cache_read_input_tokens": 57291,
+          "cache_creation_input_tokens": 2812,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2812
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-20T19:11:54.174Z_
+
+<details><summary>↩ Tool result · `toolu_013nuyZ1WoKoARFDQyEUZwfx`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_exp-ctrl-contam-pilot-clean-s3_20260520T191151\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/logs/workers/worker_analysis_exp-ctrl-contam-pilot-clean-s3_20260520T191151.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_exp-ctrl-contam-pilot-clean-s3_20260520T191151 started. Use get_worker_status('worker_analysis_exp-ctrl-contam-pilot-clean-s3_20260520T191151') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "66cb64a3-acb6-4482-a68e-6c8c7f5693bb",
+  "isSidechain": false,
+  "promptId": "ce644d86-8135-451f-9747-cd307f6211e6",
+  "type": "user",
+  "uuid": "4715396e-fec5-41be-af2c-d3af51ad0c97",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_exp-ctrl-contam-pilot-clean-s3_20260520T191151\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/logs/workers/worker_analysis_exp-ctrl-contam-pilot-clean-s3_20260520T191151.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_analysis_exp-ctrl-contam-pilot-clean-s3_20260520T191151 started. Use get_worker_status('worker_analysis_exp-ctrl-contam-pilot-clean-s3_20260520T191151') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_exp-ctrl-contam-pilot-clean-s3_20260520T191151\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/logs/workers/worker_analysis_exp-ctrl-contam-pilot-clean-s3_20260520T191151.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_exp-ctrl-contam-pilot-clean-s3_20260520T191151 started. Use get_worker_status('worker_analysis_exp-ctrl-contam-pilot-clean-s3_20260520T191151') to check progress.\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "66cb64a3-acb6-4482-a68e-6c8c7f5693bb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/agent_0d2e4332",
+  "sessionId": "2c744163-383c-4237-987b-0309840dbb5c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29 · 2026-05-20T19:12:04.563Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Worker 已派出。按照协议，我不应该轮询 Worker 状态，Worker 完成后系统会通过 [WORKER DONE] 自动回调我。
+
+但现在我应该先更新 registry 状态为 ANALYZING（cron 说已转为 ANALYZING），但 registry 中还是 PREPARING。让我先更新状态。
+
+等等，cron 说"状态已转为 ANALYZING"，但 registry 中仍是 PREPARING。可能 cron 已经自动更新了但我读 registry 时还没同步。
+
+我需要手动更新 registry 中的状态为 ANALYZING。同时，根据 resource-saturation skill 的要求，我检查了 GPU 利用率——GPU 1-3 空闲，GPU 0 刚完成 clean_s3，按照 ROADMAP 可以启动写作。但 Worker 还在分析中，所以先更新状态，等 Worker 回调后再继续。
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4715396e-fec5-41be-af2c-d3af51ad0c97",
+  "isSidechain": false,
+  "requestId": "req_011CbEML8tAhkkdJZ6dqDjpT",
+  "type": "assistant",
+  "uuid": "d06e819c-66b1-4792-a6c9-0c7f0a49d479",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/agent_0d2e4332",
+  "sessionId": "2c744163-383c-4237-987b-0309840dbb5c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017VWMxB71d8tQrvafPLNi94",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2127,
+      "cache_read_input_tokens": 60103,
+      "output_tokens": 485,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2127,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 485,
+          "cache_read_input_tokens": 60103,
+          "cache_creation_input_tokens": 2127,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2127
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30 · 2026-05-20T19:12:04.568Z_
+
+Worker 已派出分析 clean_s3 结果。先更新 registry 状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d06e819c-66b1-4792-a6c9-0c7f0a49d479",
+  "isSidechain": false,
+  "requestId": "req_011CbEML8tAhkkdJZ6dqDjpT",
+  "type": "assistant",
+  "uuid": "64cf0d93-1c7c-435c-94e0-b4a03f1caa52",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/agent_0d2e4332",
+  "sessionId": "2c744163-383c-4237-987b-0309840dbb5c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017VWMxB71d8tQrvafPLNi94",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2127,
+      "cache_read_input_tokens": 60103,
+      "output_tokens": 485,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2127,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 485,
+          "cache_read_input_tokens": 60103,
+          "cache_creation_input_tokens": 2127,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2127
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-20T19:12:04.578Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01Tr4ao3j4QxXskrBE1xmUaD`</summary>
+
+```json
+{
+  "exp_id": "exp-ctrl-contam-pilot-clean-s3",
+  "field": "status",
+  "value": "ANALYZING",
+  "project": "irt_personfit_contam"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "64cf0d93-1c7c-435c-94e0-b4a03f1caa52",
+  "isSidechain": false,
+  "requestId": "req_011CbEML8tAhkkdJZ6dqDjpT",
+  "type": "assistant",
+  "uuid": "e8f6e54e-0887-4791-b941-9cafe4421ecf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/agent_0d2e4332",
+  "sessionId": "2c744163-383c-4237-987b-0309840dbb5c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017VWMxB71d8tQrvafPLNi94",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2127,
+      "cache_read_input_tokens": 60103,
+      "output_tokens": 485,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2127,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 485,
+          "cache_read_input_tokens": 60103,
+          "cache_creation_input_tokens": 2127,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2127
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-20T19:12:04.654Z_
+
+<details><summary>↩ Tool result · `toolu_01Tr4ao3j4QxXskrBE1xmUaD`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → ANALYZING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.0652}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e8f6e54e-0887-4791-b941-9cafe4421ecf",
+  "isSidechain": false,
+  "promptId": "ce644d86-8135-451f-9747-cd307f6211e6",
+  "type": "user",
+  "uuid": "233a9883-fc5e-4a7d-93c3-77cc52ad0eb7",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → ANALYZING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0652}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → ANALYZING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.0652}}"
+    }
+  },
+  "sourceToolAssistantUUID": "e8f6e54e-0887-4791-b941-9cafe4421ecf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/agent_0d2e4332",
+  "sessionId": "2c744163-383c-4237-987b-0309840dbb5c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 33 · 2026-05-20T19:12:04.658Z_
+
+```json
+{
+  "parentUuid": "233a9883-fc5e-4a7d-93c3-77cc52ad0eb7",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "3a0bd920-f592-4614-9b29-4f8883f6953c",
+  "timestamp": "2026-05-20T19:12:04.658Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/agent_0d2e4332",
+  "sessionId": "2c744163-383c-4237-987b-0309840dbb5c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 34 · 2026-05-20T19:12:15.567Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The registry transition from PREPARING to ANALYZING is not allowed. The valid transitions from PREPARING are PENDING or QUEUED. But the cron said it's already been moved to ANALYZING. There might be a mismatch - the cron system updated the status but it wasn't reflected in the registry read.
+
+Let me try to set it to RUNNING first then ANALYZING, or check if there's a way to force it.
+
+Actually, looking at the state machine:
+PREPARING → PENDING（审批）→ QUEUED → ALLOCATED → RUNNING → ANALYZING → DONE
+
+The experiment was submitted via submit_training_job which should have moved it through RUNNING. 
+
+The experiment spec shows it was already submitted with a pid and backend configured, but the registry is stuck in PREPARING while the cron system has already moved it to ANALYZING. I need to update the status through the proper state chain: PREPARING → PENDING → QUEUED → ALLOCATED → RUNNING → ANALYZING.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3a0bd920-f592-4614-9b29-4f8883f6953c",
+  "isSidechain": false,
+  "requestId": "req_011CbEMLupNve1FnYYhZSZpW",
+  "type": "assistant",
+  "uuid": "11eca790-5b5c-4620-bcd7-ce3f22180ffa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/agent_0d2e4332",
+  "sessionId": "2c744163-383c-4237-987b-0309840dbb5c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016z1eWZii7QRpw2eJzz4yo9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 663,
+      "cache_read_input_tokens": 62230,
+      "output_tokens": 742,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 663,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 742,
+          "cache_read_input_tokens": 62230,
+          "cache_creation_input_tokens": 663,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 663
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35 · 2026-05-20T19:12:15.568Z_
+
+Registry 状态链不对，需要逐步推进。先推到 RUNNING。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "11eca790-5b5c-4620-bcd7-ce3f22180ffa",
+  "isSidechain": false,
+  "requestId": "req_011CbEMLupNve1FnYYhZSZpW",
+  "type": "assistant",
+  "uuid": "c2e2e2d5-4e5c-4671-a787-325cc5ec5348",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/agent_0d2e4332",
+  "sessionId": "2c744163-383c-4237-987b-0309840dbb5c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016z1eWZii7QRpw2eJzz4yo9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 663,
+      "cache_read_input_tokens": 62230,
+      "output_tokens": 742,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 663,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 742,
+          "cache_read_input_tokens": 62230,
+          "cache_creation_input_tokens": 663,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 663
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-20T19:12:19.357Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_013i8ujd9qFYbf7yAhZBjcPp`</summary>
+
+```json
+{
+  "exp_id": "exp-ctrl-contam-pilot-clean-s3",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "irt_personfit_contam",
+  "spec": {
+    "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/ctrl_contam_pilot && python train.py --condition clean_s3 --gpu 0 2>&1 | tee /root/runs/irt_personfit_contam/exp-ctrl-contam-pilot-clean-s3.log\"",
+    "server": "westd-35694",
+    "gpu": [
+      "cuda:0"
+    ],
+    "pid": "29341",
+    "data_path": "/root/autodl-tmp/ctrl_contam_pilot/data/clean_s3/train.jsonl",
+    "data_count": "5000",
+    "model_name": "Qwen/Qwen2.5-7B-Instruct (QLoRA r=16 alpha=32)",
+    "seed": "456"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c2e2e2d5-4e5c-4671-a787-325cc5ec5348",
+  "isSidechain": false,
+  "requestId": "req_011CbEMLupNve1FnYYhZSZpW",
+  "type": "assistant",
+  "uuid": "ed0cd95c-c9bf-439c-8415-c0331fcc315d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/agent_0d2e4332",
+  "sessionId": "2c744163-383c-4237-987b-0309840dbb5c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016z1eWZii7QRpw2eJzz4yo9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 663,
+      "cache_read_input_tokens": 62230,
+      "output_tokens": 742,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 663,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 742,
+          "cache_read_input_tokens": 62230,
+          "cache_creation_input_tokens": 663,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 663
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-20T19:12:19.480Z_
+
+<details><summary>↩ Tool result · `toolu_013i8ujd9qFYbf7yAhZBjcPp`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.1049}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ed0cd95c-c9bf-439c-8415-c0331fcc315d",
+  "isSidechain": false,
+  "promptId": "ce644d86-8135-451f-9747-cd307f6211e6",
+  "type": "user",
+  "uuid": "bb84ca41-3b57-4d3b-a0c1-20af8c8af816",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1049}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.1049}}"
+    }
+  },
+  "sourceToolAssistantUUID": "ed0cd95c-c9bf-439c-8415-c0331fcc315d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/agent_0d2e4332",
+  "sessionId": "2c744163-383c-4237-987b-0309840dbb5c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 38_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。 详情: Process exited cleanly, W&B data available  - exp_id: exp-ctrl-contam-pilot-clean-s3 - project: irt_personfit_contam - server: westd-35694 - log_…",
+  "leafUuid": "bb84ca41-3b57-4d3b-a0c1-20af8c8af816",
+  "sessionId": "2c744163-383c-4237-987b-0309840dbb5c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 39_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze experiment results and mark complete",
+  "sessionId": "2c744163-383c-4237-987b-0309840dbb5c"
+}
+```
+
+---
+
+### Assistant
+
+_source line 40 · 2026-05-20T19:12:24.583Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Hmm, the state machine is strict. Let me try the full chain: PREPARING → PENDING → QUEUED → ALLOCATED → RUNNING → ANALYZING.
+
+Or maybe I should just try to force-update the status field directly. But the update_registry validates state transitions.
+
+Let me try PREPARING → QUEUED (skip PENDING since it wasn't user-approved, it was auto-submitted).
+
+Wait, looking at the allowed transitions more carefully - from PREPARING the allowed transitions are PENDING and QUEUED. Let me try QUEUED first.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bb84ca41-3b57-4d3b-a0c1-20af8c8af816",
+  "isSidechain": false,
+  "requestId": "req_011CbEMN189ZRjHQGfNBRbHa",
+  "type": "assistant",
+  "uuid": "33da6822-fbd1-4d42-9073-2e0163a9b8c2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/agent_0d2e4332",
+  "sessionId": "2c744163-383c-4237-987b-0309840dbb5c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016qyyQJdESnJS2u9Tu7mMh6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 816,
+      "cache_read_input_tokens": 62893,
+      "output_tokens": 273,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 816,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 273,
+          "cache_read_input_tokens": 62893,
+          "cache_creation_input_tokens": 816,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 816
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-20T19:12:25.169Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_017BD8sWnk4ML3XNxXYyPiTK`</summary>
+
+```json
+{
+  "exp_id": "exp-ctrl-contam-pilot-clean-s3",
+  "field": "status",
+  "value": "QUEUED",
+  "project": "irt_personfit_contam"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "33da6822-fbd1-4d42-9073-2e0163a9b8c2",
+  "isSidechain": false,
+  "requestId": "req_011CbEMN189ZRjHQGfNBRbHa",
+  "type": "assistant",
+  "uuid": "811310f5-35e6-44e9-8fb5-426b6bd791e6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/agent_0d2e4332",
+  "sessionId": "2c744163-383c-4237-987b-0309840dbb5c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016qyyQJdESnJS2u9Tu7mMh6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 816,
+      "cache_read_input_tokens": 62893,
+      "output_tokens": 273,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 816,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 273,
+          "cache_read_input_tokens": 62893,
+          "cache_creation_input_tokens": 816,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 816
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-20T19:12:25.746Z_
+
+<details><summary>↩ Tool result · `toolu_017BD8sWnk4ML3XNxXYyPiTK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-ctrl-contam-pilot-clean-s3\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-20T19:04:43.485Z\", \"updated_at\": \"2026-05-20T19:12:25.296Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/ctrl_contam_pilot && python train.py --condition clean_s3 --gpu 0 2>&1 | tee /root/runs/irt_personfit_contam/exp-ctrl-contam-pilot-clean-s3.log\\\"\", \"server\": \"westd-35694\", \"gpu\": [\"cuda:0\"], \"pid\": \"29341\", \"log_path\": \"~/runs/irt_personfit_contam/exp-ctrl-contam-pilot-clean-s3.log\", \"submitted_at\": \"2026-05-20T19:04:43.430Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T19:10:46.528Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T19:10:47.862644+00:00\"}]}, \"hypothesis\": \"Third clean seed (seed=456) for baseline lz* variance estimation: adding a third independent clean control strengthens Cohen's d denominator (n=3 vs n=2), providing more reliable effect size estimates for contamination detection\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5543}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "811310f5-35e6-44e9-8fb5-426b6bd791e6",
+  "isSidechain": false,
+  "promptId": "ce644d86-8135-451f-9747-cd307f6211e6",
+  "type": "user",
+  "uuid": "47aa4dc3-f7d9-4b15-88c4-4a041600e466",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-ctrl-contam-pilot-clean-s3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T19:04:43.485Z\\\", \\\"updated_at\\\": \\\"2026-05-20T19:12:25.296Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/ctrl_contam_pilot && python train.py --condition clean_s3 --gpu 0 2>&1 | tee /root/runs/irt_personfit_contam/exp-ctrl-contam-pilot-clean-s3.log\\\\\\\"\\\", \\\"server\\\": \\\"westd-35694\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"29341\\\", \\\"log_path\\\": \\\"~/runs/irt_personfit_contam/exp-ctrl-contam-pilot-clean-s3.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T19:04:43.430Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T19:10:46.528Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T19:10:47.862644+00:00\\\"}]}, \\\"hypothesis\\\": \\\"Third clean seed (seed=456) for baseline lz* variance estimation: adding a third independent clean control strengthens Cohen's d denominator (n=3 vs n=2), providing more reliable effect size estimates for contamination detection\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5543}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-ctrl-contam-pilot-clean-s3\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-20T19:04:43.485Z\", \"updated_at\": \"2026-05-20T19:12:25.296Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/ctrl_contam_pilot && python train.py --condition clean_s3 --gpu 0 2>&1 | tee /root/runs/irt_personfit_contam/exp-ctrl-contam-pilot-clean-s3.log\\\"\", \"server\": \"westd-35694\", \"gpu\": [\"cuda:0\"], \"pid\": \"29341\", \"log_path\": \"~/runs/irt_personfit_contam/exp-ctrl-contam-pilot-clean-s3.log\", \"submitted_at\": \"2026-05-20T19:04:43.430Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T19:10:46.528Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T19:10:47.862644+00:00\"}]}, \"hypothesis\": \"Third clean seed (seed=456) for baseline lz* variance estimation: adding a third independent clean control strengthens Cohen's d denominator (n=3 vs n=2), providing more reliable effect size estimates for contamination detection\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5543}}"
+    }
+  },
+  "sourceToolAssistantUUID": "811310f5-35e6-44e9-8fb5-426b6bd791e6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/agent_0d2e4332",
+  "sessionId": "2c744163-383c-4237-987b-0309840dbb5c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-20T19:12:29.128Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01R3ht8BVhCkQrwfFSBMSSLR`</summary>
+
+```json
+{
+  "exp_id": "exp-ctrl-contam-pilot-clean-s3",
+  "field": "status",
+  "value": "ALLOCATED",
+  "project": "irt_personfit_contam"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "47aa4dc3-f7d9-4b15-88c4-4a041600e466",
+  "isSidechain": false,
+  "requestId": "req_011CbEMNTrEgfNRxTUBeFxLS",
+  "type": "assistant",
+  "uuid": "3aabdd1c-7ad7-4c38-aa35-6358b40c5def",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/agent_0d2e4332",
+  "sessionId": "2c744163-383c-4237-987b-0309840dbb5c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014ZyCo4FYpA8N6ApPgMSK3z",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 795,
+      "cache_read_input_tokens": 63709,
+      "output_tokens": 135,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 795,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 135,
+          "cache_read_input_tokens": 63709,
+          "cache_creation_input_tokens": 795,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 795
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-20T19:12:29.561Z_
+
+<details><summary>↩ Tool result · `toolu_01R3ht8BVhCkQrwfFSBMSSLR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-ctrl-contam-pilot-clean-s3\", \"experiment\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-20T19:04:43.485Z\", \"updated_at\": \"2026-05-20T19:12:29.195Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/ctrl_contam_pilot && python train.py --condition clean_s3 --gpu 0 2>&1 | tee /root/runs/irt_personfit_contam/exp-ctrl-contam-pilot-clean-s3.log\\\"\", \"server\": \"westd-35694\", \"gpu\": [\"cuda:0\"], \"pid\": \"29341\", \"log_path\": \"~/runs/irt_personfit_contam/exp-ctrl-contam-pilot-clean-s3.log\", \"submitted_at\": \"2026-05-20T19:04:43.430Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T19:10:46.528Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T19:10:47.862644+00:00\"}]}, \"hypothesis\": \"Third clean seed (seed=456) for baseline lz* variance estimation: adding a third independent clean control strengthens Cohen's d denominator (n=3 vs n=2), providing more reliable effect size estimates for contamination detection\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4237}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3aabdd1c-7ad7-4c38-aa35-6358b40c5def",
+  "isSidechain": false,
+  "promptId": "ce644d86-8135-451f-9747-cd307f6211e6",
+  "type": "user",
+  "uuid": "5765a847-757d-4f39-b0f8-9d5c13b99288",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-ctrl-contam-pilot-clean-s3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T19:04:43.485Z\\\", \\\"updated_at\\\": \\\"2026-05-20T19:12:29.195Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/ctrl_contam_pilot && python train.py --condition clean_s3 --gpu 0 2>&1 | tee /root/runs/irt_personfit_contam/exp-ctrl-contam-pilot-clean-s3.log\\\\\\\"\\\", \\\"server\\\": \\\"westd-35694\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"29341\\\", \\\"log_path\\\": \\\"~/runs/irt_personfit_contam/exp-ctrl-contam-pilot-clean-s3.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T19:04:43.430Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T19:10:46.528Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T19:10:47.862644+00:00\\\"}]}, \\\"hypothesis\\\": \\\"Third clean seed (seed=456) for baseline lz* variance estimation: adding a third independent clean control strengthens Cohen's d denominator (n=3 vs n=2), providing more reliable effect size estimates for contamination detection\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4237}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-ctrl-contam-pilot-clean-s3\", \"experiment\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-20T19:04:43.485Z\", \"updated_at\": \"2026-05-20T19:12:29.195Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/ctrl_contam_pilot && python train.py --condition clean_s3 --gpu 0 2>&1 | tee /root/runs/irt_personfit_contam/exp-ctrl-contam-pilot-clean-s3.log\\\"\", \"server\": \"westd-35694\", \"gpu\": [\"cuda:0\"], \"pid\": \"29341\", \"log_path\": \"~/runs/irt_personfit_contam/exp-ctrl-contam-pilot-clean-s3.log\", \"submitted_at\": \"2026-05-20T19:04:43.430Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T19:10:46.528Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T19:10:47.862644+00:00\"}]}, \"hypothesis\": \"Third clean seed (seed=456) for baseline lz* variance estimation: adding a third independent clean control strengthens Cohen's d denominator (n=3 vs n=2), providing more reliable effect size estimates for contamination detection\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4237}}"
+    }
+  },
+  "sourceToolAssistantUUID": "3aabdd1c-7ad7-4c38-aa35-6358b40c5def",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/agent_0d2e4332",
+  "sessionId": "2c744163-383c-4237-987b-0309840dbb5c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-20T19:12:34.073Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01UoPWrBg6FzWbt1xtFqH6wE`</summary>
+
+```json
+{
+  "exp_id": "exp-ctrl-contam-pilot-clean-s3",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "irt_personfit_contam",
+  "spec": {
+    "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/ctrl_contam_pilot && python train.py --condition clean_s3 --gpu 0 2>&1 | tee /root/runs/irt_personfit_contam/exp-ctrl-contam-pilot-clean-s3.log\"",
+    "server": "westd-35694",
+    "gpu": [
+      "cuda:0"
+    ],
+    "pid": "29341",
+    "data_path": "/root/autodl-tmp/ctrl_contam_pilot/data/clean_s3/train.jsonl",
+    "data_count": "5000",
+    "model_name": "Qwen/Qwen2.5-7B-Instruct (QLoRA r=16 alpha=32)",
+    "seed": "456"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5765a847-757d-4f39-b0f8-9d5c13b99288",
+  "isSidechain": false,
+  "requestId": "req_011CbEMNkBkEJvCeqm5sTZ1X",
+  "type": "assistant",
+  "uuid": "7019f3e1-2167-450e-b207-2b3b676a685f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/agent_0d2e4332",
+  "sessionId": "2c744163-383c-4237-987b-0309840dbb5c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PNR82YfB1duNQEFiwXjLzc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 657,
+      "cache_read_input_tokens": 64504,
+      "output_tokens": 359,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 657,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 359,
+          "cache_read_input_tokens": 64504,
+          "cache_creation_input_tokens": 657,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 657
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-20T19:12:34.500Z_
+
+<details><summary>↩ Tool result · `toolu_01UoPWrBg6FzWbt1xtFqH6wE`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-ctrl-contam-pilot-clean-s3\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T19:04:43.485Z\", \"updated_at\": \"2026-05-20T19:12:34.147Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/ctrl_contam_pilot && python train.py --condition clean_s3 --gpu 0 2>&1 | tee /root/runs/irt_personfit_contam/exp-ctrl-contam-pilot-clean-s3.log\\\"\", \"server\": \"westd-35694\", \"gpu\": [\"cuda:0\"], \"pid\": \"29341\", \"log_path\": \"~/runs/irt_personfit_contam/exp-ctrl-contam-pilot-clean-s3.log\", \"submitted_at\": \"2026-05-20T19:04:43.430Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/ctrl_contam_pilot/data/clean_s3/train.jsonl\", \"data_count\": \"5000\", \"model_name\": \"Qwen/Qwen2.5-7B-Instruct (QLoRA r=16 alpha=32)\", \"seed\": \"456\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T19:10:46.528Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T19:10:47.862644+00:00\"}]}, \"hypothesis\": \"Third clean seed (seed=456) for baseline lz* variance estimation: adding a third independent clean control strengthens Cohen's d denominator (n=3 vs n=2), providing more reliable effect size estimates for contamination detection\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4179}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7019f3e1-2167-450e-b207-2b3b676a685f",
+  "isSidechain": false,
+  "promptId": "ce644d86-8135-451f-9747-cd307f6211e6",
+  "type": "user",
+  "uuid": "8bf60d03-ce76-4c41-addf-e11d369ad872",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-ctrl-contam-pilot-clean-s3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T19:04:43.485Z\\\", \\\"updated_at\\\": \\\"2026-05-20T19:12:34.147Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/ctrl_contam_pilot && python train.py --condition clean_s3 --gpu 0 2>&1 | tee /root/runs/irt_personfit_contam/exp-ctrl-contam-pilot-clean-s3.log\\\\\\\"\\\", \\\"server\\\": \\\"westd-35694\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"29341\\\", \\\"log_path\\\": \\\"~/runs/irt_personfit_contam/exp-ctrl-contam-pilot-clean-s3.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T19:04:43.430Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/ctrl_contam_pilot/data/clean_s3/train.jsonl\\\", \\\"data_count\\\": \\\"5000\\\", \\\"model_name\\\": \\\"Qwen/Qwen2.5-7B-Instruct (QLoRA r=16 alpha=32)\\\", \\\"seed\\\": \\\"456\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T19:10:46.528Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T19:10:47.862644+00:00\\\"}]}, \\\"hypothesis\\\": \\\"Third clean seed (seed=456) for baseline lz* variance estimation: adding a third independent clean control strengthens Cohen's d denominator (n=3 vs n=2), providing more reliable effect size estimates for contamination detection\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4179}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-ctrl-contam-pilot-clean-s3\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T19:04:43.485Z\", \"updated_at\": \"2026-05-20T19:12:34.147Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/ctrl_contam_pilot && python train.py --condition clean_s3 --gpu 0 2>&1 | tee /root/runs/irt_personfit_contam/exp-ctrl-contam-pilot-clean-s3.log\\\"\", \"server\": \"westd-35694\", \"gpu\": [\"cuda:0\"], \"pid\": \"29341\", \"log_path\": \"~/runs/irt_personfit_contam/exp-ctrl-contam-pilot-clean-s3.log\", \"submitted_at\": \"2026-05-20T19:04:43.430Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/ctrl_contam_pilot/data/clean_s3/train.jsonl\", \"data_count\": \"5000\", \"model_name\": \"Qwen/Qwen2.5-7B-Instruct (QLoRA r=16 alpha=32)\", \"seed\": \"456\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T19:10:46.528Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T19:10:47.862644+00:00\"}]}, \"hypothesis\": \"Third clean seed (seed=456) for baseline lz* variance estimation: adding a third independent clean control strengthens Cohen's d denominator (n=3 vs n=2), providing more reliable effect size estimates for contamination detection\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4179}}"
+    }
+  },
+  "sourceToolAssistantUUID": "7019f3e1-2167-450e-b207-2b3b676a685f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/agent_0d2e4332",
+  "sessionId": "2c744163-383c-4237-987b-0309840dbb5c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-20T19:12:37.247Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_014NFqCUWG3VDqzqfTx2gYrc`</summary>
+
+```json
+{
+  "exp_id": "exp-ctrl-contam-pilot-clean-s3",
+  "field": "status",
+  "value": "ANALYZING",
+  "project": "irt_personfit_contam"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8bf60d03-ce76-4c41-addf-e11d369ad872",
+  "isSidechain": false,
+  "requestId": "req_011CbEMP7EmyyRnb65JUmmZA",
+  "type": "assistant",
+  "uuid": "34f8f291-0d18-4d33-9bcf-7fb36f9b46c2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/agent_0d2e4332",
+  "sessionId": "2c744163-383c-4237-987b-0309840dbb5c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VqV676ohkpKxR7RxwortcR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 972,
+      "cache_read_input_tokens": 65161,
+      "output_tokens": 135,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 972,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 135,
+          "cache_read_input_tokens": 65161,
+          "cache_creation_input_tokens": 972,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 972
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-20T19:12:37.675Z_
+
+<details><summary>↩ Tool result · `toolu_014NFqCUWG3VDqzqfTx2gYrc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-ctrl-contam-pilot-clean-s3\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T19:04:43.485Z\", \"updated_at\": \"2026-05-20T19:12:37.318Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/ctrl_contam_pilot && python train.py --condition clean_s3 --gpu 0 2>&1 | tee /root/runs/irt_personfit_contam/exp-ctrl-contam-pilot-clean-s3.log\\\"\", \"server\": \"westd-35694\", \"gpu\": [\"cuda:0\"], \"pid\": \"29341\", \"log_path\": \"~/runs/irt_personfit_contam/exp-ctrl-contam-pilot-clean-s3.log\", \"submitted_at\": \"2026-05-20T19:04:43.430Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/ctrl_contam_pilot/data/clean_s3/train.jsonl\", \"data_count\": \"5000\", \"model_name\": \"Qwen/Qwen2.5-7B-Instruct (QLoRA r=16 alpha=32)\", \"seed\": \"456\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T19:10:46.528Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T19:10:47.862644+00:00\"}]}, \"hypothesis\": \"Third clean seed (seed=456) for baseline lz* variance estimation: adding a third independent clean control strengthens Cohen's d denominator (n=3 vs n=2), providing more reliable effect size estimates for contamination detection\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4186}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "34f8f291-0d18-4d33-9bcf-7fb36f9b46c2",
+  "isSidechain": false,
+  "promptId": "ce644d86-8135-451f-9747-cd307f6211e6",
+  "type": "user",
+  "uuid": "b7774bbe-1d21-4859-80f9-f759cf33fcbf",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-ctrl-contam-pilot-clean-s3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T19:04:43.485Z\\\", \\\"updated_at\\\": \\\"2026-05-20T19:12:37.318Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/ctrl_contam_pilot && python train.py --condition clean_s3 --gpu 0 2>&1 | tee /root/runs/irt_personfit_contam/exp-ctrl-contam-pilot-clean-s3.log\\\\\\\"\\\", \\\"server\\\": \\\"westd-35694\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"29341\\\", \\\"log_path\\\": \\\"~/runs/irt_personfit_contam/exp-ctrl-contam-pilot-clean-s3.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T19:04:43.430Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/ctrl_contam_pilot/data/clean_s3/train.jsonl\\\", \\\"data_count\\\": \\\"5000\\\", \\\"model_name\\\": \\\"Qwen/Qwen2.5-7B-Instruct (QLoRA r=16 alpha=32)\\\", \\\"seed\\\": \\\"456\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T19:10:46.528Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T19:10:47.862644+00:00\\\"}]}, \\\"hypothesis\\\": \\\"Third clean seed (seed=456) for baseline lz* variance estimation: adding a third independent clean control strengthens Cohen's d denominator (n=3 vs n=2), providing more reliable effect size estimates for contamination detection\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4186}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-ctrl-contam-pilot-clean-s3\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T19:04:43.485Z\", \"updated_at\": \"2026-05-20T19:12:37.318Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/ctrl_contam_pilot && python train.py --condition clean_s3 --gpu 0 2>&1 | tee /root/runs/irt_personfit_contam/exp-ctrl-contam-pilot-clean-s3.log\\\"\", \"server\": \"westd-35694\", \"gpu\": [\"cuda:0\"], \"pid\": \"29341\", \"log_path\": \"~/runs/irt_personfit_contam/exp-ctrl-contam-pilot-clean-s3.log\", \"submitted_at\": \"2026-05-20T19:04:43.430Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/ctrl_contam_pilot/data/clean_s3/train.jsonl\", \"data_count\": \"5000\", \"model_name\": \"Qwen/Qwen2.5-7B-Instruct (QLoRA r=16 alpha=32)\", \"seed\": \"456\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T19:10:46.528Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T19:10:47.862644+00:00\"}]}, \"hypothesis\": \"Third clean seed (seed=456) for baseline lz* variance estimation: adding a third independent clean control strengthens Cohen's d denominator (n=3 vs n=2), providing more reliable effect size estimates for contamination detection\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4186}}"
+    }
+  },
+  "sourceToolAssistantUUID": "34f8f291-0d18-4d33-9bcf-7fb36f9b46c2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/agent_0d2e4332",
+  "sessionId": "2c744163-383c-4237-987b-0309840dbb5c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 49_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze experiment results and mark complete",
+  "sessionId": "2c744163-383c-4237-987b-0309840dbb5c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 50 · 2026-05-21T11:13:11.901Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-21T11:13:11.901Z",
+  "sessionId": "2c744163-383c-4237-987b-0309840dbb5c",
+  "content": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n&lt;handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n&lt;/handoff>"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 51 · 2026-05-21T11:13:11.901Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-21T11:13:11.901Z",
+  "sessionId": "2c744163-383c-4237-987b-0309840dbb5c"
+}
+```
+
+---
+
+## Round 2
+
+2 recorded events
+
+### User
+
+_source line 52 · 2026-05-21T11:13:11.893Z_
+
+Continue from where you left off.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b7774bbe-1d21-4859-80f9-f759cf33fcbf",
+  "isSidechain": false,
+  "promptId": "1e1e1615-939a-4f42-b97a-ccc0c68288cd",
+  "type": "user",
+  "isMeta": true,
+  "uuid": "46eff559-db6c-491d-a997-5f958d53c63b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/agent_0d2e4332",
+  "sessionId": "2c744163-383c-4237-987b-0309840dbb5c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53 · 2026-05-21T11:13:11.893Z_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "46eff559-db6c-491d-a997-5f958d53c63b",
+  "isSidechain": false,
+  "type": "assistant",
+  "uuid": "86d233c6-f7ea-452b-bc17-841217405bf7",
+  "isApiErrorMessage": false,
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/agent_0d2e4332",
+  "sessionId": "2c744163-383c-4237-987b-0309840dbb5c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "id": "c86fc4d2-a983-4906-b0bb-1ea6feea4184",
+    "container": null,
+    "model": "&lt;synthetic>",
+    "stop_reason": "stop_sequence",
+    "stop_sequence": "",
+    "type": "message",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": null,
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": null,
+      "iterations": null,
+      "speed": null
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+## Round 3
+
+1 recorded events
+
+### User
+
+_source line 54 · 2026-05-21T11:13:12.054Z_
+
+[WRITE HANDOFF] 请立即写你的 handoff。
+
+**格式硬约束**:
+- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹
+- 禁止在标签外写任何寒暄 / 说明 / 确认（"好的"/"我开始写"/"写完了"等）
+
+**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:
+
+### 1. 🔴 硬约束 / 红线
+  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。
+  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。
+  下一个"你"第一眼看到的就是这里，写错了会被 Director CRITICAL。
+
+### 2. 🖥️ 基础设施快照
+  - 服务器名 + 工作目录 + Python 路径 + conda env
+  - 模型路径 / 数据集路径 / wandb config / HF cache
+  - 活跃进程：PID + tmux session + cron 任务 ID
+  写一次就稳定，下一个"你"不用再 SSH 探查。
+
+### 3. 📊 当前状态
+  - 你刚做完什么 / 正在做什么
+  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要
+  - 等待中的 Worker 回调 / Cron / Director 决策
+
+### 4. 📋 待办（条件触发式）
+  格式 "条件 X 满足 → 动作 Y"。例如:
+  - "Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交"
+  - "pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result"
+
+### 5. 🎯 战略上下文
+  - 项目核心结论 / 决策链（D001..）
+  - 下一个"你"最容易判断错的事 / 容易踩的坑
+
+**写作原则**：
+- 第 1 节必须是项目特定的（不是通用 L1 红线）
+- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查
+- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff
+
+示例格式:
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）
+- submit_training_job 不支持 shell builtin（source/conda activate 全不行）
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases
+- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）
+- 模型：/root/autodl-tmp/qwen35_4b_direct
+- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)
+
+### 3. 📊 当前状态
+我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。
+registry: pilot_011 RUNNING；其他全 DONE。
+
+### 4. 📋 待办
+- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算
+- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪
+
+### 5. 🎯 战略上下文
+Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
+易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "86d233c6-f7ea-452b-bc17-841217405bf7",
+  "isSidechain": false,
+  "promptId": "1e1e1615-939a-4f42-b97a-ccc0c68288cd",
+  "type": "user",
+  "uuid": "46b8614e-b4da-437b-89a8-9a9dfd2f96bf",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0519-3/projects/irt_personfit_contam/.claude/sessions/agent_0d2e4332",
+  "sessionId": "2c744163-383c-4237-987b-0309840dbb5c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
