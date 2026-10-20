@@ -1,0 +1,304 @@
+{
+  "schema_version": "1.0",
+  "id": "95693b438677e6363d78",
+  "project": "recursive_gen_depth_est--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [Director 指令] **[Patch] 紧急修正：Discussion §6 accumulation baseline 数字错误** 刚确认 85.9% 是 GPT-2 XL **temp09** 策略的数字，但 accumula",
+  "task_key": "8f3b1c22-7b39-4fad-9b5e-ff77033c6ac0",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/8f3b1c22-7b39-4fad-9b5e-ff77033c6ac0.jsonl",
+    "occurrence": 1,
+    "bytes": 1027862,
+    "sha256": "64a895c7d7defb414c9ba8b2fa2da842cb69e7ded9bbfccb9c25258176ce8e43"
+  },
+  "statistics": {
+    "messages": 453,
+    "user_turns": 23,
+    "tool_calls": 115,
+    "roles": {
+      "record": 107,
+      "user": 23,
+      "assistant": 93,
+      "tool_call": 115,
+      "tool_result": 115
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "95693b438677e6363d78-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 48,
+      "chunks": [
+        {
+          "path": "95693b438677e6363d78-part-0001.json",
+          "message_count": 48
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "95693b438677e6363d78-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "95693b438677e6363d78-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 26,
+      "chunks": [
+        {
+          "path": "95693b438677e6363d78-part-0001.json",
+          "message_count": 26
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "95693b438677e6363d78-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "95693b438677e6363d78-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "95693b438677e6363d78-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "boundary": "recorded_user_message",
+      "message_count": 99,
+      "chunks": [
+        {
+          "path": "95693b438677e6363d78-part-0001.json",
+          "message_count": 88
+        },
+        {
+          "path": "95693b438677e6363d78-part-0002.json",
+          "message_count": 11
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "95693b438677e6363d78-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "95693b438677e6363d78-part-0002.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "boundary": "recorded_user_message",
+      "message_count": 14,
+      "chunks": [
+        {
+          "path": "95693b438677e6363d78-part-0002.json",
+          "message_count": 14
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "95693b438677e6363d78-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "95693b438677e6363d78-part-0002.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 14,
+      "boundary": "recorded_user_message",
+      "message_count": 74,
+      "chunks": [
+        {
+          "path": "95693b438677e6363d78-part-0002.json",
+          "message_count": 74
+        }
+      ]
+    },
+    {
+      "number": 15,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "95693b438677e6363d78-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 16,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "95693b438677e6363d78-part-0002.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 17,
+      "boundary": "recorded_user_message",
+      "message_count": 82,
+      "chunks": [
+        {
+          "path": "95693b438677e6363d78-part-0002.json",
+          "message_count": 60
+        },
+        {
+          "path": "95693b438677e6363d78-part-0003.json",
+          "message_count": 22
+        }
+      ]
+    },
+    {
+      "number": 18,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "95693b438677e6363d78-part-0003.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 19,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "95693b438677e6363d78-part-0003.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 20,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "95693b438677e6363d78-part-0003.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 21,
+      "boundary": "recorded_user_message",
+      "message_count": 59,
+      "chunks": [
+        {
+          "path": "95693b438677e6363d78-part-0003.json",
+          "message_count": 59
+        }
+      ]
+    },
+    {
+      "number": 22,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "95693b438677e6363d78-part-0003.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 23,
+      "boundary": "recorded_user_message",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "95693b438677e6363d78-part-0003.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-director-patch-discussion-6-accumulation-baseline-85-9-gpt-2-xl-temp09-accumul.md"
+}

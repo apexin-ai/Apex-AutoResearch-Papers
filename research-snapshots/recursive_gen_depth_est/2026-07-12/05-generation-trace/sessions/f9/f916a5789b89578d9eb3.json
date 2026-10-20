@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "f916a5789b89578d9eb3",
+  "project": "recursive_gen_depth_est--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: recursive_gen_depth_est ## 运行环境 - 项目代码根目录: /root/autodl-tmp/recursive_gen_depth_est ## 环境搭建 连接服务",
+  "task_key": "e4878b6e-8a3f-40c2-be8c-efe6b6b3be9e",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/e4878b6e-8a3f-40c2-be8c-efe6b6b3be9e.jsonl",
+    "occurrence": 1,
+    "bytes": 776472,
+    "sha256": "4ad10a3e5244127d61053eb1d04ecf0562b3be9b0010327a715658803880104a"
+  },
+  "statistics": {
+    "messages": 271,
+    "user_turns": 1,
+    "tool_calls": 78,
+    "roles": {
+      "record": 56,
+      "user": 1,
+      "assistant": 58,
+      "tool_call": 78,
+      "tool_result": 78
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "f916a5789b89578d9eb3-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 269,
+      "chunks": [
+        {
+          "path": "f916a5789b89578d9eb3-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "f916a5789b89578d9eb3-part-0002.json",
+          "message_count": 91
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-recursive-gen-depth-est-root-autodl-tmp-recursive-gen-depth-es-copy-21.md"
+}

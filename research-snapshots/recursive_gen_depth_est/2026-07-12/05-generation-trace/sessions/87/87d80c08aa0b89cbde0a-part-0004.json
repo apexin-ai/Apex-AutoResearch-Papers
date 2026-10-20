@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0",
+  "session_id": "87d80c08aa0b89cbde0a",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 38,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[Round 1 审稿请求]: ## Round 1 审稿任务 — Reviewer 1（方法严谨性 + 实验设计）  **论文**：How Deep Is Your Data? Estimating Recursive Generation Depth via Statistical Fingerprints **路径**：projects/recursive_gen_depth_est/doc…",
+                "leafUuid": "781e86ff-7ddc-4bac-9348-ef5f929e3550",
+                "sessionId": "b8e5b5cf-ef3b-4d99-826e-9cb76f03f4d4"
+              }
+            }
+          ],
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review paper on recursive generation depth estimation",
+                "sessionId": "b8e5b5cf-ef3b-4d99-826e-9cb76f03f4d4"
+              }
+            }
+          ],
+          "id": "event-000039"
+        }
+      ]
+    }
+  ]
+}

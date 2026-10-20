@@ -1,0 +1,284 @@
+{
+  "schema_version": "1.0",
+  "id": "82c1bab6ee254f590e78",
+  "project": "recursive_gen_depth_est--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Read the ProphetKV survey file at /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifact",
+  "task_key": "agent-a7fb22f008ca138e6",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/agent-a7fb22f008ca138e6.jsonl",
+    "occurrence": 1,
+    "bytes": 43821,
+    "sha256": "a3d7a992ae6a9ed81fb7523ab09394d973b2fdda1a206ef22cc6a443231313ca"
+  },
+  "statistics": {
+    "messages": 5,
+    "user_turns": 1,
+    "tool_calls": 1,
+    "roles": {
+      "user": 1,
+      "assistant": 2,
+      "tool_call": 1,
+      "tool_result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T05:13:52.634Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Read the ProphetKV survey file at /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/prophetkv_survey.md to understand ProphetKV's query relevance mechanism. Report back: how query relevance is computed, token selection strategy, and any code snippets for the probe mechanism."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "408b9aa3-c2e6-4892-a0f1-7346e3d62a27",
+            "agentId": "a7fb22f008ca138e6",
+            "type": "user",
+            "uuid": "e03c58ce-5988-4e98-b41f-904a306bed46",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache",
+            "sessionId": "fdf71b47-8f0f-4233-b6c0-f01ae22a3454",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T05:13:53.518Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll read the ProphetKV survey file to understand the query relevance mechanism and related details."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e03c58ce-5988-4e98-b41f-904a306bed46",
+            "isSidechain": true,
+            "agentId": "a7fb22f008ca138e6",
+            "requestId": "req_011Cb1taB36XiFAdhhz5A5Jx",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "1cecd30d-898d-4fd0-b98b-44654cab7ec3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache",
+            "sessionId": "fdf71b47-8f0f-4233-b6c0-f01ae22a3454",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_012641sRnQLziRLUvCDZcihC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 509,
+                "cache_read_input_tokens": 17934,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 509,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T05:13:53.924Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FMEg35zF6gv7DAYoTTkV3Y",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/prophetkv_survey.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1cecd30d-898d-4fd0-b98b-44654cab7ec3",
+            "isSidechain": true,
+            "agentId": "a7fb22f008ca138e6",
+            "requestId": "req_011Cb1taB36XiFAdhhz5A5Jx",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "92b504af-b385-4ec5-989f-6d74d4a912fb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache",
+            "sessionId": "fdf71b47-8f0f-4233-b6c0-f01ae22a3454",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_012641sRnQLziRLUvCDZcihC",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 509,
+                "cache_read_input_tokens": 17934,
+                "output_tokens": 117,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 509
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 117,
+                    "cache_read_input_tokens": 17934,
+                    "cache_creation_input_tokens": 509,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 509,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T05:13:54.223Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FMEg35zF6gv7DAYoTTkV3Y",
+              "type": "tool_result",
+              "content": "1\t# ProphetKV 及 Query-Aware KV Cache 方法调研报告\n2\t\n3\t> 论文: arXiv 2602.02579 (Feb 2026)  \n4\t> 作者: Shihao Wang, Jiahao Chen et al. (HIT Shenzhen, Yanrong Technology)  \n5\t> 代码: **无公开代码仓库**  \n6\t> 调研日期: 2026-05-14 (v2 更新)  \n7\t> 目的: 为 CompressLink 的 query relevance probe (p_r(t)) 提供方法论依据和实现方案\n8\t\n9\t---\n10\t\n11\t## 快速参考\n12\t\n13\t### 方法对比表\n14\t\n15\t| 维度 | ProphetKV | SnapKV | kvpress ExpectedAttn |\n16\t|------|-----------|--------|---------------------|\n17\t| 核心信号 | query attn column sum, 跨所有层 | observation window attn, per-layer | Gaussian E[attn], per-layer |\n18\t| 场景 | Chunked prefill 后 KV 修复 | Prefill KV eviction | Prefill KV eviction |\n19\t| 需要 query? | ✅ | ❌ (用 window proxy) | ❌ (统计预测) |\n20\t| Score 粒度 | per-layer → fuse to global per-token | per-head per-layer | per-head per-layer |\n21\t| 计算开销 | O(\\|Q\\|×s) per layer | O(window×s) per layer | O(s×d) per layer |\n22\t| 开源代码 | ❌ | ✅ FasterDecoding/SnapKV | ✅ NVIDIA/kvpress |\n23\t| HF 集成 | — | Monkey-patch | Forward hook (context mgr) |\n24\t\n25\t### 核心公式速查\n26\t\n27\t```\n28\tProphetKV:  α_l(t) = Φ̂'_{Q_s,t}^(l) = (1/|Q|) Σ_q softmax(q·K'/√d)_t\n29\t            ᾱ(t) = (1/L) Σ_l α_l(t)\n30\t            T_p = Top-p(ᾱ(t))\n31\t\n32\tSnapKV:     scores = AvgPool1d(attn[:,:,-W:,:-W].mean(dim=-2), kernel=5)\n33\t            keep = TopK(scores, capacity - window)\n34\t\n35\tExpAttn:    E(A)_i = exp(μ_q^T k_i/√d + k_i^T Σ_q k_i/(2d))\n36\t            score_i = softmax(E(A))_i · (ε + ||v_i||₂)\n37\t```\n38\t\n39\t### 代码量估计\n40\t\n41\t| 组件 | 行数 | 依赖 |\n42\t|------|------|------|\n43\t| 位置先验 p_r (MVP Phase 0) | ~50 | MEPIC chunk boundaries |\n44\t| ProphetKV-style query probe (Phase 1) | ~200 | HF attn hook, NoPE KV cache |\n45\t| RABA DP solver 修改 | ~100 | KVTC DP solver |\n46\t| CEGR scoring | ~80 | Decompression metadata |\n47\t| 端到端 pipeline glue | ~150 | 以上全部 |\n48\t| **总计** | **~580** | |\n49\t\n50\t---\n51\t\n52\t## 1. ProphetKV 核心方法\n53\t\n54\t### 1.1 问题场景\n55\t\n56\tProphetKV 针对 RAG 场景中的 **position-independent KV cache reuse**。典型流程:\n57\t1. 多个 RAG 文档各自独立预计算 KV cache（chunk-wise precomputation）\n58\t2. 用户请求时，拼接各 chunk 的 KV cache → **缺失 cross-chunk attention**\n59\t3. 需要选择性 recompute 部分 token 来恢复关键的 cross-attention\n60\t\n61\t**核心洞察**: 现有方法（CacheBlend、EPIC、KVShare）使用全局 saliency 指标选 token，导致 **crowding-out effect** — 全局显著但与用户查询无关的 token 占满 recomputation budget，挤走真正关键的 token。\n62\t\n63\t### 1.2 \"User Query as a Prophet\" — 核心假设\n64\t\n65\t**实验发现**: 用户查询 attention 到的 token 子集，与 decoding 阶段被 attend 到的 token 子集有 **高度重叠**（overlap ratio 在 top-p=0.2 时已达 80%+，跨 Llama3-8B、Qwen2.5-14B、Qwen3-14B 均稳健）。\n66\t\n67\t→ 用户查询的 attention pattern 可作为 decoding 阶段 token 重要性的 **先知 (prophet)**。\n68\t\n69\t### 1.3 数学推导\n70\t\n71\t#### 1.3.1 Attention 输出分解\n72\t\n73\t对于生成 token n > s（s 为输入长度），attention 输出可分解为:\n74\t\n75\t```\n76\tAttnOut_n = Σ_{1≤t≤s} Φ_{n,t} V_t + Σ_{s<t≤n} Φ_{n,t} V_t\n77\t            ├── 输入 token 贡献 ──┘   └── 生成 token 贡献 ──┘\n78\t```\n79\t\n80\t#### 1.3.2 Query Attention 作为代理\n81\t\n82\t定义 **query token 对 context token t 的平均 attention**:\n83\t\n84\t```\n85\tΦ̂_{Q_s,t} = (1/|Q_s|) Σ_{q∈Q_s} Φ_{q,t}\n86\t```\n87\t\n88\t其中 Q_s 是用户查询 token 集合。核心近似:\n89\t\n90\t```\n91\tΦ_{n,t} ≈ Φ̂_{Q_s,t}   (for n > s)\n92\t```\n93\t\n94\t#### 1.3.3 Semantic Loss 定义\n95\t\n96\tPrecise KV cache (有 cross-attention) vs Imprecise KV cache (无 cross-attention) 的差距:\n97\t\n98\t```\n99\tL_semantic = ||Σ_{1≤t≤s} Φ̂_{Q_s,t} V_t - Σ_{1≤t≤s} Φ̂'_{Q_s,t} V'_t||_2   ... (Eq. 2)\n100\t```\n101\t\n102\t其中 V'_t 和 Φ̂'_{Q_s,t} 是 imprecise 版本（chunk 独立计算、无 cross-attention）。\n103\t\n104\t上界（三角不等式）:\n105\t\n106\t```\n107\tL_semantic ≤ L = Σ_{1≤t≤s} ||Φ̂'_{Q_s,t} V'_t - Φ̂_{Q_s,t} V_t||_2   ... (Eq. 3)\n108\t```\n109\t\n110\t#### 1.3.4 Token 选择的 Value Function\n111\t\n112\t给定 recomputation budget p，residual loss:\n113\t\n114\t```\n115\tL_{α,p} = Σ_{t∉TOP_p(α(t))} ||Φ̂'_{Q_s,t} V'_t - Φ̂_{Q_s,t} V_t||_2   ... (Eq. 4)\n116\t```\n117\t\n118\t**理想 value function**（不可直接计算）:\n119\t\n120\t```\n121\tα_ideal(t) = ||Φ̂_{Q_s,t} V_t - Φ̂'_{Q_s,t} V'_t||_2   ... (Eq. 5)\n122\t```\n123\t\n124\t**实际 value function**（可直接观测）:\n125\t\n126\t```\n127\tα(t) = Φ̂'_{Q_s,t}   — 用户查询对 imprecise Key cache 的平均 attention\n128\t```\n129\t\n130\t关键: Φ̂'_{Q_s,t} 可通过仅在 short user query 上运行 Transformer 轻量获得，无需完整 prefill。\n131\t\n132\t#### 1.3.5 Layer-wise Fusion\n133\t\n134\t不同层的 attention pattern 差异很大（Figure 7: 不同层的 optimal token 子集差异显著）。融合公式:\n135\t\n136\t```\n137\tᾱ(t) = (1/L) Σ_{l=1}^{L} α_l(t)   ... (Eq. 7)\n138\t```\n139\t\n140\t其中 α_l(t) = Φ̂'_{Q_s,t}^{(l)} 是第 l 层的 query-to-context attention column sum。\n141\t\n142\t### 1.4 双阶段流程 (Dual-Stage Pipeline)\n143\t\n144\t#### Stage I: Metric Generation (轻量 pass)\n145\t\n146\t```\n147\tInput:  用户查询 Q_s, 各 chunk 的预计算 KV cache {K'_chunk, V'_chunk}\n148\tFor each layer l:\n149\t    1. 拼接所有 chunk 的 Key cache: K' = concat(K'_chunk1, K'_chunk2, ...)\n150\t    2. 计算 Q_s 对 K' 的 attention weights (softmax(Q_s @ K'^T / √d))\n151\t    3. Column sum → α_l(t) = Σ_{q∈Q_s} attn(q, t) / |Q_s|\n152\tOutput: 每层每 token 的重要性 α_l(t)\n153\t```\n154\t\n155\t**复杂度**: O(|Q_s| × s) per layer，其中 |Q_s| ≪ s（查询通常几十 token，context 几千到几万）\n156\t\n157\t#### Stage II: Selective Recomputation\n158\t\n159\t```\n160\t1. Fuse: ᾱ(t) = mean_l(α_l(t))\n161\t2. Select: TOP_p(ᾱ(t)) — 选 top-p 比例的 token\n162\t3. Recompute: 对选中 token 在所有层做完整 prefill（恢复 cross-attention）\n163\t4. Update: 将 recomputed KV 替换到对应位置\n164\t```\n165\t\n166\t**关键**: Stage II 中 selection 对所有层是统一的（同一批 token），保证计算效率。\n167\t\n168\t### 1.5 性能指标\n169\t\n170\t| 配置 | RULER Avg | LongBench Avg |\n171\t|------|-----------|---------------|\n172\t| Full Recompute | 基准 | 基准 |\n173\t| Naive Reuse (0%) | -7~-44% | -10~-43% |\n174\t| CacheBlend (20%) | +39.8% vs naive | 中等 |\n175\t| ProphetKV (20%) | **96-101% of full** | **+18.6-50.9% vs SOTA** |\n176\t\n177\t**效率**: 20% recomputation ratio → 5× speedup over full recompute (8K-16K context)\n178\t\n179\t---\n180\t\n181\t## 2. 相关方法对比\n182\t\n183\t### 2.1 方法矩阵\n184\t\n185\t| 方法 | Token 选择策略 | Query-Aware? | 粒度 | 适用场景 | 代码 |\n186\t|------|---------------|-------------|------|---------|------|\n187\t| **ProphetKV** | Query attention column sum, layer fusion | ✅ 全局 | per-token, global | RAG recomputation | 无 |\n188\t| **SnapKV** | Observation window attention + pooling | ⚠️ 局部 (window) | per-layer, per-head | Prefill compression | ✅ FasterDecoding/SnapKV |\n189\t| **H2O** | Accumulated attention score (Heavy Hitter) | ❌ 全局 saliency | per-layer | Decode-time eviction | ✅ HF transformers |\n190\t| **PyramidKV** | Layer-wise pyramidal budget + attention | ❌ 全局 saliency | per-layer, adaptive budget | Prefill compression | ✅ Zefan-Cai/PyramidKV |\n191\t| **Expected Attention** | Gaussian query distribution → closed-form E[attn] | ✅ 统计预测 | per-layer, per-head | Prefill compression | ✅ NVIDIA/kvpress |\n192\t| **AdaKV** | SnapKV/PyramidKV + adaptive per-head budget | ⚠️ 局部 | per-head adaptive | Prefill compression | ✅ FFY0/AdaKV |\n193\t| **CakeKV** | - | - | - | - | ✅ antgroup/cakekv |\n194\t| **KVzip** | Query-agnostic attention + context distillation | ❌ | per-token | Memory reduction | ✅ snu-mllab/KVzip |\n195\t\n196\t### 2.2 SnapKV 详解\n197\t\n198\t**论文**: \"SnapKV: LLM Knows What You are Looking for Before Generation\" (NeurIPS 2024)\n199\t\n200\t**核心思路**: 用 prompt 末尾的 **observation window**（最后 ~64 token）的 attention pattern 来识别 prompt 中的关键 token。\n201\t\n202\t**实现** (基于 NVIDIA/kvpress 的 SnapKVPress):\n203\t\n204\t```python\n205\tclass SnapKVPress(ScorerPress):\n206\t    compression_ratio: float = 0.0   # 移除的 KV 比例\n207\t    window_size: int = 64            # observation window 大小\n208\t    kernel_size: int = 5             # pooling kernel\n209\t\n210\t    def score(self, module, hidden_states, keys, values, attentions, kwargs):\n211\t        # 1. 获取 observation window 的 attention weights\n212\t        #    取最后 window_size 个 query 对前面所有 key 的 attention\n213\t        attn_weights = compute_window_attention(...)  # or from `attentions`\n214\t\n215\t        # 2. 聚合: 对 query 维度取均值\n216\t        scores = attn_weights.mean(dim=-2)  # [batch, heads, seq_len]\n217\t\n218\t        # 3. Pooling 平滑 (avg_pool1d, kernel=5)\n219\t        scores = F.avg_pool1d(scores, kernel_size=5, padding=2, stride=1)\n220\t\n221\t        # 4. 跨 KV head group 平均\n222\t        scores = scores.reshape(batch, num_kv_heads, num_groups, seq).mean(dim=2)\n223\t\n224\t        # 5. 保护 observation window: 给最后 window_size 个 token 赋最大分数\n225\t        scores = F.pad(scores, (0, window_size), value=scores.max().item() + 1)\n226\t\n227\t        return scores  # [batch, num_kv_heads, seq_len]\n228\t```\n229\t\n230\t**与 HuggingFace 集成**: monkey-patch attention forward（SnapKV 原版）或 forward hook（kvpress 版）\n231\t\n232\t### 2.3 H2O (Heavy-Hitter Oracle)\n233\t\n234\t**论文**: NeurIPS 2023\n235\t\n236\t**核心**: **累积 attention score** — 每个 token 在所有之前的 attention 计算中被 attend 到的总量。ProphetKV **明确反对** early-layer prediction（论文 Figure 11 展示低层关注 nearby tokens、高层关注 distant tokens，pattern 差异显著），因此跨所有层计算后融合。\n237\t\n238\t```\n239\tscore(t) = Σ_{n: n已生成} Σ_{h: 所有head} attn_weight(n, h, t)\n240\t```\n241\t\n242\t保留策略: 保留 **recent tokens + top-K heavy hitters**。\n243\t\n244\t**局限**: 在长上下文中，attention 是 power-law 分布，早期 token（attention sink）和近期 token 会主导，中间关键信息易被丢弃。\n245\t\n246\t### 2.4 Expected Attention (NVIDIA kvpress)\n247\t\n248\t**论文**: arXiv 2510.00636\n249\t\n250\t**核心创新**: 不依赖实际 future query，而是 **统计建模 future query 的分布**:\n251\t\n252\t```\n253\t假设 hidden states ~ N(μ, Σ)\n254\t→ queries ~ N(μ_q, Σ_q) (线性变换)\n255\t→ 对未来 T 个位置的 RoPE 取平均，得到 position-averaged query 分布\n256\t\n257\tExpected unnormalized attention:\n258\tẑ_i = exp(μ̄_q^T k_i / √d + k_i^T Σ̄_q k_i / (2d))\n259\t\n260\tNormalized:\n261\tâ_i = ẑ_i / Σ_j ẑ_j\n262\t\n263\tFinal score (结合 value norm):\n264\tscore_i = (â_i + ε) × ||W_o v_i||\n265\t```\n266\t\n267\t**实现** (kvpress ExpectedAttentionPress):\n268\t\n269\t```python\n270\tdef score(self, module, hidden_states, keys, values, attentions, kwargs):\n271\t    # 1. 计算 query 的均值和协方差 (排除 sink tokens)\n272\t    mean_query = queries.mean(dim=2)  # [batch, heads, dim]\n273\t    cov_query = einsum(\"bnsi,bnsj->bnij\", centered, centered) / seq_len\n274\t\n275\t    # 2. 对未来 T 个位置的 RoPE 取平均 → position-averaged rotation\n276\t    R_avg = average_rope_matrix(positions, n_future=512)\n277\t    mean_query = mean_query @ R_avg.T\n278\t    cov_query = R_avg @ cov_query @ R_avg.T\n279\t\n280\t    # 3. Expected attention score (closed-form)\n281\t    scores = (mean_query @ keys.T) / sqrt(d)\n282\t    if use_covariance:\n283\t        scores += einsum(\"bhin,bhij,bhjn->bhn\", keys, cov_query, keys) / d / 2\n284\t    scores = softmax(scores)\n285\t\n286\t    # 4. 结合 value norm\n287\t    scores = (scores + epsilon) * values.norm(dim=-1)\n288\t    return scores\n289\t```\n290\t\n291\t### 2.5 PyramidKV\n292\t\n293\t**核心**: 不同层分配不同的 KV cache budget:\n294\t- **低层**: attention 分散 → 保留更多 token\n295\t- **高层**: attention 集中 → 保留更少 token\n296\t\n297\t形成 **金字塔形** budget 分配。\n298\t\n299\t---\n300\t\n301\t## 3. NVIDIA kvpress 框架分析\n302\t\n303\t### 3.1 架构设计\n304\t\n305\t```\n306\tBasePress          — 基类, forward hook 注册机制\n307\t  └─ ScorerPress   — 基于分数的剪枝基类\n308\t       ├── SnapKVPress\n309\t       ├── ObservedAttentionPress  (H2O 变体)\n310\t       ├── ExpectedAttentionPress\n311\t       ├── PyramidKVPress\n312\t       ├── KnormPress\n313\t       ├── TOVAPress\n314\t       └── ... (20+ 实现)\n315\t```\n316\t\n317\t### 3.2 核心接口\n318\t\n319\t```python\n320\t# 使用方式 (context manager)\n321\twith press(model):\n322\t    outputs = model.generate(...)\n323\t\n324\t# ScorerPress 子类需实现:\n325\tdef score(self, module: nn.Module, hidden_states: torch.Tensor,\n326\t          keys: torch.Tensor,       # (batch, num_kv_heads, seq_len, head_dim)\n327\t          values: torch.Tensor,     # (batch, num_kv_heads, seq_len, head_dim)\n328\t          attentions: torch.Tensor, # (batch, num_heads, seq_len, seq_len)\n329\t          kwargs: dict\n330\t    ) -> torch.Tensor:              # (batch, num_kv_heads, seq_len) ← per-head 粒度\n331\t    \"\"\"分数越高 = token 越重要 = 越不会被剪\"\"\"\n332\t    ...\n333\t\n334\t# ScorerPress.compress() 的实际实现:\n335\tdef compress(self, module, hidden_states, keys, values, attentions, kwargs):\n336\t    if self.compression_ratio == 0: return keys, values\n337\t    scores = self.score(module, hidden_states, keys, values, attentions, kwargs)\n338\t    n_kept = int(seq_len * (1 - self.compression_ratio))\n339\t    indices = scores.topk(n_kept, dim=-1).indices          # (batch, heads, n_kept)\n340\t    indices_exp = indices.unsqueeze(-1).expand(-1,-1,-1, head_dim)\n341\t    keys = keys.gather(2, indices_exp).contiguous()        # (batch, heads, n_kept, dim)\n342\t    values = values.gather(2, indices_exp).contiguous()\n343\t    return keys, values\n344\t\n345\t# 关键: score 返回 per-head 粒度 → 每个 KV head 独立决定保留哪些 token\n346\t```\n347\t\n348\t### 3.3 Hook 机制\n349\t\n350\t```python\n351\t# BasePress 通过 context manager 注册 hook\n352\tclass BasePress:\n353\t    def __call__(self, model):\n354\t        # 对每个 attention layer 注册 forward_hook\n355\t        for layer in model.model.layers:\n356\t            layer.self_attn.register_forward_hook(self.forward_hook)\n357\t\n358\t    def forward_hook(self, module, input, output):\n359\t        # 在 attention forward 之后执行\n360\t        # 获取 keys, values, attentions\n361\t        # 调用 compress() → score() → topk → prune\n362\t        ...\n363\t```\n364\t\n365\t---\n366\t\n367\t## 4. CompressLink Query Relevance Probe 实现方案\n368\t\n369\t### 4.1 需求分析\n370\t\n371\tCompressLink 需要 **p_r(t)** — 每个 token 被 restoration 的概率，用于:\n372\t1. **RABA**: p_r 高 → 分配更少 compression bits（因为会被 restore）\n373\t2. **CEGR**: 结合 compression error ε(t) 和 p_r(t) 选择要 restore 的 token\n374\t\n375\t**关键区别**（CompressLink vs ProphetKV）:\n376\t- ProphetKV: 场景是 **position-independent KV reuse**，关注 cross-attention 恢复\n377\t- CompressLink: 场景是 **compression + selective restoration**，关注哪些 token 值得高精度保留\n378\t\n379\t但 **底层信号完全一致**: 都是用 query attention 预测 token 重要性。\n380\t\n381\t### 4.2 推荐实现方案\n382\t\n383\t#### 方案 A: ProphetKV 式 — Query Attention Column Sum (推荐)\n384\t\n385\t```python\n386\tclass QueryRelevanceProbe:\n387\t    \"\"\"\n388\t    计算 p_r(t): 每个 context token 被 future query attend 到的概率。\n389\t    基于 ProphetKV 的 \"user query as prophet\" 假设。\n390\t    \"\"\"\n391\t\n392\t    def __init__(self, model, probe_layers=None, aggregation='mean'):\n393\t        self.model = model\n394\t        # 可选: 只用部分层 (e.g., 后半部分层更 semantic)\n395\t        self.probe_layers = probe_layers  # None = 全部层\n396\t        self.aggregation = aggregation    # 'mean' or 'max'\n397\t        self._hooks = []\n398\t        self._attention_scores = {}\n399\t\n400\t    def _register_hooks(self):\n401\t        \"\"\"在每个 attention layer 注册 hook 收集 attention weights\"\"\"\n402\t        for idx, layer in enumerate(self.model.model.layers):\n403\t            if self.probe_layers and idx not in self.probe_layers:\n404\t                continue\n405\t\n406\t            def hook_fn(module, input, output, layer_idx=idx):\n407\t                # 获取 attention weights: [batch, heads, q_len, kv_len]\n408\t                # 需要 output_attentions=True 或手动计算\n409\t                attn_weights = output[1]  # depends on model\n410\t                # Column sum (对 query 维度求和) → per-token importance\n411\t                # [batch, heads, kv_len]\n412\t                col_sum = attn_weights.sum(dim=-2)\n413\t                # 归一化: 除以 query 数量\n414\t                col_sum = col_sum / attn_weights.shape[-2]\n415\t                # 跨 head 平均\n416\t                col_sum = col_sum.mean(dim=1)  # [batch, kv_len]\n417\t                self._attention_scores[layer_idx] = col_sum\n418\t\n419\t            self._hooks.append(\n420\t                layer.self_attn.register_forward_hook(hook_fn)\n421\t            )\n422\t\n423\t    def compute_relevance(self, query_input_ids, kv_cache):\n424\t        \"\"\"\n425\t        Stage I: 轻量 pass，只让 query tokens attend to cached keys\n426\t\n427\t        Args:\n428\t            query_input_ids: 用户查询的 token ids\n429\t            kv_cache: 已压缩/预计算的 KV cache\n430\t\n431\t        Returns:\n432\t            p_r: [seq_len] tensor, 每个 context token 的 relevance probability\n433\t        \"\"\"\n434\t        self._attention_scores = {}\n435\t        self._register_hooks()\n436\t\n437\t        try:\n438\t            # 只对 query tokens 做 forward, 使用已有 KV cache\n439\t            with torch.no_grad():\n440\t                self.model(\n441\t                    query_input_ids,\n442\t                    past_key_values=kv_cache,\n443\t                    output_attentions=True,\n444\t                    use_cache=True,\n445\t                )\n446\t        finally:\n447\t            for h in self._hooks:\n448\t                h.remove()\n449\t            self._hooks = []\n450\t\n451\t        # Layer fusion: ᾱ(t) = mean_l(α_l(t))\n452\t        all_scores = torch.stack(list(self._attention_scores.values()))\n453\t        if self.aggregation == 'mean':\n454\t            fused = all_scores.mean(dim=0)  # [batch, kv_len]\n455\t        else:\n456\t            fused = all_scores.max(dim=0).values\n457\t\n458\t        # Score → Probability: softmax or min-max normalization\n459\t        p_r = self._score_to_probability(fused)\n460\t        return p_r\n461\t\n462\t    def _score_to_probability(self, scores):\n463\t        \"\"\"将 raw attention score 转换为 [0, 1] 概率\"\"\"\n464\t        # 方法 1: Min-max normalization\n465\t        s_min, s_max = scores.min(dim=-1, keepdim=True).values, \\\n466\t                       scores.max(dim=-1, keepdim=True).values\n467\t        p_r = (scores - s_min) / (s_max - s_min + 1e-8)\n468\t\n469\t        # 方法 2 (替代): Temperature-scaled softmax\n470\t        # p_r = F.softmax(scores / temperature, dim=-1)\n471\t\n472\t        return p_r\n473\t```\n474\t\n475\t#### 方案 B: Expected Attention 式 — 无需 Query (备选)\n476\t\n477\t适用于 **query 不可用** 的场景（如 prefill 阶段 compression，此时 user query 还没到）:\n478\t\n479\t```python\n480\tclass ExpectedRelevanceProbe:\n481\t    \"\"\"\n482\t    基于 Expected Attention 方法，统计估算 future query 的 attention。\n483\t    不需要实际 query，但精度略低于方案 A。\n484\t    \"\"\"\n485\t\n486\t    def compute_relevance(self, keys, queries_so_far, values):\n487\t        \"\"\"\n488\t        从已有 query 的统计特征预测 future attention\n489\t\n490\t        keys: [batch, heads, seq, dim]\n491\t        queries_so_far: [batch, heads, seq, dim] — prefill 阶段的 query\n492\t        values: [batch, heads, seq, dim]\n493\t        \"\"\"\n494\t        d = keys.shape[-1]\n495\t\n496\t        # 1. Query distribution: mean + covariance\n497\t        mu_q = queries_so_far.mean(dim=2)     # [batch, heads, dim]\n498\t        centered = queries_so_far - mu_q.unsqueeze(2)\n499\t        cov_q = torch.einsum(\"bhsi,bhsj->bhij\", centered, centered) / queries_so_far.shape[2]\n500\t\n501\t        # 2. Expected attention (Gaussian closed-form)\n502\t        # E[exp(q^T k / √d)] = exp(μ^T k/√d + k^T Σ k/(2d))\n503\t        mean_scores = torch.matmul(mu_q.unsqueeze(2), keys.transpose(-1, -2)).squeeze(2) / math.sqrt(d)\n504\t        cov_scores = torch.einsum(\"bhin,bhij,bhjn->bhn\", keys, cov_q, keys) / d / 2\n505\t        scores = F.softmax(mean_scores + cov_scores, dim=-1)\n506\t\n507\t        # 3. 结合 value norm\n508\t        v_norm = values.norm(dim=-1)\n509\t        scores = (scores + 0.02) * v_norm\n510\t\n511\t        # 4. Layer aggregation + normalization → p_r\n512\t        p_r = self._normalize(scores.mean(dim=1))  # average across heads\n513\t        return p_r\n514\t```\n515\t\n516\t#### 方案 C: SnapKV 式 — Observation Window (轻量备选)\n517\t\n518\t适用于 **在线 streaming** 场景:\n519\t\n520\t```python\n521\tclass ObservationWindowProbe:\n522\t    \"\"\"\n523\t    用最后 window_size 个 token 的 attention pattern 估计 token 重要性。\n524\t    不需要独立的 query forward pass。\n525\t    \"\"\"\n526\t\n527\t    def __init__(self, window_size=64, kernel_size=5):\n528\t        self.window_size = window_size\n529\t        self.kernel_size = kernel_size\n530\t\n531\t    def compute_relevance(self, attn_weights):\n532\t        \"\"\"\n533\t        attn_weights: [batch, heads, seq, seq] — 最后一个 attention layer 的输出\n534\t\n535\t        Returns: p_r [batch, seq]\n536\t        \"\"\"\n537\t        # 取最后 window_size 个 query 对前面 token 的 attention\n538\t        window_attn = attn_weights[:, :, -self.window_size:, :-self.window_size]\n539\t\n540\t        # 对 query 维度求和\n541\t        scores = window_attn.sum(dim=-2)  # [batch, heads, prefix_len]\n542\t\n543\t        # Avg pooling 平滑\n544\t        scores = F.avg_pool1d(scores, kernel_size=self.kernel_size,\n545\t                              padding=self.kernel_size // 2, stride=1)\n546\t\n547\t        # 跨 head 平均\n548\t        scores = scores.mean(dim=1)  # [batch, prefix_len]\n549\t\n550\t        # 补齐 window tokens (它们的 p_r 应为 1.0, 因为是最近的)\n551\t        window_scores = torch.ones(scores.shape[0], self.window_size, device=scores.device)\n552\t        scores = torch.cat([scores, window_scores], dim=-1)\n553\t\n554\t        # Normalize to [0, 1]\n555\t        p_r = (scores - scores.min()) / (scores.max() - scores.min() + 1e-8)\n556\t        return p_r\n557\t```\n558\t\n559\t### 4.3 方案选择建议\n560\t\n561\t| 维度 | 方案 A (ProphetKV式) | 方案 B (Expected Attn式) | 方案 C (SnapKV式) |\n562\t|------|---------------------|------------------------|--------------------|\n563\t| 精度 | ★★★★★ | ★★★★ | ★★★ |\n564\t| 需要 query? | 是 | 否 | 否 (用 window) |\n565\t| 额外开销 | 轻量 forward (O(|Q|×s)) | 统计计算 (O(s×d²)) | 无额外 pass |\n566\t| 适用时机 | Decode 前/Compression 后 | Prefill 时 | Prefill 时 |\n567\t| **推荐用于** | **CEGR** (有 query 时) | RABA (prefill 时预估) | 快速 fallback |\n568\t\n569\t**CompressLink 推荐**: **两阶段策略**\n570\t1. **Prefill/Compression 阶段**: 用 方案 B 或 C 计算 **初始 p_r_est**，用于 RABA bit allocation\n571\t2. **Decode/Restoration 阶段**: 用 方案 A 计算 **精确 p_r**，用于 CEGR restoration selection\n572\t\n573\t### 4.4 p_r(t) 的关键设计决策\n574\t\n575\t#### 4.4.1 获取时机\n576\t\n577\t```\n578\tTimeline:\n579\t  Prefill ──→ Compression ──→ User Query arrives ──→ Decode\n580\t                                      ↑\n581\t                              ProphetKV Stage I 在这里计算 p_r\n582\t```\n583\t\n584\t- **RABA 需求**: compression 时就需要 p_r → 此时 query 未到 → 需要 **预估** (方案 B/C)\n585\t- **CEGR 需求**: decode 前选择 restore 哪些 token → query 已到 → 可以用 **精确** p_r (方案 A)\n586\t\n587\t**解决方案**: RABA 的 p_r 可以用 Expected Attention 预估，或者采用 **在线更新**:\n588\t1. Prefill 时用 uniform p_r 做初始 bit allocation\n589\t2. Query 到达后用方案 A 计算精确 p_r\n590\t3. 对 p_r 高但 compression error 大的 token 做 restoration\n591\t\n592\t#### 4.4.2 粒度\n593\t\n594\tProphetKV 使用 **per-token, global (all layers)** 的粒度:\n595\t\n596\t```\n597\tα_l(t) = per-layer per-token\n598\tᾱ(t) = per-token (fused across layers) → 用于 token selection\n599\t```\n600\t\n601\t对 CompressLink:\n602\t- **RABA**: 需要 per-layer per-token 的 p_r（因为 KVTC 是 per-layer 做 bit allocation）\n603\t- **CEGR**: 需要 per-token global 的 p_r（因为 restoration 是 per-token 的）\n604\t\n605\t→ **同时保留 per-layer 和 fused 两个粒度**\n606\t\n607\t#### 4.4.3 Score → Probability 转换\n608\t\n609\tProphetKV 直接用 raw attention score (Φ̂'_{Q_s,t}) 做 TOP_p 选择，没有显式转为概率。\n610\t\n611\tCompressLink 需要 [0,1] 概率，建议:\n612\t\n613\t```python\n614\t# 方法 1: 基于排序的分位数映射 (推荐)\n615\tranks = scores.argsort(descending=True).argsort()  # rank of each token\n616\tp_r = 1.0 - ranks.float() / len(scores)  # top token → p_r ≈ 1.0\n617\t\n618\t# 方法 2: Temperature softmax\n619\tp_r = F.softmax(scores / tau, dim=-1) * len(scores)  # scale to ~[0, num_tokens]\n620\tp_r = p_r.clamp(0, 1)\n621\t\n622\t# 方法 3: Sigmoid with learned threshold\n623\tp_r = torch.sigmoid((scores - scores.median()) / tau)\n624\t```\n625\t\n626\t### 4.5 与 KVTC Compression Pipeline 的接口\n627\t\n628\t```python\n629\t# 在 KVTC 的 pipeline_fast.py 中集成\n630\t\n631\tclass CompressLinkPipeline:\n632\t    def __init__(self, model, kvtc_pipeline, relevance_probe):\n633\t        self.model = model\n634\t        self.kvtc = kvtc_pipeline\n635\t        self.probe = relevance_probe  # QueryRelevanceProbe\n636\t\n637\t    def compress_with_raba(self, kv_cache, p_r_est=None):\n638\t        \"\"\"\n639\t        RABA: Restoration-Aware Bit Allocation\n640\t        p_r 高的 token → 更少 bits (会被 restore)\n641\t        p_r 低的 token → 更多 bits (不会被 restore, 需要高保真)\n642\t        \"\"\"\n643\t        for layer_idx in range(self.model.config.num_hidden_layers):\n644\t            keys = kv_cache[layer_idx][0]\n645\t            values = kv_cache[layer_idx][1]\n646\t\n647\t            if p_r_est is not None:\n648\t                # 调整 KVTC 的 per-token bit budget\n649\t                # base_bits: KVTC 的默认 bit allocation (e.g., from eigenvalue entropy)\n650\t                base_bits = self.kvtc.compute_bit_budget(keys, layer_idx)\n651\t                # RABA 调整: p_r 高 → 减少 bits\n652\t                adjusted_bits = base_bits * (1 - beta * p_r_est[layer_idx])\n653\t                adjusted_bits = adjusted_bits.clamp(min=min_bits)\n654\t            else:\n655\t                adjusted_bits = self.kvtc.compute_bit_budget(keys, layer_idx)\n656\t\n657\t            compressed = self.kvtc.compress(keys, values, bits=adjusted_bits)\n658\t            ...\n659\t\n660\t    def restore_with_cegr(self, compressed_cache, query_ids, budget_ratio=0.2):\n661\t        \"\"\"\n662\t        CEGR: Compression-Error-Guided Restoration\n663\t        选择 restore 哪些 token, 基于:\n664\t        - p_r(t): query relevance (高 → 更值得 restore)\n665\t        - ε(t): compression error (高 → restore 收益大)\n666\t        \"\"\"\n667\t        # 1. 计算精确 p_r (方案 A)\n668\t        p_r = self.probe.compute_relevance(query_ids, compressed_cache)\n669\t\n670\t        # 2. 计算 compression error\n671\t        epsilon = self.kvtc.estimate_error(compressed_cache)\n672\t\n673\t        # 3. 综合分数: 同时考虑 relevance 和 error\n674\t        # score = p_r * ε  (relevance × error magnitude)\n675\t        restore_score = p_r * epsilon\n676\t\n677\t        # 4. 选 top-budget_ratio 的 token restore\n678\t        n_restore = int(len(restore_score) * budget_ratio)\n679\t        restore_indices = restore_score.topk(n_restore).indices\n680\t\n681\t        # 5. Recompute selected tokens\n682\t        restored_cache = self.recompute(compressed_cache, restore_indices)\n683\t        return restored_cache\n684\t```\n685\t\n686\t### 4.6 与 MEPIC Boundary Recomputation 的关系\n687\t\n688\tProphetKV 的 overlap 分析（Figure 4）显示 query-attended tokens 与 decoding-attended tokens 高度重叠。\n689\t\n690\t**推测**: MEPIC 的 chunk boundary tokens（chunk 首尾几个 token）:\n691\t- 如果它们是 cross-chunk attention 的关键节点 → p_r 应该自然偏高\n692\t- 但 ProphetKV 的分析表明，重要 token 不一定在 boundary 位置 → **p_r 比固定 boundary 更灵活**\n693\t\n694\t→ CompressLink 中，MEPIC boundary recomputation 可以被 CEGR **替代或增强**:\n695\t- CEGR 用 p_r + ε 自动选择需要 restore 的 token（包含但不限于 boundary）\n696\t- 如果 boundary token 确实重要，它们的 p_r 和 ε 自然会高，会被 CEGR 选中\n697\t\n698\t---\n699\t\n700\t## 5. 可复用代码资源\n701\t\n702\t### 5.1 NVIDIA kvpress (推荐参考)\n703\t\n704\t- **仓库**: https://github.com/NVIDIA/kvpress\n705\t- **许可**: MIT (推测, 需确认)\n706\t- **价值**: 完整的 hook-based KV cache compression 框架，支持 20+ 方法\n707\t- **关键文件**:\n708\t  - `kvpress/presses/scorer_press.py` — ScorerPress 基类，forward hook + topk 剪枝\n709\t  - `kvpress/presses/snapkv_press.py` — SnapKV 实现，observation window + pooling\n710\t  - `kvpress/presses/expected_attention_press.py` — Expected Attention，Gaussian closed-form\n711\t  - `kvpress/presses/observed_attention_press.py` — H2O 式累积 attention\n712\t\n713\t### 5.2 SnapKV 原版\n714\t\n715\t- **仓库**: https://github.com/FasterDecoding/SnapKV\n716\t- **关键文件**:\n717\t  - `snapkv/monkeypatch/snapkv_utils.py` — 核心 attention score 计算\n718\t  - `snapkv/monkeypatch/llama_hijack_4_37.py` — Llama monkey-patch 示例\n719\t- **集成方式**: monkey-patch attention forward（较 invasive，不如 kvpress 的 hook 方式优雅）\n720\t\n721\t### 5.3 HuggingFace Transformers 原生支持\n722\t\n723\t- **Issue #30758**: H2O-style KV cache sparsity 已作为 feature request\n724\t- 部分 cache 管理功能已内置于 `transformers.QuantizedCache`\n725\t\n726\t---\n727\t\n728\t## 6. 总结与建议\n729\t\n730\t### 6.1 关键发现\n731\t\n732\t1. **ProphetKV 无公开代码**，但方法足够清晰可以从论文复现\n733\t2. **核心公式极其简单**: p_r(t) = mean_l(column_sum(softmax(Q_s @ K_l^T / √d)))\n734\t3. **NVIDIA kvpress 是最佳参考框架**: hook-based 设计可直接复用\n735\t4. **Expected Attention 是 query 不可用时的最佳替代**\n736\t5. **SnapKV 的 observation window 是最轻量的方案** 但精度有限\n737\t\n738\t### 6.2 CompressLink 实施路线\n739\t\n740\t```\n741\tPhase 1: 实现 QueryRelevanceProbe (方案 A)\n742\t  - 基于 kvpress ScorerPress 的 hook 机制\n743\t  - Column sum + layer fusion\n744\t  - Score → probability 转换\n745\t\n746\tPhase 2: 集成到 RABA\n747\t  - Prefill 阶段用 Expected Attention (方案 B) 预估 p_r\n748\t  - 调整 KVTC per-token bit budget\n749\t\n750\tPhase 3: 集成到 CEGR\n751\t  - Query 到达后计算精确 p_r (方案 A)\n752\t  - 结合 compression error 选择 restore token\n753\t  - 替代/增强 MEPIC boundary recomputation\n754\t\n755\tPhase 4: 端到端优化\n756\t  - p_r 计算与 KV cache decode 的 overlap\n757\t  - 选择性 layer probe (只用后半部分层?)\n758\t  - Adaptive temperature for score → probability\n759\t```\n760\t\n761\t### 6.3 风险与未知\n762\t\n763\t1. **ProphetKV 假设 RAG 场景** — CompressLink 的 general compression 场景中 query 的预测力是否同样强需要验证\n764\t2. **Expected Attention 的 Gaussian 假设** — 实际 hidden states 未必 Gaussian，需要验证误差\n765\t3. **p_r 在 RABA 中的反向使用** — ProphetKV 用 p_r 选 token 做 recompute，RABA 用 p_r 决定 bit allocation，逻辑一致性需要理论分析\n766\t4. **Per-layer vs Global p_r** — KVTC 是 per-layer 操作，但 ProphetKV 建议 fusion 效果更好，需要实验对比\n767\t5. **NoPE 兼容性** — ProphetKV 和 kvpress 都假设标准 RoPE attention。MEPIC 存储 NoPE KV cache (不含位置编码)，query 侧加 RoPE。计算 p_r 时需手动做 RoPE-query × NoPE-key attention，不能直接用 HF 的 output_attentions=True\n768\t6. **Boundary tokens 硬约束** — MEPIC chunk 边界 token 的 p_r 必须 = 1.0（RABA 给 0 bits，反正要 recompute）。CEGR budget 应排除 boundary tokens（mandatory ~5-10%），discretionary budget 仅 ~10-15%\n769\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "92b504af-b385-4ec5-989f-6d74d4a912fb",
+            "isSidechain": true,
+            "promptId": "408b9aa3-c2e6-4892-a0f1-7346e3d62a27",
+            "agentId": "a7fb22f008ca138e6",
+            "type": "user",
+            "uuid": "9b54f7a8-58f2-4bac-a834-90e0ecbec19e",
+            "sourceToolAssistantUUID": "92b504af-b385-4ec5-989f-6d74d4a912fb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache",
+            "sessionId": "fdf71b47-8f0f-4233-b6c0-f01ae22a3454",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T05:14:07.496Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Based on the ProphetKV survey file, here's a comprehensive report on the query relevance mechanism:\n\n## Query Relevance Computation\n\n**ProphetKV's core principle**: \"User Query as a Prophet\" - the assumption that user query attention patterns predict token importance during decoding. The method computes relevance through query attention column sums across all transformer layers.\n\n**Formula** (Equations 28-30):\n```\nα_l(t) = Φ̂'_{Q_s,t}^(l) = (1/|Q_s|) Σ_q softmax(q·K'/√d)_t\nᾱ(t) = (1/L) Σ_l α_l(t)\nT_p = Top-p(ᾱ(t))\n```\n\nWhere:\n- `α_l(t)`: Per-layer, per-token relevance score (average attention across query tokens attending to context token t)\n- `ᾱ(t)`: Fused global relevance (mean across all L layers)\n- K' is the imprecise (cached/chunked) key matrix\n\n**Computational complexity**: O(|Q_s| × s) per layer, where |Q_s| ≪ s (queries typically ~20-100 tokens, context is thousands-tens of thousands).\n\n## Token Selection Strategy\n\nThe two-stage pipeline:\n\n**Stage I: Lightweight Metric Generation**\n- Concatenate all chunked KV caches\n- Compute user query Q_s attention weights over cached keys\n- Column sum for each layer → `α_l(t)` per token\n- No need for full prefill\n\n**Stage II: Selective Recomputation**\n1. **Fuse**: Average scores across layers: `ᾱ(t) = mean_l(α_l(t))`\n2. **Select**: Top-p selection on fused scores\n3. **Recompute**: Full prefill on selected tokens to restore cross-attention\n4. **Update**: Replace computed KV into cache positions\n\n**Key insight**: Layer-wise fusion is critical because different layers attend to different subsets of tokens (Figure 7 shows significant variance across layers). A single early-layer prediction would miss high-layer important tokens.\n\n## Probe Mechanism Code Snippets\n\nThe survey provides a detailed implementation template at **Section 4.2, Method A (ProphetKV-style Query Attention Column Sum)**, lines 386-473:\n\n```python\nclass QueryRelevanceProbe:\n    def _register_hooks(self):\n        \"\"\"Register hooks on attention layers to collect attention weights\"\"\"\n        for idx, layer in enumerate(self.model.model.layers):\n            def hook_fn(module, input, output, layer_idx=idx):\n                attn_weights = output[1]  # [batch, heads, q_len, kv_len]\n                col_sum = attn_weights.sum(dim=-2)  # Column sum\n                col_sum = col_sum / attn_weights.shape[-2]  # Normalize by query count\n                col_sum = col_sum.mean(dim=1)  # Average across heads\n                self._attention_scores[layer_idx] = col_sum\n            self._hooks.append(layer.self_attn.register_forward_hook(hook_fn))\n\n    def compute_relevance(self, query_input_ids, kv_cache):\n        \"\"\"Stage I: lightweight pass computing query relevance\"\"\"\n        self._attention_scores = {}\n        self._register_hooks()\n        try:\n            with torch.no_grad():\n                self.model(query_input_ids, past_key_values=kv_cache,\n                          output_attentions=True, use_cache=True)\n        finally:\n            for h in self._hooks: h.remove()\n        \n        # Layer fusion\n        all_scores = torch.stack(list(self._attention_scores.values()))\n        fused = all_scores.mean(dim=0)  # [batch, kv_len]\n        p_r = self._score_to_probability(fused)\n        return p_r\n```\n\n**Key implementation details**:\n- Uses forward hooks to intercept attention computation (non-invasive)\n- Computes column sum per layer by summing attention across query dimension\n- Averages across attention heads\n- Fuses across layers via mean aggregation\n- Converts raw scores to [0,1] probability via min-max normalization or temperature-scaled softmax\n\nThe survey also provides alternatives for when query is unavailable (Expected Attention method, lines 480-514) and a lightweight observation window approach (SnapKV-style, lines 521-557)."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9b54f7a8-58f2-4bac-a834-90e0ecbec19e",
+            "isSidechain": true,
+            "agentId": "a7fb22f008ca138e6",
+            "requestId": "req_011Cb1taHtMGYgMRJAjjVU5J",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "90a2293d-f3b3-4477-a191-29c5ad545451",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache",
+            "sessionId": "fdf71b47-8f0f-4233-b6c0-f01ae22a3454",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01BQpvR7DHAWrxq3QS14ivz7",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 14245,
+                "cache_read_input_tokens": 18443,
+                "output_tokens": 1112,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 14245
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 1112,
+                    "cache_read_input_tokens": 18443,
+                    "cache_creation_input_tokens": 14245,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 14245,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        }
+      ],
+      "message_count": 5
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-read-the-prophetkv-survey-file-at-home-ubuntu-agent-ml-research-idea-gen-0513.md"
+}

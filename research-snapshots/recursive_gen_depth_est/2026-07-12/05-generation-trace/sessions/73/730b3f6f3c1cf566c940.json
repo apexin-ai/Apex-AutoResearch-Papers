@@ -1,0 +1,78 @@
+{
+  "schema_version": "1.0",
+  "id": "730b3f6f3c1cf566c940",
+  "project": "recursive_gen_depth_est--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: recursive_gen_depth_est ## 运行环境 - 服务器名: gpu-6000pro-2 - SSH 连接命令: ssh connect.westb.seetacloud.c",
+  "task_key": "e8827501-7bc8-43be-b59a-c19db5a485bf",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/e8827501-7bc8-43be-b59a-c19db5a485bf.jsonl",
+    "occurrence": 1,
+    "bytes": 1093752,
+    "sha256": "82d5a46cc277264e3a61b983467d8077c5716cf797175c2f3a168ac7aba5e104"
+  },
+  "statistics": {
+    "messages": 663,
+    "user_turns": 2,
+    "tool_calls": 240,
+    "roles": {
+      "record": 102,
+      "user": 2,
+      "assistant": 78,
+      "tool_call": 240,
+      "tool_result": 240,
+      "system": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "730b3f6f3c1cf566c940-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 629,
+      "chunks": [
+        {
+          "path": "730b3f6f3c1cf566c940-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "730b3f6f3c1cf566c940-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "730b3f6f3c1cf566c940-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "730b3f6f3c1cf566c940-part-0004.json",
+          "message_count": 91
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 32,
+      "chunks": [
+        {
+          "path": "730b3f6f3c1cf566c940-part-0004.json",
+          "message_count": 32
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-recursive-gen-depth-est-gpu-6000pro-2-ssh-ssh-connect-westb-se-copy-191.md"
+}

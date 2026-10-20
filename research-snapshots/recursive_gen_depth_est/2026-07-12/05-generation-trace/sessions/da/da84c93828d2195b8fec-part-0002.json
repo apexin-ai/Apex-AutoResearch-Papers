@@ -1,0 +1,992 @@
+{
+  "schema_version": "1.0",
+  "session_id": "da84c93828d2195b8fec",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 109,
+          "timestamp": "2026-05-15T19:50:48.394Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have the complete JSON in compact form. Let me register it as an artifact.\n\nThe compact JSON is:\n{\"topk_curve\":{\"pythia_nucleus095\":{\"top1\":0.6215,\"top2\":0.69,\"top3\":0.7328,\"top5\":0.7649,\"top10\":0.7731,\"top15\":0.7847,\"top19\":0.7849},\"pythia_temp09\":{\"top1\":0.6396,\"top2\":0.701,\"top3\":0.7288,\"top5\":0.7492,\"top10\":0.7527,\"top15\":0.7651,\"top19\":0.7657},\"pythia_topk50\":{\"top1\":0.5626,\"top2\":0.6209,\"top3\":0.6457,\"top5\":0.6609,\"top10\":0.6832,\"top15\":0.6857,\"top19\":0.6876},\"g\n\nContinuing to build out the JSON structure... I need to pass the pretty-printed JSON directly through the content parameter since I can't reference a local file on the remote server, so let me reconstruct the full formatted version.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2d9a9167-56f2-48a8-a8c5-8287012f7760",
+            "isSidechain": false,
+            "requestId": "req_011Cb4wEeg48HVs7TfV6tSXU",
+            "type": "assistant",
+            "uuid": "6374ea45-cb2e-46a9-ad20-2a3e1c0f6863",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+            "sessionId": "bf1f4d12-7661-42c8-8970-6ebaf90ef1f3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Q25WqzwXscc4zzdoEN5qF1",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4943,
+                "cache_read_input_tokens": 97162,
+                "output_tokens": 4656,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 4943,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 4656,
+                    "cache_read_input_tokens": 97162,
+                    "cache_creation_input_tokens": 4943,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 4943
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000109"
+        },
+        {
+          "source_line": 110,
+          "timestamp": "2026-05-15T19:50:48.404Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整数据已获取，注册 artifact。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6374ea45-cb2e-46a9-ad20-2a3e1c0f6863",
+            "isSidechain": false,
+            "requestId": "req_011Cb4wEeg48HVs7TfV6tSXU",
+            "type": "assistant",
+            "uuid": "faa4f314-6ef4-45f6-8494-6225c0417d00",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+            "sessionId": "bf1f4d12-7661-42c8-8970-6ebaf90ef1f3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Q25WqzwXscc4zzdoEN5qF1",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4943,
+                "cache_read_input_tokens": 97162,
+                "output_tokens": 4656,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 4943,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 4656,
+                    "cache_read_input_tokens": 97162,
+                    "cache_creation_input_tokens": 4943,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 4943
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000110"
+        },
+        {
+          "source_line": 111,
+          "timestamp": "2026-05-15T19:51:20.372Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Ks28KFgFKbW5rZnbDoiUr7",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "feat_ablation_structured_data",
+                "type": "data",
+                "description": "Feature ablation experiment structured data for paper writing. Contains top-k ablation curves (9 cells), per-category accuracy, forward selection ranking, VIF summary, and PCA effective dimensionality from feat_ablation_v1.",
+                "project": "recursive_gen_depth_est",
+                "exp_id": "feat_ablation_v1",
+                "content": "{\n  \"topk_curve\": {\n    \"pythia_nucleus095\": {\"top1\": 0.6215, \"top2\": 0.69, \"top3\": 0.7328, \"top5\": 0.7649, \"top10\": 0.7731, \"top15\": 0.7847, \"top19\": 0.7849},\n    \"pythia_temp09\": {\"top1\": 0.6396, \"top2\": 0.701, \"top3\": 0.7288, \"top5\": 0.7492, \"top10\": 0.7527, \"top15\": 0.7651, \"top19\": 0.7657},\n    \"pythia_topk50\": {\"top1\": 0.5626, \"top2\": 0.6209, \"top3\": 0.6457, \"top5\": 0.6609, \"top10\": 0.6832, \"top15\": 0.6857, \"top19\": 0.6876},\n    \"gpt2xl_nucleus095\": {\"top1\": 0.6442, \"top2\": 0.7764, \"top3\": 0.7996, \"top5\": 0.8221, \"top10\": 0.8371, \"top15\": 0.839, \"top19\": 0.8412},\n    \"gpt2xl_temp09\": {\"top1\": 0.8029, \"top2\": 0.8175, \"top3\": 0.8345, \"top5\": 0.8494, \"top10\": 0.85745, \"top15\": 0.8592, \"top19\": 0.86035},\n    \"gpt2xl_topk50\": {\"top1\": 0.69365, \"top2\": 0.66865, \"top3\": 0.71235, \"top5\": 0.7378, \"top10\": 0.7575, \"top15\": 0.75545, \"top19\": 0.7589},\n    \"olmo_nucleus095\": {\"top1\": 0.6354, \"top2\": 0.7152, \"top3\": 0.7456, \"top5\": 0.7703, \"top10\": 0.783, \"top15\": 0.7867, \"top19\": 0.7903},\n    \"olmo_temp09\": {\"top1\": 0.6572, \"top2\": 0.7685, \"top3\": 0.7853, \"top5\": 0.8037, \"top10\": 0.8176, \"top15\": 0.8202, \"top19\": 0.8195},\n    \"olmo_topk50\": {\"top1\": 0.5597, \"top2\": 0.6797, \"top3\": 0.6987, \"top5\": 0.7236, \"top10\": 0.7415, \"top15\": 0.7445, \"top19\": 0.7448}\n  },\n  \"topk_mean\": {\"top1\": 0.6463, \"top2\": 0.7153, \"top3\": 0.7426, \"top5\": 0.7647, \"top10\": 0.7781, \"top15\": 0.7823, \"top19\": 0.7837},\n  \"topk_std\": {\"top1\": 0.0726, \"top2\": 0.0614, \"top3\": 0.0571, \"top5\": 0.0564, \"top10\": 0.0534, \"top15\": 0.0529, \"top19\": 0.0527},\n  \"per_category\": {\n    \"per_cell\": {\n      \"pythia_nucleus095\": {\"perplexity\": 0.7694, \"surprisal\": 0.7476, \"lexical_diversity\": 0.4711, \"ngram_entropy\": 0.4299, \"repetition\": 0.4519},\n      \"pythia_temp09\": {\"perplexity\": 0.7432, \"surprisal\": 0.7326, \"lexical_diversity\": 0.4816, \"ngram_entropy\": 0.4471, \"repetition\": 0.4711},\n      \"pythia_topk50\": {\"perplexity\": 0.6607, \"surprisal\": 0.6464, \"lexical_diversity\": 0.4148, \"ngram_entropy\": 0.3731, \"repetition\": 0.383},\n      \"gpt2xl_nucleus095\": {\"perplexity\": 0.8229, \"surprisal\": 0.7927, \"lexical_diversity\": 0.4451, \"ngram_entropy\": 0.3703, \"repetition\": 0.4187},\n      \"gpt2xl_temp09\": {\"perplexity\": 0.8458, \"surprisal\": 0.79995, \"lexical_diversity\": 0.4636, \"ngram_entropy\": 0.3993, \"repetition\": 0.43735},\n      \"gpt2xl_topk50\": {\"perplexity\": 0.73445, \"surprisal\": 0.65465, \"lexical_diversity\": 0.39725, \"ngram_entropy\": 0.3021, \"repetition\": 0.36135},\n      \"olmo_nucleus095\": {\"perplexity\": 0.774, \"surprisal\": 0.7281, \"lexical_diversity\": 0.5196, \"ngram_entropy\": 0.4361, \"repetition\": 0.4936},\n      \"olmo_temp09\": {\"perplexity\": 0.8117, \"surprisal\": 0.7852, \"lexical_diversity\": 0.5278, \"ngram_entropy\": 0.469, \"repetition\": 0.5156},\n      \"olmo_topk50\": {\"perplexity\": 0.7342, \"surprisal\": 0.7038, \"lexical_diversity\": 0.4276, \"ngram_entropy\": 0.3245, \"repetition\": 0.3966}\n    },\n    \"mean\": {\n      \"perplexity\": {\"mean\": 0.7663, \"std\": 0.0563},\n      \"surprisal\": {\"mean\": 0.7323, \"std\": 0.0565},\n      \"lexical_diversity\": {\"mean\": 0.4609, \"std\": 0.0447},\n      \"ngram_entropy\": {\"mean\": 0.3946, \"std\": 0.0568},\n      \"repetition\": {\"mean\": 0.4366, \"std\": 0.0517}\n    }\n  },\n  \"forward_selection\": {\n    \"pythia_nucleus095\": [\"var_surprisal\", \"mean_ppl\", \"p75_ppl\", \"rep_2gram\", \"skewness_ppl\", \"type_token_ratio\", \"trigram_entropy\", \"rep_4gram\", \"p90_ppl\", \"mean_surprisal\", \"hapax_ratio\", \"p50_ppl\", \"var_ppl\", \"p25_ppl\", \"p10_ppl\", \"rep_3gram\", \"bigram_entropy\", \"entropy_of_surprisal\", \"kurtosis_ppl\"],\n    \"pythia_temp09\": [\"var_surprisal\", \"mean_surprisal\", \"var_ppl\", \"trigram_entropy\", \"type_token_ratio\", \"rep_4gram\", \"p50_ppl\", \"bigram_entropy\", \"hapax_ratio\", \"p75_ppl\", \"p90_ppl\", \"rep_2gram\", \"kurtosis_ppl\", \"p10_ppl\", \"rep_3gram\", \"mean_ppl\", \"entropy_of_surprisal\", \"p25_ppl\", \"skewness_ppl\"],\n    \"pythia_topk50\": [\"var_surprisal\", \"p75_ppl\", \"mean_ppl\", \"trigram_entropy\", \"rep_4gram\", \"mean_surprisal\", \"p90_ppl\", \"bigram_entropy\", \"p10_ppl\", \"rep_3gram\", \"type_token_ratio\", \"entropy_of_surprisal\", \"p50_ppl\", \"hapax_ratio\", \"p25_ppl\", \"kurtosis_ppl\", \"rep_2gram\", \"var_ppl\", \"skewness_ppl\"],\n    \"olmo_nucleus095\": [\"p90_ppl\", \"p75_ppl\", \"mean_surprisal\", \"rep_4gram\", \"var_ppl\", \"var_surprisal\", \"bigram_entropy\", \"p50_ppl\", \"type_token_ratio\", \"trigram_entropy\", \"p25_ppl\", \"kurtosis_ppl\", \"skewness_ppl\", \"hapax_ratio\", \"entropy_of_surprisal\", \"rep_2gram\", \"p10_ppl\", \"rep_3gram\", \"mean_ppl\"],\n    \"olmo_temp09\": [\"p90_ppl\", \"p25_ppl\", \"mean_ppl\", \"var_surprisal\", \"rep_3gram\", \"kurtosis_ppl\", \"p75_ppl\", \"type_token_ratio\", \"entropy_of_surprisal\", \"p10_ppl\", \"p50_ppl\", \"trigram_entropy\", \"bigram_entropy\", \"skewness_ppl\", \"mean_surprisal\", \"hapax_ratio\", \"var_ppl\", \"rep_2gram\", \"rep_4gram\"],\n    \"olmo_topk50\": [\"p90_ppl\", \"var_surprisal\", \"mean_ppl\", \"p75_ppl\", \"entropy_of_surprisal\", \"hapax_ratio\", \"p50_ppl\", \"skewness_ppl\", \"bigram_entropy\", \"rep_3gram\", \"p25_ppl\", \"var_ppl\", \"p10_ppl\", \"rep_4gram\", \"mean_surprisal\", \"type_token_ratio\", \"trigram_entropy\", \"kurtosis_ppl\", \"rep_2gram\"],\n    \"gpt2xl_nucleus095\": [\"p90_ppl\", \"var_surprisal\", \"mean_ppl\", \"rep_2gram\", \"p75_ppl\", \"p50_ppl\", \"p25_ppl\", \"rep_4gram\", \"type_token_ratio\", \"bigram_entropy\", \"skewness_ppl\", \"kurtosis_ppl\", \"rep_3gram\", \"trigram_entropy\", \"hapax_ratio\", \"mean_surprisal\", \"p10_ppl\", \"var_ppl\", \"entropy_of_surprisal\"]\n  },\n  \"vif\": {\n    \"per_feature_mean\": {\n      \"mean_ppl\": 126.79, \"var_ppl\": 126.72, \"skewness_ppl\": 78.18, \"kurtosis_ppl\": 75.89,\n      \"p10_ppl\": 3.87, \"p25_ppl\": 12.09, \"p50_ppl\": 15.53, \"p75_ppl\": 11.59, \"p90_ppl\": 7.6,\n      \"mean_surprisal\": 90.48, \"var_surprisal\": 38.64, \"entropy_of_surprisal\": 13.38,\n      \"type_token_ratio\": 28.28, \"hapax_ratio\": 4.22,\n      \"bigram_entropy\": 282.98, \"trigram_entropy\": 251.96,\n      \"rep_2gram\": 304.78, \"rep_3gram\": 472.65, \"rep_4gram\": 175.5\n    },\n    \"n_features_high_vif\": 16,\n    \"n_features_total\": 19,\n    \"per_cell_high_vif_count\": {\n      \"pythia_nucleus095\": 14, \"pythia_temp09\": 16, \"pythia_topk50\": 15,\n      \"olmo_nucleus095\": 16, \"olmo_temp09\": 16, \"olmo_topk50\": 14,\n      \"gpt2xl_nucleus095\": 14\n    },\n    \"n_cells_available\": 7\n  },\n  \"pca\": {\n    \"n_95pct_per_cell\": {\n      \"pythia_nucleus095\": 8, \"pythia_temp09\": 8, \"pythia_topk50\": 9,\n      \"gpt2xl_nucleus095\": 9, \"gpt2xl_temp09\": 8, \"gpt2xl_topk50\": 9,\n      \"olmo_nucleus095\": 7, \"olmo_temp09\": 7, \"olmo_topk50\": 8\n    },\n    \"n_95pct_mean\": 8.1,\n    \"n_95pct_range\": [7, 9],\n    \"merged_all_n_95pct\": 9\n  },\n  \"metadata\": {\n    \"experiment\": \"feat_ablation_v1\",\n    \"n_cells\": 9,\n    \"cell_names\": [\"pythia_nucleus095\", \"pythia_temp09\", \"pythia_topk50\", \"gpt2xl_nucleus095\", \"gpt2xl_temp09\", \"gpt2xl_topk50\", \"olmo_nucleus095\", \"olmo_temp09\", \"olmo_topk50\"],\n    \"n_features_total\": 19,\n    \"feature_categories\": {\n      \"perplexity\": [\"mean_ppl\", \"var_ppl\", \"skewness_ppl\", \"kurtosis_ppl\", \"p10_ppl\", \"p25_ppl\", \"p50_ppl\", \"p75_ppl\", \"p90_ppl\"],\n      \"surprisal\": [\"mean_surprisal\", \"var_surprisal\", \"entropy_of_surprisal\"],\n      \"lexical_diversity\": [\"type_token_ratio\", \"hapax_ratio\"],\n      \"ngram_entropy\": [\"bigram_entropy\", \"trigram_entropy\"],\n      \"repetition\": [\"rep_2gram\", \"rep_3gram\", \"rep_4gram\"]\n    },\n    \"data_sources\": {\n      \"topk_curve\": \"7 from top_k_ablation.json + 2 from topk_ablation.json\",\n      \"per_category\": \"7 from per_category_ablation.json + 2 from category_ablation.json\",\n      \"forward_selection\": \"7 cells (gpt2xl_temp09/topk50 unavailable)\",\n      \"vif\": \"7 cells (gpt2xl_temp09/topk50 unavailable)\",\n      \"pca\": \"9 cells from pca_effective_dims.json\"\n    }\n  }\n}",
+                "content_filename": "feat_ablation_structured_data.json",
+                "tags": [
+                  "paper",
+                  "R3-N2"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "faa4f314-6ef4-45f6-8494-6225c0417d00",
+            "isSidechain": false,
+            "requestId": "req_011Cb4wEeg48HVs7TfV6tSXU",
+            "type": "assistant",
+            "uuid": "2f482329-d458-42c1-b42a-65e3a91e5645",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+            "sessionId": "bf1f4d12-7661-42c8-8970-6ebaf90ef1f3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Q25WqzwXscc4zzdoEN5qF1",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4943,
+                "cache_read_input_tokens": 97162,
+                "output_tokens": 4656,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 4943,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 4656,
+                    "cache_read_input_tokens": 97162,
+                    "cache_creation_input_tokens": 4943,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 4943
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000111"
+        },
+        {
+          "source_line": 112,
+          "timestamp": "2026-05-15T19:51:20.394Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'topk_curve': {'pythia_n..._effective_dims.json'}}}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type",
+              "is_error": true,
+              "tool_use_id": "toolu_01Ks28KFgFKbW5rZnbDoiUr7"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2f482329-d458-42c1-b42a-65e3a91e5645",
+            "isSidechain": false,
+            "promptId": "5f1c7d66-e981-4f97-8345-0af7e44d7857",
+            "type": "user",
+            "uuid": "ce7f670f-8f55-4a20-b066-726b337a24f4",
+            "toolUseResult": "Error: Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'topk_curve': {'pythia_n..._effective_dims.json'}}}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type",
+            "sourceToolAssistantUUID": "2f482329-d458-42c1-b42a-65e3a91e5645",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+            "sessionId": "bf1f4d12-7661-42c8-8970-6ebaf90ef1f3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000112"
+        },
+        {
+          "source_line": 113,
+          "timestamp": "2026-05-15T19:51:47.595Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014CK3ffW3uh9FJUsDjTEmih",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "feat_ablation_structured_data",
+                "type": "data",
+                "description": "Feature ablation experiment structured data for paper writing. Contains top-k ablation curves (9 cells), per-category accuracy, forward selection ranking, VIF summary, and PCA effective dimensionality from feat_ablation_v1.",
+                "project": "recursive_gen_depth_est",
+                "exp_id": "feat_ablation_v1",
+                "content": "{\"topk_curve\":{\"pythia_nucleus095\":{\"top1\":0.6215,\"top2\":0.69,\"top3\":0.7328,\"top5\":0.7649,\"top10\":0.7731,\"top15\":0.7847,\"top19\":0.7849},\"pythia_temp09\":{\"top1\":0.6396,\"top2\":0.701,\"top3\":0.7288,\"top5\":0.7492,\"top10\":0.7527,\"top15\":0.7651,\"top19\":0.7657},\"pythia_topk50\":{\"top1\":0.5626,\"top2\":0.6209,\"top3\":0.6457,\"top5\":0.6609,\"top10\":0.6832,\"top15\":0.6857,\"top19\":0.6876},\"gpt2xl_nucleus095\":{\"top1\":0.6442,\"top2\":0.7764,\"top3\":0.7996,\"top5\":0.8221,\"top10\":0.8371,\"top15\":0.839,\"top19\":0.8412},\"gpt2xl_temp09\":{\"top1\":0.8029,\"top2\":0.8175,\"top3\":0.8345,\"top5\":0.8494,\"top10\":0.85745,\"top15\":0.8592,\"top19\":0.86035},\"gpt2xl_topk50\":{\"top1\":0.69365,\"top2\":0.66865,\"top3\":0.71235,\"top5\":0.7378,\"top10\":0.7575,\"top15\":0.75545,\"top19\":0.7589},\"olmo_nucleus095\":{\"top1\":0.6354,\"top2\":0.7152,\"top3\":0.7456,\"top5\":0.7703,\"top10\":0.783,\"top15\":0.7867,\"top19\":0.7903},\"olmo_temp09\":{\"top1\":0.6572,\"top2\":0.7685,\"top3\":0.7853,\"top5\":0.8037,\"top10\":0.8176,\"top15\":0.8202,\"top19\":0.8195},\"olmo_topk50\":{\"top1\":0.5597,\"top2\":0.6797,\"top3\":0.6987,\"top5\":0.7236,\"top10\":0.7415,\"top15\":0.7445,\"top19\":0.7448}},\"topk_mean\":{\"top1\":0.6463,\"top2\":0.7153,\"top3\":0.7426,\"top5\":0.7647,\"top10\":0.7781,\"top15\":0.7823,\"top19\":0.7837},\"topk_std\":{\"top1\":0.0726,\"top2\":0.0614,\"top3\":0.0571,\"top5\":0.0564,\"top10\":0.0534,\"top15\":0.0529,\"top19\":0.0527},\"per_category\":{\"per_cell\":{\"pythia_nucleus095\":{\"perplexity\":0.7694,\"surprisal\":0.7476,\"lexical_diversity\":0.4711,\"ngram_entropy\":0.4299,\"repetition\":0.4519},\"pythia_temp09\":{\"perplexity\":0.7432,\"surprisal\":0.7326,\"lexical_diversity\":0.4816,\"ngram_entropy\":0.4471,\"repetition\":0.4711},\"pythia_topk50\":{\"perplexity\":0.6607,\"surprisal\":0.6464,\"lexical_diversity\":0.4148,\"ngram_entropy\":0.3731,\"repetition\":0.383},\"gpt2xl_nucleus095\":{\"perplexity\":0.8229,\"surprisal\":0.7927,\"lexical_diversity\":0.4451,\"ngram_entropy\":0.3703,\"repetition\":0.4187},\"gpt2xl_temp09\":{\"perplexity\":0.8458,\"surprisal\":0.79995,\"lexical_diversity\":0.4636,\"ngram_entropy\":0.3993,\"repetition\":0.43735},\"gpt2xl_topk50\":{\"perplexity\":0.73445,\"surprisal\":0.65465,\"lexical_diversity\":0.39725,\"ngram_entropy\":0.3021,\"repetition\":0.36135},\"olmo_nucleus095\":{\"perplexity\":0.774,\"surprisal\":0.7281,\"lexical_diversity\":0.5196,\"ngram_entropy\":0.4361,\"repetition\":0.4936},\"olmo_temp09\":{\"perplexity\":0.8117,\"surprisal\":0.7852,\"lexical_diversity\":0.5278,\"ngram_entropy\":0.469,\"repetition\":0.5156},\"olmo_topk50\":{\"perplexity\":0.7342,\"surprisal\":0.7038,\"lexical_diversity\":0.4276,\"ngram_entropy\":0.3245,\"repetition\":0.3966}},\"mean\":{\"perplexity\":{\"mean\":0.7663,\"std\":0.0563},\"surprisal\":{\"mean\":0.7323,\"std\":0.0565},\"lexical_diversity\":{\"mean\":0.4609,\"std\":0.0447},\"ngram_entropy\":{\"mean\":0.3946,\"std\":0.0568},\"repetition\":{\"mean\":0.4366,\"std\":0.0517}}},\"forward_selection\":{\"pythia_nucleus095\":[\"var_surprisal\",\"mean_ppl\",\"p75_ppl\",\"rep_2gram\",\"skewness_ppl\",\"type_token_ratio\",\"trigram_entropy\",\"rep_4gram\",\"p90_ppl\",\"mean_surprisal\",\"hapax_ratio\",\"p50_ppl\",\"var_ppl\",\"p25_ppl\",\"p10_ppl\",\"rep_3gram\",\"bigram_entropy\",\"entropy_of_surprisal\",\"kurtosis_ppl\"],\"pythia_temp09\":[\"var_surprisal\",\"mean_surprisal\",\"var_ppl\",\"trigram_entropy\",\"type_token_ratio\",\"rep_4gram\",\"p50_ppl\",\"bigram_entropy\",\"hapax_ratio\",\"p75_ppl\",\"p90_ppl\",\"rep_2gram\",\"kurtosis_ppl\",\"p10_ppl\",\"rep_3gram\",\"mean_ppl\",\"entropy_of_surprisal\",\"p25_ppl\",\"skewness_ppl\"],\"pythia_topk50\":[\"var_surprisal\",\"p75_ppl\",\"mean_ppl\",\"trigram_entropy\",\"rep_4gram\",\"mean_surprisal\",\"p90_ppl\",\"bigram_entropy\",\"p10_ppl\",\"rep_3gram\",\"type_token_ratio\",\"entropy_of_surprisal\",\"p50_ppl\",\"hapax_ratio\",\"p25_ppl\",\"kurtosis_ppl\",\"rep_2gram\",\"var_ppl\",\"skewness_ppl\"],\"olmo_nucleus095\":[\"p90_ppl\",\"p75_ppl\",\"mean_surprisal\",\"rep_4gram\",\"var_ppl\",\"var_surprisal\",\"bigram_entropy\",\"p50_ppl\",\"type_token_ratio\",\"trigram_entropy\",\"p25_ppl\",\"kurtosis_ppl\",\"skewness_ppl\",\"hapax_ratio\",\"entropy_of_surprisal\",\"rep_2gram\",\"p10_ppl\",\"rep_3gram\",\"mean_ppl\"],\"olmo_temp09\":[\"p90_ppl\",\"p25_ppl\",\"mean_ppl\",\"var_surprisal\",\"rep_3gram\",\"kurtosis_ppl\",\"p75_ppl\",\"type_token_ratio\",\"entropy_of_surprisal\",\"p10_ppl\",\"p50_ppl\",\"trigram_entropy\",\"bigram_entropy\",\"skewness_ppl\",\"mean_surprisal\",\"hapax_ratio\",\"var_ppl\",\"rep_2gram\",\"rep_4gram\"],\"olmo_topk50\":[\"p90_ppl\",\"var_surprisal\",\"mean_ppl\",\"p75_ppl\",\"entropy_of_surprisal\",\"hapax_ratio\",\"p50_ppl\",\"skewness_ppl\",\"bigram_entropy\",\"rep_3gram\",\"p25_ppl\",\"var_ppl\",\"p10_ppl\",\"rep_4gram\",\"mean_surprisal\",\"type_token_ratio\",\"trigram_entropy\",\"kurtosis_ppl\",\"rep_2gram\"],\"gpt2xl_nucleus095\":[\"p90_ppl\",\"var_surprisal\",\"mean_ppl\",\"rep_2gram\",\"p75_ppl\",\"p50_ppl\",\"p25_ppl\",\"rep_4gram\",\"type_token_ratio\",\"bigram_entropy\",\"skewness_ppl\",\"kurtosis_ppl\",\"rep_3gram\",\"trigram_entropy\",\"hapax_ratio\",\"mean_surprisal\",\"p10_ppl\",\"var_ppl\",\"entropy_of_surprisal\"]},\"vif\":{\"per_feature_mean\":{\"mean_ppl\":126.79,\"var_ppl\":126.72,\"skewness_ppl\":78.18,\"kurtosis_ppl\":75.89,\"p10_ppl\":3.87,\"p25_ppl\":12.09,\"p50_ppl\":15.53,\"p75_ppl\":11.59,\"p90_ppl\":7.6,\"mean_surprisal\":90.48,\"var_surprisal\":38.64,\"entropy_of_surprisal\":13.38,\"type_token_ratio\":28.28,\"hapax_ratio\":4.22,\"bigram_entropy\":282.98,\"trigram_entropy\":251.96,\"rep_2gram\":304.78,\"rep_3gram\":472.65,\"rep_4gram\":175.5},\"n_features_high_vif\":16,\"n_features_total\":19,\"per_cell_high_vif_count\":{\"pythia_nucleus095\":14,\"pythia_temp09\":16,\"pythia_topk50\":15,\"olmo_nucleus095\":16,\"olmo_temp09\":16,\"olmo_topk50\":14,\"gpt2xl_nucleus095\":14},\"n_cells_available\":7},\"pca\":{\"n_95pct_per_cell\":{\"pythia_nucleus095\":8,\"pythia_temp09\":8,\"pythia_topk50\":9,\"gpt2xl_nucleus095\":9,\"gpt2xl_temp09\":8,\"gpt2xl_topk50\":9,\"olmo_nucleus095\":7,\"olmo_temp09\":7,\"olmo_topk50\":8},\"n_95pct_mean\":8.1,\"n_95pct_range\":[7,9],\"merged_all_n_95pct\":9},\"metadata\":{\"experiment\":\"feat_ablation_v1\",\"n_cells\":9,\"cell_names\":[\"pythia_nucleus095\",\"pythia_temp09\",\"pythia_topk50\",\"gpt2xl_nucleus095\",\"gpt2xl_temp09\",\"gpt2xl_topk50\",\"olmo_nucleus095\",\"olmo_temp09\",\"olmo_topk50\"],\"n_features_total\":19,\"feature_categories\":{\"perplexity\":[\"mean_ppl\",\"var_ppl\",\"skewness_ppl\",\"kurtosis_ppl\",\"p10_ppl\",\"p25_ppl\",\"p50_ppl\",\"p75_ppl\",\"p90_ppl\"],\"surprisal\":[\"mean_surprisal\",\"var_surprisal\",\"entropy_of_surprisal\"],\"lexical_diversity\":[\"type_token_ratio\",\"hapax_ratio\"],\"ngram_entropy\":[\"bigram_entropy\",\"trigram_entropy\"],\"repetition\":[\"rep_2gram\",\"rep_3gram\",\"rep_4gram\"]},\"data_sources\":{\"topk_curve\":\"7 from top_k_ablation.json + 2 from topk_ablation.json\",\"per_category\":\"7 from per_category_ablation.json + 2 from category_ablation.json\",\"forward_selection\":\"7 cells (gpt2xl_temp09/topk50 unavailable)\",\"vif\":\"7 cells (gpt2xl_temp09/topk50 unavailable)\",\"pca\":\"9 cells from pca_effective_dims.json\"}}}",
+                "content_filename": "feat_ablation_structured_data.json",
+                "tags": [
+                  "paper",
+                  "R3-N2"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ce7f670f-8f55-4a20-b066-726b337a24f4",
+            "isSidechain": false,
+            "requestId": "req_011Cb4wHz9RPQeqz6zW8PQpp",
+            "type": "assistant",
+            "uuid": "caad908b-f1d5-48c2-aa8e-9f4602a22ffa",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+            "sessionId": "bf1f4d12-7661-42c8-8970-6ebaf90ef1f3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01V4RxTdHcXeTxtnqHMpBytR",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4767,
+                "cache_read_input_tokens": 102105,
+                "output_tokens": 3241,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 4767,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 3241,
+                    "cache_read_input_tokens": 102105,
+                    "cache_creation_input_tokens": 4767,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 4767
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000113"
+        },
+        {
+          "source_line": 114,
+          "timestamp": "2026-05-15T19:51:47.616Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'topk_curve': {'pythia_n..._effective_dims.json'}}}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type",
+              "is_error": true,
+              "tool_use_id": "toolu_014CK3ffW3uh9FJUsDjTEmih"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "caad908b-f1d5-48c2-aa8e-9f4602a22ffa",
+            "isSidechain": false,
+            "promptId": "5f1c7d66-e981-4f97-8345-0af7e44d7857",
+            "type": "user",
+            "uuid": "fc044bbd-a055-41af-ba96-084ef0a31aeb",
+            "toolUseResult": "Error: Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'topk_curve': {'pythia_n..._effective_dims.json'}}}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type",
+            "sourceToolAssistantUUID": "caad908b-f1d5-48c2-aa8e-9f4602a22ffa",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+            "sessionId": "bf1f4d12-7661-42c8-8970-6ebaf90ef1f3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000114"
+        },
+        {
+          "source_line": 115,
+          "timestamp": "2026-05-15T19:51:54.678Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The content is being parsed as a dict, not a string. Let me make sure to pass it as a string. I need to use string escaping. The issue is that JSON is being parsed by the tool calling mechanism. Let me pass the content wrapped in a way that it stays as a string. I think the issue is that the content parameter is receiving the JSON as a parsed object, not a string. Let me try passing the raw JSON as content, making sure it's treated as a string.\n\nActually, looking at the tool call, the content should be a string type. The fact that it's being parsed as a dict means the JSON content is being interpreted. \n\nMaybe I should try formatting it with pretty-printing and newlines instead, since that might prevent the automatic parsing.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fc044bbd-a055-41af-ba96-084ef0a31aeb",
+            "isSidechain": false,
+            "requestId": "req_011Cb4wKzZ2bb8qEkFYqH4hr",
+            "type": "assistant",
+            "uuid": "25bba910-531d-4ec4-a105-c741b1784f6c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+            "sessionId": "bf1f4d12-7661-42c8-8970-6ebaf90ef1f3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01N18GYMwhp7Sa28sbWFgdzp",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3352,
+                "cache_read_input_tokens": 106872,
+                "output_tokens": 3963,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3352,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 3963,
+                    "cache_read_input_tokens": 106872,
+                    "cache_creation_input_tokens": 3352,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3352
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000115"
+        },
+        {
+          "source_line": 116,
+          "timestamp": "2026-05-15T19:52:21.770Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01V8xSguSsXsA5TLTCSkDMat",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "feat_ablation_structured_data",
+                "type": "data",
+                "description": "Feature ablation experiment structured data for paper writing. Contains top-k ablation curves (9 cells), per-category accuracy, forward selection ranking, VIF summary, and PCA effective dimensionality from feat_ablation_v1.",
+                "project": "recursive_gen_depth_est",
+                "exp_id": "feat_ablation_v1",
+                "content": "\n{\n  \"topk_curve\": {\n    \"pythia_nucleus095\": {\"top1\": 0.6215, \"top2\": 0.69, \"top3\": 0.7328, \"top5\": 0.7649, \"top10\": 0.7731, \"top15\": 0.7847, \"top19\": 0.7849},\n    \"pythia_temp09\": {\"top1\": 0.6396, \"top2\": 0.701, \"top3\": 0.7288, \"top5\": 0.7492, \"top10\": 0.7527, \"top15\": 0.7651, \"top19\": 0.7657},\n    \"pythia_topk50\": {\"top1\": 0.5626, \"top2\": 0.6209, \"top3\": 0.6457, \"top5\": 0.6609, \"top10\": 0.6832, \"top15\": 0.6857, \"top19\": 0.6876},\n    \"gpt2xl_nucleus095\": {\"top1\": 0.6442, \"top2\": 0.7764, \"top3\": 0.7996, \"top5\": 0.8221, \"top10\": 0.8371, \"top15\": 0.839, \"top19\": 0.8412},\n    \"gpt2xl_temp09\": {\"top1\": 0.8029, \"top2\": 0.8175, \"top3\": 0.8345, \"top5\": 0.8494, \"top10\": 0.85745, \"top15\": 0.8592, \"top19\": 0.86035},\n    \"gpt2xl_topk50\": {\"top1\": 0.69365, \"top2\": 0.66865, \"top3\": 0.71235, \"top5\": 0.7378, \"top10\": 0.7575, \"top15\": 0.75545, \"top19\": 0.7589},\n    \"olmo_nucleus095\": {\"top1\": 0.6354, \"top2\": 0.7152, \"top3\": 0.7456, \"top5\": 0.7703, \"top10\": 0.783, \"top15\": 0.7867, \"top19\": 0.7903},\n    \"olmo_temp09\": {\"top1\": 0.6572, \"top2\": 0.7685, \"top3\": 0.7853, \"top5\": 0.8037, \"top10\": 0.8176, \"top15\": 0.8202, \"top19\": 0.8195},\n    \"olmo_topk50\": {\"top1\": 0.5597, \"top2\": 0.6797, \"top3\": 0.6987, \"top5\": 0.7236, \"top10\": 0.7415, \"top15\": 0.7445, \"top19\": 0.7448}\n  },\n  \"topk_mean\": {\"top1\": 0.6463, \"top2\": 0.7153, \"top3\": 0.7426, \"top5\": 0.7647, \"top10\": 0.7781, \"top15\": 0.7823, \"top19\": 0.7837},\n  \"topk_std\": {\"top1\": 0.0726, \"top2\": 0.0614, \"top3\": 0.0571, \"top5\": 0.0564, \"top10\": 0.0534, \"top15\": 0.0529, \"top19\": 0.0527},\n  \"per_category\": {\n    \"per_cell\": {\n      \"pythia_nucleus095\": {\"perplexity\": 0.7694, \"surprisal\": 0.7476, \"lexical_diversity\": 0.4711, \"ngram_entropy\": 0.4299, \"repetition\": 0.4519},\n      \"pythia_temp09\": {\"perplexity\": 0.7432, \"surprisal\": 0.7326, \"lexical_diversity\": 0.4816, \"ngram_entropy\": 0.4471, \"repetition\": 0.4711},\n      \"pythia_topk50\": {\"perplexity\": 0.6607, \"surprisal\": 0.6464, \"lexical_diversity\": 0.4148, \"ngram_entropy\": 0.3731, \"repetition\": 0.383},\n      \"gpt2xl_nucleus095\": {\"perplexity\": 0.8229, \"surprisal\": 0.7927, \"lexical_diversity\": 0.4451, \"ngram_entropy\": 0.3703, \"repetition\": 0.4187},\n      \"gpt2xl_temp09\": {\"perplexity\": 0.8458, \"surprisal\": 0.79995, \"lexical_diversity\": 0.4636, \"ngram_entropy\": 0.3993, \"repetition\": 0.43735},\n      \"gpt2xl_topk50\": {\"perplexity\": 0.73445, \"surprisal\": 0.65465, \"lexical_diversity\": 0.39725, \"ngram_entropy\": 0.3021, \"repetition\": 0.36135},\n      \"olmo_nucleus095\": {\"perplexity\": 0.774, \"surprisal\": 0.7281, \"lexical_diversity\": 0.5196, \"ngram_entropy\": 0.4361, \"repetition\": 0.4936},\n      \"olmo_temp09\": {\"perplexity\": 0.8117, \"surprisal\": 0.7852, \"lexical_diversity\": 0.5278, \"ngram_entropy\": 0.469, \"repetition\": 0.5156},\n      \"olmo_topk50\": {\"perplexity\": 0.7342, \"surprisal\": 0.7038, \"lexical_diversity\": 0.4276, \"ngram_entropy\": 0.3245, \"repetition\": 0.3966}\n    },\n    \"mean\": {\n      \"perplexity\": {\"mean\": 0.7663, \"std\": 0.0563},\n      \"surprisal\": {\"mean\": 0.7323, \"std\": 0.0565},\n      \"lexical_diversity\": {\"mean\": 0.4609, \"std\": 0.0447},\n      \"ngram_entropy\": {\"mean\": 0.3946, \"std\": 0.0568},\n      \"repetition\": {\"mean\": 0.4366, \"std\": 0.0517}\n    }\n  },\n  \"forward_selection\": {\n    \"pythia_nucleus095\": [\"var_surprisal\",\"mean_ppl\",\"p75_ppl\",\"rep_2gram\",\"skewness_ppl\",\"type_token_ratio\",\"trigram_entropy\",\"rep_4gram\",\"p90_ppl\",\"mean_surprisal\",\"hapax_ratio\",\"p50_ppl\",\"var_ppl\",\"p25_ppl\",\"p10_ppl\",\"rep_3gram\",\"bigram_entropy\",\"entropy_of_surprisal\",\"kurtosis_ppl\"],\n    \"pythia_temp09\": [\"var_surprisal\",\"mean_surprisal\",\"var_ppl\",\"trigram_entropy\",\"type_token_ratio\",\"rep_4gram\",\"p50_ppl\",\"bigram_entropy\",\"hapax_ratio\",\"p75_ppl\",\"p90_ppl\",\"rep_2gram\",\"kurtosis_ppl\",\"p10_ppl\",\"rep_3gram\",\"mean_ppl\",\"entropy_of_surprisal\",\"p25_ppl\",\"skewness_ppl\"],\n    \"pythia_topk50\": [\"var_surprisal\",\"p75_ppl\",\"mean_ppl\",\"trigram_entropy\",\"rep_4gram\",\"mean_surprisal\",\"p90_ppl\",\"bigram_entropy\",\"p10_ppl\",\"rep_3gram\",\"type_token_ratio\",\"entropy_of_surprisal\",\"p50_ppl\",\"hapax_ratio\",\"p25_ppl\",\"kurtosis_ppl\",\"rep_2gram\",\"var_ppl\",\"skewness_ppl\"],\n    \"olmo_nucleus095\": [\"p90_ppl\",\"p75_ppl\",\"mean_surprisal\",\"rep_4gram\",\"var_ppl\",\"var_surprisal\",\"bigram_entropy\",\"p50_ppl\",\"type_token_ratio\",\"trigram_entropy\",\"p25_ppl\",\"kurtosis_ppl\",\"skewness_ppl\",\"hapax_ratio\",\"entropy_of_surprisal\",\"rep_2gram\",\"p10_ppl\",\"rep_3gram\",\"mean_ppl\"],\n    \"olmo_temp09\": [\"p90_ppl\",\"p25_ppl\",\"mean_ppl\",\"var_surprisal\",\"rep_3gram\",\"kurtosis_ppl\",\"p75_ppl\",\"type_token_ratio\",\"entropy_of_surprisal\",\"p10_ppl\",\"p50_ppl\",\"trigram_entropy\",\"bigram_entropy\",\"skewness_ppl\",\"mean_surprisal\",\"hapax_ratio\",\"var_ppl\",\"rep_2gram\",\"rep_4gram\"],\n    \"olmo_topk50\": [\"p90_ppl\",\"var_surprisal\",\"mean_ppl\",\"p75_ppl\",\"entropy_of_surprisal\",\"hapax_ratio\",\"p50_ppl\",\"skewness_ppl\",\"bigram_entropy\",\"rep_3gram\",\"p25_ppl\",\"var_ppl\",\"p10_ppl\",\"rep_4gram\",\"mean_surprisal\",\"type_token_ratio\",\"trigram_entropy\",\"kurtosis_ppl\",\"rep_2gram\"],\n    \"gpt2xl_nucleus095\": [\"p90_ppl\",\"var_surprisal\",\"mean_ppl\",\"rep_2gram\",\"p75_ppl\",\"p50_ppl\",\"p25_ppl\",\"rep_4gram\",\"type_token_ratio\",\"bigram_entropy\",\"skewness_ppl\",\"kurtosis_ppl\",\"rep_3gram\",\"trigram_entropy\",\"hapax_ratio\",\"mean_surprisal\",\"p10_ppl\",\"var_ppl\",\"entropy_of_surprisal\"]\n  },\n  \"vif\": {\n    \"per_feature_mean\": {\n      \"mean_ppl\": 126.79, \"var_ppl\": 126.72, \"skewness_ppl\": 78.18, \"kurtosis_ppl\": 75.89,\n      \"p10_ppl\": 3.87, \"p25_ppl\": 12.09, \"p50_ppl\": 15.53, \"p75_ppl\": 11.59, \"p90_ppl\": 7.6,\n      \"mean_surprisal\": 90.48, \"var_surprisal\": 38.64, \"entropy_of_surprisal\": 13.38,\n      \"type_token_ratio\": 28.28, \"hapax_ratio\": 4.22,\n      \"bigram_entropy\": 282.98, \"trigram_entropy\": 251.96,\n      \"rep_2gram\": 304.78, \"rep_3gram\": 472.65, \"rep_4gram\": 175.5\n    },\n    \"n_features_high_vif\": 16,\n    \"n_features_total\": 19,\n    \"per_cell_high_vif_count\": {\n      \"pythia_nucleus095\": 14, \"pythia_temp09\": 16, \"pythia_topk50\": 15,\n      \"olmo_nucleus095\": 16, \"olmo_temp09\": 16, \"olmo_topk50\": 14,\n      \"gpt2xl_nucleus095\": 14\n    },\n    \"n_cells_available\": 7\n  },\n  \"pca\": {\n    \"n_95pct_per_cell\": {\n      \"pythia_nucleus095\": 8, \"pythia_temp09\": 8, \"pythia_topk50\": 9,\n      \"gpt2xl_nucleus095\": 9, \"gpt2xl_temp09\": 8, \"gpt2xl_topk50\": 9,\n      \"olmo_nucleus095\": 7, \"olmo_temp09\": 7, \"olmo_topk50\": 8\n    },\n    \"n_95pct_mean\": 8.1,\n    \"n_95pct_range\": [7, 9],\n    \"merged_all_n_95pct\": 9\n  },\n  \"metadata\": {\n    \"experiment\": \"feat_ablation_v1\",\n    \"n_cells\": 9,\n    \"cell_names\": [\"pythia_nucleus095\",\"pythia_temp09\",\"pythia_topk50\",\"gpt2xl_nucleus095\",\"gpt2xl_temp09\",\"gpt2xl_topk50\",\"olmo_nucleus095\",\"olmo_temp09\",\"olmo_topk50\"],\n    \"n_features_total\": 19,\n    \"feature_categories\": {\n      \"perplexity\": [\"mean_ppl\",\"var_ppl\",\"skewness_ppl\",\"kurtosis_ppl\",\"p10_ppl\",\"p25_ppl\",\"p50_ppl\",\"p75_ppl\",\"p90_ppl\"],\n      \"surprisal\": [\"mean_surprisal\",\"var_surprisal\",\"entropy_of_surprisal\"],\n      \"lexical_diversity\": [\"type_token_ratio\",\"hapax_ratio\"],\n      \"ngram_entropy\": [\"bigram_entropy\",\"trigram_entropy\"],\n      \"repetition\": [\"rep_2gram\",\"rep_3gram\",\"rep_4gram\"]\n    },\n    \"data_sources\": {\n      \"topk_curve\": \"7 from top_k_ablation.json + 2 from topk_ablation.json\",\n      \"per_category\": \"7 from per_category_ablation.json + 2 from category_ablation.json\",\n      \"forward_selection\": \"7 cells (gpt2xl_temp09/topk50 unavailable)\",\n      \"vif\": \"7 cells (gpt2xl_temp09/topk50 unavailable)\",\n      \"pca\": \"9 cells from pca_effective_dims.json\"\n    }\n  }\n}\n",
+                "content_filename": "feat_ablation_structured_data.json",
+                "tags": [
+                  "paper",
+                  "R3-N2"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "25bba910-531d-4ec4-a105-c741b1784f6c",
+            "isSidechain": false,
+            "requestId": "req_011Cb4wKzZ2bb8qEkFYqH4hr",
+            "type": "assistant",
+            "uuid": "3f558f68-7664-401f-8c51-9f691fb46c9c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+            "sessionId": "bf1f4d12-7661-42c8-8970-6ebaf90ef1f3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01N18GYMwhp7Sa28sbWFgdzp",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3352,
+                "cache_read_input_tokens": 106872,
+                "output_tokens": 3963,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3352,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 3963,
+                    "cache_read_input_tokens": 106872,
+                    "cache_creation_input_tokens": 3352,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3352
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000116"
+        },
+        {
+          "source_line": 117,
+          "timestamp": "2026-05-15T19:52:21.790Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'topk_curve': {'pythia_n..._effective_dims.json'}}}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type",
+              "is_error": true,
+              "tool_use_id": "toolu_01V8xSguSsXsA5TLTCSkDMat"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3f558f68-7664-401f-8c51-9f691fb46c9c",
+            "isSidechain": false,
+            "promptId": "5f1c7d66-e981-4f97-8345-0af7e44d7857",
+            "type": "user",
+            "uuid": "56b1a4f9-452e-4ab1-8462-efff93733d23",
+            "toolUseResult": "Error: Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'topk_curve': {'pythia_n..._effective_dims.json'}}}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type",
+            "sourceToolAssistantUUID": "3f558f68-7664-401f-8c51-9f691fb46c9c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+            "sessionId": "bf1f4d12-7661-42c8-8970-6ebaf90ef1f3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000117"
+        },
+        {
+          "source_line": 118,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "56b1a4f9-452e-4ab1-8462-efff93733d23",
+                "sessionId": "bf1f4d12-7661-42c8-8970-6ebaf90ef1f3"
+              }
+            }
+          ],
+          "id": "event-000118"
+        },
+        {
+          "source_line": 119,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Extract feature ablation results to structured data",
+                "sessionId": "bf1f4d12-7661-42c8-8970-6ebaf90ef1f3"
+              }
+            }
+          ],
+          "id": "event-000119"
+        },
+        {
+          "source_line": 120,
+          "timestamp": "2026-05-15T19:52:26.937Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The tool is interpreting the JSON content as a dict. I need to explicitly ensure it's passed as a string. Let me try wrapping the JSON in a way that prevents it from being parsed. Or I could write the file locally and use source_path.\n\nActually, looking at the tool specification more carefully:\n```\ncontent: Raw text/HTML/JSON to write directly (for proxy workers without local file access).\n```\n\nThe issue is that the JSON content is being auto-parsed by the tool calling mechanism. Let me try writing the JSON to a local file first, then use source_path.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "56b1a4f9-452e-4ab1-8462-efff93733d23",
+            "isSidechain": false,
+            "requestId": "req_011Cb4wNWdqgwSrvMsu9E4G7",
+            "type": "assistant",
+            "uuid": "4ab12c7b-4cfa-421d-9338-dac1efddbb5d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+            "sessionId": "bf1f4d12-7661-42c8-8970-6ebaf90ef1f3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WJNV4RsbqUnfxHY3Bnenue",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4074,
+                "cache_read_input_tokens": 110224,
+                "output_tokens": 3752,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 4074,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 3752,
+                    "cache_read_input_tokens": 110224,
+                    "cache_creation_input_tokens": 4074,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 4074
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000120"
+        },
+        {
+          "source_line": 121,
+          "timestamp": "2026-05-15T19:52:54.230Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YGmDNkWm82rxS1M3sFa8sb",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/feat_ablation_structured_data.json",
+                "content": "{\n  \"topk_curve\": {\n    \"pythia_nucleus095\": {\"top1\": 0.6215, \"top2\": 0.69, \"top3\": 0.7328, \"top5\": 0.7649, \"top10\": 0.7731, \"top15\": 0.7847, \"top19\": 0.7849},\n    \"pythia_temp09\": {\"top1\": 0.6396, \"top2\": 0.701, \"top3\": 0.7288, \"top5\": 0.7492, \"top10\": 0.7527, \"top15\": 0.7651, \"top19\": 0.7657},\n    \"pythia_topk50\": {\"top1\": 0.5626, \"top2\": 0.6209, \"top3\": 0.6457, \"top5\": 0.6609, \"top10\": 0.6832, \"top15\": 0.6857, \"top19\": 0.6876},\n    \"gpt2xl_nucleus095\": {\"top1\": 0.6442, \"top2\": 0.7764, \"top3\": 0.7996, \"top5\": 0.8221, \"top10\": 0.8371, \"top15\": 0.839, \"top19\": 0.8412},\n    \"gpt2xl_temp09\": {\"top1\": 0.8029, \"top2\": 0.8175, \"top3\": 0.8345, \"top5\": 0.8494, \"top10\": 0.85745, \"top15\": 0.8592, \"top19\": 0.86035},\n    \"gpt2xl_topk50\": {\"top1\": 0.69365, \"top2\": 0.66865, \"top3\": 0.71235, \"top5\": 0.7378, \"top10\": 0.7575, \"top15\": 0.75545, \"top19\": 0.7589},\n    \"olmo_nucleus095\": {\"top1\": 0.6354, \"top2\": 0.7152, \"top3\": 0.7456, \"top5\": 0.7703, \"top10\": 0.783, \"top15\": 0.7867, \"top19\": 0.7903},\n    \"olmo_temp09\": {\"top1\": 0.6572, \"top2\": 0.7685, \"top3\": 0.7853, \"top5\": 0.8037, \"top10\": 0.8176, \"top15\": 0.8202, \"top19\": 0.8195},\n    \"olmo_topk50\": {\"top1\": 0.5597, \"top2\": 0.6797, \"top3\": 0.6987, \"top5\": 0.7236, \"top10\": 0.7415, \"top15\": 0.7445, \"top19\": 0.7448}\n  },\n  \"topk_mean\": {\"top1\": 0.6463, \"top2\": 0.7153, \"top3\": 0.7426, \"top5\": 0.7647, \"top10\": 0.7781, \"top15\": 0.7823, \"top19\": 0.7837},\n  \"topk_std\": {\"top1\": 0.0726, \"top2\": 0.0614, \"top3\": 0.0571, \"top5\": 0.0564, \"top10\": 0.0534, \"top15\": 0.0529, \"top19\": 0.0527},\n  \"per_category\": {\n    \"per_cell\": {\n      \"pythia_nucleus095\": {\"perplexity\": 0.7694, \"surprisal\": 0.7476, \"lexical_diversity\": 0.4711, \"ngram_entropy\": 0.4299, \"repetition\": 0.4519},\n      \"pythia_temp09\": {\"perplexity\": 0.7432, \"surprisal\": 0.7326, \"lexical_diversity\": 0.4816, \"ngram_entropy\": 0.4471, \"repetition\": 0.4711},\n      \"pythia_topk50\": {\"perplexity\": 0.6607, \"surprisal\": 0.6464, \"lexical_diversity\": 0.4148, \"ngram_entropy\": 0.3731, \"repetition\": 0.383},\n      \"gpt2xl_nucleus095\": {\"perplexity\": 0.8229, \"surprisal\": 0.7927, \"lexical_diversity\": 0.4451, \"ngram_entropy\": 0.3703, \"repetition\": 0.4187},\n      \"gpt2xl_temp09\": {\"perplexity\": 0.8458, \"surprisal\": 0.79995, \"lexical_diversity\": 0.4636, \"ngram_entropy\": 0.3993, \"repetition\": 0.43735},\n      \"gpt2xl_topk50\": {\"perplexity\": 0.73445, \"surprisal\": 0.65465, \"lexical_diversity\": 0.39725, \"ngram_entropy\": 0.3021, \"repetition\": 0.36135},\n      \"olmo_nucleus095\": {\"perplexity\": 0.774, \"surprisal\": 0.7281, \"lexical_diversity\": 0.5196, \"ngram_entropy\": 0.4361, \"repetition\": 0.4936},\n      \"olmo_temp09\": {\"perplexity\": 0.8117, \"surprisal\": 0.7852, \"lexical_diversity\": 0.5278, \"ngram_entropy\": 0.469, \"repetition\": 0.5156},\n      \"olmo_topk50\": {\"perplexity\": 0.7342, \"surprisal\": 0.7038, \"lexical_diversity\": 0.4276, \"ngram_entropy\": 0.3245, \"repetition\": 0.3966}\n    },\n    \"mean\": {\n      \"perplexity\": {\"mean\": 0.7663, \"std\": 0.0563},\n      \"surprisal\": {\"mean\": 0.7323, \"std\": 0.0565},\n      \"lexical_diversity\": {\"mean\": 0.4609, \"std\": 0.0447},\n      \"ngram_entropy\": {\"mean\": 0.3946, \"std\": 0.0568},\n      \"repetition\": {\"mean\": 0.4366, \"std\": 0.0517}\n    }\n  },\n  \"forward_selection\": {\n    \"pythia_nucleus095\": [\"var_surprisal\",\"mean_ppl\",\"p75_ppl\",\"rep_2gram\",\"skewness_ppl\",\"type_token_ratio\",\"trigram_entropy\",\"rep_4gram\",\"p90_ppl\",\"mean_surprisal\",\"hapax_ratio\",\"p50_ppl\",\"var_ppl\",\"p25_ppl\",\"p10_ppl\",\"rep_3gram\",\"bigram_entropy\",\"entropy_of_surprisal\",\"kurtosis_ppl\"],\n    \"pythia_temp09\": [\"var_surprisal\",\"mean_surprisal\",\"var_ppl\",\"trigram_entropy\",\"type_token_ratio\",\"rep_4gram\",\"p50_ppl\",\"bigram_entropy\",\"hapax_ratio\",\"p75_ppl\",\"p90_ppl\",\"rep_2gram\",\"kurtosis_ppl\",\"p10_ppl\",\"rep_3gram\",\"mean_ppl\",\"entropy_of_surprisal\",\"p25_ppl\",\"skewness_ppl\"],\n    \"pythia_topk50\": [\"var_surprisal\",\"p75_ppl\",\"mean_ppl\",\"trigram_entropy\",\"rep_4gram\",\"mean_surprisal\",\"p90_ppl\",\"bigram_entropy\",\"p10_ppl\",\"rep_3gram\",\"type_token_ratio\",\"entropy_of_surprisal\",\"p50_ppl\",\"hapax_ratio\",\"p25_ppl\",\"kurtosis_ppl\",\"rep_2gram\",\"var_ppl\",\"skewness_ppl\"],\n    \"olmo_nucleus095\": [\"p90_ppl\",\"p75_ppl\",\"mean_surprisal\",\"rep_4gram\",\"var_ppl\",\"var_surprisal\",\"bigram_entropy\",\"p50_ppl\",\"type_token_ratio\",\"trigram_entropy\",\"p25_ppl\",\"kurtosis_ppl\",\"skewness_ppl\",\"hapax_ratio\",\"entropy_of_surprisal\",\"rep_2gram\",\"p10_ppl\",\"rep_3gram\",\"mean_ppl\"],\n    \"olmo_temp09\": [\"p90_ppl\",\"p25_ppl\",\"mean_ppl\",\"var_surprisal\",\"rep_3gram\",\"kurtosis_ppl\",\"p75_ppl\",\"type_token_ratio\",\"entropy_of_surprisal\",\"p10_ppl\",\"p50_ppl\",\"trigram_entropy\",\"bigram_entropy\",\"skewness_ppl\",\"mean_surprisal\",\"hapax_ratio\",\"var_ppl\",\"rep_2gram\",\"rep_4gram\"],\n    \"olmo_topk50\": [\"p90_ppl\",\"var_surprisal\",\"mean_ppl\",\"p75_ppl\",\"entropy_of_surprisal\",\"hapax_ratio\",\"p50_ppl\",\"skewness_ppl\",\"bigram_entropy\",\"rep_3gram\",\"p25_ppl\",\"var_ppl\",\"p10_ppl\",\"rep_4gram\",\"mean_surprisal\",\"type_token_ratio\",\"trigram_entropy\",\"kurtosis_ppl\",\"rep_2gram\"],\n    \"gpt2xl_nucleus095\": [\"p90_ppl\",\"var_surprisal\",\"mean_ppl\",\"rep_2gram\",\"p75_ppl\",\"p50_ppl\",\"p25_ppl\",\"rep_4gram\",\"type_token_ratio\",\"bigram_entropy\",\"skewness_ppl\",\"kurtosis_ppl\",\"rep_3gram\",\"trigram_entropy\",\"hapax_ratio\",\"mean_surprisal\",\"p10_ppl\",\"var_ppl\",\"entropy_of_surprisal\"]\n  },\n  \"vif\": {\n    \"per_feature_mean\": {\n      \"mean_ppl\": 126.79, \"var_ppl\": 126.72, \"skewness_ppl\": 78.18, \"kurtosis_ppl\": 75.89,\n      \"p10_ppl\": 3.87, \"p25_ppl\": 12.09, \"p50_ppl\": 15.53, \"p75_ppl\": 11.59, \"p90_ppl\": 7.6,\n      \"mean_surprisal\": 90.48, \"var_surprisal\": 38.64, \"entropy_of_surprisal\": 13.38,\n      \"type_token_ratio\": 28.28, \"hapax_ratio\": 4.22,\n      \"bigram_entropy\": 282.98, \"trigram_entropy\": 251.96,\n      \"rep_2gram\": 304.78, \"rep_3gram\": 472.65, \"rep_4gram\": 175.5\n    },\n    \"n_features_high_vif\": 16,\n    \"n_features_total\": 19,\n    \"per_cell_high_vif_count\": {\n      \"pythia_nucleus095\": 14, \"pythia_temp09\": 16, \"pythia_topk50\": 15,\n      \"olmo_nucleus095\": 16, \"olmo_temp09\": 16, \"olmo_topk50\": 14,\n      \"gpt2xl_nucleus095\": 14\n    },\n    \"n_cells_available\": 7\n  },\n  \"pca\": {\n    \"n_95pct_per_cell\": {\n      \"pythia_nucleus095\": 8, \"pythia_temp09\": 8, \"pythia_topk50\": 9,\n      \"gpt2xl_nucleus095\": 9, \"gpt2xl_temp09\": 8, \"gpt2xl_topk50\": 9,\n      \"olmo_nucleus095\": 7, \"olmo_temp09\": 7, \"olmo_topk50\": 8\n    },\n    \"n_95pct_mean\": 8.1,\n    \"n_95pct_range\": [7, 9],\n    \"merged_all_n_95pct\": 9\n  },\n  \"metadata\": {\n    \"experiment\": \"feat_ablation_v1\",\n    \"n_cells\": 9,\n    \"cell_names\": [\"pythia_nucleus095\",\"pythia_temp09\",\"pythia_topk50\",\"gpt2xl_nucleus095\",\"gpt2xl_temp09\",\"gpt2xl_topk50\",\"olmo_nucleus095\",\"olmo_temp09\",\"olmo_topk50\"],\n    \"n_features_total\": 19,\n    \"feature_categories\": {\n      \"perplexity\": [\"mean_ppl\",\"var_ppl\",\"skewness_ppl\",\"kurtosis_ppl\",\"p10_ppl\",\"p25_ppl\",\"p50_ppl\",\"p75_ppl\",\"p90_ppl\"],\n      \"surprisal\": [\"mean_surprisal\",\"var_surprisal\",\"entropy_of_surprisal\"],\n      \"lexical_diversity\": [\"type_token_ratio\",\"hapax_ratio\"],\n      \"ngram_entropy\": [\"bigram_entropy\",\"trigram_entropy\"],\n      \"repetition\": [\"rep_2gram\",\"rep_3gram\",\"rep_4gram\"]\n    },\n    \"data_sources\": {\n      \"topk_curve\": \"7 from top_k_ablation.json + 2 from topk_ablation.json\",\n      \"per_category\": \"7 from per_category_ablation.json + 2 from category_ablation.json\",\n      \"forward_selection\": \"7 cells (gpt2xl_temp09/topk50 unavailable)\",\n      \"vif\": \"7 cells (gpt2xl_temp09/topk50 unavailable)\",\n      \"pca\": \"9 cells from pca_effective_dims.json\"\n    }\n  }\n}\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4ab12c7b-4cfa-421d-9338-dac1efddbb5d",
+            "isSidechain": false,
+            "requestId": "req_011Cb4wNWdqgwSrvMsu9E4G7",
+            "type": "assistant",
+            "uuid": "1272ee9e-b667-4fa2-ae3d-9ad5703ee876",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+            "sessionId": "bf1f4d12-7661-42c8-8970-6ebaf90ef1f3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WJNV4RsbqUnfxHY3Bnenue",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4074,
+                "cache_read_input_tokens": 110224,
+                "output_tokens": 3752,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 4074,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 3752,
+                    "cache_read_input_tokens": 110224,
+                    "cache_creation_input_tokens": 4074,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 4074
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000121"
+        },
+        {
+          "source_line": 122,
+          "timestamp": "2026-05-15T19:52:54.254Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YGmDNkWm82rxS1M3sFa8sb",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/feat_ablation_structured_data.json"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1272ee9e-b667-4fa2-ae3d-9ad5703ee876",
+            "isSidechain": false,
+            "promptId": "5f1c7d66-e981-4f97-8345-0af7e44d7857",
+            "type": "user",
+            "uuid": "f11793b3-1379-4a86-b776-8635b2848784",
+            "toolUseResult": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/feat_ablation_structured_data.json",
+              "content": "{\n  \"topk_curve\": {\n    \"pythia_nucleus095\": {\"top1\": 0.6215, \"top2\": 0.69, \"top3\": 0.7328, \"top5\": 0.7649, \"top10\": 0.7731, \"top15\": 0.7847, \"top19\": 0.7849},\n    \"pythia_temp09\": {\"top1\": 0.6396, \"top2\": 0.701, \"top3\": 0.7288, \"top5\": 0.7492, \"top10\": 0.7527, \"top15\": 0.7651, \"top19\": 0.7657},\n    \"pythia_topk50\": {\"top1\": 0.5626, \"top2\": 0.6209, \"top3\": 0.6457, \"top5\": 0.6609, \"top10\": 0.6832, \"top15\": 0.6857, \"top19\": 0.6876},\n    \"gpt2xl_nucleus095\": {\"top1\": 0.6442, \"top2\": 0.7764, \"top3\": 0.7996, \"top5\": 0.8221, \"top10\": 0.8371, \"top15\": 0.839, \"top19\": 0.8412},\n    \"gpt2xl_temp09\": {\"top1\": 0.8029, \"top2\": 0.8175, \"top3\": 0.8345, \"top5\": 0.8494, \"top10\": 0.85745, \"top15\": 0.8592, \"top19\": 0.86035},\n    \"gpt2xl_topk50\": {\"top1\": 0.69365, \"top2\": 0.66865, \"top3\": 0.71235, \"top5\": 0.7378, \"top10\": 0.7575, \"top15\": 0.75545, \"top19\": 0.7589},\n    \"olmo_nucleus095\": {\"top1\": 0.6354, \"top2\": 0.7152, \"top3\": 0.7456, \"top5\": 0.7703, \"top10\": 0.783, \"top15\": 0.7867, \"top19\": 0.7903},\n    \"olmo_temp09\": {\"top1\": 0.6572, \"top2\": 0.7685, \"top3\": 0.7853, \"top5\": 0.8037, \"top10\": 0.8176, \"top15\": 0.8202, \"top19\": 0.8195},\n    \"olmo_topk50\": {\"top1\": 0.5597, \"top2\": 0.6797, \"top3\": 0.6987, \"top5\": 0.7236, \"top10\": 0.7415, \"top15\": 0.7445, \"top19\": 0.7448}\n  },\n  \"topk_mean\": {\"top1\": 0.6463, \"top2\": 0.7153, \"top3\": 0.7426, \"top5\": 0.7647, \"top10\": 0.7781, \"top15\": 0.7823, \"top19\": 0.7837},\n  \"topk_std\": {\"top1\": 0.0726, \"top2\": 0.0614, \"top3\": 0.0571, \"top5\": 0.0564, \"top10\": 0.0534, \"top15\": 0.0529, \"top19\": 0.0527},\n  \"per_category\": {\n    \"per_cell\": {\n      \"pythia_nucleus095\": {\"perplexity\": 0.7694, \"surprisal\": 0.7476, \"lexical_diversity\": 0.4711, \"ngram_entropy\": 0.4299, \"repetition\": 0.4519},\n      \"pythia_temp09\": {\"perplexity\": 0.7432, \"surprisal\": 0.7326, \"lexical_diversity\": 0.4816, \"ngram_entropy\": 0.4471, \"repetition\": 0.4711},\n      \"pythia_topk50\": {\"perplexity\": 0.6607, \"surprisal\": 0.6464, \"lexical_diversity\": 0.4148, \"ngram_entropy\": 0.3731, \"repetition\": 0.383},\n      \"gpt2xl_nucleus095\": {\"perplexity\": 0.8229, \"surprisal\": 0.7927, \"lexical_diversity\": 0.4451, \"ngram_entropy\": 0.3703, \"repetition\": 0.4187},\n      \"gpt2xl_temp09\": {\"perplexity\": 0.8458, \"surprisal\": 0.79995, \"lexical_diversity\": 0.4636, \"ngram_entropy\": 0.3993, \"repetition\": 0.43735},\n      \"gpt2xl_topk50\": {\"perplexity\": 0.73445, \"surprisal\": 0.65465, \"lexical_diversity\": 0.39725, \"ngram_entropy\": 0.3021, \"repetition\": 0.36135},\n      \"olmo_nucleus095\": {\"perplexity\": 0.774, \"surprisal\": 0.7281, \"lexical_diversity\": 0.5196, \"ngram_entropy\": 0.4361, \"repetition\": 0.4936},\n      \"olmo_temp09\": {\"perplexity\": 0.8117, \"surprisal\": 0.7852, \"lexical_diversity\": 0.5278, \"ngram_entropy\": 0.469, \"repetition\": 0.5156},\n      \"olmo_topk50\": {\"perplexity\": 0.7342, \"surprisal\": 0.7038, \"lexical_diversity\": 0.4276, \"ngram_entropy\": 0.3245, \"repetition\": 0.3966}\n    },\n    \"mean\": {\n      \"perplexity\": {\"mean\": 0.7663, \"std\": 0.0563},\n      \"surprisal\": {\"mean\": 0.7323, \"std\": 0.0565},\n      \"lexical_diversity\": {\"mean\": 0.4609, \"std\": 0.0447},\n      \"ngram_entropy\": {\"mean\": 0.3946, \"std\": 0.0568},\n      \"repetition\": {\"mean\": 0.4366, \"std\": 0.0517}\n    }\n  },\n  \"forward_selection\": {\n    \"pythia_nucleus095\": [\"var_surprisal\",\"mean_ppl\",\"p75_ppl\",\"rep_2gram\",\"skewness_ppl\",\"type_token_ratio\",\"trigram_entropy\",\"rep_4gram\",\"p90_ppl\",\"mean_surprisal\",\"hapax_ratio\",\"p50_ppl\",\"var_ppl\",\"p25_ppl\",\"p10_ppl\",\"rep_3gram\",\"bigram_entropy\",\"entropy_of_surprisal\",\"kurtosis_ppl\"],\n    \"pythia_temp09\": [\"var_surprisal\",\"mean_surprisal\",\"var_ppl\",\"trigram_entropy\",\"type_token_ratio\",\"rep_4gram\",\"p50_ppl\",\"bigram_entropy\",\"hapax_ratio\",\"p75_ppl\",\"p90_ppl\",\"rep_2gram\",\"kurtosis_ppl\",\"p10_ppl\",\"rep_3gram\",\"mean_ppl\",\"entropy_of_surprisal\",\"p25_ppl\",\"skewness_ppl\"],\n    \"pythia_topk50\": [\"var_surprisal\",\"p75_ppl\",\"mean_ppl\",\"trigram_entropy\",\"rep_4gram\",\"mean_surprisal\",\"p90_ppl\",\"bigram_entropy\",\"p10_ppl\",\"rep_3gram\",\"type_token_ratio\",\"entropy_of_surprisal\",\"p50_ppl\",\"hapax_ratio\",\"p25_ppl\",\"kurtosis_ppl\",\"rep_2gram\",\"var_ppl\",\"skewness_ppl\"],\n    \"olmo_nucleus095\": [\"p90_ppl\",\"p75_ppl\",\"mean_surprisal\",\"rep_4gram\",\"var_ppl\",\"var_surprisal\",\"bigram_entropy\",\"p50_ppl\",\"type_token_ratio\",\"trigram_entropy\",\"p25_ppl\",\"kurtosis_ppl\",\"skewness_ppl\",\"hapax_ratio\",\"entropy_of_surprisal\",\"rep_2gram\",\"p10_ppl\",\"rep_3gram\",\"mean_ppl\"],\n    \"olmo_temp09\": [\"p90_ppl\",\"p25_ppl\",\"mean_ppl\",\"var_surprisal\",\"rep_3gram\",\"kurtosis_ppl\",\"p75_ppl\",\"type_token_ratio\",\"entropy_of_surprisal\",\"p10_ppl\",\"p50_ppl\",\"trigram_entropy\",\"bigram_entropy\",\"skewness_ppl\",\"mean_surprisal\",\"hapax_ratio\",\"var_ppl\",\"rep_2gram\",\"rep_4gram\"],\n    \"olmo_topk50\": [\"p90_ppl\",\"var_surprisal\",\"mean_ppl\",\"p75_ppl\",\"entropy_of_surprisal\",\"hapax_ratio\",\"p50_ppl\",\"skewness_ppl\",\"bigram_entropy\",\"rep_3gram\",\"p25_ppl\",\"var_ppl\",\"p10_ppl\",\"rep_4gram\",\"mean_surprisal\",\"type_token_ratio\",\"trigram_entropy\",\"kurtosis_ppl\",\"rep_2gram\"],\n    \"gpt2xl_nucleus095\": [\"p90_ppl\",\"var_surprisal\",\"mean_ppl\",\"rep_2gram\",\"p75_ppl\",\"p50_ppl\",\"p25_ppl\",\"rep_4gram\",\"type_token_ratio\",\"bigram_entropy\",\"skewness_ppl\",\"kurtosis_ppl\",\"rep_3gram\",\"trigram_entropy\",\"hapax_ratio\",\"mean_surprisal\",\"p10_ppl\",\"var_ppl\",\"entropy_of_surprisal\"]\n  },\n  \"vif\": {\n    \"per_feature_mean\": {\n      \"mean_ppl\": 126.79, \"var_ppl\": 126.72, \"skewness_ppl\": 78.18, \"kurtosis_ppl\": 75.89,\n      \"p10_ppl\": 3.87, \"p25_ppl\": 12.09, \"p50_ppl\": 15.53, \"p75_ppl\": 11.59, \"p90_ppl\": 7.6,\n      \"mean_surprisal\": 90.48, \"var_surprisal\": 38.64, \"entropy_of_surprisal\": 13.38,\n      \"type_token_ratio\": 28.28, \"hapax_ratio\": 4.22,\n      \"bigram_entropy\": 282.98, \"trigram_entropy\": 251.96,\n      \"rep_2gram\": 304.78, \"rep_3gram\": 472.65, \"rep_4gram\": 175.5\n    },\n    \"n_features_high_vif\": 16,\n    \"n_features_total\": 19,\n    \"per_cell_high_vif_count\": {\n      \"pythia_nucleus095\": 14, \"pythia_temp09\": 16, \"pythia_topk50\": 15,\n      \"olmo_nucleus095\": 16, \"olmo_temp09\": 16, \"olmo_topk50\": 14,\n      \"gpt2xl_nucleus095\": 14\n    },\n    \"n_cells_available\": 7\n  },\n  \"pca\": {\n    \"n_95pct_per_cell\": {\n      \"pythia_nucleus095\": 8, \"pythia_temp09\": 8, \"pythia_topk50\": 9,\n      \"gpt2xl_nucleus095\": 9, \"gpt2xl_temp09\": 8, \"gpt2xl_topk50\": 9,\n      \"olmo_nucleus095\": 7, \"olmo_temp09\": 7, \"olmo_topk50\": 8\n    },\n    \"n_95pct_mean\": 8.1,\n    \"n_95pct_range\": [7, 9],\n    \"merged_all_n_95pct\": 9\n  },\n  \"metadata\": {\n    \"experiment\": \"feat_ablation_v1\",\n    \"n_cells\": 9,\n    \"cell_names\": [\"pythia_nucleus095\",\"pythia_temp09\",\"pythia_topk50\",\"gpt2xl_nucleus095\",\"gpt2xl_temp09\",\"gpt2xl_topk50\",\"olmo_nucleus095\",\"olmo_temp09\",\"olmo_topk50\"],\n    \"n_features_total\": 19,\n    \"feature_categories\": {\n      \"perplexity\": [\"mean_ppl\",\"var_ppl\",\"skewness_ppl\",\"kurtosis_ppl\",\"p10_ppl\",\"p25_ppl\",\"p50_ppl\",\"p75_ppl\",\"p90_ppl\"],\n      \"surprisal\": [\"mean_surprisal\",\"var_surprisal\",\"entropy_of_surprisal\"],\n      \"lexical_diversity\": [\"type_token_ratio\",\"hapax_ratio\"],\n      \"ngram_entropy\": [\"bigram_entropy\",\"trigram_entropy\"],\n      \"repetition\": [\"rep_2gram\",\"rep_3gram\",\"rep_4gram\"]\n    },\n    \"data_sources\": {\n      \"topk_curve\": \"7 from top_k_ablation.json + 2 from topk_ablation.json\",\n      \"per_category\": \"7 from per_category_ablation.json + 2 from category_ablation.json\",\n      \"forward_selection\": \"7 cells (gpt2xl_temp09/topk50 unavailable)\",\n      \"vif\": \"7 cells (gpt2xl_temp09/topk50 unavailable)\",\n      \"pca\": \"9 cells from pca_effective_dims.json\"\n    }\n  }\n}\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            },
+            "sourceToolAssistantUUID": "1272ee9e-b667-4fa2-ae3d-9ad5703ee876",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+            "sessionId": "bf1f4d12-7661-42c8-8970-6ebaf90ef1f3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000122"
+        },
+        {
+          "source_line": 123,
+          "timestamp": "2026-05-15T19:52:59.631Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015k49572pjsNzUkXCxq7KrK",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "feat_ablation_structured_data",
+                "type": "data",
+                "description": "Feature ablation experiment structured data for paper writing. Contains top-k ablation curves (9 cells), per-category accuracy, forward selection ranking, VIF summary, and PCA effective dimensionality from feat_ablation_v1.",
+                "project": "recursive_gen_depth_est",
+                "exp_id": "feat_ablation_v1",
+                "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/feat_ablation_structured_data.json",
+                "tags": [
+                  "paper",
+                  "R3-N2"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f11793b3-1379-4a86-b776-8635b2848784",
+            "isSidechain": false,
+            "requestId": "req_011Cb4wQuFvne69PGyWbVyTj",
+            "type": "assistant",
+            "uuid": "df788e08-bdd1-4a56-9d37-496bdc33b57f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+            "sessionId": "bf1f4d12-7661-42c8-8970-6ebaf90ef1f3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CwuK4Qjo5QNLYomG5LVhZT",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3811,
+                "cache_read_input_tokens": 114298,
+                "output_tokens": 286,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3811,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 286,
+                    "cache_read_input_tokens": 114298,
+                    "cache_creation_input_tokens": 3811,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3811
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000123"
+        },
+        {
+          "source_line": 124,
+          "timestamp": "2026-05-15T19:53:00.121Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015k49572pjsNzUkXCxq7KrK",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_2649b4\\\", \\\"name\\\": \\\"feat_ablation_structured_data\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Feature ablation experiment structured data for paper writing. Contains top-k ablation curves (9 cells), per-category accuracy, forward selection ranking, VIF summary, and PCA effective dimensionality from feat_ablation_v1.\\\", \\\"path\\\": \\\"projects/recursive_gen_depth_est/artifacts/feat_ablation_v1/data/feat_ablation_structured_data.json\\\", \\\"url\\\": null, \\\"project\\\": \\\"recursive_gen_depth_est\\\", \\\"exp_id\\\": \\\"feat_ablation_v1\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T19:52:59.650384+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"R3-N2\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "df788e08-bdd1-4a56-9d37-496bdc33b57f",
+            "isSidechain": false,
+            "promptId": "5f1c7d66-e981-4f97-8345-0af7e44d7857",
+            "type": "user",
+            "uuid": "6b64acd1-9e89-4122-9f79-b3d0eebc441b",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_2649b4\\\", \\\"name\\\": \\\"feat_ablation_structured_data\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Feature ablation experiment structured data for paper writing. Contains top-k ablation curves (9 cells), per-category accuracy, forward selection ranking, VIF summary, and PCA effective dimensionality from feat_ablation_v1.\\\", \\\"path\\\": \\\"projects/recursive_gen_depth_est/artifacts/feat_ablation_v1/data/feat_ablation_structured_data.json\\\", \\\"url\\\": null, \\\"project\\\": \\\"recursive_gen_depth_est\\\", \\\"exp_id\\\": \\\"feat_ablation_v1\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T19:52:59.650384+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"R3-N2\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_2649b4\", \"name\": \"feat_ablation_structured_data\", \"type\": \"data\", \"description\": \"Feature ablation experiment structured data for paper writing. Contains top-k ablation curves (9 cells), per-category accuracy, forward selection ranking, VIF summary, and PCA effective dimensionality from feat_ablation_v1.\", \"path\": \"projects/recursive_gen_depth_est/artifacts/feat_ablation_v1/data/feat_ablation_structured_data.json\", \"url\": null, \"project\": \"recursive_gen_depth_est\", \"exp_id\": \"feat_ablation_v1\", \"skill\": \"\", \"created_at\": \"2026-05-15T19:52:59.650384+00:00\", \"tags\": [\"paper\", \"R3-N2\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            },
+            "sourceToolAssistantUUID": "df788e08-bdd1-4a56-9d37-496bdc33b57f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+            "sessionId": "bf1f4d12-7661-42c8-8970-6ebaf90ef1f3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000124"
+        },
+        {
+          "source_line": 125,
+          "timestamp": "2026-05-15T19:53:00.128Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "6b64acd1-9e89-4122-9f79-b3d0eebc441b",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "064be68d-63dc-469f-88e6-c6414a15950b",
+                "timestamp": "2026-05-15T19:53:00.128Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+                "sessionId": "bf1f4d12-7661-42c8-8970-6ebaf90ef1f3",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000125"
+        },
+        {
+          "source_line": 126,
+          "timestamp": "2026-05-15T19:53:08.775Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Artifact 注册成功：`art_20260515_2649b4`\n\n数据摘要：\n\n| 数据项 | 覆盖 | 关键数字 |\n|--------|------|----------|\n| **Top-k Curve** | 9/9 cell | mean acc: top1=0.646 → top5=0.765 → top19=0.784 |\n| **Per-Category** | 9/9 cell | perplexity(0.766) > surprisal(0.732) >> lexical(0.461) > repetition(0.437) > ngram_entropy(0.395) |\n| **Forward Selection** | 7/9 cell | var_surprisal 或 p90_ppl 始终排第一 |\n| **VIF** | 7/9 cell | 16/19 特征 VIF>10，严重多重共线性 |\n| **PCA** | 9/9 cell | 95% 方差需 8.1 个 PC（范围 7-9） |\n\n注意：gpt2xl_temp09 和 gpt2xl_topk50 的 forward_selection 和 VIF 数据缺失（旧版实验未生成），其余数据从 v1/v2 两版文件合并而来。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "064be68d-63dc-469f-88e6-c6414a15950b",
+            "isSidechain": false,
+            "requestId": "req_011Cb4wRLTFKb82EoSGP53Hr",
+            "type": "assistant",
+            "uuid": "b8606133-70eb-432e-818d-1c3eeb58d4a0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est",
+            "sessionId": "bf1f4d12-7661-42c8-8970-6ebaf90ef1f3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01N5jQuVRWzyy1PZ98uPvNLQ",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 701,
+                "cache_read_input_tokens": 118109,
+                "output_tokens": 343,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 701,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 343,
+                    "cache_read_input_tokens": 118109,
+                    "cache_creation_input_tokens": 701,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 701
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000126"
+        },
+        {
+          "source_line": 127,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "b8606133-70eb-432e-818d-1c3eeb58d4a0",
+                "sessionId": "bf1f4d12-7661-42c8-8970-6ebaf90ef1f3"
+              }
+            }
+          ],
+          "id": "event-000127"
+        },
+        {
+          "source_line": 128,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Extract feature ablation results to structured data",
+                "sessionId": "bf1f4d12-7661-42c8-8970-6ebaf90ef1f3"
+              }
+            }
+          ],
+          "id": "event-000128"
+        }
+      ]
+    }
+  ]
+}

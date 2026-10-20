@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0",
+  "id": "d2482eb78c892104c121",
+  "project": "recursive_gen_depth_est--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> atlas_v2_analysis 已注册为 PREPARING，parent=atlas_v1_analysis，plan_id=plan_006。atlas_v1 只覆盖 6/9 cells，v2 必须覆",
+  "task_key": "f4b8fc23-e38b-4469-80cc-5e56bf08cea0",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/f4b8fc23-e38b-4469-80cc-5e56bf08cea0.jsonl",
+    "occurrence": 1,
+    "bytes": 1014527,
+    "sha256": "4c6e62e976a10e6acf9bcc50c38dd17fc31d835da2be7119d2e70ccb6d4b7632"
+  },
+  "statistics": {
+    "messages": 312,
+    "user_turns": 2,
+    "tool_calls": 88,
+    "roles": {
+      "record": 70,
+      "user": 2,
+      "assistant": 63,
+      "tool_call": 88,
+      "tool_result": 88,
+      "system": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "d2482eb78c892104c121-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 302,
+      "chunks": [
+        {
+          "path": "d2482eb78c892104c121-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "d2482eb78c892104c121-part-0002.json",
+          "message_count": 124
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 8,
+      "chunks": [
+        {
+          "path": "d2482eb78c892104c121-part-0002.json",
+          "message_count": 8
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-atlas-v2-analysis-preparing-parent-atlas-v1-analysis-plan-id-pla.md"
+}

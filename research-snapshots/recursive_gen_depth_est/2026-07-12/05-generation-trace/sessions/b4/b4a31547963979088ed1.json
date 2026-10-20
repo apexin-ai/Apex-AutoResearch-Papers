@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "b4a31547963979088ed1",
+  "project": "recursive_gen_depth_est--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> AutoDL 网络关键设置： 1. pip/git 前: source /etc/network_turbo 2. HF 下载: HF_HUB_DISABLE_XET=1, SSL_CERT_FILE=/et",
+  "task_key": "cf1e50db-bc05-47f3-9d2e-c4a967052760",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/cf1e50db-bc05-47f3-9d2e-c4a967052760.jsonl",
+    "occurrence": 1,
+    "bytes": 815679,
+    "sha256": "8418211529eb6709a06d450850a02d1d345d2b074a2713de791213bdda86020f"
+  },
+  "statistics": {
+    "messages": 314,
+    "user_turns": 1,
+    "tool_calls": 89,
+    "roles": {
+      "record": 57,
+      "user": 1,
+      "assistant": 78,
+      "tool_call": 89,
+      "tool_result": 89
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "b4a31547963979088ed1-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 312,
+      "chunks": [
+        {
+          "path": "b4a31547963979088ed1-part-0001.json",
+          "message_count": 172
+        },
+        {
+          "path": "b4a31547963979088ed1-part-0002.json",
+          "message_count": 140
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-autodl-1-pip-git-source-etc-network-turbo-2-hf-hf-hub-disable-xe.md"
+}

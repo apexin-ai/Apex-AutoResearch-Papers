@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.0",
+  "id": "a3d5c845b283ddf21038",
+  "project": "recursive_gen_depth_est--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> 服务器 autodl-rtx6000 使用 conda base 环境（/root/miniconda3/），不是 venv。GPU 编号从 0 开始。项目工作目录 /root/autodl-tmp/recu",
+  "task_key": "c88aa742-61fe-4779-947a-7f5c47f37241",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/c88aa742-61fe-4779-947a-7f5c47f37241.jsonl",
+    "occurrence": 1,
+    "bytes": 1203865,
+    "sha256": "12858f259440c0b33940be3d499e0b85d37399475c27fd76dc356b4b5327dd96"
+  },
+  "statistics": {
+    "messages": 530,
+    "user_turns": 1,
+    "tool_calls": 189,
+    "roles": {
+      "record": 88,
+      "user": 1,
+      "assistant": 63,
+      "tool_call": 189,
+      "tool_result": 189
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "a3d5c845b283ddf21038-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 528,
+      "chunks": [
+        {
+          "path": "a3d5c845b283ddf21038-part-0001.json",
+          "message_count": 162
+        },
+        {
+          "path": "a3d5c845b283ddf21038-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "a3d5c845b283ddf21038-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "a3d5c845b283ddf21038-part-0004.json",
+          "message_count": 6
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-autodl-rtx6000-conda-base-root-miniconda3-venvgpu-0-root-autodl.md"
+}

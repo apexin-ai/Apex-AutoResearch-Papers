@@ -1,0 +1,614 @@
+{
+  "schema_version": "1.0",
+  "id": "6f5789836e3745a40caa",
+  "project": "recursive_gen_depth_est--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Read the following PNG images of a research paper and extract ALL text content verbatim. These are likely appendix/suppl",
+  "task_key": "agent-a5e0dff94de397c54",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-a5e0dff94de397c54.jsonl",
+    "occurrence": 1,
+    "bytes": 28101,
+    "sha256": "7da8fc1509e58d34868bd0dabfdb78f47c2dcb19618227623c8ff857d06dc231"
+  },
+  "statistics": {
+    "messages": 11,
+    "user_turns": 1,
+    "tool_calls": 4,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "tool_call": 4,
+      "tool_result": 4,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T19:32:30.933Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Read the following PNG images of a research paper and extract ALL text content verbatim. These are likely appendix/supplementary pages. Focus on:\n- LoRA rank sensitivity analysis (rank 4, 16, 64 experiments)\n- VIF analysis / multicollinearity discussion\n- Feature importance concordance (Kendall's W)\n- Any additional ablation results\n- Cross-architecture reference model experiments\n- Any additional tables/figures\n\nRead these files in order:\n1. /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/_pdf_images/main_p13.png\n2. /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/_pdf_images/main_p14.png\n3. /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/_pdf_images/main_p15.png\n4. /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/_pdf_images/main_p16.png\n\nReturn the FULL extracted text, preserving structure. Do not summarize."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "7a8010eb-b6a1-4d1b-aa4e-cd84d2a39d6d",
+            "agentId": "a5e0dff94de397c54",
+            "type": "user",
+            "uuid": "327f5c4c-0ab4-40fc-99b0-bb310334719a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/review_reviewer_1_37084335",
+            "sessionId": "f5009a54-ac13-49a4-83d8-13bbafebaca9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T19:32:30.936Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "327f5c4c-0ab4-40fc-99b0-bb310334719a",
+                "isSidechain": true,
+                "agentId": "a5e0dff94de397c54",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__cleanup_pdf_images",
+                    "mcp__agent-ml-research__pdf_to_images",
+                    "mcp__agent-ml-research__review_reviewer_post_to_director",
+                    "mcp__agent-ml-research__verify_references"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__cleanup_pdf_images",
+                    "mcp__agent-ml-research__pdf_to_images",
+                    "mcp__agent-ml-research__review_reviewer_post_to_director",
+                    "mcp__agent-ml-research__verify_references"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "5310b814-e6b6-4b90-abf2-e4ef50427e9f",
+                "timestamp": "2026-05-16T19:32:30.936Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/review_reviewer_1_37084335",
+                "sessionId": "f5009a54-ac13-49a4-83d8-13bbafebaca9",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T19:32:33.841Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JC7dFWFBZ1GcqPAs4p8xD5",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/_pdf_images/main_p13.png"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5310b814-e6b6-4b90-abf2-e4ef50427e9f",
+            "isSidechain": true,
+            "agentId": "a5e0dff94de397c54",
+            "requestId": "req_011Cb6ofe7M8ShSe9FuJc3tR",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "51743927-babf-4375-b612-68762e021bba",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/review_reviewer_1_37084335",
+            "sessionId": "f5009a54-ac13-49a4-83d8-13bbafebaca9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01URzzBcfXzu8sDSCF9zKXEU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 8608,
+                "cache_read_input_tokens": 8265,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 8608,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 60,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T19:32:34.358Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SCm4R2gdFT89uTdza8A8s5",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/_pdf_images/main_p14.png"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "51743927-babf-4375-b612-68762e021bba",
+            "isSidechain": true,
+            "agentId": "a5e0dff94de397c54",
+            "requestId": "req_011Cb6ofe7M8ShSe9FuJc3tR",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c95ede4b-9a85-4e64-8281-d72f907b75d8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/review_reviewer_1_37084335",
+            "sessionId": "f5009a54-ac13-49a4-83d8-13bbafebaca9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01URzzBcfXzu8sDSCF9zKXEU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 8608,
+                "cache_read_input_tokens": 8265,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 8608,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 60,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T19:32:34.486Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JC7dFWFBZ1GcqPAs4p8xD5",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "image",
+                  "source": {
+                    "type": "base64",
+                    "data": "[ATTACHMENT_DATA_REDACTED]",
+                    "media_type": "image/jpeg"
+                  }
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "51743927-babf-4375-b612-68762e021bba",
+            "isSidechain": true,
+            "promptId": "7a8010eb-b6a1-4d1b-aa4e-cd84d2a39d6d",
+            "agentId": "a5e0dff94de397c54",
+            "type": "user",
+            "uuid": "375fe33d-f5a3-4a1b-8146-c0e9dcc0f56e",
+            "sourceToolAssistantUUID": "51743927-babf-4375-b612-68762e021bba",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/review_reviewer_1_37084335",
+            "sessionId": "f5009a54-ac13-49a4-83d8-13bbafebaca9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T19:32:35.031Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SCm4R2gdFT89uTdza8A8s5",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "image",
+                  "source": {
+                    "type": "base64",
+                    "data": "[ATTACHMENT_DATA_REDACTED]",
+                    "media_type": "image/jpeg"
+                  }
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c95ede4b-9a85-4e64-8281-d72f907b75d8",
+            "isSidechain": true,
+            "promptId": "7a8010eb-b6a1-4d1b-aa4e-cd84d2a39d6d",
+            "agentId": "a5e0dff94de397c54",
+            "type": "user",
+            "uuid": "39524a4c-6829-43db-8602-9cc304bccb17",
+            "sourceToolAssistantUUID": "c95ede4b-9a85-4e64-8281-d72f907b75d8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/review_reviewer_1_37084335",
+            "sessionId": "f5009a54-ac13-49a4-83d8-13bbafebaca9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T19:32:35.252Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013va7VECAFXJHL6LTjE11dg",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/_pdf_images/main_p15.png"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "39524a4c-6829-43db-8602-9cc304bccb17",
+            "isSidechain": true,
+            "agentId": "a5e0dff94de397c54",
+            "requestId": "req_011Cb6ofe7M8ShSe9FuJc3tR",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "17ac4ac0-dec1-43d0-92e1-a9ebbf2a4b06",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/review_reviewer_1_37084335",
+            "sessionId": "f5009a54-ac13-49a4-83d8-13bbafebaca9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01URzzBcfXzu8sDSCF9zKXEU",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 8608,
+                "cache_read_input_tokens": 8265,
+                "output_tokens": 334,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 8608
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 334,
+                    "cache_read_input_tokens": 8265,
+                    "cache_creation_input_tokens": 8608,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 8608,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T19:32:35.443Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014k9W7aLYRexjGtwgEneW7u",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/_pdf_images/main_p16.png"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "17ac4ac0-dec1-43d0-92e1-a9ebbf2a4b06",
+            "isSidechain": true,
+            "agentId": "a5e0dff94de397c54",
+            "requestId": "req_011Cb6ofe7M8ShSe9FuJc3tR",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "efd8a9a8-3228-40a1-be55-3e008e3f19c8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/review_reviewer_1_37084335",
+            "sessionId": "f5009a54-ac13-49a4-83d8-13bbafebaca9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01URzzBcfXzu8sDSCF9zKXEU",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 8608,
+                "cache_read_input_tokens": 8265,
+                "output_tokens": 334,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 8608
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 334,
+                    "cache_read_input_tokens": 8265,
+                    "cache_creation_input_tokens": 8608,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 8608,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T19:32:35.464Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014k9W7aLYRexjGtwgEneW7u",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "image",
+                  "source": {
+                    "type": "base64",
+                    "data": "[ATTACHMENT_DATA_REDACTED]",
+                    "media_type": "image/png"
+                  }
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "efd8a9a8-3228-40a1-be55-3e008e3f19c8",
+            "isSidechain": true,
+            "promptId": "7a8010eb-b6a1-4d1b-aa4e-cd84d2a39d6d",
+            "agentId": "a5e0dff94de397c54",
+            "type": "user",
+            "uuid": "502392ab-33bb-4709-9f8c-6c48e23e5d99",
+            "sourceToolAssistantUUID": "efd8a9a8-3228-40a1-be55-3e008e3f19c8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/review_reviewer_1_37084335",
+            "sessionId": "f5009a54-ac13-49a4-83d8-13bbafebaca9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T19:32:35.840Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013va7VECAFXJHL6LTjE11dg",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "image",
+                  "source": {
+                    "type": "base64",
+                    "data": "[ATTACHMENT_DATA_REDACTED]",
+                    "media_type": "image/jpeg"
+                  }
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "17ac4ac0-dec1-43d0-92e1-a9ebbf2a4b06",
+            "isSidechain": true,
+            "promptId": "7a8010eb-b6a1-4d1b-aa4e-cd84d2a39d6d",
+            "agentId": "a5e0dff94de397c54",
+            "type": "user",
+            "uuid": "1a69d288-ddd5-4194-940d-c88f34fad5d4",
+            "sourceToolAssistantUUID": "17ac4ac0-dec1-43d0-92e1-a9ebbf2a4b06",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/review_reviewer_1_37084335",
+            "sessionId": "f5009a54-ac13-49a4-83d8-13bbafebaca9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T19:34:40.555Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nHere is the full extracted text from all four pages:\n\n---\n\n## Page 13\n\nwhile RF achieves 0.596 d2 recall, a >2× advantage at the hardest depth class.\n\nTable 11: Per-class performance for end-to-end PLM classifiers vs. RF baseline (Pythia-1.4B nucleus). PLM columns report F1; RF d2 column reports recall at depth class with the largest PLM–RF gap). Both PLM backbones share the same failure pattern: collapsed d1/d2 distinctions despite adequate d0/d3.\n\n| Model | d0 CV | d1 | d2 | d3 |\n|-------|-------|----|----|----|\n| DeBERTa-v3 | 58.3 ± 4.7 | .947 | .378 | .247 | .655 |\n| RoBERTa-lg | 59.5 ± 2.2 | .938 | .416 | .261 | .647 |\n| RF (11 feat) | | | | .596* |\n\n*Recall; shown for the depth class with the largest PLM–RF gap.\n\n**Feature space divergence.** SHAP TreeExplainer analysis confirms that perplexity and surprisal features account for 68.8% of RF's total contribution. Three independent importance measures—SHAP, Gini, and permutation—show strong concordance (Kendall's W = 0.90, p<0.005; pairwise Spearman ρ: SHAP–Gini 0.83, SHAP–permutation 0.81; see Table 16). Gini importance assigns p_82.4% with p_95.0 appearing in the SHAP top-2 in 9/9 cells and var_surprisal in 8/9.\n\nLinear probing of PLM [CLS] representations yields negative Δr for both var_surprisal and p90_p10 (§A.7), indicating that pretrained representations lack the linear structure needed to recover perplexity tail statistics—a systematic representational gap rather than a bag-of-hyperparameters artifact.\n\nECOL (Plawiak et al., 2023) reached 64.5% (§A.4); all end-to-end approaches (58–65%) underperform feature-based methods, suggesting depth estimation benefits from targeted statistical features that capture distributional tail properties absent from PLM representations. This comparison is bounded by backbone scale (<125M parameters); whether larger PLMs (e.g., 7B+) can close the gap via richer internal representations remains an open question.\n\n**A.9 Domain Bias Analysis**\n\nTo assess whether the classifiers exploit depth-related features or stylistic/topic cues from individual seed articles, we conduct three sub-experiments.\n\n**Methodological note.** An initial implementation assigned sample IDs with a global counter across depths, inadvertently correlating seed-group identity with depth (LOGO accuracy 64.0%, seed-group prediction 20.8%). We discovered the issue during internal review, corrected to per-depth seed assignment ensuring each group contains equal samples per depth, and re-ran all sub-experiments. The results below use the corrected pipeline; the initial (buggy) numbers are reported for transparency.\n\n**Sub-A: Standard CV.** Five-fold CV accuracy on 3-class (d1/d2/d3) classification ranges from 59% to 82% across the 9 atlas cells (top-2 ≥ 5× above the 33.1% chance level), confirming that depth signal is the dominant classification factor.\n\n**Sub-B: LOGO evaluation.** We assign each passage to one of 10 seed-article groups (balanced: each group contains equal samples per depth) and perform leave-one-group-out (LOGO) evaluation. Mean accuracy is 72.1% (range 59.5–81.6%), matching standard CV (72.6%) within noise (before fix: standard CV (72.6%) within noise before fix: standard CV group confound). Per-fold standard deviations range from 0.4pp to 1.4pp, indicating that cross-group generalization is comparable, as in within-group classification (§4.3).\n\n**Sub-C: Negative control.** We train two classifiers on identical features: one predicting depth, the other predicting seed-group identity (10-class, chance = 10%). Depth prediction accuracy averages 72%+; seed-group prediction averages 10.2%—indistinguishable from chance (before fix: 20.8%), inflated by the depth-group confound. The depth-to-seed group accuracy ratio is 7.1:1, confirming that feature representation encodes depth but not seed-article identity.\n\nTaken together, these results show that seed-article grouping has no measurable effect on depth estimation after correcting the group assignment: LOGO accuracy equals standard CV, and seed-group prediction is at chance.\n\n**A.10 Wild-Data Calibration**\n\nTable 12 reports d0 accuracy and false positive rate (FPR) for all three model-specific nucleus RF classifiers on two out-of-distribution human-text corpora: WikiText-103 (§4-6 editorial passages) and C4 (5,000 web-crawl passages).\n\n---\n\n## Page 14\n\nTable 12: Wild-data d0 accuracy and FPR for nucleus RF classifiers. All passages are human-written (true d0). FPR is fraction misclassified as d1+.\n\n| Model | Source | n | d0 (%) | FPR (%) |\n|-------|--------|---|--------|---------|\n| Pythia-1.4B | WikiText | 546 | 100.0 | 0.0 |\n| | C4 | 5,000 | 70.8 | 29.2 |\n| GPT-2 XL | WikiText | 546 | 99.3 | 0.7 |\n| | C4 | 5,000 | 77.6 | 22.4 |\n| OLMo-1B | WikiText | 546 | 98.5 | 1.5 |\n| | C4 | 5,000 | 95.3 | 4.7 |\n\nvs. correctly classified d0 passages), rather than in random noise. The model gap likely reflects training data composition: OLMo (trained on Dolma, which includes diverse web data) produces d0 features more tolerant of web-crawl variation, while Pythia and GPT-2 XL (trained primarily on Wikipedia/RedPajama) map template-heavy content into the d1+ region. Among C4 false positives for GPT-2 XL, predictions distribute as d1 (9.0%), d2 (3.7%), d3 (9.6%); for OLMo, d1 (2.9%), d2 (0.9%), d1 (3.1)3)—the non-uniform depth distribution in practice, suggests the classifier maps specific repetition patterns to particular depth signatures rather than producing random misclassifications.\n\n**A.11 Downstream Curation PoC**\n\nTo validate that depth estimation translates to actionable data curation, we construct a proof-of-concept downstream evaluation. We fine-tune Pythia-410M with LoRA (r=16, α=32) for 3 epochs on 6 data conditions derived from the Pythia depth-stratification corpus, reporting each condition over 5 random seeds. Conditions vary the selection mechanism (RF-predicted depth, oracle depth, unfiltered) and sampling strategy (strict=25%, moderate=50%, soft threshold). Table 13 reports per-condition perplexity; Table 14 reports pairwise comparisons (paired t-test, 5 seeds).\n\nTable 13: Curation PoC: per-condition perplexity (Pythia-410M LoRA, 5 seeds). Δ is signed so that positive values indicate lower (better) perplexity vs. unfiltered. *: p < 0.05 (paired t-test vs. unfiltered).\n\n| Condition | PPL | σ | Δ | t | p |\n|-----------|-----|---|---|---|---|\n| rf_strict | 17.76 | 0.11 | +0.38* | 3.13 | 0.035 |\n| rf_moderate | 17.89 | 0.09 | +0.25 | 2.03 | 0.112 |\n| rf_soft | 18.03 | 0.10 | +0.11 | 1.04 | 0.358 |\n| oracle_strict | 17.68 | 0.12 | +0.46* | 3.51 | 0.025 |\n| oracle_soft | 17.84 | 0.08 | +0.30* | 2.88 | 0.045 |\n| unfiltered | 18.14 | 0.13 | — | — | — |\n\nTable 14: Pairwise comparisons (paired t-test, 5 seeds). *: p < 0.05; **: p < 0.01.\n\n| Comparison | Δ PPL | t | p |\n|------------|-------|---|---|\n| rf_strict vs random_strict | 0.429 | −7.05 | 0.002* |\n| rf_moderate vs random_moderate | 0.242 | −4.37 | 0.022* |\n| rf_soft vs random_soft | 0.528 | −7.98 | 0.001** |\n| rf_soft vs unfiltered | 0.114 | 1.04 | 0.358 |\n\n**A.12 Reference Model Ablation**\n\nTable 15: Reference model ablation. Classification accuracy (5-fold CV) on Pythia-1.4B generated text (nucleus, d0–d3) using different reference models for feature extraction.\n\n| Reference Model | Architecture | Accuracy (%) |\n|-----------------|--------------|--------------|\n| Pythia-1.4B (self) | GPT-NeoX | 78.6 ± 0.6 |\n| OLMo-1B (cross) | OLMo | 74.5 ± 0.7 |\n\n**A.13 Cross-Boundary Generalization**\n\nThe preceding experiments assume a single model family generates all recursive depths. In practice, recursive contamination may traverse model boundaries: arXiv text generated by model A is used to train model B, whose output trains model C. We probe whether the depth signal persists under two relaxations of the single-model assumption.\n\n**Cross-model recursive chains.** We construct a heterogeneous chain: human text (d0) → Pythia-1.4B generates d1 → OLMo-1B finetuned on Pythia-d1 generates d2 → GPT-2 XL finetuned on OLMo-d2 generates d3. Each recursive step uses a different model family, eliminating the possibility that depth signal arises from a single model's idiosyncratic behavior. A 4-class Random Forest achieves 84.75% accuracy (95% CI 81.0, 88.25), with per-depth F1 scores of 0.98 (d0), 0.88 (d1), 0.76 (d2), and 0.76 (d3). Pairwise AUC remains high: d0-vs-d1 = 0.999 and d2-vs-d3 = 0.91. These results suggest that distributional artifacts of recursive generation persist across model boundaries—providing preliminary evidence that the depth signal is a property of the recursive process itself rather than of any individual generator.\n\n**Cross-domain transfer.** All prior experiments use WikiText-103 as the seed corpus. To test domain dependence, we repeat the pipeline with arXiv abstracts as the seed text (Pythia-1.4B, nucleus p=0.95, 500 samples per depth, d0–d3). Five-fold cross-validation yields 74.1% ± 2.0% accuracy,\n\n---\n\n## Page 15\n\ncompared to ~78% on the WikiText seed. Per-depth F1 shows the familiar pattern: d0 = 1.00, d1 = 0.78, d2 = 0.52, d3 = 0.66—with d2 remaining the most challenging class. The 4pp accuracy gap relative to WikiText likely reflects the narrower stylistic range of scientific abstracts, which may reduce the distributional contrast between adjacent depths. These results suggest that the depth signal is domain-independent, providing preliminary evidence that the perplexity-based features capture properties of the recursive generation process rather than domain-specific artifacts of the seed corpus.\n\n**A.14 Extended Discussion**\n\n**Depth-graduated curation.** Current data curation operates on a binary human-vs-machine distinction (Xie et al., 2023; Weting et al., 2024). Recursive generation depth estimation enables a finer-grained alternative: retain low-depth generations (d1) whose distributional properties remain close to the human source, while down-weighting or filtering high-depth text (d3+) where tail erosion has degraded quality. The 70–85% in-distribution accuracy and EDD₃≥3 suggest depth-graduated filtering is feasible within known model–strategy configurations, though the d1/d2 boundary inversion under some strategy transfer (§5.3) means reliable curation requires either known decoding strategy metadata or an upstream strategy-identification step; a small-scale PoC (Appendix A.11) shows RF-filtered subsets match unfiltered quality with 44% of the data; large-scale validation remains open. Importance weighting (Sugiyama et al., 2007) could further enable continuous depth-aware data selection rather than discrete thresholding.\n\n**Toward a provenance toolkit.** Depth estimation complements existing provenance methods along orthogonal axes. Watermarking (Kirchenbauer et al., 2023) provides high-confidence attribution when the generator cooperates but is inapplicable to unwatermarked text. Source attribution (Uchendu et al., 2020) identifies the generating model but not the generation history. Depth estimation characterizes *iterative reuse* regardless of generator cooperation or identity. A layered provenance system combining these three signals—watermark presence, source model, and recursive generation depth—could support more nuanced data auditing than any single method.\n\n**A.15 Feature Importance Rankings**\n\nTable 16 reports the top-5 features by Gini importance for all 9 atlas cells. Figure 4 provides a heatmap view of all 19 features across the grid.\n\nTable 16: Top-5 features by Gini importance. Bold: top-2; *italic*: top-2 in 8/9; var_surprisal 8/9 SHAP (7/9 model Gini).\n\n| | Top-5 Feature (Gini importance, descending) |\n|---|---|\n| | 1st | 2nd | 3rd | 4th | 5th |\n| Pythia-1.4B nuc | ppl | var_s | p90_p10 | max_s | ent_u |\n| Pythia-1.4B top-k | ppl | var_s | p90_p10 | max_s | rep_4gram |\n| Pythia-1.4B temp | ppl | var_s | max_s | p90_p10 | ent_u |\n| GPT-2 XL nuc | ppl | var_s | p90_p10 | max_s | ent_u |\n| GPT-2 XL top-k | ppl | var_s | p90_p10 | max_s | frac_lt5 |\n| GPT-2 XL temp | ppl | var_s | max_s | p90_p10 | rep_4gram |\n| OLMo-1B nuc | ppl | var_s | p90_p10 | ent_u | max_s |\n| OLMo-1B top-k | ppl | var_s | max_s | ent_u | p90_p10 |\n| OLMo-1B temp | ppl | var_s | max_s | p90_p10 | ent_u |\n\n[Figure 4: Atlas feature importance heatmap. Rows: 19 features grouped by category (§3.3); columns: 9 model–strategy cells. Color intensity encodes RF Gini importance. The perplexity-tail and surprisal-variance blocks maintain high importance across all cells.]\n\n**A.16 EDD Threshold Sensitivity**\n\nTable 17 reports EDD₃ across the primary 9-cell benchmark (depths 0–3) at four threshold values.\n\nTable 17: Number of atlas cells achieving EDD ≥ 3 at each threshold T, across 9 model–strategy cells (depths 0–3). The d2-vs-d3 boundary is the bottleneck; top-6 cells drop first.\n\n| | T=0.45 | T=0.50 | T=0.55 | T=0.60 | T=0.65 | T=0.70 | T=0.75 | T=0.80 |\n|---|---|---|---|---|---|---|---|---|\n| Cells with EDD ≥ 3 | 8/9 | 8/9 | 8/9 | 8/9 | 5/9 | 5/9 | 5/9 | 5/9 |\n\n**A.17 Cross-Scale AUC Profiles**\n\nTable 18 reports the consecutive binary AUC for the two 7–8B models.\n\n---\n\n## Page 16\n\nTable 18: Consecutive binary AUC for 7–8B models (nucleus p=0.95). Llama-3.1-8B exhibits monotonic decay (d4v5 drops below T=0.70); Qwen2.5-7B shows a non-monotonic (U-shaped) pattern with all pairs above T.\n\n| Model | d0v1 | d1v2 | d2v3 | d3v4 | d4v5 |\n|-------|------|------|------|------|------|\n| Llama-3.1-8B | 0.949 | 0.877 | 0.771 | 0.716 | 0.618 |\n| Qwen2.5-7B | 0.969 | 0.729 | 0.709 | 0.732 | 0.772 |\n\n---\n\nThat is the complete verbatim extraction of all four appendix pages (13–16). Key content includes:\n\n- **Feature importance concordance** (p.13): Kendall's W = 0.90, p<0.005; pairwise Spearman ρ (SHAP–Gini 0.83, SHAP–permutation 0.81). Table 16 (p.15) gives full top-5 Gini importance rankings across all 9 atlas cells, with `ppl` and `var_surprisal` dominating.\n- **LoRA downstream PoC** (p.14, Tables 13–14): Pythia-410M LoRA r=16, α=32, 3 epochs, 6 conditions, 5 seeds. rf_strict achieves PPL 17.76 (Δ=+0.38, p=0.035).\n- **Reference model ablation** (p.14, Table 15): Self-reference (Pythia-1.4B) 78.6% vs cross-architecture (OLMo-1B) 74.5%.\n- **Cross-boundary generalization** (p.14): Heterogeneous chain achieves 84.75% 4-class accuracy. Cross-domain (arXiv seed) yields 74.1% ± 2.0%.\n- **Wild-data calibration** (p.14, Table 12): OLMo-1B FPR on C4 only 4.7% vs Pythia 29.2%.\n- **EDD threshold sensitivity** (p.15, Table 17): 8/9 cells achieve EDD≥3 at T=0.55; drops to 5/9 at T=0.65.\n- **Cross-scale AUC** (p.16, Table 18): Llama-3.1-8B monotonic decay (0.949→0.618); Qwen2.5-7B U-shaped (0.969→0.772).\n- **No explicit VIF/multicollinearity table or LoRA rank sensitivity (r=4/16/64) ablation** found in these pages."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1a69d288-ddd5-4194-940d-c88f34fad5d4",
+            "isSidechain": true,
+            "agentId": "a5e0dff94de397c54",
+            "requestId": "req_011Cb6og14fsNVv8S5tMCqMX",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "582bd451-24bc-48d0-a952-c0f62b225c28",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/review_reviewer_1_37084335",
+            "sessionId": "f5009a54-ac13-49a4-83d8-13bbafebaca9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013KQqyAFWsseeBzQgxS35gq",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 3910,
+                "cache_read_input_tokens": 16873,
+                "output_tokens": 5058,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 3910
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 5058,
+                    "cache_read_input_tokens": 16873,
+                    "cache_creation_input_tokens": 3910,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 3910,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        }
+      ],
+      "message_count": 11
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-read-the-following-png-images-of-a-research-paper-and-extract-all-text-content-copy-3.md"
+}

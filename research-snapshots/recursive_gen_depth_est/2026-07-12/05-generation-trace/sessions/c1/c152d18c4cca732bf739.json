@@ -1,0 +1,1387 @@
+{
+  "schema_version": "1.0",
+  "id": "c152d18c4cca732bf739",
+  "project": "recursive_gen_depth_est--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I need to verify 3 specific citation entries in a LaTeX paper's bibliography. The paper is at `/home/ubuntu/.agent-ml-re",
+  "task_key": "agent-ad7a09ae94478aa5a",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/agent-ad7a09ae94478aa5a.jsonl",
+    "occurrence": 1,
+    "bytes": 77281,
+    "sha256": "db9f243232573266eb7765d859b0bba4079f6fc2327d739c46213fa4eb920ca5"
+  },
+  "statistics": {
+    "messages": 30,
+    "user_turns": 1,
+    "tool_calls": 12,
+    "roles": {
+      "user": 1,
+      "assistant": 5,
+      "tool_call": 12,
+      "tool_result": 12
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T18:29:36.217Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "I need to verify 3 specific citation entries in a LaTeX paper's bibliography.\n\nThe paper is at `/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/`.\nThe bib file is `references.bib`.\n\nFor each of the following, find the EXACT bib entry content AND search all .tex files for where it's cited (\\cite, \\citet, \\citep):\n\n1. **qwen2.5** — The user says it might mix blog title and arXiv ID. Find the exact entry. Check if title field uses a blog post title vs a proper paper title, and whether there's an arXiv ID mixed in.\n\n2. **guo2024_biscope** — The user says no formal source can be found. Find the exact entry, note venue/journal/url fields. Check if this is a real published paper.\n\n3. **rennie2005** — The user says no reliable citation URL. Find the exact entry. Check if URL field exists and what it points to. This seems to be about ordinal classification/regression.\n\nSearch breadth: medium. Report the EXACT bib entry text for each, plus where each is cited in the paper."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "c2353eb7-212b-4cee-8fa2-7d956fd1d126",
+            "agentId": "ad7a09ae94478aa5a",
+            "type": "user",
+            "uuid": "aa64268f-0dcb-4aa0-a25c-a3f391bfd227",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/director_e0265221",
+            "sessionId": "30b280da-923f-435b-b3db-f1fde842ae75",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T18:29:38.067Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll help you verify these three citation entries. Let me start by examining the bib file and then searching for where each citation is used in the tex files."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "aa64268f-0dcb-4aa0-a25c-a3f391bfd227",
+            "isSidechain": true,
+            "agentId": "ad7a09ae94478aa5a",
+            "requestId": "req_011CbJ5itP5JEJxLDWVcndCW",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "a9435060-f4b2-4372-8d0d-c711c70945d4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/director_e0265221",
+            "sessionId": "30b280da-923f-435b-b3db-f1fde842ae75",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01BbdsjXUiijWFgYRy8DEr75",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 704,
+                "cache_read_input_tokens": 39102,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 704,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T18:29:38.706Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MzDAEfW6C4DcfCTsT48ezU",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/references.bib"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a9435060-f4b2-4372-8d0d-c711c70945d4",
+            "isSidechain": true,
+            "agentId": "ad7a09ae94478aa5a",
+            "requestId": "req_011CbJ5itP5JEJxLDWVcndCW",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "b3a6076e-aac4-470a-b9ed-7e2c37426809",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/director_e0265221",
+            "sessionId": "30b280da-923f-435b-b3db-f1fde842ae75",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01BbdsjXUiijWFgYRy8DEr75",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 704,
+                "cache_read_input_tokens": 39102,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 704,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T18:29:38.728Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UnXzmctad9WsK1sU5q7t3A",
+              "name": "Glob",
+              "input": {
+                "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/**/*.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b3a6076e-aac4-470a-b9ed-7e2c37426809",
+            "isSidechain": true,
+            "agentId": "ad7a09ae94478aa5a",
+            "requestId": "req_011CbJ5itP5JEJxLDWVcndCW",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "9d38e45e-fa1c-450a-9a82-f54b42de5ab8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/director_e0265221",
+            "sessionId": "30b280da-923f-435b-b3db-f1fde842ae75",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01BbdsjXUiijWFgYRy8DEr75",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 704,
+                "cache_read_input_tokens": 39102,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 704,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T18:29:38.986Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MzDAEfW6C4DcfCTsT48ezU",
+              "type": "tool_result",
+              "content": "1\t% ============================================================\n2\t% Model Collapse Theory\n3\t% ============================================================\n4\t\n5\t@article{shumailov2024_nature,\n6\t  author    = {Shumailov, Ilia and Shumaylov, Zakhar and Zhao, Yiren and Papernot, Nicolas and Anderson, Ross and Gal, Yarin},\n7\t  title     = {{AI models collapse when trained on recursively generated data}},\n8\t  journal   = {Nature},\n9\t  volume    = {631},\n10\t  pages     = {755--759},\n11\t  year      = {2024},\n12\t  doi       = {10.1038/s41586-024-07566-y},\n13\t}\n14\t\n15\t@inproceedings{dohmatob2024_tale_of_tails,\n16\t  author    = {Dohmatob, Elvis and Feng, Yunzhen and Yang, Pu and Charton, Francois and Kempe, Julia},\n17\t  title     = {{A Tale of Tails: Model Collapse as a Change of Scaling Laws}},\n18\t  booktitle = {Proceedings of ICML},\n19\t  year      = {2024},\n20\t  note      = {arXiv:2402.07043},\n21\t  url       = {https://arxiv.org/abs/2402.07043},\n22\t}\n23\t\n24\t@inproceedings{dohmatob2025_strong_collapse,\n25\t  author    = {Dohmatob, Elvis and Feng, Yunzhen and Subramonian, Arjun and Kempe, Julia},\n26\t  title     = {{Strong Model Collapse}},\n27\t  booktitle = {Proceedings of ICLR},\n28\t  year      = {2025},\n29\t  note      = {arXiv:2410.04840},\n30\t  url       = {https://arxiv.org/abs/2410.04840},\n31\t}\n32\t\n33\t@inproceedings{dohmatob2024_demystified,\n34\t  author    = {Dohmatob, Elvis and Feng, Yunzhen and Kempe, Julia},\n35\t  title     = {{Model Collapse Demystified: The Case of Regression}},\n36\t  booktitle = {Proceedings of NeurIPS},\n37\t  year      = {2024},\n38\t  note      = {arXiv:2402.07712},\n39\t  url       = {https://arxiv.org/abs/2402.07712},\n40\t}\n41\t\n42\t@inproceedings{alemohammad2024_mad,\n43\t  author    = {Alemohammad, Sina and Casco-Rodriguez, Josue and Luzi, Lorenzo and Humayun, Ahmed Imtiaz and Babaei, Hossein and LeJeune, Daniel and Siahkoohi, Ali and Baraniuk, Richard G.},\n44\t  title     = {{Self-Consuming Generative Models Go MAD}},\n45\t  booktitle = {Proceedings of ICLR},\n46\t  year      = {2024},\n47\t  note      = {arXiv:2307.01850},\n48\t  url       = {https://arxiv.org/abs/2307.01850},\n49\t}\n50\t\n51\t@inproceedings{gerstgrasser2024_accumulate,\n52\t  author    = {Gerstgrasser, Matthias and Schaeffer, Rylan and Dey, Apratim and Rafailov, Rafael and Sleight, Henry and Hughes, John and Korbak, Tomasz and Agrawal, Rajashree and Pai, Dhruv and Gromov, Andrey and Roberts, Daniel A. and Yang, Diyi and Donoho, David L. and Koyejo, Sanmi},\n53\t  title     = {{Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data}},\n54\t  booktitle = {Proceedings of the First Conference on Language Modeling (COLM)},\n55\t  year      = {2024},\n56\t  note      = {arXiv:2404.01413},\n57\t  url       = {https://arxiv.org/abs/2404.01413},\n58\t}\n59\t\n60\t@inproceedings{marchi2024_heat_death,\n61\t  author    = {Marchi, Matteo and Soatto, Stefano and Chaudhari, Pratik and Tabuada, Paulo},\n62\t  title     = {{Heat Death of Generative Models in Closed-Loop Learning}},\n63\t  booktitle = {Proceedings of ICASSP},\n64\t  year      = {2024},\n65\t  note      = {arXiv:2404.02325},\n66\t  url       = {https://arxiv.org/abs/2404.02325},\n67\t}\n68\t\n69\t@misc{knowledge_collapse2025,\n70\t  author    = {Keisha, Figarri and Wu, Zekun and Wang, Ze and Koshiyama, Adriano and Treleaven, Philip},\n71\t  title     = {{Knowledge Collapse in LLMs: When Fluency Survives but Facts Fail under Recursive Synthetic Training}},\n72\t  year      = {2025},\n73\t  howpublished = {arXiv:2509.04796},\n74\t  url       = {https://arxiv.org/abs/2509.04796},\n75\t}\n76\t\n77\t@misc{sigma2026_spectral,\n78\t  author    = {Gu, Yi and Pang, Lingyou and Ye, Xiangkun and Wang, Tianyu and Lin, Jianyu and Priebe, Carey E. and Aue, Alexander},\n79\t  title     = {{SIGMA: Scalable Spectral Insights for LLM Model Collapse}},\n80\t  year      = {2026},\n81\t  howpublished = {arXiv:2601.03385},\n82\t  url       = {https://arxiv.org/abs/2601.03385},\n83\t}\n84\t\n85\t@inproceedings{mohamed2025_broken_telephone,\n86\t  author    = {Mohamed, Amr and Geng, Mingmeng and Vazirgiannis, Michalis and Shang, Guokan},\n87\t  title     = {{LLM as a Broken Telephone: Iterative Generation Distorts Information}},\n88\t  booktitle = {Proceedings of ACL},\n89\t  year      = {2025},\n90\t  note      = {arXiv:2502.20258},\n91\t  url       = {https://arxiv.org/abs/2502.20258},\n92\t}\n93\t\n94\t@inproceedings{synthetic_eggs2026,\n95\t  author    = {Schaffelder, Max and Gatt, Albert},\n96\t  title     = {{Synthetic Eggs in Many Baskets: The Impact of Synthetic Data Diversity on LLM Fine-Tuning}},\n97\t  booktitle = {Findings of ACL},\n98\t  year      = {2026},\n99\t  note      = {arXiv:2511.01490},\n100\t  url       = {https://arxiv.org/abs/2511.01490},\n101\t}\n102\t\n103\t@inproceedings{shi2025_closer_look,\n104\t  author    = {Shi, Lianghe and Wu, Meng and Zhang, Huijie and Zhang, Zekai and Tao, Molei and Qu, Qing},\n105\t  title     = {{A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective}},\n106\t  booktitle = {Proceedings of NeurIPS},\n107\t  year      = {2025},\n108\t  note      = {Spotlight},\n109\t}\n110\t\n111\t@inproceedings{yi2026_escaping_collapse,\n112\t  author    = {Yi, Bingji and Liu, Qiyuan and Cheng, Yuwei and Xu, Haifeng},\n113\t  title     = {{Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term Convergence}},\n114\t  booktitle = {3rd DATA-FM Workshop at ICLR 2026},\n115\t  year      = {2026},\n116\t}\n117\t\n118\t@inproceedings{muennighoff2023scaling,\n119\t  author    = {Muennighoff, Niklas and Rush, Alexander and Barak, Boaz and Le Scao, Teven and Piktus, Aleksandra and Tazi, Nouamane and Pyysalo, Sampo and Wolf, Thomas and Raffel, Colin},\n120\t  title     = {{Scaling Data-Constrained Language Models}},\n121\t  booktitle = {Proceedings of NeurIPS},\n122\t  year      = {2023},\n123\t}\n124\t\n125\t% --- Model collapse: collapse-can-be-avoided / contamination ---\n126\t\n127\t@inproceedings{drayson2025_detection_prevents_collapse,\n128\t  author    = {Drayson, George and Yilmaz, Emine and Lampos, Vasileios},\n129\t  title     = {{Machine-generated text detection prevents language model collapse}},\n130\t  booktitle = {Findings of EMNLP},\n131\t  year      = {2025},\n132\t  note      = {arXiv:2502.15654},\n133\t  url       = {https://arxiv.org/abs/2502.15654},\n134\t}\n135\t\n136\t@misc{bakshi2026_collapse_improvement,\n137\t  author    = {Bakshi, Soham and Chakraborty, Sunrit},\n138\t  title     = {{From Collapse to Improvement: Statistical Perspectives on the Evolutionary Dynamics of Iterative Training on Contaminated Sources}},\n139\t  year      = {2026},\n140\t  howpublished = {arXiv:2602.10531},\n141\t  url       = {https://arxiv.org/abs/2602.10531},\n142\t}\n143\t\n144\t@misc{wang2026_contamination,\n145\t  author    = {Wang, Kevin and Niu, Hongqian and Li, Didong},\n146\t  title     = {{Can Generative Artificial Intelligence Survive Data Contamination? Theoretical Guarantees under Contaminated Recursive Training}},\n147\t  year      = {2026},\n148\t  howpublished = {arXiv:2602.16065},\n149\t  url       = {https://arxiv.org/abs/2602.16065},\n150\t}\n151\t\n152\t@misc{falahati2026_curated,\n153\t  author    = {Falahati, Ali and Mohammadi Amiri, Mohammad and Larson, Kate and Golab, Lukasz},\n154\t  title     = {{Curated Synthetic Data Doesn't Have to Collapse: A Theoretical Study of Generative Retraining with Pluralistic Preferences}},\n155\t  year      = {2026},\n156\t  howpublished = {arXiv:2605.07724},\n157\t  url       = {https://arxiv.org/abs/2605.07724},\n158\t}\n159\t\n160\t% ============================================================\n161\t% AI-Generated Text Detection\n162\t% ============================================================\n163\t\n164\t@article{wu2025_detection_survey,\n165\t  author    = {Wu, Junchao and Yang, Shu and Zhan, Runzhe and Yuan, Yulin and Chao, Lidia Sam and Wong, Derek Fai},\n166\t  title     = {{A Survey on LLM-Generated Text Detection: Necessity, Methods, and Future Directions}},\n167\t  journal   = {Computational Linguistics},\n168\t  volume    = {51},\n169\t  number    = {1},\n170\t  pages     = {275--354},\n171\t  year      = {2025},\n172\t  publisher = {MIT Press},\n173\t}\n174\t\n175\t% --- Statistical / zero-shot detectors ---\n176\t\n177\t@inproceedings{gehrmann2019_gltr,\n178\t  author    = {Gehrmann, Sebastian and Strobelt, Hendrik and Rush, Alexander M.},\n179\t  title     = {{GLTR: Statistical Detection and Visualization of Generated Text}},\n180\t  booktitle = {Proceedings of ACL: System Demonstrations},\n181\t  year      = {2019},\n182\t  note      = {arXiv:1906.04043},\n183\t  url       = {https://arxiv.org/abs/1906.04043},\n184\t}\n185\t\n186\t@inproceedings{mitchell2023_detectgpt,\n187\t  author    = {Mitchell, Eric and Lee, Yoonho and Khazatsky, Alexander and Manning, Christopher D. and Finn, Chelsea},\n188\t  title     = {{DetectGPT: Zero-Shot Machine-Generated Text Detection using Probability Curvature}},\n189\t  booktitle = {Proceedings of ICML},\n190\t  year      = {2023},\n191\t  note      = {arXiv:2301.11305},\n192\t  url       = {https://arxiv.org/abs/2301.11305},\n193\t}\n194\t\n195\t@inproceedings{fast_detectgpt2024,\n196\t  author    = {Bao, Guangsheng and Zhao, Yanbin and Teng, Zhiyang and Yang, Linyi and Zhang, Yue},\n197\t  title     = {{Fast-DetectGPT: Efficient Zero-Shot Detection of Machine-Generated Text via Conditional Probability Curvature}},\n198\t  booktitle = {Proceedings of ICLR},\n199\t  year      = {2024},\n200\t  note      = {arXiv:2310.05130},\n201\t  url       = {https://arxiv.org/abs/2310.05130},\n202\t}\n203\t\n204\t@inproceedings{binoculars2024,\n205\t  author    = {Hans, Abhimanyu and Schwarzschild, Avi and Cherepanova, Valeriia and Kazemi, Hamid and Saha, Aniruddha and Goldblum, Micah and Geiping, Jonas and Goldstein, Tom},\n206\t  title     = {{Spotting LLMs With Binoculars: Zero-Shot Detection of Machine-Generated Text}},\n207\t  booktitle = {Proceedings of ICML},\n208\t  year      = {2024},\n209\t  note      = {arXiv:2401.12070},\n210\t  url       = {https://arxiv.org/abs/2401.12070},\n211\t}\n212\t\n213\t@article{diveye2026,\n214\t  author    = {Basani, Advik Raj and Chen, Pin-Yu},\n215\t  title     = {{Diversity Boosts AI-Generated Text Detection}},\n216\t  journal   = {Transactions on Machine Learning Research (TMLR)},\n217\t  year      = {2026},\n218\t  note      = {arXiv:2509.18880},\n219\t  url       = {https://arxiv.org/abs/2509.18880},\n220\t}\n221\t\n222\t% --- Robustness / limitations of detectors ---\n223\t\n224\t@misc{sadasivan2023_paraphrase,\n225\t  author    = {Sadasivan, Vinu Sankar and Kumar, Aounon and Balasubramanian, Sriram and Wang, Wenxiao and Feizi, Soheil},\n226\t  title     = {{Can AI-Generated Text be Reliably Detected?}},\n227\t  year      = {2023},\n228\t  howpublished = {arXiv:2303.11156},\n229\t  url       = {https://arxiv.org/abs/2303.11156},\n230\t}\n231\t\n232\t@misc{pudasaini2026_detection_fails,\n233\t  author    = {Pudasaini, Shushanta and Miralles-Pech{\\'u}an, Luis and Lillis, David and Llorens Salvador, Marisa},\n234\t  title     = {{Why AI-Generated Text Detection Fails: Evidence from Explainable AI Beyond Benchmark Accuracy}},\n235\t  year      = {2026},\n236\t  howpublished = {arXiv:2603.23146},\n237\t  url       = {https://arxiv.org/abs/2603.23146},\n238\t}\n239\t\n240\t@misc{pu2026_generator_barrier,\n241\t  author    = {Pu, Xiao and Cheng, Zepeng and Yuan, Lin and Wu, Yu and Bi, Xiuli},\n242\t  title     = {{Breaking the Generator Barrier: Disentangled Representation for Generalizable AI-Text Detection}},\n243\t  year      = {2026},\n244\t  howpublished = {arXiv:2604.13692},\n245\t  url       = {https://arxiv.org/abs/2604.13692},\n246\t}\n247\t\n248\t% --- Beyond binary: attribution, editing extent, benchmarks ---\n249\t\n250\t@inproceedings{bevendorff2025_two_paradigms,\n251\t  author    = {Bevendorff, Janek and Wiegmann, Matti and Richter, Emmelie and Potthast, Martin and Stein, Benno},\n252\t  title     = {{The Two Paradigms of LLM Detection: Authorship Attribution vs. Authorship Verification}},\n253\t  booktitle = {Findings of ACL},\n254\t  pages     = {3762--3787},\n255\t  year      = {2025},\n256\t  address   = {Vienna, Austria},\n257\t}\n258\t\n259\t@inproceedings{uchendu2020_attribution,\n260\t  author    = {Uchendu, Adaku and Le, Thai and Shu, Kai and Lee, Dongwon},\n261\t  title     = {{Authorship Attribution for Neural Text Generation}},\n262\t  booktitle = {Proceedings of EMNLP},\n263\t  year      = {2020},\n264\t}\n265\t\n266\t@inproceedings{editlens2026,\n267\t  author    = {Thai, Katherine and Emi, Bradley and Masrour, Elyas and Iyyer, Mohit},\n268\t  title     = {{EditLens: Quantifying the Extent of AI Editing in Text}},\n269\t  booktitle = {Proceedings of ICLR},\n270\t  year      = {2026},\n271\t  note      = {arXiv:2510.03154},\n272\t  url       = {https://arxiv.org/abs/2510.03154},\n273\t}\n274\t\n275\t% --- Geometric / intrinsic dimension detectors ---\n276\t\n277\t@inproceedings{tulchinskii2023_intrinsic_dim,\n278\t  author    = {Tulchinskii, Eduard and Kuznetsov, Kristian and Kushnareva, Laida and Cherniavskii, Daniil and Barannikov, Serguei and Piontkovskaya, Irina and Nikolenko, Sergey and Burnaev, Evgeny},\n279\t  title     = {{Intrinsic Dimension Estimation for Robust Detection of AI-Generated Texts}},\n280\t  booktitle = {Proceedings of NeurIPS},\n281\t  year      = {2023},\n282\t  note      = {arXiv:2306.04723},\n283\t  url       = {https://arxiv.org/abs/2306.04723},\n284\t}\n285\t\n286\t% --- Statistical / feature-based / shared-task detectors ---\n287\t\n288\t@inproceedings{verma2024_ghostbuster,\n289\t  author    = {Verma, Vivek and Fleisig, Eve and Tomlin, Nicholas and Klein, Dan},\n290\t  title     = {{Ghostbuster: Detecting Text Ghostwritten by Large Language Models}},\n291\t  booktitle = {Proceedings of NAACL},\n292\t  year      = {2024},\n293\t  note      = {arXiv:2305.15047},\n294\t  url       = {https://arxiv.org/abs/2305.15047},\n295\t}\n296\t\n297\t@inproceedings{wang2023_seqxgpt,\n298\t  author    = {Wang, Pengyu and Li, Linyang and Ren, Ke and Jiang, Botian and Zhang, Dong and Qiu, Xipeng},\n299\t  title     = {{SeqXGPT: Sentence-Level AI-Generated Text Detection}},\n300\t  booktitle = {Proceedings of EMNLP},\n301\t  year      = {2023},\n302\t  note      = {arXiv:2310.08903},\n303\t  url       = {https://arxiv.org/abs/2310.08903},\n304\t}\n305\t\n306\t@misc{bevendorff2026_pan,\n307\t  author    = {Bevendorff, Janek and Fr{\\\"o}be, Maik and Greiner-Petter, Andr{\\'e} and Jakoby, Andreas and Mayerl, Maximilian and Nakov, Preslav and Plutz, Henry and Potthast, Martin and Stein, Benno and Ta, Minh Ngoc and Wang, Yuxia and Zangerle, Eva},\n308\t  title     = {{Overview of PAN 2026: Voight-Kampff Generative AI Detection, Text Watermarking, Multi-Author Writing Style Analysis, Generative Plagiarism Detection, and Reasoning Trajectory Detection}},\n309\t  year      = {2026},\n310\t  howpublished = {arXiv:2602.09147},\n311\t  url       = {https://arxiv.org/abs/2602.09147},\n312\t}\n313\t\n314\t@inproceedings{wang2024_m4_semeval,\n315\t  author    = {Wang, Yuxia and Mansurov, Jonibek and Ivanov, Petar and Su, Jinyan and Shelmanov, Artem and Tsvigun, Akim and Afzal, Osama Mohammed and Mahmoud, Tarek and Puccetti, Giovanni and Arnold, Thomas and Whitehouse, Chenxi and Aji, Alham Fikri and Habash, Nizar and Gurevych, Iryna and Nakov, Preslav},\n316\t  title     = {{SemEval-2024 Task 8: Multidomain, Multimodel and Multilingual Machine-Generated Text Detection}},\n317\t  booktitle = {Proceedings of the 18th International Workshop on Semantic Evaluation (SemEval-2024)},\n318\t  year      = {2024},\n319\t  note      = {arXiv:2404.14183},\n320\t  url       = {https://arxiv.org/abs/2404.14183},\n321\t}\n322\t\n323\t@inproceedings{li2024_mage,\n324\t  author    = {Li, Yongkang and Li, Donghao and Yang, Yue and Hu, Baotian and Zhang, Min},\n325\t  title     = {{MAGE: Machine-generated Text Detection in the Wild}},\n326\t  booktitle = {Proceedings of ACL},\n327\t  year      = {2024},\n328\t  note      = {arXiv:2305.13242},\n329\t  url       = {https://arxiv.org/abs/2305.13242},\n330\t}\n331\t\n332\t@inproceedings{yang2024_dnagpt,\n333\t  author    = {Yang, Xianjun and Cheng, Wei and Wu, Yue and Petzold, Linda and Wang, William Yang and Chen, Haifeng},\n334\t  title     = {{DNA-GPT: Divergent N-Gram Analysis for Training-Free Detection of GPT-Generated Text}},\n335\t  booktitle = {Proceedings of ICLR},\n336\t  year      = {2024},\n337\t  note      = {arXiv:2305.17359},\n338\t  url       = {https://arxiv.org/abs/2305.17359},\n339\t}\n340\t\n341\t% --- Watermarking ---\n342\t\n343\t@inproceedings{kirchenbauer2023_watermark,\n344\t  author    = {Kirchenbauer, John and Geiping, Jonas and Wen, Yuxin and Katz, Jonathan and Miers, Ian and Goldstein, Tom},\n345\t  title     = {{A Watermark for Large Language Models}},\n346\t  booktitle = {Proceedings of ICML},\n347\t  year      = {2023},\n348\t  note      = {arXiv:2301.10226},\n349\t  url       = {https://arxiv.org/abs/2301.10226},\n350\t}\n351\t\n352\t% ============================================================\n353\t% Decoding Strategies\n354\t% ============================================================\n355\t\n356\t@inproceedings{holtzman2020_nucleus,\n357\t  author    = {Holtzman, Ari and Buys, Jan and Du, Li and Forbes, Maxwell and Choi, Yejin},\n358\t  title     = {{The Curious Case of Neural Text Degeneration}},\n359\t  booktitle = {Proceedings of ICLR},\n360\t  year      = {2020},\n361\t  note      = {arXiv:1904.09751},\n362\t  url       = {https://arxiv.org/abs/1904.09751},\n363\t}\n364\t\n365\t@inproceedings{finlayson2024_closing,\n366\t  author    = {Finlayson, Matthew and Hewitt, John and Koller, Alexander and Swayamdipta, Swabha and Sabharwal, Ashish},\n367\t  title     = {{Closing the Curious Case of Neural Text Degeneration}},\n368\t  booktitle = {Proceedings of ICLR},\n369\t  year      = {2024},\n370\t  note      = {arXiv:2310.01693},\n371\t  url       = {https://arxiv.org/abs/2310.01693},\n372\t}\n373\t\n374\t@inproceedings{garces_arias2025_decoding_decoded,\n375\t  author    = {{Garc{\\'e}s Arias}, Esteban and Li, Meimingwei and Heumann, Christian and Assenmacher, Matthias},\n376\t  title     = {{Decoding Decoded: Understanding Hyperparameter Effects in Open-Ended Text Generation}},\n377\t  booktitle = {Proceedings of COLING},\n378\t  year      = {2025},\n379\t  note      = {arXiv:2410.06097},\n380\t  url       = {https://arxiv.org/abs/2410.06097},\n381\t}\n382\t\n383\t@article{wiher2022_decoding,\n384\t  author    = {Wiher, Gian and Meister, Clara and Cotterell, Ryan},\n385\t  title     = {{On Decoding Strategies for Neural Text Generators}},\n386\t  journal   = {Transactions of the Association for Computational Linguistics},\n387\t  volume    = {10},\n388\t  pages     = {997--1012},\n389\t  year      = {2022},\n390\t}\n391\t\n392\t@inproceedings{basu2021_mirostat,\n393\t  author    = {Basu, Sourya and Ramachandran, Govardana Sachitanandam and Keskar, Nitish Shirish and Varshney, Lav R.},\n394\t  title     = {{Mirostat: A Neural Text Decoding Algorithm that Directly Controls Perplexity}},\n395\t  booktitle = {Proceedings of ICLR},\n396\t  year      = {2021},\n397\t}\n398\t\n399\t% ============================================================\n400\t% Ordinal Classification / Contrastive Learning\n401\t% ============================================================\n402\t\n403\t@article{coral2020,\n404\t  author    = {Cao, Wenzhi and Mirjalili, Vahid and Raschka, Sebastian},\n405\t  title     = {{Rank Consistent Ordinal Regression for Neural Networks with Application to Age Estimation}},\n406\t  journal   = {Pattern Recognition Letters},\n407\t  volume    = {140},\n408\t  pages     = {325--331},\n409\t  year      = {2020},\n410\t  note      = {arXiv:1901.07884},\n411\t  url       = {https://arxiv.org/abs/1901.07884},\n412\t}\n413\t\n414\t@inproceedings{cloc2025,\n415\t  author    = {Pitawela, Dileepa and Carneiro, Gustavo and Chen, Hsiang-Ting},\n416\t  title     = {{CLOC: Contrastive Learning for Ordinal Classification with Multi-Margin N-pair Loss}},\n417\t  booktitle = {Proceedings of CVPR},\n418\t  year      = {2025},\n419\t  note      = {arXiv:2504.17813},\n420\t  url       = {https://arxiv.org/abs/2504.17813},\n421\t}\n422\t\n423\t% ============================================================\n424\t% Foundation Models / Fine-tuning\n425\t% ============================================================\n426\t\n427\t@inproceedings{hu2022lora,\n428\t  author    = {Hu, Edward J. and Shen, Yelong and Wallis, Phillip and Allen-Zhu, Zeyuan and Li, Yuanzhi and Wang, Shean and Wang, Lu and Chen, Weizhu},\n429\t  title     = {{LoRA: Low-Rank Adaptation of Large Language Models}},\n430\t  booktitle = {Proceedings of ICLR},\n431\t  year      = {2022},\n432\t  note      = {arXiv:2106.09685},\n433\t  url       = {https://arxiv.org/abs/2106.09685},\n434\t}\n435\t\n436\t@inproceedings{he2021_deberta_v3,\n437\t  author    = {He, Pengcheng and Gao, Jianfeng and Chen, Weizhu},\n438\t  title     = {{DeBERTaV3: Improving DeBERTa using ELECTRA-Style Pre-Training with Gradient-Disentangled Embedding Sharing}},\n439\t  booktitle = {Proceedings of ICLR},\n440\t  year      = {2021},\n441\t  note      = {arXiv:2111.09543},\n442\t  url       = {https://arxiv.org/abs/2111.09543},\n443\t}\n444\t\n445\t@misc{liu2019_roberta,\n446\t  author    = {Liu, Yinhan and Ott, Myle and Goyal, Naman and Du, Jingfei and Joshi, Mandar and Chen, Danqi and Levy, Omer and Lewis, Mike and Zettlemoyer, Luke and Stoyanov, Veselin},\n447\t  title     = {{RoBERTa: A Robustly Optimized BERT Pretraining Approach}},\n448\t  year      = {2019},\n449\t  howpublished = {arXiv:1907.11692},\n450\t  url       = {https://arxiv.org/abs/1907.11692},\n451\t}\n452\t\n453\t% ============================================================\n454\t% Data Curation / Selection\n455\t% ============================================================\n456\t\n457\t% ============================================================\n458\t% Large Language Models (cross-scale experiments)\n459\t% ============================================================\n460\t\n461\t@misc{qwen2.5,\n462\t  author    = {{Qwen Team}},\n463\t  title     = {{Qwen2.5: A Party of Foundation Models}},\n464\t  year      = {2025},\n465\t  howpublished = {arXiv:2412.15115},\n466\t  url       = {https://arxiv.org/abs/2412.15115},\n467\t}\n468\t\n469\t@misc{llama3,\n470\t  author    = {Grattafiori, Aaron and others},\n471\t  title     = {{The Llama 3 Herd of Models}},\n472\t  year      = {2024},\n473\t  howpublished = {arXiv:2407.21783},\n474\t  url       = {https://arxiv.org/abs/2407.21783},\n475\t}\n476\t\n477\t% ============================================================\n478\t% Additional References (R5-R7 fixes)\n479\t% ============================================================\n480\t\n481\t@inproceedings{kazdan2025_collapse_or_thrive,\n482\t  author    = {Kazdan, Joshua and Schaeffer, Rylan and Dey, Apratim and Gerstgrasser, Matthias and Rafailov, Rafael and Donoho, David L. and Koyejo, Sanmi},\n483\t  title     = {{Collapse or Thrive? Perils and Promises of Synthetic Data in a Self-Generating World}},\n484\t  booktitle = {Proceedings of ICML},\n485\t  year      = {2025},\n486\t  note      = {arXiv:2410.16713},\n487\t  url       = {https://arxiv.org/abs/2410.16713},\n488\t}\n489\t\n490\t@inproceedings{suresh2025_rate_collapse,\n491\t  author    = {Suresh, Ananda Theertha and Thangaraj, Andrew and Khandavally, Aditya Nanda Kishore},\n492\t  title     = {{Rate of Model Collapse in Recursive Training}},\n493\t  booktitle = {Proceedings of AISTATS},\n494\t  year      = {2025},\n495\t  note      = {arXiv:2412.17646},\n496\t  url       = {https://arxiv.org/abs/2412.17646},\n497\t}\n498\t\n499\t@misc{schaeffer2025,\n500\t  author    = {Schaeffer, Rylan and Kazdan, Joshua and Arulandu, Alvan Caleb and Koyejo, Sanmi},\n501\t  title     = {{Position: Model Collapse Does Not Mean What You Think}},\n502\t  year      = {2025},\n503\t  howpublished = {arXiv:2503.03150},\n504\t  url       = {https://arxiv.org/abs/2503.03150},\n505\t}\n506\t\n507\t@inproceedings{frank2001,\n508\t  author    = {Frank, Eibe and Hall, Mark},\n509\t  title     = {{A Simple Approach to Ordinal Classification}},\n510\t  booktitle = {Proceedings of ECML},\n511\t  year      = {2001},\n512\t  pages     = {145--156},\n513\t}\n514\t\n515\t@inproceedings{rennie2005,\n516\t  author    = {Rennie, Jason D. M. and Srebro, Nathan},\n517\t  title     = {{Loss Functions for Preference Levels: Regression with Discrete Ordered Labels}},\n518\t  booktitle = {Proceedings of IJCAI Workshop on Advances in Preference Handling},\n519\t  year      = {2005},\n520\t}\n521\t\n522\t@article{mccullagh1980_ordinal,\n523\t  title={{Regression Models for Ordinal Data}},\n524\t  author={McCullagh, Peter},\n525\t  journal={Journal of the Royal Statistical Society: Series B},\n526\t  volume={42},\n527\t  number={2},\n528\t  pages={109--142},\n529\t  year={1980}\n530\t}\n531\t\n532\t@inproceedings{wenzek2020_ccnet,\n533\t  title={{CCNet}: Extracting High Quality Monolingual Datasets from Web Crawl Data},\n534\t  author={Wenzek, Guillaume and Lachaux, Marie-Anne and Conneau, Alexis and Chaudhary, Vishrav and Guzm{\\'a}n, Francisco and Joulin, Armand and Grave, Edouard},\n535\t  booktitle={Proceedings of LREC},\n536\t  year={2020}\n537\t}\n538\t\n539\t@inproceedings{dugan2024_raid,\n540\t  author    = {Dugan, Liam and Hwang, Alyssa and Trhl{\\'\\i}k, Filip and Zhu, Andrew and Ludan, Josh Magnus and Xu, Hainiu and Ippolito, Daphne and Callison-Burch, Chris},\n541\t  title     = {{RAID: A Shared Benchmark for Robust Evaluation of Machine-Generated Text Detectors}},\n542\t  booktitle = {Proceedings of ACL},\n543\t  pages     = {12463--12492},\n544\t  year      = {2024},\n545\t  note      = {arXiv:2405.07940},\n546\t  url       = {https://arxiv.org/abs/2405.07940},\n547\t}\n548\t\n549\t% ============================================================\n550\t% Reviewer-requested citations (MR1--MR5)\n551\t% ============================================================\n552\t\n553\t@inproceedings{guo2024curious,\n554\t  author    = {Guo, Yanzhu and Shang, Guokan and Vazirgiannis, Michalis and Clavel, Chlo{\\'e}},\n555\t  title     = {{The Curious Decline of Linguistic Diversity: Training Language Models on Synthetic Text}},\n556\t  booktitle = {Findings of NAACL},\n557\t  year      = {2024},\n558\t  note      = {arXiv:2311.09807},\n559\t  url       = {https://arxiv.org/abs/2311.09807},\n560\t}\n561\t\n562\t@inproceedings{padmakumar2024diversity,\n563\t  author    = {Padmakumar, Vishakh and He, He},\n564\t  title     = {{Does Writing with Language Models Reduce Content Diversity?}},\n565\t  booktitle = {Proceedings of ICLR},\n566\t  year      = {2024},\n567\t  note      = {arXiv:2309.05196},\n568\t  url       = {https://arxiv.org/abs/2309.05196},\n569\t}\n570\t\n571\t@misc{briesch2024selfconsuming,\n572\t  author    = {Briesch, Martin and Sobania, Dominik and Rothlauf, Franz},\n573\t  title     = {{Large Language Models Suffer From Their Own Output: An Analysis of the Self-Consuming Training Loop}},\n574\t  year      = {2024},\n575\t  howpublished = {arXiv:2311.16822},\n576\t  url       = {https://arxiv.org/abs/2311.16822},\n577\t}\n578\t\n579\t@misc{seddik2024synthetic,\n580\t  author    = {Seddik, Mohamed El Amine and Chen, Suei-Wen and Hayou, Soufiane and Youssef, Pierre and Debbah, Merouane},\n581\t  title     = {{How Bad is Training on Synthetic Data? A Statistical Analysis of Language Model Collapse}},\n582\t  year      = {2024},\n583\t  howpublished = {arXiv:2404.05090},\n584\t  url       = {https://arxiv.org/abs/2404.05090},\n585\t}\n586\t\n587\t@article{janitza2016_ordinal_rf,\n588\t  author    = {Janitza, Silke and Tutz, Gerhard and Boulesteix, Anne-Laure},\n589\t  title     = {{Random Forest for Ordinal Responses: Prediction and Variable Selection}},\n590\t  journal   = {Computational Statistics \\& Data Analysis},\n591\t  volume    = {96},\n592\t  pages     = {57--73},\n593\t  year      = {2016},\n594\t}\n595\t\n596\t@inproceedings{zhu2025_trove,\n597\t  author    = {Zhu, Junnan and Xiao, Min and Wang, Yining and Zhai, Feifei and Zhou, Yu and Zong, Chengqing},\n598\t  title     = {{TROVE: A Challenge for Fine-Grained Text Provenance via Source Sentence Tracing and Relationship Classification}},\n599\t  booktitle = {Proceedings of ACL},\n600\t  year      = {2025},\n601\t  note      = {arXiv:2503.15289},\n602\t  url       = {https://arxiv.org/abs/2503.15289},\n603\t}\n604\t\n605\t@inproceedings{carlini2021_extracting,\n606\t  author    = {Carlini, Nicholas and Tramer, Florian and Wallace, Eric and Jagielski, Matthew and Herbert-Voss, Ariel and Lee, Katherine and Roberts, Adam and Brown, Tom and Song, Dawn and Erlingsson, Ulfar and Oprea, Alina and Raffel, Colin},\n607\t  title     = {{Extracting Training Data from Large Language Models}},\n608\t  booktitle = {Proceedings of the USENIX Security Symposium},\n609\t  year      = {2021},\n610\t  note      = {arXiv:2012.07805},\n611\t  url       = {https://arxiv.org/abs/2012.07805},\n612\t}\n613\t\n614\t@inproceedings{shi2024_minkprob,\n615\t  author    = {Shi, Weijia and Ajith, Anirudh and Xia, Mengzhou and Huang, Yangsibo and Liu, Daogao and Blevins, Terra and Chen, Danqi and Zettlemoyer, Luke},\n616\t  title     = {{Detecting Pretraining Data from Large Language Models}},\n617\t  booktitle = {Proceedings of ICLR},\n618\t  year      = {2024},\n619\t  note      = {arXiv:2310.16789},\n620\t  url       = {https://arxiv.org/abs/2310.16789},\n621\t}\n622\t\n623\t@inproceedings{ilyas2022datamodels,\n624\t  author    = {Ilyas, Andrew and Park, Sung Min and Engstrom, Logan and Leclerc, Guillaume and Madry, Aleksander},\n625\t  title     = {{Datamodels: Understanding Predictions with Data and Data with Predictions}},\n626\t  booktitle = {Proceedings of ICML},\n627\t  year      = {2022},\n628\t}\n629\t\n630\t@inproceedings{christ2024_undetectable,\n631\t  author    = {Christ, Miranda and Gunn, Sam and Zamir, Or},\n632\t  title     = {{Undetectable Watermarks for Language Models}},\n633\t  booktitle = {Proceedings of COLT},\n634\t  year      = {2024},\n635\t  note      = {arXiv:2306.09194},\n636\t  url       = {https://arxiv.org/abs/2306.09194},\n637\t}\n638\t\n639\t@inproceedings{bertrand2024_stability,\n640\t  author    = {Bertrand, Quentin and Bose, Avishek Joey and Duplessis, Alexandre and Jiralerspong, Marco and Gidel, Gauthier},\n641\t  title     = {{On the Stability of Iterative Retraining of Generative Models on their own Data}},\n642\t  booktitle = {Proceedings of ICLR},\n643\t  year      = {2024},\n644\t  note      = {Spotlight. arXiv:2310.00429},\n645\t  url       = {https://arxiv.org/abs/2310.00429},\n646\t}\n647\t\n648\t@inproceedings{guo2024_biscope,\n649\t  author    = {Guo, Hanxi and Cheng, Siyuan and Jin, Xiaolong and Zhang, Zhuo and Zhang, Kaiyuan and Tao, Guanhong and Shen, Guangyu and Zhang, Xiangyu},\n650\t  title     = {{BiScope: AI-generated Text Detection by Checking Memorization of Preceding Tokens}},\n651\t  booktitle = {Proceedings of NeurIPS},\n652\t  year      = {2024},\n653\t}\n654\t\n655\t@inproceedings{kasa2024_ordinality,\n656\t  author    = {Kasa, Siva Rajesh and Goel, Aniket and Gupta, Karan and Roychowdhury, Sumegh and Priyatam, Pattisapu and Bhanushali, Anish and Murthy, Prasanna Srinivasa},\n657\t  title     = {{Exploring Ordinality in Text Classification: A Comparative Study of Explicit and Implicit Techniques}},\n658\t  booktitle = {Findings of ACL},\n659\t  year      = {2024},\n660\t  note      = {arXiv:2405.11775},\n661\t  url       = {https://arxiv.org/abs/2405.11775},\n662\t}\n663\t\n664\t@book{hosmer2000,\n665\t  author    = {Hosmer, David W. and Lemeshow, Stanley},\n666\t  title     = {Applied Logistic Regression},\n667\t  publisher = {Wiley},\n668\t  year      = {2000},\n669\t  edition   = {2nd},\n670\t}\n671\t\n672\t% ============================================================\n673\t% Final-round additions (MR1--MR3)\n674\t% ============================================================\n675\t\n676\t@misc{geng2026_markovian,\n677\t  author    = {Geng, Mingmeng and Mohamed, Amr and Vazirgiannis, Michalis and Shang, Guokan},\n678\t  title     = {{Markovian Generation Chains}},\n679\t  year      = {2026},\n680\t  howpublished = {arXiv:2603.11228},\n681\t  url       = {https://arxiv.org/abs/2603.11228},\n682\t}\n683\t\n684\t@misc{zhang2024_minkpp,\n685\t  author    = {Zhang, Jingyang and Sun, Jingwei and Yeats, Eric and Ouyang, Yang and Kuo, Martin and Zhang, Jianyi and Yang, Hao and Li, Hai},\n686\t  title     = {{Min-K\\%++: Improved Baseline for Detecting Pre-Training Data from Large Language Models}},\n687\t  year      = {2024},\n688\t  howpublished = {arXiv:2404.02936},\n689\t  url       = {https://arxiv.org/abs/2404.02936},\n690\t}\n691\t\n692\t% ============================================================\n693\t% Random Forest Variable Importance\n694\t% ============================================================\n695\t\n696\t@article{strobl2008_conditional,\n697\t  author    = {Strobl, Carolin and Boulesteix, Anne-Laure and Kneib, Thomas and Augustin, Thomas and Zeileis, Achim},\n698\t  title     = {{Conditional variable importance for random forests}},\n699\t  journal   = {BMC Bioinformatics},\n700\t  volume    = {9},\n701\t  number    = {307},\n702\t  year      = {2008},\n703\t  doi       = {10.1186/1471-2105-9-307},\n704\t}\n705\t\n706\t@article{hooker2021_permutation,\n707\t  author    = {Hooker, Giles and Mentch, Lucas and Zhou, Siyu},\n708\t  title     = {{Unrestricted Permutation forces Extrapolation: Variable Importance Requires at Least One More Model, or There Is No Free Variable Importance}},\n709\t  journal   = {Statistics and Computing},\n710\t  volume    = {31},\n711\t  number    = {82},\n712\t  year      = {2021},\n713\t  doi       = {10.1007/s11222-021-10057-z},\n714\t}\n715\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b3a6076e-aac4-470a-b9ed-7e2c37426809",
+            "isSidechain": true,
+            "promptId": "c2353eb7-212b-4cee-8fa2-7d956fd1d126",
+            "agentId": "ad7a09ae94478aa5a",
+            "type": "user",
+            "uuid": "e8ab1175-e3c6-4238-981f-502521cf32ad",
+            "sourceToolAssistantUUID": "b3a6076e-aac4-470a-b9ed-7e2c37426809",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/director_e0265221",
+            "sessionId": "30b280da-923f-435b-b3db-f1fde842ae75",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T18:29:38.749Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UnXzmctad9WsK1sU5q7t3A",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/drafts/14b_scenarios.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/main.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/related_work.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/generalization.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/abstract.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/introduction.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/theory.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/method.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/discussion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/conclusion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/atlas.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/section_appendix.tex"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9d38e45e-fa1c-450a-9a82-f54b42de5ab8",
+            "isSidechain": true,
+            "promptId": "c2353eb7-212b-4cee-8fa2-7d956fd1d126",
+            "agentId": "ad7a09ae94478aa5a",
+            "type": "user",
+            "uuid": "9c5dbc3b-8264-4ce5-9207-72fd87b7c786",
+            "sourceToolAssistantUUID": "9d38e45e-fa1c-450a-9a82-f54b42de5ab8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/director_e0265221",
+            "sessionId": "30b280da-923f-435b-b3db-f1fde842ae75",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-22T18:29:43.563Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good! I found the bib file and the tex files. Now let me search for citations of these three entries in the tex files."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9c5dbc3b-8264-4ce5-9207-72fd87b7c786",
+            "isSidechain": true,
+            "agentId": "ad7a09ae94478aa5a",
+            "requestId": "req_011CbJ5jBTV4przo8qGqnJ5H",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "adb99573-a5b5-42fe-93c2-901839015a0e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/director_e0265221",
+            "sessionId": "30b280da-923f-435b-b3db-f1fde842ae75",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01HeQaTefFFaTAk2gjvWynRA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 14075,
+                "cache_read_input_tokens": 39806,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 14075,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T18:29:44.226Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DmQAN68wQghknjYgGd7uQR",
+              "name": "Grep",
+              "input": {
+                "pattern": "\\\\cite[tp]{.*qwen2\\.5|qwen2\\.5",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "adb99573-a5b5-42fe-93c2-901839015a0e",
+            "isSidechain": true,
+            "agentId": "ad7a09ae94478aa5a",
+            "requestId": "req_011CbJ5jBTV4przo8qGqnJ5H",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "cdcbad9a-f770-4df2-8e9c-1022ede46902",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/director_e0265221",
+            "sessionId": "30b280da-923f-435b-b3db-f1fde842ae75",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01HeQaTefFFaTAk2gjvWynRA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 14075,
+                "cache_read_input_tokens": 39806,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 14075,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T18:29:44.240Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DmQAN68wQghknjYgGd7uQR",
+              "type": "tool_result",
+              "content": "No files found"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cdcbad9a-f770-4df2-8e9c-1022ede46902",
+            "isSidechain": true,
+            "promptId": "c2353eb7-212b-4cee-8fa2-7d956fd1d126",
+            "agentId": "ad7a09ae94478aa5a",
+            "type": "user",
+            "uuid": "a651af20-d366-4bf3-8f04-2dd30d110c8f",
+            "sourceToolAssistantUUID": "cdcbad9a-f770-4df2-8e9c-1022ede46902",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/director_e0265221",
+            "sessionId": "30b280da-923f-435b-b3db-f1fde842ae75",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T18:29:44.649Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GUiE4y2YfixJ5bdh5vofUU",
+              "name": "Grep",
+              "input": {
+                "pattern": "\\\\cite[tp]{.*guo2024_biscope|guo2024_biscope",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a651af20-d366-4bf3-8f04-2dd30d110c8f",
+            "isSidechain": true,
+            "agentId": "ad7a09ae94478aa5a",
+            "requestId": "req_011CbJ5jBTV4przo8qGqnJ5H",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "82107008-735d-44c1-b339-565d9358a363",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/director_e0265221",
+            "sessionId": "30b280da-923f-435b-b3db-f1fde842ae75",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01HeQaTefFFaTAk2gjvWynRA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 14075,
+                "cache_read_input_tokens": 39806,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 14075,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T18:29:44.683Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GUiE4y2YfixJ5bdh5vofUU",
+              "type": "tool_result",
+              "content": "No files found"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "82107008-735d-44c1-b339-565d9358a363",
+            "isSidechain": true,
+            "promptId": "c2353eb7-212b-4cee-8fa2-7d956fd1d126",
+            "agentId": "ad7a09ae94478aa5a",
+            "type": "user",
+            "uuid": "d16f5eec-8792-4757-b64c-c2da26805487",
+            "sourceToolAssistantUUID": "82107008-735d-44c1-b339-565d9358a363",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/director_e0265221",
+            "sessionId": "30b280da-923f-435b-b3db-f1fde842ae75",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T18:29:44.978Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VdM5RZPdMjmWdpucWrzf3N",
+              "name": "Grep",
+              "input": {
+                "pattern": "\\\\cite[tp]{.*rennie2005|rennie2005",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d16f5eec-8792-4757-b64c-c2da26805487",
+            "isSidechain": true,
+            "agentId": "ad7a09ae94478aa5a",
+            "requestId": "req_011CbJ5jBTV4przo8qGqnJ5H",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "95fd46db-b0a3-40a9-893f-60e61cfb33ad",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/director_e0265221",
+            "sessionId": "30b280da-923f-435b-b3db-f1fde842ae75",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01HeQaTefFFaTAk2gjvWynRA",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 14075,
+                "cache_read_input_tokens": 39806,
+                "output_tokens": 350,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 14075
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 350,
+                    "cache_read_input_tokens": 39806,
+                    "cache_creation_input_tokens": 14075,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 14075,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T18:29:44.999Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VdM5RZPdMjmWdpucWrzf3N",
+              "type": "tool_result",
+              "content": "No files found"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "95fd46db-b0a3-40a9-893f-60e61cfb33ad",
+            "isSidechain": true,
+            "promptId": "c2353eb7-212b-4cee-8fa2-7d956fd1d126",
+            "agentId": "ad7a09ae94478aa5a",
+            "type": "user",
+            "uuid": "8abf5807-7ada-489c-a010-d4ea8886700f",
+            "sourceToolAssistantUUID": "95fd46db-b0a3-40a9-893f-60e61cfb33ad",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/director_e0265221",
+            "sessionId": "30b280da-923f-435b-b3db-f1fde842ae75",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-22T18:29:47.843Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me try broader search patterns to find where these keys are cited:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8abf5807-7ada-489c-a010-d4ea8886700f",
+            "isSidechain": true,
+            "agentId": "ad7a09ae94478aa5a",
+            "requestId": "req_011CbJ5jXuobDWt96TxGPMWA",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "dcda3eb3-d072-4e0c-93db-708e70d469e9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/director_e0265221",
+            "sessionId": "30b280da-923f-435b-b3db-f1fde842ae75",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0172jfBPCKZ8LrSn7Nuzn943",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 444,
+                "cache_read_input_tokens": 53881,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 444,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-22T18:29:48.269Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XFRRynuB1QN5VD4tgYkTDU",
+              "name": "Grep",
+              "input": {
+                "pattern": "qwen2\\.5",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper",
+                "output_mode": "files_with_matches"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dcda3eb3-d072-4e0c-93db-708e70d469e9",
+            "isSidechain": true,
+            "agentId": "ad7a09ae94478aa5a",
+            "requestId": "req_011CbJ5jXuobDWt96TxGPMWA",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "63a5d751-0b13-410f-bbae-b8f5be296e55",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/director_e0265221",
+            "sessionId": "30b280da-923f-435b-b3db-f1fde842ae75",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0172jfBPCKZ8LrSn7Nuzn943",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 444,
+                "cache_read_input_tokens": 53881,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 444,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-22T18:29:48.284Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XFRRynuB1QN5VD4tgYkTDU",
+              "type": "tool_result",
+              "content": "Found 5 files\n/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/section_appendix.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/main.aux\n/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/main.bbl\n/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/references.bib\n/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/drafts/14b_scenarios.tex"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "63a5d751-0b13-410f-bbae-b8f5be296e55",
+            "isSidechain": true,
+            "promptId": "c2353eb7-212b-4cee-8fa2-7d956fd1d126",
+            "agentId": "ad7a09ae94478aa5a",
+            "type": "user",
+            "uuid": "afd6781e-06f5-4114-b1e4-50471141b4ea",
+            "sourceToolAssistantUUID": "63a5d751-0b13-410f-bbae-b8f5be296e55",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/director_e0265221",
+            "sessionId": "30b280da-923f-435b-b3db-f1fde842ae75",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-22T18:29:48.693Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015wTC2QV7L5DgzdqtWRFG1M",
+              "name": "Grep",
+              "input": {
+                "pattern": "guo2024_biscope",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper",
+                "output_mode": "files_with_matches"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "afd6781e-06f5-4114-b1e4-50471141b4ea",
+            "isSidechain": true,
+            "agentId": "ad7a09ae94478aa5a",
+            "requestId": "req_011CbJ5jXuobDWt96TxGPMWA",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "2bc37d66-efc5-4887-8508-c5ba6b94bfa8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/director_e0265221",
+            "sessionId": "30b280da-923f-435b-b3db-f1fde842ae75",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0172jfBPCKZ8LrSn7Nuzn943",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 444,
+                "cache_read_input_tokens": 53881,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 444,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-22T18:29:48.707Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015wTC2QV7L5DgzdqtWRFG1M",
+              "type": "tool_result",
+              "content": "Found 4 files\n/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/main.aux\n/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/main.bbl\n/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/related_work.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/references.bib"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2bc37d66-efc5-4887-8508-c5ba6b94bfa8",
+            "isSidechain": true,
+            "promptId": "c2353eb7-212b-4cee-8fa2-7d956fd1d126",
+            "agentId": "ad7a09ae94478aa5a",
+            "type": "user",
+            "uuid": "9a03c0b8-df06-4056-bde8-1c16ff397044",
+            "sourceToolAssistantUUID": "2bc37d66-efc5-4887-8508-c5ba6b94bfa8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/director_e0265221",
+            "sessionId": "30b280da-923f-435b-b3db-f1fde842ae75",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-22T18:29:48.908Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GEAWW1noJvXsvywm6Ks8KJ",
+              "name": "Grep",
+              "input": {
+                "pattern": "rennie2005",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper",
+                "output_mode": "files_with_matches"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9a03c0b8-df06-4056-bde8-1c16ff397044",
+            "isSidechain": true,
+            "agentId": "ad7a09ae94478aa5a",
+            "requestId": "req_011CbJ5jXuobDWt96TxGPMWA",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "d044d3c6-c44e-4259-b0b6-6914cd11a31e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/director_e0265221",
+            "sessionId": "30b280da-923f-435b-b3db-f1fde842ae75",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0172jfBPCKZ8LrSn7Nuzn943",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 444,
+                "cache_read_input_tokens": 53881,
+                "output_tokens": 367,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 444
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 367,
+                    "cache_read_input_tokens": 53881,
+                    "cache_creation_input_tokens": 444,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 444,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-22T18:29:48.920Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GEAWW1noJvXsvywm6Ks8KJ",
+              "type": "tool_result",
+              "content": "Found 4 files\n/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/section_appendix.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/main.aux\n/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/main.bbl\n/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/references.bib"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d044d3c6-c44e-4259-b0b6-6914cd11a31e",
+            "isSidechain": true,
+            "promptId": "c2353eb7-212b-4cee-8fa2-7d956fd1d126",
+            "agentId": "ad7a09ae94478aa5a",
+            "type": "user",
+            "uuid": "3efde26c-02eb-4690-b858-81950d7d09c9",
+            "sourceToolAssistantUUID": "d044d3c6-c44e-4259-b0b6-6914cd11a31e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/director_e0265221",
+            "sessionId": "30b280da-923f-435b-b3db-f1fde842ae75",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-22T18:29:50.993Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good! Now let me get the exact context where these citations appear:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3efde26c-02eb-4690-b858-81950d7d09c9",
+            "isSidechain": true,
+            "agentId": "ad7a09ae94478aa5a",
+            "requestId": "req_011CbJ5jpi6W4421HwWGhGWm",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "f4d1cd15-e840-4f1a-833d-7748473e767a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/director_e0265221",
+            "sessionId": "30b280da-923f-435b-b3db-f1fde842ae75",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Qhg7b4iTeam2xrUoa3hReB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1084,
+                "cache_read_input_tokens": 54325,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1084,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-22T18:29:51.524Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LuDHC3pAzV74HN5EEWnpGZ",
+              "name": "Grep",
+              "input": {
+                "pattern": "qwen2\\.5",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/section_appendix.tex",
+                "output_mode": "content",
+                "context": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f4d1cd15-e840-4f1a-833d-7748473e767a",
+            "isSidechain": true,
+            "agentId": "ad7a09ae94478aa5a",
+            "requestId": "req_011CbJ5jpi6W4421HwWGhGWm",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "607d0e8c-337a-4227-a81f-45e2eb72d7f8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/director_e0265221",
+            "sessionId": "30b280da-923f-435b-b3db-f1fde842ae75",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Qhg7b4iTeam2xrUoa3hReB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1084,
+                "cache_read_input_tokens": 54325,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1084,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-22T18:29:51.535Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LuDHC3pAzV74HN5EEWnpGZ",
+              "type": "tool_result",
+              "content": "483-\\label{app:cross_scale_full}\n484-\n485-This section provides the full cross-scale analysis summarized in \\S\\ref{sec:gen:crossscale}.\n486:We extend the benchmark to two 7--8B models (Qwen2.5-7B-Instruct \\cite{qwen2.5}, Llama-3.1-8B-Instruct \\cite{llama3}) and one 14B model (Qwen2.5-14B).\n487-The 7--8B models use 4-bit NF4 QLoRA fine-tuning with nucleus sampling ($p{=}0.95$, 500 samples per depth, depths $d \\in \\{0, 1, \\ldots, 5\\}$).\n488-The 14B model uses clean FP16 LoRA fine-tuning across all three decoding strategies (nucleus, temperature $\\tau{=}0.9$, top-$k$ $k{=}50$; 5{,}000 samples per depth, depths $d \\in \\{0, 1, 2, 3\\}$).\n489-Feature extraction for 1--8B models uses Pythia-1.4B as reference; Qwen2.5-14B is evaluated under both self-reference and cross-reference (Pythia-1.4B) to disentangle reference-model artifacts from scale effects (see paragraph~5 below)."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "607d0e8c-337a-4227-a81f-45e2eb72d7f8",
+            "isSidechain": true,
+            "promptId": "c2353eb7-212b-4cee-8fa2-7d956fd1d126",
+            "agentId": "ad7a09ae94478aa5a",
+            "type": "user",
+            "uuid": "dea70dc5-7c65-4628-adf8-5c8a466f08ce",
+            "sourceToolAssistantUUID": "607d0e8c-337a-4227-a81f-45e2eb72d7f8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/director_e0265221",
+            "sessionId": "30b280da-923f-435b-b3db-f1fde842ae75",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-22T18:29:52.042Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Hna2XKFQwejTp5mqncdmgL",
+              "name": "Grep",
+              "input": {
+                "pattern": "qwen2\\.5",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/drafts/14b_scenarios.tex",
+                "output_mode": "content",
+                "context": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dea70dc5-7c65-4628-adf8-5c8a466f08ce",
+            "isSidechain": true,
+            "agentId": "ad7a09ae94478aa5a",
+            "requestId": "req_011CbJ5jpi6W4421HwWGhGWm",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "b7951a38-fa7b-4836-8705-f10d38f8fb42",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/director_e0265221",
+            "sessionId": "30b280da-923f-435b-b3db-f1fde842ae75",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Qhg7b4iTeam2xrUoa3hReB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1084,
+                "cache_read_input_tokens": 54325,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1084,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-22T18:29:52.060Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Hna2XKFQwejTp5mqncdmgL",
+              "type": "tool_result",
+              "content": "12-\\subsection{Cross-Scale Observations}\n13-\\label{sec:gen:crossscale}\n14-\n15:At 7--8B (QLoRA), Llama-3.1-8B \\cite{llama3} achieves 70.2\\% (QLoRA, instruct-tuned) ($\\mathrm{EDD}_{0.70}{=}4$) and Qwen2.5-7B \\cite{qwen2.5} 60.1\\%.\n16-At 14B (Qwen2.5-14B), depth signal persists across all three strategies: nucleus 54.1\\%, temperature \\TEMPACCURACY{}\\%, top-$k$ \\TOPKACCURACY{}\\% (chance = 25\\%).\n17-The strategy ranking %% [check: does it match 1-1.5B? If yes use next line, if no use the alternative]\n18-mirrors the 1--1.5B atlas ordering, confirming that strategy-dependent attenuation patterns generalize across scale.\n--\n37-\\label{sec:gen:crossscale}\n38-\n39-These results show that scale amplifies strategy-dependent effects on depth signal.\n40:At 7--8B (QLoRA), Llama-3.1-8B \\cite{llama3} achieves 70.2\\% (QLoRA, instruct-tuned) ($\\mathrm{EDD}_{0.70}{=}4$) and Qwen2.5-7B \\cite{qwen2.5} 60.1\\%.\n41-At 14B (Qwen2.5-14B), nucleus retains signal (54.1\\%) and temperature reaches \\TEMPACCURACY{}\\%, but top-$k$ drops to \\TOPKACCURACY{}\\% (near chance = 25\\%).\n42-%% [Swap temperature/top-k labels above if temperature is the one at chance]\n43-The top-$k$ collapse represents the limiting case of tail truncation at scale: larger models produce flatter logit distributions where hard vocabulary cutoffs eliminate the remaining depth-discriminative tokens, consistent with the $\\alpha \\to 1$ prediction (\\S\\ref{sec:method:theory}).\n--\n59-\\subsection{Preliminary Cross-Scale Observations}\n60-\\label{sec:gen:crossscale}\n61-\n62:At 7--8B (QLoRA), Llama-3.1-8B \\cite{llama3} achieves 70.2\\% (QLoRA, instruct-tuned) ($\\mathrm{EDD}_{0.70}{=}4$) and Qwen2.5-7B \\cite{qwen2.5} 60.1\\%.\n63-At 14B (Qwen2.5-14B), only nucleus sampling retains depth signal (54.1\\%, d1--d3: 57.4\\%); temperature (\\TEMPACCURACY{}\\%) and top-$k$ (\\TOPKACCURACY{}\\%) fall to chance, indicating that the current perplexity-tail feature set reaches its discriminative limit under non-nucleus strategies at this scale.\n64-The nucleus result is not a statistical artifact (d1--d3 balanced accuracy 57.4\\% vs.\\ 33\\% chance), but it may reflect strategy-specific properties rather than a general depth signal at 14B.\n65-These results are confounded by architecture differences, tokenizer vocabulary, training data composition, and sample size (Appendix~\\ref{app:cross_scale_confounds})."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b7951a38-fa7b-4836-8705-f10d38f8fb42",
+            "isSidechain": true,
+            "promptId": "c2353eb7-212b-4cee-8fa2-7d956fd1d126",
+            "agentId": "ad7a09ae94478aa5a",
+            "type": "user",
+            "uuid": "c8a50f06-5b69-442b-8607-eeaaeaa21c74",
+            "sourceToolAssistantUUID": "b7951a38-fa7b-4836-8705-f10d38f8fb42",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/director_e0265221",
+            "sessionId": "30b280da-923f-435b-b3db-f1fde842ae75",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-22T18:29:52.422Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Ftsg57xe758MQWMtGDTAb6",
+              "name": "Grep",
+              "input": {
+                "pattern": "guo2024_biscope",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/related_work.tex",
+                "output_mode": "content",
+                "context": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c8a50f06-5b69-442b-8607-eeaaeaa21c74",
+            "isSidechain": true,
+            "agentId": "ad7a09ae94478aa5a",
+            "requestId": "req_011CbJ5jpi6W4421HwWGhGWm",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "374bb62b-7cb9-4c0f-8dbf-84945b23d449",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/director_e0265221",
+            "sessionId": "30b280da-923f-435b-b3db-f1fde842ae75",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Qhg7b4iTeam2xrUoa3hReB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1084,
+                "cache_read_input_tokens": 54325,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1084,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-22T18:29:52.438Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Ftsg57xe758MQWMtGDTAb6",
+              "type": "tool_result",
+              "content": "10-All assume depth is known a priori; we address the inverse problem of estimating depth from text alone.\n11-\n12-\\paragraph{AI Text Detection.}\n13:[Omitted long matching line]\n14-\\citet{wang2023_seqxgpt} address sentence-level attribution by using log-probability features from white-box LLMs.\n15-M4-SemEval \\cite{wang2024_m4_semeval}, MAGE \\cite{li2024_mage}, and the PAN 2026 shared tasks \\cite{bevendorff2026_pan} benchmark detection across domains, models, and adversarial conditions; RAID \\cite{dugan2024_raid} targets binary detection across diverse attack vectors rather than ordinal depth estimation, making direct protocol adoption inapplicable to our task.\n16-\\citet{bevendorff2025_two_paradigms} distinguish authorship attribution (which model?) from verification (human or AI?); depth estimation introduces a third axis: which recursive iteration."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "374bb62b-7cb9-4c0f-8dbf-84945b23d449",
+            "isSidechain": true,
+            "promptId": "c2353eb7-212b-4cee-8fa2-7d956fd1d126",
+            "agentId": "ad7a09ae94478aa5a",
+            "type": "user",
+            "uuid": "6adb0495-ffed-46b9-83b7-db4eb665d9aa",
+            "sourceToolAssistantUUID": "374bb62b-7cb9-4c0f-8dbf-84945b23d449",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/director_e0265221",
+            "sessionId": "30b280da-923f-435b-b3db-f1fde842ae75",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-22T18:29:52.708Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Y4rEtXA3gKrr1hrrEaos5R",
+              "name": "Grep",
+              "input": {
+                "pattern": "rennie2005",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/section_appendix.tex",
+                "output_mode": "content",
+                "context": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6adb0495-ffed-46b9-83b7-db4eb665d9aa",
+            "isSidechain": true,
+            "agentId": "ad7a09ae94478aa5a",
+            "requestId": "req_011CbJ5jpi6W4421HwWGhGWm",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "1df74de3-e1c6-4c96-9b49-13b5c4f44c49",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/director_e0265221",
+            "sessionId": "30b280da-923f-435b-b3db-f1fde842ae75",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Qhg7b4iTeam2xrUoa3hReB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1084,
+                "cache_read_input_tokens": 54325,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1084,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-22T18:29:52.723Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Y4rEtXA3gKrr1hrrEaos5R",
+              "type": "tool_result",
+              "content": "742-\\label{app:learned_estimator}\n743-\n744-Table~\\ref{tab:learned_estimator} evaluates three learned classifiers (XGBoost, ordinal MLP with CORAL loss \\cite{coral2020}, prototypical networks) under the same leave-one-model-out protocol as Table~\\ref{tab:cross_model}.\n745:The ordinal MLP follows the nested binary reduction framework \\cite{mccullagh1980_ordinal,frank2001} with the loss function of \\citet{rennie2005}.\n746-All three methods operate on the same 19-dimensional feature vector; the comparison isolates the effect of the classification head.\n747-\n748-\\begin{table}[h]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1df74de3-e1c6-4c96-9b49-13b5c4f44c49",
+            "isSidechain": true,
+            "promptId": "c2353eb7-212b-4cee-8fa2-7d956fd1d126",
+            "agentId": "ad7a09ae94478aa5a",
+            "type": "user",
+            "uuid": "4099e858-0887-40ce-8dba-55638b7dd16d",
+            "sourceToolAssistantUUID": "1df74de3-e1c6-4c96-9b49-13b5c4f44c49",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/director_e0265221",
+            "sessionId": "30b280da-923f-435b-b3db-f1fde842ae75",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-22T18:30:05.327Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Excellent! Now I have the context. Let me compile the comprehensive report with the exact bib entries and citation locations.\n\n## Verification Report: Three Citation Entries\n\nBased on my analysis of the bib file and tex files, here are the findings for each citation:\n\n---\n\n### 1. **qwen2.5**\n\n**EXACT BIB ENTRY (lines 461-467):**\n```bibtex\n@misc{qwen2.5,\n  author    = {{Qwen Team}},\n  title     = {{Qwen2.5: A Party of Foundation Models}},\n  year      = {2025},\n  howpublished = {arXiv:2412.15115},\n  url       = {https://arxiv.org/abs/2412.15115},\n}\n```\n\n**ISSUES IDENTIFIED:**\n- The `title` field uses a blog-style phrasing: \"Qwen2.5: A Party of Foundation Models\" rather than a formal academic paper title\n- The only identifier is the arXiv ID: `2412.15115` (no DOI, no journal/conference venue)\n- Uses `@misc` with `howpublished = {arXiv:...}` which is appropriate for preprints, but the informal title is problematic\n\n**WHERE IT'S CITED:**\n1. `/section_appendix.tex` (line 486): `Qwen2.5-7B-Instruct \\cite{qwen2.5}` — in the cross-scale analysis appendix, citing the model documentation\n2. `/drafts/14b_scenarios.tex` (lines 15, 40, 62): Multiple uses of `\\cite{qwen2.5}` when referencing Qwen2.5-7B results in the cross-scale analysis section\n\n---\n\n### 2. **guo2024_biscope**\n\n**EXACT BIB ENTRY (lines 648-653):**\n```bibtex\n@inproceedings{guo2024_biscope,\n  author    = {Guo, Hanxi and Cheng, Siyuan and Jin, Xiaolong and Zhang, Zhuo and Zhang, Kaiyuan and Tao, Guanhong and Shen, Guangyu and Zhang, Xiangyu},\n  title     = {{BiScope: AI-generated Text Detection by Checking Memorization of Preceding Tokens}},\n  booktitle = {Proceedings of NeurIPS},\n  year      = {2024},\n}\n```\n\n**ISSUES IDENTIFIED:**\n- **Missing critical fields**: No `url` field, no `note` field with arXiv ID, no `doi`\n- The entry claims `booktitle = {Proceedings of NeurIPS}` but provides NO URL, arXiv ID, or DOI to verify this is a real published paper\n- Cannot verify if this was actually accepted/published at NeurIPS 2024 or if it's a preprint that claims NeurIPS proceedings\n- This entry lacks the minimal citation provenance to confirm it's a legitimate published work\n\n**WHERE IT'S CITED:**\n- `/related_work.tex` (line 15): In a paragraph discussing AI Text Detection methods, mentioned alongside RAID and other detection benchmarks. The grep output was truncated but shows it's in the context of detection methods discussion.\n\n---\n\n### 3. **rennie2005**\n\n**EXACT BIB ENTRY (lines 515-520):**\n```bibtex\n@inproceedings{rennie2005,\n  author    = {Rennie, Jason D. M. and Srebro, Nathan},\n  title     = {{Loss Functions for Preference Levels: Regression with Discrete Ordered Labels}},\n  booktitle = {Proceedings of IJCAI Workshop on Advances in Preference Handling},\n  year      = {2005},\n}\n```\n\n**ISSUES IDENTIFIED:**\n- **No URL field** — the entry contains NO URL whatsoever (no arXiv, no conference link, nothing)\n- Listed as a workshop paper (`IJCAI Workshop on Advances in Preference Handling`) but no venue URL to verify\n- For a 2005 paper, the absence of any URL is concerning, as even older papers should have some online reference (arXiv, conference proceedings link, author page, etc.)\n- The topic (ordinal classification/regression with preference levels) is correct, but verification is impossible without any URL or DOI\n\n**WHERE IT'S CITED:**\n- `/section_appendix.tex` (line 745): In Appendix A.4 \"Learned Estimator,\" cited as `\\citet{rennie2005}` when explaining the ordinal MLP's nested binary reduction framework: \"The ordinal MLP follows the nested binary reduction framework \\cite{mccullagh1980_ordinal,frank2001} with the loss function of \\citet{rennie2005}.\"\n\n---\n\n## Summary\n\nAll three entries have verifiability issues:\n- **qwen2.5**: Informal blog-style title; valid arXiv ID exists but lacks formal venue details\n- **guo2024_biscope**: Missing all external identifiers (URL, arXiv, DOI); unverifiable claim of NeurIPS publication\n- **rennie2005**: No URL field; older workshop paper with no online reference provided"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4099e858-0887-40ce-8dba-55638b7dd16d",
+            "isSidechain": true,
+            "agentId": "ad7a09ae94478aa5a",
+            "requestId": "req_011CbJ5k6tviVXBeoRgJH5tX",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e8583f1e-4d16-48c1-8c16-503e344fd6ce",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/.claude/sessions/director_e0265221",
+            "sessionId": "30b280da-923f-435b-b3db-f1fde842ae75",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01KtunGG1F8kWFEKTDZVtWiz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2284,
+                "cache_read_input_tokens": 55409,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2284,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000030"
+        }
+      ],
+      "message_count": 30
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-need-to-verify-3-specific-citation-entries-in-a-latex-paper-s-bibliography-t.md"
+}

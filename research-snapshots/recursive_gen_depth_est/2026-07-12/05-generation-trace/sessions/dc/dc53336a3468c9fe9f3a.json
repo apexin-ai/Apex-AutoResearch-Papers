@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "dc53336a3468c9fe9f3a",
+  "project": "recursive_gen_depth_est--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: recursive_gen_depth_est ## 运行环境 - 服务器名: gpu-6000pro-2 - SSH 连接命令: ssh connect.westb.seetacloud.c",
+  "task_key": "6b22cecf-0f6f-486d-bd45-9c9c4f1d96d1",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/6b22cecf-0f6f-486d-bd45-9c9c4f1d96d1.jsonl",
+    "occurrence": 1,
+    "bytes": 1022478,
+    "sha256": "e35217041b9b1e7f1ebb89c1b0d87c72c06ab247dbad78bf32288dd26ecd5401"
+  },
+  "statistics": {
+    "messages": 257,
+    "user_turns": 1,
+    "tool_calls": 66,
+    "roles": {
+      "record": 64,
+      "user": 1,
+      "assistant": 60,
+      "tool_call": 66,
+      "tool_result": 66
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "dc53336a3468c9fe9f3a-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 255,
+      "chunks": [
+        {
+          "path": "dc53336a3468c9fe9f3a-part-0001.json",
+          "message_count": 156
+        },
+        {
+          "path": "dc53336a3468c9fe9f3a-part-0002.json",
+          "message_count": 99
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-recursive-gen-depth-est-gpu-6000pro-2-ssh-ssh-connect-westb-se-copy-117.md"
+}

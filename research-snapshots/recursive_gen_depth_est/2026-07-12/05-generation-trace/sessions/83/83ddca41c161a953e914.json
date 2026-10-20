@@ -1,0 +1,369 @@
+{
+  "schema_version": "1.0",
+  "id": "83ddca41c161a953e914",
+  "project": "recursive_gen_depth_est--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Read the full SimplePCACompressor class in /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache",
+  "task_key": "agent-a481d1325e6e87d50",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/agent-a481d1325e6e87d50.jsonl",
+    "occurrence": 1,
+    "bytes": 39954,
+    "sha256": "bb94d7f42c301968d92fac101a7499f50fbd1e5e94db7b5363221d5be8aed274"
+  },
+  "statistics": {
+    "messages": 7,
+    "user_turns": 1,
+    "tool_calls": 2,
+    "roles": {
+      "user": 1,
+      "assistant": 2,
+      "tool_call": 2,
+      "tool_result": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T08:13:58.684Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Read the full SimplePCACompressor class in /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/compresslink/pipeline.py. I need to see:\n\n1. The full `calibrate()` method - what does it store in `self._calibrations[kind]`? What's the exact data structure?\n2. The full `compress()` method - how does it use `self._calibrations[kind]`?\n3. The full `decompress()` method\n4. Any method that loads offline calibration or sets calibration data externally\n\nAlso read /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/compresslink/calibration.py to understand the KVTCCalibrator.load() return format and how it maps to what SimplePCACompressor.calibrate() stores.\n\nI need to understand how to bridge the gap: KVTCCalibrator.load() returns a dict keyed by (layer, head, kind), while SimplePCACompressor.calibrate() stores something in self._calibrations. What's the format match?\n\nReport the full source code of these methods - don't summarize."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "c0e06ab7-11a1-4345-8add-1994cc0b1f54",
+            "agentId": "a481d1325e6e87d50",
+            "type": "user",
+            "uuid": "1ba8e14b-53b8-4f59-9474-3e737edabc54",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache",
+            "sessionId": "1d4e4a83-9f1b-455b-b0b2-efe10a59bd0c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T08:14:00.050Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll read both files to give you the complete source code of these classes and methods."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1ba8e14b-53b8-4f59-9474-3e737edabc54",
+            "isSidechain": true,
+            "agentId": "a481d1325e6e87d50",
+            "requestId": "req_011Cb28JjXtLmu7BjBd6fd61",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "100ec0b8-dcef-46e1-b971-0b8b0db69bde",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache",
+            "sessionId": "1d4e4a83-9f1b-455b-b0b2-efe10a59bd0c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01HhDzQ3n4zM4QWfunLGWT4z",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 729,
+                "cache_read_input_tokens": 17480,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 729,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T08:14:00.298Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012Aoth7QSzm1qbvAPgEaj31",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/compresslink/pipeline.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "100ec0b8-dcef-46e1-b971-0b8b0db69bde",
+            "isSidechain": true,
+            "agentId": "a481d1325e6e87d50",
+            "requestId": "req_011Cb28JjXtLmu7BjBd6fd61",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "00e58b06-c1da-4135-832b-22d4d6061115",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache",
+            "sessionId": "1d4e4a83-9f1b-455b-b0b2-efe10a59bd0c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01HhDzQ3n4zM4QWfunLGWT4z",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 729,
+                "cache_read_input_tokens": 17480,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 729,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T08:14:00.307Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012Aoth7QSzm1qbvAPgEaj31",
+              "type": "tool_result",
+              "content": "1\t\"\"\"Main CompressLink pipeline integrating all components.\n2\t\n3\tConfigs:\n4\t    A: Standard KVTC + ProphetKV restoration (on non-boundary only)\n5\t    B: RABA + ProphetKV restoration (on non-boundary only)\n6\t    C: Standard KVTC + CEGR-MSE restoration (on non-boundary only)\n7\t    D: RABA + CEGR-MSE (full joint, on non-boundary only)\n8\t    E: Uncompressed MEPIC baseline (NoPE + boundary recomp only)\n9\t\n10\tAll configs do boundary recomputation first (fixed overhead), then use remaining\n11\tbudget for query-dependent restoration.\n12\t\"\"\"\n13\t\n14\timport torch\n15\tfrom torch import Tensor\n16\tfrom typing import Dict, List, Optional\n17\tfrom transformers import DynamicCache\n18\tfrom transformers.cache_utils import DynamicLayer\n19\t\n20\tfrom .budget_manager import RecomputationBudgetManager\n21\tfrom .boundary_recomp import BoundaryRecomputer\n22\tfrom .raba import (\n23\t    compute_restoration_weighted_eigenvalues,\n24\t    get_position_prior_probs,\n25\t    greedy_bit_allocation,\n26\t)\n27\tfrom .cegr import CEGRSelector\n28\tfrom .query_probe import QueryRelevanceProbe\n29\t\n30\t\n31\tclass SimplePCACompressor:\n32\t    \"\"\"KVTC-style PCA + uniform quantization for MVP evaluation.\n33\t\n34\t    Per-(layer, batch, head) slice: SVD for PCA basis, DP/greedy bit allocation,\n35\t    uniform affine quantization per PCA component.\n36\t    \"\"\"\n37\t\n38\t    def __init__(self, head_dim: int = 128, max_bits: int = 16):\n39\t        self.head_dim = head_dim\n40\t        self.max_bits = max_bits\n41\t        self._calibrations: Dict[str, list] = {}\n42\t\n43\t    def calibrate(self, data: Tensor, kind: str = \"keys\"):\n44\t        \"\"\"Compute PCA basis from [L, B, H, T, D] data.\"\"\"\n45\t        L, B, H, T, D = data.shape\n46\t        flat = data.reshape(-1, T, D)\n47\t        entries = []\n48\t\n49\t        for i in range(flat.shape[0]):\n50\t            x = flat[i].float()\n51\t            mean = x.mean(dim=0)\n52\t            centered = x - mean\n53\t            _, S, Vh = torch.linalg.svd(centered, full_matrices=False)\n54\t            eigenvalues = S**2 / max(T - 1, 1)\n55\t            entries.append({\"mean\": mean, \"Vh\": Vh, \"eigenvalues\": eigenvalues})\n56\t\n57\t        self._calibrations[kind] = entries\n58\t\n59\t    def compress(\n60\t        self,\n61\t        data: Tensor,\n62\t        bit_budget_ratio: float,\n63\t        kind: str = \"keys\",\n64\t        restoration_probs: Optional[Tensor] = None,\n65\t    ) -> list:\n66\t        \"\"\"Compress with optional RABA weighting.\n67\t\n68\t        Args:\n69\t            data: [L, B, H, T, D] KV tensor\n70\t            bit_budget_ratio: fraction of max bits to use (e.g., 1/6 for 6x)\n71\t            kind: 'keys' or 'values'\n72\t            restoration_probs: [T] per-token p_r for RABA (None for standard)\n73\t\n74\t        Returns:\n75\t            list of per-slice compressed entries\n76\t        \"\"\"\n77\t        L, B, H, T, D = data.shape\n78\t        flat = data.reshape(-1, T, D)\n79\t        entries = self._calibrations[kind]\n80\t        total_bits = int(D * self.max_bits * bit_budget_ratio)\n81\t\n82\t        compressed = []\n83\t        for i in range(flat.shape[0]):\n84\t            x = flat[i].float()\n85\t            cal = entries[i]\n86\t\n87\t            centered = x - cal[\"mean\"]\n88\t            coeffs = centered @ cal[\"Vh\"].T  # [T, D]\n89\t\n90\t            if restoration_probs is not None:\n91\t                weighted_eig = compute_restoration_weighted_eigenvalues(\n92\t                    coeffs, restoration_probs.to(coeffs.device)\n93\t                )\n94\t                bit_widths = greedy_bit_allocation(weighted_eig, total_bits, self.max_bits)\n95\t            else:\n96\t                bit_widths = greedy_bit_allocation(\n97\t                    cal[\"eigenvalues\"], total_bits, self.max_bits\n98\t                )\n99\t\n100\t            quantized = self._quantize(coeffs, bit_widths)\n101\t            compressed.append(\n102\t                {\"quantized\": quantized, \"bit_widths\": bit_widths, \"cal_idx\": i}\n103\t            )\n104\t\n105\t        return compressed\n106\t\n107\t    def decompress(self, compressed: list, shape: tuple, kind: str = \"keys\") -> Tensor:\n108\t        \"\"\"Decompress to [L, B, H, T, D] tensor.\"\"\"\n109\t        L, B, H, T, D = shape\n110\t        entries = self._calibrations[kind]\n111\t        device = entries[0][\"mean\"].device\n112\t        flat = torch.zeros(L * B * H, T, D, device=device)\n113\t\n114\t        for i, entry in enumerate(compressed):\n115\t            cal = entries[i]\n116\t            coeffs = self._dequantize(entry[\"quantized\"])\n117\t            reconstructed = coeffs @ cal[\"Vh\"] + cal[\"mean\"]\n118\t            flat[i] = reconstructed\n119\t\n120\t        return flat.reshape(shape)\n121\t\n122\t    @staticmethod\n123\t    def _quantize(coeffs: Tensor, bit_widths: Tensor) -> dict:\n124\t        T, D = coeffs.shape\n125\t        bit_widths = bit_widths.to(coeffs.device)\n126\t        active = bit_widths > 0\n127\t\n128\t        mins = coeffs.min(dim=0).values\n129\t        maxs = coeffs.max(dim=0).values\n130\t        ranges = (maxs - mins).clamp(min=1e-8)\n131\t\n132\t        num_levels = (2.0 ** bit_widths.float()) - 1\n133\t        num_levels = num_levels.clamp(min=1.0)\n134\t\n135\t        scales = ranges / num_levels\n136\t        codes = torch.round((coeffs - mins) / scales)\n137\t        codes[:, ~active] = 0\n138\t\n139\t        return {\"codes\": codes, \"mins\": mins, \"scales\": scales, \"active\": active}\n140\t\n141\t    @staticmethod\n142\t    def _dequantize(quantized: dict) -> Tensor:\n143\t        codes = quantized[\"codes\"]\n144\t        mins = quantized[\"mins\"]\n145\t        scales = quantized[\"scales\"]\n146\t        active = quantized[\"active\"]\n147\t\n148\t        result = codes * scales + mins\n149\t        result[:, ~active] = 0\n150\t        return result\n151\t\n152\t\n153\tclass CompressLinkPipeline:\n154\t    \"\"\"End-to-end CompressLink pipeline for MVP evaluation.\n155\t\n156\t    Integrates NoPE cache, boundary recomputation, KVTC compression (+RABA),\n157\t    query probing, and CEGR/ProphetKV restoration.\n158\t    \"\"\"\n159\t\n160\t    VALID_CONFIGS = {\"A\", \"B\", \"C\", \"D\", \"E\"}\n161\t\n162\t    def __init__(self, model, tokenizer, config: dict):\n163\t        self.model = model\n164\t        self.tokenizer = tokenizer\n165\t        self.config = config\n166\t\n167\t        chunk_size = config.get(\"chunk_size\", 512)\n168\t        block_size = config.get(\"block_size\", 32)\n169\t        total_budget = config.get(\"total_budget\", 0.20)\n170\t        beta = config.get(\"beta\", 1.0)\n171\t        head_dim = config.get(\"head_dim\", 128)\n172\t        max_bits = config.get(\"max_bits\", 16)\n173\t\n174\t        self.chunk_size = chunk_size\n175\t        self.budget_manager = RecomputationBudgetManager(total_budget, block_size)\n176\t        self.boundary_recomp = BoundaryRecomputer(block_size)\n177\t        self.cegr = CEGRSelector(beta)\n178\t        self.compressor = SimplePCACompressor(head_dim, max_bits)\n179\t\n180\t    def run_single(\n181\t        self,\n182\t        context_ids: Tensor,\n183\t        query_ids: Tensor,\n184\t        config_name: str,\n185\t        compression_ratio: float,\n186\t    ) -> Dict:\n187\t        \"\"\"Run one sample through the pipeline.\n188\t\n189\t        Args:\n190\t            context_ids: [1, ctx_len] document token ids\n191\t            query_ids: [1, q_len] query token ids\n192\t            config_name: one of A/B/C/D/E\n193\t            compression_ratio: e.g. 6.0 for 6x compression (ignored for E)\n194\t\n195\t        Returns:\n196\t            dict with generated_text and generated_ids\n197\t        \"\"\"\n198\t        assert config_name in self.VALID_CONFIGS\n199\t        device = next(self.model.parameters()).device\n200\t        context_ids = context_ids.to(device)\n201\t        query_ids = query_ids.to(device)\n202\t\n203\t        # Step 1: NoPE forward on context\n204\t        with torch.no_grad():\n205\t            ctx_out = self.model(\n206\t                input_ids=context_ids, use_cache=True, output_attentions=False\n207\t            )\n208\t        original_cache = ctx_out.past_key_values\n209\t        num_tokens = context_ids.shape[1]\n210\t\n211\t        # Step 2: Budget allocation\n212\t        chunk_boundaries = list(range(self.chunk_size, num_tokens, self.chunk_size))\n213\t        budget = self.budget_manager.allocate(num_tokens, chunk_boundaries)\n214\t\n215\t        # Config E: uncompressed baseline (boundary recomp only)\n216\t        if config_name == \"E\":\n217\t            return self._decode(\n218\t                self._clone_cache(original_cache), query_ids, num_tokens\n219\t            )\n220\t\n221\t        # Step 3: Extract KV tensors\n222\t        orig_keys, orig_values = self._cache_to_tensors(original_cache)\n223\t\n224\t        # Step 4: Calibrate PCA\n225\t        self.compressor.calibrate(orig_keys, kind=\"keys\")\n226\t        self.compressor.calibrate(orig_values, kind=\"values\")\n227\t\n228\t        # Step 5: Compress\n229\t        bit_budget_ratio = 1.0 / compression_ratio\n230\t\n231\t        if config_name in (\"B\", \"D\"):\n232\t            p_r = get_position_prior_probs(\n233\t                num_tokens, budget[\"boundary_indices\"], device\n234\t            )\n235\t            key_comp = self.compressor.compress(\n236\t                orig_keys, bit_budget_ratio, \"keys\", restoration_probs=p_r\n237\t            )\n238\t            val_comp = self.compressor.compress(\n239\t                orig_values, bit_budget_ratio, \"values\", restoration_probs=p_r\n240\t            )\n241\t        else:\n242\t            key_comp = self.compressor.compress(orig_keys, bit_budget_ratio, \"keys\")\n243\t            val_comp = self.compressor.compress(\n244\t                orig_values, bit_budget_ratio, \"values\"\n245\t            )\n246\t\n247\t        # Step 6: Decompress\n248\t        dec_keys = self.compressor.decompress(key_comp, orig_keys.shape, \"keys\")\n249\t        dec_values = self.compressor.decompress(val_comp, orig_values.shape, \"values\")\n250\t\n251\t        # Step 7: Boundary restoration (unconditional, all configs)\n252\t        bi = budget[\"boundary_indices\"]\n253\t        if bi:\n254\t            idx = torch.tensor(bi, device=device, dtype=torch.long)\n255\t            dec_keys[:, :, :, idx] = orig_keys[:, :, :, idx]\n256\t            dec_values[:, :, :, idx] = orig_values[:, :, :, idx]\n257\t\n258\t        # Step 8: Query probe for relevance\n259\t        dec_cache = self._tensors_to_cache(dec_keys, dec_values)\n260\t        probe_cache = self._clone_cache(dec_cache)\n261\t\n262\t        q_pos = torch.arange(\n263\t            num_tokens, num_tokens + query_ids.shape[1], device=device\n264\t        ).unsqueeze(0)\n265\t\n266\t        with torch.no_grad():\n267\t            probe_out = self.model(\n268\t                input_ids=query_ids,\n269\t                past_key_values=probe_cache,\n270\t                position_ids=q_pos,\n271\t                output_attentions=True,\n272\t                use_cache=False,\n273\t            )\n274\t\n275\t        # Extract relevance for cache tokens only (exclude query self-attention)\n276\t        attn_tuple = probe_out.attentions\n277\t        cache_attns = tuple(a[:, :, :, :num_tokens] for a in attn_tuple)\n278\t        r_q = QueryRelevanceProbe.compute_relevance(cache_attns)\n279\t\n280\t        # Step 9: Select restoration tokens (non-boundary only)\n281\t        nb_indices = budget[\"non_boundary_indices\"]\n282\t        cegr_num = budget[\"cegr_num_tokens\"]\n283\t\n284\t        if config_name in (\"A\", \"B\"):\n285\t            restore_indices = self._select_by_relevance(r_q, nb_indices, cegr_num)\n286\t        else:\n287\t            eps_k = ((orig_keys - dec_keys) ** 2).mean(dim=(0, 1, 2, 4))\n288\t            eps_v = ((orig_values - dec_values) ** 2).mean(dim=(0, 1, 2, 4))\n289\t            epsilon = (eps_k + eps_v) / 2\n290\t            restore_indices = self.cegr.select_restoration_tokens(\n291\t                r_q, epsilon, nb_indices, cegr_num\n292\t            )\n293\t\n294\t        # Step 10: Restore selected tokens\n295\t        if restore_indices:\n296\t            ri = torch.tensor(restore_indices, device=device, dtype=torch.long)\n297\t            dec_keys[:, :, :, ri] = orig_keys[:, :, :, ri]\n298\t            dec_values[:, :, :, ri] = orig_values[:, :, :, ri]\n299\t            dec_cache = self._tensors_to_cache(dec_keys, dec_values)\n300\t\n301\t        # Step 11: Decode\n302\t        return self._decode(dec_cache, query_ids, num_tokens)\n303\t\n304\t    def _decode(self, kv_cache, query_ids: Tensor, ctx_len: int) -> Dict:\n305\t        \"\"\"Auto-regressive greedy decode with KV cache.\"\"\"\n306\t        device = query_ids.device\n307\t        q_len = query_ids.shape[1]\n308\t        max_new = self.config.get(\"max_new_tokens\", 32)\n309\t        eos_id = self.tokenizer.eos_token_id\n310\t\n311\t        q_pos = torch.arange(ctx_len, ctx_len + q_len, device=device).unsqueeze(0)\n312\t\n313\t        with torch.no_grad():\n314\t            out = self.model(\n315\t                input_ids=query_ids,\n316\t                past_key_values=kv_cache,\n317\t                position_ids=q_pos,\n318\t                use_cache=True,\n319\t            )\n320\t\n321\t        generated = []\n322\t        next_token = out.logits[:, -1:].argmax(dim=-1)\n323\t        generated.append(next_token)\n324\t        cache = out.past_key_values\n325\t        cur_pos = ctx_len + q_len\n326\t\n327\t        for _ in range(max_new - 1):\n328\t            pos = torch.tensor([[cur_pos]], device=device)\n329\t            with torch.no_grad():\n330\t                out = self.model(\n331\t                    input_ids=next_token,\n332\t                    past_key_values=cache,\n333\t                    position_ids=pos,\n334\t                    use_cache=True,\n335\t                )\n336\t            next_token = out.logits[:, -1:].argmax(dim=-1)\n337\t            generated.append(next_token)\n338\t            cache = out.past_key_values\n339\t            cur_pos += 1\n340\t\n341\t            if next_token.item() == eos_id:\n342\t                break\n343\t\n344\t        gen_ids = torch.cat(generated, dim=-1)\n345\t        text = self.tokenizer.decode(gen_ids[0], skip_special_tokens=True)\n346\t        return {\"generated_text\": text, \"generated_ids\": gen_ids}\n347\t\n348\t    @staticmethod\n349\t    def _select_by_relevance(\n350\t        relevance: Tensor, non_boundary_indices: List[int], num_to_select: int\n351\t    ) -> List[int]:\n352\t        \"\"\"ProphetKV-style: select top-relevant non-boundary tokens.\"\"\"\n353\t        if num_to_select <= 0 or not non_boundary_indices:\n354\t            return []\n355\t        nb_idx = torch.tensor(\n356\t            non_boundary_indices, device=relevance.device, dtype=torch.long\n357\t        )\n358\t        nb_rel = relevance[nb_idx]\n359\t        k = min(num_to_select, len(nb_idx))\n360\t        _, topk_local = nb_rel.topk(k)\n361\t        return sorted(nb_idx[topk_local].tolist())\n362\t\n363\t    @staticmethod\n364\t    def _cache_to_tensors(cache):\n365\t        \"\"\"Extract [L, B, H, T, D] tensors from DynamicCache.\"\"\"\n366\t        keys = torch.stack([layer.keys for layer in cache.layers])\n367\t        values = torch.stack([layer.values for layer in cache.layers])\n368\t        return keys, values\n369\t\n370\t    @staticmethod\n371\t    def _tensors_to_cache(keys: Tensor, values: Tensor):\n372\t        \"\"\"Build DynamicCache from [L, B, H, T, D] tensors.\"\"\"\n373\t        cache = DynamicCache()\n374\t        cache.layers = []\n375\t        for i in range(keys.shape[0]):\n376\t            layer = DynamicLayer()\n377\t            layer.keys = keys[i].contiguous()\n378\t            layer.values = values[i].contiguous()\n379\t            layer.dtype = keys.dtype\n380\t            layer.device = keys.device\n381\t            layer.is_initialized = True\n382\t            cache.layers.append(layer)\n383\t        return cache\n384\t\n385\t    @staticmethod\n386\t    def _clone_cache(cache):\n387\t        \"\"\"Deep-clone a DynamicCache.\"\"\"\n388\t        new = DynamicCache()\n389\t        new.layers = []\n390\t        for layer in cache.layers:\n391\t            new_layer = DynamicLayer()\n392\t            new_layer.keys = layer.keys.clone()\n393\t            new_layer.values = layer.values.clone()\n394\t            new_layer.dtype = layer.dtype\n395\t            new_layer.device = layer.device\n396\t            new_layer.is_initialized = True\n397\t            new.layers.append(new_layer)\n398\t        return new\n399\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "00e58b06-c1da-4135-832b-22d4d6061115",
+            "isSidechain": true,
+            "promptId": "c0e06ab7-11a1-4345-8add-1994cc0b1f54",
+            "agentId": "a481d1325e6e87d50",
+            "type": "user",
+            "uuid": "44c2343c-3e02-4b29-83f8-635cb9aa0d97",
+            "sourceToolAssistantUUID": "00e58b06-c1da-4135-832b-22d4d6061115",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache",
+            "sessionId": "1d4e4a83-9f1b-455b-b0b2-efe10a59bd0c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T08:14:00.524Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0144oDt3NTx5z56UQ9g22NCX",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/compresslink/calibration.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "44c2343c-3e02-4b29-83f8-635cb9aa0d97",
+            "isSidechain": true,
+            "agentId": "a481d1325e6e87d50",
+            "requestId": "req_011Cb28JjXtLmu7BjBd6fd61",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "f71d674c-e8b5-4370-92e2-d5f28b24cd83",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache",
+            "sessionId": "1d4e4a83-9f1b-455b-b0b2-efe10a59bd0c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01HhDzQ3n4zM4QWfunLGWT4z",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 729,
+                "cache_read_input_tokens": 17480,
+                "output_tokens": 203,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 729
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 203,
+                    "cache_read_input_tokens": 17480,
+                    "cache_creation_input_tokens": 729,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 729,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T08:14:00.535Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0144oDt3NTx5z56UQ9g22NCX",
+              "type": "tool_result",
+              "content": "1\t\"\"\"KVTC PCA calibration: collect NoPE KV cache and compute per-head PCA.\"\"\"\n2\t\n3\timport os\n4\tfrom pathlib import Path\n5\tfrom typing import Dict, List, Optional\n6\t\n7\timport torch\n8\t\n9\t\n10\tclass KVTCCalibrator:\n11\t    \"\"\"Collect NoPE (pre-RoPE) keys and values, then compute PCA basis per head.\n12\t\n13\t    Workflow:\n14\t        1. Install forward hooks on k_proj / v_proj of each attention layer.\n15\t        2. Run a small set of calibration texts through the model.\n16\t        3. Reshape collected projections to (layer, head, tokens, head_dim).\n17\t        4. SVD → per-head eigenvalues, eigenvectors, mean.\n18\t        5. Save / load the calibration artefact.\n19\t    \"\"\"\n20\t\n21\t    def __init__(\n22\t        self,\n23\t        model,\n24\t        tokenizer,\n25\t        num_samples: int = 10,\n26\t        save_dir: str = \"/root/autodl-tmp/compresslink/calibration\",\n27\t    ):\n28\t        self.model = model\n29\t        self.tokenizer = tokenizer\n30\t        self.num_samples = num_samples\n31\t        self.save_dir = Path(save_dir)\n32\t\n33\t        config = model.config\n34\t        self.num_layers = config.num_hidden_layers\n35\t        self.num_kv_heads = getattr(config, \"num_key_value_heads\", config.num_attention_heads)\n36\t        self.head_dim = config.hidden_size // config.num_attention_heads\n37\t\n38\t        self._hooks: list = []\n39\t        self._collected: Dict[tuple, List[torch.Tensor]] = {}\n40\t\n41\t    # ------------------------------------------------------------------\n42\t    # Hook management\n43\t    # ------------------------------------------------------------------\n44\t\n45\t    def _get_attention_layers(self):\n46\t        \"\"\"Yield (layer_idx, attention_module) for supported architectures.\"\"\"\n47\t        if hasattr(self.model, \"model\") and hasattr(self.model.model, \"layers\"):\n48\t            layers = self.model.model.layers\n49\t        elif hasattr(self.model, \"transformer\") and hasattr(self.model.transformer, \"h\"):\n50\t            layers = self.model.transformer.h\n51\t        else:\n52\t            raise ValueError(\"Unsupported model architecture for hook installation\")\n53\t\n54\t        for idx, layer in enumerate(layers):\n55\t            attn = getattr(layer, \"self_attn\", None) or getattr(layer, \"attention\", None)\n56\t            if attn is None:\n57\t                raise ValueError(f\"Cannot locate attention sub-module in layer {idx}\")\n58\t            yield idx, attn\n59\t\n60\t    def _make_hook(self, layer_idx: int, kind: str):\n61\t        def hook(_module, _input, output):\n62\t            if isinstance(output, tuple):\n63\t                output = output[0]\n64\t            bsz, seq_len, _ = output.shape\n65\t            reshaped = output.view(bsz, seq_len, self.num_kv_heads, self.head_dim)\n66\t            self._collected.setdefault((layer_idx, kind), []).append(\n67\t                reshaped.detach().cpu()\n68\t            )\n69\t        return hook\n70\t\n71\t    def _install_hooks(self):\n72\t        for layer_idx, attn in self._get_attention_layers():\n73\t            for proj_name, kind in [(\"k_proj\", \"key\"), (\"v_proj\", \"value\")]:\n74\t                proj = getattr(attn, proj_name, None)\n75\t                if proj is None:\n76\t                    raise ValueError(f\"Layer {layer_idx} has no {proj_name}\")\n77\t                handle = proj.register_forward_hook(self._make_hook(layer_idx, kind))\n78\t                self._hooks.append(handle)\n79\t\n80\t    def _remove_hooks(self):\n81\t        for h in self._hooks:\n82\t            h.remove()\n83\t        self._hooks.clear()\n84\t\n85\t    # ------------------------------------------------------------------\n86\t    # Collection\n87\t    # ------------------------------------------------------------------\n88\t\n89\t    @torch.no_grad()\n90\t    def collect_nope_kv(self, texts: List[str]) -> Dict[tuple, torch.Tensor]:\n91\t        \"\"\"Forward-pass calibration texts and collect NoPE key/value tensors.\n92\t\n93\t        Hooks capture k_proj / v_proj outputs (before RoPE), so the collected\n94\t        keys are already in NoPE form.\n95\t\n96\t        Returns:\n97\t            Dict mapping (layer_idx, 'key'|'value') →\n98\t                Tensor of shape (total_tokens, num_kv_heads, head_dim)\n99\t        \"\"\"\n100\t        self._collected.clear()\n101\t        self._install_hooks()\n102\t        self.model.eval()\n103\t\n104\t        try:\n105\t            for text in texts[: self.num_samples]:\n106\t                inputs = self.tokenizer(\n107\t                    text, return_tensors=\"pt\", truncation=True, max_length=2048\n108\t                ).to(self.model.device)\n109\t                self.model(**inputs)\n110\t        finally:\n111\t            self._remove_hooks()\n112\t\n113\t        merged: Dict[tuple, torch.Tensor] = {}\n114\t        for key, tensor_list in self._collected.items():\n115\t            merged[key] = torch.cat(tensor_list, dim=1).squeeze(0)\n116\t        self._collected.clear()\n117\t        return merged\n118\t\n119\t    # ------------------------------------------------------------------\n120\t    # PCA\n121\t    # ------------------------------------------------------------------\n122\t\n123\t    def compute_pca(self, kv_data: Dict[tuple, torch.Tensor]) -> Dict:\n124\t        \"\"\"SVD per (layer, head, key/value).\n125\t\n126\t        Args:\n127\t            kv_data: output of collect_nope_kv\n128\t\n129\t        Returns:\n130\t            Dict[(layer, head, kind)] → {mean, eigenvalues, components}\n131\t        \"\"\"\n132\t        calibration: Dict = {}\n133\t        for (layer_idx, kind), data in kv_data.items():\n134\t            # data: (total_tokens, num_kv_heads, head_dim)\n135\t            for head_idx in range(self.num_kv_heads):\n136\t                head_data = data[:, head_idx, :].float()  # (N, head_dim)\n137\t                mean = head_data.mean(dim=0)\n138\t                centered = head_data - mean\n139\t\n140\t                _, S, Vh = torch.linalg.svd(centered, full_matrices=False)\n141\t                eigenvalues = S ** 2 / max(centered.shape[0] - 1, 1)\n142\t\n143\t                calibration[(layer_idx, head_idx, kind)] = {\n144\t                    \"mean\": mean,\n145\t                    \"eigenvalues\": eigenvalues,\n146\t                    \"components\": Vh,  # (head_dim, head_dim)\n147\t                }\n148\t        return calibration\n149\t\n150\t    # ------------------------------------------------------------------\n151\t    # Persistence\n152\t    # ------------------------------------------------------------------\n153\t\n154\t    def save(self, calibration_data: Dict, path: Optional[str] = None):\n155\t        \"\"\"Save calibration data as a .pt file.\"\"\"\n156\t        save_path = Path(path) if path else self.save_dir / \"calibration.pt\"\n157\t        save_path.parent.mkdir(parents=True, exist_ok=True)\n158\t\n159\t        serialisable = {}\n160\t        for key, val in calibration_data.items():\n161\t            str_key = f\"{key[0]}_{key[1]}_{key[2]}\"\n162\t            serialisable[str_key] = {k: v for k, v in val.items()}\n163\t\n164\t        torch.save(\n165\t            {\"data\": serialisable, \"num_kv_heads\": self.num_kv_heads, \"head_dim\": self.head_dim},\n166\t            save_path,\n167\t        )\n168\t\n169\t    @staticmethod\n170\t    def load(path: str) -> Dict:\n171\t        \"\"\"Load calibration data from a .pt file.\"\"\"\n172\t        raw = torch.load(path, map_location=\"cpu\", weights_only=False)\n173\t        calibration: Dict = {}\n174\t        for str_key, val in raw[\"data\"].items():\n175\t            parts = str_key.split(\"_\")\n176\t            key = (int(parts[0]), int(parts[1]), parts[2])\n177\t            calibration[key] = val\n178\t        return calibration\n179\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f71d674c-e8b5-4370-92e2-d5f28b24cd83",
+            "isSidechain": true,
+            "promptId": "c0e06ab7-11a1-4345-8add-1994cc0b1f54",
+            "agentId": "a481d1325e6e87d50",
+            "type": "user",
+            "uuid": "bb704a08-085f-4aa1-a603-59c5e2b2d9e5",
+            "sourceToolAssistantUUID": "f71d674c-e8b5-4370-92e2-d5f28b24cd83",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache",
+            "sessionId": "1d4e4a83-9f1b-455b-b0b2-efe10a59bd0c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T08:14:18.042Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here is the full source code for both classes with all the methods you requested:\n\n## SimplePCACompressor (from pipeline.py, lines 31-151)\n\n**`__init__` method:**\n```python\ndef __init__(self, head_dim: int = 128, max_bits: int = 16):\n    self.head_dim = head_dim\n    self.max_bits = max_bits\n    self._calibrations: Dict[str, list] = {}\n```\n\n**`calibrate()` method (lines 43-57):**\n```python\ndef calibrate(self, data: Tensor, kind: str = \"keys\"):\n    \"\"\"Compute PCA basis from [L, B, H, T, D] data.\"\"\"\n    L, B, H, T, D = data.shape\n    flat = data.reshape(-1, T, D)\n    entries = []\n\n    for i in range(flat.shape[0]):\n        x = flat[i].float()\n        mean = x.mean(dim=0)\n        centered = x - mean\n        _, S, Vh = torch.linalg.svd(centered, full_matrices=False)\n        eigenvalues = S**2 / max(T - 1, 1)\n        entries.append({\"mean\": mean, \"Vh\": Vh, \"eigenvalues\": eigenvalues})\n\n    self._calibrations[kind] = entries\n```\n\n**Data structure stored:** `self._calibrations[kind]` is a **list of dicts**, where each dict has:\n- `\"mean\"`: [D] tensor - the mean of the centered data\n- `\"Vh\"`: [D, D] tensor - the right singular vectors from SVD (the PCA components)\n- `\"eigenvalues\"`: [D] tensor - the squared singular values normalized by (T-1)\n\nOne entry per flattened slice (L*B*H total slices).\n\n**`compress()` method (lines 59-105):**\n```python\ndef compress(\n    self,\n    data: Tensor,\n    bit_budget_ratio: float,\n    kind: str = \"keys\",\n    restoration_probs: Optional[Tensor] = None,\n) -> list:\n    \"\"\"Compress with optional RABA weighting.\n\n    Args:\n        data: [L, B, H, T, D] KV tensor\n        bit_budget_ratio: fraction of max bits to use (e.g., 1/6 for 6x)\n        kind: 'keys' or 'values'\n        restoration_probs: [T] per-token p_r for RABA (None for standard)\n\n    Returns:\n        list of per-slice compressed entries\n    \"\"\"\n    L, B, H, T, D = data.shape\n    flat = data.reshape(-1, T, D)\n    entries = self._calibrations[kind]\n    total_bits = int(D * self.max_bits * bit_budget_ratio)\n\n    compressed = []\n    for i in range(flat.shape[0]):\n        x = flat[i].float()\n        cal = entries[i]\n\n        centered = x - cal[\"mean\"]\n        coeffs = centered @ cal[\"Vh\"].T  # [T, D]\n\n        if restoration_probs is not None:\n            weighted_eig = compute_restoration_weighted_eigenvalues(\n                coeffs, restoration_probs.to(coeffs.device)\n            )\n            bit_widths = greedy_bit_allocation(weighted_eig, total_bits, self.max_bits)\n        else:\n            bit_widths = greedy_bit_allocation(\n                cal[\"eigenvalues\"], total_bits, self.max_bits\n            )\n\n        quantized = self._quantize(coeffs, bit_widths)\n        compressed.append(\n            {\"quantized\": quantized, \"bit_widths\": bit_widths, \"cal_idx\": i}\n        )\n\n    return compressed\n```\n\n**How it uses calibrations:** Looks up `cal = entries[i]` and accesses:\n- `cal[\"mean\"]` - for centering\n- `cal[\"Vh\"]` - for projection to PCA space\n- `cal[\"eigenvalues\"]` - for bit allocation\n\n**`decompress()` method (lines 107-120):**\n```python\ndef decompress(self, compressed: list, shape: tuple, kind: str = \"keys\") -> Tensor:\n    \"\"\"Decompress to [L, B, H, T, D] tensor.\"\"\"\n    L, B, H, T, D = shape\n    entries = self._calibrations[kind]\n    device = entries[0][\"mean\"].device\n    flat = torch.zeros(L * B * H, T, D, device=device)\n\n    for i, entry in enumerate(compressed):\n        cal = entries[i]\n        coeffs = self._dequantize(entry[\"quantized\"])\n        reconstructed = coeffs @ cal[\"Vh\"] + cal[\"mean\"]\n        flat[i] = reconstructed\n\n    return flat.reshape(shape)\n```\n\n**No method to load offline calibration directly.** The SimplePCACompressor does not have a method to load pre-computed calibrations from disk or to set calibration data externally. You must call `calibrate()` on fresh data.\n\n---\n\n## KVTCCalibrator (from calibration.py, lines 10-179)\n\n**`compute_pca()` method (lines 123-148):**\n```python\ndef compute_pca(self, kv_data: Dict[tuple, torch.Tensor]) -> Dict:\n    \"\"\"SVD per (layer, head, key/value).\n\n    Args:\n        kv_data: output of collect_nope_kv\n\n    Returns:\n        Dict[(layer, head, kind)] → {mean, eigenvalues, components}\n    \"\"\"\n    calibration: Dict = {}\n    for (layer_idx, kind), data in kv_data.items():\n        # data: (total_tokens, num_kv_heads, head_dim)\n        for head_idx in range(self.num_kv_heads):\n            head_data = data[:, head_idx, :].float()  # (N, head_dim)\n            mean = head_data.mean(dim=0)\n            centered = head_data - mean\n\n            _, S, Vh = torch.linalg.svd(centered, full_matrices=False)\n            eigenvalues = S ** 2 / max(centered.shape[0] - 1, 1)\n\n            calibration[(layer_idx, head_idx, kind)] = {\n                \"mean\": mean,\n                \"eigenvalues\": eigenvalues,\n                \"components\": Vh,  # (head_dim, head_dim)\n            }\n    return calibration\n```\n\n**`load()` static method (lines 170-178):**\n```python\n@staticmethod\ndef load(path: str) -> Dict:\n    \"\"\"Load calibration data from a .pt file.\"\"\"\n    raw = torch.load(path, map_location=\"cpu\", weights_only=False)\n    calibration: Dict = {}\n    for str_key, val in raw[\"data\"].items():\n        parts = str_key.split(\"_\")\n        key = (int(parts[0]), int(parts[1]), parts[2])\n        calibration[key] = val\n    return calibration\n```\n\n**Return format from `load()`:** Dict keyed by **(layer_idx, head_idx, kind)** tuples where:\n- `layer_idx` is an int (0 to num_layers-1)\n- `head_idx` is an int (0 to num_kv_heads-1)\n- `kind` is a string (\"key\" or \"value\")\n\nEach value is a dict with:\n- `\"mean\"`: [head_dim] tensor\n- `\"eigenvalues\"`: [head_dim] tensor\n- `\"components\"`: [head_dim, head_dim] tensor (same as \"Vh\" in SimplePCACompressor)\n\n---\n\n## The Gap Analysis\n\n**KVTCCalibrator.load()** returns: `Dict[(layer, head, kind) → {mean, eigenvalues, components}]`\n- **Granularity:** per-head (layer, head, kind tuple)\n- **Keys in the dict:** `\"mean\"`, `\"eigenvalues\"`, `\"components\"`\n\n**SimplePCACompressor.calibrate()** stores in `self._calibrations[kind]`:\n- **Granularity:** per-flattened-slice (one entry per L*B*H slices)\n- **Keys in each list entry:** `\"mean\"`, `\"Vh\"`, `\"eigenvalues\"`\n\n**The mismatch:** \n- KVTCCalibrator operates at **(layer, head, kind)** granularity\n- SimplePCACompressor operates at **(batch, layer, head)** granularity with a flat list indexed by position\n- KVTCCalibrator names the singular vectors matrix `\"components\"`, SimplePCACompressor names it `\"Vh\"`\n\nTo bridge them, you would need to:\n1. Reshape KVTCCalibrator's per-head data back into per-batch-layer-head ordering\n2. Create the flat list structure that SimplePCACompressor expects\n3. Rename `\"components\"` → `\"Vh\"`\n\n**SimplePCACompressor has no built-in loader.** You'd need to write an adapter method to convert KVTCCalibrator format into SimplePCACompressor's expected format."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bb704a08-085f-4aa1-a603-59c5e2b2d9e5",
+            "isSidechain": true,
+            "agentId": "a481d1325e6e87d50",
+            "requestId": "req_011Cb28JsX7CbA8ov8HqKZxM",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "5474fb14-819c-43c1-877f-d118148a1108",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache",
+            "sessionId": "1d4e4a83-9f1b-455b-b0b2-efe10a59bd0c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_011EApQ6eU2jcBnfoDf72yX5",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 8675,
+                "cache_read_input_tokens": 18209,
+                "output_tokens": 2284,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 8675
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 2284,
+                    "cache_read_input_tokens": 18209,
+                    "cache_creation_input_tokens": 8675,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 8675,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        }
+      ],
+      "message_count": 7
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-read-the-full-simplepcacompressor-class-in-home-ubuntu-agent-ml-research-idea.md"
+}

@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "810c237e93ed0a94c59d",
+  "project": "recursive_gen_depth_est--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> ## 关键实验数字 (from registry) - 3×3 matrix: 70-85% 4-class acc, best GPT-2 XL temp09 85.4% - Cross-model LOO",
+  "task_key": "4705fcd9-e1fb-47c6-8ab7-61d25afe8a3f",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/4705fcd9-e1fb-47c6-8ab7-61d25afe8a3f.jsonl",
+    "occurrence": 1,
+    "bytes": 802315,
+    "sha256": "1926847e0e3a5069681ac9958737ee40b93cbb1aa9fd83ad617ac65c36fbce97"
+  },
+  "statistics": {
+    "messages": 212,
+    "user_turns": 1,
+    "tool_calls": 71,
+    "roles": {
+      "record": 41,
+      "user": 1,
+      "assistant": 28,
+      "tool_call": 71,
+      "tool_result": 71
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "810c237e93ed0a94c59d-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 210,
+      "chunks": [
+        {
+          "path": "810c237e93ed0a94c59d-part-0001.json",
+          "message_count": 133
+        },
+        {
+          "path": "810c237e93ed0a94c59d-part-0002.json",
+          "message_count": 77
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-from-registry-33-matrix-70-85-4-class-acc-best-gpt-2-xl-temp09-8.md"
+}
