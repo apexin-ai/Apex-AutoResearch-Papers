@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2e2c342b865ed63c06c6",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "analysis v8b ss s123 progress",
+  "task_key": "worker_analysis_v8b_ss_s123_progress_20260521T131054",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_v8b_ss_s123_progress_20260521T131054_result.json",
+    "occurrence": 1,
+    "bytes": 628,
+    "sha256": "6783291b021aa3f95be6f49b204fb16bd38b10460f7a4acc31e3bbe1e52bb896"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**v8b SS s123 训练状态:**\n\n| 指标 | 值 |\n|------|-----|\n| 进程 | PID 221735 运行中，已运行 8h 42m |\n| GPU | 83% 利用率，30,977 MiB 显存 |\n| 当前位置 | Epoch 2, Step 3900 (microstep) |\n| 总进度 | 19,900 / 24,000 microsteps = **82.9%** |\n| 预计剩余 | ~1h 48m |\n\n**训练指标正常：**\n- L_NTP: 0.68 ~ 1.11（正常波动）\n- L_GAR: 极小（≤0.005），L_DIV: 0\n- Gate mean: ~0.92-0.96，稳定\n- SS ratio: 0.500，scheduled sampling 正常运行\n\n相比上次检查（~19,700, 82.1%），推进了约 200 microsteps，速度正常。预计再 ~1h48m 完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-v8b-ss-s123-progress.md"
+}

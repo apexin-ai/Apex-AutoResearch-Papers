@@ -1,0 +1,14 @@
+{
+  "exp_id": "eval_v8b_ss",
+  "project": "turn_residual_gating",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T18:44:23.366Z",
+    "updated_at": "2026-05-20T18:44:23.366Z"
+  },
+  "timestamp": "2026-05-20T18:44:23.436754+00:00",
+  "trigger": "update_registry"
+}

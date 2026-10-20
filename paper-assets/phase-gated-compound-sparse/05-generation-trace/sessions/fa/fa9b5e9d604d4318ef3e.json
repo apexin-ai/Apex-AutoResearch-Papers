@@ -1,0 +1,104 @@
+{
+  "schema_version": "1.0",
+  "id": "fa9b5e9d604d4318ef3e",
+  "project": "phase-gated-compound-sparse",
+  "kind": "worker",
+  "title": "code p0 per problem ii fix",
+  "task_key": "worker_code_p0-per-problem-ii-fix_20260514T032447",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_p0-per-problem-ii-fix_20260514T032447.log",
+    "occurrence": 1,
+    "bytes": 2399301,
+    "sha256": "e53bee6c1d4bf26f02187548bda00545e38aa00007929d5ff687185397c749e2"
+  },
+  "statistics": {
+    "messages": 1759,
+    "user_turns": 2,
+    "tool_calls": 703,
+    "roles": {
+      "log": 1,
+      "system": 60,
+      "record": 2,
+      "assistant": 276,
+      "tool_call": 703,
+      "tool_result": 703,
+      "user": 2,
+      "result": 12
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 832,
+      "chunks": [
+        {
+          "path": "fa9b5e9d604d4318ef3e-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "fa9b5e9d604d4318ef3e-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "fa9b5e9d604d4318ef3e-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "fa9b5e9d604d4318ef3e-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "fa9b5e9d604d4318ef3e-part-0005.json",
+          "message_count": 112
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 723,
+      "chunks": [
+        {
+          "path": "fa9b5e9d604d4318ef3e-part-0005.json",
+          "message_count": 68
+        },
+        {
+          "path": "fa9b5e9d604d4318ef3e-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "fa9b5e9d604d4318ef3e-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "fa9b5e9d604d4318ef3e-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "fa9b5e9d604d4318ef3e-part-0009.json",
+          "message_count": 115
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 204,
+      "chunks": [
+        {
+          "path": "fa9b5e9d604d4318ef3e-part-0009.json",
+          "message_count": 65
+        },
+        {
+          "path": "fa9b5e9d604d4318ef3e-part-0010.json",
+          "message_count": 139
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-p0-per-problem-ii-fix.md"
+}

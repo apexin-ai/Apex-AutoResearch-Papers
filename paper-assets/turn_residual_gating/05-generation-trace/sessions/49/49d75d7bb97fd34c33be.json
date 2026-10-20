@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "49d75d7bb97fd34c33be",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "code eval gar dongre compat",
+  "task_key": "worker_code_eval_gar_dongre_compat_20260518T163103",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_eval_gar_dongre_compat_20260518T163103_result.json",
+    "occurrence": 1,
+    "bytes": 780,
+    "sha256": "4f2692c7ca95b59b8065e1220224070c9a41d64929251d808e61a767d396264a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成。变更摘要：\n\n**turn_utils.py**:\n- `detect_turn_boundaries` 新增 `gar_variant=\"ours\"` 参数\n- `dongre` 模式下 `goal_token_positions` 仅含 system prompt tokens（排除 first user query）\n- 新增 `assistant_all_token_positions` 字段（dongre 模式下每个 assistant turn 的所有 content token positions）\n\n**eval_phase2_gar.py**:\n- 顶部新增 GAR-Dongre 用法示例\n- `--gar-variant` CLI 参数（默认 `ours`，可选 `dongre`）\n- `measure_gar_per_turn` 在 dongre 模式下用所有 response tokens 作为 query positions\n- 输出 JSON 包含 `gar_variant` 字段，文件名带 `_dongre` 后缀\n- 终端输出标注 variant\n\n默认 `--gar-variant ours` 行为与修改前完全一致。`gar.py` 未改动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-eval-gar-dongre-compat.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0ce3f4b49a5a81938c18",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "data heldout eval prep",
+  "task_key": "worker_data_heldout_eval_prep_20260519T133725",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_heldout_eval_prep_20260519T133725_result.json",
+    "occurrence": 1,
+    "bytes": 726,
+    "sha256": "7a3f09c9024dda1a61ee03a798ca7881c653bf3e02eeb8321ad096d60f82230c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出文件 `/root/turn_residual_gating/data/ultrachat_eval_heldout.json` 已就绪。\n\n**报告**：\n\n| 项目 | 详情 |\n|------|------|\n| 数据来源 | `HuggingFaceH4/ultrachat_200k` train_sft split |\n| idx 范围 | 8843 – 68199（全部 >= 8000，与训练集 0-7999 无重叠） |\n| prompt_id 重叠 | 0（额外用 prompt_id 去重，排除了 25 个在训练集中重复出现的对话） |\n| 样本数 | 50 |\n| 轮数分布 | 5 turns × 31, 6 turns × 14, 7 turns × 5 |\n| messages 数量 | 10-14 条/样本（与训练数据一致） |\n| 格式 | 与 `ultrachat_eval_sample.json` 完全一致（conversation_id, source, dataset_idx, num_turns, messages） |\n| 文件大小 | 428.3 KB |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-heldout-eval-prep.md"
+}

@@ -1,0 +1,311 @@
+# Literature Map for CARC (Cross-Axis Redundancy Coordination)
+# Last updated: 2026-05-11
+# All papers marked verified: false — need citation verification before submission
+
+categories:
+
+  direct-competitor:
+    description: "KV cache + MLP/attention sparsity joint optimization"
+    papers:
+      - title: "Deja Vu: Contextual Sparsity for Efficient LLMs at Inference Time"
+        authors: "Zichang Liu, Jue Wang, Tri Dao, Tianyi Zhou, Binhang Yuan, Zhao Song, Anshumali Shrivastava, Ce Zhang, Yuandong Tian, Christopher Re, Beidi Chen"
+        year: 2023
+        venue: "ICML 2023"
+        core_method: "Learns small MLP predictors to forecast contextual sparsity patterns for both attention heads and MLP neurons per layer, enabling ~2x speedup with <1% quality loss"
+        relation_to_carc: "Closest competitor. Treats attention and MLP sparsity as independent prediction targets with learned predictors. CARC argues they share a common cause (token redundancy) and derives sparsity from a single training-free KV similarity signal. DejaVu adds parameters; CARC adds none."
+        verified: false
+
+      - title: "PowerInfer: Fast Large Language Model Serving with a Consumer-grade GPU"
+        authors: "Yixin Song, Zeyu Mi, Haotong Xie, Haibo Chen"
+        year: 2024
+        venue: "SOSP 2024"
+        core_method: "Exploits power-law activation locality: precomputes hot/cold neuron partition offline, places hot neurons on GPU and cold neurons on CPU for hybrid inference"
+        relation_to_carc: "Exploits static neuron-level sparsity; CARC exploits dynamic token-level redundancy. Complementary: PowerInfer's partition is input-agnostic, CARC's is token-adaptive."
+        verified: false
+
+      - title: "TurboSparse: Achieving LLM SOTA Performance with Minimal Activated Parameters"
+        authors: "Yixin Song, Haotong Xie, Zhengyan Zhang, Bo Wen, Li Ma, Zeyu Mi, Haibo Chen"
+        year: 2024
+        venue: "arXiv 2024"
+        core_method: "Replaces SiLU/GELU with dReLU via continued pretraining, achieving >90% MLP activation sparsity; combines with sparse attention"
+        relation_to_carc: "Achieves high sparsity via architectural change (training-time). CARC achieves adaptive sparsity at inference time without retraining. TurboSparse is input-agnostic; CARC is token-adaptive. Potentially complementary: dReLU baseline + CARC adaptive modulation."
+        verified: false
+
+      - title: "MInference 1.0: Accelerating Pre-filling for Long-Context LLMs via Dynamic Sparse Attention"
+        authors: "Huiqiang Jiang, Yucheng Li, Chengruidong Zhang, Qianhui Wu, Xufang Luo, Suzan Verberne, Yuqing Yang, Chin-Yew Lin, Dongmei Zhang, Lili Qiu"
+        year: 2024
+        venue: "NeurIPS 2024"
+        core_method: "Identifies three dynamic sparse attention patterns (A-shape, Vertical-Slash, Block-Sparse) per head, applies optimal pattern during prefill for 10x speedup"
+        relation_to_carc: "Attention-only, prefill-only optimization. CARC addresses both attention (KV) and MLP during decoding. Different scope but validates that attention sparsity patterns are exploitable."
+        verified: false
+
+      - title: "Q-Infer"
+        authors: "needs verification"
+        year: 2025
+        venue: "needs verification"
+        core_method: "needs verification — quantization or sparsity-based inference acceleration technique for large language models"
+        relation_to_carc: "Inference acceleration approach; needs verification of whether it's orthogonal (quantization) or overlapping (sparsity) with CARC's token-adaptive compute reduction."
+        verified: false
+
+  kv-eviction:
+    description: "KV cache compression and eviction methods"
+    papers:
+      - title: "H2O: Heavy-Hitter Oracle: Efficient Generative Inference of Large Language Models with Heavy Hitter Oracle"
+        authors: "Zhenyu Zhang, Ying Sheng, Tianyi Zhou, Tianlong Chen, Lianmin Zheng, Ruisi Cai, Zhao Song, Yuandong Tian, Christopher Re, Clark Barrett, Zhangyang Wang, Beidi Chen"
+        year: 2024
+        venue: "ICLR 2024"
+        core_method: "Retains heavy-hitter tokens (high cumulative attention score) + recent tokens in KV cache; evicts the rest. O(n) per eviction decision."
+        relation_to_carc: "Primary KV eviction baseline. Uses attention score as importance signal (O(n) computation); CARC uses KV cosine similarity (O(1) per token). H2O is attention-centric and cannot drive MLP sparsity; CARC's signal drives both."
+        verified: false
+
+      - title: "SnapKV: LLM Knows What You are Looking for Before Generation"
+        authors: "Yuhong Li, Yingbing Huang, Bowen Yang, Bharat Venkitesh, Achin Locber, Jiaang Gu, Chih-Liang Lin, Yiming Yang, Hao Peng"
+        year: 2024
+        venue: "NeurIPS 2024"
+        core_method: "Uses observation window at prompt end to identify important KV positions via attention voting; compresses KV cache before generation"
+        relation_to_carc: "Static prompt-phase compression; cannot adapt during generation. CARC provides dynamic per-token eviction during decoding. Complementary: SnapKV for initial compression + CARC for runtime eviction."
+        verified: false
+
+      - title: "PyramidKV: Dynamic KV Cache Compression based on Pyramidal Information Funneling"
+        authors: "Zefan Cai, Yichi Zhang, Bofei Gao, Yuliang Liu, Tianyu Liu, Keming Lu, Wayne Xiong, Yue Dong, Baobao Chang, Junjie Hu, Wen Xiao"
+        year: 2024
+        venue: "arXiv 2024"
+        core_method: "Allocates different KV cache budgets per layer based on attention distribution entropy: lower layers get more cache, upper layers less"
+        relation_to_carc: "Layer-level budget allocation orthogonal to CARC's token-level redundancy signal. Could combine: PyramidKV for layer budgets + CARC for within-layer token selection."
+        verified: false
+
+      - title: "Efficient Streaming Language Models with Attention Sinks"
+        authors: "Guangxuan Xiao, Yuandong Tian, Beidi Chen, Song Han, Mike Lewis"
+        year: 2024
+        venue: "ICLR 2024"
+        core_method: "Discovers attention sink phenomenon (initial tokens absorb disproportionate attention); maintains sink tokens + sliding window for infinite-length streaming"
+        relation_to_carc: "Sink tokens have unique attention role, low KV similarity with neighbors — CARC would naturally retain them. CARC generalizes beyond sink+window heuristic with principled redundancy scoring."
+        verified: false
+
+      - title: "KIVI: A Tuning-Free Asymmetric 2bit Quantization for KV Cache"
+        authors: "Zirui Liu, Jiayi Yuan, Hongye Jin, Shaochen Zhong, Zhaozhuo Xu, Vladimir Braverman, Beidi Chen, Xia Hu"
+        year: 2024
+        venue: "ICML 2024"
+        core_method: "Per-channel quantization for keys (2-bit) and per-token quantization for values (2-bit), tuning-free"
+        relation_to_carc: "Orthogonal approach: quantization vs eviction. Could combine KIVI quantization with CARC eviction for multiplicative KV cache compression."
+        verified: false
+
+      - title: "R-KV"
+        authors: "needs verification"
+        year: 2025
+        venue: "needs verification"
+        core_method: "needs verification — KV cache compression method, likely using residual or reduced representations to minimize memory footprint"
+        relation_to_carc: "KV cache compression method; needs verification of compression signal and whether it's complementary to CARC's similarity-based eviction."
+        verified: false
+
+      - title: "LazyEviction"
+        authors: "needs verification"
+        year: 2025
+        venue: "needs verification"
+        core_method: "needs verification — defers or batches KV cache eviction decisions to reduce per-step overhead while maintaining cache quality"
+        relation_to_carc: "KV eviction alternative; needs verification of eviction signal and timing strategy compared to CARC's per-token O(1) eviction."
+        verified: false
+
+      - title: "LongFlow"
+        authors: "needs verification"
+        year: 2025
+        venue: "needs verification"
+        core_method: "needs verification — addresses long-context LLM inference efficiency, likely involving KV cache management or streaming attention for extended sequences"
+        relation_to_carc: "Long-context efficiency method; needs verification of whether approach involves KV eviction, attention optimization, or other mechanisms compared to CARC."
+        verified: false
+
+  activation-sparsity:
+    description: "MLP activation sparsity exploitation and enhancement"
+    papers:
+      - title: "ReLU Strikes Back: Exploiting Activation Sparsity in Large Language Models"
+        authors: "Iman Mirzadeh, Keivan Alizadeh, Sachin Mehta, Carlo C Del Mundo, Oncel Tuzel, Golnoosh Samei, Mohammad Rastegari, Mehrdad Farajtabar"
+        year: 2023
+        venue: "arXiv 2023"
+        core_method: "Replaces SiLU/GELU with ReLU via continued pretraining (~5% training tokens), recovering natural ~90% activation sparsity with minimal quality loss"
+        relation_to_carc: "Creates uniform static sparsity via architecture change. CARC exploits natural sparsity patterns adaptively per token without retraining. Complementary: ReLUfication for baseline sparsity + CARC for adaptive modulation."
+        verified: false
+
+      - title: "CATS: Contextually-Aware Thresholding for Sparsity in Large Language Models"
+        authors: "Je-Yong Lee, Donghyun Lee, Genghan Zhang, Mo Tiwari, Azalia Mirhoseini"
+        year: 2024
+        venue: "arXiv 2024"
+        core_method: "Learns per-layer adaptive threshold for MLP activation pruning based on input context, replacing fixed top-k selection"
+        relation_to_carc: "Per-layer adaptive threshold is uniform across token positions; CARC explicitly links sparsity level to per-token redundancy. Direct comparison target."
+        verified: false
+
+      - title: "ProSparse: Introducing and Enhancing Intrinsic Activation Sparsity within Large Language Models"
+        authors: "Mingyu Song, Liyao Jiang, Ye Tian, Shuai Yang, Zhongmin Cai"
+        year: 2024
+        venue: "arXiv 2024"
+        core_method: "Progressive sparsification during training with activation regularization loss, achieving high intrinsic sparsity without ReLU replacement"
+        relation_to_carc: "Training-time approach; CARC is inference-time. ProSparse could provide higher baseline sparsity for CARC to further modulate per token."
+        verified: false
+
+      - title: "TEAL: Token-wise Efficient Activation sparsity for LLMs"
+        authors: "Yuzhen Liu, Zijun Yao, Wenhan Xiong, Yun He, Sinong Wang, Hao Ma, Chunting Zhou"
+        year: 2024
+        venue: "arXiv 2024"
+        core_method: "Magnitude-based pruning of MLP activations with per-layer calibrated thresholds; training-free, achieves 40-50% sparsity"
+        relation_to_carc: "Training-free like CARC, but uses activation magnitude as signal (requires full MLP forward). CARC uses KV-derived signal available before MLP computation. Direct ablation comparison: CARC signal vs magnitude signal."
+        verified: false
+
+      - title: "CLADA: Contrastive Learning Aided Surprisal-Driven Adaptive MLP Sparsity"
+        authors: "needs verification"
+        year: 2025
+        venue: "arXiv 2025 (arXiv:2502.19078)"
+        core_method: "Uses token-level surprisal (information content) to dynamically determine per-token MLP sparsity ratios; low-surprisal tokens tolerate higher sparsity since they are more predictable and need less MLP computation"
+        relation_to_carc: "Key literature support for CARC's 'low surprisal → high MLP sparsity tolerance' hypothesis. CLADA validates the surprisal-sparsity connection that CARC operationalizes via KV similarity as a proxy for surprisal. Direct evidence that the signal→sparsity pathway works."
+        verified: false
+
+      - title: "Polar Sparsity"
+        authors: "needs verification"
+        year: 2025
+        venue: "needs verification"
+        core_method: "needs verification — exploits polar/extreme activation distribution patterns for structured MLP sparsity in LLM inference"
+        relation_to_carc: "MLP sparsity method; needs verification of whether sparsity is static or dynamic and how it compares to CARC's token-adaptive approach."
+        verified: false
+
+      - title: "WiSparse"
+        authors: "needs verification"
+        year: 2025
+        venue: "needs verification"
+        core_method: "needs verification — width-based sparsity approach targeting MLP layers for efficient LLM inference"
+        relation_to_carc: "MLP sparsity method; needs verification of sparsity granularity (neuron-level vs token-level) and relation to CARC's redundancy-driven approach."
+        verified: false
+
+  cross-axis:
+    description: "Unified optimization across attention and FFN components"
+    papers:
+      - title: "Mixture-of-Depths: Dynamically allocating compute in transformer-based language models"
+        authors: "David Raposo, Sam Shleifer, Kellie Webster, Andre Saraiva, Katherine Lee, Peter J. Liu, Yao Lu, Noah Fiedel, William W. Cohen"
+        year: 2024
+        venue: "arXiv 2024 (Google DeepMind)"
+        core_method: "Learns per-token routing to skip entire transformer blocks (both attention + MLP) via top-k capacity routing, implementing dynamic compute allocation"
+        relation_to_carc: "Most related cross-axis work. Binary skip (all-or-nothing) vs CARC's graded sparsity (continuous). MoD requires training a router; CARC derives signal from KV similarity at inference time. MoD validates that some tokens need less cross-axis compute."
+        verified: false
+
+      - title: "LayerSkip: Enabling Early-Exit Inference and Self-Speculative Decoding"
+        authors: "Mostafa Elhoushi, Akshat Shrivastava, Diana Liskovich, Basil Hosmer, Bram Wasti, Liangzhen Lai, Anas Mahmoud, Bilge Acun, Saurabh Agarwal, Ahmed Roman, Ahmed A Aly, Beidi Chen, Carole-Jean Wu"
+        year: 2024
+        venue: "ACL 2024"
+        core_method: "Early exit training + self-speculative decoding: draft tokens from early layers, verify with full model"
+        relation_to_carc: "Layer-level exit is coarser than CARC's per-component sparsity. Both share insight that not all tokens need full computation. LayerSkip's exit decision could incorporate CARC's redundancy signal."
+        verified: false
+
+      - title: "ShortGPT: Layers in Large Language Models are More Redundant Than You Expect"
+        authors: "Xin Men, Mingyu Xu, Qingyu Zhang, Bingning Wang, Hongyu Lin, Yaojie Lu, Xianpei Han, Weipeng Chen"
+        year: 2024
+        venue: "arXiv 2024"
+        core_method: "Block Influence (BI) score measuring layer-wise hidden state similarity; prunes high-BI (high redundancy) layers with minimal quality loss"
+        relation_to_carc: "Layer-level redundancy (static) vs CARC's token-level redundancy (dynamic). BI score is conceptually related to KV similarity but at different granularity. Complementary: ShortGPT prunes layers, CARC sparsifies within layers."
+        verified: false
+
+      - title: "Not All Tokens Are What You Need"
+        authors: "Zhenyu Zhang, Mingjie Zhan, Yifan Hao, Damien Teney"
+        year: 2024
+        venue: "ICML 2024"
+        core_method: "Filters training tokens by loss: removes high-loss (noisy) and low-loss (redundant) tokens, improving training efficiency and quality"
+        relation_to_carc: "Validates that token redundancy matters for compute allocation (in training). CARC operationalizes the same intuition at inference using KV similarity. Conceptual support for redundancy-driven paradigm."
+        verified: false
+
+      - title: "TriAttention"
+        authors: "needs verification"
+        year: 2025
+        venue: "needs verification"
+        core_method: "needs verification — introduces a multi-axis or triangular attention mechanism, potentially jointly attending across different representation axes"
+        relation_to_carc: "Attention mechanism variant; needs verification of whether it enables cross-axis compute sharing or relates to CARC's multi-component coordination."
+        verified: false
+
+      - title: "FASA"
+        authors: "needs verification"
+        year: 2025
+        venue: "needs verification"
+        core_method: "needs verification — fast adaptive sparse attention, combining attention pattern analysis with adaptive sparsity for efficient inference"
+        relation_to_carc: "Attention-sparsity joint method; needs verification of whether it addresses cross-axis coordination similar to CARC or focuses on attention-only sparsity."
+        verified: false
+
+  redundancy-signal:
+    description: "Token importance and redundancy measurement approaches"
+    papers:
+      - title: "Token Merging: Your ViT But Faster"
+        authors: "Daniel Bolya, Cheng-Yang Fu, Xiaoliang Dai, Peizhao Zhang, Christoph Feichtenhofer, Judy Hoffman"
+        year: 2023
+        venue: "ICLR 2023"
+        core_method: "Merges similar tokens based on key cosine similarity in attention, progressively reducing token count through ViT layers"
+        relation_to_carc: "Uses key similarity as token redundancy signal — directly related to CARC's KV similarity. ToMe merges tokens (changes sequence structure); CARC modulates compute per token (preserves structure). ToMe for ViTs; CARC for autoregressive LLMs."
+        verified: false
+
+      - title: "FastV: An Image is Worth 1/2 Tokens After Layer 2"
+        authors: "Lianmin Chen, Jinhyuk Park, Lingfeng Shen, Yanbo Xu, Daniel Khashabi"
+        year: 2024
+        venue: "arXiv 2024"
+        core_method: "Prunes visual tokens in VLMs based on attention scores after initial layers; discovers most visual tokens become redundant after layer 2"
+        relation_to_carc: "Shows token redundancy emerges early in forward pass and is detectable from attention patterns. CARC uses KV similarity for redundancy detection in text tokens. Supports the thesis that redundancy-driven pruning is effective."
+        verified: false
+
+      - title: "Think Before You Speak: Training Language Models With Pause Tokens"
+        authors: "Sachin Goyal, Ziwei Ji, Ankit Singh Rawat, Aditya Krishna Menon, Sanjiv Kumar, Vaishnavh Nagarajan"
+        year: 2024
+        venue: "ICLR 2024"
+        core_method: "Adds learnable <pause> tokens for extra computation without output; shows some positions genuinely need more compute"
+        relation_to_carc: "Demonstrates compute demand varies per token. CARC is the inverse: removes compute from low-demand (redundant) tokens. Both validate non-uniform compute allocation."
+        verified: false
+
+      - title: "Scissorhands: Exploiting the Persistence of Importance Hypothesis for LLM KV Cache Compression at Test Time"
+        authors: "Zichang Liu, Aditya Desai, Fangshuo Liao, Weitao Wang, Victor Xie, Zhaozhuo Xu, Anastasios Kyrillidis, Anshumali Shrivastava"
+        year: 2024
+        venue: "NeurIPS 2024"
+        core_method: "Shows token importance (attention score) persists across decoding steps; evicts tokens not important in recent history"
+        relation_to_carc: "Validates persistence of importance — related to CARC's EMA smoothing of redundancy. Scissorhands uses attention scores (O(n)); CARC uses KV similarity (O(1)). CARC's EMA encodes persistence by construction."
+        verified: false
+
+      - title: "Token Filtering for Efficient Large Language Model Inference"
+        authors: "needs verification"
+        year: 2025
+        venue: "arXiv 2025 (arXiv:2512.07090)"
+        core_method: "Defines EMA-smoothed centroid of KV representations as a per-token redundancy signal; tokens with high cosine similarity to the running EMA centroid are identified as redundant and filtered from the KV cache"
+        relation_to_carc: "Direct precursor — CARC's EMA KV similarity signal originates from this work. CARC extends Token Filtering's EMA centroid idea from a pure KV eviction signal to a unified cross-axis redundancy signal that additionally drives MLP sparsity modulation. Must cite as the origin of the core signal mechanism."
+        verified: false
+
+      - title: "EMA Is Not All You Need"
+        authors: "needs verification"
+        year: 2025
+        venue: "needs verification"
+        core_method: "needs verification — analyzes limitations of EMA-based smoothing for token-level signal estimation, potentially proposing alternative smoothing or adaptive decay strategies"
+        relation_to_carc: "Directly relevant to CARC's choice of EMA for KV similarity smoothing. May suggest ablation alternatives (different smoothing kernels, adaptive decay rates) that should be tested against CARC's default EMA."
+        verified: false
+
+  evaluation:
+    description: "Benchmarks and metrics for evaluating sparsity and efficiency methods"
+    papers:
+      - title: "Measuring Mathematical Problem Solving With the MATH Dataset"
+        authors: "Dan Hendrycks, Collin Burns, Saurav Kadavath, Akul Arora, Steven Basart, Eric Tang, Dawn Song, Jacob Steinhardt"
+        year: 2021
+        venue: "NeurIPS 2021"
+        core_method: "12,500 competition math problems across 7 subjects, 5 difficulty levels"
+        relation_to_carc: "Primary evaluation dataset. Extended reasoning chains ideal for studying token-level redundancy. MATH-500 subset used for MVP."
+        verified: false
+
+      - title: "Training Verifiers to Solve Math Word Problems (GSM8K)"
+        authors: "Karl Cobbe, Vineet Kosaraju, Mohammad Bavarian, Mark Chen, Heather Jun, Lukasz Kaiser, Matthias Plappert, Jerry Tworek, Jacob Hilton, Reiichiro Nakano, Christopher Hesse, John Schulman"
+        year: 2021
+        venue: "arXiv 2021"
+        core_method: "8,500 grade school math problems requiring 2-8 step reasoning"
+        relation_to_carc: "Secondary benchmark. Shorter reasoning chains; validates CARC across difficulty levels."
+        verified: false
+
+      - title: "Measuring Massive Multitask Language Understanding (MMLU)"
+        authors: "Dan Hendrycks, Collin Burns, Steven Basart, Andy Zou, Mantas Mazeika, Dawn Song, Jacob Steinhardt"
+        year: 2021
+        venue: "ICLR 2021"
+        core_method: "57-subject multiple choice benchmark covering STEM, humanities, social sciences"
+        relation_to_carc: "Knowledge-intensive short-context benchmark. Validates that CARC-driven sparsity doesn't degrade factual recall."
+        verified: false
+
+      - title: "LongBench: A Bilingual, Multitask Benchmark for Long Context Understanding"
+        authors: "Yushi Bai, Xin Lv, Jiajie Zhang, Hongchang Lyu, Jiankai Tang, Zhidian Huang, Zhengxiao Du, Xiao Liu, Aohan Zeng, Lei Hou, Yuxiao Dong, Jie Tang, Juanzi Li"
+        year: 2024
+        venue: "ACL 2024"
+        core_method: "21 tasks across 6 categories for long context (4K-10K+ tokens)"
+        relation_to_carc: "Critical for KV eviction evaluation. Long inputs stress-test whether CARC correctly identifies evictable tokens. Primary benchmark for O(1) KV eviction contribution."
+        verified: false

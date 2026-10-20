@@ -1,0 +1,35 @@
+{
+  "exp_id": "trc_baseline_v7_tg",
+  "project": "turn_residual_gating",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T07:18:17.576Z",
+    "updated_at": "2026-05-20T09:27:54.951Z",
+    "hypothesis": "如果 exposure bias 对 auxiliary objectives 的破坏跨特征空间通用，那么 TRC (hidden state cos_sim) 在 model-gen 下也应出现与 GAR (attention 空间) 类似的 TF/gen gap。在 v7 TG / LoRA-only / base 三个 checkpoint 上测量 TRC baseline，确认 gap 是否存在。成功标准：gen TRC 显著低于 TF TRC。",
+    "parent": "phase2_tg_s42_v7",
+    "spec": {
+      "command": "bash scripts/launch_trc_baseline.sh",
+      "server": "westd-20861",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "158700",
+      "log_path": "~/runs/turn_residual_gating/trc_baseline_v7_tg.log",
+      "submitted_at": "2026-05-20T07:18:38.202Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/turn_residual_gating/data/standard_conversations.json",
+      "data_count": 5,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42,
+      "checkpoint_source": "phase2_tg_s42_v7 + phase2_lora_only_s42 + base",
+      "eval_data": "5 hardcoded multi-turn conversations x 10 turns"
+    }
+  },
+  "timestamp": "2026-05-20T09:27:54.995263+00:00",
+  "trigger": "update_registry"
+}

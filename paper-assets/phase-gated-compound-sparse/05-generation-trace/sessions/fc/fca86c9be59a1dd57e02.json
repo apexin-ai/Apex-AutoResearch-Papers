@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fca86c9be59a1dd57e02",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "ops check s030 gpu0",
+  "task_key": "worker_ops_check_s030_gpu0_20260516T152633",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_s030_gpu0_20260516T152633_result.json",
+    "occurrence": 1,
+    "bytes": 552,
+    "sha256": "80126fe13d2893d10bcbd8d8c779456a13a272133e0d470c43713fa7604ba203"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n| 项目 | 状态 |\n|------|------|\n| **s030 文件** | `profiling_results.json` = 116 bytes (sentinel)，尚未写入真实结果 |\n| **s025 文件** | `profiling_results.json` = 21.5MB + `generations.json` = 2.1MB，**已完成** |\n| **PID 562663** | 存活，已运行 **5h11m**，正在跑 s030 importance profiling (GPU 0) |\n| **GPU0** | 利用率 **77%**，显存 **50343/97887 MiB** (51%) |\n\n**结论：GPU0 BUSY** — s030 importance 正在运行中，PID 562663 活跃，GPU0 高利用率。s025 已完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-s030-gpu0.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "185efdc669bb6730eb65",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "paper compile and verify",
+  "task_key": "worker_paper_compile_and_verify_20260522T174753",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_compile_and_verify_20260522T174753_result.json",
+    "occurrence": 1,
+    "bytes": 1055,
+    "sha256": "4901762b4972f44d2622a419c94e9a27289acdf240648d34634617bb0c05d1f7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n| 项目 | 结果 |\n|------|------|\n| **Errors** | 0 |\n| **Undefined refs** | 0 |\n| **总页数** | 13 页 |\n| **主文页数** | **8 页** (Conclusion 在第 8 页，Limitations 第 9 页开头 → 不计入 8 页限制，符合 EMNLP 2026) |\n| **References** | 第 9 页（与 Limitations 同页），不计入页数限制 |\n| **Appendix** | 第 10-13 页 |\n\n**Table 1 (tab:four-way) 格式确认：**\n- `\\midrule` 分组：Base 单独一组，下面 ThreadGate / +PCGrad / Uniform Gate / LoRA-only 一组\n- `\\textbf{}` 标注 best values：GAR-O IID/Held-out 最高 0.51 (Uniform Gate)、GAR-D 最高 0.02 (ThreadGate)、AR GAR-O 最高 0.025 (LoRA-only)\n- 表格结构完整，含 `\\toprule`/`\\midrule`/`\\bottomrule`、`\\cmidrule` 分列\n\n**Intro 分段确认：**\n- 5 个自然段落，合理分段（不是巨块）：(1) 问题引入+GAR量化 (2) residual stream 信息保留 (3) ThreadGate 动机 (4) 五方对比和主要发现 (5) 贡献列表\n\n编译通过，格式和页数均符合要求。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-compile-and-verify.md"
+}

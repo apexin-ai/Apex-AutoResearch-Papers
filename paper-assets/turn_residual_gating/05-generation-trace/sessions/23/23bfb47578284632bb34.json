@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "23bfb47578284632bb34",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "ops v7 full status check",
+  "task_key": "worker_ops_v7_full_status_check_20260519T000247",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_v7_full_status_check_20260519T000247_result.json",
+    "occurrence": 1,
+    "bytes": 1182,
+    "sha256": "d6ce11ee2fbb525963a585f46d608e682d367fc3c0b85592d38dd593c965abea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息已收集，汇报如下：\n\n---\n\n## 状态汇报\n\n```\nv7 训练: 运行中 — Epoch 2, Step 5500/~8000 (约 69%)\n  整体进度: ~90% (21500/24000 micro-steps)\n  每 epoch ~2 小时, 预计还剩 ~40-50 分钟完成\n  当前指标: L_NTP≈0.91, L_GAR≈0.001, Gate_mean≈0.95\n  Gate profile (step 2600): L3/L4 最低(~0.80), L27 最高(0.99)\n\nPipeline 脚本: 运行中, 正在等待 v7 完成\n  脚本内容已确认: 完成后将自动执行 eval-ours → eval-dongre → 启动 UG\n  无需手动干预\n\nEval GAR-ours: 未执行 (等待 v7 完成后 pipeline 自动触发)\nEval GAR-Dongre: 未执行 (同上)\n\nUG baseline: 未启动 (pipeline 将在 eval 后自动启动)\n  无 log, 无 tmux session\n\nGPU 状态: GPU 0 — 86% utilization, 86625/97887 MiB (88%)\n```\n\n---\n\n**结论**: 一切正常。Pipeline 脚本 (`run_post_v7.sh`) 已在后台运行，会自动完成以下链条：\n\n1. 检测 \"Training complete\" → 运行 eval GAR-ours (含 gate profile) → 运行 eval GAR-dongre → 启动 UG baseline\n\nv7 预计约 40-50 分钟后完成。无需手动干预，pipeline 会自动接管后续所有步骤。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-v7-full-status-check.md"
+}

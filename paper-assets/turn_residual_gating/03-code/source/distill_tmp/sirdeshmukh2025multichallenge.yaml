@@ -1,0 +1,25 @@
+paper_key: "sirdeshmukh2025multichallenge"
+title: "MultiChallenge: A Realistic Multi-Turn Conversation Evaluation Benchmark Challenging to Frontier LLMs"
+venue: "arXiv 2025"
+full_text_available: false
+
+research:
+  baselines: ["GPT-4o", "Claude-3.5", "Gemini-1.5", "LLaMA-3.1", "Qwen-2.5"]
+  metrics:
+    - {name: "multi-turn accuracy", direction: "higher_better"}
+    - {name: "instruction following rate", direction: "higher_better"}
+  datasets:
+    - {name: "MultiChallenge", size: "multi-turn conversations with complex constraints"}
+  ablation_dimensions: ["turn count", "constraint complexity", "task type"]
+  training_recipe: "N/A (benchmark)"
+  method_family: "multi-turn evaluation"
+
+positioning:
+  core_claim: "Even frontier LLMs struggle with realistic multi-turn conversations requiring complex constraint tracking across turns"
+  key_results: "significant accuracy drops as turn count and constraint complexity increase"
+  limitations: ["English only", "limited task diversity"]
+  relation_to_us: "complementary"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

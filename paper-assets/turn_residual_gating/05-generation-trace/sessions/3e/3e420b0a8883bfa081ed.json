@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3e420b0a8883bfa081ed",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "ops monitor and transition",
+  "task_key": "worker_ops_monitor_and_transition_20260523T003234",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_monitor_and_transition_20260523T003234_result.json",
+    "occurrence": 1,
+    "bytes": 146,
+    "sha256": "e723b4b3e324366cc1db64f51576c45e3452957e681b19fe565670e978f0a0b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PCGrad beta=0 在 conv 20/50，预计还需 1-2h 完成全部 3 个 beta（0/3/5）。已设置 ~4.5 分钟后回来检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-monitor-and-transition.md"
+}

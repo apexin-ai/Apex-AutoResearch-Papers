@@ -1,0 +1,1 @@
+Remote file: /root/turn_residual_gating/runs/v7_training_dynamics.csv on westd-20861. Also: v7_gate_stats.txt, v7_gate_profiles.txt, v7_training_output.txt in same directory.

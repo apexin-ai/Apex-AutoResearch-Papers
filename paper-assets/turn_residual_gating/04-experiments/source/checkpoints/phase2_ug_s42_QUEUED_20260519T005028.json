@@ -1,0 +1,17 @@
+{
+  "exp_id": "phase2_ug_s42",
+  "project": "turn_residual_gating",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T06:04:17.643Z",
+    "updated_at": "2026-05-19T00:50:28.904Z",
+    "hypothesis": "Uniform gating baseline (all layers get same gate value) to isolate whether ThreadGate's layer-specific gating provides benefit over uniform residual scaling. Same training setup as v7 but with gate-type=uniform.",
+    "parent": "phase1_gar_diag",
+    "notes": "UG 代码兼容 v7 新 loss（get_gate_values(with_grad=True) 在两种 gate type 下都工作）。等 GPU 分配。完整命令：bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/turn_residual_gating && PYTHONUNBUFFERED=1 python src/train_phase2.py --gate-type uniform --gar-loss-mode mse_target --gar-target 0.5 --lambda-gar 1.0 --lambda-gate-div 1.0 --min-gate-std 0.05 --init-bias 1.5 --gate-lr-multiplier 10 --max-seq-len 2048 --seed 42 --output-dir /root/turn_residual_gating/runs/phase2_ug_s42 --data-dir /root/turn_residual_gating/data/ultrachat_8k --epochs 3\""
+  },
+  "timestamp": "2026-05-19T00:50:28.933355+00:00",
+  "trigger": "update_registry"
+}

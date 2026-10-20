@@ -1,0 +1,13 @@
+\section{Limitations}\label{sec:limitations}
+
+Our experiments use a single random seed (seed\,=\,42). While the four-way convergence across ThreadGate, Uniform Gate, and LoRA-only provides indirect evidence of robustness (three independent configurations reaching indistinguishable performance is unlikely to result from seed-specific artifacts), multi-seed validation would strengthen this conclusion.
+
+We test only one type of auxiliary attention loss (GAR with MSE target $\tau = 0.5$). Other attention steering objectives, such as head-specific or layer-specific attention losses, may exhibit different sensitivity to exposure bias. Our negative result applies to the GAR family; it does not rule out all auxiliary attention interventions.
+
+Training uses 8K conversations from UltraChat. Larger-scale training could alter gate dynamics, particularly if the model encounters sufficient distributional diversity to reduce the training-inference mismatch.
+
+Cross-model validation on Llama-3.1-8B-Instruct is in progress (\S\ref{sec:cross-model}). Until those results are available, our conclusions rest on a single model family (Qwen-2.5-7B-Instruct).
+
+The PCGrad diagnostic exclusion addresses gradient direction conflict only. Magnitude imbalance (GradNorm; \citealp{chen2018gradnorm}) and Nash equilibrium approaches (Nash-MTL; \citealp{navon2022nash}) remain untested and could reveal additional failure modes or interaction effects.
+
+All three fine-tuned variants share the same GAR auxiliary loss. This design isolates the gating mechanism but does not test whether gating could be effective without an auxiliary attention loss or under a different training objective.

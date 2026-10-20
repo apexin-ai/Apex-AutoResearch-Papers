@@ -1,0 +1,2 @@
+2026-05-19 14:25:19,102 INFO    core.tools.feishu  create_chat: name='审稿-turn_residual_gating' → chat_id=oc_9287ee173cf15d688adcd081f5d861f5
+2026-05-19 14:25:19,104 INFO    core.tools.dream  [dream] auto-created Group C for project=turn_residual_gating: oc_9287ee173cf15d688adcd081f5d861f5

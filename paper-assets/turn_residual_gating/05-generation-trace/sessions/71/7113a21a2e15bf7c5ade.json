@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7113a21a2e15bf7c5ade",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "data steering full extract",
+  "task_key": "worker_data_steering_full_extract_20260520T111646",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_steering_full_extract_20260520T111646_result.json",
+    "occurrence": 1,
+    "bytes": 67,
+    "sha256": "8c807e4ce7d51fbf7f14441ab7153955a73069c31ad90bf3781ec209ea53ded8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Worker 正在运行，约 2 分钟后检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-steering-full-extract.md"
+}

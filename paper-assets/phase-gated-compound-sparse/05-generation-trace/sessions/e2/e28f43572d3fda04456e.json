@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e28f43572d3fda04456e",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "analysis c5 gini collect",
+  "task_key": "worker_analysis_c5_gini_collect_20260516T031406",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_c5_gini_collect_20260516T031406_result.json",
+    "occurrence": 1,
+    "bytes": 1256,
+    "sha256": "4d3bd338ed7a8cbe54038079ec1a1c71daf12fe518e95cad42e61d89881c4ee1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "QW (Qwen2.5-7B-Instruct) results are complete. Here's the summary while we wait for DS:\n\n**QW Per-Phase Gini Delta Summary (n=30 problems)**\n\n| Sparsity | Method | Global Δ (±std) | Low Phase Δ | Mid Phase Δ | High Phase Δ |\n|----------|--------|-----------------|-------------|-------------|--------------|\n| 0.15 | importance | -0.0103 ±0.0064 | -0.0165 | -0.0094 | -0.0120 |\n| 0.15 | random | -0.0186 ±0.0071 | -0.0083 | -0.0038 | -0.0036 |\n| 0.20 | importance | -0.0121 ±0.0095 | -0.0200 | -0.0115 | -0.0143 |\n| 0.20 | random | -0.0229 ±0.0084 | -0.0119 | -0.0053 | -0.0067 |\n| 0.25 | importance | -0.0100 ±0.0101 | -0.0286 | -0.0168 | -0.0207 |\n| 0.25 | random | -0.0337 ±0.0224 | -0.0014 | -0.0081 | +0.0045 |\n| 0.30 | importance | -0.0202 ±0.0101 | -0.0350 | -0.0183 | -0.0239 |\n| 0.30 | random | -0.0447 ±0.0125 | -0.0221 | -0.0077 | -0.0061 |\n\nDense Gini baselines: low=0.2675, mid=0.2078, high=0.2599\n\nKey observation: importance pruning shows **larger Gini drops in low-sparsity phase** (where most tokens are), while random pruning has larger global Δ but smaller per-phase drops — the pattern reversal at per-phase level is interesting.\n\nDS model currently at 16/30. Will check back in ~4 min."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-c5-gini-collect.md"
+}

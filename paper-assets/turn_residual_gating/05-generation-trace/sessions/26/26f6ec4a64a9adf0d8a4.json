@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "26f6ec4a64a9adf0d8a4",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "paper writing experiments",
+  "task_key": "worker_paper_writing_experiments_20260519T220825",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_experiments_20260519T220825_result.json",
+    "occurrence": 1,
+    "bytes": 638,
+    "sha256": "3362eefbfaba87098ed7a1a599d4129a15c7f9aae0d596bd2677a048c096bb8f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入 `paper/sections/experiments.tex`。\n\n内容概要:\n- **§5.1 Setup**: Qwen-2.5-7B-Instruct, UltraChat 8K, LoRA r=8, 三项损失函数参数 inline, 四路消融配置定义, IID/held-out 两种评估协议\n- **§5.2 Main Results**: Table 1 (full-width `table*`, booktabs, 4行×6数据列), 核心叙事 = 三方趋同 (held-out GAR-ours spread 0.75pp, PPL spread 0), Base→fine-tuned 45倍 GAR 提升归因于 LoRA, GAR-Dongre 持续低位, 30× teacher-forced vs autoregressive gap, 因果分析 defer 到 §6\n- **§5.3 Cross-Model Validation**: Llama-3.1-8B placeholder, 2 句说明实验进行中"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-experiments.md"
+}

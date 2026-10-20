@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5d6e75be13f65e8dbdcb",
+  "project": "redundancy-compound-sparsity-2",
+  "kind": "result",
+  "title": "research baseline literature survey",
+  "task_key": "worker_research_baseline-literature-survey_20260512T142807",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_baseline-literature-survey_20260512T142807_result.json",
+    "occurrence": 1,
+    "bytes": 1285,
+    "sha256": "ddb8bbfad3ce86372bebcb45c1fc933ad7cdc327fc986be9de209eedb754900c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调研完成。文件写入 `artifacts/literature_map.yaml`，覆盖 14 个方法：\n\n**核心 baseline（9 个指定方法）：**\n- **H2O** (NeurIPS'23) — cumulative attention scoring, O(B)\n- **StreamingLLM** (ICLR'24) — sink + window, O(1) 但不做 scoring\n- **SnapKV** (NeurIPS'24) — prefill observation window, one-shot\n- **R-KV** (NeurIPS'25) — pairwise redundancy scoring, O(B²)，**最直接对比**\n- **SkipKV** (arXiv'25) — sentence-level 粗粒度压缩\n- **FASA** (ICLR'26) — RoPE 频率域稀疏, O(B·F)\n- **LazyEviction** (arXiv'25) — recurrence interval tracking, O(B)，**理念最近**\n- **TOVA** (EMNLP'24) — min-attention eviction, O(B)\n- **PyramidKV** / **PyramidInfer** — 层级化 budget 分配，正交可组合\n\n**补充方法（5 个）：**\n- **NACL** (ACL'24), **Ada-KV** (NeurIPS'25), **KeyDiff** (NeurIPS'25), **ExpectedAttention** (arXiv'25)\n\n**kvpress v0.5.3 可直接跑的 baseline：** H2O, StreamingLLM, SnapKV, TOVA, KeyDiff, ExpectedAttention, ObservedAttention（共 7 个 + KNorm/Threshold/Compactor 等）\n\n**我们方法的定位：** 唯一同时满足 O(1) per-token + redundancy-aware + 不需要 attention matrix 的方法。最直接对比是 R-KV（O(B²)）和 KeyDiff（O(B²)）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-baseline-literature-survey.md"
+}

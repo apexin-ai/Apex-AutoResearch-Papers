@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2eb2470705a68312eb95",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "ssh check llama lora after restart",
+  "task_key": "worker_ssh_check_llama_lora_after_restart_20260522T020854",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_llama_lora_after_restart_20260522T020854_result.json",
+    "occurrence": 1,
+    "bytes": 544,
+    "sha256": "dc8a95c15608394b037e47dbc8b3fcc58e334d3fa5775fa2bfd07337572d30de"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 RUNNING。\n\n**结论：训练幸存了服务器重启，无需重新提交。**\n\n| 项 | 值 |\n|---|---|\n| 状态 | 正常运行中 |\n| 进度 | Step 2900 / 3000 (96.7%) |\n| 预计剩余 | ~100 steps，几分钟内完成 |\n| GPU | RTX PRO 6000 Blackwell, 97% util, 85.5 GB used |\n| Registry | PREPARING → RUNNING (已修正) |\n| 输出目录 | `/root/turn_residual_gating/runs/phase2_llama_lora_only_s42` |\n\n训练即将结束，完成后需要检查 checkpoint 保存和提取最终指标。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-llama-lora-after-restart.md"
+}

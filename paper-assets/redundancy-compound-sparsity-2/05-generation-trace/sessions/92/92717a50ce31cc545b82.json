@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "92717a50ce31cc545b82",
+  "project": "redundancy-compound-sparsity-2",
+  "kind": "result",
+  "title": "code merge script",
+  "task_key": "worker_code_merge_script_20260512T105712",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_merge_script_20260512T105712_result.json",
+    "occurrence": 1,
+    "bytes": 596,
+    "sha256": "c7aa5c817e9b5b6da693db47a40b3b484b146ac6b3f5d300b6b3f127e3c61e13"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已创建并验证可用。`/root/carc/merge_results.py` 功能：\n\n- 加载多个 npz 文件，concatenate 所有 raw arrays\n- 从合并数据重新计算 (b)(c)(d)(e) 所有统计量和 per-layer breakdown\n- Near-zero fractions 和 lag-1 autocorrelation 从 JSON 加权平均/取均值\n- 调用 `judge()` 得出 verdict\n- 输出 `results_merged.json` + 与 `carc_mvp.py` 一致的 summary\n\n运行命令：\n```bash\ncd /root/carc && python3 merge_results.py \\\n    --input results_seed42 results_seed1337 \\\n    --tau 0.7 \\\n    --output results_merged.json\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-merge-script.md"
+}

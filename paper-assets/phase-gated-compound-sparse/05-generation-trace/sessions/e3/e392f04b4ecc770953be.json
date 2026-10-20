@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "e392f04b4ecc770953be",
+  "project": "phase-gated-compound-sparse",
+  "kind": "worker",
+  "title": "paper urgent compile pdf",
+  "task_key": "worker_paper_urgent_compile_pdf_20260514T102142",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_urgent_compile_pdf_20260514T102142.log",
+    "occurrence": 1,
+    "bytes": 580182,
+    "sha256": "030d92cc22da7fd2d860b51ba4a56274edd8821c377c1172dd5f397a03e0b0ca"
+  },
+  "statistics": {
+    "messages": 219,
+    "user_turns": 1,
+    "tool_calls": 78,
+    "roles": {
+      "log": 1,
+      "system": 28,
+      "record": 1,
+      "assistant": 31,
+      "tool_call": 78,
+      "tool_result": 78,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 111,
+      "chunks": [
+        {
+          "path": "e392f04b4ecc770953be-part-0001.json",
+          "message_count": 111
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 108,
+      "chunks": [
+        {
+          "path": "e392f04b4ecc770953be-part-0001.json",
+          "message_count": 69
+        },
+        {
+          "path": "e392f04b4ecc770953be-part-0002.json",
+          "message_count": 39
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-urgent-compile-pdf.md"
+}

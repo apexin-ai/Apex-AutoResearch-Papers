@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "07c3203fd85b5160a304",
+  "project": "turn_residual_gating",
+  "kind": "worker",
+  "title": "analysis extract fig4 data",
+  "task_key": "worker_analysis_extract_fig4_data_20260519T210826",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_extract_fig4_data_20260519T210826.log",
+    "occurrence": 1,
+    "bytes": 973593,
+    "sha256": "8400fd1cc1b01aec127edb9905d4a85df67fe5e38f474d3f9561f2acf7368c2e"
+  },
+  "statistics": {
+    "messages": 275,
+    "user_turns": 0,
+    "tool_calls": 94,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 83,
+      "tool_call": 94,
+      "tool_result": 94,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 275,
+      "chunks": [
+        {
+          "path": "07c3203fd85b5160a304-part-0001.json",
+          "message_count": 148
+        },
+        {
+          "path": "07c3203fd85b5160a304-part-0002.json",
+          "message_count": 127
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-extract-fig4-data.md"
+}

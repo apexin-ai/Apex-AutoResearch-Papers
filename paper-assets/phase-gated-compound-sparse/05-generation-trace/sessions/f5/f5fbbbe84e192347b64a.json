@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f5fbbbe84e192347b64a",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "diagnose kv importance direction",
+  "task_key": "worker_diagnose_kv-importance-direction_20260514T010837",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_kv-importance-direction_20260514T010837_result.json",
+    "occurrence": 1,
+    "bytes": 3852,
+    "sha256": "634d0fc10ac276412b78a6202bc10b8a586f5eddf27dc8d4a8c5d4c3bb6f8908"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。以下是完整报告。\n\n---\n\n## 代码审查\n\n### `_select_kv_to_evict()` 逻辑 (interaction_index.py)\n\n```python\ncandidates = importance[1:]              # 排除 BOS\n_, indices = candidates.topk(num_to_evict, largest=False)  # 选最小值\nindices = indices + 1\nmask[indices] = 0.0                      # 驱逐\n```\n\n`largest=False` → 选择 importance 值最小的位置驱逐。\n\n### `kv_importance` 计算方式 (interaction_index.py, `compute_dense_forward_with_importance`)\n\n```python\nkv_importance = torch.zeros(seq_len)\nfor l in range(num_layers):\n    attn_f = attentions[l][0].float()               # (num_heads, seq, seq)\n    head_importance[l] = attn_f.norm(dim=(-2, -1))   # Frobenius norm per head\n    kv_importance += attn_f.sum(dim=(0, 1))           # sum over heads + query positions\n```\n\n`kv_importance[k]` = 所有层、所有 head、所有 query 对 key position k 的 attention 之和。**高值 = 被广泛关注 = 重要。**\n\n## 排序方向判断\n\n`topk(largest=False)` 选最小值驱逐 → **排序方向本身是正确的**。高 importance = 重要 = 保留，低 importance = 不重要 = 驱逐。固定 NaN 后验证：\n- 被驱逐位置 importance 均值: **194.02**\n- 被保留位置 importance 均值: **764.77**\n- 确实在驱逐 importance 更低的位置 ✓\n\n## 是否存在 invert bug\n\n**不存在排序方向反转。** 但存在更严重的问题：\n\n## 🚨 真正的 Bug：Layer 27 NaN 中毒\n\n**Layer 27（最后一层）的 attention weights 在 float16 下全是 NaN。**\n\n诊断数据：\n```\nNaN layers: [27]\nBuggy kv_importance NaN count: 160/160   ← 所有位置全是 NaN\nFixed kv_importance NaN count: 0/160     ← 跳过 layer 27 后正常\n```\n\n**因果链：**\n1. `attentions[27]` 在 float16 下包含 NaN（最后一层数值不稳定）\n2. `kv_importance += NaN_tensor` → 整个 accumulator 变 NaN\n3. `topk(largest=False)` 在全 NaN 输入上行为未定义，产生伪随机偏差选择\n4. NaN topk 结果系统性偏向 Q3 区域（buggy: Q1=0, Q2=0, Q3=39, Q4=9），导致集中驱逐后半段 context\n5. 这比 random eviction（均匀分布）更具破坏性\n\n对比：\n\n| | importance (buggy) s=0.3 | random s=0.3 |\n|---|---|---|\n| high_sparsity kv_ppl | **408.98** | **6.77** |\n| mid_sparsity kv_ppl | **604.37** | (similar scale) |\n\n## Sanity check 数据\n\n### 修复后 kv_importance 分布（跳过 NaN 层）\n```\nQ1 [0:40]  mean=1989.39   ← 早期位置 importance 高（positional bias）\nQ2 [40:80] mean=433.39\nQ3 [80:120] mean=393.18\nQ4 [120:160] mean=208.05  ← 后期位置 importance 低\n```\n\n### 修复后 eviction 分布 (s=0.3)\n```\nQ1: 0, Q2: 8, Q3: 11, Q4: 29   ← 仍然偏向后期，但至少是基于真实 importance\nEvicted importance: 194.02\nKept importance:    764.77\n```\n\n### Buggy eviction 分布 (NaN topk)\n```\nQ1: 0, Q2: 0, Q3: 39, Q4: 9   ← 完全集中在 Q3，无信息量\n```\n\n## 结论\n\n**(a) 排序方向正确。** `largest=False` 驱逐最小值，符合\"高 importance = 重要 = 保留\"的语义。\n\n**(b) cumulative_attention_received 作为 importance proxy 有局限。** 存在强 positional bias（早期位置天然累积更多 attention），修复 NaN 后仍会倾向驱逐近期 token。但这是 metric 选择问题，不是 bug。\n\n**(c) 存在 NaN 中毒 bug（Layer 27）。** 这是导致 importance-based 比 random 差 26-60 倍的**根本原因**。修复方案：\n\n```python\n# compute_dense_forward_with_importance 中的循环改为：\nfor l in range(num_layers):\n    attn_f = attentions[l][0].float()\n    if torch.isnan(attn_f).any():\n        continue\n    head_importance[l] = attn_f.norm(dim=(-2, -1)).cpu()\n    kv_importance += attn_f.sum(dim=(0, 1)).cpu()\n    del attn_f\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-kv-importance-direction.md"
+}

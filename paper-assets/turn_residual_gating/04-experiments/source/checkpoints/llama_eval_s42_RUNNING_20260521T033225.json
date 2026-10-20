@@ -1,0 +1,26 @@
+{
+  "exp_id": "llama_eval_s42",
+  "project": "turn_residual_gating",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T03:29:51.255Z",
+    "updated_at": "2026-05-21T03:32:25.576Z",
+    "hypothesis": "Llama-3.1-8B TG 训练完成后，验证 C5：IID (teacher-forced) GAR 应接近 target（~0.5），但 model-gen (autoregressive) GAR 应出现类似 Qwen 的 20-33× training-inference gap，确认 exposure bias 跨模型泛化。",
+    "parent": "llama_tg_s42",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/turn_residual_gating && bash scripts/eval_llama_tg_s42.sh 2>&1 | tee runs/eval_llama_tg_s42.log",
+      "server": "westd-20861",
+      "data_path": "data/ultrachat_eval_sample.json",
+      "data_count": 50,
+      "model_name": "Llama-3.1-8B-Instruct",
+      "seed": 42,
+      "checkpoint_source": "runs/phase2_llama_tg_s42/epoch_2",
+      "eval_data": "ultrachat_eval_sample"
+    }
+  },
+  "timestamp": "2026-05-21T03:32:25.688580+00:00",
+  "trigger": "update_registry"
+}

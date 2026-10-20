@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1de8e6a9476b212af4df",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "fix audit appendix issues",
+  "task_key": "worker_fix_audit_appendix_issues_20260525T203522",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_audit_appendix_issues_20260525T203522_result.json",
+    "occurrence": 1,
+    "bytes": 1385,
+    "sha256": "61dccb425def481bddb5401d6aea3a2812180a0a929b95dd0437e541be517206"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The remaining 1.3× occurrences are:\n- `discussion.tex:3` — \"${\\leq}$1.3$\\times$\" for GAR-Dongre shift (different metric, correct as-is)\n- `appendix.tex:633` — per-seed values \"gap 1.3$\\times$\" (individual seed data, correct as-is)\n\nBoth are unrelated to the SS aggregate gap. All edits complete. Summary:\n\n| # | Issue | File(s) | Fix |\n|---|-------|---------|-----|\n| 1 | Table 1 IID column | related_work.tex | TG: 0.50→0.49, 2.78→2.63; UG: 2.78→2.62; LoRA: 0.50→0.49, 2.78→2.63 |\n| 2 | Gap ratio 7.8×→7.9× | experiments/intro/appendix | All 7.8× → 7.9× (6 locations) |\n| 3 | SS gap ~1.3×→~1.2× | experiments/analysis/intro/conclusion/appendix | All ~1.3× → ~1.2× (8 locations) |\n| 4 | ≤1pp→≤2pp | experiments.tex | \"$\\leq$1\\,pp\" → \"$\\leq$2\\,pp\"; also \"PPL is 2.78 for all\" → \"PPL is 2.62--2.78\" |\n| 5 | MMLU max degradation | appendix.tex | 1.2pp → 1.5pp (text + figure caption) |\n| 6 | \"Base (LoRA-only)\" label | appendix.tex | → \"Base (pretrained)\" |\n| 7 | SS ρ_max 0.5→0.3 | appendix.tex | intro paragraph fixed |\n| 8 | SS PPL std | experiments.tex | 0.001 → 0.002 |\n| 9 | Llama VRAM caption | appendix.tex | Added \"VRAM reports peak allocated memory (excluding optimizer states).\" |\n| 10 | LoRA-only training time | appendix.tex | 6.0h → 5.7h (table + paragraph range) |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-audit-appendix-issues.md"
+}

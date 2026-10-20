@@ -1,0 +1,28 @@
+{
+  "exp_id": "eval_v8b_ss",
+  "project": "turn_residual_gating",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T18:44:23.366Z",
+    "updated_at": "2026-05-20T18:44:53.904Z",
+    "hypothesis": "Scheduled Sampling (linear 0→0.5 mixing of teacher-forced and model-gen contexts) closes the 30x training-inference GAR gap by reducing exposure bias, resulting in model-gen GAR significantly above v7 baseline (0.016) while preserving IID GAR and PPL.",
+    "parent": "phase2_tg_s42_v8b_ss",
+    "spec": {
+      "command": "python src/eval_phase2_gar.py --checkpoint-dir checkpoints/tg_v8b_ss_fixed_s42 --gate-type threadgate",
+      "server": "westd-20861",
+      "data_path": "data/ultrachat_eval_heldout.json + built-in 5conv model-gen",
+      "data_count": "50 heldout + 5 model-gen",
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42,
+      "checkpoint_source": "checkpoints/tg_v8b_ss_fixed_s42",
+      "eval_data": "ultrachat_eval_heldout.json (IID) + built-in model-gen (5x10 turns)",
+      "checkpoint_path": "checkpoints/tg_v8b_ss_fixed_s42",
+      "log_path": "/tmp/eval_v8b_all.log"
+    }
+  },
+  "timestamp": "2026-05-20T18:44:53.955336+00:00",
+  "trigger": "update_registry"
+}

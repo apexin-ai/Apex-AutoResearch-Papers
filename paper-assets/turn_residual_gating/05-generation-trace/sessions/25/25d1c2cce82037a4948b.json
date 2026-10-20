@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "25d1c2cce82037a4948b",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "gpu fig3b n50",
+  "task_key": "worker_gpu_fig3b_n50_20260524T171525",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu_fig3b_n50_20260524T171525_result.json",
+    "occurrence": 1,
+    "bytes": 1175,
+    "sha256": "02f31fe5fe817e77562a8c5a84e6fddd2a73b41b831ff974408e8311a6a0d3bb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "关键发现：\n\n**Fig 3(b) 当前是 Qwen 数据，不是 Llama SS。** 论文 caption 明确写道：\n\n> (b) Distribution shift ($N$=5 pilot): the TF-AR GAR gap persists across all five variants.\n\nPanel (b) 展示 Qwen 的 5 个变体（Base/TG/PCGrad/UG/LoRA），使用 N=5 pilot 数据。Panel (a) 的 layers 到 L23（24 层 Qwen 模型），也证实是 Qwen 数据。\n\nLlama SS 的数据在 §5.5 cross-model section，当前论文文本引用的值是：TF GAR 0.477, AR GAR 0.166, gap 2.9×。但 `p1_llama_ss_s42` 没有独立的 N=50 eval 结果文件。\n\n**两种可能的意图**：\n1. 把 Fig 3(b) 从 Qwen N=5 pilot 更新为 Llama SS N=50 数据\n2. 为 cross-model section / appendix 生成 Llama SS 的 N=50 分布偏移数据\n\n要继续执行，需要两步 GPU 评估：\n- TF (IID) eval：`--conversations-path standard_conversations.json`，约 10-15 分钟\n- AR (model-generated) eval：`--ar-from-fixed`，N=50 conversations 约 30-60 分钟\n\nGPU 当前应该空闲。是否继续运行这两个评估？如果是，请确认你想把结果放在 Fig 3(b)（替换 Qwen pilot data）还是用于 cross-model appendix。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-fig3b-n50.md"
+}

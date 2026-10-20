@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f306009044daf1c9a90a",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "pre check analysis readiness",
+  "task_key": "worker_pre-check_analysis-readiness_20260515T041452",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_pre-check_analysis-readiness_20260515T041452_result.json",
+    "occurrence": 1,
+    "bytes": 2084,
+    "sha256": "382585cb0200448b65013c6e1486c7b95c93cf4add79a312d0abbd869488772a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## n=500 分析环境预验证报告\n\n### 1. 脚本存在性：**PASS**\n`analyze_n500_unified.py` 存在，结构完整。仅依赖 stdlib + numpy + scipy.stats（不需要 pandas）。\n\n### 2. 依赖检查：**PASS（条件性）**\n| 包 | conda base (`/root/miniconda3/bin/python3`) | 系统 python |\n|---|---|---|\n| numpy | 2.2.6 ✓ | ✗ ModuleNotFoundError |\n| scipy | 1.17.1 ✓ | ✗ ModuleNotFoundError |\n\n**必须用 conda 环境运行**（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`），裸 `python3` 会失败。\n\n### 3. n=500 数据完整性：**12/16 完成，4 个 s030 在跑**\n\n| 条件 | s015 | s020 | s025 | s030 |\n|------|------|------|------|------|\n| ds_imp | ✓ | ✓ | ✓ | 运行中 111/500 |\n| ds_rand | ✓ | ✓ | ✓ | 运行中 157/500 |\n| qw_imp | ✓ | ✓ | ✓ | 运行中 335/500 |\n| qw_rand | ✓ | ✓ | ✓ | 运行中 328/500 |\n\n### 4. s030 进度与 ETA（基于 12:15 快照）\n\n| 任务 | 进度 | 启动时间 | 预计完成 |\n|------|------|---------|---------|\n| qw_imp_s030 | 335/500 (67%) | 09:53 | ~13:00 |\n| qw_rand_s030 | 328/500 (66%) | 10:01 | ~13:00 |\n| ds_rand_s030 | 157/500 (31%) | 10:54 | ~15:10 |\n| ds_imp_s030 | 111/500 (22%) | 11:19 | ~15:30 |\n\n**最晚完成时间：~15:30 今天。**\n\n### 5. 磁盘空间：**PASS**\n`/root/autodl-tmp` 250G 中用了 84G，剩余 167G（66%），充足。\n\n### 6. 活跃进程：**4 个 profiling 任务正常运行**\n通过 tmux（c2_n500_gpu0/gpu1）和 screen（c2_qw_gpu2/gpu3）管理，均 100% CPU 正常跑。\n\n### 7. 输出目录：**PASS**\n`analysis_output/` 已存在，已有之前 dryrun 产出（`n500_unified_dryrun.json/csv`），写权限正常。\n\n---\n\n### 结论\n\n**分析脚本可以顺利执行。** 唯一注意点：运行时必须激活 conda 环境。预计 **15:30** 后所有 s030 数据就绪，届时可立即执行：\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\ncd /root/autodl-tmp/pacs\npython analyze_n500_unified.py --csv\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/pre-check-analysis-readiness.md"
+}

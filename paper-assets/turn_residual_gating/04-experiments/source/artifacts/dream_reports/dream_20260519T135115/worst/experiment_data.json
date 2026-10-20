@@ -1,0 +1,532 @@
+[
+  {
+    "name": "Gradient conflict analysis (Qwen v7)",
+    "description": "在 v7 的 3 个 epoch checkpoint 上测量每层 gate 参数的 NTP vs GAR 梯度余弦相似度和幅度比，量化两个 loss 的竞争关系。\n",
+    "results": {
+      "epoch0_ckpt_cos_sim_mean": -0.031,
+      "epoch0_ckpt_cos_sim_std": 0.042,
+      "epoch1_ckpt_cos_sim_mean": 0.008,
+      "epoch1_ckpt_cos_sim_std": 0.038,
+      "epoch2_ckpt_cos_sim_mean": -0.019,
+      "epoch2_ckpt_cos_sim_std": 0.045,
+      "cross_checkpoint_sign_stable_layers": 9,
+      "cross_checkpoint_sign_flip_layers": 19,
+      "epoch0_mag_ratio_mean": 5.2,
+      "epoch1_mag_ratio_mean": 3.8,
+      "epoch2_mag_ratio_mean": 6.1,
+      "mag_ratio_range": "[2.1, 7.8]",
+      "layers_with_consistent_negative_cos": "[L3, L4, L12, L14, L20, L23, L9, L8, L11]",
+      "layers_with_consistent_positive_cos": "[L1, L26, L27]",
+      "layers_with_sign_flip": "[L0, L2, L5, L6, L7, L10, L13, L15, L16, L17, L18, L19, L21, L22, L24, L25]"
+    },
+    "tables": [
+      {
+        "table_id": "T_grad_conflict",
+        "caption": "Per-layer NTP vs GAR gradient statistics across 3 epoch checkpoints",
+        "columns": [
+          "Layer",
+          "Epoch0 cos_sim",
+          "Epoch1 cos_sim",
+          "Epoch2 cos_sim",
+          "Sign stable?",
+          "Avg mag_ratio"
+        ],
+        "sample_rows": [
+          [
+            "L3",
+            -0.048,
+            -0.022,
+            -0.041,
+            "Yes (neg)",
+            5.8
+          ],
+          [
+            "L4",
+            -0.052,
+            -0.018,
+            -0.039,
+            "Yes (neg)",
+            6.2
+          ],
+          [
+            "L14",
+            -0.039,
+            -0.011,
+            -0.028,
+            "Yes (neg)",
+            4.9
+          ],
+          [
+            "L1",
+            0.021,
+            0.035,
+            0.018,
+            "Yes (pos)",
+            3.1
+          ],
+          [
+            "L15",
+            -0.018,
+            0.029,
+            -0.007,
+            "No",
+            4.5
+          ],
+          [
+            "L22",
+            0.012,
+            -0.031,
+            0.008,
+            "No",
+            5.3
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "梯度冲突数据的 noisy 本质意味着 SP2 (\"NTP-GAR 梯度竞争的逐层量化\") 需要 大幅弱化。不能说 \"系统性梯度冲突导致 gate 反向学习\"，只能说 \"NTP 梯度幅度 显著大于 GAR (3-6x)，在部分层和训练阶段存在方向冲突，为 NTP dominance 提供了部分解释\"。这削弱了论文的第二大卖点，需要在 Analysis section 加入更多 caveats。幅度比的存在仍支持 \"NTP dominates gate updates\" 的 弱版本 claim。\n\n\n在 worst 档下，梯度冲突信号存在但极度 noisy。cos_sim 均值在 [-0.05, 0.05] 之间波动，跨 checkpoint 符号不稳定（19/28 层出现符号翻转）。这意味着： (1) 不能 claim \"NTP 和 GAR 梯度系统性冲突\"——只能说 \"在部分层和部分训练阶段 存在冲突趋势\"；(2) 幅度比仍显示 NTP 梯度 ~3-6x 大于 GAR 梯度，但这个 ratio 不如预期的 7-15x 那么 dramatic；(3) epoch1 的 cos_sim 甚至变为正值，暗示 在训练中期 NTP 和 GAR 梯度可能短暂对齐（GAR 快速上升阶段），只在 epoch0 和 epoch2 呈现弱冲突。整体上，梯度冲突不能作为独立的 mechanistic claim， 只能作为 gate 反向 turn conditioning (NF1) 的辅助解释之一。\n"
+  },
+  {
+    "name": "Attention heatmap visualization",
+    "description": "4 个模型 (Base/TG/UG/LoRA-only) x 3 conversations x 28 layers 的 attention heatmap，可视化各模型对 goal tokens 的 attention 分布差异。\n",
+    "results": {
+      "base_goal_attention_pattern": "diffuse, declining over turns",
+      "tg_goal_attention_pattern": "similar to LoRA-only; no visible gate-driven enhancement at late turns",
+      "ug_goal_attention_pattern": "nearly identical to TG",
+      "lora_goal_attention_pattern": "slightly sharper than base at early turns, same decay",
+      "tg_vs_lora_visual_diff": "indistinguishable at turns 10+",
+      "layers_with_any_visible_diff": "[L3, L4, L12]",
+      "layers_with_no_diff": "remaining 25 layers",
+      "cross_conversation_consistency": "low — pattern varies substantially across 3 conversations"
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "Attention heatmap 不会成为论文的亮点图。它们确认了四路消融的定量结果 （gating 无增量贡献），但不提供额外的 mechanistic insight。建议将 heatmap 降级为 appendix figure，主 analysis section 用定量的 GAR/PPL 对比表 + gate profile 图即可。跨 conversation 的不一致性 是一个小 concern——需要在论文中承认 attention pattern 的 high variance， 并说明为什么 GAR 作为 aggregated metric 比 individual heatmap 更可靠。\n\n\n在 worst 档下，attention heatmap 不会产生 compelling 的视觉叙事。因为： (1) 推理时 gate attenuation 仅 2-7%，对 attention pattern 的实际影响 极小，肉眼难以区分 TG vs LoRA-only；(2) Base model 本身的 attention pattern 高度 variable（跨 conversation 不一致），使得对比图缺乏 clean signal；(3) 仅在 gate 值最低的 L3/L4 层可能看到微弱差异， 但差异幅度在 noise 范围内。这些 heatmap 只能放在 appendix 作为 supplementary evidence，不能作为主图。\n"
+  },
+  {
+    "name": "Held-out eval (50 convs, idx>=8000)",
+    "description": "用 UltraChat 中 idx>=8000 的 50 条全新对话重跑四路 eval， 检验训练 eval 上的 30x gap 是否存在 memorization confound。\n",
+    "results": {
+      "heldout_base_dongre_mid_gar": 0.0028,
+      "heldout_tg_dongre_mid_gar": 0.032,
+      "heldout_ug_dongre_mid_gar": 0.029,
+      "heldout_lora_dongre_mid_gar": 0.022,
+      "heldout_tg_training_gar": 0.48,
+      "heldout_gap_ratio": 15,
+      "heldout_tg_minus_lora_dongre_gar": 0.01,
+      "heldout_tg_minus_lora_significant": "marginal (p=0.08, paired t-test)",
+      "heldout_base_ours_mid_gar": 0.0095,
+      "heldout_tg_ours_mid_gar": 0.038,
+      "heldout_ug_ours_mid_gar": 0.035,
+      "heldout_lora_ours_mid_gar": 0.028,
+      "heldout_base_ppl": 4.35,
+      "heldout_tg_ppl": 2.71,
+      "heldout_ug_ppl": 2.68,
+      "heldout_lora_ppl": 2.69,
+      "original_tg_dongre_mid_gar": 0.0157,
+      "original_gap_ratio": 30,
+      "gap_ratio_change": "30x → 15x (held-out TG GAR 翻倍)"
+    },
+    "tables": [
+      {
+        "table_id": "T_heldout_4way",
+        "caption": "Four-way eval on held-out conversations (n=50, UltraChat idx≥8000)",
+        "columns": [
+          "Model",
+          "GAR-Dongre mid",
+          "GAR-Ours mid",
+          "PPL",
+          "Recovery (pp)"
+        ],
+        "sample_rows": [
+          [
+            "Base",
+            0.0028,
+            0.0095,
+            4.35,
+            "-"
+          ],
+          [
+            "TG (v7)",
+            0.032,
+            0.038,
+            2.71,
+            2.92
+          ],
+          [
+            "UG",
+            0.029,
+            0.035,
+            2.68,
+            2.62
+          ],
+          [
+            "LoRA-only",
+            0.022,
+            0.028,
+            2.69,
+            1.92
+          ]
+        ]
+      },
+      {
+        "table_id": "T_gap_comparison",
+        "caption": "Training-inference GAR gap: original eval vs held-out",
+        "columns": [
+          "Eval set",
+          "Training GAR",
+          "Inference GAR (TG Dongre)",
+          "Gap ratio"
+        ],
+        "sample_rows": [
+          [
+            "Original (n=5)",
+            0.48,
+            0.0157,
+            "30.6x"
+          ],
+          [
+            "Held-out (n=50)",
+            0.48,
+            0.032,
+            "15.0x"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Held-out eval 是 worst 档下最大的 narrative 冲击。两个后果： (1) 30x→15x 需要重写 abstract/intro 中所有引用 \"30x\" 的地方。15x 仍然 dramatic enough 支撑 distribution shift story，但不如 30x 那么 catchy。 需要改为 \"15-30x depending on eval set\" 的表述。 (2) TG > LoRA-only (Δ=0.010, p=0.08) 更麻烦。必须在论文中正面 address： \"On held-out data, ThreadGate shows a marginal but non-significant advantage, suggesting that gating may capture a small real signal that is amplified by memorization on the training eval set.\" 这把 C4 从 \"zero contribution\" 弱化为 \"negligible contribution\"。对论文整体 narrative 不致命但增加 reviewer 攻击面。\n\n\n在 worst 档下，held-out eval 暴露了两个 confound： (1) 训练 eval 上的 TG dongre GAR (0.0157) 被 training data proximity 压低了—— held-out 上反而更高 (0.032)，因为 held-out conversations 的 topic 分布 略有不同，TG 的微弱 attention 干预在某些 topic 上意外有效。这使得 30x gap 缩至 ~15x。虽然 15x 仍然很大，但 narrative 从 \"完全不泛化\" 变成 \"严重但非完全的泛化失败\"，弱化了 C2 的 dramatic 程度。 (2) 更致命的是，TG 在 held-out 上展现出对 LoRA-only 微弱但一致的增量优势 (Δ=0.010, p=0.08)。虽然不显著，但方向一致且跨多个 conversation 可见。 这直接挑战了 \"gating provides zero incremental contribution\" 的 claim (C4)。 在 worst 档下，审稿人会抓住这个 marginal positive 说 \"gating 可能有微弱效果， 你的 negative result 不够 clean\"。 PPL 在 held-out 上稳定，排除 NTP 质量的 confound。 整体效果：30x → 15x 仍支持 distribution shift story 但弱化； TG > LoRA-only 的微弱增量迫使论文承认 \"gating 非零贡献\" 的可能性。\n"
+  },
+  {
+    "name": "Llama-3.1-8B Phase 1 GAR diagnosis",
+    "description": "在 Llama-3.1-8B 上复现 Phase 1 GAR 衰减诊断，确认 GAR decay 是否跨模型存在。\n",
+    "results": {
+      "llama3_turn1_avg_gar": 0.0285,
+      "llama3_mid_turns_avg_gar": 0.0148,
+      "llama3_relative_drop": 0.481,
+      "llama3_num_conversations": 5,
+      "llama3_num_turns": 10,
+      "llama3_per_turn_avg_gar": [
+        0.0285,
+        0.0221,
+        0.0198,
+        0.0172,
+        0.0155,
+        0.0142,
+        0.0131,
+        0.0128,
+        0.0135,
+        0.0119
+      ],
+      "qwen_relative_drop_comparison": 0.708,
+      "llama3_decay_shape": "gradual linear, no sharp drop"
+    },
+    "tables": [
+      {
+        "table_id": "T_llama3_gar_diag",
+        "caption": "Llama-3.1-8B GAR degradation across 10 turns (n=5 conversations)",
+        "columns": [
+          "Turn",
+          "Avg GAR",
+          "Relative to Turn 1"
+        ],
+        "sample_rows": [
+          [
+            1,
+            0.0285,
+            "1.00"
+          ],
+          [
+            5,
+            0.0155,
+            "0.54"
+          ],
+          [
+            10,
+            0.0119,
+            "0.42"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Llama-3 的 GAR decay 比 Qwen 温和 ~30 个百分点，说明 GAR 衰减的严重程度 确实是 architecture-dependent。这不否认问题的存在，但否认了 \"universal structural phenomenon\" 的强 claim。论文需要改为 \"GAR degradation exists across architectures but varies in severity\"。\n\n\nLlama-3.1-8B 的 GAR decay 存在但显著弱于 Qwen。原因： (1) Llama-3 的 attention 架构 (GQA with 8 KV heads vs Qwen 的 GQA) 可能天然对 goal token 的 attention 更 robust；(2) Llama-3 的预训练 数据分布可能使其在多轮对话中保持更均匀的 attention 分布； (3) 48% 的 relative drop 虽然存在，但远低于 Qwen 的 71%，且衰减 曲线是 gradual linear 而非 Qwen 的 sharp early drop。 在 worst 档下，这意味着 \"GAR 衰减的严重程度是 architecture-dependent\"， 直接挑战了 \"structural phenomenon\" 的 universality claim。但 GAR 衰减确实存在 (48% 仍然是有意义的)，可以重新框架为 \"susceptibility varies by architecture\"。\n"
+  },
+  {
+    "name": "Llama-3.1-8B ThreadGate v7 training",
+    "description": "在 Llama-3.1-8B 上复制 Qwen v7 的 ThreadGate 训练 setup (MSE+gate_div, 3 epochs)。\n",
+    "results": {
+      "llama3_tg_training_gar_peak": 0.09,
+      "llama3_tg_convergence_phase": "A(gs0-100):plateau@0.01 B(gs100-200):slow_rise C(gs200+):plateau@0.09",
+      "llama3_tg_epochs_completed": 3,
+      "llama3_tg_final_avg_ntp": 0.78,
+      "llama3_tg_final_avg_gar": 0.008,
+      "llama3_tg_final_gate_mean": 0.962,
+      "llama3_tg_final_gate_std": 0.028,
+      "llama3_tg_final_gate_min": 0.891,
+      "llama3_tg_final_gate_max": 0.996,
+      "llama3_tg_training_time_hours": 7.2,
+      "llama3_tg_phase_transition": "weak — no sharp phase B like Qwen",
+      "llama3_tg_gate_profile_L3": 0.891,
+      "llama3_tg_gate_profile_L4": 0.903,
+      "llama3_gate_reversed_layers": 11,
+      "llama3_gate_reversed_layers_frac": 0.34
+    },
+    "tables": [
+      {
+        "table_id": "T_llama3_tg_training",
+        "caption": "Llama-3.1-8B ThreadGate v7 training dynamics",
+        "columns": [
+          "Metric",
+          "Llama-3",
+          "Qwen (reference)"
+        ],
+        "sample_rows": [
+          [
+            "Training GAR peak",
+            0.09,
+            0.48
+          ],
+          [
+            "Gate mean (final)",
+            0.962,
+            0.934
+          ],
+          [
+            "Gate std (final)",
+            0.028,
+            0.049
+          ],
+          [
+            "Reversed layers frac",
+            "34%",
+            "96%"
+          ],
+          [
+            "Phase transition",
+            "weak/absent",
+            "sharp at gs75-144"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Llama-3 的训练不收敛（GAR peak 仅 0.09）是 worst 档的核心问题。 这可以解读为：(a) MSE+gate_div loss 设计是 Qwen-specific 的，不 transfer 到 Llama → 弱化 \"principled loss design\" 的 claim；(b) Llama-3 的 NTP dominance 更强（NTP loss 更低、梯度更大），gates 更难 escape NTP control → 支持 \"NTP dominance\" story 但无法用 GAR gap 量化（因为 训练 GAR 本身就很低）。论文需要承认这个差异，并将其 reframe 为 \"training convergence itself is architecture-dependent\"。\n\n\n在 worst 档下，Llama-3 的 ThreadGate 训练严重受阻： (1) 训练 GAR 仅达到 0.09（Qwen 达 0.48），因为 Llama-3 的 NTP loss landscape 更平坦，gate 更难找到能提升 GAR 的干预方向； (2) 没有 Qwen 上清晰的三阶段动力学——Phase B 的 rapid rise 变成 缓慢爬升，暗示 MSE+gate_div loss 设计可能不是 Llama-3 的最优方案； (3) gate mean 更高 (0.962 vs Qwen 0.934)，gate std 更小 (0.028 vs 0.049)， 说明 gates 几乎没有学到有意义的 layer-selective behavior； (4) 只有 11/32 层出现 gate reversal（Qwen 是 27/28），说明 NF1 (反向 turn conditioning) 在 Llama 上不 universal，部分层的 gate 甚至朝 \"正确\" 方向微弱调整。 这使得 \"gate reversal 是 NTP dominance 的必然结果\" 这一 claim 不成立， gate behavior 变成 architecture-dependent。\n"
+  },
+  {
+    "name": "Llama-3.1-8B LoRA-only training",
+    "description": "Llama-3.1-8B 上的 LoRA-only 消融（无 gating），作为 cross-model gating redundancy 验证的基准。\n",
+    "results": {
+      "llama3_lora_epochs_completed": 3,
+      "llama3_lora_global_steps": 3000,
+      "llama3_lora_training_time_hours": 7.0,
+      "llama3_lora_final_ntp_loss": 0.77,
+      "llama3_lora_final_lora_size_mb": 20
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "LoRA-only 作为 baseline 无 surprise。关键对比在 plan_012 的 eval 中。\n\n\nLoRA-only training 在 Llama-3 上正常完成，与 Qwen 类似。LoRA 在 Llama-3 上的 NTP loss 收敛更好 (0.77 vs Qwen 0.95)，可能因为 Llama-3 的 base NTP 性能和 LoRA 适配效率不同。这本身不是问题—— 它为 plan_012 的 3-way eval 提供一个 clean baseline。\n"
+  },
+  {
+    "name": "Llama-3.1-8B 3-way eval",
+    "description": "Llama-3.1-8B 上 Base/TG/LoRA-only 的 3-way eval（GAR + PPL）， 使用 held-out data。\n",
+    "results": {
+      "llama3_base_dongre_mid_gar": 0.0135,
+      "llama3_tg_dongre_mid_gar": 0.038,
+      "llama3_lora_dongre_mid_gar": 0.025,
+      "llama3_tg_gap_ratio": 2.4,
+      "llama3_tg_minus_lora_dongre_gar": 0.013,
+      "llama3_tg_minus_lora_significant": "marginal (p=0.06)",
+      "llama3_base_ppl": 3.85,
+      "llama3_tg_ppl": 2.48,
+      "llama3_lora_ppl": 2.42,
+      "llama3_tg_ppl_penalty": 0.06,
+      "llama3_base_ours_mid_gar": 0.0182,
+      "llama3_tg_ours_mid_gar": 0.045,
+      "llama3_lora_ours_mid_gar": 0.031
+    },
+    "tables": [
+      {
+        "table_id": "T_llama3_3way_eval",
+        "caption": "Llama-3.1-8B 3-way eval (Base/TG/LoRA-only)",
+        "columns": [
+          "Model",
+          "GAR-Dongre mid",
+          "GAR-Ours mid",
+          "PPL",
+          "Training GAR",
+          "Gap ratio"
+        ],
+        "sample_rows": [
+          [
+            "Base",
+            0.0135,
+            0.0182,
+            3.85,
+            "-",
+            "-"
+          ],
+          [
+            "TG (v7)",
+            0.038,
+            0.045,
+            2.48,
+            0.09,
+            "2.4x"
+          ],
+          [
+            "LoRA-only",
+            0.025,
+            0.031,
+            2.42,
+            "-",
+            "-"
+          ]
+        ]
+      },
+      {
+        "table_id": "T_crossmodel_comparison",
+        "caption": "Cross-model comparison: Qwen vs Llama-3",
+        "columns": [
+          "Metric",
+          "Qwen-2.5-7B",
+          "Llama-3.1-8B"
+        ],
+        "sample_rows": [
+          [
+            "Training GAR peak",
+            0.48,
+            0.09
+          ],
+          [
+            "Inference GAR (TG Dongre)",
+            "0.016-0.032",
+            0.038
+          ],
+          [
+            "Gap ratio",
+            "15-30x",
+            "2.4x"
+          ],
+          [
+            "TG - LoRA Δ GAR",
+            "0.002-0.010",
+            0.013
+          ],
+          [
+            "Gate reversal fraction",
+            "96%",
+            "34%"
+          ],
+          [
+            "Base GAR (Dongre mid)",
+            0.003,
+            0.0135
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Llama-3 eval 的结果迫使论文从 \"universal structural barrier\" 转向 \"architecture-dependent susceptibility\"。具体 reframe： - Qwen 上 GAR gap 15-30x = severe distribution shift - Llama-3 上 GAR gap 2.4x = moderate generalization loss - 两者的差异可能来自 (a) base GAR robustness 不同 (Llama base GAR 4.5x\n  higher), (b) attention 架构差异, (c) pretraining data 差异\n- Gating 的微弱正面增量在两个模型上都出现 (Δ=0.010-0.013)，\n  虽然不显著但挑战 \"zero contribution\" 叙事\n论文需要 reframe：不是 \"gating 无用\"，而是 \"gating 的贡献在 Qwen 上 可忽略、在 Llama 上微弱但一致，overall 不足以 overcome distribution shift 的主要效应\"。\n\n\n在 worst 档下，Llama-3 的 eval 产生最致命的结果： (1) Training-inference GAR gap 仅 2.4x (0.09→0.038)，远低于 Qwen 的 15-30x。虽然 gap 仍存在，但 reviewer 会说 \"2.4x 不算 distribution shift barrier，只是 moderate generalization loss\"； (2) 更致命的是 TG > LoRA-only 0.013 (p=0.06)——gating 在 Llama-3 上 展现出微弱但一致的正面增量贡献。这直接矛盾 \"gating provides zero incremental contribution\" 的 claim。虽然 p>0.05 不显著，但方向 一致 + 两个模型上都出现微弱正面趋势 (Qwen held-out Δ=0.010, Llama-3 Δ=0.013) 构成 convergent weak evidence for gating utility； (3) PPL 上 TG 微弱劣于 LoRA-only (2.48 vs 2.42)，说明 gating 有 小的 NTP 代价，但幅度可忽略； (4) Base model 的 dongre GAR (0.0135) 甚至高于 Qwen base (0.003)， 进一步证实 Llama-3 的 attention 对 goal tokens 天然更 robust。 整体效果：Llama-3 上没有复现 Qwen 的 dramatic failure pattern。 \"Structural barrier\" claim 在跨模型层面不成立。\n"
+  },
+  {
+    "name": "Llama-3.1-8B gradient conflict analysis",
+    "description": "Llama-3.1-8B 上的 NTP vs GAR 梯度冲突分析，验证梯度竞争是否跨模型存在。\n",
+    "results": {
+      "llama3_grad_cos_sim_mean": 0.012,
+      "llama3_grad_cos_sim_std": 0.048,
+      "llama3_grad_sign_stable_layers": 7,
+      "llama3_grad_sign_flip_layers": 25,
+      "llama3_grad_mag_ratio_mean": 3.2,
+      "llama3_grad_mag_ratio_range": "[1.8, 5.1]",
+      "llama3_grad_cos_sim_overall_sign": "positive (not conflicting)"
+    },
+    "tables": [
+      {
+        "table_id": "T_llama3_grad",
+        "caption": "Llama-3 vs Qwen gradient conflict comparison",
+        "columns": [
+          "Metric",
+          "Qwen",
+          "Llama-3"
+        ],
+        "sample_rows": [
+          [
+            "cos_sim mean",
+            "-0.031 to +0.008",
+            "+0.012"
+          ],
+          [
+            "Sign-stable layers",
+            "9/28 (32%)",
+            "7/32 (22%)"
+          ],
+          [
+            "mag_ratio mean",
+            "5.2",
+            "3.2"
+          ],
+          [
+            "Overall direction",
+            "weakly conflicting",
+            "not conflicting"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Llama-3 梯度冲突不复现，彻底否定了 \"model-agnostic NTP-GAR gradient competition\" 作为独立 claim 的可行性。论文必须将梯度冲突分析 scope 限制为 Qwen 上的 observation，在 Discussion 中承认其 architecture-dependence。 SP2 从 \"NTP-GAR 梯度竞争的逐层量化\" 弱化为 \"Qwen 上观察到的 NTP-GAR 梯度不对齐趋势（跨模型不 universal）\"。\n\n\n在 worst 档下，Llama-3 的梯度冲突分析产生最坏结果：cos_sim 均值为正 (0.012)， 意味着 NTP 和 GAR 梯度在 Llama-3 上平均不冲突甚至微弱对齐。这与 Qwen 上 的微弱负 cos_sim (-0.031 to -0.019) 方向相反。原因： (1) Llama-3 训练 GAR 仅达 0.09，GAR loss 在训练后期近乎 saturated， 其梯度方向变得 random（接近零向量加噪声）； (2) 幅度比更低 (3.2x vs Qwen 5.2x)，因为 Llama-3 的 LoRA 适配使 NTP 梯度也相对较小。 结果：梯度冲突在 Llama-3 上不复现，SP2 的 \"model-agnostic gradient competition\" claim 完全不成立。\n"
+  },
+  {
+    "name": "Downstream task sanity check",
+    "description": "简单的 instruction retention 下游任务：测试模型在多轮对话后是否仍能 执行 system prompt 中的指令（如格式约束、persona 保持）。\n",
+    "results": {
+      "base_instruction_retention_turn1": 0.82,
+      "base_instruction_retention_turn10": 0.61,
+      "base_retention_drop": 0.256,
+      "tg_instruction_retention_turn1": 0.84,
+      "tg_instruction_retention_turn10": 0.63,
+      "tg_retention_drop": 0.25,
+      "lora_instruction_retention_turn1": 0.83,
+      "lora_instruction_retention_turn10": 0.62,
+      "lora_retention_drop": 0.253,
+      "tg_vs_lora_retention_diff": 0.01,
+      "gar_retention_correlation": 0.31,
+      "gar_retention_correlation_p": 0.18
+    },
+    "tables": [
+      {
+        "table_id": "T_downstream",
+        "caption": "Instruction retention across turns (downstream sanity check)",
+        "columns": [
+          "Model",
+          "Turn 1 retention",
+          "Turn 10 retention",
+          "Drop"
+        ],
+        "sample_rows": [
+          [
+            "Base",
+            0.82,
+            0.61,
+            "25.6%"
+          ],
+          [
+            "TG (v7)",
+            0.84,
+            0.63,
+            "25.0%"
+          ],
+          [
+            "LoRA-only",
+            0.83,
+            0.62,
+            "25.3%"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "GAR 与下游 task 的弱相关加重了 W3 (\"GAR as sole proxy metric\")。 论文需要在 Limitations 中承认 GAR 是 attention-level 的 proxy 而非 direct performance measure，并在 Discussion 中论证为什么 attention mechanism 的研究仍然有价值（即使与 task performance 的相关不完美）。 正面是：instruction retention 确实衰减，验证了多轮退化是 real problem， 只是 GAR 不是它的 perfect proxy。\n\n在 worst 档下，downstream task 结果 mixed： (1) Instruction retention 确实随 turn 衰减 (~25%)，与 GAR decay 方向 一致，但相关性弱 (r=0.31, p=0.18)。这说明 GAR 不是 instruction retention 的 clean proxy——attention 衰减和 task performance 衰减 之间有关系但不紧密； (2) TG vs LoRA-only 的 retention 差异可忽略 (Δ=0.01)，与 GAR eval 一致（gating 无实质帮助）； (3) 所有 fine-tuned 模型比 base 略好但差异小，说明 LoRA 训练本身 （而非 gating）带来微弱改善。 整体：GAR 与下游 task 的弱相关性是 worst 档的额外风险——reviewer 可能 质疑 \"如果 GAR 和实际 task performance 相关性不强，为什么要关注 GAR？\" 但 25% 的 retention drop 本身是 real 的，只是 GAR 作为其 proxy 不够 precise。\n"
+  }
+]

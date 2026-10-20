@@ -1,0 +1,16 @@
+{
+  "exp_id": "phase2_tg_s42_v2",
+  "project": "turn_residual_gating",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T11:13:37.042Z",
+    "updated_at": "2026-05-18T11:44:25.927Z",
+    "hypothesis": "ThreadGate + 修复后的 cumulative GAR loss (ε=0.001) 在 L_NTP+L_GAR 联合训练后，mid-turn GAR recovery 应显著优于 v1 (NTP-only baseline)，验证 GAR loss 的有效性",
+    "parent": "phase2_tg_s42"
+  },
+  "timestamp": "2026-05-18T11:44:25.969379+00:00",
+  "trigger": "update_registry"
+}

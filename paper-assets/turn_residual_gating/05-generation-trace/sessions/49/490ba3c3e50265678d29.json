@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "490ba3c3e50265678d29",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "code update paper numbers",
+  "task_key": "worker_code_update_paper_numbers_20260522T180818",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_update_paper_numbers_20260522T180818_result.json",
+    "occurrence": 1,
+    "bytes": 619,
+    "sha256": "4a4e2bddf65d8c1f6a35a5d155a624560d4db1ce1a8846efde13f9de5441bf51"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No more MISSes. All 33 replacements matched across 4 files.\n\nScript created at `scripts/update_paper_numbers.py`:\n- **14 rule categories** covering abstract, intro, experiments, and discussion\n- Supports `--summary` (aggregated JSON) and `--results-dir` (per-seed eval JSONs)\n- `--dry-run` (default) prints what would change; `--apply` writes to .tex files\n- Handles: AR GAR range, gap range, TF spread, SS improvement/gap compression, TG multi-seed stats, Table 1 AR values (regex), N=5→N=50, and `(single seed)` annotations\n- Rules that produce no change (old == new) are automatically skipped"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-update-paper-numbers.md"
+}

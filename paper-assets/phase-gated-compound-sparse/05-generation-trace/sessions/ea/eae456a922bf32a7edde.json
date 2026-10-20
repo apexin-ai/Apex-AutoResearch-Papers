@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eae456a922bf32a7edde",
+  "project": "phase-gated-compound-sparse",
+  "kind": "history",
+  "title": "agent / loop_14_1778904936.md",
+  "task_key": "loop_14_1778904936",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_14_1778904936.md",
+    "occurrence": 1,
+    "bytes": 3986,
+    "sha256": "d504e1606e0bcfe62f556bfc069d3be3fd8303dc9d0b29604b59053394a20b34"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 14\nreason: idle_timeout\nupdated: '2026-05-16T04:13:03+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-22162 cuda:0/1/2/3，不可用其他卡\n- accuracy eval 脚本 `run_accuracy_eval.py` 中 `--gpu cuda:0` 是逻辑 GPU（框架自动映射），不要传物理 GPU 编号\n- QW batch1 rescore 全系列必须用 `max_new_tokens=8192`，之前 batch1 用 2048 导致截断不匹配，是本轮重跑的根本原因\n- DS accuracy 数据已降为定性观察（D086），不作为 paper 主证据，QW 是 accuracy dose-response 主线\n- `acc_qw_s025_b1_8k` 和 `acc_qw_s030_b1_8k` 已发审批卡片（PENDING），审批通过前不可提交\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-22162，工作目录 `/root/autodl-tmp/pacs`\n- Python：`/root/miniconda3/bin/python`，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型：`/root/autodl-tmp/pacs/checkpoints/Qwen2.5-7B-Instruct`（QW）、DeepSeek 路径类似\n- 输出 JSON：`/root/autodl-tmp/pacs/accuracy_eval_qw_*.json`\n- 日志：`~/runs/phase-gated-compound-sparse/acc_*.log`\n- 活跃进程：\n  - acc_qw_s015_b1_8k (PID 294491, cuda:1, cron 监控中)\n  - acc_ds_s030_8k_v2 (PID 288901, cuda:2, cron 监控中)\n\n### 3. 📊 当前状态\n刚收到 `acc_qw_dense_b1_8k` (cuda:0) 和 `acc_qw_s020_b1_8k` (cuda:3) 的完成回调，两者均 ANALYZING。\n\n已派 Worker `worker_analysis_acc_qw_batch1_8k_20260516T010914` 去 SSH 读取输出 JSON + 日志，提取 accuracy/截断率，更新 registry → DONE。**这个 Worker 的 [WORKER DONE] 回调尚未到达**，到达后需要：\n- 检查 Worker 是否正确更新了 registry（status=DONE, conclusion, metrics）\n- 按 on-experiment-done skill 处理（更新 report.md、文献联动、反思实验计划）\n- 向 Director 汇报实际指标\n\nRUNNING：acc_qw_s015_b1_8k (cuda:1)、acc_ds_s030_8k_v2 (cuda:2)\nPENDING（等审批）：acc_qw_s025_b1_8k、acc_qw_s030_b1_8k\n已向 Director 发了一次状态汇报（无指标，仅告知分析中 + 审批已发）\n\n### 4. 📋 待办\n- Worker `worker_analysis_acc_qw_batch1_8k` 回调到达 → 检查 registry metrics → 按 on-experiment-done 走完（report.md + Director 汇报含实际 accuracy 数字 + 文献联动 + 实验计划反思）\n- `acc_qw_s025_b1_8k` 审批通过 → update_registry QUEUED → ALLOCATED(cuda:0, spec) → submit_on_allocated，命令：`bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python run_accuracy_eval.py --model checkpoints/Qwen2.5-7B-Instruct --conditions importance_s025 --num-problems 50 --max-new-tokens 8192 --gpu cuda:0 --seed 42 --output-name accuracy_eval_qw_s025_b1_8k.json\"`\n- `acc_qw_s030_b1_8k` 审批通过 → 同上流程，cuda:3，conditions=importance_s030\n- `acc_qw_s015_b1_8k` cron 完成回调 → 同样 spawn worker 分析\n- `acc_ds_s030_8k_v2` cron 完成回调 → spawn worker 分析（DS 系列最后一个 8k 点）\n- 全部 5 个 QW sparsity 点 (dense/s015/s020/s025/s030) 均 DONE → 编译完整 dose curve → 与旧 n=100 数据对比 → 向 Director 汇报是否支撑 paper claim\n\n### 5. 🎯 战略上下文\n- 项目核心发现：importance-based eviction 的 compound interaction severity 随 sparsity 单调递增（n=500 confirmed）\n- 目标：EMNLP 2026 ARR，截稿 2026-05-25（距今 9 天）\n- 当前处于 \"batch1 v2 rescore → 数据编译 → Round 10 审稿\" 阶段\n- 旧 QW n=100 accuracy：s020≈34%, s025≈30%，但 batch1 用了 2048 token，本轮 8k 修复后数字可能变化\n- D089 关键发现：DS 8k 揭示双 regime 结构（s≤0.20 截断驱动，非截断 acc ~71% 稳定）\n- 易错点：不要把 DS 和 QW accuracy 直接横比——DS 已降为定性（D086），QW 才是主证据线\n- 易错点：batch1 (problems 1-50) 和 batch2 (problems 51-100) 最终需要合并，但合并逻辑在编译阶段处理，分析阶段只看 batch1 单独指标\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-14-1778904936.md"
+}

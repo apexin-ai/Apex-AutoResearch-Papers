@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5241ddea4837637d7abb",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "ops check v7 intermediate ckpts",
+  "task_key": "worker_ops_check_v7_intermediate_ckpts_20260519T114257",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_v7_intermediate_ckpts_20260519T114257_result.json",
+    "occurrence": 1,
+    "bytes": 1931,
+    "sha256": "7f9a5c61759befdaa193297b24e5a6a1604739115029ea64ded8c783638cbe34"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总如下：\n\n---\n\n## 1. v7 中间 checkpoint\n\n**有 3 个 epoch checkpoint + final**：\n\n| Checkpoint | 时间 | 内容 | 大小 |\n|---|---|---|---|\n| `epoch_0/` | May 19 04:42 | gate_params.pt (3.2MB) + lora/ | epoch 0 结束 |\n| `epoch_1/` | May 19 06:41 | gate_params.pt (3.2MB) + lora/ | epoch 1 结束 |\n| `epoch_2/` | May 19 08:39 | gate_params.pt (3.2MB) + lora/ | epoch 2 结束 |\n| 根目录 `gate_params.pt` + `lora/` | May 19 08:39 | final（与 epoch_2 同时间） | 最终 |\n\n**没有 per-step checkpoint（gs50/gs100/gs150/gs200/gs400 不存在）。** 只有 per-epoch 保存。按 3000 total steps / 3 epochs 计算，epoch_0 = step 1000, epoch_1 = step 2000, epoch_2 = step 3000。无法直接用 checkpoint 画 gs50~gs400 的泛化曲线。\n\n## 2. v7 训练日志 per-step GAR 数据\n\n**日志数据非常完整，可用于训练动力学可视化：**\n\n- **[GATE] 记录**：62 条，每 50 step 记录一次，step 范围 0~3000（含 mean/std/min/max）\n- **L_GAR 记录**：480 条（每个 training step 的 loss 行都含 L_GAR 值）\n- **覆盖关键 step**：step 0/50/100/150/200/400 全部有 [GATE] 数据\n\nGAR 演化趋势摘要：\n- step 0: mean=0.810 → step 200: 0.929 → step 1000: 0.969（快速上升）\n- step 1000~2000: 稳定在 0.95~0.97\n- step 2000~3000: 略降至 0.93~0.96\n\n**结论：虽然无 per-step checkpoint，但日志中的 [GATE] 和 L_GAR 数据完全可以画出 GAR 训练动力学曲线。Route B 3.4 可以用日志数据替代 checkpoint 评估。**\n\n## 3. LoRA-only 训练进度\n\n当前位置：**Epoch 2 Step 2300**\n\n进度计算：\n- global_step = (2 × 8000 + 2300) / 8 = 18300 / 8 = **2287.5**\n- 进度 = 2287.5 / 3000 = **76.3%**\n\nGPU 状态：利用率 98%，显存 91.3/97.9 GB，训练正常运行中。\n\n预估剩余：还需约 712 global steps，按当前速度预计还需约 2~3 小时完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-v7-intermediate-ckpts.md"
+}

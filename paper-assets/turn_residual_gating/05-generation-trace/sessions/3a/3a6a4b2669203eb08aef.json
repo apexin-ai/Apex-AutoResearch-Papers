@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3a6a4b2669203eb08aef",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "analysis paper n5 cleanup",
+  "task_key": "worker_analysis_paper_n5_cleanup_20260521T195631",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_paper_n5_cleanup_20260521T195631_result.json",
+    "occurrence": 1,
+    "bytes": 1549,
+    "sha256": "7ce366b47fd51b9fe46434f17c9a07521f922a38d0a96464de3e07a3b3fb13bc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完毕。\n\n---\n\n## 报告\n\n### A. N=5 steering 残留\n\n**有残留，已修复。** 摘要/引言/结论/讨论4个文件引用了 N=5 特定数值（β=0 GAR 0.029, β=5 GAR 0.697），已全部替换为 N=50 数据（0.064, 0.727）：\n\n| 文件 | 修改内容 |\n|---|---|\n| `abstract.tex:2` | 0.029→0.064, 0.697→0.727 |\n| `introduction.tex:16` | 0.029→0.064, 0.697→0.727 |\n| `introduction.tex:18` | 0.029→0.064, 0.697→0.727 |\n| `conclusion.tex:3` | 0.697→0.727 |\n| `discussion.tex:3` | 0.029→0.064, 0.697→0.727 |\n\n**保留未动的 N=5 引用**：`experiments.tex:49-51`（steering 实验小节）中 N=5 pilot 的详细描述和 N=50 段落中对 N=5 baseline 的回溯说明。这些是实验叙事的一部分（对应 Figure 5 panel a），不属于\"残留引用\"。\n\n### B. Gap ratio 一致性\n\n**有不一致，已修复。** 所有 scheduled sampling 上下文中的 \"30×\" 统一为 registry 精确值 \"32×\"；跨模型范围 \"12.5--30×\" 修正为 \"12.5--33×\"（与论文其他处 \"20--33×\" 一致）：\n\n| 文件 | 修改 |\n|---|---|\n| `introduction.tex:16,18` | 30×→32×（2处，replace_all） |\n| `discussion.tex:5` | 30×→32× |\n| `conclusion.tex:3` | 30×→32× |\n| `analysis.tex:49` | 12.5--30×→12.5--33× |\n\n### C. plan_018 清理\n\n**已完成。** 删除了第二条 plan_018（claim C3/MF4, deps plan_002, 无 registry_id），保留第一条（registry_id: phase2_tg_s42_v9_pcgrad）并将 status 从 `planned` 更新为 `done`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-paper-n5-cleanup.md"
+}

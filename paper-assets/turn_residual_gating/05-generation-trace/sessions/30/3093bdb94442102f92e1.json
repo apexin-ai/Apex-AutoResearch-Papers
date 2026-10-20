@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3093bdb94442102f92e1",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "viz ar gar perturn curve",
+  "task_key": "worker_viz_ar_gar_perturn_curve_20260522T152826",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_ar_gar_perturn_curve_20260522T152826_result.json",
+    "occurrence": 1,
+    "bytes": 974,
+    "sha256": "970bb456ca49735265cc85c49ace8960f4093761f58669e34439f489f263990c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表已生成并注册。\n\n**输出文件** (westd-20861):\n- `/root/turn_residual_gating/artifacts/fig_ar_gar_perturn.pdf` (22K)\n- `/root/turn_residual_gating/artifacts/fig_ar_gar_perturn.png` (132K)\n\n**图表内容**:\n- 3 条曲线，X 轴 Turn 1-10，Y 轴 GAR (%)\n  - **Qwen-2.5-7B Base** (实线蓝圆点): 4.18% → 0.64%，**下降 85%**\n  - **Llama-3.1-8B Base** (实线橙方点): 2.63% → 0.26%，**下降 90%**\n  - **Qwen-2.5-7B + TG (AR)** (虚线蓝空心): 5.22% → 1.45%，TG 训练后 AR 推理仍衰减\n- Okabe-Ito 色盲友好配色，300 DPI，PDF 矢量输出\n- 标注了 turn 1 → turn 10 的 relative drop %\n\n**关于 TG/SS AR 数据**: 服务器上找到了 Qwen TG v7 AR (10 turns) 和 Qwen SS v8b AR (10 turns) 的 per-turn GAR。SS AR GAR 在 0.39-0.49 范围（比 base 高一个数量级），放同一坐标轴会压缩 base 曲线，故只画了 TG AR 虚线作对比。Llama TG AR 仅有 4 turns，未纳入。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-ar-gar-perturn-curve.md"
+}

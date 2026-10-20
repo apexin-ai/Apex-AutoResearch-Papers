@@ -1,0 +1,23 @@
+{
+  "exp_id": "mvp-001c",
+  "project": "redundancy-compound-sparsity",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-11T23:51:03.036Z",
+    "updated_at": "2026-05-11T23:55:58.347Z",
+    "spec": {
+      "hypothesis": "KV anchor similarity signal strengthens with longer CoT (competition-level math → 1000+ token reasoning chains)",
+      "model_name": "deepseek-ai/DeepSeek-R1-Distill-Qwen-7B",
+      "server": "seetacloud-bjb2-structtts",
+      "data_path": "5 hardcoded AIME/AMC12 competition problems",
+      "data_count": 5,
+      "seed": 42,
+      "parent": "mvp-001b"
+    }
+  },
+  "timestamp": "2026-05-11T23:55:58.382062+00:00",
+  "trigger": "update_registry"
+}

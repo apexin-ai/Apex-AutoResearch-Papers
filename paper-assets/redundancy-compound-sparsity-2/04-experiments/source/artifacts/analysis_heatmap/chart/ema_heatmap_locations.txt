@@ -1,0 +1,3 @@
+Remote path: /root/carc/results/ema_heatmap_comparison.pdf (westd-16980)
+Individual gamma heatmaps: ema_heatmap_gamma{05,07,09}.pdf
+Raw data: /root/carc/results/heatmap_data.pt

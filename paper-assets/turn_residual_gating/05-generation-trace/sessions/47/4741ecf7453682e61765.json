@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4741ecf7453682e61765",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "code fix 4way eval safety check",
+  "task_key": "worker_code_fix_4way_eval_safety_check_20260519T112104",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_4way_eval_safety_check_20260519T112104_result.json",
+    "occurrence": 1,
+    "bytes": 304,
+    "sha256": "6a7aa2285f21f3b8fc6f1f05474e9ddecfcfa97946989fe39b032bf972bbe8cb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。语法检查通过，checkpoint 前置检查已插入变量定义之后、`mkdir -p` 之前。脚本原本就用变量引用路径，无需额外替换。现在如果 `lora/` 目录或 `gate_params.pt` 缺失，脚本会立即报错退出，不会静默 fallback 到 base model。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-4way-eval-safety-check.md"
+}

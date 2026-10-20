@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0b1e1af01613cb64791e",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "monitor llama ss eval",
+  "task_key": "worker_monitor_llama_ss_eval_20260524T171117",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_llama_ss_eval_20260524T171117_result.json",
+    "occurrence": 1,
+    "bytes": 438,
+    "sha256": "fdc381f1fd321be12afd0fd91402cbad8c5bb6a6ae1b1b4f1ee42ef0d6c2453d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Llama SS eval 已完成。** 进程 178624 已退出，GPU 空闲（0% 利用率，0 MiB 显存）。\n\n结果摘要：\n- **SS 模型 (beta=5.0)**: GAR=0.7905, PPL=1.81\n- **SS 模型 (beta=0.0)**: GAR=0.1662, PPL=1.37\n- **Base AR**: GAR=0.0179, PPL=1.22\n- **TF SS (ours)**: GAR=0.477, PPL=2.82\n\n结果已保存在 `results/llama_ss_eval/`，checkpoint 为 `runs/p1_llama_ss_s42/epoch_1`。GPU 当前空闲可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-llama-ss-eval.md"
+}

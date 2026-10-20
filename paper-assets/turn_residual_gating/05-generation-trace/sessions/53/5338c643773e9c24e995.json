@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5338c643773e9c24e995",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "code redraw appendix figs",
+  "task_key": "worker_code_redraw_appendix_figs_20260524T144214",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_redraw_appendix_figs_20260524T144214_result.json",
+    "occurrence": 1,
+    "bytes": 628,
+    "sha256": "c02d49ca95c1492534b361680c80b6e0e118941d695258faa4c503ad469a7e84"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 10 个脚本已更新并成功生成 12 个图（含 kl_ar_gar 的两个子图）。\n\n变更摘要：\n- 每个脚本移除了独立的 `matplotlib.use('Agg')` + `rcParams.update({...})` + 硬编码颜色 + 手动 `savefig`\n- 统一替换为 `from palette import *` + `apply_style()` + palette 颜色变量 + `save_fig()`\n- 颜色映射：TG→`C_TG`(steel blue), UG→`C_UG`(sage green), LoRA→`C_LO`(muted gold), PCGrad→`C_PC`(dusty rose), SS→`C_SS`(terracotta), Base→`C_BASE`(cool gray), TF/AR semantic→`C_TF`/`C_AR`\n- heatmap 的 colormap 保持不变，仅更新 rcParams 和注解颜色"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-redraw-appendix-figs.md"
+}

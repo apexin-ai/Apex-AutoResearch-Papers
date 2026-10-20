@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a013453d3ced18bdd52c",
+  "project": "redundancy-compound-sparsity-2",
+  "kind": "result",
+  "title": "check gamma 099 nowait",
+  "task_key": "worker_check_gamma_099_nowait_20260512T194709",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_gamma_099_nowait_20260512T194709_result.json",
+    "occurrence": 1,
+    "bytes": 1489,
+    "sha256": "6983f67b1e7b6dd220117b7fa915a1774ec85fa201f1a526dcb4086eda912107"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Gamma Sweep 结果\n\n**PID 40063 仍在运行** — gamma=0.99 正在评估中（eval 进度 ~49%，约还需 4 分钟）。\n\n已完成的 gamma 值（0.1–0.95）结果全部在 JSON 中：\n\n| Strategy | γ | PPL | vs Full (+%) | vs Random (+%) |\n|----------|------|--------|-------------|---------------|\n| **full** | — | **7.1822** | baseline | — |\n| **recency** | — | **7.1758** | -0.09% | — |\n| **random** | — | **7.6353** | +6.31% | baseline |\n| ema_0.1 | 0.1 | 8.1707 | +13.76% | -7.01% |\n| ema_0.3 | 0.3 | 8.2099 | +14.31% | -7.53% |\n| ema_0.5 | 0.5 | 8.1352 | +13.27% | -6.55% |\n| ema_0.7 | 0.7 | 8.1367 | +13.29% | -6.57% |\n| ema_0.8 | 0.8 | 7.9878 | +11.22% | -4.62% |\n| ema_0.9 | 0.9 | 7.7788 | +8.31% | -1.88% |\n| ema_0.95 | 0.95 | 7.6367 | +6.33% | -0.02% |\n| ema_0.99 | 0.99 | ⏳ 运行中 | — | — |\n\n**关键发现：**\n- 脚本自身结论：`\"conclusion\": \"ema_method_flawed\"`，`\"significant_finding\": false`\n- **所有 EMA gamma 都比 random baseline 更差**（负 gap_pct 表示 EMA PPL 高于 random）\n- 最佳 EMA 是 γ=0.95，PPL=7.6367，勉强持平 random（7.6353），差距仅 -0.02%\n- 趋势清晰：γ 越高（越接近 recency）PPL 越好，说明 EMA 没有带来额外价值\n- **recency（7.1758）甚至略优于 full KV（7.1822）**，是最强策略\n\ngamma=0.99 还在跑，预计几分钟后完成，但趋势已经明确——即使 γ=0.99 也大概率不会超过 recency。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-gamma-099-nowait.md"
+}

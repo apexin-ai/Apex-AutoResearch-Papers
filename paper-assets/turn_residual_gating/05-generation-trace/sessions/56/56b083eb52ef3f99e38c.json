@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "56b083eb52ef3f99e38c",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "ops gpu status check",
+  "task_key": "worker_ops_gpu_status_check_20260523T004735",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu_status_check_20260523T004735_result.json",
+    "occurrence": 1,
+    "bytes": 2164,
+    "sha256": "48776194cea86a86309ecf1bf41640dd25c41400236355c1065842db764974fc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 服务器状态汇报 (westd-20861, 2026-05-23 ~09:04 UTC)\n\n### 1. GPU 状态\n```\n利用率: 66%  |  显存: 28831 / 97887 MiB (29%)\n```\nGPU 在活跃工作中，显存占用不高。\n\n### 2. 活跃进程\n| 进程 | PID | 状态 |\n|------|-----|------|\n| `eval_attention_steering.py` (TG s42 AR N=50) | 58315 | **运行中** (113% CPU) |\n| `d048_auto_transition.sh` | 56575 | 运行中 |\n| `d048_final_ar_eval.sh` | 57309 | 运行中 |\n| `queue_runner` tmux session | 50719 | 活跃 |\n\n### 3. d048_final_ar_eval 进度\n- **[1/6] Base s42 AR N=50** — **已完成** ✓\n  - Beta=0: Mid-GAR=0.0186, PPL=1.45\n  - Beta=3: Mid-GAR=0.5315, PPL=1.50\n  - Beta=5: Mid-GAR=0.7042, PPL=1.95\n  - 结果已保存: `results/d048_final_ar/base_s42_ar_n50.json`\n- **[2/6] TG s42** — **正在加载模型权重**，刚开始\n\n### 4. d048_ss_s123 训练进度\n- queue_runner 已启动第 [3/8] 步：SS s123 训练\n- 模型加载完成，训练参数已输出\n- Step 0: L_NTP=1.3700, L_GAR=0.2337, Loss=1.6255, Gate=0.8118, Mem=53.0GB\n- 训练目录 `runs/d048_ss_s123/` **尚未创建**（刚开始训练）\n\n### 5. 日志位置\n```\n/root/queue_runner.log → 不存在（实际位置: runs/queue_runner.log）\n/root/auto_transition.log → 不存在（实际位置: runs/d048_auto_transition.log）\n/root/remaining_queue.log → 不存在\n/root/d048_ss_s123.log → 不存在\n```\n\n### 6. results 目录（按时间排序）\n```\nd048_final_ar/         May 23 09:01  (1个文件: base_s42_ar_n50.json)\nd048_ar_n50_existing/  May 23 08:43\nd048_ss_s42/           May 23 07:02\ninstruction_retention  May 21\nbase_ultrachat_*       May 19\n```\n\n### 7. runs 目录（近期）\n```\nd048_auto_transition.log  May 23 09:01\nd048_final_ar_eval.log    May 23 09:01\nqueue_runner.log          May 23 08:43\nd048_ss_s42/              May 23 06:52\n```\n\n### 总结\n- **eval 流水线正在跑**：6 个 AR eval 任务完成了 1/6 (base_s42)，正在执行 2/6 (TG s42)\n- **SS s123 训练刚启动**：step 0 刚输出，总共 3000 steps\n- GPU 利用率 66%，显存充裕（29%）\n- 所有进程正常运行，无报错"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-status-check.md"
+}

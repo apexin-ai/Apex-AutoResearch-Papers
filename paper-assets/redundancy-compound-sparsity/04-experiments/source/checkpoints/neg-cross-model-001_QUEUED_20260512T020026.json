@@ -1,0 +1,23 @@
+{
+  "exp_id": "neg-cross-model-001",
+  "project": "redundancy-compound-sparsity",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-12T01:50:53.780Z",
+    "updated_at": "2026-05-12T02:00:26.532Z",
+    "spec": {
+      "hypothesis": "Cross-axis negative result (KV similarity does not predict MLP sparsity tolerance) generalizes to Llama-3.1-8B architecture",
+      "model_name": "meta-llama/Llama-3.1-8B-Instruct",
+      "server": "seetacloud-bjb2-structtts",
+      "data_path": "20 hardcoded MATH problems (Level 3-5)",
+      "data_count": 20,
+      "seed": 42,
+      "parent": "mvp-001b"
+    }
+  },
+  "timestamp": "2026-05-12T02:00:26.545695+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,30 @@
+{
+  "exp_id": "v7_tg_s123",
+  "project": "turn_residual_gating",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T15:16:39.923Z",
+    "updated_at": "2026-05-21T21:15:35.829Z",
+    "hypothesis": "v7 TG s42 已验证 ThreadGate 有效性，s123 验证 seed robustness。预期 gate profile 和 GAR 收敛模式与 s42 一致。",
+    "parent": "phase2_tg_s42_v7",
+    "spec": {
+      "command": "bash scripts/launch_v7_tg_s123.sh",
+      "server": "westd-20861",
+      "data_path": "data/ultrachat_8k",
+      "data_count": 8000,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 123,
+      "pid": 245628,
+      "gpu_index": 0,
+      "checkpoint_path": "/root/turn_residual_gating/runs/phase2_tg_s123_v7",
+      "log_path": "/root/turn_residual_gating/logs/v7_tg_s123.log",
+      "checkpoint_source": "N/A (from scratch)",
+      "eval_data": "N/A"
+    }
+  },
+  "timestamp": "2026-05-21T21:15:35.921762+00:00",
+  "trigger": "update_registry"
+}

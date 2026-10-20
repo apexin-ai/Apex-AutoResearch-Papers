@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "baa6e5048f19434ab30f",
+  "project": "redundancy-compound-sparsity-2",
+  "kind": "result",
+  "title": "analysis a1 heatmap",
+  "task_key": "worker_analysis_a1_heatmap_20260512T145218",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_a1_heatmap_20260512T145218_result.json",
+    "occurrence": 1,
+    "bytes": 1058,
+    "sha256": "3cbdcfbd80eed4162cb3169ee2753f7c742b007028be6f02b1a6a54b87cce7c5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 张图已生成并注册。\n\n**输出文件**（均在 westd-16980 的 `/root/carc/figures/`）：\n\n| 文件 | 内容 |\n|------|------|\n| `a1_ema_perturbation_corr.png` (114KB) | Layer-wise EMA–Perturbation Pearson r 热力图，3行（seed42, seed1337, mean） |\n| `a1_perturbation_diff.png` (167KB) | 扰动敏感度剖面：redundant/novel 均值 + diff + 跨 seed 对比 |\n| `a1_spatial_decoupling.png` (466KB) | 三面板叠加图：(a) 双轴线图 correlation vs diff, (b) 归一化解耦分数热力图, (c) 层分类色条 |\n\n**数据发现**：\n- **Layer 0** 反常：正相关 (r≈+0.33)，且 diff 为负值（redundant 扰动 > novel）\n- **Layers 3-9**：correlation 接近 0，但 diff 极大（layer 4 的 diff≈0.66）—— 典型的空间解耦\n- **Layers 25-46**：强负相关 (r≈-0.25~-0.37)，diff 为正但较小 —— correlation 和 diff 同向\n- **Layer 47**（最后一层）：correlation 回到接近 0，near_zero_frac 异常高（~0.83）\n\n绘图脚本：`/root/carc/plot_a1_heatmap.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-a1-heatmap.md"
+}

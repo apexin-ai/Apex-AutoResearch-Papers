@@ -1,0 +1,69 @@
+{
+  "figures_found": [
+    {
+      "number": "4",
+      "env_type": "figure",
+      "image_path": "fig_ss_multiseed.pdf",
+      "caption": "Multi-seed AR GAR under scheduled sampling ($\\beta$\\,=\\,0 and $\\beta$\\,=\\,5, three seeds). Steering nearly eliminates seed variance (std: 0.047$\\to$0.001).",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "sections/experiments.tex"
+    }
+  ],
+  "results": [
+    {
+      "number": "4",
+      "status": "optimized",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    }
+  ],
+  "post_review": {
+    "compile": {
+      "success": true,
+      "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/_latex_iso_gvl7hcr8/main.pdf"
+    },
+    "figure_check": {
+      "passed": false,
+      "critical": [
+        {
+          "kind": "missing_required_section",
+          "message": "Venue requires a 'Limitations' section but none was found",
+          "location": "cross-file"
+        }
+      ],
+      "warning": [
+        {
+          "kind": "missing_required_section",
+          "message": "Venue requires a 'Ethics Statement' section but none was found",
+          "location": "cross-file"
+        }
+      ],
+      "info": [],
+      "summary": "1 critical, 1 warning, 0 info"
+    },
+    "consistency": {
+      "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper",
+      "sections": [],
+      "critical": [],
+      "warning": [
+        {
+          "kind": "no_paper_tex",
+          "message": "No section .tex files found under /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper",
+          "location": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper"
+        }
+      ],
+      "info": [],
+      "summary": {
+        "critical": 0,
+        "warning": 1,
+        "info": 0
+      }
+    }
+  },
+  "backup_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper/_figure_backups/20260524_151215",
+  "error": "",
+  "timestamp": "2026-05-24T15:17:55.149927+00:00"
+}

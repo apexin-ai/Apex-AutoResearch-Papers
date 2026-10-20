@@ -1,0 +1,39 @@
+\section{Method}\label{sec:method}
+
+\subsection{ThreadGate Architecture}
+
+ThreadGate adds a learnable scalar gate to each transformer layer, following the ReZero residual scaling principle \citep{bachlechner2021rezero}. For a model with $L$ layers, the gated residual update at layer $l$ is
+\begin{equation}
+  x_{l+1} = x_l + g_l \cdot f_l(x_l),
+\end{equation}
+where $f_l$ denotes the sublayer computation (self-attention or feed-forward network) and $g_l = \sigma(b_l)$ is a sigmoid gate parameterized by a single learnable scalar $b_l$. When $g_l \to 0$, the sublayer output is fully suppressed and the layer reduces to an identity mapping; when $g_l \to 1$, the full sublayer output passes through the residual stream. Each of the 28 transformer layers in Qwen-2.5-7B-Instruct receives its own independent gate, so the model learns a per-layer gating profile over the course of training.
+
+The choice of initialization is critical. ReZero initializes its scalar multiplier at zero, which is appropriate for training from scratch because the network begins as an identity function and gradually learns to activate each layer. For a pretrained model, zero initialization would immediately destroy the learned representations across all layers. We instead set $b_l = 1.5$, which yields $\sigma(1.5) \approx 0.82$ and preserves most of the pretrained computation at the start of fine-tuning. To ensure the gates can adapt quickly despite their small parameter count, we apply a learning rate multiplier of 10 to all gate parameters relative to the base learning rate.
+
+\subsection{Training Objective}\label{sec:loss}
+
+The training objective combines three terms:
+\begin{equation}
+  \mathcal{L} = \mathcal{L}_\text{NTP} + \lambda_\text{GAR}\,\mathcal{L}_\text{GAR} + \lambda_\text{div}\,\mathcal{L}_\text{div}.
+\end{equation}
+$\mathcal{L}_\text{NTP}$ is the standard next-token prediction cross-entropy loss. The two auxiliary losses target the gating mechanism directly.
+
+The Goal Attention Ratio (GAR) loss encourages the model to maintain a target level of attention to goal-relevant tokens. We define it as
+\begin{equation}
+  \mathcal{L}_\text{GAR} = \text{MSE}(\text{GAR}, \tau),
+\end{equation}
+where $\tau = 0.5$ is the target ratio. GAR is computed under teacher-forced context and measured only at the last token position of each assistant turn (the GAR-ours variant defined in \S\ref{sec:background}), following the observation of \citet{dongre2026attention} that attention to goal tokens is most informative at turn boundaries. This loss steers the attention distribution toward a balanced allocation between goal tokens and other context.
+
+The gate diversity loss prevents all gates from collapsing to a single value:
+\begin{equation}
+  \mathcal{L}_\text{div} = \text{ReLU}(\sigma_\text{min} - \text{std}(\mathbf{g})),
+\end{equation}
+where $\mathbf{g} = [g_1, \ldots, g_L]$ is the vector of gate values across all layers and $\sigma_\text{min}$ is a minimum standard deviation threshold. Without this term, the gates can converge to a uniform value across layers, which collapses the per-layer conditioning to a single global scalar and eliminates any advantage over a shared gate. Both auxiliary loss weights are set to $\lambda_\text{GAR} = \lambda_\text{div} = 1.0$.
+
+The final loss formulation emerged from seven design iterations (v1 through v7) that explored cumulative, maximization, smooth saturation, and MSE-based objectives. The MSE target combined with gate diversity was the only formulation that converged stably; other variants either diverged or drove all gates to the same value. A detailed comparison of all loss variants is provided in Appendix~B.
+
+\subsection{Four-Way Ablation Design}
+
+We evaluate four configurations that systematically isolate the contribution of each component. \textbf{ThreadGate} is the full system: LoRA adapters applied to all linear layers, per-layer sigmoid gates, and the complete three-term loss. \textbf{Uniform Gate} replaces the 28 independent gates with a single shared gate applied identically across all layers, while retaining LoRA and the same loss. \textbf{LoRA-only} removes gating entirely by fixing all gates at 1.0, while retaining the same NTP and GAR losses as the gated variants; the only difference is the absence of a learned gating mechanism. \textbf{Base} is the pretrained Qwen-2.5-7B-Instruct model evaluated without any fine-tuning.
+
+This factorial structure supports three targeted comparisons. ThreadGate versus Uniform Gate isolates whether per-layer conditioning provides an advantage over a single shared gate. ThreadGate versus LoRA-only isolates the effect of the learned gating mechanism, since both share the same loss terms. LoRA-only versus Base isolates the effect of fine-tuning itself, independent of any gating intervention. All four variants share the same training data, LoRA configuration, optimizer settings, and random seed; the only differences are the presence and type of gating. Full hyperparameters are provided in Appendix~A.

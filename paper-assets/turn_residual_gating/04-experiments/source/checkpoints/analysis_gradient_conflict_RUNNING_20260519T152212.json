@@ -1,0 +1,29 @@
+{
+  "exp_id": "analysis_gradient_conflict",
+  "project": "turn_residual_gating",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T15:03:12.230Z",
+    "updated_at": "2026-05-19T15:22:12.429Z",
+    "hypothesis": "NTP-GAR 梯度冲突在 v7 训练过程中是否逐层普遍存在？量化 cos_sim 和 magnitude ratio 的演化，验证 NTP 是否在训练中逐渐完全压制 GAR 信号。",
+    "parent": "phase2_tg_s42_v7",
+    "spec": {
+      "command": "gradient conflict analysis script",
+      "server": "westd-20861",
+      "data_path": "v7 epoch 0/1/2 checkpoints",
+      "data_count": 3,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42,
+      "checkpoint_source": "phase2_tg_s42_v7",
+      "eval_data": "v7 3-epoch checkpoints (gradient analysis)",
+      "checkpoint_path": "N/A (analysis)",
+      "log_path": "westd-20861:/root/turn_residual_gating/runs/analysis/"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-19T15:22:12.469870+00:00",
+  "trigger": "update_registry"
+}

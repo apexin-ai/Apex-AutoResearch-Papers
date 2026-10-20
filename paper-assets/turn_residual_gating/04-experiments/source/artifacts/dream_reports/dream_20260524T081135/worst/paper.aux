@@ -1,0 +1,168 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{dongre2026goal,liu2024lost,hsieh2024ruler}
+\citation{dongre2026goal}
+\citation{dongre2026goal}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{yu2020gradient}
+\citation{dongre2026goal}
+\citation{qin2024infobench,dongre2026goal}
+\citation{liu2024lost,hsieh2024ruler}
+\citation{ko2024multichallenge}
+\citation{dongre2026goal}
+\citation{bai2024mtbench101}
+\citation{fan2020layerdrop}
+\citation{schuster2022confident}
+\citation{bachlechner2021rezero}
+\citation{luo2025flexidepth}
+\citation{gromov2024unreasonable}
+\citation{voita2019analyzing,michel2019sixteen}
+\citation{li2024inference,turner2023activation}
+\citation{ghader2017does,strubell2018linguistically}
+\citation{qiu2025gated}
+\citation{ranzato2016sequence,wiseman2016sequence,bengio2015scheduled}
+\citation{bengio2015scheduled}
+\citation{lamb2016professor}
+\citation{leblond2018searnn}
+\citation{dou2022parallel}
+\@writefile{toc}{\contentsline {paragraph}{Contributions.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Multi-turn dialogue degradation.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Residual gating and adaptive depth.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Attention steering and intervention.}{2}{section*.4}\protected@file@percent }
+\citation{yu2020gradient}
+\citation{liu2021conflict}
+\citation{navon2022multi}
+\citation{dongre2026goal}
+\citation{dongre2026goal}
+\citation{bachlechner2021rezero}
+\@writefile{toc}{\contentsline {paragraph}{Exposure bias in sequence models.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Gradient conflicts in multi-task learning.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Background}{3}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Goal Accessibility Ratio}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Residual Stream Persistence}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Method}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}ThreadGate Architecture}{3}{subsection.4.1}\protected@file@percent }
+\citation{ding2023enhancing}
+\citation{qwen2025qwen25}
+\citation{dubey2024llama3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Training Objective}{4}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Training Setup}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Experiments}{4}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Evaluation Protocol}{4}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Main Result: The Training--Inference Gap}{4}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:main_result}{{5.2}{4}{Main Result: The Training--Inference Gap}{subsection.5.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Four-Way Ablation: Gating Provides Zero Increment}{4}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:ablation}{{5.3}{4}{Four-Way Ablation: Gating Provides Zero Increment}{subsection.5.3}{}}
+\citation{yu2020gradient}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Training--inference gap across models. TF \textsc  {GAR}{} is evaluated on gold text; AR \textsc  {GAR}{} on model-generated text ($\beta =0$). Gap ratio $=$ TF/AR.}}{5}{table.caption.7}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:main_gap}{{1}{5}{Training--inference gap across models. TF \gar {} is evaluated on gold text; AR \gar {} on model-generated text ($\beta =0$). Gap ratio $=$ TF/AR}{table.caption.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Four-way ablation (Qwen-2.5-7B). TF eval N$=$200 with 95\% bootstrap CI. All fine-tuned variants include the \textsc  {GAR}{} auxiliary loss; the ablation tests gating mechanism contribution.}}{5}{table.caption.8}\protected@file@percent }
+\newlabel{tab:ablation}{{2}{5}{Four-way ablation (Qwen-2.5-7B). TF eval N$=$200 with 95\% bootstrap CI. All fine-tuned variants include the \gar {} auxiliary loss; the ablation tests gating mechanism contribution}{table.caption.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}PCGrad Causal Exclusion of Gradient Conflict}{5}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:pcgrad}{{5.4}{5}{PCGrad Causal Exclusion of Gradient Conflict}{subsection.5.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Qwen gradient geometry.}{5}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Llama gradient geometry.}{5}{section*.10}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Cross-model gradient geometry comparison. Llama shows near-orthogonal (not conflicting) gradients with extreme NTP magnitude dominance, contrasting Qwen's mild conflict pattern.}}{6}{table.caption.11}\protected@file@percent }
+\newlabel{tab:gradient_geometry}{{3}{6}{Cross-model gradient geometry comparison. Llama shows near-orthogonal (not conflicting) gradients with extreme NTP magnitude dominance, contrasting Qwen's mild conflict pattern}{table.caption.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Llama per-epoch gradient statistics showing progressive drift toward orthogonality.}}{6}{table.caption.12}\protected@file@percent }
+\newlabel{tab:llama_epochs}{{4}{6}{Llama per-epoch gradient statistics showing progressive drift toward orthogonality}{table.caption.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}$\lambda _{\text  {GAR}}$ Sensitivity Analysis}{6}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:lambda}{{5.5}{6}{$\lambda _{\text {GAR}}$ Sensitivity Analysis}{subsection.5.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Cross-Model Replication on Llama-3.1-8B}{6}{subsection.5.6}\protected@file@percent }
+\newlabel{sec:cross_model}{{5.6}{6}{Cross-Model Replication on Llama-3.1-8B}{subsection.5.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Analysis}{6}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Failure Mode Taxonomy}{6}{subsection.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{NF1: Reverse turn conditioning.}{6}{section*.14}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces $\lambda _{\text  {GAR}}$ sensitivity (Qwen-2.5-7B, 1 epoch). The training--inference gap persists across two orders of magnitude, confirming distribution shift independence from loss weighting.}}{7}{table.caption.13}\protected@file@percent }
+\newlabel{tab:lambda}{{5}{7}{$\lambda _{\text {GAR}}$ sensitivity (Qwen-2.5-7B, 1 epoch). The training--inference gap persists across two orders of magnitude, confirming distribution shift independence from loss weighting}{table.caption.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Per-layer-group attention KL divergence (TF$\to $AR). Deep layers show larger shift, particularly for \textsc  {ThreadGate}{}.}}{7}{table.caption.17}\protected@file@percent }
+\newlabel{tab:kl_layers}{{6}{7}{Per-layer-group attention KL divergence (TF$\to $AR). Deep layers show larger shift, particularly for \tg {}}{table.caption.17}{}}
+\@writefile{toc}{\contentsline {paragraph}{NF2: Structural distribution shift.}{7}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{NF3: Insufficient intervention strength.}{7}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Attention Distribution Shift Analysis}{7}{subsection.6.2}\protected@file@percent }
+\newlabel{sec:kl}{{6.2}{7}{Attention Distribution Shift Analysis}{subsection.6.2}{}}
+\citation{bengio2015scheduled}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces \textsc  {GAR}{}-relevant vs.\ non-relevant head KL divergence. Goal-routing heads show larger but modest distribution shift.}}{8}{table.caption.18}\protected@file@percent }
+\newlabel{tab:kl_heads}{{7}{8}{\gar {}-relevant vs.\ non-relevant head KL divergence. Goal-routing heads show larger but modest distribution shift}{table.caption.18}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces \textsc  {GAR}{} across alternative token selection definitions (AR eval, Qwen-2.5-7B). Improvement is concentrated on last-token (our training objective), with marginal improvement on all-token.}}{8}{table.caption.19}\protected@file@percent }
+\newlabel{tab:alt_gar}{{8}{8}{\gar {} across alternative token selection definitions (AR eval, Qwen-2.5-7B). Improvement is concentrated on last-token (our training objective), with marginal improvement on all-token}{table.caption.19}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Metric Specificity: Alternative \textsc  {GAR}{} Definitions}{8}{subsection.6.3}\protected@file@percent }
+\newlabel{sec:alt_gar}{{6.3}{8}{Metric Specificity: Alternative \gar {} Definitions}{subsection.6.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Discussion}{8}{section.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Attempted Mitigation: Scheduled Sampling}{8}{subsection.7.1}\protected@file@percent }
+\newlabel{sec:ss}{{7.1}{8}{Attempted Mitigation: Scheduled Sampling}{subsection.7.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Qwen-2.5-7B: Partial success.}{8}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Llama-3.1-8B: Complete failure.}{8}{section*.22}\protected@file@percent }
+\citation{dongre2026goal}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces \textsc  {SS}{} 4-seed comparison (Qwen-2.5-7B, AR eval). At $\beta =0$ (no inference-time steering), the CV of 14.7\% indicates high initialization sensitivity.}}{9}{table.caption.21}\protected@file@percent }
+\newlabel{tab:ss_4seed}{{9}{9}{\ss {} 4-seed comparison (Qwen-2.5-7B, AR eval). At $\beta =0$ (no inference-time steering), the CV of 14.7\% indicates high initialization sensitivity}{table.caption.21}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Cross-model scheduled sampling comparison ($\beta =0$, AR eval). SS dramatically reduces the gap on Qwen but fails on Llama.}}{9}{table.caption.23}\protected@file@percent }
+\newlabel{tab:llama_ss}{{10}{9}{Cross-model scheduled sampling comparison ($\beta =0$, AR eval). SS dramatically reduces the gap on Qwen but fails on Llama}{table.caption.23}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Scalability Limitations}{9}{subsection.7.2}\protected@file@percent }
+\newlabel{sec:long_conv}{{7.2}{9}{Scalability Limitations}{subsection.7.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3}Convergent Evidence and Implications}{9}{subsection.7.3}\protected@file@percent }
+\newlabel{sec:convergent}{{7.3}{9}{Convergent Evidence and Implications}{subsection.7.3}{}}
+\citation{dongre2026goal}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Llama SS $\beta $-sweep (AR eval, N$=$20). SS provides no incremental benefit at any $\beta $ level; at $\beta \geq 3$, SS actually underperforms \textsc  {ThreadGate}{} without SS.}}{10}{table.caption.24}\protected@file@percent }
+\newlabel{tab:llama_beta}{{11}{10}{Llama SS $\beta $-sweep (AR eval, N$=$20). SS provides no incremental benefit at any $\beta $ level; at $\beta \geq 3$, SS actually underperforms \tg {} without SS}{table.caption.24}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces \textsc  {GAR}{} by conversation length (AR eval, Qwen-2.5-7B). SS effectiveness decays sharply beyond 10 turns. \textsc  {ThreadGate}{} and Base converge by 15 turns.}}{10}{table.caption.25}\protected@file@percent }
+\newlabel{tab:long_conv}{{12}{10}{\gar {} by conversation length (AR eval, Qwen-2.5-7B). SS effectiveness decays sharply beyond 10 turns. \tg {} and Base converge by 15 turns}{table.caption.25}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.4}Concrete Future Directions}{10}{subsection.7.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{10}{section.8}\protected@file@percent }
+\bibstyle{acl_natbib}
+\bibcite{bachlechner2021rezero}{{1}{2021}{{Bachlechner et~al.}}{{}}}
+\bibcite{bai2024mtbench101}{{2}{2024}{{Bai et~al.}}{{}}}
+\bibcite{bengio2015scheduled}{{3}{2015}{{Bengio et~al.}}{{}}}
+\bibcite{ding2023enhancing}{{4}{2023}{{Ding et~al.}}{{}}}
+\bibcite{dongre2026goal}{{5}{2026}{{Dongre et~al.}}{{}}}
+\bibcite{dou2022parallel}{{6}{2022}{{Dou and Gales}}{{}}}
+\bibcite{dubey2024llama3}{{7}{2024}{{Dubey et~al.}}{{}}}
+\bibcite{elhage2021mathematical}{{8}{2021}{{Elhage et~al.}}{{}}}
+\bibcite{fan2020layerdrop}{{9}{2020}{{Fan et~al.}}{{}}}
+\bibcite{ghader2017does}{{10}{2017}{{Ghader and Monz}}{{}}}
+\bibcite{gromov2024unreasonable}{{11}{2024}{{Gromov et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Convergent failure evidence. Two intervention designs $\times $ two models $=$ four paths. Five of six intervention$\times $model combinations fail.}}{11}{table.caption.26}\protected@file@percent }
+\newlabel{tab:convergent}{{13}{11}{Convergent failure evidence. Two intervention designs $\times $ two models $=$ four paths. Five of six intervention$\times $model combinations fail}{table.caption.26}{}}
+\bibcite{hsieh2024ruler}{{12}{2024}{{Hsieh et~al.}}{{}}}
+\bibcite{ko2024multichallenge}{{13}{2024}{{Ko et~al.}}{{}}}
+\bibcite{lamb2016professor}{{14}{2016}{{Lamb et~al.}}{{}}}
+\bibcite{leblond2018searnn}{{15}{2018}{{Leblond et~al.}}{{}}}
+\bibcite{li2024inference}{{16}{2024}{{Li et~al.}}{{}}}
+\bibcite{liu2024lost}{{17}{2024}{{Liu et~al.}}{{}}}
+\bibcite{liu2021conflict}{{18}{2021}{{Liu et~al.}}{{}}}
+\bibcite{luo2025flexidepth}{{19}{2025}{{Luo et~al.}}{{}}}
+\bibcite{michel2019sixteen}{{20}{2019}{{Michel et~al.}}{{}}}
+\bibcite{navon2022multi}{{21}{2022}{{Navon et~al.}}{{}}}
+\bibcite{qin2024infobench}{{22}{2024}{{Qin et~al.}}{{}}}
+\bibcite{qiu2025gated}{{23}{2025}{{Qiu et~al.}}{{}}}
+\bibcite{qwen2025qwen25}{{24}{2025}{{Qwen Team}}{{}}}
+\bibcite{ranzato2016sequence}{{25}{2016}{{Ranzato et~al.}}{{}}}
+\bibcite{schuster2022confident}{{26}{2022}{{Schuster et~al.}}{{}}}
+\bibcite{strubell2018linguistically}{{27}{2018}{{Strubell et~al.}}{{}}}
+\bibcite{sun2025massive}{{28}{2025}{{Sun et~al.}}{{}}}
+\bibcite{turner2023activation}{{29}{2023}{{Turner et~al.}}{{}}}
+\bibcite{voita2019analyzing}{{30}{2019}{{Voita et~al.}}{{}}}
+\bibcite{wiseman2016sequence}{{31}{2016}{{Wiseman and Rush}}{{}}}
+\bibcite{xiao2024efficient}{{32}{2024}{{Xiao et~al.}}{{}}}
+\bibcite{yu2020gradient}{{33}{2020}{{Yu et~al.}}{{}}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Expanded TF Evaluation (N$=$200)}{13}{appendix.A}\protected@file@percent }
+\newlabel{app:expanded_eval}{{A}{13}{Expanded TF Evaluation (N$=$200)}{appendix.A}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces TF Eval: N$=$50 vs.\ N$=$200 comparison on Qwen-2.5-7B. Expanded evaluation confirms zero gating increment with tighter confidence intervals.}}{13}{table.caption.29}\protected@file@percent }
+\newlabel{tab:expanded_eval}{{14}{13}{TF Eval: N$=$50 vs.\ N$=$200 comparison on Qwen-2.5-7B. Expanded evaluation confirms zero gating increment with tighter confidence intervals}{table.caption.29}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces Pairwise differences (N$=$200, 95\% bootstrap CI). All intervals contain zero.}}{13}{table.caption.30}\protected@file@percent }
+\newlabel{tab:pairwise_n200}{{15}{13}{Pairwise differences (N$=$200, 95\% bootstrap CI). All intervals contain zero}{table.caption.30}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}$\lambda _{\text  {GAR}}$ Sensitivity Details}{13}{appendix.B}\protected@file@percent }
+\newlabel{app:lambda}{{B}{13}{$\lambda _{\text {GAR}}$ Sensitivity Details}{appendix.B}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces SS effectiveness decay analysis. Percentage decline is relative to the 5-turn baseline.}}{14}{table.caption.31}\protected@file@percent }
+\newlabel{tab:ss_decay}{{16}{14}{SS effectiveness decay analysis. Percentage decline is relative to the 5-turn baseline}{table.caption.31}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {C}SS Effectiveness Decay by Conversation Length}{14}{appendix.C}\protected@file@percent }
+\newlabel{app:long_conv}{{C}{14}{SS Effectiveness Decay by Conversation Length}{appendix.C}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {D}Llama TF Evaluation Comparison}{14}{appendix.D}\protected@file@percent }
+\newlabel{app:llama_tf}{{D}{14}{Llama TF Evaluation Comparison}{appendix.D}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {17}{\ignorespaces Llama-3.1-8B TF evaluation. SS achieves notably higher \textsc  {GAR}\textsubscript  {Dongre}{} (0.350 vs.\ \textsc  {ThreadGate}{}'s 0.018), but this does not transfer to AR evaluation.}}{14}{table.caption.32}\protected@file@percent }
+\newlabel{tab:llama_tf}{{17}{14}{Llama-3.1-8B TF evaluation. SS achieves notably higher \gardongre {} (0.350 vs.\ \tg {}'s 0.018), but this does not transfer to AR evaluation}{table.caption.32}{}}
+\gdef \@abspage@last{14}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2f757f74eb5f1271fa9b",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "ops v7 complete pipeline",
+  "task_key": "worker_ops_v7_complete_pipeline_20260518T235451",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_v7_complete_pipeline_20260518T235451_result.json",
+    "occurrence": 1,
+    "bytes": 185,
+    "sha256": "0f4a79273c94e4925a315e68184e47bd888eb8b544810865ac27397820a7b9d1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "v7 训练约 88% 完成（Epoch 2, Step 5100/~8000）。后台脚本正在等待 v7 结束后自动执行 eval 和启动 UG baseline。大约 4-5 分钟后检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-v7-complete-pipeline.md"
+}

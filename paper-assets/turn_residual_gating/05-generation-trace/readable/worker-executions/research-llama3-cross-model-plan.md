@@ -1,0 +1,512 @@
+# research llama3 cross model plan
+
+**Exposure Bias Collapses Auxiliary Attention Losses in Multi-Turn Dialogue** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 10
+- **Recorded user turns:** 0
+- **Tool calls:** 2
+- **Original source:** `logs/workers/worker_research_llama3_cross_model_plan_20260519T122255.log`
+- **Structured JSON:** [`046dbc99bb8084d155fc.json`](../../sessions/04/046dbc99bb8084d155fc.json)
+
+## Before a recorded user message
+
+10 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "session_id": "6b679ffe-b694-4a86-aea3-04ad376acba5",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "0ab41f96-4b54-4131-bf19-f0687b352cc2",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-turn-residual-gating/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779210600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "92bf439b-6988-4041-b018-a1f585495bee",
+  "session_id": "6b679ffe-b694-4a86-aea3-04ad376acba5"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to write a cross-model validation experiment design document for Llama-3.1-8B-Instruct and save it to the specified path. The requirements are clearly laid out. Let me create the document.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b679ffe-b694-4a86-aea3-04ad376acba5",
+  "uuid": "4b4465dd-8138-40a8-a89a-a43a15f2637d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NieXS9evh2cGCscpU5z6Dh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14163,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14163
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_013Gt9Rb75eP73EXkQvogTVs`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/artifacts/",
+  "description": "List artifacts directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b679ffe-b694-4a86-aea3-04ad376acba5",
+  "uuid": "11204ffc-a125-4703-93ac-74ebcedfe3f4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NieXS9evh2cGCscpU5z6Dh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14163,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14163
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-19T12:23:15.169Z_
+
+<details><summary>↩ Tool result · `toolu_013Gt9Rb75eP73EXkQvogTVs`</summary>
+
+```text
+_project
+manifest.yaml
+paper
+phase2_tg_s42_v7
+route_b_design.md
+src
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6b679ffe-b694-4a86-aea3-04ad376acba5",
+  "uuid": "f0f26771-3a8a-43d0-9e92-95bc6cf83754",
+  "tool_use_result": {
+    "stdout": "_project\nmanifest.yaml\npaper\nphase2_tg_s42_v7\nroute_b_design.md\nsrc",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01BToed1jewYLxPx5ocj1wvu`</summary>
+
+````json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/artifacts/llama3_cross_model_plan.md",
+  "content": "# Llama-3.1-8B-Instruct 跨模型验证实验设计\n\n> 目标：在 Llama-3.1-8B-Instruct 上复现 Qwen2.5-7B 的三个 negative findings（NF1/NF2/NF3），证明 ThreadGate 的失败是结构性问题而非 Qwen 特有。这是 Route B negative result paper 从 Findings 升级 main track 的关键加分项。\n\n---\n\n## Phase 1: GAR 衰减诊断\n\n**目标**: 确认 Llama-3.1-8B-Instruct 存在与 Qwen 类似的 GAR 衰减现象。\n\n**方法**: 复用 Phase 1 GAR 诊断脚本，切换 `--model` 参数。\n\n```bash\npython eval_phase1_gar.py \\\n  --model /root/.cache/modelscope/hub/models/LLM-Research/Meta-Llama-3___1-8B-Instruct/ \\\n  --dataset ultrachat \\\n  --turns 1,3,5,7 \\\n  --metric gar\n```\n\n**参考基线**: Dongre et al. 在 Llama-3.1-8B 上报告 27-48% GAR 衰减（随 turn 数增加）。\n\n**GPU 时间**: ~30min（inference only，无训练）\n\n**预期结果**: 观察到类似 Qwen 的 70%+ raw GAR drop（随 turn 深度递增）。若衰减幅度与 Qwen 在同一数量级，即可确认跨模型一致性。\n\n---\n\n## Phase 2: ThreadGate v7 训练\n\n**目标**: 在 Llama 上训练 ThreadGate，复现三个 negative findings。\n\n**训练配置**（与 Qwen v7 完全一致，保证可比性）:\n\n| 参数 | 值 |\n|---|---|\n| Loss | MSE + gate_div |\n| λ_gar | 1.0 |\n| λ_div | 1.0 |\n| Epochs | 3 |\n| 数据集 | ultrachat_8k |\n| LoRA rank | 16 |\n| Learning rate | 2e-4 |\n| Batch size | 4 (grad_accum=8) |\n\n**模型适配**（threadgate.py 自动检测）:\n\n| 参数 | Qwen2.5-7B | Llama-3.1-8B |\n|---|---|---|\n| hidden_dim | 3584 | 4096 |\n| num_layers | 28 | 32 |\n| vocab_size | 152064 | 128256 |\n\n**训练命令**:\n\n```bash\npython train_phase2.py \\\n  --model /root/.cache/modelscope/hub/models/LLM-Research/Meta-Llama-3___1-8B-Instruct/ \\\n  --dataset ultrachat_8k \\\n  --loss mse_gate_div \\\n  --lambda_gar 1.0 --lambda_div 1.0 \\\n  --epochs 3 \\\n  --lora_rank 16 \\\n  --lr 2e-4 \\\n  --batch_size 4 --grad_accum 8 \\\n  --seed 42 \\\n  --output_dir artifacts/phase2_tg_llama_v7\n```\n\n**GPU 时间**: ~6-7h（Llama 参数量略大于 Qwen：8B vs 7B，且 hidden_dim 更大）\n\n**预期 negative findings**:\n\n- **NF1' (turn conditioning 反向)**: gate 在 later turns 反而更开放（与设计意图相反），与 Qwen 上观察到的行为一致\n- **NF2' (training-inference GAR gap)**: training loss 正常下降但 inference GAR 无改善或恶化，gap 量级预期 ~30x（与 Qwen 一致）\n- **NF3' (gate attenuation 不足)**: gate 值集中在 0.4-0.6 区间，未形成有效的 0/1 二值化，turn-aware 调节能力不足\n\n---\n\n## Phase 3: Eval\n\n### 最小方案（推荐，时间约束下优先）\n\n仅做 Base vs ThreadGate 对比：\n\n```bash\n# Base model eval\npython eval_phase2_gar.py \\\n  --model /root/.cache/modelscope/hub/models/LLM-Research/Meta-Llama-3___1-8B-Instruct/ \\\n  --mode base \\\n  --output artifacts/eval_llama_base.json\n\n# ThreadGate eval\npython eval_phase2_gar.py \\\n  --model /root/.cache/modelscope/hub/models/LLM-Research/Meta-Llama-3___1-8B-Instruct/ \\\n  --mode threadgate \\\n  --checkpoint artifacts/phase2_tg_llama_v7/best.pt \\\n  --output artifacts/eval_llama_tg.json\n```\n\n- 2 个 eval，~30min 总计\n- 足够证明 NF2'（GAR gap）和论文核心 claim\n\n### 扩展方案（可选）\n\n四路消融：Base + TG + UG + LoRA-only\n\n| 条件 | 额外训练时间 | Eval 时间 |\n|---|---|---|\n| Base | 0 | ~15min |\n| ThreadGate (TG) | 0（Phase 2 已训练） | ~15min |\n| Uniform Gate (UG) | ~6h | ~15min |\n| LoRA-only | ~6h | ~15min |\n\n扩展方案额外需要 ~12h 训练时间。仅在时间充裕时考虑。\n\n---\n\n## Phase 4: 磁盘规划\n\n**当前状态**:\n\n| 项目 | 大小 |\n|---|---|\n| 磁盘总量 | 30GB |\n| 已用（含 Qwen cache） | ~15GB |\n| 可用 | ~15GB |\n| Llama 权重需求 | ~16GB |\n\nLlama 权重 (16GB) 无法与 Qwen cache (15GB) 共存。\n\n**串行方案**:\n\n1. 完成所有 Qwen 实验（四路 eval 全部跑完）\n2. 确认所有 Qwen 结果已保存（checkpoint + eval json + wandb logs）\n3. 删除 Qwen 模型 cache（**需 Director 确认**）：\n   ```bash\n   rm -rf /root/.cache/modelscope/Qwen/Qwen2___5-7B-Instruct/  # ~15GB\n   ```\n4. 下载 Llama 权重：\n   ```bash\n   # ModelScope 已验证可用，无需 HF token\n   # tokenizer 已存在于 /root/.cache/modelscope/hub/models/LLM-Research/Meta-Llama-3___1-8B-Instruct/\n   # 需下载完整权重（model*.safetensors）\n   python -c \"from modelscope import snapshot_download; snapshot_download('LLM-Research/Meta-Llama-3.1-8B-Instruct')\"\n   ```\n5. 下载后可用空间：~14GB（足够训练 checkpoint 和 eval 输出）\n\n**不删除的文件**（必须保留）:\n\n- `artifacts/phase2_tg_s42_v7/` — Qwen ThreadGate 训练 checkpoint\n- `artifacts/eval_*.json` — 所有 eval 结果\n- `artifacts/src/` — 源代码\n- 训练日志和 wandb 数据\n\n---\n\n## 时间表\n\n| 时间 | 任务 | 耗时 | 依赖 |\n|---|---|---|---|\n| D+0 | Qwen 四路 eval 完成（LoRA-only 训练后） | ~1.5h | 当前进行中 |\n| D+1 | 确认 Qwen 结果完整，清理 Qwen cache | ~10min | Director 确认 |\n| D+1 | 下载 Llama 完整权重 | ~30-60min | 网络带宽 |\n| D+1 | Phase 1: GAR 衰减诊断 | ~30min | 权重就绪 |\n| D+1 ~ D+2 | Phase 2: ThreadGate v7 训练 | ~6-7h | Phase 1 完成 |\n| D+2 | Phase 3: Eval（最小方案） | ~30min | Phase 2 完成 |\n| **总计** | | **~9-10h GPU 时间** | |\n\n---\n\n## 风险评估\n\n| 风险 | 概率 | 影响 | 应对 |\n|---|---|---|---|\n| Llama 上 GAR 不衰减 | 极低（Dongre et al. 已验证） | 高：跨模型 claim 不成立 | 调整 story 为 model-specific analysis |\n| Llama 上 TG 意外 work | 极低 | 高：negative finding 不成立 | 转为正向叙事，分析为何 Llama 有效 |\n| 磁盘不够 | 中等 | 中：阻塞训练 | 激进清理旧 checkpoint，只保留 best.pt |\n| Llama 下载失败 | 低 | 低：延迟 | 切换 HF mirror 或手动分片下载 |\n| 训练 OOM | 低（Qwen 已跑通，Llama 略大） | 低 | 减小 batch_size 或启用 gradient checkpointing |\n\n---\n\n## 论文价值\n\n跨模型验证成功后，论文可新增：\n\n- **Table**: Llama vs Qwen negative findings 对比（NF1/NF2/NF3 在两个模型上的具体数值）\n- **Claim 升级**: \"ThreadGate's failure is structural, not model-specific\" — 从单模型观察升级为跨架构结论\n- **审稿人预期回应**: 预先封堵 \"maybe it only fails on Qwen\" 的质疑\n- 预估可将 Overall Assessment 从 3.0 (Findings) 提升 0.3-0.5 分\n"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b679ffe-b694-4a86-aea3-04ad376acba5",
+  "uuid": "1079c288-b4fa-4f8c-b670-b7baad71fb57",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QkoGf3Yi5fqUCsDsXj8AX4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 212,
+      "cache_read_input_tokens": 25610,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 212
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-19T12:23:59.963Z_
+
+<details><summary>↩ Tool result · `toolu_01BToed1jewYLxPx5ocj1wvu`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/artifacts/llama3_cross_model_plan.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "6b679ffe-b694-4a86-aea3-04ad376acba5",
+  "uuid": "09693526-5b33-41b4-8329-34df303c7895",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/artifacts/llama3_cross_model_plan.md",
+    "content": "# Llama-3.1-8B-Instruct 跨模型验证实验设计\n\n> 目标：在 Llama-3.1-8B-Instruct 上复现 Qwen2.5-7B 的三个 negative findings（NF1/NF2/NF3），证明 ThreadGate 的失败是结构性问题而非 Qwen 特有。这是 Route B negative result paper 从 Findings 升级 main track 的关键加分项。\n\n---\n\n## Phase 1: GAR 衰减诊断\n\n**目标**: 确认 Llama-3.1-8B-Instruct 存在与 Qwen 类似的 GAR 衰减现象。\n\n**方法**: 复用 Phase 1 GAR 诊断脚本，切换 `--model` 参数。\n\n```bash\npython eval_phase1_gar.py \\\n  --model /root/.cache/modelscope/hub/models/LLM-Research/Meta-Llama-3___1-8B-Instruct/ \\\n  --dataset ultrachat \\\n  --turns 1,3,5,7 \\\n  --metric gar\n```\n\n**参考基线**: Dongre et al. 在 Llama-3.1-8B 上报告 27-48% GAR 衰减（随 turn 数增加）。\n\n**GPU 时间**: ~30min（inference only，无训练）\n\n**预期结果**: 观察到类似 Qwen 的 70%+ raw GAR drop（随 turn 深度递增）。若衰减幅度与 Qwen 在同一数量级，即可确认跨模型一致性。\n\n---\n\n## Phase 2: ThreadGate v7 训练\n\n**目标**: 在 Llama 上训练 ThreadGate，复现三个 negative findings。\n\n**训练配置**（与 Qwen v7 完全一致，保证可比性）:\n\n| 参数 | 值 |\n|---|---|\n| Loss | MSE + gate_div |\n| λ_gar | 1.0 |\n| λ_div | 1.0 |\n| Epochs | 3 |\n| 数据集 | ultrachat_8k |\n| LoRA rank | 16 |\n| Learning rate | 2e-4 |\n| Batch size | 4 (grad_accum=8) |\n\n**模型适配**（threadgate.py 自动检测）:\n\n| 参数 | Qwen2.5-7B | Llama-3.1-8B |\n|---|---|---|\n| hidden_dim | 3584 | 4096 |\n| num_layers | 28 | 32 |\n| vocab_size | 152064 | 128256 |\n\n**训练命令**:\n\n```bash\npython train_phase2.py \\\n  --model /root/.cache/modelscope/hub/models/LLM-Research/Meta-Llama-3___1-8B-Instruct/ \\\n  --dataset ultrachat_8k \\\n  --loss mse_gate_div \\\n  --lambda_gar 1.0 --lambda_div 1.0 \\\n  --epochs 3 \\\n  --lora_rank 16 \\\n  --lr 2e-4 \\\n  --batch_size 4 --grad_accum 8 \\\n  --seed 42 \\\n  --output_dir artifacts/phase2_tg_llama_v7\n```\n\n**GPU 时间**: ~6-7h（Llama 参数量略大于 Qwen：8B vs 7B，且 hidden_dim 更大）\n\n**预期 negative findings**:\n\n- **NF1' (turn conditioning 反向)**: gate 在 later turns 反而更开放（与设计意图相反），与 Qwen 上观察到的行为一致\n- **NF2' (training-inference GAR gap)**: training loss 正常下降但 inference GAR 无改善或恶化，gap 量级预期 ~30x（与 Qwen 一致）\n- **NF3' (gate attenuation 不足)**: gate 值集中在 0.4-0.6 区间，未形成有效的 0/1 二值化，turn-aware 调节能力不足\n\n---\n\n## Phase 3: Eval\n\n### 最小方案（推荐，时间约束下优先）\n\n仅做 Base vs ThreadGate 对比：\n\n```bash\n# Base model eval\npython eval_phase2_gar.py \\\n  --model /root/.cache/modelscope/hub/models/LLM-Research/Meta-Llama-3___1-8B-Instruct/ \\\n  --mode base \\\n  --output artifacts/eval_llama_base.json\n\n# ThreadGate eval\npython eval_phase2_gar.py \\\n  --model /root/.cache/modelscope/hub/models/LLM-Research/Meta-Llama-3___1-8B-Instruct/ \\\n  --mode threadgate \\\n  --checkpoint artifacts/phase2_tg_llama_v7/best.pt \\\n  --output artifacts/eval_llama_tg.json\n```\n\n- 2 个 eval，~30min 总计\n- 足够证明 NF2'（GAR gap）和论文核心 claim\n\n### 扩展方案（可选）\n\n四路消融：Base + TG + UG + LoRA-only\n\n| 条件 | 额外训练时间 | Eval 时间 |\n|---|---|---|\n| Base | 0 | ~15min |\n| ThreadGate (TG) | 0（Phase 2 已训练） | ~15min |\n| Uniform Gate (UG) | ~6h | ~15min |\n| LoRA-only | ~6h | ~15min |\n\n扩展方案额外需要 ~12h 训练时间。仅在时间充裕时考虑。\n\n---\n\n## Phase 4: 磁盘规划\n\n**当前状态**:\n\n| 项目 | 大小 |\n|---|---|\n| 磁盘总量 | 30GB |\n| 已用（含 Qwen cache） | ~15GB |\n| 可用 | ~15GB |\n| Llama 权重需求 | ~16GB |\n\nLlama 权重 (16GB) 无法与 Qwen cache (15GB) 共存。\n\n**串行方案**:\n\n1. 完成所有 Qwen 实验（四路 eval 全部跑完）\n2. 确认所有 Qwen 结果已保存（checkpoint + eval json + wandb logs）\n3. 删除 Qwen 模型 cache（**需 Director 确认**）：\n   ```bash\n   rm -rf /root/.cache/modelscope/Qwen/Qwen2___5-7B-Instruct/  # ~15GB\n   ```\n4. 下载 Llama 权重：\n   ```bash\n   # ModelScope 已验证可用，无需 HF token\n   # tokenizer 已存在于 /root/.cache/modelscope/hub/models/LLM-Research/Meta-Llama-3___1-8B-Instruct/\n   # 需下载完整权重（model*.safetensors）\n   python -c \"from modelscope import snapshot_download; snapshot_download('LLM-Research/Meta-Llama-3.1-8B-Instruct')\"\n   ```\n5. 下载后可用空间：~14GB（足够训练 checkpoint 和 eval 输出）\n\n**不删除的文件**（必须保留）:\n\n- `artifacts/phase2_tg_s42_v7/` — Qwen ThreadGate 训练 checkpoint\n- `artifacts/eval_*.json` — 所有 eval 结果\n- `artifacts/src/` — 源代码\n- 训练日志和 wandb 数据\n\n---\n\n## 时间表\n\n| 时间 | 任务 | 耗时 | 依赖 |\n|---|---|---|---|\n| D+0 | Qwen 四路 eval 完成（LoRA-only 训练后） | ~1.5h | 当前进行中 |\n| D+1 | 确认 Qwen 结果完整，清理 Qwen cache | ~10min | Director 确认 |\n| D+1 | 下载 Llama 完整权重 | ~30-60min | 网络带宽 |\n| D+1 | Phase 1: GAR 衰减诊断 | ~30min | 权重就绪 |\n| D+1 ~ D+2 | Phase 2: ThreadGate v7 训练 | ~6-7h | Phase 1 完成 |\n| D+2 | Phase 3: Eval（最小方案） | ~30min | Phase 2 完成 |\n| **总计** | | **~9-10h GPU 时间** | |\n\n---\n\n## 风险评估\n\n| 风险 | 概率 | 影响 | 应对 |\n|---|---|---|---|\n| Llama 上 GAR 不衰减 | 极低（Dongre et al. 已验证） | 高：跨模型 claim 不成立 | 调整 story 为 model-specific analysis |\n| Llama 上 TG 意外 work | 极低 | 高：negative finding 不成立 | 转为正向叙事，分析为何 Llama 有效 |\n| 磁盘不够 | 中等 | 中：阻塞训练 | 激进清理旧 checkpoint，只保留 best.pt |\n| Llama 下载失败 | 低 | 低：延迟 | 切换 HF mirror 或手动分片下载 |\n| 训练 OOM | 低（Qwen 已跑通，Llama 略大） | 低 | 减小 batch_size 或启用 gradient checkpointing |\n\n---\n\n## 论文价值\n\n跨模型验证成功后，论文可新增：\n\n- **Table**: Llama vs Qwen negative findings 对比（NF1/NF2/NF3 在两个模型上的具体数值）\n- **Claim 升级**: \"ThreadGate's failure is structural, not model-specific\" — 从单模型观察升级为跨架构结论\n- **审稿人预期回应**: 预先封堵 \"maybe it only fails on Qwen\" 的质疑\n- 预估可将 Overall Assessment 从 3.0 (Findings) 提升 0.3-0.5 分\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+````
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9_
+
+文档已保存到 `artifacts/llama3_cross_model_plan.md`。覆盖了全部 6 个要求的部分：Phase 1 GAR 诊断、Phase 2 TG 训练、Phase 3 Eval（最小+扩展方案）、磁盘规划（串行清理策略）、时间表（D+0 到 D+2）、风险评估，以及论文价值说明。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "6b679ffe-b694-4a86-aea3-04ad376acba5",
+  "uuid": "8e1da03b-d7ba-4158-bad5-3cbaa2e9870e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ui3YWqDr15D7tNxDht5KNj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3029,
+      "cache_read_input_tokens": 25822,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3029
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 10_
+
+文档已保存到 `artifacts/llama3_cross_model_plan.md`。覆盖了全部 6 个要求的部分：Phase 1 GAR 诊断、Phase 2 TG 训练、Phase 3 Eval（最小+扩展方案）、磁盘规划（串行清理策略）、时间表（D+0 到 D+2）、风险评估，以及论文价值说明。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 61419,
+  "duration_api_ms": 62492,
+  "num_turns": 3,
+  "stop_reason": "end_turn",
+  "session_id": "6b679ffe-b694-4a86-aea3-04ad376acba5",
+  "total_cost_usd": 0.2239935,
+  "usage": {
+    "input_tokens": 5,
+    "cache_creation_input_tokens": 17404,
+    "cache_read_input_tokens": 62879,
+    "output_tokens": 3263,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 17404,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 125,
+        "cache_read_input_tokens": 25822,
+        "cache_creation_input_tokens": 3029,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 3029
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2069,
+      "outputTokens": 22,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002179,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 5,
+      "outputTokens": 3263,
+      "cacheReadInputTokens": 62879,
+      "cacheCreationInputTokens": 17404,
+      "webSearchRequests": 0,
+      "costUSD": 0.22181450000000003,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "1b518a57-47c1-4ead-a50e-70999813cf96"
+}
+```
+
+</details>
+
+---

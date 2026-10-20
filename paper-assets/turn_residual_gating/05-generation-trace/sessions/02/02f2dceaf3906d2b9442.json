@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "02f2dceaf3906d2b9442",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "code bootstrap ci and tex updater",
+  "task_key": "worker_code_bootstrap_ci_and_tex_updater_20260522T135615",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_bootstrap_ci_and_tex_updater_20260522T135615_result.json",
+    "occurrence": 1,
+    "bytes": 694,
+    "sha256": "67868b5800b4c8304ac0fad139125ece3588e69d677ff053e3b688b430a95fa5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**服务器上** (`westd-20861:/root/turn_residual_gating/scripts/`):\n- `compute_bootstrap_ci.py` — 重写，支持 3 种 JSON 格式（标准 GAR eval、attention steering、phase1 diagnostic），输出 per-conv 和 pooled mid-turn GAR 的 bootstrap 95% CI + PPL CI。已通过 4 个代表性文件测试通过。\n- `d048_number_mapping.md` — 更新为引用 bootstrap 脚本。\n\n**本地** (`scripts/tex_number_map.md`):\n- 详细映射了论文 6 个 .tex 文件中所有数值到对应的 eval JSON 文件和字段，含行号。覆盖 abstract、intro、experiments（Table 1 + §5.2 + §5.3 steering）、analysis、discussion、conclusion。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-bootstrap-ci-and-tex-updater.md"
+}

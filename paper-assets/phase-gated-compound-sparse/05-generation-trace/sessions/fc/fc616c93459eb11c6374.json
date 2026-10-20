@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fc616c93459eb11c6374",
+  "project": "phase-gated-compound-sparse",
+  "kind": "history",
+  "title": "agent / loop_1_1778717853.md",
+  "task_key": "loop_1_1778717853",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_1_1778717853.md",
+    "occurrence": 1,
+    "bytes": 4322,
+    "sha256": "f59e0024ba25eb197728c80b8e487f60dfdd1e48c217149a4a1617cb4e797ba2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 1\nreason: max_wall_time\nupdated: '2026-05-13T23:55:17+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-22162 cuda:0/1/2/3，不可用其他卡\n- **不要 kill GPU 0/1/2 上的旧进程**（PID 27689/28083/28452）——它们是当前唯一有效的 importance-based 实验，已跑数小时\n- `sync_code=true` 同步 git tracked 文件，**不含本地 artifacts/ 编辑**——必须通过 SSH Worker 手动同步\n- 服务器双目录结构：`/root/autodl-tmp/pacs/profiling/` (flat) 和 `/root/autodl-tmp/pacs/pacs/profiling/` (package)，Python 从 package 目录加载，**两处都要改**\n- `submit_training_job` 的 command 必须 `bash -c \"...\"` 包裹（tmux 用 sh 不是 bash，source/conda activate 会 127）\n- `compute_dense_forward_with_importance()` 使用 `output_attentions=True`，物化 28 层 attention ~4.5GB，**同一卡不能跑两个 importance 进程**否则 OOM\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-22162，4× RTX PRO 6000 Blackwell 94GB\n- 工作目录：`/root/autodl-tmp/pacs/`，Python：`/root/miniconda3/bin/python`（conda base）\n- 模型：`/root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B`（符号链接，15.2GB bf16，28层 28头 4KV头 GQA 7:1）\n- 数据：`/root/autodl-tmp/pacs/data/math500.json`（500题，分层采样50题）\n- Qwen2.5-7B：`/root/autodl-tmp/models/Qwen2.5-7B/`（已下载备用）\n- 活跃进程：\n  - cuda:0: mvp_v4_legacy_s01, PID 27689, sparsity=0.1 importance\n  - cuda:1: mvp_v4_legacy_s02, PID 28083, sparsity=0.2 importance\n  - cuda:2: mvp_v4_legacy_s03, PID 28452, sparsity=0.3 importance\n  - cuda:3: mvp_v4_random_r2 应由 gpu-cleanup-random Worker 启动（需确认）\n- Cron：legacy_s01/s02/s03 已注册 120s 轮询\n\n### 3. 📊 当前状态\n刚完成 legacy 实验补录和 r2 实验关闭。\n\n**Registry RUNNING**：\n- mvp_v4_legacy_s01/s02/s03：importance-based，单 sparsity per GPU（0.1/0.2/0.3），已跑约 1h+\n- mvp_v4_random_r2：应在 cuda:3 上由 gpu-cleanup-random Worker 启动\n\n**等待中**：\n- Worker `gpu-cleanup-random`（kill v4d + 提交 random baseline on cuda:3）— 回调未到\n- 3 个 legacy cron 回调（实验完成时自动触发）\n- random baseline cron 回调\n\n**r2 全部 FAILED**（OOM，GPU 争用）：mvp_v4a_r2 / v4b_r2 / v4c_r2 / v4_random_r2(待确认)\n\n### 4. 📋 待办\n- gpu-cleanup-random Worker 回调到 → 确认 random baseline PID + 注册 cron（如 Worker 未成功提交，手动用 submit_training_job 补提）\n- legacy_s01/s02/s03 任一 cron 回调 DONE → 读 profiling_output_v4{a,b,c}/profiling_results.json，记录 metrics 到 registry\n- **全部 4 个实验完成后** → spawn Worker 统一分析：importance vs random 在 sparsity 0.1/0.2/0.3 的 II 对比，检查 30% 是否出现符号反转\n- 分析结果 conclusion=success（30% 有符号反转）→ 按 on-experiment-done 走 success 路径，汇报 Director\n- 分析结果 conclusion=negative（无显著差异）→ 产出 Framing 调整提案，**禁止默默跑下一个实验**\n- 旧代码无 `--masking_method` CLI，如需重跑对齐参数版本 → 用新代码（本地 artifacts/ 已有 `--masking_method`），SSH Worker 同步后提交\n\n### 5. 🎯 战略上下文\n- **EMNLP 2026 ARR deadline 2026-05-25**，剩 12 天\n- 核心假设 D010：importance-based masking 在 30% sparsity 下产生 sub-additive II（符号反转），而 random 产生 super-additive。这是 PACS 整个 paper 的 empirical anchor\n- v1-v3 全部 FAIL/negative（random masking 下 phase 间 II 无显著差异）。v4 是 pivot 到 \"masking strategy matters\" 的最后机会\n- **最容易判断错的事**：旧 legacy 进程用的代码版本没有 `--masking_method` CLI，但代码里 hardcoded 了 importance（`compute_dense_forward_with_importance` 总是被调用，importance 总是传给 mask 构建）。与新代码 `--masking_method importance` 行为等价，结果可比\n- **最容易踩的坑**：不要在有旧进程的 GPU 上启动新进程——94GB 看似够大但 output_attentions=True 吃 VRAM 很猛，双进程必 OOM\n- 文献：Interaction Index 无直接先例（方法论贡献），SparK 报告 compound sparsity 总是 super-additive，如果我们能在 importance-based 下证明 sub-additive，这就是核心 novelty\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-1-1778717853.md"
+}

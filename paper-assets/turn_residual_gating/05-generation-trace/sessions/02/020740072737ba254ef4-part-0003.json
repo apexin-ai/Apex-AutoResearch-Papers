@@ -1,0 +1,3529 @@
+{
+  "schema_version": "1.0",
+  "session_id": "020740072737ba254ef4",
+  "rounds": [
+    {
+      "number": 14,
+      "messages": [
+        {
+          "source_line": 361,
+          "timestamp": "2026-05-19T12:50:20.882117+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 19740\\\\ndrwxr-xr-x 2 root root       99 May 19 14:49 .\\\\ndrwxr-xr-x 6 root root      138 May 19 14:49 ..\\\\n-rw-r--r-- 1 root root     5254 May 19 14:49 README.md\\\\n-rw-r--r-- 1 root root     1052 May 19 14:49 adapter_config.json\\\\n-rw-r--r-- 1 root root 20200056 May 19 14:49 adapter_model.safetensors\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 553
+          },
+          "id": "event-000361"
+        },
+        {
+          "source_line": 362,
+          "timestamp": "2026-05-19T12:50:20.933043+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "ls -la /root/turn_residual_gating/runs/phase2_lora_only_s42/epoch_1/lora/"
+            }
+          },
+          "id": "event-000362"
+        },
+        {
+          "source_line": 363,
+          "timestamp": "2026-05-19T12:50:21.385515+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 19740\\\\ndrwxr-xr-x 2 root root       99 May 19 19:09 .\\\\ndrwxr-xr-x 3 root root       26 May 19 19:09 ..\\\\n-rw-r--r-- 1 root root     5254 May 19 19:09 README.md\\\\n-rw-r--r-- 1 root root     1052 May 19 19:09 adapter_config.json\\\\n-rw-r--r-- 1 root root 20200056 May 19 19:09 adapter_model.safetensors\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-000363"
+        },
+        {
+          "source_line": 364,
+          "timestamp": "2026-05-19T12:50:48.492580+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__reviewer_post_to_director",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000364"
+        },
+        {
+          "source_line": 365,
+          "timestamp": "2026-05-19T12:50:48.543230+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000365"
+        },
+        {
+          "source_line": 366,
+          "timestamp": "2026-05-19T12:51:03.337930+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — phase2_lora_only_s42 状态追踪（第三轮）\n\n**结论**: WARNING\n\n### 发现\n\n- [severity: info] **训练正常进行中**：PID 46085 存活，Epoch 2 Step 6950，optimizer step 2850/3000 (95%)。预计 ~10-15 min 内完成。\n\n- [severity: info] **GPU 合规**：cuda:0, 99% util, 91321/97887 MiB — 在白名单 `westd-20861:cuda:0` 内。\n\n- [severity: info] **Gate 值正确**：--gate-type none 下所有层 gate=1.0000（无 gating，residual 完全通过），L_GAR≈0，L_DIV=0 — 符合 LoRA-only 控制组设计。\n\n- [severity: info] **Checkpoint 结构一致**：epoch_0/lora 和 epoch_1/lora 已创建，均含 adapter_model.safetensors (20200056 bytes ≈ 19.3MB)，与 TG v7 和 UG 的 LoRA 大小一致（同 rank 16 配置）。\n\n- [severity: warning] **Registry 状态仍不准确**：之前的 DONE/failed 已修正为 PREPARING（12:47:40Z），但训练自 15:20 local 已在运行 5.5h，状态应为 RUNNING。PREPARING 比 false-failed 好，但可能导致监控系统忽略此实验。建议更新为 RUNNING。\n\n- [severity: info] **4way eval 路径已验证**：run_4way_eval.sh 中 `LO_CKPT=/root/turn_residual_gating/runs/phase2_lora_only_s42`，safety check `[ -d \"$LO_CKPT/lora\" ]` 将在训练完成创建 top-level lora/ 后通过。\n\n### 待确认\n\n1. 训练完成后：验证 top-level `lora/` 目录和 `epoch_2/` 创建\n2. Registry 更新为 DONE + 正确 conclusion\n3. 4way eval 启动后审查结果",
+              "project": "turn_residual_gating"
+            }
+          },
+          "id": "event-000366"
+        },
+        {
+          "source_line": 367,
+          "timestamp": "2026-05-19T12:51:04.693398+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 1355
+          },
+          "id": "event-000367"
+        },
+        {
+          "source_line": 368,
+          "timestamp": "2026-05-19T12:51:14.479317+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已向 Director 发送第三轮状态更新。LoRA-only 训练在 95%（optimizer step 2850/3000），预计 10-15 分钟完成。Registry 从 DONE/failed 改为 PREPARING（仍不准确，应为 RUNNING），已标 warning。\n\n接下来等待训练完成后验证 checkpoint 完整性和 4way eval 启动。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer"
+          },
+          "id": "event-000368"
+        }
+      ]
+    },
+    {
+      "number": 15,
+      "messages": [
+        {
+          "source_line": 369,
+          "timestamp": "2026-05-19T12:53:35.557113+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_ops_check_lora_only_status_20260519T125134]:\nWorker worker_ops_check_lora_only_status_20260519T125134 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "source": "system"
+          },
+          "id": "event-000369"
+        },
+        {
+          "source_line": 370,
+          "timestamp": "2026-05-19T12:53:44.722574+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "turn_residual_gating",
+              "filters": "{'exp_id': 'phase2_lora_only_s42'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000370"
+        },
+        {
+          "source_line": 371,
+          "timestamp": "2026-05-19T12:53:45.677013+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0406}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 954
+          },
+          "id": "event-000371"
+        },
+        {
+          "source_line": 372,
+          "timestamp": "2026-05-19T12:53:45.677453+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "tail -15 /root/runs/turn_residual_gating/phase2_lora_only_s42.log"
+            }
+          },
+          "id": "event-000372"
+        },
+        {
+          "source_line": 373,
+          "timestamp": "2026-05-19T12:53:46.079492+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "ls -la /root/turn_residual_gating/runs/phase2_lora_only_s42/"
+            }
+          },
+          "id": "event-000373"
+        },
+        {
+          "source_line": 374,
+          "timestamp": "2026-05-19T12:53:46.984560+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Epoch 2 Step 6700 | L_NTP=0.8149 L_GAR=0.0003 L_DIV=0.0000 Loss=0.8152 | Gate=1.0000 | Mem=53.0GB\\\\nEpoch 2 Step 6750 | L_NTP=0.8837 L_GAR=0.0001 L_DIV=0.0000 Loss=0.8838 | Gate=1.0000 | Mem=53.0GB\\\\n[GATE] step=2850 mean=1.0000 std=0.0000 min=1.0000 max=1.0000\\\\nEpoch 2 Step 6800 | L_NTP=1.1588 L_GAR=0.0004 L_DIV=0.0000 Loss=1.1592 | Gate=1.0000 | Mem=53.0GB\\\\nEpoch 2 Step 6850 | L_NTP=0.9645 L_GAR=0.0001 L_DIV=0.0000 Loss=0.9645 | Gate=1.0000 | Mem=53.0GB\\\\nEpoch 2 Step 6900 | L_NTP=0.7948 L_GAR=0.0000 L_DIV=0.0000 Loss=0.7948 | Gate=1.0000 | Mem=53.0GB\\\\nEpoch 2 Step 6950 | L_NTP=0.8507 L_GAR=0.0000 L_DIV=0.0000 Loss=0.8508 | Gate=1.0000 | Mem=53.0GB\\\\nEpoch 2 Step 7000 | L_NTP=0.9834 L_GAR=0.0001 L_DIV=0.0000 Loss=0.9836 | Gate=1.0000 | Mem=53.0GB\\\\nEpoch 2 Step 7050 | L_NTP=1.0757 L_GAR=0.0036 L_DIV=0.0000 Loss=1.0793 | Gate=1.0000 | Mem=53.0GB\\\\nEpoch 2 Step 7100 | L_NTP=0.8206 L_GAR=0.0000 L_DIV=0.0000 Loss=0.8206 | Gate=1.0000 | Mem=53.0GB\\\\nEpoch 2 Step 7150 | L_NTP=1.1464 L_GAR=0.0000 L_DIV=0.0000 Loss=1.1464 | Gate=1.0000 | Mem=53.0GB\\\\n[GATE] step=2900 mean=1.0000 std=0.0000 min=1.0000 max=1.0000\\\\n[GATE-PROFILE] step=2900 L0:1.000 L1:1.000 L2:1.000 L3:1.000 L4:1.000 L5:1.000 L6:1.000 L7:1.000 L8:1.000 L9:1.000 L10:1.000 L11:1.000 L12:1.000 L13:1.000 L14:1.000 L15:1.000 L16:1.000 L17:1.000 L18:1.000 L19:1.000 L20:1.000 L21:1.000 L22:1.000 L23:1.000 L24:1.000 L25:1.000 L26:1.000 L27:1.000\\\\nEpoch 2 Step 7200 | L_NTP=0.9518 L_GAR=0.0002 L_DIV=0.0000 Loss=0.9520 | Gate=1.0000 | Mem=53.0GB\\\\nEpoch 2 Step 7250 | L_NTP=1.0072 L_GAR=0.0000 L_DIV=0.0000 Loss=1.0072 | Gate=1.0000 | Mem=53.0GB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1307
+          },
+          "id": "event-000374"
+        },
+        {
+          "source_line": 375,
+          "timestamp": "2026-05-19T12:53:47.487146+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\ndrwxr-xr-x 4 root root   48 May 19 19:09 .\\\\ndrwxr-xr-x 5 root root 4096 May 19 17:14 ..\\\\ndrwxr-xr-x 3 root root   26 May 19 17:14 epoch_0\\\\ndrwxr-xr-x 3 root root   26 May 19 19:09 epoch_1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1407
+          },
+          "id": "event-000375"
+        },
+        {
+          "source_line": 376,
+          "timestamp": "2026-05-19T12:53:56.383531+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "turn_residual_gating",
+              "limit": "3",
+              "fields": "['exp_id', 'status', 'conclusion', 'updated_at']"
+            }
+          },
+          "id": "event-000376"
+        },
+        {
+          "source_line": 377,
+          "timestamp": "2026-05-19T12:53:56.484317+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"phase2_lora_only_s42\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-19T12:51:53.232Z\\\"}, \\\"phase2_ug_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-19T07:14:16.247Z\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"phase2_tg_s42_v7\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-19T01:11:40.921Z\\\", \\\"conclusion\\\": \\\"success\\\"}}, \\\"count\\\": 3, \\\"total\\\": 11, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0429}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 100
+          },
+          "id": "event-000377"
+        },
+        {
+          "source_line": 378,
+          "timestamp": "2026-05-19T12:54:06.420807+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: info] phase2_lora_only_s42 registry 已修正为 RUNNING（Worker 完成状态检查）。训练 Epoch 2 Step 7250, optimizer 2900/3000 (96.7%)。预计 ~5 min 内完成。top-level lora/ 尚未创建（正常，训练结束后生成）。之前的 CRITICAL（false failed marking）已解决。",
+              "project": "turn_residual_gating"
+            }
+          },
+          "id": "event-000378"
+        },
+        {
+          "source_line": 379,
+          "timestamp": "2026-05-19T12:54:10.487696+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 4066
+          },
+          "id": "event-000379"
+        },
+        {
+          "source_line": 380,
+          "timestamp": "2026-05-19T12:54:13.332946+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested — 等待训练完成后继续跟踪。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer"
+          },
+          "id": "event-000380"
+        }
+      ]
+    },
+    {
+      "number": 16,
+      "messages": [
+        {
+          "source_line": 381,
+          "timestamp": "2026-05-19T12:56:36.670447+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_ops_verify_eval_readiness_20260519T125453]:\nWorker worker_ops_verify_eval_readiness_20260519T125453 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "source": "system"
+          },
+          "id": "event-000381"
+        },
+        {
+          "source_line": 382,
+          "timestamp": "2026-05-19T12:56:45.565375+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "tail -20 /root/runs/turn_residual_gating/phase2_lora_only_s42.log"
+            }
+          },
+          "id": "event-000382"
+        },
+        {
+          "source_line": 383,
+          "timestamp": "2026-05-19T12:56:46.017696+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "ls -la /root/turn_residual_gating/runs/phase2_lora_only_s42/"
+            }
+          },
+          "id": "event-000383"
+        },
+        {
+          "source_line": 384,
+          "timestamp": "2026-05-19T12:56:46.823840+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Epoch 2 Step 6650 | L_NTP=0.8581 L_GAR=0.0002 L_DIV=0.0000 Loss=0.8582 | Gate=1.0000 | Mem=53.0GB\\\\nEpoch 2 Step 6700 | L_NTP=0.8149 L_GAR=0.0003 L_DIV=0.0000 Loss=0.8152 | Gate=1.0000 | Mem=53.0GB\\\\nEpoch 2 Step 6750 | L_NTP=0.8837 L_GAR=0.0001 L_DIV=0.0000 Loss=0.8838 | Gate=1.0000 | Mem=53.0GB\\\\n[GATE] step=2850 mean=1.0000 std=0.0000 min=1.0000 max=1.0000\\\\nEpoch 2 Step 6800 | L_NTP=1.1588 L_GAR=0.0004 L_DIV=0.0000 Loss=1.1592 | Gate=1.0000 | Mem=53.0GB\\\\nEpoch 2 Step 6850 | L_NTP=0.9645 L_GAR=0.0001 L_DIV=0.0000 Loss=0.9645 | Gate=1.0000 | Mem=53.0GB\\\\nEpoch 2 Step 6900 | L_NTP=0.7948 L_GAR=0.0000 L_DIV=0.0000 Loss=0.7948 | Gate=1.0000 | Mem=53.0GB\\\\nEpoch 2 Step 6950 | L_NTP=0.8507 L_GAR=0.0000 L_DIV=0.0000 Loss=0.8508 | Gate=1.0000 | Mem=53.0GB\\\\nEpoch 2 Step 7000 | L_NTP=0.9834 L_GAR=0.0001 L_DIV=0.0000 Loss=0.9836 | Gate=1.0000 | Mem=53.0GB\\\\nEpoch 2 Step 7050 | L_NTP=1.0757 L_GAR=0.0036 L_DIV=0.0000 Loss=1.0793 | Gate=1.0000 | Mem=53.0GB\\\\nEpoch 2 Step 7100 | L_NTP=0.8206 L_GAR=0.0000 L_DIV=0.0000 Loss=0.8206 | Gate=1.0000 | Mem=53.0GB\\\\nEpoch 2 Step 7150 | L_NTP=1.1464 L_GAR=0.0000 L_DIV=0.0000 Loss=1.1464 | Gate=1.0000 | Mem=53.0GB\\\\n[GATE] step=2900 mean=1.0000 std=0.0000 min=1.0000 max=1.0000\\\\n[GATE-PROFILE] step=2900 L0:1.000 L1:1.000 L2:1.000 L3:1.000 L4:1.000 L5:1.000 L6:1.000 L7:1.000 L8:1.000 L9:1.000 L10:1.000 L11:1.000 L12:1.000 L13:1.000 L14:1.000 L15:1.000 L16:1.000 L17:1.000 L18:1.000 L19:1.000 L20:1.000 L21:1.000 L22:1.000 L23:1.000 L24:1.000 L25:1.000 L26:1.000 L27:1.000\\\\nEpoch 2 Step 7200 | L_NTP=0.9518 L_GAR=0.0002 L_DIV=0.0000 Loss=0.9520 | Gate=1.0000 | Mem=53.0GB\\\\nEpoch 2 Step 7250 | L_NTP=1.0072 L_GAR=0.0000 L_DIV=0.0000 Loss=1.0072 | Gate=1.0000 | Mem=53.0GB\\\\nEpoch 2 Step 7300 | L_NTP=1.3699 L_GAR=0.0002 L_DIV=0.0000 Loss=1.3701 | Gate=1.0000 | Mem=53.0GB\\\\nEpoch 2 Step 7350 | L_NTP=1.0606 L_GAR=0.0000 L_DIV=0.0000 Loss=1.0606 | Gate=1.0000 | Mem=53.0GB\\\\nEpoch 2 Step 7400 |\n…[truncated 285 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1258
+          },
+          "id": "event-000384"
+        },
+        {
+          "source_line": 385,
+          "timestamp": "2026-05-19T12:56:46.824813+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "turn_residual_gating",
+              "filters": "{'status': 'RUNNING'}",
+              "fields": "['exp_id', 'status', 'conclusion', 'updated_at']"
+            }
+          },
+          "id": "event-000385"
+        },
+        {
+          "source_line": 386,
+          "timestamp": "2026-05-19T12:56:47.226945+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\ndrwxr-xr-x 4 root root   48 May 19 19:09 .\\\\ndrwxr-xr-x 5 root root 4096 May 19 17:14 ..\\\\ndrwxr-xr-x 3 root root   26 May 19 17:14 epoch_0\\\\ndrwxr-xr-x 3 root root   26 May 19 19:09 epoch_1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1209
+          },
+          "id": "event-000386"
+        },
+        {
+          "source_line": 387,
+          "timestamp": "2026-05-19T12:56:47.277709+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"phase2_lora_only_s42\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-19T12:51:53.232Z\\\"}}, \\\"count\\\": 1, \\\"total\\\": 1, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0394}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 452
+          },
+          "id": "event-000387"
+        },
+        {
+          "source_line": 388,
+          "timestamp": "2026-05-19T12:56:56.075646+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已到 Step 7450，optimizer 2950/3000 (98.3%)。约 2-3 分钟后完成。Registry 正确显示 RUNNING。epoch_2/ 和 top-level lora/ 尚未创建（正常）。\n\nWorker 的 eval readiness 验证结果：TG v7 和 UG checkpoints 就绪，LoRA-only 即将完成。无异常，无需上报。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer"
+          },
+          "id": "event-000388"
+        }
+      ]
+    },
+    {
+      "number": 17,
+      "messages": [
+        {
+          "source_line": 389,
+          "timestamp": "2026-05-19T13:04:35.649731+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — cron:on_failed:phase2_lora_only_s42]:\n实验 phase2_lora_only_s42 failed，请审查。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "source": "system"
+          },
+          "id": "event-000389"
+        },
+        {
+          "source_line": 390,
+          "timestamp": "2026-05-19T13:04:46.126244+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "ps -p 46085 -o pid,stat,etime,args --no-headers"
+            }
+          },
+          "id": "event-000390"
+        },
+        {
+          "source_line": 391,
+          "timestamp": "2026-05-19T13:04:46.378469+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "tail -30 /root/runs/turn_residual_gating/phase2_lora_only_s42.log"
+            }
+          },
+          "id": "event-000391"
+        },
+        {
+          "source_line": 392,
+          "timestamp": "2026-05-19T13:04:47.233063+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "turn_residual_gating",
+              "filters": "{'exp_id': 'phase2_lora_only_s42'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000392"
+        },
+        {
+          "source_line": 393,
+          "timestamp": "2026-05-19T13:04:47.434584+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.28}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1308
+          },
+          "id": "event-000393"
+        },
+        {
+          "source_line": 394,
+          "timestamp": "2026-05-19T13:04:47.987636+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[GATE] step=2900 mean=1.0000 std=0.0000 min=1.0000 max=1.0000\\\\n[GATE-PROFILE] step=2900 L0:1.000 L1:1.000 L2:1.000 L3:1.000 L4:1.000 L5:1.000 L6:1.000 L7:1.000 L8:1.000 L9:1.000 L10:1.000 L11:1.000 L12:1.000 L13:1.000 L14:1.000 L15:1.000 L16:1.000 L17:1.000 L18:1.000 L19:1.000 L20:1.000 L21:1.000 L22:1.000 L23:1.000 L24:1.000 L25:1.000 L26:1.000 L27:1.000\\\\nEpoch 2 Step 7200 | L_NTP=0.9518 L_GAR=0.0002 L_DIV=0.0000 Loss=0.9520 | Gate=1.0000 | Mem=53.0GB\\\\nEpoch 2 Step 7250 | L_NTP=1.0072 L_GAR=0.0000 L_DIV=0.0000 Loss=1.0072 | Gate=1.0000 | Mem=53.0GB\\\\nEpoch 2 Step 7300 | L_NTP=1.3699 L_GAR=0.0002 L_DIV=0.0000 Loss=1.3701 | Gate=1.0000 | Mem=53.0GB\\\\nEpoch 2 Step 7350 | L_NTP=1.0606 L_GAR=0.0000 L_DIV=0.0000 Loss=1.0606 | Gate=1.0000 | Mem=53.0GB\\\\nEpoch 2 Step 7400 | L_NTP=0.7706 L_GAR=0.0000 L_DIV=0.0000 Loss=0.7706 | Gate=1.0000 | Mem=53.0GB\\\\nEpoch 2 Step 7450 | L_NTP=0.6977 L_GAR=0.0010 L_DIV=0.0000 Loss=0.6986 | Gate=1.0000 | Mem=53.0GB\\\\nEpoch 2 Step 7500 | L_NTP=1.4783 L_GAR=0.0001 L_DIV=0.0000 Loss=1.4784 | Gate=1.0000 | Mem=53.0GB\\\\nEpoch 2 Step 7550 | L_NTP=0.9022 L_GAR=0.0001 L_DIV=0.0000 Loss=0.9023 | Gate=1.0000 | Mem=53.0GB\\\\n[GATE] step=2950 mean=1.0000 std=0.0000 min=1.0000 max=1.0000\\\\nEpoch 2 Step 7600 | L_NTP=0.9570 L_GAR=0.0041 L_DIV=0.0000 Loss=0.9611 | Gate=1.0000 | Mem=53.0GB\\\\nEpoch 2 Step 7650 | L_NTP=1.0071 L_GAR=0.0000 L_DIV=0.0000 Loss=1.0072 | Gate=1.0000 | Mem=53.0GB\\\\nEpoch 2 Step 7700 | L_NTP=0.7252 L_GAR=0.0000 L_DIV=0.0000 Loss=0.7252 | Gate=1.0000 | Mem=53.0GB\\\\nEpoch 2 Step 7750 | L_NTP=0.8343 L_GAR=0.0012 L_DIV=0.0000 Loss=0.8355 | Gate=1.0000 | Mem=53.0GB\\\\nEpoch 2 Step 7800 | L_NTP=1.4462 L_GAR=0.0000 L_DIV=0.0000 Loss=1.4462 | Gate=1.0000 | Mem=53.0GB\\\\nEpoch 2 Step 7850 | L_NTP=1.1314 L_GAR=0.0006 L_DIV=0.0000 Loss=1.1320 | Gate=1.0000 | Mem=53.0GB\\\\nEpoch 2 Step 7900 | L_NTP=0.9794 L_GAR=0.0003 L_DIV=0.0000 Loss=0.9797 | Gate=1.0000 | Mem=53.0GB\\\\nEpoch 2 Step 7950 |\n…[truncated 1242 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1609
+          },
+          "id": "event-000394"
+        },
+        {
+          "source_line": 395,
+          "timestamp": "2026-05-19T13:04:48.038378+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0347}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 805
+          },
+          "id": "event-000395"
+        },
+        {
+          "source_line": 396,
+          "timestamp": "2026-05-19T13:04:59.191287+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "ls -la /root/turn_residual_gating/runs/phase2_lora_only_s42/"
+            }
+          },
+          "id": "event-000396"
+        },
+        {
+          "source_line": 397,
+          "timestamp": "2026-05-19T13:04:59.644728+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "ls -la /root/turn_residual_gating/runs/phase2_lora_only_s42/lora/"
+            }
+          },
+          "id": "event-000397"
+        },
+        {
+          "source_line": 398,
+          "timestamp": "2026-05-19T13:05:00.197845+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 8\\\\ndrwxr-xr-x 6 root root  112 May 19 21:03 .\\\\ndrwxr-xr-x 5 root root 4096 May 19 17:14 ..\\\\ndrwxr-xr-x 3 root root   26 May 19 17:14 epoch_0\\\\ndrwxr-xr-x 3 root root   26 May 19 19:09 epoch_1\\\\ndrwxr-xr-x 3 root root   26 May 19 21:03 epoch_2\\\\ndrwxr-xr-x 2 root root   99 May 19 21:03 lora\\\\n-rw-r--r-- 1 root root  350 May 19 21:03 train_config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1006
+          },
+          "id": "event-000398"
+        },
+        {
+          "source_line": 399,
+          "timestamp": "2026-05-19T13:05:00.198280+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "ls -la /root/turn_residual_gating/runs/phase2_lora_only_s42/epoch_2/lora/"
+            }
+          },
+          "id": "event-000399"
+        },
+        {
+          "source_line": 400,
+          "timestamp": "2026-05-19T13:05:00.248857+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 19740\\\\ndrwxr-xr-x 2 root root       99 May 19 21:03 .\\\\ndrwxr-xr-x 6 root root      112 May 19 21:03 ..\\\\n-rw-r--r-- 1 root root     5254 May 19 21:03 README.md\\\\n-rw-r--r-- 1 root root     1052 May 19 21:03 adapter_config.json\\\\n-rw-r--r-- 1 root root 20200056 May 19 21:03 adapter_model.safetensors\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 604
+          },
+          "id": "event-000400"
+        },
+        {
+          "source_line": 401,
+          "timestamp": "2026-05-19T13:05:00.751568+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 19740\\\\ndrwxr-xr-x 2 root root       99 May 19 21:03 .\\\\ndrwxr-xr-x 3 root root       26 May 19 21:03 ..\\\\n-rw-r--r-- 1 root root     5254 May 19 21:03 README.md\\\\n-rw-r--r-- 1 root root     1052 May 19 21:03 adapter_config.json\\\\n-rw-r--r-- 1 root root 20200056 May 19 21:03 adapter_model.safetensors\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 553
+          },
+          "id": "event-000401"
+        },
+        {
+          "source_line": 402,
+          "timestamp": "2026-05-19T13:05:14.248972+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "turn_residual_gating",
+              "limit": "3",
+              "fields": "['exp_id', 'status', 'conclusion', 'updated_at']"
+            }
+          },
+          "id": "event-000402"
+        },
+        {
+          "source_line": 403,
+          "timestamp": "2026-05-19T13:05:14.552173+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"phase2_lora_only_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-19T13:04:34.185Z\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"phase2_ug_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-19T07:14:16.247Z\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"phase2_tg_s42_v7\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-19T01:11:40.921Z\\\", \\\"conclusion\\\": \\\"success\\\"}}, \\\"count\\\": 3, \\\"total\\\": 11, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0471}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 303
+          },
+          "id": "event-000403"
+        },
+        {
+          "source_line": 404,
+          "timestamp": "2026-05-19T13:05:14.704758+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "cat /root/turn_residual_gating/runs/phase2_lora_only_s42/train_config.json"
+            }
+          },
+          "id": "event-000404"
+        },
+        {
+          "source_line": 405,
+          "timestamp": "2026-05-19T13:05:15.156907+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"gate_type\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n  \\\\\\\"seed\\\\\\\": 42,\\\\n  \\\\\\\"epochs\\\\\\\": 3,\\\\n  \\\\\\\"lr\\\\\\\": 0.0002,\\\\n  \\\\\\\"lambda_gar\\\\\\\": 1.0,\\\\n  \\\\\\\"max_seq_len\\\\\\\": 2048,\\\\n  \\\\\\\"grad_accum\\\\\\\": 8,\\\\n  \\\\\\\"gate_lr_multiplier\\\\\\\": 10.0,\\\\n  \\\\\\\"init_bias\\\\\\\": 1.5,\\\\n  \\\\\\\"gar_loss_mode\\\\\\\": \\\\\\\"mse_target\\\\\\\",\\\\n  \\\\\\\"gar_target\\\\\\\": 0.5,\\\\n  \\\\\\\"lambda_gate_div\\\\\\\": 0.0,\\\\n  \\\\\\\"min_gate_std\\\\\\\": 0.0,\\\\n  \\\\\\\"total_steps\\\\\\\": 3000,\\\\n  \\\\\\\"elapsed_seconds\\\\\\\": 20588.560264110565\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-000405"
+        },
+        {
+          "source_line": 406,
+          "timestamp": "2026-05-19T13:05:40.222596+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — phase2_lora_only_s42 训练完成 + Registry 再次误标\n\n**结论**: CRITICAL（registry 系统性问题）\n\n### 训练状态：成功完成 ✓\n\n日志证据：\n- `Epoch 2 done | Avg Loss=0.9359 Avg NTP=0.9349 Avg GAR=0.0010 Avg DIV=0.0000`\n- `Training complete in 20588.6s`（~5.7h，正常）\n- `Final model saved to /root/turn_residual_gating/runs/phase2_lora_only_s42`\n- Checkpoint 完整：epoch_0 + epoch_1 + epoch_2 + top-level lora/（均含 adapter_model.safetensors 20200056 bytes，与 TG v7 / UG 一致）\n- train_config.json 已保存，确认 `gate_type: \"none\", seed: 42, epochs: 3, total_steps: 3000`\n\n### [severity: critical] Registry 第二次误标 conclusion=failed\n\n**根因已定位**：训练脚本末尾打印 `Gate parameters received gradients during training: False`。Cron 监控将此解读为训练失败。但对 `--gate-type none`（LoRA-only），不存在 gate 参数，`False` 是预期的正确输出。\n\n**时间线**：\n1. 12:44Z — 首次误标 DONE/failed（训练还在跑 94.8%）→ 已报 CRITICAL\n2. 12:47Z → 12:51Z — Worker 修正为 PREPARING → RUNNING\n3. 13:04Z — 训练正常完成后，cron **再次**标为 DONE/failed\n\n**影响**：如果 Agent 信任 registry 的 `conclusion: failed`，可能跳过 4way eval 或重跑 LoRA-only，浪费 ~6h GPU。\n\n**建议**：\n1. **立即**将 registry 修正为 `conclusion: success`\n2. **修复 cron 逻辑**：对 `gate_type=none` 的实验，`Gate parameters received gradients: False` 不应触发 failed 判定\n3. 4way eval 所有前置条件已满足（TG v7 ✓ / UG ✓ / LoRA-only ✓），可立即启动\n\n[教训建议] 分类: process | 模式: 监控脚本对控制组实验产生假阳性 | 规则: Cron failure detection 必须考虑实验类型（gate_type=none 无 gate 参数是设计意图，不是失败）",
+              "project": "turn_residual_gating"
+            }
+          },
+          "id": "event-000406"
+        },
+        {
+          "source_line": 407,
+          "timestamp": "2026-05-19T13:05:44.764604+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 4542
+          },
+          "id": "event-000407"
+        },
+        {
+          "source_line": 408,
+          "timestamp": "2026-05-19T13:05:50.134634+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已向 Director 报告。核心结论：LoRA-only 训练**成功完成**（3 epochs, 3000 optimizer steps, loss=0.9359），所有 checkpoint 完整。Registry 的 `conclusion: failed` 是由 cron 对 `Gate parameters received gradients: False` 的误判导致，需第二次修正。4way eval 三个条件（TG v7 / UG / LoRA-only）全部就绪。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer"
+          },
+          "id": "event-000408"
+        }
+      ]
+    },
+    {
+      "number": 18,
+      "messages": [
+        {
+          "source_line": 409,
+          "timestamp": "2026-05-19T13:08:10.915070+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_ops_run_4way_eval_20260519T130647]:\nWorker worker_ops_run_4way_eval_20260519T130647 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "source": "system"
+          },
+          "id": "event-000409"
+        },
+        {
+          "source_line": 410,
+          "timestamp": "2026-05-19T13:08:36.627337+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — phase2_lora_only_s42 训练完成\n\n**结论**: WARNING（训练成功，但 cron 再次误报 failed）\n\n### 发现\n\n- [severity: critical] **Cron 第二次误报 failed**：训练已正常完成（\"Training complete in 20588.6s\"，3 个 epoch 全部跑完，optimizer step 3000/3000），但 cron 系统再次触发 `on_failed`。根因：日志末尾输出 `Gate parameters received gradients during training: False`，监控系统将此解读为失败。然而 LoRA-only 配置 (`--gate-type none`) **没有 gate 参数**，此行为完全正确。**建议修复 cron 失败检测逻辑，对 gate-type=none 的实验排除 gate gradient 检查。**\n\n- [severity: info] **Checkpoint 完整验证通过**：\n  - epoch_0/, epoch_1/, epoch_2/ 均含 lora/adapter_model.safetensors (20200056 bytes)\n  - top-level lora/ 已创建（21:03），含 adapter_model.safetensors (20200056 bytes) — 与 TG v7 和 UG 大小一致\n  - train_config.json 存在\n  - 4way eval safety check `[ -d \"$LO_CKPT/lora\" ]` 现在可以通过\n\n- [severity: info] **训练指标正常**：Epoch 2 Avg Loss=0.9359, Avg NTP=0.9349, Avg GAR=0.0010, Avg DIV=0.0000。Gate 全程 1.0000（正确）。\n\n### 教训建议\n[教训建议] 分类: process | 模式: gate-type=none 实验的 \"no gate gradients\" 输出被误判为失败 | 规则: 失败检测逻辑应根据 gate-type 参数条件化，非 gating 实验无 gate gradient 是正常行为",
+              "project": "turn_residual_gating"
+            }
+          },
+          "id": "event-000410"
+        },
+        {
+          "source_line": 411,
+          "timestamp": "2026-05-19T13:08:37.492584+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "ls -la /root/turn_residual_gating/runs/4way_eval/"
+            }
+          },
+          "id": "event-000411"
+        },
+        {
+          "source_line": 412,
+          "timestamp": "2026-05-19T13:08:37.999569+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "turn_residual_gating",
+              "limit": "5",
+              "fields": "['exp_id', 'status', 'conclusion', 'updated_at', 'metrics']"
+            }
+          },
+          "id": "event-000412"
+        },
+        {
+          "source_line": 413,
+          "timestamp": "2026-05-19T13:08:40.861591+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 4234
+          },
+          "id": "event-000413"
+        },
+        {
+          "source_line": 414,
+          "timestamp": "2026-05-19T13:08:42.016587+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\ndrwxr-xr-x 5 root root   76 May 19 21:08 .\\\\ndrwxr-xr-x 6 root root 4096 May 19 21:07 ..\\\\ndrwxr-xr-x 2 root root   96 May 19 21:08 base_dongre\\\\ndrwxr-xr-x 2 root root   82 May 19 21:08 base_ours\\\\ndrwxr-xr-x 2 root root   10 May 19 21:08 tg_v7_ours\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.15}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 4524
+          },
+          "id": "event-000414"
+        },
+        {
+          "source_line": 415,
+          "timestamp": "2026-05-19T13:08:42.068507+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"phase2_4way_eval\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"updated_at\\\": \\\"2026-05-19T13:07:37.418Z\\\"}, \\\"phase2_lora_only_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-19T13:06:33.056Z\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"phase2_ug_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-19T07:14:16.247Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"epoch0_avg_loss\\\": 1.0019, \\\"epoch0_avg_ntp\\\": 0.9755, \\\"epoch0_avg_gar\\\": 0.0259, \\\"epoch0_avg_div\\\": 0.0005, \\\"epoch1_avg_loss\\\": 0.9447, \\\"epoch1_avg_ntp\\\": 0.9435, \\\"epoch1_avg_gar\\\": 0.0013, \\\"epoch1_avg_div\\\": 0, \\\"epoch2_avg_loss\\\": 0.9319, \\\"epoch2_avg_ntp\\\": 0.9309, \\\"epoch2_avg_gar\\\": 0.001, \\\"epoch2_avg_div\\\": 0, \\\"final_gate_mean\\\": 0.9598, \\\"final_gate_std\\\": 0.0518, \\\"final_gate_min\\\": 0.7773, \\\"final_gate_max\\\": 1, \\\"final_profile_L3\\\": 0.777, \\\"final_profile_L5\\\": 0.812, \\\"final_profile_L0\\\": 0.875, \\\"final_profile_L27\\\": 1, \\\"training_time_seconds\\\": 21994.5, \\\"training_time_hours\\\": 6.1, \\\"global_steps\\\": 7950, \\\"unexpected_per_layer_variation\\\": true}}, \\\"phase2_tg_s42_v7\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-19T01:11:40.921Z\\\", \\\"metrics\\\": {\\\"dryrun_gate_grad\\\": true, \\\"gar_convergence_phase\\\": \\\"A(gs0-75):plateau@0.02 B(gs75-144):rapid_rise C(gs144+):converged@0.48\\\", \\\"gar_target_reached_at_gs\\\": 144, \\\"epoch0_complete\\\": true, \\\"epoch1_complete\\\": true, \\\"epoch2_complete\\\": true, \\\"final_avg_loss\\\": 0.897, \\\"final_avg_ntp\\\": 0.896, \\\"final_avg_gar\\\": 0.001, \\\"final_avg_div\\\": 0, \\\"final_gate_mean\\\": 0.9336, \\\"final_gate_std\\\": 0.0492, \\\"final_gate_min\\\": 0.7891, \\\"final_gate_max\\\": 0.9883, \\\"final_profile_L3\\\": 0.801, \\\"final_profile_L4\\\": 0.789, \\\"training_time_seconds\\\": 21352, \\\"training_time_hours\\\": 5.9, \\\"eval_ours_turn1_gar\\\": 0.0502, \\\"eval_ours_mid_gar\\\": 0.0157, \\\"eval_ours_baseline_mid\\\": 0.0122, \\\"eval_ours_recovery_pp\\\": 0.35, \\\"eval_dongre_turn1_gar\\\": 0.0587, \\\"eval_dongre_mid_gar\\\": 0.0194, \\\"eval_dongre_b\n…[truncated 1827 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 4068
+          },
+          "id": "event-000415"
+        },
+        {
+          "source_line": 416,
+          "timestamp": "2026-05-19T13:08:53.343357+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "ls -laR /root/turn_residual_gating/runs/4way_eval/"
+            }
+          },
+          "id": "event-000416"
+        },
+        {
+          "source_line": 417,
+          "timestamp": "2026-05-19T13:08:54.349346+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/turn_residual_gating/runs/4way_eval/:\\\\ntotal 4\\\\ndrwxr-xr-x 5 root root   76 May 19 21:08 .\\\\ndrwxr-xr-x 6 root root 4096 May 19 21:07 ..\\\\ndrwxr-xr-x 2 root root   96 May 19 21:08 base_dongre\\\\ndrwxr-xr-x 2 root root   82 May 19 21:08 base_ours\\\\ndrwxr-xr-x 2 root root   94 May 19 21:08 tg_v7_ours\\\\n\\\\n/root/turn_residual_gating/runs/4way_eval/base_dongre:\\\\ntotal 92\\\\ndrwxr-xr-x 2 root root    96 May 19 21:08 .\\\\ndrwxr-xr-x 5 root root    76 May 19 21:08 ..\\\\n-rw-r--r-- 1 root root 17971 May 19 21:08 base_model_dongre_gar.json\\\\n-rw-r--r-- 1 root root 72755 May 19 21:08 base_model_dongre_gar_comparison.png\\\\n\\\\n/root/turn_residual_gating/runs/4way_eval/base_ours:\\\\ntotal 104\\\\ndrwxr-xr-x 2 root root    82 May 19 21:08 .\\\\ndrwxr-xr-x 5 root root    76 May 19 21:08 ..\\\\n-rw-r--r-- 1 root root 17705 May 19 21:08 base_model_gar.json\\\\n-rw-r--r-- 1 root root 83400 May 19 21:08 base_model_gar_comparison.png\\\\n\\\\n/root/turn_residual_gating/runs/4way_eval/tg_v7_ours:\\\\ntotal 480\\\\ndrwxr-xr-x 2 root root     94 May 19 21:08 .\\\\ndrwxr-xr-x 5 root root     76 May 19 21:08 ..\\\\n-rw-r--r-- 1 root root 428849 May 19 21:08 phase2_tg_s42_v7_gar.json\\\\n-rw-r--r-- 1 root root  58617 May 19 21:08 phase2_tg_s42_v7_gar_comparison.png\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1005
+          },
+          "id": "event-000417"
+        },
+        {
+          "source_line": 418,
+          "timestamp": "2026-05-19T13:08:54.349869+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "find /root/turn_residual_gating/runs/4way_eval/ -name \"*.json\" -type f"
+            }
+          },
+          "id": "event-000418"
+        },
+        {
+          "source_line": 419,
+          "timestamp": "2026-05-19T13:08:54.651691+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader"
+            }
+          },
+          "id": "event-000419"
+        },
+        {
+          "source_line": 420,
+          "timestamp": "2026-05-19T13:08:54.802738+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/turn_residual_gating/runs/4way_eval/base_ours/base_model_gar.json\\\\n/root/turn_residual_gating/runs/4way_eval/base_dongre/base_model_dongre_gar.json\\\\n/root/turn_residual_gating/runs/4way_eval/tg_v7_ours/phase2_tg_s42_v7_gar.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-000420"
+        },
+        {
+          "source_line": 421,
+          "timestamp": "2026-05-19T13:08:55.405761+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 8 %, 15085 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.59}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 754
+          },
+          "id": "event-000421"
+        },
+        {
+          "source_line": 422,
+          "timestamp": "2026-05-19T13:09:04.595532+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "ps aux --no-headers -C python"
+            }
+          },
+          "id": "event-000422"
+        },
+        {
+          "source_line": 423,
+          "timestamp": "2026-05-19T13:09:04.947283+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "find /root/runs/turn_residual_gating/ -name \"4way*\" -type f"
+            }
+          },
+          "id": "event-000423"
+        },
+        {
+          "source_line": 424,
+          "timestamp": "2026-05-19T13:09:05.048377+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root          1  0.0  0.0   4476  2772 ?        Ss   00:29   0:00 bash /init/boot/boot.sh\\\\nroot        881  2.6  0.0 719520 21600 ?        Sl   00:29  32:34 /bin/supervisord -c /init/supervisor/supervisor.ini\\\\nroot        897  0.0  0.0 2130396 20168 ?       Sl   00:29   0:15 proxy -c /init/proxy/proxy-hot-backup.ini\\\\nroot        900  0.0  0.0 2426852 76336 ?       Sl   00:29   0:46 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\\\nroot        901  0.0  0.0 2278116 20140 ?       Sl   00:29   0:35 proxy -c /init/proxy/proxy.ini\\\\nroot        903  0.0  0.0  15444  8680 ?        S    00:29   0:00 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\\\nroot        904  0.1  0.0 6598084 103656 ?      Sl   00:29   2:05 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\\\nroot        905  0.0  0.0 187588 99176 ?        S    00:29   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\\\nroot        966  0.1  0.0 28341192 11920 ?      Sl   00:29   1:15 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_s0q90vj_/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_s0q90vj_/startup_error\\\\nroot      58802  0.0  0.0  16692 10844 ?        Ss   20:44   0:00 sshd: root@notty\\\\nroot      59885  0.0  0.0  16692 10952 ?        Ss   21:05   0:00 sshd: root@notty\\\\nroot      60023  0.0  0.0   6084  3776 ?        Ss   21:07   0:00 tmux new-session -d -s phase2_4way_eval rm -f /tmp/agent-ml-exit/phase2_4way_eval.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/turn_residual_gating/phase2_4way_eval.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-ex\n…[truncated 2629 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-000424"
+        },
+        {
+          "source_line": 425,
+          "timestamp": "2026-05-19T13:09:05.551917+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 604
+          },
+          "id": "event-000425"
+        },
+        {
+          "source_line": 426,
+          "timestamp": "2026-05-19T13:09:16.734570+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "head -50 /root/turn_residual_gating/runs/4way_eval/base_ours/base_model_gar.json"
+            }
+          },
+          "id": "event-000426"
+        },
+        {
+          "source_line": 427,
+          "timestamp": "2026-05-19T13:09:17.488578+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"checkpoint_dir\\\\\\\": null,\\\\n  \\\\\\\"gate_type\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n  \\\\\\\"gar_variant\\\\\\\": \\\\\\\"ours\\\\\\\",\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"/root/.cache/modelscope/Qwen/Qwen2___5-7B-Instruct\\\\\\\",\\\\n  \\\\\\\"num_conversations\\\\\\\": 50,\\\\n  \\\\\\\"num_turns\\\\\\\": 4,\\\\n  \\\\\\\"gar_curves\\\\\\\": [\\\\n    [\\\\n      0.06482688488192889,\\\\n      0.019157204708863496,\\\\n      0.01490965399355829,\\\\n      0.013220116931896671,\\\\n      0.01186344770838872,\\\\n      0.009142747883895352,\\\\n      0.00734831839451487\\\\n    ],\\\\n    [\\\\n      0.06840550863176335,\\\\n      0.01769841842382265,\\\\n      0.012656141492286777,\\\\n      0.009545330980751516,\\\\n      0.010782593355832214,\\\\n      0.00940223985074347\\\\n    ],\\\\n    [\\\\n      0.04462244348216609,\\\\n      0.01593659942870163,\\\\n      0.011916145541053146,\\\\n      0.008565692097727456,\\\\n      0.010661924519198349,\\\\n      0.009261006785827872\\\\n    ],\\\\n    [\\\\n      0.05887939495363911,\\\\n      0.023296413739977217,\\\\n      0.014300821195877694,\\\\n      0.009712567773716837,\\\\n      0.010012577704411312,\\\\n      0.008195772922119956\\\\n    ],\\\\n    [\\\\n      0.058723135938839856,\\\\n      0.009599746684521007,\\\\n      0.008788087676139188,\\\\n      0.00720173249831733,\\\\n      0.007057507008988635\\\\n    ],\\\\n    [\\\\n      0.056619249886690516,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 754
+          },
+          "id": "event-000427"
+        },
+        {
+          "source_line": 428,
+          "timestamp": "2026-05-19T13:09:17.539231+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "head -50 /root/turn_residual_gating/runs/4way_eval/base_dongre/base_model_dongre_gar.json"
+            }
+          },
+          "id": "event-000428"
+        },
+        {
+          "source_line": 429,
+          "timestamp": "2026-05-19T13:09:17.842163+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "head -80 /root/turn_residual_gating/runs/4way_eval/tg_v7_ours/phase2_tg_s42_v7_gar.json"
+            }
+          },
+          "id": "event-000429"
+        },
+        {
+          "source_line": 430,
+          "timestamp": "2026-05-19T13:09:17.993458+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"checkpoint_dir\\\\\\\": null,\\\\n  \\\\\\\"gate_type\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n  \\\\\\\"gar_variant\\\\\\\": \\\\\\\"dongre\\\\\\\",\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"/root/.cache/modelscope/Qwen/Qwen2___5-7B-Instruct\\\\\\\",\\\\n  \\\\\\\"num_conversations\\\\\\\": 50,\\\\n  \\\\\\\"num_turns\\\\\\\": 4,\\\\n  \\\\\\\"gar_curves\\\\\\\": [\\\\n    [\\\\n      0.010149023586665157,\\\\n      0.0040042158070530305,\\\\n      0.0035777083949758235,\\\\n      0.003343817084988215,\\\\n      0.002516296852541976,\\\\n      0.0019692972147814284,\\\\n      0.0028561839542712727\\\\n    ],\\\\n    [\\\\n      0.013199635602889656,\\\\n      0.0054776596676331946,\\\\n      0.0034283681132807053,\\\\n      0.002622924425612088,\\\\n      0.0020488090359822605,\\\\n      0.0020063013900978584\\\\n    ],\\\\n    [\\\\n      0.00904304368718095,\\\\n      0.0038788679080364193,\\\\n      0.003253883633885419,\\\\n      0.0025267273410218842,\\\\n      0.0030849653110022837,\\\\n      0.0022462990834752204\\\\n    ],\\\\n    [\\\\n      0.011562646847976577,\\\\n      0.0074678539833577555,\\\\n      0.0038633148967193447,\\\\n      0.0026791607822290618,\\\\n      0.00363490659018889,\\\\n      0.002250933534897004\\\\n    ],\\\\n    [\\\\n      0.01278379730785699,\\\\n      0.0042804888805512,\\\\n      0.003077448476169622,\\\\n      0.0024366025233749284,\\\\n      0.0019294246654388651\\\\n    ],\\\\n    [\\\\n      0.012586435796034115,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 454
+          },
+          "id": "event-000430"
+        },
+        {
+          "source_line": 431,
+          "timestamp": "2026-05-19T13:09:18.545941+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"checkpoint_dir\\\\\\\": \\\\\\\"/root/turn_residual_gating/runs/phase2_tg_s42_v7\\\\\\\",\\\\n  \\\\\\\"gate_type\\\\\\\": \\\\\\\"threadgate\\\\\\\",\\\\n  \\\\\\\"gar_variant\\\\\\\": \\\\\\\"ours\\\\\\\",\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"/root/.cache/modelscope/Qwen/Qwen2___5-7B-Instruct\\\\\\\",\\\\n  \\\\\\\"num_conversations\\\\\\\": 50,\\\\n  \\\\\\\"num_turns\\\\\\\": 4,\\\\n  \\\\\\\"gar_curves\\\\\\\": [\\\\n    [\\\\n      0.557019455403047,\\\\n      0.47832424703106297,\\\\n      0.5023009104483556,\\\\n      0.4950006930197607,\\\\n      0.4840901347273537,\\\\n      0.47692308687477397,\\\\n      0.48449371853312323\\\\n    ],\\\\n    [\\\\n      0.5383151364471649,\\\\n      0.49380837709459435,\\\\n      0.5203154739983147,\\\\n      0.447179078619747,\\\\n      0.5034686908937877,\\\\n      0.5031757230629094\\\\n    ],\\\\n    [\\\\n      0.5865514252118106,\\\\n      0.5034173149753357,\\\\n      0.5038120390243087,\\\\n      0.447409536558499,\\\\n      0.5061320476173727,\\\\n      0.5028980487042671\\\\n    ],\\\\n    [\\\\n      0.5395140544420255,\\\\n      0.46704288852781156,\\\\n      0.5069237026940981,\\\\n      0.5089190054223237,\\\\n      0.44417029568675126,\\\\n      0.4922055013453395\\\\n    ],\\\\n    [\\\\n      0.54582437283105,\\\\n      0.5126619659845184,\\\\n      0.5089425268389067,\\\\n      0.4479700399755882,\\\\n      0.546465411797144\\\\n    ],\\\\n    [\\\\n      0.5526674039449425,\\\\n      0.5122164106888578,\\\\n      0.5126755041765715,\\\\n      0.4515969719686418,\\\\n      0.4792493034508312,\\\\n      0.5042876265023055\\\\n    ],\\\\n    [\\\\n      0.5579760455066005,\\\\n      0.5196669222160596,\\\\n      0.5098984876891639,\\\\n      0.5045512433870655,\\\\n      0.5848587441094789,\\\\n      0.01245119037123203\\\\n    ],\\\\n    [\\\\n      0.5475140069801292,\\\\n      0.5252463957352707,\\\\n      0.507652078561662,\\\\n      0.4665253969123241,\\\\n      0.47844773824931647,\\\\n      0.5236934002208516\\\\n    ],\\\\n    [\\\\n      0.4828142893347816,\\\\n      0.5182112216420022,\\\\n      0.49205597438358134,\\\\n      0.5178126685856829,\\\\n      0.4995\n…[truncated 135 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 703
+          },
+          "id": "event-000431"
+        },
+        {
+          "source_line": 432,
+          "timestamp": "2026-05-19T13:09:37.883320+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "tail -50 /root/turn_residual_gating/runs/4way_eval/base_ours/base_model_gar.json"
+            }
+          },
+          "id": "event-000432"
+        },
+        {
+          "source_line": 433,
+          "timestamp": "2026-05-19T13:09:38.787191+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    1.9174420833587646,\\\\n    1.0658793449401855,\\\\n    1.2426624298095703,\\\\n    1.39094877243042,\\\\n    1.2673826217651367,\\\\n    1.3466109037399292,\\\\n    1.663438320159912,\\\\n    1.7513446807861328,\\\\n    1.656710147857666,\\\\n    1.525644302368164,\\\\n    1.4346258640289307,\\\\n    1.7358653545379639,\\\\n    1.5755126476287842,\\\\n    1.4111583232879639,\\\\n    1.4491196870803833,\\\\n    1.2036346197128296,\\\\n    1.4794261455535889,\\\\n    1.5026031732559204,\\\\n    1.5628215074539185,\\\\n    1.4947844743728638,\\\\n    0.9239993095397949,\\\\n    1.204978108406067,\\\\n    1.4365259408950806,\\\\n    1.586396336555481,\\\\n    0.5919199585914612,\\\\n    1.2218059301376343,\\\\n    1.4446680545806885,\\\\n    1.2618590593338013,\\\\n    1.6025636196136475,\\\\n    1.2738335132598877,\\\\n    1.558962106704712,\\\\n    1.3351398706436157,\\\\n    1.506735920906067,\\\\n    1.5588268041610718,\\\\n    1.2926688194274902,\\\\n    1.188783049583435,\\\\n    1.3325406312942505,\\\\n    1.1239025592803955,\\\\n    1.3947439193725586,\\\\n    1.4471311569213867,\\\\n    1.6519529819488525,\\\\n    1.7212408781051636,\\\\n    1.6684319972991943,\\\\n    1.2006715536117554,\\\\n    1.6197398900985718,\\\\n    1.3121559619903564,\\\\n    1.2291228771209717,\\\\n    1.295627474784851\\\\n  ]\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 903
+          },
+          "id": "event-000433"
+        },
+        {
+          "source_line": 434,
+          "timestamp": "2026-05-19T13:09:38.837842+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "tail -50 /root/turn_residual_gating/runs/4way_eval/tg_v7_ours/phase2_tg_s42_v7_gar.json"
+            }
+          },
+          "id": "event-000434"
+        },
+        {
+          "source_line": 435,
+          "timestamp": "2026-05-19T13:09:39.281626+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"      \\\\\\\"turn15\\\\\\\": 0.9672,\\\\n      \\\\\\\"diff\\\\\\\": -0.2429\\\\n    },\\\\n    \\\\\\\"L19\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9967,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9784,\\\\n      \\\\\\\"diff\\\\\\\": 0.0183\\\\n    },\\\\n    \\\\\\\"L20\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.6093,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9782,\\\\n      \\\\\\\"diff\\\\\\\": -0.3689\\\\n    },\\\\n    \\\\\\\"L21\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.8447,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9865,\\\\n      \\\\\\\"diff\\\\\\\": -0.1418\\\\n    },\\\\n    \\\\\\\"L22\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9281,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9855,\\\\n      \\\\\\\"diff\\\\\\\": -0.0574\\\\n    },\\\\n    \\\\\\\"L23\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.3325,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9885,\\\\n      \\\\\\\"diff\\\\\\\": -0.656\\\\n    },\\\\n    \\\\\\\"L24\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.4135,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9811,\\\\n      \\\\\\\"diff\\\\\\\": -0.5676\\\\n    },\\\\n    \\\\\\\"L25\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.8541,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9897,\\\\n      \\\\\\\"diff\\\\\\\": -0.1356\\\\n    },\\\\n    \\\\\\\"L26\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.7117,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9947,\\\\n      \\\\\\\"diff\\\\\\\": -0.283\\\\n    },\\\\n    \\\\\\\"L27\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9498,\\\\n      \\\\\\\"turn15\\\\\\\": 0.993,\\\\n      \\\\\\\"diff\\\\\\\": -0.0432\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 443
+          },
+          "id": "event-000435"
+        },
+        {
+          "source_line": 436,
+          "timestamp": "2026-05-19T13:09:39.314430+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "tail -50 /root/turn_residual_gating/runs/4way_eval/base_dongre/base_model_dongre_gar.json"
+            }
+          },
+          "id": "event-000436"
+        },
+        {
+          "source_line": 437,
+          "timestamp": "2026-05-19T13:09:39.837136+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    1.9174420833587646,\\\\n    1.0658793449401855,\\\\n    1.2426624298095703,\\\\n    1.39094877243042,\\\\n    1.2673826217651367,\\\\n    1.3466109037399292,\\\\n    1.663438320159912,\\\\n    1.7513446807861328,\\\\n    1.656710147857666,\\\\n    1.525644302368164,\\\\n    1.4346258640289307,\\\\n    1.7358653545379639,\\\\n    1.5755126476287842,\\\\n    1.4111583232879639,\\\\n    1.4491196870803833,\\\\n    1.2036346197128296,\\\\n    1.4794261455535889,\\\\n    1.5026031732559204,\\\\n    1.5628215074539185,\\\\n    1.4947844743728638,\\\\n    0.9239993095397949,\\\\n    1.204978108406067,\\\\n    1.4365259408950806,\\\\n    1.586396336555481,\\\\n    0.5919199585914612,\\\\n    1.2218059301376343,\\\\n    1.4446680545806885,\\\\n    1.2618590593338013,\\\\n    1.6025636196136475,\\\\n    1.2738335132598877,\\\\n    1.558962106704712,\\\\n    1.3351398706436157,\\\\n    1.506735920906067,\\\\n    1.5588268041610718,\\\\n    1.2926688194274902,\\\\n    1.188783049583435,\\\\n    1.3325406312942505,\\\\n    1.1239025592803955,\\\\n    1.3947439193725586,\\\\n    1.4471311569213867,\\\\n    1.6519529819488525,\\\\n    1.7212408781051636,\\\\n    1.6684319972991943,\\\\n    1.2006715536117554,\\\\n    1.6197398900985718,\\\\n    1.3121559619903564,\\\\n    1.2291228771209717,\\\\n    1.295627474784851\\\\n  ]\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 522
+          },
+          "id": "event-000437"
+        },
+        {
+          "source_line": 438,
+          "timestamp": "2026-05-19T13:09:50.317341+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "grep -n \"avg\\|summary\\|mean_gar\\|turn1_gar\\|mid_gar\\|ppl\" /root/turn_residual_gating/runs/4way_eval/base_ours/base_model_gar.json"
+            }
+          },
+          "id": "event-000438"
+        }
+      ]
+    },
+    {
+      "number": 19,
+      "messages": [
+        {
+          "source_line": 439,
+          "timestamp": "2026-05-19T13:09:54.136325+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_ops_run_4way_eval_20260519T130647]:\nWorker worker_ops_run_4way_eval_20260519T130647 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "source": "system"
+          },
+          "id": "event-000439"
+        },
+        {
+          "source_line": 440,
+          "timestamp": "2026-05-19T13:10:09.694982+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__reviewer_post_to_director,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__get_gpu_health,mcp__agent-ml-research__tail_training_logs",
+              "max_results": "8"
+            }
+          },
+          "id": "event-000440"
+        },
+        {
+          "source_line": 441,
+          "timestamp": "2026-05-19T13:10:09.798764+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 103
+          },
+          "id": "event-000441"
+        },
+        {
+          "source_line": 442,
+          "timestamp": "2026-05-19T13:10:14.167929+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "turn_residual_gating",
+              "limit": "10",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000442"
+        },
+        {
+          "source_line": 443,
+          "timestamp": "2026-05-19T13:10:14.671226+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"phase2_4way_eval\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T13:07:30.673Z\\\", \\\"updated_at\\\": \\\"2026-05-19T13:07:37.418Z\\\", \\\"hypothesis\\\": \\\"Turn-residual gating (TRG) improves multi-turn response quality over LoRA-only and base model baselines because it selectively amplifies conversational context signals, which should manifest as higher GAR scores across 4 conditions (base, base+TRG, LoRA, LoRA+TRG).\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/turn_residual_gating && bash scripts/run_4way_eval.sh 2>&1 | tee runs/4way_eval.log\\\\\\\"\\\", \\\"server\\\": \\\"westd-20861\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"60024\\\", \\\"log_path\\\": \\\"~/runs/turn_residual_gating/phase2_4way_eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T13:07:37.380Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"phase2_lora_only_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-18T20:36:32.506Z\\\", \\\"updated_at\\\": \\\"2026-05-19T13:06:33.056Z\\\", \\\"hypothesis\\\": \\\"LoRA-only baseline (gate 固定 1.0，无 gating 机制) 在相同 MSE+NTP loss 下 GAR 应低于 ThreadGate (v7)。如果 LoRA-only 也能训到 GAR~0.5，则 gating 机制贡献为零，paper story 不成立。关键对比：LoRA-only 的 GAR 收敛值 vs v7 的 0.48。\\\", \\\"parent\\\": \\\"phase2_tg_s42_v7\\\", \\\"failure_reason\\\": \\\"EXIT_CODE=1 (generic error — check log tail)\\\", \\\"completed_at\\\": \\\"2026-05-19T12:44:29.475Z\\\", \\\"extra\\\": {\\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}, \\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T13:04:35.644174+00:00\\\"}]}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/turn_residual_gating && PYTHONUNBUFFERED=1 python src/train_phase2.py --gate-type lora_only --gar-loss-mode mse_target --gar-target 0.5 --lambda-gar 1.0 --lambda-gate-div 0.0 --ini\n…[truncated 16920 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 503
+          },
+          "id": "event-000443"
+        },
+        {
+          "source_line": 444,
+          "timestamp": "2026-05-19T13:10:14.671860+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "turn_residual_gating"
+            }
+          },
+          "id": "event-000444"
+        },
+        {
+          "source_line": 445,
+          "timestamp": "2026-05-19T13:10:15.074011+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/ROADMAP.md\\\", \\\"content\\\": \\\"# turn_residual_gating — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-19 13:08 UTC | 更新原因: LoRA-only 训练完成 + 四路 eval 启动\\\\n\\\\n> 核心方向详见 paper_framing.md\\\\n\\\\n## 核心方向\\\\nThreadGate: 冻结 LLM 残差连接上插入 turn-boundary-conditioned gating，修复多轮对话 GAR 衰减。\\\\n\\\\n**目标 venue**: EMNLP 2026（ARR August cycle, deadline 2026-08-03, ~10 weeks）\\\\n\\\\n## 当前进展\\\\n- **阶段**: MVP 验证 — 三路消融全部完成，四路 eval 运行中（Route A/B 最终决策点）\\\\n- **Phase 1**: GAR 衰减 70.8% 确认 ✅\\\\n- **Phase 2 v7 (TG)**: 训练成功但推理 GAR recovery 极弱 ✅\\\\n- **Phase 2 UG**: 训练完成，turn conditioning 无增量 ✅\\\\n- **Phase 2 LoRA-only**: 训练完成 ✅（L_GAR≈0，与 TG/UG 一致 → gating 训练端冗余已确认）\\\\n- **四路 eval**: RUNNING（Base/TG/UG/LoRA-only × 2 GAR variant + PPL，~1.5-2h）\\\\n- **Route B 概率压倒性**：三组训练行为完全趋同，推理端 eval 为最后确认\\\\n- **paper_framing.md**: 已重写为 Route B negative result + mechanistic insight 叙事 ✅\\\\n- **分析工具全部就绪**: gradient_conflict_analysis + attention_heatmap + training_dynamics_plot ✅\\\\n\\\\n## 两路策略 (D017)\\\\n\\\\n**路线 B: Negative result + mechanistic insight**（压倒性预期路线）\\\\n- Core insight: teacher-forcing→generation 分布偏移导致 auxiliary attention loss 失效\\\\n- Reviewer 估分：不含 Llama-3 → Findings 3.0（紧绷）；含 Llama-3 → 3.0-3.5\\\\n- Llama-3 跨模型验证是 MUST-HAVE（消除 W1 单模型致命弱点）\\\\n\\\\n**路线 A: Two-stage decoupled training**\\\\n- 成功概率 <5%（D018），仅在 eval 显示 LoRA-only 显著弱于 TG 时考虑\\\\n\\\\n## 三路消融 (D012) — 全部完成\\\\n| 实验 | 隔离目标 | 状态 | 训练 L_GAR |\\\\n|------|---------|------|-----------|\\\\n| TG v7 | 完整方法 | DONE ✅ | ≈0 |\\\\n| UG s42 | turn conditioning 增量 | DONE ✅ | ≈0 |\\\\n| LoRA-only s42 | gating 机制增量 | DONE ✅ | ≈0 |\\\\n\\\\n## 近期任务\\\\n- [x] LoRA-only 训练完成\\\\n- [ ] **四路 eval 完成**（RUNNING，~1.5-2h）← 当前阻塞\\\\n- [ ] 基于 eval 结果确认 Route B\\\\n- [ ] gradient_conflict_analysis（v7 三个 epoch checkpoint）\\\\n- [ ] attention_heatmap（四模型对比）\\\\n- [ ] paper_framing.md 两处修正（\\\\\\\"4 种 loss\\\\\\\" + PPL claim）\\\\n- [ ] Route B 确认后：清 Qwen cache → 下载 Llama-3 → 跨模型验证（D020, ~15h）\\\\n\\\\n## GPU 预算\\\\n-\n…[truncated 1486 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 402
+          },
+          "id": "event-000445"
+        },
+        {
+          "source_line": 446,
+          "timestamp": "2026-05-19T13:10:15.074590+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "turn_residual_gating",
+              "file": "report.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000446"
+        },
+        {
+          "source_line": 447,
+          "timestamp": "2026-05-19T13:10:15.125634+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/report.md\\\", \\\"content\\\": \\\"<!-- AUTO-FACTS-BEGIN (generated 2026-05-19T13:04:34Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 11 个实验 — DONE 11\\\\n**DONE 分布**: failed 2, killed 1, negative 4, success 4\\\\n\\\\n### 💾 磁盘余量\\\\n- **westd-20861**:\\\\n  - `/init`: 150M/150M 可用（已用 1%）\\\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\\\n  - `/usr/bin/nvidia-smi`: 430G/879G 可用（已用 49%）\\\\n\\\\n### 🏃 RUNNING\\\\n_（无）_\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `phase2_lora_only_s42` [failed] — 2026-05-19T13:04:34 — EXIT_CODE=1 (generic error — check log tail)\\\\n- `phase2_ug_s42` [success] — 2026-05-19T07:14:16\\\\n- `phase2_tg_s42_v7` [success] — 2026-05-19T01:11:40 — process dead 5× with no sentinel/W&B — auto-resolved as failed\\\\n- `phase2_tg_s42_v6` [negative] — 2026-05-18T18:18:07\\\\n- `phase2_tg_s42_v5` [negative] — 2026-05-18T17:52:54\\\\n\\\\n### 🔴 最近失败原因 (top 3)\\\\n- `phase2_lora_only_s42`: EXIT_CODE=1 (generic error — check log tail)\\\\n\\\\n<!-- AUTO-FACTS-END -->\\\\n\\\\n---\\\\n\\\\n# Handover — 2026-05-19\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n（无）\\\\n\\\\n## 待处理\\\\n（无）\\\\n\\\\n## 近期结论\\\\n- **phase2_lora_only_s42** (failed): LoRA-only baseline (gate 固定 1.0，无 gating 机制) 在相同 MSE+NTP loss 下 GAR 应低于 ThreadGate (v7)。如果 LoRA-only 也能训到 GAR~0.5，则 gating 机制贡献为零，paper story 不成立。关键对比：LoRA-only 的 GAR 收敛值 vs v7 的 0.48。 ← 基于 phase2_tg_s42_v7\\\\n- **phase2_ug_s42** (success): Uniform gating baseline: per-layer independent gates without turn conditioning (content-dependent only), to isolate whether ThreadGate's turn-conditioned gating provides benefit over content-only residual scaling. Same training setup as v7 but with gate-type=uniform. ← 基于 phase1_gar_diag\\\\n- **phase2_tg_s42_v7** (success): MSE 双向 loss (mean_GAR - target)² + gate diversity 正则 F.relu(min_std - gate_std) 从结构上解决恒等退化：MSE 在 GAR > target 时反向惩罚（不再单调推高），gate_div 直接强\n…[truncated 880 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 51
+          },
+          "id": "event-000447"
+        },
+        {
+          "source_line": 448,
+          "timestamp": "2026-05-19T13:10:30.205278+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "turn_residual_gating",
+              "limit": "12",
+              "fields": "['*']",
+              "filters": "{'status': 'PREPARING'}"
+            }
+          },
+          "id": "event-000448"
+        },
+        {
+          "source_line": 449,
+          "timestamp": "2026-05-19T13:10:31.111606+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"phase2_4way_eval\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T13:07:30.673Z\\\", \\\"updated_at\\\": \\\"2026-05-19T13:07:37.418Z\\\", \\\"hypothesis\\\": \\\"Turn-residual gating (TRG) improves multi-turn response quality over LoRA-only and base model baselines because it selectively amplifies conversational context signals, which should manifest as higher GAR scores across 4 conditions (base, base+TRG, LoRA, LoRA+TRG).\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/turn_residual_gating && bash scripts/run_4way_eval.sh 2>&1 | tee runs/4way_eval.log\\\\\\\"\\\", \\\"server\\\": \\\"westd-20861\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"60024\\\", \\\"log_path\\\": \\\"~/runs/turn_residual_gating/phase2_4way_eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T13:07:37.380Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}}, \\\"count\\\": 1, \\\"total\\\": 1, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0434}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 906
+          },
+          "id": "event-000449"
+        },
+        {
+          "source_line": 450,
+          "timestamp": "2026-05-19T13:10:31.112121+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "ls -la /root/turn_residual_gating/runs/ 2>/dev/null"
+            }
+          },
+          "id": "event-000450"
+        },
+        {
+          "source_line": 451,
+          "timestamp": "2026-05-19T13:10:31.263154+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 151
+          },
+          "id": "event-000451"
+        },
+        {
+          "source_line": 452,
+          "timestamp": "2026-05-19T13:10:31.615356+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "ls -la /root/turn_residual_gating/runs/4way_eval* 2>/dev/null"
+            }
+          },
+          "id": "event-000452"
+        },
+        {
+          "source_line": 453,
+          "timestamp": "2026-05-19T13:10:31.816804+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 201
+          },
+          "id": "event-000453"
+        },
+        {
+          "source_line": 454,
+          "timestamp": "2026-05-19T13:10:31.817148+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_gpu_health"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__get_gpu_health",
+            "tool_args": {
+              "server": "westd-20861"
+            }
+          },
+          "id": "event-000454"
+        },
+        {
+          "source_line": 455,
+          "timestamp": "2026-05-19T13:10:31.968035+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"servers\\\": {\\\"westd-20861\\\": {\\\"error\\\": \\\"no data yet\\\", \\\"stale\\\": true}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__get_gpu_health",
+            "elapsed_ms": 150
+          },
+          "id": "event-000455"
+        },
+        {
+          "source_line": 456,
+          "timestamp": "2026-05-19T13:10:36.114523+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "ls -la /root/turn_residual_gating/runs/"
+            }
+          },
+          "id": "event-000456"
+        },
+        {
+          "source_line": 457,
+          "timestamp": "2026-05-19T13:10:37.067573+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "cat /root/turn_residual_gating/runs/4way_eval.log"
+            }
+          },
+          "id": "event-000457"
+        },
+        {
+          "source_line": 458,
+          "timestamp": "2026-05-19T13:10:37.268541+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 376\\\\ndrwxr-xr-x  6 root root   4096 May 19 21:07 .\\\\ndrwxr-xr-x  8 root root   4096 May 19 19:47 ..\\\\ndrwxr-xr-x 10 root root   4096 May 19 21:10 4way_eval\\\\n-rw-r--r--  1 root root 101575 May 19 21:10 4way_eval.log\\\\n-rw-r--r--  1 root root      0 May 19 08:50 EVAL_V7_DONE\\\\n-rw-r--r--  1 root root      0 May 19 08:53 EVAL_V7_OURS_DONE\\\\n-rw-r--r--  1 root root      0 May 19 08:43 POST_V7_DONE\\\\n-rw-r--r--  1 root root    400 May 19 11:02 base_gar_cpu.log\\\\n-rw-r--r--  1 root root   5291 May 19 09:05 eval_v7_dongre.log\\\\n-rw-r--r--  1 root root   5189 May 19 09:02 eval_v7_ours.log\\\\n-rw-r--r--  1 root root   3417 May 19 04:15 parse_v7_log.py\\\\ndrwxr-xr-x  6 root root    112 May 19 21:03 phase2_lora_only_s42\\\\n-rw-r--r--  1 root root   3420 May 18 21:37 phase2_tg_s42_v3.log\\\\n-rw-r--r--  1 root root   1460 May 18 23:00 phase2_tg_s42_v4.log\\\\ndrwxr-xr-x  6 root root    138 May 19 08:39 phase2_tg_s42_v7\\\\n-rw-r--r--  1 root root  63071 May 19 08:39 phase2_tg_s42_v7.log\\\\ndrwxr-xr-x  6 root root    138 May 19 14:49 phase2_ug_s42\\\\n-rw-r--r--  1 root root  63123 May 19 14:49 phase2_ug_s42.log\\\\n-rw-r--r--  1 root root  12750 May 19 08:43 post_v7_pipeline.log\\\\n-rw-r--r--  1 root root    179 May 19 08:04 run_all.log\\\\n-rw-r--r--  1 root root  11911 May 18 22:50 v3b_log.txt\\\\n-rw-r--r--  1 root root   6161 May 19 00:54 v4_dryrun.log\\\\n-rw-r--r--  1 root root   3547 May 19 00:55 v4_dryrun2.log\\\\n-rw-r--r--  1 root root   2350 May 19 04:15 v7_gate_profiles.txt\\\\n-rw-r--r--  1 root root    973 May 19 04:15 v7_gate_stats.txt\\\\n-rw-r--r--  1 root root   7414 May 19 04:15 v7_training_dynamics.csv\\\\n-rw-r--r--  1 root root  12129 May 19 04:15 v7_training_output.txt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1154
+          },
+          "id": "event-000458"
+        },
+        {
+          "source_line": 459,
+          "timestamp": "2026-05-19T13:10:37.268905+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "ls -la /root/turn_residual_gating/scripts/run_4way_eval.sh"
+            }
+          },
+          "id": "event-000459"
+        },
+        {
+          "source_line": 460,
+          "timestamp": "2026-05-19T13:10:37.972557+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"All checkpoint paths verified.\\\\n========== [1/8] Base + ours ==========\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\nDevice: cuda\\\\nGate type: none\\\\nGAR variant: ours\\\\nCheckpoint: None\\\\nLoading base model (eager attention)...\\\\n\\\\rLoading weights:   0%|          | 0/339 [00:00<?, ?it/s]\\\\rLoading weights:   0%|          | 1/339 [00:00<01:24,  4.00it/s]\\\\rLoading weights:   1%|          | 2/339 [00:00<02:21,  2.38it/s]\\\\rLoading weights:   3%|▎         | 10/339 [00:00<00:21, 15.28it/s]\\\\rLoading weights:   5%|▌         | 18/339 [00:01<00:13, 23.16it/s]\\\\rLoading weights:  12%|█▏        | 42/339 [00:01<00:05, 52.61it/s]\\\\rLoading weights:  18%|█▊        | 62/339 [00:01<00:04, 63.08it/s]\\\\rLoading weights:  29%|██▉       | 100/339 [00:01<00:02, 116.22it/s]\\\\rLoading weights:  35%|███▍      | 117/339 [00:01<00:02, 96.09it/s] \\\\rLoading weights:  39%|███▉      | 132/339 [00:02<00:02, 77.11it/s]\\\\rLoading weights:  51%|█████     | 173/339 [00:02<00:01, 109.37it/s]\\\\rLoading weights:  60%|█████▉    | 202/339 [00:02<00:00, 137.35it/s]\\\\rLoading weights:  65%|██████▍   | 220/339 [00:03<00:01, 83.26it/s] \\\\rLoading weights:  80%|███████▉  | 270/339 [00:03<00:00, 136.91it/s]\\\\rLoading weights:  87%|████████▋ | 294/339 [00:03<00:00, 105.66it/s]\\\\rLoading weights:  97%|█████████▋| 329/339 [00:03<00:00, 137.25it/s]\\\\rLoading weights: 100%|██████████| 339/339 [00:03<00:00, 91.91it/s] \\\\nNo checkpoint dir specified, using pure base model\\\\n\\\\nLoading fixed conversations from /root/turn_residual_gating/data/ultrachat_eval_sample.json\\\\n  Conversation 1/50: 7 assistant turns\\\\n  Conversation 2/50: 6 assistant turns\\\\n  Conversation 3/50: 6 assistant turns\\\\n  Conversation 4/50: 6 assistant turns\\\\n  Conversation 5/50: 5 assistant turns\\\\n  Conversation 6/50: 6 assistant turns\\\\n  Conversation 7/50: 7 assistant turns\\\\n  Conversation 8/50: 6 assistant turns\\\\n  Conversation 9/50: 5 assistant turns\\\\n  \n…[truncated 6570 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 904
+          },
+          "id": "event-000460"
+        },
+        {
+          "source_line": 461,
+          "timestamp": "2026-05-19T13:10:38.525600+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rwxr-xr-x 1 root root 4280 May 19 19:21 /root/turn_residual_gating/scripts/run_4way_eval.sh\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1256
+          },
+          "id": "event-000461"
+        },
+        {
+          "source_line": 462,
+          "timestamp": "2026-05-19T13:10:47.162850+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "ls -la /root/turn_residual_gating/runs/4way_eval/"
+            }
+          },
+          "id": "event-000462"
+        },
+        {
+          "source_line": 463,
+          "timestamp": "2026-05-19T13:10:48.017117+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 8\\\\ndrwxr-xr-x 10 root root 4096 May 19 21:10 .\\\\ndrwxr-xr-x  6 root root 4096 May 19 21:07 ..\\\\ndrwxr-xr-x  2 root root   96 May 19 21:08 base_dongre\\\\ndrwxr-xr-x  2 root root   82 May 19 21:08 base_ours\\\\ndrwxr-xr-x  2 root root   10 May 19 21:10 lora_only_dongre\\\\ndrwxr-xr-x  2 root root  102 May 19 21:10 lora_only_ours\\\\ndrwxr-xr-x  2 root root  108 May 19 21:09 tg_v7_dongre\\\\ndrwxr-xr-x  2 root root   94 May 19 21:08 tg_v7_ours\\\\ndrwxr-xr-x  2 root root  102 May 19 21:10 ug_dongre\\\\ndrwxr-xr-x  2 root root   88 May 19 21:09 ug_ours\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 854
+          },
+          "id": "event-000463"
+        },
+        {
+          "source_line": 464,
+          "timestamp": "2026-05-19T13:10:48.017493+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "tail -100 /root/turn_residual_gating/runs/4way_eval.log"
+            }
+          },
+          "id": "event-000464"
+        },
+        {
+          "source_line": 465,
+          "timestamp": "2026-05-19T13:10:48.419006+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "find /root/turn_residual_gating/runs/4way_eval/ -name \"*.json\""
+            }
+          },
+          "id": "event-000465"
+        },
+        {
+          "source_line": 466,
+          "timestamp": "2026-05-19T13:10:48.469649+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  Conversation 36/50: 5 assistant turns\\\\n  Conversation 37/50: 5 assistant turns\\\\n  Conversation 38/50: 5 assistant turns\\\\n  Conversation 39/50: 5 assistant turns\\\\n  Conversation 40/50: 5 assistant turns\\\\n  Conversation 41/50: 6 assistant turns\\\\n  Conversation 42/50: 7 assistant turns\\\\n  Conversation 43/50: 6 assistant turns\\\\n  Conversation 44/50: 5 assistant turns\\\\n  Conversation 45/50: 7 assistant turns\\\\n  Conversation 46/50: 6 assistant turns\\\\n  Conversation 47/50: 5 assistant turns\\\\n  Conversation 48/50: 6 assistant turns\\\\n  Conversation 49/50: 6 assistant turns\\\\n  Conversation 50/50: 5 assistant turns\\\\nModel device: cuda:0\\\\nNo gates loaded (base/LoRA-only mode)\\\\n\\\\nMeasuring GAR...\\\\n  Conv 1 GAR:  ['0.0239', '0.0152', '0.0179', '0.0162', '0.0125', '0.0103', '0.0134']\\\\n  Conv 1 nGAR: ['0.5115', '0.4789', '0.7677', '0.8635', '0.8089', '0.7784', '1.1803']\\\\n  Conv 2 GAR:  ['0.0266', '0.0181', '0.0123', '0.0096', '0.0107', '0.0093']\\\\n  Conv 2 nGAR: ['0.3622', '0.4570', '0.4986', '0.5553', '0.8299', '0.9104']\\\\n  Conv 3 GAR:  ['0.0195', '0.0136', '0.0207', '0.0113', '0.0292', '0.0185']\\\\n  Conv 3 nGAR: ['0.5792', '0.6194', '1.0843', '0.7747', '2.1771', '1.5668']\\\\n  Conv 4 GAR:  ['0.0214', '0.0369', '0.0146', '0.0128', '0.0251', '0.0118']\\\\n  Conv 4 nGAR: ['0.3605', '0.7765', '0.5365', '0.7758', '1.6300', '0.9726']\\\\n  Conv 5 GAR:  ['0.0265', '0.0120', '0.0157', '0.0108', '0.0119']\\\\n  Conv 5 nGAR: ['0.4355', '0.3744', '0.7891', '0.7179', '1.0558']\\\\n  Conv 6 GAR:  ['0.0235', '0.0139', '0.0127', '0.0089', '0.0078', '0.0083']\\\\n  Conv 6 nGAR: ['0.3764', '0.4244', '0.6234', '0.6017', '0.6819', '0.8803']\\\\n  Conv 7 GAR:  ['0.0227', '0.0126', '0.0105', '0.0079', '0.0092', '0.0068']\\\\n  Conv 7 nGAR: ['0.5253', '0.5617', '0.6717', '0.6850', '1.0143', '0.8718']\\\\n  Conv 8 GAR:  ['0.0317', '0.0189', '0.0165', '0.0113', '0.0098', '0.0098']\\\\n  Conv 8 nGAR: ['0.5994', '0.6758', '0.8717', '0.7675', '0.\n…[truncated 4976 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-000466"
+        },
+        {
+          "source_line": 467,
+          "timestamp": "2026-05-19T13:10:49.021890+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/turn_residual_gating/runs/4way_eval/base_ours/base_model_gar.json\\\\n/root/turn_residual_gating/runs/4way_eval/base_dongre/base_model_dongre_gar.json\\\\n/root/turn_residual_gating/runs/4way_eval/tg_v7_ours/phase2_tg_s42_v7_gar.json\\\\n/root/turn_residual_gating/runs/4way_eval/tg_v7_dongre/phase2_tg_s42_v7_dongre_gar.json\\\\n/root/turn_residual_gating/runs/4way_eval/ug_ours/phase2_ug_s42_gar.json\\\\n/root/turn_residual_gating/runs/4way_eval/ug_dongre/phase2_ug_s42_dongre_gar.json\\\\n/root/turn_residual_gating/runs/4way_eval/lora_only_ours/phase2_lora_only_s42_gar.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 602
+          },
+          "id": "event-000467"
+        },
+        {
+          "source_line": 468,
+          "timestamp": "2026-05-19T13:11:03.362775+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "ps aux --no-header -ww -C python3"
+            }
+          },
+          "id": "event-000468"
+        },
+        {
+          "source_line": 469,
+          "timestamp": "2026-05-19T13:11:04.496010+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root          1  0.0  0.0   4476  2772 ?        Ss   00:29   0:00 bash /init/boot/boot.sh\\\\nroot        881  2.6  0.0 719520 21600 ?        Sl   00:29  32:37 /bin/supervisord -c /init/supervisor/supervisor.ini\\\\nroot        897  0.0  0.0 2130396 20168 ?       Sl   00:29   0:15 proxy -c /init/proxy/proxy-hot-backup.ini\\\\nroot        900  0.0  0.0 2426852 76336 ?       Sl   00:29   0:46 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\\\nroot        901  0.0  0.0 2278116 20140 ?       Sl   00:29   0:35 proxy -c /init/proxy/proxy.ini\\\\nroot        903  0.0  0.0  15444  8680 ?        S    00:29   0:00 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\\\nroot        904  0.1  0.0 6598084 103664 ?      Sl   00:29   2:06 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\\\nroot        905  0.0  0.0 187588 99176 ?        S    00:29   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\\\nroot        966  0.1  0.0 28341192 11920 ?      Sl   00:29   1:15 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_s0q90vj_/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_s0q90vj_/startup_error\\\\nroot      61139  0.0  0.0  16692 10840 ?        Ss   21:10   0:00 sshd: root@notty\\\\nroot      61441  0.1  0.0  16688 10984 ?        Ss   21:10   0:00 sshd: root@notty\\\\nroot      61602  0.0  0.0   7064  1588 ?        Rs   21:11   0:00 ps aux --no-header -ww -C python3\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1133
+          },
+          "id": "event-000469"
+        },
+        {
+          "source_line": 470,
+          "timestamp": "2026-05-19T13:11:04.647007+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "cat /root/turn_residual_gating/runs/4way_eval/base_ours/base_model_gar.json"
+            }
+          },
+          "id": "event-000470"
+        },
+        {
+          "source_line": 471,
+          "timestamp": "2026-05-19T13:11:05.351777+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"checkpoint_dir\\\\\\\": null,\\\\n  \\\\\\\"gate_type\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n  \\\\\\\"gar_variant\\\\\\\": \\\\\\\"ours\\\\\\\",\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"/root/.cache/modelscope/Qwen/Qwen2___5-7B-Instruct\\\\\\\",\\\\n  \\\\\\\"num_conversations\\\\\\\": 50,\\\\n  \\\\\\\"num_turns\\\\\\\": 4,\\\\n  \\\\\\\"gar_curves\\\\\\\": [\\\\n    [\\\\n      0.06482688488192889,\\\\n      0.019157204708863496,\\\\n      0.01490965399355829,\\\\n      0.013220116931896671,\\\\n      0.01186344770838872,\\\\n      0.009142747883895352,\\\\n      0.00734831839451487\\\\n    ],\\\\n    [\\\\n      0.06840550863176335,\\\\n      0.01769841842382265,\\\\n      0.012656141492286777,\\\\n      0.009545330980751516,\\\\n      0.010782593355832214,\\\\n      0.00940223985074347\\\\n    ],\\\\n    [\\\\n      0.04462244348216609,\\\\n      0.01593659942870163,\\\\n      0.011916145541053146,\\\\n      0.008565692097727456,\\\\n      0.010661924519198349,\\\\n      0.009261006785827872\\\\n    ],\\\\n    [\\\\n      0.05887939495363911,\\\\n      0.023296413739977217,\\\\n      0.014300821195877694,\\\\n      0.009712567773716837,\\\\n      0.010012577704411312,\\\\n      0.008195772922119956\\\\n    ],\\\\n    [\\\\n      0.058723135938839856,\\\\n      0.009599746684521007,\\\\n      0.008788087676139188,\\\\n      0.00720173249831733,\\\\n      0.007057507008988635\\\\n    ],\\\\n    [\\\\n      0.056619249886690516,\\\\n      0.015275908374994051,\\\\n      0.013393980399009079,\\\\n      0.009514795418776787,\\\\n      0.0068387184029067485,\\\\n      0.006632724358524389\\\\n    ],\\\\n    [\\\\n      0.04099599842909794,\\\\n      0.01432473633312416,\\\\n      0.009674098586946967,\\\\n      0.007465253429372625,\\\\n      0.007983192989897222,\\\\n      0.0035048444881289305\\\\n    ],\\\\n    [\\\\n      0.03629484348997523,\\\\n      0.021349497152636347,\\\\n      0.01462660946333996,\\\\n      0.010146372275152709,\\\\n      0.008331248070525496,\\\\n      0.007051110056002614\\\\n    ],\\\\n    [\\\\n      0.07685120322688406,\\\\n      0.02857436655237609,\\\\n      0.012411051159874247,\\\\n      0.01106\n…[truncated 7043 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 704
+          },
+          "id": "event-000471"
+        },
+        {
+          "source_line": 472,
+          "timestamp": "2026-05-19T13:11:05.403012+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "cat /root/turn_residual_gating/runs/4way_eval/tg_v7_ours/phase2_tg_s42_v7_gar.json"
+            }
+          },
+          "id": "event-000472"
+        },
+        {
+          "source_line": 473,
+          "timestamp": "2026-05-19T13:11:05.604537+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "cat /root/turn_residual_gating/runs/4way_eval/ug_ours/phase2_ug_s42_gar.json"
+            }
+          },
+          "id": "event-000473"
+        },
+        {
+          "source_line": 474,
+          "timestamp": "2026-05-19T13:11:06.308042+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"checkpoint_dir\\\\\\\": \\\\\\\"/root/turn_residual_gating/runs/phase2_tg_s42_v7\\\\\\\",\\\\n  \\\\\\\"gate_type\\\\\\\": \\\\\\\"threadgate\\\\\\\",\\\\n  \\\\\\\"gar_variant\\\\\\\": \\\\\\\"ours\\\\\\\",\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"/root/.cache/modelscope/Qwen/Qwen2___5-7B-Instruct\\\\\\\",\\\\n  \\\\\\\"num_conversations\\\\\\\": 50,\\\\n  \\\\\\\"num_turns\\\\\\\": 4,\\\\n  \\\\\\\"gar_curves\\\\\\\": [\\\\n    [\\\\n      0.557019455403047,\\\\n      0.47832424703106297,\\\\n      0.5023009104483556,\\\\n      0.4950006930197607,\\\\n      0.4840901347273537,\\\\n      0.47692308687477397,\\\\n      0.48449371853312323\\\\n    ],\\\\n    [\\\\n      0.5383151364471649,\\\\n      0.49380837709459435,\\\\n      0.5203154739983147,\\\\n      0.447179078619747,\\\\n      0.5034686908937877,\\\\n      0.5031757230629094\\\\n    ],\\\\n    [\\\\n      0.5865514252118106,\\\\n      0.5034173149753357,\\\\n      0.5038120390243087,\\\\n      0.447409536558499,\\\\n      0.5061320476173727,\\\\n      0.5028980487042671\\\\n    ],\\\\n    [\\\\n      0.5395140544420255,\\\\n      0.46704288852781156,\\\\n      0.5069237026940981,\\\\n      0.5089190054223237,\\\\n      0.44417029568675126,\\\\n      0.4922055013453395\\\\n    ],\\\\n    [\\\\n      0.54582437283105,\\\\n      0.5126619659845184,\\\\n      0.5089425268389067,\\\\n      0.4479700399755882,\\\\n      0.546465411797144\\\\n    ],\\\\n    [\\\\n      0.5526674039449425,\\\\n      0.5122164106888578,\\\\n      0.5126755041765715,\\\\n      0.4515969719686418,\\\\n      0.4792493034508312,\\\\n      0.5042876265023055\\\\n    ],\\\\n    [\\\\n      0.5579760455066005,\\\\n      0.5196669222160596,\\\\n      0.5098984876891639,\\\\n      0.5045512433870655,\\\\n      0.5848587441094789,\\\\n      0.01245119037123203\\\\n    ],\\\\n    [\\\\n      0.5475140069801292,\\\\n      0.5252463957352707,\\\\n      0.507652078561662,\\\\n      0.4665253969123241,\\\\n      0.47844773824931647,\\\\n      0.5236934002208516\\\\n    ],\\\\n    [\\\\n      0.4828142893347816,\\\\n      0.5182112216420022,\\\\n      0.49205597438358134,\\\\n      0.5178126685856829,\\\\n      0.4995\n…[truncated 8137 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 905
+          },
+          "id": "event-000474"
+        },
+        {
+          "source_line": 475,
+          "timestamp": "2026-05-19T13:11:06.813097+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"checkpoint_dir\\\\\\\": \\\\\\\"/root/turn_residual_gating/runs/phase2_ug_s42\\\\\\\",\\\\n  \\\\\\\"gate_type\\\\\\\": \\\\\\\"uniform\\\\\\\",\\\\n  \\\\\\\"gar_variant\\\\\\\": \\\\\\\"ours\\\\\\\",\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"/root/.cache/modelscope/Qwen/Qwen2___5-7B-Instruct\\\\\\\",\\\\n  \\\\\\\"num_conversations\\\\\\\": 50,\\\\n  \\\\\\\"num_turns\\\\\\\": 4,\\\\n  \\\\\\\"gar_curves\\\\\\\": [\\\\n    [\\\\n      0.5567124693272537,\\\\n      0.48542547030111965,\\\\n      0.5120111519149477,\\\\n      0.4925660413439591,\\\\n      0.49860814313218876,\\\\n      0.4805291282243129,\\\\n      0.4842613558937049\\\\n    ],\\\\n    [\\\\n      0.5457355146307734,\\\\n      0.48753533591414094,\\\\n      0.5120443044670799,\\\\n      0.4744630421963392,\\\\n      0.5278389112772139,\\\\n      0.5215698516955525\\\\n    ],\\\\n    [\\\\n      0.6057241264239076,\\\\n      0.4859550040002801,\\\\n      0.5011770738373785,\\\\n      0.46625900075376764,\\\\n      0.5114686909228542,\\\\n      0.5025384047502209\\\\n    ],\\\\n    [\\\\n      0.5482733221545784,\\\\n      0.48506647010152815,\\\\n      0.516383661610883,\\\\n      0.5136026731431823,\\\\n      0.44746883517555774,\\\\n      0.49075596095341173\\\\n    ],\\\\n    [\\\\n      0.5614140490034554,\\\\n      0.5084795619844669,\\\\n      0.5053432788074054,\\\\n      0.4651219452503609,\\\\n      0.5483149390295596\\\\n    ],\\\\n    [\\\\n      0.5546127679107483,\\\\n      0.5053928132274214,\\\\n      0.5194811790861704,\\\\n      0.46935573851787366,\\\\n      0.48734348200463823,\\\\n      0.4883392886914165\\\\n    ],\\\\n    [\\\\n      0.5749499942039727,\\\\n      0.524892278239179,\\\\n      0.5128286833976323,\\\\n      0.5075493968893536,\\\\n      0.5831838225928963,\\\\n      0.009473207237997355\\\\n    ],\\\\n    [\\\\n      0.5531313886726538,\\\\n      0.5296588856488442,\\\\n      0.5076873287753346,\\\\n      0.46874472553415475,\\\\n      0.47645160597971764,\\\\n      0.5133302449136482\\\\n    ],\\\\n    [\\\\n      0.5012692014863164,\\\\n      0.5327355591957091,\\\\n      0.4951595408104009,\\\\n      0.515213406643479,\\\\n      0.50\n…[truncated 8143 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1208
+          },
+          "id": "event-000475"
+        },
+        {
+          "source_line": 476,
+          "timestamp": "2026-05-19T13:11:24.724004+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "python3 -c \"import json; d=json.load(open('/root/turn_residual_gating/runs/4way_eval/base_ours/base_model_gar.json')); print('base_ours:', 'mid_gar=', d.get('mid_turns_avg_gar'), 'ppl=', d.get('avg_ppl'))\""
+            }
+          },
+          "id": "event-000476"
+        },
+        {
+          "source_line": 477,
+          "timestamp": "2026-05-19T13:11:24.774794+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 50
+          },
+          "id": "event-000477"
+        },
+        {
+          "source_line": 478,
+          "timestamp": "2026-05-19T13:11:25.277844+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "python3 -c \"import json; d=json.load(open('/root/turn_residual_gating/runs/4way_eval/tg_v7_ours/phase2_tg_s42_v7_gar.json')); print('tg_v7_ours:', 'mid_gar=', d.get('mid_turns_avg_gar'), 'ppl=', d.get('avg_ppl'))\""
+            }
+          },
+          "id": "event-000478"
+        },
+        {
+          "source_line": 479,
+          "timestamp": "2026-05-19T13:11:26.685067+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1407
+          },
+          "id": "event-000479"
+        },
+        {
+          "source_line": 480,
+          "timestamp": "2026-05-19T13:11:27.390608+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "python3 -c \"import json; d=json.load(open('/root/turn_residual_gating/runs/4way_eval/ug_ours/phase2_ug_s42_gar.json')); print('ug_ours:', 'mid_gar=', d.get('mid_turns_avg_gar'), 'ppl=', d.get('avg_ppl'))\""
+            }
+          },
+          "id": "event-000480"
+        },
+        {
+          "source_line": 481,
+          "timestamp": "2026-05-19T13:11:27.441501+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 51
+          },
+          "id": "event-000481"
+        },
+        {
+          "source_line": 482,
+          "timestamp": "2026-05-19T13:11:28.197124+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "python3 -c \"import json; d=json.load(open('/root/turn_residual_gating/runs/4way_eval/lora_only_ours/phase2_lora_only_s42_gar.json')); print('lora_only_ours:', 'mid_gar=', d.get('mid_turns_avg_gar'), 'ppl=', d.get('avg_ppl'))\""
+            }
+          },
+          "id": "event-000482"
+        },
+        {
+          "source_line": 483,
+          "timestamp": "2026-05-19T13:11:28.298209+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 101
+          },
+          "id": "event-000483"
+        },
+        {
+          "source_line": 484,
+          "timestamp": "2026-05-19T13:11:32.740668+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "grep -E \"mid_turns_avg_gar|avg_ppl|avg_ntp_loss\" /root/turn_residual_gating/runs/4way_eval/base_ours/base_model_gar.json"
+            }
+          },
+          "id": "event-000484"
+        },
+        {
+          "source_line": 485,
+          "timestamp": "2026-05-19T13:11:33.619215+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 878
+          },
+          "id": "event-000485"
+        },
+        {
+          "source_line": 486,
+          "timestamp": "2026-05-19T13:11:33.619680+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "grep -E \"mid_turns_avg_gar|avg_ppl|avg_ntp_loss\" /root/turn_residual_gating/runs/4way_eval/tg_v7_ours/phase2_tg_s42_v7_gar.json"
+            }
+          },
+          "id": "event-000486"
+        },
+        {
+          "source_line": 487,
+          "timestamp": "2026-05-19T13:11:34.523601+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 903
+          },
+          "id": "event-000487"
+        },
+        {
+          "source_line": 488,
+          "timestamp": "2026-05-19T13:11:34.574532+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "grep -E \"mid_turns_avg_gar|avg_ppl|avg_ntp_loss\" /root/turn_residual_gating/runs/4way_eval/ug_ours/phase2_ug_s42_gar.json"
+            }
+          },
+          "id": "event-000488"
+        },
+        {
+          "source_line": 489,
+          "timestamp": "2026-05-19T13:11:35.478498+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 903
+          },
+          "id": "event-000489"
+        },
+        {
+          "source_line": 490,
+          "timestamp": "2026-05-19T13:11:35.629692+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "grep -E \"mid_turns_avg_gar|avg_ppl|avg_ntp_loss\" /root/turn_residual_gating/runs/4way_eval/lora_only_ours/phase2_lora_only_s42_gar.json"
+            }
+          },
+          "id": "event-000490"
+        },
+        {
+          "source_line": 491,
+          "timestamp": "2026-05-19T13:11:36.433221+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 803
+          },
+          "id": "event-000491"
+        },
+        {
+          "source_line": 492,
+          "timestamp": "2026-05-19T13:11:36.584467+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "grep -E \"mid_turns_avg_gar|avg_ppl|avg_ntp_loss\" /root/turn_residual_gating/runs/4way_eval/base_dongre/base_model_dongre_gar.json"
+            }
+          },
+          "id": "event-000492"
+        },
+        {
+          "source_line": 493,
+          "timestamp": "2026-05-19T13:11:37.338822+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 754
+          },
+          "id": "event-000493"
+        },
+        {
+          "source_line": 494,
+          "timestamp": "2026-05-19T13:11:37.490233+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "grep -E \"mid_turns_avg_gar|avg_ppl|avg_ntp_loss\" /root/turn_residual_gating/runs/4way_eval/tg_v7_dongre/phase2_tg_s42_v7_dongre_gar.json"
+            }
+          },
+          "id": "event-000494"
+        },
+        {
+          "source_line": 495,
+          "timestamp": "2026-05-19T13:11:37.842031+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 351
+          },
+          "id": "event-000495"
+        },
+        {
+          "source_line": 496,
+          "timestamp": "2026-05-19T13:11:38.597516+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "grep -E \"mid_turns_avg_gar|avg_ppl|avg_ntp_loss\" /root/turn_residual_gating/runs/4way_eval/ug_dongre/phase2_ug_s42_dongre_gar.json"
+            }
+          },
+          "id": "event-000496"
+        },
+        {
+          "source_line": 497,
+          "timestamp": "2026-05-19T13:11:38.598051+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000497"
+        },
+        {
+          "source_line": 498,
+          "timestamp": "2026-05-19T13:11:43.888795+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "grep \"mid_turns_avg_gar\" /root/turn_residual_gating/runs/4way_eval/base_ours/base_model_gar.json"
+            }
+          },
+          "id": "event-000498"
+        },
+        {
+          "source_line": 499,
+          "timestamp": "2026-05-19T13:11:44.643244+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"mid_turns_avg_gar\\\\\\\": 0.010676389323615762,\\\\n  \\\\\\\"baseline_mid_turns_avg_gar\\\\\\\": 0.012190773994489113,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 754
+          },
+          "id": "event-000499"
+        },
+        {
+          "source_line": 500,
+          "timestamp": "2026-05-19T13:11:44.798127+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "grep \"avg_ppl\" /root/turn_residual_gating/runs/4way_eval/base_ours/base_model_gar.json"
+            }
+          },
+          "id": "event-000500"
+        },
+        {
+          "source_line": 501,
+          "timestamp": "2026-05-19T13:11:45.601876+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"avg_ppl\\\\\\\": 4.225179014205932,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 803
+          },
+          "id": "event-000501"
+        },
+        {
+          "source_line": 502,
+          "timestamp": "2026-05-19T13:11:45.753336+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "grep \"mid_turns_avg_gar\" /root/turn_residual_gating/runs/4way_eval/tg_v7_ours/phase2_tg_s42_v7_gar.json"
+            }
+          },
+          "id": "event-000502"
+        },
+        {
+          "source_line": 503,
+          "timestamp": "2026-05-19T13:11:46.664227+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"mid_turns_avg_gar\\\\\\\": 0.4866089222165045,\\\\n  \\\\\\\"baseline_mid_turns_avg_gar\\\\\\\": 0.012190773994489113,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 910
+          },
+          "id": "event-000503"
+        },
+        {
+          "source_line": 504,
+          "timestamp": "2026-05-19T13:11:46.815491+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "grep \"avg_ppl\" /root/turn_residual_gating/runs/4way_eval/tg_v7_ours/phase2_tg_s42_v7_gar.json"
+            }
+          },
+          "id": "event-000504"
+        },
+        {
+          "source_line": 505,
+          "timestamp": "2026-05-19T13:11:47.016840+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "grep \"mid_turns_avg_gar\" /root/turn_residual_gating/runs/4way_eval/ug_ours/phase2_ug_s42_gar.json"
+            }
+          },
+          "id": "event-000505"
+        },
+        {
+          "source_line": 506,
+          "timestamp": "2026-05-19T13:11:47.776232+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"avg_ppl\\\\\\\": 2.6289673709869383,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 960
+          },
+          "id": "event-000506"
+        },
+        {
+          "source_line": 507,
+          "timestamp": "2026-05-19T13:11:47.977592+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"mid_turns_avg_gar\\\\\\\": 0.49227876259161746,\\\\n  \\\\\\\"baseline_mid_turns_avg_gar\\\\\\\": 0.012190773994489113,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 960
+          },
+          "id": "event-000507"
+        },
+        {
+          "source_line": 508,
+          "timestamp": "2026-05-19T13:11:48.078399+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "grep \"avg_ppl\" /root/turn_residual_gating/runs/4way_eval/ug_ours/phase2_ug_s42_gar.json"
+            }
+          },
+          "id": "event-000508"
+        },
+        {
+          "source_line": 509,
+          "timestamp": "2026-05-19T13:11:48.982722+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"avg_ppl\\\\\\\": 2.615916790962219,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 904
+          },
+          "id": "event-000509"
+        },
+        {
+          "source_line": 510,
+          "timestamp": "2026-05-19T13:11:49.033345+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "grep \"mid_turns_avg_gar\" /root/turn_residual_gating/runs/4way_eval/lora_only_ours/phase2_lora_only_s42_gar.json"
+            }
+          },
+          "id": "event-000510"
+        },
+        {
+          "source_line": 511,
+          "timestamp": "2026-05-19T13:11:49.486189+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "grep \"avg_ppl\" /root/turn_residual_gating/runs/4way_eval/lora_only_ours/phase2_lora_only_s42_gar.json"
+            }
+          },
+          "id": "event-000511"
+        },
+        {
+          "source_line": 512,
+          "timestamp": "2026-05-19T13:11:49.536988+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"mid_turns_avg_gar\\\\\\\": 0.4860425907334685,\\\\n  \\\\\\\"baseline_mid_turns_avg_gar\\\\\\\": 0.012190773994489113,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 503
+          },
+          "id": "event-000512"
+        },
+        {
+          "source_line": 513,
+          "timestamp": "2026-05-19T13:11:50.039457+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"avg_ppl\\\\\\\": 2.6285653781890868,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 553
+          },
+          "id": "event-000513"
+        },
+        {
+          "source_line": 514,
+          "timestamp": "2026-05-19T13:11:53.907340+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "grep \"mid_turns_avg_gar\" /root/turn_residual_gating/runs/4way_eval/base_dongre/base_model_dongre_gar.json"
+            }
+          },
+          "id": "event-000514"
+        },
+        {
+          "source_line": 515,
+          "timestamp": "2026-05-19T13:11:54.861576+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"mid_turns_avg_gar\\\\\\\": 0.003034075115140154,\\\\n  \\\\\\\"baseline_mid_turns_avg_gar\\\\\\\": 0.012190773994489113,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 954
+          },
+          "id": "event-000515"
+        },
+        {
+          "source_line": 516,
+          "timestamp": "2026-05-19T13:11:54.862062+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "grep \"avg_ppl\" /root/turn_residual_gating/runs/4way_eval/base_dongre/base_model_dongre_gar.json"
+            }
+          },
+          "id": "event-000516"
+        },
+        {
+          "source_line": 517,
+          "timestamp": "2026-05-19T13:11:55.766326+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"avg_ppl\\\\\\\": 4.225179014205932,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 904
+          },
+          "id": "event-000517"
+        },
+        {
+          "source_line": 518,
+          "timestamp": "2026-05-19T13:11:55.766785+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "grep \"mid_turns_avg_gar\" /root/turn_residual_gating/runs/4way_eval/tg_v7_dongre/phase2_tg_s42_v7_dongre_gar.json"
+            }
+          },
+          "id": "event-000518"
+        },
+        {
+          "source_line": 519,
+          "timestamp": "2026-05-19T13:11:56.225845+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "grep \"avg_ppl\" /root/turn_residual_gating/runs/4way_eval/tg_v7_dongre/phase2_tg_s42_v7_dongre_gar.json"
+            }
+          },
+          "id": "event-000519"
+        },
+        {
+          "source_line": 520,
+          "timestamp": "2026-05-19T13:11:56.728304+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"mid_turns_avg_gar\\\\\\\": 0.015717417012581232,\\\\n  \\\\\\\"baseline_mid_turns_avg_gar\\\\\\\": 0.012190773994489113,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 961
+          },
+          "id": "event-000520"
+        },
+        {
+          "source_line": 521,
+          "timestamp": "2026-05-19T13:11:57.182034+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"avg_ppl\\\\\\\": 2.6289673709869383,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 956
+          },
+          "id": "event-000521"
+        },
+        {
+          "source_line": 522,
+          "timestamp": "2026-05-19T13:11:57.182480+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "grep \"mid_turns_avg_gar\" /root/turn_residual_gating/runs/4way_eval/ug_dongre/phase2_ug_s42_dongre_gar.json"
+            }
+          },
+          "id": "event-000522"
+        },
+        {
+          "source_line": 523,
+          "timestamp": "2026-05-19T13:11:57.684785+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"mid_turns_avg_gar\\\\\\\": 0.012991979402484973,\\\\n  \\\\\\\"baseline_mid_turns_avg_gar\\\\\\\": 0.012190773994489113,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-000523"
+        },
+        {
+          "source_line": 524,
+          "timestamp": "2026-05-19T13:11:58.136979+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "grep \"avg_ppl\" /root/turn_residual_gating/runs/4way_eval/ug_dongre/phase2_ug_s42_dongre_gar.json"
+            }
+          },
+          "id": "event-000524"
+        },
+        {
+          "source_line": 525,
+          "timestamp": "2026-05-19T13:11:58.689572+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"avg_ppl\\\\\\\": 2.615916790962219,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 552
+          },
+          "id": "event-000525"
+        },
+        {
+          "source_line": 526,
+          "timestamp": "2026-05-19T13:11:58.689974+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "ls -la /root/turn_residual_gating/runs/4way_eval/lora_only_dongre/"
+            }
+          },
+          "id": "event-000526"
+        },
+        {
+          "source_line": 527,
+          "timestamp": "2026-05-19T13:11:59.192625+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 100\\\\ndrwxr-xr-x  2 root root   116 May 19 21:10 .\\\\ndrwxr-xr-x 10 root root  4096 May 19 21:10 ..\\\\n-rw-r--r--  1 root root 17715 May 19 21:10 phase2_lora_only_s42_dongre_gar.json\\\\n-rw-r--r--  1 root root 77556 May 19 21:10 phase2_lora_only_s42_dongre_gar_comparison.png\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-000527"
+        },
+        {
+          "source_line": 528,
+          "timestamp": "2026-05-19T13:12:06.147219+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "grep \"mid_turns_avg_gar\" /root/turn_residual_gating/runs/4way_eval/lora_only_dongre/phase2_lora_only_s42_dongre_gar.json"
+            }
+          },
+          "id": "event-000528"
+        },
+        {
+          "source_line": 529,
+          "timestamp": "2026-05-19T13:12:07.054265+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"mid_turns_avg_gar\\\\\\\": 0.013681345734116968,\\\\n  \\\\\\\"baseline_mid_turns_avg_gar\\\\\\\": 0.012190773994489113,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 907
+          },
+          "id": "event-000529"
+        },
+        {
+          "source_line": 530,
+          "timestamp": "2026-05-19T13:12:07.054745+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "grep \"avg_ppl\" /root/turn_residual_gating/runs/4way_eval/lora_only_dongre/phase2_lora_only_s42_dongre_gar.json"
+            }
+          },
+          "id": "event-000530"
+        },
+        {
+          "source_line": 531,
+          "timestamp": "2026-05-19T13:12:07.308146+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "cat /root/turn_residual_gating/scripts/run_4way_eval.sh"
+            }
+          },
+          "id": "event-000531"
+        },
+        {
+          "source_line": 532,
+          "timestamp": "2026-05-19T13:12:07.510774+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"avg_ppl\\\\\\\": 2.6285653781890868,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 456
+          },
+          "id": "event-000532"
+        },
+        {
+          "source_line": 533,
+          "timestamp": "2026-05-19T13:12:08.065691+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\nset -e\\\\n\\\\nPYTHON=/root/miniconda3/bin/python3.12\\\\nEVAL_SCRIPT=/root/turn_residual_gating/src/eval_phase2_gar.py\\\\nCONV_PATH=/root/turn_residual_gating/data/ultrachat_eval_sample.json\\\\nOUT_ROOT=/root/turn_residual_gating/runs/4way_eval\\\\n\\\\nTG_CKPT=/root/turn_residual_gating/runs/phase2_tg_s42_v7\\\\nUG_CKPT=/root/turn_residual_gating/runs/phase2_ug_s42\\\\nLO_CKPT=/root/turn_residual_gating/runs/phase2_lora_only_s42\\\\n\\\\n# Checkpoint safety checks\\\\n[ -d \\\\\\\"$TG_CKPT/lora\\\\\\\" ] || { echo \\\\\\\"ERROR: TG v7 checkpoint not ready at $TG_CKPT/lora\\\\\\\"; exit 1; }\\\\n[ -f \\\\\\\"$TG_CKPT/gate_params.pt\\\\\\\" ] || { echo \\\\\\\"ERROR: TG v7 gate_params.pt not found at $TG_CKPT/gate_params.pt\\\\\\\"; exit 1; }\\\\n[ -d \\\\\\\"$UG_CKPT/lora\\\\\\\" ] || { echo \\\\\\\"ERROR: UG checkpoint not ready at $UG_CKPT/lora\\\\\\\"; exit 1; }\\\\n[ -f \\\\\\\"$UG_CKPT/gate_params.pt\\\\\\\" ] || { echo \\\\\\\"ERROR: UG gate_params.pt not found at $UG_CKPT/gate_params.pt\\\\\\\"; exit 1; }\\\\n[ -d \\\\\\\"$LO_CKPT/lora\\\\\\\" ] || { echo \\\\\\\"ERROR: LoRA-only final checkpoint not ready at $LO_CKPT/lora\\\\\\\"; exit 1; }\\\\n\\\\necho \\\\\\\"All checkpoint paths verified.\\\\\\\"\\\\n\\\\nmkdir -p \\\\\\\"$OUT_ROOT\\\\\\\"\\\\n\\\\n# ── Base (ours) ──────────────────────────────────────────────\\\\necho \\\\\\\"========== [1/8] Base + ours ==========\\\\\\\"\\\\n$PYTHON $EVAL_SCRIPT \\\\\\\\\\\\n  --gate-type none \\\\\\\\\\\\n  --conversations-path \\\\\\\"$CONV_PATH\\\\\\\" \\\\\\\\\\\\n  --output-dir \\\\\\\"$OUT_ROOT/base_ours\\\\\\\" \\\\\\\\\\\\n  --gar-variant ours \\\\\\\\\\\\n  --gate-profile\\\\n\\\\n# ── Base (dongre) ────────────────────────────────────────────\\\\necho \\\\\\\"========== [2/8] Base + dongre ==========\\\\\\\"\\\\n$PYTHON $EVAL_SCRIPT \\\\\\\\\\\\n  --gate-type none \\\\\\\\\\\\n  --conversations-path \\\\\\\"$CONV_PATH\\\\\\\" \\\\\\\\\\\\n  --output-dir \\\\\\\"$OUT_ROOT/base_dongre\\\\\\\" \\\\\\\\\\\\n  --gar-variant dongre \\\\\\\\\\\\n  --gate-profile\\\\n\\\\n# ── TG v7 (ours) ────────────────────────────────────────────\\\\necho \\\\\\\"========== [3/8] TG v7 + ours ==========\\\\\\\"\\\\n$PYTHON $E\n…[truncated 2316 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 757
+          },
+          "id": "event-000533"
+        },
+        {
+          "source_line": 534,
+          "timestamp": "2026-05-19T13:13:12.154152+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "wc -l /root/turn_residual_gating/data/ultrachat_eval_sample.json"
+            }
+          },
+          "id": "event-000534"
+        },
+        {
+          "source_line": 535,
+          "timestamp": "2026-05-19T13:13:12.910688+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2737 /root/turn_residual_gating/data/ultrachat_eval_sample.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 756
+          },
+          "id": "event-000535"
+        },
+        {
+          "source_line": 536,
+          "timestamp": "2026-05-19T13:13:12.911096+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "head -5 /root/turn_residual_gating/data/ultrachat_eval_sample.json"
+            }
+          },
+          "id": "event-000536"
+        },
+        {
+          "source_line": 537,
+          "timestamp": "2026-05-19T13:13:13.413337+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"conversation_id\\\\\\\": 0,\\\\n    \\\\\\\"source\\\\\\\": \\\\\\\"ultrachat_8k\\\\\\\",\\\\n    \\\\\\\"dataset_idx\\\\\\\": 4201,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-000537"
+        },
+        {
+          "source_line": 538,
+          "timestamp": "2026-05-19T13:13:13.464069+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader"
+            }
+          },
+          "id": "event-000538"
+        },
+        {
+          "source_line": 539,
+          "timestamp": "2026-05-19T13:13:13.966442+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-20861",
+              "command": "cat /root/turn_residual_gating/src/eval_phase2_gar.py"
+            }
+          },
+          "id": "event-000539"
+        },
+        {
+          "source_line": 540,
+          "timestamp": "2026-05-19T13:13:14.017090+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 0 %, 0 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_934666158b769e82a2351d9206410118:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 553
+          },
+          "id": "event-000540"
+        }
+      ]
+    }
+  ]
+}

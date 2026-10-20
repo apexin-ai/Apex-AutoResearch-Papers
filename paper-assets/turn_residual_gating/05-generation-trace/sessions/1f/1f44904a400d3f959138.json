@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1f44904a400d3f959138",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "infra llama3 disk assessment",
+  "task_key": "worker_infra_llama3_disk_assessment_20260519T144230",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_llama3_disk_assessment_20260519T144230_result.json",
+    "occurrence": 1,
+    "bytes": 2104,
+    "sha256": "0ca3b1e8c60473bfb15fbaebce7d42d3b4f10644d841c674ed039e667e828e49"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完毕。\n\n## 磁盘现状\n\n| 分区 | 总空间 | 已用 | 可用 |\n|------|--------|------|------|\n| 根分区 `/` | 30GB | 16GB | **15GB** |\n| 数据盘 `/root/autodl-tmp/` | 250GB | 4.6GB | **246GB** |\n\n## 大文件分布\n\n| 项目 | 大小 | 位置 |\n|------|------|------|\n| **Qwen2.5-7B-Instruct 模型** | **15GB** | `/root/.cache/modelscope/Qwen/Qwen2___5-7B-Instruct/`（根分区） |\n| ultrachat_200k 数据集 | 4.6GB | `/root/autodl-tmp/.hf_cache/`（数据盘，含重复缓存） |\n| Training runs (3个checkpoint) | 260MB | `/root/turn_residual_gating/runs/`（根分区） |\n| 项目代码 + data | 374MB | `/root/turn_residual_gating/`（根分区） |\n| HuggingFace cache | 20KB | 几乎为空 |\n| Llama 文件 | **0** | 之前下载的 tokenizer 已不存在 |\n\n## Llama-3 空间需求\n\n- 模型权重: ~16GB\n- 训练产出预估 (LoRA checkpoints): ~1GB\n- 总需求: ~17GB\n\n## 评估结论\n\n- **根分区可用 15GB，放不下 16GB 的 Llama 权重。**\n- **数据盘可用 246GB，空间完全充裕。**\n\n### 建议方案（两个选项，可叠加）\n\n**方案 A：Llama 模型直接下到数据盘（推荐，零风险）**\n- 下载到 `/root/autodl-tmp/.hf_cache/` 或 `/root/autodl-tmp/models/`\n- 设 `HF_HOME=/root/autodl-tmp/.hf_cache` 或 ModelScope `cache_dir=/root/autodl-tmp/models/`\n- 无需清理任何东西，246GB 足够\n\n**方案 B：把 Qwen 模型缓存移到数据盘，腾出根分区空间**\n- 将 `/root/.cache/modelscope/Qwen/Qwen2___5-7B-Instruct/`（15GB）移到 `/root/autodl-tmp/` 并建软链接\n- 根分区释放 15GB → 可用 ~30GB\n- 风险：需确认 Qwen eval 代码的模型路径正确指向新位置\n\n### 必须保留\n- `runs/phase2_tg_s42_v7/` (91MB) — TG checkpoint，论文需要\n- `runs/phase2_ug_s42/` (91MB) — UG checkpoint，论文需要\n- `runs/phase2_lora_only_s42/` (78MB) — LoRA-only baseline checkpoint，论文需要\n- `runs/4way_eval/` + `phase2_4way_eval_heldout/` — eval 结果，论文需要\n- Qwen 模型缓存 — 可移动但不可删除"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-llama3-disk-assessment.md"
+}

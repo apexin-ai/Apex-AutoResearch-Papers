@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b23b6e11a8f635529631",
+  "project": "redundancy-compound-sparsity-2",
+  "kind": "result",
+  "title": "analysis carc mvp seed1337",
+  "task_key": "worker_analysis_carc_mvp_seed1337_20260512T111612",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_carc_mvp_seed1337_20260512T111612_result.json",
+    "occurrence": 1,
+    "bytes": 980,
+    "sha256": "3c470fa7b3dbd3001e610ca0f0b8e893be4e052dfd81f57b50b92b5410e92f03"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。\n\n## CARC MVP seed1337 结果：**FAIL**\n\n### 全局判定\n\n| 条件 | 阈值 | 实际值 | 通过? |\n|------|------|--------|-------|\n| \\|r(EMA, perturbation)\\| | ≥ 0.4 | 0.113 | ✗ |\n| perturbation diff | ≥ 10% | 5.26% | ✗ |\n\n2×2 矩阵：两个条件均不满足 → **FAIL**\n\n### 核心发现：两个信号在层间空间解耦\n\n- **高相关层** (L30, L31, L33): |r| ≈ 0.40，但 perturbation diff 仅 2.5%~6.7%\n- **高扰动差异层** (L41-45): diff 11%~21%，但 |r| 仅 0.21~0.32\n- **没有任何单层同时满足两个条件**\n\n### 其他指标\n- PPL two-tier vs uniform: 均为 1.38，无差异\n- EMA-surprisal 相关: r=0.1255（弱）\n- Near-zero frac ratio: 1.16x（redundant 稍高，方向正确但效应微弱）\n- 无 W&B run，无 seed42 对比\n\n### 已注册\n- Registry: `carc_mvp_seed1337` → DONE, conclusion=negative\n- Artifact: `carc_mvp_seed1337_analysis.md`\n- Memory: 更新完毕"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-carc-mvp-seed1337.md"
+}

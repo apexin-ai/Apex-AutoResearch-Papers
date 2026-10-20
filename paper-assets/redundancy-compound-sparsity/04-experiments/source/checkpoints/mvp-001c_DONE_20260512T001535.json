@@ -1,0 +1,46 @@
+{
+  "exp_id": "mvp-001c",
+  "project": "redundancy-compound-sparsity",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-11T23:51:03.036Z",
+    "updated_at": "2026-05-12T00:15:35.769Z",
+    "spec": {
+      "hypothesis": "KV anchor similarity signal strengthens with longer CoT (competition-level math → 1000+ token reasoning chains)",
+      "model_name": "DeepSeek-R1-Distill-Qwen-7B",
+      "server": "seetacloud-bjb2-structtts",
+      "data_path": "hardcoded_5_AIME_AMC12_problems",
+      "data_count": 5,
+      "seed": 42,
+      "parent": "mvp-001b",
+      "command": "python results/mvp/mvp_carc_validation_v3.py",
+      "checkpoint_source": "N/A"
+    },
+    "notes": "首次 screen session 被外部终止（非 OOM），已改用 tmux 重跑。PID 10401，tmux session mvp-001c。日志改为 stdout+stderr 合并。5 道 AIME/AMC12 竞赛题，max_new_tokens=4096。",
+    "metrics": {
+      "pearson_r": 0.1585,
+      "pearson_p": 0,
+      "dpert_40pct": -1.5,
+      "dpert_55pct": -1.2,
+      "ks_L0": 0.2452,
+      "ks_L1": 0.2152,
+      "ks_L2": 0.1427,
+      "ks_L3": 0.1335,
+      "ks_L4": 0.1274,
+      "verdict": "FAIL",
+      "total_tokens": 17942,
+      "num_problems": 5,
+      "avg_tokens_per_problem": 3588,
+      "elapsed_s": 745
+    },
+    "conclusion": "negative",
+    "log_path": "/home/sonny/redundancy-compound-sparsity/results/mvp/mvp_run_v3.log",
+    "checkpoint_path": "/home/sonny/redundancy-compound-sparsity/results/mvp/mvp_results_v3.json",
+    "completed_at": "2026-05-12T00:15:35.769Z"
+  },
+  "timestamp": "2026-05-12T00:15:35.781693+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d9b08596dd40a2df98fa",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "ops 14b status and qw ppl prep",
+  "task_key": "worker_ops_14b_status_and_qw_ppl_prep_20260516T055341",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_14b_status_and_qw_ppl_prep_20260516T055341_result.json",
+    "occurrence": 1,
+    "bytes": 1510,
+    "sha256": "671b53b41cc4f6f0e297fc758e4ad23b25c73480c390b102f9de155c4c30b64a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报如下：\n\n---\n\n## 汇报\n\n### 14B 下载状态：✅ 已完成\n- ModelScope 于 `2026-05-16 13:39:55` 下载完成\n- 大小 28G，8 个 safetensors 文件\n- Symlink 已创建：`checkpoints/Qwen2.5-14B-Instruct` → `/root/autodl-tmp/models/Qwen/Qwen2___5-14B-Instruct`\n- Dry-run 通过：`vocab_size=151643`, chat template 可用\n\n### QW Quantile Segmentation：✅ 无需改码\n\n代码逻辑（`run_profiling.py` L327-352）：\n1. `think_boundary = None`\n2. 只有 `--use_chat_template` 时才搜索 `</think>` 并设 `think_boundary`\n3. 当 `think_boundary is None`（不传 `--use_chat_template`），**自动走 `segment_by_quantile(gen_sparsity, n_groups=3)`**\n\nQW 不传 `--use_chat_template` 即可走 quantile 路线，无需任何代码修改。\n\n### QW GPQA 完整命令\n\n```bash\ncd /root/autodl-tmp/pacs && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n\nCUDA_VISIBLE_DEVICES=0 python3 -u -m pacs.profiling.run_profiling \\\n    --model_path checkpoints/Qwen2.5-7B-Instruct \\\n    --data_path data/gpqa_diamond.json \\\n    --output_dir ./profiling_output_gpqa_qw_importance_s015 \\\n    --raw_prompt \\\n    --sparsity_levels \"0.15\" \\\n    --masking_method importance \\\n    --max_new_tokens 8192 \\\n    --min_phase_length 10 \\\n    --max_problems 198 \\\n    --save_generations \\\n    --gpu 0\n```\n\n此命令不传 `--use_chat_template`，`think_boundary` 保持 `None`，走 quantile 三段分割。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-14b-status-and-qw-ppl-prep.md"
+}

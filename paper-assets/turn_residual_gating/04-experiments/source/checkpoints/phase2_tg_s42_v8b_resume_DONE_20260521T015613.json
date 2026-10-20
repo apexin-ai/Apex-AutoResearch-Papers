@@ -1,0 +1,59 @@
+{
+  "exp_id": "phase2_tg_s42_v8b_resume",
+  "project": "turn_residual_gating",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T10:08:29.483Z",
+    "updated_at": "2026-05-21T01:56:13.289Z",
+    "hypothesis": "从 epoch_0 checkpoint resume v8b scheduled sampling 训练。SS 线性混合 0→0.5 teacher-forced + model-generated contexts。如果 model-gen context 上的 GAR 训练能缩小 30x training-inference gap → exposure bias mitigation 有效。成功标准：inference GAR 显著高于 v7 的 0.016 (至少 +1pp)，PPL 不恶化。",
+    "parent": "phase2_tg_s42_v8b_ss_fixed",
+    "spec": {
+      "command": "python src/train_phase2_v8b.py --model /root/.cache/modelscope/Qwen/Qwen2___5-7B-Instruct --data-dir data/ultrachat_8k --output-dir checkpoints/tg_v8b_ss_fixed_s42 --gate-type threadgate --gar-loss-mode mse_target --gar-target 0.5 --lambda-gar 1.0 --lambda-gate-div 1.0 --init-bias 1.5 --gate-lr-multiplier 10 --lr 2e-4 --epochs 3 --batch-size 1 --grad-accum 8 --seed 42 --scheduled-sampling --ss-max-ratio 0.5 --resume checkpoints/tg_v8b_ss_fixed_s42/epoch_0",
+      "server": "westd-20861",
+      "data_path": "data/ultrachat_8k",
+      "data_count": 8000,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42,
+      "checkpoint_source": "phase2_tg_s42_v8b_ss_fixed/epoch_0",
+      "eval_data": "N/A (training experiment)",
+      "checkpoint_path": "checkpoints/tg_v8b_ss_fixed_s42",
+      "log_path": "~/runs/turn_residual_gating/phase2_tg_s42_v8b_resume.log"
+    },
+    "metrics": {
+      "training": {
+        "total_steps": 3000,
+        "epochs_completed": 3,
+        "wall_clock_hours": 8.1,
+        "final_loss": 0.933,
+        "final_ntp_loss": 0.9322,
+        "final_gar_loss": 0.0008,
+        "final_gate_mean": 0.9586,
+        "final_gate_std": 0.0582,
+        "ss_ratio": 0.5
+      },
+      "eval_iid": {
+        "gar_ours": 0.4983,
+        "gar_dongre": 0.3855,
+        "ppl": 2.78
+      },
+      "eval_modelgen": {
+        "gar_ours": 0.3177,
+        "gar_dongre": 0.3533,
+        "ppl": 1.38
+      },
+      "vs_v7": {
+        "iid_gar_ours_delta": -0.005,
+        "modelgen_gar_ours_delta": 0.302,
+        "gap_ratio_v7": 32,
+        "gap_ratio_v8b": 1.57
+      }
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-20T18:57:21.189Z"
+  },
+  "timestamp": "2026-05-21T01:56:13.344977+00:00",
+  "trigger": "update_registry"
+}

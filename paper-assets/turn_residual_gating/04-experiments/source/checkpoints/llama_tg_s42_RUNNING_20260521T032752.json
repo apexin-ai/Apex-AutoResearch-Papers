@@ -1,0 +1,33 @@
+{
+  "exp_id": "llama_tg_s42",
+  "project": "turn_residual_gating",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T01:34:36.906Z",
+    "updated_at": "2026-05-21T03:27:52.296Z",
+    "hypothesis": "在 Llama-3.1-8B-Instruct 上训练 ThreadGate（与 Qwen v7 相同配置），验证 C5：gating mechanism 和 GAR training-inference gap 跨模型泛化。如果 Llama TG 也出现 IID GAR ≈ target 但 model-gen GAR 坍塌 → 确认 exposure bias 的跨模型通用性。",
+    "parent": "llama_phase1_gar_diag",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 PYTHONUNBUFFERED=1 python src/train_phase2.py --model /root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B-Instruct --data-dir data/ultrachat_8k --output-dir runs/phase2_llama_tg_s42 --gate-type threadgate --gar-loss-mode mse_target --gar-target 0.5 --lambda-gar 1.0 --lambda-gate-div 1.0 --init-bias 1.5 --gate-lr-multiplier 10 --lr 2e-4 --epochs 3 --batch-size 1 --grad-accum 8 --seed 42",
+      "server": "westd-20861",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "199643",
+      "data_path": "data/ultrachat_8k",
+      "data_count": 8000,
+      "model_name": "Meta-Llama-3.1-8B-Instruct",
+      "seed": 42,
+      "checkpoint_source": "N/A (training from scratch)",
+      "eval_data": "N/A (training experiment)",
+      "checkpoint_path": "runs/phase2_llama_tg_s42",
+      "log_path": "~/runs/turn_residual_gating/llama_tg_s42.log"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-21T03:27:52.377234+00:00",
+  "trigger": "update_registry"
+}

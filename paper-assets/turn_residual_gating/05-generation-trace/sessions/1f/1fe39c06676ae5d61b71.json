@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1fe39c06676ae5d61b71",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "code diagnose gar loss and fix",
+  "task_key": "worker_code_diagnose_gar_loss_and_fix_20260518T111326",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_diagnose_gar_loss_and_fix_20260518T111326_result.json",
+    "occurrence": 1,
+    "bytes": 795,
+    "sha256": "63c5fdafddc596f9ba269fec2ee320ea180d0c79bb78f6111af294b70d0747d2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。总结：\n\n**根因确认**：`epsilon=0.02` 过高。vanilla Qwen2.5-7B 上 GAR 值仅 ~0.01，相邻 turn 差值远小于 0.02，`ReLU(drop - 0.02)` 始终为 0。\n\n**修改内容**：\n| 文件 | 变更 |\n|------|------|\n| `config.py` | `GAR_EPSILON`: 0.02 → 0.001 |\n| `gar.py` | `compute_gar_loss` 新增 `mode` 参数：`pairwise`（原逻辑）/ `cumulative`（相对 turn-1 累积衰减）/ `maximize`（直接最大化 GAR） |\n| `train_phase2.py` | 新增 `--gar-loss-mode`（默认 cumulative）和 `--gar-epsilon`（默认 0.001）命令行参数 |\n| `diagnose_gar_loss.py` | 新增诊断脚本 |\n\n**Dry-run 验证通过**：L_GAR 从全 0 变为 0.05~0.13，gate 参数收到梯度。所有文件已同步到本地 artifacts 和服务器。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-diagnose-gar-loss-and-fix.md"
+}

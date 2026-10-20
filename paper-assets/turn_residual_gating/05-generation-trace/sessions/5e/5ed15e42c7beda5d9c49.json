@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5ed15e42c7beda5d9c49",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "analysis gate wilcoxon test",
+  "task_key": "worker_analysis_gate_wilcoxon_test_20260519T171339",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gate_wilcoxon_test_20260519T171339_result.json",
+    "occurrence": 1,
+    "bytes": 1017,
+    "sha256": "c172b326e65e80b65e2363029cd3e897c03aad6ab40019ab392a82b961fcb405"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n### Wilcoxon signed-rank test (28 layers, turn 1 vs turn 21)\n\n| 指标 | 值 |\n|------|-----|\n| W (one-sided) | 5.0 |\n| p (one-sided) | 3.73 × 10⁻⁸ |\n| Rank-biserial r | 0.975 (large effect) |\n| 方向一致性 | 27/28 layers turn1 < turn21 |\n\n### 分层分析\n\n| Layer group | Mean diff | p-value |\n|------------|-----------|---------|\n| Bottom (L0–L8) | −0.024 | 0.002 ** |\n| Middle (L9–L18) | −0.064 | 0.001 *** |\n| Top (L19–L27) | −0.078 | 0.004 ** |\n\n效应从 bottom 到 top 层单调递增（−0.024 → −0.064 → −0.078）。\n\n### Per-conversation consistency\n5/5 conversations (100%) 中多数层均满足 turn1 < last_turn。\n\n### 论文用一句话\n\n> Wilcoxon signed-rank test confirmed that gate activation values at turn 1 were significantly lower than at turn 21 across all 28 transformer layers (W=5, p<10⁻⁷, rank-biserial r=0.98), with 27/28 layers exhibiting this pattern consistently across all evaluated conversations."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-gate-wilcoxon-test.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3b13ad93fe270b88807f",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "fix audit d1 d6 all",
+  "task_key": "worker_fix_audit_d1_d6_all_20260523T195857",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_audit_d1_d6_all_20260523T195857_result.json",
+    "occurrence": 1,
+    "bytes": 849,
+    "sha256": "31eb49404f62ef0d5daadc6c49e09e8c70d0767f977d951f98f34240fc27bdc8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 5 issues fixed. Summary:\n\n| Issue | File | Change |\n|-------|------|--------|\n| **D1** | `experiments.tex:42` | Caption rewritten: \"TF evaluation, N=45, 7-8% decay\" → \"AR generation, N=5, 77-81% decay\" |\n| **D1** (spillover) | `analysis.tex:31` | Inline reference fixed: removed wrong \"7-8% decay\" TF claim, correctly attributes 77-87% decay to AR figure |\n| **D2** | `analysis.tex:12` | Fig 3b caption: added \"($N$=5 pilot)\" |\n| **D3** | `appendix.tex:299` | Table: 7.2h/+20% → 8.0h/+33% |\n| **D3** | `appendix.tex:313` | Text: \"~20% overhead\" → \"~33% overhead\" |\n| **D4** | `appendix.tex:279` | SS ratio: \"0 to 0.5\" → \"0 to 0.3\" |\n| **D6** | `abstract.tex:2` | \"27× on Llama\" → \"27× (median) on Llama\" |\n| **D6** | `analysis.tex:41` | \"27× on Llama\" → \"27× (median) on Llama\" |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-audit-d1-d6-all.md"
+}

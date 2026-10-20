@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "218be557c169f64e1823",
+  "project": "redundancy-compound-sparsity",
+  "kind": "result",
+  "title": "diagnosis urgent gpu check",
+  "task_key": "worker_diagnosis_urgent-gpu-check_20260512T040550",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnosis_urgent-gpu-check_20260512T040550_result.json",
+    "occurrence": 1,
+    "bytes": 1759,
+    "sha256": "e2d61b1d5150ca7cfc6d9045cb0ce81fde8e2c6e58734b62828810157efa7af5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇报\n\n### 1. GPU 状态\n- **RTX 5090** (32GB), Driver 580.105.08, CUDA 13.0\n- 显存占用：15841 MiB / 32607 MiB\n- GPU 利用率：0%（采样瞬时值）\n- 占用进程：python PID 24638（confound-ctrl-001 的子进程）\n\n### 2. kv-bench-002\n- **PID 22623 已结束**\n- 结果文件存在，实验已完成（356s），结果摘要：\n\n| Policy | Budget | PPL | Ratio | Evictions |\n|--------|--------|-----|-------|-----------|\n| FullCache | 100% | 7.73 | 1.000 | 0 |\n| CARC-KV | 30% | 7.74 | 1.002 | 409 |\n| H2O | 30% | 7.70 | 0.997 | 409 |\n| StreamingLLM | 30% | 7.75 | 1.003 | 409 |\n| CARC-KV/H2O/StreamingLLM | 50%/70% | 7.73 | 1.000 | 0 |\n\n### 3. confound-ctrl-001\n- **PID 24628 存活**，正在运行\n- 模型已加载（DeepSeek-R1-Distill-Llama-8B，占用 ~15.5GB 显存）\n- **问题**：HuggingFace 网络不通（`Errno 101: Network is unreachable`），MATH-500 和 competition_math 两个数据集的在线检查都失败了。但脚本似乎越过了重试（可能用了本地缓存），最后一行日志是 `generation flags` 警告\n- 日志仅 25 行，未见推理进度输出。可能原因：(a) 正在推理但输出缓冲未刷新 (b) 卡在某处等待\n\n### 4. 模型下载\n- DeepSeek-R1-Distill-Llama-8B: **15G** ✓\n- Qwen2-7B-Instruct: **15G** ✓\n\n### 5. 注意事项\n- 服务器 SSH 账户是 **root** 而非 sonny（项目配置需更新）\n- confound-ctrl-001 启动时未执行 `source /etc/network_turbo`，导致 HuggingFace 不可达。如果脚本依赖在线下载数据集而非本地缓存，后续可能会出错\n- 建议观察 confound-ctrl-001 日志增长情况，如果几分钟内无新输出，可能需要 kill 后修复网络问题重新提交"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-urgent-gpu-check.md"
+}

@@ -1,0 +1,37 @@
+{
+  "exp_id": "mmlu_eval_all",
+  "project": "turn_residual_gating",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T06:45:04.153Z",
+    "updated_at": "2026-05-24T06:53:52.873Z",
+    "hypothesis": "ThreadGate's per-layer gating and auxiliary GAR loss do not degrade the model's general language understanding capabilities. All fine-tuned variants (TG/UG/LO/PCGrad/SS) should maintain MMLU 5-shot accuracy within 1pp of the Base LoRA-only checkpoint, confirming that attention steering is additive rather than destructive.",
+    "spec": {
+      "command": "python eval_mmlu.py --model_path <checkpoint> --n_shot 5",
+      "server": "westd-20861",
+      "data_path": "MMLU benchmark (5-shot)",
+      "data_count": 14042,
+      "model_name": "Qwen/Qwen2.5-7B-Instruct",
+      "seed": 42,
+      "checkpoint_source": "base/lo/ug/tg/pcgrad/ss checkpoints",
+      "eval_data": "MMLU 5-shot",
+      "checkpoint_path": "results/mmlu/",
+      "log_path": "logs/gpu_chain_next.log"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "base_qwen": 0.7423,
+      "pcgrad_v9_s42": 0.7386,
+      "lo_s42": 0.7357,
+      "tg_v7_s42": 0.7347,
+      "ug_s42": 0.7346,
+      "ss_v8b_s42": "pending_final"
+    },
+    "completed_at": "2026-05-24T06:53:52.873Z"
+  },
+  "timestamp": "2026-05-24T06:53:53.078171+00:00",
+  "trigger": "update_registry"
+}

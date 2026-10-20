@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ecc49c4be284f0095ce6",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "ssh check n500 progress",
+  "task_key": "worker_ssh_check-n500-progress_20260514T222745",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-n500-progress_20260514T222745_result.json",
+    "occurrence": 1,
+    "bytes": 1664,
+    "sha256": "0b1a5039aa57d7798aa3154c503e17d144e629da9b275b361b78b0ac2e34fd98"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 进程状态\n\n| GPU | Session | 当前 condition | 状态 | 进度 |\n|-----|---------|---------------|------|------|\n| GPU0 | tmux `c2_n500_gpu1` | `ds_imp_s020` | alive, 已跑 4h | 接近完成 |\n| GPU1 | tmux `c2_n500_gpu0` | `ds_rand_s025` | alive, 刚启动 1min | 刚开始 |\n| GPU2 | screen `c2_qw_gpu2` | `qw_imp_s025` | alive, 已跑 4min | 2/500 |\n| GPU3 | screen `c2_qw_gpu3` | `qw_rand_s020` | alive, 已跑 3h20m | 483/500 |\n\n## 已完成 conditions (6/16)\n\n| Condition | 完成时间 |\n|-----------|---------|\n| `ds_rand_s015` | 02:05 |\n| `ds_imp_s015` | 02:31 |\n| `ds_rand_s020` | 06:30 (**刚完成**) |\n| `qw_imp_s015` | 03:02 |\n| `qw_imp_s020` | 06:27 |\n| `qw_rand_s015` | 03:11 |\n\n## GPU 使用率\n\n| GPU | 型号 | 利用率 | 显存 |\n|-----|------|--------|------|\n| 0 | RTX PRO 6000 Blackwell | 77% | 33.4/97.9 GB |\n| 1 | RTX PRO 6000 Blackwell | 77% | 18.6/97.9 GB |\n| 2 | RTX PRO 6000 Blackwell | 96% | 22.5/97.9 GB |\n| 3 | RTX PRO 6000 Blackwell | 77% | 34.7/97.9 GB |\n\n## ETA 估算\n\n单 condition 耗时：DeepSeek ~4.5h，Qwen ~3.5h。\n\n| GPU | 剩余队列 | 预计完成 |\n|-----|---------|---------|\n| GPU0 (ds_imp) | s020(~30min) → s025 → s030 | ~16:00 |\n| GPU1 (ds_rand) | s025(刚开始) → s030 | ~15:30 |\n| GPU2 (qw_imp) | s025(刚开始) → s030 | ~13:30 |\n| GPU3 (qw_rand) | s020(~10min) → s025 → s030 | ~13:40 |\n\n**瓶颈在 GPU0 (DeepSeek importance)，全部实验预计 ~16:00 CST 完成。**\n\n## Sentinel 状态\n\n`/tmp/agent-ml-exit/` 存在，包含 39 个 sentinel 文件（均为此前批次实验），无本轮 n=500 实验的 exit sentinel。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-n500-progress.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e54d9dcc1c4782c155c2",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "analysis recency s015 full",
+  "task_key": "worker_analysis_recency_s015_full_20260516T231349",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_recency_s015_full_20260516T231349_result.json",
+    "occurrence": 1,
+    "bytes": 487,
+    "sha256": "8105863eaebb43dde40c241dbad28a1c5ecd02083251327a21d61e8e4074ead5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心结论：\n\n**Triple dissociation 成立** — recency eviction (d_z=0.083, p=0.77, NS) 和 random eviction (d_z=-0.045, p=0.86, NS) 均无 phase gradient，而 importance eviction 有 medium effect (d_z=0.574, p<1e-70)。\n\n这证实 phase-dependent compound sparsity 是 attention-score-based eviction 特有的，不是任何 token removal 策略的 trivial 副产物。报告已写入：\n`artifacts/recency_s015/report/recency_s015_analysis.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-recency-s015-full.md"
+}

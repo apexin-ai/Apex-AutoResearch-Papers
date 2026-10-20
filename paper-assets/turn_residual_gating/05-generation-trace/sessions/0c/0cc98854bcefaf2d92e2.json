@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "0cc98854bcefaf2d92e2",
+  "project": "turn_residual_gating",
+  "kind": "worker",
+  "title": "ops sync figures compile",
+  "task_key": "worker_ops_sync_figures_compile_20260522T161023",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_sync_figures_compile_20260522T161023.log",
+    "occurrence": 1,
+    "bytes": 1236366,
+    "sha256": "688effc6a4d4bde75a18a96dc335437f2818ede3aa96ad49eb4bcdd552cb64f3"
+  },
+  "statistics": {
+    "messages": 565,
+    "user_turns": 1,
+    "tool_calls": 191,
+    "roles": {
+      "log": 1,
+      "system": 143,
+      "record": 1,
+      "assistant": 36,
+      "tool_call": 191,
+      "tool_result": 191,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 114,
+      "chunks": [
+        {
+          "path": "0cc98854bcefaf2d92e2-part-0001.json",
+          "message_count": 114
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 451,
+      "chunks": [
+        {
+          "path": "0cc98854bcefaf2d92e2-part-0001.json",
+          "message_count": 66
+        },
+        {
+          "path": "0cc98854bcefaf2d92e2-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "0cc98854bcefaf2d92e2-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "0cc98854bcefaf2d92e2-part-0004.json",
+          "message_count": 25
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-sync-figures-compile.md"
+}

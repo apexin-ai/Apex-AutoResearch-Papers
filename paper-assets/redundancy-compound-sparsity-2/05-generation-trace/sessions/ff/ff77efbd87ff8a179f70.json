@@ -1,0 +1,1125 @@
+{
+  "schema_version": "1.0",
+  "id": "ff77efbd87ff8a179f70",
+  "project": "redundancy-compound-sparsity-2",
+  "kind": "worker",
+  "title": "code kv eviction",
+  "task_key": "worker_code_kv_eviction_20260512T093327",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_kv_eviction_20260512T093327.log",
+    "occurrence": 1,
+    "bytes": 74797,
+    "sha256": "f2d8e0a5eec261eeb99ff71a733c7b6f16d0d58a44d729dd6d299c0d2f5e2be4"
+  },
+  "statistics": {
+    "messages": 26,
+    "user_turns": 0,
+    "tool_calls": 8,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 6,
+      "tool_call": 8,
+      "tool_result": 8,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl",
+                "session_id": "ce90c334-1f17-4d19-a8f0-1209d5567c32",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "ada8e234-9f9e-4cd1-8a6a-27b05f011254",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-solver-verified-formalizer-rl/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778590200,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "8668e847-d96f-4fd4-a941-2f69c20de9fb",
+                "session_id": "ce90c334-1f17-4d19-a8f0-1209d5567c32"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me first read the dependency file to understand the EMA score interface."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ce90c334-1f17-4d19-a8f0-1209d5567c32",
+            "uuid": "c4bf2f77-624f-4eb9-acd1-3b8d55fb83db",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EpMW5FnUXKxbLC3N5nQ2r9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12189,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12189
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018SQiDrT2W4aGbJiLUrb2wa",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/artifacts/_project/intermediate/carc_utils.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ce90c334-1f17-4d19-a8f0-1209d5567c32",
+            "uuid": "ee7d096a-5dba-45dc-a0a5-03feca6a1478",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EpMW5FnUXKxbLC3N5nQ2r9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12189,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12189
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-12T09:33:36.322Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018SQiDrT2W4aGbJiLUrb2wa",
+              "type": "tool_result",
+              "content": "1\t\"\"\"\n2\tCARC shared utilities: EMA anchors (per-head and concatenated), Welford variance,\n3\tTEAL sparsify, data loading (C4/wikitext/alpaca + MATH-500), statistical helpers.\n4\t\n5\tUsed by carc_calibrate.py and carc_mvp.py.\n6\tDependencies: torch, datasets, numpy\n7\t\"\"\"\n8\t\n9\timport math\n10\tfrom typing import Dict, List, Optional\n11\t\n12\timport numpy as np\n13\timport torch\n14\timport torch.nn.functional as F\n15\t\n16\t\n17\t# ---------------------------------------------------------------------------\n18\t# Welford online variance\n19\t# ---------------------------------------------------------------------------\n20\t\n21\tclass WelfordVariance:\n22\t    \"\"\"Online running variance via Welford's algorithm.\"\"\"\n23\t\n24\t    def __init__(self):\n25\t        self.count = 0\n26\t        self.mean = 0.0\n27\t        self.M2 = 0.0\n28\t\n29\t    def update(self, value: float):\n30\t        self.count += 1\n31\t        delta = value - self.mean\n32\t        self.mean += delta / self.count\n33\t        delta2 = value - self.mean\n34\t        self.M2 += delta * delta2\n35\t\n36\t    @property\n37\t    def variance(self) -> float:\n38\t        # Return 1.0 when insufficient data to avoid division-by-zero;\n39\t        # yields alpha=0.5 (equal K/V weighting) at sequence start.\n40\t        if self.count < 2:\n41\t            return 1.0\n42\t        return self.M2 / (self.count - 1)\n43\t\n44\t\n45\t# ---------------------------------------------------------------------------\n46\t# EMA anchor manager\n47\t# ---------------------------------------------------------------------------\n48\t\n49\tclass EMAAnchorManager:\n50\t    \"\"\"\n51\t    Per-layer EMA anchors for K/V with variance-aware weighting.\n52\t\n53\t    Supports two modes:\n54\t      - per_head=True:  per-head cosine similarity with variance-aware head weighting (GQA)\n55\t      - per_head=False: concatenated K/V vectors (legacy)\n56\t\n57\t    Must be reset between sequences.\n58\t    \"\"\"\n59\t\n60\t    def __init__(self, gamma: float = 0.9, num_kv_heads: Optional[int] = None,\n61\t                 per_head: bool = True, enable_reset: bool = False,\n62\t                 window_size: int = 16, tau_reset: float = 0.3,\n63\t                 n_reset: int = 5):\n64\t        self.gamma = gamma\n65\t        self.num_kv_heads = num_kv_heads\n66\t        self.per_head = per_head and num_kv_heads is not None\n67\t        self.enable_reset = enable_reset\n68\t        self.window_size = window_size\n69\t        self.tau_reset = tau_reset\n70\t        self.n_reset = n_reset\n71\t        self.state: Dict[int, dict] = {}\n72\t\n73\t    def reset(self):\n74\t        \"\"\"Clear all layer states. Call at the start of each new sequence.\"\"\"\n75\t        self.state.clear()\n76\t\n77\t    def compute_scores(\n78\t        self, layer_idx: int, k: torch.Tensor, v: torch.Tensor\n79\t    ) -> torch.Tensor:\n80\t        if self.per_head:\n81\t            return self._compute_scores_per_head(layer_idx, k, v)\n82\t        return self._compute_scores_concat(layer_idx, k, v)\n83\t\n84\t    def _compute_scores_concat(\n85\t        self, layer_idx: int, k: torch.Tensor, v: torch.Tensor\n86\t    ) -> torch.Tensor:\n87\t        \"\"\"Original concatenated-vector implementation.\"\"\"\n88\t        batch, seq_len, dim = k.shape\n89\t        scores = torch.zeros(batch, seq_len, device=k.device, dtype=torch.float32)\n90\t\n91\t        if layer_idx not in self.state:\n92\t            self.state[layer_idx] = {\n93\t                \"anchor_k\": k[:, 0, :].float().clone(),\n94\t                \"anchor_v\": v[:, 0, :].float().clone(),\n95\t                \"welf_k\": WelfordVariance(),\n96\t                \"welf_v\": WelfordVariance(),\n97\t            }\n98\t\n99\t        st = self.state[layer_idx]\n100\t\n101\t        for t in range(seq_len):\n102\t            kt = k[:, t, :].float()\n103\t            vt = v[:, t, :].float()\n104\t\n105\t            cos_k = F.cosine_similarity(kt, st[\"anchor_k\"], dim=-1)\n106\t            cos_v = F.cosine_similarity(vt, st[\"anchor_v\"], dim=-1)\n107\t\n108\t            st[\"welf_k\"].update(cos_k.mean().item())\n109\t            st[\"welf_v\"].update(cos_v.mean().item())\n110\t\n111\t            var_k = st[\"welf_k\"].variance\n112\t            var_v = st[\"welf_v\"].variance\n113\t            inv_k = 1.0 / max(var_k, 1e-8)\n114\t            inv_v = 1.0 / max(var_v, 1e-8)\n115\t            alpha = inv_v / (inv_k + inv_v)\n116\t\n117\t            scores[:, t] = alpha * cos_k + (1.0 - alpha) * cos_v\n118\t\n119\t            st[\"anchor_k\"] = self.gamma * st[\"anchor_k\"] + (1.0 - self.gamma) * kt\n120\t            st[\"anchor_v\"] = self.gamma * st[\"anchor_v\"] + (1.0 - self.gamma) * vt\n121\t\n122\t        return scores\n123\t\n124\t    def _compute_scores_per_head(\n125\t        self, layer_idx: int, k: torch.Tensor, v: torch.Tensor\n126\t    ) -> torch.Tensor:\n127\t        \"\"\"Per-head cosine similarity with variance-aware head weighting.\"\"\"\n128\t        batch, seq_len, dim = k.shape\n129\t        H = self.num_kv_heads\n130\t        head_dim = dim // H\n131\t        k_h = k.view(batch, seq_len, H, head_dim)\n132\t        v_h = v.view(batch, seq_len, H, head_dim)\n133\t\n134\t        scores = torch.zeros(batch, seq_len, device=k.device, dtype=torch.float32)\n135\t\n136\t        if layer_idx not in self.state:\n137\t            self.state[layer_idx] = {\n138\t                \"anchor_k\": k_h[:, 0, :, :].float().clone(),  # (batch, H, head_dim)\n139\t                \"anchor_v\": v_h[:, 0, :, :].float().clone(),\n140\t                \"welf_k\": [WelfordVariance() for _ in range(H)],\n141\t                \"welf_v\": [WelfordVariance() for _ in range(H)],\n142\t            }\n143\t\n144\t        st = self.state[layer_idx]\n145\t\n146\t        for t in range(seq_len):\n147\t            kt = k_h[:, t, :, :].float()  # (batch, H, head_dim)\n148\t            vt = v_h[:, t, :, :].float()\n149\t\n150\t            cos_k = F.cosine_similarity(kt, st[\"anchor_k\"], dim=-1)  # (batch, H)\n151\t            cos_v = F.cosine_similarity(vt, st[\"anchor_v\"], dim=-1)\n152\t\n153\t            head_scores = torch.zeros(batch, H, device=k.device)\n154\t            head_weights = torch.zeros(H, device=k.device)\n155\t\n156\t            for h in range(H):\n157\t                st[\"welf_k\"][h].update(cos_k[:, h].mean().item())\n158\t                st[\"welf_v\"][h].update(cos_v[:, h].mean().item())\n159\t\n160\t                var_k = st[\"welf_k\"][h].variance\n161\t                var_v = st[\"welf_v\"][h].variance\n162\t                inv_k = 1.0 / max(var_k, 1e-8)\n163\t                inv_v = 1.0 / max(var_v, 1e-8)\n164\t                alpha_h = inv_v / (inv_k + inv_v)\n165\t\n166\t                head_scores[:, h] = alpha_h * cos_k[:, h] + (1.0 - alpha_h) * cos_v[:, h]\n167\t                total_var = var_k + var_v\n168\t                head_weights[h] = 1.0 / max(total_var, 1e-8)\n169\t\n170\t            head_weights = head_weights / head_weights.sum()\n171\t            scores[:, t] = (head_scores * head_weights.unsqueeze(0)).sum(dim=-1)\n172\t\n173\t            st[\"anchor_k\"] = self.gamma * st[\"anchor_k\"] + (1.0 - self.gamma) * kt\n174\t            st[\"anchor_v\"] = self.gamma * st[\"anchor_v\"] + (1.0 - self.gamma) * vt\n175\t\n176\t        return scores\n177\t\n178\t\n179\t# ---------------------------------------------------------------------------\n180\t# TEAL sparsify\n181\t# ---------------------------------------------------------------------------\n182\t\n183\tdef sparsify(x: torch.Tensor, threshold: float) -> torch.Tensor:\n184\t    \"\"\"TEAL magnitude-based activation pruning: zero out elements where |x| <= threshold.\"\"\"\n185\t    return x.abs().gt(threshold) * x\n186\t\n187\t\n188\t# ---------------------------------------------------------------------------\n189\t# Perturbation\n190\t# ---------------------------------------------------------------------------\n191\t\n192\tdef compute_perturbation(\n193\t    output_sparse: torch.Tensor, output_base: torch.Tensor, eps: float = 1e-8\n194\t) -> torch.Tensor:\n195\t    \"\"\"\n196\t    Per-token relative perturbation: ||O_sparse - O_base||_2 / ||O_base||_2.\n197\t\n198\t    Args:\n199\t        output_sparse: (batch, seq_len, dim)\n200\t        output_base:   (batch, seq_len, dim)\n201\t\n202\t    Returns:\n203\t        (batch, seq_len) perturbation fractions.\n204\t    \"\"\"\n205\t    diff_norm = (output_sparse - output_base).float().norm(dim=-1)\n206\t    base_norm = output_base.float().norm(dim=-1).clamp(min=eps)\n207\t    return diff_norm / base_norm\n208\t\n209\t\n210\t# ---------------------------------------------------------------------------\n211\t# Histogram → threshold\n212\t# ---------------------------------------------------------------------------\n213\t\n214\tdef threshold_from_histogram(\n215\t    counts: torch.Tensor, bin_edges: torch.Tensor, sparsity: float\n216\t) -> float:\n217\t    \"\"\"\n218\t    Compute activation magnitude threshold from an absolute-value histogram.\n219\t\n220\t    Finds t such that `sparsity` fraction of |activations| <= t\n221\t    (the sparsity-th percentile of the |x| distribution).\n222\t    Uses linear interpolation within the target bin.\n223\t    \"\"\"\n224\t    cdf = counts.cumsum(0).double()\n225\t    total = cdf[-1].item()\n226\t    if total == 0:\n227\t        return 0.0\n228\t    cdf = cdf / total\n229\t\n230\t    idx = torch.searchsorted(cdf, sparsity).item()\n231\t    idx = min(idx, len(bin_edges) - 2)\n232\t\n233\t    cdf_lo = cdf[idx - 1].item() if idx > 0 else 0.0\n234\t    cdf_hi = cdf[idx].item()\n235\t    edge_lo = bin_edges[idx].item()\n236\t    edge_hi = bin_edges[idx + 1].item()\n237\t\n238\t    if cdf_hi - cdf_lo < 1e-10:\n239\t        return edge_hi\n240\t    frac = (sparsity - cdf_lo) / (cdf_hi - cdf_lo)\n241\t    return edge_lo + frac * (edge_hi - edge_lo)\n242\t\n243\t\n244\t# ---------------------------------------------------------------------------\n245\t# Statistical helpers\n246\t# ---------------------------------------------------------------------------\n247\t\n248\tdef residualize(x: np.ndarray, z: np.ndarray) -> np.ndarray:\n249\t    \"\"\"Regress x on z (with intercept), return residuals.\"\"\"\n250\t    z_aug = np.column_stack([z, np.ones(len(z))])\n251\t    beta = np.linalg.lstsq(z_aug, x, rcond=None)[0]\n252\t    return x - z_aug @ beta\n253\t\n254\t\n255\t# ---------------------------------------------------------------------------\n256\t# Data loading\n257\t# ---------------------------------------------------------------------------\n258\t\n259\tdef load_math_data(num_problems: int = 60, seed: int = 42) -> List[str]:\n260\t    \"\"\"\n261\t    Load MATH competition problems and format as CoT prompts.\n262\t\n263\t    Returns list of prompt strings (not tokenized).\n264\t    \"\"\"\n265\t    from datasets import load_dataset\n266\t\n267\t    ds = load_dataset(\"hendrycks/competition_math\", split=\"test\", trust_remote_code=True)\n268\t    rng = np.random.RandomState(seed)\n269\t    indices = rng.choice(len(ds), size=min(num_problems, len(ds)), replace=False)\n270\t\n271\t    prompts = []\n272\t    for idx in indices:\n273\t        item = ds[int(idx)]\n274\t        problem = item[\"problem\"]\n275\t        prompt = (\n276\t            f\"Solve the following math problem step by step. \"\n277\t            f\"Show your complete reasoning.\\n\\n\"\n278\t            f\"Problem: {problem}\\n\\n\"\n279\t            f\"Solution: Let me think through this carefully.\\n\"\n280\t        )\n281\t        prompts.append(prompt)\n282\t    return prompts\n283\t\n284\t\n285\tdef load_eval_data(\n286\t    dataset_name: str = \"c4\",\n287\t    num_samples: int = 100,\n288\t    seq_len: int = 2048,\n289\t    tokenizer=None,\n290\t    split: str = \"validation\",\n291\t    seed: int = 42,\n292\t) -> List[torch.Tensor]:\n293\t    \"\"\"\n294\t    Load and tokenize evaluation data into fixed-length token sequences.\n295\t\n296\t    Supports: c4, wikitext, alpaca.\n297\t    Returns list of (seq_len,) token ID tensors.\n298\t    \"\"\"\n299\t    from datasets import load_dataset\n300\t\n301\t    if dataset_name == \"c4\":\n302\t        ds = load_dataset(\"allenai/c4\", \"en\", split=split, streaming=True, trust_remote_code=True)\n303\t    elif dataset_name == \"wikitext\":\n304\t        ds = load_dataset(\"wikitext\", \"wikitext-2-raw-v1\", split=split, trust_remote_code=True)\n305\t    elif dataset_name == \"alpaca\":\n306\t        ds = load_dataset(\"tatsu-lab/alpaca\", split=\"train\", trust_remote_code=True)\n307\t    else:\n308\t        raise ValueError(f\"Unknown dataset: {dataset_name}. Choose from: c4, wikitext, alpaca\")\n309\t\n310\t    buffer: List[str] = []\n311\t    for item in ds:\n312\t        if dataset_name == \"alpaca\":\n313\t            text = f\"{item.get('instruction', '')} {item.get('input', '')} {item.get('output', '')}\"\n314\t        else:\n315\t            text = item.get(\"text\", \"\")\n316\t        if text and len(text.strip()) >= 50:\n317\t            buffer.append(text)\n318\t        if len(buffer) >= num_samples * 5:\n319\t            break\n320\t\n321\t    samples: List[torch.Tensor] = []\n322\t    for text in buffer:\n323\t        ids = tokenizer(text, return_tensors=\"pt\", add_special_tokens=False).input_ids[0]\n324\t        if len(ids) >= seq_len:\n325\t            samples.append(ids[:seq_len])\n326\t        if len(samples) >= num_samples:\n327\t            break\n328\t\n329\t    # Concatenate short texts if needed\n330\t    if len(samples) < num_samples:\n331\t        all_ids = torch.cat(\n332\t            [tokenizer(t, return_tensors=\"pt\", add_special_tokens=False).input_ids[0] for t in buffer]\n333\t        )\n334\t        for i in range(0, len(all_ids) - seq_len + 1, seq_len):\n335\t            if len(samples) >= num_samples:\n336\t                break\n337\t            samples.append(all_ids[i : i + seq_len])\n338\t\n339\t    return samples[:num_samples]\n340\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ce90c334-1f17-4d19-a8f0-1209d5567c32",
+            "uuid": "641c2faa-56f3-45ab-a4bb-62e03a578ee6",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/artifacts/_project/intermediate/carc_utils.py",
+                "content": "\"\"\"\nCARC shared utilities: EMA anchors (per-head and concatenated), Welford variance,\nTEAL sparsify, data loading (C4/wikitext/alpaca + MATH-500), statistical helpers.\n\nUsed by carc_calibrate.py and carc_mvp.py.\nDependencies: torch, datasets, numpy\n\"\"\"\n\nimport math\nfrom typing import Dict, List, Optional\n\nimport numpy as np\nimport torch\nimport torch.nn.functional as F\n\n\n# ---------------------------------------------------------------------------\n# Welford online variance\n# ---------------------------------------------------------------------------\n\nclass WelfordVariance:\n    \"\"\"Online running variance via Welford's algorithm.\"\"\"\n\n    def __init__(self):\n        self.count = 0\n        self.mean = 0.0\n        self.M2 = 0.0\n\n    def update(self, value: float):\n        self.count += 1\n        delta = value - self.mean\n        self.mean += delta / self.count\n        delta2 = value - self.mean\n        self.M2 += delta * delta2\n\n    @property\n    def variance(self) -> float:\n        # Return 1.0 when insufficient data to avoid division-by-zero;\n        # yields alpha=0.5 (equal K/V weighting) at sequence start.\n        if self.count < 2:\n            return 1.0\n        return self.M2 / (self.count - 1)\n\n\n# ---------------------------------------------------------------------------\n# EMA anchor manager\n# ---------------------------------------------------------------------------\n\nclass EMAAnchorManager:\n    \"\"\"\n    Per-layer EMA anchors for K/V with variance-aware weighting.\n\n    Supports two modes:\n      - per_head=True:  per-head cosine similarity with variance-aware head weighting (GQA)\n      - per_head=False: concatenated K/V vectors (legacy)\n\n    Must be reset between sequences.\n    \"\"\"\n\n    def __init__(self, gamma: float = 0.9, num_kv_heads: Optional[int] = None,\n                 per_head: bool = True, enable_reset: bool = False,\n                 window_size: int = 16, tau_reset: float = 0.3,\n                 n_reset: int = 5):\n        self.gamma = gamma\n        self.num_kv_heads = num_kv_heads\n        self.per_head = per_head and num_kv_heads is not None\n        self.enable_reset = enable_reset\n        self.window_size = window_size\n        self.tau_reset = tau_reset\n        self.n_reset = n_reset\n        self.state: Dict[int, dict] = {}\n\n    def reset(self):\n        \"\"\"Clear all layer states. Call at the start of each new sequence.\"\"\"\n        self.state.clear()\n\n    def compute_scores(\n        self, layer_idx: int, k: torch.Tensor, v: torch.Tensor\n    ) -> torch.Tensor:\n        if self.per_head:\n            return self._compute_scores_per_head(layer_idx, k, v)\n        return self._compute_scores_concat(layer_idx, k, v)\n\n    def _compute_scores_concat(\n        self, layer_idx: int, k: torch.Tensor, v: torch.Tensor\n    ) -> torch.Tensor:\n        \"\"\"Original concatenated-vector implementation.\"\"\"\n        batch, seq_len, dim = k.shape\n        scores = torch.zeros(batch, seq_len, device=k.device, dtype=torch.float32)\n\n        if layer_idx not in self.state:\n            self.state[layer_idx] = {\n                \"anchor_k\": k[:, 0, :].float().clone(),\n                \"anchor_v\": v[:, 0, :].float().clone(),\n                \"welf_k\": WelfordVariance(),\n                \"welf_v\": WelfordVariance(),\n            }\n\n        st = self.state[layer_idx]\n\n        for t in range(seq_len):\n            kt = k[:, t, :].float()\n            vt = v[:, t, :].float()\n\n            cos_k = F.cosine_similarity(kt, st[\"anchor_k\"], dim=-1)\n            cos_v = F.cosine_similarity(vt, st[\"anchor_v\"], dim=-1)\n\n            st[\"welf_k\"].update(cos_k.mean().item())\n            st[\"welf_v\"].update(cos_v.mean().item())\n\n            var_k = st[\"welf_k\"].variance\n            var_v = st[\"welf_v\"].variance\n            inv_k = 1.0 / max(var_k, 1e-8)\n            inv_v = 1.0 / max(var_v, 1e-8)\n            alpha = inv_v / (inv_k + inv_v)\n\n            scores[:, t] = alpha * cos_k + (1.0 - alpha) * cos_v\n\n            st[\"anchor_k\"] = self.gamma * st[\"anchor_k\"] + (1.0 - self.gamma) * kt\n            st[\"anchor_v\"] = self.gamma * st[\"anchor_v\"] + (1.0 - self.gamma) * vt\n\n        return scores\n\n    def _compute_scores_per_head(\n        self, layer_idx: int, k: torch.Tensor, v: torch.Tensor\n    ) -> torch.Tensor:\n        \"\"\"Per-head cosine similarity with variance-aware head weighting.\"\"\"\n        batch, seq_len, dim = k.shape\n        H = self.num_kv_heads\n        head_dim = dim // H\n        k_h = k.view(batch, seq_len, H, head_dim)\n        v_h = v.view(batch, seq_len, H, head_dim)\n\n        scores = torch.zeros(batch, seq_len, device=k.device, dtype=torch.float32)\n\n        if layer_idx not in self.state:\n            self.state[layer_idx] = {\n                \"anchor_k\": k_h[:, 0, :, :].float().clone(),  # (batch, H, head_dim)\n                \"anchor_v\": v_h[:, 0, :, :].float().clone(),\n                \"welf_k\": [WelfordVariance() for _ in range(H)],\n                \"welf_v\": [WelfordVariance() for _ in range(H)],\n            }\n\n        st = self.state[layer_idx]\n\n        for t in range(seq_len):\n            kt = k_h[:, t, :, :].float()  # (batch, H, head_dim)\n            vt = v_h[:, t, :, :].float()\n\n            cos_k = F.cosine_similarity(kt, st[\"anchor_k\"], dim=-1)  # (batch, H)\n            cos_v = F.cosine_similarity(vt, st[\"anchor_v\"], dim=-1)\n\n            head_scores = torch.zeros(batch, H, device=k.device)\n            head_weights = torch.zeros(H, device=k.device)\n\n            for h in range(H):\n                st[\"welf_k\"][h].update(cos_k[:, h].mean().item())\n                st[\"welf_v\"][h].update(cos_v[:, h].mean().item())\n\n                var_k = st[\"welf_k\"][h].variance\n                var_v = st[\"welf_v\"][h].variance\n                inv_k = 1.0 / max(var_k, 1e-8)\n                inv_v = 1.0 / max(var_v, 1e-8)\n                alpha_h = inv_v / (inv_k + inv_v)\n\n                head_scores[:, h] = alpha_h * cos_k[:, h] + (1.0 - alpha_h) * cos_v[:, h]\n                total_var = var_k + var_v\n                head_weights[h] = 1.0 / max(total_var, 1e-8)\n\n            head_weights = head_weights / head_weights.sum()\n            scores[:, t] = (head_scores * head_weights.unsqueeze(0)).sum(dim=-1)\n\n            st[\"anchor_k\"] = self.gamma * st[\"anchor_k\"] + (1.0 - self.gamma) * kt\n            st[\"anchor_v\"] = self.gamma * st[\"anchor_v\"] + (1.0 - self.gamma) * vt\n\n        return scores\n\n\n# ---------------------------------------------------------------------------\n# TEAL sparsify\n# ---------------------------------------------------------------------------\n\ndef sparsify(x: torch.Tensor, threshold: float) -> torch.Tensor:\n    \"\"\"TEAL magnitude-based activation pruning: zero out elements where |x| <= threshold.\"\"\"\n    return x.abs().gt(threshold) * x\n\n\n# ---------------------------------------------------------------------------\n# Perturbation\n# ---------------------------------------------------------------------------\n\ndef compute_perturbation(\n    output_sparse: torch.Tensor, output_base: torch.Tensor, eps: float = 1e-8\n) -> torch.Tensor:\n    \"\"\"\n    Per-token relative perturbation: ||O_sparse - O_base||_2 / ||O_base||_2.\n\n    Args:\n        output_sparse: (batch, seq_len, dim)\n        output_base:   (batch, seq_len, dim)\n\n    Returns:\n        (batch, seq_len) perturbation fractions.\n    \"\"\"\n    diff_norm = (output_sparse - output_base).float().norm(dim=-1)\n    base_norm = output_base.float().norm(dim=-1).clamp(min=eps)\n    return diff_norm / base_norm\n\n\n# ---------------------------------------------------------------------------\n# Histogram → threshold\n# ---------------------------------------------------------------------------\n\ndef threshold_from_histogram(\n    counts: torch.Tensor, bin_edges: torch.Tensor, sparsity: float\n) -> float:\n    \"\"\"\n    Compute activation magnitude threshold from an absolute-value histogram.\n\n    Finds t such that `sparsity` fraction of |activations| <= t\n    (the sparsity-th percentile of the |x| distribution).\n    Uses linear interpolation within the target bin.\n    \"\"\"\n    cdf = counts.cumsum(0).double()\n    total = cdf[-1].item()\n    if total == 0:\n        return 0.0\n    cdf = cdf / total\n\n    idx = torch.searchsorted(cdf, sparsity).item()\n    idx = min(idx, len(bin_edges) - 2)\n\n    cdf_lo = cdf[idx - 1].item() if idx > 0 else 0.0\n    cdf_hi = cdf[idx].item()\n    edge_lo = bin_edges[idx].item()\n    edge_hi = bin_edges[idx + 1].item()\n\n    if cdf_hi - cdf_lo < 1e-10:\n        return edge_hi\n    frac = (sparsity - cdf_lo) / (cdf_hi - cdf_lo)\n    return edge_lo + frac * (edge_hi - edge_lo)\n\n\n# ---------------------------------------------------------------------------\n# Statistical helpers\n# ---------------------------------------------------------------------------\n\ndef residualize(x: np.ndarray, z: np.ndarray) -> np.ndarray:\n    \"\"\"Regress x on z (with intercept), return residuals.\"\"\"\n    z_aug = np.column_stack([z, np.ones(len(z))])\n    beta = np.linalg.lstsq(z_aug, x, rcond=None)[0]\n    return x - z_aug @ beta\n\n\n# ---------------------------------------------------------------------------\n# Data loading\n# ---------------------------------------------------------------------------\n\ndef load_math_data(num_problems: int = 60, seed: int = 42) -> List[str]:\n    \"\"\"\n    Load MATH competition problems and format as CoT prompts.\n\n    Returns list of prompt strings (not tokenized).\n    \"\"\"\n    from datasets import load_dataset\n\n    ds = load_dataset(\"hendrycks/competition_math\", split=\"test\", trust_remote_code=True)\n    rng = np.random.RandomState(seed)\n    indices = rng.choice(len(ds), size=min(num_problems, len(ds)), replace=False)\n\n    prompts = []\n    for idx in indices:\n        item = ds[int(idx)]\n        problem = item[\"problem\"]\n        prompt = (\n            f\"Solve the following math problem step by step. \"\n            f\"Show your complete reasoning.\\n\\n\"\n            f\"Problem: {problem}\\n\\n\"\n            f\"Solution: Let me think through this carefully.\\n\"\n        )\n        prompts.append(prompt)\n    return prompts\n\n\ndef load_eval_data(\n    dataset_name: str = \"c4\",\n    num_samples: int = 100,\n    seq_len: int = 2048,\n    tokenizer=None,\n    split: str = \"validation\",\n    seed: int = 42,\n) -> List[torch.Tensor]:\n    \"\"\"\n    Load and tokenize evaluation data into fixed-length token sequences.\n\n    Supports: c4, wikitext, alpaca.\n    Returns list of (seq_len,) token ID tensors.\n    \"\"\"\n    from datasets import load_dataset\n\n    if dataset_name == \"c4\":\n        ds = load_dataset(\"allenai/c4\", \"en\", split=split, streaming=True, trust_remote_code=True)\n    elif dataset_name == \"wikitext\":\n        ds = load_dataset(\"wikitext\", \"wikitext-2-raw-v1\", split=split, trust_remote_code=True)\n    elif dataset_name == \"alpaca\":\n        ds = load_dataset(\"tatsu-lab/alpaca\", split=\"train\", trust_remote_code=True)\n    else:\n        raise ValueError(f\"Unknown dataset: {dataset_name}. Choose from: c4, wikitext, alpaca\")\n\n    buffer: List[str] = []\n    for item in ds:\n        if dataset_name == \"alpaca\":\n            text = f\"{item.get('instruction', '')} {item.get('input', '')} {item.get('output', '')}\"\n        else:\n            text = item.get(\"text\", \"\")\n        if text and len(text.strip()) >= 50:\n            buffer.append(text)\n        if len(buffer) >= num_samples * 5:\n            break\n\n    samples: List[torch.Tensor] = []\n    for text in buffer:\n        ids = tokenizer(text, return_tensors=\"pt\", add_special_tokens=False).input_ids[0]\n        if len(ids) >= seq_len:\n            samples.append(ids[:seq_len])\n        if len(samples) >= num_samples:\n            break\n\n    # Concatenate short texts if needed\n    if len(samples) < num_samples:\n        all_ids = torch.cat(\n            [tokenizer(t, return_tensors=\"pt\", add_special_tokens=False).input_ids[0] for t in buffer]\n        )\n        for i in range(0, len(all_ids) - seq_len + 1, seq_len):\n            if len(samples) >= num_samples:\n                break\n            samples.append(all_ids[i : i + seq_len])\n\n    return samples[:num_samples]\n",
+                "numLines": 340,
+                "startLine": 1,
+                "totalLines": 340
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I understand the EMA score interface. The `EMAAnchorManager.compute_scores()` returns a tensor of shape `(batch, seq_len)` representing per-token EMA similarity scores for a given layer. Let me now implement the `CARCKVEviction` module.\n\nLet me also check the target directory exists.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ce90c334-1f17-4d19-a8f0-1209d5567c32",
+            "uuid": "729b1145-a6a8-4ff0-9613-abda506e14dd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014rpgUDTv7qxt2ugMgKcfZo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4614,
+                "cache_read_input_tokens": 24030,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4614
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I'll check the target directory exists, then implement the module."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ce90c334-1f17-4d19-a8f0-1209d5567c32",
+            "uuid": "ecfde917-ce07-497f-b2f4-1f07640056ad",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014rpgUDTv7qxt2ugMgKcfZo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4614,
+                "cache_read_input_tokens": 24030,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4614
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012t59EbEax3LbSvjMw8gQL5",
+              "name": "Bash",
+              "input": {
+                "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/artifacts/_project/intermediate/",
+                "description": "List intermediate artifacts directory"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ce90c334-1f17-4d19-a8f0-1209d5567c32",
+            "uuid": "1e223713-7b8a-4949-9a65-a2fdf87b6d24",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014rpgUDTv7qxt2ugMgKcfZo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4614,
+                "cache_read_input_tokens": 24030,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4614
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-12T09:33:43.668Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012t59EbEax3LbSvjMw8gQL5",
+              "type": "tool_result",
+              "content": "carc_calibrate.py\ncarc_mvp.py\ncarc_utils.py",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ce90c334-1f17-4d19-a8f0-1209d5567c32",
+            "uuid": "70b08641-067f-4154-bcd3-87444b30ec01",
+            "tool_use_result": {
+              "stdout": "carc_calibrate.py\ncarc_mvp.py\ncarc_utils.py",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Q6WsWSP3RusFMf36JMjkmQ",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/artifacts/_project/intermediate/carc_kv_eviction.py",
+                "content": "\"\"\"\nCARC KV Cache Eviction — budget-triggered eviction with recurrence-aware protection.\n\nWhen KV cache length exceeds a preset budget, evicts tokens with the highest\ncumulative EMA similarity scores (most redundant), while protecting recent tokens\nwithin a grace window and the attention sink (position 0).\n\nInputs:\n  - Per-step EMA similarity scores from EMAAnchorManager (batch, num_layers) or scalar\n  - KV cache (DynamicCache or legacy tuple format)\n\nOutputs:\n  - Boolean eviction masks\n  - Pruned KV caches\n\nDependencies: torch, transformers (DynamicCache)\n\"\"\"\n\nfrom typing import Any, Dict, Optional, Tuple, Union\n\nimport torch\nimport torch.nn.functional as F\n\n\nclass CARCKVEviction:\n    \"\"\"\n    Budget-triggered KV cache eviction using cumulative EMA similarity scores.\n\n    When KV cache length exceeds budget, evicts the most redundant tokens\n    (highest cumulative EMA score) while protecting recent tokens.\n    \"\"\"\n\n    def __init__(self, budget: int, grace_window: int = 175,\n                 evict_ratio: float = 0.1):\n        \"\"\"\n        Args:\n            budget: Max KV cache length before triggering eviction.\n            grace_window: Recent tokens protected from eviction (W_grace).\n            evict_ratio: Fraction of over-budget tokens to evict per trigger.\n        \"\"\"\n        self.budget = budget\n        self.grace_window = grace_window\n        self.evict_ratio = evict_ratio\n\n        self._cumulative_scores: Optional[torch.Tensor] = None\n        self._length: int = 0\n\n        self._total_evicted: int = 0\n        self._eviction_triggers: int = 0\n        self._sum_evicted_scores: float = 0.0\n        self._current_cache_length: int = 0\n\n    def update_scores(self, ema_scores: torch.Tensor) -> None:\n        \"\"\"\n        Accumulate per-token EMA similarity scores.\n\n        Args:\n            ema_scores: Current step scores. Supported shapes:\n                - (batch, num_layers, 1): per-layer scalar per token — averaged across layers\n                - (batch, seq_len): per-token scores from a single layer\n                - (seq_len,): unbatched single-layer scores\n                - scalar: single score for the latest token\n        \"\"\"\n        scores = ema_scores.float().detach()\n\n        if scores.dim() == 0:\n            scores = scores.unsqueeze(0)\n        if scores.dim() == 3:\n            # (batch, num_layers, 1) -> average across layers, squeeze last dim\n            scores = scores.mean(dim=1).squeeze(-1)  # (batch,)\n        if scores.dim() == 2:\n            # (batch, seq_len) -> average across batch\n            scores = scores.mean(dim=0)  # (seq_len,)\n        # scores is now (seq_len,) or (1,)\n\n        if self._cumulative_scores is None:\n            self._cumulative_scores = scores.clone()\n            self._length = scores.shape[0]\n        else:\n            new_len = scores.shape[0]\n            if new_len == 1:\n                # Appending a single new token score\n                self._cumulative_scores = torch.cat([\n                    self._cumulative_scores,\n                    scores,\n                ])\n                self._length += 1\n            elif new_len == self._length:\n                # Full update for all existing positions\n                self._cumulative_scores = self._cumulative_scores + scores\n            elif new_len > self._length:\n                # Scores include new positions beyond current length\n                self._cumulative_scores[:self._length] += scores[:self._length]\n                self._cumulative_scores = torch.cat([\n                    self._cumulative_scores,\n                    scores[self._length:],\n                ])\n                self._length = new_len\n            else:\n                # Partial update (fewer positions than current — update first new_len)\n                self._cumulative_scores[:new_len] += scores\n\n    def should_evict(self, cache_length: int) -> bool:\n        \"\"\"Returns True when cache_length exceeds the budget.\"\"\"\n        self._current_cache_length = cache_length\n        return cache_length > self.budget\n\n    def compute_eviction_mask(self, cache_length: int) -> torch.Tensor:\n        \"\"\"\n        Compute a boolean keep/evict mask for the KV cache.\n\n        Args:\n            cache_length: Current sequence length in the KV cache.\n\n        Returns:\n            Boolean tensor of shape (cache_length,). True = keep, False = evict.\n        \"\"\"\n        self._current_cache_length = cache_length\n        n_evict = int((cache_length - self.budget) * (1.0 + self.evict_ratio))\n        n_evict = max(n_evict, 1)\n\n        # Build cumulative scores aligned to cache_length\n        if self._cumulative_scores is None or self._cumulative_scores.shape[0] == 0:\n            return torch.ones(cache_length, dtype=torch.bool)\n\n        cum = self._cumulative_scores[:cache_length]\n        if cum.shape[0] < cache_length:\n            # Pad with zeros for positions we haven't scored yet\n            cum = F.pad(cum, (0, cache_length - cum.shape[0]), value=0.0)\n\n        # Protection mask: True = protected (cannot be evicted)\n        protected = torch.zeros(cache_length, dtype=torch.bool, device=cum.device)\n        protected[0] = True  # attention sink\n        grace_start = max(cache_length - self.grace_window, 1)\n        protected[grace_start:] = True\n\n        # Set protected positions to -inf so they're never selected for eviction\n        evictable_scores = cum.clone()\n        evictable_scores[protected] = float(\"-inf\")\n\n        n_evictable = (~protected).sum().item()\n        n_evict = min(n_evict, n_evictable)\n\n        if n_evict <= 0:\n            return torch.ones(cache_length, dtype=torch.bool, device=cum.device)\n\n        # Select top-n_evict highest scores among evictable positions\n        _, topk_indices = torch.topk(evictable_scores, n_evict)\n\n        keep_mask = torch.ones(cache_length, dtype=torch.bool, device=cum.device)\n        keep_mask[topk_indices] = False\n\n        # Track stats\n        evicted_scores = cum[topk_indices]\n        self._total_evicted += n_evict\n        self._eviction_triggers += 1\n        self._sum_evicted_scores += evicted_scores.sum().item()\n\n        # Compact cumulative scores to match new cache after eviction\n        self._cumulative_scores = cum[keep_mask]\n        self._length = self._cumulative_scores.shape[0]\n\n        return keep_mask\n\n    def apply_eviction(\n        self,\n        past_key_values: Any,\n        eviction_mask: torch.Tensor,\n    ) -> Any:\n        \"\"\"\n        Apply eviction mask to HuggingFace KV cache.\n\n        Supports:\n          - DynamicCache (transformers >= 4.36): key_cache/value_cache lists\n          - Legacy tuple format: tuple of (key, value) pairs per layer\n\n        Args:\n            past_key_values: The model's KV cache.\n            eviction_mask: Boolean tensor (cache_length,). True = keep.\n\n        Returns:\n            Pruned past_key_values in the same format as input.\n        \"\"\"\n        mask = eviction_mask.bool()\n\n        # DynamicCache path\n        if hasattr(past_key_values, \"key_cache\") and hasattr(past_key_values, \"value_cache\"):\n            for layer_idx in range(len(past_key_values.key_cache)):\n                # Shape: (batch, num_heads, seq_len, head_dim)\n                k = past_key_values.key_cache[layer_idx]\n                v = past_key_values.value_cache[layer_idx]\n                seq_mask = mask.to(k.device)\n                # Index along seq_len dimension (dim=2)\n                past_key_values.key_cache[layer_idx] = k[:, :, seq_mask, :]\n                past_key_values.value_cache[layer_idx] = v[:, :, seq_mask, :]\n            return past_key_values\n\n        # Legacy tuple format: tuple of (key, value) per layer\n        pruned = []\n        for layer_kv in past_key_values:\n            k, v = layer_kv[0], layer_kv[1]\n            seq_mask = mask.to(k.device)\n            if k.dim() == 4:\n                # (batch, num_heads, seq_len, head_dim)\n                pruned.append((k[:, :, seq_mask, :], v[:, :, seq_mask, :]))\n            else:\n                # (batch, seq_len, dim)\n                pruned.append((k[:, seq_mask, :], v[:, seq_mask, :]))\n        return tuple(pruned)\n\n    def reset(self) -> None:\n        \"\"\"Clear all accumulated scores and internal state.\"\"\"\n        self._cumulative_scores = None\n        self._length = 0\n        self._total_evicted = 0\n        self._eviction_triggers = 0\n        self._sum_evicted_scores = 0.0\n        self._current_cache_length = 0\n\n    def eviction_stats(self) -> Dict[str, Union[int, float]]:\n        \"\"\"\n        Returns eviction statistics.\n\n        Returns:\n            Dict with total_evicted, eviction_triggers, avg_evicted_score,\n            and cache_utilization.\n        \"\"\"\n        avg_score = 0.0\n        if self._total_evicted > 0:\n            avg_score = self._sum_evicted_scores / self._total_evicted\n\n        utilization = 0.0\n        if self.budget > 0:\n            utilization = self._current_cache_length / self.budget\n\n        return {\n            \"total_evicted\": self._total_evicted,\n            \"eviction_triggers\": self._eviction_triggers,\n            \"avg_evicted_score\": avg_score,\n            \"cache_utilization\": utilization,\n        }\n\n\ndef create_eviction_hook(eviction_manager: CARCKVEviction, ema_manager) -> callable:\n    \"\"\"\n    Creates a generation hook that auto-evicts during model.generate().\n\n    The returned callable has signature compatible with transformers\n    GenerationMixin — it can be passed as a logits_processor or called\n    manually after each generation step.\n\n    Args:\n        eviction_manager: CARCKVEviction instance with budget configured.\n        ema_manager: EMAAnchorManager instance for computing per-step scores.\n\n    Returns:\n        A callable(step, input_ids, past_key_values, **kwargs) -> past_key_values\n        that computes EMA scores, updates the eviction manager, and evicts\n        if the cache exceeds budget.\n    \"\"\"\n\n    def hook(\n        step: int,\n        input_ids: torch.Tensor,\n        past_key_values: Any,\n        layer_keys: Optional[torch.Tensor] = None,\n        layer_values: Optional[torch.Tensor] = None,\n        layer_idx: int = 0,\n        **kwargs,\n    ) -> Any:\n        \"\"\"\n        Per-step eviction hook.\n\n        Args:\n            step: Current generation step index.\n            input_ids: Current input token ids.\n            past_key_values: Model's KV cache.\n            layer_keys: Key tensor for the current layer (batch, seq_len, dim).\n            layer_values: Value tensor for the current layer (batch, seq_len, dim).\n            layer_idx: Which layer these K/V belong to.\n\n        Returns:\n            Potentially pruned past_key_values.\n        \"\"\"\n        if layer_keys is not None and layer_values is not None:\n            scores = ema_manager.compute_scores(layer_idx, layer_keys, layer_values)\n            eviction_manager.update_scores(scores)\n\n        # Determine cache length\n        if hasattr(past_key_values, \"key_cache\") and len(past_key_values.key_cache) > 0:\n            cache_length = past_key_values.key_cache[0].shape[2]\n        elif isinstance(past_key_values, tuple) and len(past_key_values) > 0:\n            cache_length = past_key_values[0][0].shape[-2]\n        else:\n            return past_key_values\n\n        if eviction_manager.should_evict(cache_length):\n            mask = eviction_manager.compute_eviction_mask(cache_length)\n            past_key_values = eviction_manager.apply_eviction(past_key_values, mask)\n\n        return past_key_values\n\n    return hook\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ce90c334-1f17-4d19-a8f0-1209d5567c32",
+            "uuid": "a404f60d-7e1d-4e9b-b073-f191f0c03487",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019FbfakAbgmNDxvAu7qNPZE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 250,
+                "cache_read_input_tokens": 28644,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 250
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-12T09:34:34.512Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Q6WsWSP3RusFMf36JMjkmQ",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/artifacts/_project/intermediate/carc_kv_eviction.py"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ce90c334-1f17-4d19-a8f0-1209d5567c32",
+            "uuid": "7152177f-f905-4caa-8a25-e885255959d6",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/artifacts/_project/intermediate/carc_kv_eviction.py",
+              "content": "\"\"\"\nCARC KV Cache Eviction — budget-triggered eviction with recurrence-aware protection.\n\nWhen KV cache length exceeds a preset budget, evicts tokens with the highest\ncumulative EMA similarity scores (most redundant), while protecting recent tokens\nwithin a grace window and the attention sink (position 0).\n\nInputs:\n  - Per-step EMA similarity scores from EMAAnchorManager (batch, num_layers) or scalar\n  - KV cache (DynamicCache or legacy tuple format)\n\nOutputs:\n  - Boolean eviction masks\n  - Pruned KV caches\n\nDependencies: torch, transformers (DynamicCache)\n\"\"\"\n\nfrom typing import Any, Dict, Optional, Tuple, Union\n\nimport torch\nimport torch.nn.functional as F\n\n\nclass CARCKVEviction:\n    \"\"\"\n    Budget-triggered KV cache eviction using cumulative EMA similarity scores.\n\n    When KV cache length exceeds budget, evicts the most redundant tokens\n    (highest cumulative EMA score) while protecting recent tokens.\n    \"\"\"\n\n    def __init__(self, budget: int, grace_window: int = 175,\n                 evict_ratio: float = 0.1):\n        \"\"\"\n        Args:\n            budget: Max KV cache length before triggering eviction.\n            grace_window: Recent tokens protected from eviction (W_grace).\n            evict_ratio: Fraction of over-budget tokens to evict per trigger.\n        \"\"\"\n        self.budget = budget\n        self.grace_window = grace_window\n        self.evict_ratio = evict_ratio\n\n        self._cumulative_scores: Optional[torch.Tensor] = None\n        self._length: int = 0\n\n        self._total_evicted: int = 0\n        self._eviction_triggers: int = 0\n        self._sum_evicted_scores: float = 0.0\n        self._current_cache_length: int = 0\n\n    def update_scores(self, ema_scores: torch.Tensor) -> None:\n        \"\"\"\n        Accumulate per-token EMA similarity scores.\n\n        Args:\n            ema_scores: Current step scores. Supported shapes:\n                - (batch, num_layers, 1): per-layer scalar per token — averaged across layers\n                - (batch, seq_len): per-token scores from a single layer\n                - (seq_len,): unbatched single-layer scores\n                - scalar: single score for the latest token\n        \"\"\"\n        scores = ema_scores.float().detach()\n\n        if scores.dim() == 0:\n            scores = scores.unsqueeze(0)\n        if scores.dim() == 3:\n            # (batch, num_layers, 1) -> average across layers, squeeze last dim\n            scores = scores.mean(dim=1).squeeze(-1)  # (batch,)\n        if scores.dim() == 2:\n            # (batch, seq_len) -> average across batch\n            scores = scores.mean(dim=0)  # (seq_len,)\n        # scores is now (seq_len,) or (1,)\n\n        if self._cumulative_scores is None:\n            self._cumulative_scores = scores.clone()\n            self._length = scores.shape[0]\n        else:\n            new_len = scores.shape[0]\n            if new_len == 1:\n                # Appending a single new token score\n                self._cumulative_scores = torch.cat([\n                    self._cumulative_scores,\n                    scores,\n                ])\n                self._length += 1\n            elif new_len == self._length:\n                # Full update for all existing positions\n                self._cumulative_scores = self._cumulative_scores + scores\n            elif new_len > self._length:\n                # Scores include new positions beyond current length\n                self._cumulative_scores[:self._length] += scores[:self._length]\n                self._cumulative_scores = torch.cat([\n                    self._cumulative_scores,\n                    scores[self._length:],\n                ])\n                self._length = new_len\n            else:\n                # Partial update (fewer positions than current — update first new_len)\n                self._cumulative_scores[:new_len] += scores\n\n    def should_evict(self, cache_length: int) -> bool:\n        \"\"\"Returns True when cache_length exceeds the budget.\"\"\"\n        self._current_cache_length = cache_length\n        return cache_length > self.budget\n\n    def compute_eviction_mask(self, cache_length: int) -> torch.Tensor:\n        \"\"\"\n        Compute a boolean keep/evict mask for the KV cache.\n\n        Args:\n            cache_length: Current sequence length in the KV cache.\n\n        Returns:\n            Boolean tensor of shape (cache_length,). True = keep, False = evict.\n        \"\"\"\n        self._current_cache_length = cache_length\n        n_evict = int((cache_length - self.budget) * (1.0 + self.evict_ratio))\n        n_evict = max(n_evict, 1)\n\n        # Build cumulative scores aligned to cache_length\n        if self._cumulative_scores is None or self._cumulative_scores.shape[0] == 0:\n            return torch.ones(cache_length, dtype=torch.bool)\n\n        cum = self._cumulative_scores[:cache_length]\n        if cum.shape[0] < cache_length:\n            # Pad with zeros for positions we haven't scored yet\n            cum = F.pad(cum, (0, cache_length - cum.shape[0]), value=0.0)\n\n        # Protection mask: True = protected (cannot be evicted)\n        protected = torch.zeros(cache_length, dtype=torch.bool, device=cum.device)\n        protected[0] = True  # attention sink\n        grace_start = max(cache_length - self.grace_window, 1)\n        protected[grace_start:] = True\n\n        # Set protected positions to -inf so they're never selected for eviction\n        evictable_scores = cum.clone()\n        evictable_scores[protected] = float(\"-inf\")\n\n        n_evictable = (~protected).sum().item()\n        n_evict = min(n_evict, n_evictable)\n\n        if n_evict <= 0:\n            return torch.ones(cache_length, dtype=torch.bool, device=cum.device)\n\n        # Select top-n_evict highest scores among evictable positions\n        _, topk_indices = torch.topk(evictable_scores, n_evict)\n\n        keep_mask = torch.ones(cache_length, dtype=torch.bool, device=cum.device)\n        keep_mask[topk_indices] = False\n\n        # Track stats\n        evicted_scores = cum[topk_indices]\n        self._total_evicted += n_evict\n        self._eviction_triggers += 1\n        self._sum_evicted_scores += evicted_scores.sum().item()\n\n        # Compact cumulative scores to match new cache after eviction\n        self._cumulative_scores = cum[keep_mask]\n        self._length = self._cumulative_scores.shape[0]\n\n        return keep_mask\n\n    def apply_eviction(\n        self,\n        past_key_values: Any,\n        eviction_mask: torch.Tensor,\n    ) -> Any:\n        \"\"\"\n        Apply eviction mask to HuggingFace KV cache.\n\n        Supports:\n          - DynamicCache (transformers >= 4.36): key_cache/value_cache lists\n          - Legacy tuple format: tuple of (key, value) pairs per layer\n\n        Args:\n            past_key_values: The model's KV cache.\n            eviction_mask: Boolean tensor (cache_length,). True = keep.\n\n        Returns:\n            Pruned past_key_values in the same format as input.\n        \"\"\"\n        mask = eviction_mask.bool()\n\n        # DynamicCache path\n        if hasattr(past_key_values, \"key_cache\") and hasattr(past_key_values, \"value_cache\"):\n            for layer_idx in range(len(past_key_values.key_cache)):\n                # Shape: (batch, num_heads, seq_len, head_dim)\n                k = past_key_values.key_cache[layer_idx]\n                v = past_key_values.value_cache[layer_idx]\n                seq_mask = mask.to(k.device)\n                # Index along seq_len dimension (dim=2)\n                past_key_values.key_cache[layer_idx] = k[:, :, seq_mask, :]\n                past_key_values.value_cache[layer_idx] = v[:, :, seq_mask, :]\n            return past_key_values\n\n        # Legacy tuple format: tuple of (key, value) per layer\n        pruned = []\n        for layer_kv in past_key_values:\n            k, v = layer_kv[0], layer_kv[1]\n            seq_mask = mask.to(k.device)\n            if k.dim() == 4:\n                # (batch, num_heads, seq_len, head_dim)\n                pruned.append((k[:, :, seq_mask, :], v[:, :, seq_mask, :]))\n            else:\n                # (batch, seq_len, dim)\n                pruned.append((k[:, seq_mask, :], v[:, seq_mask, :]))\n        return tuple(pruned)\n\n    def reset(self) -> None:\n        \"\"\"Clear all accumulated scores and internal state.\"\"\"\n        self._cumulative_scores = None\n        self._length = 0\n        self._total_evicted = 0\n        self._eviction_triggers = 0\n        self._sum_evicted_scores = 0.0\n        self._current_cache_length = 0\n\n    def eviction_stats(self) -> Dict[str, Union[int, float]]:\n        \"\"\"\n        Returns eviction statistics.\n\n        Returns:\n            Dict with total_evicted, eviction_triggers, avg_evicted_score,\n            and cache_utilization.\n        \"\"\"\n        avg_score = 0.0\n        if self._total_evicted > 0:\n            avg_score = self._sum_evicted_scores / self._total_evicted\n\n        utilization = 0.0\n        if self.budget > 0:\n            utilization = self._current_cache_length / self.budget\n\n        return {\n            \"total_evicted\": self._total_evicted,\n            \"eviction_triggers\": self._eviction_triggers,\n            \"avg_evicted_score\": avg_score,\n            \"cache_utilization\": utilization,\n        }\n\n\ndef create_eviction_hook(eviction_manager: CARCKVEviction, ema_manager) -> callable:\n    \"\"\"\n    Creates a generation hook that auto-evicts during model.generate().\n\n    The returned callable has signature compatible with transformers\n    GenerationMixin — it can be passed as a logits_processor or called\n    manually after each generation step.\n\n    Args:\n        eviction_manager: CARCKVEviction instance with budget configured.\n        ema_manager: EMAAnchorManager instance for computing per-step scores.\n\n    Returns:\n        A callable(step, input_ids, past_key_values, **kwargs) -> past_key_values\n        that computes EMA scores, updates the eviction manager, and evicts\n        if the cache exceeds budget.\n    \"\"\"\n\n    def hook(\n        step: int,\n        input_ids: torch.Tensor,\n        past_key_values: Any,\n        layer_keys: Optional[torch.Tensor] = None,\n        layer_values: Optional[torch.Tensor] = None,\n        layer_idx: int = 0,\n        **kwargs,\n    ) -> Any:\n        \"\"\"\n        Per-step eviction hook.\n\n        Args:\n            step: Current generation step index.\n            input_ids: Current input token ids.\n            past_key_values: Model's KV cache.\n            layer_keys: Key tensor for the current layer (batch, seq_len, dim).\n            layer_values: Value tensor for the current layer (batch, seq_len, dim).\n            layer_idx: Which layer these K/V belong to.\n\n        Returns:\n            Potentially pruned past_key_values.\n        \"\"\"\n        if layer_keys is not None and layer_values is not None:\n            scores = ema_manager.compute_scores(layer_idx, layer_keys, layer_values)\n            eviction_manager.update_scores(scores)\n\n        # Determine cache length\n        if hasattr(past_key_values, \"key_cache\") and len(past_key_values.key_cache) > 0:\n            cache_length = past_key_values.key_cache[0].shape[2]\n        elif isinstance(past_key_values, tuple) and len(past_key_values) > 0:\n            cache_length = past_key_values[0][0].shape[-2]\n        else:\n            return past_key_values\n\n        if eviction_manager.should_evict(cache_length):\n            mask = eviction_manager.compute_eviction_mask(cache_length)\n            past_key_values = eviction_manager.apply_eviction(past_key_values, mask)\n\n        return past_key_values\n\n    return hook\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Syntax check and copy to artifacts directory."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ce90c334-1f17-4d19-a8f0-1209d5567c32",
+            "uuid": "3cc7aa05-9291-4586-97f9-a3d49f9bbd22",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019WH7eEPvTsJ1qZMzJje32D",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3442,
+                "cache_read_input_tokens": 28894,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3442
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GNr1EHXbCyAJzStRApQpxk",
+              "name": "Bash",
+              "input": {
+                "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/artifacts/_project/intermediate && python3 -c \"import ast; ast.parse(open('carc_kv_eviction.py').read()); print('OK')\"",
+                "description": "Syntax check the new file"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ce90c334-1f17-4d19-a8f0-1209d5567c32",
+            "uuid": "1f575cf7-3791-45e2-9d55-07839c1f9d7d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019WH7eEPvTsJ1qZMzJje32D",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3442,
+                "cache_read_input_tokens": 28894,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3442
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-12T09:34:39.263Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GNr1EHXbCyAJzStRApQpxk",
+              "type": "tool_result",
+              "content": "OK",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ce90c334-1f17-4d19-a8f0-1209d5567c32",
+            "uuid": "7fd16a40-ba81-4f5d-a3b2-7738c838b923",
+            "tool_use_result": {
+              "stdout": "OK",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01E7TxiroJ7xqFBoH7uaio4K",
+              "name": "Bash",
+              "input": {
+                "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/artifacts/",
+                "description": "Check artifacts root directory"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ce90c334-1f17-4d19-a8f0-1209d5567c32",
+            "uuid": "60e109f5-2512-4912-a349-c5fdb6036cf7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019WH7eEPvTsJ1qZMzJje32D",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3442,
+                "cache_read_input_tokens": 28894,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3442
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-12T09:34:39.878Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01E7TxiroJ7xqFBoH7uaio4K",
+              "type": "tool_result",
+              "content": "_project\ncarc_calibrate.py\ncarc_mvp.py\ncarc_utils.py\ncode_survey_report.md\nmanifest.yaml\nteal_calibration_notes.md",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ce90c334-1f17-4d19-a8f0-1209d5567c32",
+            "uuid": "a8b83227-cec9-4d26-80e4-8f70d5d56609",
+            "tool_use_result": {
+              "stdout": "_project\ncarc_calibrate.py\ncarc_mvp.py\ncarc_utils.py\ncode_survey_report.md\nmanifest.yaml\nteal_calibration_notes.md",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016DYZVT5sdyfUH3djAJym2a",
+              "name": "Bash",
+              "input": {
+                "command": "cp /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/artifacts/_project/intermediate/carc_kv_eviction.py /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/artifacts/carc_kv_eviction.py",
+                "description": "Copy to artifacts root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ce90c334-1f17-4d19-a8f0-1209d5567c32",
+            "uuid": "5947f52f-e845-4d83-884a-b8e7c033f707",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TC2HthszYWo4b9zXpvQah7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 356,
+                "cache_read_input_tokens": 32336,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 356
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-12T09:34:43.232Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016DYZVT5sdyfUH3djAJym2a",
+              "type": "tool_result",
+              "content": "(Bash completed with no output)",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ce90c334-1f17-4d19-a8f0-1209d5567c32",
+            "uuid": "eb66321f-714b-43a2-ae45-1b5b08a5a9d2",
+            "tool_use_result": {
+              "stdout": "",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": true
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now register the artifact."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ce90c334-1f17-4d19-a8f0-1209d5567c32",
+            "uuid": "627d3f72-9d5f-4e62-a7a9-0c71ba26ae9e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Nweo8yYC51kg4GiyAcqhXU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 184,
+                "cache_read_input_tokens": 32692,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 184
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WznZaXp7mWwPFSnz9V9gD8",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__register_artifact",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ce90c334-1f17-4d19-a8f0-1209d5567c32",
+            "uuid": "ce5559c1-f5fb-4a37-bd30-4131a939fae6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Nweo8yYC51kg4GiyAcqhXU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 184,
+                "cache_read_input_tokens": 32692,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 184
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-12T09:34:46.816Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01WznZaXp7mWwPFSnz9V9gD8",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__register_artifact"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ce90c334-1f17-4d19-a8f0-1209d5567c32",
+            "uuid": "be2a7eae-f3f7-40e6-bdaf-83864af75f17",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__register_artifact"
+              ],
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018PzqiutPpfLeow93KzAncK",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "carc_kv_eviction",
+                "type": "intermediate",
+                "description": "CARC KV cache eviction module — budget-triggered eviction with cumulative EMA score ranking and grace window protection. Implements CARCKVEviction class and create_eviction_hook for transformers generation integration.",
+                "project": "solver-verified-formalizer-rl",
+                "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/artifacts/carc_kv_eviction.py",
+                "tags": [
+                  "carc",
+                  "kv-cache",
+                  "eviction",
+                  "contribution-d"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ce90c334-1f17-4d19-a8f0-1209d5567c32",
+            "uuid": "346a7a3b-37d0-45d5-87ee-3eebdcf1be42",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AVWotMqs5BzFwKWWDMVwnB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 820,
+                "cache_read_input_tokens": 32876,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 820
+                },
+                "output_tokens": 71,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-12T09:34:53.122Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018PzqiutPpfLeow93KzAncK",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260512_172015\\\", \\\"name\\\": \\\"carc_kv_eviction\\\", \\\"type\\\": \\\"intermediate\\\", \\\"description\\\": \\\"CARC KV cache eviction module — budget-triggered eviction with cumulative EMA score ranking and grace window protection. Implements CARCKVEviction class and create_eviction_hook for transformers generation integration.\\\", \\\"path\\\": \\\"projects/solver-verified-formalizer-rl/artifacts/_project/intermediate/carc_kv_eviction_172015.py\\\", \\\"url\\\": null, \\\"project\\\": \\\"solver-verified-formalizer-rl\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-12T09:34:53.096322+00:00\\\", \\\"tags\\\": [\\\"carc\\\", \\\"kv-cache\\\", \\\"eviction\\\", \\\"contribution-d\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ce90c334-1f17-4d19-a8f0-1209d5567c32",
+            "uuid": "e1a8c684-8511-4326-bf93-d46f774a1216",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260512_172015\\\", \\\"name\\\": \\\"carc_kv_eviction\\\", \\\"type\\\": \\\"intermediate\\\", \\\"description\\\": \\\"CARC KV cache eviction module — budget-triggered eviction with cumulative EMA score ranking and grace window protection. Implements CARCKVEviction class and create_eviction_hook for transformers generation integration.\\\", \\\"path\\\": \\\"projects/solver-verified-formalizer-rl/artifacts/_project/intermediate/carc_kv_eviction_172015.py\\\", \\\"url\\\": null, \\\"project\\\": \\\"solver-verified-formalizer-rl\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-12T09:34:53.096322+00:00\\\", \\\"tags\\\": [\\\"carc\\\", \\\"kv-cache\\\", \\\"eviction\\\", \\\"contribution-d\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260512_172015\", \"name\": \"carc_kv_eviction\", \"type\": \"intermediate\", \"description\": \"CARC KV cache eviction module — budget-triggered eviction with cumulative EMA score ranking and grace window protection. Implements CARCKVEviction class and create_eviction_hook for transformers generation integration.\", \"path\": \"projects/solver-verified-formalizer-rl/artifacts/_project/intermediate/carc_kv_eviction_172015.py\", \"url\": null, \"project\": \"solver-verified-formalizer-rl\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-12T09:34:53.096322+00:00\", \"tags\": [\"carc\", \"kv-cache\", \"eviction\", \"contribution-d\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已创建、语法验证通过、已注册。\n\n实现概要：\n\n- **`CARCKVEviction`** — 核心类，维护 per-position cumulative EMA score registry\n  - `update_scores()` — 支持多种输入 shape（scalar / (seq_len,) / (batch, seq_len) / (batch, num_layers, 1)），累积到内部 score 向量\n  - `should_evict()` — cache_length > budget 时触发\n  - `compute_eviction_mask()` — 保护 position 0（attention sink）和最后 grace_window 个 token，在可驱逐区间按 cumulative score 降序选 top-k 驱逐，eviction 后自动 compact 内部 scores\n  - `apply_eviction()` — 兼容 DynamicCache（key_cache/value_cache lists）和 legacy tuple format，按 seq_len 维度 mask 过滤\n  - `eviction_stats()` / `reset()` — 统计和重置\n\n- **`create_eviction_hook()`** — 返回可在每个 generation step 调用的 hook，自动计算 EMA scores → 更新 → 判断 → 驱逐"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ce90c334-1f17-4d19-a8f0-1209d5567c32",
+            "uuid": "841a24a8-9ae8-4957-9861-e18780bf930d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WFxEPfqY9GGsXHFHdT2hT8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 595,
+                "cache_read_input_tokens": 33696,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 595
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已创建、语法验证通过、已注册。\n\n实现概要：\n\n- **`CARCKVEviction`** — 核心类，维护 per-position cumulative EMA score registry\n  - `update_scores()` — 支持多种输入 shape（scalar / (seq_len,) / (batch, seq_len) / (batch, num_layers, 1)），累积到内部 score 向量\n  - `should_evict()` — cache_length > budget 时触发\n  - `compute_eviction_mask()` — 保护 position 0（attention sink）和最后 grace_window 个 token，在可驱逐区间按 cumulative score 降序选 top-k 驱逐，eviction 后自动 compact 内部 scores\n  - `apply_eviction()` — 兼容 DynamicCache（key_cache/value_cache lists）和 legacy tuple format，按 seq_len 维度 mask 过滤\n  - `eviction_stats()` / `reset()` — 统计和重置\n\n- **`create_eviction_hook()`** — 返回可在每个 generation step 调用的 hook，自动计算 EMA scores → 更新 → 判断 → 驱逐"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 89162,
+            "duration_api_ms": 89807,
+            "num_turns": 9,
+            "stop_reason": "end_turn",
+            "session_id": "ce90c334-1f17-4d19-a8f0-1209d5567c32",
+            "total_cost_usd": 0.37558100000000005,
+            "usage": {
+              "input_tokens": 11,
+              "cache_creation_input_tokens": 22450,
+              "cache_read_input_tokens": 225009,
+              "output_tokens": 4824,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 22450,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 338,
+                  "cache_read_input_tokens": 33696,
+                  "cache_creation_input_tokens": 595,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 595
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2014,
+                "outputTokens": 19,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002109,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 11,
+                "outputTokens": 4824,
+                "cacheReadInputTokens": 225009,
+                "cacheCreationInputTokens": 22450,
+                "webSearchRequests": 0,
+                "costUSD": 0.3734720000000001,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "231ef051-e0c0-4d40-b2f5-910f32bcec25"
+          },
+          "id": "event-000026"
+        }
+      ],
+      "message_count": 26
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-kv-eviction.md"
+}

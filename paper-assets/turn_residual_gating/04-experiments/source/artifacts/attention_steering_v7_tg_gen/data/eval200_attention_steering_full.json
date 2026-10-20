@@ -1,0 +1,54 @@
+{
+  "checkpoint": "/root/turn_residual_gating/runs/phase2_tg_s42_v7",
+  "gate_type": "threadgate",
+  "mode": "tf",
+  "gar_variant": "ours",
+  "model": "/root/.cache/modelscope/Qwen/Qwen2___5-7B-Instruct",
+  "layer_range": null,
+  "betas": [
+    0.0,
+    2.0,
+    3.0,
+    4.0,
+    5.0,
+    10.0
+  ],
+  "conversations_source": "data/eval_200/eval_200.json",
+  "num_conversations": 200,
+  "_extraction_note": "File too large (200 convs \u00d7 6 betas) for SSH truncation recovery. Summary metrics from registry checkpoint. Re-read from server with segmented reads for per-conversation data.",
+  "results": {
+    "beta_0.0": {
+      "beta": 0.0,
+      "mid_turns_avg_gar": 0.5353,
+      "avg_ppl": 2.62,
+      "gar_curves": "200 conversations - file too large for SSH recovery",
+      "ppl_per_conversation": "200 values - file too large for SSH recovery"
+    },
+    "beta_2.0": {
+      "beta": 2.0,
+      "mid_turns_avg_gar": 0.6112,
+      "avg_ppl": 2.69
+    },
+    "beta_3.0": {
+      "beta": 3.0,
+      "mid_turns_avg_gar": 0.788,
+      "avg_ppl": 2.93
+    },
+    "beta_4.0": {
+      "beta": 4.0,
+      "mid_turns_avg_gar": 0.8165,
+      "avg_ppl": 3.49
+    },
+    "beta_5.0": {
+      "beta": 5.0,
+      "mid_turns_avg_gar": 0.8325,
+      "avg_ppl": 6.15
+    },
+    "beta_10.0": {
+      "beta": 10.0,
+      "mid_turns_avg_gar": 0.977,
+      "avg_ppl": 505.21
+    }
+  },
+  "_head_100_preview": "{\n  \"checkpoint\": \"/root/turn_residual_gating/runs/phase2_tg_s42_v7\",\n  \"gate_type\": \"threadgate\",\n  \"mode\": \"tf\",\n  \"gar_variant\": \"ours\",\n  \"model\": \"/root/.cache/modelscope/Qwen/Qwen2___5-7B-Instruct\",\n  \"layer_range\": null,\n  \"betas\": [\n    0.0,\n    2.0,\n    3.0,\n    4.0,\n    5.0,\n    10.0\n  ],\n  \"conversations_source\": \"data/eval_200/eval_200.json\",\n  \"num_conversations\": 200,\n  \"results\": {\n    \"beta_0.0\": {\n      \"beta\": 0.0,\n      \"avg_gar_per_turn\": [\n        0.5435843261282125,\n        0.5270619012609877\n      ],\n      \"mid_turns_avg_gar\": 0.5353231136946002,\n      \"avg_ppl\": 2.618463569033598,\n      \"gar_curves\": [\n        [\n          0.5180383905490904,\n          0.5388724232276336,\n          0.4942754352395401,\n          0.5202555325069745\n        ],\n        [\n          0.557341471129151,\n          0.5459447333365156,\n          0.4590840970737485,\n          0.5134812950106109,\n          0.4932598762831634,\n          0.480863756310625\n        ],\n        [\n          0.02511976437314677,\n          0.6056027827640972,\n          0.012884113636691822\n        ],\n        [\n          0.5564174108101382,\n          0.5458493671001994\n        ],\n        [\n          0.6249879344209575,\n          0.5756597706255943,\n          0.6138558042962095,\n          0.03762776169819019\n        ],\n        [\n          0.4535817318792629,\n          0.5869012522082269\n        ],\n        [\n          0.5683365598492446,\n          0.5917034199259076,\n          0.5896640135360404\n        ],\n        [\n          0.6167558979658277,\n          0.5209684560408907,\n          0.5198998803284093\n        ],\n        [\n          0.5734732239152356,\n          0.5448924916284762,\n          0.5242754293699966,\n          0.48613477917137055,\n          0.5029687592922326,\n          0.49139368328339506,\n          0.5106556566985684\n        ],\n        [\n          0.5921117309680962,\n          0.5152741319327472,\n          0.4279937874172925,\n          0.5050547934010342\n        ],\n        [\n          0."
+}

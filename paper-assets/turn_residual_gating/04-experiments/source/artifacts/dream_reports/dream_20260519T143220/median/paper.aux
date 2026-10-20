@@ -1,0 +1,72 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{dongre2026}
+\citation{elhage2021}
+\citation{schuster2022}
+\citation{raposo2024}
+\citation{strubell2018,baan2019}
+\citation{ranzato2016,bengio2015}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Multi-turn dialogue degradation.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Residual stream analysis and adaptive computation.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Attention steering and auxiliary losses.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Exposure bias.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Background}{3}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Goal Attention Ratio}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Residual Stream Persistence}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Method}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}ThreadGate Architecture}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Training Objective}{3}{subsection.4.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Four-way evaluation on Qwen-2.5-7B. GAR is measured with the Dongre definition (mid-turn). PPL is response perplexity. Standard and held-out results are shown side by side.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:qwen_eval}{{1}{4}{Four-way evaluation on Qwen-2.5-7B. GAR is measured with the Dongre definition (mid-turn). PPL is response perplexity. Standard and held-out results are shown side by side}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Training Setup}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Experiments}{4}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Evaluation Setup}{4}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Qwen-2.5-7B: Four-Way Ablation}{4}{subsection.5.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Training-inference GAR gap for ThreadGate on Qwen-2.5-7B. The gap narrows from 30.6$\times $ to 17.1$\times $ on held-out data due to reduced evaluation overlap, but remains far beyond practical utility.}}{5}{table.2}\protected@file@percent }
+\newlabel{tab:gap}{{2}{5}{Training-inference GAR gap for ThreadGate on Qwen-2.5-7B. The gap narrows from 30.6$\times $ to 17.1$\times $ on held-out data due to reduced evaluation overlap, but remains far beyond practical utility}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Base-model GAR degradation comparison. Both models show monotonic GAR decay, but Llama-3 decays more gradually (42.9\% vs.\ 70.8\% raw drop), consistent with GQA providing partial mitigation through KV sharing.}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:cross_phase1}{{3}{5}{Base-model GAR degradation comparison. Both models show monotonic GAR decay, but Llama-3 decays more gradually (42.9\% vs.\ 70.8\% raw drop), consistent with GQA providing partial mitigation through KV sharing}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Training-Inference Gap}{5}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Cross-Model Validation: Llama-3.1-8B}{5}{subsection.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Phase 1: GAR degradation.}{5}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Phase 2: ThreadGate training and evaluation.}{5}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Three-way ablation.}{5}{section*.7}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces ThreadGate results across architectures. The training-inference gap persists on Llama-3 (9.7$\times $) with consistent failure direction but reduced magnitude. Gate reverse conditioning affects 24/32 layers on Llama vs.\ 27/28 on Qwen.}}{6}{table.4}\protected@file@percent }
+\newlabel{tab:cross_tg}{{4}{6}{ThreadGate results across architectures. The training-inference gap persists on Llama-3 (9.7$\times $) with consistent failure direction but reduced magnitude. Gate reverse conditioning affects 24/32 layers on Llama vs.\ 27/28 on Qwen}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Llama-3.1-8B three-way evaluation (held-out). ThreadGate vs.\ LoRA-only difference is 0.4 pp, within measurement noise. Gating is not statistically significant on either architecture.}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:llama_eval}{{5}{6}{Llama-3.1-8B three-way evaluation (held-out). ThreadGate vs.\ LoRA-only difference is 0.4 pp, within measurement noise. Gating is not statistically significant on either architecture}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Downstream Task Validation}{6}{subsection.5.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Analysis}{6}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Mechanism 1: NTP-GAR Gradient Competition}{6}{subsection.6.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Cross-model comparison of gating incremental contribution. On both architectures, the TG vs.\ LO difference is within noise, and gating is not significant.}}{7}{table.6}\protected@file@percent }
+\newlabel{tab:cross_gating}{{6}{7}{Cross-model comparison of gating incremental contribution. On both architectures, the TG vs.\ LO difference is within noise, and gating is not significant}{table.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Instruction following rate across turns. All models show similar degradation ($\sim $56--60\% drop by turn 10). ThreadGate provides no meaningful improvement over Base ($\Delta $ = 2 pp at turn 10).}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:downstream}{{7}{7}{Instruction following rate across turns. All models show similar degradation ($\sim $56--60\% drop by turn 10). ThreadGate provides no meaningful improvement over Base ($\Delta $ = 2 pp at turn 10)}{table.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cross-model gradient comparison.}{7}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Mechanism 2: Reverse Turn Conditioning}{7}{subsection.6.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Per-layer gradient conflict on Qwen-2.5-7B across training epochs. Cosine similarity is negative across all layer groups (directional conflict). The magnitude ratio grows monotonically, reflecting NTP's increasing dominance as GAR converges.}}{8}{table.8}\protected@file@percent }
+\newlabel{tab:grad_conflict}{{8}{8}{Per-layer gradient conflict on Qwen-2.5-7B across training epochs. Cosine similarity is negative across all layer groups (directional conflict). The magnitude ratio grows monotonically, reflecting NTP's increasing dominance as GAR converges}{table.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Gradient conflict comparison across architectures. Llama-3 shows consistent but weaker conflict (59.4\% vs.\ 67--79\% conflicting layers), with 7 of 32 layers showing aligned gradients.}}{8}{table.9}\protected@file@percent }
+\newlabel{tab:grad_cross}{{9}{8}{Gradient conflict comparison across architectures. Llama-3 shows consistent but weaker conflict (59.4\% vs.\ 67--79\% conflicting layers), with 7 of 32 layers showing aligned gradients}{table.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Mechanism 3: Distribution Shift}{8}{subsection.6.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Discussion}{8}{section.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Why residual gating is insufficient.}{8}{section*.9}\protected@file@percent }
+\citation{ranzato2016}
+\bibstyle{plainnat}
+\bibcite{baan2019}{{1}{2019}{{Baan et al.}}{{}}}
+\bibcite{bengio2015}{{2}{2015}{{Bengio et al.}}{{}}}
+\@writefile{toc}{\contentsline {paragraph}{Relationship to exposure bias.}{9}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Convergent evidence with Dongre et al.}{9}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Implications for future work.}{9}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{9}{section.8}\protected@file@percent }
+\bibcite{dongre2026}{{3}{2026}{{Dongre et al.}}{{}}}
+\bibcite{elhage2021}{{4}{2021}{{Elhage et al.}}{{}}}
+\bibcite{ranzato2016}{{5}{2016}{{Ranzato et al.}}{{}}}
+\bibcite{raposo2024}{{6}{2024}{{Raposo et al.}}{{}}}
+\bibcite{schuster2022}{{7}{2022}{{Schuster et al.}}{{}}}
+\bibcite{strubell2018}{{8}{2018}{{Strubell et al.}}{{}}}
+\gdef \@abspage@last{10}

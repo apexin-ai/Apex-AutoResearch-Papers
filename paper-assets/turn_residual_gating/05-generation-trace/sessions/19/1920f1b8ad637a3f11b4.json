@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1920f1b8ad637a3f11b4",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "code attention visualization",
+  "task_key": "worker_code_attention_visualization_20260519T114246",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_attention_visualization_20260519T114246_result.json",
+    "occurrence": 1,
+    "bytes": 781,
+    "sha256": "6a01dcb92ec82ed6e62ecca34c0cb75a58e43796a1298c2265bb0e51820c28cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "参数解析正常。脚本已写入 `/root/turn_residual_gating/src/attention_heatmap.py`。\n\n功能概要：\n- 对每组对话 tokenize → `detect_turn_boundaries` 获取 goal token 位置和 assistant turns\n- Forward pass with `output_attentions=True`，支持 gates 加载（复用 `load_gates` / `register_gating_hooks`）\n- 对每个 assistant turn 的 last token，提取所有层所有 head 对 goal tokens 的平均 attention weight → `[num_turns, num_layers]` 矩阵\n- 多组对话取均值，输出 PDF/PNG heatmap + JSON 原始数据\n- `--label` 参数用于标注条件名（Base/TG/UG/LoRA-only）\n- 四个条件的 2×2 组合图可通过 `plot_2x2_heatmaps()` 函数调用（已内置但需外部脚本组合调用，或后续扩展 CLI）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-attention-visualization.md"
+}

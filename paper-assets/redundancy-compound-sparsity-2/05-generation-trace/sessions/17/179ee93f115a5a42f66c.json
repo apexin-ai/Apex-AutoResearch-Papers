@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "179ee93f115a5a42f66c",
+  "project": "redundancy-compound-sparsity-2",
+  "kind": "history",
+  "title": "agent / loop_1_1778606057.md",
+  "task_key": "loop_1_1778606057",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_1_1778606057.md",
+    "occurrence": 1,
+    "bytes": 3553,
+    "sha256": "19a47576d674a632c487ae16b4d4939818903a77579832f5098cd639138cbb6d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 1\nreason: idle_timeout\nupdated: '2026-05-12T14:24:16+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单必须从 `get_project_resource_usage` 确认，当前分配的是 westd-16980 上的 cuda:0 和 cuda:1，不可用其他卡\n- MVP 两个 seed 均 FAIL 后，**禁止默默跑下一个实验**——必须先产出 Framing 调整提案，Director 审批后才能动\n- TEAL thresholds 需要校准步骤（grab_acts.py），写论文时必须区分\"CARC coordination 免校准\"和\"底层 TEAL thresholds 仍需校准\"\n- DDL 是 2026-05-25 EMNLP ARR，剩 13 天，时间极紧\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-16980，账户 root\n- 工作目录：/root/carc/\n- Python：需确认（aml-train 镜像用 conda，路径 /root/miniconda3/bin/python）\n- 模型：/root/carc/models/DeepSeek-R1-Distill-Qwen-14B\n- 数据：EleutherAI/hendrycks_math (precalculus, cached)，每 seed 30 samples\n- 结果文件：/root/carc/results_seed42.json, /root/carc/results_seed1337.json\n- 日志：/tmp/mvp_seed42.log, /tmp/mvp_seed1337.log（也在 ~/runs/solver-verified-formalizer-rl/ 下）\n- 活跃进程：seed42 和 seed1337 均已退出，无活跃 GPU 进程\n- W&B：CRON 提示有 W&B data available，但未确认 wandb_run_id\n\n### 3. 📊 当前状态\n- **carc_mvp_seed1337**: DONE(negative)。全局 |r|=-0.113, diff=5.26%, verdict=FAIL。Per-layer 空间解耦：|r|≥0.4 的层(L30-33)diff<10%，diff≥10%的层(L13-15,L41-45)|r|<0.2\n- **carc_mvp_seed42**: ANALYZING。进程已正常退出，**已派 Worker `worker_analysis_carc_mvp_seed42_20260512T112044` 去读日志和结果**，等待回调\n- **mvp_001**: RUNNING（这是计划条目，非实际进程）\n- **等待中**：Worker 回调（seed42 分析结果）→ 收到后需更新 registry、综合两 seed 结论、产出 Framing 提案报 Director\n\n### 4. 📋 待办\n- Worker seed42 分析回调到达 → 提取 metrics → `update_registry(carc_mvp_seed42, conclusion=..., metrics=...)` → 转 DONE\n- 两 seed 均有结论后 → 综合判定 MVP 2×2 矩阵位置（大概率双 FAIL）\n- 如果双 FAIL → 按 red-section skill 产出 Framing 调整提案（3 种 narrative 备选），**必须**包含 Path C pivot 方案（O(1) KV Eviction）\n- Framing 提案完成 → `main_agent_post_to_director` 汇报，附 [资源] 行，等 Director 决策\n- Director 批准 Framing → Read `framing-reaudit.skill.md` 做全文 re-audit\n- mvp_001 计划条目需清理（更新为 DONE 或关联到实际 seed 实验）\n\n### 5. 🎯 战略上下文\n- CARC 核心假设是\"KV similarity(EMA centroid)预测 MLP 稀疏化容忍度\"。MVP 用 2 个 seed 验证，seed1337 已 FAIL（|r|<0.4 且 diff<10%），seed42 大概率也 FAIL\n- **关键发现**：Per-layer 空间解耦——相关性高的层和 perturbation 差异大的层不重叠。这说明 cross-axis coordination 假设在全局层面不成立，但个别层可能有信号。这个 finding 对 Framing 提案很重要——可能支持\"layer-selective coordination\"而非\"global coordination\"的弱化 narrative\n- 2×2 矩阵双 FAIL → ROADMAP 指向 Path C（pivot 到 O(1) KV Eviction，用 EMA 信号只做 cache eviction，放弃 MLP 端）\n- **易错点**：不要把两个 seed 的 per-layer 结果简单平均——seed1337 的 L30-33 有 |r|≥0.4 但 diff 不够，这不是 DISCORDANT 而是 FAIL，因为全局指标决定 2×2 位置\n- DDL 5/25，如果走 Path C pivot，Day 2-4 做 KV eviction 实现 → Day 4-6 eval → Day 6-12 论文，时间刚好够但无 buffer\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-1-1778606057.md"
+}

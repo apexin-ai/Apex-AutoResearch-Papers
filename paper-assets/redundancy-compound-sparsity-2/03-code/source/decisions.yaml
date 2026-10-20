@@ -1,0 +1,199 @@
+_next_id: 11
+decisions:
+- id: D001
+  date: 2026-05-12 07:55 UTC
+  summary: MVP 定义：cross-axis 假设验证（KV similarity → MLP sparsity tolerance）
+  rationale: CARC 的核心新颖性在 Contribution A（cross-axis hypothesis）。若假设不成立（|r|<0.4 AND
+    perturbation diff<10%），整个论文需 pivot 到 KV-only。因此 MVP 必须先验证此假设，再投入 GPU 做完整实验。MVP
+    估计 ~10h H100，pass/fail 标准来自 IDEA_BRIEF 的 two-tiered validation criteria。
+  related_experiments: []
+  depends_on: []
+- id: D002
+  date: 2026-05-12 11:20 UTC
+  summary: 'MVP FAIL → 执行 Path C pivot: 从 CARC cross-axis 转向 O(1) KV Eviction 论文'
+  rationale: '双 seed 60 条独立推理链一致 FAIL: token-level |r(EMA,perturbation)|≈0.12（阈值0.4）,
+    perturbation_diff≈5.5%（阈值10%）, PPL two-tier vs uniform 无差异。EMA similarity 信号无法跨轴预测
+    MLP sparsity tolerance。按预设 2×2 判定矩阵右下象限, 执行 Path C: pivot 到 O(1) recurrence-aware
+    KV eviction。KV eviction 模块(carc_kv_eviction.py)已实现, 可立即推进。后层(41-45)局部效应可作为 negative
+    finding 在论文中报告。'
+  related_experiments:
+  - exp_id: carc_mvp_seed42
+    role: primary
+    result: 'FAIL: |r|=0.12, diff=5.69%'
+  - exp_id: carc_mvp_seed1337
+    role: replication
+    result: 'FAIL: |r|=0.11, diff=5.26%'
+  depends_on:
+  - D001
+- id: D003
+  date: 2026-05-12 11:52 UTC
+  summary: Sanity check FAIL on WikiText-2 4K，但数据/长度条件不匹配动机场景。1 天 time-boxed retry
+    on reasoning data + 32K context
+  rationale: EMA vs random gap 仅 0.9%（阈值 5%），表面 FAIL。但 sanity check 在 WikiText-2 (4K
+    tokens) 上跑——CARC 动机是 reasoning traces 的 redundancy + 长 context KV eviction。连续文本天然时间局部性强（recency
+    只损 0.5% PPL），reasoning traces 有重复计算模式可能更利 EMA。4K context 下 KV eviction 价值本就有限。决定花
+    1 天在正确条件下重试（MATH-500 reasoning traces + 32K context），如仍 FAIL 则转 Option C 分析论文。MVP
+    已生成 60 条 reasoning traces 可直接复用。
+  related_experiments:
+  - exp_id: sanity_kv_eviction
+    role: primary
+    result: 'FAIL: EMA vs random gap 0.9%, threshold 5%'
+  depends_on:
+  - D002
+- id: D004
+  date: 2026-05-12 14:31 UTC
+  summary: D003 允许最后一次部署尝试 + Plan B contingency 加入实验计划
+  rationale: D003 三次崩溃均为环境问题（HF网络/DynamicCache API/device mismatch），核心EMA eviction算法从未执行。算法表现完全未知，值得一次真正的测试。条件：fix后必须2-sample
+    smoke test通过才提交，2小时内不通过立即pivot。同时在experiment_plan.yaml中加入Phase 0b analysis paper
+    contingency（A1-A4 + B1共5个实验，~16 GPU-h），D003 FAIL时立即启动。Reviewer审查反馈同步处理：64K实验标注blocker待验证max_position_embeddings。
+  related_experiments:
+  - exp_id: d003_reasoning_traces
+    role: primary
+    result: RUNNING (3x env crash)
+  - exp_id: d003_wikitext_32k
+    role: primary
+    result: RUNNING (3x env crash)
+  depends_on:
+  - D003
+- id: D005
+  date: 2026-05-12 15:46 UTC
+  summary: D003 sanity gate FAIL — EMA eviction 劣于 random，γ 模式表明 EMA ≈ noisy recency
+    signal。启动 Phase 0b 分析
+  rationale: EXP2 WikiText-2 32K 5/6 策略完成：best EMA (γ=0.9) PPL=7.7788 vs random PPL=7.6432，EMA
+    比 random 差 1.8%，远未达到 ≥5% 正向 gap 的 gate 标准。γ 递减模式（0.9>>0.7≈0.5）表明 EMA 信号主要编码 recency
+    而非 token importance。Reviewer 代码审计排除 bug 可能。EXP1 reasoning traces PPL 极低(~1.21)
+    信号弱，不改变结论。立即启动 Phase 0b analysis_attn_vs_ema 判断 EMA 是否与 attention score 互补——若无互补性则整条路线终止。
+  related_experiments:
+  - exp_id: d003_wikitext_32k
+    role: primary_evidence
+    result: EMA worse than random by 1.8%
+  - exp_id: d003_reasoning_traces
+    role: secondary
+    result: pending random, signal weak
+  depends_on:
+  - D004
+  - D003
+- id: D006
+  date: 2026-05-12 16:50 UTC
+  summary: 'Pivot to inverted EMA eviction: evict low-EMA tokens instead of high-EMA'
+  rationale: 'D005 confirmed EMA eviction ≈ noisy recency signal (worse than random).
+    Inverting the direction—evicting tokens with LOW EMA scores—tests whether the
+    signal has value when used correctly. If high-EMA = recently accessed ≈ recency,
+    then low-EMA = rarely accessed might identify genuinely less important tokens.
+    This is a low-cost hypothesis worth testing before abandoning EMA entirely. Gate:
+    inverted EMA must beat random eviction on PPL; fail path = abandon EMA-based approaches
+    entirely.'
+  related_experiments:
+  - exp_id: d003_wikitext_32k
+    role: evidence
+    result: EMA eviction ≈ random
+  - exp_id: analysis_decay_curve
+    role: evidence
+    result: EMA scores converge over sequence (CV 0.72→0.96), confirming noisy recency
+  - exp_id: inverted_ema_reasoning
+    role: test
+    result: running
+  - exp_id: inverted_ema_wikitext
+    role: test
+    result: running
+  depends_on:
+  - D005
+- id: D007
+  date: 2026-05-12 17:20 UTC
+  summary: Inverted EMA hypothesis doubly negated; skip reasoning re-run; gamma_sweep
+    is final MVP gate
+  rationale: 'inverted_ema_wikitext PPL = 8.79, +15% vs random, +22% vs full. Combined
+    with original EMA (+1.8% vs random), both eviction directions lose to random.
+    The +15% gap is conclusive enough — re-running on reasoning traces cannot flip
+    this. gamma_sweep (testing different decay rates) is the last variable; if no
+    gamma beats random, the EMA centroid approach is fully falsified. Notable: recency
+    baseline achieves -0.09% vs full on WikiText-2, suggesting the benchmark may be
+    too easy for recency, limiting any signal-based approach''s ceiling.'
+  related_experiments:
+  - exp_id: inverted_ema_wikitext
+    role: evidence
+    result: PPL 8.79, +15% vs random
+  - exp_id: inverted_ema_reasoning
+    role: cancelled
+    result: killed at 85%, not re-running
+  - exp_id: analysis_gamma_sweep
+    role: gate
+    result: RUNNING, final MVP judgment
+  depends_on:
+  - D006
+  - D005
+- id: D008
+  date: 2026-05-12 17:21 UTC
+  summary: 'Conditional archive: gamma_sweep is final gate for EMA hypothesis'
+  rationale: '9 experiments, 0 success. EMA centroid similarity proven mathematically
+    degenerate (centroid_cos_stability > 0.998, scores converge to mean). Both eviction
+    directions lose to random. Phase 1-5 experiment plan (14 experiments) all predicated
+    on Phase 0 sanity passing, which failed definitively. gamma_sweep is the last
+    variable — if no gamma value beats random by ≥5%, archive project. Option A (negative
+    results paper) targets Workshop/Findings, violates A-class venue constraint. Option
+    B (attention pivot) has 13-day timeline, insufficient for A-class quality. inverted_ema_reasoning
+    re-run unnecessary: wikitext +15% gap is conclusive.'
+  related_experiments:
+  - exp_id: analysis_gamma_sweep
+    role: final_gate
+    result: running
+  - exp_id: inverted_ema_wikitext
+    role: evidence
+    result: negative (+15% vs random)
+  - exp_id: d003_wikitext_32k
+    role: evidence
+    result: negative
+  - exp_id: d003_reasoning_traces
+    role: evidence
+    result: negative
+  - exp_id: analysis_decay_curve
+    role: evidence
+    result: negative (EMA ≈ noisy recency)
+  - exp_id: analysis_attn_vs_ema
+    role: evidence
+    result: negative (|r|<0.3)
+  depends_on:
+  - D006
+  - D005
+- id: D009
+  date: 2026-05-12 19:35 UTC
+  summary: 'D008 gate FAIL: gamma_sweep 全谱扫描无一 beat random, EMA centroid 方法彻底证伪, 项目
+    archive'
+  rationale: 8 个 gamma 值（0.1-0.99）全部劣于或等于 random eviction。最佳 gamma=0.95 仅 -0.02% vs
+    random，远未达到 ≥5% gate 标准。结果呈清晰单调趋势：gamma 越高越接近 random，印证 EMA running average 收敛到全局均值丧失区分度。结合此前
+    10 连 negative（双向证伪 + attention 无关 + decay curve 退化 + 文献确认 EMA smoothing 根本缺陷），EMA
+    centroid similarity 作为 KV cache eviction signal 被彻底证伪。项目无法在 13 天 DDL 内 pivot 到可行方向（exact
+    centroid = KeyDiff 已做；query-aware = 完全新方向）。执行 archive。
+  related_experiments:
+  - exp_id: analysis_gamma_sweep
+    role: final_gate
+    result: ALL 8 gammas worse than random, best gamma=0.95 at -0.02%
+  - exp_id: d003_wikitext_32k
+    role: cross_validation
+    result: data matches gamma_sweep exactly
+  - exp_id: inverted_ema_wikitext
+    role: evidence
+    result: inverted direction +15% worse
+  - exp_id: analysis_decay_curve
+    role: evidence
+    result: EMA convergence to global mean confirmed
+  depends_on:
+  - D008
+  - D007
+  - D005
+- id: D010
+  date: 2026-05-12 19:53 UTC
+  summary: D009 修正：gamma=0.99 beat random +1.38%（唯一），但 gate 仍 FAIL（需 ≥5%），archive
+    决策不变
+  rationale: gamma=0.99 PPL=7.5302，比 random (7.6353) 好 1.38%，是 8 个 gamma 中唯一 beat
+    random 的值。原 D009 声明"全部劣于 random"有误，修正为"7/8 劣于 random，最佳 gamma=0.99 仅 +1.38%，远低于
+    5% 门槛"。关键洞察：gamma=0.99 意味着 EMA 衰减极慢，centroid 趋近 exact running mean（类似 KeyDiff），唯一有效的
+    gamma 恰恰是最不像 EMA 的——进一步确认 EMA decay 是根本缺陷而非 centroid 思路本身。但 +1.38% 仍远低于 gate 标准，且
+    recency (7.18) 仍比 gamma=0.99 (7.53) 好 4.94%，archive 决策不变。
+  related_experiments:
+  - exp_id: analysis_gamma_sweep
+    role: final_gate
+    result: 7/8 worse than random; gamma=0.99 beat random +1.38% but far below 5%
+      gate
+  depends_on:
+  - D009

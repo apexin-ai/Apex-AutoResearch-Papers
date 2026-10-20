@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6ebfda731b05c057ff23",
+  "project": "turn_residual_gating",
+  "kind": "history",
+  "title": "director / loop_6.md",
+  "task_key": "loop_6",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_6.md",
+    "occurrence": 1,
+    "bytes": 3857,
+    "sha256": "427a5a3ccc4f0a0f92f6a146ca9708d24710941032df2c7e8d2f0101d1605877"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: max_messages\nupdated: '2026-05-25T06:15:34+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 westd-20861:cuda:0（项目配置 gpu_ids）\n- ρ_max = 0.3（已修正，不是 v8b 时代的 0.5）。所有 SS 实验用 `--ss-max-ratio 0.3`\n- EMNLP 2026 正文 8 页限制，abstract ≤ 200 words\n- 用户已批准 framing 转变：GAR → diagnostic probe, ThreadGate → testbed。不要回退到旧 framing\n- loss formulation 迭代表（v1-v7）保留作为设计演化标签，但其他位置的内部版本号（v7/v8b/v9）已清理，不要重新引入\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-20861，工作目录待确认（Agent 之前用过）\n- 本地 workspace：`/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/`\n- 论文源码：`paper/` 目录，`paper/sections/` 下各 .tex 文件\n- 图表脚本：`figures/paper/gen_fig*.py`，配色 palette `figures/paper/palette.py`\n- GOOGLE_API_KEY 已存储（key_id=google_api_key），本轮刚审批给 Agent 用 PaperBanana\n- 活跃：Agent 正在执行 PaperBanana method framework 图 + Phase 1 multi-seed 实验队列\n\n### 3. 📊 当前状态\n**刚做完：**\n- Round 4 审稿报告处理完毕（Overall 3.0 Findings）\n- 文本修复已提交：ρ_max 数值修正、内部版本号清理、intro hedging、conclusion 补 Llama 数字\n- Action Matrix 定稿并派发（用户已批准 GPU ~60-81h + framing 方向）\n\n**已派发给 Agent（刚发）：**\n- Phase 1A: Multi-seed 8 runs（PCGrad ×2, UG ×2, LoRA-only ×2, TG ×1, SS ×1）\n- Phase 1B: Llama PCGrad + UG 各 1 seed\n- Phase 2: TF→AR switching experiment（inference-only）\n- PaperBanana method framework 概念图（进行中）\n\n**已派发给 Paper Agent（刚发）：**\n- Framing 重写：GAR→diagnostic probe, ThreadGate→testbed, 标题改短, 去冗余, bib 修复, Limitations 扩展\n\n**等待中：** Agent 和 Paper Agent 的回复\n\n### 4. 📋 待办\n- Agent 汇报 Phase 1A 第一个 run 启动 → 确认训练配置正确，后续 runs 自动排队\n- PaperBanana 图生成完成 → Read PNG 视觉检查，不满意要求重迭代\n- Paper Agent 提交 writing_plan.yaml → 审批（检查 framing 方向是否正确落地）\n- 每个 multi-seed run 完成 → 确认 AR eval N≥50 跑了，记录 mean±std\n- Phase 1 全部完成 → 汇总 5 条件 × 3 seeds 结果表，更新 Table 1 数字\n- Phase 2 switching experiment 完成 → 评估是否支持 exposure bias 归因（关键：switch 点 GAR drop vs pure AR 同轮对比）\n- 全部实验 + 写作完成 → submit_paper_to_review（fresh round）\n- review_issues.yaml 需要在修复确认后更新状态（open → in_progress → resolved）\n\n### 5. 🎯 战略上下文\n- **核心发现**：auxiliary attention losses 在 TF 下收敛（GAR=0.50）但 AR 下坍塌 8-27×，原因是 exposure bias。SS 是唯一有效 fix。\n- **评分瓶颈**：Novelty 2/5 是结构性天花板。Reviewer 评估全部修复后 ceiling 是 3.5（Borderline Conference）。推到 4.0 取决于 rebuttal 让审稿人相信这个发现改变领域方法设计范式。\n- **最易判断错的事**：\n  1. MT-Bench 不适合做下游验证（2-turn benchmark vs 5-7+ turn finding）。已有 instruction retention（r=0.200, p=0.007）作为下游证据。不要再提 MT-Bench\n  2. Base 模型不需要重新训练多 seed（冻结模型无训练方差），只需 bootstrap CI\n  3. SS+LoRA-only 消融是 nice-to-have（Phase 3），不是 blocking。如果 GPU 紧张可跳过，Limitations 讨论即可\n  4. 写作 hedging 对 evidence 问题无效——C1/C2/C3 连续 4 轮被 flag，之前的写作修复都失败了，必须补实验\n  5. switching experiment 需要 pure AR baseline 作为 control（已有数据），注意 switch point 的分布不连续 artifact\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6.md"
+}

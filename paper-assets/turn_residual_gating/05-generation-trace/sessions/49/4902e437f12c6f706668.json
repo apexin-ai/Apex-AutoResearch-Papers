@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "4902e437f12c6f706668",
+  "project": "turn_residual_gating",
+  "kind": "worker",
+  "title": "code n200 phase3 format check fn",
+  "task_key": "worker_code_n200_phase3_format_check_fn_20260522T104803",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_n200_phase3_format_check_fn_20260522T104803.log",
+    "occurrence": 1,
+    "bytes": 939430,
+    "sha256": "16c646aeda0f9c26b15b38eb5713770adbe32884b46af1c4c0ef629394c29f07"
+  },
+  "statistics": {
+    "messages": 195,
+    "user_turns": 1,
+    "tool_calls": 64,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 59,
+      "tool_call": 64,
+      "tool_result": 64,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 99,
+      "chunks": [
+        {
+          "path": "4902e437f12c6f706668-part-0001.json",
+          "message_count": 91
+        },
+        {
+          "path": "4902e437f12c6f706668-part-0002.json",
+          "message_count": 8
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 96,
+      "chunks": [
+        {
+          "path": "4902e437f12c6f706668-part-0002.json",
+          "message_count": 96
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-n200-phase3-format-check-fn.md"
+}

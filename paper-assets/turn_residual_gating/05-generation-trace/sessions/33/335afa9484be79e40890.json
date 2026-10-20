@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "335afa9484be79e40890",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "audit data correctness presubmit",
+  "task_key": "worker_audit_data_correctness_presubmit_20260523T191928",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_data_correctness_presubmit_20260523T191928_result.json",
+    "occurrence": 1,
+    "bytes": 970,
+    "sha256": "0f4fb86fdff0a410151080220f6e2d758153f8f24aebc6ebd36fbb4ea5a7facc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Report written to `artifacts/data_audit_report.md`.\n\n**Top findings:**\n\n- **CRITICAL (D1):** Fig 4 caption says \"TF evaluation, GAR near 0.5, 7-8% decay\" but the actual figure data shows AR-scale values (0.01–0.06) with 77-87% decay. Caption and data are fundamentally mismatched. The N=45 sample size in the caption is untraceable.\n- **MEDIUM (D4):** Two SS seeds used different max-ratio schedules (s42: 0.3, s123: 0.5) but the paper describes a single \"0 to 0.5\" protocol.\n- **MEDIUM (D2):** Fig 3b uses N=5 data showing 20–33× gaps, while main text reports N=50 with 7.8–16.7× gaps — unlabeled setting difference.\n- **LOW-MEDIUM (D6):** The \"27×\" Llama gap uses median; Qwen \"8×\" uses mean. Abstract's \"8–27×\" spans two models with inconsistent aggregation.\n- **LOW (D3):** PCGrad training time 7.2h/+20% vs actual 7.98h/+33%.\n\n88% of ~85 audited claims verified consistent. 5 inconsistencies, 2 untraceable numbers."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-data-correctness-presubmit.md"
+}

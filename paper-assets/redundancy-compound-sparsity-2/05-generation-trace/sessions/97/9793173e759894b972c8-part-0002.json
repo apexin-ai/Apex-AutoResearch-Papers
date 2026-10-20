@@ -1,0 +1,493 @@
+{
+  "schema_version": "1.0",
+  "session_id": "9793173e759894b972c8",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 140,
+          "timestamp": "2026-05-12T17:36:16.954Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01T9ZejWTz8XxnY2j2rJzkpZ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/carc/results/heatmap_data.pt\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "98f29236-1f4e-4900-97c7-692fb2446aa7",
+            "uuid": "250af23e-59bf-424d-8653-8b5bec852a16",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/carc/results/heatmap_data.pt\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/carc/results/heatmap_data.pt\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000140"
+        },
+        {
+          "source_line": 141,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The artifacts are on the remote server, not local. I need to use `content` parameter instead or register without a source_path. Let me register with content_filename and maybe a description-only approach, or I should fetch the files to local first.\n\nActually, looking at the register_artifact docs again:\n- `source_path`: Local file to copy into artifacts directory\n- `content`: Raw text/HTML/JSON to write directly (for proxy workers without local file access)\n- `url`: External URL\n\nSince the files are on the remote server, I should use `content` with a description, or skip registration of the binary files. Let me register with a content-based description.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "98f29236-1f4e-4900-97c7-692fb2446aa7",
+            "uuid": "771bd3ba-30cd-4e89-9245-394a22a1800c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Up1xWyiaNs1o24rLAfreCF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 708,
+                "cache_read_input_tokens": 122058,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 708
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000141"
+        },
+        {
+          "source_line": 142,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件在远程服务器上，用 content 方式注册。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "98f29236-1f4e-4900-97c7-692fb2446aa7",
+            "uuid": "60f2b47c-459e-496b-be30-d1d53bb31ba8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Up1xWyiaNs1o24rLAfreCF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 708,
+                "cache_read_input_tokens": 122058,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 708
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000142"
+        },
+        {
+          "source_line": 143,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SiUV7eHBFshLXHDfoz7qzE",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "ema_heatmap_comparison",
+                "type": "chart",
+                "description": "Per-layer EMA centroid similarity heatmap comparison across gamma=0.5, 0.7, 0.9 for DeepSeek-R1-Distill-Qwen-14B on WikiText-2 (4096 tokens)",
+                "project": "solver-verified-formalizer-rl",
+                "exp_id": "analysis_heatmap",
+                "content": "Remote path: /root/carc/results/ema_heatmap_comparison.pdf (westd-16980)\nIndividual gamma heatmaps: ema_heatmap_gamma{05,07,09}.pdf\nRaw data: /root/carc/results/heatmap_data.pt",
+                "content_filename": "ema_heatmap_locations.txt",
+                "tags": [
+                  "heatmap",
+                  "ema",
+                  "per-layer",
+                  "gamma-comparison"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "98f29236-1f4e-4900-97c7-692fb2446aa7",
+            "uuid": "2ef493d3-17dd-424b-9c82-3bf895d1ad3a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Up1xWyiaNs1o24rLAfreCF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 708,
+                "cache_read_input_tokens": 122058,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 708
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000143"
+        },
+        {
+          "source_line": 144,
+          "timestamp": "2026-05-12T17:36:28.487Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SiUV7eHBFshLXHDfoz7qzE",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260512_9ad299\\\", \\\"name\\\": \\\"ema_heatmap_comparison\\\", \\\"type\\\": \\\"chart\\\", \\\"description\\\": \\\"Per-layer EMA centroid similarity heatmap comparison across gamma=0.5, 0.7, 0.9 for DeepSeek-R1-Distill-Qwen-14B on WikiText-2 (4096 tokens)\\\", \\\"path\\\": \\\"projects/solver-verified-formalizer-rl/artifacts/analysis_heatmap/chart/ema_heatmap_locations.txt\\\", \\\"url\\\": null, \\\"project\\\": \\\"solver-verified-formalizer-rl\\\", \\\"exp_id\\\": \\\"analysis_heatmap\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-12T17:36:28.433551+00:00\\\", \\\"tags\\\": [\\\"heatmap\\\", \\\"ema\\\", \\\"per-layer\\\", \\\"gamma-comparison\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "98f29236-1f4e-4900-97c7-692fb2446aa7",
+            "uuid": "bba7f3aa-fc73-49bf-8083-a92e44942519",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260512_9ad299\\\", \\\"name\\\": \\\"ema_heatmap_comparison\\\", \\\"type\\\": \\\"chart\\\", \\\"description\\\": \\\"Per-layer EMA centroid similarity heatmap comparison across gamma=0.5, 0.7, 0.9 for DeepSeek-R1-Distill-Qwen-14B on WikiText-2 (4096 tokens)\\\", \\\"path\\\": \\\"projects/solver-verified-formalizer-rl/artifacts/analysis_heatmap/chart/ema_heatmap_locations.txt\\\", \\\"url\\\": null, \\\"project\\\": \\\"solver-verified-formalizer-rl\\\", \\\"exp_id\\\": \\\"analysis_heatmap\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-12T17:36:28.433551+00:00\\\", \\\"tags\\\": [\\\"heatmap\\\", \\\"ema\\\", \\\"per-layer\\\", \\\"gamma-comparison\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260512_9ad299\", \"name\": \"ema_heatmap_comparison\", \"type\": \"chart\", \"description\": \"Per-layer EMA centroid similarity heatmap comparison across gamma=0.5, 0.7, 0.9 for DeepSeek-R1-Distill-Qwen-14B on WikiText-2 (4096 tokens)\", \"path\": \"projects/solver-verified-formalizer-rl/artifacts/analysis_heatmap/chart/ema_heatmap_locations.txt\", \"url\": null, \"project\": \"solver-verified-formalizer-rl\", \"exp_id\": \"analysis_heatmap\", \"skill\": \"\", \"created_at\": \"2026-05-12T17:36:28.433551+00:00\", \"tags\": [\"heatmap\", \"ema\", \"per-layer\", \"gamma-comparison\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000144"
+        },
+        {
+          "source_line": 145,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CD1aSWEj74h3p6mnm9YUMv",
+              "name": "TodoWrite",
+              "input": {
+                "todos": [
+                  {
+                    "content": "Write and upload analysis_heatmap.py to server",
+                    "status": "completed",
+                    "activeForm": "Writing analysis_heatmap.py"
+                  },
+                  {
+                    "content": "Write and upload composite_signal_test.py, dry-run verify",
+                    "status": "completed",
+                    "activeForm": "Writing composite_signal_test.py"
+                  },
+                  {
+                    "content": "Dry-run composite_signal_test.py",
+                    "status": "completed",
+                    "activeForm": "Dry-running composite_signal_test.py"
+                  },
+                  {
+                    "content": "Run analysis_heatmap.py on cuda:1 to collect per-layer EMA scores",
+                    "status": "completed",
+                    "activeForm": "Running EMA score collection"
+                  },
+                  {
+                    "content": "Generate heatmap PDFs (gamma=0.5, 0.7, 0.9 + comparison)",
+                    "status": "completed",
+                    "activeForm": "Generating heatmap visualizations"
+                  },
+                  {
+                    "content": "Report results: per-layer stats, layer differences, file paths",
+                    "status": "completed",
+                    "activeForm": "Reporting results"
+                  }
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "98f29236-1f4e-4900-97c7-692fb2446aa7",
+            "uuid": "ad5846b6-96d6-455e-b846-36b66c4872ba",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017xWD86t4RERnXRMXBmbYoo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 877,
+                "cache_read_input_tokens": 122766,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 877
+                },
+                "output_tokens": 32,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000145"
+        },
+        {
+          "source_line": 146,
+          "timestamp": "2026-05-12T17:36:34.947Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CD1aSWEj74h3p6mnm9YUMv",
+              "type": "tool_result",
+              "content": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "98f29236-1f4e-4900-97c7-692fb2446aa7",
+            "uuid": "57a86dfb-9c73-458d-a245-70d791890904",
+            "tool_use_result": {
+              "oldTodos": [
+                {
+                  "content": "Write and upload analysis_heatmap.py to server",
+                  "status": "completed",
+                  "activeForm": "Writing analysis_heatmap.py"
+                },
+                {
+                  "content": "Write and upload composite_signal_test.py, dry-run verify",
+                  "status": "completed",
+                  "activeForm": "Writing composite_signal_test.py"
+                },
+                {
+                  "content": "Dry-run composite_signal_test.py",
+                  "status": "completed",
+                  "activeForm": "Dry-running composite_signal_test.py"
+                },
+                {
+                  "content": "Run analysis_heatmap.py on cuda:1 to collect per-layer EMA scores",
+                  "status": "in_progress",
+                  "activeForm": "Running EMA score collection"
+                },
+                {
+                  "content": "Generate heatmap PDFs (gamma=0.5, 0.7, 0.9 + comparison)",
+                  "status": "pending",
+                  "activeForm": "Generating heatmap visualizations"
+                },
+                {
+                  "content": "Report results: per-layer stats, layer differences, file paths",
+                  "status": "pending",
+                  "activeForm": "Reporting results"
+                }
+              ],
+              "newTodos": [
+                {
+                  "content": "Write and upload analysis_heatmap.py to server",
+                  "status": "completed",
+                  "activeForm": "Writing analysis_heatmap.py"
+                },
+                {
+                  "content": "Write and upload composite_signal_test.py, dry-run verify",
+                  "status": "completed",
+                  "activeForm": "Writing composite_signal_test.py"
+                },
+                {
+                  "content": "Dry-run composite_signal_test.py",
+                  "status": "completed",
+                  "activeForm": "Dry-running composite_signal_test.py"
+                },
+                {
+                  "content": "Run analysis_heatmap.py on cuda:1 to collect per-layer EMA scores",
+                  "status": "completed",
+                  "activeForm": "Running EMA score collection"
+                },
+                {
+                  "content": "Generate heatmap PDFs (gamma=0.5, 0.7, 0.9 + comparison)",
+                  "status": "completed",
+                  "activeForm": "Generating heatmap visualizations"
+                },
+                {
+                  "content": "Report results: per-layer stats, layer differences, file paths",
+                  "status": "completed",
+                  "activeForm": "Reporting results"
+                }
+              ],
+              "verificationNudgeNeeded": false
+            }
+          },
+          "id": "event-000146"
+        },
+        {
+          "source_line": 147,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部任务完成。结果汇总：\n\n---\n\n### a. Per-layer EMA score 统计摘要\n\n| gamma | 全局 mean | 层间 std | min score | max score |\n|-------|----------|---------|-----------|-----------|\n| 0.5   | 0.5991   | 0.0534  | -0.1962   | 1.0000    |\n| 0.7   | 0.5961   | 0.0501  | -0.1962   | 1.0000    |\n| 0.9   | 0.5765   | 0.0381  | -0.1962   | 1.0000    |\n\ngamma 越大，层间方差越小（0.0534→0.0381），符合 EMA 平滑效应。\n\n### b. Per-layer 差异观察\n\n**EMA 信号最强层（mean 最高）**: layers [31, 18, 19, 30, 35] — 集中在中间偏上层，三个 gamma 值一致。\n\n**EMA 信号最弱层（mean 最低）**: layers [4, 3, 2, 1, 5/11] — 浅层 EMA 信号弱，说明浅层 KV representation 变化大、centroid 不稳定。\n\n关键发现：\n- 浅层 (0-5) EMA mean ~0.45-0.55，std 小，range 窄 → KV 表示不太冗余\n- 中层 (16-35) EMA mean ~0.60-0.66，std 大，range 宽（甚至出现负值）→ 冗余信号最强但也最不稳定\n- 深层 (40-47) EMA mean 回落到 ~0.54-0.57 → 中等冗余\n\n### c. Heatmap 文件路径\n\n| 文件 | 路径 |\n|------|------|\n| gamma=0.5 heatmap | `/root/carc/results/ema_heatmap_gamma05.pdf` |\n| gamma=0.7 heatmap | `/root/carc/results/ema_heatmap_gamma07.pdf` |\n| gamma=0.9 heatmap | `/root/carc/results/ema_heatmap_gamma09.pdf` |\n| 三 gamma 对比图 | `/root/carc/results/ema_heatmap_comparison.pdf` |\n| 原始数据 | `/root/carc/results/heatmap_data.pt` |\n\n### d. composite_signal_test.py dry-run\n\n通过。输出 shape `torch.Size([1024])`，score range `[0.0016, 0.9690]`。\n\n文件位于 `/root/carc/composite_signal_test.py`。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "98f29236-1f4e-4900-97c7-692fb2446aa7",
+            "uuid": "08d5b070-9be2-4bfc-aca7-f37c63e3e0ec",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FRc17TEH7dG9p39bE34dfi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 341,
+                "cache_read_input_tokens": 123643,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 341
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000147"
+        },
+        {
+          "source_line": 148,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部任务完成。结果汇总：\n\n---\n\n### a. Per-layer EMA score 统计摘要\n\n| gamma | 全局 mean | 层间 std | min score | max score |\n|-------|----------|---------|-----------|-----------|\n| 0.5   | 0.5991   | 0.0534  | -0.1962   | 1.0000    |\n| 0.7   | 0.5961   | 0.0501  | -0.1962   | 1.0000    |\n| 0.9   | 0.5765   | 0.0381  | -0.1962   | 1.0000    |\n\ngamma 越大，层间方差越小（0.0534→0.0381），符合 EMA 平滑效应。\n\n### b. Per-layer 差异观察\n\n**EMA 信号最强层（mean 最高）**: layers [31, 18, 19, 30, 35] — 集中在中间偏上层，三个 gamma 值一致。\n\n**EMA 信号最弱层（mean 最低）**: layers [4, 3, 2, 1, 5/11] — 浅层 EMA 信号弱，说明浅层 KV representation 变化大、centroid 不稳定。\n\n关键发现：\n- 浅层 (0-5) EMA mean ~0.45-0.55，std 小，range 窄 → KV 表示不太冗余\n- 中层 (16-35) EMA mean ~0.60-0.66，std 大，range 宽（甚至出现负值）→ 冗余信号最强但也最不稳定\n- 深层 (40-47) EMA mean 回落到 ~0.54-0.57 → 中等冗余\n\n### c. Heatmap 文件路径\n\n| 文件 | 路径 |\n|------|------|\n| gamma=0.5 heatmap | `/root/carc/results/ema_heatmap_gamma05.pdf` |\n| gamma=0.7 heatmap | `/root/carc/results/ema_heatmap_gamma07.pdf` |\n| gamma=0.9 heatmap | `/root/carc/results/ema_heatmap_gamma09.pdf` |\n| 三 gamma 对比图 | `/root/carc/results/ema_heatmap_comparison.pdf` |\n| 原始数据 | `/root/carc/results/heatmap_data.pt` |\n\n### d. composite_signal_test.py dry-run\n\n通过。输出 shape `torch.Size([1024])`，score range `[0.0016, 0.9690]`。\n\n文件位于 `/root/carc/composite_signal_test.py`。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 691734,
+            "duration_api_ms": 572298,
+            "num_turns": 53,
+            "stop_reason": "end_turn",
+            "session_id": "98f29236-1f4e-4900-97c7-692fb2446aa7",
+            "total_cost_usd": 2.69374425,
+            "usage": {
+              "input_tokens": 42,
+              "cache_creation_input_tokens": 112143,
+              "cache_read_input_tokens": 2520815,
+              "output_tokens": 29206,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 112143,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 749,
+                  "cache_read_input_tokens": 123643,
+                  "cache_creation_input_tokens": 341,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 341
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1983,
+                "outputTokens": 20,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0020829999999999998,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 42,
+                "outputTokens": 29206,
+                "cacheReadInputTokens": 2520815,
+                "cacheCreationInputTokens": 112143,
+                "webSearchRequests": 0,
+                "costUSD": 2.6916612499999992,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "02c9dee8-0c59-4574-8a61-cce02ebea3e3"
+          },
+          "id": "event-000148"
+        }
+      ]
+    }
+  ]
+}

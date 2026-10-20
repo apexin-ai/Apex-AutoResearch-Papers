@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1bf6b97f557caa3f9433",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "paper figure fig4 real data redraw",
+  "task_key": "worker_paper_figure_fig4_real_data_redraw_20260520T030639",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig4_real_data_redraw_20260520T030639_result.json",
+    "occurrence": 1,
+    "bytes": 1285,
+    "sha256": "e90f703d999ab23382b1f7cb5f7c6ad40ca5b8b796ded3d065742f471c045123"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总结果：\n\n### Part 1: per-turn goal attention 数据\n已提取并保存到 `artifacts/fig4_attention_real_data.json`。4 个模型 × 10 turns × 3 convs 的 layer-averaged goal attention：\n\n| Turn | Baseline | TG | UG | LoRA-only |\n|------|----------|-----|-----|-----------|\n| T1 | 0.053 | 0.058 | 0.058 | 0.061 |\n| T2 | 0.018 | 0.029 | 0.025 | 0.024 |\n| T3 | 0.012 | 0.016 | 0.016 | 0.017 |\n| T4 | 0.010 | 0.023 | 0.020 | 0.018 |\n| T5 | 0.011 | 0.035 | 0.032 | 0.027 |\n| T6 | 0.007 | 0.011 | 0.011 | 0.011 |\n| T7 | 0.007 | 0.011 | 0.010 | 0.010 |\n| T8 | 0.008 | 0.028 | 0.028 | 0.028 |\n| T9 | 0.004 | 0.008 | 0.008 | 0.008 |\n| T10 | 0.007 | 0.013 | 0.011 | 0.012 |\n\nBaseline 衰减最快（T1→T9 跌 92%）。TG/UG/LoRA 在 T4-T8 维持显著更高的 goal attention，但 T8 的方差极大（std ≈ mean），源于 N=3 中一个 conv 在特定层有极高 attention。\n\n### Part 2: conv_length_gar_scaling 数据\n- 本地已有报告：`artifacts/_project/report/conv_length_gar_scaling_report.md`（N=45，5 turns per-turn GAR 数据）\n- 服务器 `~/runs/turn_residual_gating/` 下无对应原始数据文件\n\n### Part 3: fig4 重绘\n- `artifacts/fig4_attention_heatmap.pdf`\n- `artifacts/fig4_attention_heatmap.png`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig4-real-data-redraw.md"
+}

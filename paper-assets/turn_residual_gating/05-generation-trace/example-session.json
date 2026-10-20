@@ -1,0 +1,345 @@
+{
+  "schema_version": "1.0",
+  "id": "1ad2ecd083aa9ebb6dd0",
+  "project": "turn_residual_gating",
+  "kind": "conversation",
+  "title": "Director coordination",
+  "task_key": "feishu_group_oc_9287ee173cf15d688adcd081f5d861f5_director",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/feishu_group_oc_9287ee173cf15d688adcd081f5d861f5_director.jsonl",
+    "occurrence": 1,
+    "bytes": 1083102,
+    "sha256": "d43574ee2da7bb82a9ec5522fdacb2a83db3795fd66d5e1862c80cddb06a99db"
+  },
+  "readable_path": "readable/conversations/director-coordination.md",
+  "paper_title": "Exposure Bias Collapses Auxiliary Attention Losses in Multi-Turn Dialogue",
+  "preview_selection": {
+    "round": 1,
+    "total_source_events": 552,
+    "policy": "First bounded recorded conversation round with user, assistant, tool call, and tool result; 5–70 events and under 160 KB. Not a scientific-quality ranking."
+  },
+  "statistics": {
+    "messages": 16,
+    "user_turns": 1,
+    "tool_calls": 7,
+    "roles": {
+      "user": 1,
+      "tool_call": 7,
+      "tool_result": 7,
+      "assistant": 1
+    }
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T15:41:18.274621+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 2 审稿意见]:\n\n# Reviewer 2 审稿报告：Novelty & Related Work\n\n**论文**: \"Why Lightweight Gating Cannot Fix Multi-Turn Attention Degradation: A Mechanistic Analysis\"\n**Venue**: EMNLP 2026 (via ACL Rolling Review)\n\n---\n\n## 总体评分\n\n**Overall (ARR)**: 2.5 / 5 — Borderline Findings\n**Overall (6-point)**: 3 / 6 — Weak Reject\n**一句话总结**: 实验方法论尚可，但两个核心失败机制（梯度竞争 + exposure bias）均为已知现象在新场景的确认性验证，novelty 不足以支撑 main conference 或稳定的 Findings 接收。\n\n---\n\n## 官方维度打分（ACL ARR Review Form）\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| **Soundness** | 3 / 5 | 实验设计合理（双模型、消融、bootstrap CI），但范围窄（仅标量门控）、GAR 单指标依赖、scheduled sampling p≈0.07 未达显著 |\n| **Excitement** | 2 / 5 | 负面结果的解释力有限——确认已知失败模式而非揭示意外机制，可操作洞察匮乏 |\n| **Reproducibility** | 3.5 / 5 | 报告了超参、种子、模型版本；但代码/数据未提供，且核心先行工作 Dongre et al. (2026) 不可查证 |\n| **Reviewer Confidence** | 4 / 5 | 本人熟悉 exposure bias、multi-task optimization 和 transformer 机制分析文献 |\n\n**Director 要求的子分数（6-point scale）：**\n- **Novelty**: 2 / 6\n- **Significance**: 2 / 6\n- **Clarity**: 4 / 6\n\n---\n\n## Must-Fix 问题（影响接收决定）\n\n### N1 [critical] Novelty 声称过高——两个核心机制均为已知现象的直接应用\n\n- **具体位置**: §1 Abstract \"first quantitative measurement\"；§6.1 gradient competition；§6.4 exposure bias\n- **问题**: \n  论文声称的两个 failure mechanism：\n  1. **NTP-GAR 梯度竞争**（7–15× 幅度比）= 多任务梯度冲突（multi-task gradient conflict），这是 multi-task learning 领域 2018 年以来的经典问题。GradNorm (Chen et al., 2018) 定义了 gradient magnitude balancing，PCGrad (Yu et al., NeurIPS 2020) 定义了 gradient direction conflict 的 surgery 方法。论文将一个已有成熟解决方案的已知问题重新\"发现\"却完全不引用这些文献。\n  2. **Teacher-forcing distribution shift** = exposure bias (Bengio et al., 2015)。论文自己在 §2 和 §6.4 中引用了 exposure bias 文献，却在 Abstract 和 contributions 中声称这是\"first quantitative measurement\"。Exposure bias 导致 auxiliary loss 在 teacher-forcing 下训练但 autoregressive 推理时失效，这在概念上是完全预期的。\n  \n  30× gap 的具体数值是新的，但数值本身不构成方法论贡献。这类似于报告\"水在 100°C 沸腾\"的精确温度——现象本身已知。\n\n- **为什么影响接收**: ACL ARR 的 Excitement 维度要求论文提供 \"new insights\" 而非对已知现象的确认。如果审稿人认为核心发现是预期的（expected），论文难以超过 Findings 门槛。\n- **建议修改方向**: (1) 在 §2 增加 multi-task gradient conflict 子节，引用 GradNorm/PCGrad/CAGrad 并解释为什么这些已知方法不能直接解决本文场景；(2) 将 contribution 从\"first measurement\"重新定位为\"first empirical demonstration in the attention-steering context with quantitative characterization\"；(3) 补充实验：用 PCGrad 或 GradNorm 缓解梯度竞争，观察是否能减小 30× gap——如果能，说明问题有已知解；如果不能，这才是真正的新洞察。\n\n### N2 [critical] 标题 \"Cannot\" 过度声称——证据仅支持 \"fails to\" under tested conditions\n\n- **具体位置**: 标题；§7 Discussion \"our findings are specific to lightweight residual gating with auxiliary GAR losses\"\n- **问题**: \n  标题使用 \"Cannot\"（不可能），但论文仅测试了：\n  - 一种门控架构（标量 per-layer gate via ReZero）\n  - 一种辅助目标（GAR loss）\n  - 一种训练方式（joint NTP+GAR）\n  - 两个模型家族（Qwen-2.5-7B, Llama-3.1-8B）\n  \n  §7 Discussion 自己承认 \"our findings are specific to lightweight residual gating with auxiliary GAR losses\"，这与标题的绝对否定矛盾。更关键的是，scheduled sampling 将 gap 从 30× 降至 12.3×（§7），说明改变训练策略就能部分修复——这直接反驳了 \"cannot\"。\n  \n  未测试的替代方案包括：向量门控（vector gate per dimension）、attention-head-specific gate、不同 loss 权重调度、curriculum learning 等。\n\n- **为什么影响接收**: 审稿人最厌恶的是 overclaiming。标题是论文最高频被阅读的部分，overclaim 会直接降低可信度。\n- **建议修改方向**: 改为 \"Why Lightweight Scalar Gating Fails to Fix Multi-Turn Attention Degradation\" 或 \"How Exposure Bias Undermines Gating-Based Attention Steering\"。\n\n### N3 [critical] 核心先行工作 Dongre et al. (2026) 不可查证\n\n- **具体位置**: 全文核心依赖——§1 motivation, §3 GAR 定义, §5.1 baseline\n- **问题**: \n  论文的整个动机链建立在 Dongre et al. (2026) 之上：GAR 指标定义、multi-turn degradation 的量化、residual stream persistence 发现。引用验证显示该文献在 OpenAlex 中完全不可查（similarity score 仅 0.336）。Bib 条目标注为 \"Proceedings of NAACL 2026\"，但无法验证该论文是否已被接收或发表。\n  \n  如果这篇论文不存在或无法获取，则本文的整个实验框架（GAR 指标、probe AUC baseline、\"27–48% drop\" 数据）均缺乏可验证的基础。\n\n- **为什么影响接收**: ARR reviewer guidelines 要求 soundness 评估包括 claims 的 supporting evidence。如果核心 prior work 不可验证，所有基于其上的 claim 均悬空。\n- **建议修改方向**: 如果 Dongre et al. 尚未发表，需要 (1) 在论文中自包含地重新定义 GAR 并提供独立验证，(2) 明确标注为 \"under review\" 或提供 preprint 链接。\n\n### N4 [critical] Related Work 缺失关键文献：Multi-task Gradient Conflict\n\n- **具体位置**: §2 Related Work（整节未提及 multi-task optimization 文献）\n- **问题**: \n  §6.1 的核心发现是 NTP 和 GAR 梯度存在方向冲突和幅度不平衡。这正是 multi-task gradient conflict 的定义。但 §2 完全未讨论以下直接相关文献：\n  - **GradNorm** (Chen et al., ICML 2018): 动态调整 loss 权重以平衡梯度幅度\n  - **PCGrad** (Yu et al., NeurIPS 2020): 投影消除梯度方向冲突\n  - **CAGrad** (Liu et al., NeurIPS 2021): 冲突感知梯度下降\n  - **Nash-MTL** (Navon et al., ICML 2022): 纳什博弈框架下的多任务优化\n  \n  这些方法为梯度竞争提供了成熟的解决方案。论文不讨论这些方法，既削弱了 related work 的完整性，也错失了重要的实验 baseline——如果 PCGrad 能解决梯度竞争问题，则本文的\"失败\"可能仅仅是因为没有使用正确的优化策略，而非 gating 本身的固有局限。\n\n- **为什么影响接收**: Related work 不完整直接影响 Soundness 评分。审稿人会问：\"你说梯度竞争导致失败，但你试过已知的梯度冲突解决方案吗？\"\n- **建议修改方向**: (1) §2 增加 multi-task gradient conflict 子节；(2) 实验中加入至少一种 gradient surgery baseline（如 PCGrad）并报告结果。\n\n---\n\n## Should-Fix 问题（影响评分但不一票否决）\n\n### W1 [warning] 范围过窄——仅标量门控，不足以支撑 \"lightweight gating\" 的一般性结论\n\n- **具体位置**: §4.1 ThreadGate Architecture; 标题中 \"Lightweight Gating\"\n- **问题**: 标题说 \"Lightweight Gating\"（轻量门控），但实际仅测试了最简单的标量 per-layer gate（Eq. 2, ReZero 风格）。\"Lightweight gating\" 的合理范围至少应包括：(a) vector gate (per-dimension)，(b) attention-head-specific gate，(c) low-rank gate，(d) layer-group gate。仅测试一种变体就声称\"轻量门控不行\"，有以偏概全之嫌。\n- **建议**: 至少讨论其他变体为什么未测试，或补充 1-2 种变体的实验。\n\n### W2 [warning] Scheduled sampling 实验统计不显著（p ≈ 0.07）\n\n- **具体位置**: §7 Discussion; Table 7\n- **问题**: Contribution 4 声称 \"suggestive evidence from scheduled-sampling mitigation (gap 30×→12.3×, p≈0.07)\"。p=0.07 在传统统计标准下不显著（α=0.05），论文用 \"suggestive\" 对冲但仍将其列为正式 contribution。Table 7 显示 SS+TG 的 inference GAR 仅从 0.016 提升到 0.019p，这个绝对提升量极小。\n- **建议**: 要么增加 bootstrap 样本量/实验重复以获得更强统计支持，要么将此发现从 contributions 降级为 discussion 中的初步观察。\n\n### W3 [warning] GAR 作为唯一注意力退化指标的局限性未充分讨论\n\n- **具体位置**: §3 Background; §5.5 Statistical Validation\n- **问题**: 整篇论文的所有实验结论都建立在 GAR（Goal Attention Ratio）这一单一指标上。§6.5 虽然报告了 instruction compliance 作为下游验证（r=0.82 Pearson correlation），但这是事后验证而非独立指标。如果 GAR 本身的定义有问题（例如，goal token 的选择方式、position bias 的影响），所有结论都会受影响。论文未讨论 GAR 的 limitations 或与其他注意力质量指标的对比。\n- **建议**: 讨论 GAR 可能的失效场景；如果可能，增加至少一个替代指标（如 attention entropy over goal tokens, goal-relevant hidden state similarity）。\n\n### W4 [warning] 论文长度明显低于 EMNLP long paper 上限\n\n- **具体位置**: 全文结构\n- **问题**: EMNLP 2026 long paper 限 8 页正文。本文正文约 6 页（§1-§8 Conclusion 在第 6 页结束），远低于上限。这意味着有约 2 页空间可以补充缺失的 related work、更多门控变体实验、gradient surgery baseline 等。未充分利用页面预算会让审稿人认为 contribution 不够充实。\n- **建议**: 利用剩余页面预算充实 related work 和实验。\n\n### W5 [warning] liu2016attention 引用可能错配\n\n- **具体位置**: §2 Related Work \"attention supervision (Liu et al., 2016)\"\n- **问题**: Bib 条目 `liu2016attention` 的标题是 \"Attention-Based Models for Speech Recognition\"（语音识别），但在 §2 中被引用为 \"attention supervision\" 方法（transformer 注意力引导）。引用验证显示 first author 不匹配（bib=Liu, API=Chorowski）。这可能是引用错配——语音识别的注意力模型与多轮对话的注意力引导是不同话题。\n- **建议**: 核实此引用是否指向正确论文；如果讨论的是 attention supervision for NMT/dialogue，应替换为更相关的参考文献。\n\n### W6 [warning] 4 个 orphan bib 条目未被引用\n\n- **具体位置**: References section\n- **问题**: 引用验证发现以下 bib 条目存在但未在正文中引用：`vaswani2017attention`（Attention is All You Need）、`elhage2021mathematical`（Transformer Circuits）、`olsson2022context`（Induction Heads）、`efron1994bootstrap`（Bootstrap 统计）。其中 Vaswani (2017) 作为 transformer 基础论文理应被引用；Elhage (2021) 和 Olsson (2022) 对理解 residual stream 机制直接相关。这些遗漏暗示引用管理不完善。\n- **建议**: 清理 bib 文件，移除未引用条目或在正文中引用它们。\n\n---\n\n## 小问题（不影响接收）\n\n- §1 p.1 \"probe AUC up to 0.98\" — AUC 基线和计算方法应在正文简述（目前仅引用 Dongre et al.），方便不了解该先行工作的读者理解。\n- §4.2 Loss Design：v7 loss 的选择过程（\"We explored seven loss configurations (v1–v7)\"）仅一句带过，读者无法理解为什么 v7 最优。建议至少在 Appendix 提供 v1–v6 的简要描述和性能。\n- Table 1: \"Relative drop\" 行的 70.8% 和 69% 是相对于 Turn 1 计算的，但表头未明确标注基线。\n- §5.5 Table 5: bootstrap CI 包含零 ([-0.012, 0.019] 和 [-0.008, 0.019])，正文说\"statistically indistinguishable from zero\"——这支持了 null result 但应更明确地说明这意味着 ThreadGate 的增量效果可能完全不存在。\n- p.1 Abstract: \"30× training–inference gap\" 的表述有歧义——是 GAR 值的比值（0.48/0.016=30）还是相对退化幅度？应更精确定义。\n\n---\n\n## 主要优势\n\n1. **实验设计的方法论规范性**: 双模型验证（Qwen + Llama），4-way 消融设计将 gating / LoRA / loss 解耦，bootstrap CI 提供统计保障。这比许多 negative result 论文更严格。\n2. **清晰的叙事结构**: 从问题定义（§1-3）→ 方法设计（§4）→ 负面结果（§5）→ 机制分析（§6）→ 缓解探索（§7）的逻辑链条连贯。\n3. **诚实的 hedging**: §7 Discussion 承认结果的范围限制，Contribution 4 用 \"suggestive evidence\" 而非断言。这种学术诚实值得肯定。\n4. **Per-layer gradient 分析的粒度**: Table 6 的逐层梯度统计（conflict fraction、magnitude ratio）提供了比纯总体数字更丰富的分析。\n\n---\n\n## 对 Director 指定问题的逐项回答\n\n### Q1: Novelty Assessment\n\n**负面结果是否 genuinely novel and surprising?** 不够。对于熟悉 exposure bias 和 multi-task gradient conflict 文献的研究者，\"在 teacher-forcing 下训练的 auxiliary attention loss 在 autoregressive inference 时失效\" 是可预期的。30× 的具体幅度是新的，但量化一个预期现象不等于新洞察。\n\n**机制解释是否 new insights?** 更多是 restatements。梯度竞争 = multi-task gradient conflict (GradNorm/PCGrad 文献)；distribution shift = exposure bias (Bengio et al., 2015)。论文的贡献在于将这两个已知现象映射到 attention steering 场景并提供具体数值，但解释框架本身不新。\n\n**30× gap 的意义**: 作为一个具体 benchmark 数字有参考价值，但不足以单独构成一个 contribution。\n\n### Q2: Related Work Completeness\n\n**关键缺失**: Multi-task gradient conflict 文献（GradNorm, PCGrad, CAGrad, Nash-MTL）——这是本文 §6.1 核心机制的直接上位文献，完全缺失是重大遗漏。\n\n**与 Dongre et al. 的定位**: 论文在 §1 和 §7 对 Dongre et al. 的定位清晰——\"他们发现了问题和 residual 信息持久性，我们测试能否通过 gating 利用这种持久性\"。但 §7 提到 Dongre et al. 的 Appendix B 已注意到 goal re-injection 的失败，论文应更明确地区分自己的增量贡献。\n\n**缺失的替代方案讨论**: \n- Inference-time intervention (ITI, Li et al., 2024) 和 representation engineering (Zou et al., 2023) 在 §2 被引用但仅一句带过。这些方法在推理时直接操作 hidden states，避开了 exposure bias，是更有希望的方向。论文应深入讨论为什么这些方法可能更适合，以增强自身的\"轻量训练时方法不行\"的论点。\n\n### Q3: Contribution Significance for Top Venues\n\n**对于 acceptance rate ~25% 的顶会**: 不足。负面结果论文的门槛是 (1) 尝试的方法必须合理且被广泛期望能成功，(2) 失败分析必须提供深层、可操作的洞察，(3) 发现必须泛化到被测试的具体设置之外。本文在 (1) 上勉强通过（residual gating 确实是 reasonable hypothesis），但在 (2) 上不达标（洞察归结为已知的 exposure bias + gradient conflict），在 (3) 上也不达标（仅测试标量门控）。\n\n**对于 Findings track**: Borderline。如果补充 multi-task gradient conflict 的讨论和实验（如 PCGrad baseline），并修正标题为 \"fails to\"，质量可能达到 Findings 门槛。\n\n**范围是否过窄**: 是。\"Lightweight gating\" 涵盖多种架构，但仅测试最简单的标量变体。如果向量门控或 head-specific 门控也失败，结论的说服力会大幅增强。\n\n### Q4: Writing Quality\n\n**叙事连贯性**: 好。故事线清晰：问题→假设→验证→失败→分析→缓解。\n**组织**: 好。§ 编排合理。\n**Hedging 与 overclaiming**: §7 Discussion 的 hedging 诚实，但标题 \"Cannot\" 和 Abstract 的 \"first quantitative measurement\" 与正文的谦逊不一致。标题和 abstract 是最高频阅读部分，它们的 overclaim 伤害大于正文 hedging 的补救。\n\n**引用状态**: ⚠️ 注意——Director 指出 \"ALL citations are broken (appear as '?')\"，但我在渲染的 PDF（best version, dream_20260519T145320）中观察到引用均正常渲染（如 p.1 \"Dongre et al. (2026)\"、p.2 \"(Zheng et al., 2024)\" 等均可读）。References 节格式完整。可能 Director 看到的是不同版本。如果提交版本确实有引用全坏的问题，那是 desk reject 级别的格式缺陷。\n\n### Q5: Framing Assessment\n\n**\"Cannot\" vs \"Struggles to\" vs \"Fails to\"**: \n- \"Cannot\" = 声称不可能 → **过度声称**，证据不支持\n- \"Struggles to\" = 声称困难 → 相对合适，但对 30× gap 来说又有些轻描淡写\n- \"Fails to\" = 声称在测试条件下失败 → **最准确**的表述\n\n推荐标题改为: \"Why Lightweight Scalar Gating Fails to Fix Multi-Turn Attention Degradation: A Mechanistic Analysis\"\n\n**Setup-specific vs. generalizable**: §7 Limitations 做了合理区分。但标题和 Abstract 的用语暗示一般性结论（\"Lightweight Gating\" 而非 \"Scalar Residual Gating\"），与正文的谨慎不一致。\n\n### Q6: Missing Perspectives\n\n**未考虑的替代解释**:\n1. **GAR 指标本身的局限**: GAR 衡量 attention mass 在 goal tokens 上的分布，但 attention ≠ information flow。模型可能通过 value vectors 而非 attention weights 传递 goal 信息。attention weight 上的 GAR 衰减不一定意味着功能性退化。\n2. **标量门控容量不足**: 每层一个标量参数可能simply too few parameters 来学习复杂的 turn-conditioned 行为。失败可能不是 exposure bias，而是容量不足。\n3. **LoRA rank 的交互效应**: §4.3 用 LoRA rank 16 应用到所有 attention projection matrices。不同 rank 选择可能改变梯度竞争的动态。\n4. **训练数据量**: 仅 1,000 对话可能不足以让 gate 学习稳健的模式。\n\n**应讨论的 positive-result approaches**:\n- **ITI (Li et al., 2024)** 和 **RepE (Zou et al., 2023)**: 推理时干预方法，绕过 exposure bias\n- **Activation patching**: 直接在特定层修改激活值\n- **KV-cache manipulation**: 在推理时对 key-value cache 做选择性操作\n- 这些方法的成功案例与本文的失败案例形成对比，能更好地定位本文贡献\n\n---\n\n## 总结\n\n论文的实验执行和叙事结构达到了出版标准，但 novelty 是致命短板：两个核心机制（gradient conflict + exposure bias）是成熟的已知问题，且论文遗漏了直接相关的 multi-task optimization 文献。标题 \"Cannot\" overclaims，而核心依赖的 Dongre et al. (2026) 无法查证。建议 (1) 补充 gradient surgery baseline 实验，(2) 扩展门控变体范围，(3) 修正标题和 contribution 声称，(4) 解决 Dongre et al. 的可查证性问题后重新提交。当前状态下评为 Borderline Findings (ARR 2.5)。\n"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9287ee173cf15d688adcd081f5d861f5:director",
+            "source": "review_reviewer_2"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T15:41:30.302618+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9287ee173cf15d688adcd081f5d861f5:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__director_get_project_overview,mcp__agent-ml-research__get_external_review_status,mcp__agent-ml-research__get_visual_check_status",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T15:41:30.353272+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9287ee173cf15d688adcd081f5d861f5:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T15:41:33.133325+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_get_project_overview"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9287ee173cf15d688adcd081f5d861f5:director",
+            "tool": "mcp__agent-ml-research__director_get_project_overview",
+            "tool_args": {
+              "project": "turn_residual_gating"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T15:41:33.590293+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"# 项目 turn_residual_gating 概况\\n\\n## 实验状态 (16 个)\\n\\n- **analysis_gradient_conflict**: DONE (success) — \\n- **phase2_tg_s42_v8_schedsampling**: PREPARING — \\n- **phase2_4way_eval_heldout**: DONE (success) — \\n- **phase2_4way_eval**: DONE (negative) — \\n- **phase2_lora_only_s42**: DONE (success) — \\n- **phase2_ug_s42**: DONE (success) — \\n- **phase2_tg_s42_v7**: DONE (success) — \\n- **phase2_tg_s42_v6**: DONE (negative) — \\n- **phase2_tg_s42_v5**: DONE (negative) — \\n- **phase2_tg_s42_v4**: DONE (failed) — \\n- **phase2_tg_s42_v3b**: DONE (success) — \\n- **phase2_tg_s42_v3**: DONE (negative) — \\n- **phase2_tg_s42_v2**: DONE (killed) — \\n- **phase2_tg_s42**: DONE (negative) — \\n- **phase1_gar_diag**: DONE (success) — \\n\\n## 最新报告\\n# Handover — 2026-05-19\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n- phase2_tg_s42_v8_schedsampling: Scheduled sampling 应用到 GAR loss（线性从 0→0.5 混合 teacher-forced + model-generated contexts）能缩小 v7 的 30x training-inference GAR gap。机制：在 model-generated context 上计算 GAR loss 迫使 attention pattern 适应推理时分布，直接 address teacher-forcing distribution shift。成功标准：inference GAR 显著高于 v7 的 0.016，PPL 不显著恶化（≤2.78+0.2）。（准备中）\\n\\n## 近期结论\\n- **analysis_attention_heatmap** (success): 四模型（Base/TG/UG/LoRA-only）的 goal attention 衰减模式是否一致？如果 TG 的 attention decay 与 LoRA-only 无差异，则 gating 机制对 attention 分布零增量。 ← 基于 phase2_tg_s42_v7\\n- **analysis_gradient_conflict** (success): NTP-GAR 梯度冲突在 v7 训练过程中是否逐层普遍存在？量化 cos_sim 和 magnitude ratio 的演化，验证 NTP 是否在训练中逐渐完全压制 GAR 信号。 ← 基于 phase2_tg_s42_v7\\n- **phase2_4way_eval_heldout** (success): 四路消融的三路趋同结论（TG≈UG≈LoRA-only，gating 零增量）在 held-out eval 数据（idx≥8000，与训练集无重叠）上复现，排除数据重叠 confound。预期：相对比较保持（三路趋同），绝对 GAR 值可能变化。 ← 基于 phase2_4way_eval\\n\\n## 趋势\\n成功 8 / 负向 5 / 失败 1 / 共 15\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestd-20861: 无 GPU 信息\\n\\n## 告警\\n- phase2_tg_s42_v2: 已被终止 — unknown\\n- phase2_tg_s42_v4: 训练失败 — unknown\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9287ee173cf15d688adcd081f5d861f5:director",
+            "tool": "mcp__agent-ml-research__director_get_project_overview",
+            "elapsed_ms": 456
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T15:41:33.590724+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_external_review_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9287ee173cf15d688adcd081f5d861f5:director",
+            "tool": "mcp__agent-ml-research__get_external_review_status",
+            "tool_args": {
+              "project": "turn_residual_gating"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T15:41:33.641183+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"status\\\": \\\"not_requested\\\", \\\"message\\\": \\\"No external review requested.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9287ee173cf15d688adcd081f5d861f5:director",
+            "tool": "mcp__agent-ml-research__get_external_review_status",
+            "elapsed_ms": 50
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T15:41:33.641550+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_visual_check_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9287ee173cf15d688adcd081f5d861f5:director",
+            "tool": "mcp__agent-ml-research__get_visual_check_status",
+            "tool_args": {
+              "project": "turn_residual_gating"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T15:41:33.742458+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"status\\\": \\\"not_started\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9287ee173cf15d688adcd081f5d861f5:director",
+            "tool": "mcp__agent-ml-research__get_visual_check_status",
+            "elapsed_ms": 100
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T15:41:43.215756+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9287ee173cf15d688adcd081f5d861f5:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_project_file",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T15:41:43.266378+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9287ee173cf15d688adcd081f5d861f5:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T15:41:47.433311+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9287ee173cf15d688adcd081f5d861f5:director",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/review_reports/**",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T15:41:47.885454+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9287ee173cf15d688adcd081f5d861f5:director",
+            "tool": "Glob",
+            "elapsed_ms": 452
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T15:41:47.986163+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9287ee173cf15d688adcd081f5d861f5:director",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/review_issues.yaml",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T15:41:48.036940+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9287ee173cf15d688adcd081f5d861f5:director",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T15:42:27.857236+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已收到 Reviewer 2 (Novelty & Related Work 方向) 的 Round 1 审稿报告。\n\n**R2 核心发现摘要：**\n- **Overall**: ARR 2.5 / 5（Borderline Findings）\n- **4 个 Critical 问题**：\n  - N1: 两个核心机制（gradient conflict + exposure bias）均为已知现象，novelty 声称过高\n  - N2: 标题 \"Cannot\" 过度声称，证据仅支持 \"Fails to\"\n  - N3: 核心先行工作 Dongre et al. (2026) 不可查证\n  - N4: Related Work 完全缺失 multi-task gradient conflict 文献（GradNorm/PCGrad/CAGrad）\n- **6 个 Warning**：范围过窄（仅标量门控）、scheduled sampling 统计不显著、GAR 单指标依赖、论文长度偏短、引用错配、orphan bib 条目\n\nR2 的审查角度和深度符合预期，特别是在 multi-task optimization 文献缺失这一点上的发现非常关键。\n\n**当前状态**：等待 Reviewer 1（方法/实验方向）的 Round 1 报告返回。两位 Reviewer 均提交后，进入交叉分享阶段。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9287ee173cf15d688adcd081f5d861f5:director"
+          },
+          "id": "event-000016"
+        }
+      ],
+      "message_count": 16
+    }
+  ]
+}

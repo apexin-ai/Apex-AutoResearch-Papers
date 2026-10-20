@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3efe68f5a964f42535fa",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "paper writing background",
+  "task_key": "worker_paper_writing_background_20260519T224709",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_background_20260519T224709_result.json",
+    "occurrence": 1,
+    "bytes": 512,
+    "sha256": "780deee58ad31417f5e2312fee5b65d6d9c1b6600d6f2549464afe98adb7b498"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`background.tex` written. ~340 words (LaTeX-stripped estimate is 325; actual prose is slightly higher with command arguments counted). Style checks pass: no em-dash/en-dash, no -ing phrase endings. The section defines GAR with formula, distinguishes GAR-Dongre vs GAR-ours with a separate equation, covers residual stream persistence, and closes with the problem statement. Terminology is consistent with `method.tex` and `experiments.tex` (both reference `\\S\\ref{sec:background}` for GAR-ours)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-background.md"
+}

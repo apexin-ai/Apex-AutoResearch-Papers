@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "4e7418912efb42ee2f8f",
+  "project": "turn_residual_gating",
+  "kind": "worker",
+  "title": "prep mmlu eval",
+  "task_key": "worker_prep_mmlu_eval_20260523T064606",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_mmlu_eval_20260523T064606.log",
+    "occurrence": 1,
+    "bytes": 709757,
+    "sha256": "e2169a4b026ac1226ccf0e7c45321a38c302847f0eef823fcfe020f25baeefcd"
+  },
+  "statistics": {
+    "messages": 469,
+    "user_turns": 0,
+    "tool_calls": 197,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 71,
+      "tool_call": 197,
+      "tool_result": 197,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 469,
+      "chunks": [
+        {
+          "path": "4e7418912efb42ee2f8f-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "4e7418912efb42ee2f8f-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "4e7418912efb42ee2f8f-part-0003.json",
+          "message_count": 109
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/prep-mmlu-eval.md"
+}

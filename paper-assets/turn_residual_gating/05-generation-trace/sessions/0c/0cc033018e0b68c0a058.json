@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0cc033018e0b68c0a058",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "ops check lora only status",
+  "task_key": "worker_ops_check_lora_only_status_20260519T071847",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_lora_only_status_20260519T071847_result.json",
+    "occurrence": 1,
+    "bytes": 573,
+    "sha256": "a372eaeb3f200928c5c84e2cffa972ac63b1f0e289534ba106245a173e214662"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n1. **进程已死**：PID 45616 不存在，tmux session 也没了\n2. **GPU 空闲**：0 MiB 显存占用，无运行进程\n3. **崩溃原因**：`train_phase2.py:128` 属性名拼写错误\n\n```\nAttributeError: 'torch._C._CudaDeviceProperties' object has no attribute 'total_mem'. Did you mean: 'total_memory'?\n```\n\n`torch.cuda.get_device_properties(0).total_mem` 应改为 `total_memory`。\n\n**修复**：`/root/turn_residual_gating/src/train_phase2.py` 第 128 行，`total_mem` → `total_memory`，然后重新启动训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-lora-only-status-copy-2.md"
+}

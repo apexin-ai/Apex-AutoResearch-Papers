@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "59b1dcadea48b12372c1",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "code gradient conflict analysis",
+  "task_key": "worker_code_gradient_conflict_analysis_20260519T112257",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gradient_conflict_analysis_20260519T112257_result.json",
+    "occurrence": 1,
+    "bytes": 692,
+    "sha256": "9314fe318fe92ea18378caf88f295cad5da355493b9a5ee7a45934d39f2f8a7a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已部署到 `/root/turn_residual_gating/src/gradient_conflict_analysis.py`，`--help` 验证通过。\n\n脚本逻辑：\n- 加载 v7 checkpoint（ThreadGatedModel + LoRA + gate_params.pt）\n- 遍历 ultrachat 样本，对每个样本分别 backward NTP loss 和 GAR loss（`mse_target`, target=0.5）\n- 两次 backward 之间 `model.zero_grad()` 清零\n- 收集 28 层 gate 参数梯度，逐层计算 cosine similarity 和 magnitude ratio\n- 输出 JSON 到 `results/gradient_conflict_analysis.json` + 打印逐层分析表\n\n默认参数匹配 v7 训练配置（`init_bias=1.5`, `gar_target=0.5`, `gar_loss_mode=mse_target`）。GPU 空闲后直接运行即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-gradient-conflict-analysis.md"
+}

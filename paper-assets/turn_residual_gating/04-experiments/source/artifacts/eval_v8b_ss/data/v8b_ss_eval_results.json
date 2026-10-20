@@ -1,0 +1,29 @@
+{
+  "experiment": "eval_v8b_ss",
+  "checkpoint": "checkpoints/tg_v8b_ss_fixed_s42",
+  "v8b_results": {
+    "iid_heldout_50convs": {
+      "gar_ours": {"turn1": 0.5398, "mid_turns": 0.4983, "ngar": 13.50},
+      "gar_dongre": {"turn1": 0.4407, "mid_turns": 0.3855, "ngar": 22.68},
+      "ppl": 2.78
+    },
+    "model_gen_5convs": {
+      "gar_ours": {"turn1": 0.4333, "mid_turns": 0.3177, "ngar": 4.47},
+      "gar_dongre": {"turn1": 0.4492, "mid_turns": 0.3533, "ngar": 5.92},
+      "ppl": 1.38
+    }
+  },
+  "v7_baseline": {
+    "iid": {"gar_ours": 0.5035, "gar_dongre": 0.0152, "ppl": 2.784},
+    "model_gen": {"gar_ours": 0.0157, "gar_dongre": 0.0194, "ppl": 1.36}
+  },
+  "comparison": {
+    "iid_gar_ours_delta_pp": -0.5,
+    "modelgen_gar_ours_delta_pp": 30.2,
+    "modelgen_gar_dongre_delta_pp": 33.4,
+    "iid_modelgen_gap_ratio_v7": "32x",
+    "iid_modelgen_gap_ratio_v8b": "1.57x",
+    "ppl_degradation": "none"
+  },
+  "conclusion": "SUCCESS"
+}

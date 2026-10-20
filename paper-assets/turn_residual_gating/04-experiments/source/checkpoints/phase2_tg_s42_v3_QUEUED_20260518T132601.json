@@ -1,0 +1,16 @@
+{
+  "exp_id": "phase2_tg_s42_v3",
+  "project": "turn_residual_gating",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T13:07:54.463Z",
+    "updated_at": "2026-05-18T13:26:01.746Z",
+    "hypothesis": "ThreadGate + maximize GAR loss (L_GAR=-mean(GAR)) 提供持续非零梯度，避免 hinge loss 的退化平衡点，gate 值应随训练下降（学习到选择性干预），同时 NTP loss 正常收敛",
+    "parent": "phase2_tg_s42_v2"
+  },
+  "timestamp": "2026-05-18T13:26:01.759892+00:00",
+  "trigger": "update_registry"
+}

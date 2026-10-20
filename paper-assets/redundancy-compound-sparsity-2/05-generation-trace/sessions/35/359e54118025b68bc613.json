@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "359e54118025b68bc613",
+  "project": "redundancy-compound-sparsity-2",
+  "kind": "result",
+  "title": "check gamma 099 read",
+  "task_key": "worker_check_gamma_099_read_20260512T194330",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_gamma_099_read_20260512T194330_result.json",
+    "occurrence": 1,
+    "bytes": 1134,
+    "sha256": "ef18d4e9cc6e115073e9c73ce525f7896f9c91b200a48aa44e64cfc20f10541b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**进程仍在运行** — 正在评估最后一个 gamma=0.99（prefill 已完成，eval 刚开始约 1%，预计还需 ~8 分钟）。\n\nJSON 已有 gamma 0.1–0.95 的完整结果，汇总如下：\n\n| Strategy | Gamma | PPL | vs Random |\n|----------|-------|-----|-----------|\n| **full** (上界) | — | **7.1822** | — |\n| **recency** | — | **7.1758** | — |\n| **random** (基线) | — | **7.6353** | 0% |\n| ema_0.95 | 0.95 | 7.6367 | -0.02% (持平) |\n| ema_0.9 | 0.9 | 7.7788 | -1.88% |\n| ema_0.8 | 0.8 | 7.9878 | -4.62% |\n| ema_0.5 | 0.5 | 8.1352 | -6.55% |\n| ema_0.7 | 0.7 | 8.1367 | -6.57% |\n| ema_0.1 | 0.1 | 8.1707 | -7.01% |\n| ema_0.3 | 0.3 | 8.2099 | -7.53% |\n| **ema_0.99** | **0.99** | **(运行中)** | — |\n\n关键发现：\n- **所有 EMA 策略均劣于 random baseline**，gamma 越高越接近 random 但从未超越\n- **recency 是最强 eviction 策略**，PPL 7.1758 甚至略优于 full（7.1822）\n- JSON 中 `conclusion` 已标记为 `\"ema_method_flawed\"`\n- gamma=0.99 还在跑，按趋势应接近 recency 水平（因为 gamma→1 时 EMA 退化为 recency）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-gamma-099-read.md"
+}

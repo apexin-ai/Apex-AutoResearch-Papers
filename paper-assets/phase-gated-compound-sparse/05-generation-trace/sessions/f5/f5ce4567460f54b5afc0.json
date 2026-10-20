@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f5ce4567460f54b5afc0",
+  "project": "phase-gated-compound-sparse",
+  "kind": "history",
+  "title": "agent / loop_3_1778741922.md",
+  "task_key": "loop_3_1778741922",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1778741922.md",
+    "occurrence": 1,
+    "bytes": 5420,
+    "sha256": "a4dc7e9abcbf7a673ad61c597ef7501ef2ed52d3eb8c20d65e824da7cdec7480"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-14T06:33:42+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**只能用 westd-22162 的 cuda:0, cuda:1, cuda:2, cuda:3**（config 硬编码，违反被 CRITICAL）\n- bf16_importance_s020 和 bf16_importance_s030 **共享 cuda:0**（PID 79812 / 80495），不要在 cuda:0 上再启新实验直到两者都完成\n- 截稿 **2026-05-25 EMNLP ARR**，距今 11 天，所有决策以此为硬 deadline\n- fp16 数据已被 D019 判定不可用于论文 claim（NaN 过滤有 15.3% 选择偏差），论文数字**全部来自 bf16 重跑**\n- Bootstrap B=10000（D024 修正，fp16 实际只用了 B=1000，bf16 重跑已修正）\n- paper 中 \"cross-model\" 不是 \"cross-architecture\"——两模型共享 Qwen2ForCausalLM（D022）\n- Permutation test 统计量必须用 **median**（非 mean），EPS edge case 需修复（Reviewer flagged）\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-22162，4× RTX PRO 6000 Blackwell 96GB\n- **工作目录**: `/root/autodl-tmp/pacs`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，不用 venv）\n- **环境激活**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型**: DeepSeek-R1-Distill-Qwen-7B + Qwen2.5-7B-Instruct（路径在 pacs 代码配置中）\n- **产出目录**: 各实验输出在 `profiling_output_bf16_ds_imp_s0{15,20,25,30}/` 等子目录\n- **活跃进程**:\n  - bf16_importance_s020: PID 79812, cuda:0\n  - bf16_importance_s030: PID 80495, cuda:0\n  - bf16_ds_rand_s015: PID 83111, cuda:1\n  - bf16_ds_rand_s020: PID 83260, cuda:2\n  - bf16_ds_rand_s025: PID 83421, cuda:3\n- **Cron 监控**: 5 个 active cron 对应上述 5 个 RUNNING 实验（reconcile 确认全部 still running）\n- **Worker**: 1 个 running — `worker_analysis_v6_random_s030_r3_20260514T061854`（分析 v6_random_s030_r3 结果）\n\n### 3. 📊 当前状态\n**刚完成**: bf16_importance_s015 (success), bf16_importance_s025 (success), v6_random_s030_r3 (success)——这 3 个已有完整 per_problem_ii 数据。\n\n**正在运行 (5)**:\n- bf16_importance_s020 + bf16_importance_s030：DeepSeek importance masking 最后两个 sparsity 点，共享 cuda:0，预计还需 10-25 min\n- bf16_ds_rand_s015/s020/s025：DeepSeek random masking bf16 重跑（Batch 2 的 3/4），分别在 cuda:1/2/3\n\n**排队 (17 QUEUED + 8 PREPARING)**:\n- bf16_ds_rand_s030 + bf16_ds_imp_s015/s020/s025/s030：DeepSeek 剩余点\n- bf16_qw_rand/imp ×8：Qwen cross-model 全套（C5 claim 依赖）\n- qwen_importance ×4 + bf16_qwen_importance ×4 + bf16_random ×4：早期实验 ID（可能与上面重复，需确认去重）\n\n**等待中**:\n- Worker `worker_analysis_v6_random_s030_r3` 仍在运行（分析 random s030 结果）\n- 5 个 RUNNING 实验的 cron 回调\n- 论文 §5 Results 骨架 Worker（ROADMAP 提到\"进行中\"）\n\n**写作进度**: §2/§3/§4 初稿完成，§6 骨架完成，§1/§5/§7/§8/Abstract 未开始\n\n### 4. 📋 待办（条件触发式）\n- bf16_importance_s020 或 s030 完成 → 更新 registry + memory.md 中 II 趋势表，4 点数据齐全后立即派 Worker 跑 permutation test（median statistic + EPS fix）\n- bf16_ds_rand_s015/s020/s025 完成 → 立即启 bf16_ds_rand_s030（cuda 空出来就上）+ 启 bf16_ds_imp 系列（占空闲 GPU）\n- DeepSeek 全部 8 点（imp×4 + rand×4）齐全 → 派 Worker 跑完整 permutation test + 更新论文 §5 Results 数字\n- Qwen 系列准备就绪 → DeepSeek 实验腾出 GPU 后立即启 Batch 3/4（Qwen imp + rand）\n- 所有 bf16 数据到手 → 统一更新论文所有 placeholder 数字 + 写 §1 Introduction + §7 Discussion + §8 Conclusion + Abstract\n- Worker `worker_analysis_v6_random_s030_r3` 回调 → 整合分析结果到 report.md\n- Related Work 需补 SnapKV/NACL 引用 + gap statement 软化（可与实验并行派 Worker）\n- §7 Discussion \"trivially expected\" 攻防 + Limitations（cross-model 非 cross-architecture）——可提前起草\n\n### 5. 🎯 战略上下文\n**核心发现**: Importance-based eviction 的 compound interaction 在 low-sparsity phase 急剧放大（gradient 11-42×, problem-level bootstrap），而 random masking 保持平坦（~1×）。这是 paper 的中心 claim。\n\n**决策链关键节点**:\n- D019: fp16 数据废弃（NaN 偏差），全部重跑 bf16\n- D020: bf16 全量重跑 16 实验\n- D022: cross-model 非 cross-architecture（两模型共享 Qwen2ForCausalLM）\n- D024: Bootstrap B=1000→10000 修正\n- D025: Claim 锚点从 sign reversal 转为 magnitude gradient\n- D026: 核心证据改用 CI non-overlap + 绝对 II 值，gradient ratio 降级\n\n**易错点**:\n- QUEUED 中有重复实验 ID（bf16_qw_imp 系列 vs qwen_importance 系列 vs bf16_qwen_importance 系列），提交前必须确认哪些是真正需要跑的、哪些是早期残留\n- bf16_importance_s020 和 s030 共享 cuda:0，吞吐量比单独跑慢——但不要手动 kill 重排，等自然完成\n- Importance masking II 趋势 s015→s020 有非单调（C2 claim 不能说 \"monotonically increases\"，只能说 \"increases with sparsity\"）\n- Random masking 在 s030 极端 noisy（mid_sparsity mean=-230.76，median=2.43），论文报告应以 median 为主\n- 总实验 70 个（39 DONE + 5 RUNNING + 1 ANALYZING + 17 QUEUED + 8 PREPARING），但 DONE 中 13 failed + 7 negative，有效 success 仅 16 个——别被总数误导\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1778741922.md"
+}

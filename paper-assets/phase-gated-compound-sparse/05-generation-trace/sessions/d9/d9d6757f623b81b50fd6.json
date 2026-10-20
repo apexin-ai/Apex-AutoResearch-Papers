@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d9d6757f623b81b50fd6",
+  "project": "phase-gated-compound-sparse",
+  "kind": "history",
+  "title": "agent / loop_9_1778806316.md",
+  "task_key": "loop_9_1778806316",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_9_1778806316.md",
+    "occurrence": 1,
+    "bytes": 4154,
+    "sha256": "276c0b858d40089972b63d0270980c68d9a6b1c00ad14c2cb8dbfc1648facb1e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: idle_timeout\nupdated: '2026-05-15T00:51:45+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-22162 cuda:0~3（RTX 6000 Pro ×4）。cuda:0+1 → c2_n500_deepseek，cuda:2+3 → c2_qw_n500_r3。不可用白名单外设备\n- 分析脚本只用 `analyze_n500_unified.py`，`analyze_c2_n500.py` 已 DEPRECATED\n- Bootstrap B=10,000 统一，不引用旧 B=1,000 profiling JSON 中的 CI 值\n- d_z 只报 within-importance（不同 sparsity level 间），不报 imp vs rand\n- Paper 数据全用 median + median bootstrap CI，禁止 mean（random masking 有 14.2% catastrophic outlier）\n- LaTeX 同步用 rsync（`bash artifacts/_project/sync_paper_to_remote.sh`），不用 git（本地非 git repo，远程无 remote）\n- Qwen s015 CI 不跨零已确认 → onset threshold 统一 s≥0.15，删所有\"marginal at s=0.15\"措辞\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-22162，工作目录 `/root/autodl-tmp/pacs/`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，非 venv）\n- 环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型路径：DeepSeek `/root/autodl-tmp/.hf_cache/`，Qwen 同目录\n- 数据集：MATH-500（500 problems），位于 `/root/autodl-tmp/pacs/` 下\n- Profiling 输出：`/root/autodl-tmp/pacs/profiling_output_[condition]/profiling_results.json`\n- 日志：`/root/autodl-tmp/pacs/logs/[exp_id].log`\n- 活跃进程：\n  - c2_n500_deepseek: tmux sessions `c2_n500_gpu0`/`c2_n500_gpu1`（cuda:0+1），s025 RUNNING\n  - c2_qw_n500_r3: screen sessions `c2_qw_gpu2`/`c2_qw_gpu3`（cuda:2+3），PID 159269/159794，s025 RUNNING\n- Cron：两个实验均有 cron 监控（shell PID + sentinel 双机制，修复了 c2_qw_n500 假阳性问题）\n\n### 3. 📊 当前状态\n**刚完成**：D060 C8 partially_confirmed 分析、c3_llama SUCCESS 确认、c5b_pilot NEGATIVE framing（→ §8 future work）、D058 解决（Qwen n=500 s015 Bonferroni p<0.0001 显著）\n\n**RUNNING（2）**：\n- `c2_n500_deepseek`：DeepSeek 8 conditions n=500，s025 进行中（imp 101/500, rand 148/500），预计 2026-05-15 ~14:00 UTC+8 全部完成\n- `c2_qw_n500_r3`：Qwen 8 conditions n=500，s025 进行中（imp 192/500, rand 171/500），预计 2026-05-15 ~12:30 UTC+8 全部完成\n\n**等待**：\n- 两个实验完成 cron 回调 → 触发 unified pipeline analysis\n- Analysis 完成后 → Paper n=500 数据更新（tables/figures + caveats）→ Group C review 提交\n\n### 4. 📋 待办（条件触发式）\n- c2_qw_n500_r3 cron 完成回调 → spawn Worker 跑 `analyze_n500_unified.py`（Qwen 部分），B=10,000 rebootstrap\n- c2_n500_deepseek cron 完成回调 → spawn Worker 跑 `analyze_n500_unified.py`（DeepSeek 部分）\n- 两个 analysis 都完成 → 合并结果，更新 paper（n=500 tables、Figure 1/5 数据、C8 caveats、C5b §8、Qwen caveat if needed）\n- Paper 更新完成 → rsync 到远程 → latexmk 编译验证 → 提交 Group C review\n- Group C review 通过 → EMNLP ARR 投稿（deadline 2026-05-25）\n\n### 5. 🎯 战略上下文\n**核心发现**：importance-based eviction 的 compound interaction severity 随 sparsity 单调递增（DeepSeek 0.32→9.94，Qwen 0.048→2.619），random masking 无此效应。n=500 已在 s015 确认 Qwen 统计显著，正在补全剩余 sparsity levels。\n\n**决策链关键点**：\n- D054: 全面切 median（random 有 catastrophic outliers）\n- D059: d_z 只报 within-importance\n- D060: C8 降级为 partially_confirmed（LLaMA 方向一致但 magnitude 弱 40×）\n- D061: n=500 解决了 D058（Qwen imp-vs-rand 现在显著）\n\n**易错点**：\n- 不要把 c2_qw_n500（DONE/FAILED，cron 假阳性）和 c2_qw_n500_r3（当前 RUNNING）混淆——r3 是接力实验，s015 数据来自 c2_qw_n500 时期已完成的 run\n- Qwen mid-phase 58% null rate（n=500 降到 45.2%）仍需在 paper 中加 caveat，不能忽略\n- LLaMA 结果不能和 DeepSeek/Qwen 做定量对比（d_z ~1.0 vs ~40），只做定性方向确认\n- 分析时从 `per_problem_ii` 原始数据重算 CI（B=10,000），不引用 profiling_results.json 中旧的 B=1,000 值\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9-1778806316.md"
+}

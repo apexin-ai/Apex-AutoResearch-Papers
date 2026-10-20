@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d5be81ee2149d24cc70b",
+  "project": "phase-gated-compound-sparse",
+  "kind": "history",
+  "title": "agent / loop_4_1778753396.md",
+  "task_key": "loop_4_1778753396",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778753396.md",
+    "occurrence": 1,
+    "bytes": 4182,
+    "sha256": "1e111da9349f61a4e2b031ac4df6f8c543c56f746203442887f901bcc497b8b5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-14T10:09:30+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-22162 cuda:0~3 **仅此四张**，当前全 standby（纯写作阶段）\n- **bf16 是唯一 canonical 数据源**，fp16 旧数据已弃用——论文任何数字必须来自 bf16 实验\n- Cohen's d 统一用 **paired d_z**（B=10000 re-bootstrap），D050 已回退 fix-cohens-d-notation Worker 的错误修改。**不要再碰 Cohen's d 数值**，当前值已由 Director 确认（D048）\n- C4 entropy-collapse 已**降级为 §6 supporting**（D045/D046），**不是 Core Claim**。写/改论文时不要把 entropy 升回核心主线\n- Framing 硬约束（D015）：MUST \"emergent phase-strategy interaction\"；MUST NOT \"importance is broken\"；不能无 qualifier claim super-additivity\n- 两模型共享 Qwen2ForCausalLM 架构，claim \"cross-model\" **不是** \"cross-architecture\"（D022）\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-22162（4× RTX PRO 6000 Blackwell 96GB）\n- **工作目录**: `/root/autodl-tmp/pacs`\n- **Python/conda**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`（不用 venv）\n- **模型**: DeepSeek-R1-Distill-Qwen-7B + Qwen2.5-7B-Instruct（路径在服务器上）\n- **数据**: math500.json（50 problems）\n- **论文本地 artifacts**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/`（main.tex + 全部 section .tex + references.bib）\n- **统计脚本**: `/root/autodl-tmp/pacs/analysis/rebootstrap_importance_b10000.py`\n- **活跃 Worker**: `worker_paper_compile_and_git_init_20260514T095535`（LaTeX 编译 + git init，running）\n- **活跃 Cron**: 无（reconcile 返回 0）\n\n### 3. 📊 当前状态\n**所有 76 实验已 DONE**（35 success / 9 negative / 13 failed / 19 killed），实验阶段彻底结束。\n\n今日（2026-05-14）完成的关键工作：\n- bf16 6-point dose-response 数据纳入（D047: s=0.10~0.35）\n- C4 entropy 降级为 §6 supporting（D045/D046）\n- Cohen's d 全文统一为 paired d_z（D048），回退了错误 Worker 修改（D050）\n- 图表数据需用 bf16 canonical 重新生成（D051）\n- 论文全文（§1-§8 + Abstract）已完成 bf16 数据填充\n- 全文一致性审查 Worker 已完成\n- 多个 figure 生成 Worker 已完成（fig1/fig3/fig4/fig5）\n- **正在等待**: `worker_paper_compile_and_git_init` 回调（LaTeX 编译 + git init）\n\n### 4. 📋 待办（条件触发式）\n- `worker_paper_compile_and_git_init` 回调到达 → 检查编译是否成功；成功则进 visual review，失败则派 Worker 修 LaTeX 错误\n- LaTeX 编译成功 → 派 Worker 做 `pdf_to_images` visual review（检查图表渲染、排版、页数）\n- Visual review 通过 → 向 Director 汇报\"论文初稿编译完成，请 review\"\n- Visual review 发现问题 → 派 Worker 逐项修复，再次编译\n- Director 要求修改 → 派 Worker 执行，保持 figure 数据与正文数字一致\n- 全部 review 通过 → S3 备份 + 准备 ARR 提交\n\n### 5. 🎯 战略上下文\n- **核心结论**: Importance-based eviction 的 compound interaction severity 随 sparsity 单调递增（DS: 0.32→9.94; QW: 0.048→2.619），random 7/8 FAIL。Discrimination collapse（Gini/CV 下降）是跨模型一致的机制；entropy redistribution 是 DeepSeek 特有的 secondary effect\n- **论文定位**: Empirical finding paper（非 method paper），不需要 throughput 数据\n- **EMNLP 2026 ARR 截稿**: 2026-05-25（距今 11 天）\n- **当前瓶颈**: 纯工程——LaTeX 编译 + figures 确认 + visual review。GPU 无需求\n- **易错点**:\n  - D050 教训：不要让 Worker 自作主张改 Cohen's d 数值/符号，当前值已 Director 锁定\n  - 图表必须用 bf16 canonical 数据（D051），旧脚本里可能硬编码了 fp16 值\n  - Qwen s015 Cohen's d CI 含 0，论文中必须标注 \"marginal\"\n  - `results_5_1.tex` 等旧文件需清理（ROADMAP P1 任务），但别误删正在用的文件\n  - median difference 有两种定义（paired vs unpaired），论文正文用 paired，summary table 用 unpaired，不要混\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778753396.md"
+}

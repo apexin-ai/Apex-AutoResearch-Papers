@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6f31a2c419c5fd030523",
+  "project": "redundancy-compound-sparsity",
+  "kind": "result",
+  "title": "analysis llama layer analysis",
+  "task_key": "worker_analysis_llama-layer-analysis_20260512T022207",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_llama-layer-analysis_20260512T022207_result.json",
+    "occurrence": 1,
+    "bytes": 1199,
+    "sha256": "c180947bd8ce83af67a39e18cf6ee10111ec1e355dce4475dee103ebb5ea32d1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。产出文件在 `/home/sonny/redundancy-compound-sparsity/results/neg_cross_model/analysis/`。\n\n---\n\n**关键发现：**\n\n**1. Llama per-layer r 极其均匀**：32 层 r 范围 0.393–0.485，标准差极小。每一层的 anchor_sim 都与 surprisal 强相关。\n\n**2. DeepSeek 有 11 个弱/负相关层**（r < 0.05）：集中在 L0-3 和 L13-20，这些层直接拖垮了全局 r（0.147）。即使最强的层（L4, r=0.287）也远低于 Llama 的最低值。\n\n**3. 差异最大的区间**：\n| Group | Llama r | DeepSeek r | Gap |\n|-------|---------|------------|-----|\n| Early | 0.450 | 0.128 | +0.322 |\n| Mid | 0.434 | 0.072 | **+0.361** |\n| Late | 0.472 | 0.130 | +0.342 |\n\nMid layers gap 最大，因为 DeepSeek L13-17 几乎全是 r≈0 的死区。\n\n**4. Δpert 方向性完全不同**：\n- Llama late layers（L20-31）Δpert 平均 +14.3%，信号最强\n- DeepSeek mid+late layers Δpert 为 **负值**（−3.3% 到 −3.6%），即 cross-axis 反转\n\n**5. 架构解读**：GQA 的多 KV head 让 anchor_sim 在每层都是可靠的冗余度信号；MLA 的低秩压缩 KV 在 early/mid layers 破坏了这个对应关系。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-llama-layer-analysis.md"
+}

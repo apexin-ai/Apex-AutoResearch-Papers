@@ -1,0 +1,47 @@
+{
+  "model": "v7_tg",
+  "total_steps": 3000,
+  "note": "Gradient conflict analysis via gradient_conflict_analysis.py on v7 checkpoints. Per-epoch offline analysis (not online training diagnostics). 10 samples per epoch, 28 layers + turn_embedding.",
+  "data": [
+    {
+      "epoch": 0,
+      "step": 1000,
+      "cos_sim": -0.0887,
+      "cos_sim_std": 0.1374,
+      "mag_ratio_median": 7.49,
+      "mag_ratio_mean": 12.80,
+      "neg_layers_pct": 78.6,
+      "strong_neg_layers": 3,
+      "total_layers": 28,
+      "avg_ntp_loss": 0.8125,
+      "avg_gar_loss": 0.00196
+    },
+    {
+      "epoch": 1,
+      "step": 2000,
+      "cos_sim": -0.0541,
+      "cos_sim_std": 0.0944,
+      "mag_ratio_median": 13.71,
+      "mag_ratio_mean": 26.00,
+      "neg_layers_pct": 71.4,
+      "strong_neg_layers": 0,
+      "total_layers": 28,
+      "avg_ntp_loss": 0.8022,
+      "avg_gar_loss": 0.00136
+    },
+    {
+      "epoch": 2,
+      "step": 3000,
+      "cos_sim": -0.0419,
+      "cos_sim_std": 0.0857,
+      "mag_ratio_median": 14.67,
+      "mag_ratio_mean": 38.39,
+      "neg_layers_pct": 67.9,
+      "strong_neg_layers": 0,
+      "total_layers": 28,
+      "avg_ntp_loss": 0.7985,
+      "avg_gar_loss": 0.00126
+    }
+  ],
+  "per_layer_data_source": "runs/analysis/gradient_conflict/epoch_{0,1,2}.json on server westd-20861"
+}

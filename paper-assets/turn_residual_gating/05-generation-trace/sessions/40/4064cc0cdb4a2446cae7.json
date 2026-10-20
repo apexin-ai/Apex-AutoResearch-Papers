@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4064cc0cdb4a2446cae7",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "code pcgrad v9",
+  "task_key": "worker_code_pcgrad_v9_20260519T161357",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_pcgrad_v9_20260519T161357_result.json",
+    "occurrence": 1,
+    "bytes": 359,
+    "sha256": "b44bcf99c9e29dd590d453e66a8eb713ea35a187b1834d365d50daf30d0e084f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "v8 训练正在运行（Epoch 0, Step 2200/~8000），占用 85GB 显存。GPU 只剩 ~12GB 空闲，无法加载 7B 模型运行 v9 dry-run。\n\n需要 kill v8 进程（PID 73843）才能继续。可以 kill 吗？从日志看 v8 的 GAR loss 接近 0（0.0000-0.0150），scheduled sampling usage 也很低（3-4%），表现和 v7 类似。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-pcgrad-v9.md"
+}

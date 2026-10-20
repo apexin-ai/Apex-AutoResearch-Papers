@@ -1,0 +1,142 @@
+{
+  "beta_values": [
+    0.0,
+    0.5,
+    1.0,
+    2.0,
+    5.0,
+    10.0
+  ],
+  "per_conv": {
+    "0.0": {
+      "gar": [
+        0.017406,
+        0.019033,
+        0.015077,
+        0.023604,
+        0.065328
+      ],
+      "ppl": [
+        1.4593163068891624,
+        1.4207273098595354,
+        1.52917284195973,
+        1.2126556009751295,
+        1.424461983952039
+      ]
+    },
+    "0.5": {
+      "gar": null,
+      "ppl": null,
+      "note": "per-conversation data unavailable (SSH output truncated)"
+    },
+    "1.0": {
+      "gar": null,
+      "ppl": null,
+      "note": "per-conversation data unavailable (SSH output truncated)"
+    },
+    "2.0": {
+      "gar": [
+        0.058057,
+        0.063371,
+        0.061871,
+        0.059257,
+        0.081971
+      ],
+      "ppl": [
+        1.4,
+        1.45,
+        1.49,
+        1.2,
+        1.52
+      ]
+    },
+    "5.0": {
+      "gar": [
+        0.695043,
+        0.722114,
+        0.684929,
+        0.642229,
+        0.689771
+      ],
+      "ppl": [
+        1.7413482415175232,
+        2.073989419051431,
+        2.0086409052330465,
+        1.3895906882666889,
+        2.3276011828849597
+      ]
+    },
+    "10.0": {
+      "gar": [
+        0.959587,
+        0.958135,
+        0.963323,
+        0.964719,
+        0.963049
+      ],
+      "ppl": [
+        3.06639788333603,
+        5.794493436735057,
+        4.222658784819339,
+        4.0379058512018915,
+        3.978856865568066
+      ]
+    }
+  },
+  "means": {
+    "0.0": {
+      "gar_mean": 0.02809,
+      "gar_std": 0.018827,
+      "ppl_mean": 1.409267,
+      "ppl_std": 0.105736
+    },
+    "0.5": {
+      "gar_mean": 0.0287,
+      "gar_std": null,
+      "ppl_mean": 1.387,
+      "ppl_std": null,
+      "note": "only aggregated means available"
+    },
+    "1.0": {
+      "gar_mean": 0.0349,
+      "gar_std": null,
+      "ppl_mean": 1.36,
+      "ppl_std": null,
+      "note": "only aggregated means available"
+    },
+    "2.0": {
+      "gar_mean": 0.064906,
+      "gar_std": 0.008736,
+      "ppl_mean": 1.412,
+      "ppl_std": 0.113384
+    },
+    "5.0": {
+      "gar_mean": 0.686817,
+      "gar_std": 0.025745,
+      "ppl_mean": 1.908234,
+      "ppl_std": 0.319458
+    },
+    "10.0": {
+      "gar_mean": 0.961763,
+      "gar_std": 0.002479,
+      "ppl_mean": 4.220063,
+      "ppl_std": 0.883305
+    }
+  },
+  "metadata": {
+    "experiment": "attention_steering_v7_tg_gen",
+    "checkpoint": "phase2_tg_s42_v7",
+    "mode": "gen",
+    "n_convs": 5,
+    "n_turns": 10,
+    "mid_turns_range": "turns 2-8 (0-indexed 1-7)",
+    "data_completeness": {
+      "0.0": "full precision from SSH JSON",
+      "0.5": "aggregated only (SSH truncated)",
+      "1.0": "aggregated only (SSH truncated)",
+      "2.0": "from experiment log (4-decimal precision)",
+      "5.0": "curves from log (4-decimal), PPL full precision from SSH",
+      "10.0": "full precision from SSH JSON"
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d95d88cc8739d45b4220",
+  "project": "phase-gated-compound-sparse",
+  "kind": "history",
+  "title": "agent / loop_8_1778797513.md",
+  "task_key": "loop_8_1778797513",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8_1778797513.md",
+    "occurrence": 1,
+    "bytes": 4702,
+    "sha256": "53212c6318ebdda35ad84abec19ce1224135823085bac5b1f23db220b6143139"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: idle_timeout\nupdated: '2026-05-14T22:18:21+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单严格限定 `westd-22162:cuda:0,1,2,3`，不得使用其他设备\n- 当前分配：cuda:0+1 → c2_n500_deepseek | cuda:2+3 → c2_qw_n500_r3，**全部占满，不得在上面起新实验**\n- 论文指标只用 **median + median bootstrap CI**，禁止引用 mean（D054，random pruning outlier 会让 mean 爆到 -185k）\n- d_z 只报 **within-importance**（不同 sparsity 之间），涉及 imp vs rand 的 d_z **不报**（D059）\n- LLaMA 跨架构只做 **qualitative** framing（\"趋势一致\"），不做定量跨架构比较（效应量差 ~40×）\n- 远程 tex 文件是旧版，编译 PDF 前**必须先从本地同步最新 tex 到 westd-22162**（W1）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**westd-22162**，4× RTX 6000 Pro\n- 工作目录：`/root/autodl-tmp/pacs`\n- Python/conda：用 miniconda3（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- 模型路径：DeepSeek-R1-Distill-Qwen-7B + Qwen（具体路径在 /root/autodl-tmp/pacs/ 下，需 SSH 确认）\n- 数据集：`/root/autodl-tmp/pacs/data/math500.json`（DeepSeek）/ `/root/autodl-tmp/pacs/data/MATH-500/`（Qwen），n=500\n- 活跃进程：\n  - c2_n500_deepseek: cuda:0+1，PID 标记为 `c2_n500_gpu0`，通过 `run_c2_n500_gpu0.sh` + `run_c2_n500_gpu1.sh` 启动，ETA ~2026-05-15 15-17h UTC\n  - c2_qw_n500_r3: cuda:2+3，PID 131858（screen c2_qw_gpu2/gpu3），s015 完成，s020-s030 进行中，ETA ~2026-05-15 21h UTC\n- Cron：3 个活跃（c2_n500_deepseek, c2_qw_n500, c2_qw_n500_r3），使用 shell PID + sentinel `/tmp/agent-ml-exit/{exp_id}.exit` 双机制（D062）\n- Worker 池：**0 个运行中**\n\n### 3. 📊 当前状态\n两个 P0 n=500 实验正在跑，这是截稿前最后的关键数据：\n- **c2_n500_deepseek** (RUNNING)：DeepSeek 8 conditions × n=500，cuda:0+1，s020 进行中\n- **c2_qw_n500_r3** (RUNNING)：Qwen 8 conditions × n=500（c2_qw_n500 的 continuation，因 cron 误报重启），s015 已完成且确认显著（D058: Bonferroni p<0.0001），s020-s030 剩余\n\n论文全文 §1-§8 已完成（基于 n=50 数据），PDF 可编译。等 n=500 数据统一更新。\n82 个实验（36 success / 9 negative / 14 failed / 21 killed / 2 running）。\n无等待中的 Worker 回调或 Director 决策。\n\n### 4. 📋 待办（条件触发式）\n- c2_n500_deepseek cron 回调（DONE）→ spawn Worker 跑分析 pipeline（median II + bootstrap CI + d_z within-importance）→ 结果入 registry\n- c2_qw_n500_r3 cron 回调（DONE）→ 同上分析 pipeline\n- **两个 n=500 分析都完成** → spawn Paper Worker 统一更新论文：\n  1. n=500 tables/figures 替换 n=50 数据\n  2. 修复 W3 [CRITICAL]：conclusion.tex + appendix 中 \"cross-architecture = future work\" 改为承认 LLaMA 初步验证\n  3. 修复 W2：§5.5 LLaMA 每个 sparsity 同时报 CI + Bonferroni Wilcoxon\n  4. 修复 W4：Bootstrap B 值声明统一（B=10,000 或分场景声明）\n  5. 修复 W5：Qwen mid-phase null rate 披露（per-phase effective n）\n  6. C5b → §8 future work\n  7. C8 partially_confirmed 限定语\n  8. Qwen caveat（若 n=500 仍有高 null rate）\n- 论文更新完成 → 同步 tex 到 westd-22162 → 编译 PDF → 提交 Group C full review\n- **若任一 n=500 实验 conclusion=negative**（如 Qwen gradient 在 n=500 仍不显著）→ 按 red-section 产 Framing 提案，改叙事为 \"compound effect emerges above threshold sparsity (~s020)\"，不默默跑下一个\n\n### 5. 🎯 战略上下文\n- **截稿 2026-05-25（11 天）**，n=500 是最后一批实验，之后纯论文打磨\n- 核心发现：importance-based pruning 的 compound interaction severity 随 sparsity 单调递增（DeepSeek 强效应 0.32→9.94，Qwen 弱但方向一致），random masking 无此 pattern\n- n=500 的战略意义：(1) 把 Qwen imp-vs-rand 从 n=50 不显著翻为显著（s015 已确认）(2) 用 median 替代 mean 彻底解决 outlier 问题 (3) 收窄 CI 强化所有 claims\n- **最容易判断错的事**：c2_qw_n500 和 c2_qw_n500_r3 是同一批 Qwen n=500 实验——c2_qw_n500 因 cron 5 次误报被标 DONE(failed)，c2_qw_n500_r3 是 continuation，它的 s015 结果已在 D058 中确认。不要把 c2_qw_n500 当作真正失败的实验\n- **容易踩的坑**：(1) Cron 对 c2_qw_n500 仍有条目活跃（reconcile 显示 c2_qw_n500 still running），这是因为 screen session 还在，但实际数据由 c2_qw_n500_r3 接管 (2) Worker 池当前为 0——等回调到来时必须立即 spawn 分析 Worker，同时可以提前 spawn Worker 准备论文更新的代码框架\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-1778797513.md"
+}

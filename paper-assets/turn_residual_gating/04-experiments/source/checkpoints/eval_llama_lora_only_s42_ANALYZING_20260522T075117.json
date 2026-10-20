@@ -1,0 +1,71 @@
+{
+  "exp_id": "eval_llama_lora_only_s42",
+  "project": "turn_residual_gating",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T07:40:25.352Z",
+    "updated_at": "2026-05-22T07:51:16.964Z",
+    "hypothesis": "Llama LoRA-only eval: 验证 LoRA-only 的 TF/AR GAR gap 与 TG 一致（gating 零增量跨模型确认）。预期 TF GAR ≈ TG 水平，AR GAR 同样坍塌。",
+    "parent": "llama_lora_only_s42",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/turn_residual_gating && bash scripts/eval_llama_lora_only_s42.sh\"",
+      "server": "westd-20861",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "309670",
+      "log_path": "~/runs/turn_residual_gating/eval_llama_lora_only_s42.log",
+      "submitted_at": "2026-05-22T07:40:34.437Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "ultrachat_200k + model-gen",
+      "data_count": 55,
+      "model_name": "Llama-3.1-8B-Instruct + LoRA-only checkpoint",
+      "seed": 42,
+      "checkpoint_source": "llama_lora_only_s42",
+      "eval_data": "IID heldout 50 + model-gen 5"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-22T07:45:28.637Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-22T07:45:30.556207+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "tf": {
+        "gar_ours": 0.4807,
+        "gar_dongre": 0.0188,
+        "ngar_ours": 11.8031,
+        "ngar_dongre": 0.8261,
+        "ppl": 2.6,
+        "ntp_loss": 0.9366,
+        "n_conversations": 50,
+        "n_turns": 4
+      },
+      "ar": {
+        "gar_ours": 0.0617,
+        "gar_dongre": 0.0226,
+        "ngar_ours": 0.6065,
+        "ngar_dongre": 0.2537,
+        "ppl": 1.32,
+        "ntp_loss": 0.2787,
+        "n_conversations": 5,
+        "n_turns": 10
+      },
+      "gap_ratio_gar_ours": 7.79
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-22T07:51:17.061925+00:00",
+  "trigger": "update_registry"
+}

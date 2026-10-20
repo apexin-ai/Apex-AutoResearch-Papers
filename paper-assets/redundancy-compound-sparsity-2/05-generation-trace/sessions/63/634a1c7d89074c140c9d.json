@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "634a1c7d89074c140c9d",
+  "project": "redundancy-compound-sparsity-2",
+  "kind": "result",
+  "title": "check d003 status director req",
+  "task_key": "worker_check_d003_status_director_req_20260512T153325",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_d003_status_director_req_20260512T153325_result.json",
+    "occurrence": 1,
+    "bytes": 1249,
+    "sha256": "d3bd4927ca4b9e330904d31081afbc79d8f18e362aeb0ce84050f58566a3e667"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## D003 状态总结\n\n### GPU\n| GPU | 型号 | 显存 | 利用率 | 温度 |\n|-----|------|------|--------|------|\n| 0 | RTX PRO 6000 Blackwell (98GB) | 32093 / 97887 MiB (33%) | 27% | 34°C |\n| 1 | RTX PRO 6000 Blackwell (98GB) | 31763 / 97887 MiB (32%) | 52% | 45°C |\n\n### 进程状态\n两个实验都**在线运行中**，启动于 22:29，已运行 ~64 分钟。无 exit 文件，无结果 JSON。\n\n### EXP1: d003_reasoning_traces (GPU 0, PID 28311)\n- 已完成策略：`full`, `ema_0.7` (PPL=1.2706, 耗时 1178s)\n- **当前**：`ema_0.5` prefill 阶段，**70% (33/47)**，每步 ~16.2s\n- ema_0.5 prefill 剩余 ~3.8 min，之后还有 eval 阶段 (~7 min)\n\n### EXP2: d003_wikitext_32k (GPU 1, PID 28390)\n- 已完成策略：`full`, `ema_0.7`（以及更多——exp2 进度更快）\n- **当前**：`ema_0.5` eval 阶段，**49% (3190/6554)**，~14.3 it/s\n- ema_0.5 eval 剩余 ~3.9 min\n\n### 预估完成时间\n- 每个策略耗时约 20-25 分钟（prefill + eval）\n- 已完成 2 个策略 + 第 3 个策略（ema_0.5）进行中\n- 不确定总共有多少策略（可能还有 ema_0.3, ema_0.1 等）。如果共 5 个策略，预计还需 **~50-70 分钟**；如果共 7 个，则 **~90-120 分钟**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-d003-status-director-req.md"
+}

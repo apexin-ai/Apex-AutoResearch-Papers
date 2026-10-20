@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "37ce06f0b02867a9aaed",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "code multi seed prep",
+  "task_key": "worker_code_multi_seed_prep_20260520T183721",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_multi_seed_prep_20260520T183721_result.json",
+    "occurrence": 1,
+    "bytes": 1191,
+    "sha256": "4373244201f3fbc7c9219069c8c98562e7d8b27f4907776b655f8b4de08872ab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个脚本已就绪。汇报：\n\n### 脚本状态：就绪 ✓\n\n**修复了两个问题：**\n1. 两个脚本补加了 `cd /root/turn_residual_gating`（原脚本用相对路径但没有 cd）\n2. `launch_lora_s123.sh` 的 `--lambda-gate-div` 从 1.0 → 0.0，`--min-gate-std` 从 0.05 → 0.0，与原始 LoRA-only s42 配置一致\n\n**参数对比确认：**\n\n| 参数 | TG s123 vs TG s42 原始 | LoRA s123 vs LoRA s42 原始 |\n|------|----------------------|--------------------------|\n| gate-type | threadgate ✓ | none ✓ |\n| gar-loss-mode | mse_target ✓ | mse_target ✓ |\n| gar-target | 0.5 ✓ | 0.5 ✓ |\n| lambda-gar | 1.0 ✓ | 1.0 ✓ |\n| lambda-gate-div | 1.0 ✓ | 0.0 ✓ (已修复) |\n| min-gate-std | 0.05 ✓ | 0.0 ✓ (已修复) |\n| init-bias | 1.5 ✓ | 1.5 ✓ |\n| gate-lr-multiplier | 10 ✓ | 10 ✓ |\n| max-seq-len | 2048 ✓ | 2048 ✓ |\n| epochs | 3 ✓ | 3 ✓ |\n| seed | 123 ✓ | 123 ✓ |\n\n**输出路径**：`runs/phase2_tg_s123_v7` 和 `runs/phase2_lora_only_s123`，均不存在，不会覆盖现有 checkpoint。\n\n**预估 GPU 时间**：原始 v7 TG 耗时 ~5.9h，LoRA-only ~5.7h，合计 ~12h（串行）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-multi-seed-prep.md"
+}

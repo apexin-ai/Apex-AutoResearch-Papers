@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6f02aec44915a1eeba03",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "chain kl then gar robustness",
+  "task_key": "worker_chain_kl_then_gar_robustness_20260524T070407",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_chain_kl_then_gar_robustness_20260524T070407_result.json",
+    "occurrence": 1,
+    "bytes": 83,
+    "sha256": "f816202b483f420a81b384e1edd9b38209a9a72a6ed2cee2aaa2386346864d0b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "KL Step 2 仍在运行（elapsed 3:05），下次 60 秒后轮询。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/chain-kl-then-gar-robustness.md"
+}

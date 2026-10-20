@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1d4c3783e7f1434d0444",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "ops gpu health and v4 relaunch",
+  "task_key": "worker_ops_gpu_health_and_v4_relaunch_20260518T165110",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu_health_and_v4_relaunch_20260518T165110_result.json",
+    "occurrence": 1,
+    "bytes": 1689,
+    "sha256": "f71a585d845ac6c2e69f8e85e5c4e0c1cd0ad71b15779b3fd3e0f94d1c2b04a2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。以下是诊断报告：\n\n```\n=== GPU 健康检查 ===\n状态: 异常(已恢复) — nvidia-smi --gpu-reset 不支持，通过 CUDA 操作触发驱动状态刷新恢复\nGPU Utilization: 0% (恢复前 100% stuck)\nGPU Memory: 0 MiB / 97887 MiB\nECC Errors: Off (ECC 未启用)\nPower State: P8 (34W/600W, 30°C)\n\n=== v4 崩溃诊断 ===\nOOM 记录: 无法确认 (dmesg 无权限, 服务器已重启丢失旧日志)\n日志内容: 模型加载 100% → \"[transformers] use_cache=True incompatible with gradient checkpointing\" → 无后续输出\n  - 对比 v3b: 正常流程为 加载→LoRA参数→数据加载→use_cache警告→训练\n  - v4: use_cache 警告后进程立即消失, 无 LoRA 信息, 无训练输出, 无 output 目录\n推测原因: 进程在模型加载/LoRA 初始化阶段被 OS OOM killer 杀死(静默, 无 stderr 输出)。\n  v4 的 use_cache 警告出现时机与 v3/v3b 不同(更早), 可能是内存压力导致。\n  排除 init_bias=1.5 为崩溃原因 — dry-run 证明该参数配置能正常运行。\n  GPU 100% util + 0 MiB 的僵死状态是进程异常终止后 CUDA context 未清理的后遗症。\n\n=== Dry-run 结果 ===\n状态: 成功(2步)\nStep 0: L_NTP=2.0275  L_GAR=-0.0161  Loss=2.0114  Gate=0.8097\nStep 2 (final): Gate mean=0.8087 (略降), min=0.668, max=0.867\nGPU 显存: 42.3GB / 98GB (峰值, 稳态约 53GB 参考 v3b)\ngate 初始值: sigmoid(1.5) ≈ 0.82, 实测 mean=0.8097 ✓\n训练时间: 15.3s (2 optimizer steps × 8 grad accum)\nGate 梯度: 正常接收 ✓\nCheckpoint 已保存: gate_params.pt + lora/\n结论: v4 参数配置可以正常训练，可以全量启动 v4\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-health-and-v4-relaunch.md"
+}

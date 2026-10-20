@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0f526d1b1707b43860bc",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "code standard conversations gen",
+  "task_key": "worker_code_standard_conversations_gen_20260519T011352",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_standard_conversations_gen_20260519T011352_result.json",
+    "occurrence": 1,
+    "bytes": 939,
+    "sha256": "4ca66ade4476e04464d01a8794d095508166e1492d498b01e4c8a9a9bc61f95a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已就绪，无需重新生成。\n\n**结果汇报：**\n\n| 对话 | System Prompt | Turn 数 | 约 words | 截断 |\n|------|--------------|---------|---------|------|\n| 0 | Science tutor | 10 | 845 | 否 |\n| 1 | Code reviewer | 10 | 837 | 否 |\n| 2 | Creative writing coach | 10 | 841 | 否 |\n| 3 | Math problem solver | 10 | 817 | 否 |\n| 4 | Debate coach | 10 | 833 | 否 |\n\n- **5 组对话，每组 10 轮 assistant turn，均无截断**\n- **总计 ~4173 words**\n- 文件路径：`/root/turn_residual_gating/data/standard_conversations.json`\n- 脚本已部署：`/root/turn_residual_gating/src/generate_standard_conversations.py`（新版添加了 `conversation_id` 字段，如需重新生成可用）\n\n旧文件结构缺少 `conversation_id` 字段，但 `system_prompt` / `messages` / `num_turns` 齐全，后续 eval 使用 `--conversations-path` 指向该文件即可公平对比三种模型。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-standard-conversations-gen.md"
+}

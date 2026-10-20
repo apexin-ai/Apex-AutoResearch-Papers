@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e809514c6e128cc2ef41",
+  "project": "phase-gated-compound-sparse",
+  "kind": "history",
+  "title": "agent / loop_6_1778775314.md",
+  "task_key": "loop_6_1778775314",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_6_1778775314.md",
+    "occurrence": 1,
+    "bytes": 5373,
+    "sha256": "e4efc925c16194ce19d847fda4d808f4abb78067d1625bc6b388b95f163780a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: idle_timeout\nupdated: '2026-05-14T15:34:12+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 `cuda:0~3`（westd-22162），其他 GPU 一律 push back Director\n- c2_qw_n500 有重复进程问题（PID 132389/132392 是多余的），memory.md 有详细记录。**必须先 kill 重复进程再继续**，否则输出数据可能已损坏（两进程写同一目录/日志）\n- **cuda:2+3 存在冲突**：c2_qw_n500（SCREEN c2_qw_gpu2/gpu3）和 c3_llama（PID 138408/138410）同时声称占用 cuda:2+3。96GB 卡物理上能装下两个 ~40GB 进程，但会互相拖慢。接手后第一件事 SSH 探查 GPU 实际占用，确认两个实验是否真在并发跑\n- c5b_pilot 代码已完成 + dry-run 通过（577 行 run_mitigation_pilot.py），但 QUEUED 等 GPU。**不能抢占正在跑的 n=500 实验的 GPU**\n- 论文 main.tex 已可编译 PDF，修改数字时必须追溯 registry/artifacts 验证，禁止凭记忆填数\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-22162，4× RTX PRO 6000 Blackwell 96GB\n- **工作目录**: `/root/autodl-tmp/pacs/`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- **模型路径**:\n  - DeepSeek-R1-Distill-Qwen-7B: `/root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B`\n  - Qwen2.5-7B-Instruct: 同目录下\n  - DeepSeek-R1-Distill-Llama-8B: 待确认（c3_llama 已在跑，路径在 run_c3_llama_full.sh 里）\n- **数据集**: `/root/autodl-tmp/pacs/data/math500.json`（MATH-500，500 problems）\n- **日志路径**: `/root/autodl-tmp/pacs/logs/`\n- **活跃进程**:\n  - c2_n500_deepseek: tmux `c2_n500_gpu0` + `c2_n500_gpu1`，cuda:0+1\n  - c2_qw_n500: SCREEN `c2_qw_gpu2` (PID 131864) + `c2_qw_gpu3` (PID 132002)，cuda:2+3。另有重复 PID 132389/132392 待 kill\n  - c3_llama: PID 138408 (importance gpu2) + PID 138410 (random gpu3)，cuda:2+3\n- **Cron 任务**: 3 个活跃（c2_n500_deepseek, c2_qw_n500, c3_llama），自动监控进程存活\n- **论文**: `/root/autodl-tmp/pacs/paper/` 下 main.tex + references.bib，可编译\n- **另有**: westd-16980 上 inverted_ema_reasoning_v2（RUNNING, cuda:1, PID 43645）——这是个遗留实验，可能已完结但 registry 未更新\n\n### 3. 📊 当前状态\n**三个 P0 实验同时 RUNNING**，均为 EMNLP 截稿冲刺的最后数据点：\n\n| exp_id | GPU | 用途 | 进度（最后已知） |\n|--------|-----|------|----------|\n| c2_n500_deepseek | cuda:0+1 | DeepSeek 8 conditions n=500 | ~18h 运行中 |\n| c2_qw_n500 | cuda:2+3 | Qwen 8 conditions n=500 | imp 93/500 s015, rand 98/500 s015 (22:37 CST) |\n| c3_llama | cuda:2+3 | LLaMA-8B 跨架构验证 8 conditions | 从头重跑（sp_str bug 修复后） |\n\n**c5b_pilot** QUEUED：phase-aware mitigation pilot（oracle + heuristic baseline），代码+dry-run 完成，等 GPU 空出。\n\n**论文已完成**，Group C 并行审稿中（reviewer_1 + reviewer_2 + director 三个 review session 在 05-14 12:51-12:53 启动）。\n\n**Worker 池**: 0 个活跃——所有 Worker 已完成退出。当前无阻塞性任务需要新 Worker。\n\n### 4. 📋 待办（条件触发式）\n- c2_n500_deepseek cron 回调（完成）→ spawn Worker 分析 8 conditions 结果 → 更新 paper Tables 1-4 + Figures → 汇报 Director\n- c2_qw_n500 cron 回调（完成）→ 同上；**特别关注 s015 CI 是否跨零**（预注册 gate：跨零 → 改叙事为 \"threshold ~s020\"）\n- c3_llama cron 回调（完成）→ 验证 LLaMA 是否复现 phase-modulated severity → 若 YES 则 C8 confirmed，更新 §5；若 NO → red-section Framing 提案\n- 任一 GPU 空出 → 立即提交 c5b_pilot（已 QUEUED，代码就绪）\n- 全部完成 → Group C full review → 最终 PDF 打包 → 2026-05-25 投稿\n- **接手后优先**: SSH 探查 cuda:2+3 实际 GPU 占用，确认 c2_qw_n500 和 c3_llama 是否真在并发（以及重复进程是否已被处理）\n\n### 5. 🎯 战略上下文\n**核心发现**: Importance-based eviction 的 compound severity 随 sparsity 单调递增（DeepSeek 0.39→14.59, Qwen 0.04→2.94），random masking 7/8 FAIL。机制是 discrimination collapse（Gini/CV↓ cross-model 一致），entropy 只在 DeepSeek 稳定（Qwen 不稳，C4 已降级为 §6 supporting）。\n\n**最容易判断错的事**:\n1. **c2_qw_n500 的 cron 误报已发生 3 次**（profiling 无 W&B/sentinel，cron 反复误判进程已死）。收到 `on_failed` 回调时**先 SSH 确认进程是否真死**，不要盲目 restart\n2. **c3_llama_arch 和 c2_ds_n500 是 DUPLICATE**（已 killed），实际实验分别在 c3_llama 和 c2_n500_deepseek。不要重复创建\n3. **n=500 结果出来后不是简单替换 n=50 数据**——需要重新跑 bootstrap CI、Cohen's d、Wilcoxon 检验，所有统计量都要更新。cohens_d_bf16.json 是当前论文的 truth source（D048），不能直接覆盖，要产生新的 bf16_n500 版本\n4. **Qwen s015 是最脆弱的数据点**（n=50 时 CI 跨零，d 值 marginal），n=500 结果决定论文叙事走 \"all sparsity levels significant\" 还是 \"emerges above threshold ~s020\"\n5. 距离截稿 **11 天**——所有实验预计 ~20h 完成，时间充裕但不能拖。实验完成后论文更新是瓶颈（tables + figures + consistency check + Group C re-review）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-1778775314.md"
+}

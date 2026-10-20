@@ -1,0 +1,15 @@
+{
+  "exp_id": "d048_split_softmax_eval",
+  "project": "turn_residual_gating",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T07:47:05.556Z",
+    "updated_at": "2026-05-23T07:47:13.336Z",
+    "hypothesis": "Split-softmax (Li et al., COLM 2024) post-softmax rescaling recovers AR GAR without the PPL cost of pre-softmax additive steering, providing an alternative inference-time intervention that separates attention allocation from logit distribution."
+  },
+  "timestamp": "2026-05-23T07:47:13.434434+00:00",
+  "trigger": "update_registry"
+}

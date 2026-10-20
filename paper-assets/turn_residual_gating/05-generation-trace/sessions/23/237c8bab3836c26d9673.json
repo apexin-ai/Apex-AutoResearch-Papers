@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "237c8bab3836c26d9673",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "code d048 eval and queue",
+  "task_key": "worker_code_d048_eval_and_queue_20260522T132713",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d048_eval_and_queue_20260522T132713_result.json",
+    "occurrence": 1,
+    "bytes": 1285,
+    "sha256": "1f9378cd6a5d83de6175bf183107bbd614d0347cc1c4b37f2b249952cd099b47"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 脚本全部创建完毕，语法检查通过。\n\n### 汇总\n\n**Checkpoint 路径：**\n\n| Condition | Path | Epochs |\n|-----------|------|--------|\n| TG s42 | `runs/phase2_tg_s42_v7/epoch_{0,1,2}` | 3 |\n| UG s42 | `runs/phase2_ug_s42/epoch_{0,1,2}` | 3 |\n| LO s42 | `runs/phase2_lora_only_s42/epoch_{0,1,2}` | 3 |\n| PCGrad s42 | `checkpoints/tg_v9_pcgrad_s42/epoch_{0,1,2}` | 3 |\n| SS s42 (d048) | `runs/d048_ss_s42/epoch_0` | 训练中，仅 epoch_0 |\n| SS fixed s42 | `checkpoints/tg_v8b_ss_fixed_s42/epoch_{0,1,2}` | 3 |\n| Base s42 | 无 checkpoint（base model 直接 eval） | — |\n\n**参数差异（已根据 `--help` 修正）：**\n- `eval_phase2_gar.py` 用 `--checkpoint-dir`，`--conversations-path`，`--ar-from-fixed`\n- `eval_attention_steering.py` 用 `--checkpoint`（非 `--checkpoint-dir`），`--conversations`，`--mode gen`，`--max-convs`，`--beta`，`--output-name`\n\n**脚本清单：**\n1. `scripts/d048_eval_ss_s42.sh` — SS s42 完整 eval（TF 4 组 + AR N=50 + bootstrap CI）\n2. `scripts/d048_eval_existing_s42_ar_n50.sh` — 5 个已有 s42 checkpoint 的 AR N=50（Base/TG/UG/LO/PCGrad）\n3. `scripts/d048_queue_runner.sh` — 自动队列执行器（train→eval 零延迟，区分 gate/base 两种 eval 路径）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d048-eval-and-queue.md"
+}

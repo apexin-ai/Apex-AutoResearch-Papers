@@ -1,0 +1,138 @@
+\begin{thebibliography}{20}
+\providecommand{\natexlab}[1]{#1}
+
+\bibitem[{Bachlechner et~al.(2021)Bachlechner, Majumder, Mao, Cottrell, and
+  McAuley}]{bachlechner2021rezero}
+Thomas Bachlechner, Bodhisattwa~Prasad Majumder, Henry Mao, Garrison Cottrell,
+  and Julian McAuley. 2021.
+\newblock {ReZero} is all you need: Fast convergence at large depth.
+\newblock In \emph{Proceedings of UAI}.
+
+\bibitem[{Bengio et~al.(2015)Bengio, Vinyals, Jaitly, and
+  Shazeer}]{bengio2015scheduled}
+Samy Bengio, Oriol Vinyals, Navdeep Jaitly, and Noam Shazeer. 2015.
+\newblock Scheduled sampling for sequence prediction with recurrent neural
+  networks.
+\newblock In \emph{Advances in Neural Information Processing Systems}.
+
+\bibitem[{Ding et~al.(2023)Ding, Chen, Xu, Qin, Zheng, Hu, Liu, Sun, and
+  Zhou}]{ding2023enhancing}
+Ning Ding, Yulin Chen, Bokai Xu, Yujia Qin, Zhi Zheng, Shengding Hu, Zhiyuan
+  Liu, Maosong Sun, and Bowen Zhou. 2023.
+\newblock Enhancing chat language models by scaling high-quality instructional
+  conversations.
+\newblock In \emph{Proceedings of EMNLP}.
+
+\bibitem[{Dongre et~al.(2026)}]{dongre2026}
+Arjun Dongre and 1 others. 2026.
+\newblock Goal attention degradation in multi-turn dialogues: Measurement and
+  analysis.
+\newblock In \emph{Proceedings of NAACL}.
+
+\bibitem[{Dubey et~al.(2024)Dubey, Jauhri, Pandey, Kadian
+  et~al.}]{dubey2024llama3}
+Abhimanyu Dubey, Abhinav Jauhri, Abhinav Pandey, Abhishek Kadian, and 1 others.
+  2024.
+\newblock The {Llama} 3 herd of models.
+\newblock \emph{arXiv preprint arXiv:2407.21783}.
+
+\bibitem[{Hu et~al.(2022)Hu, Shen, Wallis, Allen-Zhu, Li, Wang, Wang, and
+  Chen}]{hu2022lora}
+Edward~J Hu, Yelong Shen, Phillip Wallis, Zeyuan Allen-Zhu, Yuanzhi Li, Shanen
+  Wang, Lu~Wang, and Weizhu Chen. 2022.
+\newblock {LoRA}: Low-rank adaptation of large language models.
+\newblock In \emph{Proceedings of ICLR}.
+
+\bibitem[{Lamb et~al.(2016)Lamb, Goyal, Zhang, Zhang, Courville, and
+  Bengio}]{lamb2016professor}
+Alex Lamb, Anirudh Goyal, Ying Zhang, Saizheng Zhang, Aaron Courville, and
+  Yoshua Bengio. 2016.
+\newblock Professor forcing: A new algorithm for training recurrent networks.
+\newblock In \emph{Advances in Neural Information Processing Systems}.
+
+\bibitem[{Leblond et~al.(2018)Leblond, Alayrac, Oord, and
+  Sivic}]{leblond2018searnn}
+R{\'e}mi Leblond, Jean-Baptiste Alayrac, A{\"a}ron van~den Oord, and Josef
+  Sivic. 2018.
+\newblock {SeaRNN}: Training {RNNs} with global-local losses.
+\newblock In \emph{Proceedings of ICLR}.
+
+\bibitem[{Li et~al.(2024)Li, Patel, Vi{\'e}gas, Pfister, and
+  Wattenberg}]{li2024inference}
+Kenneth Li, Oam Patel, Fernanda Vi{\'e}gas, Hanspeter Pfister, and Martin
+  Wattenberg. 2024.
+\newblock Inference-time intervention: Eliciting truthful answers from a
+  language model.
+\newblock In \emph{Advances in Neural Information Processing Systems}.
+
+\bibitem[{Liu et~al.(2016)Liu, Utiyama, Finch, and Sumita}]{liu2016attention}
+Lemao Liu, Masao Utiyama, Andrew Finch, and Eiichiro Sumita. 2016.
+\newblock Attention-based models for speech recognition.
+\newblock In \emph{Proceedings of ACL}.
+
+\bibitem[{Liu et~al.(2024)Liu, Lin, Hewitt, Paranjape, Bevilacqua, Petroni, and
+  Liang}]{liu2024lost}
+Nelson~F Liu, Kevin Lin, John Hewitt, Ashwin Paranjape, Michele Bevilacqua,
+  Fabio Petroni, and Percy Liang. 2024.
+\newblock Lost in the middle: How language models use long contexts.
+\newblock In \emph{Transactions of the ACL}.
+
+\bibitem[{Meng et~al.(2022)Meng, Bau, Andonian, and
+  Belinkov}]{meng2022locating}
+Kevin Meng, David Bau, Alex Andonian, and Yonatan Belinkov. 2022.
+\newblock Locating and editing factual associations in {GPT}.
+\newblock In \emph{Advances in Neural Information Processing Systems}.
+
+\bibitem[{Ranzato et~al.(2016)Ranzato, Chopra, Auli, and
+  Zaremba}]{ranzato2016sequence}
+Marc'Aurelio Ranzato, Sumit Chopra, Michael Auli, and Wojciech Zaremba. 2016.
+\newblock Sequence level training with recurrent neural networks.
+\newblock \emph{Proceedings of ICLR}.
+
+\bibitem[{Veit et~al.(2016)Veit, Wilber, and Belongie}]{veit2016residual}
+Andreas Veit, Michael~J Wilber, and Serge Belongie. 2016.
+\newblock Residual networks behave like ensembles of relatively shallow
+  networks.
+\newblock In \emph{Advances in Neural Information Processing Systems}.
+
+\bibitem[{Wang et~al.(2018)Wang, Yu, Dou, Darrell, and
+  Gonzalez}]{wang2018skipnet}
+Xin Wang, Fisher Yu, Zi-Yi Dou, Trevor Darrell, and Joseph~E Gonzalez. 2018.
+\newblock {SkipNet}: Learning dynamic routing in convolutional networks.
+\newblock In \emph{Proceedings of ECCV}.
+
+\bibitem[{Williams and Zipser(1989)}]{williams1989learning}
+Ronald~J Williams and David Zipser. 1989.
+\newblock A learning algorithm for continually running fully recurrent neural
+  networks.
+\newblock \emph{Neural Computation}, 1(2):270--280.
+
+\bibitem[{Xiao et~al.(2024)Xiao, Tian, Chen, Han, and
+  Lewis}]{xiao2024efficient}
+Guangxuan Xiao, Yuandong Tian, Beidi Chen, Song Han, and Mike Lewis. 2024.
+\newblock Efficient streaming language models with attention sinks.
+\newblock In \emph{Proceedings of ICLR}.
+
+\bibitem[{Yang et~al.(2024)Yang, Yang, Hui, Zheng, Yu, Zhou
+  et~al.}]{yang2024qwen2}
+An~Yang, Baosong Yang, Binyuan Hui, Bo~Zheng, Bowen Yu, Chang Zhou, and 1
+  others. 2024.
+\newblock Qwen2 technical report.
+\newblock \emph{arXiv preprint arXiv:2407.10671}.
+
+\bibitem[{Zheng et~al.(2024)Zheng, Chiang, Sheng, Zhuang, Wu, Zhuang, Lin, Li,
+  Li, Xing et~al.}]{zheng2024judging}
+Lianmin Zheng, Wei-Lin Chiang, Ying Sheng, Siyuan Zhuang, Zhanghao Wu, Yonghao
+  Zhuang, Zi~Lin, Zhuohan Li, Dacheng Li, Eric Xing, and 1 others. 2024.
+\newblock Judging {LLM}-as-a-judge with {MT-Bench} and chatbot arena.
+\newblock In \emph{Advances in Neural Information Processing Systems}.
+
+\bibitem[{Zou et~al.(2023)Zou, Phan, Chen, Campbell, Guo, Ren, Pan, Yin,
+  Mazeika, Dombrowski et~al.}]{zou2023representation}
+Andy Zou, Long Phan, Sarah Chen, James Campbell, Phillip Guo, Richard Ren,
+  Alexander Pan, Xuwang Yin, Mantas Mazeika, Ann-Kathrin Dombrowski, and 1
+  others. 2023.
+\newblock Representation engineering: A top-down approach to {AI} transparency.
+\newblock \emph{arXiv preprint arXiv:2310.01405}.
+
+\end{thebibliography}

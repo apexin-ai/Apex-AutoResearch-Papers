@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7513f706f584fa099bb3",
+  "project": "redundancy-compound-sparsity-2",
+  "kind": "result",
+  "title": "exp d003 wikitext32k",
+  "task_key": "worker_exp_d003_wikitext32k_20260512T120932",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_d003_wikitext32k_20260512T120932_result.json",
+    "occurrence": 1,
+    "bytes": 471,
+    "sha256": "1102a1efdf66294e1f81964ca3892519b2ceaad1029144236b3f22bd34f2fd23"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。\n\n- 脚本已上传并验证通过\n- 首次提交因默认模型路径 `/root/autodl-tmp/...` 不存在而失败，已修正为 `/root/carc/models/DeepSeek-R1-Distill-Qwen-14B` 重新提交\n- tmux session `d003_wikitext_32k` 已启动，PID 19732，GPU cuda:1，超时 12h\n- 日志：`~/runs/solver-verified-formalizer-rl/d003_wikitext_32k.log` 和 `/root/carc/d003_exp2.log`\n- 结果输出：`/root/carc/d003_wikitext32k_results.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-d003-wikitext32k.md"
+}

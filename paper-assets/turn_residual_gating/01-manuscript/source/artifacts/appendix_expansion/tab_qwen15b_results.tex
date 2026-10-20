@@ -1,0 +1,28 @@
+% Qwen2.5-1.5B cross-scale results
+\begin{table}[t]
+\centering
+\footnotesize
+\caption{Cross-scale validation on Qwen2.5-1.5B-Instruct. Phase~1 confirms the GAR decay pattern at smaller scale (79.8\% relative drop). Phase~2 shows TG improves AR at $\beta=0$ (unamplified, $p{=}0.005$) and $\beta=5$ (strong amplification, $p{<}0.001$), confirming the mechanism transfers across model sizes.}
+\label{tab:qwen15b_results}
+\resizebox{\columnwidth}{!}{
+\begin{tabular}{@{}ll cc c@{}}
+\toprule
+\textbf{Phase} & \textbf{Metric} & \textbf{Base} & \textbf{TG} & \textbf{$p$-value} \\
+\midrule
+\multicolumn{5}{@{}l}{\textit{Phase 1: GAR diagnostic}} \\
+\quad & Turn-1 GAR & 0.0336 & --- & --- \\
+\quad & Mid-turn GAR & 0.0068 & --- & --- \\
+\quad & Relative drop & 79.8\% & --- & --- \\
+\midrule
+\multicolumn{5}{@{}l}{\textit{Phase 2: TG training ($\beta$-amplified AR)}} \\
+\quad & AR @ $\beta{=}0$ & 0.0167 {\scriptsize$\pm$0.005} & \textbf{0.0233} {\scriptsize$\pm$0.006} & 0.005$^{**}$ \\
+\quad & AR @ $\beta{=}3$ & 0.1202 {\scriptsize$\pm$0.032} & 0.1143 {\scriptsize$\pm$0.019} & 0.815 \\
+\quad & AR @ $\beta{=}5$ & 0.6571 {\scriptsize$\pm$0.020} & \textbf{0.7150} {\scriptsize$\pm$0.017} & $<$0.001$^{***}$ \\
+\bottomrule
+\end{tabular}}
+\vspace{1mm}
+\begin{flushleft}
+\scriptsize
+$\pm$ values are 95\% CI half-widths. Significance via Wilcoxon signed-rank test ($N{=}39$ paired conversations). Effect sizes: $r{=}0.447$ ($\beta{=}0$), $r{=}0.749$ ($\beta{=}5$).
+\end{flushleft}
+\end{table}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fc42770fa24bbce81199",
+  "project": "turn-hier-kv-compress",
+  "kind": "result",
+  "title": "experiment mvp v2 all in one",
+  "task_key": "worker_experiment_mvp_v2_all_in_one_20260513T111411",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_mvp_v2_all_in_one_20260513T111411_result.json",
+    "occurrence": 1,
+    "bytes": 1189,
+    "sha256": "c2b2a0d02186512f653a8ce3473c32031cfc03763d2da453e9981ec7d6e986f7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报：\n\n### 1. 代码修复确认\n| 文件 | 修复内容 | 状态 |\n|------|---------|------|\n| `eass.py` | `map_budget_to_scores` 添加 token-weighted budget 归一化 | ✓ 已同步到服务器 |\n| `metrics.py` | `compute_perplexity` 改为两步法（prefix→KV cache→target） | ✓ 已同步到服务器 |\n| `evaluate.py` | `apply_press(press, model)` + `bfloat16`，无 `as m`/`ea_press` | ✓ 无需修改 |\n\n### 2. Traces\n- 总计 **80 条**：48 standard + 32 adversarial\n- 586 planted_info，0 缺失（所有 expected_answer 均出现在 messages 中）\n\n### 3. 干跑结果（1 trace, CR=0.7）\n| 方法 | PPL | KIRR |\n|------|-----|------|\n| Full | 7.75 | 0.0 |\n| Uniform EA | 14.94 | 0.0 |\n| TurnKV | 12.00 | 0.0 |\n\n- PPL ratio (TurnKV/UniformEA) = **0.8033** — TurnKV PPL 显著低于 Uniform EA\n- KIRR 单 trace 全为 0（Full 也是 0），需 80 traces 聚合\n\n### 4. 实验提交\n| 实验 | GPU | tmux session | 状态 |\n|------|-----|-------------|------|\n| mvp_eval_02_cr70 (CR=0.7) | cuda:0 | `mvp_eval_02_cr70` | 已提交 |\n| mvp_eval_02_cr85 (CR=0.85) | cuda:1 | `mvp_eval_02_cr85` | 已提交 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-mvp-v2-all-in-one.md"
+}

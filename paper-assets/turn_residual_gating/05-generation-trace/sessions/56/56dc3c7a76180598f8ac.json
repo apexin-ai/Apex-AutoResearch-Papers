@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "56dc3c7a76180598f8ac",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "analysis provenance completion",
+  "task_key": "worker_analysis_provenance_completion_20260522T042945",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_provenance_completion_20260522T042945_result.json",
+    "occurrence": 1,
+    "bytes": 1371,
+    "sha256": "dd5eca9130247ac02e201fd391ceb31cbf1bfa7d357372febd2a04166c2a9367"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "29 non-deprecated items in the file. The checker counts 27 (likely excluding C050 positioning + C056 limitation as non-empirical). Of 27, 24 are now tier2, 3 remain tier3. These 3 are likely items where the metric-level mapping can't be automatically verified.\n\n**Summary:**\n\n**Provenance coverage: 22/27 → 24/27** (+2)\n\nWhat was done:\n1. **Fixed 6 claims** (C019, C021, C024, C028, C033, C039) — replaced placeholder `exp_007`/`exp_008` with actual experiment IDs:\n   - `exp_007` → `analysis_gradient_conflict` (gradient conflict data)\n   - `exp_007` → `phase2_tg_s42_v7` (gate conditioning, inference gate values, TF/AR GAR gap)\n   - `exp_008` → `phase2_tg_s42_v9_pcgrad` (PCGrad experiment)\n\n2. **Fixed 1 table + 2 figures** — updated `tab:grad-conflict`, `fig_gate_shift`, `fig_training_pcgrad` references\n\n3. **Added evidence** to C050 (positioning) and C056 (limitation) — previously had empty evidence arrays\n\n4. **Cleaned up** deprecated test entries (C017, C018, deprecated table/figure duplicates)\n\n5. **Filled registry spec** for `phase2_tg_s42` (added data_path, data_count, model_name, seed, checkpoint_path) and `phase2_tg_s42_v6` (added command, server, data_path, data_count, model_name, seed)\n\nRemaining 3 tier3 items likely require exact metric-name matching that goes beyond ID-level provenance tracing."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-provenance-completion.md"
+}

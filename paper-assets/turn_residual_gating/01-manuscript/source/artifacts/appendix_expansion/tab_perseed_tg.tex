@@ -1,0 +1,29 @@
+% Per-seed detailed results for ThreadGate (TG) — seeds 42, 123
+% TF eval: N=200 held-out conversations
+% AR eval: N=5, T=10 model-generated conversations (original eval protocol)
+\begin{table}[h]
+\centering
+\caption{Per-seed results for ThreadGate (TG) on Qwen2.5-7B-Instruct.
+TF evaluation uses 200 held-out conversations.
+AR evaluation uses extended-generation protocol ($N{=}5$, $T{=}10$ turns); under the gen-mode protocol ($N{=}50$) used in Table~\ref{tab:five-way}, seed 42 yields AR GAR 0.064 (gap 7.9$\times$); $N{=}50$ data for seed 123 is not available.}
+\label{tab:perseed-tg}
+\resizebox{\columnwidth}{!}{
+\begin{tabular}{@{}l cc c@{}}
+\toprule
+\textbf{Metric} & \textbf{Seed 42} & \textbf{Seed 123} & \textbf{Mean $\pm$ Std} \\
+\midrule
+\multicolumn{4}{@{}l}{\textit{Teacher-Forced (TF)}} \\
+\quad GAR-ours $\uparrow$   & 0.504 & 0.505 & 0.504 $\pm$ 0.001 \\
+\quad GAR-Dongre $\uparrow$ & 0.015 & 0.012 & 0.014 $\pm$ 0.002 \\
+\quad PPL $\downarrow$       & 2.784 & 2.780 & 2.782 $\pm$ 0.003 \\
+\midrule
+\multicolumn{4}{@{}l}{\textit{Autoregressive (AR), $\beta = 0$}} \\
+\quad GAR-ours $\uparrow$   & 0.016 & 0.017 & 0.016 $\pm$ 0.001 \\
+\quad GAR-Dongre $\uparrow$ & 0.019 & 0.018 & 0.019 $\pm$ 0.001 \\
+\quad PPL $\downarrow$       & 1.360 & 1.386 & 1.373 $\pm$ 0.018 \\
+\midrule
+\multicolumn{4}{@{}l}{\textit{Derived}} \\
+\quad Gap ratio (TF/AR GAR-ours) $\downarrow$ & 32.1 & 30.6 & 31.4 $\pm$ 1.1 \\
+\bottomrule
+\end{tabular}}
+\end{table}

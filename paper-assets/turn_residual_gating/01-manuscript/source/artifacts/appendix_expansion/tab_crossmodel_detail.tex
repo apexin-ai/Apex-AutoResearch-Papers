@@ -1,0 +1,32 @@
+% Cross-model detailed comparison: Qwen2.5-7B-Instruct vs Llama-3.1-8B-Instruct
+% Conditions shared by both models: Base, ThreadGate, LoRA-only
+% Qwen TF: N=200 held-out; Qwen AR: d048_final_ar N=50 gen beta=0
+% Llama TF: N=50 held-out T=4; Llama AR: eval_llama_ar_n20 N=20 T=4
+% Llama SS: p1_llama_ss_eval (epoch_1 checkpoint, N=50)
+\begin{table*}[t]
+\centering
+\caption{Cross-model comparison of goal-adherence metrics on Qwen2.5-7B-Instruct and Llama-3.1-8B-Instruct.
+Gap ratio = TF GAR / AR GAR; lower is better (less exposure bias).
+All Qwen rows use seed 42; SS per-seed mean analysis in Table~\ref{tab:perseed-ss}.
+Qwen AR uses $N{=}50$ gen-mode evaluation; Llama AR uses $N{=}20$, $T{=}4$ (SS: $N{=}50$).
+Llama AR GAR and gaps are mean-based; median-based TG gap is 27$\times$ (\S\ref{subsec:cross-model}).}
+\label{tab:crossmodel-detail}
+\small
+\begin{tabular}{@{}ll ccccc@{}}
+\toprule
+\textbf{Model} & \textbf{Condition} & \textbf{TF GAR}$\uparrow$ & \textbf{AR GAR}$\uparrow$ & \textbf{TF PPL}$\downarrow$ & \textbf{AR PPL}$\downarrow$ & \textbf{Gap}$\downarrow$ \\
+\midrule
+\multirow{4}{*}{Qwen-7B}
+  & Base      & 0.013 & 0.019 & 4.34 & 1.447 & 0.7$\times$ \\
+  & TG        & 0.504 & 0.064 & 2.78 & 1.432 & 7.9$\times$ \\
+  & LoRA-only & 0.498 & 0.037 & 2.78 & 1.431 & 13.5$\times$ \\
+  & \textbf{SS} & 0.502 & \textbf{0.347} & 2.78 & 1.442 & \textbf{1.4$\times$} \\
+\midrule
+\multirow{4}{*}{Llama-8B}
+  & Base      & 0.017 & 0.009 & 3.45 & 1.293 & 1.9$\times$ \\
+  & TG        & 0.484 & 0.043 & 2.57 & 1.437 & 11.2$\times$ \\
+  & LoRA-only & 0.481 & 0.028 & 2.60 & 1.419 & 17.2$\times$ \\
+  & \textbf{SS} & 0.477 & \textbf{0.166} & 2.82 & 1.370 & \textbf{2.9$\times$} \\
+\bottomrule
+\end{tabular}
+\end{table*}

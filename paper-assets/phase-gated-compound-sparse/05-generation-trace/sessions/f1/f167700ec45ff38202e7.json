@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f167700ec45ff38202e7",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "code gpu monitor and submit",
+  "task_key": "worker_code_gpu_monitor_and_submit_20260515T214253",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gpu_monitor_and_submit_20260515T214253_result.json",
+    "occurrence": 1,
+    "bytes": 353,
+    "sha256": "eb4f1494eae08257c5d37b4e7165c71ef98db5776b1510c7ab09bc74f677398e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "轮询已启动。当前状态：\n- **GPU 0,1**：DS dense_8k / s015_8k 运行中 (~17min)，输出文件尚未生成\n- **GPU 2,3**：QW dense_n100 / s015_n100 运行中 (~9min)，输出文件尚未生成\n- **待提交**：gsm8k_qw_rand_s025 (GPU 0), gsm8k_qw_rand_s030 (GPU 1), acc_qw_s030_n100 (GPU 2)\n\n2.5 分钟后回来检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-gpu-monitor-and-submit.md"
+}

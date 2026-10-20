@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ef6a8619a7146fa9caea",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "writing figures generation",
+  "task_key": "worker_writing_figures_generation_20260514T090540",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_figures_generation_20260514T090540_result.json",
+    "occurrence": 1,
+    "bytes": 1386,
+    "sha256": "c3677e32e6e1e1463dc41b5455a22bef047e5890b756cdf1295573f831d1ae1e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部生成完毕，文件均非空。产出汇总：\n\n| 图表 | 文件 | 大小 | 描述 |\n|------|------|------|------|\n| Figure 1 | `fig1_dose_response.pdf/png` | 23KB/154KB | Dose-Response 曲线，4 条线（2 模型 × 2 masking），symlog Y 轴，bootstrap 95% CI error bars |\n| Figure 2 | `fig2_cohens_d.pdf/png` | 21KB/104KB | Cohen's d 趋势图，DS 0.44→0.80, QW 0.28→1.02，shaded CI，small/medium/large 阈值线 |\n| Figure 3 | `fig3_crossover.pdf/png` | 22KB/79KB | s=0.25 时 importance vs random 的 phase-wise median II 柱状图，双模型并排 |\n| Figure 4 | `fig4_per_problem_dist.pdf/png` | 65KB/228KB | 8 panel violin + scatter plot，2×4 (model × sparsity)，展示 per-problem ΔII 分布 |\n\n**路径**: `/root/autodl-tmp/pacs/figures/`\n**脚本**: `/root/autodl-tmp/pacs/analysis/generate_paper_figures.py`\n\n注意事项：\n- Figure 1 用了 symlog scale（linthresh=0.5）处理 importance vs random 的量级差异\n- per-problem 数据中有少量 None 值（~1-4 per experiment）被过滤\n- Figure 1 的 per-problem median diffs（如 DS importance s015=0.35）与 summary table 的 median_diff（0.39）略有差异——前者是 `median(ii_low - ii_high)`，后者是 `median(ii_low) - median(ii_high)`，两种定义都合理，当前脚本用的是前者（paired difference 的 median，统计上更严谨）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-figures-generation.md"
+}

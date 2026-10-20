@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "719fa4ad39b35d91c11a",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "code instruction retention test",
+  "task_key": "worker_code_instruction_retention_test_20260521T025340",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_instruction_retention_test_20260521T025340_result.json",
+    "occurrence": 1,
+    "bytes": 2249,
+    "sha256": "bfe8bc131712c19a3f0c2cd92e5b6535a00ab4e7358e803957c500d0968c3923"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇报：\n\n## 1. Prompt 数据（18 个）\n\n| check_fn | 指令类型 | 检测方式 |\n|---|---|---|\n| `bullet_points` | 每行以 `-` 开头 | ≥80% 行首匹配 |\n| `start_sure` | 以 \"Sure!\" 开头 | startswith |\n| `end_hope` | 以 \"Hope that helps!\" 结尾 | endswith |\n| `one_emoji` | 恰好 1 个 emoji | Unicode range 计数 |\n| `three_sentences` | 恰好 3 个句子 | 终止标点 + 空格/结尾 计数 |\n| `mention_ai_assistant` | 包含 \"AI assistant\" | 子串匹配 (case-insensitive) |\n| `no_the` | 不含 \"the\" | word boundary regex |\n| `numbered_list` | 使用编号列表 | `^\\d+\\.` 行首匹配 ≥2 |\n| `include_certainly` | 包含 \"certainly\" | 子串匹配 |\n| `end_question` | 以 `?` 结尾 | endswith(\"?\") |\n| `all_caps` | 全大写 | ≥95% alpha 为大写 |\n| `start_let_me_think` | 以 \"Let me think...\" 开头 | startswith |\n| `no_commas` | 不含逗号 | `\",\" not in` |\n| `include_remember` | 包含 \"remember that\" | 子串匹配 |\n| `no_exclamation` | 不含感叹号 | `\"!\" not in` |\n| `start_well` | 以 \"Well,\" 开头 | startswith |\n| `include_interesting` | 包含 \"interesting\" | 子串匹配 |\n| `max_two_sentences` | ≤2 句 | 句子计数 ≤2 |\n\n## 2. 脚本结构\n\n- **模型加载**: 复用 `eval_attention_steering.load_model_eager()`（eager attention + LoRA + gate hooks）\n- **对话生成**: 复用 `eval_attention_steering.generate_conversation()`（steering + gate + 逐 turn 生成）\n- **GAR 测量**: 复用 `eval_attention_steering.measure_gar_and_ppl()`（teacher-forcing + steering + per-turn GAR）\n- **Goal positions**: 复用 `eval_attention_steering.get_initial_goal_positions()`\n- **新增**: 18 个 check function + `evaluate_prompt()` + `compute_summary()` + summary 打印\n\n## 3. 运行命令\n\n```bash\ncd /root/turn_residual_gating\npython src/eval_instruction_retention.py \\\n    --checkpoint runs/phase2_tg_s42_v7 \\\n    --prompts data/instruction_retention_prompts.json \\\n    --betas 0 3 \\\n    --output results/instruction_retention.json\n```\n\n**Summary 输出**：per-turn following rate、late-turn (turn 3-5) β=0 vs β=3 McNemar test、GAR × compliance point-biserial correlation。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-instruction-retention-test.md"
+}

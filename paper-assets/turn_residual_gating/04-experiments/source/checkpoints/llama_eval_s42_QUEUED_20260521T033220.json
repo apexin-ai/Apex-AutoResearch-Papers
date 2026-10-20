@@ -1,0 +1,16 @@
+{
+  "exp_id": "llama_eval_s42",
+  "project": "turn_residual_gating",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T03:29:51.255Z",
+    "updated_at": "2026-05-21T03:32:20.286Z",
+    "hypothesis": "Llama-3.1-8B TG 训练完成后，验证 C5：IID (teacher-forced) GAR 应接近 target（~0.5），但 model-gen (autoregressive) GAR 应出现类似 Qwen 的 20-33× training-inference gap，确认 exposure bias 跨模型泛化。",
+    "parent": "llama_tg_s42"
+  },
+  "timestamp": "2026-05-21T03:32:20.374607+00:00",
+  "trigger": "update_registry"
+}

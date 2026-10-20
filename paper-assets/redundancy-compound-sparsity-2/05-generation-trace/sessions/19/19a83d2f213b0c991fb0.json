@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "19a83d2f213b0c991fb0",
+  "project": "redundancy-compound-sparsity-2",
+  "kind": "result",
+  "title": "check gamma sweep 099 final",
+  "task_key": "worker_check_gamma_sweep_099_final_20260512T194139",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_gamma_sweep_099_final_20260512T194139_result.json",
+    "occurrence": 1,
+    "bytes": 47,
+    "sha256": "ddfce575b965e4cb9ca6de220e8971fd902284c66cc5ad94cb1caae6f905cffe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 分钟后自动检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-gamma-sweep-099-final.md"
+}

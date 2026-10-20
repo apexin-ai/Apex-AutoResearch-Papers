@@ -1,0 +1,194 @@
+# Experiment Plan — Confound Resolution Phase
+# Last updated: 2026-05-12 (D005: MLA misidentification, reasoning vs instruction confound)
+# Target: EMNLP 2026 ARR (DDL: 2026-05-25)
+# NOTE: D004 MLA narrative SUSPENDED — DeepSeek-R1-Distill-Qwen-7B is GQA not MLA
+
+experiments:
+
+  # ============================================================
+  # COMPLETED: MVP + cross-model validation
+  # ============================================================
+
+  - plan_id: mvp-001
+    registry_id: mvp-001
+    name: "MVP: adjacent-sim baseline (invalid EMA)"
+    status: DONE
+    result: "r=-0.186, Δpert=-1.5%, FAIL (wrong impl)"
+
+  - plan_id: mvp-001b
+    registry_id: mvp-001b
+    name: "MVP: DeepSeek-R1-7B anchor EMA (easy problems)"
+    claim: "Claim 1 (MLA side)"
+    status: DONE
+    result: "r=+0.147, Δpert=-2.2%, FAIL on MLA"
+
+  - plan_id: mvp-001c
+    registry_id: mvp-001c
+    name: "MVP: DeepSeek-R1-7B anchor EMA (AIME hard problems)"
+    claim: "Claim 1 (MLA side, difficulty confound)"
+    status: DONE
+    result: "r=+0.159, Δpert=-1.2%, FAIL on MLA — difficulty doesn't matter"
+
+  - plan_id: neg-cross-model-001
+    registry_id: neg-cross-model-001
+    name: "Llama-3.1-8B anchor EMA validation"
+    claim: "Claim 1 (GQA side — POSITIVE)"
+    status: DONE
+    result: "r=+0.471, Δpert=+6.6%, hypothesis HOLDS on GQA"
+
+  # ============================================================
+  # P0-URGENT: Confound resolution (D005)
+  # ============================================================
+
+  - plan_id: confound-ctrl-001
+    name: "Confound control: DeepSeek-R1-Distill-Llama-8B (same arch + reasoning)"
+    claim: "Confound resolution: architecture vs reasoning training"
+    priority: P0-URGENT
+    description: |
+      Perfect control: same Llama GQA architecture as Llama-3.1-8B +
+      same reasoning distillation as DeepSeek-R1-Distill-Qwen-7B.
+      If r~0.15 → reasoning training is confound, D004 fails.
+      If r~0.47 → architecture (KV head count / group ratio) matters.
+      Run identical protocol to neg-cross-model-001 (20 problems, 55% sparsity, γ=0.99).
+    model: "deepseek-ai/DeepSeek-R1-Distill-Llama-8B"
+    gpu_hours: 2
+    depends_on: [neg-cross-model-001]
+    status: PLANNED
+
+  - plan_id: confound-ctrl-002
+    name: "Confound control: Qwen2-7B-Instruct (same arch + instruction)"
+    claim: "Confound resolution: architecture vs reasoning training"
+    priority: P0
+    description: |
+      Second control: same Qwen2 GQA architecture as DeepSeek-R1-Distill-Qwen-7B +
+      instruction training. If r~0.47 → Qwen2 arch is fine, reasoning is confound.
+    model: "Qwen/Qwen2-7B-Instruct"
+    gpu_hours: 2
+    depends_on: [mvp-001b]
+    status: PLANNED
+
+  # ============================================================
+  # P0: Core experiments (narrative TBD after confound resolution)
+  # ============================================================
+
+  - plan_id: llama-sparsity-sweep
+    name: "Llama sparsity level sweep: push Δpert higher"
+    claim: "Claim 1, 3 (strengthen GQA positive evidence)"
+    priority: P0
+    description: |
+      Test higher sparsity on Llama: {50%, 55%, 60%, 65%, 70%}.
+      Current Δpert=+6.6% at 55%. Higher sparsity may widen the gap
+      between redundant and novel tokens.
+    model: "meta-llama/Llama-3.1-8B-Instruct"
+    gpu_hours: 4
+    depends_on: [neg-cross-model-001]
+    status: PLANNED
+
+  - plan_id: llama-layer-analysis
+    name: "Llama per-layer r + Δpert decomposition"
+    claim: "Claim 3 (per-layer architecture comparison)"
+    priority: P0
+    description: |
+      Per-layer analysis on Llama data (from neg-cross-model-001).
+      Compare with DeepSeek per-layer profile.
+      Key question: do all layers show positive signal on GQA, or concentrated?
+    gpu_hours: 1
+    depends_on: [neg-cross-model-001]
+    status: PLANNED
+
+  - plan_id: kv-bench-001
+    registry_id: kv-bench-001
+    name: "KV eviction benchmark: CARC-KV vs baselines"
+    claim: "Claim 4 (O(1) KV eviction)"
+    priority: P0
+    description: |
+      CARC-KV (O(1)) vs H2O (O(n)) vs SnapKV vs StreamingLLM.
+      KV budgets {30%, 50%, 70%}. Eval: perplexity + accuracy.
+    model: "deepseek-ai/DeepSeek-R1-Distill-Qwen-7B"
+    gpu_hours: 20
+    depends_on: []
+    status: PREPARING
+
+  # ============================================================
+  # P1: Strengthen architecture-dependence narrative
+  # ============================================================
+
+  - plan_id: cross-arch-mistral
+    name: "Mistral-7B validation (2nd GQA model)"
+    claim: "Claim 1 (GQA generalization)"
+    priority: P1
+    description: |
+      Repeat validation on Mistral-7B-Instruct (standard GQA).
+      Confirms GQA positive is not Llama-specific.
+    model: "mistralai/Mistral-7B-Instruct-v0.3"
+    gpu_hours: 6
+    depends_on: [neg-cross-model-001]
+    status: PLANNED
+
+  - plan_id: mla-signal-analysis
+    name: "MLA latent space semantic fidelity analysis"
+    claim: "Claim 2 (mechanistic: why MLA breaks signal)"
+    priority: SUSPENDED
+    description: |
+      SUSPENDED (D005): DeepSeek-R1-Distill-Qwen-7B is NOT MLA.
+      No MLA model available to analyze. Reactivate only if a true MLA
+      model (DeepSeek-V2/V3) becomes testable.
+    gpu_hours: 4
+    depends_on: [mvp-001b, neg-cross-model-001]
+    status: SUSPENDED
+
+  - plan_id: kv-eviction-wallclock
+    name: "Wall-clock: O(1) vs O(n) eviction cost"
+    claim: "Claim 4"
+    priority: P1
+    description: |
+      Eviction overhead timing at L={4K, 8K, 16K, 32K}.
+      CARC-KV O(1) vs H2O O(n).
+    gpu_hours: 10
+    depends_on: [kv-bench-001]
+    status: PLANNED
+
+  - plan_id: neg-per-head
+    name: "Per-head KV contribution analysis"
+    claim: "Claim 2, 3 (is it just head count 4 vs 8?)"
+    priority: P1
+    description: |
+      Normalize per-head signal contribution.
+      DeepSeek: 4 KV heads, Llama: 8 KV heads.
+      Test: even per-head, does GQA show stronger signal?
+    gpu_hours: 2
+    depends_on: [mvp-001b, neg-cross-model-001]
+    status: PLANNED
+
+  # ============================================================
+  # P2: Extensions
+  # ============================================================
+
+  - plan_id: kv-eviction-ablation
+    name: "KV eviction: key-only vs key+value anchor"
+    claim: "Claim 4"
+    priority: P2
+    gpu_hours: 5
+    depends_on: [kv-bench-001]
+    status: PLANNED
+
+  - plan_id: llama-downstream
+    name: "Llama two-tier sparsity downstream accuracy"
+    claim: "Claim 1 (practical value of cross-axis on GQA)"
+    priority: P2
+    description: |
+      Apply CARC two-tier MLP sparsity on Llama: 55% redundant / 40% novel.
+      Compare accuracy vs uniform sparsity on MATH problems.
+    gpu_hours: 6
+    depends_on: [llama-sparsity-sweep]
+    status: PLANNED
+
+# ============================================================
+# Timeline (12-day sprint, 5/12 → 5/25)
+# ============================================================
+# Day 1 (5/12): llama-sparsity-sweep + llama-layer-analysis (CPU)
+# Day 1-3: kv-bench-001 (parallel after sparsity sweep)
+# Day 2-4: cross-arch-mistral (download + run)
+# Day 3-5: mla-signal-analysis + neg-per-head
+# Day 4-7: kv-eviction-wallclock
+# Day 6-12: paper writing (parallel with P2)

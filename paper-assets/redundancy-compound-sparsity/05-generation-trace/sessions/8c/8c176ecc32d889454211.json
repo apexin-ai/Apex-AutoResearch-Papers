@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "id": "8c176ecc32d889454211",
+  "project": "redundancy-compound-sparsity",
+  "kind": "worker",
+  "title": "infra env setup mvp001",
+  "task_key": "worker_infra_env-setup-mvp001_20260511T221147",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_env-setup-mvp001_20260511T221147.log",
+    "occurrence": 1,
+    "bytes": 1168958,
+    "sha256": "fdd4042bf2fd40d94568eec05ecf34035afeea67ed48f2da6c7d4fa7e0ac4b60"
+  },
+  "statistics": {
+    "messages": 977,
+    "user_turns": 1,
+    "tool_calls": 444,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 13,
+      "assistant": 69,
+      "tool_call": 444,
+      "tool_result": 444,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 939,
+      "chunks": [
+        {
+          "path": "8c176ecc32d889454211-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "8c176ecc32d889454211-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "8c176ecc32d889454211-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "8c176ecc32d889454211-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "8c176ecc32d889454211-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "8c176ecc32d889454211-part-0006.json",
+          "message_count": 39
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 38,
+      "chunks": [
+        {
+          "path": "8c176ecc32d889454211-part-0006.json",
+          "message_count": 38
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-env-setup-mvp001.md"
+}

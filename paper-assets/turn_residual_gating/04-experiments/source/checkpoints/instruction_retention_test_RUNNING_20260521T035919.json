@@ -1,0 +1,26 @@
+{
+  "exp_id": "instruction_retention_test",
+  "project": "turn_residual_gating",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T03:49:26.068Z",
+    "updated_at": "2026-05-21T03:59:19.053Z",
+    "hypothesis": "Turn-level residual gating (β=3) preserves instruction-following ability across multi-turn conversations better than the baseline (β=0), because gating modulates residual contributions to retain earlier context signals rather than letting them decay through successive transformer layers.",
+    "spec": {
+      "command": "python src/eval_instruction_retention.py --checkpoint runs/phase2_tg_s42_v7 --prompts data/instruction_retention_prompts.json --betas 0 3 --seed 42 --output results/instruction_retention.json",
+      "server": "westd-20861",
+      "data_path": "data/instruction_retention_prompts.json",
+      "data_count": 18,
+      "model_name": "Qwen2.5-7B-Instruct + v7 TG LoRA",
+      "seed": 42,
+      "checkpoint_source": "phase2_tg_s42_v7",
+      "eval_data": "18 instruction retention prompts, beta=[0,3], 5 turns each"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-21T03:59:19.141073+00:00",
+  "trigger": "update_registry"
+}

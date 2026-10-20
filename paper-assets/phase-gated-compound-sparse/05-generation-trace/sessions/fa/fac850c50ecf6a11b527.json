@@ -1,0 +1,332 @@
+{
+  "schema_version": "1.0",
+  "id": "fac850c50ecf6a11b527",
+  "project": "phase-gated-compound-sparse",
+  "kind": "conversation",
+  "title": "analysis bf16 importance s015",
+  "task_key": "worker_analysis_bf16_importance_s015_20260514T061847",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_bf16_importance_s015_20260514T061847.jsonl",
+    "occurrence": 1,
+    "bytes": 11235,
+    "sha256": "69437c55f09a93ca536926dff40052f36c5e621493061553b88c9bc472c727cf"
+  },
+  "statistics": {
+    "messages": 15,
+    "user_turns": 0,
+    "tool_calls": 7,
+    "roles": {
+      "tool_call": 7,
+      "tool_result": 7,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T06:19:48.071946+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bf16_importance_s015_20260514T061847",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T06:19:48.072313+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bf16_importance_s015_20260514T061847",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T06:19:48.072518+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bf16_importance_s015_20260514T061847",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-22162",
+              "command": "cat /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s015/profiling_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T06:19:48.072655+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bf16_importance_s015_20260514T061847",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-22162",
+              "command": "ls -la /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s015/",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T06:19:48.072777+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bf16_importance_s015_20260514T061847",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-22162",
+              "command": "tail -20 /root/runs/phase-gated-compound-sparse/bf16_importance_s015.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T06:19:48.073112+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"/root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B\\\\\\\",\\\\n    \\\\\\\"sparsity_levels\\\\\\\": [\\\\n      0.15\\\\n    ],\\\\n    \\\\\\\"masking_method\\\\\\\": \\\\\\\"importance\\\\\\\",\\\\n    \\\\\\\"head_importance_metric\\\\\\\": \\\\\\\"attention_frobenius_norm\\\\\\\",\\\\n    \\\\\\\"kv_importance_metric\\\\\\\": \\\\\\\"cumulative_attention_received\\\\\\\",\\\\n    \\\\\\\"segmentation_method\\\\\\\": \\\\\\\"quantile\\\\\\\",\\\\n    \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n    \\\\\\\"n_problems\\\\\\\": 50,\\\\n    \\\\\\\"seed\\\\\\\": 42\\\\n  },\\\\n  \\\\\\\"phase_stats\\\\\\\": {\\\\n    \\\\\\\"high_sparsity\\\\\\\": {\\\\n      \\\\\\\"n_tokens\\\\\\\": 21086,\\\\n      \\\\\\\"n_segments\\\\\\\": 387\\\\n    },\\\\n    \\\\\\\"low_sparsity\\\\\\\": {\\\\n      \\\\\\\"n_tokens\\\\\\\": 27748,\\\\n      \\\\\\\"n_segments\\\\\\\": 397\\\\n    },\\\\n    \\\\\\\"mid_sparsity\\\\\\\": {\\\\n      \\\\\\\"n_tokens\\\\\\\": 13306,\\\\n      \\\\\\\"n_segments\\\\\\\": 191\\\\n    }\\\\n  },\\\\n  \\\\\\\"perplexity\\\\\\\": {\\\\n    \\\\\\\"high_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.15\\\\\\\": {\\\\n        \\\\\\\"dense\\\\\\\": 1.1689,\\\\n        \\\\\\\"attn\\\\\\\": 1.4861,\\\\n        \\\\\\\"kv\\\\\\\": 1.4481,\\\\n        \\\\\\\"both\\\\\\\": 1.5911\\\\n      }\\\\n    },\\\\n    \\\\\\\"low_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.15\\\\\\\": {\\\\n        \\\\\\\"dense\\\\\\\": 1.2286,\\\\n        \\\\\\\"attn\\\\\\\": 1.6147,\\\\n        \\\\\\\"kv\\\\\\\": 8.9201,\\\\n        \\\\\\\"both\\\\\\\": 12.5084\\\\n      }\\\\n    },\\\\n    \\\\\\\"mid_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.15\\\\\\\": {\\\\n        \\\\\\\"dense\\\\\\\": 1.2269,\\\\n        \\\\\\\"attn\\\\\\\": 1.5137,\\\\n        \\\\\\\"kv\\\\\\\": 2.5971,\\\\n        \\\\\\\"both\\\\\\\": 3.4541\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"interaction_index\\\\\\\": {\\\\n    \\\\\\\"high_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.15\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": -0.150213,\\\\n        \\\\\\\"ci_low\\\\\\\": -0.294614,\\\\n        \\\\\\\"ci_high\\\\\\\": -0.055385,\\\\n        \\\\\\\"median\\\\\\\": 0.005752,\\\\n        \\\\\\\"winsorized_mean\\\\\\\": -0.062378,\\\\n        \\\\\\\"skewness\\\\\\\": -14.9912,\\\\n        \\\\\\\"outlier_count\\\\\\\": 2\\\\n      }\\\\n    },\\\\n    \\\\\\\"low_sparsity\\\\\\\": {\\\\n      \\\\\\\"0.15\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 2.4\n…[truncated 8037 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bf16_importance_s015_20260514T061847",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T06:19:48.073300+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 1948\\\\ndrwxr-xr-x  2 root root      44 May 14 14:14 .\\\\ndrwxr-xr-x 64 root root    4096 May 14 13:58 ..\\\\n-rw-r--r--  1 root root 1990639 May 14 14:14 profiling_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bf16_importance_s015_20260514T061847",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T06:19:48.073479+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-14 14:14:26,110 [INFO] run_profiling:   -> 42 phases, boundaries at [97, 122, 171, 184, 197, 240, 255, 338, 364, 399, 424, 484, 535, 705, 737, 793, 857, 887, 920, 958, 1032, 1098, 1119, 1168, 1416, 1428, 1466, 1492, 1518, 1550, 1579, 1596, 1619, 1643, 1656, 1706, 1717, 1796, 1916, 1976, 2000]\\\\n2026-05-14 14:14:26,186 [INFO] run_profiling: Results saved to /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s015/profiling_results.json\\\\n\\\\n============================================================\\\\nPACS Profiling Complete — 50 problems\\\\n============================================================\\\\n  high_sparsity: 21086 tokens, 387 segments\\\\n  low_sparsity: 27748 tokens, 397 segments\\\\n  mid_sparsity: 13306 tokens, 191 segments\\\\n\\\\n  II[high_sparsity, 0.15]: mean=-0.1502  95%CI=[-0.2946, -0.0554]\\\\n  II[low_sparsity, 0.15]: mean=+2.4058  95%CI=[+1.4788, +3.6677]\\\\n  II[mid_sparsity, 0.15]: mean=+0.4473  95%CI=[+0.2680, +0.6687]\\\\n\\\\nVerdict: PASS\\\\n  CI overlap test: low_sparsity vs mid_sparsity CI non-overlapping at 0.15\\\\n  Sign reversal:   high_sparsity II<0, mid_sparsity II>0 at 0.15\\\\n============================================================\\\\n\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.76}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bf16_importance_s015_20260514T061847",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T06:19:48.073663+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bf16_importance_s015_20260514T061847",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-22162",
+              "command": "grep -c \"null\" /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s015/profiling_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T06:19:48.073798+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"11\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bf16_importance_s015_20260514T061847",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T06:19:48.073919+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bf16_importance_s015_20260514T061847",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-22162",
+              "command": "grep -c \"NaN\" /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s015/profiling_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T06:19:48.074043+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bf16_importance_s015_20260514T061847",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T06:19:48.074169+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bf16_importance_s015_20260514T061847",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-22162",
+              "command": "grep -n \"null\" /root/autodl-tmp/pacs/profiling_output_bf16_ds_imp_s015/profiling_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T06:19:48.074300+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"66950:        \\\\\\\"ii_mid\\\\\\\": null,\\\\n66968:        \\\\\\\"ii_high\\\\\\\": null,\\\\n66970:        \\\\\\\"ii_mid\\\\\\\": null,\\\\n66980:        \\\\\\\"ii_mid\\\\\\\": null,\\\\n67000:        \\\\\\\"ii_mid\\\\\\\": null,\\\\n67030:        \\\\\\\"ii_mid\\\\\\\": null,\\\\n67060:        \\\\\\\"ii_mid\\\\\\\": null,\\\\n67090:        \\\\\\\"ii_mid\\\\\\\": null,\\\\n67170:        \\\\\\\"ii_mid\\\\\\\": null,\\\\n67200:        \\\\\\\"ii_mid\\\\\\\": null,\\\\n67330:        \\\\\\\"ii_mid\\\\\\\": null,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bf16_importance_s015_20260514T061847",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T06:19:48.074505+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## bf16_importance_s015 实验结果\n\n**总体: PASS, 0 NaN**\n\n### Interaction Index (s=0.15)\n\n| Phase | Mean | Median | CI 95% | Winsorized Mean | Skewness | Outliers |\n|-------|------|--------|--------|-----------------|----------|----------|\n| high | **-0.1502** | 0.0058 | [-0.2946, -0.0554] | -0.0624 | -14.99 | 2 |\n| mid | **+0.4473** | 0.0807 | [+0.2680, +0.6687] | +0.3248 | 4.72 | 5 |\n| low | **+2.4058** | 0.3983 | [+1.4788, +3.6677] | +1.2789 | 9.54 | 5 |\n\n### Perplexity (s=0.15)\n\n| Phase | Dense | Attn-only | KV-only | Both |\n|-------|-------|-----------|---------|------|\n| high | 1.169 | 1.486 | 1.448 | 1.591 |\n| mid | 1.227 | 1.514 | 2.597 | 3.454 |\n| low | 1.229 | 1.615 | 8.920 | 12.508 |\n\n### Phase Stats\n- high: 21,086 tokens / 387 segments\n- mid: 13,306 tokens / 191 segments\n- low: 27,748 tokens / 397 segments\n- **Total: 50 problems processed**\n\n### Null / NaN 统计\n- **NaN: 0** — bf16 完全消除了 fp16 的 NaN 问题\n- **null: 11** — 均为某些 problem 缺少对应 phase 的 segments（10x `ii_mid=null`, 1x `ii_high=null`），属正常行为（该 problem 的 token 全部落入其他 phase）\n\n### Pass/Fail Tests\n- CI overlap test: **PASS** — low vs mid CI 不重叠\n- Sign reversal test: **PASS** — high II<0, mid II>0\n- Overall: **PASS**\n\n### 与 fp16 版本的关键区别\n- **NaN 消除**: fp16 版本在 Layer 27 存在 NaN 偏差，bf16 完全没有 NaN\n- 梯度模式一致：high→mid→low 的 II 递增趋势保持，sign reversal 成立\n- warnings 列表为空，日志无错误，EXIT_CODE=0"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bf16_importance_s015_20260514T061847"
+          },
+          "id": "event-000015"
+        }
+      ],
+      "message_count": 15
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-bf16-importance-s015-copy-2.md"
+}

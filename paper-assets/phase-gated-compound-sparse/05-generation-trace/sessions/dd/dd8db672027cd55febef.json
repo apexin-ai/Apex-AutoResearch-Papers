@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dd8db672027cd55febef",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "infra install tmux",
+  "task_key": "worker_infra_install-tmux_20260513T191952",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_install-tmux_20260513T191952_result.json",
+    "occurrence": 1,
+    "bytes": 71,
+    "sha256": "67d103c9d1c99fb3d24ff8269859154044e0f9034dc977af32634df9fda105e8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "tmux 安装成功：`/usr/bin/tmux`，版本 **3.2a**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-install-tmux.md"
+}

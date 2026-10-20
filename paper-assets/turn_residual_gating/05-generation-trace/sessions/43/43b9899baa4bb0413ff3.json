@@ -1,0 +1,1465 @@
+{
+  "schema_version": "1.0",
+  "id": "43b9899baa4bb0413ff3",
+  "project": "turn_residual_gating",
+  "kind": "worker",
+  "title": "code v8b ss s123 eval script",
+  "task_key": "worker_code_v8b_ss_s123_eval_script_20260521T152221",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_v8b_ss_s123_eval_script_20260521T152221.log",
+    "occurrence": 1,
+    "bytes": 110983,
+    "sha256": "a5568b4e7a9c3c7777947168021391acebad6c67abb3383e7b50d3f3cead5c8b"
+  },
+  "statistics": {
+    "messages": 35,
+    "user_turns": 0,
+    "tool_calls": 12,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 7,
+      "tool_call": 12,
+      "tool_result": 12,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+                "session_id": "aa776961-571b-4955-ab2c-5b95db8a92c1",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "0411a3e4-d892-4307-a827-c80308ae2532",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-turn-residual-gating/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779386400,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "1331da34-ae37-437f-9f70-ac28793e8f32",
+                "session_id": "aa776961-571b-4955-ab2c-5b95db8a92c1"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me gather the reference information from the server first.",
+              "signature": "EoMCCmMIDRgCKkAqnJ/ru3yohMZBnYBbemc7PVqaIp0fQ2fTO9uABtBhFIOuK6E2ULaGBwxw72PijR3Mc504TulCNJxoJftABv8XMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDEWvC3Iq8vV1XD7YnhoMJCQ0hl955ZMnKQsdIjA6Y8NJ7+UmTNKu69IDPSj+rAznMLMggTBV+tI8aeQg00HlVUd7NGIShQO34XwAS2kqTu3+Ylc41WfvIu6G88sZ/IgKlO4O5djCz0bgzhQwX0J7O8c6LIudo0N6AJc+seaOwlfS5Tq6o4Tkjti1ZXCzn0iXT9Ik8UUUgQ4KipFOwxgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aa776961-571b-4955-ab2c-5b95db8a92c1",
+            "uuid": "cf5fb41f-ed6e-4e5e-9a9a-afa400403f38",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015jaUURvK1gGaeRY1wN3SXK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13182,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13182
+                },
+                "output_tokens": 18,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "先收集参考信息。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aa776961-571b-4955-ab2c-5b95db8a92c1",
+            "uuid": "43395b99-d965-410a-bc45-0d651b5391f0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015jaUURvK1gGaeRY1wN3SXK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13182,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13182
+                },
+                "output_tokens": 18,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MdJAN2VyqY3SqckKv7atsj",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aa776961-571b-4955-ab2c-5b95db8a92c1",
+            "uuid": "b0c34812-8d9a-475e-b810-605f161e15bf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015jaUURvK1gGaeRY1wN3SXK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13182,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13182
+                },
+                "output_tokens": 18,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T15:22:35.238Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01MdJAN2VyqY3SqckKv7atsj",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "aa776961-571b-4955-ab2c-5b95db8a92c1",
+            "uuid": "3ed427de-e01b-4952-8998-387b78504d5e",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__ssh_execute"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011CA2ADJX83EWJj23kKVsUA",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-20861",
+                "command": "cat /root/turn_residual_gating/scripts/eval_v7_tg_s123.sh"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aa776961-571b-4955-ab2c-5b95db8a92c1",
+            "uuid": "87d8f9cd-eb97-4348-8c09-800a801b16ee",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YAFR1FaTJhzCUk6U7RrVAc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 706,
+                "cache_read_input_tokens": 25023,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 706
+                },
+                "output_tokens": 70,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T15:22:39.533Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011CA2ADJX83EWJj23kKVsUA",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\n# v7 TG s123 seed-robustness eval\\\\n# 4-way: Base / LoRA-only / TG v7 s123 / v8b-SS s123\\\\n# TF + AR modes, GAR-ours + GAR-Dongre\\\\nset -e\\\\n\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\\\ncd /root/turn_residual_gating\\\\n\\\\nPYTHON=/root/miniconda3/bin/python3.12\\\\nEVAL_SCRIPT=src/eval_phase2_gar.py\\\\nCONV_PATH=data/ultrachat_eval_heldout.json\\\\nOUT_ROOT=runs/eval_v7_tg_s123\\\\n\\\\n# ── Auto-detect TG v7 s123 checkpoint ──────────────────────\\\\nTG_RUN_DIR=runs/phase2_tg_s123_v7\\\\nTG_CKPT=\\\\\\\"\\\\\\\"\\\\nfor ep_dir in $(ls -1d ${TG_RUN_DIR}/epoch_* 2>/dev/null | sort -t_ -k2 -rn); do\\\\n    if [ -f \\\\\\\"$ep_dir/gate_params.pt\\\\\\\" ] && [ -d \\\\\\\"$ep_dir/lora\\\\\\\" ]; then\\\\n        TG_CKPT=\\\\\\\"$ep_dir\\\\\\\"\\\\n        break\\\\n    fi\\\\ndone\\\\nif [ -z \\\\\\\"$TG_CKPT\\\\\\\" ] && [ -f \\\\\\\"$TG_RUN_DIR/gate_params.pt\\\\\\\" ] && [ -d \\\\\\\"$TG_RUN_DIR/lora\\\\\\\" ]; then\\\\n    TG_CKPT=\\\\\\\"$TG_RUN_DIR\\\\\\\"\\\\nfi\\\\nif [ -z \\\\\\\"$TG_CKPT\\\\\\\" ]; then\\\\n    echo \\\\\\\"ERROR: No TG v7 s123 checkpoint found in $TG_RUN_DIR\\\\\\\"\\\\n    ls -la \\\\\\\"$TG_RUN_DIR\\\\\\\"/ 2>/dev/null || echo \\\\\\\"  (directory not found)\\\\\\\"\\\\n    exit 1\\\\nfi\\\\necho \\\\\\\"Using TG v7 s123 checkpoint: $TG_CKPT\\\\\\\"\\\\n\\\\n# ── Auto-detect LoRA-only s123 checkpoint ──────────────────\\\\nLO_RUN_DIR=runs/phase2_lora_only_s123\\\\nLO_CKPT=\\\\\\\"\\\\\\\"\\\\nfor ep_dir in $(ls -1d ${LO_RUN_DIR}/epoch_* 2>/dev/null | sort -t_ -k2 -rn); do\\\\n    if [ -d \\\\\\\"$ep_dir/lora\\\\\\\" ]; then\\\\n        LO_CKPT=\\\\\\\"$ep_dir\\\\\\\"\\\\n        break\\\\n    fi\\\\ndone\\\\nif [ -z \\\\\\\"$LO_CKPT\\\\\\\" ] && [ -d \\\\\\\"$LO_RUN_DIR/lora\\\\\\\" ]; then\\\\n    LO_CKPT=\\\\\\\"$LO_RUN_DIR\\\\\\\"\\\\nfi\\\\nif [ -z \\\\\\\"$LO_CKPT\\\\\\\" ]; then\\\\n    echo \\\\\\\"WARNING: LoRA-only s123 checkpoint not found in $LO_RUN_DIR, skipping LoRA-only eval\\\\\\\"\\\\nelse\\\\n    echo \\\\\\\"Using LoRA-only s123 checkpoint: $LO_CKPT\\\\\\\"\\\\nfi\\\\n\\\\n# ── Auto-detect v8b-SS s123 checkpoint ─────────────────────\\\\nSS_RUN_DIR=checkpoints/tg_v8b_ss_s123\\\\nSS_CKPT=\\\\\\\"\\\\\\\"\\\\nfor ep_dir in $(ls -1d ${SS_RUN_DIR}/epoch_* 2>/dev/null | sort -t_ -k2 -rn); do\\\\n    if [ -f \\\\\\\"$ep_dir/gate_params.pt\\\\\\\" ] && [ -d \\\\\\\"$ep_dir/lora\\\\\\\" ]; then\\\\n        SS_CKPT=\\\\\\\"$ep_dir\\\\\\\"\\\\n        break\\\\n    fi\\\\ndone\\\\nif [ -z \\\\\\\"$SS_CKPT\\\\\\\" ] && [ -f \\\\\\\"$SS_RUN_DIR/gate_params.pt\\\\\\\" ] && [ -d \\\\\\\"$SS_RUN_DIR/lora\\\\\\\" ]; then\\\\n    SS_CKPT=\\\\\\\"$SS_RUN_DIR\\\\\\\"\\\\nfi\\\\nif [ -z \\\\\\\"$SS_CKPT\\\\\\\" ]; then\\\\n    echo \\\\\\\"WARNING: v8b-SS s123 checkpoint not found in $SS_RUN_DIR, skipping v8b-SS eval\\\\\\\"\\\\nelse\\\\n    echo \\\\\\\"Using v8b-SS s123 checkpoint: $SS_CKPT\\\\\\\"\\\\nfi\\\\n\\\\necho \\\\\\\"\\\\\\\"\\\\nmkdir -p \\\\\\\"$OUT_ROOT\\\\\\\"\\\\n\\\\n# ════════════════════════════════════════════════════════════\\\\n# Part 1: Teacher-Forced GAR (heldout conversations)\\\\n# ════════════════════════════════════════════════════════════\\\\n\\\\necho \\\\\\\"========== [TF] Base + GAR-ours ==========\\\\\\\"\\\\n$PYTHON $EVAL_SCRIPT \\\\\\\\\\\\n  --gate-type none \\\\\\\\\\\\n  --conversations-path \\\\\\\"$CONV_PATH\\\\\\\" \\\\\\\\\\\\n  --output-dir \\\\\\\"$OUT_ROOT/tf_base_ours\\\\\\\" \\\\\\\\\\\\n  --gar-variant ours \\\\\\\\\\\\n  --gate-profile\\\\n\\\\necho \\\\\\\"========== [TF] Base + GAR-Dongre ==========\\\\\\\"\\\\n$PYTHON $EVAL_SCRIPT \\\\\\\\\\\\n  --gate-type none \\\\\\\\\\\\n  --conversations-path \\\\\\\"$CONV_PATH\\\\\\\" \\\\\\\\\\\\n  --output-dir \\\\\\\"$OUT_ROOT/tf_base_dongre\\\\\\\" \\\\\\\\\\\\n  --gar-variant dongre \\\\\\\\\\\\n  --gate-profile\\\\n\\\\nif [ -n \\\\\\\"$LO_CKPT\\\\\\\" ]; then\\\\n    echo \\\\\\\"========== [TF] LoRA-only + GAR-ours ==========\\\\\\\"\\\\n    $PYTHON $EVAL_SCRIPT \\\\\\\\\\\\n      --gate-type none \\\\\\\\\\\\n      --checkpoint-dir \\\\\\\"$LO_CKPT\\\\\\\" \\\\\\\\\\\\n      --conversations-path \\\\\\\"$CONV_PATH\\\\\\\" \\\\\\\\\\\\n      --output-dir \\\\\\\"$OUT_ROOT/tf_lo_ours\\\\\\\" \\\\\\\\\\\\n      --gar-variant ours \\\\\\\\\\\\n      --gate-profile\\\\n\\\\n    echo \\\\\\\"========== [TF] LoRA-only + GAR-Dongre ==========\\\\\\\"\\\\n    $PYTHON $EVAL_SCRIPT \\\\\\\\\\\\n      --gate-type none \\\\\\\\\\\\n      --checkpoint-dir \\\\\\\"$LO_CKPT\\\\\\\" \\\\\\\\\\\\n      --conversations-path \\\\\\\"$CONV_PATH\\\\\\\" \\\\\\\\\\\\n      --output-dir \\\\\\\"$OUT_ROOT/tf_lo_dongre\\\\\\\" \\\\\\\\\\\\n      --gar-variant dongre \\\\\\\\\\\\n      --gate-profile\\\\nfi\\\\n\\\\necho \\\\\\\"========== [TF] TG v7 s123 + GAR-ours ==========\\\\\\\"\\\\n$PYTHON $EVAL_SCRIPT \\\\\\\\\\\\n  --gate-type threadgate \\\\\\\\\\\\n  --checkpoint-dir \\\\\\\"$TG_CKPT\\\\\\\" \\\\\\\\\\\\n  --conversations-path \\\\\\\"$CONV_PATH\\\\\\\" \\\\\\\\\\\\n  --output-dir \\\\\\\"$OUT_ROOT/tf_tg_ours\\\\\\\" \\\\\\\\\\\\n  --gar-variant ours \\\\\\\\\\\\n  --gate-profile\\\\n\\\\necho \\\\\\\"========== [TF] TG v7 s123 + GAR-Dongre ==========\\\\\\\"\\\\n$PYTHON $EVAL_SCRIPT \\\\\\\\\\\\n  --gate-type threadgate \\\\\\\\\\\\n  --checkpoint-dir \\\\\\\"$TG_CKPT\\\\\\\" \\\\\\\\\\\\n  --conversations-path \\\\\\\"$CONV_PATH\\\\\\\" \\\\\\\\\\\\n  --output-dir \\\\\\\"$OUT_ROOT/tf_tg_dongre\\\\\\\" \\\\\\\\\\\\n  --gar-variant dongre \\\\\\\\\\\\n  --gate-profile\\\\n\\\\nif [ -n \\\\\\\"$SS_CKPT\\\\\\\" ]; then\\\\n    echo \\\\\\\"========== [TF] v8b-SS s123 + GAR-ours ==========\\\\\\\"\\\\n    $PYTHON $EVAL_SCRIPT \\\\\\\\\\\\n      --gate-type threadgate \\\\\\\\\\\\n      --checkpoint-dir \\\\\\\"$SS_CKPT\\\\\\\" \\\\\\\\\\\\n      --conversations-path \\\\\\\"$CONV_PATH\\\\\\\" \\\\\\\\\\\\n      --output-dir \\\\\\\"$OUT_ROOT/tf_ss_ours\\\\\\\" \\\\\\\\\\\\n      --gar-variant ours \\\\\\\\\\\\n      --gate-profile\\\\n\\\\n    echo \\\\\\\"========== [TF] v8b-SS s123 + GAR-Dongre ==========\\\\\\\"\\\\n    $PYTHON $EVAL_SCRIPT \\\\\\\\\\\\n      --gate-type threadgate \\\\\\\\\\\\n      --checkpoint-dir \\\\\\\"$SS_CKPT\\\\\\\" \\\\\\\\\\\\n      --conversations-path \\\\\\\"$CONV_PATH\\\\\\\" \\\\\\\\\\\\n      --output-dir \\\\\\\"$OUT_ROOT/tf_ss_dongre\\\\\\\" \\\\\\\\\\\\n      --gar-variant dongre \\\\\\\\\\\\n      --gate-profile\\\\nfi\\\\n\\\\n# ════════════════════════════════════════════════════════════\\\\n# Part 2: Autoregressive GAR (model-generated conversations)\\\\n# ════════════════════════════════════════════════════════════\\\\n\\\\necho \\\\\\\"========== [AR] Base + GAR-ours ==========\\\\\\\"\\\\n$PYTHON $EVAL_SCRIPT \\\\\\\\\\\\n  --gate-type none \\\\\\\\\\\\n  --output-dir \\\\\\\"$OUT_ROOT/ar_base_ours\\\\\\\" \\\\\\\\\\\\n  --gar-variant ours \\\\\\\\\\\\n  --gate-profile\\\\n\\\\necho \\\\\\\"========== [AR] Base + GAR-Dongre ==========\\\\\\\"\\\\n$PYTHON $EVAL_SCRIPT \\\\\\\\\\\\n  --gate-type none \\\\\\\\\\\\n  --output-dir \\\\\\\"$OUT_ROOT/ar_base_dongre\\\\\\\" \\\\\\\\\\\\n  --gar-variant dongre \\\\\\\\\\\\n  --gate-profile\\\\n\\\\nif [ -n \\\\\\\"$LO_CKPT\\\\\\\" ]; then\\\\n    echo \\\\\\\"========== [AR] LoRA-only + GAR-ours ==========\\\\\\\"\\\\n    $PYTHON $EVAL_SCRIPT \\\\\\\\\\\\n      --gate-type none \\\\\\\\\\\\n      --checkpoint-dir \\\\\\\"$LO_CKPT\\\\\\\" \\\\\\\\\\\\n      --output-dir \\\\\\\"$OUT_ROOT/ar_lo_ours\\\\\\\" \\\\\\\\\\\\n      --gar-variant ours \\\\\\\\\\\\n      --gate-profile\\\\n\\\\n    echo \\\\\\\"========== [AR] LoRA-only + GAR-Dongre ==========\\\\\\\"\\\\n    $PYTHON $EVAL_SCRIPT \\\\\\\\\\\\n      --gate-type none \\\\\\\\\\\\n      --checkpoint-dir \\\\\\\"$LO_CKPT\\\\\\\" \\\\\\\\\\\\n      --output-dir \\\\\\\"$OUT_ROOT/ar_lo_dongre\\\\\\\" \\\\\\\\\\\\n      --gar-variant dongre \\\\\\\\\\\\n      --gate-profile\\\\nfi\\\\n\\\\necho \\\\\\\"========== [AR] TG v7 s123 + GAR-ours ==========\\\\\\\"\\\\n$PYTHON $EVAL_SCRIPT \\\\\\\\\\\\n  --gate-type threadgate \\\\\\\\\\\\n  --checkpoint-dir \\\\\\\"$TG_CKPT\\\\\\\" \\\\\\\\\\\\n  --output-dir \\\\\\\"$OUT_ROOT/ar_tg_ours\\\\\\\" \\\\\\\\\\\\n  --gar-variant ours \\\\\\\\\\\\n  --gate-profile\\\\n\\\\necho \\\\\\\"========== [AR] TG v7 s123 + GAR-Dongre ==========\\\\\\\"\\\\n$PYTHON $EVAL_SCRIPT \\\\\\\\\\\\n  --gate-type threadgate \\\\\\\\\\\\n  --checkpoint-dir \\\\\\\"$TG_CKPT\\\\\\\" \\\\\\\\\\\\n  --output-dir \\\\\\\"$OUT_ROOT/ar_tg_dongre\\\\\\\" \\\\\\\\\\\\n  --gar-variant dongre \\\\\\\\\\\\n  --gate-profile\\\\n\\\\nif [ -n \\\\\\\"$SS_CKPT\\\\\\\" ]; then\\\\n    echo \\\\\\\"========== [AR] v8b-SS s123 + GAR-ours ==========\\\\\\\"\\\\n    $PYTHON $EVAL_SCRIPT \\\\\\\\\\\\n      --gate-type threadgate \\\\\\\\\\\\n      --checkpoint-dir \\\\\\\"$SS_CKPT\\\\\\\" \\\\\\\\\\\\n      --output-dir \\\\\\\"$OUT_ROOT/ar_ss_ours\\\\\\\" \\\\\\\\\\\\n      --gar-variant ours \\\\\\\\\\\\n      --gate-profile\\\\n\\\\n    echo \\\\\\\"========== [AR] v8b-SS s123 + GAR-Dongre ==========\\\\\\\"\\\\n    $PYTHON $EVAL_SCRIPT \\\\\\\\\\\\n      --gate-type threadgate \\\\\\\\\\\\n      --checkpoint-dir \\\\\\\"$SS_CKPT\\\\\\\" \\\\\\\\\\\\n      --output-dir \\\\\\\"$OUT_ROOT/ar_ss_dongre\\\\\\\" \\\\\\\\\\\\n      --gar-variant dongre \\\\\\\\\\\\n      --gate-profile\\\\nfi\\\\n\\\\n# ════════════════════════════════════════════════════════════\\\\n# Summary\\\\n# ════════════════════════════════════════════════════════════\\\\necho \\\\\\\"\\\\\\\"\\\\necho \\\\\\\"================================================================\\\\\\\"\\\\necho \\\\\\\"v7 TG s123 eval complete\\\\\\\"\\\\necho \\\\\\\"================================================================\\\\\\\"\\\\necho \\\\\\\"TG v7 s123 checkpoint: $TG_CKPT\\\\\\\"\\\\nif [ -n \\\\\\\"$LO_CKPT\\\\\\\" ]; then\\\\n    echo \\\\\\\"LoRA-only checkpoint: $LO_CKPT\\\\\\\"\\\\nelse\\\\n    echo \\\\\\\"LoRA-only: SKIPPED (not found)\\\\\\\"\\\\nfi\\\\nif [ -n \\\\\\\"$SS_CKPT\\\\\\\" ]; then\\\\n    echo \\\\\\\"v8b-SS s123 checkpoint: $SS_CKPT\\\\\\\"\\\\nelse\\\\n    echo \\\\\\\"v8b-SS: SKIPPED (not found)\\\\\\\"\\\\nfi\\\\necho \\\\\\\"Results in: $OUT_ROOT/\\\\\\\"\\\\necho \\\\\\\"\\\\\\\"\\\\necho \\\\\\\"Key comparisons:\\\\\\\"\\\\necho \\\\\\\"  TF GAR gap:     tf_base_ours vs tf_tg_ours\\\\\\\"\\\\necho \\\\\\\"  AR GAR gap:     ar_base_ours vs ar_tg_ours\\\\\\\"\\\\necho \\\\\\\"  TF-AR gap:      tf_tg_ours vs ar_tg_ours  (training-inference gap)\\\\\\\"\\\\necho \\\\\\\"  Dongre:         tf_tg_dongre vs ar_tg_dongre\\\\\\\"\\\\nif [ -n \\\\\\\"$SS_CKPT\\\\\\\" ]; then\\\\n    echo \\\\\\\"  SS mitigation:  ar_ss_ours vs ar_tg_ours  (exposure bias fix)\\\\\\\"\\\\nfi\\\\necho \\\\\\\"  PPL:            check avg_ppl in each *_gar.json\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.09}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "aa776961-571b-4955-ab2c-5b95db8a92c1",
+            "uuid": "a833ff01-21f5-44d5-9cac-ece6f35d4345",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\n# v7 TG s123 seed-robustness eval\\\\n# 4-way: Base / LoRA-only / TG v7 s123 / v8b-SS s123\\\\n# TF + AR modes, GAR-ours + GAR-Dongre\\\\nset -e\\\\n\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\\\ncd /root/turn_residual_gating\\\\n\\\\nPYTHON=/root/miniconda3/bin/python3.12\\\\nEVAL_SCRIPT=src/eval_phase2_gar.py\\\\nCONV_PATH=data/ultrachat_eval_heldout.json\\\\nOUT_ROOT=runs/eval_v7_tg_s123\\\\n\\\\n# ── Auto-detect TG v7 s123 checkpoint ──────────────────────\\\\nTG_RUN_DIR=runs/phase2_tg_s123_v7\\\\nTG_CKPT=\\\\\\\"\\\\\\\"\\\\nfor ep_dir in $(ls -1d ${TG_RUN_DIR}/epoch_* 2>/dev/null | sort -t_ -k2 -rn); do\\\\n    if [ -f \\\\\\\"$ep_dir/gate_params.pt\\\\\\\" ] && [ -d \\\\\\\"$ep_dir/lora\\\\\\\" ]; then\\\\n        TG_CKPT=\\\\\\\"$ep_dir\\\\\\\"\\\\n        break\\\\n    fi\\\\ndone\\\\nif [ -z \\\\\\\"$TG_CKPT\\\\\\\" ] && [ -f \\\\\\\"$TG_RUN_DIR/gate_params.pt\\\\\\\" ] && [ -d \\\\\\\"$TG_RUN_DIR/lora\\\\\\\" ]; then\\\\n    TG_CKPT=\\\\\\\"$TG_RUN_DIR\\\\\\\"\\\\nfi\\\\nif [ -z \\\\\\\"$TG_CKPT\\\\\\\" ]; then\\\\n    echo \\\\\\\"ERROR: No TG v7 s123 checkpoint found in $TG_RUN_DIR\\\\\\\"\\\\n    ls -la \\\\\\\"$TG_RUN_DIR\\\\\\\"/ 2>/dev/null || echo \\\\\\\"  (directory not found)\\\\\\\"\\\\n    exit 1\\\\nfi\\\\necho \\\\\\\"Using TG v7 s123 checkpoint: $TG_CKPT\\\\\\\"\\\\n\\\\n# ── Auto-detect LoRA-only s123 checkpoint ──────────────────\\\\nLO_RUN_DIR=runs/phase2_lora_only_s123\\\\nLO_CKPT=\\\\\\\"\\\\\\\"\\\\nfor ep_dir in $(ls -1d ${LO_RUN_DIR}/epoch_* 2>/dev/null | sort -t_ -k2 -rn); do\\\\n    if [ -d \\\\\\\"$ep_dir/lora\\\\\\\" ]; then\\\\n        LO_CKPT=\\\\\\\"$ep_dir\\\\\\\"\\\\n        break\\\\n    fi\\\\ndone\\\\nif [ -z \\\\\\\"$LO_CKPT\\\\\\\" ] && [ -d \\\\\\\"$LO_RUN_DIR/lora\\\\\\\" ]; then\\\\n    LO_CKPT=\\\\\\\"$LO_RUN_DIR\\\\\\\"\\\\nfi\\\\nif [ -z \\\\\\\"$LO_CKPT\\\\\\\" ]; then\\\\n    echo \\\\\\\"WARNING: LoRA-only s123 checkpoint not found in $LO_RUN_DIR, skipping LoRA-only eval\\\\\\\"\\\\nelse\\\\n    echo \\\\\\\"Using LoRA-only s123 checkpoint: $LO_CKPT\\\\\\\"\\\\nfi\\\\n\\\\n# ── Auto-detect v8b-SS s123 checkpoint ─────────────────────\\\\nSS_RUN_DIR=checkpoints/tg_v8b_ss_s123\\\\nSS_CKPT=\\\\\\\"\\\\\\\"\\\\nfor ep_dir in $(ls -1d ${SS_RUN_DIR}/epoch_* 2>/dev/null | sort -t_ -k2 -rn); do\\\\n    if [ -f \\\\\\\"$ep_dir/gate_params.pt\\\\\\\" ] && [ -d \\\\\\\"$ep_dir/lora\\\\\\\" ]; then\\\\n        SS_CKPT=\\\\\\\"$ep_dir\\\\\\\"\\\\n        break\\\\n    fi\\\\ndone\\\\nif [ -z \\\\\\\"$SS_CKPT\\\\\\\" ] && [ -f \\\\\\\"$SS_RUN_DIR/gate_params.pt\\\\\\\" ] && [ -d \\\\\\\"$SS_RUN_DIR/lora\\\\\\\" ]; then\\\\n    SS_CKPT=\\\\\\\"$SS_RUN_DIR\\\\\\\"\\\\nfi\\\\nif [ -z \\\\\\\"$SS_CKPT\\\\\\\" ]; then\\\\n    echo \\\\\\\"WARNING: v8b-SS s123 checkpoint not found in $SS_RUN_DIR, skipping v8b-SS eval\\\\\\\"\\\\nelse\\\\n    echo \\\\\\\"Using v8b-SS s123 checkpoint: $SS_CKPT\\\\\\\"\\\\nfi\\\\n\\\\necho \\\\\\\"\\\\\\\"\\\\nmkdir -p \\\\\\\"$OUT_ROOT\\\\\\\"\\\\n\\\\n# ════════════════════════════════════════════════════════════\\\\n# Part 1: Teacher-Forced GAR (heldout conversations)\\\\n# ════════════════════════════════════════════════════════════\\\\n\\\\necho \\\\\\\"========== [TF] Base + GAR-ours ==========\\\\\\\"\\\\n$PYTHON $EVAL_SCRIPT \\\\\\\\\\\\n  --gate-type none \\\\\\\\\\\\n  --conversations-path \\\\\\\"$CONV_PATH\\\\\\\" \\\\\\\\\\\\n  --output-dir \\\\\\\"$OUT_ROOT/tf_base_ours\\\\\\\" \\\\\\\\\\\\n  --gar-variant ours \\\\\\\\\\\\n  --gate-profile\\\\n\\\\necho \\\\\\\"========== [TF] Base + GAR-Dongre ==========\\\\\\\"\\\\n$PYTHON $EVAL_SCRIPT \\\\\\\\\\\\n  --gate-type none \\\\\\\\\\\\n  --conversations-path \\\\\\\"$CONV_PATH\\\\\\\" \\\\\\\\\\\\n  --output-dir \\\\\\\"$OUT_ROOT/tf_base_dongre\\\\\\\" \\\\\\\\\\\\n  --gar-variant dongre \\\\\\\\\\\\n  --gate-profile\\\\n\\\\nif [ -n \\\\\\\"$LO_CKPT\\\\\\\" ]; then\\\\n    echo \\\\\\\"========== [TF] LoRA-only + GAR-ours ==========\\\\\\\"\\\\n    $PYTHON $EVAL_SCRIPT \\\\\\\\\\\\n      --gate-type none \\\\\\\\\\\\n      --checkpoint-dir \\\\\\\"$LO_CKPT\\\\\\\" \\\\\\\\\\\\n      --conversations-path \\\\\\\"$CONV_PATH\\\\\\\" \\\\\\\\\\\\n      --output-dir \\\\\\\"$OUT_ROOT/tf_lo_ours\\\\\\\" \\\\\\\\\\\\n      --gar-variant ours \\\\\\\\\\\\n      --gate-profile\\\\n\\\\n    echo \\\\\\\"========== [TF] LoRA-only + GAR-Dongre ==========\\\\\\\"\\\\n    $PYTHON $EVAL_SCRIPT \\\\\\\\\\\\n      --gate-type none \\\\\\\\\\\\n      --checkpoint-dir \\\\\\\"$LO_CKPT\\\\\\\" \\\\\\\\\\\\n      --conversations-path \\\\\\\"$CONV_PATH\\\\\\\" \\\\\\\\\\\\n      --output-dir \\\\\\\"$OUT_ROOT/tf_lo_dongre\\\\\\\" \\\\\\\\\\\\n      --gar-variant dongre \\\\\\\\\\\\n      --gate-profile\\\\nfi\\\\n\\\\necho \\\\\\\"========== [TF] TG v7 s123 + GAR-ours ==========\\\\\\\"\\\\n$PYTHON $EVAL_SCRIPT \\\\\\\\\\\\n  --gate-type threadgate \\\\\\\\\\\\n  --checkpoint-dir \\\\\\\"$TG_CKPT\\\\\\\" \\\\\\\\\\\\n  --conversations-path \\\\\\\"$CONV_PATH\\\\\\\" \\\\\\\\\\\\n  --output-dir \\\\\\\"$OUT_ROOT/tf_tg_ours\\\\\\\" \\\\\\\\\\\\n  --gar-variant ours \\\\\\\\\\\\n  --gate-profile\\\\n\\\\necho \\\\\\\"========== [TF] TG v7 s123 + GAR-Dongre ==========\\\\\\\"\\\\n$PYTHON $EVAL_SCRIPT \\\\\\\\\\\\n  --gate-type threadgate \\\\\\\\\\\\n  --checkpoint-dir \\\\\\\"$TG_CKPT\\\\\\\" \\\\\\\\\\\\n  --conversations-path \\\\\\\"$CONV_PATH\\\\\\\" \\\\\\\\\\\\n  --output-dir \\\\\\\"$OUT_ROOT/tf_tg_dongre\\\\\\\" \\\\\\\\\\\\n  --gar-variant dongre \\\\\\\\\\\\n  --gate-profile\\\\n\\\\nif [ -n \\\\\\\"$SS_CKPT\\\\\\\" ]; then\\\\n    echo \\\\\\\"========== [TF] v8b-SS s123 + GAR-ours ==========\\\\\\\"\\\\n    $PYTHON $EVAL_SCRIPT \\\\\\\\\\\\n      --gate-type threadgate \\\\\\\\\\\\n      --checkpoint-dir \\\\\\\"$SS_CKPT\\\\\\\" \\\\\\\\\\\\n      --conversations-path \\\\\\\"$CONV_PATH\\\\\\\" \\\\\\\\\\\\n      --output-dir \\\\\\\"$OUT_ROOT/tf_ss_ours\\\\\\\" \\\\\\\\\\\\n      --gar-variant ours \\\\\\\\\\\\n      --gate-profile\\\\n\\\\n    echo \\\\\\\"========== [TF] v8b-SS s123 + GAR-Dongre ==========\\\\\\\"\\\\n    $PYTHON $EVAL_SCRIPT \\\\\\\\\\\\n      --gate-type threadgate \\\\\\\\\\\\n      --checkpoint-dir \\\\\\\"$SS_CKPT\\\\\\\" \\\\\\\\\\\\n      --conversations-path \\\\\\\"$CONV_PATH\\\\\\\" \\\\\\\\\\\\n      --output-dir \\\\\\\"$OUT_ROOT/tf_ss_dongre\\\\\\\" \\\\\\\\\\\\n      --gar-variant dongre \\\\\\\\\\\\n      --gate-profile\\\\nfi\\\\n\\\\n# ════════════════════════════════════════════════════════════\\\\n# Part 2: Autoregressive GAR (model-generated conversations)\\\\n# ════════════════════════════════════════════════════════════\\\\n\\\\necho \\\\\\\"========== [AR] Base + GAR-ours ==========\\\\\\\"\\\\n$PYTHON $EVAL_SCRIPT \\\\\\\\\\\\n  --gate-type none \\\\\\\\\\\\n  --output-dir \\\\\\\"$OUT_ROOT/ar_base_ours\\\\\\\" \\\\\\\\\\\\n  --gar-variant ours \\\\\\\\\\\\n  --gate-profile\\\\n\\\\necho \\\\\\\"========== [AR] Base + GAR-Dongre ==========\\\\\\\"\\\\n$PYTHON $EVAL_SCRIPT \\\\\\\\\\\\n  --gate-type none \\\\\\\\\\\\n  --output-dir \\\\\\\"$OUT_ROOT/ar_base_dongre\\\\\\\" \\\\\\\\\\\\n  --gar-variant dongre \\\\\\\\\\\\n  --gate-profile\\\\n\\\\nif [ -n \\\\\\\"$LO_CKPT\\\\\\\" ]; then\\\\n    echo \\\\\\\"========== [AR] LoRA-only + GAR-ours ==========\\\\\\\"\\\\n    $PYTHON $EVAL_SCRIPT \\\\\\\\\\\\n      --gate-type none \\\\\\\\\\\\n      --checkpoint-dir \\\\\\\"$LO_CKPT\\\\\\\" \\\\\\\\\\\\n      --output-dir \\\\\\\"$OUT_ROOT/ar_lo_ours\\\\\\\" \\\\\\\\\\\\n      --gar-variant ours \\\\\\\\\\\\n      --gate-profile\\\\n\\\\n    echo \\\\\\\"========== [AR] LoRA-only + GAR-Dongre ==========\\\\\\\"\\\\n    $PYTHON $EVAL_SCRIPT \\\\\\\\\\\\n      --gate-type none \\\\\\\\\\\\n      --checkpoint-dir \\\\\\\"$LO_CKPT\\\\\\\" \\\\\\\\\\\\n      --output-dir \\\\\\\"$OUT_ROOT/ar_lo_dongre\\\\\\\" \\\\\\\\\\\\n      --gar-variant dongre \\\\\\\\\\\\n      --gate-profile\\\\nfi\\\\n\\\\necho \\\\\\\"========== [AR] TG v7 s123 + GAR-ours ==========\\\\\\\"\\\\n$PYTHON $EVAL_SCRIPT \\\\\\\\\\\\n  --gate-type threadgate \\\\\\\\\\\\n  --checkpoint-dir \\\\\\\"$TG_CKPT\\\\\\\" \\\\\\\\\\\\n  --output-dir \\\\\\\"$OUT_ROOT/ar_tg_ours\\\\\\\" \\\\\\\\\\\\n  --gar-variant ours \\\\\\\\\\\\n  --gate-profile\\\\n\\\\necho \\\\\\\"========== [AR] TG v7 s123 + GAR-Dongre ==========\\\\\\\"\\\\n$PYTHON $EVAL_SCRIPT \\\\\\\\\\\\n  --gate-type threadgate \\\\\\\\\\\\n  --checkpoint-dir \\\\\\\"$TG_CKPT\\\\\\\" \\\\\\\\\\\\n  --output-dir \\\\\\\"$OUT_ROOT/ar_tg_dongre\\\\\\\" \\\\\\\\\\\\n  --gar-variant dongre \\\\\\\\\\\\n  --gate-profile\\\\n\\\\nif [ -n \\\\\\\"$SS_CKPT\\\\\\\" ]; then\\\\n    echo \\\\\\\"========== [AR] v8b-SS s123 + GAR-ours ==========\\\\\\\"\\\\n    $PYTHON $EVAL_SCRIPT \\\\\\\\\\\\n      --gate-type threadgate \\\\\\\\\\\\n      --checkpoint-dir \\\\\\\"$SS_CKPT\\\\\\\" \\\\\\\\\\\\n      --output-dir \\\\\\\"$OUT_ROOT/ar_ss_ours\\\\\\\" \\\\\\\\\\\\n      --gar-variant ours \\\\\\\\\\\\n      --gate-profile\\\\n\\\\n    echo \\\\\\\"========== [AR] v8b-SS s123 + GAR-Dongre ==========\\\\\\\"\\\\n    $PYTHON $EVAL_SCRIPT \\\\\\\\\\\\n      --gate-type threadgate \\\\\\\\\\\\n      --checkpoint-dir \\\\\\\"$SS_CKPT\\\\\\\" \\\\\\\\\\\\n      --output-dir \\\\\\\"$OUT_ROOT/ar_ss_dongre\\\\\\\" \\\\\\\\\\\\n      --gar-variant dongre \\\\\\\\\\\\n      --gate-profile\\\\nfi\\\\n\\\\n# ════════════════════════════════════════════════════════════\\\\n# Summary\\\\n# ════════════════════════════════════════════════════════════\\\\necho \\\\\\\"\\\\\\\"\\\\necho \\\\\\\"================================================================\\\\\\\"\\\\necho \\\\\\\"v7 TG s123 eval complete\\\\\\\"\\\\necho \\\\\\\"================================================================\\\\\\\"\\\\necho \\\\\\\"TG v7 s123 checkpoint: $TG_CKPT\\\\\\\"\\\\nif [ -n \\\\\\\"$LO_CKPT\\\\\\\" ]; then\\\\n    echo \\\\\\\"LoRA-only checkpoint: $LO_CKPT\\\\\\\"\\\\nelse\\\\n    echo \\\\\\\"LoRA-only: SKIPPED (not found)\\\\\\\"\\\\nfi\\\\nif [ -n \\\\\\\"$SS_CKPT\\\\\\\" ]; then\\\\n    echo \\\\\\\"v8b-SS s123 checkpoint: $SS_CKPT\\\\\\\"\\\\nelse\\\\n    echo \\\\\\\"v8b-SS: SKIPPED (not found)\\\\\\\"\\\\nfi\\\\necho \\\\\\\"Results in: $OUT_ROOT/\\\\\\\"\\\\necho \\\\\\\"\\\\\\\"\\\\necho \\\\\\\"Key comparisons:\\\\\\\"\\\\necho \\\\\\\"  TF GAR gap:     tf_base_ours vs tf_tg_ours\\\\\\\"\\\\necho \\\\\\\"  AR GAR gap:     ar_base_ours vs ar_tg_ours\\\\\\\"\\\\necho \\\\\\\"  TF-AR gap:      tf_tg_ours vs ar_tg_ours  (training-inference gap)\\\\\\\"\\\\necho \\\\\\\"  Dongre:         tf_tg_dongre vs ar_tg_dongre\\\\\\\"\\\\nif [ -n \\\\\\\"$SS_CKPT\\\\\\\" ]; then\\\\n    echo \\\\\\\"  SS mitigation:  ar_ss_ours vs ar_tg_ours  (exposure bias fix)\\\\\\\"\\\\nfi\\\\necho \\\\\\\"  PPL:            check avg_ppl in each *_gar.json\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.09}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\n# v7 TG s123 seed-robustness eval\\n# 4-way: Base / LoRA-only / TG v7 s123 / v8b-SS s123\\n# TF + AR modes, GAR-ours + GAR-Dongre\\nset -e\\n\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\ncd /root/turn_residual_gating\\n\\nPYTHON=/root/miniconda3/bin/python3.12\\nEVAL_SCRIPT=src/eval_phase2_gar.py\\nCONV_PATH=data/ultrachat_eval_heldout.json\\nOUT_ROOT=runs/eval_v7_tg_s123\\n\\n# ── Auto-detect TG v7 s123 checkpoint ──────────────────────\\nTG_RUN_DIR=runs/phase2_tg_s123_v7\\nTG_CKPT=\\\"\\\"\\nfor ep_dir in $(ls -1d ${TG_RUN_DIR}/epoch_* 2>/dev/null | sort -t_ -k2 -rn); do\\n    if [ -f \\\"$ep_dir/gate_params.pt\\\" ] && [ -d \\\"$ep_dir/lora\\\" ]; then\\n        TG_CKPT=\\\"$ep_dir\\\"\\n        break\\n    fi\\ndone\\nif [ -z \\\"$TG_CKPT\\\" ] && [ -f \\\"$TG_RUN_DIR/gate_params.pt\\\" ] && [ -d \\\"$TG_RUN_DIR/lora\\\" ]; then\\n    TG_CKPT=\\\"$TG_RUN_DIR\\\"\\nfi\\nif [ -z \\\"$TG_CKPT\\\" ]; then\\n    echo \\\"ERROR: No TG v7 s123 checkpoint found in $TG_RUN_DIR\\\"\\n    ls -la \\\"$TG_RUN_DIR\\\"/ 2>/dev/null || echo \\\"  (directory not found)\\\"\\n    exit 1\\nfi\\necho \\\"Using TG v7 s123 checkpoint: $TG_CKPT\\\"\\n\\n# ── Auto-detect LoRA-only s123 checkpoint ──────────────────\\nLO_RUN_DIR=runs/phase2_lora_only_s123\\nLO_CKPT=\\\"\\\"\\nfor ep_dir in $(ls -1d ${LO_RUN_DIR}/epoch_* 2>/dev/null | sort -t_ -k2 -rn); do\\n    if [ -d \\\"$ep_dir/lora\\\" ]; then\\n        LO_CKPT=\\\"$ep_dir\\\"\\n        break\\n    fi\\ndone\\nif [ -z \\\"$LO_CKPT\\\" ] && [ -d \\\"$LO_RUN_DIR/lora\\\" ]; then\\n    LO_CKPT=\\\"$LO_RUN_DIR\\\"\\nfi\\nif [ -z \\\"$LO_CKPT\\\" ]; then\\n    echo \\\"WARNING: LoRA-only s123 checkpoint not found in $LO_RUN_DIR, skipping LoRA-only eval\\\"\\nelse\\n    echo \\\"Using LoRA-only s123 checkpoint: $LO_CKPT\\\"\\nfi\\n\\n# ── Auto-detect v8b-SS s123 checkpoint ─────────────────────\\nSS_RUN_DIR=checkpoints/tg_v8b_ss_s123\\nSS_CKPT=\\\"\\\"\\nfor ep_dir in $(ls -1d ${SS_RUN_DIR}/epoch_* 2>/dev/null | sort -t_ -k2 -rn); do\\n    if [ -f \\\"$ep_dir/gate_params.pt\\\" ] && [ -d \\\"$ep_dir/lora\\\" ]; then\\n        SS_CKPT=\\\"$ep_dir\\\"\\n        break\\n    fi\\ndone\\nif [ -z \\\"$SS_CKPT\\\" ] && [ -f \\\"$SS_RUN_DIR/gate_params.pt\\\" ] && [ -d \\\"$SS_RUN_DIR/lora\\\" ]; then\\n    SS_CKPT=\\\"$SS_RUN_DIR\\\"\\nfi\\nif [ -z \\\"$SS_CKPT\\\" ]; then\\n    echo \\\"WARNING: v8b-SS s123 checkpoint not found in $SS_RUN_DIR, skipping v8b-SS eval\\\"\\nelse\\n    echo \\\"Using v8b-SS s123 checkpoint: $SS_CKPT\\\"\\nfi\\n\\necho \\\"\\\"\\nmkdir -p \\\"$OUT_ROOT\\\"\\n\\n# ════════════════════════════════════════════════════════════\\n# Part 1: Teacher-Forced GAR (heldout conversations)\\n# ════════════════════════════════════════════════════════════\\n\\necho \\\"========== [TF] Base + GAR-ours ==========\\\"\\n$PYTHON $EVAL_SCRIPT \\\\\\n  --gate-type none \\\\\\n  --conversations-path \\\"$CONV_PATH\\\" \\\\\\n  --output-dir \\\"$OUT_ROOT/tf_base_ours\\\" \\\\\\n  --gar-variant ours \\\\\\n  --gate-profile\\n\\necho \\\"========== [TF] Base + GAR-Dongre ==========\\\"\\n$PYTHON $EVAL_SCRIPT \\\\\\n  --gate-type none \\\\\\n  --conversations-path \\\"$CONV_PATH\\\" \\\\\\n  --output-dir \\\"$OUT_ROOT/tf_base_dongre\\\" \\\\\\n  --gar-variant dongre \\\\\\n  --gate-profile\\n\\nif [ -n \\\"$LO_CKPT\\\" ]; then\\n    echo \\\"========== [TF] LoRA-only + GAR-ours ==========\\\"\\n    $PYTHON $EVAL_SCRIPT \\\\\\n      --gate-type none \\\\\\n      --checkpoint-dir \\\"$LO_CKPT\\\" \\\\\\n      --conversations-path \\\"$CONV_PATH\\\" \\\\\\n      --output-dir \\\"$OUT_ROOT/tf_lo_ours\\\" \\\\\\n      --gar-variant ours \\\\\\n      --gate-profile\\n\\n    echo \\\"========== [TF] LoRA-only + GAR-Dongre ==========\\\"\\n    $PYTHON $EVAL_SCRIPT \\\\\\n      --gate-type none \\\\\\n      --checkpoint-dir \\\"$LO_CKPT\\\" \\\\\\n      --conversations-path \\\"$CONV_PATH\\\" \\\\\\n      --output-dir \\\"$OUT_ROOT/tf_lo_dongre\\\" \\\\\\n      --gar-variant dongre \\\\\\n      --gate-profile\\nfi\\n\\necho \\\"========== [TF] TG v7 s123 + GAR-ours ==========\\\"\\n$PYTHON $EVAL_SCRIPT \\\\\\n  --gate-type threadgate \\\\\\n  --checkpoint-dir \\\"$TG_CKPT\\\" \\\\\\n  --conversations-path \\\"$CONV_PATH\\\" \\\\\\n  --output-dir \\\"$OUT_ROOT/tf_tg_ours\\\" \\\\\\n  --gar-variant ours \\\\\\n  --gate-profile\\n\\necho \\\"========== [TF] TG v7 s123 + GAR-Dongre ==========\\\"\\n$PYTHON $EVAL_SCRIPT \\\\\\n  --gate-type threadgate \\\\\\n  --checkpoint-dir \\\"$TG_CKPT\\\" \\\\\\n  --conversations-path \\\"$CONV_PATH\\\" \\\\\\n  --output-dir \\\"$OUT_ROOT/tf_tg_dongre\\\" \\\\\\n  --gar-variant dongre \\\\\\n  --gate-profile\\n\\nif [ -n \\\"$SS_CKPT\\\" ]; then\\n    echo \\\"========== [TF] v8b-SS s123 + GAR-ours ==========\\\"\\n    $PYTHON $EVAL_SCRIPT \\\\\\n      --gate-type threadgate \\\\\\n      --checkpoint-dir \\\"$SS_CKPT\\\" \\\\\\n      --conversations-path \\\"$CONV_PATH\\\" \\\\\\n      --output-dir \\\"$OUT_ROOT/tf_ss_ours\\\" \\\\\\n      --gar-variant ours \\\\\\n      --gate-profile\\n\\n    echo \\\"========== [TF] v8b-SS s123 + GAR-Dongre ==========\\\"\\n    $PYTHON $EVAL_SCRIPT \\\\\\n      --gate-type threadgate \\\\\\n      --checkpoint-dir \\\"$SS_CKPT\\\" \\\\\\n      --conversations-path \\\"$CONV_PATH\\\" \\\\\\n      --output-dir \\\"$OUT_ROOT/tf_ss_dongre\\\" \\\\\\n      --gar-variant dongre \\\\\\n      --gate-profile\\nfi\\n\\n# ════════════════════════════════════════════════════════════\\n# Part 2: Autoregressive GAR (model-generated conversations)\\n# ════════════════════════════════════════════════════════════\\n\\necho \\\"========== [AR] Base + GAR-ours ==========\\\"\\n$PYTHON $EVAL_SCRIPT \\\\\\n  --gate-type none \\\\\\n  --output-dir \\\"$OUT_ROOT/ar_base_ours\\\" \\\\\\n  --gar-variant ours \\\\\\n  --gate-profile\\n\\necho \\\"========== [AR] Base + GAR-Dongre ==========\\\"\\n$PYTHON $EVAL_SCRIPT \\\\\\n  --gate-type none \\\\\\n  --output-dir \\\"$OUT_ROOT/ar_base_dongre\\\" \\\\\\n  --gar-variant dongre \\\\\\n  --gate-profile\\n\\nif [ -n \\\"$LO_CKPT\\\" ]; then\\n    echo \\\"========== [AR] LoRA-only + GAR-ours ==========\\\"\\n    $PYTHON $EVAL_SCRIPT \\\\\\n      --gate-type none \\\\\\n      --checkpoint-dir \\\"$LO_CKPT\\\" \\\\\\n      --output-dir \\\"$OUT_ROOT/ar_lo_ours\\\" \\\\\\n      --gar-variant ours \\\\\\n      --gate-profile\\n\\n    echo \\\"========== [AR] LoRA-only + GAR-Dongre ==========\\\"\\n    $PYTHON $EVAL_SCRIPT \\\\\\n      --gate-type none \\\\\\n      --checkpoint-dir \\\"$LO_CKPT\\\" \\\\\\n      --output-dir \\\"$OUT_ROOT/ar_lo_dongre\\\" \\\\\\n      --gar-variant dongre \\\\\\n      --gate-profile\\nfi\\n\\necho \\\"========== [AR] TG v7 s123 + GAR-ours ==========\\\"\\n$PYTHON $EVAL_SCRIPT \\\\\\n  --gate-type threadgate \\\\\\n  --checkpoint-dir \\\"$TG_CKPT\\\" \\\\\\n  --output-dir \\\"$OUT_ROOT/ar_tg_ours\\\" \\\\\\n  --gar-variant ours \\\\\\n  --gate-profile\\n\\necho \\\"========== [AR] TG v7 s123 + GAR-Dongre ==========\\\"\\n$PYTHON $EVAL_SCRIPT \\\\\\n  --gate-type threadgate \\\\\\n  --checkpoint-dir \\\"$TG_CKPT\\\" \\\\\\n  --output-dir \\\"$OUT_ROOT/ar_tg_dongre\\\" \\\\\\n  --gar-variant dongre \\\\\\n  --gate-profile\\n\\nif [ -n \\\"$SS_CKPT\\\" ]; then\\n    echo \\\"========== [AR] v8b-SS s123 + GAR-ours ==========\\\"\\n    $PYTHON $EVAL_SCRIPT \\\\\\n      --gate-type threadgate \\\\\\n      --checkpoint-dir \\\"$SS_CKPT\\\" \\\\\\n      --output-dir \\\"$OUT_ROOT/ar_ss_ours\\\" \\\\\\n      --gar-variant ours \\\\\\n      --gate-profile\\n\\n    echo \\\"========== [AR] v8b-SS s123 + GAR-Dongre ==========\\\"\\n    $PYTHON $EVAL_SCRIPT \\\\\\n      --gate-type threadgate \\\\\\n      --checkpoint-dir \\\"$SS_CKPT\\\" \\\\\\n      --output-dir \\\"$OUT_ROOT/ar_ss_dongre\\\" \\\\\\n      --gar-variant dongre \\\\\\n      --gate-profile\\nfi\\n\\n# ════════════════════════════════════════════════════════════\\n# Summary\\n# ════════════════════════════════════════════════════════════\\necho \\\"\\\"\\necho \\\"================================================================\\\"\\necho \\\"v7 TG s123 eval complete\\\"\\necho \\\"================================================================\\\"\\necho \\\"TG v7 s123 checkpoint: $TG_CKPT\\\"\\nif [ -n \\\"$LO_CKPT\\\" ]; then\\n    echo \\\"LoRA-only checkpoint: $LO_CKPT\\\"\\nelse\\n    echo \\\"LoRA-only: SKIPPED (not found)\\\"\\nfi\\nif [ -n \\\"$SS_CKPT\\\" ]; then\\n    echo \\\"v8b-SS s123 checkpoint: $SS_CKPT\\\"\\nelse\\n    echo \\\"v8b-SS: SKIPPED (not found)\\\"\\nfi\\necho \\\"Results in: $OUT_ROOT/\\\"\\necho \\\"\\\"\\necho \\\"Key comparisons:\\\"\\necho \\\"  TF GAR gap:     tf_base_ours vs tf_tg_ours\\\"\\necho \\\"  AR GAR gap:     ar_base_ours vs ar_tg_ours\\\"\\necho \\\"  TF-AR gap:      tf_tg_ours vs ar_tg_ours  (training-inference gap)\\\"\\necho \\\"  Dongre:         tf_tg_dongre vs ar_tg_dongre\\\"\\nif [ -n \\\"$SS_CKPT\\\" ]; then\\n    echo \\\"  SS mitigation:  ar_ss_ours vs ar_tg_ours  (exposure bias fix)\\\"\\nfi\\necho \\\"  PPL:            check avg_ppl in each *_gar.json\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.09}}"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018dQNH5QAwwnFRCrh9tBiu7",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-20861",
+                "command": "cat /root/turn_residual_gating/artifacts/eval_v8b_ss/data/v8b_ss_eval_results.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aa776961-571b-4955-ab2c-5b95db8a92c1",
+            "uuid": "4a70d47c-9975-444b-ae27-772eff67eb93",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YAFR1FaTJhzCUk6U7RrVAc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 706,
+                "cache_read_input_tokens": 25023,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 706
+                },
+                "output_tokens": 70,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QGZgRxi8Q9scnPwWCtxaQH",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-20861",
+                "command": "ls /root/turn_residual_gating/scripts/"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aa776961-571b-4955-ab2c-5b95db8a92c1",
+            "uuid": "272dac13-63dc-4dd9-bf84-549d9e919e1c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YAFR1FaTJhzCUk6U7RrVAc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 706,
+                "cache_read_input_tokens": 25023,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 706
+                },
+                "output_tokens": 70,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T15:22:40.137Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018dQNH5QAwwnFRCrh9tBiu7",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/turn_residual_gating/artifacts/eval_v8b_ss/data/v8b_ss_eval_results.json: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "aa776961-571b-4955-ab2c-5b95db8a92c1",
+            "uuid": "9a1ca52c-1673-4926-a084-e1cacffa1235",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/turn_residual_gating/artifacts/eval_v8b_ss/data/v8b_ss_eval_results.json: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/turn_residual_gating/artifacts/eval_v8b_ss/data/v8b_ss_eval_results.json: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.48}}"
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T15:22:40.674Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QGZgRxi8Q9scnPwWCtxaQH",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"eval_llama_ar_matched.sh\\\\neval_llama_tg_s42.sh\\\\neval_v7_tg_s123.sh\\\\ngate_stat_test.py\\\\ngate_wilcoxon_test.py\\\\nlaunch_attention_steering.sh\\\\nlaunch_llama_eval.sh\\\\nlaunch_llama_lora.sh\\\\nlaunch_llama_phase1_gar_diag.sh\\\\nlaunch_llama_tg.sh\\\\nlaunch_lora_s123.sh\\\\nlaunch_tg_s123.sh\\\\nlaunch_trc_baseline.sh\\\\nlaunch_v7_tg_s123.sh\\\\nlaunch_v8b_ss_s123.sh\\\\npaired_bootstrap_ci.py\\\\nrecalc_steering_mid_gar.py\\\\nrun_4way_eval.sh\\\\nrun_4way_eval_heldout.sh\\\\nrun_v8_schedsampling.sh\\\\nrun_v8b.sh\\\\nrun_v9_pcgrad.sh\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "aa776961-571b-4955-ab2c-5b95db8a92c1",
+            "uuid": "7e345b7e-e25c-4c45-9f3f-2845547bb476",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"eval_llama_ar_matched.sh\\\\neval_llama_tg_s42.sh\\\\neval_v7_tg_s123.sh\\\\ngate_stat_test.py\\\\ngate_wilcoxon_test.py\\\\nlaunch_attention_steering.sh\\\\nlaunch_llama_eval.sh\\\\nlaunch_llama_lora.sh\\\\nlaunch_llama_phase1_gar_diag.sh\\\\nlaunch_llama_tg.sh\\\\nlaunch_lora_s123.sh\\\\nlaunch_tg_s123.sh\\\\nlaunch_trc_baseline.sh\\\\nlaunch_v7_tg_s123.sh\\\\nlaunch_v8b_ss_s123.sh\\\\npaired_bootstrap_ci.py\\\\nrecalc_steering_mid_gar.py\\\\nrun_4way_eval.sh\\\\nrun_4way_eval_heldout.sh\\\\nrun_v8_schedsampling.sh\\\\nrun_v8b.sh\\\\nrun_v9_pcgrad.sh\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"eval_llama_ar_matched.sh\\neval_llama_tg_s42.sh\\neval_v7_tg_s123.sh\\ngate_stat_test.py\\ngate_wilcoxon_test.py\\nlaunch_attention_steering.sh\\nlaunch_llama_eval.sh\\nlaunch_llama_lora.sh\\nlaunch_llama_phase1_gar_diag.sh\\nlaunch_llama_tg.sh\\nlaunch_lora_s123.sh\\nlaunch_tg_s123.sh\\nlaunch_trc_baseline.sh\\nlaunch_v7_tg_s123.sh\\nlaunch_v8b_ss_s123.sh\\npaired_bootstrap_ci.py\\nrecalc_steering_mid_gar.py\\nrun_4way_eval.sh\\nrun_4way_eval_heldout.sh\\nrun_v8_schedsampling.sh\\nrun_v8b.sh\\nrun_v9_pcgrad.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LLUc9rN2Y2QeJ5rdN36ZcS",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-20861",
+                "command": "head -80 /root/turn_residual_gating/src/eval_phase2_gar.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aa776961-571b-4955-ab2c-5b95db8a92c1",
+            "uuid": "97fd98fb-116f-4871-87b9-30516bbbbbe0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YAFR1FaTJhzCUk6U7RrVAc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 706,
+                "cache_read_input_tokens": 25023,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 706
+                },
+                "output_tokens": 70,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013BvA3nfTe9TpX2Ef97EybY",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-20861",
+                "command": "ls /root/turn_residual_gating/checkpoints/tg_v8b_ss_s123/epoch_2/"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aa776961-571b-4955-ab2c-5b95db8a92c1",
+            "uuid": "84edc07e-43cf-4fa4-be79-6ec2f980242d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YAFR1FaTJhzCUk6U7RrVAc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 706,
+                "cache_read_input_tokens": 25023,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 706
+                },
+                "output_tokens": 70,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-21T15:22:41.284Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LLUc9rN2Y2QeJ5rdN36ZcS",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# eval_phase2_gar.py — 评估训练后模型的 GAR 恢复效果\\\\n# 用法: python eval_phase2_gar.py --checkpoint-dir /root/turn_residual_gating/checkpoints/tg_s42 --gate-type threadgate\\\\n# GAR-Dongre 模式: python eval_phase2_gar.py --checkpoint-dir ... --gate-type threadgate --gar-variant dongre\\\\n# 输出: JSON 结果 + GAR 对比曲线图\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport sys\\\\n\\\\nimport torch\\\\nimport torch.nn as nn\\\\nimport numpy as np\\\\nimport matplotlib\\\\nmatplotlib.use(\\\\\\\"Agg\\\\\\\")\\\\nimport matplotlib.pyplot as plt\\\\nfrom transformers import AutoTokenizer, AutoModelForCausalLM\\\\n\\\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\\\nfrom threadgate import TurnEmbedding, GateNetwork, UniformGateNetwork\\\\nfrom gar import GARMeasurer\\\\nfrom turn_utils import detect_turn_boundaries, build_turn_features\\\\nfrom config import MODEL_NAME\\\\n\\\\n\\\\nSYSTEM_PROMPTS = [\\\\n    \\\\\\\"You are a knowledgeable science tutor. Always explain concepts step by step. Use analogies when possible. Never give direct answers without explanation. If the student makes an error, gently correct them and guide them to the right answer.\\\\\\\",\\\\n    \\\\\\\"You are a professional code reviewer. Focus on code quality, security, and performance. Point out potential bugs and suggest improvements. Always explain why a change is needed, not just what to change. Be constructive and specific.\\\\\\\",\\\\n    \\\\\\\"You are a creative writing coach. Help users improve their storytelling skills. Focus on character development, plot structure, and vivid descriptions. Give specific feedback with examples. Encourage experimentation with different styles.\\\\\\\",\\\\n    \\\\\\\"You are a math problem solver. Show all steps clearly. Explain the reasoning behind each step. If there are multiple approaches, mention them. Check your work by verifying the answer. Use LaTeX notation for formulas.\\\\\\\",\\\\n    \\\\\\\"You are a debate coach who helps users argue both sides of issues. Present balanced perspectives. Challenge weak arguments constructively. Teach logical reasoning and evidence evaluation. Avoid personal opinions.\\\\\\\",\\\\n]\\\\n\\\\nCONVERSATIONS_DATA = [\\\\n    [\\\\\\\"Why is the sky blue?\\\\\\\", \\\\\\\"What about sunsets being red?\\\\\\\", \\\\\\\"How does a rainbow form?\\\\\\\",\\\\n     \\\\\\\"Why do stars twinkle?\\\\\\\", \\\\\\\"What causes thunder?\\\\\\\", \\\\\\\"How do magnets work?\\\\\\\",\\\\n     \\\\\\\"Why is water wet?\\\\\\\", \\\\\\\"What is gravity?\\\\\\\", \\\\\\\"How do airplanes fly?\\\\\\\", \\\\\\\"Why is space dark?\\\\\\\"],\\\\n    [\\\\\\\"Review this: def add(a,b): return a+b\\\\\\\", \\\\\\\"What about error handling?\\\\\\\", \\\\\\\"How should I write tests for it?\\\\\\\",\\\\n     \\\\\\\"Is recursion better than iteration?\\\\\\\", \\\\\\\"When should I use async/await?\\\\\\\", \\\\\\\"How to handle memory leaks?\\\\\\\",\\\\n     \\\\\\\"Best practices for API design?\\\\\\\", \\\\\\\"How to optimize database queries?\\\\\\\", \\\\\\\"When to use microservices?\\\\\\\", \\\\\\\"How to handle rate limiting?\\\\\\\"],\\\\n    [\\\\\\\"Help me start a mystery story\\\\\\\", \\\\\\\"How do I create a compelling villain?\\\\\\\", \\\\\\\"What makes good dialogue?\\\\\\\",\\\\n     \\\\\\\"How to build suspense?\\\\\\\", \\\\\\\"Should I use first or third person?\\\\\\\", \\\\\\\"How to write a plot twist?\\\\\\\",\\\\n     \\\\\\\"Tips for describing settings?\\\\\\\", \\\\\\\"How to end a chapter with a cliffhanger?\\\\\\\", \\\\\\\"How to avoid cliches?\\\\\\\", \\\\\\\"How to write an epilogue?\\\\\\\"],\\\\n    [\\\\\\\"Solve: 3x + 7 = 22\\\\\\\", \\\\\\\"What is the derivative of x^3?\\\\\\\", \\\\\\\"Explain the Pythagorean theorem\\\\\\\",\\\\n     \\\\\\\"What is a prime number?\\\\\\\", \\\\\\\"How to calculate compound interest?\\\\\\\", \\\\\\\"What is the area of a circle?\\\\\\\",\\\\n     \\\\\\\"Explain matrix multiplication\\\\\\\", \\\\\\\"What is a logarithm?\\\\\\\", \\\\\\\"How to solve quadratic equations?\\\\\\\", \\\\\\\"What is calculus used for?\\\\\\\"],\\\\n    [\\\\\\\"Should AI be regulated?\\\\\\\", \\\\\\\"Is remote work better than office work?\\\\\\\", \\\\\\\"Should college be free?\\\\\\\",\\\\n     \\\\\\\"Is social media harmful?\\\\\\\", \\\\\\\"Should voting be mandatory?\\\\\\\", \\\\\\\"Is nuclear energy safe?\\\\\\\",\\\\n     \\\\\\\"Should animals have legal rights?\\\\\\\", \\\\\\\"Is space exploration worth the cost?\\\\\\\", \\\\\\\"Should there be a universal basic income?\\\\\\\", \\\\\\\"Is genetic engineering ethical?\\\\\\\"],\\\\n]\\\\n\\\\n\\\\ndef _find_hf_model(model):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Find the HF CausalLM model (with .model.layers) in the model hierarchy.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if hasattr(model, \\\\\\\"model\\\\\\\") and hasattr(model.model, \\\\\\\"layers\\\\\\\"):\\\\n        return model\\\\n    try:\\\\n        inner = model.base_model.model\\\\n        if hasattr(inner, \\\\\\\"model\\\\\\\") and hasattr(inner.model, \\\\\\\"layers\\\\\\\"):\\\\n            return inner\\\\n    except AttributeError:\\\\n        pass\\\\n    raise ValueError(\\\\\\\"Cannot find HF model with .model.layers in hierarchy\\\\\\\")\\\\n\\\\n\\\\ndef _find_layers(model):\\\\n    return _find_hf_model(model).model.layers\\\\n\\\\n\\\\ndef _extract_per_turn_gates(gate_values, turns):\\\\n    num_layers = len(gate_values)\\\\n    result = {}\\\\n    for t_idx, turn in enumerate(turns):\\\\n        start = turn[\\\\\\\"content_start\\\\\\\"]\\\\n        end = turn[\\\\\\\"content_end\\\\\\\"]\\\\n        if end <= start:\\\\n            continue\\\\n        turn_key = f\\\\\\\"turn_{t_idx + 1}\\\\\\\"\\\\n        layer_gates = {}\\\\n        for layer_idx in range(num_layers):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "aa776961-571b-4955-ab2c-5b95db8a92c1",
+            "uuid": "e5cd2d2d-800b-4bc1-b5fe-a8d69ff78cf2",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# eval_phase2_gar.py — 评估训练后模型的 GAR 恢复效果\\\\n# 用法: python eval_phase2_gar.py --checkpoint-dir /root/turn_residual_gating/checkpoints/tg_s42 --gate-type threadgate\\\\n# GAR-Dongre 模式: python eval_phase2_gar.py --checkpoint-dir ... --gate-type threadgate --gar-variant dongre\\\\n# 输出: JSON 结果 + GAR 对比曲线图\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport sys\\\\n\\\\nimport torch\\\\nimport torch.nn as nn\\\\nimport numpy as np\\\\nimport matplotlib\\\\nmatplotlib.use(\\\\\\\"Agg\\\\\\\")\\\\nimport matplotlib.pyplot as plt\\\\nfrom transformers import AutoTokenizer, AutoModelForCausalLM\\\\n\\\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\\\nfrom threadgate import TurnEmbedding, GateNetwork, UniformGateNetwork\\\\nfrom gar import GARMeasurer\\\\nfrom turn_utils import detect_turn_boundaries, build_turn_features\\\\nfrom config import MODEL_NAME\\\\n\\\\n\\\\nSYSTEM_PROMPTS = [\\\\n    \\\\\\\"You are a knowledgeable science tutor. Always explain concepts step by step. Use analogies when possible. Never give direct answers without explanation. If the student makes an error, gently correct them and guide them to the right answer.\\\\\\\",\\\\n    \\\\\\\"You are a professional code reviewer. Focus on code quality, security, and performance. Point out potential bugs and suggest improvements. Always explain why a change is needed, not just what to change. Be constructive and specific.\\\\\\\",\\\\n    \\\\\\\"You are a creative writing coach. Help users improve their storytelling skills. Focus on character development, plot structure, and vivid descriptions. Give specific feedback with examples. Encourage experimentation with different styles.\\\\\\\",\\\\n    \\\\\\\"You are a math problem solver. Show all steps clearly. Explain the reasoning behind each step. If there are multiple approaches, mention them. Check your work by verifying the answer. Use LaTeX notation for formulas.\\\\\\\",\\\\n    \\\\\\\"You are a debate coach who helps users argue both sides of issues. Present balanced perspectives. Challenge weak arguments constructively. Teach logical reasoning and evidence evaluation. Avoid personal opinions.\\\\\\\",\\\\n]\\\\n\\\\nCONVERSATIONS_DATA = [\\\\n    [\\\\\\\"Why is the sky blue?\\\\\\\", \\\\\\\"What about sunsets being red?\\\\\\\", \\\\\\\"How does a rainbow form?\\\\\\\",\\\\n     \\\\\\\"Why do stars twinkle?\\\\\\\", \\\\\\\"What causes thunder?\\\\\\\", \\\\\\\"How do magnets work?\\\\\\\",\\\\n     \\\\\\\"Why is water wet?\\\\\\\", \\\\\\\"What is gravity?\\\\\\\", \\\\\\\"How do airplanes fly?\\\\\\\", \\\\\\\"Why is space dark?\\\\\\\"],\\\\n    [\\\\\\\"Review this: def add(a,b): return a+b\\\\\\\", \\\\\\\"What about error handling?\\\\\\\", \\\\\\\"How should I write tests for it?\\\\\\\",\\\\n     \\\\\\\"Is recursion better than iteration?\\\\\\\", \\\\\\\"When should I use async/await?\\\\\\\", \\\\\\\"How to handle memory leaks?\\\\\\\",\\\\n     \\\\\\\"Best practices for API design?\\\\\\\", \\\\\\\"How to optimize database queries?\\\\\\\", \\\\\\\"When to use microservices?\\\\\\\", \\\\\\\"How to handle rate limiting?\\\\\\\"],\\\\n    [\\\\\\\"Help me start a mystery story\\\\\\\", \\\\\\\"How do I create a compelling villain?\\\\\\\", \\\\\\\"What makes good dialogue?\\\\\\\",\\\\n     \\\\\\\"How to build suspense?\\\\\\\", \\\\\\\"Should I use first or third person?\\\\\\\", \\\\\\\"How to write a plot twist?\\\\\\\",\\\\n     \\\\\\\"Tips for describing settings?\\\\\\\", \\\\\\\"How to end a chapter with a cliffhanger?\\\\\\\", \\\\\\\"How to avoid cliches?\\\\\\\", \\\\\\\"How to write an epilogue?\\\\\\\"],\\\\n    [\\\\\\\"Solve: 3x + 7 = 22\\\\\\\", \\\\\\\"What is the derivative of x^3?\\\\\\\", \\\\\\\"Explain the Pythagorean theorem\\\\\\\",\\\\n     \\\\\\\"What is a prime number?\\\\\\\", \\\\\\\"How to calculate compound interest?\\\\\\\", \\\\\\\"What is the area of a circle?\\\\\\\",\\\\n     \\\\\\\"Explain matrix multiplication\\\\\\\", \\\\\\\"What is a logarithm?\\\\\\\", \\\\\\\"How to solve quadratic equations?\\\\\\\", \\\\\\\"What is calculus used for?\\\\\\\"],\\\\n    [\\\\\\\"Should AI be regulated?\\\\\\\", \\\\\\\"Is remote work better than office work?\\\\\\\", \\\\\\\"Should college be free?\\\\\\\",\\\\n     \\\\\\\"Is social media harmful?\\\\\\\", \\\\\\\"Should voting be mandatory?\\\\\\\", \\\\\\\"Is nuclear energy safe?\\\\\\\",\\\\n     \\\\\\\"Should animals have legal rights?\\\\\\\", \\\\\\\"Is space exploration worth the cost?\\\\\\\", \\\\\\\"Should there be a universal basic income?\\\\\\\", \\\\\\\"Is genetic engineering ethical?\\\\\\\"],\\\\n]\\\\n\\\\n\\\\ndef _find_hf_model(model):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Find the HF CausalLM model (with .model.layers) in the model hierarchy.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if hasattr(model, \\\\\\\"model\\\\\\\") and hasattr(model.model, \\\\\\\"layers\\\\\\\"):\\\\n        return model\\\\n    try:\\\\n        inner = model.base_model.model\\\\n        if hasattr(inner, \\\\\\\"model\\\\\\\") and hasattr(inner.model, \\\\\\\"layers\\\\\\\"):\\\\n            return inner\\\\n    except AttributeError:\\\\n        pass\\\\n    raise ValueError(\\\\\\\"Cannot find HF model with .model.layers in hierarchy\\\\\\\")\\\\n\\\\n\\\\ndef _find_layers(model):\\\\n    return _find_hf_model(model).model.layers\\\\n\\\\n\\\\ndef _extract_per_turn_gates(gate_values, turns):\\\\n    num_layers = len(gate_values)\\\\n    result = {}\\\\n    for t_idx, turn in enumerate(turns):\\\\n        start = turn[\\\\\\\"content_start\\\\\\\"]\\\\n        end = turn[\\\\\\\"content_end\\\\\\\"]\\\\n        if end <= start:\\\\n            continue\\\\n        turn_key = f\\\\\\\"turn_{t_idx + 1}\\\\\\\"\\\\n        layer_gates = {}\\\\n        for layer_idx in range(num_layers):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"# eval_phase2_gar.py — 评估训练后模型的 GAR 恢复效果\\n# 用法: python eval_phase2_gar.py --checkpoint-dir /root/turn_residual_gating/checkpoints/tg_s42 --gate-type threadgate\\n# GAR-Dongre 模式: python eval_phase2_gar.py --checkpoint-dir ... --gate-type threadgate --gar-variant dongre\\n# 输出: JSON 结果 + GAR 对比曲线图\\n\\nimport argparse\\nimport json\\nimport os\\nimport sys\\n\\nimport torch\\nimport torch.nn as nn\\nimport numpy as np\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\nfrom transformers import AutoTokenizer, AutoModelForCausalLM\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom threadgate import TurnEmbedding, GateNetwork, UniformGateNetwork\\nfrom gar import GARMeasurer\\nfrom turn_utils import detect_turn_boundaries, build_turn_features\\nfrom config import MODEL_NAME\\n\\n\\nSYSTEM_PROMPTS = [\\n    \\\"You are a knowledgeable science tutor. Always explain concepts step by step. Use analogies when possible. Never give direct answers without explanation. If the student makes an error, gently correct them and guide them to the right answer.\\\",\\n    \\\"You are a professional code reviewer. Focus on code quality, security, and performance. Point out potential bugs and suggest improvements. Always explain why a change is needed, not just what to change. Be constructive and specific.\\\",\\n    \\\"You are a creative writing coach. Help users improve their storytelling skills. Focus on character development, plot structure, and vivid descriptions. Give specific feedback with examples. Encourage experimentation with different styles.\\\",\\n    \\\"You are a math problem solver. Show all steps clearly. Explain the reasoning behind each step. If there are multiple approaches, mention them. Check your work by verifying the answer. Use LaTeX notation for formulas.\\\",\\n    \\\"You are a debate coach who helps users argue both sides of issues. Present balanced perspectives. Challenge weak arguments constructively. Teach logical reasoning and evidence evaluation. Avoid personal opinions.\\\",\\n]\\n\\nCONVERSATIONS_DATA = [\\n    [\\\"Why is the sky blue?\\\", \\\"What about sunsets being red?\\\", \\\"How does a rainbow form?\\\",\\n     \\\"Why do stars twinkle?\\\", \\\"What causes thunder?\\\", \\\"How do magnets work?\\\",\\n     \\\"Why is water wet?\\\", \\\"What is gravity?\\\", \\\"How do airplanes fly?\\\", \\\"Why is space dark?\\\"],\\n    [\\\"Review this: def add(a,b): return a+b\\\", \\\"What about error handling?\\\", \\\"How should I write tests for it?\\\",\\n     \\\"Is recursion better than iteration?\\\", \\\"When should I use async/await?\\\", \\\"How to handle memory leaks?\\\",\\n     \\\"Best practices for API design?\\\", \\\"How to optimize database queries?\\\", \\\"When to use microservices?\\\", \\\"How to handle rate limiting?\\\"],\\n    [\\\"Help me start a mystery story\\\", \\\"How do I create a compelling villain?\\\", \\\"What makes good dialogue?\\\",\\n     \\\"How to build suspense?\\\", \\\"Should I use first or third person?\\\", \\\"How to write a plot twist?\\\",\\n     \\\"Tips for describing settings?\\\", \\\"How to end a chapter with a cliffhanger?\\\", \\\"How to avoid cliches?\\\", \\\"How to write an epilogue?\\\"],\\n    [\\\"Solve: 3x + 7 = 22\\\", \\\"What is the derivative of x^3?\\\", \\\"Explain the Pythagorean theorem\\\",\\n     \\\"What is a prime number?\\\", \\\"How to calculate compound interest?\\\", \\\"What is the area of a circle?\\\",\\n     \\\"Explain matrix multiplication\\\", \\\"What is a logarithm?\\\", \\\"How to solve quadratic equations?\\\", \\\"What is calculus used for?\\\"],\\n    [\\\"Should AI be regulated?\\\", \\\"Is remote work better than office work?\\\", \\\"Should college be free?\\\",\\n     \\\"Is social media harmful?\\\", \\\"Should voting be mandatory?\\\", \\\"Is nuclear energy safe?\\\",\\n     \\\"Should animals have legal rights?\\\", \\\"Is space exploration worth the cost?\\\", \\\"Should there be a universal basic income?\\\", \\\"Is genetic engineering ethical?\\\"],\\n]\\n\\n\\ndef _find_hf_model(model):\\n    \\\"\\\"\\\"Find the HF CausalLM model (with .model.layers) in the model hierarchy.\\\"\\\"\\\"\\n    if hasattr(model, \\\"model\\\") and hasattr(model.model, \\\"layers\\\"):\\n        return model\\n    try:\\n        inner = model.base_model.model\\n        if hasattr(inner, \\\"model\\\") and hasattr(inner.model, \\\"layers\\\"):\\n            return inner\\n    except AttributeError:\\n        pass\\n    raise ValueError(\\\"Cannot find HF model with .model.layers in hierarchy\\\")\\n\\n\\ndef _find_layers(model):\\n    return _find_hf_model(model).model.layers\\n\\n\\ndef _extract_per_turn_gates(gate_values, turns):\\n    num_layers = len(gate_values)\\n    result = {}\\n    for t_idx, turn in enumerate(turns):\\n        start = turn[\\\"content_start\\\"]\\n        end = turn[\\\"content_end\\\"]\\n        if end <= start:\\n            continue\\n        turn_key = f\\\"turn_{t_idx + 1}\\\"\\n        layer_gates = {}\\n        for layer_idx in range(num_layers):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+              }
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-21T15:22:41.822Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013BvA3nfTe9TpX2Ef97EybY",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"gate_params.pt\\\\nlora\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "aa776961-571b-4955-ab2c-5b95db8a92c1",
+            "uuid": "7e4614f4-886a-4366-bdc0-da9ce4edc7a9",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"gate_params.pt\\\\nlora\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"gate_params.pt\\nlora\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now let me also check the s42 eval scripts to understand the pattern better. Let me look at the existing `run_4way_eval.sh` and `run_4way_eval_heldout.sh` for the s42 v8b_ss eval pattern.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aa776961-571b-4955-ab2c-5b95db8a92c1",
+            "uuid": "e5a3137b-ccec-48bb-b1b0-393a7271ad40",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BZG3LeqLGc24V7AJ2FGWEL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7019,
+                "cache_read_input_tokens": 25729,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7019
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me also check the s42 eval scripts and the eval script's AR mode arguments."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aa776961-571b-4955-ab2c-5b95db8a92c1",
+            "uuid": "77211066-891e-41d9-b3bb-bae7e392ae5e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BZG3LeqLGc24V7AJ2FGWEL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7019,
+                "cache_read_input_tokens": 25729,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7019
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017S5SDxTwAc44ywgfEqhndJ",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-20861",
+                "command": "cat /root/turn_residual_gating/scripts/run_4way_eval_heldout.sh"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aa776961-571b-4955-ab2c-5b95db8a92c1",
+            "uuid": "2ddb119f-ebb6-4ff5-a050-07a81f85f1d3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BZG3LeqLGc24V7AJ2FGWEL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7019,
+                "cache_read_input_tokens": 25729,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7019
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-21T15:22:48.989Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017S5SDxTwAc44ywgfEqhndJ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\nset -e\\\\n\\\\nPYTHON=/root/miniconda3/bin/python3.12\\\\nEVAL_SCRIPT=/root/turn_residual_gating/src/eval_phase2_gar.py\\\\nCONV_PATH=/root/turn_residual_gating/data/ultrachat_eval_heldout.json\\\\nOUT_ROOT=/root/turn_residual_gating/runs/phase2_4way_eval_heldout\\\\n\\\\nTG_CKPT=/root/turn_residual_gating/runs/phase2_tg_s42_v7\\\\nUG_CKPT=/root/turn_residual_gating/runs/phase2_ug_s42\\\\nLO_CKPT=/root/turn_residual_gating/runs/phase2_lora_only_s42\\\\n\\\\n# Checkpoint safety checks\\\\n[ -d \\\\\\\"$TG_CKPT/lora\\\\\\\" ] || { echo \\\\\\\"ERROR: TG v7 checkpoint not ready at $TG_CKPT/lora\\\\\\\"; exit 1; }\\\\n[ -f \\\\\\\"$TG_CKPT/gate_params.pt\\\\\\\" ] || { echo \\\\\\\"ERROR: TG v7 gate_params.pt not found at $TG_CKPT/gate_params.pt\\\\\\\"; exit 1; }\\\\n[ -d \\\\\\\"$UG_CKPT/lora\\\\\\\" ] || { echo \\\\\\\"ERROR: UG checkpoint not ready at $UG_CKPT/lora\\\\\\\"; exit 1; }\\\\n[ -f \\\\\\\"$UG_CKPT/gate_params.pt\\\\\\\" ] || { echo \\\\\\\"ERROR: UG gate_params.pt not found at $UG_CKPT/gate_params.pt\\\\\\\"; exit 1; }\\\\n[ -d \\\\\\\"$LO_CKPT/lora\\\\\\\" ] || { echo \\\\\\\"ERROR: LoRA-only final checkpoint not ready at $LO_CKPT/lora\\\\\\\"; exit 1; }\\\\n\\\\necho \\\\\\\"All checkpoint paths verified.\\\\\\\"\\\\n\\\\nmkdir -p \\\\\\\"$OUT_ROOT\\\\\\\"\\\\n\\\\n# ── Base (ours) ──────────────────────────────────────────────\\\\necho \\\\\\\"========== [1/8] Base + ours ==========\\\\\\\"\\\\n$PYTHON $EVAL_SCRIPT \\\\\\\\\\\\n  --gate-type none \\\\\\\\\\\\n  --conversations-path \\\\\\\"$CONV_PATH\\\\\\\" \\\\\\\\\\\\n  --output-dir \\\\\\\"$OUT_ROOT/base_ours\\\\\\\" \\\\\\\\\\\\n  --gar-variant ours \\\\\\\\\\\\n  --gate-profile\\\\n\\\\n# ── Base (dongre) ────────────────────────────────────────────\\\\necho \\\\\\\"========== [2/8] Base + dongre ==========\\\\\\\"\\\\n$PYTHON $EVAL_SCRIPT \\\\\\\\\\\\n  --gate-type none \\\\\\\\\\\\n  --conversations-path \\\\\\\"$CONV_PATH\\\\\\\" \\\\\\\\\\\\n  --output-dir \\\\\\\"$OUT_ROOT/base_dongre\\\\\\\" \\\\\\\\\\\\n  --gar-variant dongre \\\\\\\\\\\\n  --gate-profile\\\\n\\\\n# ── TG v7 (ours) ────────────────────────────────────────────\\\\necho \\\\\\\"========== [3/8] TG v7 + ours ==========\\\\\\\"\\\\n$PYTHON $EVAL_SCRIPT \\\\\\\\\\\\n  --gate-type threadgate \\\\\\\\\\\\n  --checkpoint-dir \\\\\\\"$TG_CKPT\\\\\\\" \\\\\\\\\\\\n  --conversations-path \\\\\\\"$CONV_PATH\\\\\\\" \\\\\\\\\\\\n  --output-dir \\\\\\\"$OUT_ROOT/tg_v7_ours\\\\\\\" \\\\\\\\\\\\n  --gar-variant ours \\\\\\\\\\\\n  --gate-profile\\\\n\\\\n# ── TG v7 (dongre) ──────────────────────────────────────────\\\\necho \\\\\\\"========== [4/8] TG v7 + dongre ==========\\\\\\\"\\\\n$PYTHON $EVAL_SCRIPT \\\\\\\\\\\\n  --gate-type threadgate \\\\\\\\\\\\n  --checkpoint-dir \\\\\\\"$TG_CKPT\\\\\\\" \\\\\\\\\\\\n  --conversations-path \\\\\\\"$CONV_PATH\\\\\\\" \\\\\\\\\\\\n  --output-dir \\\\\\\"$OUT_ROOT/tg_v7_dongre\\\\\\\" \\\\\\\\\\\\n  --gar-variant dongre \\\\\\\\\\\\n  --gate-profile\\\\n\\\\n# ── UG (ours) ────────────────────────────────────────────────\\\\necho \\\\\\\"========== [5/8] UG + ours ==========\\\\\\\"\\\\n$PYTHON $EVAL_SCRIPT \\\\\\\\\\\\n  --gate-type uniform \\\\\\\\\\\\n  --checkpoint-dir \\\\\\\"$UG_CKPT\\\\\\\" \\\\\\\\\\\\n  --conversations-path \\\\\\\"$CONV_PATH\\\\\\\" \\\\\\\\\\\\n  --output-dir \\\\\\\"$OUT_ROOT/ug_ours\\\\\\\" \\\\\\\\\\\\n  --gar-variant ours \\\\\\\\\\\\n  --gate-profile\\\\n\\\\n# ── UG (dongre) ──────────────────────────────────────────────\\\\necho \\\\\\\"========== [6/8] UG + dongre ==========\\\\\\\"\\\\n$PYTHON $EVAL_SCRIPT \\\\\\\\\\\\n  --gate-type uniform \\\\\\\\\\\\n  --checkpoint-dir \\\\\\\"$UG_CKPT\\\\\\\" \\\\\\\\\\\\n  --conversations-path \\\\\\\"$CONV_PATH\\\\\\\" \\\\\\\\\\\\n  --output-dir \\\\\\\"$OUT_ROOT/ug_dongre\\\\\\\" \\\\\\\\\\\\n  --gar-variant dongre \\\\\\\\\\\\n  --gate-profile\\\\n\\\\n# ── LoRA-only (ours) ─────────────────────────────────────────\\\\necho \\\\\\\"========== [7/8] LoRA-only + ours ==========\\\\\\\"\\\\n$PYTHON $EVAL_SCRIPT \\\\\\\\\\\\n  --gate-type none \\\\\\\\\\\\n  --checkpoint-dir \\\\\\\"$LO_CKPT\\\\\\\" \\\\\\\\\\\\n  --conversations-path \\\\\\\"$CONV_PATH\\\\\\\" \\\\\\\\\\\\n  --output-dir \\\\\\\"$OUT_ROOT/lora_only_ours\\\\\\\" \\\\\\\\\\\\n  --gar-variant ours \\\\\\\\\\\\n  --gate-profile\\\\n\\\\n# ── LoRA-only (dongre) ───────────────────────────────────────\\\\necho \\\\\\\"========== [8/8] LoRA-only + dongre ==========\\\\\\\"\\\\n$PYTHON $EVAL_SCRIPT \\\\\\\\\\\\n  --gate-type none \\\\\\\\\\\\n  --checkpoint-dir \\\\\\\"$LO_CKPT\\\\\\\" \\\\\\\\\\\\n  --conversations-path \\\\\\\"$CONV_PATH\\\\\\\" \\\\\\\\\\\\n  --output-dir \\\\\\\"$OUT_ROOT/lora_only_dongre\\\\\\\" \\\\\\\\\\\\n  --gar-variant dongre \\\\\\\\\\\\n  --gate-profile\\\\n\\\\necho \\\\\\\"========== All 8 evals done ==========\\\\\\\"\\\\necho \\\\\\\"Results in: $OUT_ROOT\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.74}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "aa776961-571b-4955-ab2c-5b95db8a92c1",
+            "uuid": "1f3730ee-ee54-420f-9497-db3880ca20a0",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\nset -e\\\\n\\\\nPYTHON=/root/miniconda3/bin/python3.12\\\\nEVAL_SCRIPT=/root/turn_residual_gating/src/eval_phase2_gar.py\\\\nCONV_PATH=/root/turn_residual_gating/data/ultrachat_eval_heldout.json\\\\nOUT_ROOT=/root/turn_residual_gating/runs/phase2_4way_eval_heldout\\\\n\\\\nTG_CKPT=/root/turn_residual_gating/runs/phase2_tg_s42_v7\\\\nUG_CKPT=/root/turn_residual_gating/runs/phase2_ug_s42\\\\nLO_CKPT=/root/turn_residual_gating/runs/phase2_lora_only_s42\\\\n\\\\n# Checkpoint safety checks\\\\n[ -d \\\\\\\"$TG_CKPT/lora\\\\\\\" ] || { echo \\\\\\\"ERROR: TG v7 checkpoint not ready at $TG_CKPT/lora\\\\\\\"; exit 1; }\\\\n[ -f \\\\\\\"$TG_CKPT/gate_params.pt\\\\\\\" ] || { echo \\\\\\\"ERROR: TG v7 gate_params.pt not found at $TG_CKPT/gate_params.pt\\\\\\\"; exit 1; }\\\\n[ -d \\\\\\\"$UG_CKPT/lora\\\\\\\" ] || { echo \\\\\\\"ERROR: UG checkpoint not ready at $UG_CKPT/lora\\\\\\\"; exit 1; }\\\\n[ -f \\\\\\\"$UG_CKPT/gate_params.pt\\\\\\\" ] || { echo \\\\\\\"ERROR: UG gate_params.pt not found at $UG_CKPT/gate_params.pt\\\\\\\"; exit 1; }\\\\n[ -d \\\\\\\"$LO_CKPT/lora\\\\\\\" ] || { echo \\\\\\\"ERROR: LoRA-only final checkpoint not ready at $LO_CKPT/lora\\\\\\\"; exit 1; }\\\\n\\\\necho \\\\\\\"All checkpoint paths verified.\\\\\\\"\\\\n\\\\nmkdir -p \\\\\\\"$OUT_ROOT\\\\\\\"\\\\n\\\\n# ── Base (ours) ──────────────────────────────────────────────\\\\necho \\\\\\\"========== [1/8] Base + ours ==========\\\\\\\"\\\\n$PYTHON $EVAL_SCRIPT \\\\\\\\\\\\n  --gate-type none \\\\\\\\\\\\n  --conversations-path \\\\\\\"$CONV_PATH\\\\\\\" \\\\\\\\\\\\n  --output-dir \\\\\\\"$OUT_ROOT/base_ours\\\\\\\" \\\\\\\\\\\\n  --gar-variant ours \\\\\\\\\\\\n  --gate-profile\\\\n\\\\n# ── Base (dongre) ────────────────────────────────────────────\\\\necho \\\\\\\"========== [2/8] Base + dongre ==========\\\\\\\"\\\\n$PYTHON $EVAL_SCRIPT \\\\\\\\\\\\n  --gate-type none \\\\\\\\\\\\n  --conversations-path \\\\\\\"$CONV_PATH\\\\\\\" \\\\\\\\\\\\n  --output-dir \\\\\\\"$OUT_ROOT/base_dongre\\\\\\\" \\\\\\\\\\\\n  --gar-variant dongre \\\\\\\\\\\\n  --gate-profile\\\\n\\\\n# ── TG v7 (ours) ────────────────────────────────────────────\\\\necho \\\\\\\"========== [3/8] TG v7 + ours ==========\\\\\\\"\\\\n$PYTHON $EVAL_SCRIPT \\\\\\\\\\\\n  --gate-type threadgate \\\\\\\\\\\\n  --checkpoint-dir \\\\\\\"$TG_CKPT\\\\\\\" \\\\\\\\\\\\n  --conversations-path \\\\\\\"$CONV_PATH\\\\\\\" \\\\\\\\\\\\n  --output-dir \\\\\\\"$OUT_ROOT/tg_v7_ours\\\\\\\" \\\\\\\\\\\\n  --gar-variant ours \\\\\\\\\\\\n  --gate-profile\\\\n\\\\n# ── TG v7 (dongre) ──────────────────────────────────────────\\\\necho \\\\\\\"========== [4/8] TG v7 + dongre ==========\\\\\\\"\\\\n$PYTHON $EVAL_SCRIPT \\\\\\\\\\\\n  --gate-type threadgate \\\\\\\\\\\\n  --checkpoint-dir \\\\\\\"$TG_CKPT\\\\\\\" \\\\\\\\\\\\n  --conversations-path \\\\\\\"$CONV_PATH\\\\\\\" \\\\\\\\\\\\n  --output-dir \\\\\\\"$OUT_ROOT/tg_v7_dongre\\\\\\\" \\\\\\\\\\\\n  --gar-variant dongre \\\\\\\\\\\\n  --gate-profile\\\\n\\\\n# ── UG (ours) ────────────────────────────────────────────────\\\\necho \\\\\\\"========== [5/8] UG + ours ==========\\\\\\\"\\\\n$PYTHON $EVAL_SCRIPT \\\\\\\\\\\\n  --gate-type uniform \\\\\\\\\\\\n  --checkpoint-dir \\\\\\\"$UG_CKPT\\\\\\\" \\\\\\\\\\\\n  --conversations-path \\\\\\\"$CONV_PATH\\\\\\\" \\\\\\\\\\\\n  --output-dir \\\\\\\"$OUT_ROOT/ug_ours\\\\\\\" \\\\\\\\\\\\n  --gar-variant ours \\\\\\\\\\\\n  --gate-profile\\\\n\\\\n# ── UG (dongre) ──────────────────────────────────────────────\\\\necho \\\\\\\"========== [6/8] UG + dongre ==========\\\\\\\"\\\\n$PYTHON $EVAL_SCRIPT \\\\\\\\\\\\n  --gate-type uniform \\\\\\\\\\\\n  --checkpoint-dir \\\\\\\"$UG_CKPT\\\\\\\" \\\\\\\\\\\\n  --conversations-path \\\\\\\"$CONV_PATH\\\\\\\" \\\\\\\\\\\\n  --output-dir \\\\\\\"$OUT_ROOT/ug_dongre\\\\\\\" \\\\\\\\\\\\n  --gar-variant dongre \\\\\\\\\\\\n  --gate-profile\\\\n\\\\n# ── LoRA-only (ours) ─────────────────────────────────────────\\\\necho \\\\\\\"========== [7/8] LoRA-only + ours ==========\\\\\\\"\\\\n$PYTHON $EVAL_SCRIPT \\\\\\\\\\\\n  --gate-type none \\\\\\\\\\\\n  --checkpoint-dir \\\\\\\"$LO_CKPT\\\\\\\" \\\\\\\\\\\\n  --conversations-path \\\\\\\"$CONV_PATH\\\\\\\" \\\\\\\\\\\\n  --output-dir \\\\\\\"$OUT_ROOT/lora_only_ours\\\\\\\" \\\\\\\\\\\\n  --gar-variant ours \\\\\\\\\\\\n  --gate-profile\\\\n\\\\n# ── LoRA-only (dongre) ───────────────────────────────────────\\\\necho \\\\\\\"========== [8/8] LoRA-only + dongre ==========\\\\\\\"\\\\n$PYTHON $EVAL_SCRIPT \\\\\\\\\\\\n  --gate-type none \\\\\\\\\\\\n  --checkpoint-dir \\\\\\\"$LO_CKPT\\\\\\\" \\\\\\\\\\\\n  --conversations-path \\\\\\\"$CONV_PATH\\\\\\\" \\\\\\\\\\\\n  --output-dir \\\\\\\"$OUT_ROOT/lora_only_dongre\\\\\\\" \\\\\\\\\\\\n  --gar-variant dongre \\\\\\\\\\\\n  --gate-profile\\\\n\\\\necho \\\\\\\"========== All 8 evals done ==========\\\\\\\"\\\\necho \\\\\\\"Results in: $OUT_ROOT\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.74}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\nset -e\\n\\nPYTHON=/root/miniconda3/bin/python3.12\\nEVAL_SCRIPT=/root/turn_residual_gating/src/eval_phase2_gar.py\\nCONV_PATH=/root/turn_residual_gating/data/ultrachat_eval_heldout.json\\nOUT_ROOT=/root/turn_residual_gating/runs/phase2_4way_eval_heldout\\n\\nTG_CKPT=/root/turn_residual_gating/runs/phase2_tg_s42_v7\\nUG_CKPT=/root/turn_residual_gating/runs/phase2_ug_s42\\nLO_CKPT=/root/turn_residual_gating/runs/phase2_lora_only_s42\\n\\n# Checkpoint safety checks\\n[ -d \\\"$TG_CKPT/lora\\\" ] || { echo \\\"ERROR: TG v7 checkpoint not ready at $TG_CKPT/lora\\\"; exit 1; }\\n[ -f \\\"$TG_CKPT/gate_params.pt\\\" ] || { echo \\\"ERROR: TG v7 gate_params.pt not found at $TG_CKPT/gate_params.pt\\\"; exit 1; }\\n[ -d \\\"$UG_CKPT/lora\\\" ] || { echo \\\"ERROR: UG checkpoint not ready at $UG_CKPT/lora\\\"; exit 1; }\\n[ -f \\\"$UG_CKPT/gate_params.pt\\\" ] || { echo \\\"ERROR: UG gate_params.pt not found at $UG_CKPT/gate_params.pt\\\"; exit 1; }\\n[ -d \\\"$LO_CKPT/lora\\\" ] || { echo \\\"ERROR: LoRA-only final checkpoint not ready at $LO_CKPT/lora\\\"; exit 1; }\\n\\necho \\\"All checkpoint paths verified.\\\"\\n\\nmkdir -p \\\"$OUT_ROOT\\\"\\n\\n# ── Base (ours) ──────────────────────────────────────────────\\necho \\\"========== [1/8] Base + ours ==========\\\"\\n$PYTHON $EVAL_SCRIPT \\\\\\n  --gate-type none \\\\\\n  --conversations-path \\\"$CONV_PATH\\\" \\\\\\n  --output-dir \\\"$OUT_ROOT/base_ours\\\" \\\\\\n  --gar-variant ours \\\\\\n  --gate-profile\\n\\n# ── Base (dongre) ────────────────────────────────────────────\\necho \\\"========== [2/8] Base + dongre ==========\\\"\\n$PYTHON $EVAL_SCRIPT \\\\\\n  --gate-type none \\\\\\n  --conversations-path \\\"$CONV_PATH\\\" \\\\\\n  --output-dir \\\"$OUT_ROOT/base_dongre\\\" \\\\\\n  --gar-variant dongre \\\\\\n  --gate-profile\\n\\n# ── TG v7 (ours) ────────────────────────────────────────────\\necho \\\"========== [3/8] TG v7 + ours ==========\\\"\\n$PYTHON $EVAL_SCRIPT \\\\\\n  --gate-type threadgate \\\\\\n  --checkpoint-dir \\\"$TG_CKPT\\\" \\\\\\n  --conversations-path \\\"$CONV_PATH\\\" \\\\\\n  --output-dir \\\"$OUT_ROOT/tg_v7_ours\\\" \\\\\\n  --gar-variant ours \\\\\\n  --gate-profile\\n\\n# ── TG v7 (dongre) ──────────────────────────────────────────\\necho \\\"========== [4/8] TG v7 + dongre ==========\\\"\\n$PYTHON $EVAL_SCRIPT \\\\\\n  --gate-type threadgate \\\\\\n  --checkpoint-dir \\\"$TG_CKPT\\\" \\\\\\n  --conversations-path \\\"$CONV_PATH\\\" \\\\\\n  --output-dir \\\"$OUT_ROOT/tg_v7_dongre\\\" \\\\\\n  --gar-variant dongre \\\\\\n  --gate-profile\\n\\n# ── UG (ours) ────────────────────────────────────────────────\\necho \\\"========== [5/8] UG + ours ==========\\\"\\n$PYTHON $EVAL_SCRIPT \\\\\\n  --gate-type uniform \\\\\\n  --checkpoint-dir \\\"$UG_CKPT\\\" \\\\\\n  --conversations-path \\\"$CONV_PATH\\\" \\\\\\n  --output-dir \\\"$OUT_ROOT/ug_ours\\\" \\\\\\n  --gar-variant ours \\\\\\n  --gate-profile\\n\\n# ── UG (dongre) ──────────────────────────────────────────────\\necho \\\"========== [6/8] UG + dongre ==========\\\"\\n$PYTHON $EVAL_SCRIPT \\\\\\n  --gate-type uniform \\\\\\n  --checkpoint-dir \\\"$UG_CKPT\\\" \\\\\\n  --conversations-path \\\"$CONV_PATH\\\" \\\\\\n  --output-dir \\\"$OUT_ROOT/ug_dongre\\\" \\\\\\n  --gar-variant dongre \\\\\\n  --gate-profile\\n\\n# ── LoRA-only (ours) ─────────────────────────────────────────\\necho \\\"========== [7/8] LoRA-only + ours ==========\\\"\\n$PYTHON $EVAL_SCRIPT \\\\\\n  --gate-type none \\\\\\n  --checkpoint-dir \\\"$LO_CKPT\\\" \\\\\\n  --conversations-path \\\"$CONV_PATH\\\" \\\\\\n  --output-dir \\\"$OUT_ROOT/lora_only_ours\\\" \\\\\\n  --gar-variant ours \\\\\\n  --gate-profile\\n\\n# ── LoRA-only (dongre) ───────────────────────────────────────\\necho \\\"========== [8/8] LoRA-only + dongre ==========\\\"\\n$PYTHON $EVAL_SCRIPT \\\\\\n  --gate-type none \\\\\\n  --checkpoint-dir \\\"$LO_CKPT\\\" \\\\\\n  --conversations-path \\\"$CONV_PATH\\\" \\\\\\n  --output-dir \\\"$OUT_ROOT/lora_only_dongre\\\" \\\\\\n  --gar-variant dongre \\\\\\n  --gate-profile\\n\\necho \\\"========== All 8 evals done ==========\\\"\\necho \\\"Results in: $OUT_ROOT\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"
+              }
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NMpq4reTT9JXJpeyh5VAJm",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-20861",
+                "command": "grep -n \"conversations-path\\|--mode\\|--num-turns\\|--num-conv\\|--N\\|--T\\|--n-conv\\|--n-turns\\|add_argument\" /root/turn_residual_gating/src/eval_phase2_gar.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aa776961-571b-4955-ab2c-5b95db8a92c1",
+            "uuid": "34ceeeca-5983-4b96-a9b2-7701d359191f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BZG3LeqLGc24V7AJ2FGWEL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7019,
+                "cache_read_input_tokens": 25729,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7019
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-21T15:22:49.647Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NMpq4reTT9JXJpeyh5VAJm",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "aa776961-571b-4955-ab2c-5b95db8a92c1",
+            "uuid": "f9fcc2c0-6373-49d7-a9bb-9eae4b8055d5",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QDKqK9K7H3NJ2eKLRkTD1j",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-20861",
+                "command": "grep -n \"add_argument\" /root/turn_residual_gating/src/eval_phase2_gar.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aa776961-571b-4955-ab2c-5b95db8a92c1",
+            "uuid": "0a45252e-7707-48f2-98b4-ff162cc35517",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011FpH7diGv6BvgPaiNkrPbd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2548,
+                "cache_read_input_tokens": 32748,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2548
+                },
+                "output_tokens": 67,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-21T15:22:53.401Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QDKqK9K7H3NJ2eKLRkTD1j",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"352:    parser.add_argument(\\\\\\\"--checkpoint-dir\\\\\\\", default=None)\\\\n353:    parser.add_argument(\\\\\\\"--gate-type\\\\\\\", required=True, choices=[\\\\\\\"threadgate\\\\\\\", \\\\\\\"uniform\\\\\\\", \\\\\\\"none\\\\\\\"])\\\\n354:    parser.add_argument(\\\\\\\"--output-dir\\\\\\\", default=\\\\\\\"/root/turn_residual_gating/results/\\\\\\\")\\\\n355:    parser.add_argument(\\\\\\\"--baseline-results\\\\\\\", default=\\\\\\\"/root/turn_residual_gating/results/phase1_gar_results.json\\\\\\\")\\\\n356:    parser.add_argument(\\\\\\\"--model\\\\\\\", default=MODEL_NAME)\\\\n357:    parser.add_argument(\\\\\\\"--conversations-path\\\\\\\", default=None, help=\\\\\\\"Path to standard_conversations.json for fixed conversations\\\\\\\")\\\\n358:    parser.add_argument(\\\\\\\"--gar-variant\\\\\\\", default=\\\\\\\"ours\\\\\\\", choices=[\\\\\\\"ours\\\\\\\", \\\\\\\"dongre\\\\\\\"],\\\\n360:    parser.add_argument(\\\\\\\"--gate-profile\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n362:    parser.add_argument(\\\\\\\"--ar-from-fixed\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n364:    parser.add_argument(\\\\\\\"--max-turns\\\\\\\", type=int, default=None,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "aa776961-571b-4955-ab2c-5b95db8a92c1",
+            "uuid": "9164a9b6-b68e-42ab-a741-4e99fe3ce52e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"352:    parser.add_argument(\\\\\\\"--checkpoint-dir\\\\\\\", default=None)\\\\n353:    parser.add_argument(\\\\\\\"--gate-type\\\\\\\", required=True, choices=[\\\\\\\"threadgate\\\\\\\", \\\\\\\"uniform\\\\\\\", \\\\\\\"none\\\\\\\"])\\\\n354:    parser.add_argument(\\\\\\\"--output-dir\\\\\\\", default=\\\\\\\"/root/turn_residual_gating/results/\\\\\\\")\\\\n355:    parser.add_argument(\\\\\\\"--baseline-results\\\\\\\", default=\\\\\\\"/root/turn_residual_gating/results/phase1_gar_results.json\\\\\\\")\\\\n356:    parser.add_argument(\\\\\\\"--model\\\\\\\", default=MODEL_NAME)\\\\n357:    parser.add_argument(\\\\\\\"--conversations-path\\\\\\\", default=None, help=\\\\\\\"Path to standard_conversations.json for fixed conversations\\\\\\\")\\\\n358:    parser.add_argument(\\\\\\\"--gar-variant\\\\\\\", default=\\\\\\\"ours\\\\\\\", choices=[\\\\\\\"ours\\\\\\\", \\\\\\\"dongre\\\\\\\"],\\\\n360:    parser.add_argument(\\\\\\\"--gate-profile\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n362:    parser.add_argument(\\\\\\\"--ar-from-fixed\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n364:    parser.add_argument(\\\\\\\"--max-turns\\\\\\\", type=int, default=None,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"352:    parser.add_argument(\\\"--checkpoint-dir\\\", default=None)\\n353:    parser.add_argument(\\\"--gate-type\\\", required=True, choices=[\\\"threadgate\\\", \\\"uniform\\\", \\\"none\\\"])\\n354:    parser.add_argument(\\\"--output-dir\\\", default=\\\"/root/turn_residual_gating/results/\\\")\\n355:    parser.add_argument(\\\"--baseline-results\\\", default=\\\"/root/turn_residual_gating/results/phase1_gar_results.json\\\")\\n356:    parser.add_argument(\\\"--model\\\", default=MODEL_NAME)\\n357:    parser.add_argument(\\\"--conversations-path\\\", default=None, help=\\\"Path to standard_conversations.json for fixed conversations\\\")\\n358:    parser.add_argument(\\\"--gar-variant\\\", default=\\\"ours\\\", choices=[\\\"ours\\\", \\\"dongre\\\"],\\n360:    parser.add_argument(\\\"--gate-profile\\\", action=\\\"store_true\\\",\\n362:    parser.add_argument(\\\"--ar-from-fixed\\\", action=\\\"store_true\\\",\\n364:    parser.add_argument(\\\"--max-turns\\\", type=int, default=None,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+              }
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I understand the eval script. The key difference between TF and AR modes:\n- TF: uses `--conversations-path` to feed in heldout conversations\n- AR: does NOT pass `--conversations-path`, so it generates conversations autoregressively (uses the built-in CONVERSATIONS_DATA and SYSTEM_PROMPTS)\n\nWait, looking at the v7_tg_s123 script more carefully:\n- TF eval uses `--conversations-path \"$CONV_PATH\"` \n- AR eval does NOT have `--conversations-path`\n\nThere's no explicit `--mode` flag - TF vs AR is determined by whether `--conversations-path` is provided.\n\n\nFor the v8b_ss_s123 eval script, I need to set up the same evaluation structure: TF and AR modes each running 4 model combinations (Base and v8b-SS-s123 paired with both GAR-ours and GAR-Dongre), plus a perplexity comparison. The checkpoint is ready at `/root/turn_residual_gating/checkpoints/tg_v8b_ss_s123/epoch_2/` with the necessary gate parameters and LoRA weights.\n\nI'm setting up the script with the Python path, evaluation script location, data paths, and output directory, then configuring the key parameters: the checkpoint path for v8b-SS-s123, the threadgate type since it has gate_params.pt, and the standard evaluation dataset. I need to check what parameters the eval script actually accepts for controlling the number of samples and temperature settings. and doesn't use `--ar-from-fixed` either, so I'll follow that same pattern. For the PPL comparison the user wants, I notice the eval script already outputs PPL values in the result JSONs, so I'll add a final step to extract and summarize those PPL metrics across all the evaluation runs.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aa776961-571b-4955-ab2c-5b95db8a92c1",
+            "uuid": "60a1807d-301a-41f0-9a75-8b85d6c9ad49",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XXoN4eBF1qQJLF1S6H4YQN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 549,
+                "cache_read_input_tokens": 35296,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 549
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have all the info. Creating the script."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aa776961-571b-4955-ab2c-5b95db8a92c1",
+            "uuid": "2cad809f-03d9-4b24-bf9d-3a4f8357739d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XXoN4eBF1qQJLF1S6H4YQN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 549,
+                "cache_read_input_tokens": 35296,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 549
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VcVmD9bZakF2gwoJ1Qdu5S",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-20861",
+                "command": "cat > /root/turn_residual_gating/scripts/eval_v8b_ss_s123.sh << 'SCRIPT_EOF'\n#!/bin/bash\n# v8b-SS s123 eval: Base vs v8b-SS-s123, TF + AR, GAR-ours + GAR-Dongre\nset -euo pipefail\n\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\ncd /root/turn_residual_gating\n\nPYTHON=/root/miniconda3/bin/python3.12\nEVAL_SCRIPT=src/eval_phase2_gar.py\nCONV_PATH=data/ultrachat_eval_heldout.json\nOUT_ROOT=runs/eval_v8b_ss_s123\nSS_CKPT=checkpoints/tg_v8b_ss_s123/epoch_2\n\n# ── Checkpoint verification ────────────────────────────────\n[ -d \"$SS_CKPT/lora\" ] || { echo \"ERROR: LoRA dir not found at $SS_CKPT/lora\"; exit 1; }\n[ -f \"$SS_CKPT/gate_params.pt\" ] || { echo \"ERROR: gate_params.pt not found at $SS_CKPT/gate_params.pt\"; exit 1; }\necho \"v8b-SS s123 checkpoint: $SS_CKPT\"\n\nmkdir -p \"$OUT_ROOT\"\n\n# ════════════════════════════════════════════════════════════\n# Part 1: Teacher-Forced GAR (heldout conversations)\n# ════════════════════════════════════════════════════════════\n\necho \"========== [TF 1/4] Base + GAR-ours ==========\"\n$PYTHON $EVAL_SCRIPT \\\n  --gate-type none \\\n  --conversations-path \"$CONV_PATH\" \\\n  --output-dir \"$OUT_ROOT/tf_base_ours\" \\\n  --gar-variant ours \\\n  --gate-profile\n\necho \"========== [TF 2/4] Base + GAR-Dongre ==========\"\n$PYTHON $EVAL_SCRIPT \\\n  --gate-type none \\\n  --conversations-path \"$CONV_PATH\" \\\n  --output-dir \"$OUT_ROOT/tf_base_dongre\" \\\n  --gar-variant dongre \\\n  --gate-profile\n\necho \"========== [TF 3/4] v8b-SS s123 + GAR-ours ==========\"\n$PYTHON $EVAL_SCRIPT \\\n  --gate-type threadgate \\\n  --checkpoint-dir \"$SS_CKPT\" \\\n  --conversations-path \"$CONV_PATH\" \\\n  --output-dir \"$OUT_ROOT/tf_ss_ours\" \\\n  --gar-variant ours \\\n  --gate-profile\n\necho \"========== [TF 4/4] v8b-SS s123 + GAR-Dongre ==========\"\n$PYTHON $EVAL_SCRIPT \\\n  --gate-type threadgate \\\n  --checkpoint-dir \"$SS_CKPT\" \\\n  --conversations-path \"$CONV_PATH\" \\\n  --output-dir \"$OUT_ROOT/tf_ss_dongre\" \\\n  --gar-variant dongre \\\n  --gate-profile\n\n# ════════════════════════════════════════════════════════════\n# Part 2: Autoregressive GAR (model-generated conversations)\n# ════════════════════════════════════════════════════════════\n\necho \"========== [AR 1/4] Base + GAR-ours ==========\"\n$PYTHON $EVAL_SCRIPT \\\n  --gate-type none \\\n  --output-dir \"$OUT_ROOT/ar_base_ours\" \\\n  --gar-variant ours \\\n  --gate-profile\n\necho \"========== [AR 2/4] Base + GAR-Dongre ==========\"\n$PYTHON $EVAL_SCRIPT \\\n  --gate-type none \\\n  --output-dir \"$OUT_ROOT/ar_base_dongre\" \\\n  --gar-variant dongre \\\n  --gate-profile\n\necho \"========== [AR 3/4] v8b-SS s123 + GAR-ours ==========\"\n$PYTHON $EVAL_SCRIPT \\\n  --gate-type threadgate \\\n  --checkpoint-dir \"$SS_CKPT\" \\\n  --output-dir \"$OUT_ROOT/ar_ss_ours\" \\\n  --gar-variant ours \\\n  --gate-profile\n\necho \"========== [AR 4/4] v8b-SS s123 + GAR-Dongre ==========\"\n$PYTHON $EVAL_SCRIPT \\\n  --gate-type threadgate \\\n  --checkpoint-dir \"$SS_CKPT\" \\\n  --output-dir \"$OUT_ROOT/ar_ss_dongre\" \\\n  --gar-variant dongre \\\n  --gate-profile\n\n# ════════════════════════════════════════════════════════════\n# Part 3: PPL Summary\n# ════════════════════════════════════════════════════════════\n\necho \"\"\necho \"========== PPL Summary ==========\"\n$PYTHON -c \"\nimport json, glob, os\nroot = '$OUT_ROOT'\nfor mode in ['tf', 'ar']:\n    print(f'--- {mode.upper()} ---')\n    for name in ['base_ours', 'base_dongre', 'ss_ours', 'ss_dongre']:\n        d = os.path.join(root, f'{mode}_{name}')\n        for f in sorted(glob.glob(os.path.join(d, '*gar*.json'))):\n            data = json.load(open(f))\n            ppl = data.get('avg_ppl', data.get('ppl', 'N/A'))\n            print(f'  {mode}_{name}: avg_ppl={ppl}')\n            break\n\"\n\n# ════════════════════════════════════════════════════════════\n# Summary\n# ════════════════════════════════════════════════════════════\necho \"\"\necho \"================================================================\"\necho \"v8b-SS s123 eval complete\"\necho \"================================================================\"\necho \"Checkpoint: $SS_CKPT\"\necho \"Results in: $OUT_ROOT/\"\necho \"\"\necho \"Key comparisons:\"\necho \"  TF GAR gap:   tf_base_ours vs tf_ss_ours\"\necho \"  AR GAR gap:   ar_base_ours vs ar_ss_ours\"\necho \"  TF-AR gap:    tf_ss_ours vs ar_ss_ours  (training-inference gap)\"\necho \"  Dongre:       tf_ss_dongre vs ar_ss_dongre\"\necho \"  PPL:          check avg_ppl in each *_gar.json\"\nSCRIPT_EOF\nchmod +x /root/turn_residual_gating/scripts/eval_v8b_ss_s123.sh"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aa776961-571b-4955-ab2c-5b95db8a92c1",
+            "uuid": "0e60b493-3a35-4788-a06b-eac2181a1d06",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XXoN4eBF1qQJLF1S6H4YQN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 549,
+                "cache_read_input_tokens": 35296,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 549
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-21T15:23:35.186Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VcVmD9bZakF2gwoJ1Qdu5S",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "aa776961-571b-4955-ab2c-5b95db8a92c1",
+            "uuid": "06a46c73-2231-4e7c-80a0-c1a75406a114",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+              }
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01L2MoZdibr8i2yCzTJKNHgR",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-20861",
+                "command": "bash -n /root/turn_residual_gating/scripts/eval_v8b_ss_s123.sh"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aa776961-571b-4955-ab2c-5b95db8a92c1",
+            "uuid": "ce3eec3f-bec1-4bce-bd15-d9573f9d85a7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Lt1odLUPBjcEGjyFkKWmCA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2791,
+                "cache_read_input_tokens": 35845,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2791
+                },
+                "output_tokens": 63,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-21T15:23:38.934Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01L2MoZdibr8i2yCzTJKNHgR",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'bash' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "aa776961-571b-4955-ab2c-5b95db8a92c1",
+            "uuid": "d5b47c7c-d6cb-426b-8b8f-486a96a68073",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'bash' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'bash' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0118f4dmpAysXHsCE4ckUL6f",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-20861",
+                "command": "bash -n /root/turn_residual_gating/scripts/eval_v8b_ss_s123.sh && echo \"SYNTAX_OK\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aa776961-571b-4955-ab2c-5b95db8a92c1",
+            "uuid": "32f84647-67e5-46bb-b46c-11629745166d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XCnVU5YZxcrXA2NASRKbeL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 203,
+                "cache_read_input_tokens": 38636,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 203
+                },
+                "output_tokens": 61,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-21T15:23:43.146Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0118f4dmpAysXHsCE4ckUL6f",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"SYNTAX_OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "aa776961-571b-4955-ab2c-5b95db8a92c1",
+            "uuid": "3e9a89fb-8cc3-49a2-96f1-dbbeb524503a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"SYNTAX_OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"SYNTAX_OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已创建并通过语法检查。\n\n`/root/turn_residual_gating/scripts/eval_v8b_ss_s123.sh` 包含：\n- **TF eval** (4 runs): Base × {ours, Dongre} + v8b-SS-s123 × {ours, Dongre}，使用 `ultrachat_eval_heldout.json`\n- **AR eval** (4 runs): 同上 4 组，无 conversations-path（自回归生成）\n- **PPL summary**: 自动从结果 JSON 提取 avg_ppl 汇总\n- Checkpoint: `checkpoints/tg_v8b_ss_s123/epoch_2/`\n- 输出: `runs/eval_v8b_ss_s123/`\n- 参数与 s42 eval 完全一致（`--gate-profile`, gate-type threadgate）"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aa776961-571b-4955-ab2c-5b95db8a92c1",
+            "uuid": "9be4153d-743a-4971-b874-9099c32e2f0e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Sx7AuUcdb5mkcMkj5M6tYE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 197,
+                "cache_read_input_tokens": 38839,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 197
+                },
+                "output_tokens": 7,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已创建并通过语法检查。\n\n`/root/turn_residual_gating/scripts/eval_v8b_ss_s123.sh` 包含：\n- **TF eval** (4 runs): Base × {ours, Dongre} + v8b-SS-s123 × {ours, Dongre}，使用 `ultrachat_eval_heldout.json`\n- **AR eval** (4 runs): 同上 4 组，无 conversations-path（自回归生成）\n- **PPL summary**: 自动从结果 JSON 提取 avg_ppl 汇总\n- Checkpoint: `checkpoints/tg_v8b_ss_s123/epoch_2/`\n- 输出: `runs/eval_v8b_ss_s123/`\n- 参数与 s42 eval 完全一致（`--gate-profile`, gate-type threadgate）"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 78853,
+            "duration_api_ms": 77923,
+            "num_turns": 13,
+            "stop_reason": "end_turn",
+            "session_id": "aa776961-571b-4955-ab2c-5b95db8a92c1",
+            "total_cost_usd": 0.40030324999999994,
+            "usage": {
+              "input_tokens": 12,
+              "cache_creation_input_tokens": 27195,
+              "cache_read_input_tokens": 243957,
+              "output_tokens": 4270,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 27195,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 241,
+                  "cache_read_input_tokens": 38839,
+                  "cache_creation_input_tokens": 197,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 197
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1456,
+                "outputTokens": 18,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001546,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 12,
+                "outputTokens": 4270,
+                "cacheReadInputTokens": 243957,
+                "cacheCreationInputTokens": 27195,
+                "webSearchRequests": 0,
+                "costUSD": 0.39875724999999995,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "874428c2-2019-4524-8166-2560dc5b4b27"
+          },
+          "id": "event-000035"
+        }
+      ],
+      "message_count": 35
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-v8b-ss-s123-eval-script.md"
+}

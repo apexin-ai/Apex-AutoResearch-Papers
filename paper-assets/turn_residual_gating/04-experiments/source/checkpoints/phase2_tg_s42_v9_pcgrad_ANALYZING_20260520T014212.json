@@ -1,0 +1,46 @@
+{
+  "exp_id": "phase2_tg_s42_v9_pcgrad",
+  "project": "turn_residual_gating",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 2,
+    "created_at": "2026-05-19T16:13:21.907Z",
+    "updated_at": "2026-05-20T01:42:12.641Z",
+    "hypothesis": "PCGrad (Yu et al. NeurIPS 2020) 消除 NTP-GAR 梯度方向冲突后（仅对 gate 参数投影 NTP 梯度到 GAR 梯度正交平面），如果 30x training-inference GAR gap 仍在 → 因果证据证明 exposure bias（非梯度竞争）是 gap 根因。与 v7 对比：相同超参（lambda_gar=1.0, MSE+gate_div），唯一变量是梯度处理方式。成功标准：(1) 梯度 cos_sim 显著改善（从 v7 的 -0.089 提升到 ≥0），(2) 但推理 GAR 仍 ≈ v7 水平（0.016），证明梯度冲突不是 gap 的因。",
+    "parent": "phase2_tg_s42_v7",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/turn_residual_gating && PYTHONUNBUFFERED=1 python src/train_phase2_v9_pcgrad.py --model /root/.cache/modelscope/Qwen/Qwen2___5-7B-Instruct --data-dir data/ultrachat_8k --output-dir checkpoints/tg_v9_pcgrad_s42 --gate-type threadgate --gar-loss-mode mse_target --gar-target 0.5 --lambda-gar 1.0 --lambda-gate-div 1.0 --init-bias 1.5 --gate-lr-multiplier 10 --lr 2e-4 --epochs 3 --batch-size 1 --grad-accum 8 --seed 42\"",
+      "server": "westd-20861",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "83860",
+      "log_path": "~/runs/turn_residual_gating/phase2_tg_s42_v9_pcgrad.log",
+      "submitted_at": "2026-05-19T17:42:10.820Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-20T01:42:12.536Z"
+    },
+    "failure_reason": null,
+    "conclusion": null,
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-19T17:35:39.776243+00:00",
+          "note": "第1次提交 EXIT_CODE=2 残留事件"
+        }
+      ]
+    },
+    "completed_at": null,
+    "notes": "第3次提交 (PID 83860, westd-20861:cuda:0)。前两次失败：#1 EXIT_CODE=2 (--pcgrad flag 不存在), #2 EXIT_CODE=143 (服务器重启 SIGTERM at step 100)。第3次运行正常，Epoch 0 step 6150/24000 micro-steps (25.6%)。超参与 v7 一致。训练端发现：L_GAR 在 step 0-350 有高原期 (0.22-0.23)，之后缓慢下降，step 5000+ 坍塌到≈0（同 v7 终态）。PCGrad cos_sim 从一致负值演变为围绕 0 振荡，但 NTP mag_ratio 5-10x 主导不变。"
+  },
+  "timestamp": "2026-05-20T01:42:12.696086+00:00",
+  "trigger": "update_registry"
+}

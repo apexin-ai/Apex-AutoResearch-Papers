@@ -1,0 +1,38 @@
+{
+  "exp_id": "inverted_ema_reasoning",
+  "project": "solver-verified-formalizer-rl",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-12T16:48:05.217Z",
+    "updated_at": "2026-05-12T17:10:29.638Z",
+    "spec": {
+      "command": "python run_inverted_ema.py --model /root/carc/models/DeepSeek-R1-Distill-Qwen-14B --gpu 0",
+      "server": "westd-16980",
+      "data_path": "EMBEDDED_MATH_PROBLEMS (20 reasoning traces)",
+      "data_count": 20,
+      "model_name": "DeepSeek-R1-Distill-Qwen-14B",
+      "seed": "NOT SET (flagged)",
+      "description": "Inverted EMA: evict HIGH similarity (common) tokens, keep LOW (unique) tokens. Decision gate for project continuation.",
+      "hypothesis": "EMA centroid similarity measures commonality, not importance. Flipping eviction direction (evict HIGH=common, keep LOW=unique) should produce PPL < random.",
+      "pid": "39560",
+      "log_path": "/root/carc/inverted_ema.log",
+      "checkpoint_path": "/root/carc/results/inverted_ema_results.json",
+      "gpu": [
+        "cuda:0"
+      ]
+    },
+    "conclusion": "killed",
+    "metrics": {
+      "kill_reason": "P0 Director指令: GPU 0双进程竞争导致gamma_sweep OOM, kill inverted_ema以保障priority=1实验",
+      "killed_at": "2026-05-12T16:50:00Z",
+      "progress_at_kill": "trace generation 70% (14/20), 未进入PPL评估",
+      "rerun_plan": "gamma_sweep完成后在GPU 0或1重跑"
+    },
+    "completed_at": "2026-05-12T17:10:29.638Z"
+  },
+  "timestamp": "2026-05-12T17:10:29.661438+00:00",
+  "trigger": "update_registry"
+}

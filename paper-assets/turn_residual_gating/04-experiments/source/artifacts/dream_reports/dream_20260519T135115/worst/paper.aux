@@ -1,0 +1,72 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{dongre2026gar}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{dongre2026gar}
+\citation{elbayad2020depth}
+\citation{shazeer2017moe}
+\citation{liu2016attn}
+\citation{li2023iti}
+\citation{ranzato2016sequence,bengio2015scheduled}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Multi-turn dialogue degradation.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Residual gating and adaptive computation.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Attention steering and intervention.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Background}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Goal Attention Ratio}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Residual Stream Persistence}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Method}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}ThreadGate Architecture}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Loss Design Space: v1--v7}{3}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Training Setup}{3}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Experiments}{4}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Qwen-2.5-7B: Four-Way Ablation on Held-Out Data}{4}{subsection.5.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Four-way evaluation on held-out conversations ($n$=50, UltraChat idx$\geq $8000). Recovery (pp) = GAR improvement over Base in percentage points $\times $100.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:heldout_4way}{{1}{4}{Four-way evaluation on held-out conversations ($n$=50, UltraChat idx$\geq $8000). Recovery (pp) = GAR improvement over Base in percentage points $\times $100}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Training-Inference GAR Gap}{4}{subsection.5.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Training-inference GAR gap: original evaluation set vs.\ held-out.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:gap}{{2}{4}{Training-inference GAR gap: original evaluation set vs.\ held-out}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Llama-3.1-8B: GAR Degradation Diagnosis}{4}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Llama-3.1-8B: ThreadGate Training and Evaluation}{4}{subsection.5.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Llama-3.1-8B GAR degradation across 10 turns ($n$=5 conversations).}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:llama_diag}{{3}{5}{Llama-3.1-8B GAR degradation across 10 turns ($n$=5 conversations)}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces ThreadGate v7 training dynamics: Llama-3 vs.\ Qwen.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:llama_training}{{4}{5}{ThreadGate v7 training dynamics: Llama-3 vs.\ Qwen}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Llama-3.1-8B three-way evaluation (Base / TG / LoRA-only).}}{5}{table.5}\protected@file@percent }
+\newlabel{tab:llama_eval}{{5}{5}{Llama-3.1-8B three-way evaluation (Base / TG / LoRA-only)}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Cross-Architecture Comparison}{5}{subsection.5.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Cross-model comparison: Qwen-2.5-7B vs.\ Llama-3.1-8B.}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:crossmodel}{{6}{6}{Cross-model comparison: Qwen-2.5-7B vs.\ Llama-3.1-8B}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Gradient Conflict Analysis}{6}{subsection.5.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Per-layer NTP vs.\ GAR gradient statistics on Qwen v7 (selected layers across 3 epochs).}}{6}{table.7}\protected@file@percent }
+\newlabel{tab:grad_qwen}{{7}{6}{Per-layer NTP vs.\ GAR gradient statistics on Qwen v7 (selected layers across 3 epochs)}{table.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Gradient conflict comparison: Qwen vs.\ Llama-3.}}{6}{table.8}\protected@file@percent }
+\newlabel{tab:grad_cross}{{8}{6}{Gradient conflict comparison: Qwen vs.\ Llama-3}{table.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Downstream Task: Instruction Retention}{7}{subsection.5.7}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Instruction retention across turns (downstream sanity check, Qwen).}}{7}{table.9}\protected@file@percent }
+\newlabel{tab:downstream}{{9}{7}{Instruction retention across turns (downstream sanity check, Qwen)}{table.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}Attention Heatmap Visualization}{7}{subsection.5.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Analysis}{7}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Failure Mode Taxonomy}{7}{subsection.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{FM1: Reverse turn conditioning.}{7}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{FM2: Training-inference distribution shift.}{7}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{FM3: Insufficient intervention magnitude.}{8}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Architecture-Dependent Susceptibility}{8}{subsection.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Gradient Conflict: Supporting Evidence with Caveats}{8}{subsection.6.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}GAR as a Proxy Metric}{8}{subsection.6.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Discussion}{8}{section.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Implications for Auxiliary Attention Losses}{8}{subsection.7.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Limitations}{8}{subsection.7.2}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{dongre2026gar}{{1}{2026}{{Dongre et~al.}}{{}}}
+\bibcite{elbayad2020depth}{{2}{2020}{{Elbayad et~al.}}{{}}}
+\bibcite{li2023iti}{{3}{2023}{{Li et~al.}}{{}}}
+\bibcite{liu2016attn}{{4}{2016}{{Liu et~al.}}{{}}}
+\bibcite{ranzato2016sequence}{{5}{2016}{{Ranzato et~al.}}{{}}}
+\bibcite{bengio2015scheduled}{{6}{2015}{{Bengio et~al.}}{{}}}
+\bibcite{shazeer2017moe}{{7}{2017}{{Shazeer et~al.}}{{}}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3}Future Directions}{9}{subsection.7.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{9}{section.8}\protected@file@percent }
+\gdef \@abspage@last{9}

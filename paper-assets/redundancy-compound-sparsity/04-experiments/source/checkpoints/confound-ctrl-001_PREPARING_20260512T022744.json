@@ -1,0 +1,23 @@
+{
+  "exp_id": "confound-ctrl-001",
+  "project": "redundancy-compound-sparsity",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-12T02:27:44.979Z",
+    "updated_at": "2026-05-12T02:27:44.980Z",
+    "spec": {
+      "hypothesis": "If DeepSeek-R1-Distill-Llama-8B (same Llama GQA architecture + R1 reasoning training) shows r~0.15, then reasoning training is the confound, not architecture. If r~0.47, architecture matters.",
+      "model_name": "deepseek-ai/DeepSeek-R1-Distill-Llama-8B",
+      "server": "seetacloud-bjb2-structtts",
+      "data_path": "20 hardcoded MATH problems (same as neg-cross-model-001)",
+      "data_count": 20,
+      "seed": 42,
+      "parent": "neg-cross-model-001"
+    }
+  },
+  "timestamp": "2026-05-12T02:27:44.994941+00:00",
+  "trigger": "update_registry"
+}

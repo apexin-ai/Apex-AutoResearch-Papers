@@ -1,0 +1,72 @@
+{
+  "exp_id": "llama_eval_s42",
+  "project": "turn_residual_gating",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T03:29:51.255Z",
+    "updated_at": "2026-05-21T03:46:42.515Z",
+    "hypothesis": "Llama-3.1-8B TG eval: 如果 Llama TG 模型在 TF 模式下 GAR-ours 显著高于 AR 模式（如 Qwen v7 的 20-33x gap），则确认 training-inference GAR gap 跨模型泛化（C5）。同时测量 base model 作为 control。",
+    "parent": "llama_tg_s42",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/turn_residual_gating && bash scripts/eval_llama_tg_s42.sh 2>&1 | tee runs/eval_llama_tg_s42.log",
+      "server": "westd-20861",
+      "data_path": "data/ultrachat_eval_sample.json",
+      "data_count": 50,
+      "model_name": "Llama-3.1-8B-Instruct",
+      "seed": 42,
+      "checkpoint_source": "runs/phase2_llama_tg_s42/epoch_2",
+      "eval_data": "ultrachat_eval_sample"
+    },
+    "checkpoint_path": "runs/phase2_llama_tg_s42/epoch_2",
+    "log_path": "runs/eval_llama_tg_s42.log",
+    "metrics": {
+      "tf_base": {
+        "gar_ours": 0.0166,
+        "ngar_ours": 0.3882,
+        "gar_dongre": 0.0038,
+        "ngar_dongre": 0.163,
+        "ppl": 3.45,
+        "N": 50,
+        "T": 4
+      },
+      "tf_tg": {
+        "gar_ours": 0.4836,
+        "ngar_ours": 11.8818,
+        "gar_dongre": 0.018,
+        "ngar_dongre": 0.7922,
+        "ppl": 2.57,
+        "N": 50,
+        "T": 4
+      },
+      "ar_base": {
+        "gar_ours": 0.0086,
+        "ngar_ours": 0.0798,
+        "gar_dongre": 0.0118,
+        "ngar_dongre": 0.1265,
+        "ppl": 1.24,
+        "N": 5,
+        "T": 10
+      },
+      "ar_tg": {
+        "gar_ours": 0.0304,
+        "ngar_ours": 0.2632,
+        "gar_dongre": 0.0217,
+        "ngar_dongre": 0.2459,
+        "ppl": 1.32,
+        "N": 5,
+        "T": 10
+      },
+      "gap_ratio_tg_ours": 15.9,
+      "gap_ratio_base_ours": 1.93,
+      "gap_ratio_tg_dongre": 0.83,
+      "vs_qwen_v7_gap_ratio": 32.1,
+      "baseline_mid_gar": 0.0122
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-21T03:46:42.581967+00:00",
+  "trigger": "update_registry"
+}

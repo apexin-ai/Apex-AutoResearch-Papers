@@ -1,0 +1,1494 @@
+{
+  "schema_version": "1.0",
+  "id": "ecdcdb85fcba87bf2504",
+  "project": "phase-gated-compound-sparse",
+  "kind": "worker",
+  "title": "paper discussion s7",
+  "task_key": "worker_paper_discussion_s7_20260514T091759",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_discussion_s7_20260514T091759.log",
+    "occurrence": 1,
+    "bytes": 105249,
+    "sha256": "8167ea4796f2bbeab240e4f98d9b0fac46b182a2887d7249c16b323f5ed43ccb"
+  },
+  "statistics": {
+    "messages": 34,
+    "user_turns": 0,
+    "tool_calls": 9,
+    "roles": {
+      "system": 1,
+      "record": 1,
+      "assistant": 13,
+      "tool_call": 9,
+      "tool_result": 9,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+                "session_id": "41f6d0d7-0cd8-4f5c-980c-54be0504b92e",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__edit_paper_section",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file",
+                  "mcp__agent-ml-research__write_paper_section"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "c0660789-65e2-462f-9f9a-e34746b709cd",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778757000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "84b4ca71-34e3-4e45-b8c8-4f47ed589c85",
+                "session_id": "41f6d0d7-0cd8-4f5c-980c-54be0504b92e"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll start by reading the current discussion.tex file."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "41f6d0d7-0cd8-4f5c-980c-54be0504b92e",
+            "uuid": "14431994-7c56-4654-8e8b-58aa25ca615e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EWCwdNc16LhMgiYry2djVq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11733,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11733
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012sbPKineTvrCd75k4g8QfS",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/discussion.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "41f6d0d7-0cd8-4f5c-980c-54be0504b92e",
+            "uuid": "5b1e9d85-f5a8-4c15-aed2-b252c4eed73b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EWCwdNc16LhMgiYry2djVq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11733,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11733
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T09:18:15.860Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012sbPKineTvrCd75k4g8QfS",
+              "type": "tool_result",
+              "content": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\n4\t\\paragraph{On the predictability of phase-modulated severity.}\n5\tOne might argue that the qualitative direction of our findings is intuitive: in low-sparsity phases, attention distributes broadly across many tokens, so importance scores carry less discriminative signal, and importance-based eviction should degrade.\n6\tWe do not dispute this intuition.\n7\tThe surprise lies in the quantitative structure of the interaction, which is not predictable from first principles alone.\n8\t\n9\tFirst, the \\emph{magnitude} of the severity gradient---$69$--$274{\\times}$ amplification across sparsity levels (Table~\\ref{tab:main-results})---far exceeds what a naive ``less discriminative $\\Rightarrow$ somewhat worse'' argument would predict. % exp_id: bf16_importance_s015..s030; source: experiment_summary_table.json; G=low/high=69,103,222,274\n10\tA reviewer expecting a $2$--$3\\times$ effect would find two-orders-of-magnitude amplification difficult to anticipate without measurement.\n11\tSecond, the gradient is \\emph{phase-specific}: compound interaction concentrates in low-sparsity phases while high-sparsity phases exhibit near-zero compound interaction ($\\widetilde{\\mathrm{II}}_{\\text{high}} < 0.06$ at all sparsity levels). % exp_id: bf16_importance_s015..s030; high-phase medians: 0.006, 0.015, 0.032, 0.053\n12\tThis asymmetry means that importance-based eviction is not uniformly fragile---it is selectively fragile in a phase-dependent manner.\n13\tThird, and most strikingly, a \\emph{crossover} emerges: at $s{=}0.25$, importance-based eviction \\emph{outperforms} random eviction in high-sparsity phases ($\\widetilde{\\mathrm{II}} = 0.032$ vs.\\ $0.818$) yet \\emph{underperforms} in low-sparsity phases ($\\widetilde{\\mathrm{II}} = 7.20$ vs.\\ $1.36$). % exp_id: bf16_importance_s025, bf16_ds_rand_s025; source: experiment_summary_table.json\n14\tThe same strategy reverses direction across phases---a phenomenon that cannot be derived from the observation that ``importance scores are noisier when attention is diffuse.''\n15\t% REVIEWER-ATTACK: \"The qualitative direction is trivially expected from attention entropy arguments.\"\n16\t% REBUTTAL: (1) Qualitative direction ≠ quantitative structure: 69-274× amplification is two orders of magnitude, not marginal. (2) Phase-specific concentration + crossover cannot be predicted from single-layer entropy reasoning. (3) Random eviction's flat profile (~1×) shows the amplification is strategy-specific, not an inherent property of compound sparsity.\n17\t\n18\t\\paragraph{Implications for compound sparsity deployment.}\n19\tOur findings suggest that the standard practice of applying a uniform compression budget across all inference steps is suboptimal for reasoning models.\n20\tCompound severity is not distributed evenly: it concentrates in low-sparsity phases, where the entropy-discrimination collapse mechanism (\\S\\ref{sec:analysis}) renders importance-based eviction unreliable.\n21\tA deployment pipeline that allocates the same sparsity level $s$ to every token position implicitly accepts order-of-magnitude severity penalties during the exploratory reasoning stages that happen to fall in the low-sparsity regime.\n22\t\n23\tThis observation motivates \\emph{phase-aware compression budgets}: rather than a single global sparsity target, the system would allocate higher capacity (lower sparsity) to low-sparsity phases---where compound interaction is most severe---and reclaim that budget in high-sparsity phases, where compound behavior is near-additive and importance-based eviction remains effective.\n24\tThe severity gradient $G$ reported in \\S\\ref{sec:phase-amplification} provides a natural signal for such allocation: phases with $G \\gg 1$ receive a reduced sparsity budget, while phases with $G \\leq 1$ tolerate aggressive compression with minimal quality loss.\n25\t\n26\t\\paragraph{Future directions.}\n27\tThe phase-aware allocation principle above points toward a concrete system design: a \\emph{phase-gated controller} that monitors attention sparsity statistics in real time and dynamically adjusts the compound sparsity budget per reasoning phase.\n28\tThe controller would route each generation step through a low-overhead phase classifier (\\S\\ref{sec:phase-seg}), then apply a phase-specific sparsity configuration derived from the severity gradient.\n29\tWhether such a controller can recover most of the compression benefit while avoiding the severity amplification in low-sparsity phases is an open empirical question.\n30\t\n31\tA second direction concerns mechanism validation.\n32\tThe entropy-discrimination collapse hypothesis (\\S\\ref{sec:analysis}) makes testable predictions about attention entropy redistribution under head pruning.\n33\tDirectly measuring per-head entropy shifts across phases---and correlating them with the observed compound severity---would provide causal evidence beyond the correlational structure reported here.\n34\t\n35\tFinally, scaling the empirical methodology to larger models and diverse reasoning tasks would establish the generality of the phase-strategy interaction documented in this work.\n36\t\n37\t\\subsection{Limitations}\n38\t\\label{sec:limitations}\n39\t\n40\t\\paragraph{Model scale.}\n41\tAll experiments are conducted at the 7B parameter scale.\n42\tWhether the phase-modulated severity patterns persist, amplify, or attenuate at larger scales (e.g., 70B) remains untested.\n43\tLarger models may exhibit different attention redundancy structures that alter the entropy-discrimination collapse dynamics.\n44\t% REVIEWER-ATTACK: \"7B is too small to be relevant for production.\"\n45\t% REBUTTAL: 7B is the most-deployed scale for on-device and cost-constrained serving—exactly where compound sparsity is needed. The mechanism (entropy-discrimination collapse) is scale-agnostic in principle. Scaling experiments are future work.\n46\t\n47\t\\paragraph{Architectural scope.}\n48\tOur two models---DeepSeek-R1-Distill-Qwen-7B and Qwen2.5-7B-Instruct---share the Qwen2ForCausalLM architecture.\n49\tThe cross-model replication (\\S\\ref{sec:cross-model}) confirms that the findings are not artifacts of a single model's weights, but both models share the same attention mechanism design.\n50\tThe entropy-discrimination collapse mechanism is in principle agnostic across attention architectures (it depends on attention redistribution, not architecture-specific components), but empirical validation on architecturally distinct attention designs (e.g., GQA variants such as LLaMA~3 or Mistral, or multi-latent attention architectures) is needed.\n51\t% REVIEWER-ATTACK: \"Cross-model ≠ cross-architecture. Both are Qwen2ForCausalLM.\"\n52\t% REBUTTAL: Correct—we explicitly state this is cross-model (different training: distillation vs instruction tuning), not cross-architecture. The two models isolate the training variable while controlling architecture. Cross-architecture validation (LLaMA, Mistral) is acknowledged as future work.\n53\t\n54\t\\paragraph{Task coverage.}\n55\tWe evaluate exclusively on MATH-500, a mathematical reasoning benchmark.\n56\tDifferent reasoning tasks---code generation, commonsense reasoning, multi-hop question answering---may induce different phase structures with different sparsity distributions, potentially altering the severity gradient profile.\n57\tGeneralizing the phase-strategy interaction to broader reasoning domains is an important next step.\n58\t% REVIEWER-ATTACK: \"Only MATH-500. How do we know this isn't a math-specific artifact?\"\n59\t% REBUTTAL: The mechanism (entropy-discrimination collapse under head pruning) depends on attention distribution properties, not math-specific features. MATH-500 is a standard benchmark with diverse difficulty. However, different reasoning tasks may induce different phase structures—we state this limitation explicitly rather than overclaiming.\n60\t\n61\t\\paragraph{Statistical scope.}\n62\tBootstrap confidence intervals use $B{=}10{,}000$ resamples. The paired permutation test yields $n{=}49$ paired problems for DeepSeek (1 excluded) and $n{=}46$ for Qwen (4 excluded). % exp_id: cohens_d_bf16.json, cohens_d_bf16_qwen.json\n63\tThe severity difference distribution is right-skewed (mean/median ratio ${\\sim}1.6{:}1$ at $s{=}0.30$), motivating our use of medians and nonparametric tests rather than parametric alternatives. % exp_id: bf16_importance_s030; mean_diff=22.94, median_diff=14.59\n64\tAll four permutation tests reject $H_0$ after Bonferroni correction ($p_{\\text{Bonf}} < 0.005$; Table~\\ref{tab:permutation}), with CI lower bounds increasing from $0.19$ to $6.70$---confirming the effect direction at every sparsity level. The permutation CIs at higher sparsity are wider (e.g., $[6.70,\\; 16.29]$ at $s{=}0.30$), reflecting genuine variance in per-problem severity amplification. % exp_id: permutation_test_results.json\n65\t\n66\t\\paragraph{Sparsity range.}\n67\tOur experiments span $s \\in \\{0.15, 0.20, 0.25, 0.30\\}$, a moderate range representative of practical deployment targets.\n68\tMore extreme sparsity ($s > 0.50$) may exhibit qualitatively different interaction dynamics---the sub-exponential growth pattern suggests the severity gradient may plateau, but this remains unverified.\n69\tConversely, the lower boundary at which phase-modulated amplification first emerges is not yet characterized.\n70\t% REVIEWER-ATTACK: \"Why not test higher sparsity? 0.30 is conservative.\"\n71\t% REBUTTAL: Our focus is on the practically relevant regime where models retain usable quality. At s>0.30 both strategies degrade severely, making II measurement less informative. The sub-exponential growth (C6, $\\Delta$ growth rate $3.8{\\times} \\to 4.8{\\times} \\to 2.0{\\times}$) suggests saturation at higher sparsity, but confirming this is future work.\n72\t\n73\t\\paragraph{No throughput evaluation.}\n74\tThis work focuses on characterizing the \\emph{structural} properties of compound sparsity severity---its phase dependence, strategy dependence, and interaction magnitude.\n75\tWe do not report inference throughput or latency measurements, which are necessary for a complete deployment analysis but orthogonal to the severity characterization that is our primary contribution.\n76\t% REVIEWER-ATTACK: \"No system evaluation. How do we know the severity amplification matters for real deployment?\"\n77\t% REBUTTAL: This is an empirical finding paper, not a method/system paper. The contribution is characterizing *what happens* (phase-modulated severity) and *why* (entropy-discrimination collapse), not building a system to fix it. Phase-gated controllers are explicitly scoped as future work. The finding is actionable regardless: any compound sparsity deployment should be aware of phase-dependent severity.\n78\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "41f6d0d7-0cd8-4f5c-980c-54be0504b92e",
+            "uuid": "aec41d9d-31b0-4826-af88-4b611f82d59d",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/discussion.tex",
+                "content": "\\section{Discussion}\n\\label{sec:discussion}\n\n\\paragraph{On the predictability of phase-modulated severity.}\nOne might argue that the qualitative direction of our findings is intuitive: in low-sparsity phases, attention distributes broadly across many tokens, so importance scores carry less discriminative signal, and importance-based eviction should degrade.\nWe do not dispute this intuition.\nThe surprise lies in the quantitative structure of the interaction, which is not predictable from first principles alone.\n\nFirst, the \\emph{magnitude} of the severity gradient---$69$--$274{\\times}$ amplification across sparsity levels (Table~\\ref{tab:main-results})---far exceeds what a naive ``less discriminative $\\Rightarrow$ somewhat worse'' argument would predict. % exp_id: bf16_importance_s015..s030; source: experiment_summary_table.json; G=low/high=69,103,222,274\nA reviewer expecting a $2$--$3\\times$ effect would find two-orders-of-magnitude amplification difficult to anticipate without measurement.\nSecond, the gradient is \\emph{phase-specific}: compound interaction concentrates in low-sparsity phases while high-sparsity phases exhibit near-zero compound interaction ($\\widetilde{\\mathrm{II}}_{\\text{high}} < 0.06$ at all sparsity levels). % exp_id: bf16_importance_s015..s030; high-phase medians: 0.006, 0.015, 0.032, 0.053\nThis asymmetry means that importance-based eviction is not uniformly fragile---it is selectively fragile in a phase-dependent manner.\nThird, and most strikingly, a \\emph{crossover} emerges: at $s{=}0.25$, importance-based eviction \\emph{outperforms} random eviction in high-sparsity phases ($\\widetilde{\\mathrm{II}} = 0.032$ vs.\\ $0.818$) yet \\emph{underperforms} in low-sparsity phases ($\\widetilde{\\mathrm{II}} = 7.20$ vs.\\ $1.36$). % exp_id: bf16_importance_s025, bf16_ds_rand_s025; source: experiment_summary_table.json\nThe same strategy reverses direction across phases---a phenomenon that cannot be derived from the observation that ``importance scores are noisier when attention is diffuse.''\n% REVIEWER-ATTACK: \"The qualitative direction is trivially expected from attention entropy arguments.\"\n% REBUTTAL: (1) Qualitative direction ≠ quantitative structure: 69-274× amplification is two orders of magnitude, not marginal. (2) Phase-specific concentration + crossover cannot be predicted from single-layer entropy reasoning. (3) Random eviction's flat profile (~1×) shows the amplification is strategy-specific, not an inherent property of compound sparsity.\n\n\\paragraph{Implications for compound sparsity deployment.}\nOur findings suggest that the standard practice of applying a uniform compression budget across all inference steps is suboptimal for reasoning models.\nCompound severity is not distributed evenly: it concentrates in low-sparsity phases, where the entropy-discrimination collapse mechanism (\\S\\ref{sec:analysis}) renders importance-based eviction unreliable.\nA deployment pipeline that allocates the same sparsity level $s$ to every token position implicitly accepts order-of-magnitude severity penalties during the exploratory reasoning stages that happen to fall in the low-sparsity regime.\n\nThis observation motivates \\emph{phase-aware compression budgets}: rather than a single global sparsity target, the system would allocate higher capacity (lower sparsity) to low-sparsity phases---where compound interaction is most severe---and reclaim that budget in high-sparsity phases, where compound behavior is near-additive and importance-based eviction remains effective.\nThe severity gradient $G$ reported in \\S\\ref{sec:phase-amplification} provides a natural signal for such allocation: phases with $G \\gg 1$ receive a reduced sparsity budget, while phases with $G \\leq 1$ tolerate aggressive compression with minimal quality loss.\n\n\\paragraph{Future directions.}\nThe phase-aware allocation principle above points toward a concrete system design: a \\emph{phase-gated controller} that monitors attention sparsity statistics in real time and dynamically adjusts the compound sparsity budget per reasoning phase.\nThe controller would route each generation step through a low-overhead phase classifier (\\S\\ref{sec:phase-seg}), then apply a phase-specific sparsity configuration derived from the severity gradient.\nWhether such a controller can recover most of the compression benefit while avoiding the severity amplification in low-sparsity phases is an open empirical question.\n\nA second direction concerns mechanism validation.\nThe entropy-discrimination collapse hypothesis (\\S\\ref{sec:analysis}) makes testable predictions about attention entropy redistribution under head pruning.\nDirectly measuring per-head entropy shifts across phases---and correlating them with the observed compound severity---would provide causal evidence beyond the correlational structure reported here.\n\nFinally, scaling the empirical methodology to larger models and diverse reasoning tasks would establish the generality of the phase-strategy interaction documented in this work.\n\n\\subsection{Limitations}\n\\label{sec:limitations}\n\n\\paragraph{Model scale.}\nAll experiments are conducted at the 7B parameter scale.\nWhether the phase-modulated severity patterns persist, amplify, or attenuate at larger scales (e.g., 70B) remains untested.\nLarger models may exhibit different attention redundancy structures that alter the entropy-discrimination collapse dynamics.\n% REVIEWER-ATTACK: \"7B is too small to be relevant for production.\"\n% REBUTTAL: 7B is the most-deployed scale for on-device and cost-constrained serving—exactly where compound sparsity is needed. The mechanism (entropy-discrimination collapse) is scale-agnostic in principle. Scaling experiments are future work.\n\n\\paragraph{Architectural scope.}\nOur two models---DeepSeek-R1-Distill-Qwen-7B and Qwen2.5-7B-Instruct---share the Qwen2ForCausalLM architecture.\nThe cross-model replication (\\S\\ref{sec:cross-model}) confirms that the findings are not artifacts of a single model's weights, but both models share the same attention mechanism design.\nThe entropy-discrimination collapse mechanism is in principle agnostic across attention architectures (it depends on attention redistribution, not architecture-specific components), but empirical validation on architecturally distinct attention designs (e.g., GQA variants such as LLaMA~3 or Mistral, or multi-latent attention architectures) is needed.\n% REVIEWER-ATTACK: \"Cross-model ≠ cross-architecture. Both are Qwen2ForCausalLM.\"\n% REBUTTAL: Correct—we explicitly state this is cross-model (different training: distillation vs instruction tuning), not cross-architecture. The two models isolate the training variable while controlling architecture. Cross-architecture validation (LLaMA, Mistral) is acknowledged as future work.\n\n\\paragraph{Task coverage.}\nWe evaluate exclusively on MATH-500, a mathematical reasoning benchmark.\nDifferent reasoning tasks---code generation, commonsense reasoning, multi-hop question answering---may induce different phase structures with different sparsity distributions, potentially altering the severity gradient profile.\nGeneralizing the phase-strategy interaction to broader reasoning domains is an important next step.\n% REVIEWER-ATTACK: \"Only MATH-500. How do we know this isn't a math-specific artifact?\"\n% REBUTTAL: The mechanism (entropy-discrimination collapse under head pruning) depends on attention distribution properties, not math-specific features. MATH-500 is a standard benchmark with diverse difficulty. However, different reasoning tasks may induce different phase structures—we state this limitation explicitly rather than overclaiming.\n\n\\paragraph{Statistical scope.}\nBootstrap confidence intervals use $B{=}10{,}000$ resamples. The paired permutation test yields $n{=}49$ paired problems for DeepSeek (1 excluded) and $n{=}46$ for Qwen (4 excluded). % exp_id: cohens_d_bf16.json, cohens_d_bf16_qwen.json\nThe severity difference distribution is right-skewed (mean/median ratio ${\\sim}1.6{:}1$ at $s{=}0.30$), motivating our use of medians and nonparametric tests rather than parametric alternatives. % exp_id: bf16_importance_s030; mean_diff=22.94, median_diff=14.59\nAll four permutation tests reject $H_0$ after Bonferroni correction ($p_{\\text{Bonf}} < 0.005$; Table~\\ref{tab:permutation}), with CI lower bounds increasing from $0.19$ to $6.70$---confirming the effect direction at every sparsity level. The permutation CIs at higher sparsity are wider (e.g., $[6.70,\\; 16.29]$ at $s{=}0.30$), reflecting genuine variance in per-problem severity amplification. % exp_id: permutation_test_results.json\n\n\\paragraph{Sparsity range.}\nOur experiments span $s \\in \\{0.15, 0.20, 0.25, 0.30\\}$, a moderate range representative of practical deployment targets.\nMore extreme sparsity ($s > 0.50$) may exhibit qualitatively different interaction dynamics---the sub-exponential growth pattern suggests the severity gradient may plateau, but this remains unverified.\nConversely, the lower boundary at which phase-modulated amplification first emerges is not yet characterized.\n% REVIEWER-ATTACK: \"Why not test higher sparsity? 0.30 is conservative.\"\n% REBUTTAL: Our focus is on the practically relevant regime where models retain usable quality. At s>0.30 both strategies degrade severely, making II measurement less informative. The sub-exponential growth (C6, $\\Delta$ growth rate $3.8{\\times} \\to 4.8{\\times} \\to 2.0{\\times}$) suggests saturation at higher sparsity, but confirming this is future work.\n\n\\paragraph{No throughput evaluation.}\nThis work focuses on characterizing the \\emph{structural} properties of compound sparsity severity---its phase dependence, strategy dependence, and interaction magnitude.\nWe do not report inference throughput or latency measurements, which are necessary for a complete deployment analysis but orthogonal to the severity characterization that is our primary contribution.\n% REVIEWER-ATTACK: \"No system evaluation. How do we know the severity amplification matters for real deployment?\"\n% REBUTTAL: This is an empirical finding paper, not a method/system paper. The contribution is characterizing *what happens* (phase-modulated severity) and *why* (entropy-discrimination collapse), not building a system to fix it. Phase-gated controllers are explicitly scoped as future work. The finding is actionable regardless: any compound sparsity deployment should be aware of phase-dependent severity.\n",
+                "numLines": 78,
+                "startLine": 1,
+                "totalLines": 78
+              }
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WoSs3kKYdmTNLXXkKsXek7",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__edit_paper_section,mcp__agent-ml-research__read_project_file",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "41f6d0d7-0cd8-4f5c-980c-54be0504b92e",
+            "uuid": "60bf4c32-fb12-467b-8b86-b840d9d043c3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EWCwdNc16LhMgiYry2djVq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11733,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11733
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T09:18:16.487Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01WoSs3kKYdmTNLXXkKsXek7",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__edit_paper_section"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__read_project_file"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "41f6d0d7-0cd8-4f5c-980c-54be0504b92e",
+            "uuid": "9bfeb436-c598-497e-a0b0-c95fdb3614f3",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__edit_paper_section",
+                "mcp__agent-ml-research__read_project_file"
+              ],
+              "query": "select:mcp__agent-ml-research__edit_paper_section,mcp__agent-ml-research__read_project_file",
+              "total_deferred_tools": 24
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me analyze the current discussion.tex. I need to:\n\n1. Find all PENDING-BF16, placeholder, TODO markers\n2. Replace with real numbers\n3. Supplement discussion content per the task requirements\n\nLooking at the current file, I don't see any explicit \"PENDING-BF16\" or \"TODO\" markers. The file appears to be already written with bf16 numbers in many places. Let me check more carefully:\n\n- Line 9: `$69$--$274{\\times}$ amplification` — these look like they could be from bf16 data already (comment says `exp_id: bf16_importance_s015..s030`)\n\n\n- Line 11: `$\\widetilde{\\mathrm{II}}_{\\text{high}} < 0.06$` — comment says `high-phase medians: 0.006, 0.015, 0.032, 0.053`\n- Line 13: crossover at s=0.25: `$\\widetilde{\\mathrm{II}} = 0.032$ vs.\\ $0.818$` and `$\\widetilde{\\mathrm{II}} = 7.20$ vs.\\ $1.36$`\n\nNow I'm verifying these crossover numbers against the provided data to ensure they match the bf16 results correctly. I'm noticing the crossover data doesn't align with what's currently in the file—the numbers I'm seeing suggest these might be median severity values rather than interaction indices. Looking at the task requirements, I need to identify missing discussion points like the random masking failures, the magnitude differences between models, and some anomalies in the bootstrap results, then weave those into the existing analysis. I'm noticing these might be different metrics altogether—the existing text uses interaction index values while the provided numbers appear to be raw median severities, so I need to be careful not to conflate them. Looking back at the task, there are no PENDING-BF16 placeholders to replace, which suggests the bf16 numbers are already integrated, but I'm missing several key content points: the \"trivially expected\" defense framing, the magnitude difference showing Qwen at roughly one-fifth of DeepSeek's impact, the cross-model discrepancy in the C4 mechanism, and a few other discussion elements that should be woven in. I'm working through the math on these amplification ratios — the G values represent low-phase median divided by high-phase median for each sparsity level, and I can verify this by dividing the overall median differences by the high-phase medians to reconstruct the expected ratios, which mostly align with the stated values around 69–274× with minor rounding differences.\n\nFor the crossover data, there's a discrepancy between what the current text reports and the provided numbers — the text uses interaction index values like 0.032 vs 0.818, but the new data shows importance high at 0.584, random at 3.002, and other metrics that appear to be measuring something different entirely, possibly raw importance scores rather than median differences. Looking at the experiment IDs and source file, these numbers are already from the bf16 experiments, so there aren't placeholder markers to replace. The real task is filling in the missing discussion points—I need to add analysis of the random masking failure case, bring in the Qwen cross-model comparison, and cover the remaining gaps from the six required points. I'm realizing the crossover pattern is inverted from what the current text shows—in the high phase, importance severity (0.584) actually underperforms random (3.002), while in the low phase, importance severity (30.903) dramatically underperforms random (2.915). This suggests I need to recalibrate how the interaction indices are calculated or whether they're measuring something different than raw severity values.\n\nNow I'm planning the edits systematically: updating the opening paragraph with the correct crossover evidence, adding a section on cross-model replication patterns, addressing the C4 mechanism discrepancy, flagging the qw_rand_s030 anomaly in the limitations, and revising the mechanism validation to reflect only partial confirmation rather than full support. I'm updating the crossover numbers in the first paragraph to reflect the new severity metrics—changing from the interaction index notation to median severity values, where importance-based eviction shows $0.584$ versus $3.002$ in high-sparsity phases but $30.903$ versus $2.915$ in low-sparsity phases. I should also verify whether the $\\widetilde{\\mathrm{II}}$ notation needs to be replaced or if these new numbers represent a different measurement altogether. I'm realizing II measures the interaction term itself—the compound severity minus individual severities—which is different from the raw median severity values I have. Since the task gives me concrete severity numbers to work with, I'll use those directly to support the crossover claim rather than trying to map between different metrics. Let me just proceed with the edits pragmatically and update the crossover sentence with the severity values I've been given. I'm drafting the random masking paragraph to show that random eviction doesn't exhibit the same phase gradient as importance-based eviction, which rules out the objection that compound severity amplification is just an inherent property of compound sparsity—the statistical tests across both models consistently fail to show this pattern.\n\nNow I'm moving to the cross-model replication section, where the phase-strategy interaction holds perfectly across both models with identical rank ordering of effect sizes and significant paired tests confirming the monotonic relationship.\n\nHowever, the magnitude of amplification diverges dramatically between them: DeepSeek shows roughly five times larger severity differences across sparsity levels compared to Qwen, and their Cohen's $d$ values follow different ranges, suggesting the underlying mechanism manifests with model-dependent intensity despite the consistent ordinal pattern.\n\nBoth models use the same base architecture but diverge in training methodology—DeepSeek's version is distilled from a larger reasoning model while Qwen's uses standard instruction tuning—and I suspect distillation sharpens the phase transitions that drive this interaction, a hypothesis I could test by examining distilled versus non-distilled variants at scale. I should also note that Qwen's threshold for onset appears around $s \\geq 0.20$, with $s015$ sitting right at the boundary.\n\nNow examining whether the entropy-discrimination collapse hypothesis holds across both models...\n\nThe discrimination metrics—Gini coefficient and coefficient of variation under compound sparsity—show consistent directional patterns in both models, confirming that importance-based eviction degrades discriminative power during low-sparsity phases regardless of training approach. But entropy behaves differently: DeepSeek shows reliable negative shifts indicating tighter attention concentration under head pruning, whereas Qwen reverses direction at $s=0.25$ and flattens near zero at $s=0.30$. This suggests discrimination collapse is the core mechanism driving the phase-strategy interaction, with entropy shifts being a secondary, model-dependent effect.\n\nI'm treating the mechanistic evidence as preliminary—the discrimination pathway holds up across models, but the full entropy-discrimination narrative needs qualification. I also need to flag a statistical sensitivity in the Qwen random baseline where bootstrap sample size shifted the verdict from PASS to FAIL when I increased resamples from 5,000 to 10,000, landing near the significance boundary. This reinforces why reporting effect sizes and confidence intervals matters more than binary test outcomes.\n\nNow I'm refining the cross-model comparison by noting that Qwen's phase gradient onset is delayed compared to DeepSeek—the effect only becomes clearly significant at higher sparsity levels. I'm also revising the mechanism validation section to acknowledge that while we have partial correlational evidence for the entropy-discrimination collapse hypothesis, direct per-head entropy measurements would be needed to establish causality.\n\nLet me organize the edits systematically: updating the crossover numbers in the opening paragraph, inserting the random masking results, adding the cross-model analysis, then revising the future directions to reflect what we've actually found about entropy divergence.\n\nI need to verify the interaction intensity values first—the current text shows 0.032 vs 0.818 for high-sparsity phases, but the new data gives 0.584 vs 3.002, which still maintains the same ordering where importance-based eviction performs better. Similarly for low-sparsity, the direction of underperformance holds even though the magnitudes have shifted to 30.903 vs 2.915. I'm realizing the crossover values are the raw severity metrics I should be using, and the existing II notation likely refers to a compound interaction index rather than raw severity. The safest path forward is to preserve the existing numbers with their bf16 provenance while supplementing the discussion with the confirmed values where they add new information, rather than replacing established metrics that might use a different calculation. I need to focus on the main edits now. Let me plan out the sequence: I'll add the random masking discussion after the existing paragraph, then insert the cross-model replication section, followed by the mechanism discrepancy points, update the future directions, and finally add the statistical limitations. I should be conservative about changing the existing II values since they're already established in the paper, though I could note the raw severity values as context.\n\nActually, the most efficient approach is to batch these edits together rather than making separate calls—I can replace the entire section from after \"trivially expected\" through to \"Implications\" in one go, which will let me add all the missing discussion points while updating the crossover numbers cleanly. I need to decide whether to keep the interaction index values as-is since they have bf16 provenance, or switch to the raw median severity scores from the task which are more interpretable. I think using the raw severity values makes more sense here—they're directly comparable and the task provides them as confirmed numbers, so I'll rewrite the crossover description to emphasize those raw medians instead. Now I'm going to make the edits strategically, starting with updating those crossover numbers in the main text. I'm searching through the document for any remaining PENDING-BF16 markers, placeholder text, and TODO items that need to be addressed before finalizing.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "41f6d0d7-0cd8-4f5c-980c-54be0504b92e",
+            "uuid": "0c6f77b6-f24c-4c97-85ae-8fbe6c4a78c1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CKewcHT4HRyu3qhLeSsgDv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 3766,
+                "cache_read_input_tokens": 23574,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3766
+                },
+                "output_tokens": 36,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me search for any PENDING-BF16 or TODO markers."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "41f6d0d7-0cd8-4f5c-980c-54be0504b92e",
+            "uuid": "2375efd0-cf62-467c-94e5-79bbae262a18",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CKewcHT4HRyu3qhLeSsgDv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 3766,
+                "cache_read_input_tokens": 23574,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3766
+                },
+                "output_tokens": 36,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0133gLhEZANNffWScEJM7fh1",
+              "name": "Grep",
+              "input": {
+                "pattern": "PENDING|TODO|placeholder|FIXME|TBD|XXX",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/discussion.tex",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "41f6d0d7-0cd8-4f5c-980c-54be0504b92e",
+            "uuid": "6beb42ea-baae-405f-9c3a-35dfc288a3ac",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CKewcHT4HRyu3qhLeSsgDv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 3766,
+                "cache_read_input_tokens": 23574,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3766
+                },
+                "output_tokens": 36,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T09:20:49.983Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0133gLhEZANNffWScEJM7fh1",
+              "type": "tool_result",
+              "content": "No matches found"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "41f6d0d7-0cd8-4f5c-980c-54be0504b92e",
+            "uuid": "03ba7714-0e74-4b37-b74c-0bd8b1ca8e53",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "",
+              "numLines": 0
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "No PENDING-BF16 or TODO markers found. The file already has bf16 numbers with provenance comments. The main task is to supplement the discussion with the missing content points.\n\nLet me now proceed with the edits. I'll:\n\n1. Update crossover numbers to confirmed values\n2. Add random masking paragraph\n3. Add cross-model replication paragraph\n4. Add mechanism discrepancy paragraph\n5. Update future directions\n6. Update statistical limitations with qw_rand_s030\n\nLet me do these edits sequentially using edit_paper_section.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "41f6d0d7-0cd8-4f5c-980c-54be0504b92e",
+            "uuid": "01e85c0f-232a-493a-ac74-8874f46cbf90",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0148cXmbPeFrfjf2LL9zokzC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8259,
+                "cache_read_input_tokens": 27340,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 8259
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No PENDING-BF16 or TODO markers — the file already uses bf16 numbers. The main work is updating the crossover values to confirmed numbers and adding the 4 missing discussion paragraphs (random masking, cross-model magnitude, mechanism discrepancy, qw_rand_s030 anomaly).\n\nI'll make the edits sequentially.\n\n**Edit 1**: Update crossover numbers to confirmed values."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "41f6d0d7-0cd8-4f5c-980c-54be0504b92e",
+            "uuid": "dbe9402b-27a3-4d1d-9c4f-759a7611ab11",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0148cXmbPeFrfjf2LL9zokzC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8259,
+                "cache_read_input_tokens": 27340,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 8259
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AsTq5tunuc1nv3jHe8m51g",
+              "name": "mcp__agent-ml-research__edit_paper_section",
+              "input": {
+                "project": "phase-gated-compound-sparse",
+                "section": "discussion",
+                "old_text": "Third, and most strikingly, a \\emph{crossover} emerges: at $s{=}0.25$, importance-based eviction \\emph{outperforms} random eviction in high-sparsity phases ($\\widetilde{\\mathrm{II}} = 0.032$ vs.\\ $0.818$) yet \\emph{underperforms} in low-sparsity phases ($\\widetilde{\\mathrm{II}} = 7.20$ vs.\\ $1.36$). % exp_id: bf16_importance_s025, bf16_ds_rand_s025; source: experiment_summary_table.json\nThe same strategy reverses direction across phases---a phenomenon that cannot be derived from the observation that ``importance scores are noisier when attention is diffuse.''",
+                "new_text": "Third, and most strikingly, a \\emph{crossover} emerges: at $s{=}0.25$, importance-based eviction \\emph{outperforms} random eviction in high-sparsity phases (median severity $0.584$ vs.\\ $3.002$) yet \\emph{underperforms} in low-sparsity phases ($30.903$ vs.\\ $2.915$---a ${>}10{\\times}$ severity inflation relative to random). % exp_id: bf16_importance_s025, bf16_ds_rand_s025; source: crossover_analysis; high: imp=0.584, rand=3.002; low: imp=30.903, rand=2.915\nThe same strategy reverses direction across phases---a phenomenon that cannot be derived from the observation that ``importance scores are noisier when attention is diffuse.''"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "41f6d0d7-0cd8-4f5c-980c-54be0504b92e",
+            "uuid": "73003c59-8e8f-4574-996c-bc31b59c134a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0148cXmbPeFrfjf2LL9zokzC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8259,
+                "cache_read_input_tokens": 27340,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 8259
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T09:21:01.265Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AsTq5tunuc1nv3jHe8m51g",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"section_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/docs/paper/discussion.tex\\\", \\\"version\\\": 18, \\\"coverage\\\": \\\"25/25\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "41f6d0d7-0cd8-4f5c-980c-54be0504b92e",
+            "uuid": "e5f24db9-ad58-4269-aaa3-48ba95c577b6",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"section_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/docs/paper/discussion.tex\\\", \\\"version\\\": 18, \\\"coverage\\\": \\\"25/25\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"section_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/docs/paper/discussion.tex\", \"version\": 18, \"coverage\": \"25/25\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Good. Now let me add the random masking paragraph after the \"trivially expected\" rebuttal comment block. I'll insert after the REBUTTAL comment.",
+              "signature": "EswCClkIDRgCKkCTaoiLcXN89Dq/xFjFjIyavszmvGG54Gj6MFbtVUwJojzLxxBb4Kpl24uuDKIbGXIYGNpJPRdcxfHA34BtHALVMg9jbGF1ZGUtb3B1cy00LTY4ABIMZ4vU2P371WFU/9iSGgyngXHGMJG3XPmtIgEiMNkWz0W9rt+mrSmq/XippnxfGTTwbAwi3Qs0wcTmqz/jgwyQbmDb4ZQ+zEACQBSJQiqgAQGBRiSwV7ZTIZsmbavDW4+0vCYHUK92izJluY8/6QkAErGLdA8B5qzAx7/5TlbhlWFoAv7dj9CaQ3tvGFRgrVPqQmgwJ7/3V0Krn2hoXIXszp0PyhkzezzJD4pAewYpI69U+FeSOabtuzrdUs8h4a+tvFvdDpinMiWSaKCHqOsCWxk7HqUSlryhfQcvdzZHhybzpWq4STNZ6afEnQ1ZHu4YAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "41f6d0d7-0cd8-4f5c-980c-54be0504b92e",
+            "uuid": "0344f384-ba8b-43e7-8cec-209734266511",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Dsf8NqwN8fjJ4YhBhcmpcG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 858,
+                "cache_read_input_tokens": 35599,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 858
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Edit 2**: Add random masking control paragraph after the \"trivially expected\" defense."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "41f6d0d7-0cd8-4f5c-980c-54be0504b92e",
+            "uuid": "fbe1e173-02c0-4c9e-b686-78aa6e79054a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Dsf8NqwN8fjJ4YhBhcmpcG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 858,
+                "cache_read_input_tokens": 35599,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 858
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Tt9V2RCwzaJoknUbURJB1V",
+              "name": "mcp__agent-ml-research__edit_paper_section",
+              "input": {
+                "project": "phase-gated-compound-sparse",
+                "section": "discussion",
+                "old_text": "% REBUTTAL: (1) Qualitative direction ≠ quantitative structure: 69-274× amplification is two orders of magnitude, not marginal. (2) Phase-specific concentration + crossover cannot be predicted from single-layer entropy reasoning. (3) Random eviction's flat profile (~1×) shows the amplification is strategy-specific, not an inherent property of compound sparsity.\n\n\\paragraph{Implications for compound sparsity deployment.}",
+                "new_text": "% REBUTTAL: (1) Qualitative direction ≠ quantitative structure: 69-274× amplification is two orders of magnitude, not marginal. (2) Phase-specific concentration + crossover cannot be predicted from single-layer entropy reasoning. (3) Random eviction's flat profile (~1×) shows the amplification is strategy-specific, not an inherent property of compound sparsity.\n\n\\paragraph{Random masking as a falsification control.}\nThe random eviction baseline provides a decisive test against the ``trivially expected'' objection.\nIf compound severity amplification were an inherent property of applying two compression methods jointly---rather than an emergent phase-strategy interaction---random eviction should exhibit a comparable phase gradient.\nIt does not: random eviction fails all eight paired permutation tests across both models and all four sparsity levels (8/8 FAIL), producing no statistically significant phase-modulated severity at any operating point. % exp_id: bf16_ds_rand_s015..s030, bf16_qw_rand_s015..s030; verdict: 8/8 FAIL\nThe absence of a phase gradient under random masking isolates the amplification as strategy-specific: it arises from the interaction between importance-based eviction and phase structure, not from compound sparsity per se.\n\n\\paragraph{Cross-model replication and magnitude asymmetry.}\nThe phase-strategy interaction replicates across both models with perfect ordinal agreement: the Spearman rank correlation of Cohen's $d$ effect sizes across sparsity levels is $\\rho{=}1.0$, and a gradient permutation test confirms this monotonic co-escalation ($p{=}0.043$). % exp_id: cross_model_correlation; Spearman rho=1.0, gradient_perm p=0.043\nAll eight paired Wilcoxon tests (4 sparsity levels $\\times$ 2 models) reject $H_0$, confirming the pattern is not an artifact of a single model's weight structure.\n\nThe \\emph{magnitude} of the effect, however, differs substantially.\nQwen's median severity differences ($0.039 \\to 0.235 \\to 1.268 \\to 2.943$) are approximately one-fifth of DeepSeek's ($0.39 \\to 1.48 \\to 7.16 \\to 14.59$), and the onset threshold differs: DeepSeek's gradient is significant from $s{=}0.15$ (Cohen's $d{=}0.607$), while Qwen's becomes clearly significant only at $s \\geq 0.20$ ($d{=}0.722$; $s{=}0.15$ is borderline at $d{=}0.371$). % exp_id: cohens_d_bf16.json (ds: 0.607,0.725,0.953,1.126), cohens_d_bf16_qwen.json (qw: 0.371,0.722,1.233,1.439)\nThe two models share the Qwen2ForCausalLM architecture but differ in training: DeepSeek-R1-Distill-Qwen-7B is distilled from a larger reasoning model, while Qwen2.5-7B-Instruct undergoes standard instruction tuning.\nWe conjecture that distillation amplifies the phase-strategy interaction by producing sharper internal phase transitions---a hypothesis testable by comparing distilled and non-distilled variants at matched scale.\n\n\\paragraph{Mechanistic evidence: discrimination collapse as the robust signal.}\nThe entropy-discrimination collapse hypothesis (\\S\\ref{sec:analysis}) receives partial cross-model support.\nThe discrimination components---Gini coefficient reduction and coefficient-of-variation compression under compound sparsity---are directionally consistent across both models, confirming that importance-based eviction loses discriminative power in low-sparsity phases regardless of training procedure.\nHowever, the entropy component is model-dependent: DeepSeek exhibits consistent negative entropy shifts (attention concentrates further under head pruning), while Qwen shows a sign reversal at $s{=}0.25$ ($\\Delta H {=} {+}0.045$) and near-zero shift at $s{=}0.30$ ($\\Delta H {=} {-}0.007$). % exp_id: mechanism_entropy_qwen; s025: +0.045, s030: -0.007\nThis divergence suggests that discrimination collapse---not entropy redistribution---is the primary driver of the phase-strategy interaction, with entropy behavior being a model-dependent secondary effect.\nWe therefore characterize the mechanistic evidence as \\emph{preliminary}: the discrimination pathway is robust across models, but the complete entropy-discrimination collapse narrative requires the qualification that its entropy component does not generalize.\n\n\\paragraph{Implications for compound sparsity deployment.}"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "41f6d0d7-0cd8-4f5c-980c-54be0504b92e",
+            "uuid": "35a8e0df-ee59-4ca8-a6ff-62bf168f1ebc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Dsf8NqwN8fjJ4YhBhcmpcG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 858,
+                "cache_read_input_tokens": 35599,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 858
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T09:21:34.801Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Tt9V2RCwzaJoknUbURJB1V",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"section_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/docs/paper/discussion.tex\\\", \\\"version\\\": 19, \\\"coverage\\\": \\\"25/25\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "41f6d0d7-0cd8-4f5c-980c-54be0504b92e",
+            "uuid": "3eb5a815-0347-44ec-b50e-2ff8b86124b5",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"section_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/docs/paper/discussion.tex\\\", \\\"version\\\": 19, \\\"coverage\\\": \\\"25/25\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"section_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/docs/paper/discussion.tex\", \"version\": 19, \"coverage\": \"25/25\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Edit 3**: Update the future directions mechanism paragraph to reflect partial confirmation."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "41f6d0d7-0cd8-4f5c-980c-54be0504b92e",
+            "uuid": "13307823-e62d-4468-bb3d-594d13e2ec4e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DEkbz1PoGC6jBHwuteH32v",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1539,
+                "cache_read_input_tokens": 36457,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1539
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0196EKqJJu9CLX4v69A7u8Pd",
+              "name": "mcp__agent-ml-research__edit_paper_section",
+              "input": {
+                "project": "phase-gated-compound-sparse",
+                "section": "discussion",
+                "old_text": "A second direction concerns mechanism validation.\nThe entropy-discrimination collapse hypothesis (\\S\\ref{sec:analysis}) makes testable predictions about attention entropy redistribution under head pruning.\nDirectly measuring per-head entropy shifts across phases---and correlating them with the observed compound severity---would provide causal evidence beyond the correlational structure reported here.",
+                "new_text": "A second direction concerns completing the mechanistic picture.\nThe discrimination collapse component of our hypothesis is robust across models, but the entropy redistribution component is model-dependent (\\S\\ref{sec:discussion}).\nDirectly measuring per-head entropy shifts across architecturally distinct models---and identifying what training-time properties (e.g., distillation depth, RLHF intensity) determine whether entropy concentrates or disperses under head pruning---would clarify the boundary conditions of the full entropy-discrimination collapse mechanism."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "41f6d0d7-0cd8-4f5c-980c-54be0504b92e",
+            "uuid": "342417c9-bc3e-4de1-b475-a48c8d4b2070",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DEkbz1PoGC6jBHwuteH32v",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1539,
+                "cache_read_input_tokens": 36457,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1539
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-14T09:21:42.961Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0196EKqJJu9CLX4v69A7u8Pd",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"section_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/docs/paper/discussion.tex\\\", \\\"version\\\": 20, \\\"coverage\\\": \\\"25/25\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "41f6d0d7-0cd8-4f5c-980c-54be0504b92e",
+            "uuid": "f650fdc0-e642-4d1c-aa0b-840770e82304",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"section_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/docs/paper/discussion.tex\\\", \\\"version\\\": 20, \\\"coverage\\\": \\\"25/25\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"section_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/docs/paper/discussion.tex\", \"version\": 20, \"coverage\": \"25/25\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now let me add the qw_rand_s030 anomaly to the statistical scope limitation paragraph.",
+              "signature": "EpECClkIDRgCKkDJ/OYcoji/WH+c9IQPtgHJawmquK7CstP+kcTfYN8lvriwqwHxDkz2yRWobpGdYCm/0zRFb/Kfs4Y0mCWJuzHkMg9jbGF1ZGUtb3B1cy00LTY4ABIMFUasr97ofWPxp51fGgzTKvvWk+xH5D585CUiMGnH5CmWrg4htEnAZSMvoHVfoBJ239f4R0hSj3V+VAQTvWa4ecVMkam/z7YkE0++AypmiisDFkk5ZFeMrs5V9Wba7Q/R+IWU6gn1FyI99EQYK+5ocag8yfQ18NHN6L36w5W/FiZRB1KELeH/mv4p4SeLTu7LsGP4DoMhmQ2oR3y7BLWB1C55+fQLl1+6WY4bbsbx8TeB5HiKGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "41f6d0d7-0cd8-4f5c-980c-54be0504b92e",
+            "uuid": "dce71de0-0b65-4569-8b2a-c637d9511388",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Umse1UZRdACZbTnxdHcUYA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 530,
+                "cache_read_input_tokens": 37996,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 530
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Edit 4**: Add qw_rand_s030 bootstrap anomaly to the statistical limitations paragraph."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "41f6d0d7-0cd8-4f5c-980c-54be0504b92e",
+            "uuid": "35fa8639-b875-49c8-8d8f-16c279cb7333",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Umse1UZRdACZbTnxdHcUYA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 530,
+                "cache_read_input_tokens": 37996,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 530
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017Xiq4b7826nyYQ6n3hytNM",
+              "name": "mcp__agent-ml-research__edit_paper_section",
+              "input": {
+                "project": "phase-gated-compound-sparse",
+                "section": "discussion",
+                "old_text": "All four permutation tests reject $H_0$ after Bonferroni correction ($p_{\\text{Bonf}} < 0.005$; Table~\\ref{tab:permutation}), with CI lower bounds increasing from $0.19$ to $6.70$---confirming the effect direction at every sparsity level. The permutation CIs at higher sparsity are wider (e.g., $[6.70,\\; 16.29]$ at $s{=}0.30$), reflecting genuine variance in per-problem severity amplification. % exp_id: permutation_test_results.json",
+                "new_text": "All four permutation tests reject $H_0$ after Bonferroni correction ($p_{\\text{Bonf}} < 0.005$; Table~\\ref{tab:permutation}), with CI lower bounds increasing from $0.19$ to $6.70$---confirming the effect direction at every sparsity level. The permutation CIs at higher sparsity are wider (e.g., $[6.70,\\; 16.29]$ at $s{=}0.30$), reflecting genuine variance in per-problem severity amplification. % exp_id: permutation_test_results.json\n\nA notable sensitivity to bootstrap sample size emerged in the random baselines.\nThe Qwen random condition at $s{=}0.30$ initially yielded a borderline PASS verdict with $B{=}5{,}000$ resamples, but re-bootstrapping with $B{=}10{,}000$ reversed it to FAIL ($p{=}0.111$). % exp_id: qw_rand_s030; B=5000 PASS → B=10000 FAIL, p=0.111\nThis reversal, while it strengthens our conclusion (all random baselines now uniformly fail), illustrates that binary PASS/FAIL verdicts near the significance boundary are sensitive to resampling depth---reinforcing the importance of reporting effect sizes and confidence intervals alongside dichotomous outcomes."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "41f6d0d7-0cd8-4f5c-980c-54be0504b92e",
+            "uuid": "2a37816d-0493-49a1-8d3f-433845deb375",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Umse1UZRdACZbTnxdHcUYA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 530,
+                "cache_read_input_tokens": 37996,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 530
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-14T09:21:57.828Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017Xiq4b7826nyYQ6n3hytNM",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"section_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/docs/paper/discussion.tex\\\", \\\"version\\\": 21, \\\"coverage\\\": \\\"25/25\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "41f6d0d7-0cd8-4f5c-980c-54be0504b92e",
+            "uuid": "d98185cc-b990-43d5-bc9b-5c2a3e3ac599",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"section_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/docs/paper/discussion.tex\\\", \\\"version\\\": 21, \\\"coverage\\\": \\\"25/25\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"section_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/docs/paper/discussion.tex\", \"version\": 21, \"coverage\": \"25/25\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Edit 5**: Update the limitations mechanism paragraph to note the entropy component is model-dependent."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "41f6d0d7-0cd8-4f5c-980c-54be0504b92e",
+            "uuid": "06dcdcee-3f76-49e6-8954-6d250d777505",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ATbrSgquWdpDjP5929tLPf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 756,
+                "cache_read_input_tokens": 38526,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 756
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01A2Z7XB6MVFb46ojpB5Xw37",
+              "name": "mcp__agent-ml-research__edit_paper_section",
+              "input": {
+                "project": "phase-gated-compound-sparse",
+                "section": "discussion",
+                "old_text": "Larger models may exhibit different attention redundancy structures that alter the entropy-discrimination collapse dynamics.",
+                "new_text": "Larger models may exhibit different attention redundancy structures that alter the discrimination collapse dynamics (and the model-dependent entropy component may behave differently at scale)."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "41f6d0d7-0cd8-4f5c-980c-54be0504b92e",
+            "uuid": "372f9f1c-6711-48bd-b540-eef6aeb7ab16",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ATbrSgquWdpDjP5929tLPf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 756,
+                "cache_read_input_tokens": 38526,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 756
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-14T09:22:02.746Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01A2Z7XB6MVFb46ojpB5Xw37",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"section_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/docs/paper/discussion.tex\\\", \\\"version\\\": 22, \\\"coverage\\\": \\\"25/25\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "41f6d0d7-0cd8-4f5c-980c-54be0504b92e",
+            "uuid": "d2b35896-e372-4294-be98-ab222a689dc6",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"section_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/docs/paper/discussion.tex\\\", \\\"version\\\": 22, \\\"coverage\\\": \\\"25/25\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"section_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/docs/paper/discussion.tex\", \"version\": 22, \"coverage\": \"25/25\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me verify the final state of the file."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "41f6d0d7-0cd8-4f5c-980c-54be0504b92e",
+            "uuid": "d136a451-1b82-4977-b509-0e44636a41a4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Sy6RxviJDgaUxeRGKRASat",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 297,
+                "cache_read_input_tokens": 39282,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 297
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AeuvUXdqPZ51oZPpbWp4xr",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/discussion.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "41f6d0d7-0cd8-4f5c-980c-54be0504b92e",
+            "uuid": "ae7cc53c-5210-41ee-ba91-db7fa5859449",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Sy6RxviJDgaUxeRGKRASat",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 297,
+                "cache_read_input_tokens": 39282,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 297
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-14T09:22:05.991Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AeuvUXdqPZ51oZPpbWp4xr",
+              "type": "tool_result",
+              "content": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\n4\t\\paragraph{On the predictability of phase-modulated severity.}\n5\tOne might argue that the qualitative direction of our findings is intuitive: in low-sparsity phases, attention distributes broadly across many tokens, so importance scores carry less discriminative signal, and importance-based eviction should degrade.\n6\tWe do not dispute this intuition.\n7\tThe surprise lies in the quantitative structure of the interaction, which is not predictable from first principles alone.\n8\t\n9\tFirst, the \\emph{magnitude} of the severity gradient---$69$--$274{\\times}$ amplification across sparsity levels (Table~\\ref{tab:main-results})---far exceeds what a naive ``less discriminative $\\Rightarrow$ somewhat worse'' argument would predict. % exp_id: bf16_importance_s015..s030; source: experiment_summary_table.json; G=low/high=69,103,222,274\n10\tA reviewer expecting a $2$--$3\\times$ effect would find two-orders-of-magnitude amplification difficult to anticipate without measurement.\n11\tSecond, the gradient is \\emph{phase-specific}: compound interaction concentrates in low-sparsity phases while high-sparsity phases exhibit near-zero compound interaction ($\\widetilde{\\mathrm{II}}_{\\text{high}} < 0.06$ at all sparsity levels). % exp_id: bf16_importance_s015..s030; high-phase medians: 0.006, 0.015, 0.032, 0.053\n12\tThis asymmetry means that importance-based eviction is not uniformly fragile---it is selectively fragile in a phase-dependent manner.\n13\tThird, and most strikingly, a \\emph{crossover} emerges: at $s{=}0.25$, importance-based eviction \\emph{outperforms} random eviction in high-sparsity phases (median severity $0.584$ vs.\\ $3.002$) yet \\emph{underperforms} in low-sparsity phases ($30.903$ vs.\\ $2.915$---a ${>}10{\\times}$ severity inflation relative to random). % exp_id: bf16_importance_s025, bf16_ds_rand_s025; source: crossover_analysis; high: imp=0.584, rand=3.002; low: imp=30.903, rand=2.915\n14\tThe same strategy reverses direction across phases---a phenomenon that cannot be derived from the observation that ``importance scores are noisier when attention is diffuse.''\n15\t% REVIEWER-ATTACK: \"The qualitative direction is trivially expected from attention entropy arguments.\"\n16\t% REBUTTAL: (1) Qualitative direction ≠ quantitative structure: 69-274× amplification is two orders of magnitude, not marginal. (2) Phase-specific concentration + crossover cannot be predicted from single-layer entropy reasoning. (3) Random eviction's flat profile (~1×) shows the amplification is strategy-specific, not an inherent property of compound sparsity.\n17\t\n18\t\\paragraph{Random masking as a falsification control.}\n19\tThe random eviction baseline provides a decisive test against the ``trivially expected'' objection.\n20\tIf compound severity amplification were an inherent property of applying two compression methods jointly---rather than an emergent phase-strategy interaction---random eviction should exhibit a comparable phase gradient.\n21\tIt does not: random eviction fails all eight paired permutation tests across both models and all four sparsity levels (8/8 FAIL), producing no statistically significant phase-modulated severity at any operating point. % exp_id: bf16_ds_rand_s015..s030, bf16_qw_rand_s015..s030; verdict: 8/8 FAIL\n22\tThe absence of a phase gradient under random masking isolates the amplification as strategy-specific: it arises from the interaction between importance-based eviction and phase structure, not from compound sparsity per se.\n23\t\n24\t\\paragraph{Cross-model replication and magnitude asymmetry.}\n25\tThe phase-strategy interaction replicates across both models with perfect ordinal agreement: the Spearman rank correlation of Cohen's $d$ effect sizes across sparsity levels is $\\rho{=}1.0$, and a gradient permutation test confirms this monotonic co-escalation ($p{=}0.043$). % exp_id: cross_model_correlation; Spearman rho=1.0, gradient_perm p=0.043\n26\tAll eight paired Wilcoxon tests (4 sparsity levels $\\times$ 2 models) reject $H_0$, confirming the pattern is not an artifact of a single model's weight structure.\n27\t\n28\tThe \\emph{magnitude} of the effect, however, differs substantially.\n29\tQwen's median severity differences ($0.039 \\to 0.235 \\to 1.268 \\to 2.943$) are approximately one-fifth of DeepSeek's ($0.39 \\to 1.48 \\to 7.16 \\to 14.59$), and the onset threshold differs: DeepSeek's gradient is significant from $s{=}0.15$ (Cohen's $d{=}0.607$), while Qwen's becomes clearly significant only at $s \\geq 0.20$ ($d{=}0.722$; $s{=}0.15$ is borderline at $d{=}0.371$). % exp_id: cohens_d_bf16.json (ds: 0.607,0.725,0.953,1.126), cohens_d_bf16_qwen.json (qw: 0.371,0.722,1.233,1.439)\n30\tThe two models share the Qwen2ForCausalLM architecture but differ in training: DeepSeek-R1-Distill-Qwen-7B is distilled from a larger reasoning model, while Qwen2.5-7B-Instruct undergoes standard instruction tuning.\n31\tWe conjecture that distillation amplifies the phase-strategy interaction by producing sharper internal phase transitions---a hypothesis testable by comparing distilled and non-distilled variants at matched scale.\n32\t\n33\t\\paragraph{Mechanistic evidence: discrimination collapse as the robust signal.}\n34\tThe entropy-discrimination collapse hypothesis (\\S\\ref{sec:analysis}) receives partial cross-model support.\n35\tThe discrimination components---Gini coefficient reduction and coefficient-of-variation compression under compound sparsity---are directionally consistent across both models, confirming that importance-based eviction loses discriminative power in low-sparsity phases regardless of training procedure.\n36\tHowever, the entropy component is model-dependent: DeepSeek exhibits consistent negative entropy shifts (attention concentrates further under head pruning), while Qwen shows a sign reversal at $s{=}0.25$ ($\\Delta H {=} {+}0.045$) and near-zero shift at $s{=}0.30$ ($\\Delta H {=} {-}0.007$). % exp_id: mechanism_entropy_qwen; s025: +0.045, s030: -0.007\n37\tThis divergence suggests that discrimination collapse---not entropy redistribution---is the primary driver of the phase-strategy interaction, with entropy behavior being a model-dependent secondary effect.\n38\tWe therefore characterize the mechanistic evidence as \\emph{preliminary}: the discrimination pathway is robust across models, but the complete entropy-discrimination collapse narrative requires the qualification that its entropy component does not generalize.\n39\t\n40\t\\paragraph{Implications for compound sparsity deployment.}\n41\tOur findings suggest that the standard practice of applying a uniform compression budget across all inference steps is suboptimal for reasoning models.\n42\tCompound severity is not distributed evenly: it concentrates in low-sparsity phases, where the entropy-discrimination collapse mechanism (\\S\\ref{sec:analysis}) renders importance-based eviction unreliable.\n43\tA deployment pipeline that allocates the same sparsity level $s$ to every token position implicitly accepts order-of-magnitude severity penalties during the exploratory reasoning stages that happen to fall in the low-sparsity regime.\n44\t\n45\tThis observation motivates \\emph{phase-aware compression budgets}: rather than a single global sparsity target, the system would allocate higher capacity (lower sparsity) to low-sparsity phases---where compound interaction is most severe---and reclaim that budget in high-sparsity phases, where compound behavior is near-additive and importance-based eviction remains effective.\n46\tThe severity gradient $G$ reported in \\S\\ref{sec:phase-amplification} provides a natural signal for such allocation: phases with $G \\gg 1$ receive a reduced sparsity budget, while phases with $G \\leq 1$ tolerate aggressive compression with minimal quality loss.\n47\t\n48\t\\paragraph{Future directions.}\n49\tThe phase-aware allocation principle above points toward a concrete system design: a \\emph{phase-gated controller} that monitors attention sparsity statistics in real time and dynamically adjusts the compound sparsity budget per reasoning phase.\n50\tThe controller would route each generation step through a low-overhead phase classifier (\\S\\ref{sec:phase-seg}), then apply a phase-specific sparsity configuration derived from the severity gradient.\n51\tWhether such a controller can recover most of the compression benefit while avoiding the severity amplification in low-sparsity phases is an open empirical question.\n52\t\n53\tA second direction concerns completing the mechanistic picture.\n54\tThe discrimination collapse component of our hypothesis is robust across models, but the entropy redistribution component is model-dependent (\\S\\ref{sec:discussion}).\n55\tDirectly measuring per-head entropy shifts across architecturally distinct models---and identifying what training-time properties (e.g., distillation depth, RLHF intensity) determine whether entropy concentrates or disperses under head pruning---would clarify the boundary conditions of the full entropy-discrimination collapse mechanism.\n56\t\n57\tFinally, scaling the empirical methodology to larger models and diverse reasoning tasks would establish the generality of the phase-strategy interaction documented in this work.\n58\t\n59\t\\subsection{Limitations}\n60\t\\label{sec:limitations}\n61\t\n62\t\\paragraph{Model scale.}\n63\tAll experiments are conducted at the 7B parameter scale.\n64\tWhether the phase-modulated severity patterns persist, amplify, or attenuate at larger scales (e.g., 70B) remains untested.\n65\tLarger models may exhibit different attention redundancy structures that alter the discrimination collapse dynamics (and the model-dependent entropy component may behave differently at scale).\n66\t% REVIEWER-ATTACK: \"7B is too small to be relevant for production.\"\n67\t% REBUTTAL: 7B is the most-deployed scale for on-device and cost-constrained serving—exactly where compound sparsity is needed. The mechanism (entropy-discrimination collapse) is scale-agnostic in principle. Scaling experiments are future work.\n68\t\n69\t\\paragraph{Architectural scope.}\n70\tOur two models---DeepSeek-R1-Distill-Qwen-7B and Qwen2.5-7B-Instruct---share the Qwen2ForCausalLM architecture.\n71\tThe cross-model replication (\\S\\ref{sec:cross-model}) confirms that the findings are not artifacts of a single model's weights, but both models share the same attention mechanism design.\n72\tThe entropy-discrimination collapse mechanism is in principle agnostic across attention architectures (it depends on attention redistribution, not architecture-specific components), but empirical validation on architecturally distinct attention designs (e.g., GQA variants such as LLaMA~3 or Mistral, or multi-latent attention architectures) is needed.\n73\t% REVIEWER-ATTACK: \"Cross-model ≠ cross-architecture. Both are Qwen2ForCausalLM.\"\n74\t% REBUTTAL: Correct—we explicitly state this is cross-model (different training: distillation vs instruction tuning), not cross-architecture. The two models isolate the training variable while controlling architecture. Cross-architecture validation (LLaMA, Mistral) is acknowledged as future work.\n75\t\n76\t\\paragraph{Task coverage.}\n77\tWe evaluate exclusively on MATH-500, a mathematical reasoning benchmark.\n78\tDifferent reasoning tasks---code generation, commonsense reasoning, multi-hop question answering---may induce different phase structures with different sparsity distributions, potentially altering the severity gradient profile.\n79\tGeneralizing the phase-strategy interaction to broader reasoning domains is an important next step.\n80\t% REVIEWER-ATTACK: \"Only MATH-500. How do we know this isn't a math-specific artifact?\"\n81\t% REBUTTAL: The mechanism (entropy-discrimination collapse under head pruning) depends on attention distribution properties, not math-specific features. MATH-500 is a standard benchmark with diverse difficulty. However, different reasoning tasks may induce different phase structures—we state this limitation explicitly rather than overclaiming.\n82\t\n83\t\\paragraph{Statistical scope.}\n84\tBootstrap confidence intervals use $B{=}10{,}000$ resamples. The paired permutation test yields $n{=}49$ paired problems for DeepSeek (1 excluded) and $n{=}46$ for Qwen (4 excluded). % exp_id: cohens_d_bf16.json, cohens_d_bf16_qwen.json\n85\tThe severity difference distribution is right-skewed (mean/median ratio ${\\sim}1.6{:}1$ at $s{=}0.30$), motivating our use of medians and nonparametric tests rather than parametric alternatives. % exp_id: bf16_importance_s030; mean_diff=22.94, median_diff=14.59\n86\tAll four permutation tests reject $H_0$ after Bonferroni correction ($p_{\\text{Bonf}} < 0.005$; Table~\\ref{tab:permutation}), with CI lower bounds increasing from $0.19$ to $6.70$---confirming the effect direction at every sparsity level. The permutation CIs at higher sparsity are wider (e.g., $[6.70,\\; 16.29]$ at $s{=}0.30$), reflecting genuine variance in per-problem severity amplification. % exp_id: permutation_test_results.json\n87\t\n88\tA notable sensitivity to bootstrap sample size emerged in the random baselines.\n89\tThe Qwen random condition at $s{=}0.30$ initially yielded a borderline PASS verdict with $B{=}5{,}000$ resamples, but re-bootstrapping with $B{=}10{,}000$ reversed it to FAIL ($p{=}0.111$). % exp_id: qw_rand_s030; B=5000 PASS → B=10000 FAIL, p=0.111\n90\tThis reversal, while it strengthens our conclusion (all random baselines now uniformly fail), illustrates that binary PASS/FAIL verdicts near the significance boundary are sensitive to resampling depth---reinforcing the importance of reporting effect sizes and confidence intervals alongside dichotomous outcomes.\n91\t\n92\t\\paragraph{Sparsity range.}\n93\tOur experiments span $s \\in \\{0.15, 0.20, 0.25, 0.30\\}$, a moderate range representative of practical deployment targets.\n94\tMore extreme sparsity ($s > 0.50$) may exhibit qualitatively different interaction dynamics---the sub-exponential growth pattern suggests the severity gradient may plateau, but this remains unverified.\n95\tConversely, the lower boundary at which phase-modulated amplification first emerges is not yet characterized.\n96\t% REVIEWER-ATTACK: \"Why not test higher sparsity? 0.30 is conservative.\"\n97\t% REBUTTAL: Our focus is on the practically relevant regime where models retain usable quality. At s>0.30 both strategies degrade severely, making II measurement less informative. The sub-exponential growth (C6, $\\Delta$ growth rate $3.8{\\times} \\to 4.8{\\times} \\to 2.0{\\times}$) suggests saturation at higher sparsity, but confirming this is future work.\n98\t\n99\t\\paragraph{No throughput evaluation.}\n100\tThis work focuses on characterizing the \\emph{structural} properties of compound sparsity severity---its phase dependence, strategy dependence, and interaction magnitude.\n101\tWe do not report inference throughput or latency measurements, which are necessary for a complete deployment analysis but orthogonal to the severity characterization that is our primary contribution.\n102\t% REVIEWER-ATTACK: \"No system evaluation. How do we know the severity amplification matters for real deployment?\"\n103\t% REBUTTAL: This is an empirical finding paper, not a method/system paper. The contribution is characterizing *what happens* (phase-modulated severity) and *why* (entropy-discrimination collapse), not building a system to fix it. Phase-gated controllers are explicitly scoped as future work. The finding is actionable regardless: any compound sparsity deployment should be aware of phase-dependent severity.\n104\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "41f6d0d7-0cd8-4f5c-980c-54be0504b92e",
+            "uuid": "554bf4e7-cb8d-43ad-aaae-3633ec59c6d3",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/discussion.tex",
+                "content": "\\section{Discussion}\n\\label{sec:discussion}\n\n\\paragraph{On the predictability of phase-modulated severity.}\nOne might argue that the qualitative direction of our findings is intuitive: in low-sparsity phases, attention distributes broadly across many tokens, so importance scores carry less discriminative signal, and importance-based eviction should degrade.\nWe do not dispute this intuition.\nThe surprise lies in the quantitative structure of the interaction, which is not predictable from first principles alone.\n\nFirst, the \\emph{magnitude} of the severity gradient---$69$--$274{\\times}$ amplification across sparsity levels (Table~\\ref{tab:main-results})---far exceeds what a naive ``less discriminative $\\Rightarrow$ somewhat worse'' argument would predict. % exp_id: bf16_importance_s015..s030; source: experiment_summary_table.json; G=low/high=69,103,222,274\nA reviewer expecting a $2$--$3\\times$ effect would find two-orders-of-magnitude amplification difficult to anticipate without measurement.\nSecond, the gradient is \\emph{phase-specific}: compound interaction concentrates in low-sparsity phases while high-sparsity phases exhibit near-zero compound interaction ($\\widetilde{\\mathrm{II}}_{\\text{high}} < 0.06$ at all sparsity levels). % exp_id: bf16_importance_s015..s030; high-phase medians: 0.006, 0.015, 0.032, 0.053\nThis asymmetry means that importance-based eviction is not uniformly fragile---it is selectively fragile in a phase-dependent manner.\nThird, and most strikingly, a \\emph{crossover} emerges: at $s{=}0.25$, importance-based eviction \\emph{outperforms} random eviction in high-sparsity phases (median severity $0.584$ vs.\\ $3.002$) yet \\emph{underperforms} in low-sparsity phases ($30.903$ vs.\\ $2.915$---a ${>}10{\\times}$ severity inflation relative to random). % exp_id: bf16_importance_s025, bf16_ds_rand_s025; source: crossover_analysis; high: imp=0.584, rand=3.002; low: imp=30.903, rand=2.915\nThe same strategy reverses direction across phases---a phenomenon that cannot be derived from the observation that ``importance scores are noisier when attention is diffuse.''\n% REVIEWER-ATTACK: \"The qualitative direction is trivially expected from attention entropy arguments.\"\n% REBUTTAL: (1) Qualitative direction ≠ quantitative structure: 69-274× amplification is two orders of magnitude, not marginal. (2) Phase-specific concentration + crossover cannot be predicted from single-layer entropy reasoning. (3) Random eviction's flat profile (~1×) shows the amplification is strategy-specific, not an inherent property of compound sparsity.\n\n\\paragraph{Random masking as a falsification control.}\nThe random eviction baseline provides a decisive test against the ``trivially expected'' objection.\nIf compound severity amplification were an inherent property of applying two compression methods jointly---rather than an emergent phase-strategy interaction---random eviction should exhibit a comparable phase gradient.\nIt does not: random eviction fails all eight paired permutation tests across both models and all four sparsity levels (8/8 FAIL), producing no statistically significant phase-modulated severity at any operating point. % exp_id: bf16_ds_rand_s015..s030, bf16_qw_rand_s015..s030; verdict: 8/8 FAIL\nThe absence of a phase gradient under random masking isolates the amplification as strategy-specific: it arises from the interaction between importance-based eviction and phase structure, not from compound sparsity per se.\n\n\\paragraph{Cross-model replication and magnitude asymmetry.}\nThe phase-strategy interaction replicates across both models with perfect ordinal agreement: the Spearman rank correlation of Cohen's $d$ effect sizes across sparsity levels is $\\rho{=}1.0$, and a gradient permutation test confirms this monotonic co-escalation ($p{=}0.043$). % exp_id: cross_model_correlation; Spearman rho=1.0, gradient_perm p=0.043\nAll eight paired Wilcoxon tests (4 sparsity levels $\\times$ 2 models) reject $H_0$, confirming the pattern is not an artifact of a single model's weight structure.\n\nThe \\emph{magnitude} of the effect, however, differs substantially.\nQwen's median severity differences ($0.039 \\to 0.235 \\to 1.268 \\to 2.943$) are approximately one-fifth of DeepSeek's ($0.39 \\to 1.48 \\to 7.16 \\to 14.59$), and the onset threshold differs: DeepSeek's gradient is significant from $s{=}0.15$ (Cohen's $d{=}0.607$), while Qwen's becomes clearly significant only at $s \\geq 0.20$ ($d{=}0.722$; $s{=}0.15$ is borderline at $d{=}0.371$). % exp_id: cohens_d_bf16.json (ds: 0.607,0.725,0.953,1.126), cohens_d_bf16_qwen.json (qw: 0.371,0.722,1.233,1.439)\nThe two models share the Qwen2ForCausalLM architecture but differ in training: DeepSeek-R1-Distill-Qwen-7B is distilled from a larger reasoning model, while Qwen2.5-7B-Instruct undergoes standard instruction tuning.\nWe conjecture that distillation amplifies the phase-strategy interaction by producing sharper internal phase transitions---a hypothesis testable by comparing distilled and non-distilled variants at matched scale.\n\n\\paragraph{Mechanistic evidence: discrimination collapse as the robust signal.}\nThe entropy-discrimination collapse hypothesis (\\S\\ref{sec:analysis}) receives partial cross-model support.\nThe discrimination components---Gini coefficient reduction and coefficient-of-variation compression under compound sparsity---are directionally consistent across both models, confirming that importance-based eviction loses discriminative power in low-sparsity phases regardless of training procedure.\nHowever, the entropy component is model-dependent: DeepSeek exhibits consistent negative entropy shifts (attention concentrates further under head pruning), while Qwen shows a sign reversal at $s{=}0.25$ ($\\Delta H {=} {+}0.045$) and near-zero shift at $s{=}0.30$ ($\\Delta H {=} {-}0.007$). % exp_id: mechanism_entropy_qwen; s025: +0.045, s030: -0.007\nThis divergence suggests that discrimination collapse---not entropy redistribution---is the primary driver of the phase-strategy interaction, with entropy behavior being a model-dependent secondary effect.\nWe therefore characterize the mechanistic evidence as \\emph{preliminary}: the discrimination pathway is robust across models, but the complete entropy-discrimination collapse narrative requires the qualification that its entropy component does not generalize.\n\n\\paragraph{Implications for compound sparsity deployment.}\nOur findings suggest that the standard practice of applying a uniform compression budget across all inference steps is suboptimal for reasoning models.\nCompound severity is not distributed evenly: it concentrates in low-sparsity phases, where the entropy-discrimination collapse mechanism (\\S\\ref{sec:analysis}) renders importance-based eviction unreliable.\nA deployment pipeline that allocates the same sparsity level $s$ to every token position implicitly accepts order-of-magnitude severity penalties during the exploratory reasoning stages that happen to fall in the low-sparsity regime.\n\nThis observation motivates \\emph{phase-aware compression budgets}: rather than a single global sparsity target, the system would allocate higher capacity (lower sparsity) to low-sparsity phases---where compound interaction is most severe---and reclaim that budget in high-sparsity phases, where compound behavior is near-additive and importance-based eviction remains effective.\nThe severity gradient $G$ reported in \\S\\ref{sec:phase-amplification} provides a natural signal for such allocation: phases with $G \\gg 1$ receive a reduced sparsity budget, while phases with $G \\leq 1$ tolerate aggressive compression with minimal quality loss.\n\n\\paragraph{Future directions.}\nThe phase-aware allocation principle above points toward a concrete system design: a \\emph{phase-gated controller} that monitors attention sparsity statistics in real time and dynamically adjusts the compound sparsity budget per reasoning phase.\nThe controller would route each generation step through a low-overhead phase classifier (\\S\\ref{sec:phase-seg}), then apply a phase-specific sparsity configuration derived from the severity gradient.\nWhether such a controller can recover most of the compression benefit while avoiding the severity amplification in low-sparsity phases is an open empirical question.\n\nA second direction concerns completing the mechanistic picture.\nThe discrimination collapse component of our hypothesis is robust across models, but the entropy redistribution component is model-dependent (\\S\\ref{sec:discussion}).\nDirectly measuring per-head entropy shifts across architecturally distinct models---and identifying what training-time properties (e.g., distillation depth, RLHF intensity) determine whether entropy concentrates or disperses under head pruning---would clarify the boundary conditions of the full entropy-discrimination collapse mechanism.\n\nFinally, scaling the empirical methodology to larger models and diverse reasoning tasks would establish the generality of the phase-strategy interaction documented in this work.\n\n\\subsection{Limitations}\n\\label{sec:limitations}\n\n\\paragraph{Model scale.}\nAll experiments are conducted at the 7B parameter scale.\nWhether the phase-modulated severity patterns persist, amplify, or attenuate at larger scales (e.g., 70B) remains untested.\nLarger models may exhibit different attention redundancy structures that alter the discrimination collapse dynamics (and the model-dependent entropy component may behave differently at scale).\n% REVIEWER-ATTACK: \"7B is too small to be relevant for production.\"\n% REBUTTAL: 7B is the most-deployed scale for on-device and cost-constrained serving—exactly where compound sparsity is needed. The mechanism (entropy-discrimination collapse) is scale-agnostic in principle. Scaling experiments are future work.\n\n\\paragraph{Architectural scope.}\nOur two models---DeepSeek-R1-Distill-Qwen-7B and Qwen2.5-7B-Instruct---share the Qwen2ForCausalLM architecture.\nThe cross-model replication (\\S\\ref{sec:cross-model}) confirms that the findings are not artifacts of a single model's weights, but both models share the same attention mechanism design.\nThe entropy-discrimination collapse mechanism is in principle agnostic across attention architectures (it depends on attention redistribution, not architecture-specific components), but empirical validation on architecturally distinct attention designs (e.g., GQA variants such as LLaMA~3 or Mistral, or multi-latent attention architectures) is needed.\n% REVIEWER-ATTACK: \"Cross-model ≠ cross-architecture. Both are Qwen2ForCausalLM.\"\n% REBUTTAL: Correct—we explicitly state this is cross-model (different training: distillation vs instruction tuning), not cross-architecture. The two models isolate the training variable while controlling architecture. Cross-architecture validation (LLaMA, Mistral) is acknowledged as future work.\n\n\\paragraph{Task coverage.}\nWe evaluate exclusively on MATH-500, a mathematical reasoning benchmark.\nDifferent reasoning tasks---code generation, commonsense reasoning, multi-hop question answering---may induce different phase structures with different sparsity distributions, potentially altering the severity gradient profile.\nGeneralizing the phase-strategy interaction to broader reasoning domains is an important next step.\n% REVIEWER-ATTACK: \"Only MATH-500. How do we know this isn't a math-specific artifact?\"\n% REBUTTAL: The mechanism (entropy-discrimination collapse under head pruning) depends on attention distribution properties, not math-specific features. MATH-500 is a standard benchmark with diverse difficulty. However, different reasoning tasks may induce different phase structures—we state this limitation explicitly rather than overclaiming.\n\n\\paragraph{Statistical scope.}\nBootstrap confidence intervals use $B{=}10{,}000$ resamples. The paired permutation test yields $n{=}49$ paired problems for DeepSeek (1 excluded) and $n{=}46$ for Qwen (4 excluded). % exp_id: cohens_d_bf16.json, cohens_d_bf16_qwen.json\nThe severity difference distribution is right-skewed (mean/median ratio ${\\sim}1.6{:}1$ at $s{=}0.30$), motivating our use of medians and nonparametric tests rather than parametric alternatives. % exp_id: bf16_importance_s030; mean_diff=22.94, median_diff=14.59\nAll four permutation tests reject $H_0$ after Bonferroni correction ($p_{\\text{Bonf}} < 0.005$; Table~\\ref{tab:permutation}), with CI lower bounds increasing from $0.19$ to $6.70$---confirming the effect direction at every sparsity level. The permutation CIs at higher sparsity are wider (e.g., $[6.70,\\; 16.29]$ at $s{=}0.30$), reflecting genuine variance in per-problem severity amplification. % exp_id: permutation_test_results.json\n\nA notable sensitivity to bootstrap sample size emerged in the random baselines.\nThe Qwen random condition at $s{=}0.30$ initially yielded a borderline PASS verdict with $B{=}5{,}000$ resamples, but re-bootstrapping with $B{=}10{,}000$ reversed it to FAIL ($p{=}0.111$). % exp_id: qw_rand_s030; B=5000 PASS → B=10000 FAIL, p=0.111\nThis reversal, while it strengthens our conclusion (all random baselines now uniformly fail), illustrates that binary PASS/FAIL verdicts near the significance boundary are sensitive to resampling depth---reinforcing the importance of reporting effect sizes and confidence intervals alongside dichotomous outcomes.\n\n\\paragraph{Sparsity range.}\nOur experiments span $s \\in \\{0.15, 0.20, 0.25, 0.30\\}$, a moderate range representative of practical deployment targets.\nMore extreme sparsity ($s > 0.50$) may exhibit qualitatively different interaction dynamics---the sub-exponential growth pattern suggests the severity gradient may plateau, but this remains unverified.\nConversely, the lower boundary at which phase-modulated amplification first emerges is not yet characterized.\n% REVIEWER-ATTACK: \"Why not test higher sparsity? 0.30 is conservative.\"\n% REBUTTAL: Our focus is on the practically relevant regime where models retain usable quality. At s>0.30 both strategies degrade severely, making II measurement less informative. The sub-exponential growth (C6, $\\Delta$ growth rate $3.8{\\times} \\to 4.8{\\times} \\to 2.0{\\times}$) suggests saturation at higher sparsity, but confirming this is future work.\n\n\\paragraph{No throughput evaluation.}\nThis work focuses on characterizing the \\emph{structural} properties of compound sparsity severity---its phase dependence, strategy dependence, and interaction magnitude.\nWe do not report inference throughput or latency measurements, which are necessary for a complete deployment analysis but orthogonal to the severity characterization that is our primary contribution.\n% REVIEWER-ATTACK: \"No system evaluation. How do we know the severity amplification matters for real deployment?\"\n% REBUTTAL: This is an empirical finding paper, not a method/system paper. The contribution is characterizing *what happens* (phase-modulated severity) and *why* (entropy-discrimination collapse), not building a system to fix it. Phase-gated controllers are explicitly scoped as future work. The finding is actionable regardless: any compound sparsity deployment should be aware of phase-dependent severity.\n",
+                "numLines": 104,
+                "startLine": 1,
+                "totalLines": 104
+              }
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "File looks correct. Summary:\n\n**Placeholder replacements (1)**:\n- Crossover numbers updated from old II values (0.032/0.818/7.20/1.36) to confirmed bf16 raw severity values (0.584/3.002/30.903/2.915)\n\n**New paragraphs added (3)**:\n1. **\"Random masking as a falsification control\"** (lines 18-22) — 8/8 FAIL evidence, isolates amplification as strategy-specific\n2. **\"Cross-model replication and magnitude asymmetry\"** (lines 24-31) — Spearman ρ=1.0, gradient permutation p=0.043, Wilcoxon 8/8 significant, Qwen ~1/5 magnitude, onset threshold difference, distillation conjecture\n3. **\"Mechanistic evidence: discrimination collapse as the robust signal\"** (lines 33-38) — Gini/CV robust, entropy model-dependent (Qwen s025 reversal +0.045, s030 near-zero -0.007), framed as \"preliminary mechanistic evidence\"\n\n**Content updated in existing paragraphs (3)**:\n- Future directions §: mechanism paragraph rewritten to reflect partial confirmation and model-dependent entropy\n- Statistical scope limitation: added qw_rand_s030 B=5000→B=10000 PASS→FAIL anomaly (lines 88-90)\n- Model scale limitation: updated to reference model-dependent entropy component\n\n**No remaining TODO/PENDING markers.** All confirmed numbers are incorporated with provenance comments. Framing follows constraints: \"emergent phase-strategy interaction\" throughout, no \"importance is broken\" framing."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "41f6d0d7-0cd8-4f5c-980c-54be0504b92e",
+            "uuid": "f9895766-3393-44e1-b6a9-d01a6385e93a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MG5zjA63SkHjGdcwnwj8ha",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4257,
+                "cache_read_input_tokens": 39579,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4257
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File looks correct. Summary:\n\n**Placeholder replacements (1)**:\n- Crossover numbers updated from old II values (0.032/0.818/7.20/1.36) to confirmed bf16 raw severity values (0.584/3.002/30.903/2.915)\n\n**New paragraphs added (3)**:\n1. **\"Random masking as a falsification control\"** (lines 18-22) — 8/8 FAIL evidence, isolates amplification as strategy-specific\n2. **\"Cross-model replication and magnitude asymmetry\"** (lines 24-31) — Spearman ρ=1.0, gradient permutation p=0.043, Wilcoxon 8/8 significant, Qwen ~1/5 magnitude, onset threshold difference, distillation conjecture\n3. **\"Mechanistic evidence: discrimination collapse as the robust signal\"** (lines 33-38) — Gini/CV robust, entropy model-dependent (Qwen s025 reversal +0.045, s030 near-zero -0.007), framed as \"preliminary mechanistic evidence\"\n\n**Content updated in existing paragraphs (3)**:\n- Future directions §: mechanism paragraph rewritten to reflect partial confirmation and model-dependent entropy\n- Statistical scope limitation: added qw_rand_s030 B=5000→B=10000 PASS→FAIL anomaly (lines 88-90)\n- Model scale limitation: updated to reference model-dependent entropy component\n\n**No remaining TODO/PENDING markers.** All confirmed numbers are incorporated with provenance comments. Framing follows constraints: \"emergent phase-strategy interaction\" throughout, no \"importance is broken\" framing."
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 245173,
+            "duration_api_ms": 245875,
+            "num_turns": 10,
+            "stop_reason": "end_turn",
+            "session_id": "41f6d0d7-0cd8-4f5c-980c-54be0504b92e",
+            "total_cost_usd": 0.6546427499999998,
+            "usage": {
+              "input_tokens": 13,
+              "cache_creation_input_tokens": 31995,
+              "cache_read_input_tokens": 290194,
+              "output_tokens": 12314,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 31995,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 402,
+                  "cache_read_input_tokens": 39579,
+                  "cache_creation_input_tokens": 4257,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 4257
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1562,
+                "outputTokens": 20,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001662,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 13,
+                "outputTokens": 12314,
+                "cacheReadInputTokens": 290194,
+                "cacheCreationInputTokens": 31995,
+                "webSearchRequests": 0,
+                "costUSD": 0.6529807499999998,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "61b8c489-d164-4b40-92e4-28de82ff0a56"
+          },
+          "id": "event-000034"
+        }
+      ],
+      "message_count": 34
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-discussion-s7.md"
+}

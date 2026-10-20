@@ -1,0 +1,28 @@
+paper_key: "bengio2015scheduled"
+title: "Scheduled Sampling for Sequence Prediction with Recurrent Neural Networks"
+venue: "NeurIPS 2015"
+full_text_available: false
+
+research:
+  baselines: ["teacher forcing", "free-running generation"]
+  metrics:
+    - {name: "BLEU", direction: "higher_better"}
+    - {name: "perplexity", direction: "lower_better"}
+    - {name: "accuracy", direction: "higher_better"}
+  datasets:
+    - {name: "WMT translation", size: "standard"}
+    - {name: "image captioning (MSCOCO)", size: "standard"}
+    - {name: "speech recognition", size: "standard"}
+  ablation_dimensions: ["sampling schedule (linear, exponential, inverse sigmoid)", "curriculum pace"]
+  training_recipe: {optimizer: "SGD/Adam", hardware: "GPU"}
+  method_family: "exposure bias / scheduled sampling"
+
+positioning:
+  core_claim: "Gradually transitioning from teacher forcing to model predictions during training reduces exposure bias and improves generation quality"
+  key_results: "consistent improvements across translation, captioning, speech tasks"
+  limitations: ["schedule hyperparameter sensitivity", "may slow convergence", "does not fully solve exposure bias"]
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

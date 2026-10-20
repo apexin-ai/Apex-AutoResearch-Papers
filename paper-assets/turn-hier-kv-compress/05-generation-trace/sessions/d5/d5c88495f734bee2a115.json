@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d5c88495f734bee2a115",
+  "project": "turn-hier-kv-compress",
+  "kind": "result",
+  "title": "experiment mvp v3b submit",
+  "task_key": "worker_experiment_mvp_v3b_submit_20260513T162356",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_mvp_v3b_submit_20260513T162356_result.json",
+    "occurrence": 1,
+    "bytes": 575,
+    "sha256": "f6c18fdf1c16f7bc51629d33863e4140b7fe51d4879f2cbda46d1fa139c1ae99"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**Step 1** — role_extractor 已原生支持 ipython → TOOL_RESULT、`<think>` → THINKING_TRACE。65 条 trace 全部解析成功，段类型覆盖完整。\n\n**Step 2** — dry-run 通过。2 条 trace（含 think / ipython）× 3 方法 × CR=0.7，无 crash，结果合理。\n\n**Step 3** — 两个实验已提交并运行：\n- `mvp_v3b_cr70` → cuda:0, PID 99059\n- `mvp_v3b_cr85` → cuda:1, PID 99138\n\n**Step 4** — GPU 负载确认（各 ~15GB），registry 已更新为 RUNNING，spec 包含完整 provenance。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-mvp-v3b-submit.md"
+}

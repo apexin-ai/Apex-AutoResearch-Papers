@@ -1,0 +1,493 @@
+{
+  "schema_version": "1.0",
+  "id": "c4b36f4216336e1b7285",
+  "project": "redundancy-compound-sparsity-2",
+  "kind": "conversation",
+  "title": "analysis d003 reasoning traces",
+  "task_key": "worker_analysis_d003_reasoning_traces_20260512T155427",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_d003_reasoning_traces_20260512T155427.jsonl",
+    "occurrence": 1,
+    "bytes": 19086,
+    "sha256": "0d65ae479e797f70c7a29528cecb0c159ed6922357f44931c91550e8d299e6c6"
+  },
+  "statistics": {
+    "messages": 23,
+    "user_turns": 0,
+    "tool_calls": 11,
+    "roles": {
+      "tool_call": 11,
+      "tool_result": 11,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-12T15:57:43.624462+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_d003_reasoning_traces_20260512T155427",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-12T15:57:43.624855+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_d003_reasoning_traces_20260512T155427",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-12T15:57:43.625052+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_d003_reasoning_traces_20260512T155427",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "cat /root/carc/d003_reasoning_results.json"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-12T15:57:43.625188+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_d003_reasoning_traces_20260512T155427",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "tail -200 /root/carc/d003_exp1.log"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-12T15:57:43.625313+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_d003_reasoning_traces_20260512T155427",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "find /root/carc/ -maxdepth 1 -name \"d003*.json\" -type f"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-12T15:57:43.625481+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_d003_reasoning_traces_20260512T155427",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-verified-formalizer-rl",
+              "filters": "{'exp_id': 'd003_reasoning_traces'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-12T15:57:43.625734+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"d003_reasoning_traces\\\\\\\",\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"/root/carc/models/DeepSeek-R1-Distill-Qwen-14B\\\\\\\",\\\\n    \\\\\\\"budget_ratio\\\\\\\": 0.5,\\\\n    \\\\\\\"budget\\\\\\\": 12025,\\\\n    \\\\\\\"grace_window\\\\\\\": 175,\\\\n    \\\\\\\"num_traces\\\\\\\": 20,\\\\n    \\\\\\\"total_tokens\\\\\\\": 30063,\\\\n    \\\\\\\"prefill_len\\\\\\\": 24050,\\\\n    \\\\\\\"eval_len\\\\\\\": 6013\\\\n  },\\\\n  \\\\\\\"results\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"strategy\\\\\\\": \\\\\\\"full\\\\\\\",\\\\n      \\\\\\\"ppl\\\\\\\": 1.212,\\\\n      \\\\\\\"eval_tokens\\\\\\\": 6012,\\\\n      \\\\\\\"prefill_tokens\\\\\\\": 24050,\\\\n      \\\\\\\"elapsed_seconds\\\\\\\": 216.0\\\\n    },\\\\n    {\\\\n      \\\\\\\"strategy\\\\\\\": \\\\\\\"ema_0.9\\\\\\\",\\\\n      \\\\\\\"ppl\\\\\\\": 1.2522,\\\\n      \\\\\\\"eval_tokens\\\\\\\": 6012,\\\\n      \\\\\\\"prefill_tokens\\\\\\\": 24050,\\\\n      \\\\\\\"total_evicted\\\\\\\": 18038,\\\\n      \\\\\\\"eviction_triggers\\\\\\\": 5992,\\\\n      \\\\\\\"avg_evicted_score\\\\\\\": 0.4716384731764301,\\\\n      \\\\\\\"cache_utilization\\\\\\\": 1.0000831600831601,\\\\n      \\\\\\\"elapsed_seconds\\\\\\\": 1180.7\\\\n    },\\\\n    {\\\\n      \\\\\\\"strategy\\\\\\\": \\\\\\\"ema_0.7\\\\\\\",\\\\n      \\\\\\\"ppl\\\\\\\": 1.2706,\\\\n      \\\\\\\"eval_tokens\\\\\\\": 6012,\\\\n      \\\\\\\"prefill_tokens\\\\\\\": 24050,\\\\n      \\\\\\\"total_evicted\\\\\\\": 18038,\\\\n      \\\\\\\"eviction_triggers\\\\\\\": 5992,\\\\n      \\\\\\\"avg_evicted_score\\\\\\\": 0.4853543894100459,\\\\n      \\\\\\\"cache_utilization\\\\\\\": 1.0000831600831601,\\\\n      \\\\\\\"elapsed_seconds\\\\\\\": 1178.1\\\\n    },\\\\n    {\\\\n      \\\\\\\"strategy\\\\\\\": \\\\\\\"ema_0.5\\\\\\\",\\\\n      \\\\\\\"ppl\\\\\\\": 1.278,\\\\n      \\\\\\\"eval_tokens\\\\\\\": 6012,\\\\n      \\\\\\\"prefill_tokens\\\\\\\": 24050,\\\\n      \\\\\\\"total_evicted\\\\\\\": 18038,\\\\n      \\\\\\\"eviction_triggers\\\\\\\": 5992,\\\\n      \\\\\\\"avg_evicted_score\\\\\\\": 0.48768998905215033,\\\\n      \\\\\\\"cache_utilization\\\\\\\": 1.0000831600831601,\\\\n      \\\\\\\"elapsed_seconds\\\\\\\": 1179.3\\\\n    },\\\\n    {\\\\n      \\\\\\\"strategy\\\\\\\": \\\\\\\"random\\\\\\\",\\\\n      \\\\\\\"ppl\\\\\\\": 1.2271,\\\\n      \\\\\\\"eval_tokens\\\\\\\": 6012,\\\\n      \\\\\\\"prefill_tokens\\\\\\\": 24050,\\\\n      \n…[truncated 922 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_d003_reasoning_traces_20260512T155427",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-12T15:57:43.625920+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'tail -200 /root/carc/d003_exp1.log'\\\\n\\\\nStdout:\\\\n\\\\n  [full] eval:  39%|███▉      | 2336/6013 [01:18<02:06, 29.17it/s]\\\\n  [full] eval:  39%|███▉      | 2339/6013 [01:18<02:05, 29.17it/s]\\\\n  [full] eval:  39%|███▉      | 2342/6013 [01:19<02:05, 29.16it/s]\\\\n  [full] eval:  39%|███▉      | 2345/6013 [01:19<02:05, 29.13it/s]\\\\n  [full] eval:  39%|███▉      | 2348/6013 [01:19<02:05, 29.14it/s]\\\\n  [full] eval:  39%|███▉      | 2351/6013 [01:19<02:05, 29.15it/s]\\\\n  [full] eval:  39%|███▉      | 2354/6013 [01:19<02:05, 29.16it/s]\\\\n  [full] eval:  39%|███▉      | 2357/6013 [01:19<02:05, 29.16it/s]\\\\n  [full] eval:  39%|███▉      | 2360/6013 [01:19<02:05, 29.16it/s]\\\\n  [full] eval:  39%|███▉      | 2363/6013 [01:19<02:05, 29.15i\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 32.69}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_d003_reasoning_traces_20260512T155427",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-12T15:57:43.626063+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"No existing session\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 11.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_d003_reasoning_traces_20260512T155427",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-12T15:57:43.626188+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0189}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_d003_reasoning_traces_20260512T155427",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-12T15:57:43.626353+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_d003_reasoning_traces_20260512T155427",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-16980",
+              "command": "ls -la /root/carc/d003*.json"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-12T15:57:43.626511+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 2145 May 12 23:52 /root/carc/d003_reasoning_results.json\\\\n-rw-r--r-- 1 root root 2204 May 12 23:46 /root/carc/d003_wikitext32k_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 44.09}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_d003_reasoning_traces_20260512T155427",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-12T15:57:43.626681+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__save_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_d003_reasoning_traces_20260512T155427",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "tool_args": {
+              "project": "solver-verified-formalizer-rl",
+              "file": "artifacts/d003_reasoning_traces/analysis.md",
+              "content": "# d003_reasoning_traces 实验分析\n\n## 实验配置\n- **模型**: DeepSeek-R1-Distill-Qwen-14B\n- **数据**: MATH reasoning traces (20 traces)\n- **总 tokens**: 30,063 (prefill 24,050 + eval 6,013)\n- **Budget ratio**: 0.5 (cache budget = 12,025)\n- **Grace window**: 175\n\n## 结果\n\n| Strategy | PPL | vs Full (%) | vs Random (%) | Elapsed (s) |\n|----------|-----|-------------|---------------|-------------|\n| full | 1.2120 | — | -1.23% | 216.0 |\n| recency | 1.2170 | +0.41% | -0.82% | 229.3 |\n| random | 1.2271 | +1.25% | — | 229.1 |\n| ema_0.9 | 1.2522 | +3.32% | +2.04% | 1180.7 |\n| ema_0.7 | 1.2706 | +4.83% | +3.54% | 1178.1 |\n| ema_0.5 | 1.2780 | +5.45% | +4.15% | 1179.3 |\n\n## 关键发现\n\n1. **Sanity check: FAIL** — EMA eviction 未能优于 random eviction，反而显著更差\n   - Best EMA (γ=0.9) PPL=1.2522 vs Random PPL=1.2271，EMA 差 2.04%\n   - 成功标准要求 EMA 优于 random ≥ 5%，实际 EMA 劣于 random 2.04%\n\n2. **Recency eviction 表现最佳** — PPL=1.217，仅比 full cache 差 0.41%，优于 random 0.82%\n\n3. **EMA γ 越大越好** — γ=0.9 > 0.7 > 0.5，但即便最优 γ 也不如 random\n\n4. **与 WikiText-2 实验一致** — 两个数据集上 EMA 均劣于 random：\n   - WikiText-2: EMA vs random = -1.77%（EMA 更差）\n   - Reasoning traces: EMA vs random = -2.04%（EMA 更差）\n\n5. **EMA eviction 速度极慢** — EMA 策略耗时 ~1180s vs random/recency ~229s（约 5x 慢），因为需要逐 token 更新 score\n\n## 结论\n\nEMA-based O(1) KV cache eviction 在两个不同类型的数据集（WikiText-2 通用文本、MATH reasoning traces）上均未通过 sanity check。EMA score 作为 token 重要性指标的基本假设不成立——它不能有效区分应保留和应驱逐的 KV cache entries。\n\nRecency（保留最近的 tokens）是更强的 baseline，在 reasoning traces 上几乎无损（+0.41% PPL）。这暗示 reasoning traces 的注意力模式高度局部化，远处 token 的重要性衰减很快。\n"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-12T15:57:43.626836+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"file 'artifacts/d003_reasoning_traces/analysis.md' is not writable via save_project_file. Writable: ['memory.md', 'paper_framing.md', 'writing_plan.yaml'].\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_d003_reasoning_traces_20260512T155427",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-12T15:57:43.626964+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_d003_reasoning_traces_20260512T155427",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "d003_reasoning_traces",
+              "field": "status",
+              "value": "DONE",
+              "project": "solver-verified-formalizer-rl",
+              "spec": "{'command': 'python /root/carc/d003_reasoning_traces.py', 'server': 'westd-16980', 'data_path': 'MATH reasoning traces (20 traces)', 'data_count': 30063, 'model_name': 'DeepSeek-R1-Distill-Qwen-14B', 'seed': 42}"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-12T15:57:43.627232+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d003_reasoning_traces\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T12:00:42.213Z\\\", \\\"updated_at\\\": \\\"2026-05-12T15:57:11.395Z\\\", \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"/root/carc/d003_reasoning_results.json\\\", \\\"log_path\\\": \\\"/root/carc/d003_exp1.log\\\", \\\"command\\\": \\\"python /root/carc/d003_reasoning_traces.py\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"data_path\\\": \\\"MATH reasoning traces (20 traces)\\\", \\\"data_count\\\": 30063, \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-14B\\\", \\\"seed\\\": 42}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-12T15:53:50.504Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-12T15:53:40.620856+00:00\\\"}]}, \\\"metrics\\\": {\\\"full_ppl\\\": 1.212, \\\"ema_0.9_ppl\\\": 1.2522, \\\"ema_0.7_ppl\\\": 1.2706, \\\"ema_0.5_ppl\\\": 1.278, \\\"random_ppl\\\": 1.2271, \\\"recency_ppl\\\": 1.217, \\\"ema_vs_random_gap_pct\\\": -2.05, \\\"ema_vs_full_gap_pct\\\": 3.32, \\\"recency_vs_full_gap_pct\\\": 0.41, \\\"pass\\\": false}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-12T15:55:11.238Z\\\"}, \\\"hint\\\": \\\"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1583}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_d003_reasoning_traces_20260512T155427",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-12T15:57:43.627535+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_d003_reasoning_traces_20260512T155427",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-12T15:57:43.627691+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_d003_reasoning_traces_20260512T155427",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-12T15:57:43.627832+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_d003_reasoning_traces_20260512T155427",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/artifacts/",
+              "description": "List artifacts directory"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-12T15:57:43.627966+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "_project\nbaseline_code_survey.md\nbaseline_integration_notes.md\ncarc_calibrate.py\ncarc_generate.py\ncarc_kv_eviction.py\ncarc_mvp.py\ncarc_mvp_seed1337\ncarc_utils.py\ncode_survey_report.md\nliterature_map.yaml\nmanifest.yaml\nmvp_001\nmvp_merged_analysis.md\nsanity_kv_eviction\nteal_calibration_notes.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_d003_reasoning_traces_20260512T155427",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-12T15:57:43.628169+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_d003_reasoning_traces_20260512T155427",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "d003_reasoning_traces_analysis",
+              "type": "report",
+              "description": "d003_reasoning_traces sanity check 分析报告：EMA eviction vs random/recency on MATH reasoning traces, conclusion=negative",
+              "project": "solver-verified-formalizer-rl",
+              "exp_id": "d003_reasoning_traces",
+              "content": "# d003_reasoning_traces 实验分析\n\n## 实验配置\n- **模型**: DeepSeek-R1-Distill-Qwen-14B\n- **数据**: MATH reasoning traces (20 traces)\n- **总 tokens**: 30,063 (prefill 24,050 + eval 6,013)\n- **Budget ratio**: 0.5 (cache budget = 12,025)\n- **Grace window**: 175\n\n## 结果\n\n| Strategy | PPL | vs Full (%) | vs Random (%) | Elapsed (s) |\n|----------|-----|-------------|---------------|-------------|\n| full | 1.2120 | — | -1.23% | 216.0 |\n| recency | 1.2170 | +0.41% | -0.82% | 229.3 |\n| random | 1.2271 | +1.25% | — | 229.1 |\n| ema_0.9 | 1.2522 | +3.32% | +2.04% | 1180.7 |\n| ema_0.7 | 1.2706 | +4.83% | +3.54% | 1178.1 |\n| ema_0.5 | 1.2780 | +5.45% | +4.15% | 1179.3 |\n\n## 关键发现\n\n1. **Sanity check: FAIL** — EMA eviction 未能优于 random eviction，反而显著更差\n   - Best EMA (γ=0.9) PPL=1.2522 vs Random PPL=1.2271，EMA 差 2.04%\n   - 成功标准要求 EMA 优于 random ≥ 5%，实际 EMA 劣于 random 2.04%\n\n2. **Recency eviction 表现最佳** — PPL=1.217，仅比 full cache 差 0.41%，优于 random 0.82%\n\n3. **EMA γ 越大越好** — γ=0.9 > 0.7 > 0.5，但即便最优 γ 也不如 random\n\n4. **与 WikiText-2 实验一致** — 两个数据集上 EMA 均劣于 random：\n   - WikiText-2: EMA vs random = -1.77%（EMA 更差）\n   - Reasoning traces: EMA vs random = -2.04%（EMA 更差）\n\n5. **EMA eviction 速度极慢** — EMA 策略耗时 ~1180s vs random/recency ~229s（约 5x 慢），因为需要逐 token 更新 score\n\n## 对比前序实验 (d003_wikitext_32k)\n\n| 指标 | WikiText-2 32K | Reasoning Traces |\n|------|---------------|-----------------|\n| ppl_full | 7.18 | 1.212 |\n| ppl_ema_0.9 | 7.78 | 1.2522 |\n| ppl_random | 7.64 | 1.2271 |\n| ppl_recency | 7.18 | 1.217 |\n| EMA vs random | -1.77% | -2.04% |\n| recency vs full | +0.00% | +0.41% |\n\n两个数据集一致表明：EMA attention score 不是有效的 token 重要性指标。\n\n## 结论\n\nEMA-based O(1) KV cache eviction 在两个不同类型的数据集上均未通过 sanity check。EMA score 作为 token 重要性指标的基本假设不成立——它不能有效区分应保留和应驱逐的 KV cache entries。\n\nRecency（保留最近的 tokens）是更强的 baseline，在 reasoning traces 上几乎无损（+0.41% PPL）。这暗示 reasoning traces 的注意力模式高度局部化，远处 token 的重要性衰减很快。",
+              "content_filename": "analysis.md",
+              "tags": "['d003', 'kv-cache', 'eviction', 'sanity-check', 'negative']"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-12T15:57:43.628371+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260512_2ef851\\\", \\\"name\\\": \\\"d003_reasoning_traces_analysis\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"d003_reasoning_traces sanity check 分析报告：EMA eviction vs random/recency on MATH reasoning traces, conclusion=negative\\\", \\\"path\\\": \\\"projects/solver-verified-formalizer-rl/artifacts/d003_reasoning_traces/report/analysis.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"solver-verified-formalizer-rl\\\", \\\"exp_id\\\": \\\"d003_reasoning_traces\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-12T15:57:36.048948+00:00\\\", \\\"tags\\\": [\\\"d003\\\", \\\"kv-cache\\\", \\\"eviction\\\", \\\"sanity-check\\\", \\\"negative\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_d003_reasoning_traces_20260512T155427",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-12T15:57:43.628611+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n**d003_reasoning_traces: Sanity Check FAIL (negative)**\n\n| Strategy | PPL | vs Full | vs Random |\n|----------|-----|---------|-----------|\n| full | 1.212 | — | — |\n| recency | 1.217 | +0.41% | -0.82% |\n| random | 1.2271 | +1.25% | — |\n| ema_0.9 | 1.2522 | +3.32% | **+2.04%** |\n| ema_0.7 | 1.2706 | +4.83% | +3.54% |\n| ema_0.5 | 1.278 | +5.45% | +4.15% |\n\n两个数据集结论一致：EMA attention score 不是有效的 eviction 信号，在 WikiText-2（-1.77%）和 reasoning traces（-2.04%）上均劣于 random baseline。Recency 是最强 eviction 策略（+0.41% vs full）。\n\n已更新：\n- Registry `d003_reasoning_traces`: status=DONE, conclusion=negative, 完整 metrics\n- Artifact `analysis.md` 已注册"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_d003_reasoning_traces_20260512T155427"
+          },
+          "id": "event-000023"
+        }
+      ],
+      "message_count": 23
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-d003-reasoning-traces.md"
+}

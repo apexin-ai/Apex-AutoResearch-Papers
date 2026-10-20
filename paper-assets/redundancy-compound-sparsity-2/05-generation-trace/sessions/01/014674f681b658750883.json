@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "014674f681b658750883",
+  "project": "redundancy-compound-sparsity-2",
+  "kind": "result",
+  "title": "research baseline h2o rkv detail",
+  "task_key": "worker_research_baseline_h2o_rkv_detail_20260512T153115",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_baseline_h2o_rkv_detail_20260512T153115_result.json",
+    "occurrence": 1,
+    "bytes": 1277,
+    "sha256": "ce674d865ea411face9b95d7ef1c7af5eed863bd682d5d5f809f93f784ade552"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个子任务全部完成。汇总：\n\n### 子任务 1: Baseline 调研\n\n**H2O**: 官方仓库 [lenscloth/KVCache](https://github.com/lenscloth/KVCache)。kvpress 中无 `H2OPress`，等价物是 `ObservedAttentionPress`。budget 直接对应绝对 token 数。Qwen2 无兼容性问题。\n\n**R-KV**: 仓库 [Zefan-Cai/R-KV](https://github.com/Zefan-Cai/R-KV)，已 clone 到 `/root/carc/r_kv_baseline/`。通过 `replace_qwen2()` monkeypatch 支持 DeepSeek-R1-Distill-Qwen-14B。核心公式 `score = attn * 0.07 - redundancy * 0.93`，重 redundancy 惩罚。O(B²) 来自 `cal_similarity()` 的 pairwise cosine（`k_norm @ k_norm.T`）。\n\n**SkipKV/FASA**: 均无公开代码。\n\n### 子任务 2: kvpress 兼容性\n\n- kvpress v0.5.3，37 个 Press 类\n- `Qwen2ForCausalLM` 在 SUPPORTED_MODELS 中\n- 自定义 Press 通过继承 `ScorerPress` 实现 `score()` 方法即可\n- EMA eviction 可封装为 `CARCEMAPress(ScorerPress)`，但需适配 per-step → one-shot 语义差异\n\n### 子任务 3: eval_framework.py\n\n- 已部署到 `/root/carc/eval_framework.py`\n- `--help` 和 `--dry-run` 均通过\n- 支持 15 种 strategy（6 CARC + 9 kvpress）× 4 dataset × 任意 budget ratio\n- 输出 JSON，含 PPL / accuracy / timing metadata"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-baseline-h2o-rkv-detail.md"
+}

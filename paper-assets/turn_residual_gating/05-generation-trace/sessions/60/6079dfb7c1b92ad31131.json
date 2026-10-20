@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6079dfb7c1b92ad31131",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "ssh check v7 tg s123 status",
+  "task_key": "worker_ssh_check_v7_tg_s123_status_20260521T194257",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_v7_tg_s123_status_20260521T194257_result.json",
+    "occurrence": 1,
+    "bytes": 1542,
+    "sha256": "44443ed4a9a564b1f828dc628add653b4fd1d3a9560f6301441d16c4dc52b58e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## v7_tg_s123 训练状态：**仍在运行**\n\n**进程**: PID 245628, 状态 S, 已运行 4h27m\n\n### 配置\n- 模型: Qwen2.5-7B-Instruct, GPU: RTX PRO 6000 Blackwell (102GB)\n- Gate type: threadgate, Dataset: ultrachat_8k (8000 samples)\n- Total optimizer steps: 3000 (3 epochs × 1000 steps), Grad accum: 8\n- Trainable: 6.7M params (0.09%), Gate LR: 0.002 (10× multiplier)\n\n### 进度\n| Epoch | Status | Avg Loss | Avg NTP | Avg GAR | Avg DIV |\n|-------|--------|----------|---------|---------|---------|\n| 0 | Done | 1.0027 | 0.9759 | 0.0263 | 0.0006 |\n| 1 | Done | 0.9447 | 0.9434 | 0.0013 | 0.0000 |\n| 2 | **Running** (Step 1900/8000 data, ~2244/3000 optimizer) | — | — | — | — |\n\n**总进度**: ~75% (2244/3000 optimizer steps)\n\n### 预估剩余时间\n- 速率: ~8.4 optimizer steps/min\n- 剩余: ~756 steps → **约 1.5 小时完成**\n\n### 最新 Gate 状态 (step=2200)\n- mean=0.9495, std=0.0530, min=0.7930, max=1.0000\n- Gate profile (per-layer):\n  ```\n  L0:0.887 L1:0.793 L2:0.996 L3:0.992 L4:0.988 L5:0.793\n  L6:0.969 L7:0.930 L8:0.965 L9:0.934 L10:0.973 L11:0.910\n  L12:0.910 L13:0.934 L14:0.926 L15:0.977 L16:0.938 L17:0.930\n  L18:0.957 L19:0.977 L20:0.988 L21:0.992 L22:0.980 L23:0.988\n  L24:0.984 L25:0.988 L26:0.988 L27:1.000\n  ```\n- L1 和 L5 gate 值最低 (~0.79)，深层接近 1.0 — 与 s42 seed 的 pattern 一致\n\n### Checkpoints\n- `runs/phase2_tg_s123_v7/epoch_0/` ✓\n- `runs/phase2_tg_s123_v7/epoch_1/` ✓\n- epoch_2 checkpoint 待训练完成后生成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-v7-tg-s123-status.md"
+}

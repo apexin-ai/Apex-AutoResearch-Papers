@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8539e9e6402ed5f5c9fb",
+  "project": "redundancy-compound-sparsity-2",
+  "kind": "result",
+  "title": "research code survey",
+  "task_key": "worker_research_code-survey_20260512T075744",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_code-survey_20260512T075744_result.json",
+    "occurrence": 1,
+    "bytes": 859,
+    "sha256": "9bb889c121cbc0507c26f49305f5c6763fc10edba3e9c755bd15977a84127cfa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已完成并注册（`art_20260512_f360d5`）。\n\n核心发现：\n\n- **Token Filtering**：无公开代码库。算法从论文提取——EMA centroid（γ=0.9）+ variance-aware fusion（α动态计算）+ adaptive threshold，仅作用于后50%层的 attention token 轴。需从零实现。\n- **TEAL**：[FasterDecoding/TEAL](https://github.com/FasterDecoding/TEAL) 代码完整。核心一行 `x.abs().gt(threshold) * x`，threshold 通过 activation histogram 的 inverse CDF 获得。Monkeypatch 方式集成 HF 模型，sparsify 所有 7 个 projection 的输入激活，默认 40-50% sparsity。\n- **关键差异**：Token Filtering 是 token 粒度的在线过滤（无需校准），TEAL 是 element 粒度的离线校准 pruning。两者作用轴正交，可组合但需监控 combined pruning rate 防止过度稀疏。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-code-survey.md"
+}

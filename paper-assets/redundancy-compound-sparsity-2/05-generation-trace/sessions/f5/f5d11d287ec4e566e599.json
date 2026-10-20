@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f5d11d287ec4e566e599",
+  "project": "redundancy-compound-sparsity-2",
+  "kind": "result",
+  "title": "check inverted ema status",
+  "task_key": "worker_check_inverted_ema_status_20260512T164737",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_inverted_ema_status_20260512T164737_result.json",
+    "occurrence": 1,
+    "bytes": 1679,
+    "sha256": "e31473dd6f2767bf7b215cc9f54816270e7d3a549f595b06ec9890f3a26945f1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态汇总\n\n### 1. inverted_ema (Reasoning traces) — PID 39560\n- **状态**: 运行中，已 16 分钟\n- **进度**: 生成 reasoning traces 70% (14/20)，~60s/trace\n- **阶段**: 仍在数据生成阶段，尚未开始 PPL 评估\n- **预计**: 还需 ~6 min 完成 trace 生成，之后才进入评估\n- **GPU**: GPU 0, 29198 MiB\n\n### 2. inverted_ema_wikitext (WikiText-2) — PID 39080\n- **状态**: 运行中，已 18 分钟\n- **进度**:\n  - `full` 策略已完成: **PPL = 7.1822**（这是全 KV cache 参考值）\n  - `inverted_ema_0.9` 策略: prefill 阶段 88% (46/52)，之后还有 eval 阶段\n- **GPU**: GPU 1, 32402 MiB\n\n### 3. analysis_gamma_sweep — PID 40063\n- **状态**: 运行中但有问题，已 14 分钟\n- **问题**: 遇到 **CUDA OOM** — GPU 0 上与 PID 39560 争抢显存（两个进程共用 GPU 0，合计 ~61 GB / 95 GB）\n- **当前进度**: `[random] eval` 17% (1167/6554)，OOM 可能被 try/except 捕获后继续执行\n- **GPU**: GPU 0, 31852 MiB\n\n### GPU 使用\n| GPU | 利用率 | 显存 | 进程 |\n|-----|--------|------|------|\n| 0 | 95% | 61024 / 97887 MiB | PID 39560 (29 GB) + PID 40063 (31 GB) |\n| 1 | 27% | 32411 / 97887 MiB | PID 39080 (32 GB) |\n\n### Decision Gate 状态\n- **Reasoning**: 尚无 PPL 结果，仍在生成 traces（阈值 < 1.2271）\n- **WikiText**: full baseline PPL=7.1822，inverted_ema_0.9 正在 prefill 88%（阈值 < 7.6432）\n- **结果文件**: 均未生成\n\n### 风险\nGPU 0 上两个进程（inverted_ema + gamma_sweep）显存竞争已触发 OOM。gamma_sweep 的结果可能不可靠，且可能拖慢 inverted_ema 的后续评估阶段。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-inverted-ema-status.md"
+}

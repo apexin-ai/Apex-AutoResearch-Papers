@@ -1,0 +1,40 @@
+{
+  "exp_id": "eval_v7_tg_s123",
+  "project": "turn_residual_gating",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T22:53:18.163Z",
+    "updated_at": "2026-05-22T00:30:42.606Z",
+    "spec": {
+      "command": "bash scripts/eval_v7_tg_s123.sh",
+      "server": "westd-20861",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "264869",
+      "log_path": "/root/turn_residual_gating/logs/v7_tg_s123.log",
+      "submitted_at": "2026-05-21T22:53:18.065Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/ultrachat_8k",
+      "data_count": 8000,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 123,
+      "checkpoint_source": "v7_tg_s123",
+      "eval_data": "data/ultrachat_8k",
+      "checkpoint_path": "/root/turn_residual_gating/runs/phase2_tg_s123_v7/epoch_2",
+      "wall_clock_seconds": 5844.5,
+      "gpu_hours": 1.62
+    },
+    "hypothesis": "v7 TG s123 eval: 验证 s123 seed 的 TF-AR GAR gap 与 s42 一致（~32×），确认 multi-seed robustness",
+    "parent": "v7_tg_s123",
+    "conclusion": "success",
+    "completed_at": "2026-05-22T00:30:42.606Z"
+  },
+  "timestamp": "2026-05-22T00:30:42.697798+00:00",
+  "trigger": "update_registry"
+}

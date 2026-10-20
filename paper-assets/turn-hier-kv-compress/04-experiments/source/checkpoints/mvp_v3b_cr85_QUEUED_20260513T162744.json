@@ -1,0 +1,29 @@
+{
+  "exp_id": "mvp_v3b_cr85",
+  "project": "turn-hier-kv-compress",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-13T16:23:08.614Z",
+    "updated_at": "2026-05-13T16:27:43.997Z",
+    "hypothesis": "D007 additive bias with agent traces: TurnKV (ea + α×offset, α=0.1) KIRR - Uniform EA KIRR ≥ 10pp at CR=0.85, PPL ≤ 1.02×. Agent traces with ipython/think roles (65 traces, full KIRR=100%)",
+    "parent": "mvp_v3_cr85",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/turn-hier-kv-compress && python eval/evaluate.py --compression_ratios 0.85 --alpha 0.1 --model /root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B-Instruct/\"",
+      "server": "westd-16980",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "99138",
+      "log_path": "~/runs/turn-hier-kv-compress/mvp_v3b_cr85.log",
+      "submitted_at": "2026-05-13T16:27:20.736Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-13T16:27:44.016899+00:00",
+  "trigger": "update_registry"
+}

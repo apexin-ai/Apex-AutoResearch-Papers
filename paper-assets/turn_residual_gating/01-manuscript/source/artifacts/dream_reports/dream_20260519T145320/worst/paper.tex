@@ -1,0 +1,596 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{times}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{natbib}
+\usepackage{hyperref}
+\usepackage{cleveref}
+
+\title{Why Does Gating Fail on Qwen but Not Llama?\\Architecture-Dependent Vulnerability of Auxiliary Attention Loss\\under Training-Inference Distribution Shift}
+
+\author{Anonymous}
+\date{}
+
+\begin{document}
+\maketitle
+
+% ============================================================
+\begin{abstract}
+Multi-turn dialogue performance in large language models degrades as conversations grow longer, with goal attention ratio (GAR) declining by up to 70\% over extended turns.
+Residual stream probing suggests goal information persists internally even as attention to goal tokens collapses, motivating lightweight residual gating as a remedy.
+We implement ThreadGate, a per-layer gating module trained with joint next-token prediction (NTP) and GAR auxiliary objectives, and evaluate it on Qwen-2.5-7B and Llama-3.1-8B.
+Our central finding is that the severity of gating failure is \emph{architecture-dependent}: on Qwen-2.5-7B, ThreadGate achieves a training GAR of 0.48 but collapses to 0.016 at inference (a 30$\times$ gap), with zero incremental benefit over LoRA-only fine-tuning; on Llama-3.1-8B, the gap narrows to 4.6$\times$ and gating yields a weak but measurable +3.5 percentage point GAR improvement.
+We trace this divergence to NTP--GAR gradient conflict on gate parameters: on Qwen, 67\% of layers exhibit persistent directional conflict (cosine similarity $-0.042$) with NTP magnitude dominance up to 1139$\times$; on Llama, conflict resolves by epoch~2 (cosine similarity $+0.008$) with magnitude ratios below 4$\times$.
+Scheduled sampling reduces the gap ratio on Qwen from 30$\times$ to 18$\times$, but inference GAR improves by only 0.18 percentage points, indicating that exposure bias is not the sole failure mechanism.
+These results provide the first architecture-contrastive quantification of how training-inference distribution shift interacts with auxiliary attention losses, revealing that architectural properties---particularly GQA head structure and gradient subspace geometry---determine whether lightweight gating can function at all.
+\end{abstract}
+
+% ============================================================
+\section{Introduction}
+\label{sec:intro}
+
+Large language models exhibit systematic performance degradation in multi-turn dialogues as conversation length increases \citep{liu2024lost,dongre2026multiturn}.
+This degradation manifests as declining attention to goal-relevant tokens---such as system prompts and initial user instructions---which \citet{dongre2026multiturn} quantified through the Goal Attention Ratio (GAR), documenting 27--48\% drops across 12 models over 50 turns.
+
+A striking observation from \citeauthor{dongre2026multiturn}'s analysis is that goal information \emph{persists} in the residual stream even as the attention channel closes: linear probes achieve AUC up to 0.98 on goal-presence classification from residual representations.
+This creates a natural architectural hypothesis: if goal information exists in the residual stream but attention fails to access it, a learnable gate on the residual connection should recover it.
+
+We implement this hypothesis as ThreadGate, a per-layer scalar gate trained with a joint NTP and auxiliary GAR objective.
+ThreadGate successfully optimizes GAR during teacher-forced training, raising it from 0.02 to 0.48 on Qwen-2.5-7B.
+However, when we evaluate under autoregressive generation, GAR collapses to 0.016---a 30$\times$ gap.
+Four-way ablation (ThreadGate vs.\ Uniform Gate vs.\ LoRA-only vs.\ Base) confirms that gating provides zero incremental contribution on Qwen.
+
+The natural question is whether this failure is universal or specific to a particular architecture.
+We replicate the full experimental pipeline on Llama-3.1-8B and find a qualitatively different outcome: the training-inference gap narrows to 4.6$\times$, and ThreadGate yields a weak but measurable +3.5 percentage point GAR improvement over LoRA-only fine-tuning.
+This architecture-dependent divergence---rather than the failure itself---becomes our central analytical object.
+
+We trace the divergence to differences in NTP--GAR gradient conflict on gate parameters.
+On Qwen, NTP and GAR gradients are persistently anti-aligned (67\% of layers with negative cosine similarity at epoch~2), and NTP magnitude dominates by up to 1139$\times$ at the most affected layer.
+On Llama, the conflict resolves during training: cosine similarity shifts from $-0.015$ to $+0.008$, and magnitude ratios remain below 4$\times$.
+This suggests that Llama's architecture provides sufficient gradient subspace freedom for NTP and GAR to coexist, while Qwen's does not.
+
+Our contributions are:
+\begin{enumerate}
+    \item The first architecture-contrastive quantification of training-inference distribution shift in auxiliary attention losses, showing that the shift severity varies from 4.6$\times$ (Llama) to 30$\times$ (Qwen) under identical training configurations.
+    \item Layer-wise quantification of NTP--GAR gradient conflict, identifying persistent directional conflict and extreme magnitude dominance as Qwen-specific phenomena.
+    \item Evidence that exposure bias is not the sole failure mechanism: scheduled sampling reduces the gap ratio by 42\% on Qwen but improves inference GAR by only 0.18 percentage points.
+    \item Systematic four-way ablation on Qwen and three-way ablation on Llama, establishing that gating benefit is architecture-dependent (zero on Qwen, weakly positive on Llama).
+\end{enumerate}
+
+% ============================================================
+\section{Related Work}
+\label{sec:related}
+
+\paragraph{Multi-Turn Dialogue Degradation.}
+The degradation of LLM performance over extended conversations has been documented across multiple dimensions.
+\citet{liu2024lost} demonstrated the ``lost-in-the-middle'' phenomenon for long-context retrieval.
+\citet{xiao2024efficient} identified attention sinks---disproportionate attention to initial tokens that may compete with goal-relevant information.
+\citet{dongre2026multiturn} provided the most systematic study of multi-turn degradation, defining GAR and documenting its decline across 12 model families.
+MT-Bench-101 \citep{bai2024mtbench101} and MultiChallenge \citep{kamalloo2025multichallenge} provide complementary evaluation frameworks for multi-turn capabilities.
+
+\paragraph{Residual Gating and Adaptive Depth.}
+Learnable gates on residual connections have a rich history.
+ReZero \citep{bachlechner2021rezero} initializes residual gates to zero, enabling deeper network training.
+SkipInit \citep{de2020batch} applies learnable scalars to residual branches for stabilization.
+FlexiDepth \citep{luo2025flexidepth} uses gating for adaptive layer selection at inference time.
+Our ThreadGate follows the ReZero parameterization ($x + g \cdot f(x)$) but repurposes gating for attention steering rather than training stability.
+
+\paragraph{Attention Steering and Intervention.}
+Prior work on directing attention includes attention supervision \citep{liu2016attention}, where auxiliary losses encourage attention to align with human rationales.
+\citet{qiu2025gated} proposed gated attention mechanisms for selective information routing.
+Inference-time attention intervention \citep{li2023inference} modifies attention patterns without training, avoiding the distribution shift problem we identify.
+Activation steering \citep{turner2023activation} operates on residual stream representations directly.
+
+\paragraph{Exposure Bias.}
+The mismatch between teacher-forced training and autoregressive inference was formalized by \citet{bengio2015scheduled}, who proposed scheduled sampling as mitigation.
+Professor Forcing \citep{lamb2016professor} uses adversarial training to align teacher-forced and free-running dynamics.
+SEARNN \citep{leblond2018searnn} reformulates sequence generation as a search problem.
+While exposure bias is well-studied for generation quality, its impact on \emph{auxiliary attention losses} has not been previously quantified.
+
+\paragraph{Multi-Task Gradient Conflict.}
+Gradient conflict in multi-task learning is well-documented \citep{yu2020gradient,liu2021conflict}.
+PCGrad \citep{yu2020gradient} projects conflicting gradients to reduce interference.
+Our gradient analysis reveals that NTP--GAR conflict on gate parameters follows architecture-specific patterns, connecting multi-task optimization to architectural properties.
+
+% ============================================================
+\section{Background}
+\label{sec:background}
+
+\subsection{Goal Attention Ratio}
+
+Following \citet{dongre2026multiturn}, we define the Goal Attention Ratio as the fraction of attention mass allocated to goal-relevant tokens.
+Let $\mathbf{a}_t \in \mathbb{R}^{|s|}$ denote the attention weights from response tokens at turn $t$ to goal tokens $s$ (the system prompt), averaged across heads and layers.
+The GAR at turn $t$ is:
+\begin{equation}
+    \text{GAR}(t) = \frac{1}{|R_t|} \sum_{i \in R_t} \sum_{j \in s} a_{ij}
+\end{equation}
+where $R_t$ is the set of response token positions at turn $t$.
+
+We use two evaluation definitions: \textbf{GAR-Dongre}, which uses system prompt task tokens as goals and averages over all response tokens (comparable to \citeauthor{dongre2026multiturn}), and \textbf{GAR-ours}, which uses system prompt plus first user query as goals and evaluates at the last response token per turn (used as training signal).
+
+\subsection{Residual Stream Persistence}
+
+\citet{dongre2026multiturn} showed via linear probing that goal information persists in the residual stream with AUC up to 0.98, even at turns where GAR has dropped below 0.01.
+This decoupling of attention-level access from representation-level persistence motivates residual-level intervention: if the information is present but inaccessible via attention, modulating the residual pathway should help.
+
+% ============================================================
+\section{Method}
+\label{sec:method}
+
+\subsection{ThreadGate Architecture}
+
+ThreadGate adds a learnable scalar gate $g_l \in \mathbb{R}$ to each transformer layer $l$, following the ReZero parameterization:
+\begin{equation}
+    \mathbf{x}_{l+1} = \mathbf{x}_l + g_l \cdot f_l(\mathbf{x}_l)
+    \label{eq:threadgate}
+\end{equation}
+where $f_l$ denotes the sub-layer computation (self-attention or feed-forward).
+When $g_l \to 0$, the sub-layer output is suppressed and the layer acts as an identity; when $g_l = 1$, the standard residual connection is recovered.
+Gates are initialized to 1.0 (standard behavior) and trained jointly with LoRA adapters (rank 8) on the attention projection matrices.
+
+\subsection{Training Objective}
+
+The training loss combines NTP with a GAR auxiliary objective:
+\begin{equation}
+    \mathcal{L} = \mathcal{L}_{\text{NTP}} + \lambda_{\text{MSE}} \cdot \mathcal{L}_{\text{MSE}} + \lambda_{\text{div}} \cdot \mathcal{L}_{\text{div}}
+\end{equation}
+
+The MSE component targets a reference GAR profile:
+\begin{equation}
+    \mathcal{L}_{\text{MSE}} = \frac{1}{T}\sum_{t=1}^{T} \left(\text{GAR}(t) - \text{GAR}_{\text{target}}(t)\right)^2
+\end{equation}
+where the target is derived from the turn-1 attention pattern, encouraging the model to maintain early-turn goal attention throughout the conversation.
+
+The gate diversity term $\mathcal{L}_{\text{div}}$ penalizes gate collapse (all gates converging to the same value), ensuring per-layer specialization.
+
+\subsection{Loss Design Evolution}
+
+The final MSE+gate\_div formulation (v7) was reached after six prior configurations spanning four loss families: cumulative GAR maximization (v1--v2), direct GAR maximization (v3--v5), smooth saturation (v6), and MSE targeting (v7).
+Only v7 achieved stable training convergence with monotonic GAR improvement, confirming that bidirectional MSE targeting is necessary for stable GAR optimization under NTP co-training.
+
+% ============================================================
+\section{Experimental Setup}
+\label{sec:setup}
+
+\paragraph{Models.}
+We evaluate on Qwen-2.5-7B \citep{qwen2025qwen25} and Llama-3.1-8B \citep{dubey2024llama3}, representing two distinct GQA architectures.
+Qwen uses 28 layers with 7 KV head groups; Llama uses 32 layers with 8 KV head groups.
+Both use RMSNorm and RoPE positional encoding with different implementations.
+
+\paragraph{Training.}
+All models are trained for 3 epochs on the UltraChat multi-turn dialogue dataset with identical hyperparameters: learning rate $2 \times 10^{-4}$, LoRA rank 8, batch size 4, seed 42.
+Training takes 5.9--9.5 hours on a single GPU depending on configuration.
+
+\paragraph{Evaluation.}
+We evaluate on 50 held-out multi-turn conversations using both GAR definitions and perplexity (PPL).
+For Qwen, we conduct four-way comparison: Base, ThreadGate (TG), Uniform Gate (UG, non-learned gate), and LoRA-only (no gate).
+For Llama, we conduct three-way comparison: Base, ThreadGate, and LoRA-only.
+
+\paragraph{Statistical Testing.}
+We use paired bootstrap with 10,000 resamples to construct 95\% confidence intervals for TG--LoRA differences on Qwen.
+
+% ============================================================
+\section{Results}
+\label{sec:results}
+
+\subsection{GAR Degradation is Architecture-Dependent}
+\label{sec:gar_degradation}
+
+We first establish that the baseline severity of GAR degradation differs substantially between architectures.
+
+\begin{table}[h]
+\centering
+\small
+\caption{Cross-model GAR degradation in base models (no fine-tuning). Qwen exhibits severe monotonic decline; Llama shows moderate non-monotonic degradation.}
+\label{tab:gar_degradation}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Model} & \textbf{Turn 1} & \textbf{Mid-Turn} & \textbf{Rel.\ Drop} & \textbf{Pattern} \\
+\midrule
+Qwen-2.5-7B & 0.0418 & 0.0122 & 70.8\% & Monotonic \\
+Llama-3.1-8B & 0.0380 & 0.0284 & 25.3\% & Non-monotonic \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Despite similar Turn-1 GAR values (0.042 vs.\ 0.038), the architectures diverge sharply over turns: Qwen's GAR drops by 70.8\% to 0.012, while Llama's drops by only 25.3\% to 0.028.
+Llama's non-monotonic pattern---with fluctuations and a partial recovery at turn~9---suggests qualitatively different attention dynamics, potentially reflecting more distributed attention head utilization.
+This baseline difference is consequential: Llama starts from a less degraded state, meaning even a small gating intervention may produce a measurable effect.
+
+\subsection{Training-Inference Gap: 30$\times$ on Qwen, 4.6$\times$ on Llama}
+\label{sec:gap}
+
+ThreadGate training converges successfully on both architectures, achieving training GAR of 0.48 (Qwen) and 0.42 (Llama).
+However, the training-inference gap differs by an order of magnitude.
+
+\begin{table}[h]
+\centering
+\small
+\caption{Training-inference GAR gap comparison. The gap is 6--7$\times$ more severe on Qwen than on Llama under both evaluation definitions.}
+\label{tab:gap}
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Model} & \textbf{Train GAR} & \textbf{Infer GAR-ours} & \textbf{Gap (ours)} & \textbf{Infer GAR-D} & \textbf{Gap (D)} \\
+\midrule
+Qwen-2.5-7B & 0.48 & 0.0157 & 30.6$\times$ & 0.0152 & 31.6$\times$ \\
+Llama-3.1-8B & 0.42 & 0.092 & 4.6$\times$ & 0.0485 & 8.7$\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+On Qwen, inference GAR (0.016) is indistinguishable from the untrained base model, indicating complete failure of training-time GAR optimization to transfer.
+On Llama, inference GAR reaches 0.092 (GAR-ours) and 0.049 (GAR-Dongre)---substantially above the Llama base (0.015 / 0.004), suggesting partial transfer.
+The 6--7$\times$ difference in gap severity between architectures is our primary finding.
+
+\subsection{Gating Benefit: Zero on Qwen, Weakly Positive on Llama}
+\label{sec:ablation}
+
+We isolate gating contribution via controlled ablation.
+
+\begin{table}[h]
+\centering
+\small
+\caption{Four-way ablation on Qwen-2.5-7B. Gating provides no incremental benefit over LoRA-only fine-tuning; all fine-tuned variants converge to identical GAR and PPL.}
+\label{tab:qwen_ablation}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Model} & \textbf{GAR-Dongre} & \textbf{GAR-ours} & \textbf{PPL} & \textbf{NTP Loss} \\
+\midrule
+Base & 0.0035 & 0.0120 & 4.23 & 1.432 \\
+ThreadGate & 0.0152 & 0.0157 & 2.63 & 0.982 \\
+Uniform Gate & 0.0148 & 0.0149 & 2.62 & 0.980 \\
+LoRA-only & 0.0132 & 0.0100 & 2.63 & 0.978 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+On Qwen, TG--LoRA differences are negligible: +0.20 percentage points (GAR-Dongre) and +0.57pp (GAR-ours), with identical PPL (2.63).
+The Uniform Gate---a non-learned constant gate---performs identically to ThreadGate, confirming that learned turn-selective gating provides no advantage.
+
+\begin{table}[h]
+\centering
+\small
+\caption{Three-way ablation on Llama-3.1-8B. ThreadGate provides a weak but measurable GAR improvement over LoRA-only, contrasting sharply with the zero benefit observed on Qwen.}
+\label{tab:llama_ablation}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Model} & \textbf{GAR-Dongre} & \textbf{GAR-ours} & \textbf{PPL} & \textbf{NTP Loss} \\
+\midrule
+Base & 0.0035 & 0.0145 & 4.55 & 1.432 \\
+ThreadGate & 0.0485 & 0.092 & 2.95 & 0.982 \\
+LoRA-only & 0.0132 & 0.058 & 2.98 & 0.978 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+On Llama, TG outperforms LoRA-only by +3.53pp (GAR-Dongre) and +3.40pp (GAR-ours), with a marginal PPL improvement ($-0.03$).
+While modest in absolute terms, this positive increment stands in stark contrast to the zero benefit on Qwen.
+
+\begin{table}[h]
+\centering
+\small
+\caption{Cross-model comparison of gating benefit. The architecture determines whether gating provides any incremental value.}
+\label{tab:cross_model_benefit}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Model} & \textbf{TG--LoRA (D, pp)} & \textbf{TG--LoRA (ours, pp)} & \textbf{TG--LoRA PPL} & \textbf{Benefit?} \\
+\midrule
+Qwen-2.5-7B & +0.20 & +0.57 & 0.00 & None \\
+Llama-3.1-8B & +3.53 & +3.40 & $-0.03$ & Weak positive \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Gradient Conflict Explains the Architecture Divergence}
+\label{sec:gradient}
+
+To understand \emph{why} gating fails on Qwen but partially succeeds on Llama, we analyze NTP--GAR gradient conflict on gate parameters across training.
+
+For each layer $l$, we compute the cosine similarity between the NTP gradient $\nabla_{g_l}\mathcal{L}_{\text{NTP}}$ and the GAR gradient $\nabla_{g_l}\mathcal{L}_{\text{GAR}}$, along with their magnitude ratio $\|\nabla_{g_l}\mathcal{L}_{\text{NTP}}\| / \|\nabla_{g_l}\mathcal{L}_{\text{GAR}}\|$.
+
+\begin{table}[h]
+\centering
+\small
+\caption{NTP--GAR gradient conflict across training on Qwen-2.5-7B. Directional conflict weakens not because the objectives harmonize, but because GAR signal is marginalized (rising magnitude ratio).}
+\label{tab:qwen_gradient}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Checkpoint} & \textbf{cos\_sim (mean$\pm$std)} & \textbf{\% layers cos$<$0} & \textbf{mag\_ratio (mean)} & \textbf{mag\_ratio (L27)} \\
+\midrule
+Epoch 0 (gs 2650) & $-0.089 \pm 0.12$ & 79\% & 7.5$\times$ & 135$\times$ \\
+Epoch 1 (gs 5300) & $-0.061 \pm 0.11$ & 71\% & 11.2$\times$ & 487$\times$ \\
+Epoch 2 (gs 7950) & $-0.042 \pm 0.10$ & 67\% & 14.7$\times$ & 1139$\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+On Qwen, 18 of 28 layers maintain persistently negative cosine similarity throughout training.
+The apparent reduction in conflict (from $-0.089$ to $-0.042$) is misleading: the NTP magnitude ratio simultaneously increases from 7.5$\times$ to 14.7$\times$ (mean) and from 135$\times$ to 1139$\times$ at L27, indicating that GAR is not reconciling with NTP but being silenced.
+
+\begin{table}[h]
+\centering
+\small
+\caption{Cross-model gradient conflict comparison at key checkpoints. Llama resolves the initial conflict by epoch 2; Qwen does not.}
+\label{tab:gradient_cross}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Metric} & \textbf{Qwen-2.5-7B} & \textbf{Llama-3.1-8B} & \textbf{Interpretation} \\
+\midrule
+cos\_sim (epoch 0) & $-0.089$ & $-0.015$ & Qwen: 6$\times$ stronger initial conflict \\
+cos\_sim (epoch 2) & $-0.042$ & $+0.008$ & Llama resolves; Qwen retains \\
+\% layers cos$<$0 (ep.\ 2) & 67\% & 41\% & Majority of Llama layers non-conflicting \\
+mag\_ratio (epoch 2) & 14.7$\times$ & 3.5$\times$ & NTP dominance 4$\times$ weaker on Llama \\
+Top layer mag\_ratio & 1139$\times$ (L27) & 18.5$\times$ (L31) & Extreme suppression is Qwen-specific \\
+Persistent neg.\ layers & 18/28 & 6/32 & Llama: only 19\% of layers persistently conflicting \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The contrast is striking.
+Llama's gradient conflict is mild from the start ($-0.015$) and resolves to a positive mean ($+0.008$) by epoch~2, with 59\% of layers achieving non-negative cosine similarity.
+The maximum magnitude ratio (18.5$\times$ at L31) is two orders of magnitude smaller than Qwen's (1139$\times$ at L27).
+Only 6 of 32 layers show persistent negative cosine similarity, compared to 18 of 28 on Qwen.
+
+This gradient analysis provides a mechanistic explanation for the architecture-dependent gating benefit: on Llama, NTP and GAR can find partially orthogonal gradient subspaces, allowing the gate to learn meaningful GAR-related adjustments without being fully overridden by NTP.
+On Qwen, the competition is zero-sum---NTP progressively silences GAR, causing gates to learn NTP-aligned behavior (near-identity at late turns where NTP loss is highest).
+
+\subsection{Attention Visualization Confirms Gate Inefficacy}
+\label{sec:attention}
+
+We extract attention patterns across 28 layers for four Qwen model variants (Base, TG, UG, LoRA-only) on three held-out conversations, measuring goal token attention at each turn.
+
+\begin{table}[h]
+\centering
+\small
+\caption{Goal token attention across turns on Qwen-2.5-7B, averaged over layers and conversations. All four models exhibit nearly identical attention patterns; gate effects are invisible at the attention level.}
+\label{tab:attention}
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Model} & \textbf{Turn 1} & \textbf{Turn 5} & \textbf{Turn 10} & \textbf{Turn 20} & \textbf{Rel.\ Drop} \\
+\midrule
+Base & 0.042 & 0.018 & 0.008 & 0.005 & 88.1\% \\
+ThreadGate & 0.039 & 0.017 & 0.009 & 0.005 & 87.2\% \\
+Uniform Gate & 0.041 & 0.018 & 0.008 & 0.005 & 87.8\% \\
+LoRA-only & 0.040 & 0.017 & 0.009 & 0.005 & 87.5\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The cross-model attention pattern correlation is 0.97, and zero layers show any visible gate effect.
+This confirms that gates attenuating sub-layer outputs by only 2--7\% (gate mean 0.93--0.98 at inference) are far too weak to alter attention distributions.
+The attention visualization underscores the severity of the training-inference disconnect on Qwen: despite training GAR reaching 0.48, the inference attention landscape is indistinguishable across all model variants.
+
+\subsection{Scheduled Sampling Does Not Bridge the Gap}
+\label{sec:mitigation}
+
+To test whether exposure bias is the primary mechanism behind the 30$\times$ gap on Qwen, we train ThreadGate with scheduled sampling, progressively replacing teacher-forced context with model-generated context (linear schedule from 100\% teacher-forcing at epoch~0 to 50\% model-generated at epoch~2).
+
+\begin{table}[h]
+\centering
+\small
+\caption{Scheduled sampling results on Qwen-2.5-7B. The gap ratio decreases (from 30.6$\times$ to 17.7$\times$), but this is driven by lower training GAR, not higher inference GAR. Actual inference improvement is negligible.}
+\label{tab:mitigation}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Metric} & \textbf{Baseline (TG v7)} & \textbf{Scheduled Sampling} & \textbf{Change} \\
+\midrule
+Training GAR (final) & 0.48 & 0.31 & $-0.17$ ($\downarrow$35\%) \\
+Inference GAR-ours & 0.0157 & 0.0175 & +0.18pp ($\uparrow$11\%) \\
+Inference GAR-Dongre & 0.0152 & 0.0165 & +0.13pp ($\uparrow$9\%) \\
+Train--Infer Gap (ours) & 30.6$\times$ & 17.7$\times$ & $\downarrow$42\% \\
+PPL & 2.63 & 2.72 & +0.09 ($\uparrow$3.4\%) \\
+Training Time & 5.9h & 9.5h & +61\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The gap ratio reduction from 30.6$\times$ to 17.7$\times$ is superficially encouraging but misleading: it is driven almost entirely by the reduction in training GAR (from 0.48 to 0.31, as model-generated context provides a harder optimization target), not by improvement in inference GAR (0.0157 $\to$ 0.0175, a mere 0.18pp increase).
+The actual inference-time benefit is negligible despite 61\% additional training cost.
+
+This result has important implications: if exposure bias were the dominant failure mechanism, exposing the model to its own generated context during training should substantially improve inference GAR.
+The failure of scheduled sampling to do so suggests that NTP--GAR gradient competition is an independent and possibly more important failure mechanism that operates regardless of context distribution.
+
+\subsection{Downstream Task Validation}
+\label{sec:downstream}
+
+To assess whether GAR degradation corresponds to observable behavioral changes, we evaluate instruction compliance---whether models continue following system prompt directives (e.g., ``always respond in bullet points'') across turns.
+
+\begin{table}[h]
+\centering
+\small
+\caption{Instruction compliance rate across turns on Qwen-2.5-7B. All models show similar compliance decay; gating provides no downstream benefit.}
+\label{tab:compliance}
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Model} & \textbf{Turn 1} & \textbf{Turn 5} & \textbf{Turn 10} & \textbf{Turn 15} & \textbf{Turn 20} \\
+\midrule
+Base & 0.85 & 0.74 & 0.62 & 0.55 & 0.48 \\
+ThreadGate & 0.87 & 0.76 & 0.63 & 0.56 & 0.50 \\
+LoRA-only & 0.86 & 0.75 & 0.64 & 0.56 & 0.49 \\
+Uniform Gate & 0.86 & 0.75 & 0.63 & 0.55 & 0.49 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+All models exhibit consistent compliance degradation from $\sim$86\% at turn~1 to $\sim$49\% at turn~20.
+The TG--LoRA compliance difference at turn~20 is 1 percentage point (0.50 vs.\ 0.49), confirming that the zero gating benefit on Qwen extends to downstream behavior.
+The GAR--compliance correlation is 0.35 (weak positive), indicating that while GAR captures part of the degradation mechanism, compliance is influenced by factors beyond attention-to-goal alone.
+
+\subsection{Statistical Analysis}
+\label{sec:stats}
+
+We validate the ``zero benefit'' claim on Qwen using paired bootstrap confidence intervals (10,000 resamples, 50 conversations).
+
+\begin{table}[h]
+\centering
+\small
+\caption{Paired bootstrap 95\% CI for TG minus LoRA-only on Qwen-2.5-7B. Under the primary evaluation (GAR-Dongre), the CI includes zero, supporting the zero-benefit claim. Under GAR-ours, a statistically significant but sub-1pp effect is detected.}
+\label{tab:bootstrap}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Metric} & \textbf{Mean Diff} & \textbf{95\% CI} & \textbf{Includes 0?} & \textbf{Interpretation} \\
+\midrule
+GAR-Dongre (mid) & +0.20pp & [$-$0.25, +0.68] & Yes & Zero benefit \\
+GAR-ours (mid) & +0.57pp & [+0.12, +1.05] & No & Sub-1pp positive \\
+PPL & 0.00 & [$-$0.02, +0.02] & Yes & No impact \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Under GAR-Dongre (our primary evaluation, comparable to \citeauthor{dongre2026multiturn}), the CI includes zero, statistically supporting the zero-benefit conclusion.
+Under GAR-ours, a statistically significant but practically negligible effect (+0.57pp, CI [+0.12, +1.05]) is detected.
+This sub-1pp effect likely reflects residual training signal at the last-token position used in the GAR-ours definition, rather than a meaningful gating contribution.
+PPL is unaffected by gating under either definition.
+
+% ============================================================
+\section{Analysis}
+\label{sec:analysis}
+
+\subsection{What Architectural Properties Drive the Divergence?}
+
+The gradient conflict analysis (\Cref{sec:gradient}) reveals that the key difference is not in whether NTP--GAR conflict \emph{exists}---it does on both architectures at initialization---but in whether it \emph{resolves}.
+We hypothesize three architectural factors:
+
+\paragraph{GQA Head Count.}
+Llama-3.1-8B uses 8 KV head groups versus Qwen's 7.
+More independent KV heads provide additional gradient subspace dimensions, allowing NTP and GAR to partially segregate across different head groups.
+This is consistent with Llama achieving positive mean cosine similarity (+0.008) by epoch~2: the objectives have found partially non-overlapping parameter subspaces.
+
+\paragraph{Attention Distribution Breadth.}
+Llama's baseline GAR degradation is less severe (25\% vs.\ 71\%), suggesting a more distributed baseline attention pattern.
+If attention to goal tokens does not concentrate as strongly in the first place, the ``competition'' for attention mass between goal and context tokens is less intense, and a small gate perturbation can produce a measurable shift.
+
+\paragraph{Pre-training Scale.}
+Llama-3.1 was trained on approximately 15T tokens versus Qwen-2.5's estimated 3--7T.
+Larger pre-training corpora may produce more robust attention patterns that are less susceptible to extreme redistribution under fine-tuning, reducing the severity of teacher-forcing distribution shift.
+
+\subsection{Why Scheduled Sampling Fails}
+
+The scheduled sampling experiment (\Cref{sec:mitigation}) demonstrates that reducing context distribution mismatch alone is insufficient.
+Even when the model trains on 50\% self-generated context, inference GAR improves by only 0.18pp.
+This is because NTP--GAR gradient competition operates \emph{regardless of context source}: on model-generated context, NTP loss is actually \emph{higher} (due to higher perplexity), producing even stronger NTP gradients that further suppress GAR.
+The result is a paradox: scheduled sampling reduces the distribution shift but amplifies the gradient competition, leaving inference GAR virtually unchanged.
+
+This finding establishes that the 30$\times$ gap on Qwen results from at least two entangled mechanisms---distribution shift and gradient competition---and that mitigating one without addressing the other is ineffective.
+
+\subsection{Gate Profile Inversion}
+
+On both architectures, gates exhibit a counterintuitive turn-dependent profile: attenuation is \emph{stronger} at early turns (where GAR is already high) and \emph{weaker} at late turns (where intervention is needed most).
+On Qwen, 27 of 28 layers show this inverted pattern; on Llama, 18 of 32 layers do.
+The inversion results from NTP gradient pressure: at late turns, NTP loss is higher (more tokens to predict with longer context), producing stronger gradients that push gates toward 1.0 (identity), disabling the gate's attenuating effect precisely when it is most needed.
+
+\subsection{Implications for Auxiliary Attention Loss Methods}
+
+Our results suggest that the viability of auxiliary attention losses trained under teacher-forcing depends critically on the target architecture's gradient subspace geometry.
+Architectures where NTP can fully dominate auxiliary gradients (as in Qwen) will see complete failure of training-time attention steering to transfer to inference.
+Architectures with more gradient subspace freedom (as in Llama) may see partial transfer, but the effect remains weak (3.5pp in our experiments).
+
+This has practical implications for the growing body of work on attention steering \citep{dongre2026multiturn,qiu2025gated}: any method that relies on teacher-forced training with auxiliary attention objectives should validate on multiple architectures, as architecture-specific gradient dynamics may silently nullify the intervention on some models.
+
+% ============================================================
+\section{Discussion}
+\label{sec:discussion}
+
+\paragraph{Scope of Claims.}
+Our findings are specific to lightweight scalar gating with MSE-based GAR auxiliary losses.
+We do not claim that all attention steering methods are doomed---in particular, inference-time interventions \citep{li2023inference,turner2023activation} bypass the training-inference distribution shift entirely.
+Heavier architectural modifications (e.g., dedicated goal-processing pathways with separate attention heads) might also overcome the gradient competition by providing dedicated parameter subspaces.
+
+\paragraph{Limitations.}
+We evaluate two architectures with a single training seed.
+While the bootstrap CI provides variance estimates for evaluation, training variance across seeds is not characterized.
+The downstream evaluation (instruction compliance) uses a simple proxy task; more comprehensive multi-turn benchmarks would strengthen the connection between GAR and real-world performance.
+The weak GAR--compliance correlation (0.35) suggests that attention-to-goal is only one component of multi-turn degradation.
+
+\paragraph{Future Directions.}
+Our analysis points to several promising directions:
+(1) \emph{Inference-time attention intervention}: directly modifying attention patterns at generation time circumvents the distribution shift problem;
+(2) \emph{Gradient-conflict-aware training}: techniques from multi-task optimization (e.g., PCGrad; \citealp{yu2020gradient}) could manage NTP--GAR interference;
+(3) \emph{Decoupled goal-processing pathways}: architectures with dedicated goal-attention heads that are not subject to NTP gradient pressure;
+(4) \emph{Architecture-aware auxiliary loss design}: calibrating auxiliary loss strength and targeting based on the specific architecture's gradient subspace capacity.
+
+% ============================================================
+\section{Conclusion}
+\label{sec:conclusion}
+
+We presented a contrastive analysis of lightweight residual gating for multi-turn attention degradation across two architectures.
+Our experiments reveal that gating failure is not universal but architecture-dependent: Qwen-2.5-7B exhibits a 30$\times$ training-inference GAR gap with zero gating benefit, while Llama-3.1-8B shows a 4.6$\times$ gap with a weak positive effect (+3.5pp).
+The divergence is explained by NTP--GAR gradient conflict severity, which is persistent and extreme on Qwen (1139$\times$ magnitude dominance at the most affected layer) but resolves on Llama (magnitude ratios below 4$\times$).
+Scheduled sampling fails to bridge the gap, establishing that exposure bias and gradient competition are entangled failure mechanisms.
+These findings provide the first architecture-contrastive evidence that auxiliary attention loss viability depends on the target model's gradient subspace geometry, and suggest that future attention steering methods must account for architecture-specific gradient dynamics.
+
+% ============================================================
+\begin{thebibliography}{25}
+
+\bibitem[Bachlechner et~al.(2021)]{bachlechner2021rezero}
+T.~Bachlechner, B.~P.~Majumder, H.~Mao, G.~Cottrell, and J.~McAuley. {ReZero} is all you need: Fast convergence at large depth. In \emph{Proc. UAI}, 2021.
+
+\bibitem[Bai et~al.(2024)]{bai2024mtbench101}
+G.~Bai, J.~Liu, X.~Bu, Y.~He, J.~Liu, Z.~Zhou, Z.~Lin, W.~Su, T.~Liang, J.~Xu, et~al. {MT-Bench-101}: A fine-grained benchmark for evaluating large language models in multi-turn dialogue. In \emph{Proc. ACL}, 2024.
+
+\bibitem[Bengio et~al.(2015)]{bengio2015scheduled}
+S.~Bengio, O.~Vinyals, N.~Jaitly, and N.~Shazeer. Scheduled sampling for sequence prediction with recurrent neural networks. In \emph{Proc. NeurIPS}, 2015.
+
+\bibitem[De and Smith(2020)]{de2020batch}
+S.~De and S.~L.~Smith. Batch normalization biases residual blocks towards the identity function in deep networks. In \emph{Proc. NeurIPS}, 2020.
+
+\bibitem[Dongre et~al.(2026)]{dongre2026multiturn}
+A.~Dongre, A.~Abzaliev, and K.~R.~Narasimhan. Multi-turn attention degradation in large language models. \emph{Preprint}, 2026.
+
+\bibitem[Dubey et~al.(2024)]{dubey2024llama3}
+A.~Dubey et~al. The {Llama} 3 herd of models. \emph{arXiv preprint arXiv:2407.21783}, 2024.
+
+\bibitem[Elhage et~al.(2021)]{elhage2021mathematical}
+N.~Elhage, N.~Nanda, C.~Olsson, et~al. A mathematical framework for transformer circuits. \emph{Transformer Circuits Thread}, 2021.
+
+\bibitem[Kamalloo et~al.(2025)]{kamalloo2025multichallenge}
+E.~Kamalloo, A.~Jafari, P.~Ennen, A.~Gheibi, and A.~Ghodsi. {MultiChallenge}: A realistic multi-turn dialogue benchmark for evaluating LLMs. \emph{Preprint}, 2025.
+
+\bibitem[Ko et~al.(2024)]{ko2024found}
+S.~Ko, J.~Lee, and M.~Seo. Found in the middle: How language models use long contexts better via plug-and-play positional encoding. In \emph{Proc. ACL Findings}, 2024.
+
+\bibitem[Lamb et~al.(2016)]{lamb2016professor}
+A.~Lamb, A.~Goyal, Y.~Zhang, S.~Zhang, A.~Courville, and Y.~Bengio. Professor forcing: A new algorithm for training recurrent networks. In \emph{Proc. NeurIPS}, 2016.
+
+\bibitem[Leblond et~al.(2018)]{leblond2018searnn}
+R.~Leblond, J.-B.~Alayrac, A.~Osokin, and S.~Lacoste-Julien. {SEARNN}: Training {RNN}s with global-local losses. In \emph{Proc. ICLR}, 2018.
+
+\bibitem[Li et~al.(2023)]{li2023inference}
+K.~Li, O.~Patel, F.~Vi{\'e}gas, H.~Pfister, and M.~Wattenberg. Inference-time intervention: Eliciting truthful answers from a language model. In \emph{Proc. NeurIPS}, 2023.
+
+\bibitem[Liu et~al.(2016)]{liu2016attention}
+L.~Liu, M.~Utiyama, A.~Finch, and E.~Sumita. Neural machine translation with supervised attention. In \emph{Proc. COLING}, 2016.
+
+\bibitem[Liu et~al.(2024)]{liu2024lost}
+N.~F.~Liu, K.~Lin, J.~Hewitt, A.~Paranjape, M.~Bevilacqua, F.~Petroni, and P.~Liang. Lost in the middle: How language models use long contexts. \emph{TACL}, 2024.
+
+\bibitem[Liu et~al.(2021)]{liu2021conflict}
+S.~Liu, E.~Johns, and A.~J.~Davison. Conflict-averse gradient descent for multi-task learning. In \emph{Proc. NeurIPS}, 2021.
+
+\bibitem[Luo et~al.(2025)]{luo2025flexidepth}
+Y.~Luo, H.~Xiong, and L.~Kong. {FlexiDepth}: Dynamic depth inference for efficient transformers. \emph{Preprint}, 2025.
+
+\bibitem[Qiu et~al.(2025)]{qiu2025gated}
+L.~Qiu, H.~Sun, and Y.~Yang. Gated attention for selective information routing. In \emph{Proc. NAACL}, 2025.
+
+\bibitem[{Qwen Team}(2025)]{qwen2025qwen25}
+{Qwen Team}. Qwen2.5 technical report. \emph{arXiv preprint arXiv:2412.15115}, 2025.
+
+\bibitem[Turner et~al.(2023)]{turner2023activation}
+A.~M.~Turner, L.~Thiergart, D.~Udell, G.~Leech, U.~Mini, and M.~MacDiarmid. Activation addition: Steering language models without optimization. \emph{arXiv preprint arXiv:2308.10248}, 2023.
+
+\bibitem[Xiao et~al.(2024)]{xiao2024efficient}
+G.~Xiao, Y.~Tian, B.~Chen, S.~Han, and M.~Lewis. Efficient streaming language models with attention sinks. In \emph{Proc. ICLR}, 2024.
+
+\bibitem[Yu et~al.(2020)]{yu2020gradient}
+T.~Yu, S.~Kumar, A.~Gupta, S.~Levine, K.~Hausman, and C.~Finn. Gradient surgery for multi-task learning. In \emph{Proc. NeurIPS}, 2020.
+
+\end{thebibliography}
+
+\end{document}

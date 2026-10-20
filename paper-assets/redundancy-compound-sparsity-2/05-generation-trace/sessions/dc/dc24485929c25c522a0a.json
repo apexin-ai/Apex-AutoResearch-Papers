@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dc24485929c25c522a0a",
+  "project": "redundancy-compound-sparsity-2",
+  "kind": "result",
+  "title": "check d003 reasoning completion",
+  "task_key": "worker_check_d003_reasoning_completion_20260512T155336",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_d003_reasoning_completion_20260512T155336_result.json",
+    "occurrence": 1,
+    "bytes": 516,
+    "sha256": "9105408869210bca8880e2d2ca2c7d72ceb73b5043ec324f2b8c567f13b4a6b4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n- **status**: DONE\n- **conclusion**: negative\n- **metrics**: 已写入全部 6 策略 PPL\n- **checkpoint_path**: `/root/carc/d003_reasoning_results.json`\n- **log_path**: `/root/carc/d003_exp1.log`\n- **cron**: 不存在，无需删除\n\n核心发现：EMA attention-score eviction 在 reasoning traces 上不仅没有优势，反而比 random eviction 差 2.05%，甚至不如 recency (1.217)。Attention score 在长 reasoning chain 中不是有效的 token 重要性信号。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-d003-reasoning-completion.md"
+}

@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "728ae37df087824b60a1",
+  "project": "turn-hier-kv-compress",
+  "kind": "worker",
+  "title": "infra env setup v2",
+  "task_key": "worker_infra_env_setup_v2_20260513T091827",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_env_setup_v2_20260513T091827.log",
+    "occurrence": 1,
+    "bytes": 1145388,
+    "sha256": "64f6a1d1fa6bfa8996b586284dae6bf38981bfc807fcee5e546c86f830267b7a"
+  },
+  "statistics": {
+    "messages": 825,
+    "user_turns": 1,
+    "tool_calls": 342,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 133,
+      "tool_call": 342,
+      "tool_result": 342,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 793,
+      "chunks": [
+        {
+          "path": "728ae37df087824b60a1-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "728ae37df087824b60a1-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "728ae37df087824b60a1-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "728ae37df087824b60a1-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "728ae37df087824b60a1-part-0005.json",
+          "message_count": 73
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 32,
+      "chunks": [
+        {
+          "path": "728ae37df087824b60a1-part-0005.json",
+          "message_count": 32
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-env-setup-v2.md"
+}

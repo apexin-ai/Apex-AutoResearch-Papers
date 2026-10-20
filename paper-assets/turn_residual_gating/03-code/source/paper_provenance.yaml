@@ -1,0 +1,485 @@
+paper:
+  title: ''
+  version: 13
+  generated_at: '2026-05-19T23:46:54.004544+00:00'
+claims:
+- id: C001
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'All three fine-tuned variants converge to nearly identical performance: GAR-ours
+    spans 0.75pp, PPL identical at 2.78'
+  type: quantitative
+  evidence:
+  - exp_id: phase2_4way_eval_heldout
+    metric: gar_ours_spread_pp=0.75, ppl_spread=0
+  decisions: []
+  deprecated: false
+- id: C003
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: GAR-ours increases from 0.01 (Base) to ~0.49 (fine-tuned), 45-fold increase
+    attributable to LoRA
+  type: quantitative
+  evidence:
+  - exp_id: phase2_4way_eval
+    metric: base_ours_mid_gar=0.0107, tg_ours_mid_gar=0.4866
+  decisions: []
+  deprecated: false
+- id: C006
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 30x gap between teacher-forced (0.49) and model-generated (0.016) GAR-ours
+  type: quantitative
+  evidence:
+  - exp_id: phase2_4way_eval
+    metric: tg_ours_mid_gar=0.4866
+  - exp_id: phase2_tg_s42_v7
+    metric: eval_ours_mid_gar=0.0157
+  decisions: []
+  deprecated: false
+- id: C010
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Gating provides zero incremental benefit over LoRA-only fine-tuning
+  type: quantitative
+  evidence:
+  - exp_id: phase2_4way_eval
+    metric: gating_incremental_benefit=none
+  - exp_id: phase2_4way_eval_heldout
+    metric: three_way_convergence_confirmed=true
+  decisions: []
+  deprecated: false
+- id: C011
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Gate initialization b_l=1.5 yields sigma(1.5)=0.82, preserving pretrained
+    computation
+  type: design
+  evidence:
+  - exp_id: phase2_tg_s42_v7
+    metric: spec.init_bias=1.5
+  decisions: []
+  deprecated: false
+- id: C013
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Seven loss design iterations (v1-v7), MSE+gate_div is the only convergent
+    formulation
+  type: qualitative
+  evidence:
+  - exp_id: phase2_tg_s42
+    metric: conclusion=negative
+  - exp_id: phase2_tg_s42_v3
+    metric: conclusion=negative
+  - exp_id: phase2_tg_s42_v5
+    metric: conclusion=negative
+  - exp_id: phase2_tg_s42_v6
+    metric: conclusion=negative
+  - exp_id: phase2_tg_s42_v7
+    metric: conclusion=success
+  decisions: []
+  deprecated: false
+- id: C014
+  location:
+    section: background
+    paragraph: 0
+    sentence: 0
+  text: LDA probes achieve AUC=0.98 for detecting goal content at late turns
+  type: quantitative
+  evidence:
+  - exp_id: phase1_gar_diag
+    metric: from Dongre et al. 2026, probe AUC=0.98
+  decisions: []
+  deprecated: false
+- id: C016
+  location:
+    section: background
+    paragraph: 0
+    sentence: 0
+  text: GAR decays across turns (70.8% relative drop)
+  type: quantitative
+  evidence:
+  - exp_id: phase1_gar_diag
+    metric: relative_drop=0.708
+  decisions: []
+  deprecated: false
+- id: C019
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: NTP and GAR gradients oppose in 68-79% of layers, mean cosine similarity negative
+    (-0.089 to -0.042), NTP magnitude dominates by 7.5-14.7x
+  type: empirical
+  evidence:
+  - exp_id: analysis_gradient_conflict
+    metric: epoch0_cos_sim=-0.089, epoch2_cos_sim=-0.042, neg_layers_pct=67.9-78.6,
+      mag_ratio=7.5-14.7
+  decisions: []
+  deprecated: false
+- id: C021
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: '27/28 layers show inverted gate conditioning: gate values lower at turn 1
+    than turn 21 (Wilcoxon p=3.73e-8, r=0.975)'
+  type: empirical
+  evidence:
+  - exp_id: phase2_tg_s42_v7
+    metric: gate_mean_final=0.9336, gate_std_final=0.0492
+  decisions: []
+  deprecated: false
+- id: C024
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: Mean gate values at inference range 0.93-0.98, corresponding to only 2-7%
+    residual stream attenuation
+  type: empirical
+  evidence:
+  - exp_id: phase2_tg_s42_v7
+    metric: gate_mean_final=0.9336
+  decisions: []
+  deprecated: false
+- id: C028
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: PCGrad makes cosine similarity positive by step 200 (+0.086) but L_GAR still
+    collapses identically to baseline
+  type: empirical
+  evidence:
+  - exp_id: phase2_tg_s42_v9_pcgrad
+    metric: pcgrad_cosine_similarity
+  decisions: []
+  deprecated: false
+- id: C033
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: Teacher-forced GAR-ours 0.49 vs autoregressive GAR-ours 0.016, a 30x gap attributable
+    to distribution shift
+  type: empirical
+  evidence:
+  - exp_id: phase2_tg_s42_v7
+    metric: eval_iid_ours_mid_gar=0.5035
+  - exp_id: phase2_tg_s42_v7
+    metric: eval_modelgen_ours_mid_gar=0.0157
+  decisions: []
+  deprecated: false
+- id: C039
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: Primary-task (NTP) self-recovery from exposure bias does not extend to auxiliary
+    objectives (GAR) that depend on distributional properties of the input prefix
+  type: interpretive
+  evidence:
+  - exp_id: phase2_tg_s42_v7
+    metric: eval_iid_ppl=2.784, eval_modelgen_ppl=1.36, eval_modelgen_ours_mid_gar=0.0157
+  decisions: []
+  deprecated: false
+- id: C040
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: GAR declines by 70.8% between early and mid-conversation turns across 12 models
+    (Dongre et al.)
+  type: empirical
+  evidence:
+  - exp_id: phase1_gar_diag
+    metric: relative_drop
+  decisions: []
+  deprecated: false
+- id: C042
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Qwen-2.5-7B GAR drops from 0.0418 at turn 1 to 0.0122 at mid-conversation
+  type: empirical
+  evidence:
+  - exp_id: phase1_gar_diag
+    metric: turn1_avg_gar
+  - exp_id: phase1_gar_diag
+    metric: mid_turns_avg_gar
+  decisions: []
+  deprecated: false
+- id: C045
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Training GAR rises from 0.02 to 0.48; teacher-forced held-out GAR 0.49-0.50;
+    autoregressive GAR 0.016 (30x gap)
+  type: empirical
+  evidence:
+  - exp_id: phase2_tg_s42_v7
+    metric: gar_convergence_phase
+  - exp_id: phase2_4way_eval_heldout
+    metric: tg_ours_mid_gar
+  - exp_id: phase2_4way_eval
+    metric: gating_incremental_benefit
+  decisions: []
+  deprecated: false
+- id: C049
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 'Four-way ablation: GAR-ours spread 0.75pp, PPL identical at 2.78 on held-out;
+    gating zero benefit'
+  type: empirical
+  evidence:
+  - exp_id: phase2_4way_eval_heldout
+    metric: gar_ours_spread_pp
+  - exp_id: phase2_4way_eval_heldout
+    metric: ppl_spread
+  decisions: []
+  deprecated: false
+- id: C050
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: ThreadGate is the first application of residual gating to multi-turn attention
+    recovery
+  type: positioning
+  evidence:
+  - exp_id: phase2_tg_s42_v7
+    metric: novel_method_positioning
+  decisions: []
+  deprecated: false
+- id: C051
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Any lightweight intervention trained jointly with NTP under teacher-forcing
+    faces structural pressure toward passivity
+  type: interpretive
+  evidence:
+  - exp_id: phase2_tg_s42_v7
+    metric: eval_gate_direction
+  - exp_id: analysis_gradient_conflict
+    metric: epoch2_mag_ratio
+  decisions: []
+  deprecated: false
+- id: C053
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: v8 scheduled sampling experiment invalidated by implementation error
+  type: empirical
+  evidence:
+  - exp_id: phase2_tg_s42_v8_schedsampling
+    metric: crash_reason
+  decisions: []
+  deprecated: false
+- id: C054
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: Teacher-forced GAR 0.49 vs autoregressive 0.016 for ThreadGate (30x gap),
+    gating zero benefit (0.75pp spread)
+  type: empirical
+  evidence:
+  - exp_id: phase2_4way_eval_heldout
+    metric: gar_ours_spread_pp
+  - exp_id: phase2_4way_eval
+    metric: tg_ours_mid_gar
+  decisions: []
+  deprecated: false
+- id: C055
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: GAR declines 70.8%, probe AUC=0.98, teacher-forced GAR 0.49, autoregressive
+    GAR 0.016 for ThreadGate (30x)
+  type: empirical
+  evidence:
+  - exp_id: phase1_gar_diag
+    metric: relative_drop
+  - exp_id: phase2_4way_eval
+    metric: tg_ours_mid_gar
+  decisions: []
+  deprecated: false
+- id: C056
+  location:
+    section: limitations
+    paragraph: 0
+    sentence: 0
+  text: Single seed, single GAR loss type, UltraChat 8K, single model family, PCGrad
+    scope limited to direction conflict, shared GAR loss across variants
+  type: limitation
+  evidence:
+  - exp_id: phase2_tg_s42_v7
+    metric: experimental_scope_limitations
+  decisions: []
+  deprecated: false
+tables:
+- id: tab_four_way
+  location:
+    section: experiments
+    table_number: 0
+  caption: ''
+  cells:
+  - row: Base
+    col: IID GAR-O
+    value: '0.01'
+    source:
+      exp_id: phase2_4way_eval
+      metric: base_ours_mid_gar
+  - row: ThreadGate
+    col: IID GAR-O
+    value: '0.49'
+    source:
+      exp_id: phase2_4way_eval
+      metric: tg_ours_mid_gar
+  - row: Uniform Gate
+    col: IID GAR-O
+    value: '0.49'
+    source:
+      exp_id: phase2_4way_eval
+      metric: ug_ours_mid_gar
+  - row: LoRA-only
+    col: IID GAR-O
+    value: '0.49'
+    source:
+      exp_id: phase2_4way_eval
+      metric: lora_ours_mid_gar
+  - row: Base
+    col: Held-out GAR-O
+    value: '0.01'
+    source:
+      exp_id: phase2_4way_eval_heldout
+      metric: base_ours_mid_gar
+  - row: ThreadGate
+    col: Held-out GAR-O
+    value: '0.50'
+    source:
+      exp_id: phase2_4way_eval_heldout
+      metric: tg_ours_mid_gar
+  - row: Uniform Gate
+    col: Held-out GAR-O
+    value: '0.51'
+    source:
+      exp_id: phase2_4way_eval_heldout
+      metric: ug_ours_mid_gar
+  - row: LoRA-only
+    col: Held-out GAR-O
+    value: '0.50'
+    source:
+      exp_id: phase2_4way_eval_heldout
+      metric: lora_ours_mid_gar
+  deprecated: false
+- id: tab:grad-conflict
+  location:
+    section: analysis
+    table_number: 0
+  caption: ''
+  cells:
+  - row: Epoch 0
+    col: cos_sim
+    value: '-0.089'
+    source:
+      exp_id: analysis_gradient_conflict
+      metric: epoch0_cos_sim
+  - row: Epoch 0
+    col: neg_pct
+    value: '78.6'
+    source:
+      exp_id: analysis_gradient_conflict
+      metric: epoch0_neg_layers_pct
+  - row: Epoch 0
+    col: mag_ratio
+    value: 7.5x
+    source:
+      exp_id: analysis_gradient_conflict
+      metric: epoch0_mag_ratio
+  - row: Epoch 1
+    col: cos_sim
+    value: '-0.054'
+    source:
+      exp_id: analysis_gradient_conflict
+      metric: epoch1_cos_sim
+  - row: Epoch 2
+    col: cos_sim
+    value: '-0.042'
+    source:
+      exp_id: analysis_gradient_conflict
+      metric: epoch2_cos_sim
+  - row: Epoch 2
+    col: mag_ratio
+    value: 14.7x
+    source:
+      exp_id: analysis_gradient_conflict
+      metric: epoch2_mag_ratio
+  deprecated: false
+figures:
+- id: fig_gate_shift
+  location:
+    section: analysis
+    figure_number: 0
+  caption: Per-layer gate difference between early and late turns (a) and four-model
+    GAR comparison across evaluation conditions (b)
+  type: empirical
+  source:
+    exp_id: phase2_tg_s42_v7
+    metric: gate_mean_final
+  output_path: figures/paper/fig3_gate_shift.pdf
+  deprecated: false
+- id: fig_training_pcgrad
+  location:
+    section: analysis
+    figure_number: 0
+  caption: L_GAR training curves for baseline v7 and PCGrad conditions
+  type: empirical
+  source:
+    exp_id: phase2_tg_s42_v9_pcgrad
+    metric: pcgrad_training_curves
+  output_path: figures/paper/fig2_training_pcgrad.pdf
+  deprecated: false
+- id: fig1_overview
+  location:
+    section: introduction
+    figure_number: 0
+  caption: Overview of ThreadGate and its failure mode
+  type: conceptual
+  source:
+    exp_id: phase2_4way_eval
+    metric: overview
+  output_path: figures/paper/fig1_overview.pdf
+  deprecated: false
+_completeness:
+  coverage: 24/27
+  claims: 24
+  tables: 2
+  figures: 3
+  tier_counts:
+    tier1: 0
+    tier2: 24
+    tier3: 3
+    tierX: 0
+  last_checked: '2026-05-22T04:41:02.484632+00:00'

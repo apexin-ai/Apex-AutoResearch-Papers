@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d5ee1ed2c3afcd6bb68a",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "analysis n1a boxed validation",
+  "task_key": "worker_analysis_n1a_boxed_validation_20260515T131421",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_n1a_boxed_validation_20260515T131421_result.json",
+    "occurrence": 1,
+    "bytes": 843,
+    "sha256": "0206094fb6faa38c594ba656e69539218bd6866f5548a4c6774a87265c34c3e2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。核心结果：\n\n**Boxed tokens（均值 7.8 token，中位 6）位于序列末尾 >99% 处，93.2% 落在 high-sparsity phase**，显著高于 last-50-tokens proxy 的 82.2%（Δ = +11.05 pp，16/16 条件均 p < 1e-33）。\n\n- DeepSeek: boxed high = 94.5% vs proxy 87.0%（+7.6 pp）\n- Qwen: boxed high = 91.9% vs proxy 77.4%（+14.6 pp）\n- 加权 PPL 退化 proxy：boxed tokens 退化比 reasoning tokens 低 2.7–10×（importance pruning）\n\n结论：last-50-tokens proxy 是**保守的**——它混入了约 42 个 reasoning tokens 稀释了信号。实际 `\\boxed{}` 区域高稀疏度集中度更强，进一步支持 N1a 的结论。\n\n交付物：\n- 服务器：`n1a_boxed_validation.py` + `analysis_output/n1a_boxed_validation.json`\n- 本地报告：`artifacts/n1a_boxed_validation/report.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-n1a-boxed-validation.md"
+}

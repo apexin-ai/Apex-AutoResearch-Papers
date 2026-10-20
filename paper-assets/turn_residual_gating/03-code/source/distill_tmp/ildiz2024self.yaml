@@ -1,0 +1,25 @@
+paper_key: "ildiz2024self"
+title: "From Self-Attention to Markov Models: Unveiling the Dynamics of Generative Transformers"
+venue: "ICML 2024"
+full_text_available: false
+
+research:
+  baselines: ["n-gram models", "HMMs", "standard Transformers"]
+  metrics:
+    - {name: "predictive accuracy", direction: "higher_better"}
+    - {name: "distribution matching", direction: "lower_better"}
+  datasets:
+    - {name: "synthetic sequences", size: "theoretical"}
+  ablation_dimensions: ["model depth", "attention patterns"]
+  training_recipe: "N/A (theoretical)"
+  method_family: "theoretical analysis / generative dynamics"
+
+positioning:
+  core_claim: "Generative Transformers converge to Markov-like dynamics during autoregressive generation, with attention patterns stabilizing predictably"
+  key_results: "formal characterization of generation dynamics"
+  limitations: ["simplified model assumptions", "gap between theory and practice"]
+  relation_to_us: "orthogonal"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

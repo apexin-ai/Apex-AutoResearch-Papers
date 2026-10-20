@@ -1,0 +1,857 @@
+{
+  "schema_version": "1.0",
+  "id": "ee92fe6cd562751c5875",
+  "project": "phase-gated-compound-sparse",
+  "kind": "conversation",
+  "title": "paper tex consistency fixes",
+  "task_key": "worker_paper_tex_consistency_fixes_20260516T224936",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_tex_consistency_fixes_20260516T224936.jsonl",
+    "occurrence": 1,
+    "bytes": 34011,
+    "sha256": "fa9af5008159cd810a155f9efcd579a334d2fd9d9e8bf50ef75fe803c6b1f4d7"
+  },
+  "statistics": {
+    "messages": 41,
+    "user_turns": 0,
+    "tool_calls": 20,
+    "roles": {
+      "tool_call": 20,
+      "tool_result": 20,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T22:52:56.948542+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_tex_consistency_fixes_20260516T224936",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/appendix_moved.tex",
+              "offset": "80",
+              "limit": "30"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T22:52:56.948940+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "80\t\\toprule\n81\tModel & $s{=}0.15$ & $s{=}0.20$ & $s{=}0.25$ & $s{=}0.30$ \\\\\n82\t\\midrule\n83\tDeepSeek-R1-Distill-Qwen-7B ($n{=}496$) & 0.39 & 1.21 & 3.99 & 8.48 \\\\\n84\tQwen2.5-7B-Instruct ($n{=}475$)         & 0.07 & 0.31 & 1.07 & 3.16 \\\\\n85\t\\bottomrule\n86\t\\end{tabular}\n87\t\\end{table}\n88\t\n89\t\\begin{figure}[t]\n90\t\\centering\n91\t\\includegraphics[width=\\columnwidth]{fig5_crossmodel.pdf}\n92\t\\caption{Cross-training-paradigm comparison of the median severity difference under importance-based eviction ($n{=}496$/$475$). Both DeepSeek (solid) and Qwen (dashed) exhibit monotonically increasing $\\Delta$ with sparsity; Qwen's magnitude is approximately one-quarter to one-sixth of DeepSeek's.}\n93\t\\label{fig:cross-model}\n94\t\\end{figure}\n95\t\n96\t\\paragraph{Per-problem concordance.}\n97\tThe per-problem concordance across models is not significant (mean $\\rho = -0.107$, $p = 0.926$), indicating that while the aggregate gradient direction replicates, the specific problems driving severity differ between models---consistent with model-specific attention patterns rather than a universal per-problem vulnerability ranking.\n98\t\n99\t\\paragraph{Random eviction control.}\n100\tAs a control, random eviction on Qwen mirrors DeepSeek: non-significant at $s \\leq 0.20$ ($\\Delta$: $-0.01$, $0.02$; CIs span zero) but significant at $s \\geq 0.25$ ($\\Delta{=}0.39$, $p_{\\text{Bonf}} < 10^{-10}$; $\\Delta{=}0.91$, $p_{\\text{Bonf}} < 10^{-13}$). Where significant, the random phase gradient is $2.7$--$3.5{\\times}$ weaker than importance-based ($0.39$ vs.\\ $1.07$ at $s{=}0.25$; $0.91$ vs.\\ $3.16$ at $s{=}0.30$), supporting strategy-specific amplification.\n101\t\n102\t\n103\t\\section{Permutation Test Details}\n104\t\\label{app:permutation-details}\n105\t\n106\tFor each problem $i$ and sparsity level $s$, we compute the compound severity difference $\\Delta_i^{(\\text{strat})} = \\mathrm{II}_{\\textit{low},i} - \\mathrm{II}_{\\textit{high},i}$ under each eviction strategy. The test statistic is the median of the paired difference $\\w\n…[truncated 740 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_tex_consistency_fixes_20260516T224936",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T22:52:56.949150+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_tex_consistency_fixes_20260516T224936",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/conclusion.tex"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T22:52:56.949307+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Conclusion}\n2\t\\label{sec:conclusion}\n3\t\n4\tWe showed that compound sparsity severity is not phase-invariant but exhibits an emergent phase-strategy interaction. Under importance-based eviction, the paired median difference $\\Delta$ increases from $0.39$ to $8.48$ (DeepSeek, $n{=}500$; Spearman $\\rho{=}1.0$) and $0.07$ to $3.16$ (Qwen, $n{=}475$), all $p < 10^{-13}$. Random eviction is $2.7$--$17{\\times}$ weaker where both strategies are significant ($s \\geq 0.25$; DeepSeek $15$--$17{\\times}$, Qwen $2.7$--$3.5{\\times}$). The importance phase gradient replicates on LlamaForCausalLM ($d_z{=}0.81$--$1.15$, $n{=}250$, all $p < 10^{-29}$), supporting architecture-generality of phase modulation, while strategy specificity is architecture-dependent ($2.0$--$2.6{\\times}$ on LLaMA vs.\\ $15$--$17{\\times}$ on DeepSeek). A model-dependent crossover on DeepSeek demonstrates that no single strategy dominates uniformly. Per-phase Gini analysis reveals importance discrimination collapse as a correlational diagnostic: despite near-identical aggregate Gini drops, severity diverges by $2.7$--$17{\\times}$, implicating the structural specificity of importance-based pruning.\n5\tBeyond the empirical findings, the phase-gated analysis framework itself---decomposing compound severity by reasoning phase and eviction strategy---transforms a scalar interaction metric into a structured diagnostic that reveals where compound sparsity fails and why. This framework provides practitioners with a principled basis for phase-aware sparsity allocation: applying aggressive compression during high-sparsity (structured computation) phases while preserving budget during low-sparsity (exploratory reasoning) phases. Future work could explore generalization to other reasoning domains, causal validation of importance discrimination collapse, and systematic characterization of asymmetric compound interactions.\n6\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_tex_consistency_fixes_20260516T224936",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T22:52:56.949523+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_tex_consistency_fixes_20260516T224936",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/discussion.tex"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T22:52:56.949708+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\n4\t\\paragraph{Implications for deployment.}\n5\tA uniform compression budget implicitly accepts order-of-magnitude severity penalties during low-sparsity reasoning phases. Pilot evaluation ($n{=}30$, $s{=}0.25$; Appendix~\\ref{app:pilot-mitigation}) achieved 18\\% oracle recovery (95\\% CI: $[-39\\%, 45.8\\%]$), falling below the pre-registered 30\\% gate; the CI spans zero, indicating no statistically distinguishable improvement. Effective phase-aware allocation likely requires finer phase boundary estimation than current proxies provide. Additional mechanisms (e.g., strategy switching, adaptive thresholding) warrant investigation. We hypothesize that phase-modulated severity may extend to alternative attention-mass-based scoring methods (H$_2$O \\cite{h2o-neurips2023}, SnapKV \\cite{snapkv-neurips2024}, PyramidKV \\cite{pyramidkv-colm2025}), which remains an open question for future work. Extended discussion in Appendix~\\ref{app:extended-discussion}.\n6\t\n7\t\\paragraph{Reasoning depth scaling.}\n8\tStrategy specificity is not a fixed property but scales with reasoning chain depth: MATH-500 ($15$--$17{\\times}$) $>$ GSM8K (${\\sim}3{\\times}$), with within-MATH-500 correlational support (Spearman $\\rho > 0$, $p < 0.02$ between trace length and specificity). This scaling is consistent with the discrimination collapse mechanism: longer low-sparsity phases provide more tokens over which pruning-degraded importance scores accumulate errors, amplifying the gap between importance-based and random eviction. The implication is practical: as models generate longer reasoning chains (a trend driven by test-time compute scaling~\\cite{snell-2024-scaling-test-time}), the penalty for naive compound compression grows superlinearly.\n9\t\n10\t\\paragraph{Diagnostic framework value.}\n11\tWhile we do not propose a new compression method, the phase-gated analysis framework has direct engineering utility: (1)~the Interaction Index can serve as a per-phase evalu\n…[truncated 600 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_tex_consistency_fixes_20260516T224936",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T22:52:56.949881+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_tex_consistency_fixes_20260516T224936",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/appendix_moved.tex",
+              "offset": "60",
+              "limit": "25"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T22:52:56.950019+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "60\t\\label{tab:qwen-effective-n}\n61\t\\begin{tabular}{@{}lcccc@{}}\n62\t\\toprule\n63\tPhase & $s{=}0.15$ & $s{=}0.20$ & $s{=}0.25$ & $s{=}0.30$ \\\\\n64\t\\midrule\n65\tHigh & 475 & 475 & 475 & 475 \\\\\n66\tMid  & 274 & 274 & 274 & 274 \\\\\n67\tLow  & 475 & 475 & 475 & 475 \\\\\n68\t\\bottomrule\n69\t\\end{tabular}\n70\t\\end{table}\n71\t\n72\tTable~\\ref{tab:cross-model} reports the cross-training-paradigm comparison. Qwen reproduces the monotonic severity gradient at ${\\sim}1/5$ of DeepSeek's magnitude. Figure~\\ref{fig:cross-model} visualizes this comparison.\n73\t\n74\t\\begin{table}[t]\n75\t\\centering\n76\t\\small\n77\t\\caption{Cross-training-paradigm comparison of median compound severity difference ($\\Delta$) under importance-based eviction.}\n78\t\\label{tab:cross-model}\n79\t\\begin{tabular}{@{}lcccc@{}}\n80\t\\toprule\n81\tModel & $s{=}0.15$ & $s{=}0.20$ & $s{=}0.25$ & $s{=}0.30$ \\\\\n82\t\\midrule\n83\tDeepSeek-R1-Distill-Qwen-7B ($n{=}496$) & 0.39 & 1.21 & 3.99 & 8.48 \\\\\n84\tQwen2.5-7B-Instruct ($n{=}475$)         & 0.07 & 0.31 & 1.07 & 3.16 \\\\"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_tex_consistency_fixes_20260516T224936",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T22:52:56.950160+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_tex_consistency_fixes_20260516T224936",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "2\\.7.*20",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/appendix_moved.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T22:52:56.950285+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_tex_consistency_fixes_20260516T224936",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T22:52:56.950440+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_tex_consistency_fixes_20260516T224936",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "20\\{?\\\\times\\}?",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/appendix_moved.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T22:52:56.950572+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_tex_consistency_fixes_20260516T224936",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T22:52:56.950690+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_tex_consistency_fixes_20260516T224936",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "2\\.7.*weaker",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T22:52:56.950814+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/_project/paper/results.tex:88:[Omitted long matching line]\nartifacts/_project/paper/conclusion.tex:4:[Omitted long matching line]\nartifacts/_project/paper/appendix_moved.tex:100:As a control, random eviction on Qwen mirrors DeepSeek: non-significant at $s \\leq 0.20$ ($\\Delta$: $-0.01$, $0.02$; CIs span zero) but significant at $s \\geq 0.25$ ($\\Delta{=}0.39$, $p_{\\text{Bonf}} < 10^{-10}$; $\\Delta{=}0.91$, $p_{\\text{Bonf}} < 10^{-13}$). Where significant, the random phase gradient is $2.7$--$3.5{\\times}$ weaker than importance-based ($0.39$ vs.\\ $1.07$ at $s{=}0.25$; $0.91$ vs.\\ $3.16$ at $s{=}0.30$), supporting strategy-specific amplification.\nartifacts/_project/paper/appendix_disc_analysis.tex:14:[Omitted long matching line]\nartifacts/_project/paper/appendix_disc_analysis.tex:53:These effects are genuine but $2.7$--$20{\\times}$ weaker than importance-based eviction at the same sparsity levels, consistent with a weak phase gradient that is detectable at sufficient sample size but not the primary driver of compound severity."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_tex_consistency_fixes_20260516T224936",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T22:52:56.950956+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_tex_consistency_fixes_20260516T224936",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/appendix_disc_analysis.tex",
+              "offset": "45",
+              "limit": "20"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T22:52:56.951107+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "45\t\n46\t\n47\t\\paragraph{Statistical scope.}\n48\tBootstrap confidence intervals use $B{=}10{,}000$ resamples (seed$=$42). The primary analysis uses $n{=}496$ paired problems for DeepSeek (4 excluded) and $n{=}475$ for Qwen (25 excluded); the permutation test (Table~\\ref{tab:permutation}) uses $n{=}49$ from an initial profiling subset.\n49\tThe severity difference distribution is right-skewed (mean/median ratios up to $43{:}1$), motivating our use of medians and nonparametric tests rather than parametric alternatives.\n50\tAll four profiling-subset permutation tests reject $H_0$ after Bonferroni correction ($p_{\\text{Bonf}} < 0.005$; Table~\\ref{tab:permutation}), with CI lower bounds increasing from $0.19$ to $6.70$---supporting the effect direction at every sparsity level. At $n{=}496$, Wilcoxon signed-rank tests support all conditions with $p_{\\text{Bonf}} < 10^{-13}$ (Table~\\ref{tab:cohens-d}). The permutation CIs at higher sparsity are wider (e.g., $[6.70,\\; 16.29]$ at $s{=}0.30$), reflecting genuine variance in per-problem severity amplification.\n51\t\n52\tAt $n{=}500$, random eviction on both models becomes significant at $s \\geq 0.25$ (Qwen: $\\Delta{=}0.39$, $p_{\\text{Bonf}} < 10^{-10}$ at $s{=}0.25$; $\\Delta{=}0.91$, $p_{\\text{Bonf}} < 10^{-13}$ at $s{=}0.30$; bootstrap CIs exclude zero).\n53\tThese effects are genuine but $2.7$--$20{\\times}$ weaker than importance-based eviction at the same sparsity levels, consistent with a weak phase gradient that is detectable at sufficient sample size but not the primary driver of compound severity.\n54\t\n55\t\\paragraph{Sparsity range.}\n56\tOur primary analysis spans $s \\in \\{0.15, 0.20, 0.25, 0.30\\}$; pilot data at $s{=}0.10$ and $s{=}0.35$ exist (6 total sparsity levels) but are not included in the main analysis due to limited sample size at these boundary conditions. Monotonicity is established at the tested sparsity levels (JT test $p \\ll 10^{-10}$); the functional form of $G(s)$ between and beyond these levels is not characterized.\n\n…[truncated 411 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_tex_consistency_fixes_20260516T224936",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T22:52:56.951253+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_tex_consistency_fixes_20260516T224936",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/results.tex",
+              "offset": "80",
+              "limit": "30"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T22:52:56.951422+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "80\t\\label{sec:crossover}\n81\t\n82\tThe phase-strategy crossover is model-dependent. For DeepSeek ($n{=}496$), a strategy ranking reversal emerges at all four sparsity levels: at $s{=}0.25$, importance-based eviction yields \\emph{lower} II than random in the high-sparsity phase ($0.021$ vs.\\ $1.113$) but \\emph{higher} II in the low-sparsity phase ($3.971$ vs.\\ $1.514$---a $2.6{\\times}$ reversal; both $p < 10^{-4}$), with reversal magnitude ranging from $2.2{\\times}$ to $4.0{\\times}$ across $s \\in \\{0.15, 0.20, 0.25, 0.30\\}$. Qwen does \\emph{not} exhibit this crossover: importance-based eviction produces lower II than random in both phases (e.g., at $s{=}0.25$: high $0.004$ vs.\\ $1.108$; low $1.053$ vs.\\ $1.769$). This divergence suggests the crossover arises from model-specific attention head specialization patterns rather than a universal compound-sparsity property. Full crossover analysis appears in Appendix~\\ref{app:crossover-details}.\n83\t\n84\t\\subsection{Replication Across Training Paradigms}\n85\t\\label{sec:cross-model}\n86\t\n87\tDeepSeek-R1-Distill-Qwen-7B (distillation-trained) and Qwen2.5-7B-Instruct (instruction-tuned) share the Qwen2 backbone but differ in training objective, providing a within-architecture-family comparison across training paradigms.\n88\tQwen2.5-7B-Instruct ($n_{\\text{eff}}{=}475$) reproduces the monotonic severity gradient: $\\Delta$ increases from $0.07$ at $s{=}0.15$ to $3.16$ at $s{=}0.30$ (all Bonferroni-corrected $p < 10^{-14}$), paralleling DeepSeek at approximately one-quarter to one-sixth the magnitude. Both models yield strictly increasing median $\\Delta$ trajectories (Jonckheere-Terpstra $z \\geq 6.2$, $p < 10^{-9}$; see \\S\\ref{par:stats}). Random eviction on Qwen mirrors DeepSeek: non-significant at $s \\leq 0.20$, becoming significant at $s \\geq 0.25$ ($\\Delta{=}0.39$--$0.91$; $p_{\\text{Bonf}} < 10^{-10}$) but $2.7$--$20{\\times}$ weaker than importance-based. A caveat: 45.2\\% of Qwen problems yield null mid-phase segments due to low tempor\n…[truncated 2372 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_tex_consistency_fixes_20260516T224936",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T22:52:56.951605+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_tex_consistency_fixes_20260516T224936",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "GSM8K",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/results.tex",
+              "output_mode": "content",
+              "-n": "True",
+              "-C": "5"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-16T22:52:56.951748+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "119-%% PLACEHOLDER: Fill Table~\\ref{tab:scale-14b} when c12 experiment completes.\n120-%% Expected analysis: (1) whether 14B amplifies or attenuates severity relative to 7B,\n121-%% (2) whether strategy specificity ratio is scale-invariant,\n122-%% (3) comparison of phase segmentation thresholds at larger scale.\n123-\n124:\\subsection{Cross-Benchmark Validation: GSM8K}\n125-\\label{sec:cross-benchmark}\n126-\n127:[Omitted long matching line]\n128-\n129:[Omitted long matching line]\n130-\n131:\\paragraph{GSM8K accuracy under compound sparsity.}\n132:[Omitted long matching line]\n133-\n134-\\subsection{Cross-Benchmark Validation: GPQA Diamond}\n135-\\label{sec:cross-benchmark-gpqa}\n136-\n137-To assess generalization beyond mathematical reasoning, we evaluate both models on GPQA Diamond~\\cite{rein-gpqa-2024} ($n{=}198$), a graduate-level science QA benchmark requiring multi-step reasoning across physics, chemistry, and biology.\n--\n150-\\bottomrule\n151-\\end{tabular}\n152-\\end{table}\n153-\n154-%% PLACEHOLDER: Fill Table~\\ref{tab:gpqa-results} when c11 experiment completes.\n155:%% Expected analysis: (1) phase gradient direction consistency with MATH-500/GSM8K,\n156-%% (2) strategy specificity comparison across task types (math vs. science reasoning),\n157-%% (3) whether cognitive load modulation hypothesis extends to non-mathematical domains.\n158-\n159-\\subsection{Statistical Validation}\n160-\\label{sec:stat-validation}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_tex_consistency_fixes_20260516T224936",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-16T22:52:56.951880+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_tex_consistency_fixes_20260516T224936",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/results.tex",
+              "offset": "124",
+              "limit": "12"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-16T22:52:56.952022+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "124\t\\subsection{Cross-Benchmark Validation: GSM8K}\n125\t\\label{sec:cross-benchmark}\n126\t\n127\tTo assess task generalization, we evaluate both models on GSM8K ($n{=}50$) at $s \\in \\{0.15, 0.20, 0.25, 0.30\\}$. On DeepSeek (clean data, no output truncation), importance-based eviction replicates the MATH-500 phase gradient across all four sparsity levels with a strict dose-response: $\\Delta{=}0.24$ at $s{=}0.15$ rising to $4.68$ at $s{=}0.30$ (all $p \\leq 0.0003$, Wilcoxon). Strategy specificity on GSM8K manifests as a \\emph{qualitative} gap: importance-based eviction produces significant phase gradients while random eviction is non-significant across all conditions (CIs spanning zero).\n128\t\n129\tWe interpret this attenuation as \\emph{reasoning depth scaling}: strategy specificity scales with reasoning chain depth. MATH-500 (complex multi-step reasoning, strategy ratio $15$--$17{\\times}$) produces stronger phase contrast than GSM8K (simpler arithmetic, ratio ${\\sim}3{\\times}$). Within MATH-500, longer traces exhibit higher strategy specificity (Spearman $\\rho > 0$, $p < 0.02$), providing continuous correlational support. This scaling relationship is predictive: tasks with deeper reasoning chains should exhibit stronger strategy${\\times}$phase interactions, because longer low-sparsity phases provide more opportunity for importance discrimination collapse to accumulate. Qwen GSM8K results are inconclusive due to generation truncation (\\texttt{max\\_new\\_tokens}${=}$2047): while directional consistency holds at $s \\geq 0.25$ ($\\Delta{=}1.14$--$4.62$; $p < 10^{-4}$), absolute values and phase assignments are unreliable because all outputs hit the token limit. Full tables in Appendix~\\ref{app:gsm8k}.\n130\t\n131\t\\paragraph{GSM8K accuracy under compound sparsity.}\n132\tA power analysis on GSM8K ($n{=}50$) reveals a strategy-dependent asymmetry in downstream accuracy. Under random head removal, all 8 conditions (2 models $\\times$ 4 sparsity levels) are non-significant (max $|d|{=}0.16\n…[truncated 753 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_tex_consistency_fixes_20260516T224936",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T22:52:56.952251+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_tex_consistency_fixes_20260516T224936",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "GSM8K.*random|random.*GSM8K",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-16T22:52:56.952395+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/_project/paper/discussion.tex:8:[Omitted long matching line]\nartifacts/_project/paper/limitations.tex:5:[Omitted long matching line]\nartifacts/_project/paper/appendix_disc_analysis.tex:68:[Omitted long matching line]\nartifacts/_project/paper/introduction.tex:25:    \\item We characterize a \\textbf{phase-modulated compound severity gradient}: importance-based eviction exhibits a monotonic dose-response ($\\rho{=}1.0$; $\\Delta$: $0.39 \\to 8.48$) with a phase gradient $2.7$--$17{\\times}$ larger than random eviction where both strategies are significant ($s \\geq 0.25$) on MATH-500; the gradient direction is consistent on GSM8K, while strategy specificity attenuates (\\S\\ref{sec:cross-benchmark}).\nartifacts/_project/paper/results.tex:127:[Omitted long matching line]\nartifacts/_project/paper/results.tex:132:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_tex_consistency_fixes_20260516T224936",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-16T22:52:56.952598+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_tex_consistency_fixes_20260516T224936",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "app:gsm8k|gsm8k",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper",
+              "output_mode": "files_with_matches"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-16T22:52:56.952725+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 3 files\nartifacts/_project/paper/appendix_disc_analysis.tex\nartifacts/_project/paper/results.tex\nartifacts/_project/paper/main.aux"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_tex_consistency_fixes_20260516T224936",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-16T22:52:56.952844+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_tex_consistency_fixes_20260516T224936",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/appendix_disc_analysis.tex",
+              "offset": "62",
+              "limit": "20"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-16T22:52:56.952983+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "62\t\n63\t\n64\t\n65\t\\section{Cross-Benchmark Validation: GSM8K}\n66\t\\label{app:gsm8k}\n67\t\n68\tTables~\\ref{tab:gsm8k-ds} and \\ref{tab:gsm8k-qw} report the per-phase II breakdown on GSM8K ($n{=}50$) for DeepSeek and Qwen, respectively. All statistics use medians, Wilcoxon signed-rank tests, and bootstrap median CIs ($B{=}10{,}000$), matching the MATH-500 methodology. DeepSeek importance-based eviction replicates the MATH-500 phase gradient across all four sparsity levels (all $p \\leq 0.0003$) with a strict dose-response ($\\Delta$: $0.24 \\to 4.68$). Qwen importance-based eviction is significant at $s \\geq 0.25$ ($p < 10^{-4}$). Random eviction is non-significant across all conditions for both models; Qwen random $s{=}0.30$ is excluded due to data quality concerns (output truncation producing extreme II values).\n69\t\n70\t\\paragraph{Power analysis for random conditions.}\n71\tPost-hoc power analysis indicates that at $n{=}50$, the minimum detectable effect size is $d \\geq 0.40$ ($\\alpha{=}0.05$, power${=}0.80$). All 8 random conditions (2 models $\\times$ 4 sparsity levels) show $|d| \\leq 0.164$, well below the detectability threshold; their non-significance should therefore be interpreted as absence of evidence rather than evidence of absence. By contrast, Qwen importance-based eviction at $s \\geq 0.25$ is adequately powered ($d \\approx 0.63$, power ${>}\\,0.99$), indicating that the observed significance reflects a genuine effect.\n72\t\n73\t\\begin{table*}[t]\n74\t\\centering\n75\t\\small\n76\t\\caption{Per-phase interaction index on GSM8K: DeepSeek-R1-Distill-Qwen-7B ($n{=}50$). $\\Delta$: paired median difference ($\\widetilde{\\mathrm{II}}_{\\textit{low}} - \\widetilde{\\mathrm{II}}_{\\textit{high}}$) with bootstrap 95\\% CI ($B{=}10{,}000$, median statistic). $p$: Wilcoxon signed-rank, Bonferroni-corrected ($k{=}4$).}\n77\t\\label{tab:gsm8k-ds}\n78\t\\begin{tabular}{@{}llcccc@{}}\n79\t\\toprule\n80\t$s$ & Strategy & $\\widetilde{\\mathrm{II}}_{\\textit{high}}$ & $\\widetilde{\\mathrm{II}}_{\\textit{low}}$ & $\\Delta\n…[truncated 48 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_tex_consistency_fixes_20260516T224936",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-16T22:52:56.953134+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_tex_consistency_fixes_20260516T224936",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/appendix_disc_analysis.tex",
+              "offset": "81",
+              "limit": "40"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-16T22:52:56.953283+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "81\t\\midrule\n82\t0.15 & Importance & $-$0.001 & 0.241 & 0.24\\; $[0.08,\\; 0.48]$ & 0.0003 \\\\\n83\t0.15 & Random     & 0.036 & 0.105 & $-$0.04\\textsuperscript{ns} & 0.90 \\\\\n84\t\\addlinespace\n85\t0.20 & Importance & $-$0.002 & 0.740 & 0.74\\; $[0.31,\\; 1.12]$ & ${<}\\,10^{-4}$ \\\\\n86\t0.20 & Random     & 0.143 & 0.423 & 0.28\\textsuperscript{ns} & 0.96 \\\\\n87\t\\addlinespace\n88\t0.25 & Importance & 0.009 & 1.992 & 1.99\\; $[0.93,\\; 2.82]$ & ${<}\\,10^{-4}$ \\\\\n89\t0.25 & Random     & 0.619 & 1.603 & 0.98\\textsuperscript{ns} & 0.83 \\\\\n90\t\\addlinespace\n91\t0.30 & Importance & 0.024 & 4.682 & 4.68\\; $[2.12,\\; 10.56]$ & ${<}\\,10^{-4}$ \\\\\n92\t0.30 & Random     & 1.837 & 4.683 & 2.85\\textsuperscript{ns} & 0.54 \\\\\n93\t\\bottomrule\n94\t\\end{tabular}\n95\t\\end{table*}\n96\t\n97\t\\begin{table*}[t]\n98\t\\centering\n99\t\\small\n100\t\\caption{Per-phase interaction index on GSM8K: Qwen2.5-7B-Instruct ($n{=}50$). Outputs truncated at \\texttt{max\\_new\\_tokens}${=}$2047; absolute values should be interpreted with this limitation. $^{\\ddagger}$Excluded: extreme II values from truncation artifacts render this condition invalid.}\n101\t\\label{tab:gsm8k-qw}\n102\t\\begin{tabular}{@{}llcccc@{}}\n103\t\\toprule\n104\t$s$ & Strategy & $\\widetilde{\\mathrm{II}}_{\\textit{high}}$ & $\\widetilde{\\mathrm{II}}_{\\textit{low}}$ & $\\Delta$\\; [95\\% CI] & $p_{\\text{Bonf}}$ \\\\\n105\t\\midrule\n106\t0.15 & Importance & 0.000 & 0.029 & 0.03\\textsuperscript{ns} & 0.39 \\\\\n107\t0.15 & Random     & 0.089 & 0.033 & $-$1.58\\textsuperscript{ns} & 0.69 \\\\\n108\t\\addlinespace\n109\t0.20 & Importance & 0.004 & 0.180 & 0.09\\textsuperscript{ns} & 0.62 \\\\\n110\t0.20 & Random     & 0.201 & 0.356 & 4.88\\textsuperscript{ns} & 0.57 \\\\\n111\t\\addlinespace\n112\t0.25 & Importance & 0.009 & 1.064 & 1.14\\; $[0.62,\\; 1.66]$ & ${<}\\,10^{-4}$ \\\\\n113\t0.25 & Random     & 0.802 & 1.213 & 11.1\\textsuperscript{ns} & 0.39 \\\\\n114\t\\addlinespace\n115\t0.30 & Importance & 0.023 & 2.140 & 4.62\\; $[2.88,\\; 6.92]$ & ${<}\\,10^{-4}$ \\\\\n116\t0.30 & Random$^{\\ddagger}$     & \\multicolumn{4}{c}{\\textit{excluded (\n…[truncated 74 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_tex_consistency_fixes_20260516T224936",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-16T22:52:56.953560+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_tex_consistency_fixes_20260516T224936",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/results.tex",
+              "old_string": "but $2.7$--$20{\\times}$ weaker than importance-based",
+              "new_string": "but $2.7$--$3.5{\\times}$ weaker than importance-based"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-16T22:52:56.953809+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/results.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_tex_consistency_fixes_20260516T224936",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-16T22:52:56.953946+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_tex_consistency_fixes_20260516T224936",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/appendix_disc_analysis.tex",
+              "old_string": "These effects are genuine but $2.7$--$20{\\times}$ weaker than importance-based eviction at the same sparsity levels",
+              "new_string": "These effects are genuine but $2.7$--$17{\\times}$ weaker than importance-based eviction at the same sparsity levels"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-16T22:52:56.954141+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/appendix_disc_analysis.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_tex_consistency_fixes_20260516T224936",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-16T22:52:56.954269+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_tex_consistency_fixes_20260516T224936",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/conclusion.tex",
+              "old_string": "(DeepSeek, $n{=}500$;",
+              "new_string": "(DeepSeek, $n{=}496$;"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-16T22:52:56.954427+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/conclusion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_tex_consistency_fixes_20260516T224936",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-16T22:52:56.954562+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_tex_consistency_fixes_20260516T224936",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/discussion.tex",
+              "old_string": "MATH-500 ($15$--$17{\\times}$) $>$ GSM8K (${\\sim}3{\\times}$)",
+              "new_string": "MATH-500 ($15$--$17{\\times}$) $>$ GSM8K (${\\sim}2{\\times}$ point-estimate ratio; random non-significant at $n{=}50$)"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-16T22:52:56.954707+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_tex_consistency_fixes_20260516T224936",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-16T22:52:56.954842+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_tex_consistency_fixes_20260516T224936",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/results.tex",
+              "old_string": "GSM8K (simpler arithmetic, ratio ${\\sim}3{\\times}$)",
+              "new_string": "GSM8K (simpler arithmetic, ratio ${\\sim}2{\\times}$ from point estimates)"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-16T22:52:56.955053+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/results.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_tex_consistency_fixes_20260516T224936",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-16T22:52:56.955231+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成，共 5 处：\n\n| # | 文件 | 修改 | 原因 |\n|---|------|------|------|\n| 1a | `results.tex:88` | `$2.7$--$20{\\times}$` → `$2.7$--$3.5{\\times}$` | Qwen-specific，数据验证 0.39/1.07=2.7×, 0.91/3.16=3.5× |\n| 1b | `appendix_disc_analysis.tex:53` | `$2.7$--$20{\\times}$` → `$2.7$--$17{\\times}$` | \"both models\" 语境，与 conclusion.tex 一致（DeepSeek 15–17×, Qwen 2.7–3.5×） |\n| 2 | `conclusion.tex:4` | `$n{=}500$` → `$n{=}496$` | 与 results.tex table caption 一致 |\n| 3a | `discussion.tex:8` | `GSM8K (${\\sim}3{\\times}$)` → `GSM8K (${\\sim}2{\\times}$ point-estimate ratio; random non-significant at $n{=}50$)` | 实际点估计 1.6–2.6×，且 random 全部 NS |\n| 3b | `results.tex:129` | `ratio ${\\sim}3{\\times}$` → `ratio ${\\sim}2{\\times}$ from point estimates` | 同上，保持一致 |"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_tex_consistency_fixes_20260516T224936"
+          },
+          "id": "event-000041"
+        }
+      ],
+      "message_count": 41
+    }
+  ],
+  "readable_path": "readable/conversations/paper-tex-consistency-fixes.md"
+}

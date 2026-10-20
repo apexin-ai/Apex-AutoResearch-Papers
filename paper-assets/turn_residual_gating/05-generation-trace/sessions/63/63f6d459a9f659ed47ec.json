@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "63f6d459a9f659ed47ec",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "ssh llama eval update and n20 ar",
+  "task_key": "worker_ssh_llama_eval_update_and_n20_ar_20260522T074856",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_llama_eval_update_and_n20_ar_20260522T074856_result.json",
+    "occurrence": 1,
+    "bytes": 642,
+    "sha256": "33e5b1a3cb7290878251a0f9dccf2cdf15289bc4528377fd725a4cf22216f43a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Job 正在运行，模型已加载，开始 Base + GAR-ours AR eval。\n\n**eval_llama_lora_only_s42 结果汇总：**\n\n| | GAR-ours (mid) | GAR-dongre (mid) | PPL |\n|---|---|---|---|\n| **TF** (N=50, T=4) | nGAR=11.80 | nGAR=0.83 | 2.60 |\n| **AR** (N=5, T=10) | raw=0.062, nGAR=0.61 | raw=0.023, nGAR=0.25 | 1.32 |\n\nRegistry 已更新（status=DONE, conclusion=success, metrics 完整）。\n\n**eval_llama_ar_n20 已提交：**\n- 6 个 eval（3 条件 × 2 GAR variant），N=20, T=4, ar-from-fixed\n- PID=312592, tmux=eval_llama_ar_n20, GPU=cuda:0\n- 预计运行 ~1-2 小时（每个 eval ~10-20 min，6 个串行）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-llama-eval-update-and-n20-ar.md"
+}

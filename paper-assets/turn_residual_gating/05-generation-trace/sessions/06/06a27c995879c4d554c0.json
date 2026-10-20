@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "06a27c995879c4d554c0",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "ops llama3 model download",
+  "task_key": "worker_ops_llama3_model_download_20260519T071642",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_llama3_model_download_20260519T071642_result.json",
+    "occurrence": 1,
+    "bytes": 1015,
+    "sha256": "88b25a00a950a95e3d8afc9cb4a28952bce57721756c6b43ef217ec9a6895ac9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**下载状态报告：**\n\n| 项目 | 状态 |\n|------|------|\n| **下载进程 PID** | 45803 |\n| **下载状态** | 进行中 — 正在下载 4 个 safetensors 分片（model-00003 at 1%, model-00004 刚开始） |\n| **已下载文件** | config.json, tokenizer.json, tokenizer_config.json, generation_config.json, model.safetensors.index.json, LICENSE 等元数据文件已就位 |\n| **模型分片** | 尚未出现在目标目录（modelscope 先下载到临时目录，完成后移入） |\n| **下载速度** | ~6 MB/s |\n| **预计剩余时间** | ~40 分钟（总计约 16GB，4 个分片） |\n| **GPU 影响** | 无 — GPU 显存 0 MiB，利用率 0%，LoRA 训练不受影响 |\n\n下载已在后台稳定运行（nohup），可通过以下命令随时检查：\n- 进度：`tail -5 /root/turn_residual_gating/llama_download.log`\n- 进程：`ps -p 45803`\n- 完成后验证：`ls -lh /root/.cache/modelscope/hub/models/LLM-Research/Meta-Llama-3___1-8B-Instruct/model*.safetensors`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-llama3-model-download.md"
+}

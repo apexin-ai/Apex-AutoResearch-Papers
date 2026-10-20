@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2fd9e61bf677377a5dfd",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "code ug baseline compat check",
+  "task_key": "worker_code_ug_baseline_compat_check_20260518T192003",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ug_baseline_compat_check_20260518T192003_result.json",
+    "occurrence": 1,
+    "bytes": 1760,
+    "sha256": "4fd5c3ed0f9be32b8b4eef67d889bada7ecbf4b751a92a07333686ac71ef00eb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 检查结果\n\n### 1. Uniform gate 兼容 v7 新 loss？**是，完全兼容。**\n\n三个关键点全部通过：\n\n**`get_gate_values(with_grad=True)`** — 兼容。这个方法定义在 `ThreadGatedModel` 上（threadgate.py:157-160），返回 `self._gate_values_with_grad`。该字典在 `_make_hook`（line 130-131）中对**两种 gate type 都会填充**：hook 通过 `self.gate_type` 分支调用对应 gate network（line 123-126），但无论走哪个分支，都执行 `self._gate_values_with_grad[layer_idx] = gate`。\n\n**Gate diversity loss** — 兼容。train_phase2.py:259-266 只遍历 `gate_values_grad` 字典算 `per_layer_means` 的 std，不区分 gate type。UniformGateNetwork 的 gate 值同样有层间差异（每层独立的 `constant_vector` + `fc1/fc2`），diversity loss 正常工作。\n\n**`mse_target` GAR loss** — 兼容。gar.py:196-204 只依赖 `gar_per_turn` 的 tensor 值，与 gate type 完全无关。\n\n### 2. 无需修改\n\n代码路径完整，没有遗漏的条件分支。\n\n### 3. UG baseline 训练命令\n\nconfig.py 的默认值已经是 v7 参数（`mse_target`, `lambda_gate_div=1.0`, `min_gate_std=0.05`），所以只需改 `--gate-type` 和 `--output-dir`：\n\n```bash\ncd /root/turn_residual_gating && python src/train_phase2.py \\\n  --gate-type uniform \\\n  --output-dir /root/turn_residual_gating/checkpoints/phase2_ug_s42 \\\n  --gar-loss-mode mse_target \\\n  --gar-target 0.5 \\\n  --lambda-gar 2.0 \\\n  --lambda-gate-div 1.0 \\\n  --min-gate-std 0.05 \\\n  --init-bias 2.0 \\\n  --lr 2e-4 \\\n  --grad-accum 8 \\\n  --epochs 3 \\\n  --seed 42\n```\n\n（显式写出所有参数确保与 v7 TG 实验完全对齐，虽然这些都是 config.py 默认值。）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-ug-baseline-compat-check.md"
+}

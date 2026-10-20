@@ -1,0 +1,36 @@
+{
+  "exp_id": "mvp_v3b_cr70",
+  "project": "turn-hier-kv-compress",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T16:23:08.105Z",
+    "updated_at": "2026-05-13T17:19:44.357Z",
+    "hypothesis": "D007 additive bias with agent traces: TurnKV (ea + α×offset, α=0.1) KIRR - Uniform EA KIRR ≥ 10pp at CR=0.7, PPL ≤ 1.02×. Agent traces with ipython/think roles (65 traces, full KIRR=100%)",
+    "parent": "mvp_v3_cr70",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/turn-hier-kv-compress && python eval/evaluate.py --compression_ratios 0.7 --alpha 0.1 --model /root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B-Instruct/\"",
+      "server": "westd-16980",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "99059",
+      "log_path": "~/runs/turn-hier-kv-compress/mvp_v3b_cr70.log",
+      "submitted_at": "2026-05-13T16:27:19.284Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/turn-hier-kv-compress/data/synthetic_traces/traces.json",
+      "data_count": 65,
+      "model_name": "Meta-Llama-3.1-8B-Instruct",
+      "seed": 42,
+      "checkpoint_source": "meta-llama/Llama-3.1-8B-Instruct (pretrained)",
+      "eval_data": "agent traces v4 (65 traces: 38 std + 27 adv, ipython 62%, think 54%, full KIRR=100%)"
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-13T17:19:44.389677+00:00",
+  "trigger": "update_registry"
+}

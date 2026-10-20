@@ -1,0 +1,699 @@
+# code analysis attn vs ema v2
+
+**redundancy compound sparsity 2** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 15
+- **Recorded user turns:** 0
+- **Tool calls:** 5
+- **Original source:** `logs/workers/worker_code_analysis_attn_vs_ema_v2_20260512T154711.log`
+- **Structured JSON:** [`be38093a53bc23b5ad3e.json`](../../sessions/be/be38093a53bc23b5ad3e.json)
+
+## Before a recorded user message
+
+15 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl",
+  "session_id": "46dfb853-3024-43f7-af53-b99bb0cf8c0e",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "39b805b0-b835-42e3-bd75-a3b534038e16",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-solver-verified-formalizer-rl/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778610000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "ab75ad2a-f85c-4bae-9d7d-232e0754cb9c",
+  "session_id": "46dfb853-3024-43f7-af53-b99bb0cf8c0e"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me understand the task: I need to rewrite `analysis/attn_vs_ema.py` on the remote server westd-16980. First, I need to read the existing code to understand the interfaces, then write the new script.
+
+Let me start by reading the relevant source files on the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "46dfb853-3024-43f7-af53-b99bb0cf8c0e",
+  "uuid": "ae050652-37d9-469c-ae95-bbd75718daac",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JgTP16zk4mq6zUPTfXZ4fS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12643,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12643
+      },
+      "output_tokens": 48,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+先读取服务器上的现有代码，了解接口。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "46dfb853-3024-43f7-af53-b99bb0cf8c0e",
+  "uuid": "39d7b1ef-4db6-4342-a6d4-b59fc007c27b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JgTP16zk4mq6zUPTfXZ4fS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12643,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12643
+      },
+      "output_tokens": 48,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Kd26Uvhe97r5yVjgHY5JGz`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "46dfb853-3024-43f7-af53-b99bb0cf8c0e",
+  "uuid": "cd8fe569-d708-4e74-80fa-8337aad2fe25",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JgTP16zk4mq6zUPTfXZ4fS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12643,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12643
+      },
+      "output_tokens": 48,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-12T15:47:25.482Z_
+
+<details><summary>↩ Tool result · `toolu_01Kd26Uvhe97r5yVjgHY5JGz`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "46dfb853-3024-43f7-af53-b99bb0cf8c0e",
+  "uuid": "2074f5f7-e7bc-4d3b-8791-a835cbb1d441",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0124kCfxcNB5FQrZoB6doVp6`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "cat /root/carc/carc_utils.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "46dfb853-3024-43f7-af53-b99bb0cf8c0e",
+  "uuid": "678c5bcf-57bd-4fd5-8283-b0de01f01ea2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TdZTDFHu48xiarPL7JknB1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 974,
+      "cache_read_input_tokens": 24484,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 974
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WbBwRVMXDwHqQdTumGz55Q`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "cat /root/carc/carc_kv_eviction.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "46dfb853-3024-43f7-af53-b99bb0cf8c0e",
+  "uuid": "20e2aac8-3736-4d80-9f69-a2a86df3cbcd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TdZTDFHu48xiarPL7JknB1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 974,
+      "cache_read_input_tokens": 24484,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 974
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Cb1p2U6tk4NuzuThxWbpFj`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "cat /root/carc/d003_reasoning_traces.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "46dfb853-3024-43f7-af53-b99bb0cf8c0e",
+  "uuid": "1aa43cc8-8d7f-41ae-852d-32307ba6bf91",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TdZTDFHu48xiarPL7JknB1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 974,
+      "cache_read_input_tokens": 24484,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 974
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017vVCemvdp3syUDYxcoiiFg`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "cat /root/carc/analysis/attn_vs_ema.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "46dfb853-3024-43f7-af53-b99bb0cf8c0e",
+  "uuid": "e7a0e3d3-2a5c-4fee-9503-7219a310e25c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TdZTDFHu48xiarPL7JknB1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 974,
+      "cache_read_input_tokens": 24484,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 974
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-12T15:47:37.318Z_
+
+<details><summary>↩ Tool result · `toolu_0124kCfxcNB5FQrZoB6doVp6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nCARC shared utilities: EMA anchors (per-head and concatenated), Welford variance,\\nTEAL sparsify, data loading (C4/wikitext/alpaca + MATH-500), statistical helpers.\\n\\nUsed by carc_calibrate.py and carc_mvp.py.\\nDependencies: torch, datasets, numpy\\n\\\"\\\"\\\"\\n\\nimport math\\nfrom typing import Dict, List, Optional\\n\\nimport numpy as np\\nimport torch\\nimport torch.nn.functional as F\\n\\n\\n# ---------------------------------------------------------------------------\\n# Welford online variance\\n# ---------------------------------------------------------------------------\\n\\nclass WelfordVariance:\\n    \\\"\\\"\\\"Online running variance via Welford's algorithm.\\\"\\\"\\\"\\n\\n    def __init__(self):\\n        self.count = 0\\n        self.mean = 0.0\\n        self.M2 = 0.0\\n\\n    def update(self, value: float):\\n        self.count += 1\\n        delta = value - self.mean\\n        self.mean += delta / self.count\\n        delta2 = value - self.mean\\n        self.M2 += delta * delta2\\n\\n    @property\\n    def variance(self) -> float:\\n        # Return 1.0 when insufficient data to avoid division-by-zero;\\n        # yields alpha=0.5 (equal K/V weighting) at sequence start.\\n        if self.count < 2:\\n            return 1.0\\n        return self.M2 / (self.count - 1)\\n\\n\\n# ---------------------------------------------------------------------------\\n# EMA anchor manager\\n# ---------------------------------------------------------------------------\\n\\nclass EMAAnchorManager:\\n    \\\"\\\"\\\"\\n    Per-layer EMA anchors for K/V with variance-aware weighting.\\n\\n    Supports two modes:\\n      - per_head=True:  per-head cosine similarity with variance-aware head weighting (GQA)\\n      - per_head=False: concatenated K/V vectors (legacy)\\n\\n    Must be reset between sequences.\\n    \\\"\\\"\\\"\\n\\n    def __init__(self, gamma: float = 0.9, num_kv_heads: Optional[int] = None,\\n                 per_head: bool = True, enable_reset: bool = False,\\n                 window_size: int = 16, tau_reset: float = 0.3,\\n                 n_reset: int = 5):\\n        self.gamma = gamma\\n        self.num_kv_heads = num_kv_heads\\n        self.per_head = per_head and num_kv_heads is not None\\n        self.enable_reset = enable_reset\\n        self.window_size = window_size\\n        self.tau_reset = tau_reset\\n        self.n_reset = n_reset\\n        self.state: Dict[int, dict] = {}\\n\\n    def reset(self):\\n        \\\"\\\"\\\"Clear all layer states. Call at the start of each new sequence.\\\"\\\"\\\"\\n        self.state.clear()\\n\\n    def compute_scores(\\n        self, layer_idx: int, k: torch.Tensor, v: torch.Tensor\\n    ) -> torch.Tensor:\\n        if self.per_head:\\n            return self._compute_scores_per_head(layer_idx, k, v)\\n        return self._compute_scores_concat(layer_idx, k, v)\\n\\n    def _init_reset_state_concat(self, st: dict, batch: int, dim: int, device):\\n        \\\"\\\"\\\"Initialize windowed reset buffers for concatenated mode.\\\"\\\"\\\"\\n        W = self.window_size\\n        st[\\\"k_buffer\\\"] = torch.zeros(W, batch, dim, device=device, dtype=torch.float32)\\n        st[\\\"v_buffer\\\"] = torch.zeros(W, batch, dim, device=device, dtype=torch.float32)\\n        st[\\\"buffer_ptr\\\"] = 0\\n        st[\\\"buffer_count\\\"] = 0\\n        st[\\\"low_score_streak\\\"] = 0\\n\\n    def _compute_scores_concat(\\n        self, layer_idx: int, k: torch.Tensor, v: torch.Tensor\\n    ) -> torch.Tensor:\\n        \\\"\\\"\\\"Original concatenated-vector implementation.\\\"\\\"\\\"\\n        batch, seq_len, dim = k.shape\\n        scores = torch.zeros(batch, seq_len, device=k.device, dtype=torch.float32)\\n\\n        if layer_idx not in self.state:\\n            self.state[layer_idx] = {\\n                \\\"anchor_k\\\": k[:, 0, :].float().clone(),\\n                \\\"anchor_v\\\": v[:, 0, :].float().clone(),\\n                \\\"welf_k\\\": WelfordVariance(),\\n                \\\"welf_v\\\": WelfordVariance(),\\n            }\\n            if self.enable_reset:\\n                self._init_reset_state_concat(\\n                    self.state[layer_idx], batch, dim, k.device\\n                )\\n\\n        st = self.state[layer_idx]\\n\\n        for t in range(seq_len):\\n            kt = k[:, t, :].float()\\n            vt = \\n\\n... [截断: 输出过长，省略 7704 字符] ...\\n\\net bin.\\n    \\\"\\\"\\\"\\n    cdf = counts.cumsum(0).double()\\n    total = cdf[-1].item()\\n    if total == 0:\\n        return 0.0\\n    cdf = cdf / total\\n\\n    idx = torch.searchsorted(cdf, sparsity).item()\\n    idx = min(idx, len(bin_edges) - 2)\\n\\n    cdf_lo = cdf[idx - 1].item() if idx > 0 else 0.0\\n    cdf_hi = cdf[idx].item()\\n    edge_lo = bin_edges[idx].item()\\n    edge_hi = bin_edges[idx + 1].item()\\n\\n    if cdf_hi - cdf_lo < 1e-10:\\n        return edge_hi\\n    frac = (sparsity - cdf_lo) / (cdf_hi - cdf_lo)\\n    return edge_lo + frac * (edge_hi - edge_lo)\\n\\n\\n# ---------------------------------------------------------------------------\\n# Statistical helpers\\n# ---------------------------------------------------------------------------\\n\\ndef residualize(x: np.ndarray, z: np.ndarray) -> np.ndarray:\\n    \\\"\\\"\\\"Regress x on z (with intercept), return residuals.\\\"\\\"\\\"\\n    z_aug = np.column_stack([z, np.ones(len(z))])\\n    beta = np.linalg.lstsq(z_aug, x, rcond=None)[0]\\n    return x - z_aug @ beta\\n\\n\\n# ---------------------------------------------------------------------------\\n# Data loading\\n# ---------------------------------------------------------------------------\\n\\ndef load_math_data(num_problems: int = 60, seed: int = 42) -> List[str]:\\n    \\\"\\\"\\\"\\n    Load MATH competition problems and format as CoT prompts.\\n\\n    Returns list of prompt strings (not tokenized).\\n    \\\"\\\"\\\"\\n    from datasets import load_dataset\\n\\n    ds = load_dataset(\\\"hendrycks/competition_math\\\", split=\\\"test\\\", trust_remote_code=True)\\n    rng = np.random.RandomState(seed)\\n    indices = rng.choice(len(ds), size=min(num_problems, len(ds)), replace=False)\\n\\n    prompts = []\\n    for idx in indices:\\n        item = ds[int(idx)]\\n        problem = item[\\\"problem\\\"]\\n        prompt = (\\n            f\\\"Solve the following math problem step by step. \\\"\\n            f\\\"Show your complete reasoning.\\\\n\\\\n\\\"\\n            f\\\"Problem: {problem}\\\\n\\\\n\\\"\\n            f\\\"Solution: Let me think through this carefully.\\\\n\\\"\\n        )\\n        prompts.append(prompt)\\n    return prompts\\n\\n\\ndef load_eval_data(\\n    dataset_name: str = \\\"c4\\\",\\n    num_samples: int = 100,\\n    seq_len: int = 2048,\\n    tokenizer=None,\\n    split: str = \\\"validation\\\",\\n    seed: int = 42,\\n) -> List[torch.Tensor]:\\n    \\\"\\\"\\\"\\n    Load and tokenize evaluation data into fixed-length token sequences.\\n\\n    Supports: c4, wikitext, alpaca.\\n    Returns list of (seq_len,) token ID tensors.\\n    \\\"\\\"\\\"\\n    from datasets import load_dataset\\n\\n    if dataset_name == \\\"c4\\\":\\n        ds = load_dataset(\\\"allenai/c4\\\", \\\"en\\\", split=split, streaming=True, trust_remote_code=True)\\n    elif dataset_name == \\\"wikitext\\\":\\n        ds = load_dataset(\\\"wikitext\\\", \\\"wikitext-2-raw-v1\\\", split=split, trust_remote_code=True)\\n    elif dataset_name == \\\"alpaca\\\":\\n        ds = load_dataset(\\\"tatsu-lab/alpaca\\\", split=\\\"train\\\", trust_remote_code=True)\\n    else:\\n        raise ValueError(f\\\"Unknown dataset: {dataset_name}. Choose from: c4, wikitext, alpaca\\\")\\n\\n    buffer: List[str] = []\\n    for item in ds:\\n        if dataset_name == \\\"alpaca\\\":\\n            text = f\\\"{item.get('instruction', '')} {item.get('input', '')} {item.get('output', '')}\\\"\\n        else:\\n            text = item.get(\\\"text\\\", \\\"\\\")\\n        if text and len(text.strip()) >= 50:\\n            buffer.append(text)\\n        if len(buffer) >= num_samples * 5:\\n            break\\n\\n    samples: List[torch.Tensor] = []\\n    for text in buffer:\\n        ids = tokenizer(text, return_tensors=\\\"pt\\\", add_special_tokens=False).input_ids[0]\\n        if len(ids) >= seq_len:\\n            samples.append(ids[:seq_len])\\n        if len(samples) >= num_samples:\\n            break\\n\\n    # Concatenate short texts if needed\\n    if len(samples) < num_samples:\\n        all_ids = torch.cat(\\n            [tokenizer(t, return_tensors=\\\"pt\\\", add_special_tokens=False).input_ids[0] for t in buffer]\\n        )\\n        for i in range(0, len(all_ids) - seq_len + 1, seq_len):\\n            if len(samples) >= num_samples:\\n                break\\n            samples.append(all_ids[i : i + seq_len])\\n\\n    return samples[:num_samples]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 8.88}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "46dfb853-3024-43f7-af53-b99bb0cf8c0e",
+  "uuid": "829426f7-e92d-4fbf-9d8c-d325ad582745",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nCARC shared utilities: EMA anchors (per-head and concatenated), Welford variance,\\\\nTEAL sparsify, data loading (C4/wikitext/alpaca + MATH-500), statistical helpers.\\\\n\\\\nUsed by carc_calibrate.py and carc_mvp.py.\\\\nDependencies: torch, datasets, numpy\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport math\\\\nfrom typing import Dict, List, Optional\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nimport torch.nn.functional as F\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Welford online variance\\\\n# ---------------------------------------------------------------------------\\\\n\\\\nclass WelfordVariance:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Online running variance via Welford's algorithm.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(self):\\\\n        self.count = 0\\\\n        self.mean = 0.0\\\\n        self.M2 = 0.0\\\\n\\\\n    def update(self, value: float):\\\\n        self.count += 1\\\\n        delta = value - self.mean\\\\n        self.mean += delta / self.count\\\\n        delta2 = value - self.mean\\\\n        self.M2 += delta * delta2\\\\n\\\\n    @property\\\\n    def variance(self) -> float:\\\\n        # Return 1.0 when insufficient data to avoid division-by-zero;\\\\n        # yields alpha=0.5 (equal K/V weighting) at sequence start.\\\\n        if self.count < 2:\\\\n            return 1.0\\\\n        return self.M2 / (self.count - 1)\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# EMA anchor manager\\\\n# ---------------------------------------------------------------------------\\\\n\\\\nclass EMAAnchorManager:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    Per-layer EMA anchors for K/V with variance-aware weighting.\\\\n\\\\n    Supports two modes:\\\\n      - per_head=True:  per-head cosine similarity with variance-aware head weighting (GQA)\\\\n      - per_head=False: concatenated K/V vectors (legacy)\\\\n\\\\n    Must be reset between sequences.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(self, gamma: float = 0.9, num_kv_heads: Optional[int] = None,\\\\n                 per_head: bool = True, enable_reset: bool = False,\\\\n                 window_size: int = 16, tau_reset: float = 0.3,\\\\n                 n_reset: int = 5):\\\\n        self.gamma = gamma\\\\n        self.num_kv_heads = num_kv_heads\\\\n        self.per_head = per_head and num_kv_heads is not None\\\\n        self.enable_reset = enable_reset\\\\n        self.window_size = window_size\\\\n        self.tau_reset = tau_reset\\\\n        self.n_reset = n_reset\\\\n        self.state: Dict[int, dict] = {}\\\\n\\\\n    def reset(self):\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"Clear all layer states. Call at the start of each new sequence.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        self.state.clear()\\\\n\\\\n    def compute_scores(\\\\n        self, layer_idx: int, k: torch.Tensor, v: torch.Tensor\\\\n    ) -> torch.Tensor:\\\\n        if self.per_head:\\\\n            return self._compute_scores_per_head(layer_idx, k, v)\\\\n        return self._compute_scores_concat(layer_idx, k, v)\\\\n\\\\n    def _init_reset_state_concat(self, st: dict, batch: int, dim: int, device):\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"Initialize windowed reset buffers for concatenated mode.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        W = self.window_size\\\\n        st[\\\\\\\"k_buffer\\\\\\\"] = torch.zeros(W, batch, dim, device=device, dtype=torch.float32)\\\\n        st[\\\\\\\"v_buffer\\\\\\\"] = torch.zeros(W, batch, dim, device=device, dtype=torch.float32)\\\\n        st[\\\\\\\"buffer_ptr\\\\\\\"] = 0\\\\n        st[\\\\\\\"buffer_count\\\\\\\"] = 0\\\\n        st[\\\\\\\"low_score_streak\\\\\\\"] = 0\\\\n\\\\n    def _compute_scores_concat(\\\\n        self, layer_idx: int, k: torch.Tensor, v: torch.Tensor\\\\n    ) -> torch.Tensor:\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"Original concatenated-vector implementation.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        batch, seq_len, dim = k.shape\\\\n        scores = torch.zeros(batch, seq_len, device=k.device, dtype=torch.float32)\\\\n\\\\n        if layer_idx not in self.state:\\\\n            self.state[layer_idx] = {\\\\n                \\\\\\\"anchor_k\\\\\\\": k[:, 0, :].float().clone(),\\\\n                \\\\\\\"anchor_v\\\\\\\": v[:, 0, :].float().clone(),\\\\n                \\\\\\\"welf_k\\\\\\\": WelfordVariance(),\\\\n                \\\\\\\"welf_v\\\\\\\": WelfordVariance(),\\\\n            }\\\\n            if self.enable_reset:\\\\n                self._init_reset_state_concat(\\\\n                    self.state[layer_idx], batch, dim, k.device\\\\n                )\\\\n\\\\n        st = self.state[layer_idx]\\\\n\\\\n        for t in range(seq_len):\\\\n            kt = k[:, t, :].float()\\\\n            vt = \\\\n\\\\n... [截断: 输出过长，省略 7704 字符] ...\\\\n\\\\net bin.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    cdf = counts.cumsum(0).double()\\\\n    total = cdf[-1].item()\\\\n    if total == 0:\\\\n        return 0.0\\\\n    cdf = cdf / total\\\\n\\\\n    idx = torch.searchsorted(cdf, sparsity).item()\\\\n    idx = min(idx, len(bin_edges) - 2)\\\\n\\\\n    cdf_lo = cdf[idx - 1].item() if idx > 0 else 0.0\\\\n    cdf_hi = cdf[idx].item()\\\\n    edge_lo = bin_edges[idx].item()\\\\n    edge_hi = bin_edges[idx + 1].item()\\\\n\\\\n    if cdf_hi - cdf_lo < 1e-10:\\\\n        return edge_hi\\\\n    frac = (sparsity - cdf_lo) / (cdf_hi - cdf_lo)\\\\n    return edge_lo + frac * (edge_hi - edge_lo)\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Statistical helpers\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef residualize(x: np.ndarray, z: np.ndarray) -> np.ndarray:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Regress x on z (with intercept), return residuals.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    z_aug = np.column_stack([z, np.ones(len(z))])\\\\n    beta = np.linalg.lstsq(z_aug, x, rcond=None)[0]\\\\n    return x - z_aug @ beta\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Data loading\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef load_math_data(num_problems: int = 60, seed: int = 42) -> List[str]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    Load MATH competition problems and format as CoT prompts.\\\\n\\\\n    Returns list of prompt strings (not tokenized).\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    from datasets import load_dataset\\\\n\\\\n    ds = load_dataset(\\\\\\\"hendrycks/competition_math\\\\\\\", split=\\\\\\\"test\\\\\\\", trust_remote_code=True)\\\\n    rng = np.random.RandomState(seed)\\\\n    indices = rng.choice(len(ds), size=min(num_problems, len(ds)), replace=False)\\\\n\\\\n    prompts = []\\\\n    for idx in indices:\\\\n        item = ds[int(idx)]\\\\n        problem = item[\\\\\\\"problem\\\\\\\"]\\\\n        prompt = (\\\\n            f\\\\\\\"Solve the following math problem step by step. \\\\\\\"\\\\n            f\\\\\\\"Show your complete reasoning.\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n            f\\\\\\\"Problem: {problem}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n            f\\\\\\\"Solution: Let me think through this carefully.\\\\\\\\n\\\\\\\"\\\\n        )\\\\n        prompts.append(prompt)\\\\n    return prompts\\\\n\\\\n\\\\ndef load_eval_data(\\\\n    dataset_name: str = \\\\\\\"c4\\\\\\\",\\\\n    num_samples: int = 100,\\\\n    seq_len: int = 2048,\\\\n    tokenizer=None,\\\\n    split: str = \\\\\\\"validation\\\\\\\",\\\\n    seed: int = 42,\\\\n) -> List[torch.Tensor]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    Load and tokenize evaluation data into fixed-length token sequences.\\\\n\\\\n    Supports: c4, wikitext, alpaca.\\\\n    Returns list of (seq_len,) token ID tensors.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    from datasets import load_dataset\\\\n\\\\n    if dataset_name == \\\\\\\"c4\\\\\\\":\\\\n        ds = load_dataset(\\\\\\\"allenai/c4\\\\\\\", \\\\\\\"en\\\\\\\", split=split, streaming=True, trust_remote_code=True)\\\\n    elif dataset_name == \\\\\\\"wikitext\\\\\\\":\\\\n        ds = load_dataset(\\\\\\\"wikitext\\\\\\\", \\\\\\\"wikitext-2-raw-v1\\\\\\\", split=split, trust_remote_code=True)\\\\n    elif dataset_name == \\\\\\\"alpaca\\\\\\\":\\\\n        ds = load_dataset(\\\\\\\"tatsu-lab/alpaca\\\\\\\", split=\\\\\\\"train\\\\\\\", trust_remote_code=True)\\\\n    else:\\\\n        raise ValueError(f\\\\\\\"Unknown dataset: {dataset_name}. Choose from: c4, wikitext, alpaca\\\\\\\")\\\\n\\\\n    buffer: List[str] = []\\\\n    for item in ds:\\\\n        if dataset_name == \\\\\\\"alpaca\\\\\\\":\\\\n            text = f\\\\\\\"{item.get('instruction', '')} {item.get('input', '')} {item.get('output', '')}\\\\\\\"\\\\n        else:\\\\n            text = item.get(\\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\")\\\\n        if text and len(text.strip()) >= 50:\\\\n            buffer.append(text)\\\\n        if len(buffer) >= num_samples * 5:\\\\n            break\\\\n\\\\n    samples: List[torch.Tensor] = []\\\\n    for text in buffer:\\\\n        ids = tokenizer(text, return_tensors=\\\\\\\"pt\\\\\\\", add_special_tokens=False).input_ids[0]\\\\n        if len(ids) >= seq_len:\\\\n            samples.append(ids[:seq_len])\\\\n        if len(samples) >= num_samples:\\\\n            break\\\\n\\\\n    # Concatenate short texts if needed\\\\n    if len(samples) < num_samples:\\\\n        all_ids = torch.cat(\\\\n            [tokenizer(t, return_tensors=\\\\\\\"pt\\\\\\\", add_special_tokens=False).input_ids[0] for t in buffer]\\\\n        )\\\\n        for i in range(0, len(all_ids) - seq_len + 1, seq_len):\\\\n            if len(samples) >= num_samples:\\\\n                break\\\\n            samples.append(all_ids[i : i + seq_len])\\\\n\\\\n    return samples[:num_samples]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 8.88}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nCARC shared utilities: EMA anchors (per-head and concatenated), Welford variance,\\nTEAL sparsify, data loading (C4/wikitext/alpaca + MATH-500), statistical helpers.\\n\\nUsed by carc_calibrate.py and carc_mvp.py.\\nDependencies: torch, datasets, numpy\\n\\\"\\\"\\\"\\n\\nimport math\\nfrom typing import Dict, List, Optional\\n\\nimport numpy as np\\nimport torch\\nimport torch.nn.functional as F\\n\\n\\n# ---------------------------------------------------------------------------\\n# Welford online variance\\n# ---------------------------------------------------------------------------\\n\\nclass WelfordVariance:\\n    \\\"\\\"\\\"Online running variance via Welford's algorithm.\\\"\\\"\\\"\\n\\n    def __init__(self):\\n        self.count = 0\\n        self.mean = 0.0\\n        self.M2 = 0.0\\n\\n    def update(self, value: float):\\n        self.count += 1\\n        delta = value - self.mean\\n        self.mean += delta / self.count\\n        delta2 = value - self.mean\\n        self.M2 += delta * delta2\\n\\n    @property\\n    def variance(self) -> float:\\n        # Return 1.0 when insufficient data to avoid division-by-zero;\\n        # yields alpha=0.5 (equal K/V weighting) at sequence start.\\n        if self.count < 2:\\n            return 1.0\\n        return self.M2 / (self.count - 1)\\n\\n\\n# ---------------------------------------------------------------------------\\n# EMA anchor manager\\n# ---------------------------------------------------------------------------\\n\\nclass EMAAnchorManager:\\n    \\\"\\\"\\\"\\n    Per-layer EMA anchors for K/V with variance-aware weighting.\\n\\n    Supports two modes:\\n      - per_head=True:  per-head cosine similarity with variance-aware head weighting (GQA)\\n      - per_head=False: concatenated K/V vectors (legacy)\\n\\n    Must be reset between sequences.\\n    \\\"\\\"\\\"\\n\\n    def __init__(self, gamma: float = 0.9, num_kv_heads: Optional[int] = None,\\n                 per_head: bool = True, enable_reset: bool = False,\\n                 window_size: int = 16, tau_reset: float = 0.3,\\n                 n_reset: int = 5):\\n        self.gamma = gamma\\n        self.num_kv_heads = num_kv_heads\\n        self.per_head = per_head and num_kv_heads is not None\\n        self.enable_reset = enable_reset\\n        self.window_size = window_size\\n        self.tau_reset = tau_reset\\n        self.n_reset = n_reset\\n        self.state: Dict[int, dict] = {}\\n\\n    def reset(self):\\n        \\\"\\\"\\\"Clear all layer states. Call at the start of each new sequence.\\\"\\\"\\\"\\n        self.state.clear()\\n\\n    def compute_scores(\\n        self, layer_idx: int, k: torch.Tensor, v: torch.Tensor\\n    ) -> torch.Tensor:\\n        if self.per_head:\\n            return self._compute_scores_per_head(layer_idx, k, v)\\n        return self._compute_scores_concat(layer_idx, k, v)\\n\\n    def _init_reset_state_concat(self, st: dict, batch: int, dim: int, device):\\n        \\\"\\\"\\\"Initialize windowed reset buffers for concatenated mode.\\\"\\\"\\\"\\n        W = self.window_size\\n        st[\\\"k_buffer\\\"] = torch.zeros(W, batch, dim, device=device, dtype=torch.float32)\\n        st[\\\"v_buffer\\\"] = torch.zeros(W, batch, dim, device=device, dtype=torch.float32)\\n        st[\\\"buffer_ptr\\\"] = 0\\n        st[\\\"buffer_count\\\"] = 0\\n        st[\\\"low_score_streak\\\"] = 0\\n\\n    def _compute_scores_concat(\\n        self, layer_idx: int, k: torch.Tensor, v: torch.Tensor\\n    ) -> torch.Tensor:\\n        \\\"\\\"\\\"Original concatenated-vector implementation.\\\"\\\"\\\"\\n        batch, seq_len, dim = k.shape\\n        scores = torch.zeros(batch, seq_len, device=k.device, dtype=torch.float32)\\n\\n        if layer_idx not in self.state:\\n            self.state[layer_idx] = {\\n                \\\"anchor_k\\\": k[:, 0, :].float().clone(),\\n                \\\"anchor_v\\\": v[:, 0, :].float().clone(),\\n                \\\"welf_k\\\": WelfordVariance(),\\n                \\\"welf_v\\\": WelfordVariance(),\\n            }\\n            if self.enable_reset:\\n                self._init_reset_state_concat(\\n                    self.state[layer_idx], batch, dim, k.device\\n                )\\n\\n        st = self.state[layer_idx]\\n\\n        for t in range(seq_len):\\n            kt = k[:, t, :].float()\\n            vt = \\n\\n... [截断: 输出过长，省略 7704 字符] ...\\n\\net bin.\\n    \\\"\\\"\\\"\\n    cdf = counts.cumsum(0).double()\\n    total = cdf[-1].item()\\n    if total == 0:\\n        return 0.0\\n    cdf = cdf / total\\n\\n    idx = torch.searchsorted(cdf, sparsity).item()\\n    idx = min(idx, len(bin_edges) - 2)\\n\\n    cdf_lo = cdf[idx - 1].item() if idx > 0 else 0.0\\n    cdf_hi = cdf[idx].item()\\n    edge_lo = bin_edges[idx].item()\\n    edge_hi = bin_edges[idx + 1].item()\\n\\n    if cdf_hi - cdf_lo < 1e-10:\\n        return edge_hi\\n    frac = (sparsity - cdf_lo) / (cdf_hi - cdf_lo)\\n    return edge_lo + frac * (edge_hi - edge_lo)\\n\\n\\n# ---------------------------------------------------------------------------\\n# Statistical helpers\\n# ---------------------------------------------------------------------------\\n\\ndef residualize(x: np.ndarray, z: np.ndarray) -> np.ndarray:\\n    \\\"\\\"\\\"Regress x on z (with intercept), return residuals.\\\"\\\"\\\"\\n    z_aug = np.column_stack([z, np.ones(len(z))])\\n    beta = np.linalg.lstsq(z_aug, x, rcond=None)[0]\\n    return x - z_aug @ beta\\n\\n\\n# ---------------------------------------------------------------------------\\n# Data loading\\n# ---------------------------------------------------------------------------\\n\\ndef load_math_data(num_problems: int = 60, seed: int = 42) -> List[str]:\\n    \\\"\\\"\\\"\\n    Load MATH competition problems and format as CoT prompts.\\n\\n    Returns list of prompt strings (not tokenized).\\n    \\\"\\\"\\\"\\n    from datasets import load_dataset\\n\\n    ds = load_dataset(\\\"hendrycks/competition_math\\\", split=\\\"test\\\", trust_remote_code=True)\\n    rng = np.random.RandomState(seed)\\n    indices = rng.choice(len(ds), size=min(num_problems, len(ds)), replace=False)\\n\\n    prompts = []\\n    for idx in indices:\\n        item = ds[int(idx)]\\n        problem = item[\\\"problem\\\"]\\n        prompt = (\\n            f\\\"Solve the following math problem step by step. \\\"\\n            f\\\"Show your complete reasoning.\\\\n\\\\n\\\"\\n            f\\\"Problem: {problem}\\\\n\\\\n\\\"\\n            f\\\"Solution: Let me think through this carefully.\\\\n\\\"\\n        )\\n        prompts.append(prompt)\\n    return prompts\\n\\n\\ndef load_eval_data(\\n    dataset_name: str = \\\"c4\\\",\\n    num_samples: int = 100,\\n    seq_len: int = 2048,\\n    tokenizer=None,\\n    split: str = \\\"validation\\\",\\n    seed: int = 42,\\n) -> List[torch.Tensor]:\\n    \\\"\\\"\\\"\\n    Load and tokenize evaluation data into fixed-length token sequences.\\n\\n    Supports: c4, wikitext, alpaca.\\n    Returns list of (seq_len,) token ID tensors.\\n    \\\"\\\"\\\"\\n    from datasets import load_dataset\\n\\n    if dataset_name == \\\"c4\\\":\\n        ds = load_dataset(\\\"allenai/c4\\\", \\\"en\\\", split=split, streaming=True, trust_remote_code=True)\\n    elif dataset_name == \\\"wikitext\\\":\\n        ds = load_dataset(\\\"wikitext\\\", \\\"wikitext-2-raw-v1\\\", split=split, trust_remote_code=True)\\n    elif dataset_name == \\\"alpaca\\\":\\n        ds = load_dataset(\\\"tatsu-lab/alpaca\\\", split=\\\"train\\\", trust_remote_code=True)\\n    else:\\n        raise ValueError(f\\\"Unknown dataset: {dataset_name}. Choose from: c4, wikitext, alpaca\\\")\\n\\n    buffer: List[str] = []\\n    for item in ds:\\n        if dataset_name == \\\"alpaca\\\":\\n            text = f\\\"{item.get('instruction', '')} {item.get('input', '')} {item.get('output', '')}\\\"\\n        else:\\n            text = item.get(\\\"text\\\", \\\"\\\")\\n        if text and len(text.strip()) >= 50:\\n            buffer.append(text)\\n        if len(buffer) >= num_samples * 5:\\n            break\\n\\n    samples: List[torch.Tensor] = []\\n    for text in buffer:\\n        ids = tokenizer(text, return_tensors=\\\"pt\\\", add_special_tokens=False).input_ids[0]\\n        if len(ids) >= seq_len:\\n            samples.append(ids[:seq_len])\\n        if len(samples) >= num_samples:\\n            break\\n\\n    # Concatenate short texts if needed\\n    if len(samples) < num_samples:\\n        all_ids = torch.cat(\\n            [tokenizer(t, return_tensors=\\\"pt\\\", add_special_tokens=False).input_ids[0] for t in buffer]\\n        )\\n        for i in range(0, len(all_ids) - seq_len + 1, seq_len):\\n            if len(samples) >= num_samples:\\n                break\\n            samples.append(all_ids[i : i + seq_len])\\n\\n    return samples[:num_samples]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 8.88}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-12T15:47:46.481Z_
+
+<details><summary>↩ Tool result · `toolu_01WbBwRVMXDwHqQdTumGz55Q`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nCARC KV Cache Eviction — budget-triggered eviction with recurrence-aware protection.\\n\\nWhen KV cache length exceeds a preset budget, evicts tokens with the highest\\ncumulative EMA similarity scores (most redundant), while protecting recent tokens\\nwithin a grace window and the attention sink (position 0).\\n\\nInputs:\\n  - Per-step EMA similarity scores from EMAAnchorManager (batch, num_layers) or scalar\\n  - KV cache (DynamicCache or legacy tuple format)\\n\\nOutputs:\\n  - Boolean eviction masks\\n  - Pruned KV caches\\n\\nDependencies: torch, transformers (DynamicCache)\\n\\\"\\\"\\\"\\n\\nfrom typing import Any, Dict, Optional, Tuple, Union\\n\\nimport torch\\nimport torch.nn.functional as F\\n\\n\\nclass CARCKVEviction:\\n    \\\"\\\"\\\"\\n    Budget-triggered KV cache eviction using cumulative EMA similarity scores.\\n\\n    When KV cache length exceeds budget, evicts the most redundant tokens\\n    (highest cumulative EMA score) while protecting recent tokens.\\n    \\\"\\\"\\\"\\n\\n    def __init__(self, budget: int, grace_window: int = 175,\\n                 evict_ratio: float = 0.1):\\n        \\\"\\\"\\\"\\n        Args:\\n            budget: Max KV cache length before triggering eviction.\\n            grace_window: Recent tokens protected from eviction (W_grace).\\n            evict_ratio: Fraction of over-budget tokens to evict per trigger.\\n        \\\"\\\"\\\"\\n        self.budget = budget\\n        self.grace_window = grace_window\\n        self.evict_ratio = evict_ratio\\n\\n        self._cumulative_scores: Optional[torch.Tensor] = None\\n        self._length: int = 0\\n\\n        self._total_evicted: int = 0\\n        self._eviction_triggers: int = 0\\n        self._sum_evicted_scores: float = 0.0\\n        self._current_cache_length: int = 0\\n\\n    def update_scores(self, ema_scores: torch.Tensor) -> None:\\n        \\\"\\\"\\\"\\n        Accumulate per-token EMA similarity scores.\\n\\n        Args:\\n            ema_scores: Current step scores. Supported shapes:\\n                - (batch, num_layers, 1): per-layer scalar per token — averaged across layers\\n                - (batch, seq_len): per-token scores from a single layer\\n                - (seq_len,): unbatched single-layer scores\\n                - scalar: single score for the latest token\\n        \\\"\\\"\\\"\\n        scores = ema_scores.float().detach()\\n\\n        if scores.dim() == 0:\\n            scores = scores.unsqueeze(0)\\n        if scores.dim() == 3:\\n            # (batch, num_layers, 1) -> average across layers, squeeze last dim\\n            scores = scores.mean(dim=1).squeeze(-1)  # (batch,)\\n        if scores.dim() == 2:\\n            # (batch, seq_len) -> average across batch\\n            scores = scores.mean(dim=0)  # (seq_len,)\\n        # scores is now (seq_len,) or (1,)\\n\\n        if self._cumulative_scores is None:\\n            self._cumulative_scores = scores.clone()\\n            self._length = scores.shape[0]\\n        else:\\n            if self._cumulative_scores.device != scores.device:\\n                self._cumulative_scores = self._cumulative_scores.to(scores.device)\\n            new_len = scores.shape[0]\\n            if new_len == 1:\\n                # Appending a single new token score\\n                self._cumulative_scores = torch.cat([\\n                    self._cumulative_scores,\\n                    scores,\\n                ])\\n                self._length += 1\\n            elif new_len == self._length:\\n                # Full update for all existing positions\\n                self._cumulative_scores = self._cumulative_scores + scores\\n            elif new_len > self._length:\\n                # Scores include new positions beyond current length\\n                self._cumulative_scores[:self._length] += scores[:self._length]\\n                self._cumulative_scores = torch.cat([\\n                    self._cumulative_scores,\\n                    scores[self._length:],\\n                ])\\n                self._length = new_len\\n            else:\\n                # Partial update (fewer positions than current — update first new_len)\\n                self._cumulative_scores[:new_len] += scores\\n\\n    def should_evict(sel\\n\\n... [截断: 输出过长，省略 1620 字符] ...\\n\\n(~protected).sum().item()\\n        n_evict = min(n_evict, n_evictable)\\n\\n        if n_evict <= 0:\\n            return torch.ones(cache_length, dtype=torch.bool, device=cum.device)\\n\\n        # Select top-n_evict highest scores among evictable positions\\n        _, topk_indices = torch.topk(evictable_scores, n_evict)\\n\\n        keep_mask = torch.ones(cache_length, dtype=torch.bool, device=cum.device)\\n        keep_mask[topk_indices] = False\\n\\n        # Track stats\\n        evicted_scores = cum[topk_indices]\\n        self._total_evicted += n_evict\\n        self._eviction_triggers += 1\\n        self._sum_evicted_scores += evicted_scores.sum().item()\\n\\n        # Compact cumulative scores to match new cache after eviction\\n        self._cumulative_scores = cum[keep_mask]\\n        self._length = self._cumulative_scores.shape[0]\\n\\n        return keep_mask\\n\\n    def apply_eviction(\\n        self,\\n        past_key_values: Any,\\n        eviction_mask: torch.Tensor,\\n    ) -> Any:\\n        \\\"\\\"\\\"\\n        Apply eviction mask to HuggingFace KV cache.\\n\\n        Supports:\\n          - DynamicCache (transformers >= 4.36): key_cache/value_cache lists\\n          - Legacy tuple format: tuple of (key, value) pairs per layer\\n\\n        Args:\\n            past_key_values: The model's KV cache.\\n            eviction_mask: Boolean tensor (cache_length,). True = keep.\\n\\n        Returns:\\n            Pruned past_key_values in the same format as input.\\n        \\\"\\\"\\\"\\n        mask = eviction_mask.bool()\\n\\n        # DynamicCache path (transformers >= 4.57: layers with keys/values)\\n        if hasattr(past_key_values, \\\"layers\\\"):\\n            for layer in past_key_values.layers:\\n                seq_mask = mask.to(layer.keys.device)\\n                layer.keys = layer.keys[:, :, seq_mask, :]\\n                layer.values = layer.values[:, :, seq_mask, :]\\n            return past_key_values\\n\\n        # DynamicCache path (transformers 4.36-4.56: key_cache/value_cache)\\n        if hasattr(past_key_values, \\\"key_cache\\\") and hasattr(past_key_values, \\\"value_cache\\\"):\\n            for layer_idx in range(len(past_key_values.key_cache)):\\n                k = past_key_values.key_cache[layer_idx]\\n                v = past_key_values.value_cache[layer_idx]\\n                seq_mask = mask.to(k.device)\\n                past_key_values.key_cache[layer_idx] = k[:, :, seq_mask, :]\\n                past_key_values.value_cache[layer_idx] = v[:, :, seq_mask, :]\\n            return past_key_values\\n\\n        # Legacy tuple format: tuple of (key, value) per layer\\n        pruned = []\\n        for layer_kv in past_key_values:\\n            k, v = layer_kv[0], layer_kv[1]\\n            seq_mask = mask.to(k.device)\\n            if k.dim() == 4:\\n                # (batch, num_heads, seq_len, head_dim)\\n                pruned.append((k[:, :, seq_mask, :], v[:, :, seq_mask, :]))\\n            else:\\n                # (batch, seq_len, dim)\\n                pruned.append((k[:, seq_mask, :], v[:, seq_mask, :]))\\n        return tuple(pruned)\\n\\n    def reset(self) -> None:\\n        \\\"\\\"\\\"Clear all accumulated scores and internal state.\\\"\\\"\\\"\\n        self._cumulative_scores = None\\n        self._length = 0\\n        self._total_evicted = 0\\n        self._eviction_triggers = 0\\n        self._sum_evicted_scores = 0.0\\n        self._current_cache_length = 0\\n\\n    def eviction_stats(self) -> Dict[str, Union[int, float]]:\\n        \\\"\\\"\\\"\\n        Returns eviction statistics.\\n\\n        Returns:\\n            Dict with total_evicted, eviction_triggers, avg_evicted_score,\\n            and cache_utilization.\\n        \\\"\\\"\\\"\\n        avg_score = 0.0\\n        if self._total_evicted > 0:\\n            avg_score = self._sum_evicted_scores / self._total_evicted\\n\\n        utilization = 0.0\\n        if self.budget > 0:\\n            utilization = self._current_cache_length / self.budget\\n\\n        return {\\n            \\\"total_evicted\\\": self._total_evicted,\\n            \\\"eviction_triggers\\\": self._eviction_triggers,\\n            \\\"avg_evicted_score\\\": avg_score,\\n            \\\"cache_utilization\\\": utilization,\\n        }\\n\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 9.14}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "46dfb853-3024-43f7-af53-b99bb0cf8c0e",
+  "uuid": "80d863e2-22b3-4635-9c8a-152ad44169e3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nCARC KV Cache Eviction — budget-triggered eviction with recurrence-aware protection.\\\\n\\\\nWhen KV cache length exceeds a preset budget, evicts tokens with the highest\\\\ncumulative EMA similarity scores (most redundant), while protecting recent tokens\\\\nwithin a grace window and the attention sink (position 0).\\\\n\\\\nInputs:\\\\n  - Per-step EMA similarity scores from EMAAnchorManager (batch, num_layers) or scalar\\\\n  - KV cache (DynamicCache or legacy tuple format)\\\\n\\\\nOutputs:\\\\n  - Boolean eviction masks\\\\n  - Pruned KV caches\\\\n\\\\nDependencies: torch, transformers (DynamicCache)\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nfrom typing import Any, Dict, Optional, Tuple, Union\\\\n\\\\nimport torch\\\\nimport torch.nn.functional as F\\\\n\\\\n\\\\nclass CARCKVEviction:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    Budget-triggered KV cache eviction using cumulative EMA similarity scores.\\\\n\\\\n    When KV cache length exceeds budget, evicts the most redundant tokens\\\\n    (highest cumulative EMA score) while protecting recent tokens.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(self, budget: int, grace_window: int = 175,\\\\n                 evict_ratio: float = 0.1):\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"\\\\n        Args:\\\\n            budget: Max KV cache length before triggering eviction.\\\\n            grace_window: Recent tokens protected from eviction (W_grace).\\\\n            evict_ratio: Fraction of over-budget tokens to evict per trigger.\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"\\\\n        self.budget = budget\\\\n        self.grace_window = grace_window\\\\n        self.evict_ratio = evict_ratio\\\\n\\\\n        self._cumulative_scores: Optional[torch.Tensor] = None\\\\n        self._length: int = 0\\\\n\\\\n        self._total_evicted: int = 0\\\\n        self._eviction_triggers: int = 0\\\\n        self._sum_evicted_scores: float = 0.0\\\\n        self._current_cache_length: int = 0\\\\n\\\\n    def update_scores(self, ema_scores: torch.Tensor) -> None:\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"\\\\n        Accumulate per-token EMA similarity scores.\\\\n\\\\n        Args:\\\\n            ema_scores: Current step scores. Supported shapes:\\\\n                - (batch, num_layers, 1): per-layer scalar per token — averaged across layers\\\\n                - (batch, seq_len): per-token scores from a single layer\\\\n                - (seq_len,): unbatched single-layer scores\\\\n                - scalar: single score for the latest token\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"\\\\n        scores = ema_scores.float().detach()\\\\n\\\\n        if scores.dim() == 0:\\\\n            scores = scores.unsqueeze(0)\\\\n        if scores.dim() == 3:\\\\n            # (batch, num_layers, 1) -> average across layers, squeeze last dim\\\\n            scores = scores.mean(dim=1).squeeze(-1)  # (batch,)\\\\n        if scores.dim() == 2:\\\\n            # (batch, seq_len) -> average across batch\\\\n            scores = scores.mean(dim=0)  # (seq_len,)\\\\n        # scores is now (seq_len,) or (1,)\\\\n\\\\n        if self._cumulative_scores is None:\\\\n            self._cumulative_scores = scores.clone()\\\\n            self._length = scores.shape[0]\\\\n        else:\\\\n            if self._cumulative_scores.device != scores.device:\\\\n                self._cumulative_scores = self._cumulative_scores.to(scores.device)\\\\n            new_len = scores.shape[0]\\\\n            if new_len == 1:\\\\n                # Appending a single new token score\\\\n                self._cumulative_scores = torch.cat([\\\\n                    self._cumulative_scores,\\\\n                    scores,\\\\n                ])\\\\n                self._length += 1\\\\n            elif new_len == self._length:\\\\n                # Full update for all existing positions\\\\n                self._cumulative_scores = self._cumulative_scores + scores\\\\n            elif new_len > self._length:\\\\n                # Scores include new positions beyond current length\\\\n                self._cumulative_scores[:self._length] += scores[:self._length]\\\\n                self._cumulative_scores = torch.cat([\\\\n                    self._cumulative_scores,\\\\n                    scores[self._length:],\\\\n                ])\\\\n                self._length = new_len\\\\n            else:\\\\n                # Partial update (fewer positions than current — update first new_len)\\\\n                self._cumulative_scores[:new_len] += scores\\\\n\\\\n    def should_evict(sel\\\\n\\\\n... [截断: 输出过长，省略 1620 字符] ...\\\\n\\\\n(~protected).sum().item()\\\\n        n_evict = min(n_evict, n_evictable)\\\\n\\\\n        if n_evict <= 0:\\\\n            return torch.ones(cache_length, dtype=torch.bool, device=cum.device)\\\\n\\\\n        # Select top-n_evict highest scores among evictable positions\\\\n        _, topk_indices = torch.topk(evictable_scores, n_evict)\\\\n\\\\n        keep_mask = torch.ones(cache_length, dtype=torch.bool, device=cum.device)\\\\n        keep_mask[topk_indices] = False\\\\n\\\\n        # Track stats\\\\n        evicted_scores = cum[topk_indices]\\\\n        self._total_evicted += n_evict\\\\n        self._eviction_triggers += 1\\\\n        self._sum_evicted_scores += evicted_scores.sum().item()\\\\n\\\\n        # Compact cumulative scores to match new cache after eviction\\\\n        self._cumulative_scores = cum[keep_mask]\\\\n        self._length = self._cumulative_scores.shape[0]\\\\n\\\\n        return keep_mask\\\\n\\\\n    def apply_eviction(\\\\n        self,\\\\n        past_key_values: Any,\\\\n        eviction_mask: torch.Tensor,\\\\n    ) -> Any:\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"\\\\n        Apply eviction mask to HuggingFace KV cache.\\\\n\\\\n        Supports:\\\\n          - DynamicCache (transformers >= 4.36): key_cache/value_cache lists\\\\n          - Legacy tuple format: tuple of (key, value) pairs per layer\\\\n\\\\n        Args:\\\\n            past_key_values: The model's KV cache.\\\\n            eviction_mask: Boolean tensor (cache_length,). True = keep.\\\\n\\\\n        Returns:\\\\n            Pruned past_key_values in the same format as input.\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"\\\\n        mask = eviction_mask.bool()\\\\n\\\\n        # DynamicCache path (transformers >= 4.57: layers with keys/values)\\\\n        if hasattr(past_key_values, \\\\\\\"layers\\\\\\\"):\\\\n            for layer in past_key_values.layers:\\\\n                seq_mask = mask.to(layer.keys.device)\\\\n                layer.keys = layer.keys[:, :, seq_mask, :]\\\\n                layer.values = layer.values[:, :, seq_mask, :]\\\\n            return past_key_values\\\\n\\\\n        # DynamicCache path (transformers 4.36-4.56: key_cache/value_cache)\\\\n        if hasattr(past_key_values, \\\\\\\"key_cache\\\\\\\") and hasattr(past_key_values, \\\\\\\"value_cache\\\\\\\"):\\\\n            for layer_idx in range(len(past_key_values.key_cache)):\\\\n                k = past_key_values.key_cache[layer_idx]\\\\n                v = past_key_values.value_cache[layer_idx]\\\\n                seq_mask = mask.to(k.device)\\\\n                past_key_values.key_cache[layer_idx] = k[:, :, seq_mask, :]\\\\n                past_key_values.value_cache[layer_idx] = v[:, :, seq_mask, :]\\\\n            return past_key_values\\\\n\\\\n        # Legacy tuple format: tuple of (key, value) per layer\\\\n        pruned = []\\\\n        for layer_kv in past_key_values:\\\\n            k, v = layer_kv[0], layer_kv[1]\\\\n            seq_mask = mask.to(k.device)\\\\n            if k.dim() == 4:\\\\n                # (batch, num_heads, seq_len, head_dim)\\\\n                pruned.append((k[:, :, seq_mask, :], v[:, :, seq_mask, :]))\\\\n            else:\\\\n                # (batch, seq_len, dim)\\\\n                pruned.append((k[:, seq_mask, :], v[:, seq_mask, :]))\\\\n        return tuple(pruned)\\\\n\\\\n    def reset(self) -> None:\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"Clear all accumulated scores and internal state.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        self._cumulative_scores = None\\\\n        self._length = 0\\\\n        self._total_evicted = 0\\\\n        self._eviction_triggers = 0\\\\n        self._sum_evicted_scores = 0.0\\\\n        self._current_cache_length = 0\\\\n\\\\n    def eviction_stats(self) -> Dict[str, Union[int, float]]:\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"\\\\n        Returns eviction statistics.\\\\n\\\\n        Returns:\\\\n            Dict with total_evicted, eviction_triggers, avg_evicted_score,\\\\n            and cache_utilization.\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"\\\\n        avg_score = 0.0\\\\n        if self._total_evicted > 0:\\\\n            avg_score = self._sum_evicted_scores / self._total_evicted\\\\n\\\\n        utilization = 0.0\\\\n        if self.budget > 0:\\\\n            utilization = self._current_cache_length / self.budget\\\\n\\\\n        return {\\\\n            \\\\\\\"total_evicted\\\\\\\": self._total_evicted,\\\\n            \\\\\\\"eviction_triggers\\\\\\\": self._eviction_triggers,\\\\n            \\\\\\\"avg_evicted_score\\\\\\\": avg_score,\\\\n            \\\\\\\"cache_utilization\\\\\\\": utilization,\\\\n        }\\\\n\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 9.14}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nCARC KV Cache Eviction — budget-triggered eviction with recurrence-aware protection.\\n\\nWhen KV cache length exceeds a preset budget, evicts tokens with the highest\\ncumulative EMA similarity scores (most redundant), while protecting recent tokens\\nwithin a grace window and the attention sink (position 0).\\n\\nInputs:\\n  - Per-step EMA similarity scores from EMAAnchorManager (batch, num_layers) or scalar\\n  - KV cache (DynamicCache or legacy tuple format)\\n\\nOutputs:\\n  - Boolean eviction masks\\n  - Pruned KV caches\\n\\nDependencies: torch, transformers (DynamicCache)\\n\\\"\\\"\\\"\\n\\nfrom typing import Any, Dict, Optional, Tuple, Union\\n\\nimport torch\\nimport torch.nn.functional as F\\n\\n\\nclass CARCKVEviction:\\n    \\\"\\\"\\\"\\n    Budget-triggered KV cache eviction using cumulative EMA similarity scores.\\n\\n    When KV cache length exceeds budget, evicts the most redundant tokens\\n    (highest cumulative EMA score) while protecting recent tokens.\\n    \\\"\\\"\\\"\\n\\n    def __init__(self, budget: int, grace_window: int = 175,\\n                 evict_ratio: float = 0.1):\\n        \\\"\\\"\\\"\\n        Args:\\n            budget: Max KV cache length before triggering eviction.\\n            grace_window: Recent tokens protected from eviction (W_grace).\\n            evict_ratio: Fraction of over-budget tokens to evict per trigger.\\n        \\\"\\\"\\\"\\n        self.budget = budget\\n        self.grace_window = grace_window\\n        self.evict_ratio = evict_ratio\\n\\n        self._cumulative_scores: Optional[torch.Tensor] = None\\n        self._length: int = 0\\n\\n        self._total_evicted: int = 0\\n        self._eviction_triggers: int = 0\\n        self._sum_evicted_scores: float = 0.0\\n        self._current_cache_length: int = 0\\n\\n    def update_scores(self, ema_scores: torch.Tensor) -> None:\\n        \\\"\\\"\\\"\\n        Accumulate per-token EMA similarity scores.\\n\\n        Args:\\n            ema_scores: Current step scores. Supported shapes:\\n                - (batch, num_layers, 1): per-layer scalar per token — averaged across layers\\n                - (batch, seq_len): per-token scores from a single layer\\n                - (seq_len,): unbatched single-layer scores\\n                - scalar: single score for the latest token\\n        \\\"\\\"\\\"\\n        scores = ema_scores.float().detach()\\n\\n        if scores.dim() == 0:\\n            scores = scores.unsqueeze(0)\\n        if scores.dim() == 3:\\n            # (batch, num_layers, 1) -> average across layers, squeeze last dim\\n            scores = scores.mean(dim=1).squeeze(-1)  # (batch,)\\n        if scores.dim() == 2:\\n            # (batch, seq_len) -> average across batch\\n            scores = scores.mean(dim=0)  # (seq_len,)\\n        # scores is now (seq_len,) or (1,)\\n\\n        if self._cumulative_scores is None:\\n            self._cumulative_scores = scores.clone()\\n            self._length = scores.shape[0]\\n        else:\\n            if self._cumulative_scores.device != scores.device:\\n                self._cumulative_scores = self._cumulative_scores.to(scores.device)\\n            new_len = scores.shape[0]\\n            if new_len == 1:\\n                # Appending a single new token score\\n                self._cumulative_scores = torch.cat([\\n                    self._cumulative_scores,\\n                    scores,\\n                ])\\n                self._length += 1\\n            elif new_len == self._length:\\n                # Full update for all existing positions\\n                self._cumulative_scores = self._cumulative_scores + scores\\n            elif new_len > self._length:\\n                # Scores include new positions beyond current length\\n                self._cumulative_scores[:self._length] += scores[:self._length]\\n                self._cumulative_scores = torch.cat([\\n                    self._cumulative_scores,\\n                    scores[self._length:],\\n                ])\\n                self._length = new_len\\n            else:\\n                # Partial update (fewer positions than current — update first new_len)\\n                self._cumulative_scores[:new_len] += scores\\n\\n    def should_evict(sel\\n\\n... [截断: 输出过长，省略 1620 字符] ...\\n\\n(~protected).sum().item()\\n        n_evict = min(n_evict, n_evictable)\\n\\n        if n_evict <= 0:\\n            return torch.ones(cache_length, dtype=torch.bool, device=cum.device)\\n\\n        # Select top-n_evict highest scores among evictable positions\\n        _, topk_indices = torch.topk(evictable_scores, n_evict)\\n\\n        keep_mask = torch.ones(cache_length, dtype=torch.bool, device=cum.device)\\n        keep_mask[topk_indices] = False\\n\\n        # Track stats\\n        evicted_scores = cum[topk_indices]\\n        self._total_evicted += n_evict\\n        self._eviction_triggers += 1\\n        self._sum_evicted_scores += evicted_scores.sum().item()\\n\\n        # Compact cumulative scores to match new cache after eviction\\n        self._cumulative_scores = cum[keep_mask]\\n        self._length = self._cumulative_scores.shape[0]\\n\\n        return keep_mask\\n\\n    def apply_eviction(\\n        self,\\n        past_key_values: Any,\\n        eviction_mask: torch.Tensor,\\n    ) -> Any:\\n        \\\"\\\"\\\"\\n        Apply eviction mask to HuggingFace KV cache.\\n\\n        Supports:\\n          - DynamicCache (transformers >= 4.36): key_cache/value_cache lists\\n          - Legacy tuple format: tuple of (key, value) pairs per layer\\n\\n        Args:\\n            past_key_values: The model's KV cache.\\n            eviction_mask: Boolean tensor (cache_length,). True = keep.\\n\\n        Returns:\\n            Pruned past_key_values in the same format as input.\\n        \\\"\\\"\\\"\\n        mask = eviction_mask.bool()\\n\\n        # DynamicCache path (transformers >= 4.57: layers with keys/values)\\n        if hasattr(past_key_values, \\\"layers\\\"):\\n            for layer in past_key_values.layers:\\n                seq_mask = mask.to(layer.keys.device)\\n                layer.keys = layer.keys[:, :, seq_mask, :]\\n                layer.values = layer.values[:, :, seq_mask, :]\\n            return past_key_values\\n\\n        # DynamicCache path (transformers 4.36-4.56: key_cache/value_cache)\\n        if hasattr(past_key_values, \\\"key_cache\\\") and hasattr(past_key_values, \\\"value_cache\\\"):\\n            for layer_idx in range(len(past_key_values.key_cache)):\\n                k = past_key_values.key_cache[layer_idx]\\n                v = past_key_values.value_cache[layer_idx]\\n                seq_mask = mask.to(k.device)\\n                past_key_values.key_cache[layer_idx] = k[:, :, seq_mask, :]\\n                past_key_values.value_cache[layer_idx] = v[:, :, seq_mask, :]\\n            return past_key_values\\n\\n        # Legacy tuple format: tuple of (key, value) per layer\\n        pruned = []\\n        for layer_kv in past_key_values:\\n            k, v = layer_kv[0], layer_kv[1]\\n            seq_mask = mask.to(k.device)\\n            if k.dim() == 4:\\n                # (batch, num_heads, seq_len, head_dim)\\n                pruned.append((k[:, :, seq_mask, :], v[:, :, seq_mask, :]))\\n            else:\\n                # (batch, seq_len, dim)\\n                pruned.append((k[:, seq_mask, :], v[:, seq_mask, :]))\\n        return tuple(pruned)\\n\\n    def reset(self) -> None:\\n        \\\"\\\"\\\"Clear all accumulated scores and internal state.\\\"\\\"\\\"\\n        self._cumulative_scores = None\\n        self._length = 0\\n        self._total_evicted = 0\\n        self._eviction_triggers = 0\\n        self._sum_evicted_scores = 0.0\\n        self._current_cache_length = 0\\n\\n    def eviction_stats(self) -> Dict[str, Union[int, float]]:\\n        \\\"\\\"\\\"\\n        Returns eviction statistics.\\n\\n        Returns:\\n            Dict with total_evicted, eviction_triggers, avg_evicted_score,\\n            and cache_utilization.\\n        \\\"\\\"\\\"\\n        avg_score = 0.0\\n        if self._total_evicted > 0:\\n            avg_score = self._sum_evicted_scores / self._total_evicted\\n\\n        utilization = 0.0\\n        if self.budget > 0:\\n            utilization = self._current_cache_length / self.budget\\n\\n        return {\\n            \\\"total_evicted\\\": self._total_evicted,\\n            \\\"eviction_triggers\\\": self._eviction_triggers,\\n            \\\"avg_evicted_score\\\": avg_score,\\n            \\\"cache_utilization\\\": utilization,\\n        }\\n\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 9.14}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-12T15:48:04.490Z_
+
+<details><summary>↩ Tool result · `toolu_01Cb1p2U6tk4NuzuThxWbpFj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nD003 Experiment 1: EMA vs Random eviction on reasoning traces.\\n\\nGenerate MATH-500 reasoning traces with DeepSeek-R1-Distill-Qwen-14B,\\nconcatenate into ~30-40K token sequence, then evaluate continuation PPL\\nunder 6 eviction strategies: full, ema_0.9, ema_0.7, ema_0.5, random, recency.\\n\\nInput: MATH-500 problems (hendrycks/competition_math)\\nOutput: JSON with per-strategy PPL, eviction stats\\nDependencies: torch, transformers, datasets, tqdm, carc_utils, carc_kv_eviction\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport gc\\nimport json\\nimport sys\\nimport time\\nfrom typing import Any, Dict, List, Optional, Tuple\\n\\nimport torch\\nimport torch.nn.functional as F\\nfrom tqdm import tqdm\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\n\\nfrom carc_utils import EMAAnchorManager\\nfrom carc_kv_eviction import CARCKVEviction\\n\\n\\nclass KVCapture:\\n    def __init__(self, model, num_layers: int):\\n        self._hooks: list = []\\n        self.kv: Dict[int, List[Optional[torch.Tensor]]] = {}\\n        self.active = True\\n        for i in range(num_layers):\\n            attn = model.model.layers[i].self_attn\\n            self._hooks.append(attn.k_proj.register_forward_hook(self._hook(i, 0)))\\n            self._hooks.append(attn.v_proj.register_forward_hook(self._hook(i, 1)))\\n\\n    def _hook(self, layer_idx: int, slot: int):\\n        def fn(_module, _inp, out):\\n            if not self.active:\\n                return\\n            self.kv.setdefault(layer_idx, [None, None])[slot] = out.detach()\\n        return fn\\n\\n    def clear(self):\\n        self.kv.clear()\\n\\n    def remove(self):\\n        for h in self._hooks:\\n            h.remove()\\n        self._hooks.clear()\\n\\n\\ndef get_cache_length(past_kv: Any) -> int:\\n    if hasattr(past_kv, \\\"get_seq_length\\\"):\\n        return past_kv.get_seq_length()\\n    if hasattr(past_kv, \\\"key_cache\\\") and len(past_kv.key_cache) > 0:\\n        return past_kv.key_cache[0].shape[2]\\n    if isinstance(past_kv, tuple) and len(past_kv) > 0:\\n        return past_kv[0][0].shape[-2]\\n    return 0\\n\\n\\ndef get_math_prompts(num_problems: int = 60, seed: int = 42) -> list:\\n    \\\"\\\"\\\"Inline MATH-style prompts (no HF download needed).\\\"\\\"\\\"\\n    import random\\n    problems = [\\n        \\\"Let $f(x) = x^3 - 3x + 1$. Find the sum of all real roots of $f(x) = 0$.\\\",\\n        \\\"In triangle $ABC$, $AB = 13$, $BC = 14$, $CA = 15$. Find the area of triangle $ABC$.\\\",\\n        \\\"Find the remainder when $2^{2023}$ is divided by $17$.\\\",\\n        \\\"How many integers between 1 and 1000 are divisible by 3 but not by 5?\\\",\\n        \\\"Let $a_1 = 1, a_2 = 1$, and $a_{n+2} = a_{n+1} + a_n$ for $n \\\\geq 1$. Find $a_{10}$.\\\",\\n        \\\"Find all pairs of positive integers $(x, y)$ such that $x^2 - y^2 = 91$.\\\",\\n        \\\"A circle has center $(3, 4)$ and passes through the origin. Find the radius of the circle.\\\",\\n        \\\"Compute $\\\\sum_{k=1}^{100} k^2$.\\\",\\n        \\\"If $\\\\log_2(x) + \\\\log_2(x-1) = 1$, find $x$.\\\",\\n        \\\"In how many ways can 8 people be seated around a circular table?\\\",\\n        \\\"Find the value of $\\\\int_0^1 x e^x \\\\, dx$.\\\",\\n        \\\"Determine whether $\\\\sqrt{2} + \\\\sqrt{3}$ is rational or irrational. Prove your answer.\\\",\\n        \\\"Find the number of positive divisors of $2^5 \\\\cdot 3^3 \\\\cdot 5^2$.\\\",\\n        \\\"Let $z = 3 + 4i$. Find $|z^2|$.\\\",\\n        \\\"How many subsets of $\\\\{1, 2, 3, \\\\ldots, 10\\\\}$ contain at least one odd number?\\\",\\n        \\\"Find the coefficient of $x^5$ in the expansion of $(1+x)^{10}$.\\\",\\n        \\\"Solve the system: $x + y = 5$, $x^2 + y^2 = 13$.\\\",\\n        \\\"A bag contains 5 red and 3 blue balls. Two balls are drawn without replacement. Find the probability both are red.\\\",\\n        \\\"Find the shortest distance from the point $(1, 2, 3)$ to the plane $x + 2y + 2z = 0$.\\\",\\n        \\\"Evaluate $\\\\lim_{n \\\\to \\\\infty} \\\\left(1 + \\\\frac{1}{n}\\\\right)^{2n}$.\\\",\\n        \\\"Prove that for all positive integers $n$, $n^3 - n$ is divisible by 6.\\\",\\n        \\\"Find all solutions to $\\\\sin(2x) = \\\\cos(x)$ in $[0, 2\\\\pi)$.\\\",\\n        \\\"A regular hexagon has side length 4. Find its area.\\\",\\n        \\\"How many 4-digit numbers have digits that sum\\n\\n... [截断: 输出过长，省略 12547 字符] ...\\n\\n    args = parser.parse_args()\\n\\n    device = torch.device(f\\\"cuda:{args.gpu}\\\")\\n    dtype = torch.float16 if args.dtype == \\\"fp16\\\" else torch.bfloat16\\n\\n    print(f\\\"Loading model: {args.model}\\\")\\n    tokenizer = AutoTokenizer.from_pretrained(args.model, trust_remote_code=True)\\n    model = AutoModelForCausalLM.from_pretrained(\\n        args.model, torch_dtype=dtype, device_map={\\\"\\\": device}, trust_remote_code=True,\\n    )\\n    model.eval()\\n    num_layers = len(model.model.layers)\\n    print(f\\\"Model loaded: {num_layers} layers, kv_heads={getattr(model.config, 'num_key_value_heads', None)}\\\")\\n\\n    # --- Generate reasoning traces ---\\n    print(f\\\"\\\\nGenerating {args.num_traces} reasoning traces...\\\")\\n    prompts = get_math_prompts(num_problems=args.num_traces, seed=42)\\n    all_ids = generate_reasoning_traces(\\n        model, tokenizer, prompts,\\n        max_new_tokens=args.max_trace_tokens, device=device,\\n    )\\n    total_len = len(all_ids)\\n    print(f\\\"Total trace tokens: {total_len}\\\")\\n\\n    if total_len < 1000:\\n        print(\\\"ERROR: Too few tokens generated. Aborting.\\\")\\n        sys.exit(1)\\n\\n    # 80/20 split\\n    prefill_len = int(total_len * 0.8)\\n    eval_len = total_len - prefill_len\\n    budget = int(prefill_len * args.budget_ratio)\\n    print(f\\\"Split: prefill={prefill_len}, eval={eval_len}, budget={budget}\\\")\\n\\n    input_ids = torch.tensor([all_ids], dtype=torch.long, device=device)\\n\\n    # --- Run strategies ---\\n    strategies = [\\\"full\\\", \\\"ema_0.9\\\", \\\"ema_0.7\\\", \\\"ema_0.5\\\", \\\"random\\\", \\\"recency\\\"]\\n    results = []\\n\\n    for strat in strategies:\\n        print(f\\\"\\\\n{'='*60}\\\")\\n        print(f\\\"Running strategy: {strat}\\\")\\n        print(f\\\"{'='*60}\\\")\\n        t0 = time.time()\\n        result = run_strategy(\\n            strategy=strat,\\n            model=model,\\n            num_layers=num_layers,\\n            input_ids=input_ids,\\n            prefill_len=prefill_len,\\n            budget=budget,\\n            grace_window=args.grace_window,\\n            device=device,\\n            chunk_size=args.chunk_size,\\n        )\\n        elapsed = time.time() - t0\\n        result[\\\"elapsed_seconds\\\"] = round(elapsed, 1)\\n        results.append(result)\\n        print(f\\\"  PPL={result['ppl']:.4f}  ({elapsed:.1f}s)\\\")\\n\\n    # --- Summary ---\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(\\\"SUMMARY\\\")\\n    print(f\\\"{'='*60}\\\")\\n    print(f\\\"{'Strategy':<12} {'PPL':>10} {'Evicted':>10} {'Triggers':>10}\\\")\\n    print(\\\"-\\\" * 44)\\n    for r in results:\\n        print(f\\\"{r['strategy']:<12} {r['ppl']:>10.4f} {r.get('total_evicted', 0):>10} {r.get('eviction_triggers', 0):>10}\\\")\\n\\n    # PASS criteria check\\n    full_ppl = next(r[\\\"ppl\\\"] for r in results if r[\\\"strategy\\\"] == \\\"full\\\")\\n    random_ppl = next(r[\\\"ppl\\\"] for r in results if r[\\\"strategy\\\"] == \\\"random\\\")\\n    ema_ppls = {r[\\\"strategy\\\"]: r[\\\"ppl\\\"] for r in results if r[\\\"strategy\\\"].startswith(\\\"ema\\\")}\\n    best_ema = min(ema_ppls.values())\\n    gap = (random_ppl - best_ema) / random_ppl * 100 if random_ppl > 0 else 0\\n\\n    print(f\\\"\\\\nFull baseline PPL: {full_ppl:.4f}\\\")\\n    print(f\\\"Best EMA PPL: {best_ema:.4f}\\\")\\n    print(f\\\"Random PPL: {random_ppl:.4f}\\\")\\n    print(f\\\"EMA vs Random gap: {gap:.2f}%\\\")\\n    print(f\\\"PASS (≥5% gap)? {'YES' if gap >= 5.0 else 'NO'}\\\")\\n\\n    # --- Save ---\\n    output = {\\n        \\\"experiment\\\": \\\"d003_reasoning_traces\\\",\\n        \\\"config\\\": {\\n            \\\"model\\\": args.model,\\n            \\\"budget_ratio\\\": args.budget_ratio,\\n            \\\"budget\\\": budget,\\n            \\\"grace_window\\\": args.grace_window,\\n            \\\"num_traces\\\": args.num_traces,\\n            \\\"total_tokens\\\": total_len,\\n            \\\"prefill_len\\\": prefill_len,\\n            \\\"eval_len\\\": eval_len,\\n        },\\n        \\\"results\\\": results,\\n        \\\"summary\\\": {\\n            \\\"full_ppl\\\": full_ppl,\\n            \\\"best_ema_ppl\\\": best_ema,\\n            \\\"random_ppl\\\": random_ppl,\\n            \\\"ema_vs_random_gap_pct\\\": round(gap, 2),\\n            \\\"pass\\\": gap >= 5.0,\\n        },\\n    }\\n    with open(args.output, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n    print(f\\\"\\\\nResults saved to {args.output}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 17.99}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "46dfb853-3024-43f7-af53-b99bb0cf8c0e",
+  "uuid": "c20744b1-e92e-46a2-9d77-acf1f85d3470",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nD003 Experiment 1: EMA vs Random eviction on reasoning traces.\\\\n\\\\nGenerate MATH-500 reasoning traces with DeepSeek-R1-Distill-Qwen-14B,\\\\nconcatenate into ~30-40K token sequence, then evaluate continuation PPL\\\\nunder 6 eviction strategies: full, ema_0.9, ema_0.7, ema_0.5, random, recency.\\\\n\\\\nInput: MATH-500 problems (hendrycks/competition_math)\\\\nOutput: JSON with per-strategy PPL, eviction stats\\\\nDependencies: torch, transformers, datasets, tqdm, carc_utils, carc_kv_eviction\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport gc\\\\nimport json\\\\nimport sys\\\\nimport time\\\\nfrom typing import Any, Dict, List, Optional, Tuple\\\\n\\\\nimport torch\\\\nimport torch.nn.functional as F\\\\nfrom tqdm import tqdm\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\n\\\\nfrom carc_utils import EMAAnchorManager\\\\nfrom carc_kv_eviction import CARCKVEviction\\\\n\\\\n\\\\nclass KVCapture:\\\\n    def __init__(self, model, num_layers: int):\\\\n        self._hooks: list = []\\\\n        self.kv: Dict[int, List[Optional[torch.Tensor]]] = {}\\\\n        self.active = True\\\\n        for i in range(num_layers):\\\\n            attn = model.model.layers[i].self_attn\\\\n            self._hooks.append(attn.k_proj.register_forward_hook(self._hook(i, 0)))\\\\n            self._hooks.append(attn.v_proj.register_forward_hook(self._hook(i, 1)))\\\\n\\\\n    def _hook(self, layer_idx: int, slot: int):\\\\n        def fn(_module, _inp, out):\\\\n            if not self.active:\\\\n                return\\\\n            self.kv.setdefault(layer_idx, [None, None])[slot] = out.detach()\\\\n        return fn\\\\n\\\\n    def clear(self):\\\\n        self.kv.clear()\\\\n\\\\n    def remove(self):\\\\n        for h in self._hooks:\\\\n            h.remove()\\\\n        self._hooks.clear()\\\\n\\\\n\\\\ndef get_cache_length(past_kv: Any) -> int:\\\\n    if hasattr(past_kv, \\\\\\\"get_seq_length\\\\\\\"):\\\\n        return past_kv.get_seq_length()\\\\n    if hasattr(past_kv, \\\\\\\"key_cache\\\\\\\") and len(past_kv.key_cache) > 0:\\\\n        return past_kv.key_cache[0].shape[2]\\\\n    if isinstance(past_kv, tuple) and len(past_kv) > 0:\\\\n        return past_kv[0][0].shape[-2]\\\\n    return 0\\\\n\\\\n\\\\ndef get_math_prompts(num_problems: int = 60, seed: int = 42) -> list:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Inline MATH-style prompts (no HF download needed).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    import random\\\\n    problems = [\\\\n        \\\\\\\"Let $f(x) = x^3 - 3x + 1$. Find the sum of all real roots of $f(x) = 0$.\\\\\\\",\\\\n        \\\\\\\"In triangle $ABC$, $AB = 13$, $BC = 14$, $CA = 15$. Find the area of triangle $ABC$.\\\\\\\",\\\\n        \\\\\\\"Find the remainder when $2^{2023}$ is divided by $17$.\\\\\\\",\\\\n        \\\\\\\"How many integers between 1 and 1000 are divisible by 3 but not by 5?\\\\\\\",\\\\n        \\\\\\\"Let $a_1 = 1, a_2 = 1$, and $a_{n+2} = a_{n+1} + a_n$ for $n \\\\\\\\geq 1$. Find $a_{10}$.\\\\\\\",\\\\n        \\\\\\\"Find all pairs of positive integers $(x, y)$ such that $x^2 - y^2 = 91$.\\\\\\\",\\\\n        \\\\\\\"A circle has center $(3, 4)$ and passes through the origin. Find the radius of the circle.\\\\\\\",\\\\n        \\\\\\\"Compute $\\\\\\\\sum_{k=1}^{100} k^2$.\\\\\\\",\\\\n        \\\\\\\"If $\\\\\\\\log_2(x) + \\\\\\\\log_2(x-1) = 1$, find $x$.\\\\\\\",\\\\n        \\\\\\\"In how many ways can 8 people be seated around a circular table?\\\\\\\",\\\\n        \\\\\\\"Find the value of $\\\\\\\\int_0^1 x e^x \\\\\\\\, dx$.\\\\\\\",\\\\n        \\\\\\\"Determine whether $\\\\\\\\sqrt{2} + \\\\\\\\sqrt{3}$ is rational or irrational. Prove your answer.\\\\\\\",\\\\n        \\\\\\\"Find the number of positive divisors of $2^5 \\\\\\\\cdot 3^3 \\\\\\\\cdot 5^2$.\\\\\\\",\\\\n        \\\\\\\"Let $z = 3 + 4i$. Find $|z^2|$.\\\\\\\",\\\\n        \\\\\\\"How many subsets of $\\\\\\\\{1, 2, 3, \\\\\\\\ldots, 10\\\\\\\\}$ contain at least one odd number?\\\\\\\",\\\\n        \\\\\\\"Find the coefficient of $x^5$ in the expansion of $(1+x)^{10}$.\\\\\\\",\\\\n        \\\\\\\"Solve the system: $x + y = 5$, $x^2 + y^2 = 13$.\\\\\\\",\\\\n        \\\\\\\"A bag contains 5 red and 3 blue balls. Two balls are drawn without replacement. Find the probability both are red.\\\\\\\",\\\\n        \\\\\\\"Find the shortest distance from the point $(1, 2, 3)$ to the plane $x + 2y + 2z = 0$.\\\\\\\",\\\\n        \\\\\\\"Evaluate $\\\\\\\\lim_{n \\\\\\\\to \\\\\\\\infty} \\\\\\\\left(1 + \\\\\\\\frac{1}{n}\\\\\\\\right)^{2n}$.\\\\\\\",\\\\n        \\\\\\\"Prove that for all positive integers $n$, $n^3 - n$ is divisible by 6.\\\\\\\",\\\\n        \\\\\\\"Find all solutions to $\\\\\\\\sin(2x) = \\\\\\\\cos(x)$ in $[0, 2\\\\\\\\pi)$.\\\\\\\",\\\\n        \\\\\\\"A regular hexagon has side length 4. Find its area.\\\\\\\",\\\\n        \\\\\\\"How many 4-digit numbers have digits that sum\\\\n\\\\n... [截断: 输出过长，省略 12547 字符] ...\\\\n\\\\n    args = parser.parse_args()\\\\n\\\\n    device = torch.device(f\\\\\\\"cuda:{args.gpu}\\\\\\\")\\\\n    dtype = torch.float16 if args.dtype == \\\\\\\"fp16\\\\\\\" else torch.bfloat16\\\\n\\\\n    print(f\\\\\\\"Loading model: {args.model}\\\\\\\")\\\\n    tokenizer = AutoTokenizer.from_pretrained(args.model, trust_remote_code=True)\\\\n    model = AutoModelForCausalLM.from_pretrained(\\\\n        args.model, torch_dtype=dtype, device_map={\\\\\\\"\\\\\\\": device}, trust_remote_code=True,\\\\n    )\\\\n    model.eval()\\\\n    num_layers = len(model.model.layers)\\\\n    print(f\\\\\\\"Model loaded: {num_layers} layers, kv_heads={getattr(model.config, 'num_key_value_heads', None)}\\\\\\\")\\\\n\\\\n    # --- Generate reasoning traces ---\\\\n    print(f\\\\\\\"\\\\\\\\nGenerating {args.num_traces} reasoning traces...\\\\\\\")\\\\n    prompts = get_math_prompts(num_problems=args.num_traces, seed=42)\\\\n    all_ids = generate_reasoning_traces(\\\\n        model, tokenizer, prompts,\\\\n        max_new_tokens=args.max_trace_tokens, device=device,\\\\n    )\\\\n    total_len = len(all_ids)\\\\n    print(f\\\\\\\"Total trace tokens: {total_len}\\\\\\\")\\\\n\\\\n    if total_len < 1000:\\\\n        print(\\\\\\\"ERROR: Too few tokens generated. Aborting.\\\\\\\")\\\\n        sys.exit(1)\\\\n\\\\n    # 80/20 split\\\\n    prefill_len = int(total_len * 0.8)\\\\n    eval_len = total_len - prefill_len\\\\n    budget = int(prefill_len * args.budget_ratio)\\\\n    print(f\\\\\\\"Split: prefill={prefill_len}, eval={eval_len}, budget={budget}\\\\\\\")\\\\n\\\\n    input_ids = torch.tensor([all_ids], dtype=torch.long, device=device)\\\\n\\\\n    # --- Run strategies ---\\\\n    strategies = [\\\\\\\"full\\\\\\\", \\\\\\\"ema_0.9\\\\\\\", \\\\\\\"ema_0.7\\\\\\\", \\\\\\\"ema_0.5\\\\\\\", \\\\\\\"random\\\\\\\", \\\\\\\"recency\\\\\\\"]\\\\n    results = []\\\\n\\\\n    for strat in strategies:\\\\n        print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n        print(f\\\\\\\"Running strategy: {strat}\\\\\\\")\\\\n        print(f\\\\\\\"{'='*60}\\\\\\\")\\\\n        t0 = time.time()\\\\n        result = run_strategy(\\\\n            strategy=strat,\\\\n            model=model,\\\\n            num_layers=num_layers,\\\\n            input_ids=input_ids,\\\\n            prefill_len=prefill_len,\\\\n            budget=budget,\\\\n            grace_window=args.grace_window,\\\\n            device=device,\\\\n            chunk_size=args.chunk_size,\\\\n        )\\\\n        elapsed = time.time() - t0\\\\n        result[\\\\\\\"elapsed_seconds\\\\\\\"] = round(elapsed, 1)\\\\n        results.append(result)\\\\n        print(f\\\\\\\"  PPL={result['ppl']:.4f}  ({elapsed:.1f}s)\\\\\\\")\\\\n\\\\n    # --- Summary ---\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n    print(\\\\\\\"SUMMARY\\\\\\\")\\\\n    print(f\\\\\\\"{'='*60}\\\\\\\")\\\\n    print(f\\\\\\\"{'Strategy':<12} {'PPL':>10} {'Evicted':>10} {'Triggers':>10}\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 44)\\\\n    for r in results:\\\\n        print(f\\\\\\\"{r['strategy']:<12} {r['ppl']:>10.4f} {r.get('total_evicted', 0):>10} {r.get('eviction_triggers', 0):>10}\\\\\\\")\\\\n\\\\n    # PASS criteria check\\\\n    full_ppl = next(r[\\\\\\\"ppl\\\\\\\"] for r in results if r[\\\\\\\"strategy\\\\\\\"] == \\\\\\\"full\\\\\\\")\\\\n    random_ppl = next(r[\\\\\\\"ppl\\\\\\\"] for r in results if r[\\\\\\\"strategy\\\\\\\"] == \\\\\\\"random\\\\\\\")\\\\n    ema_ppls = {r[\\\\\\\"strategy\\\\\\\"]: r[\\\\\\\"ppl\\\\\\\"] for r in results if r[\\\\\\\"strategy\\\\\\\"].startswith(\\\\\\\"ema\\\\\\\")}\\\\n    best_ema = min(ema_ppls.values())\\\\n    gap = (random_ppl - best_ema) / random_ppl * 100 if random_ppl > 0 else 0\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nFull baseline PPL: {full_ppl:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"Best EMA PPL: {best_ema:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"Random PPL: {random_ppl:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"EMA vs Random gap: {gap:.2f}%\\\\\\\")\\\\n    print(f\\\\\\\"PASS (≥5% gap)? {'YES' if gap >= 5.0 else 'NO'}\\\\\\\")\\\\n\\\\n    # --- Save ---\\\\n    output = {\\\\n        \\\\\\\"experiment\\\\\\\": \\\\\\\"d003_reasoning_traces\\\\\\\",\\\\n        \\\\\\\"config\\\\\\\": {\\\\n            \\\\\\\"model\\\\\\\": args.model,\\\\n            \\\\\\\"budget_ratio\\\\\\\": args.budget_ratio,\\\\n            \\\\\\\"budget\\\\\\\": budget,\\\\n            \\\\\\\"grace_window\\\\\\\": args.grace_window,\\\\n            \\\\\\\"num_traces\\\\\\\": args.num_traces,\\\\n            \\\\\\\"total_tokens\\\\\\\": total_len,\\\\n            \\\\\\\"prefill_len\\\\\\\": prefill_len,\\\\n            \\\\\\\"eval_len\\\\\\\": eval_len,\\\\n        },\\\\n        \\\\\\\"results\\\\\\\": results,\\\\n        \\\\\\\"summary\\\\\\\": {\\\\n            \\\\\\\"full_ppl\\\\\\\": full_ppl,\\\\n            \\\\\\\"best_ema_ppl\\\\\\\": best_ema,\\\\n            \\\\\\\"random_ppl\\\\\\\": random_ppl,\\\\n            \\\\\\\"ema_vs_random_gap_pct\\\\\\\": round(gap, 2),\\\\n            \\\\\\\"pass\\\\\\\": gap >= 5.0,\\\\n        },\\\\n    }\\\\n    with open(args.output, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nResults saved to {args.output}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 17.99}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nD003 Experiment 1: EMA vs Random eviction on reasoning traces.\\n\\nGenerate MATH-500 reasoning traces with DeepSeek-R1-Distill-Qwen-14B,\\nconcatenate into ~30-40K token sequence, then evaluate continuation PPL\\nunder 6 eviction strategies: full, ema_0.9, ema_0.7, ema_0.5, random, recency.\\n\\nInput: MATH-500 problems (hendrycks/competition_math)\\nOutput: JSON with per-strategy PPL, eviction stats\\nDependencies: torch, transformers, datasets, tqdm, carc_utils, carc_kv_eviction\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport gc\\nimport json\\nimport sys\\nimport time\\nfrom typing import Any, Dict, List, Optional, Tuple\\n\\nimport torch\\nimport torch.nn.functional as F\\nfrom tqdm import tqdm\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\n\\nfrom carc_utils import EMAAnchorManager\\nfrom carc_kv_eviction import CARCKVEviction\\n\\n\\nclass KVCapture:\\n    def __init__(self, model, num_layers: int):\\n        self._hooks: list = []\\n        self.kv: Dict[int, List[Optional[torch.Tensor]]] = {}\\n        self.active = True\\n        for i in range(num_layers):\\n            attn = model.model.layers[i].self_attn\\n            self._hooks.append(attn.k_proj.register_forward_hook(self._hook(i, 0)))\\n            self._hooks.append(attn.v_proj.register_forward_hook(self._hook(i, 1)))\\n\\n    def _hook(self, layer_idx: int, slot: int):\\n        def fn(_module, _inp, out):\\n            if not self.active:\\n                return\\n            self.kv.setdefault(layer_idx, [None, None])[slot] = out.detach()\\n        return fn\\n\\n    def clear(self):\\n        self.kv.clear()\\n\\n    def remove(self):\\n        for h in self._hooks:\\n            h.remove()\\n        self._hooks.clear()\\n\\n\\ndef get_cache_length(past_kv: Any) -> int:\\n    if hasattr(past_kv, \\\"get_seq_length\\\"):\\n        return past_kv.get_seq_length()\\n    if hasattr(past_kv, \\\"key_cache\\\") and len(past_kv.key_cache) > 0:\\n        return past_kv.key_cache[0].shape[2]\\n    if isinstance(past_kv, tuple) and len(past_kv) > 0:\\n        return past_kv[0][0].shape[-2]\\n    return 0\\n\\n\\ndef get_math_prompts(num_problems: int = 60, seed: int = 42) -> list:\\n    \\\"\\\"\\\"Inline MATH-style prompts (no HF download needed).\\\"\\\"\\\"\\n    import random\\n    problems = [\\n        \\\"Let $f(x) = x^3 - 3x + 1$. Find the sum of all real roots of $f(x) = 0$.\\\",\\n        \\\"In triangle $ABC$, $AB = 13$, $BC = 14$, $CA = 15$. Find the area of triangle $ABC$.\\\",\\n        \\\"Find the remainder when $2^{2023}$ is divided by $17$.\\\",\\n        \\\"How many integers between 1 and 1000 are divisible by 3 but not by 5?\\\",\\n        \\\"Let $a_1 = 1, a_2 = 1$, and $a_{n+2} = a_{n+1} + a_n$ for $n \\\\geq 1$. Find $a_{10}$.\\\",\\n        \\\"Find all pairs of positive integers $(x, y)$ such that $x^2 - y^2 = 91$.\\\",\\n        \\\"A circle has center $(3, 4)$ and passes through the origin. Find the radius of the circle.\\\",\\n        \\\"Compute $\\\\sum_{k=1}^{100} k^2$.\\\",\\n        \\\"If $\\\\log_2(x) + \\\\log_2(x-1) = 1$, find $x$.\\\",\\n        \\\"In how many ways can 8 people be seated around a circular table?\\\",\\n        \\\"Find the value of $\\\\int_0^1 x e^x \\\\, dx$.\\\",\\n        \\\"Determine whether $\\\\sqrt{2} + \\\\sqrt{3}$ is rational or irrational. Prove your answer.\\\",\\n        \\\"Find the number of positive divisors of $2^5 \\\\cdot 3^3 \\\\cdot 5^2$.\\\",\\n        \\\"Let $z = 3 + 4i$. Find $|z^2|$.\\\",\\n        \\\"How many subsets of $\\\\{1, 2, 3, \\\\ldots, 10\\\\}$ contain at least one odd number?\\\",\\n        \\\"Find the coefficient of $x^5$ in the expansion of $(1+x)^{10}$.\\\",\\n        \\\"Solve the system: $x + y = 5$, $x^2 + y^2 = 13$.\\\",\\n        \\\"A bag contains 5 red and 3 blue balls. Two balls are drawn without replacement. Find the probability both are red.\\\",\\n        \\\"Find the shortest distance from the point $(1, 2, 3)$ to the plane $x + 2y + 2z = 0$.\\\",\\n        \\\"Evaluate $\\\\lim_{n \\\\to \\\\infty} \\\\left(1 + \\\\frac{1}{n}\\\\right)^{2n}$.\\\",\\n        \\\"Prove that for all positive integers $n$, $n^3 - n$ is divisible by 6.\\\",\\n        \\\"Find all solutions to $\\\\sin(2x) = \\\\cos(x)$ in $[0, 2\\\\pi)$.\\\",\\n        \\\"A regular hexagon has side length 4. Find its area.\\\",\\n        \\\"How many 4-digit numbers have digits that sum\\n\\n... [截断: 输出过长，省略 12547 字符] ...\\n\\n    args = parser.parse_args()\\n\\n    device = torch.device(f\\\"cuda:{args.gpu}\\\")\\n    dtype = torch.float16 if args.dtype == \\\"fp16\\\" else torch.bfloat16\\n\\n    print(f\\\"Loading model: {args.model}\\\")\\n    tokenizer = AutoTokenizer.from_pretrained(args.model, trust_remote_code=True)\\n    model = AutoModelForCausalLM.from_pretrained(\\n        args.model, torch_dtype=dtype, device_map={\\\"\\\": device}, trust_remote_code=True,\\n    )\\n    model.eval()\\n    num_layers = len(model.model.layers)\\n    print(f\\\"Model loaded: {num_layers} layers, kv_heads={getattr(model.config, 'num_key_value_heads', None)}\\\")\\n\\n    # --- Generate reasoning traces ---\\n    print(f\\\"\\\\nGenerating {args.num_traces} reasoning traces...\\\")\\n    prompts = get_math_prompts(num_problems=args.num_traces, seed=42)\\n    all_ids = generate_reasoning_traces(\\n        model, tokenizer, prompts,\\n        max_new_tokens=args.max_trace_tokens, device=device,\\n    )\\n    total_len = len(all_ids)\\n    print(f\\\"Total trace tokens: {total_len}\\\")\\n\\n    if total_len < 1000:\\n        print(\\\"ERROR: Too few tokens generated. Aborting.\\\")\\n        sys.exit(1)\\n\\n    # 80/20 split\\n    prefill_len = int(total_len * 0.8)\\n    eval_len = total_len - prefill_len\\n    budget = int(prefill_len * args.budget_ratio)\\n    print(f\\\"Split: prefill={prefill_len}, eval={eval_len}, budget={budget}\\\")\\n\\n    input_ids = torch.tensor([all_ids], dtype=torch.long, device=device)\\n\\n    # --- Run strategies ---\\n    strategies = [\\\"full\\\", \\\"ema_0.9\\\", \\\"ema_0.7\\\", \\\"ema_0.5\\\", \\\"random\\\", \\\"recency\\\"]\\n    results = []\\n\\n    for strat in strategies:\\n        print(f\\\"\\\\n{'='*60}\\\")\\n        print(f\\\"Running strategy: {strat}\\\")\\n        print(f\\\"{'='*60}\\\")\\n        t0 = time.time()\\n        result = run_strategy(\\n            strategy=strat,\\n            model=model,\\n            num_layers=num_layers,\\n            input_ids=input_ids,\\n            prefill_len=prefill_len,\\n            budget=budget,\\n            grace_window=args.grace_window,\\n            device=device,\\n            chunk_size=args.chunk_size,\\n        )\\n        elapsed = time.time() - t0\\n        result[\\\"elapsed_seconds\\\"] = round(elapsed, 1)\\n        results.append(result)\\n        print(f\\\"  PPL={result['ppl']:.4f}  ({elapsed:.1f}s)\\\")\\n\\n    # --- Summary ---\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(\\\"SUMMARY\\\")\\n    print(f\\\"{'='*60}\\\")\\n    print(f\\\"{'Strategy':<12} {'PPL':>10} {'Evicted':>10} {'Triggers':>10}\\\")\\n    print(\\\"-\\\" * 44)\\n    for r in results:\\n        print(f\\\"{r['strategy']:<12} {r['ppl']:>10.4f} {r.get('total_evicted', 0):>10} {r.get('eviction_triggers', 0):>10}\\\")\\n\\n    # PASS criteria check\\n    full_ppl = next(r[\\\"ppl\\\"] for r in results if r[\\\"strategy\\\"] == \\\"full\\\")\\n    random_ppl = next(r[\\\"ppl\\\"] for r in results if r[\\\"strategy\\\"] == \\\"random\\\")\\n    ema_ppls = {r[\\\"strategy\\\"]: r[\\\"ppl\\\"] for r in results if r[\\\"strategy\\\"].startswith(\\\"ema\\\")}\\n    best_ema = min(ema_ppls.values())\\n    gap = (random_ppl - best_ema) / random_ppl * 100 if random_ppl > 0 else 0\\n\\n    print(f\\\"\\\\nFull baseline PPL: {full_ppl:.4f}\\\")\\n    print(f\\\"Best EMA PPL: {best_ema:.4f}\\\")\\n    print(f\\\"Random PPL: {random_ppl:.4f}\\\")\\n    print(f\\\"EMA vs Random gap: {gap:.2f}%\\\")\\n    print(f\\\"PASS (≥5% gap)? {'YES' if gap >= 5.0 else 'NO'}\\\")\\n\\n    # --- Save ---\\n    output = {\\n        \\\"experiment\\\": \\\"d003_reasoning_traces\\\",\\n        \\\"config\\\": {\\n            \\\"model\\\": args.model,\\n            \\\"budget_ratio\\\": args.budget_ratio,\\n            \\\"budget\\\": budget,\\n            \\\"grace_window\\\": args.grace_window,\\n            \\\"num_traces\\\": args.num_traces,\\n            \\\"total_tokens\\\": total_len,\\n            \\\"prefill_len\\\": prefill_len,\\n            \\\"eval_len\\\": eval_len,\\n        },\\n        \\\"results\\\": results,\\n        \\\"summary\\\": {\\n            \\\"full_ppl\\\": full_ppl,\\n            \\\"best_ema_ppl\\\": best_ema,\\n            \\\"random_ppl\\\": random_ppl,\\n            \\\"ema_vs_random_gap_pct\\\": round(gap, 2),\\n            \\\"pass\\\": gap >= 5.0,\\n        },\\n    }\\n    with open(args.output, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n    print(f\\\"\\\\nResults saved to {args.output}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 17.99}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-12T15:48:47.260Z_
+
+<details><summary>↩ Tool result · `toolu_017vVCemvdp3syUDYxcoiiFg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nA2: Attention distribution vs EMA similarity signal correlation analysis.\\n\\nFor each input sequence, simultaneously computes:\\n  1. Per-position attention weight (mean softmax attention each KV position receives)\\n  2. Per-position EMA similarity score (from EMAAnchorManager)\\nThen computes Pearson/Spearman correlation between the two signals.\\n\\nOptionally integrates kvpress KnormPress / ExpectedAttentionPress as extra baselines.\\n\\nInput:  --model path, --input-file (text) or WikiText-2 default\\nOutput: scatter plots (attention vs EMA) + correlation stats JSON\\n\\nDependencies: torch, transformers, matplotlib, scipy, carc_utils\\n              Optional: kvpress\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport sys\\n\\nsys.path.insert(0, \\\"/root/carc\\\")\\n\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\nimport numpy as np\\nimport torch\\nimport torch.nn.functional as F\\nfrom scipy import stats\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\n\\nfrom carc_utils import EMAAnchorManager, load_eval_data\\n\\n\\nclass AttentionCapture:\\n    \\\"\\\"\\\"Hook into attention layers to capture softmax attention weights.\\\"\\\"\\\"\\n\\n    def __init__(self, model, num_layers):\\n        self._hooks = []\\n        self.attn_weights = {}\\n        self.active = True\\n\\n        for i in range(num_layers):\\n            attn = model.model.layers[i].self_attn\\n            self._hooks.append(\\n                attn.register_forward_hook(self._make_hook(i))\\n            )\\n\\n    def _make_hook(self, layer_idx):\\n        def fn(module, _input, output):\\n            if not self.active:\\n                return\\n            if isinstance(output, tuple) and len(output) > 1 and output[1] is not None:\\n                self.attn_weights[layer_idx] = output[1].detach().cpu()\\n        return fn\\n\\n    def clear(self):\\n        self.attn_weights.clear()\\n\\n    def remove(self):\\n        for h in self._hooks:\\n            h.remove()\\n        self._hooks.clear()\\n\\n\\nclass KVProjectionCapture:\\n    \\\"\\\"\\\"Hook into k_proj/v_proj to capture raw projections for EMA scoring.\\\"\\\"\\\"\\n\\n    def __init__(self, model, num_layers):\\n        self._hooks = []\\n        self.kv = {}\\n        self.active = True\\n\\n        for i in range(num_layers):\\n            attn = model.model.layers[i].self_attn\\n            self._hooks.append(\\n                attn.k_proj.register_forward_hook(self._make_hook(i, 0))\\n            )\\n            self._hooks.append(\\n                attn.v_proj.register_forward_hook(self._make_hook(i, 1))\\n            )\\n\\n    def _make_hook(self, layer_idx, slot):\\n        def fn(_module, _inp, out):\\n            if not self.active:\\n                return\\n            self.kv.setdefault(layer_idx, [None, None])[slot] = out.detach()\\n        return fn\\n\\n    def clear(self):\\n        self.kv.clear()\\n\\n    def remove(self):\\n        for h in self._hooks:\\n            h.remove()\\n        self._hooks.clear()\\n\\n\\ndef compute_attention_scores(attn_weights_dict, num_layers, seq_len):\\n    \\\"\\\"\\\"\\n    From captured attention weights, compute per-position 'importance':\\n    mean attention weight each KV position receives across all queries and heads.\\n\\n    attn_weights[layer]: (batch, num_heads, q_len, kv_len)\\n    Returns: (num_layers, seq_len) mean attention received per KV position.\\n    \\\"\\\"\\\"\\n    result = np.zeros((num_layers, seq_len))\\n\\n    for layer_idx in range(num_layers):\\n        if layer_idx not in attn_weights_dict:\\n            continue\\n        w = attn_weights_dict[layer_idx]  # (1, H, Q, KV)\\n        # Mean over batch, heads, queries → attention received per KV position\\n        attn_per_pos = w[0].mean(dim=0).mean(dim=0).numpy()  # (kv_len,)\\n        L = min(len(attn_per_pos), seq_len)\\n        result[layer_idx, :L] = attn_per_pos[:L]\\n\\n    return result\\n\\n\\ndef compute_ema_scores(kv_captures, num_layers, seq_len, gamma, num_kv_heads):\\n    \\\"\\\"\\\"\\n    From captured K/V projections, compute EMA similarity scores.\\n\\n    Returns: (num_layers, seq_len) EMA scores.\\n    \\\"\\\"\\\"\\n    ema = EMAAnchorManager(gamma=gamma, num_kv_heads=num_kv_heads, per_head=True\\n\\n... [截断: 输出过长，省略 6002 字符] ...\\n\\n samples = load_eval_data(\\n            dataset_name=args.dataset,\\n            num_samples=args.num_samples,\\n            seq_len=args.seq_len,\\n            tokenizer=tokenizer,\\n        )\\n\\n    print(f\\\"Loaded {len(samples)} samples\\\")\\n\\n    # Install hooks\\n    attn_capture = AttentionCapture(model, num_layers)\\n    kv_capture = KVProjectionCapture(model, num_layers)\\n\\n    all_attn = []  # per-layer attention scores\\n    all_ema = []   # per-layer EMA scores\\n\\n    for si, sample_ids in enumerate(samples):\\n        seq_len = len(sample_ids)\\n        input_ids = sample_ids.unsqueeze(0).to(device)\\n\\n        attn_capture.clear()\\n        kv_capture.clear()\\n\\n        print(f\\\"  Sample {si+1}/{len(samples)}: {seq_len} tokens\\\")\\n\\n        with torch.no_grad():\\n            outputs = model(\\n                input_ids=input_ids,\\n                output_attentions=True,\\n                use_cache=False,\\n            )\\n\\n        # Extract attention scores: (num_layers, seq_len)\\n        attn_scores = compute_attention_scores(\\n            attn_capture.attn_weights, num_layers, seq_len\\n        )\\n\\n        # Extract EMA scores: (num_layers, seq_len)\\n        ema_scores = compute_ema_scores(\\n            kv_capture.kv, num_layers, seq_len, args.gamma, num_kv_heads\\n        )\\n\\n        all_attn.append(attn_scores)\\n        all_ema.append(ema_scores)\\n\\n        attn_capture.clear()\\n        kv_capture.clear()\\n        torch.cuda.empty_cache()\\n\\n    attn_capture.remove()\\n    kv_capture.remove()\\n\\n    # Aggregate across samples\\n    all_attn = np.stack(all_attn)  # (num_samples, num_layers, seq_len)\\n    all_ema = np.stack(all_ema)\\n\\n    # Global correlation (flatten all layers and positions)\\n    attn_flat = all_attn.reshape(-1)\\n    ema_flat = all_ema.reshape(-1)\\n\\n    # Remove positions where both are zero (padding)\\n    mask = (attn_flat != 0) | (ema_flat != 0)\\n    attn_flat = attn_flat[mask]\\n    ema_flat = ema_flat[mask]\\n\\n    pr, pp = stats.pearsonr(attn_flat, ema_flat)\\n    sr, sp = stats.spearmanr(attn_flat, ema_flat)\\n\\n    # Per-layer correlation\\n    per_layer_pearson = []\\n    per_layer_spearman = []\\n    for li in range(num_layers):\\n        a = all_attn[:, li, :].reshape(-1)\\n        e = all_ema[:, li, :].reshape(-1)\\n        m = (a != 0) | (e != 0)\\n        if m.sum() < 10:\\n            per_layer_pearson.append(0.0)\\n            per_layer_spearman.append(0.0)\\n            continue\\n        r_p, _ = stats.pearsonr(a[m], e[m])\\n        r_s, _ = stats.spearmanr(a[m], e[m])\\n        per_layer_pearson.append(float(r_p))\\n        per_layer_spearman.append(float(r_s))\\n\\n    corr_results = {\\n        \\\"pearson_r\\\": float(pr),\\n        \\\"pearson_p\\\": float(pp),\\n        \\\"spearman_r\\\": float(sr),\\n        \\\"spearman_p\\\": float(sp),\\n        \\\"per_layer_pearson\\\": per_layer_pearson,\\n        \\\"per_layer_spearman\\\": per_layer_spearman,\\n        \\\"num_samples\\\": len(samples),\\n        \\\"gamma\\\": args.gamma,\\n    }\\n\\n    # kvpress baselines\\n    if args.kvpress and len(samples) > 0:\\n        print(\\\"Running kvpress baselines...\\\")\\n        input_ids = samples[0].unsqueeze(0).to(device)\\n        baselines = run_kvpress_baselines(model, tokenizer, input_ids, device)\\n        if \\\"knorm\\\" in baselines:\\n            knorm = baselines[\\\"knorm\\\"]  # (num_layers, seq_len)\\n            knorm_flat = knorm.reshape(-1)\\n            attn_first = all_attn[0].reshape(-1)\\n            m2 = (attn_first != 0) | (knorm_flat != 0)\\n            if m2.sum() > 10:\\n                kr, kp = stats.pearsonr(attn_first[m2], knorm_flat[m2])\\n                corr_results[\\\"knorm_vs_attn_pearson\\\"] = float(kr)\\n                corr_results[\\\"knorm_vs_attn_p\\\"] = float(kp)\\n\\n    # Save results\\n    output_json = args.output + \\\"_stats.json\\\"\\n    with open(output_json, \\\"w\\\") as f:\\n        json.dump(corr_results, f, indent=2)\\n    print(f\\\"Stats saved: {output_json}\\\")\\n\\n    print(f\\\"\\\\nGlobal: Pearson r={pr:.4f} (p={pp:.2e}), Spearman ρ={sr:.4f} (p={sp:.2e})\\\")\\n\\n    # Plot\\n    plot_scatter(attn_flat, ema_flat, corr_results, args.output)\\n\\n    print(\\\"Done.\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 42.76}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "46dfb853-3024-43f7-af53-b99bb0cf8c0e",
+  "uuid": "62ccd9a3-2fd1-4908-b79b-c6fce5204e29",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nA2: Attention distribution vs EMA similarity signal correlation analysis.\\\\n\\\\nFor each input sequence, simultaneously computes:\\\\n  1. Per-position attention weight (mean softmax attention each KV position receives)\\\\n  2. Per-position EMA similarity score (from EMAAnchorManager)\\\\nThen computes Pearson/Spearman correlation between the two signals.\\\\n\\\\nOptionally integrates kvpress KnormPress / ExpectedAttentionPress as extra baselines.\\\\n\\\\nInput:  --model path, --input-file (text) or WikiText-2 default\\\\nOutput: scatter plots (attention vs EMA) + correlation stats JSON\\\\n\\\\nDependencies: torch, transformers, matplotlib, scipy, carc_utils\\\\n              Optional: kvpress\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport sys\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root/carc\\\\\\\")\\\\n\\\\nimport matplotlib\\\\nmatplotlib.use(\\\\\\\"Agg\\\\\\\")\\\\nimport matplotlib.pyplot as plt\\\\nimport numpy as np\\\\nimport torch\\\\nimport torch.nn.functional as F\\\\nfrom scipy import stats\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\n\\\\nfrom carc_utils import EMAAnchorManager, load_eval_data\\\\n\\\\n\\\\nclass AttentionCapture:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Hook into attention layers to capture softmax attention weights.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(self, model, num_layers):\\\\n        self._hooks = []\\\\n        self.attn_weights = {}\\\\n        self.active = True\\\\n\\\\n        for i in range(num_layers):\\\\n            attn = model.model.layers[i].self_attn\\\\n            self._hooks.append(\\\\n                attn.register_forward_hook(self._make_hook(i))\\\\n            )\\\\n\\\\n    def _make_hook(self, layer_idx):\\\\n        def fn(module, _input, output):\\\\n            if not self.active:\\\\n                return\\\\n            if isinstance(output, tuple) and len(output) > 1 and output[1] is not None:\\\\n                self.attn_weights[layer_idx] = output[1].detach().cpu()\\\\n        return fn\\\\n\\\\n    def clear(self):\\\\n        self.attn_weights.clear()\\\\n\\\\n    def remove(self):\\\\n        for h in self._hooks:\\\\n            h.remove()\\\\n        self._hooks.clear()\\\\n\\\\n\\\\nclass KVProjectionCapture:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Hook into k_proj/v_proj to capture raw projections for EMA scoring.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(self, model, num_layers):\\\\n        self._hooks = []\\\\n        self.kv = {}\\\\n        self.active = True\\\\n\\\\n        for i in range(num_layers):\\\\n            attn = model.model.layers[i].self_attn\\\\n            self._hooks.append(\\\\n                attn.k_proj.register_forward_hook(self._make_hook(i, 0))\\\\n            )\\\\n            self._hooks.append(\\\\n                attn.v_proj.register_forward_hook(self._make_hook(i, 1))\\\\n            )\\\\n\\\\n    def _make_hook(self, layer_idx, slot):\\\\n        def fn(_module, _inp, out):\\\\n            if not self.active:\\\\n                return\\\\n            self.kv.setdefault(layer_idx, [None, None])[slot] = out.detach()\\\\n        return fn\\\\n\\\\n    def clear(self):\\\\n        self.kv.clear()\\\\n\\\\n    def remove(self):\\\\n        for h in self._hooks:\\\\n            h.remove()\\\\n        self._hooks.clear()\\\\n\\\\n\\\\ndef compute_attention_scores(attn_weights_dict, num_layers, seq_len):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    From captured attention weights, compute per-position 'importance':\\\\n    mean attention weight each KV position receives across all queries and heads.\\\\n\\\\n    attn_weights[layer]: (batch, num_heads, q_len, kv_len)\\\\n    Returns: (num_layers, seq_len) mean attention received per KV position.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    result = np.zeros((num_layers, seq_len))\\\\n\\\\n    for layer_idx in range(num_layers):\\\\n        if layer_idx not in attn_weights_dict:\\\\n            continue\\\\n        w = attn_weights_dict[layer_idx]  # (1, H, Q, KV)\\\\n        # Mean over batch, heads, queries → attention received per KV position\\\\n        attn_per_pos = w[0].mean(dim=0).mean(dim=0).numpy()  # (kv_len,)\\\\n        L = min(len(attn_per_pos), seq_len)\\\\n        result[layer_idx, :L] = attn_per_pos[:L]\\\\n\\\\n    return result\\\\n\\\\n\\\\ndef compute_ema_scores(kv_captures, num_layers, seq_len, gamma, num_kv_heads):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    From captured K/V projections, compute EMA similarity scores.\\\\n\\\\n    Returns: (num_layers, seq_len) EMA scores.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    ema = EMAAnchorManager(gamma=gamma, num_kv_heads=num_kv_heads, per_head=True\\\\n\\\\n... [截断: 输出过长，省略 6002 字符] ...\\\\n\\\\n samples = load_eval_data(\\\\n            dataset_name=args.dataset,\\\\n            num_samples=args.num_samples,\\\\n            seq_len=args.seq_len,\\\\n            tokenizer=tokenizer,\\\\n        )\\\\n\\\\n    print(f\\\\\\\"Loaded {len(samples)} samples\\\\\\\")\\\\n\\\\n    # Install hooks\\\\n    attn_capture = AttentionCapture(model, num_layers)\\\\n    kv_capture = KVProjectionCapture(model, num_layers)\\\\n\\\\n    all_attn = []  # per-layer attention scores\\\\n    all_ema = []   # per-layer EMA scores\\\\n\\\\n    for si, sample_ids in enumerate(samples):\\\\n        seq_len = len(sample_ids)\\\\n        input_ids = sample_ids.unsqueeze(0).to(device)\\\\n\\\\n        attn_capture.clear()\\\\n        kv_capture.clear()\\\\n\\\\n        print(f\\\\\\\"  Sample {si+1}/{len(samples)}: {seq_len} tokens\\\\\\\")\\\\n\\\\n        with torch.no_grad():\\\\n            outputs = model(\\\\n                input_ids=input_ids,\\\\n                output_attentions=True,\\\\n                use_cache=False,\\\\n            )\\\\n\\\\n        # Extract attention scores: (num_layers, seq_len)\\\\n        attn_scores = compute_attention_scores(\\\\n            attn_capture.attn_weights, num_layers, seq_len\\\\n        )\\\\n\\\\n        # Extract EMA scores: (num_layers, seq_len)\\\\n        ema_scores = compute_ema_scores(\\\\n            kv_capture.kv, num_layers, seq_len, args.gamma, num_kv_heads\\\\n        )\\\\n\\\\n        all_attn.append(attn_scores)\\\\n        all_ema.append(ema_scores)\\\\n\\\\n        attn_capture.clear()\\\\n        kv_capture.clear()\\\\n        torch.cuda.empty_cache()\\\\n\\\\n    attn_capture.remove()\\\\n    kv_capture.remove()\\\\n\\\\n    # Aggregate across samples\\\\n    all_attn = np.stack(all_attn)  # (num_samples, num_layers, seq_len)\\\\n    all_ema = np.stack(all_ema)\\\\n\\\\n    # Global correlation (flatten all layers and positions)\\\\n    attn_flat = all_attn.reshape(-1)\\\\n    ema_flat = all_ema.reshape(-1)\\\\n\\\\n    # Remove positions where both are zero (padding)\\\\n    mask = (attn_flat != 0) | (ema_flat != 0)\\\\n    attn_flat = attn_flat[mask]\\\\n    ema_flat = ema_flat[mask]\\\\n\\\\n    pr, pp = stats.pearsonr(attn_flat, ema_flat)\\\\n    sr, sp = stats.spearmanr(attn_flat, ema_flat)\\\\n\\\\n    # Per-layer correlation\\\\n    per_layer_pearson = []\\\\n    per_layer_spearman = []\\\\n    for li in range(num_layers):\\\\n        a = all_attn[:, li, :].reshape(-1)\\\\n        e = all_ema[:, li, :].reshape(-1)\\\\n        m = (a != 0) | (e != 0)\\\\n        if m.sum() < 10:\\\\n            per_layer_pearson.append(0.0)\\\\n            per_layer_spearman.append(0.0)\\\\n            continue\\\\n        r_p, _ = stats.pearsonr(a[m], e[m])\\\\n        r_s, _ = stats.spearmanr(a[m], e[m])\\\\n        per_layer_pearson.append(float(r_p))\\\\n        per_layer_spearman.append(float(r_s))\\\\n\\\\n    corr_results = {\\\\n        \\\\\\\"pearson_r\\\\\\\": float(pr),\\\\n        \\\\\\\"pearson_p\\\\\\\": float(pp),\\\\n        \\\\\\\"spearman_r\\\\\\\": float(sr),\\\\n        \\\\\\\"spearman_p\\\\\\\": float(sp),\\\\n        \\\\\\\"per_layer_pearson\\\\\\\": per_layer_pearson,\\\\n        \\\\\\\"per_layer_spearman\\\\\\\": per_layer_spearman,\\\\n        \\\\\\\"num_samples\\\\\\\": len(samples),\\\\n        \\\\\\\"gamma\\\\\\\": args.gamma,\\\\n    }\\\\n\\\\n    # kvpress baselines\\\\n    if args.kvpress and len(samples) > 0:\\\\n        print(\\\\\\\"Running kvpress baselines...\\\\\\\")\\\\n        input_ids = samples[0].unsqueeze(0).to(device)\\\\n        baselines = run_kvpress_baselines(model, tokenizer, input_ids, device)\\\\n        if \\\\\\\"knorm\\\\\\\" in baselines:\\\\n            knorm = baselines[\\\\\\\"knorm\\\\\\\"]  # (num_layers, seq_len)\\\\n            knorm_flat = knorm.reshape(-1)\\\\n            attn_first = all_attn[0].reshape(-1)\\\\n            m2 = (attn_first != 0) | (knorm_flat != 0)\\\\n            if m2.sum() > 10:\\\\n                kr, kp = stats.pearsonr(attn_first[m2], knorm_flat[m2])\\\\n                corr_results[\\\\\\\"knorm_vs_attn_pearson\\\\\\\"] = float(kr)\\\\n                corr_results[\\\\\\\"knorm_vs_attn_p\\\\\\\"] = float(kp)\\\\n\\\\n    # Save results\\\\n    output_json = args.output + \\\\\\\"_stats.json\\\\\\\"\\\\n    with open(output_json, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(corr_results, f, indent=2)\\\\n    print(f\\\\\\\"Stats saved: {output_json}\\\\\\\")\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nGlobal: Pearson r={pr:.4f} (p={pp:.2e}), Spearman ρ={sr:.4f} (p={sp:.2e})\\\\\\\")\\\\n\\\\n    # Plot\\\\n    plot_scatter(attn_flat, ema_flat, corr_results, args.output)\\\\n\\\\n    print(\\\\\\\"Done.\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 42.76}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nA2: Attention distribution vs EMA similarity signal correlation analysis.\\n\\nFor each input sequence, simultaneously computes:\\n  1. Per-position attention weight (mean softmax attention each KV position receives)\\n  2. Per-position EMA similarity score (from EMAAnchorManager)\\nThen computes Pearson/Spearman correlation between the two signals.\\n\\nOptionally integrates kvpress KnormPress / ExpectedAttentionPress as extra baselines.\\n\\nInput:  --model path, --input-file (text) or WikiText-2 default\\nOutput: scatter plots (attention vs EMA) + correlation stats JSON\\n\\nDependencies: torch, transformers, matplotlib, scipy, carc_utils\\n              Optional: kvpress\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport sys\\n\\nsys.path.insert(0, \\\"/root/carc\\\")\\n\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\nimport numpy as np\\nimport torch\\nimport torch.nn.functional as F\\nfrom scipy import stats\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\n\\nfrom carc_utils import EMAAnchorManager, load_eval_data\\n\\n\\nclass AttentionCapture:\\n    \\\"\\\"\\\"Hook into attention layers to capture softmax attention weights.\\\"\\\"\\\"\\n\\n    def __init__(self, model, num_layers):\\n        self._hooks = []\\n        self.attn_weights = {}\\n        self.active = True\\n\\n        for i in range(num_layers):\\n            attn = model.model.layers[i].self_attn\\n            self._hooks.append(\\n                attn.register_forward_hook(self._make_hook(i))\\n            )\\n\\n    def _make_hook(self, layer_idx):\\n        def fn(module, _input, output):\\n            if not self.active:\\n                return\\n            if isinstance(output, tuple) and len(output) > 1 and output[1] is not None:\\n                self.attn_weights[layer_idx] = output[1].detach().cpu()\\n        return fn\\n\\n    def clear(self):\\n        self.attn_weights.clear()\\n\\n    def remove(self):\\n        for h in self._hooks:\\n            h.remove()\\n        self._hooks.clear()\\n\\n\\nclass KVProjectionCapture:\\n    \\\"\\\"\\\"Hook into k_proj/v_proj to capture raw projections for EMA scoring.\\\"\\\"\\\"\\n\\n    def __init__(self, model, num_layers):\\n        self._hooks = []\\n        self.kv = {}\\n        self.active = True\\n\\n        for i in range(num_layers):\\n            attn = model.model.layers[i].self_attn\\n            self._hooks.append(\\n                attn.k_proj.register_forward_hook(self._make_hook(i, 0))\\n            )\\n            self._hooks.append(\\n                attn.v_proj.register_forward_hook(self._make_hook(i, 1))\\n            )\\n\\n    def _make_hook(self, layer_idx, slot):\\n        def fn(_module, _inp, out):\\n            if not self.active:\\n                return\\n            self.kv.setdefault(layer_idx, [None, None])[slot] = out.detach()\\n        return fn\\n\\n    def clear(self):\\n        self.kv.clear()\\n\\n    def remove(self):\\n        for h in self._hooks:\\n            h.remove()\\n        self._hooks.clear()\\n\\n\\ndef compute_attention_scores(attn_weights_dict, num_layers, seq_len):\\n    \\\"\\\"\\\"\\n    From captured attention weights, compute per-position 'importance':\\n    mean attention weight each KV position receives across all queries and heads.\\n\\n    attn_weights[layer]: (batch, num_heads, q_len, kv_len)\\n    Returns: (num_layers, seq_len) mean attention received per KV position.\\n    \\\"\\\"\\\"\\n    result = np.zeros((num_layers, seq_len))\\n\\n    for layer_idx in range(num_layers):\\n        if layer_idx not in attn_weights_dict:\\n            continue\\n        w = attn_weights_dict[layer_idx]  # (1, H, Q, KV)\\n        # Mean over batch, heads, queries → attention received per KV position\\n        attn_per_pos = w[0].mean(dim=0).mean(dim=0).numpy()  # (kv_len,)\\n        L = min(len(attn_per_pos), seq_len)\\n        result[layer_idx, :L] = attn_per_pos[:L]\\n\\n    return result\\n\\n\\ndef compute_ema_scores(kv_captures, num_layers, seq_len, gamma, num_kv_heads):\\n    \\\"\\\"\\\"\\n    From captured K/V projections, compute EMA similarity scores.\\n\\n    Returns: (num_layers, seq_len) EMA scores.\\n    \\\"\\\"\\\"\\n    ema = EMAAnchorManager(gamma=gamma, num_kv_heads=num_kv_heads, per_head=True\\n\\n... [截断: 输出过长，省略 6002 字符] ...\\n\\n samples = load_eval_data(\\n            dataset_name=args.dataset,\\n            num_samples=args.num_samples,\\n            seq_len=args.seq_len,\\n            tokenizer=tokenizer,\\n        )\\n\\n    print(f\\\"Loaded {len(samples)} samples\\\")\\n\\n    # Install hooks\\n    attn_capture = AttentionCapture(model, num_layers)\\n    kv_capture = KVProjectionCapture(model, num_layers)\\n\\n    all_attn = []  # per-layer attention scores\\n    all_ema = []   # per-layer EMA scores\\n\\n    for si, sample_ids in enumerate(samples):\\n        seq_len = len(sample_ids)\\n        input_ids = sample_ids.unsqueeze(0).to(device)\\n\\n        attn_capture.clear()\\n        kv_capture.clear()\\n\\n        print(f\\\"  Sample {si+1}/{len(samples)}: {seq_len} tokens\\\")\\n\\n        with torch.no_grad():\\n            outputs = model(\\n                input_ids=input_ids,\\n                output_attentions=True,\\n                use_cache=False,\\n            )\\n\\n        # Extract attention scores: (num_layers, seq_len)\\n        attn_scores = compute_attention_scores(\\n            attn_capture.attn_weights, num_layers, seq_len\\n        )\\n\\n        # Extract EMA scores: (num_layers, seq_len)\\n        ema_scores = compute_ema_scores(\\n            kv_capture.kv, num_layers, seq_len, args.gamma, num_kv_heads\\n        )\\n\\n        all_attn.append(attn_scores)\\n        all_ema.append(ema_scores)\\n\\n        attn_capture.clear()\\n        kv_capture.clear()\\n        torch.cuda.empty_cache()\\n\\n    attn_capture.remove()\\n    kv_capture.remove()\\n\\n    # Aggregate across samples\\n    all_attn = np.stack(all_attn)  # (num_samples, num_layers, seq_len)\\n    all_ema = np.stack(all_ema)\\n\\n    # Global correlation (flatten all layers and positions)\\n    attn_flat = all_attn.reshape(-1)\\n    ema_flat = all_ema.reshape(-1)\\n\\n    # Remove positions where both are zero (padding)\\n    mask = (attn_flat != 0) | (ema_flat != 0)\\n    attn_flat = attn_flat[mask]\\n    ema_flat = ema_flat[mask]\\n\\n    pr, pp = stats.pearsonr(attn_flat, ema_flat)\\n    sr, sp = stats.spearmanr(attn_flat, ema_flat)\\n\\n    # Per-layer correlation\\n    per_layer_pearson = []\\n    per_layer_spearman = []\\n    for li in range(num_layers):\\n        a = all_attn[:, li, :].reshape(-1)\\n        e = all_ema[:, li, :].reshape(-1)\\n        m = (a != 0) | (e != 0)\\n        if m.sum() < 10:\\n            per_layer_pearson.append(0.0)\\n            per_layer_spearman.append(0.0)\\n            continue\\n        r_p, _ = stats.pearsonr(a[m], e[m])\\n        r_s, _ = stats.spearmanr(a[m], e[m])\\n        per_layer_pearson.append(float(r_p))\\n        per_layer_spearman.append(float(r_s))\\n\\n    corr_results = {\\n        \\\"pearson_r\\\": float(pr),\\n        \\\"pearson_p\\\": float(pp),\\n        \\\"spearman_r\\\": float(sr),\\n        \\\"spearman_p\\\": float(sp),\\n        \\\"per_layer_pearson\\\": per_layer_pearson,\\n        \\\"per_layer_spearman\\\": per_layer_spearman,\\n        \\\"num_samples\\\": len(samples),\\n        \\\"gamma\\\": args.gamma,\\n    }\\n\\n    # kvpress baselines\\n    if args.kvpress and len(samples) > 0:\\n        print(\\\"Running kvpress baselines...\\\")\\n        input_ids = samples[0].unsqueeze(0).to(device)\\n        baselines = run_kvpress_baselines(model, tokenizer, input_ids, device)\\n        if \\\"knorm\\\" in baselines:\\n            knorm = baselines[\\\"knorm\\\"]  # (num_layers, seq_len)\\n            knorm_flat = knorm.reshape(-1)\\n            attn_first = all_attn[0].reshape(-1)\\n            m2 = (attn_first != 0) | (knorm_flat != 0)\\n            if m2.sum() > 10:\\n                kr, kp = stats.pearsonr(attn_first[m2], knorm_flat[m2])\\n                corr_results[\\\"knorm_vs_attn_pearson\\\"] = float(kr)\\n                corr_results[\\\"knorm_vs_attn_p\\\"] = float(kp)\\n\\n    # Save results\\n    output_json = args.output + \\\"_stats.json\\\"\\n    with open(output_json, \\\"w\\\") as f:\\n        json.dump(corr_results, f, indent=2)\\n    print(f\\\"Stats saved: {output_json}\\\")\\n\\n    print(f\\\"\\\\nGlobal: Pearson r={pr:.4f} (p={pp:.2e}), Spearman ρ={sr:.4f} (p={sp:.2e})\\\")\\n\\n    # Plot\\n    plot_scatter(attn_flat, ema_flat, corr_results, args.output)\\n\\n    print(\\\"Done.\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 42.76}}"
+    }
+  }
+}
+```
+
+</details>
+
+---

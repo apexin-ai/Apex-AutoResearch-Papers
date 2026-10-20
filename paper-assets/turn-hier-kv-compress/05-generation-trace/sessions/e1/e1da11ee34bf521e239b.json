@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "e1da11ee34bf521e239b",
+  "project": "turn-hier-kv-compress",
+  "kind": "worker",
+  "title": "code eval harness v2",
+  "task_key": "worker_code_eval_harness_v2_20260513T091756",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_eval_harness_v2_20260513T091756.log",
+    "occurrence": 1,
+    "bytes": 734444,
+    "sha256": "f076c6060e34ae316e807c29970a133c67e0e0b021ac8bd7a907a06ab4a82f1d"
+  },
+  "statistics": {
+    "messages": 156,
+    "user_turns": 1,
+    "tool_calls": 58,
+    "roles": {
+      "log": 1,
+      "system": 19,
+      "record": 1,
+      "assistant": 17,
+      "tool_call": 58,
+      "user": 1,
+      "tool_result": 58,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "e1da11ee34bf521e239b-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 149,
+      "chunks": [
+        {
+          "path": "e1da11ee34bf521e239b-part-0001.json",
+          "message_count": 118
+        },
+        {
+          "path": "e1da11ee34bf521e239b-part-0002.json",
+          "message_count": 31
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-eval-harness-v2.md"
+}

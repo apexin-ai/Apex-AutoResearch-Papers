@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "442e5e46c3c9aa4ec28b",
+  "project": "turn_residual_gating",
+  "kind": "worker",
+  "title": "ops scp fig1 pb v2",
+  "task_key": "worker_ops_scp_fig1_pb_v2_20260523T050837",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_scp_fig1_pb_v2_20260523T050837.log",
+    "occurrence": 1,
+    "bytes": 576365,
+    "sha256": "7df871ad705b38ec49b783c5c5da5f14d319b06abc901ce701f1c3f12cdf535d"
+  },
+  "statistics": {
+    "messages": 201,
+    "user_turns": 1,
+    "tool_calls": 68,
+    "roles": {
+      "log": 1,
+      "system": 32,
+      "record": 1,
+      "assistant": 29,
+      "tool_call": 68,
+      "tool_result": 68,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 93,
+      "chunks": [
+        {
+          "path": "442e5e46c3c9aa4ec28b-part-0001.json",
+          "message_count": 93
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 108,
+      "chunks": [
+        {
+          "path": "442e5e46c3c9aa4ec28b-part-0001.json",
+          "message_count": 87
+        },
+        {
+          "path": "442e5e46c3c9aa4ec28b-part-0002.json",
+          "message_count": 21
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-scp-fig1-pb-v2.md"
+}

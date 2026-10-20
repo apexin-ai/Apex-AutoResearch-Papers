@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5e65db495e4514182225",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "fix p1 kl bug2 dryrun",
+  "task_key": "worker_fix_p1_kl_bug2_dryrun_20260524T065444",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_p1_kl_bug2_dryrun_20260524T065444_result.json",
+    "occurrence": 1,
+    "bytes": 902,
+    "sha256": "f0b2a8c6339e459029104708f6f6fcbfc9a0e6a09e1cfa72a93f863ec9151046"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Process is running on GPU (PID 155327, 38GB VRAM, 77% GPU util). The Python output is just buffered since it's redirected to file. Dry-run took ~20s per conversation, so 30 conversations should take ~10 minutes.\n\n**Summary of fixes:**\n1. **`p1_kl_divergence.py` line 123-125**: `gate_values_ref[0].items()` → `gate_values_ref.items()`. The `register_gating_hooks` returns a dict `{layer_idx: tensor}`, not a list. Changed the check to `isinstance(gate_values_ref, dict) and len(gate_values_ref) > 0`.\n2. **`threadgate.py` GateNetwork.forward**: Added seq_len alignment before `torch.cat`. During AR decode, hidden_state has `seq_len=1` but turn_features cover the full prompt. Added `turn_emb = turn_emb[:, -down.shape[-2]:, :]` to slice the last positions.\n\nFull run is in progress (~10 min ETA). Check with `tail -20 /root/turn_residual_gating/logs/p1_kl_divergence_step2.log`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-p1-kl-bug2-dryrun.md"
+}

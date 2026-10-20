@@ -1,0 +1,114 @@
+{
+  "exp_id": "phase2_tg_s42_v9_pcgrad",
+  "project": "turn_residual_gating",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 2,
+    "created_at": "2026-05-19T16:13:21.907Z",
+    "updated_at": "2026-05-20T02:12:12.362Z",
+    "hypothesis": "PCGrad (Yu et al. NeurIPS 2020) 消除 NTP-GAR 梯度方向冲突后（仅对 gate 参数投影 NTP 梯度到 GAR 梯度正交平面），如果 30x training-inference GAR gap 仍在 → 因果证据证明 exposure bias（非梯度竞争）是 gap 根因。与 v7 对比：相同超参（lambda_gar=1.0, MSE+gate_div），唯一变量是梯度处理方式。成功标准：(1) 梯度 cos_sim 显著改善（从 v7 的 -0.089 提升到 ≥0），(2) 但推理 GAR 仍 ≈ v7 水平（0.016），证明梯度冲突不是 gap 的因。",
+    "parent": "phase2_tg_s42_v7",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/turn_residual_gating && PYTHONUNBUFFERED=1 python src/train_phase2_v9_pcgrad.py --model /root/.cache/modelscope/Qwen/Qwen2___5-7B-Instruct --data-dir data/ultrachat_8k --output-dir checkpoints/tg_v9_pcgrad_s42 --gate-type threadgate --gar-loss-mode mse_target --gar-target 0.5 --lambda-gar 1.0 --lambda-gate-div 1.0 --init-bias 1.5 --gate-lr-multiplier 10 --lr 2e-4 --epochs 3 --batch-size 1 --grad-accum 8 --seed 42\"",
+      "server": "westd-20861",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "83860",
+      "log_path": "/root/turn_residual_gating/logs/phase2_tg_v9_pcgrad_s42.log",
+      "submitted_at": "2026-05-19T17:42:10.820Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "checkpoint_path": "/root/turn_residual_gating/checkpoints/tg_v9_pcgrad_s42",
+      "wall_clock_seconds": 30601.5,
+      "gpu_hours": 8.5
+    },
+    "reproduce": {
+      "finished_at": "2026-05-20T01:42:12.536Z"
+    },
+    "failure_reason": null,
+    "conclusion": "success",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-19T17:35:39.776243+00:00",
+          "note": "第1次提交 EXIT_CODE=2 残留事件"
+        },
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-20T01:42:14.275822+00:00"
+        }
+      ]
+    },
+    "completed_at": null,
+    "notes": "D028 因果排除确认。训练: EXIT_CODE=0, 7.98h, 3 epochs。PCGrad cos_sim 从 -0.061→+0.055→-0.035 (围绕 0 振荡), 但 NTP mag_ratio 2.8→28.8 持续增长。L_GAR 有 0-350 step 高原期后仍坍塌到≈0。推理 eval: GAR-ours=0.0151 (vs v7 0.0157, diff -0.06pp), GAR-Dongre=0.0192 (vs v7 0.0194, diff -0.02pp)。PPL 显著改善 1.50 (vs v7 2.78, -46%)。结论: PCGrad 大幅改善 NTP/PPL 但推理 GAR 几乎不变 → gradient direction conflict 不是推理 GAR gap 的因, exposure bias 是根因。",
+    "metrics": {
+      "training_time_seconds": 28717.5,
+      "training_time_hours": 7.98,
+      "epochs_completed": 3,
+      "global_steps": 3000,
+      "exit_code": 0,
+      "epoch2_avg_loss": 0.9319,
+      "epoch2_avg_ntp": 0.9308,
+      "epoch2_avg_gar": 0.0011,
+      "final_gate_mean": 0.9241,
+      "final_gate_std": 0.0513,
+      "final_gate_min": 0.75,
+      "final_gate_max": 0.9805,
+      "final_profile_L4": 0.75,
+      "final_profile_L5": 0.84,
+      "pcgrad_final_cos_sim": -0.0349,
+      "pcgrad_final_mag_ratio": 28.8,
+      "pcgrad_final_conflict_layers_pct": 55.4,
+      "pcgrad_early_cos_sim_step50": -0.061,
+      "pcgrad_mid_cos_sim_step1450": 0.055,
+      "pcgrad_late_cos_sim_step3000": -0.035,
+      "lgar_final": 0.0011,
+      "eval_ours_mid_gar": 0.0151,
+      "eval_ours_recovery_pp": 0.29,
+      "eval_dongre_mid_gar": 0.0192,
+      "eval_dongre_recovery_pp": 0.7,
+      "eval_ppl": 1.5,
+      "eval_ntp": 0.4016,
+      "vs_v7_gar_ours_diff_pp": -0.06,
+      "vs_v7_gar_dongre_diff_pp": -0.02,
+      "vs_v7_ppl_diff": -1.28,
+      "eval_gate_dynamic_range_top5": {
+        "L15": {
+          "turn1": 0.6247,
+          "turn21": 0.9571,
+          "diff": -0.3324
+        },
+        "L23": {
+          "turn1": 0.703,
+          "turn21": 0.9779,
+          "diff": -0.2749
+        },
+        "L18": {
+          "turn1": 0.828,
+          "turn21": 0.9526,
+          "diff": -0.1246
+        },
+        "L9": {
+          "turn1": 0.8166,
+          "turn21": 0.9403,
+          "diff": -0.1237
+        },
+        "L16": {
+          "turn1": 0.8303,
+          "turn21": 0.9469,
+          "diff": -0.1166
+        }
+      },
+      "hypothesis_confirmed": true
+    }
+  },
+  "timestamp": "2026-05-20T02:12:12.410690+00:00",
+  "trigger": "update_registry"
+}

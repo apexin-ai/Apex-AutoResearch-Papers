@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0edd8d85f4d4ecf79f7b",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "check eval scripts precheck v2",
+  "task_key": "worker_check_eval_scripts_precheck_v2_20260523T150253",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_eval_scripts_precheck_v2_20260523T150253_result.json",
+    "occurrence": 1,
+    "bytes": 2226,
+    "sha256": "e6b651bac864da919e91e01821e1355af448b11c542af8e3caaef20b23c37d4d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据足够了，汇总结果。\n\n---\n\n## GPU Chain 脚本状态\n\n### `gpu_chain_next.sh` 7步流水线\n\n| 步骤 | 脚本 | 存在 | 关键参数/依赖 |\n|------|------|------|-------------|\n| 1/7 | `d048_eval_ss_s123.sh` | ✅ | 取 `runs/d048_ss_s123/epoch_{2,1,0}` 最高可用 epoch |\n| 2/7 | `d048_ss_s456_resume.sh` | ✅ | `--resume runs/d048_ss_s456/epoch_0`（已存在 ✅） |\n| 3/7 | `d048_eval_ss_s456.sh` | ✅ | 依赖 step 2 产出 |\n| 4/7 | `qwen15b_phase1_diag.sh` | ✅ | 模型 `/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B-Instruct` |\n| 5/7 | `qwen15b_tg_train.sh` | ✅ | 同上，batch_size=4，输出 `runs/qwen15b_tg_v7_s42` |\n| 6/7 | `qwen15b_eval.sh` | ✅ | Base + LoRA-only + TG 三组对比 |\n| 7/7 | `mmlu_eval_all.sh` | ✅ | 6 个 checkpoint 串行评估 |\n\n所有脚本均已到位，每步前有 `check_gpu_free()`（>1000MiB 则 abort），链式 `set -e` 任一失败即停。\n\n### 等待脚本 PID 94251\n\n**存活** — 运行 3h16m，正在 30s 间隔轮询 PID 84793 退出。超时 6h（剩余约 2h44m 余量）。退出后会检查 GPU 显存 <1000MiB 再启动 chain。\n\n---\n\n## SS s123 训练进度\n\n| 指标 | 值 |\n|------|-----|\n| PID 84793 | **运行中**，已运行 7h10m，CPU 100% |\n| 当前位置 | **Epoch 2 / Step 2800**（共 3 epochs） |\n| 每 epoch 步数 | ~8000 steps（batch=1, 8k 数据） |\n| Epoch 2 进度 | **35%**（2800/8000） |\n| 最新 Loss | L_NTP=1.065, L_GAR≈0, Total≈1.065 |\n| Gate 均值 | 0.948~0.953, std=0.05 |\n| SS ratio | 0.300（已达上限） |\n| GPU 显存 | 33387 / 97887 MiB（34%），利用率 99% |\n\n### Checkpoint 状态\n\n| Checkpoint | 保存时间 | 状态 |\n|-----------|---------|------|\n| epoch_0 | 18:33:24 | ✅ 完整（lora + gate_params.pt） |\n| epoch_1 | 21:55:20 | ✅ 完整（lora + gate_params.pt） |\n| epoch_2 | — | ⏳ 训练中 |\n\n### 时间估算\n\n- epoch 0 → epoch 1：~3h22m\n- epoch 1 → 当前（epoch 2 step 2800）：已 ~1h10m\n- 剩余 epoch 2：约 65% × 3h20m ≈ **2h10m**\n- **预计完成时间：~01:10 CST (May 24)**\n\n完成后 wait 脚本自动触发 gpu_chain_next.sh，无需人工干预。一切正常运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-eval-scripts-precheck-v2.md"
+}

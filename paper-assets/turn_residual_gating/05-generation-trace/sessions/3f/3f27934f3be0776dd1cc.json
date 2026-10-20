@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "3f27934f3be0776dd1cc",
+  "project": "turn_residual_gating",
+  "kind": "worker",
+  "title": "analysis provenance completion",
+  "task_key": "worker_analysis_provenance_completion_20260522T042945",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_provenance_completion_20260522T042945.log",
+    "occurrence": 1,
+    "bytes": 616343,
+    "sha256": "899e5b29b1cf372d36b7093c9e0dbf394e7d2d95ad988da06650c5b0cce92e7b"
+  },
+  "statistics": {
+    "messages": 182,
+    "user_turns": 0,
+    "tool_calls": 61,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 56,
+      "tool_call": 61,
+      "tool_result": 61,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 182,
+      "chunks": [
+        {
+          "path": "3f27934f3be0776dd1cc-part-0001.json",
+          "message_count": 171
+        },
+        {
+          "path": "3f27934f3be0776dd1cc-part-0002.json",
+          "message_count": 11
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-provenance-completion.md"
+}

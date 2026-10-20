@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "202e9103f4e93dc8bf13",
+  "project": "turn_residual_gating",
+  "kind": "worker",
+  "title": "ops v7 completion and pipeline",
+  "task_key": "worker_ops_v7_completion_and_pipeline_20260519T004355",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_v7_completion_and_pipeline_20260519T004355.log",
+    "occurrence": 1,
+    "bytes": 585173,
+    "sha256": "c87f959eb93c2266588552871a2a65c1fad91d921d02a755301b40b85a2f824a"
+  },
+  "statistics": {
+    "messages": 242,
+    "user_turns": 0,
+    "tool_calls": 87,
+    "roles": {
+      "log": 1,
+      "system": 2,
+      "record": 1,
+      "assistant": 63,
+      "tool_call": 87,
+      "tool_result": 87,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 242,
+      "chunks": [
+        {
+          "path": "202e9103f4e93dc8bf13-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "202e9103f4e93dc8bf13-part-0002.json",
+          "message_count": 62
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-v7-completion-and-pipeline.md"
+}

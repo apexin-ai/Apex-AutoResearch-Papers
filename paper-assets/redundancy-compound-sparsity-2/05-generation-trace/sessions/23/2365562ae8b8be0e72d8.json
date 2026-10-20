@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2365562ae8b8be0e72d8",
+  "project": "redundancy-compound-sparsity-2",
+  "kind": "result",
+  "title": "fix d003 device mismatch v3",
+  "task_key": "worker_fix_d003_device_mismatch_v3_20260512T142213",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_d003_device_mismatch_v3_20260512T142213_result.json",
+    "occurrence": 1,
+    "bytes": 643,
+    "sha256": "4fc6559d0c7fedd3398b031e06e4c6686e86180b95e3cef01b1fa4cf38e8b5c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 smoke test 通过。\n\n**修复汇总：**\n\n1. **`carc_kv_eviction.py`** — `update_scores` 方法 line 80: 在 `torch.cat` 前加 device 对齐，将 `self._cumulative_scores` 移到与新 `scores` 相同的 device\n2. **`d003_reasoning_traces.py`** — 6 处修复：3 个 `torch.zeros` + 1 个 `torch.rand` + 1 个 `torch.arange` + 1 个 `torch.tensor` 均添加 `device=device`\n3. **`d003_wikitext_32k.py`** — 同上 6 处修复\n\nSmoke test 结果：\n- Exp1 (cuda:0): PASS — update_scores device alignment + compute_eviction_mask 均正常\n- Exp2 (cuda:1 mapped): PASS — 多轮 eviction cycle 也正常"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-d003-device-mismatch-v3.md"
+}

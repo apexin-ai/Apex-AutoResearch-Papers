@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "13867c915a269ba41ab7",
+  "project": "turn_residual_gating",
+  "kind": "history",
+  "title": "reviewer / loop_5.md",
+  "task_key": "loop_5",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_5.md",
+    "occurrence": 1,
+    "bytes": 3744,
+    "sha256": "dff64b9c3ecaeaffffa4d531c0904dc5df9177dd51431757bf5178aacc9ad063"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: max_wall_time\nupdated: '2026-05-23T19:44:42+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 服务器 westd-20861 只有 1 张 GPU（cuda:0），单卡串行，绝对不能并发两个 GPU 进程\n- SS s456 正在训练中（PID 112418），不要 kill 或在其完成前启动新 GPU 任务\n- gpu_chain_next.sh（PID 108997）自动串行调度后续任务，不要手动干预除非它挂了\n- base_ar_n50.json 已被 d048_eval_ss_s123.sh 覆写（原 28865B → 10098B，丢失 β=3,5,10 数据），但 registry d048_final_ar_eval 保有完整数字，不要再覆写其他 d048_final_ar 下的 .json 文件\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-20861，工作目录 /root/turn_residual_gating\n- Python：/root/miniconda3/bin/python3.12（conda base 环境）\n- 模型：/root/.cache/modelscope/Qwen/Qwen2___5-7B-Instruct\n- 数据：data/ultrachat_8k（训练），data/eval_200/eval_200.json（评估）\n- Checkpoints：runs/d048_ss_s42/epoch_2, runs/d048_ss_s123/epoch_2, runs/d048_ss_s456/epoch_0（训练中）\n- 活跃进程：PID 112418（train_phase2_v8b.py SS s456 resume from epoch_0, GPU 98%/70GiB），父脚本 gpu_chain_next.sh PID 108997\n- 无 W&B 配置，无 tmux\n\n### 3. 📊 当前状态\n**刚完成**：SS s123 eval 全量审查（TF + AR N=50 β=0,3,5），数据完整。关键结果：s123 β=0 AR GAR = 0.423（vs s42 的 0.347），2-seed mean = 0.385，TF-AR gap 1.30×。\n\n**RUNNING**：\n- d048_ss_s456：SS seed 456 训练，从 epoch_0 恢复，预计 6-8h 完成\n- gpu_chain_next.sh：s456 完成后自动接 eval → Qwen-1.5B → MMLU\n\n**已发出未解决的 WARNINGs**（论文层面）：\n1. Discussion 中 GAR-Dongre 混用 N=5 和 N=50 数据（0.353 vs 0.347）\n2. fig_training_dynamics caption \"7.8--15.5×\" 与正文 \"8--17×\" 不一致\n3. UG IID GAR-O Table 1 显示 0.51 但 IID eval 数据为 0.49\n4. paper_framing.md 多处仍用旧数字 \"~30× gap\" / \"GAR=0.016\"\n\n**DDL 已切换至 ARR August 2026-08-03（~10 weeks）**，Framing 从 3.0 升级到 3.5 目标。\n\n### 4. 📋 待办\n- s456 训练完成 → 验证 checkpoints（epoch_1, epoch_2）+ gate profile 与 s42/s123 交叉比对\n- s456 eval 完成 → 提取 β=0 AR GAR，计算 3-seed mean±std，判断 variance 是否支撑 \"gap 1.3×\" claim\n- 3-seed 数据齐全 → 审查论文是否更新（abstract/discussion/conclusion 从 \"single seed\" 升级为 mean±std）\n- P0 SS+steering eval 脚本已写但数据重复（已报告 WARNING）→ 确认 Director 是否跳过\n- Llama SS（plan_026, ~10h）排入后 → 审查脚本参数是否与 Qwen SS 一致\n- Paper Agent Reframe 完成 → 触发 Mode B 章节对抗审查（SS 升为独立 Results + 5th contribution）\n\n### 5. 🎯 战略上下文\n- **核心结论**：exposure bias 摧毁 auxiliary attention loss 泛化（TF-AR gap 8-17× Qwen, 27× Llama），SS 是目前唯一有效 mitigation（gap → 1.30×）\n- **Framing 升级**：从纯 negative result 升级为 \"发现→定位→修复\" 弧，SS 从 Discussion 升为独立 Results，新增第 5 条贡献\n- **β=0 seed 间方差大**（s42: 0.347, s123: 0.423, 相对差 22%）——s456 结果对 claim 强度影响重大。如果 s456 偏低（<0.30），3-seed mean 下降且 std 增大；如果偏高（>0.40），claim 更稳固\n- **易错点 1**：paper_framing.md 的 \"~30× gap\" 是旧数字，论文已用 8-17×/27×。不要被 framing doc 误导\n- **易错点 2**：cron 进程检测对无 W&B/sentinel 的 eval 实验会误报 failed（已发生一次），检查 registry 状态前先用 ps/nvidia-smi 确认进程真实状态\n- **易错点 3**：d048_eval 脚本的 base AR eval 步骤会覆写 base_ar_n50.json——未来 eval 脚本要用不同输出文件名\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-copy-2.md"
+}

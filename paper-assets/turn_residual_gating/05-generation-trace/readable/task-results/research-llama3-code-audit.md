@@ -1,0 +1,112 @@
+# research llama3 code audit
+
+**Exposure Bias Collapses Auxiliary Attention Losses in Multi-Turn Dialogue** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_research_llama3_code_audit_20260519T035301_result.json`
+- **Structured JSON:** [`f10bef256bee02be97b2.json`](../../sessions/f1/f10bef256bee02be97b2.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+所有代码已读取完毕，下面是审计报告。
+
+---
+
+# Llama-3-8B 代码兼容性审计报告
+
+## 总结
+- 需要改动的文件数: **3**（config.py + turn_utils.py + train_phase2.py；threadgate.py / eval_phase2_gar.py / gar.py 无需改动）
+- 改动点总数: **8**
+- 阻塞性问题: **3**（不改就完全不能跑）
+- 适配性问题: **5**（能跑但结果不正确或不完整）
+
+## 逐文件详情
+
+### config.py
+
+| 行号 | 当前代码 | 问题 | 改动建议 | 严重性 |
+|------|----------|------|----------|--------|
+| 1 | `MODEL_NAME = "/root/.cache/modelscope/Qwen/Qwen2___5-7B-Instruct"` | 模型路径硬编码为 Qwen | 改为 Llama-3 路径，或改为由环境变量/CLI 参数控制 | **阻塞** |
+
+### threadgate.py
+
+| 行号 | 当前代码 | 问题 | 改动建议 | 严重性 |
+|------|----------|------|----------|--------|
+| 79 | `hidden_dim = self.base_model.config.hidden_size` | 动态读取 `hidden_size`（Qwen=3584, Llama=4096），自动适配 | 无需改动 | 无需改动 |
+| 80 | `num_layers = self.base_model.config.num_hidden_layers` | 动态读取 `num_hidden_layers`（Qwen=28, Llama=32），自动适配 | 无需改动 | 无需改动 |
+| 32 | `self.down_proj = nn.Linear(hidden_dim, LORA_RANK, bias=False)` | `hidden_dim` 从构造函数参数传入，来自 config，自动适配 | 无需改动 | 无需改动 |
+| 88-89 | `for i, layer in enumerate(self.base_model.model.layers):` | Llama (`LlamaForCausalLM`) 同样使用 `.model.layers` 路径 | 无需改动 | 无需改动 |
+
+**结论：threadgate.py 完全兼容 Llama-3-8B，无需任何修改。**
+
+### turn_utils.py
+
+| 行号 | 当前代码 | 问题 | 改动建议 | 严重性 |
+|------|----------|------|----------|--------|
+| 4-8 | `im_start_ids = tokenizer.encode("<\|im_start\|>", ...)` / `im_end_ids = tokenizer.encode("<\|im_end\|>", ...)` | Qwen-specific special tokens。Llama-3 没有这两个 token，`tokenizer.encode()` 会把它们当普通文本编码成多个 token，触发 assert 失败直接崩溃 | 重写 `_get_special_token_ids()`：根据 tokenizer 类型（或 `tokenizer.chat_template` 内容）检测模型系列，Llama-3 使用 `<\|start_header_id\|>` 作为 turn start、`<\|eot_id\|>` 作为 turn end | **阻塞** |
+| 25-50 | `detect_turn_boundaries()` 中的 role 解析逻辑 | 当前逻辑：`<\|im_start\|>` 后跟 role 再跟 `\n`。Llama-3 格式是 `<\|start_header_id\|>role<\|end_header_id\|>\n\ncontent<\|eot_id\|>`，role 在两个 header token 之间，content_start 在 `<\|end_header_id\|>` 之后（通常还有两个 `\n`） | 需要为 Llama-3 实现新的 role 解析分支：在 `<\|start_header_id\|>` 和 `<\|end_header_id\|>` 之间提取 role，content_start 设为 `<\|end_header_id\|>` 后第一个非换行 token | **阻塞** |
+| 88-100 | `turn_distance_map` 和 `turn_index_map` 基于 `im_start_id` / `im_end_id` 计算 | boundary_positions 使用了错误的 token id，导致 turn distance 和 turn index 全部计算错误 | 使用正确的 Llama-3 boundary tokens（`start_header_id` + `eot_id`） | **适配** |
+| 109-140 | `build_turn_features()` 同样依赖 `im_start_id` / `im_end_id` | 与上面同源问题，turn_distance / turn_index / is_turn_boundary 全部基于 Qwen tokens | 同上，需要适配 Llama-3 boundary tokens | **适配** |
+| 63-75 | `goal_token_positions` 的计算依赖 turn 边界和 role 识别 | 如果 turn 识别失败（前置问题），goal 定位也全错 | 前置问题修复后自动修复 | **适配（前置依赖）** |
+
+### train_phase2.py
+
+| 行号 | 当前代码 | 问题 | 改动建议 | 严重性 |
+|------|----------|------|----------|--------|
+| 136 | `target_modules=["q_proj", "v_proj"]` | Llama-3 的 attention 层也使用 `q_proj` / `v_proj` 命名（与 Qwen 一致） | 无需改动 | 无需改动 |
+| 143-146 | `original_model.config._attn_implementation = "eager"` 及 `layer.self_attn._attn_implementation = "eager"` | Llama-3 同样支持 eager attention，`self_attn` 属性名一致 | 无需改动 | 无需改动 |
+| 142 | `original_model = model.base_model.base_model.model` 然后访问 `original_model.model.layers` | Llama 的 PEFT wrap 后层级路径一致 | 无需改动 | 无需改动 |
+| 155 | `tokenizer.pad_token = tokenizer.eos_token` | Llama-3 也没有默认 pad_token，这个 fallback 正确 | 无需改动 | 无需改动 |
+| 48-50 | `apply_chat_template` → `detect_turn_boundaries` → `build_turn_features` | `apply_chat_template` 本身能正确生成 Llama-3 格式，但生成的 token 序列传给 `detect_turn_boundaries` 后会因 Qwen-specific token 查找而失败（上游 turn_utils.py 的阻塞问题） | 修复 turn_utils.py 后自动解决 | **适配（前置依赖）** |
+
+### eval_phase2_gar.py
+
+| 行号 | 当前代码 | 问题 | 改动建议 | 严重性 |
+|------|----------|------|----------|--------|
+| 318 | `--model-name, default=MODEL_NAME` | 默认值来自 config.py（Qwen 路径），但可通过 CLI `--model-name` 覆盖 | config.py 修复后自动解决；也可直接传 CLI 参数 | **适配** |
+| 53-67 | `_find_hf_model()` / `_find_layers()` | 使用 `.model.layers` 查找，Llama 兼容 | 无需改动 | 无需改动 |
+| 186, 205 | `tokenizer.apply_chat_template(...)` | 委托给 tokenizer 内置模板，Llama-3 tokenizer 会正确生成 Llama 格式 | 无需改动 | 无需改动 |
+| 338 | `attn_implementation="eager"` | Llama-3 支持 | 无需改动 | 无需改动 |
+| 210, 213 | 调用 `detect_turn_boundaries` / `build_turn_features` | 上游 turn_utils.py 阻塞问题的传导 | 修复 turn_utils.py 后自动解决 | **适配（前置依赖）** |
+
+### gar.py（附带审查）
+
+| 行号 | 当前代码 | 问题 | 改动建议 | 严重性 |
+|------|----------|------|----------|--------|
+| 18 | `model.model.layers` | Llama 兼容 | 无需改动 | 无需改动 |
+| 18 | `layer.self_attn` | Llama 同名 | 无需改动 | 无需改动 |
+
+**结论：gar.py 完全兼容，无需修改。**
+
+---
+
+## 关键改动优先级
+
+| 优先级 | 文件 | 改动 | 工作量 |
+|--------|------|------|--------|
+| P0 | `config.py` | `MODEL_NAME` 改为参数化（支持 Llama 路径） | 极小 |
+| P0 | `turn_utils.py` | 重写 `_get_special_token_ids()` 为模型无关的 turn boundary 检测；重写 `detect_turn_boundaries()` 的 role 解析逻辑，支持 Llama-3 的 `<\|start_header_id\|>...<\|end_header_id\|>` 格式 | **中等偏大**（核心改动） |
+| P0 | `turn_utils.py` | `build_turn_features()` 使用相同的模型无关 boundary tokens | 小（与上一条联动） |
+
+不需要改动的部分：
+- **模型架构层级** (`model.model.layers`)：Qwen2 和 Llama-3 都遵循 HuggingFace 标准，路径一致
+- **LoRA target_modules** (`q_proj`, `v_proj`)：两者命名一致
+- **Attention implementation** (`eager`)：两者都支持
+- **GateNetwork 维度**：全部从 `model.config` 动态读取
+- **apply_chat_template**：tokenizer 自带正确模板
+
+**最大工程量在 `turn_utils.py`**，需要将 Qwen-specific 的 turn boundary 检测改为支持多种 chat template 格式的通用实现。
+
+---

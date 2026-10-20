@@ -1,0 +1,46 @@
+{
+  "base": {
+    "per_turn_mean": [0.0418, 0.0241, 0.0224, 0.013, 0.0133, 0.0086, 0.0078, 0.008, 0.0157, 0.0064],
+    "n_layers": 28,
+    "n_turns": 10,
+    "source": "registry:phase1_gar_diag (actual per-turn GAR, 5 standard conversations, GARMeasurer)",
+    "heatmap_summary": {"mean": 0.013563, "T1": 0.0529, "T10": 0.006626, "decay": 0.875},
+    "heatmap_fitted": [0.031062, 0.024654, 0.019568, 0.015531, 0.012327, 0.009784, 0.007766, 0.006164, 0.004892, 0.003883]
+  },
+  "tg": {
+    "per_turn_mean": [0.043932, 0.037185, 0.031475, 0.026641, 0.02255, 0.019087, 0.016155, 0.013674, 0.011574, 0.009797],
+    "n_layers": 28,
+    "n_turns": 10,
+    "source": "fitted from attention_heatmap summary (mean=0.0232, decay=77.7%). Actual per-turn data in server: /root/turn_residual_gating/runs/analysis/attention_heatmap/heatmap_TG_v7.json",
+    "heatmap_summary": {"mean": 0.023207, "T1": 0.057627, "T10": 0.012839, "decay": 0.777},
+    "fitted": true
+  },
+  "ug": {
+    "per_turn_mean": [0.042764, 0.035701, 0.029805, 0.024883, 0.020773, 0.017343, 0.014478, 0.012087, 0.010091, 0.008424],
+    "n_layers": 28,
+    "n_turns": 10,
+    "source": "fitted from attention_heatmap summary (mean=0.0216, decay=80.3%). Actual per-turn data in server: /root/turn_residual_gating/runs/analysis/attention_heatmap/heatmap_UG.json",
+    "heatmap_summary": {"mean": 0.021635, "T1": 0.057557, "T10": 0.011313, "decay": 0.803},
+    "fitted": true
+  },
+  "lora": {
+    "per_turn_mean": [0.043149, 0.035878, 0.029833, 0.024806, 0.020626, 0.017151, 0.014261, 0.011858, 0.00986, 0.008198],
+    "n_layers": 28,
+    "n_turns": 10,
+    "source": "fitted from attention_heatmap summary (mean=0.0216, decay=81.0%). Actual per-turn data in server: /root/turn_residual_gating/runs/analysis/attention_heatmap/heatmap_LoRA-only.json",
+    "heatmap_summary": {"mean": 0.021562, "T1": 0.061056, "T10": 0.011592, "decay": 0.81},
+    "fitted": true
+  },
+  "_metadata": {
+    "generated_at": "2026-05-19T21:15:00Z",
+    "note": "SSH tools unavailable in current environment. TG/UG/LoRA per_turn_mean are exponential-decay fits from heatmap summary (mean+decay), not actual measured values. Base uses actual phase1_gar_diag per-turn data. To get actual per-turn heatmap data, SSH into westd-20861 and run: python3 -c 'import json,numpy as np; [print(k,np.array(json.load(open(f\"runs/analysis/attention_heatmap/heatmap_{k}.json\"))[\"avg_heatmap\"]).mean(axis=1).tolist()) for k in [\"Base\",\"TG_v7\",\"UG\",\"LoRA-only\"]]' from /root/turn_residual_gating/",
+    "server_json_paths": {
+      "base": "/root/turn_residual_gating/runs/analysis/attention_heatmap/heatmap_Base.json",
+      "tg": "/root/turn_residual_gating/runs/analysis/attention_heatmap/heatmap_TG_v7.json",
+      "ug": "/root/turn_residual_gating/runs/analysis/attention_heatmap/heatmap_UG.json",
+      "lora": "/root/turn_residual_gating/runs/analysis/attention_heatmap/heatmap_LoRA-only.json"
+    },
+    "heatmap_shape": "[10 turns x 28 layers] per model, averaged over 5 conversations",
+    "per_turn_extraction_command": "np.array(d['avg_heatmap']).mean(axis=1)"
+  }
+}

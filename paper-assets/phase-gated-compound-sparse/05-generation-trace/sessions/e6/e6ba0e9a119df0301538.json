@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e6ba0e9a119df0301538",
+  "project": "phase-gated-compound-sparse",
+  "kind": "history",
+  "title": "agent / loop_2_1778739456.md",
+  "task_key": "loop_2_1778739456",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1778739456.md",
+    "occurrence": 1,
+    "bytes": 4456,
+    "sha256": "7bfcd7dde27306196b59d7059ce201482f444443bd9a86e5a107043fda49c18a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: max_wall_time\nupdated: '2026-05-14T06:16:41+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单仅 westd-22162 cuda:0/1/2/3，无其他服务器或 GPU\n- bf16_importance_s020 和 bf16_importance_s030 **共享 cuda:0**（registry 已标注），不要当作两张卡计算利用率\n- cuda:2 当前空闲——分配了但没跑，属于失职状态，下一个 session 应立即安排实验上去\n- 两套实验 ID 共存：旧 ID（`bf16_importance_s0XX`）用于 Batch 1 已在跑；D020 ID（`bf16_ds_imp_s0XX`）为 QUEUED 的 Batch 2-4。**不要重复提交**，旧 ID s015/s020/s025 的 D020 对应项已标记被覆盖\n- 论文所有数值**必须来自 bf16 实验**（D020 决策），fp16 数据仅作 cross-validation reference，不入正文\n- 术语：**cross-model**（非 cross-architecture），两模型共享 Qwen2ForCausalLM base（D022）\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-22162，4× RTX 6000 Pro 96GB\n- **工作目录**: `/root/autodl-tmp/pacs`\n- **Python/环境**: conda base，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **DeepSeek 模型**: `/root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B`\n- **Qwen 模型**: `/root/autodl-tmp/models/Qwen2.5-7B-Instruct/`\n- **数据**: `/root/autodl-tmp/pacs/data/math500.json`（50 problems）\n- **活跃进程**:\n  - bf16_importance_s020: PID 79812, cuda:0, tmux session\n  - bf16_importance_s025: PID 80207, cuda:3, tmux session\n  - bf16_importance_s030: PID 80495, cuda:0, tmux session\n- **Cron**: bf16_importance_s020/s025/s030 各有活跃 cron；bf16_importance_s015 的 cron 已清理（状态已转 ANALYZING）\n\n### 3. 📊 当前状态\n- **刚完成**: Batch 1 的 bf16_importance_s015 已完成进入 ANALYZING，等待分析\n- **RUNNING**: bf16_importance_s020/s025/s030（Batch 1 剩余 3 个，预计各 ~45min）\n- **ANALYZING 待处理**:\n  - `bf16_importance_s015` — 需要 spawn worker 分析结果\n  - `v6_random_s030_r3` — 需要 spawn worker 分析结果\n- **未处理回调**: `worker_analysis_v6_random_s015` 失败（result 为空），v6_random_s015 的分析结果尚未入 registry\n- **QUEUED**: 20 个实验（Batch 2 DeepSeek random ×4, Batch 3 Qwen importance ×4, Batch 4 Qwen random ×4，加上部分旧 ID 冗余项）\n- **论文**: §2/§3/§4 初稿完成，§5 Results 骨架 Worker 进行中，§6 Analysis 骨架完成，§1/§7/§8/Abstract 未开始\n- **截稿**: EMNLP 2026 ARR 2026-05-25（距今 11 天）\n\n### 4. 📋 待办（条件触发式）\n- **立即** → spawn worker 分析 bf16_importance_s015（ANALYZING）+ 重试 v6_random_s015 分析（上个 worker 失败了）+ 分析 v6_random_s030_r3\n- **立即** → cuda:2 空闲，应安排 QUEUED 中的实验（如 bf16_ds_rand_s015 或其他 Batch 2 实验）上去\n- bf16_importance_s020/s025/s030 cron 回调到达 → 分析结果 + update registry + 汇报 Director\n- Batch 1 全部完成 → 启动 Batch 2（DeepSeek random ×4）占满 4 张卡\n- Batch 2 完成 → 立即启动 permutation test（mean→median 修正 + EPS edge case）+ 启动 Batch 3\n- Batch 2 数据到手 → 用 bf16 数字填充 §5 Results placeholder\n- 所有 bf16 数据到手 → 全文数字统一更新 + 写 §1 Intro / §7 Discussion / §8 Conclusion / Abstract\n\n### 5. 🎯 战略上下文\n- **核心发现**: importance-based eviction 在 low-sparsity phase gradient 11-42×（problem-level bootstrap），random ~1×。Crossover 现象：high sparsity 时 importance 优于 random，low sparsity 时反转——这是新颖发现，文献空白已确认\n- **机制解释**: entropy-discrimination collapse（head pruning → attention 均匀化 → importance score 区分度崩溃）\n- **D020 是当前关键路径**: 论文所有数值必须来自 bf16，fp16 有 Layer 27 NaN 污染（8% logit 位置）。bf16 fix 已验证 0 NaN\n- **易踩的坑**:\n  1. 不要把 fp16 数字写进论文正文（只能放 appendix/cross-validation）\n  2. C2 claim \"increases with sparsity\" 但 problem-level 非严格单调（s015→s020 下降），措辞要谨慎\n  3. bf16_importance_s020 和 s030 共享 cuda:0，不要误以为 4 个实验占 4 张卡（实际占 2 张：cuda:0 和 cuda:3）\n  4. v6_random_s015 的分析 worker 失败了，结果未入 registry，需要重试\n  5. Bootstrap B 值：fp16 实际 B=1000（论文曾误写 10000），bf16 重跑应统一为 B=10000（D024）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1778739456.md"
+}

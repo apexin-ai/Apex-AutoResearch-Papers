@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "37613f69842796e9beed",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "ops ss s42 monitor",
+  "task_key": "worker_ops_ss_s42_monitor_20260522T160100",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_ss_s42_monitor_20260522T160100_result.json",
+    "occurrence": 1,
+    "bytes": 616,
+    "sha256": "6cd0b0382590af091438fa2c72631a666bb16e0396c1f3d682c3e5f4ec35aa9e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n**训练已停止，未在运行。**\n\n- **GPU**: RTX PRO 6000 Black (98GB)，0% 利用率，0MB 显存占用，无运行进程\n- **Checkpoint**: 只有 `epoch_0`（20:38 保存），含 `gate_params.pt` (3.3MB) + LoRA adapter (19.2MB)。**epoch_1 尚未出现**\n- **Tensorboard**: 无任何 events 文件，无 logs 子目录\n- **训练日志**: 无 `.log` 文件\n\n结论：训练进程已经退出（可能正常完成 epoch_0 后停止，或异常中断）。需要检查 tmux session 和训练脚本的输出日志来确认原因。是否需要进一步排查或重启训练？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-ss-s42-monitor.md"
+}

@@ -1,0 +1,95 @@
+dreams:
+  dream_20260519T143220:
+    card_message_id: om_x100b6ff3099c98b0b2f684134f7af4e
+    chat_id: oc_640e53b6afbbd5e34eb7273cd5a707a0
+    context_hash: b2394bf844a8292b084341ce00a4696d3109f9097c3655ddedb907f36b4b7856
+    dream_id: dream_20260519T143220
+    error: 'killed by director: outdated focus (pre-framing-fix), slot needed for
+      re-dream'
+    focus: 'Route B negative result paper: core novelty is teacher-forcing distribution
+      shift destroying auxiliary attention loss generalization (30x GAR gap), NOT
+      just "gating failed". Key risks: single-model weakness (W1, mitigated by Llama-3
+      plan), "didn''t try hard enough" (W2), GAR as sole proxy metric (W3). Gradient
+      conflict data now available (cos_sim -0.089→-0.042, mag_ratio 7.5→14.7x). Eval
+      data overlaps training set — held-out eval planned but not yet done.'
+    pid: null
+    project: turn_residual_gating
+    review_mode: full
+    review_visible: true
+    stages_completed:
+    - imagine
+    started_at: '2026-05-19T14:32:20+00:00'
+    status: failed
+    updated_at: '2026-05-19T14:45:10+00:00'
+    venue: ''
+    what_if: []
+    writing_visible: true
+  dream_20260519T145320:
+    card_message_id: om_x100b6ff3d8f81d04b295df32981809c
+    chat_id: oc_640e53b6afbbd5e34eb7273cd5a707a0
+    context_hash: 630be4b057d5da6bd00addfe5079a518cb2a5802ad67652f889409fc0bb7aca6
+    dream_id: dream_20260519T145320
+    error: null
+    focus: 'Route B negative result paper post-framing-fix. Core novelty: first quantitative
+      measurement of exposure bias impact on auxiliary attention losses (30x GAR gap
+      training vs inference). Claims narrowed to lightweight residual gating + GAR
+      auxiliary loss scope (not all attention steering). Held-out eval DONE: three-way
+      convergence confirmed (TG≈UG≈LoRA-only, GAR diff &lt;0.6pp, PPL identical).
+      Bootstrap CI: all 95% CIs include 0, statistically confirms zero benefit. Gradient
+      conflict quantified (cos_sim negative, mag_ratio 7.5→14.7x). Eq.3 formula corrected:
+      code uses x+g·f(x) (ReZero-style), mechanism narrative updated. Key remaining:
+      Llama-3 cross-model validation (planned), exposure-bias mitigation experiment
+      (in progress).'
+    pid: 1627250
+    project: turn_residual_gating
+    review_mode: full
+    review_quality:
+      worst: simulated
+    review_visible: true
+    stages_completed:
+    - imagine
+    - write
+    - review
+    started_at: '2026-05-19T14:53:20+00:00'
+    status: done
+    updated_at: '2026-05-19T15:44:14+00:00'
+    venue: ''
+    what_if: []
+    writing_visible: true
+  dream_20260524T081135:
+    card_message_id: om_x100b6e1f65ba7ca4b2f6b88da9a6a5a
+    chat_id: oc_640e53b6afbbd5e34eb7273cd5a707a0
+    context_hash: 1fba4e9a9bcada6199996f96664b94b9c70011b0f17276664294714cf69dd1d0
+    dream_id: dream_20260524T081135
+    error: null
+    focus: ''
+    pid: 2479465
+    project: turn_residual_gating
+    review_mode: simple
+    review_quality:
+      median: simulated
+      worst: simulated
+    review_visible: true
+    stages_completed:
+    - imagine
+    - write
+    - review
+    started_at: '2026-05-24T08:11:35+00:00'
+    status: done
+    updated_at: '2026-05-24T09:19:01+00:00'
+    venue: emnlp-2026
+    what_if: []
+    writing_visible: true
+phase1a_multiseed_qwen:
+  spec:
+    command: bash scripts/phase1a_multiseed_runner.sh
+    data_count: 2000
+    data_path: /root/turn-residual-gating/data/phase2_train.jsonl
+    gpu: 0
+    log_path: /root/turn_residual_gating/logs/phase1a_multiseed.log
+    model_name: Qwen/Qwen2.5-7B-Instruct
+    notes: Only PCGrad s123 (run 1/8) will complete. Remaining 7 runs cancelled per
+      user instruction. GPU idles after completion.
+    pid: 5508
+    seed: 123
+    server: westd-20861

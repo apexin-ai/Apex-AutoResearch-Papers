@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "efb428e87441961708f1",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "ops roadmap update",
+  "task_key": "worker_ops_roadmap-update_20260514T044046",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_roadmap-update_20260514T044046_result.json",
+    "occurrence": 1,
+    "bytes": 373,
+    "sha256": "d6d8624da7c4ca66cba72ecde13cfe260ae738c194f01567429c8d3e9b49c9c8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "ROADMAP.md 已更新。核心变更：\n- 核心方向替换为 phase-modulated severity claim（去掉 D013 警告）\n- 当前进展更新为 M1' 阶段，v6 运行中\n- 阻塞项改为等 v6 完成\n- MVP 标准更新为 D015 已通过的条件\n- 近期任务列表替换为当前实际状态（4 项已完成，5 项待做）\n- GPU 使用更新为 ~8h"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-roadmap-update.md"
+}

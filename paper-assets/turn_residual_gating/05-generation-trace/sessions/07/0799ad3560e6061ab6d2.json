@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0799ad3560e6061ab6d2",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "code add ss s123 to chain",
+  "task_key": "worker_code_add_ss_s123_to_chain_20260523T010644",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_add_ss_s123_to_chain_20260523T010644_result.json",
+    "occurrence": 1,
+    "bytes": 329,
+    "sha256": "096cda7207fe7f83932b2c98f43569758d06f8b43fb0086de3a9e388eaf7462e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。SS s123 训练+eval 两个步骤已追加到 `d048_remaining_queue.sh` 中，位于 Split-Softmax eval 之后、`ALL DONE` 之前。语法检查通过。\n\n参数确认：seed=123, ss_max_ratio=0.3, epochs=3, gate-type=thread, gar_lambda=0.1，输出到 `runs/d048_ss_s123` 和 `results/d048_final_ar`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-add-ss-s123-to-chain.md"
+}

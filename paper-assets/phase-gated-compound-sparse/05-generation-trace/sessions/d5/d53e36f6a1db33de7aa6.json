@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d53e36f6a1db33de7aa6",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "paper number audit",
+  "task_key": "worker_paper_number-audit_20260514T132335",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_number-audit_20260514T132335_result.json",
+    "occurrence": 1,
+    "bytes": 1100,
+    "sha256": "9262a1e8a84f1fd8e88f31a4ead5bb13cd1b0454193ad3db4acb9a390d1fac12"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。报告已写入 `artifacts/_project/report/number_audit_final.md`。\n\n**发现 3 个不一致：**\n\n1. **❌ Cohen's d_z 数据源冲突**（高优先级）：`cohens_d_6point_paired_dz.txt` 和 `cohens_d_6point_paired_info.txt` 给出的 d_z 值完全不同（如 DS s015: 0.442 vs 0.607）。论文使用前者，与 `cross_model_analysis_summary.json` 一致，但后者引用了 `regen` 脚本，可能是更新版本。需确认哪组为正。\n\n2. **❌ 百分位/p_Bonf 算术矛盾**（中优先级，results.tex:115）：99.68th percentile 对应 raw p=0.0032，Bonferroni 校正后应为 0.0128 而非 0.0032。或者若 p_Bonf=0.0032 正确（raw p=0.0008），百分位应为 99.92th。不影响显著性结论。\n\n3. **❌ 熵变区间记号反写**（低优先级，analysis.tex:43）：`[-0.040, -0.047]` 应为 `[-0.047, -0.040]`。\n\n其余约 95 个数字/声明全部通过验证，跨文件一致性良好。6 类数值因原始数据不在提供的文件中无法交叉验证（置换检验详情、bootstrap CI、判别崩溃指标等）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-number-audit.md"
+}

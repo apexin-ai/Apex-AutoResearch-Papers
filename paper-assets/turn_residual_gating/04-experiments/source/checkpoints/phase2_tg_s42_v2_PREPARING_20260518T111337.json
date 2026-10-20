@@ -1,0 +1,14 @@
+{
+  "exp_id": "phase2_tg_s42_v2",
+  "project": "turn_residual_gating",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T11:13:37.042Z",
+    "updated_at": "2026-05-18T11:13:37.042Z"
+  },
+  "timestamp": "2026-05-18T11:13:37.050079+00:00",
+  "trigger": "update_registry"
+}

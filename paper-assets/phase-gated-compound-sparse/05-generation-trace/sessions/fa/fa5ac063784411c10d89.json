@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "fa5ac063784411c10d89",
+  "project": "phase-gated-compound-sparse",
+  "kind": "worker",
+  "title": "code fix importance metric v2",
+  "task_key": "worker_code_fix-importance-metric-v2_20260514T012228",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-importance-metric-v2_20260514T012228.log",
+    "occurrence": 1,
+    "bytes": 654407,
+    "sha256": "13dc84788c1773a5fa4fdf78e18fd3c2a8e3409b6eef4c236c0057c15cbc2358"
+  },
+  "statistics": {
+    "messages": 215,
+    "user_turns": 0,
+    "tool_calls": 72,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 67,
+      "tool_call": 72,
+      "tool_result": 72,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 215,
+      "chunks": [
+        {
+          "path": "fa5ac063784411c10d89-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "fa5ac063784411c10d89-part-0002.json",
+          "message_count": 35
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-fix-importance-metric-v2.md"
+}

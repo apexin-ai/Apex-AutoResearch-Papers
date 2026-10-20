@@ -1,0 +1,27 @@
+paper_key: "schuster2022confident"
+title: "Confident Adaptive Language Modeling (CALM)"
+venue: "NeurIPS 2022"
+full_text_available: false
+
+research:
+  baselines: ["full model", "static early exit", "DeeBERT"]
+  metrics:
+    - {name: "accuracy", direction: "higher_better"}
+    - {name: "average layers used", direction: "lower_better"}
+    - {name: "speedup", direction: "higher_better"}
+  datasets:
+    - {name: "WMT En-De", size: "standard"}
+    - {name: "CNN/DailyMail", size: "standard"}
+  ablation_dimensions: ["confidence threshold", "exit strategy", "calibration method"]
+  training_recipe: {optimizer: "Adam", hardware: "TPU"}
+  method_family: "early exit / adaptive computation"
+
+positioning:
+  core_claim: "Token-level early exit with calibrated confidence achieves consistent speedup while maintaining output quality through textual consistency guarantees"
+  key_results: "3x speedup with minimal quality loss on text generation"
+  limitations: ["requires calibration data", "batch processing complications", "limited to encoder-decoder"]
+  relation_to_us: "complementary"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

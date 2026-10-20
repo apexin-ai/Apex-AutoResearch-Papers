@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "625c86d0a23f0acd6c42",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "ops lora only progress 2",
+  "task_key": "worker_ops_lora_only_progress_2_20260519T100634",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_lora_only_progress_2_20260519T100634_result.json",
+    "occurrence": 1,
+    "bytes": 708,
+    "sha256": "84e0e9c48b1a0f6e65413f83c4ea29c23dc6c0fb4fd04c64677431897724e801"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## LoRA-only 训练进度 (phase2_lora_only_s42)\n\n| 指标 | 值 |\n|------|-----|\n| **当前位置** | Epoch 1, micro-step 3600 |\n| **Global step** | 1450 / 3000 (**48.3%**) |\n| **Loss** | NTP=0.8847, Total=0.8847 (GAR≈0, DIV=0) |\n| **Gate 值** | 全部 1.000（符合预期，`--gate-type none`） |\n\n**Epoch 0 已完成**：Avg Loss=1.0154, Avg NTP=0.9809\n\n### 资源状态\n- **GPU**: RTX PRO 6000 Blackwell, 91.3/97.9 GB VRAM, **97% 利用率**\n- **磁盘**: 16G/30G 已用 (51%)，剩余 15G 充足\n\n### 时间估算\n- 已运行 ~166 分钟完成 1450 步\n- 剩余 1550 步，预估还需 **~177 分钟（约 3 小时）**\n- 预计完成时间：服务器时间 ~21:00"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-lora-only-progress-2.md"
+}

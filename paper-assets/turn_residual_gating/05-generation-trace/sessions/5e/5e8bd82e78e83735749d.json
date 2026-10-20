@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5e8bd82e78e83735749d",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "viz beta steering table",
+  "task_key": "worker_viz_beta_steering_table_20260522T154749",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_beta_steering_table_20260522T154749_result.json",
+    "occurrence": 1,
+    "bytes": 469,
+    "sha256": "382242316051a2c25885fa8b283bc913bec82d433530cd5f35bc7c411730c9f3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "表格已写入 `artifacts/table_steering_full.tex`，可直接 `\\input{sections/appendix}` 中追加 `\\input{../artifacts/table_steering_full}` 引用。\n\n结构：\n- 8 行（β = 0, 0.5, 1, 2, 3, 4, 5, 10），缺失值用 `---`\n- 3 组列：N=5 Gen / N=50 Gen（含 ±std）/ N=200 TF\n- β=5 行全部加粗\n- β=2 与 β=3 之间用 `\\addlinespace[3pt]` 标记 phase transition 边界\n- caption 说明加粗含义和 phase transition 位置"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-beta-steering-table.md"
+}

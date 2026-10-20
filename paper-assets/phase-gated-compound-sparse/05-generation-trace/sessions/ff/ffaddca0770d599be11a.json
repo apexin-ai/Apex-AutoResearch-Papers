@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ffaddca0770d599be11a",
+  "project": "phase-gated-compound-sparse",
+  "kind": "history",
+  "title": "agent / loop_6_1778775480.md",
+  "task_key": "loop_6_1778775480",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_6_1778775480.md",
+    "occurrence": 1,
+    "bytes": 6055,
+    "sha256": "cc12d587a9551996d9065fb04c27c7f4a7fdb88f519fabcbc4cceaf6ce1f7705"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: idle_timeout\nupdated: '2026-05-14T16:16:30+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目 GPU 白名单：westd-22162 cuda:0~3（`get_project_status` 的 `execution.gpu_ids`），其他服务器/GPU 不可用\n- c2_qw_n500 有**重复进程**未清理：GPU2 的 PID 132389、GPU3 的 PID 132392 必须杀掉（保留 131864、132002），否则输出数据可能损坏\n- c2_qw_n500 和 c3_llama **同时跑在 cuda:2+3 上**——这是 GPU 冲突，必须先 SSH 确认两组进程是否真的共存、是否互相干扰。96GB 卡理论上能装两个 7B/8B 模型，但性能会打折\n- 论文 framing 硬约束（D015）：禁止说\"importance is broken\"，必须 frame 为\"emergent phase-strategy interaction\"。random 也产生正 II，信号是 **phase-dependent gradient**（importance 单调递增 vs random 全 FAIL）\n- 预注册决策点：若 Qwen s015 在 n=500 后 CI 仍跨零 → **必须**改叙事为 \"compound effect emerges above threshold sparsity (~s020)\"，不能无视\n- inverted_ema_reasoning_v2 在 westd-16980 cuda:1 上 RUNNING，但它**不属于本项目**（属于另一个 project），不要动它\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-22162，4× RTX PRO 6000 Blackwell 96GB\n- **工作目录**: `/root/autodl-tmp/pacs/`\n- **Python**: conda base（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`），不是 venv\n- **模型路径**:\n  - DeepSeek-R1-Distill-Qwen-7B: `/root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B`\n  - Qwen2.5-7B-Instruct: `/root/autodl-tmp/pacs/checkpoints/Qwen2.5-7B-Instruct`\n  - DeepSeek-R1-Distill-Llama-8B: 已下载（c3_llama 在跑）\n- **数据**: `/root/autodl-tmp/pacs/data/math500.json`（500 problems）\n- **活跃进程**:\n  - c2_n500_deepseek: cuda:0+1, tmux=c2_n500_gpu0/c2_n500_gpu1, cron 监控中\n  - c2_qw_n500: cuda:2+3, **SCREEN** sessions（不是 tmux）c2_qw_gpu2/c2_qw_gpu3, PID 131864/132002, 进度 ~93/500 s015 条件（截至 22:37 CST）。**有重复 PID 132389/132392 未杀**\n  - c3_llama: cuda:2+3, PID 138393(parent)/138408(imp gpu2)/138410(rand gpu3), 重启过（修了 sp_str bc 不可用 bug）\n- **日志**:\n  - `/root/autodl-tmp/pacs/logs/c2_n500_gpu0_full.log`, `c2_n500_gpu1_full.log`\n  - `/root/autodl-tmp/pacs/logs/c2_qw_n500_gpu2_full.log`, `c2_qw_n500_gpu3_full.log`\n- **Cron**: 3 个活跃（c2_n500_deepseek, c2_qw_n500, c3_llama），reconcile 确认全部 still running\n\n### 3. 📊 当前状态\n上一个 session 做了大量工作：统一 Cohen's d 记号（D048）、修复 Table 4 caption（D049）、回退错误 Worker（D050）、处理图表过时数据问题（D051）、采纳 Reviewer 建议改 C5 为 pilot-first（D052）、澄清 C5b s_trans cap（D053）。\n\n**Registry 快照（project=phase-gated-compound-sparse，82 total）**:\n| exp_id | status | 摘要 |\n|--------|--------|------|\n| c2_n500_deepseek | RUNNING | DeepSeek 8 conditions n=500, cuda:0+1, ~18h |\n| c2_qw_n500 | RUNNING | Qwen 8 conditions n=500, cuda:2+3, ~93/500 s015, 有重复进程 |\n| c3_llama | RUNNING | LLaMA-8B 跨架构验证 8 conditions n=50, cuda:2+3, 重启过 |\n| c5b_pilot | QUEUED | Oracle + heuristic phase-aware allocation, 等 GPU |\n| 其他 78 | DONE | 35 success / 9 negative / 13 failed / 19 killed |\n\n**Worker 池**: 0 个活跃 Worker。下一个 session 应立即评估是否需要 spawn。\n\n**等待中**:\n- 3 个 cron 回调（c2_n500_deepseek / c2_qw_n500 / c3_llama 完成时触发）\n- Group C 审稿结果（并行进行中）\n- c5b_pilot 等 GPU 释放\n\n### 4. 📋 待办（条件触发式）\n- **立即** → SSH 确认 cuda:2+3 上 c2_qw_n500 和 c3_llama 是否共存、是否互相干扰；杀掉 c2_qw_n500 重复 PID（132389, 132392）；确认数据完整性\n- c2_n500_deepseek cron 回调 → spawn Worker 分析 n=500 结果，更新论文 Table 1-4 和 Figures，检查 Qwen s015 CI 是否跨零（预注册决策点）\n- c2_qw_n500 cron 回调 → 同上，与 DeepSeek 对称分析\n- c3_llama cron 回调 → 分析 LLaMA vs DeepSeek/Qwen phase gradient 方向一致性；若一致，C8 confirmed → 更新 paper §5 cross-architecture；若不一致，走 red-section Framing 提案\n- 两个 n=500 实验完成且 GPU 释放 → 立即提交 c5b_pilot（oracle + heuristic, 2h 预算）\n- c5b_pilot 完成且 oracle recovery >30% → 全面铺 C5 mitigation 实验；<30% → C5 降为 future work\n- 全部补充实验完成 → 用 bf16 canonical + n=500 数据重新生成 Figures 1-5（D051 未完成）→ 提交 Group C final review\n- Group C 审稿返回 → 按反馈修改 → 准备 rebuttal letter（Day 9 = 2026-05-23 开始）\n\n### 5. 🎯 战略上下文\n**核心发现**: compound sparsity severity 是 phase-modulated 的——importance-based eviction 的 II gradient 随 sparsity 单调递增（DeepSeek: 0.39→14.59），random masking 全 FAIL。Cross-model Cohen's d ρ=1.0。这是 three-way interaction（compound × phase × strategy）的首次实证，crossover 现象前所未见。\n\n**决策链关键节点**:\n- D045/D046: C4 entropy-collapse 从 Core Claim 降为 §6 supporting（Qwen s025 符号反转）\n- D047: 纳入 6-point dose-response（s=0.10~0.35）\n- D048: 统一用 paired d_z\n- D051: 图表需用 bf16 数据重新生成（**未完成**）\n- D052: C5 改为 pilot-first 策略\n\n**最容易判断错的事**:\n1. cuda:2+3 上同时跑着 c2_qw_n500 和 c3_llama，看起来像错误但可能是 96GB 卡容纳了两个模型——先确认再动，不要盲目杀进程\n2. c2_qw_n500 用的是 **SCREEN** sessions 不是 tmux，不要用 tmux 命令去找\n3. report.md 的告警列表（mvp_* 系列 failed/killed）都是早期调试迭代的残留，不需要处理\n4. 论文已全文完成但 Figures 用的是旧数据——不能在 n=500 结果出来前就重新生成，等新数据到位后一次性更新\n\n**截稿**: EMNLP 2026 ARR **2026-05-25**，距今 11 天。论文本体已完成，关键路径是 n=500 实验完成 → 更新数字/图表 → final review → 提交。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-1778775480.md"
+}

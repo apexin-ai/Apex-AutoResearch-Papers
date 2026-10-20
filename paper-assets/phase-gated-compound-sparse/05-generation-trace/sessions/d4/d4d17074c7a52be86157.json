@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d4d17074c7a52be86157",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "paper verify regenerate figures",
+  "task_key": "worker_paper_verify-regenerate-figures_20260514T102449",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_verify-regenerate-figures_20260514T102449_result.json",
+    "occurrence": 1,
+    "bytes": 1683,
+    "sha256": "44ab074919c74a9f635c6b9c2294feb444738fd6d48e50430538485263e9f94a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n所有 5 个图表已从 bf16 canonical 数据重新生成，输出至 `/root/autodl-tmp/pacs/paper_figures/`。\n\n### 各图状态\n\n| 图表 | 状态 | 关键数值确认 |\n|------|------|-------------|\n| **Fig 1** (dose_response) | 重新生成 | G_imp 6-point: [5.6, 69.2, 103.1, 222.4, 274.2, 273.6]; G_rand: [1.1, 0.95, 1.67, 1.61] |\n| **Fig 3** (crossover) | 重新生成 | imp_high=0.032, rand_high=0.818; imp_low=7.196, rand_low=1.363 |\n| **Fig 4** (forest) | 重新生成 | DS d_z: 0.44/0.52/0.68/0.80; QW d_z: 0.28/0.55/0.89/1.02 — 全部 vs cohens_d_bf16.json 验证 OK |\n| **Fig 5** (crossmodel) | 重新生成 | Spearman ρ=1.0, gradient perm p=0.043 |\n| **Cohen's d 6-point** | 重新生成 | 已修正为真正 paired d_z（旧版用的是 pooled d） |\n\n### 修正的关键问题\n\n1. **Fig 1**：旧版使用 v5 数据/硬编码值 → 现在从 bf16 原始 profiling 数据计算\n2. **Fig 4**：旧版无 Cohen's d 注释 → 现在标注 paired d_z + significance stars，双模型双面板\n3. **Fig 5**：旧版缺少 Spearman/p 注释 → 现在标注 ρ=1.0, p=0.043，并在每点标注 d_z\n4. **Cohen's d 6-point**：旧版 `regen_cohens_d_6point.py` 使用 **pooled d 公式**（违反 D048） → 已修正为 paired d_z = mean(D)/SD(D)\n\n### 修正后的 6-point paired d_z 值\n\n| s | DS d_z | QW d_z |\n|---|--------|--------|\n| 0.10 | 0.376 (marginal) | -0.049 (d<0) |\n| 0.15 | 0.442 | 0.281 (marginal) |\n| 0.20 | 0.520 | 0.549 |\n| 0.25 | 0.683 | 0.889 |\n| 0.30 | 0.803 | 1.022 |\n| 0.35 | 0.815 | 1.102 |\n\n数据文件：`canonical_bf16_stats.json` 和 `cohens_d_paired_dz_6point.json` 已保存。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-verify-regenerate-figures.md"
+}

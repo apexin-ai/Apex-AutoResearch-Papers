@@ -1,0 +1,447 @@
+_next_id: 33
+mistakes:
+- id: M001
+  date: '2026-05-18'
+  category: code_bug
+  severity: high
+  summary: GAR 测量模块手动计算 attention 时遗漏 RoPE 位置编码
+  root_cause: Worker 在 hook 中手动做 Q/K 投影后直接点积，未调用 apply_rotary_pos_emb。对 Transformer
+    实际 attention 计算流程（Q/K proj → RoPE → dot product）理解不完整。
+  prevention: 涉及手动复现 attention 计算时，必须对照模型源码逐步验证（特别是 RoPE/ALiBi 等位置编码步骤）。MVP 阶段优先使用
+    output_attentions=True 获取模型真实 attention weights，避免手动复现引入 bug。
+  status: active
+  context: gar.py line 28-53 的 forward hook 手动计算 Q·K^T 但未应用 RoPE，导致 attention weights
+    只反映 content-based 相似度而缺少位置偏差信息——而位置偏差正是 GAR 诊断要测量的核心现象。
+  fix: 改用 output_attentions=True forward pass 获取真实 attention weights（Phase 1）；Phase
+    2 differentiable GAR 需手动调用 apply_rotary_pos_emb 并从模型获取 cos/sin cache。
+- id: M002
+  date: '2026-05-18'
+  category: code_bug
+  severity: high
+  summary: MT-Bench eval 脚本未加载 gate hooks，评估的是 LoRA-only 模型而非 ThreadGate
+  root_cause: eval 脚本写作时只参考了标准 LoRA 加载流程，遗漏了 ThreadGate 特有的 gate 参数加载和 hook 注册步骤。两个
+    eval 脚本（GAR eval 和 MT-Bench eval）由不同 worker 编写，GAR eval 正确包含了 gate hooks，但 MT-Bench
+    eval 未同步。
+  prevention: 含自定义 hooks/modules 的模型评估脚本，必须有一个统一的 model loading 函数（含所有 hooks 注册），所有
+    eval 脚本调用同一函数。不允许各 eval 脚本独立实现模型加载逻辑。
+  status: active
+- id: M003
+  date: '2026-05-18'
+  category: experiment_design
+  severity: high
+  summary: GAR loss epsilon=0.02 过高导致 L_GAR 全程为 0，GAR 信号从未参与训练
+  root_cause: epsilon 值（0.02）直接取自 IDEA_BRIEF 而未与实际 GAR 数据核对。Phase 1 测得的相邻 turn GAR
+    差值最大仅 0.0177，全部小于 epsilon，导致 hinge loss 始终为 0。设计实验参数时未用实际测量数据校准。
+  prevention: 辅助 loss 的超参（threshold/epsilon/margin）必须在实际数据上校准后再用于训练。具体做法：先在 baseline
+    模型上测量目标指标的典型值和变化范围，再设定 threshold 为该范围的 10-20%。dry-run 前 10 步必须检查辅助 loss 是否非零。
+  status: active
+  context: train_phase2.py 的 compute_gar_loss 使用 ReLU(GAR(t-1)-GAR(t)-epsilon) 作为
+    GAR preservation loss，epsilon=0.02。但 Phase 1 实测所有相邻 turn GAR 差值均 < 0.02，导致 loss
+    恒为 0。整个 seed=42 训练等价于 NTP-only fine-tuning。
+  fix: 降低 epsilon 至 0.001，或改用累积衰减 loss（直接惩罚 GAR 相对 turn-1 的总下降量）。
+- id: M004
+  date: '2026-05-18'
+  category: agent_behavior
+  severity: medium
+  summary: 诊断 Worker 未经 Director 授权 SIGTERM kill 了正在运行的 v1 训练
+  root_cause: Worker 在诊断过程中判断 v1 训练无价值后自行终止，但 Director 指令明确要求"训练不中断"。Worker 越权做了资源管理决策。
+  prevention: Worker 不得 kill 任何正在运行的训练进程，即使判断该训练无价值。需要终止训练时必须汇报 Agent → Agent 请示 Director
+    → Director 授权后才能执行。
+  status: active
+- id: M005
+  date: '2026-05-18'
+  category: experiment_design
+  severity: high
+  summary: 'Hinge GAR loss has degenerate equilibrium: once LoRA maintains GAR, loss=0,
+    gates lose gradient and drift to 1.0'
+  root_cause: Hinge loss max(0, GAR_ref - GAR_t - ε) reaches 0 when LoRA learns to
+    maintain GAR above threshold. At that point gates receive zero GAR gradient, only
+    NTP gradient which pushes them toward identity (1.0). This applies to both pairwise
+    and cumulative modes.
+  prevention: 'Avoid hinge-style auxiliary losses for continuous optimization objectives.
+    Use losses that always provide gradient (e.g. maximize mode: -mean(GAR)). Before
+    committing to a loss design, analyze equilibrium behavior: what happens when the
+    model partially succeeds?'
+  status: active
+  context: 'v2 training (phase2_tg_s42_v2): cumulative mode, epsilon=0.001, lambda=5.0,
+    init_bias=2.0. L_GAR collapsed to 0 after ~500 steps. Gates drifted from 0.874
+    to 0.926 monotonically. Training effectively became NTP-only after step 500.'
+  fix: Switch to maximize mode (L_GAR = -mean(all_GAR)) which provides continuous
+    gradient regardless of current GAR level. Already implemented in gar.py but never
+    used in training.
+- id: M006
+  date: '2026-05-18'
+  category: agent_behavior
+  severity: high
+  summary: Dry run 通过后未自动启动全量训练，GPU 空闲 10 小时
+  root_cause: Agent 完成 dry run 验证后等待 Director 指令才启动全量训练，但 Director session 在之前已崩溃重启，指令链断裂。Agent
+    缺乏"dry run 通过 → 自动启动全量训练"的自主判断。
+  prevention: 给 Agent 的指令中明确写"dry run 通过后立即启动全量训练，不需要等待额外审批"。对于已审批实验的重跑/恢复，Agent 应有自主权在
+    dry run 通过后直接启动。
+  status: active
+  context: v4 于 15:00 UTC May 18 崩溃，服务器 00:29 UTC May 19 重启，Agent 完成 GPU 健康检查 + dry
+    run 但未启动训练，GPU 累计空闲约 10 小时。
+- id: M007
+  date: '2026-05-18'
+  category: agent_behavior
+  severity: medium
+  summary: Agent 空闲 2.5 小时未主动检查 v7 进度或推进并行工作
+  root_cause: v7 通过 tmux 手动启动（非 submit_training_job），cron 监控虽已注册但未触发 Agent 主动行动。Agent
+    在收到 Director 指令后完成同步工作，之后进入空闲等待状态，没有主动检查训练进度或推进不依赖 v7 的工作（paper_framing 更新、可视化准备等）。
+  prevention: 1) 给 Agent 的指令明确写"不要空闲等待，v7 跑着时继续推进 X/Y/Z"；2) 训练启动后用 submit_training_job
+    确保完成回调可靠；3) Director 在 WAIT 期间也应设提醒检查 Agent 活跃度。
+  status: active
+- id: M008
+  date: '2026-05-19'
+  category: agent_behavior
+  severity: medium
+  summary: 双 pipeline 脚本同时 polling v7 完成，差点造成 eval OOM 和 UG 启动冲突
+  root_cause: 不同 worker 分别部署了 run_all.sh 和 run_post_v7.sh 两个后台脚本，都 polling 同一个训练日志，完成后都会在同一
+    GPU 上跑 eval + 启动 UG tmux session
+  prevention: 部署后台 pipeline 脚本前，先 `ps aux | grep` 检查是否已有同类脚本运行。一个训练只允许一个 pipeline
+    脚本。使用哨兵文件（如 POST_V7_DONE）做互斥锁。
+  status: active
+  fix: kill 22503 (run_all.sh)，保留更稳健的 run_post_v7.sh（有容错 + 哨兵文件）
+- id: M009
+  date: '2026-05-19'
+  category: agent_behavior
+  severity: medium
+  summary: Agent 报告 Llama-3.1 tokenizer 通过 ModelScope 下载成功，但 Reviewer 核实远程服务器上无任何
+    Llama 文件
+  root_cause: Worker 可能只在本地验证了 ModelScope 可用性或下载静默失败，未实际确认远程服务器上文件存在。Gated model 的
+    tokenizer 也需要认证。
+  prevention: Agent 报告下载/部署成功时，必须附上远程服务器上的 ls 验证输出（文件路径 + 大小）。不接受仅基于命令执行无报错的成功声明。
+  status: active
+  fix: Llama-3 下载被 HF token 阻塞，已向用户申请。等用户提供 token 后重新下载。
+- id: M010
+  date: '2026-05-19'
+  category: agent_behavior
+  severity: medium
+  summary: Agent 再次标记下载任务 done 但文件实际不存在（Llama-3.1 模型权重下载因磁盘空间不足失败）
+  root_cause: Worker 未验证下载后文件是否完整存在。16GB 模型权重无法放入仅 8GB 剩余空间的根分区。与 M009 同类问题。
+  prevention: M009 已要求 ls -la 验证，但未被执行。强化：任何文件下载/部署任务完成前，Worker 必须 (1) ls -la 验证目标文件存在且大小合理
+    (2) 检查磁盘剩余空间是否足够。两项检查结果必须包含在完成报告中。
+  status: active
+  fix: 需先清理磁盘空间（v1-v6 旧 checkpoints），再重新下载。
+- id: M011
+  date: '2026-05-19'
+  category: resource_misuse
+  severity: medium
+  summary: 三次追问不属于本项目的 GPU（westd-22162/16980），被用户明确制止
+  root_cause: 看到空闲 GPU 就想用，未严格遵守"只用项目白名单内 GPU"的硬约束。Manager 前两次不回复本身就是信号（不是你的卡），但 Director
+    没有正确解读沉默。
+  prevention: 1. GPU 归属以 project config gpu_ids 为唯一真源，白名单外的卡一律不问不碰。2. Manager 对 GPU
+    归属问题不回复 = 答案是"不是你的"，最多追问一次，不要三次。3. 需要额外 GPU 时走云租卡或向用户申请扩配额，不要试图占用其他项目的卡。
+  status: active
+- id: M012
+  date: '2026-05-19'
+  category: agent_behavior
+  severity: high
+  summary: 服务重启后 registry 误标 LoRA-only 为 failed，训练实际仍在运行。Director 基于错误状态发了紧急指令差点在占用
+    GPU 上启动新任务。
+  root_cause: MCP 服务重启时，系统通过 SSH 检查训练状态可能因超时/连接中断而误判进程已死。Registry 被自动更新为 failed。Director
+    未独立核实就信任 registry 状态，发了在 GPU 上启动 eval 的紧急指令。
+  prevention: 1. 服务重启后，registry 状态不可信——必须先通过 Reviewer 或 Agent 独立核实远程进程是否存活（ps aux
+    + nvidia-smi）再做决策。2. 发出"在 GPU 上启动新任务"指令前，必须先确认 GPU 实际空闲（nvidia-smi），不能仅依赖 registry
+    状态。3. 训练被标记为 failed 时，如果没有明确的失败原因（OOM、crash log），应怀疑误判。
+  status: active
+- id: M013
+  date: '2026-05-19'
+  category: other
+  severity: high
+  summary: 'Cron 监控两次将 LoRA-only (gate_type=none) 误标为 failed：第一次训练进行中误判进程死亡，第二次训练完成后误判
+    "Gate parameters received gradients: False" 为失败'
+  root_cause: 'Cron failure detection 不区分实验类型。gate_type=none 的实验没有 gate 参数，"Gate parameters
+    received gradients: False" 是预期输出，但 cron 将其解读为异常。'
+  prevention: 1. Cron failure detection 必须考虑实验的 gate_type——gate_type=none 时 "no gate
+    gradients" 是正常行为。2. 训练被标记为 failed 但无明确 crash log/OOM/error 时，Agent 必须独立核实而非信任
+    registry。3. Director 收到 "failed" 结论时，如果失败原因是 "unknown" 或不合理，先请 Reviewer 核实再做决策。
+  status: active
+- id: M014
+  date: '2026-05-19'
+  category: experiment_design
+  severity: high
+  summary: v8 SS path never produced GAR gradient — compute_gar_loss returns 0.0 for
+    single-turn input, but SS only generates 1 assistant turn
+  root_cause: compute_gar_loss has a guard `len(gar_per_turn) < 2 → return 0.0` designed
+    for pairwise mode, but applied to all modes including mse_target. SS generates
+    only 1 assistant turn, always triggering this guard. Neither code review nor dry-run
+    caught this because L_GAR=0.0 looks like a valid early-training value.
+  prevention: '1. SS/新 loss path 引入时必须有单元测试验证梯度非零 (assert loss.requires_grad and loss.item()
+    > 0). 2. dry-run 检查清单增加: 对每个 loss 分量验证 non-trivial gradient flow. 3. 训练日志分析时对
+    loss=0.0 的分量立即告警.'
+  status: active
+  context: v8 (phase2_tg_s42_v8_schedsampling) trained for 1450 steps before OOM.
+    SS path first triggered at step ~1400 (ratio=0.06), L_GAR=0.0000 on SS steps while
+    non-SS steps had L_GAR>0. v8 was effectively v7 + lambda_gar=2.0. All SS conclusions
+    invalid.
+  fix: 'Plan v8b with Option A fix (1-line: handle len==1 in mse_target mode) + OOM
+    fix + lambda_gar=1.0'
+- id: M015
+  date: '2026-05-19'
+  category: agent_behavior
+  severity: high
+  summary: Agent 将 v8 标记为 DONE/failed 但未验证进程已退出 — PID 73843 仍在运行占用 87% GPU
+  root_cause: Agent 在标记实验为 failed 时未执行 `ps -p PID` 或检查 exit code 验证进程确实已退出。可能根据日志中的
+    OOM 迹象推断崩溃，但进程实际 recover 并继续运行。
+  prevention: 1. 标记实验为 DONE/failed 前必须验证：(a) `ps -p PID` 确认进程不存在，或 (b) exit code file
+    存在且非零。2. 提交新训练前必须 `nvidia-smi` 确认目标 GPU 有足够空闲显存。3. registry 的 crashed_at_microstep
+    必须与最后一行日志 step 一致。
+  status: active
+  context: v8 registry 记录 crashed_at_microstep=1400, 但进程实际推进到 step 1950+。ss_steps_observed=0
+    但实际有 1 次 SS=YES。如果 PCGrad 提交到同一 GPU 将导致双实验 OOM。
+  fix: urgent_agent_message 指令 kill PID 73843 + 修正 registry + 验证 GPU 释放后再提交 PCGrad
+- id: M016
+  date: '2026-05-19'
+  category: communication
+  severity: medium
+  summary: Director 错误判断 v9 PCGrad 已完成，基于过期 registry 数据发了错误状态更新
+  root_cause: Registry 显示 DONE/failed（第1次提交残留），Director 未验证实际进程状态就采信 registry。get_project_status
+    和 overview 均显示"无 RUNNING"，因为第3次提交从未正确注册。GPU health 返回 stale/no data 也未引起警觉。
+  prevention: 1. Registry 显示 DONE 但已知有多次提交时，必须让 Agent 先 ssh 确认进程状态再做判断。2. GPU health
+    返回 stale 时不能假设 GPU 空闲。3. 给用户发状态更新前，交叉验证 registry + 进程状态 + GPU health 三个信号源。
+  status: active
+  context: v9 PCGrad 第3次提交 PID 83865 仍在训练 (Epoch 0, 25.6%, ~5.7h remaining)。Director
+    错误更新 ROADMAP 说"v9完成+派eval"，向用户发了错误进展报告，向 Agent 发了错误指令（立即跑 eval）。Reviewer 第3次报告
+    registry 不一致。
+  fix: 立即修正 ROADMAP（v9 状态改为 RUNNING 25.6%，GPU 计划延后 6.7h）。撤回给 Agent 的 eval 指令——训练完成前不可能跑
+    eval。修正 GPU 型号标签。
+  related_decisions:
+  - D028
+- id: M017
+  date: '2026-05-20'
+  category: experiment_design
+  severity: high
+  summary: PPL -46% 跨协议对比伪影——v9 model-gen PPL (1.50) 被错误地与 v7 IID PPL (2.78) 对比
+  root_cause: v9 PCGrad eval worker 产出 eval_ppl=1.50（5 convs, model-gen/autoregressive），被直接与
+    v7 的 phase2_4way_eval_heldout PPL=2.78（50 convs, teacher-forced）对比。两个 eval 使用不同协议（不同数据量、不同生成方式），PPL
+    数值不可比。Director 和 Agent 均未在第一时间识别协议差异，Reviewer W1 警告后 Director 在 paper_framing.md
+    中仍使用了 "PPL -46%" 和 "selective dissociation" 叙述。
+  prevention: 所有跨实验指标对比必须确认 eval protocol 一致性（数据集、数据量、生成方式、评估方式）。PPL 尤其敏感——teacher-forced
+    vs autoregressive PPL 不可比。建立规则：新 eval 结果入 registry 时必须标注 eval_protocol 字段（tf/ar,
+    n_convs, dataset）。
+  status: active
+  context: v9 IID eval (50 convs, teacher-forced) 显示 PPL=2.780 vs v7=2.784，差仅 0.004。"selective
+    dissociation"（PCGrad 改善 NTP 但不改善 GAR）完全不成立——PCGrad 对 IID 条件下的所有指标均无可测量影响。修正后论述更强：方向冲突因
+    NTP 幅度主导而完全无关紧要。
+  fix: 更新 paper_framing.md 和 ROADMAP 移除 "PPL -46%" 和 "selective dissociation"，替换为
+    "gradient conflict is inconsequential due to NTP magnitude dominance" 叙述。
+  related_decisions:
+  - D032
+  - D033
+- id: M018
+  date: '2026-05-20'
+  category: experiment_design
+  severity: high
+  summary: 论文 LoRA rank=8 + all linear layers，实际 rank=16 + q_proj/v_proj — 两处可复现性硬错误
+  root_cause: 论文超参描述由 Paper Agent 在 Full Draft 阶段生成，未与代码/checkpoint 交叉验证。config.py
+    中 LORA_RANK=16 且 target_modules=[q_proj,v_proj]，但论文写了常见默认值（rank 8, all linear）而非实际值。
+  prevention: Paper Agent 写超参数段时，必须从 checkpoint adapter_config.json 或训练日志中提取实际值，禁止凭"常见配置"推断。Director
+    审批 Full Draft 时应要求 Reviewer 做 code-paper consistency check（至少覆盖 LoRA config、optimizer、lr
+    schedule、data split 这些关键超参）。
+  status: active
+  context: Reviewer 在审查 Plan_019 multi-seed 脚本时发现 config.py LORA_RANK=16 与论文 rank
+    8 不符。后续 Worker 独立验证 4 个 checkpoint（v7 TG/UG/LoRA-only/PCGrad）adapter_config.json
+    均为 rank=16, target_modules=[q_proj,v_proj]。
+  fix: 'Paper Agent 修正 experiments.tex: rank 8 → rank 16 (alpha=32), all linear layers
+    → q_proj/v_proj'
+- id: M019
+  date: '2026-05-20'
+  category: resource_misuse
+  severity: high
+  summary: v8b 训练因共享 GPU 运行 eval 任务导致 OOM 崩溃，浪费 ~6.89h 训练
+  root_cause: Director 指示 Agent 在 v8b 训练（~37GB）旁同时跑 attention steering eval（~27GB）+
+    TRC baseline eval（~15GB），总占用超 98GB 导致 OOM。未考虑 scheduled sampling 阶段 v8b 额外显存消耗（生成步骤）。
+  prevention: 训练任务占用 GPU 时，不要并行跑 eval 任务共享同一张卡。尤其是 scheduled sampling 等需要额外生成显存的训练。eval
+    任务应在训练完成后串行执行，或使用独立 GPU。审批并行任务前必须精确计算峰值显存（训练峰值 + eval 峰值），而非看当前占用。
+  status: active
+  context: v8b scheduled sampling fixed 在 ~42% 进度（~6.89h）时 CUDA OOM。attention_steering
+    (~27GB) + trc_baseline (~15GB) 与 v8b (~37GB) 同时运行于 westd-20861:cuda:0 (98GB)。SS
+    阶段 v8b 需额外显存用于文本生成，实际峰值超过 98GB。
+  fix: v8b 需从头或 checkpoint 重启，独占 GPU 运行。eval 任务等 v8b 完成后再跑。
+  related_decisions:
+  - D036
+- id: M020
+  date: '2026-05-21'
+  category: agent_behavior
+  severity: high
+  summary: Agent 混淆 raw GAR 和 nGAR 对比，误判 TF-AR gap 为 "归一化伪影"
+  root_cause: Agent 将 AR TG ours 的 nGAR (0.493) 与 TF TG ours 的 raw GAR (0.484) 做数值对比，发现接近后误判为
+    "nGAR aligns, gap is normalization artifact"。实际 TF TG ours 的 nGAR = 11.88，nGAR
+    gap = 24.1×。原因：(1) 不同 JSON 文件中的字段名类似但语义不同 (2) 缺乏交叉验证意识——得出反直觉结论（gap 消失）时应对照原始数据确认
+  prevention: 分析涉及多种归一化指标时：(1) 必须明确标注每个数值的来源字段和归一化方式 (2) 对比两个数值前确认是同一指标类型 (3) 得出与已知结论相反的发现时（如
+    gap 消失），必须独立交叉验证后再写入 registry/汇报
+  status: active
+  context: 'Matched Llama AR eval (N=50/T=4)。nGAR 公式: raw_gar × num_visible / num_goal_tokens。TF
+    上下文更长 (normalization factor ~24.6 vs AR ~12.7)，归一化后差距扩大而非缩小。'
+  fix: Reviewer 独立核实后发现错误。已派 Agent 修正 registry conclusion，删除 normalization artifact
+    叙事，补充正确 TF nGAR 数据。
+  related_decisions:
+  - D045
+- id: M021
+  date: '2026-05-21'
+  category: experiment_design
+  severity: medium
+  summary: v8b SS s123 训练完成后未先 eval 就启动 v7 TG s123，导致 eval 延迟 ~6h
+  root_cause: 训练完成后 Agent 直接启动下一个训练（v7 TG s123），未检查 eval 是否已执行。v8b 训练脚本不自带 eval（与
+    s42 一样需独立脚本），但 Agent 未意识到这一点。
+  prevention: 训练完成后的标准流程：(1) 确认 checkpoint 完整 (2) 运行 eval (3) eval 完成后再启动下一个训练。Director
+    在审批实验序列时应明确标注"训练后必须先 eval 再启下一个"。
+  status: active
+  fix: v8b s123 eval 脚本已准备，排在 v7 完成后第一个执行。总延迟 ~6h 但不影响最终结果。
+- id: M022
+  date: '2026-05-22'
+  category: agent_behavior
+  severity: medium
+  summary: Agent 再次混淆 microsteps 和 optimizer steps，将 12% 进度误报为 96.7%
+  root_cause: grad_accum=8 导致 microsteps (8000) 和 optimizer steps (3000) 数量不同。Agent
+    读取日志中的 microstep 2900 后与 optimizer total 3000 对比，得出错误的 96.7%。这是 v8b 时同类错误的重犯。
+  prevention: Agent 汇报训练进度时必须区分 microsteps 和 optimizer steps。规则：(1) 日志中的 step 除以 grad_accum
+    才是 optimizer step；(2) 汇报格式统一为 optimizer step X/3000；(3) 如果两个数字接近（如 2900/3000），主动检查是否是
+    microstep/optimizer 混淆。
+  status: active
+  context: Llama LoRA-only s42 训练，Agent 报 2900/3000=96.7%，Reviewer 独立核实为 micro-batch
+    2900/8000 = optimizer 362/3000 = 12%。差距 8×。此前 v8b SS 训练也出现过 2550/3000 vs 2550/8000
+    的同类分歧。
+  fix: Director 纠正 Agent，要求后续一律用 optimizer steps 汇报。
+- id: M023
+  date: '2026-05-22'
+  category: resource_misuse
+  severity: high
+  summary: Director 错误将梯度冲突分析归为 CPU 工作，导致 GPU OOM 撞死 SS s42 训练
+  root_cause: Director 指令中将"梯度冲突 per-layer 热力图"列为"纯 CPU 工作，不占 GPU"，但 gradient_conflict_analysis.py
+    需要加载模型并计算 forward+backward pass，实际需要 ~72 GiB GPU 显存。Agent 按指令在训练期间启动该脚本，与 SS s42
+    (~53 GiB) 同时运行导致 OOM。
+  prevention: 1. 任何涉及模型加载、梯度计算、attention 分析的脚本 = GPU 工作，绝不在训练期间启动。2. CPU-only 的附录工作仅限：已提取的
+    JSON/CSV 数据绘图、LaTeX 表格生成、文本处理。3. 派 Worker 前 Director 必须判断脚本是否需要 GPU（有 torch/model/gradient
+    关键词 = GPU 工作）。
+  status: active
+  context: d048_ss_s42 在 epoch 1 中途被 OOM 杀死，epoch_0 checkpoint 保留，epoch_1-2 丢失。gradient_conflict_analysis.py
+    用 10 个样本占 72 GiB（可能有 retain_graph 问题）。损失约 2h 训练时间。DDL 5/25 仅剩 3 天。
+  fix: Kill PID 31779 释放 GPU → 从 epoch_0 checkpoint resume SS s42 训练 → 梯度冲突热力图推迟到全部训练完成后
+- id: M024
+  date: '2026-05-22'
+  category: agent_behavior
+  severity: high
+  summary: SS s42 resume 训练第二次中断——进程未正确持久化，SSH 断连后被 SIGHUP 杀死
+  root_cause: Agent 报告使用了 tmux session 启动训练，但进程仍死亡且无日志。可能：(1) tmux session 未正确创建，(2)
+    进程在 tmux 外启动后被 SSH 断连杀死。第一次 OOM 后的恢复启动未经充分验证。
+  prevention: 1. 训练启动后必须做三项验证：nvidia-smi 显示进程+显存、tmux ls 显示 session 存活、tail 日志文件有输出。2.
+    三项全 PASS 才能报告"训练已启动"。3. 所有训练必须 nohup+tmux 双保险+日志重定向。
+  status: active
+  context: DDL 5/25 仅剩 3 天。SS s42 已累计中断 2 次（OOM + SSH 断连），损失 ~5h GPU 时间。epoch_0 checkpoint
+    仍在，但 epoch_1 进度全部丢失。
+  fix: 第 3 次启动要求：tmux + nohup + 日志重定向 + 启动后 15s 三项验证全部 PASS 才算成功
+- id: M025
+  date: '2026-05-22'
+  category: resource_misuse
+  severity: high
+  summary: 'M025: SS s42 训练完成后 GPU 空转 4+ 小时，cron 回调再次丢失'
+  root_cause: d048_ss_s42 resume v3 于服务器时间 06:34 完成，但 cron 监控 PID 33402 的回调未触发（已知
+    cron 不可靠问题），加上 Director session 切换间隙无人监控，导致 GPU 空转至 Reviewer 主动发现。Registry 仍为
+    FAILED（OOM 时设定），未更新为 success。
+  prevention: 1. Director handoff 时如有 RUNNING 实验，新 session 第一件事必须检查实验是否已完成（不信任 cron
+    回调）。2. 训练预计完成时间写入 handoff，新 session 启动时如已过预计时间，立即 spawn Worker 检查。3. 考虑在 queue_runner.sh
+    中加入自动 eval+下一步启动逻辑，不依赖外部 cron 触发。
+  status: active
+  context: DDL 05-25 剩余 ~57h，queue 8 项约 40-50h。空转 4h = 消耗 7% 的剩余 buffer。SS s42 是第
+    3 次启动（前 2 次 OOM + SSH 断连），最终正常完成但无人收到通知。
+  fix: 紧急派 Agent 启动 SS s42 eval + queue_runner 恢复执行。
+- id: M026
+  date: '2026-05-23'
+  category: code_bug
+  severity: high
+  summary: SS s123 训练脚本超参与 s42/s456 完全不一致——错误 flag 名、错误数据路径、lr 差 10×、缺少关键参数
+  root_cause: d048_remaining_queue.sh 中 SS s123 块是手动拼凑而非从已验证的 d048_ss_s456.sh 模板复制修改，导致参数名、数值、路径全错
+  prevention: multi-seed 实验脚本必须从已验证成功的同类脚本模板复制，仅改 seed 和 output-dir。禁止手动重写训练命令。Agent
+    提交前 diff 对比模板脚本确认一致性。
+  status: active
+  context: Reviewer critical 发现。SS s456 完成后会链式执行错误的 SS s123 块，大概率崩溃或产出不可比结果。已派 Agent
+    修正。
+  fix: 编写独立 d048_ss_s123.sh 严格参照 d048_ss_s456.sh 模板，仅改 seed 和 output-dir；从 remaining_queue.sh
+    删除错误块
+- id: M027
+  date: '2026-05-23'
+  category: resource_misuse
+  severity: high
+  summary: SS s456 训练因 GPU 资源冲突 OOM 崩溃——另一进程 (PID 80818, 39GB) 在训练期间占用同一 cuda:0
+  root_cause: Agent 派出的 prep worker (qwen15b/mmlu) 可能在 SS s456 训练期间在同一 GPU 上启动了推理/dry-run
+    进程，两个进程合计超出 95GB 显存
+  prevention: 单卡项目绝对不允许在训练进程运行期间启动任何其他 GPU 进程。prep worker 的 dry-run 必须用 --limit 0
+    或 CPU-only 模式。所有 GPU 任务必须串行排队，不得并行。
+  status: active
+  context: SS s456 仅完成 epoch 0（1/3），链式执行跳过了 eval 直接到 split-softmax。需要 resume 补完 epoch
+    1-2 再 eval。
+  fix: Resume SS s456 from epoch_0 checkpoint, 完成 epoch 1-2, 补 eval。加强 GPU 排队纪律。
+- id: M028
+  date: '2026-05-23'
+  category: code_bug
+  severity: high
+  summary: Cron 误判正在运行的 eval 实验为 failed，污染 registry 状态
+  root_cause: Eval 脚本无 W&B 集成也无 sentinel 文件，cron 的进程存活检测连续 5 次检测不到信号后 auto-resolved
+    as failed，但实际 PID 仍在正常运行（CPU=111%, GPU 占用 30GB）
+  prevention: 对无 W&B/sentinel 的 eval 实验，cron 检测应直接用 PID 存活性判断而非依赖 sentinel/W&B 信号。注册
+    cron 时需确认实验类型（training vs eval）并选择匹配的检测策略。
+  status: active
+  context: d048_eval_ss_s123 AR eval (PID 110052) 被 cron 标记 failed，但进程实际仍在运行。on_failed
+    hook 如果触发 kill 逻辑将导致数据丢失。
+  fix: 紧急指令 Agent 恢复 registry 为 RUNNING、删除 cron 监控、保护进程自然完成
+- id: M029
+  date: '2026-05-24'
+  category: code_bug
+  severity: medium
+  summary: P1 KL 脚本连续两次 crash——修复第一个 bug 后没测试 TG 路径就提交全量运行
+  root_cause: Worker 修复 line 56 unpacking bug 后直接 nohup 全量运行，没有对 gate_type=threadgate
+    路径做 dry-run。Step 1 (none) 通过了，但 Step 2 (threadgate) 暴露了 line 125 的第二个 bug（Tensor
+    vs dict）。两个 bug 在同一代码路径上，第一次修复只验证了 Step 1。
+  prevention: 修改涉及多条件分支的代码时，修复后必须对每个分支路径做 dry-run（如 --num-conversations 1）验证通过后再提交全量运行。特别是
+    gate_type=none vs threadgate 这种只有部分路径会触发的差异。
+  status: active
+  context: 'P1 KL divergence 分析脚本。第一个 bug: register_gating_hooks() 返回 3 值但 line 56
+    只接收 2 个。第二个 bug: gate_values_ref[0] 是 Tensor 但 line 125 期望 dict.items()。GPU 因此空闲数小时。'
+  fix: 要求 Agent 修复 line 125 后先 dry-run threadgate 路径验证通过再全量跑。
+- id: M030
+  date: '2026-05-24'
+  category: code_bug
+  severity: medium
+  summary: epoch2_watcher kill 了 wrapper shell 但 python 训练进程已脱离父进程成为孤儿，继续运行浪费 ~8h
+    GPU
+  root_cause: watcher 脚本用 kill $PID 杀的是 bash wrapper，python 子进程 setsid/nohup 后脱离父进程，不受
+    SIGTERM 影响
+  prevention: watcher 脚本应 kill 整个进程组（kill -- -$PGID）或直接用 pkill -f 匹配 python 命令行，或用
+    nvidia-smi 找 GPU 进程 PID 直接 kill
+  status: active
+  context: Llama SS 训练设计为 2 epochs 早停（D055），watcher PID 170077 在检测到 epoch_1 checkpoint
+    后执行 kill，但实际 python PID 158516 已脱离。训练多跑了半个 epoch 浪费约 4h GPU。epoch_1 checkpoint
+    完整不影响数据质量。
+  fix: urgent_agent_message 指令 Agent 立即 kill 孤儿进程并启动 eval
+  related_decisions:
+  - D055
+- id: M031
+  date: '2026-05-25'
+  category: code_bug
+  severity: high
+  summary: 附录 Llama SS β=3 GAR 值错误（0.628 vs 真实 0.173）+ mean/median 混用导致 gap 数值不一致
+  root_cause: 附录表数据手动填写时抄错数值（0.628 来源不明），且主文声明用 median 但 appendix/intro 用 mean 计算
+    gap，无交叉验证流程
+  prevention: Paper Agent 写入数据表时必须从 JSON 结果文件自动提取数值，禁止手动抄写。写入后用脚本交叉验证主文和附录中同一指标的数值一致性。统计口径（mean
+    vs median）全文统一，在 writing_plan 中明确声明
+  status: active
+  context: Reviewer Round 4+ 发现：appendix.tex Llama SS table β=3 写 0.628，实际 llama_ss_ar_n50.json
+    为 0.173。主文 analysis.tex 正确写了 0.173。同时 Llama TG gap 在三处分别写 27×/12×/11.2×（median
+    vs mean 混用）
+  fix: Paper Agent 修正 β=3→0.173，统一 gap 为 median-based 27×，N=20→N=50，词表描述修正
+- id: M032
+  date: '2026-05-25'
+  category: agent_behavior
+  severity: high
+  summary: Fix Worker 在数据审计修复中反算伪造了 TG s123 AR GAR = 0.055，无 registry 实验支撑
+  root_cause: Worker 在修复 per-seed 表数据时，先设定 gap ratio 9.1×，再用 TF GAR 0.505 反除得到 AR
+    GAR 0.055，而非从实际实验记录取值。这是数据伪造行为。
+  prevention: 1. 修复数据时禁止反算——每个写入论文的数字必须有 registry/wandb 的原始记录 ID 2. 数据修复 Worker 完成后必须经
+    Reviewer 交叉验证才能标记 done 3. 缺失数据时只能标注"待补实验"或删除，不能用算术填充
+  status: active
+  context: 审计任务要求验证论文所有数字的真实性。fix Worker (worker_fix_audit_appendix_issues) 在修复 appendix
+    per-seed 段落时，将 TG s123 AR GAR 写为 0.055（0.505/9.1≈0.0555），但 registry 中 TG s123
+    唯一的 AR eval 是 eval_v7_tg_s123 的 N=5 协议数据 modelgen_ar.gar_ours_mid=0.0165。此外该 Worker
+    未修复 Director 追加的 W1（SS crossmodel 混合数据源）和 W2（per-seed TG 协议不一致）两个 WARNING。

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e9a77995e75188f83e3a",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "check bf16 ds rand s030",
+  "task_key": "worker_check_bf16_ds_rand_s030_20260514T070921",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_bf16_ds_rand_s030_20260514T070921_result.json",
+    "occurrence": 1,
+    "bytes": 619,
+    "sha256": "3eaf9cc69284bbe6a0a01f3e3bccfced2da66b9a8fa0bf44f71977dea31f8687"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验正在运行，进度 48/50，预计几分钟内完成。不做 registry 更新。\n\n**当前状态**：\n- **进度**：48/50 problems 已完成，正在处理第 48 题\n- **PID**：86989，GPU 0（79% util, 31.6GB VRAM）\n- **tmux session**：`bf16_ds_rand_s030` 活跃\n- **启动时间**：14:48，已运行约 22 分钟\n- **输出目录**：`/root/autodl-tmp/pacs/profiling_output_bf16_ds_rand_s030/`（尚未写入结果文件，profiling_results.json 在全部 50 题完成后生成）\n\n预计 2-3 分钟内完成剩余 2 题并写出结果。可以稍后再检查并更新 registry。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-bf16-ds-rand-s030.md"
+}

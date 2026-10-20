@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e55b626f81614a17afc4",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "analysis compile accuracy summary",
+  "task_key": "worker_analysis_compile-accuracy-summary_20260516T002533",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_compile-accuracy-summary_20260516T002533_result.json",
+    "occurrence": 1,
+    "bytes": 657,
+    "sha256": "56f38431c25964c1b1cdeaa972f34022bc80964a4f1662854e33da56350c3add"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。汇总要点：\n\n**QW n=100 权威值**（直接可用于 Section 4.2）：\ndense=0.40, s015=0.36, s020=0.35, s025=0.33, s030=0.19。b2_fix 确认原值可靠（差异 ≤1 correct），batch1 token mismatch 影响可忽略。\n\n**DS 8k_v2**：3/5 点完成（dense=0.74, s020=0.30, s025=0.08），s015 和 s030 仍 RUNNING。已完成的点截断率 58-76%，必须标注为 lower bound。\n\n**关键发现**：QW 呈渐进退化（s025→s030 断崖 −14pp），DS 被截断严重混淆无法直接解读。两个模型 dose-response pattern 本质不同——QW 反映真实能力退化，DS 反映 token budget 限制。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-compile-accuracy-summary.md"
+}

@@ -1,0 +1,31 @@
+{
+  "exp_id": "phase2_tg_s42_v3",
+  "project": "turn_residual_gating",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T13:07:54.463Z",
+    "updated_at": "2026-05-18T13:27:23.878Z",
+    "hypothesis": "ThreadGate + maximize GAR loss (L_GAR=-mean(GAR)) 提供持续非零梯度，避免 hinge loss 的退化平衡点，gate 值应随训练下降（学习到选择性干预），同时 NTP loss 正常收敛",
+    "parent": "phase2_tg_s42_v2",
+    "spec": {
+      "server": "westd-20861",
+      "gpu": "cuda:0",
+      "data_path": "/root/turn_residual_gating/data/ultrachat_8k",
+      "data_count": 8000,
+      "model_name": "Qwen/Qwen2.5-7B-Instruct",
+      "seed": 42,
+      "command": "python src/train_phase2.py --gate-type threadgate --gar-loss-mode maximize --lambda-gar 2.0 --init-bias 2.0 --max-seq-len 2048 --seed 42 --output-dir /root/turn_residual_gating/runs/phase2_tg_s42_v3 --data-dir /root/turn_residual_gating/data/ultrachat_8k",
+      "pid": "30973",
+      "log_path": "/root/turn_residual_gating/runs/phase2_tg_s42_v3.log",
+      "checkpoint_source": "N/A (training from scratch with LoRA)",
+      "eval_data": "N/A (training experiment, not eval)"
+    },
+    "server": "westd-20861",
+    "gpu": "cuda:0"
+  },
+  "timestamp": "2026-05-18T13:27:23.895103+00:00",
+  "trigger": "update_registry"
+}

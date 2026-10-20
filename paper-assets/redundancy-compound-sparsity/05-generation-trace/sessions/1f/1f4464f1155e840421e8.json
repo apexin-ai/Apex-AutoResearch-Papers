@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1f4464f1155e840421e8",
+  "project": "redundancy-compound-sparsity",
+  "kind": "result",
+  "title": "infra llama check and neg cross",
+  "task_key": "worker_infra_llama-check-and-neg-cross_20260512T015202",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_llama-check-and-neg-cross_20260512T015202_result.json",
+    "occurrence": 1,
+    "bytes": 964,
+    "sha256": "1740ed9d397368508160056c1877caf32ca5f620e2a09fe6df6688261edbe6a8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 通过。\n\n**结果汇总：**\n\n1. **Llama 下载**：已完成。30GB，4 个 safetensors 文件齐全，tokenizer 验证通过（vocab=128256）。\n\n2. **neg_cross_model_llama.py**：已写好并上传到 `/home/sonny/redundancy-compound-sparsity/results/neg_cross_model/neg_cross_model_llama.py`。Dry-run 通过：\n   - 模型加载正常：32 layers, 8 KV heads, 14336 intermediate_size\n   - Hook 注册和数据收集均工作（Pearson r=0.406, K-S test 有显著结果）\n   - VRAM 使用可控，RTX 5090 (32GB) 足够\n   - Dry-run 耗时 ~8s（含模型加载）\n\n3. **GPU 状态**：当前空闲（0% utilization, 0MB used），kv-bench-001 未在运行。实际上现在可以立即提交 full run，但按指示不提交。\n\n**运行命令**（GPU 可用时）：\n```bash\ncd /home/sonny/redundancy-compound-sparsity/results/neg_cross_model\nnohup python neg_cross_model_llama.py > neg_cross_model.log 2>&1 &\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-llama-check-and-neg-cross.md"
+}

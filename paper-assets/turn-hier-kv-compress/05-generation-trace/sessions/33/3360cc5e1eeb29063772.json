@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "3360cc5e1eeb29063772",
+  "project": "turn-hier-kv-compress",
+  "kind": "worker",
+  "title": "code synthetic traces v2",
+  "task_key": "worker_code_synthetic_traces_v2_20260513T091715",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_synthetic_traces_v2_20260513T091715.log",
+    "occurrence": 1,
+    "bytes": 693504,
+    "sha256": "7a3659c50cc0a1ca14550d6f62b2d807ba66d0431f7bf922f83760010f481114"
+  },
+  "statistics": {
+    "messages": 31,
+    "user_turns": 0,
+    "tool_calls": 10,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 7,
+      "tool_call": 10,
+      "tool_result": 10,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 31,
+      "chunks": [
+        {
+          "path": "3360cc5e1eeb29063772-part-0001.json",
+          "message_count": 20
+        },
+        {
+          "path": "3360cc5e1eeb29063772-part-0002.json",
+          "message_count": 11
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-synthetic-traces-v2.md"
+}

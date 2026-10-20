@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3a4652f3ded175cccb70",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "ops queue status and resume",
+  "task_key": "worker_ops_queue_status_and_resume_20260522T235451",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_queue_status_and_resume_20260522T235451_result.json",
+    "occurrence": 1,
+    "bytes": 1496,
+    "sha256": "3b324a0fdc0e9b7b4ae8e9d55f2a438d3665fecfe082ec55f4068303052a9095"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇报\n\n### 1. queue_runner.log 进度\n\n| Item | 任务 | 状态 |\n|------|------|------|\n| **[1/8]** | SS s42 eval | **DONE** — 跳过（`results/d048_ss_s42/` 已有 `ss_s42_ar_n50.json`, `base_ar_n50.json` 等） |\n| **[2/8]** | AR N=50 existing s42 checkpoints (4 sub-tasks) | **正在运行** |\n| ↳ [1/4] | TG s42 AR N=50 | DONE — 结果已保存 `results/d048_ar_n50_existing/tg_s42_ar_n50.json` |\n| ↳ [2/4] | UG s42 AR N=50 | **正在运行** — beta=3.0, Conv 20/50 |\n| ↳ [3/4] | LO s42 AR N=50 | 未开始 |\n| ↳ [4/4] | PCGrad s42 AR N=50 | 未开始 |\n| **[3/8]** | SS s123 train | 未开始 |\n| **[4/8]** | SS s456 train | 未开始 |\n| **[5/8]** | Base s123 train | 未开始 |\n| **[6/8]** | Base s456 train | 未开始 |\n| **[7/8]** | TG s123 train | 未开始 |\n| **[8/8]** | TG s456 train | 未开始 |\n\n### 2. GPU 状态\n- **正在使用**: PID 51492, 22336 MiB, 56% utilization\n- queue_runner 正在执行 AR eval，GPU 不空闲\n\n### 3. 可复用的旧 checkpoint\n- **`checkpoints/tg_v8b_ss_s123/`** — 有 epoch_0/1/2 + gate_params.pt + lora，可用于 item [3/8] SS s123（如果 queue_runner 包含了复用逻辑）\n\n### 4. 未启动任何新任务\nGPU 正忙于 queue_runner 的 [2/8] AR N=50 eval（UG s42, beta=3.0 进行到 Conv 20/50），不需要干预。AR eval 50 convs × 3 betas × 3 remaining sub-tasks 预计还需 1-2 小时完成 item [2/8]，之后 queue_runner 会自动继续 [3/8]-[8/8]。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-queue-status-and-resume.md"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "phase2_tg_s42",
+  "project": "turn_residual_gating",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T06:04:12.759Z",
+    "updated_at": "2026-05-18T06:32:24.680Z",
+    "hypothesis": "ThreadGate (turn-conditional gating) 在 L_NTP+L_GAR 联合训练后，相比 Uniform Gate，mid-turn GAR recovery 高出 ≥3pp，验证 Cesaro 理论预测：position-conditional 干预优于 uniform 干预",
+    "parent": "phase1_gar_diag"
+  },
+  "timestamp": "2026-05-18T06:32:24.718074+00:00",
+  "trigger": "update_registry"
+}

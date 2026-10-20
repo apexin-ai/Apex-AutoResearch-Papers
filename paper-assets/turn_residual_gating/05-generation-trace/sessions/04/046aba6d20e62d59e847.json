@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "046aba6d20e62d59e847",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "check eval scripts precheck",
+  "task_key": "worker_check_eval_scripts_precheck_20260523T144055",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_eval_scripts_precheck_20260523T144055_result.json",
+    "occurrence": 1,
+    "bytes": 3244,
+    "sha256": "a178128eada85353ca42af2d76e06837b63e30ccd35ca49c7d82f2eaf38cd594"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部检查完成。汇报如下：\n\n---\n\n## GPU Chain 预检查结果（7 步）\n\n### Step 1: SS s123 eval (`d048_eval_ss_s123.sh`) — ✅ 就绪\n\n- **Checkpoint**: `runs/d048_ss_s123/` — epoch_0 和 epoch_1 都有完整的 `lora/` + `gate_params.pt`\n- 脚本会从 epoch_2 → 1 → 0 搜索最优，**当前会选中 epoch_1**\n- ⚠️ **注意**：SS s123 训练是 3 epochs，目前只到 epoch_1。如果训练还在跑 epoch_2，等训练完再启动链；如果训练已完成且只产出了 2 个 epoch，则 epoch_1 就是最终 checkpoint，无问题\n- Eval 模式：TF（4 组）+ AR N=50（2 组）+ Bootstrap CI ✅\n- 数据文件 `data/eval_200/eval_200.json` ✅\n- 输出目录 `results/d048_final_ar/` ✅\n- Python 脚本 `src/eval_phase2_gar.py`、`src/eval_attention_steering.py` ✅\n\n### Step 2: SS s456 resume (`d048_ss_s456_resume.sh`) — ✅ 就绪\n\n- `--resume runs/d048_ss_s456/epoch_0` — 存在，包含 `lora/` + `gate_params.pt` (3.3MB)\n- 模型路径 `/root/.cache/modelscope/Qwen/Qwen2___5-7B-Instruct` ✅\n- 训练数据 `data/ultrachat_8k` ✅\n- 超参正确：lr=2e-4, batch=1, grad-accum=8, epochs=3, seed=456, SS max-ratio=0.3\n- 训练脚本 `src/train_phase2_v8b.py` ✅\n\n### Step 3: SS s456 eval (`d048_eval_ss_s456.sh`) — ✅ 就绪（依赖 Step 2）\n\n- Checkpoint 将由 Step 2 生成于 `runs/d048_ss_s456/`\n- 脚本结构与 s123 eval 一致，参数正确\n- 输出到 `results/d048_final_ar/`，子目录 `tf_ss_s456_ours` / `tf_ss_s456_dongre`\n\n### Step 4: Qwen-1.5B Phase 1 diag (`qwen15b_phase1_diag.sh`) — ✅ 就绪\n\n- 模型路径 `/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B-Instruct/` ✅\n- Python 脚本 `src/run_phase1_gar_llama.py` ✅\n- 输出到 `results/qwen15b_phase1/`\n\n### Step 5: Qwen-1.5B TG train (`qwen15b_tg_train.sh`) — ✅ 就绪\n\n- 模型路径 ✅\n- 训练数据 `data/ultrachat_8k` ✅\n- 超参：lr=2e-4, **batch=4**, grad-accum=2, epochs=3, seed=42\n- 训练脚本 `src/train_phase2.py` ✅（注意：用的是 v7 train_phase2.py 而非 v8b）\n- 输出到 `runs/qwen15b_tg_v7_s42`\n\n### Step 6: Qwen-1.5B eval (`qwen15b_eval.sh`) — ✅ 就绪（依赖 Step 5）\n\n- Checkpoint 将由 Step 5 生成于 `runs/qwen15b_tg_v7_s42`\n- 2 个条件：Base + TG，N=50, beta=0 3 5\n- 含 Bootstrap CI + Wilcoxon 统计检验\n\n### Step 7: MMLU eval (`mmlu_eval_all.sh`) — ✅ 就绪\n\n- `lm-evaluation-harness` 已安装 ✅（`/root/miniconda3/bin/lm_eval`）\n- `mmlu_eval_single.sh` ✅\n- 6 个 checkpoint 全部验证通过（`adapter_config.json` 存在）：\n  - `base_qwen`: none ✅\n  - `lo_s42`: `runs/phase2_lora_only_s42/lora` ✅\n  - `tg_v7_s42`: `runs/phase2_tg_s42_v7/lora` ✅\n  - `ug_s42`: `runs/phase2_ug_s42/lora` ✅\n  - `pcgrad_v9_s42`: `checkpoints/tg_v9_pcgrad_s42/lora` ✅\n  - `ss_v8b_s42`: `runs/d048_ss_s42/lora` ✅\n- Base model `/root/.cache/modelscope/Qwen/Qwen2___5-7B-Instruct` ✅\n\n---\n\n### 唯一需要确认的点\n\n**SS s123 是否还在训练 epoch_2？** 当前只有 epoch_0 和 epoch_1。如果 3 epoch 训练仍在进行中，需等 epoch_2 完成后再启动链。如果训练已结束（只产出 2 个 checkpoint），则可以直接启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-eval-scripts-precheck.md"
+}

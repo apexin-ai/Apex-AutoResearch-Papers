@@ -1,0 +1,14 @@
+{
+  "exp_id": "think_phase_validation",
+  "project": "phase-gated-compound-sparse",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T19:35:06.395Z",
+    "updated_at": "2026-05-15T19:35:11.344Z"
+  },
+  "timestamp": "2026-05-15T19:35:11.536143+00:00",
+  "trigger": "update_registry"
+}

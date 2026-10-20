@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "23d7e0c35cbdf1215966",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "code 4way eval script",
+  "task_key": "worker_code_4way_eval_script_20260519T104053",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_4way_eval_script_20260519T104053_result.json",
+    "occurrence": 1,
+    "bytes": 911,
+    "sha256": "5fb595609c42240c0da7f32a139ea0d0acec0d2c8f9fa463fd735001fc6b3667"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本创建完成。\n\n**确认的 CLI 参数**：\n- `--gate-type {threadgate,uniform,none}`（必选）\n- `--checkpoint-dir`（可选，Base 不需要）\n- `--conversations-path`\n- `--output-dir`\n- `--gar-variant {ours,dongre}`\n- `--gate-profile`（flag）\n- `--model`（默认从 config.py 的 `MODEL_NAME` 读取，无需显式指定）\n\n**确认的 checkpoint 路径**：\n| 条件 | 路径 | lora/ | gate_params.pt |\n|------|------|-------|----------------|\n| TG v7 | `runs/phase2_tg_s42_v7` | ✓ | ✓ |\n| UG | `runs/phase2_ug_s42` | ✓ | ✓ |\n| LoRA-only | `runs/phase2_lora_only_s42` | 训练中，仅 epoch_0/lora/ | 无（符合预期） |\n\n**脚本**：`/root/turn_residual_gating/scripts/run_4way_eval.sh`，8 个 eval（4 条件 × 2 GAR variant），输出到 `runs/4way_eval/{base,tg_v7,ug,lora_only}_{ours,dongre}/`。\n\n**语法验证**：`bash -n` 通过。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-4way-eval-script.md"
+}

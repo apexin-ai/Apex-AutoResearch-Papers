@@ -1,0 +1,16 @@
+{
+  "exp_id": "v8b_ss_s123",
+  "project": "turn_residual_gating",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T04:29:28.197Z",
+    "updated_at": "2026-05-21T04:29:40.693Z",
+    "hypothesis": "v8b SS s42 成功（gap 32×→1.57×），s123 验证结果的 seed robustness。预期 model-gen GAR 同样显著提升，PPL 无恶化。",
+    "parent": "phase2_tg_s42_v8b_resume"
+  },
+  "timestamp": "2026-05-21T04:29:40.766764+00:00",
+  "trigger": "update_registry"
+}

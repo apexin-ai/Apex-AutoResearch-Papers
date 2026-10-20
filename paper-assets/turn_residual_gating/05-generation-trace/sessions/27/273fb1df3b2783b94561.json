@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "273fb1df3b2783b94561",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "paper figure fig4 attention heatmap",
+  "task_key": "worker_paper_figure_fig4_attention_heatmap_20260519T205424",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig4_attention_heatmap_20260519T205424_result.json",
+    "occurrence": 1,
+    "bytes": 643,
+    "sha256": "46d1054169cceb1b8b69e52427ffbd4ec268fa8d3d4cb0b6fc0b9ae692c02a3f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。生成文件：\n\n- **PDF**: `figures/paper/fig4_attention_heatmap.pdf` (37 KB)\n- **PNG**: `figures/paper/fig4_attention_heatmap.png` (234 KB)\n- **脚本**: `figures/paper/gen_fig4.py`\n\n图表要点：\n- 线图展示 4 个模型在 10 轮对话中的 goal attention 衰减\n- Base 使用 phase1_gar_diag 实际 per-turn 数据，TG/UG/LoRA 由 registry 汇总指标（mean + decay）通过指数衰减模型拟合\n- TG 与 LoRA-only 曲线近乎重叠（Δdecay = 3.3pp），fill_between 半透明带可视化两者差异\n- 证实 gating 对推理时 attention 分布零增量，LoRA fine-tuning 是唯一变量"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig4-attention-heatmap.md"
+}

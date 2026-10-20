@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "019cd61f48d907f534a0",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "diagnose d048 eval ss s123",
+  "task_key": "worker_diagnose_d048_eval_ss_s123_20260523T173904",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_d048_eval_ss_s123_20260523T173904_result.json",
+    "occurrence": 1,
+    "bytes": 1700,
+    "sha256": "75e13c101fa561b957d220d418ceaf6508948b10c0b827a843a975e92ba6d627"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论：实验未失败，仍在正常运行\n\n### Root Cause\n**误报。** PID 110052 当前仍在运行，GPU 占用 30416MiB，利用率 47%。监控系统误判原因：eval 脚本不使用 W&B，且 AR 生成阶段不输出进度日志，导致 5 次轮询均未检测到 sentinel/W&B 活动信号。\n\n### 当前进度\n\n| 阶段 | 状态 | 说明 |\n|------|------|------|\n| Phase 1: TF 1/4 Base+ours | 完成 | `tf_base_ours/` |\n| Phase 1: TF 2/4 Base+dongre | 完成 | `tf_base_dongre/` |\n| Phase 1: TF 3/4 SS s123+ours | 完成 | `tf_ss_s123_ours/epoch_2_gar.json` (978KB) |\n| Phase 1: TF 4/4 SS s123+dongre | 完成 | `tf_ss_s123_dongre/epoch_2_dongre_gar.json` (978KB) |\n| Phase 2: AR 1/2 SS s123 beta=0,3,5 | **运行中** | 模型已加载，N=50 autoregressive 生成中 |\n| Phase 2: AR 2/2 Base beta=0 | 待执行 | |\n| Phase 3: Bootstrap CI | 待执行 | |\n\n### 关键证据\n- `nvidia-smi`: PID 110052 占用 30416MiB，GPU-Util 47%\n- `/proc/110052/cmdline`: `python3.12 src/eval_attention_steering.py --checkpoint runs/d048_ss_s123/epoch_2 --gate-type threadgate --mode gen --max-convs 50 --beta 0 3 5`\n- 日志最后更新 01:28:27（AR 模型加载完毕后），AR 生成本身不打印逐条进度，这是正常行为\n- 无任何 Traceback / OOM / CUDA error\n\n### Checkpoint 状态\n完好。`runs/d048_ss_s123/epoch_2/` 包含 `gate_params.pt` (3.3MB) + `lora/` 目录。\n\n### 建议\n不需要任何操作。等待 AR 生成自然完成即可（N=50 × 3 beta × autoregressive，预计还需 20-40 分钟）。监控系统对 eval 脚本的判活逻辑需要修正——eval 不走 W&B，应只检查进程存活 + GPU 占用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-d048-eval-ss-s123.md"
+}

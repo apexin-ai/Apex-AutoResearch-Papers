@@ -1,0 +1,15 @@
+{
+  "exp_id": "d048_final_ar_eval",
+  "project": "turn_residual_gating",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T03:46:23.495Z",
+    "updated_at": "2026-05-23T03:46:31.331Z",
+    "hypothesis": "Unified AR N=50 eval across 6 conditions (Base/TG/UG/LO/PCGrad/SS) with bootstrap CI and Wilcoxon tests to establish statistically rigorous comparisons for all claims"
+  },
+  "timestamp": "2026-05-23T03:46:31.447441+00:00",
+  "trigger": "update_registry"
+}

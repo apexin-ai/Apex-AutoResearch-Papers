@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e48ac7c818129e36ad39",
+  "project": "phase-gated-compound-sparse",
+  "kind": "history",
+  "title": "agent / loop_2_1778725443.md",
+  "task_key": "loop_2_1778725443",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1778725443.md",
+    "occurrence": 1,
+    "bytes": 3576,
+    "sha256": "4fba303a615a1caef1498d885d1b9a719b979d6dc7fff16c8b42a1af465cc39a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: idle_timeout\nupdated: '2026-05-14T02:23:52+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-22162 cuda:0~3，不得用其他设备\n- 项目路径：`/root/autodl-tmp/pacs/`，模型/数据/输出全在 autodl-tmp 下，禁止写根分区\n- v4 系列 4 个实验全部 EXIT_CODE=2 崩溃，代码有 bug 未修复——**修复前禁止提交 v4d 或任何新 profiling 实验**\n- conda 环境：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不要假设 .venv 存在\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-22162，4× RTX 6000 Pro 96G\n- 工作目录：`/root/autodl-tmp/pacs/`\n- Python：`/root/miniconda3/bin/python`（conda base 环境）\n- 模型：`/root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B`\n- 数据：`/root/autodl-tmp/pacs/data/math500.json`（50 题，stratified 5×10）\n- 输出目录：`/root/autodl-tmp/pacs/profiling_output_v3`（v3 成功产出）、`v4a/v4b/v4c/v4_random`（v4 系列，可能为空或不完整）\n- 活跃进程：无（全部实验已结束）\n- Cron：无活跃 cron（reconcile 结果 0）\n\n### 3. 📊 当前状态\n**刚做完**：收到 mvp_ii_profiling_v4c 失败 CRON 回调，执行了 session-start 初始化。发现 v4 系列 4 个实验（v4/v4b/v4c/v4-random）全部以 EXIT_CODE=2 在 ~25 秒内崩溃。\n\n**正在进行**：诊断 Worker `worker_diagnose_v4_batch_failure_20260513T232112` 正在运行（turn_count=6，已读日志和代码），等待其回调。\n\n**Registry 状态**：\n- DONE(failed): v4, v4b, v4c, v4-random, mvp_interaction_index_profiling（共 5 个 failed）\n- DONE(negative): v3, v2（共 2 个 negative）\n- QUEUED: v4d（高 sparsity 40% 参考点，代码修复前不要提交）\n\n**等待中**：\n- Worker 回调：`worker_diagnose_v4_batch_failure` → 诊断结果到手后修 bug、重跑 v4 系列\n- Director 尚未收到本轮失败汇报（等诊断结果出来一起报）\n\n### 4. 📋 待办\n- 诊断 Worker 回调完成 → 读诊断报告 → 派 Worker 修复代码 → 重新提交 v4/v4b/v4c/v4-random/v4d（5 个实验，4 张卡并行）\n- v4 系列全部成功 → 汇总 importance vs random 的 II 对比数据 → 检验 MVP Pass 标准（importance CI 上界 < 0 且 random CI 下界 > 0）→ 向 Director 汇报\n- MVP Pass → 进入 M1' 阶段（cross-model replication on Qwen2.5-7B）\n- MVP Fail（连续 negative）→ 产 Framing 调整提案，等 Director 决策\n\n### 5. 🎯 战略上下文\n- **核心 pivot（D010）**：原假设 phase-dependent reversal 三轮否定后，pivot 到 strategy-dependent interaction direction reversal——random compound → super-additive，importance-based compound → sub-additive。Phase conditioning 降为二级贡献。\n- **截稿压力**：EMNLP 2026 ARR 截稿 2026-05-25，距今 11 天。GPU 预算 250h 已用仅 ~2.9h。\n- **v3 结论**：v3 跑了 55 分钟成功完成，结论 negative（CI 重叠、无 sign reversal）。但 v3 只测了 importance-based masking，**没有 random baseline 对照**。D009/D010 决策指出之前 v1-v3 实际上没测 random vs importance 的对比，v4 系列正是为了补这个关键对比。\n- **易错点**：v4 的 `--masking_method` 和 `--sparsity_levels` 是 v4 新加的 CLI 参数，v3 没有这些参数。EXIT_CODE=2 高度怀疑是 argparse 未注册这些参数或代码中处理 masking_method 的逻辑有语法错误。诊断 Worker 正在确认具体原因。\n- **不要做**：不要在代码未修复的情况下重试提交，会重复同样的崩溃。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1778725443.md"
+}

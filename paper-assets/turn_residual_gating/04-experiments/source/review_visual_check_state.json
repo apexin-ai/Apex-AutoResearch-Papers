@@ -1,0 +1,117 @@
+{
+  "status": "done",
+  "started_at": "2026-05-25T21:15:37.683613+00:00",
+  "completed_at": "2026-05-25T21:19:53.815141+00:00",
+  "findings": [
+    {
+      "severity": "warning",
+      "dimension": "page 1-2",
+      "message": "前两页为连续纯文本（Abstract + Introduction + Related Work），无任何 display item。第一个视觉锚点（Figure 1）出现在第 3 页顶部。虽在 3 页限制内，但审稿人翻过两整页纯文字才看到第一张图，第一印象略弱。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 3",
+      "message": "Figure 1 作为首个 display item 传达核心 message 有效：三面板分别展示 GAR 衰减、TF/AR gap 持续存在、SS 压缩 gap，与 Title-Abstract 故事一致。全宽排布合理。Table 1 紧随其下，booktabs 风格，最优值加粗，格式专业。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 3",
+      "message": "Table 1 的 95% CI 列格式整洁，数值精度一致（小数点后 2-3 位）。最优结果加粗标注到位。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 4",
+      "message": "Figure 2 为单栏图，面积较小但文字可读。Y 轴标签 \"GAR-ours\" 和图例清晰。配色使用柔和色调，符合项目要求。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 5",
+      "message": "纯文本+公式页（Sections 3.3-4.1），公式渲染正确，无 LaTeX 残留错误。方程编号连续。训练目标公式排版整洁。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 6",
+      "message": "Figure 3 全宽双面板（β-steering，N=5 和 N=50），线条+置信区间带清晰可读。Figure 4 在右栏，虽小但信息传达完整。两图在同一页形成良好视觉密度。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 7",
+      "message": "Figure 5 全宽双面板（gate conditioning），柱状图+散点图组合，配色区分度好。Sections 5.1-5.3 文本穿插合理。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 8",
+      "message": "最后一页主文本。Figure 6（multi-seed bar chart）+ Discussion + Conclusion + Limitations 紧凑排列。Limitations 简短（约一段），符合 EMNLP 要求。页面填充率 >90%，无浪费。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 8",
+      "message": "Section 7 Conclusion 和 Limitations 没有孤悬标题问题，每个标题后至少有 2-3 行正文。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 9-10",
+      "message": "References 页排版正常，双栏均匀，无 [?] 未解析引用，无明显截断或 overfull。格式统一。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 11",
+      "message": "Appendix 开始。Table 2（超参数表）booktabs 风格，整洁。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 12",
+      "message": "Table 3（Loss formulation iterations）跨全宽，格式合理。Figure 7 柱状图可读。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 17",
+      "message": "Figures 11-13 三图同页，密度高但均可读。Bootstrap 分布图（Figure 12）和 gate value 分布图（Figure 13）字号偏小但在附录中可接受。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 19",
+      "message": "极密集页面：Tables 10-12 + Figure 16 共 4 个 display items。内容紧凑但无溢出，排版控制良好。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 34",
+      "message": "最后一页仅顶部 ~20% 有内容（Table 29 + 一行 bullet point \"Literature\"），其余 >75% 为空白。建议将此表合并到前页或调整附录结构以消除大面积空白。"
+    },
+    {
+      "severity": "info",
+      "dimension": "pages 1-8 整体",
+      "message": "主文本 8 页包含 6 个 Figure + 1 个 Table = 7 个 display items，密度 ~0.88/页，对实证为主的论文属合理范围。"
+    },
+    {
+      "severity": "info",
+      "dimension": "全文配色",
+      "message": "图表配色整体偏柔和（蓝、橙、绿、灰为主），饱和度适中，未出现高饱和对比。不同 figure 中同一方法（如 ThreadGate、LoRA-only）的颜色基本一致，语义连贯性良好。"
+    },
+    {
+      "severity": "info",
+      "dimension": "全文 float",
+      "message": "Figure/Table 均出现在首次引用附近，无 float 被推到论文末尾的情况。双栏论文中 figure* 仅用于确实需要全宽的多面板图，使用合理。"
+    },
+    {
+      "severity": "info",
+      "dimension": "全文 caption",
+      "message": "主文本 Figure caption 基本自包含——Figure 1 caption 解释了三个面板各自含义和关键发现，Figure 3 caption 标注了操作点和基线对比。附录 caption 同样详尽。"
+    },
+    {
+      "severity": "info",
+      "dimension": "全文公式",
+      "message": "所有公式渲染正确，无缺失符号或乱码。行内公式未导致行距异常。长公式在合理位置换行。"
+    },
+    {
+      "severity": "info",
+      "dimension": "全文 margin",
+      "message": "未检测到任何文字或图表溢出页面边界。页眉显示 ACL 模板标准格式。"
+    }
+  ],
+  "counts": {
+    "critical": 0,
+    "warning": 2,
+    "info": 19
+  }
+}

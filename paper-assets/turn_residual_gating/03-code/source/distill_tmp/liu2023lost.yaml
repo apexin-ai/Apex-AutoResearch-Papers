@@ -1,0 +1,26 @@
+paper_key: "liu2023lost"
+title: "Lost in the Middle: How Language Models Use Long Contexts"
+venue: "TACL 2024"
+full_text_available: false
+
+research:
+  baselines: ["GPT-3.5-turbo", "Claude-1.3", "MPT-30B-Instruct", "LongChat-13B"]
+  metrics:
+    - {name: "accuracy", direction: "higher_better"}
+    - {name: "retrieval accuracy by position", direction: "higher_better"}
+  datasets:
+    - {name: "multi-document QA", size: "synthetic, 10-30 docs"}
+    - {name: "key-value retrieval", size: "synthetic"}
+  ablation_dimensions: ["document position", "context length", "number of documents"]
+  training_recipe: "N/A (analysis)"
+  method_family: "positional bias analysis / long context"
+
+positioning:
+  core_claim: "LLMs perform best when relevant information is at the beginning or end of context, with significant degradation for middle positions — a U-shaped attention pattern"
+  key_results: "20%+ accuracy drop when relevant info placed in middle vs beginning/end"
+  limitations: ["tested on limited task types", "specific to retrieval-style tasks"]
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

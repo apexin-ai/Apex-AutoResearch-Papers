@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7000bcaedd43f072e4fc",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "code d048 ss s42 script",
+  "task_key": "worker_code_d048_ss_s42_script_20260522T093349",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d048_ss_s42_script_20260522T093349_result.json",
+    "occurrence": 1,
+    "bytes": 990,
+    "sha256": "5b726f46e6a679c2da12b4ae780b814fe5ed72f1175dcb439c783ea4dba341a7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个脚本已创建并验证。汇总：\n\n### 创建完成\n\n| 脚本 | 路径 |\n|------|------|\n| 训练脚本 | `scripts/d048_ss_s42.sh` |\n| Eval 模板 | `scripts/d048_eval_template.sh` |\n\n### 参数验证\n\n| 检查项 | 结果 |\n|--------|------|\n| `train_phase2_v8b.py` 所有参数 | 全部匹配 ✓ |\n| `--ss-max-ratio` 默认值 | 0.5（脚本显式设 0.3）✓ |\n| `--ss-warmup-steps` 默认值 | 0（未指定，用默认）✓ |\n| 模型路径 | 存在 ✓ |\n| 数据路径 `data/ultrachat_8k/` | 存在 ✓ |\n| `runs/d048_ss_s42` | 不存在（无覆盖风险）✓ |\n\n### Eval 模板调整说明\n\n原模板中 `--eval-data` 参数不存在，已改为 `eval_phase2_gar.py` 的实际参数：\n- `--eval-data` → `--conversations-path data/ultrachat_eval_heldout.json`\n- 添加了 `--gate-profile` 用于记录 per-turn gate 值\n- 其他可用参数：`--gar-variant {ours,dongre}`、`--ar-from-fixed`、`--max-turns`（按需添加）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d048-ss-s42-script.md"
+}

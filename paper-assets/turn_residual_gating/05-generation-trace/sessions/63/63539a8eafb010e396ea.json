@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "63539a8eafb010e396ea",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "paper writing analysis trc",
+  "task_key": "worker_paper_writing_analysis_trc_20260520T104925",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_analysis_trc_20260520T104925_result.json",
+    "occurrence": 1,
+    "bytes": 581,
+    "sha256": "a2e0802a45741b9f14f442af1d050db82046f1ae9e99df7ce63d5a58434064a5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both edits applied correctly.\n\n**Changes made to `analysis.tex`:**\n\n1. **§6 opening (line 3):** Appended `\\S\\ref{subsec:mechanism-specificity} confirms this selectivity with an orthogonal hidden-state metric.` after the existing causal chain sentence.\n\n2. **§6.4 (lines 45-51):** New subsection with TRC definition, v7/LoRA-only data (exact numbers), interpretation that exposure bias is mechanism-specific (targets attention routing, not hidden-state coherence), and connection back to §6.3. ~160 words, no em-dashes, no -ing endings, no Base model data."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-analysis-trc.md"
+}

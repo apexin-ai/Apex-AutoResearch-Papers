@@ -1,0 +1,28 @@
+paper_key: "leblond2018searnn"
+title: "SEARNN: Training RNNs with Global-Local Losses"
+venue: "ICLR 2018"
+full_text_available: false
+
+research:
+  baselines: ["MLE/teacher forcing", "REINFORCE", "actor-critic", "scheduled sampling"]
+  metrics:
+    - {name: "BLEU", direction: "higher_better"}
+    - {name: "ROUGE", direction: "higher_better"}
+    - {name: "edit distance", direction: "lower_better"}
+  datasets:
+    - {name: "WMT translation", size: "standard"}
+    - {name: "abstractive summarization", size: "standard"}
+    - {name: "spelling correction", size: "standard"}
+  ablation_dimensions: ["rollout strategy", "cost function", "reference policy"]
+  training_recipe: {optimizer: "Adam", hardware: "GPU"}
+  method_family: "learning to search / sequence training"
+
+positioning:
+  core_claim: "Learning to search (LTS) approach with global-local losses provides a principled, low-variance alternative to REINFORCE for sequence-level training"
+  key_results: "competitive with REINFORCE but with lower variance and more stable training"
+  limitations: ["rollout computational cost", "limited scalability to long sequences"]
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "63203e3c64c5ff9c273e",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "code integrate n50 queue runner",
+  "task_key": "worker_code_integrate_n50_queue_runner_20260522T232240",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_integrate_n50_queue_runner_20260522T232240_result.json",
+    "occurrence": 1,
+    "bytes": 227,
+    "sha256": "d8347d41bd9b29a291eb4d4ba67a114ecf350afe939d2b802c498973303ec525"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两处 AR gen eval 命令（`run_and_eval` 第73-74行，`run_base_eval` 第132-133行）都已添加 `--data-file data/eval_200/eval_200.json`。修改只影响 items [3-8]，不影响正在执行的 item [2]。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-integrate-n50-queue-runner.md"
+}

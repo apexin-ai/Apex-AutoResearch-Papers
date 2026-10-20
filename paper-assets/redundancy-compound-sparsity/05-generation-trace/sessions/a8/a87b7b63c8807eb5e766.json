@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a87b7b63c8807eb5e766",
+  "project": "redundancy-compound-sparsity",
+  "kind": "result",
+  "title": "code confound ctrl 001 prep",
+  "task_key": "worker_code_confound-ctrl-001-prep_20260512T022820",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_confound-ctrl-001-prep_20260512T022820_result.json",
+    "occurrence": 1,
+    "bytes": 882,
+    "sha256": "ded38cc6468ce1d525ef68a1f8d736c9c4444496e1da6ad32b6c545b56b83acf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载进行中（PID 18706 存活），约 5% 完成，速度 ~1.5-2.7 MB/s，预计还需 60-80 分钟。\n\n**已完成：**\n- [x] 启动 DeepSeek-R1-Distill-Llama-8B 下载 (nohup 后台，PID=18706)\n- [x] 创建 `results/confound_ctrl/` 目录\n- [x] 编写 `confound_ctrl_001.py`（411 行，语法检查通过）\n  - MODEL_PATH → `/root/autodl-tmp/.ms_cache/deepseek-ai/DeepSeek-R1-Distill-Llama-8B`\n  - 输出 → `confound_ctrl_001_results.json`\n  - metadata 包含完整的对照实验设计（hypothesis, compare_against, interpretation）\n  - MAX_NEW_TOKENS = 4096（推理模型长 CoT）\n\n**待完成（下载完成后）：**\n- [ ] 验证模型可加载 + 确认架构 (32 layers, 8 KV heads, LlamaForCausalLM)\n- [ ] 不提交实验（GPU 被 llama-sparsity-sweep 占用）\n\n要我继续轮询下载进度，还是你稍后再来检查？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-confound-ctrl-001-prep.md"
+}

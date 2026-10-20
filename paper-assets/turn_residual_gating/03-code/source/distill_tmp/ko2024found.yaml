@@ -1,0 +1,26 @@
+paper_key: "ko2024found"
+title: "Found in the Middle: Calibrating Positional Attention Bias Improves Long Context Utilization"
+venue: "arXiv 2024"
+full_text_available: false
+
+research:
+  baselines: ["vanilla LLM", "position interpolation methods"]
+  metrics:
+    - {name: "accuracy", direction: "higher_better"}
+    - {name: "retrieval accuracy by position", direction: "higher_better"}
+  datasets:
+    - {name: "multi-document QA", size: "standard"}
+    - {name: "key-value retrieval", size: "synthetic"}
+  ablation_dimensions: ["calibration method", "context length", "position"]
+  training_recipe: "N/A (inference-time calibration)"
+  method_family: "positional bias calibration"
+
+positioning:
+  core_claim: "Calibrating positional attention bias at inference time mitigates the 'lost in the middle' problem without retraining"
+  key_results: "improved middle-position retrieval accuracy"
+  limitations: ["inference overhead", "task-specific calibration needed"]
+  relation_to_us: "complementary"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

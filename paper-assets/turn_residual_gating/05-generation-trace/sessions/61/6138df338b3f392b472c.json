@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6138df338b3f392b472c",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "check post restart status",
+  "task_key": "worker_check_post_restart_status_20260524T040056",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_post_restart_status_20260524T040056_result.json",
+    "occurrence": 1,
+    "bytes": 1158,
+    "sha256": "c157bcabd21e6074e01c0d3c453fb63a00da67fc1ba6787d5d3a7fbb12cf0b3b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "状态报告：\n\n**GPU**: RTX PRO 6000 Black (98GB), 43% 利用率, 12GB/98GB 显存占用 — **在用**\n\n**存活进程**:\n- `gpu_chain_next.sh` (PID 108997) — **存活**\n- `eval_attention_steering.py` (PID 141308) — **正在运行**，当前在做 Qwen-1.5B TG 模型的 attention steering eval（`--beta 0 3 5`, `--mode gen`, 50 convs）\n\n**Qwen-1.5B 训练**: **已完成**\n- Checkpoint 保存在 `runs/qwen15b_tg_v7_s42/`，3 个 epoch 全部完成（epoch_0/1/2 + gate_params.pt + lora/）\n- 最终 checkpoint 时间 11:39\n- Phase1 GAR 结果已生成（`results/qwen15b_phase1/`）\n\n**Chain 状态**: **正在继续**\n- `post_chain_queue_v2` 在等 gpu_chain 完成\n- gpu_chain 已推进到 eval 阶段：base AR eval 已完成（`qwen15b_base_ar_n50.json`, 11:52），当前正在跑 TG model 的 eval\n- 还差 TG eval 完成后，chain 应该还会跑后续步骤（可能还有 attention steering 分析等）\n\n**总结**: 服务器没重启（或已自动恢复）。Qwen-1.5B 训练已完成，chain 正在自动推进 eval 阶段，当前 GPU 正在跑 TG 模型的 attention steering eval。无需干预。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-post-restart-status.md"
+}

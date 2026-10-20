@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "94e18569f1a467dc143d",
+  "project": "redundancy-compound-sparsity-2",
+  "kind": "worker",
+  "title": "run inverted ema quick test",
+  "task_key": "worker_run_inverted_ema_quick_test_20260512T161936",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_inverted_ema_quick_test_20260512T161936.log",
+    "occurrence": 1,
+    "bytes": 1126221,
+    "sha256": "63d67a8872d0726be64e4bff91483c8bf828f018f003728bd3949df8ae7acc5f"
+  },
+  "statistics": {
+    "messages": 632,
+    "user_turns": 1,
+    "tool_calls": 284,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 2,
+      "assistant": 55,
+      "tool_call": 284,
+      "tool_result": 284,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 617,
+      "chunks": [
+        {
+          "path": "94e18569f1a467dc143d-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "94e18569f1a467dc143d-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "94e18569f1a467dc143d-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "94e18569f1a467dc143d-part-0004.json",
+          "message_count": 77
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 15,
+      "chunks": [
+        {
+          "path": "94e18569f1a467dc143d-part-0004.json",
+          "message_count": 15
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/run-inverted-ema-quick-test.md"
+}

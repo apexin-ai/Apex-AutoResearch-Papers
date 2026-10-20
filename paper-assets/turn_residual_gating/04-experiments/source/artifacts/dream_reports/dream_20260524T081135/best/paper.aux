@@ -1,0 +1,134 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{dongre2026goal,liu2024lost,hsieh2024ruler}
+\citation{dongre2026goal}
+\citation{dongre2026goal}
+\citation{yu2020gradient}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{bengio2015scheduled}
+\citation{dongre2026goal}
+\citation{liu2024lost}
+\citation{hsieh2024ruler}
+\citation{bai2024mtbench101}
+\citation{li2024multichallenge}
+\citation{he2016deep}
+\citation{bachlechner2021rezero}
+\citation{raposo2024mixtureofdepths}
+\citation{luo2025flexidepth}
+\citation{sharma2024truth}
+\citation{xiao2024efficient}
+\citation{qiu2025gated}
+\citation{turner2023activation,li2024inference}
+\citation{ranzato2016sequence}
+\citation{wiseman2016sequence,zhang2019bridging}
+\citation{bengio2015scheduled}
+\citation{lamb2016professor}
+\citation{dou2022parallel}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Multi-Turn Dialogue Degradation.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Residual Gating and Adaptive Depth.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Attention Steering and Intervention.}{2}{section*.3}\protected@file@percent }
+\citation{yu2020gradient}
+\citation{chen2018gradnorm}
+\citation{dongre2026goal}
+\citation{dongre2026goal}
+\citation{dongre2026goal}
+\@writefile{toc}{\contentsline {paragraph}{Exposure Bias.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Gradient Conflict in Multi-Task Learning.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Background}{3}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Goal Accessibility Ratio}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Residual Stream Persistence}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Method}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}ThreadGate Architecture}{3}{subsection.4.1}\protected@file@percent }
+\newlabel{eq:gate}{{1}{3}{ThreadGate Architecture}{equation.1}{}}
+\citation{ding2023enhancing}
+\citation{yang2024qwen2}
+\citation{dubey2024llama}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Training Objective}{4}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Training Setup}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Scheduled Sampling}{4}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Inference-Time $\beta $-Steering}{4}{subsection.4.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Experiments}{4}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Setup}{4}{subsection.5.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Four-way ablation on Qwen-2.5-7B. Gating provides zero incremental benefit over \textsc  {LoRA-only}{} in both TF and AR regimes. All fine-tuned variants exhibit the same ${\sim }$8$\times $ TF--AR gap.}}{5}{table.caption.6}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:main}{{1}{5}{Four-way ablation on Qwen-2.5-7B. Gating provides zero incremental benefit over \lo {} in both TF and AR regimes. All fine-tuned variants exhibit the same ${\sim }$8$\times $ TF--AR gap}{table.caption.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Bootstrap 95\% CIs for pairwise differences ($N=200$). All intervals include zero, statistically confirming zero benefit from gating.}}{5}{table.caption.7}\protected@file@percent }
+\newlabel{tab:ci}{{2}{5}{Bootstrap 95\% CIs for pairwise differences ($N=200$). All intervals include zero, statistically confirming zero benefit from gating}{table.caption.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Main Results: Gating Provides Zero Benefit}{5}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Inference-Time $\beta $-Steering}{5}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Scheduled Sampling Results}{5}{subsection.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Qwen-2.5-7B (3-seed).}{5}{section*.8}\protected@file@percent }
+\citation{yu2020gradient}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces 3-seed SS validation on Qwen-2.5-7B. SS compresses the TF--AR gap from 7.8$\times $ to ${\sim }$1.3$\times $ with no perplexity cost. Variance decreases monotonically with $\beta $.}}{6}{table.caption.9}\protected@file@percent }
+\newlabel{tab:ss_seed}{{3}{6}{3-seed SS validation on Qwen-2.5-7B. SS compresses the TF--AR gap from 7.8$\times $ to ${\sim }$1.3$\times $ with no perplexity cost. Variance decreases monotonically with $\beta $}{table.caption.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Cross-model SS gap compression. Both architectures achieve $>$10$\times $ compression with minimal PPL cost.}}{6}{table.caption.11}\protected@file@percent }
+\newlabel{tab:cross_model}{{4}{6}{Cross-model SS gap compression. Both architectures achieve $>$10$\times $ compression with minimal PPL cost}{table.caption.11}{}}
+\@writefile{toc}{\contentsline {paragraph}{Llama-3.1-8B (Cross-Model).}{6}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Analysis}{6}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Gate Turn Conditioning Reversal}{6}{subsection.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}PCGrad Causal Exclusion of Gradient Conflict}{6}{subsection.6.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Cross-model NTP--\textsc  {GAR}{} gradient analysis on gate parameters. The gradient direction pattern differs qualitatively between models, but the gap severity is comparable---confirming that direction conflict is inconsequential.}}{7}{table.caption.12}\protected@file@percent }
+\newlabel{tab:gradient}{{5}{7}{Cross-model NTP--\gar {} gradient analysis on gate parameters. The gradient direction pattern differs qualitatively between models, but the gap severity is comparable---confirming that direction conflict is inconsequential}{table.caption.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces $\lambda _{\text  {GAR}}$ sensitivity ablation. AR \textsc  {GAR}{} is invariant to loss weight across a 100$\times $ range, eliminating gradient magnitude as a causal factor.}}{7}{table.caption.14}\protected@file@percent }
+\newlabel{tab:lambda}{{6}{7}{$\lambda _{\text {GAR}}$ sensitivity ablation. AR \gar {} is invariant to loss weight across a 100$\times $ range, eliminating gradient magnitude as a causal factor}{table.caption.14}{}}
+\@writefile{toc}{\contentsline {paragraph}{$\lambda _{\text  {GAR}}$ Sensitivity.}{7}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Distribution Shift Analysis}{7}{subsection.6.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Per-Head KL Divergence.}{7}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Gap Scaling with Conversation Length.}{7}{section*.18}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Per-layer-group attention KL divergence (\textsc  {ThreadGate}{} v7). Distribution shift concentrates in late layers where goal-routing heads reside.}}{8}{table.caption.16}\protected@file@percent }
+\newlabel{tab:kl_layers}{{7}{8}{Per-layer-group attention KL divergence (\tg {} v7). Distribution shift concentrates in late layers where goal-routing heads reside}{table.caption.16}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces KL divergence comparison: \textsc  {ThreadGate}{} vs.\ SS. SS reduces the TF--AR attention distribution gap by 45\%.}}{8}{table.caption.17}\protected@file@percent }
+\newlabel{tab:kl_model}{{8}{8}{KL divergence comparison: \tg {} vs.\ SS. SS reduces the TF--AR attention distribution gap by 45\%}{table.caption.17}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Mechanism Specificity: Alternative GAR Definitions}{8}{subsection.6.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5}Cross-Model Replication}{8}{subsection.6.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Discussion}{8}{section.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Why NTP Self-Recovers but GAR Does Not.}{8}{section*.22}\protected@file@percent }
+\citation{dou2022parallel}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Exposure bias gap scaling with conversation length (Qwen-2.5-7B). \textsc  {ThreadGate}{} gap grows super-linearly; SS gap grows sub-linearly.}}{9}{table.caption.19}\protected@file@percent }
+\newlabel{tab:long_conv}{{9}{9}{Exposure bias gap scaling with conversation length (Qwen-2.5-7B). \tg {} gap grows super-linearly; SS gap grows sub-linearly}{table.caption.19}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces AR \textsc  {GAR}{} across four token-selection definitions ($\beta =0$). \textsc  {ThreadGate}{} improves only last-token; SS improves all four, indicating robust semantic attention.}}{9}{table.caption.20}\protected@file@percent }
+\newlabel{tab:alt_gar}{{10}{9}{AR \gar {} across four token-selection definitions ($\beta =0$). \tg {} improves only last-token; SS improves all four, indicating robust semantic attention}{table.caption.20}{}}
+\@writefile{toc}{\contentsline {paragraph}{SS and $\beta $-Steering as Complementary Tools.}{9}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Implications for Auxiliary Loss Design.}{9}{section*.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{9}{section.8}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{bachlechner2021rezero}{{1}{2021}{{Bachlechner et~al.}}{{}}}
+\bibcite{bai2024mtbench101}{{2}{2024}{{Bai et~al.}}{{}}}
+\bibcite{bengio2015scheduled}{{3}{2015}{{Bengio et~al.}}{{}}}
+\bibcite{chen2018gradnorm}{{4}{2018}{{Chen et~al.}}{{}}}
+\bibcite{ding2023enhancing}{{5}{2023}{{Ding et~al.}}{{}}}
+\bibcite{dongre2026goal}{{6}{2026}{{Dongre et~al.}}{{}}}
+\bibcite{dou2022parallel}{{7}{2022}{{Dou and Gales}}{{}}}
+\bibcite{dubey2024llama}{{8}{2024}{{Dubey et~al.}}{{}}}
+\bibcite{elhage2021mathematical}{{9}{2021}{{Elhage et~al.}}{{}}}
+\bibcite{he2016deep}{{10}{2016}{{He et~al.}}{{}}}
+\bibcite{hsieh2024ruler}{{11}{2024}{{Hsieh et~al.}}{{}}}
+\bibcite{lamb2016professor}{{12}{2016}{{Lamb et~al.}}{{}}}
+\bibcite{li2024multichallenge}{{13}{2024a}{{Li et~al.}}{{}}}
+\bibcite{li2024inference}{{14}{2024b}{{Li et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Llama-3.1-8B results. The same failure pattern and SS recovery replicate cross-model.}}{10}{table.caption.21}\protected@file@percent }
+\newlabel{tab:llama}{{11}{10}{Llama-3.1-8B results. The same failure pattern and SS recovery replicate cross-model}{table.caption.21}{}}
+\bibcite{liu2024lost}{{15}{2024}{{Liu et~al.}}{{}}}
+\bibcite{luo2025flexidepth}{{16}{2025}{{Luo et~al.}}{{}}}
+\bibcite{qiu2025gated}{{17}{2025}{{Qiu et~al.}}{{}}}
+\bibcite{ranzato2016sequence}{{18}{2016}{{Ranzato et~al.}}{{}}}
+\bibcite{raposo2024mixtureofdepths}{{19}{2024}{{Raposo et~al.}}{{}}}
+\bibcite{sharma2024truth}{{20}{2024}{{Sharma et~al.}}{{}}}
+\bibcite{turner2023activation}{{21}{2023}{{Turner et~al.}}{{}}}
+\bibcite{wiseman2016sequence}{{22}{2016}{{Wiseman and Rush}}{{}}}
+\bibcite{xiao2024efficient}{{23}{2024}{{Xiao et~al.}}{{}}}
+\bibcite{yang2024qwen2}{{24}{2024}{{Yang et~al.}}{{}}}
+\bibcite{yu2020gradient}{{25}{2020}{{Yu et~al.}}{{}}}
+\bibcite{zhang2019bridging}{{26}{2019}{{Zhang et~al.}}{{}}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}4th Seed Supplementary Validation}{11}{appendix.A}\protected@file@percent }
+\newlabel{app:4seed}{{A}{11}{4th Seed Supplementary Validation}{appendix.A}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces 4-seed SS statistics (Qwen-2.5-7B).}}{11}{table.caption.27}\protected@file@percent }
+\newlabel{tab:4seed}{{12}{11}{4-seed SS statistics (Qwen-2.5-7B)}{table.caption.27}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Llama-3.1-8B $\beta $-Steering Response}{12}{appendix.B}\protected@file@percent }
+\newlabel{app:llama_beta}{{B}{12}{Llama-3.1-8B $\beta $-Steering Response}{appendix.B}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces $\beta $-steering comparison: Llama SS vs.\ Qwen SS (3-seed).}}{12}{table.caption.28}\protected@file@percent }
+\newlabel{tab:llama_beta}{{13}{12}{$\beta $-steering comparison: Llama SS vs.\ Qwen SS (3-seed)}{table.caption.28}{}}
+\gdef \@abspage@last{12}

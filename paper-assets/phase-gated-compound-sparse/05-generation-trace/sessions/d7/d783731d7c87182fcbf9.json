@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d783731d7c87182fcbf9",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "paper citation check",
+  "task_key": "worker_paper_citation-check_20260514T132110",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_citation-check_20260514T132110_result.json",
+    "occurrence": 1,
+    "bytes": 1177,
+    "sha256": "c25c2ae352707c1c3c47923bc222d2b9958ad6b54e24f62a94800ea2f3a48748"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 引用完整性报告\n\n### Critical: 缺失引用（tex 中引用但 bib 中无条目）\n\n**无。** 全部 23 个引用 key 在 `references.bib` 中均有对应条目。\n\n### Info: 未使用引用（bib 中有但 tex 中未引用）\n\n7 条：\n| Key | Title |\n|-----|-------|\n| `compression-ordering-2025` | A Systematic Study of Compression Ordering for LLMs |\n| `h2o-neurips2023` | H₂O: Heavy-Hitter Oracle for Efficient Generative Inference |\n| `mustafar-neurips2025` | Mustafar: Promoting Unstructured Sparsity for KV Cache Pruning |\n| `obcache-2025` | OBCache: Optimal Brain KV Cache Pruning |\n| `pagedeviction-eacl2026` | PagedEviction: Structured Block-wise KV Cache Pruning |\n| `pyramidkv-2024` | PyramidKV: Dynamic KV Cache Compression |\n| `raas-acl2025` | RaaS: Reasoning-Aware Attention Sparsity |\n\n注：`h2o-neurips2023` 和 `pyramidkv-2024` 在 `discussion.tex` 正文中以文字形式提及（\"H₂O, SnapKV, PyramidKV\"），但未用 `\\cite{}` 引用。可考虑补上 `\\cite`。\n\n### Warning: 格式不完整的 bib 条目\n\n**无。** 全部 30 条 bib 条目均包含 title、author、year 三个必需字段。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-citation-check.md"
+}

@@ -1,0 +1,96 @@
+{
+  "exp_id": "kv-bench-002",
+  "project": "redundancy-compound-sparsity",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-12T03:09:53.131Z",
+    "updated_at": "2026-05-12T04:03:49.663Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/redundancy-compound-sparsity && python src/kv_eviction/run_kv_benchmark.py > results/kv_eviction/kv_bench_001.log 2>&1\"",
+      "server": "seetacloud-bjb2-structtts",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "22623",
+      "log_path": "~/runs/redundancy-compound-sparsity/kv-bench-002.log",
+      "submitted_at": "2026-05-12T03:09:53.114Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "10 Wikipedia excerpts x 512 tokens (in-code generated)",
+      "data_count": 10,
+      "model_name": "deepseek-ai/DeepSeek-R1-Distill-Qwen-7B",
+      "seed": "torch default (not explicitly set)",
+      "hypothesis": "KV eviction policies (CARC-KV, H2O, StreamingLLM) perplexity comparison on DeepSeek-R1-Distill-Qwen-7B",
+      "wall_clock_seconds": 3236.5,
+      "gpu_hours": 0.9
+    },
+    "metrics": {
+      "model": "DeepSeek-R1-Distill-Qwen-7B",
+      "num_texts": 10,
+      "max_eval_tokens": 512,
+      "elapsed_seconds": 356.3,
+      "results": {
+        "FullCache_100pct": {
+          "ppl": 7.7274,
+          "ratio": 1,
+          "evictions": 0
+        },
+        "CARC-KV_30pct": {
+          "ppl": 7.7436,
+          "ratio": 1.0021,
+          "evictions": 409
+        },
+        "H2O_30pct": {
+          "ppl": 7.7,
+          "ratio": 0.9965,
+          "evictions": 409
+        },
+        "StreamingLLM_30pct": {
+          "ppl": 7.748,
+          "ratio": 1.0027,
+          "evictions": 409
+        },
+        "CARC-KV_50pct": {
+          "ppl": 7.7274,
+          "ratio": 1,
+          "evictions": 0
+        },
+        "H2O_50pct": {
+          "ppl": 7.7274,
+          "ratio": 1,
+          "evictions": 0
+        },
+        "StreamingLLM_50pct": {
+          "ppl": 7.7274,
+          "ratio": 1,
+          "evictions": 0
+        },
+        "CARC-KV_70pct": {
+          "ppl": 7.7274,
+          "ratio": 1,
+          "evictions": 0
+        },
+        "H2O_70pct": {
+          "ppl": 7.7274,
+          "ratio": 1,
+          "evictions": 0
+        },
+        "StreamingLLM_70pct": {
+          "ppl": 7.7274,
+          "ratio": 1,
+          "evictions": 0
+        }
+      }
+    },
+    "checkpoint_path": "/home/sonny/redundancy-compound-sparsity/results/kv_eviction/kv_bench_001_results.json",
+    "log_path": "/home/sonny/redundancy-compound-sparsity/results/kv_eviction/kv_bench_001.log",
+    "conclusion": "success",
+    "completed_at": "2026-05-12T04:03:49.663Z"
+  },
+  "timestamp": "2026-05-12T04:03:49.687107+00:00",
+  "trigger": "update_registry"
+}

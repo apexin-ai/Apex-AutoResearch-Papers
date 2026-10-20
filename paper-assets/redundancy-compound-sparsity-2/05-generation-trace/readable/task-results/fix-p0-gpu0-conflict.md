@@ -1,0 +1,33 @@
+# fix p0 gpu0 conflict
+
+**redundancy compound sparsity 2** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_fix_p0_gpu0_conflict_20260512T164957_result.json`
+- **Structured JSON:** [`c1933002f3db0ba08e1d.json`](../../sessions/c1/c1933002f3db0ba08e1d.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+## 结果汇总
+
+| PID | 进程 | GPU | 状态 | 结果文件 |
+|-----|------|-----|------|----------|
+| **39560** | `run_inverted_ema.py` | GPU 0 | **已 kill** — 运行 18min 无输出，无结果文件 | ❌ 不存在 |
+| **40063** | `analysis_gamma_sweep.py` | GPU 0 (31.8 GiB) | **运行中** — `[random] eval` 26% (1691/6554, ~3.74 it/s)，预计还需 ~22min | 未生成 |
+| **39080** | `run_inverted_ema_wikitext.py` | GPU 1 (31.8 GiB) | **运行中** — 20min，无结果文件 | ❌ 不存在 |
+
+**关键操作：** GPU 0 上 PID 39560 已终止，释放 ~29 GiB 显存。gamma_sweep (PID 40063) 现在独占 GPU 0，之前的 OOM 问题应该不会再出现。
+
+---

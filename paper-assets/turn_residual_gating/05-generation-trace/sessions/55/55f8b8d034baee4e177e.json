@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "55f8b8d034baee4e177e",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "check ss s456 resume script",
+  "task_key": "worker_check_ss_s456_resume_script_20260523T114850",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_ss_s456_resume_script_20260523T114850_result.json",
+    "occurrence": 1,
+    "bytes": 799,
+    "sha256": "eb6ee276b7f8d61e654065b1a71c7aefe3ac0325c600f7493e6e67969c680cf8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "信息已全部收集完毕。汇报如下：\n\n---\n\n### Resume 脚本确认\n\n**脚本**: `scripts/d048_ss_s456_resume.sh`\n\n**关键参数**:\n- `--resume runs/d048_ss_s456/epoch_0` — 指向 epoch_0 checkpoint\n- `--epochs 3` — 总 epoch 数仍写 3\n\n**Checkpoint 存在性**: `runs/d048_ss_s456/epoch_0/` 存在，包含：\n- `gate_params.pt` (3.4MB)\n- `lora/` 目录\n\n**Resume 逻辑** (`train_phase2_v8b.py:228-230`):\n```python\n_m = re.search(r'epoch_(\\d+)', args.resume)\nstart_epoch = int(_m.group(1)) + 1 if _m else 1\n```\n从路径中提取 epoch 编号 0，`start_epoch = 0 + 1 = 1`。训练从 **epoch 1 开始**，跳过 epoch 0。\n\n**预计训练量**: `--epochs 3` 意味着训练 epoch 1 和 epoch 2（共 2 个 epoch），**预计约 7 小时**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-ss-s456-resume-script.md"
+}

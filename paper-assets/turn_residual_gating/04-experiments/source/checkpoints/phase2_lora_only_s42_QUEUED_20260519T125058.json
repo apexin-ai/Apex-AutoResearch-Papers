@@ -1,0 +1,23 @@
+{
+  "exp_id": "phase2_lora_only_s42",
+  "project": "turn_residual_gating",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 1,
+    "created_at": "2026-05-18T20:36:32.506Z",
+    "updated_at": "2026-05-19T12:50:58.311Z",
+    "hypothesis": "LoRA-only baseline (gate 固定 1.0，无 gating 机制) 在相同 MSE+NTP loss 下 GAR 应低于 ThreadGate (v7)。如果 LoRA-only 也能训到 GAR~0.5，则 gating 机制贡献为零，paper story 不成立。关键对比：LoRA-only 的 GAR 收敛值 vs v7 的 0.48。",
+    "parent": "phase2_tg_s42_v7",
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "completed_at": "2026-05-19T12:44:29.475Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    }
+  },
+  "timestamp": "2026-05-19T12:50:58.338919+00:00",
+  "trigger": "update_registry"
+}

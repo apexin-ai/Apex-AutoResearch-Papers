@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dd8807298869a0d15c01",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "diagnose c10 gpu conflict",
+  "task_key": "worker_diagnose_c10_gpu_conflict_20260516T025710",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_c10_gpu_conflict_20260516T025710_result.json",
+    "occurrence": 1,
+    "bytes": 1783,
+    "sha256": "801a6b8736ee18e7c06e4dd2f6666e281eb423136c2538de1328eb5298f3258c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告如下：\n\n---\n\n## 诊断结果\n\n### 1. GPU 冲突状态：**无冲突**\n\n| 进程 | 状态 |\n|------|------|\n| c8 PID 301187 | **已结束**（进程不存在） |\n| c10 PID 304288 | **已结束**（进程不存在） |\n\n当前 GPU 占用：\n- **GPU 0**: PID 307021 — `analysis_c5_gini.py` (DeepSeek-R1, 15372 MiB, 运行 ~1 min)\n- **GPU 1**: PID 307022 — `analysis_c5_gini.py` (Qwen2.5-7B, 15246 MiB, 运行 ~1 min)\n- **GPU 2, 3**: 空闲 (3 MiB)\n\nc8 和 c10 都已结束，目前 GPU 被 c5_gini 分析占用，无进程冲突。\n\n### 2. c10 PID 304288：**无需 kill**\n\n进程已不存在。\n\n### 3. 已有评估数据是否含 generated text：**不含**\n\n- `analysis_output/accuracy_*.json`：每条记录只有 `id, pred_answer, ref_answer, match, gen_length, time_seconds`，**无 gen_text 字段**（grep 结果为 0）\n- `profiling_output_*/profiling_results.json`：只有 phase 统计和 sparsity metrics，无生成文本\n- `generations.json` 文件：**仅存在于 GSM8K 目录**，不是 MATH-500\n- `*raw_text*` 文件：不存在\n- `results_c10_lang.json`：不存在（c10 从未产出结果）\n\n### 4. 结论\n\nc10 的 language switching 分析**必须重新生成 MATH-500 completions**，无法从已有数据做 CPU-only 分析。现有 accuracy eval 数据只保存了提取后的答案，未保存原始推理链文本。\n\nGSM8K 的 `generations.json` 有完整生成文本，样本如下（前 200 字符）：\n\n> `First, determine how much each person raised. - Kim: $320 more than Alexandra. Since Alexandra raised $430, Kim raised $430 + $320 = $750. - Maryam: $400 more than Sarah. Sarah raised $300, so Mar...`\n\n但这是 GSM8K 数据，不是 c10 需要的 MATH-500 DeepSeek-R1 数据。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-c10-gpu-conflict.md"
+}

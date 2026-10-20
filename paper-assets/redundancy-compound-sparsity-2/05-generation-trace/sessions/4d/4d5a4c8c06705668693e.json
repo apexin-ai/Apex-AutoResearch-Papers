@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4d5a4c8c06705668693e",
+  "project": "redundancy-compound-sparsity-2",
+  "kind": "result",
+  "title": "code eval framework",
+  "task_key": "worker_code_eval_framework_20260512T112354",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_eval_framework_20260512T112354_result.json",
+    "occurrence": 1,
+    "bytes": 768,
+    "sha256": "3b4443e1b1b6018cb1342882fdf7586a4fe3672c4a4e94a93a2412804b0c9556"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**eval_kv_eviction.py** — 已上传至 `westd-16980:/root/carc/`，dry-run `--help` 通过。修复了一个 import 问题（`create_eviction_hook` 在服务器的 `carc_kv_eviction.py` 中不存在，已移除该 import）。支持 6 个 benchmark（wikitext/c4/math/longbench_passage/longbench_qa/all）、可配 budget ratio、gamma、grace window 等参数，输出 JSON。\n\n**baseline_survey.md** — 5 个 baseline 调研完成，推荐 H2O（经典 attention-based，多集成路径，Easy）+ KeyDiff（via kvpress，与 CARC anchor 方法论最接近，Easy）。备选 R-KV（推理模型专用，Medium）。\n\n两个产出均已 `register_artifact` 注册（`art_20260512_771f21`, `art_20260512_5f68e4`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-eval-framework.md"
+}

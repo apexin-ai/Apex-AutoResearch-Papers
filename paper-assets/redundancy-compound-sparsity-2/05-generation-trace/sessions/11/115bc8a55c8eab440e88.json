@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "115bc8a55c8eab440e88",
+  "project": "redundancy-compound-sparsity-2",
+  "kind": "result",
+  "title": "run a2 reasoning traces cuda0",
+  "task_key": "worker_run_a2_reasoning_traces_cuda0_20260512T155751",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_a2_reasoning_traces_cuda0_20260512T155751_result.json",
+    "occurrence": 1,
+    "bytes": 929,
+    "sha256": "1e3ed0ed45f9c48054613a9d140ff9b2311bc1d1598901242355fcbf19b9aac8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果：\n\n**A2: Attention vs EMA — Reasoning Traces**\n\n| 指标 | 值 |\n|------|-----|\n| Last-chunk Spearman | **-0.2694** |\n| Last-chunk Pearson | -0.1019 |\n| Accumulated Spearman | -0.2562 |\n| Accumulated Pearson | -0.2655 |\n| **Verdict** | **complementary** |\n\n**关键发现**：EMA scores 和 attention importance 呈现**负相关**（ρ ≈ -0.27），不仅不冗余，方向甚至相反。\n\nTop layers（最强负相关）：\n- Layer 13: ρ = -0.53\n- Layer 11: ρ = -0.53  \n- Layer 10: ρ = -0.51\n\nBottom layers（几乎无相关）：\n- Layer 24-31: |ρ| < 0.05\n\n**判定**：Global Spearman = -0.27 < 0.5 → **complementary**。EMA 和 attention 提供互补信号，hybrid 策略有意义。\n\n产出文件：\n- `/root/carc/results/a2_reasoning_traces.json`\n- `/root/carc/figures/a2_reasoning_correlation.png`\n- `/root/carc/figures/a2_reasoning_scatter.png`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-a2-reasoning-traces-cuda0.md"
+}

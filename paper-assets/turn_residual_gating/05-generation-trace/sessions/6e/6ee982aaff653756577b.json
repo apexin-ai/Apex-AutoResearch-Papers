@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6ee982aaff653756577b",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "code phase2 switching prep",
+  "task_key": "worker_code_phase2_switching_prep_20260525T062236",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_phase2_switching_prep_20260525T062236_result.json",
+    "occurrence": 1,
+    "bytes": 1216,
+    "sha256": "9dd612334de16f6903dba5f7f6983876c6ee6a83cf3a75da5836b7e576756782"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已写入 `/root/turn_residual_gating/src/eval_switching.py`，语法检查通过。\n\n运行命令（GPU 空闲后）：\n\n**ThreadGate 模型：**\n```bash\ncd /root/turn_residual_gating/src && python eval_switching.py \\\n  --checkpoint-path /root/turn_residual_gating/runs/phase2_tg_s42_v7/epoch_2 \\\n  --data-path /root/turn_residual_gating/data/eval_200/eval_200.json \\\n  --output-path /root/turn_residual_gating/results/switching_tg/\n```\n\n**Base 模型（无 LoRA/无 gate）：**\n```bash\ncd /root/turn_residual_gating/src && python eval_switching.py \\\n  --data-path /root/turn_residual_gating/data/eval_200/eval_200.json \\\n  --output-path /root/turn_residual_gating/results/switching_base/\n```\n\n脚本要点：\n- 7 个条件：pure_tf、pure_ar、switch_k1-k5\n- GAR 在每个 assistant turn 的 **mid-point token** 位置测量（content_start 和 content_end 的中点）\n- Gate hooks 在 generate 时为 no-op（turn_features_ref 为 None），仅在 measurement forward pass 时激活\n- 输出两个 JSON：`switching_results.json`（per-turn 平均）和 `switching_detail.json`（per-conversation 明细 + std）\n- 最后打印 summary table 方便快速查看"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-phase2-switching-prep.md"
+}

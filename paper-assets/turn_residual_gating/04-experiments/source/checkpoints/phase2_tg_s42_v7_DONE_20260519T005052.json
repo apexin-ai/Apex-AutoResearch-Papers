@@ -1,0 +1,59 @@
+{
+  "exp_id": "phase2_tg_s42_v7",
+  "project": "turn_residual_gating",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T18:17:45.739Z",
+    "updated_at": "2026-05-19T00:50:52.080Z",
+    "hypothesis": "MSE 双向 loss (mean_GAR - target)² + gate diversity 正则 F.relu(min_std - gate_std) 从结构上解决恒等退化：MSE 在 GAR > target 时反向惩罚（不再单调推高），gate_div 直接强制层间分化。预期：gate_std 稳定 >0.05 + GAR 收敛到 target=0.5 附近 + NTP 正常收敛。",
+    "parent": "phase2_tg_s42_v6",
+    "metrics": {
+      "training_time_s": 21351.9,
+      "epochs": 3,
+      "final_avg_loss": 0.897,
+      "final_avg_ntp": 0.896,
+      "final_avg_gar_loss": 0.001,
+      "final_gate_mean": 0.9336,
+      "final_gate_std": 0.0492,
+      "final_gate_min": 0.7891,
+      "final_gate_max": 0.9883,
+      "final_gate_profile": "L0:0.859 L1:0.988 L2:0.957 L3:0.801 L4:0.789 L5:0.895 L6:0.961 L7:0.941 L8:0.953 L9:0.945 L10:0.957 L11:0.926 L12:0.914 L13:0.898 L14:0.887 L15:0.949 L16:0.934 L17:0.934 L18:0.930 L19:0.961 L20:0.945 L21:0.973 L22:0.977 L23:0.965 L24:0.961 L25:0.977 L26:0.984 L27:0.980",
+      "gate_gradients_active": true,
+      "eval_pending": true,
+      "eval_bug_fixed": "gar.py measure_only cleanup caused NoneType on 2nd compute_gar call"
+    },
+    "spec": {
+      "checkpoint_source": "from_scratch",
+      "eval_data": "N/A",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/turn_residual_gating && PYTHONUNBUFFERED=1 python src/train_phase2.py --gate-type threadgate --gar-loss-mode mse_target --gar-target 0.5 --lambda-gar 1.0 --lambda-gate-div 1.0 --min-gate-std 0.05 --init-bias 1.5 --gate-lr-multiplier 10 --max-seq-len 2048 --seed 42 --output-dir /root/turn_residual_gating/runs/phase2_tg_s42_v7 --data-dir /root/turn_residual_gating/data/ultrachat_8k --epochs 3\"",
+      "server": "westd-20861",
+      "gpu": "cuda:0",
+      "data_path": "/root/turn_residual_gating/data/ultrachat_8k",
+      "data_count": 8000,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42,
+      "checkpoint_path": "/root/turn_residual_gating/runs/phase2_tg_s42_v7",
+      "log_path": "/root/turn_residual_gating/runs/phase2_tg_s42_v7.log"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-19T00:48:47.275Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "success",
+    "completed_at": "2026-05-19T00:48:47.463Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-19T00:48:48.850580+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-19T00:50:52.110118+00:00",
+  "trigger": "update_registry"
+}

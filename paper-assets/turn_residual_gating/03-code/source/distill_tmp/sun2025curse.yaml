@@ -1,0 +1,141 @@
+paper_key: "sun2025curse"
+title: "The Curse of Depth in Large Language Models"
+venue: "NeurIPS 2025"
+full_text_available: true
+
+research:
+  baselines:
+    - "Pre-LN"
+    - "Post-LN"
+    - "DeepNorm"
+    - "Mix-LN"
+    - "Admin"
+    - "Group-LN"
+    - "Sandwich-LN"
+    - "LayerScale"
+    - "SkipInit"
+    - "Depth-Scaled Initialization"
+    - "Scaled Initialization (OLMo)"
+  metrics:
+    - {name: "Perplexity", direction: "lower_better"}
+    - {name: "MMLU", direction: "higher_better"}
+    - {name: "BoolQ", direction: "higher_better"}
+    - {name: "ARC-e", direction: "higher_better"}
+    - {name: "PIQA", direction: "higher_better"}
+    - {name: "Hellaswag", direction: "higher_better"}
+    - {name: "OBQA", direction: "higher_better"}
+    - {name: "Winogrande", direction: "higher_better"}
+    - {name: "Performance Drop (layer pruning)", direction: "lower_better"}
+    - {name: "Angular Distance", direction: "higher_better"}
+    - {name: "Top-1 Accuracy (ViT)", direction: "higher_better"}
+  datasets:
+    - {name: "C4", size: "~800GB text corpus for pre-training"}
+    - {name: "Commonsense170K", size: "170K for SFT"}
+    - {name: "ImageNet-1K", size: "1.28M images for ViT experiments"}
+    - {name: "SQuAD v1.1", size: "BERT evaluation"}
+  ablation_dimensions:
+    - "LN scaling position (before LN / after LN / after Attn-FFN / after residual)"
+    - "Scaling method comparison (LayerScale / SkipInit / Depth-Scaled Init / Scaled Init / LNS)"
+    - "Model scale (130M / 250M / 350M / 1B / 7B)"
+    - "Architecture family (LLaMA / OLMo / Qwen2.5 / ViT)"
+    - "Combining LNS with Scaled Initialization"
+    - "Normalization method comparison (Admin / Group-LN / Sandwich-LN / Mix-LN)"
+  training_recipe:
+    optimizer: "Adam"
+    lr: "1e-3 (models <=350M), 5e-4 (1B model)"
+    architecture: "LLaMA with RMSNorm and SwiGLU"
+    small_scale_tokens: "2.2B (130M), 3.9B (250M), 6.0B (350M), 8.9B (1B)"
+    large_scale_tokens: "20B fixed budget for OLMo (60M to 7B)"
+    hardware: "not explicitly stated"
+  method_family: "depth analysis / normalization scaling"
+
+positioning:
+  core_claim: "Pre-LN causes exponential output variance growth with depth, making deeper layers approximate identity mappings; a simple 1/sqrt(l) scaling of LayerNorm output (LayerNorm Scaling) converts this to polynomial growth, restoring deep layer effectiveness."
+  key_results: "PPL reduction: 26.73->25.76 (130M), 21.92->20.35 (250M), 19.58->18.20 (350M), 17.02->15.71 (1B); OLMo-7B loss 2.69->2.50; SFT average: +6.21% (250M), +1.86% (1B); 66% fewer parameters needed for same loss (scaling curve); ViT-S top-1: 67.91->68.75"
+  limitations:
+    - "Testing primarily on LLaMA-based and Qwen architectures; GLM and other families unexplored"
+    - "Evaluation limited to language understanding and vision tasks; code generation, reasoning untested"
+    - "Angular distance may not capture all aspects of representational effectiveness"
+  relation_to_us: "foundation"  # directly explains why deeper layers become less effective - core motivation for our gating approach
+
+narrative:
+  story_type: "突破局限型"
+  hook: "Opens with the observation that nearly half the layers in popular LLMs (Llama, Mistral, DeepSeek, Qwen) are less effective than expected - a striking empirical finding that challenges the assumption that more layers = better."
+  tension: "Pre-LN is universally adopted for training stability, but this paper reveals it comes with a hidden cost: exponential variance growth makes deeper layers collapse into near-identity mappings. The community has been unknowingly wasting compute on layers that barely transform representations."
+  key_insight: "The root cause is mathematically precise: Pre-LN's output variance grows as Theta(exp(L)), causing Jacobians of deep blocks to converge to identity matrices. A simple 1/sqrt(l) scaling factor after LayerNorm converts exponential growth to polynomial Theta(L^(2-epsilon)), restoring deep layer expressivity without additional hyperparameters."
+  argument_chain: "empirical observation (layer pruning robustness + angular distance collapse in 4 LLM families) -> theoretical diagnosis (Pre-LN variance analysis, Jacobian identity collapse) -> principled fix (LNS variance control) -> comprehensive validation (130M-7B scale, multiple architectures, pre-training + SFT + vision)"
+  contribution_framing: "Three contributions stated: (1) identifying the Curse of Depth phenomenon and its root cause in Pre-LN, (2) proposing LayerNorm Scaling as a hyperparameter-free fix, (3) comprehensive experiments from 130M to 7B showing consistent improvements. Framed as both diagnostic (understanding a widespread problem) and prescriptive (simple fix)."
+  intro_structure: "5-6 paragraphs: P1 motivation (LLMs rely on depth, but layers are not equally effective), P2 empirical evidence (pruning experiments on 4 model families), P3 root cause identification (Pre-LN variance analysis), P4 proposed solution (LayerNorm Scaling), P5 experimental summary, P6 contribution list."
+  notable_technique: "The paper builds a compelling bridge from empirical puzzle (why can we prune deep layers?) to theoretical diagnosis (variance explosion -> identity Jacobians) to elegant fix (single scaling factor). The 66% fewer parameters annotation on the scaling curve figure is a particularly effective visual argument for practical impact."
+
+figures:
+  figure_count: 8
+  figure1:
+    type: "method_overview"
+    description: "Two-panel figure. Left: side-by-side architectural diagrams of Pre-LN (standard) vs LayerNorm Scaling (with orange 'Scaling x 1/sqrt(l)' blocks inserted after each LayerNorm). Right: log-scale parameter scaling plot showing Pre-LN (dark) vs LNS (orange) training loss across OLMo model sizes (60M to 7B), with red arrow annotating '66% Fewer Params' where LNS matches Pre-LN's performance."
+    narrative_role: "Serves dual purpose: instantly conveys the method simplicity (just insert a scaling block) and its practical impact (66% parameter savings at same loss). Anchors the reader before diving into theory."
+    design_elements: ["side-by-side architecture comparison", "orange highlight for new component", "log-scale parameter scaling", "red arrow annotation for key claim", "clean minimalist block diagrams"]
+    visual_style: "Clean block diagrams with pastel blue (attention), purple (layer norm), orange (new scaling block) on white background. Scaling plot uses dark navy (Pre-LN) vs orange (Ours) with fitted trend lines. Bold annotation '66% Fewer Params' in red with arrow creates focal point."
+  result_figures:
+    - figure_id: "Figure 2 (x3.png)"
+      viz_type: "bar_chart + heatmap"
+      what_compared: "Layer pruning performance drop (top row, bar charts) and angular distance between layer representations (bottom row, heatmaps) for 4 open-weight LLMs: BERT-Large, DeepSeek-7B, Qwen3-8B, LLaMA2-13B"
+      how_gain_highlighted: "Shows deep layers have near-zero performance drop when pruned (bars shrink toward zero for deeper layers) and low angular distance (heatmap goes dark/uniform in deeper regions), visually demonstrating the Curse of Depth"
+      design_note: "4-column layout for 4 model families creates strong cross-model evidence. Top-bottom pairing (pruning + angular distance) shows two complementary views of the same phenomenon. Color maps use viridis-like scheme."
+    - figure_id: "Figure 1 right panel (x2.png)"
+      viz_type: "scatter + trend line"
+      what_compared: "Pre-LN vs LayerNorm Scaling training loss across model sizes (60M to 7B) on OLMo, 20B tokens"
+      how_gain_highlighted: "Red arrow annotation '66% Fewer Params' showing LNS at 300M matches Pre-LN at 1B"
+      design_note: "Log-scale x-axis makes the improvement look consistent across scales. Fitted power-law lines emphasize the trend rather than individual points."
+    - figure_id: "Figure 6 (x7.png)"
+      viz_type: "line_plot"
+      what_compared: "Training loss curves for OLMo-7B: Pre-LN (blue) vs LayerNorm Scaling (red) over ~38K steps"
+      how_gain_highlighted: "LNS starts slightly worse but crosses over around step 15K and ends substantially lower (2.50 vs 2.69). Clean two-line comparison makes the gap obvious."
+      design_note: "Simple but effective - just two colored lines (blue Pre-LN, red LNS) with clear legend. The crossover point is visually compelling as it shows LNS's advantage grows over training."
+    - figure_id: "Figure 7 (x8.png)"
+      viz_type: "bar_chart"
+      what_compared: "Layer pruning performance drop (ARC) for LLaMA-130M with Pre-LN vs LayerNorm Scaling"
+      how_gain_highlighted: "Pre-LN shows extreme drop at layer 0 (~-15 ARC) but near-zero elsewhere; LNS shows uniform moderate drops (~-2 to -5) across all layers, demonstrating every layer contributes meaningfully"
+      design_note: "Side-by-side panel comparison with consistent y-axis scale. Blue bars (Pre-LN) vs orange bars (LNS). The uniform distribution of drops under LNS is the key visual message."
+  ablation_figures:
+    - figure_id: "Figure 4 (x5.png)"
+      viz_type: "line_plot (3 panels)"
+      what_compared: "Layer-wise output variance during LLaMA-130M training for Pre-LN, Pre-LN + Scaled Init, and LayerNorm Scaling"
+      dimensions_varied: ["layer index (x-axis)", "training steps (multiple colored lines per panel)"]
+      design_note: "Three-panel side-by-side shows variance growth pattern differences. Pre-LN variance explodes to ~175 at deep layers; LNS caps at ~25. Multiple training step snapshots (colored lines) show the pattern is consistent throughout training."
+    - figure_id: "Figure 5 (x6.png)"
+      viz_type: "heatmap"
+      what_compared: "Jacobian matrices of Pre-LN residual blocks at different layers of LLaMA2-7B"
+      dimensions_varied: ["layer depth"]
+      design_note: "Visualizes the theoretical claim that deep Pre-LN blocks approximate identity. Small resolution heatmaps but the diagonal pattern (identity-like) becomes increasingly dominant at deeper layers."
+  figure_narrative_role: "Figure 1 (method + scaling impact) -> Figure 2 (empirical evidence of curse across 4 LLM families) -> Figure 3 (controlled small-scale confirmation) -> Figure 4 (variance growth diagnosis) -> Figure 5 (Jacobian identity collapse proof) -> Figure 6 (7B-scale training improvement) -> Figure 7 (LNS restores uniform layer contribution) -> Figure 8 (vision domain transfer). Flow: teaser -> evidence -> diagnosis -> solution validation."
+
+tables:
+  table_count: 8
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods (Post-LN, DeepNorm, Mix-LN, Pre-LN, Pre-LN + LNS)"
+    col_axis: "model sizes (LLaMA-130M / 250M / 350M / 1B)"
+    row_organization: "by_category"
+    col_organization: "grouped_by_model_size"
+    highlight_strategy: "bold best (LNS consistently best); Post-LN/DeepNorm/Mix-LN diverge at larger scales (shown as ~1400 PPL)"
+    statistical_reporting: "single run perplexity, no variance reported"
+    num_baselines: 4
+    design_note: "Compact 5-method x 4-scale grid. Diverged runs (~1400 PPL) dramatically highlight training instability of alternatives. LNS is the only method besides Pre-LN that is stable across all scales AND beats Pre-LN."
+  ablation_tables:
+    - table_id: "Table 6"
+      what_varied: ["scaling method (LayerScale, SkipInit, Depth-Scaled Init, Scaled Init, LNS, LNS + Scaled Init)"]
+      variation_style: "full_numbers"
+      design_note: "Shows LNS outperforms all other scaling approaches. Notably, combining LNS + Scaled Init hurts slightly (25.80 vs 25.76), supporting the recommendation to remove Scaled Init when using LNS."
+    - table_id: "Table 7"
+      what_varied: ["normalization method (Pre-LN, Admin, Group-LN, Sandwich-LN, Mix-LN, LNS)"]
+      variation_style: "full_numbers"
+      design_note: "Single-row comparison on LLaMA-130M. Clean horizontal layout makes ranking instant: LNS (25.76) < Mix-LN (26.07) < Sandwich-LN (26.51) < Pre-LN (26.73)."
+    - table_id: "Table 8"
+      what_varied: ["insertion position (before LN, after LN, after Attn/FFN, after residual, only after Attn, only after FFN)"]
+      variation_style: "full_numbers"
+      design_note: "Critical ablation showing after-residual diverges (1358 PPL), after-LN is best (25.76). Informs implementation choice."
+  supplementary_tables:
+    in_appendix: true
+    content: "Table 2 (SFT results on 7 downstream tasks for 250M and 1B); Table 3 (OLMo Scaled Init comparison); Table 4 (Qwen2.5-0.5B scaled-up pre-training); Table 5 (ViT-S with LNS positions)"
+    reason: "Main results (Table 1) focus on perplexity as primary metric; downstream task evaluation (Table 2), cross-architecture validation (Tables 3-5) provide complementary evidence in supplementary space."

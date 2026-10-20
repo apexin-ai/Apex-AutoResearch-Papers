@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0e5b5c4a990892d88224",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "code phase2 ug baseline prep",
+  "task_key": "worker_code_phase2_ug_baseline_prep_20260518T153118",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_phase2_ug_baseline_prep_20260518T153118_result.json",
+    "occurrence": 1,
+    "bytes": 1907,
+    "sha256": "0d4d358df3f324d9cc644ceb8f43c4093d5806b83a4410c2202cdea850c5b0fc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 1. 代码是否 ready\n**部分 ready。** `--gate-type uniform` 已在 argparse 中支持，UniformGateNetwork 可正确初始化，`--dry-run` flag 存在。代码路径完整。\n\n### 2. 参数量对比 — **严重不匹配**\n\n| | ThreadGate | UniformGate |\n|---|---|---|\n| down_proj/层 | 3584×16 = 57,344 | 3584×32 = 114,688 |\n| fc1+fc2/层 | 2,177 | 2,177 |\n| TurnEmbedding | 528 (shared) | 无 |\n| **总计** | **1,667,116** | **3,272,220** |\n| **差异** | — | **+96.3% (1.96x)** |\n\n**根因**：UniformGateNetwork 的 `down_proj` 输出维度是 `LORA_RANK + TURN_EMBED_DIM = 32`，ThreadGate 的是 `LORA_RANK = 16`。这样做是为了让 fc1 输入维度相同（32），但 down_proj 参数量翻倍（每层多 57,344）。而它本意替代的 TurnEmbedding 仅有 528 参数，down_proj 多出的参数是 TurnEmbedding 的 3041 倍。\n\n**修复建议**：UniformGateNetwork 的 down_proj 应输出 `LORA_RANK = 16`，fc1 输入维度改为 16（而非 32）。这样每层参数差异仅来自 fc1 输入维度变化（16→32 的 fc1 差异 = 1,024/层），整体差异可控制在 ~2% 以内。\n\n### 3. param_groups — 正确\n参数名匹配逻辑 `'gates.' in name` 对两种 gate 都适用。dry-run 输出确认：`Gate params: 140`（28层 × 5 tensors），`Gate LR multiplier: 10.0 (gate lr = 0.002)`。\n\n### 4. dry-run 结果\n初始化成功，forward pass 时 OOM（v4 训练占用 83.4 GiB，剩余 384 MiB 不足以运行 7B 模型）。服务器后续断连，无法重试。需等 v4 结束或服务器恢复后重新验证 forward pass。\n\n### 5. 需处理的问题\n1. **参数量不匹配（P0）**：UniformGate 比 ThreadGate 多 96% 参数，作为 controlled baseline 不公平。需决定修复方案后再启动正式训练。\n2. **dry-run 未完成 forward pass**：等服务器恢复后需重跑验证。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-phase2-ug-baseline-prep.md"
+}

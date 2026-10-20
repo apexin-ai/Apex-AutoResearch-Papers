@@ -1,0 +1,14 @@
+{
+  "exp_id": "phase1a_multiseed_qwen",
+  "project": "turn_residual_gating",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-25T06:15:26.051Z",
+    "updated_at": "2026-05-25T06:15:26.051Z"
+  },
+  "timestamp": "2026-05-25T06:15:26.175943+00:00",
+  "trigger": "update_registry"
+}

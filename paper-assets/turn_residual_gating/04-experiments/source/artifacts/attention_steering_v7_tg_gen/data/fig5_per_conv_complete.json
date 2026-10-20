@@ -1,0 +1,42 @@
+{
+  "gen_n5": {
+    "description": "Gen mode, N=5 conversations, v7 TG checkpoint, generative decoding",
+    "summary": {
+      "beta_0.0": {"gar_mean": 0.0285, "gar_std": 0.0140, "ppl_mean": 1.409, "ppl_std": 0.118},
+      "beta_0.5": {"gar_mean": 0.0328, "gar_std": 0.0082, "ppl_mean": 1.387, "ppl_std": 0.111},
+      "beta_1.0": {"gar_mean": 0.0444, "gar_std": 0.0074, "ppl_mean": 1.360, "ppl_std": 0.101},
+      "beta_2.0": {"gar_mean": 0.0749, "gar_std": 0.0107, "ppl_mean": 1.411, "ppl_std": 0.124},
+      "beta_5.0": {"gar_mean": 0.6971, "gar_std": 0.0198, "ppl_mean": 1.908, "ppl_std": 0.357},
+      "beta_10.0": {"gar_mean": 0.9588, "gar_std": 0.0028, "ppl_mean": 4.220, "ppl_std": 0.988}
+    },
+    "per_conv": {
+      "gar": {
+        "beta_0.0": [0.0205, 0.0308, 0.0150, 0.0249, 0.0512],
+        "beta_0.5": [0.0264, 0.0367, 0.0251, 0.0308, 0.0450],
+        "beta_1.0": [0.0328, 0.0517, 0.0481, 0.0421, 0.0472],
+        "beta_2.0": [0.0601, 0.0763, 0.0891, 0.0700, 0.0789],
+        "beta_5.0": [0.6897, 0.7246, 0.7012, 0.6699, 0.7000],
+        "beta_10.0": [0.9560, 0.9565, 0.9626, 0.9586, 0.9605]
+      },
+      "ppl": {
+        "beta_0.0": [1.459, 1.421, 1.529, 1.213, 1.424],
+        "beta_0.5": [1.469, 1.367, 1.498, 1.214, 1.388],
+        "beta_1.0": [1.358, 1.392, 1.473, 1.197, 1.380],
+        "beta_2.0": [1.403, 1.446, 1.486, 1.202, 1.517],
+        "beta_5.0": [1.741, 2.074, 2.009, 1.390, 2.328],
+        "beta_10.0": [3.066, 5.795, 4.223, 4.038, 3.979]
+      }
+    }
+  },
+  "tf_n200": {
+    "description": "TF mode, N=200 conversations (eval_200), v7 TG checkpoint, teacher-forcing",
+    "summary": {
+      "beta_0.0": {"gar_mean": 0.5215, "gar_std": 0.0745, "ppl_mean": 2.618, "ppl_std": 0.819},
+      "beta_2.0": {"gar_mean": 0.5969, "gar_std": 0.0750, "ppl_mean": 2.688, "ppl_std": 0.845},
+      "beta_3.0": {"gar_mean": 0.7769, "gar_std": 0.0466, "ppl_mean": 2.931, "ppl_std": 0.969},
+      "beta_4.0": {"gar_mean": 0.8088, "gar_std": 0.0450, "ppl_mean": 3.490, "ppl_std": 1.507},
+      "beta_5.0": {"gar_mean": 0.8275, "gar_std": 0.0489, "ppl_mean": 6.148, "ppl_std": 11.108},
+      "beta_10.0": {"gar_mean": 0.9715, "gar_std": 0.0148, "ppl_mean": 505.210, "ppl_std": 463.107}
+    }
+  }
+}

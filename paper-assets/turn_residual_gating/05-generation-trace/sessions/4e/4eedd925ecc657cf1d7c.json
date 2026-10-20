@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4eedd925ecc657cf1d7c",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "check gpu and ss chain",
+  "task_key": "worker_check_gpu_and_ss_chain_20260523T070442",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_gpu_and_ss_chain_20260523T070442_result.json",
+    "occurrence": 1,
+    "bytes": 1243,
+    "sha256": "52f50859b4c208274c3e4a680191edc9d4fbe56963a37da85cb05de1b519d134"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报如下：\n\n### GPU 状态\n- **RTX PRO 6000 (96GB)**，占用 11.5GB / 96GB，利用率 19%\n- 当前进程：`eval_split_softmax.py` 正在跑 base model TF 模式（PID 81629）\n\n### SS 实验链进度\n\n| 环节 | 状态 |\n|------|------|\n| AR N=50 existing s42 eval | **已完成** — 结果在 `results/d048_ar_n50_existing/`（6个条件全部完成） |\n| SS s123 train | **已完成** — 5月22日由 queue_runner 执行，eval 结果在 `runs/eval_v8b_ss_s123/` |\n| SS s456 train | **失败 (OOM)** — Epoch 1 Step 3400 崩溃，只保存了 epoch_0。原因：PaperBanana 进程（PID 75061）同时占用 ~39GB GPU 显存导致 OOM |\n| Split-softmax eval | **正在执行** — 刚启动（15:01），当前跑 base_tf_n50，`results/split_softmax/` 目录还是空的 |\n\n### 关键问题\n**SS s456 因 PaperBanana 抢显存而 OOM 崩溃。** d048_remaining_queue.sh 跳过了 s456 eval 直接进入 split-softmax eval。PaperBanana 进程（PID 75061）目前仍在运行。\n\n### 下一步建议\n- Split-softmax eval 正在跑，等它完成\n- SS s456 需要重跑 — 等 PaperBanana 结束后单独启动，或先 kill PaperBanana 再跑\n- GPU 当前不空闲，不能立即排新任务"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-gpu-and-ss-chain.md"
+}

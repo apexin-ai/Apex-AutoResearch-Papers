@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f0d1d2e7a71157be1796",
+  "project": "redundancy-compound-sparsity",
+  "kind": "result",
+  "title": "code mvp 001 validation",
+  "task_key": "worker_code_mvp-001-validation_20260511T224510",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp-001-validation_20260511T224510_result.json",
+    "occurrence": 1,
+    "bytes": 1197,
+    "sha256": "5b88fe1a06ad59c04ad1a92eecdf01d8d217d0399b87231f1acc610d6b65f84c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已成功提交并运行中。\n\n**状态总结：**\n\n- **实验 ID**: mvp-001\n- **服务器**: seetacloud-bjb2-structtts (RTX 5090, 31GB)\n- **进程 PID**: 6503\n- **GPU 占用**: 15.2GB / 32.6GB, 利用率 56%（正在生成 CoT）\n- **数据源**: HF 网络超时，自动 fallback 到 20 道硬编码 MATH 题（Level 3-5）\n- **日志**: `/home/sonny/redundancy-compound-sparsity/results/mvp/mvp_run.log`\n- **结果输出**: `/home/sonny/redundancy-compound-sparsity/results/mvp/mvp_results.json`\n\n**脚本实现要点：**\n1. 对每道题先 `model.generate()` 生成 CoT（max 4096 tokens），再做完整前向传播收集指标\n2. Forward hooks 挂在 `k_proj`/`v_proj`（KV cosine similarity）和 `down_proj`（MLP L1 norm + 40%/55% sparsity perturbation）\n3. Surprisal 用 logsumexp 高效计算，避免具现化完整 log_softmax 矩阵\n4. 每层独立计算 EMA (α=0.3)，全局 EMA 取跨层均值\n5. 聚合后输出 Pearson r、K-S test、Δpert 及 pass/fail 判定\n\n**注意**: Python stdout 重定向到文件有缓冲延迟，日志更新可能不及时。查看进度可用 `nvidia-smi` 确认 GPU 活跃，或等结果 JSON 生成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mvp-001-validation.md"
+}

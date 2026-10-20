@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8a176b0764ab26ec4fa4",
+  "project": "turn-hier-kv-compress",
+  "kind": "result",
+  "title": "code v3 fix traces",
+  "task_key": "worker_code_v3_fix_traces_20260513T154412",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_v3_fix_traces_20260513T154412_result.json",
+    "occurrence": 1,
+    "bytes": 1070,
+    "sha256": "c3004e219108d48b80ba0cd2f5244303b8e4a4f8d730dcaf65834be01267e43f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n## v3 traces 生成 + Full KV KIRR 验证\n\n**改动：**\n- 替换随机字母数字字符串（API keys、passwords 等）为简单可记忆值：项目名（Project Neptune）、公司名（Acme Corp）、短代码（ERR-4021、TKT-9915）、金额（$15,000）等\n- 每条 trace 内所有 retrieval question 唯一，消除歧义\n- 减少每条 trace 的 planted items（std: 2-4, adv: 3-5）\n- 旧 traces 已备份为 `traces_v2.json`\n\n**结果：**\n| 指标 | v2 (旧) | v3 (新) |\n|------|---------|---------|\n| Full KIRR Overall | 14.4% | **99.6%** |\n| Full KIRR Standard | — | 99.2% |\n| Full KIRR Adversarial | — | 100.0% |\n| Traces | 80 | 80 (48 std + 32 adv) |\n| Planted items | ~600 | 253 |\n| Misses | ~500+ | **1** (ERR-4021 → ERR_4021 格式差异) |\n\n**产出文件（服务器）：**\n- `data/synthetic_traces/traces.json` — 新 traces\n- `data/synthetic_traces/traces_v2.json` — 旧 traces 备份\n- `gen_traces_v3.py` — 新生成器\n- `results/full_kirr_v3.json` — 评估结果"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-v3-fix-traces.md"
+}

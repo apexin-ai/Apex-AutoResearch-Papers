@@ -1,0 +1,39 @@
+{
+  "exp_id": "mvp-001",
+  "project": "redundancy-compound-sparsity",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-11T20:46:44.033Z",
+    "updated_at": "2026-05-11T23:26:25.430Z",
+    "spec": {
+      "hypothesis": "KV similarity (EMA-based) predicts MLP sparsity tolerance: high KV similarity → low surprisal → higher MLP sparsity tolerance",
+      "model_name": "DeepSeek-R1-Distill-Qwen-7B",
+      "server": "seetacloud-bjb2-structtts",
+      "data_path": "HuggingFaceH4/MATH-500",
+      "data_count": 20,
+      "seed": 42,
+      "command": "python results/mvp/mvp_carc_validation.py"
+    },
+    "notes": "⚠️ EMA 信号实现错误：用了 adjacent token cosine sim + 标量 EMA，非 Token Filtering 的向量级 anchor 定义。结果保留作为 adjacent-sim baseline 参考，不用于 MVP gate check。PID 6503 继续运行。修正版见 mvp-001b。",
+    "conclusion": "negative",
+    "metrics": {
+      "pearson_r": -0.186,
+      "pearson_p": 0,
+      "dpert_40pct": -1.4,
+      "dpert_55pct": -1.5,
+      "verdict": "FAIL",
+      "total_tokens": 27056,
+      "num_problems": 20,
+      "elapsed_s": 1112,
+      "note": "WRONG EMA implementation (adjacent-sim + scalar EMA). Not used for MVP gate check."
+    },
+    "log_path": "/home/sonny/redundancy-compound-sparsity/results/mvp/mvp_run.log",
+    "checkpoint_path": "/home/sonny/redundancy-compound-sparsity/results/mvp/mvp_results.json",
+    "completed_at": "2026-05-11T23:26:25.430Z"
+  },
+  "timestamp": "2026-05-11T23:26:25.447137+00:00",
+  "trigger": "update_registry"
+}

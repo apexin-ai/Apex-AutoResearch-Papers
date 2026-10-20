@@ -1,0 +1,11 @@
+Remote files on westd-20861:
+- PDF: /root/turn_residual_gating/artifacts/fig_ar_gar_perturn.pdf (22K)
+- PNG: /root/turn_residual_gating/artifacts/fig_ar_gar_perturn.png (132K)
+
+3 curves, X=Turn 1-10, Y=GAR (%):
+- Qwen-2.5-7B Base: 4.18% → 0.64%, -85% drop
+- Llama-3.1-8B Base: 2.63% → 0.26%, -90% drop
+- Qwen-2.5-7B + TG (AR): 5.22% → 1.45%, TG still decays under AR
+
+SS AR data (0.39-0.49 range) excluded to avoid compressing base curves.
+Okabe-Ito colorblind-safe palette, 300 DPI.

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3ffef8e55544d88069d1",
+  "project": "redundancy-compound-sparsity-2",
+  "kind": "history",
+  "title": "agent / loop_1_1778607017.md",
+  "task_key": "loop_1_1778607017",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_1_1778607017.md",
+    "occurrence": 1,
+    "bytes": 4318,
+    "sha256": "d683a65ff1de504d03ebcc17e2c1b709aecb9439b93dddfbcb125dc3c43eda46"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 1\nreason: max_wall_time\nupdated: '2026-05-12T17:14:17+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0 和 cuda:1 @ westd-16980。不得使用其他 GPU\n- inverted_ema 实验未设 torch.manual_seed(42)，结果报告必须标注 \"⚠️ seed 未设置\"\n- analysis_gamma_sweep (PID 40063) 是 priority=1，任何新 GPU 0 任务必须等它完成\n- 项目处于 decision gate：inverted EMA PPL 结果决定项目存亡，不得跳过直接做后续实验\n- registry 不支持 \"partial\"/\"cancelled\" 状态，用 negative+reviewer_note 或 killed+metrics 替代\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-16980，2×RTX PRO 6000 96GB\n- 工作目录：/root/carc/\n- Python：/root/miniconda3/bin/python（conda base 环境，不用 venv）\n- 激活命令：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型：/root/carc/models/DeepSeek-R1-Distill-Qwen-14B（48层，8 KV heads，128K max_pos）\n- 结果目录：/root/carc/results/\n- 活跃进程：\n  - PID 40063: analysis_gamma_sweep.py (cuda:0)，gamma 敏感性扫描，预计总时长 5-7h\n  - PID 39080: run_inverted_ema_wikitext.py (cuda:1)，inverted EMA WikiText-2 32K\n- 无活跃 cron（reconcile 返回 0）\n- 无 wandb 配置（实验结果写本地 JSON）\n\n### 3. 📊 当前状态\n刚处理完 Director 的 Reviewer 审查 P0-P5 + P0.5/P1.5 补充指令：\n- P0: PID 39560 (inverted_ema_reasoning) 已 kill，GPU 0 释放给 gamma_sweep ✅\n- P1: 两个 inverted_ema 实验已注册 ✅\n- P2: analysis_decay_curve conclusion → negative + reviewer_note ✅\n- P3: analysis_attn_vs_ema status → DONE ✅\n- P4: experiment_plan.yaml registry_id 映射补全 ✅\n- P5: analysis_decay_curve spec 补全 ✅\n\nRegistry 状态：\n- **RUNNING**: inverted_ema_wikitext (GPU 1, PID 39080), analysis_gamma_sweep (GPU 0, PID 40063)\n- **DONE/killed**: inverted_ema_reasoning（需重跑）\n- **DONE/negative**: d003_reasoning_traces, d003_wikitext_32k, analysis_attn_vs_ema, analysis_decay_curve, mvp_001, sanity_kv_eviction, carc_mvp_seed42, carc_mvp_seed1337\n- **PREPARING（僵尸）**: carc_generate_rope_test（可忽略）\n\n等待中的 Worker 回调：\n- worker_check_inverted_ema_wikitext_results_20260512T171220 — 检查 wikitext 结果\n- worker_check_gamma_sweep_full_eval_integrity_20260512T171314 — P0.5 验证 [full] eval 数据完整性\n\n### 4. 📋 待办（条件触发式）\n- inverted_ema_wikitext Worker 回调到达 → 读取 PPL 结果，判定 decision gate（阈值：PPL < 7.6432 = success）\n- gamma_sweep [full] eval 完整性 Worker 回调到达 → 若不完整，标记需重跑 [full] eval\n- inverted_ema_wikitext 完成 + GPU 1 空闲 → 立即重跑 inverted_ema_reasoning（加 seed=42！），这次用 GPU 1\n- gamma_sweep 完成 → 更新 registry，读取结果，若 [full] 不可信则在 GPU 0 重跑 [full] eval\n- 两个 inverted_ema 结果都出来 → 向 Director 汇报完整 decision gate 判定：\n  - 两个都 < random → 信号可用，继续新 narrative \"EMA measures commonality\"\n  - 任一 ≈ random → EMA 信号太弱，项目可能需要 archive/pivot\n- D003 两个 sanity gate 均 FAIL 后，Director 未明确选 Phase 0b 分析论文路线还是继续 inverted EMA 路线，取决于 inverted EMA 结果\n\n### 5. 🎯 战略上下文\n- 决策链：D001(MVP定义) → D002(MVP FAIL→Path C pivot) → D003(1-day retry) → D004(D003部署) → D005(D003 FAIL) → D006(inverted EMA pivot)\n- 核心发现：EMA centroid similarity 与 attention importance **负相关**（ρ=-0.27）。原始 CARC 逻辑（evict LOW EMA = \"novel\" tokens）方向反了。Inverted EMA（evict HIGH = \"common\"）是最后一搏\n- A2 attn_vs_ema 分析被 Reviewer 判定不可靠（Pearson/Spearman 符号矛盾，|r|<0.3，样本量不足），inverted EMA PPL 是唯一有效 decision gate\n- 易错点：\n  1. 不要把 D003 的 ema_0.9 PPL 和 inverted_ema_0.9 PPL 混淆——方向完全相反\n  2. analysis_gamma_sweep 总时长 5-7h（不是 22min），它包含 full + random + recency + 8 个 EMA gamma 值\n  3. GPU 0 曾因双进程 OOM，gamma_sweep 的 [full] eval 数据可能不完整——P0.5 Worker 正在验证\n  4. 项目 DDL 是 EMNLP 2026 ARR 2026-05-25，剩 13 天，但如果 inverted EMA 也 FAIL，可能需要 archive\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-1-1778607017.md"
+}

@@ -1,0 +1,55 @@
+{
+  "exp_id": "analysis_heatmap",
+  "project": "solver-verified-formalizer-rl",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-12T17:24:26.068Z",
+    "updated_at": "2026-05-12T17:45:12.759Z",
+    "conclusion": "success",
+    "spec": {
+      "command": "python analysis_heatmap.py",
+      "server": "westd-16980",
+      "data_path": "WikiText-2 32K subset (reused from d003)",
+      "data_count": 6554,
+      "model_name": "DeepSeek-R1-Distill-Qwen-14B",
+      "seed": 42,
+      "description": "Per-layer EMA score heatmap visualization for gamma=0.5/0.7/0.9",
+      "gpu": [
+        "cuda:1"
+      ],
+      "checkpoint_path": "/root/carc/results/heatmap_data.pt",
+      "log_path": "/root/carc/results/ema_heatmap_comparison.pdf"
+    },
+    "metrics": {
+      "gamma05_global_mean": 0.5991,
+      "gamma07_global_mean": 0.5961,
+      "gamma09_global_mean": 0.5765,
+      "gamma05_layer_std": 0.0534,
+      "gamma07_layer_std": 0.0501,
+      "gamma09_layer_std": 0.0381,
+      "strongest_layers": [
+        31,
+        18,
+        19,
+        30,
+        35
+      ],
+      "weakest_layers": [
+        4,
+        3,
+        2,
+        1,
+        5
+      ],
+      "finding": "浅层(0-5) EMA mean ~0.45-0.55 KV不冗余; 中层(16-35) mean ~0.60-0.66 冗余最强但不稳定; 深层(40-47) mean回落 ~0.54-0.57",
+      "composite_dryrun": "PASS, score range [0.0016, 0.9690]",
+      "output_files": "ema_heatmap_gamma05/07/09.pdf + ema_heatmap_comparison.pdf + heatmap_data.pt"
+    },
+    "completed_at": "2026-05-12T17:45:12.759Z"
+  },
+  "timestamp": "2026-05-12T17:45:12.798434+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "77efb5d604cfb3e24cd5",
+  "project": "redundancy-compound-sparsity",
+  "kind": "result",
+  "title": "infra env setup mvp001",
+  "task_key": "worker_infra_env-setup-mvp001_20260511T221147",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_env-setup-mvp001_20260511T221147_result.json",
+    "occurrence": 1,
+    "bytes": 885,
+    "sha256": "5d9497ca4a330321a28397574ff11d4b82885703066ef6edfcb08a5a9c598e32"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "模型加载和推理验证通过。最终环境报告：\n\n---\n\n## MVP 环境报告 — seetacloud-bjb2-structtts\n\n| 项目 | 值 |\n|------|-----|\n| **GPU** | NVIDIA GeForce RTX 5090, 31GB VRAM |\n| **CUDA** | 12.8 |\n| **Python 环境** | conda base (`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`) |\n| **Python 版本** | 3.12.3 |\n| **torch** | 2.10.0+cu128, CUDA 可用, 1 GPU |\n| **transformers** | 4.57.6 |\n| **模型路径** | `/root/autodl-tmp/models/deepseek-r1-distill-qwen-7b/deepseek-ai/DeepSeek-R1-Distill-Qwen-7B` |\n| **模型大小** | 7.62B params, 15GB 磁盘占用, bf16 加载到 cuda:0 |\n| **数据盘剩余** | 221GB / 250GB (12% used) |\n| **项目目录** | `/home/sonny/redundancy-compound-sparsity/results/mvp/` |\n\n推理验证通过——tokenizer 加载、模型加载到 GPU、生成 token 均正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-env-setup-mvp001.md"
+}

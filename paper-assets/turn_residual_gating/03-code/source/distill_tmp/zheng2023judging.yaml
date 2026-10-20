@@ -1,0 +1,27 @@
+paper_key: "zheng2023judging"
+title: "Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena"
+venue: "NeurIPS 2023"
+full_text_available: false
+
+research:
+  baselines: ["GPT-4", "GPT-3.5", "Claude", "Vicuna", "LLaMA", "Alpaca"]
+  metrics:
+    - {name: "MT-Bench score", direction: "higher_better"}
+    - {name: "agreement with human", direction: "higher_better"}
+    - {name: "Elo rating", direction: "higher_better"}
+  datasets:
+    - {name: "MT-Bench", size: "80 multi-turn questions, 8 categories"}
+    - {name: "Chatbot Arena", size: "crowdsourced battles"}
+  ablation_dimensions: ["judge model", "prompt template", "scoring mode"]
+  training_recipe: "N/A (evaluation)"
+  method_family: "LLM evaluation / judge"
+
+positioning:
+  core_claim: "Strong LLMs (GPT-4) can serve as scalable judges achieving >80% agreement with human preferences on multi-turn conversations"
+  key_results: "GPT-4 judge agrees with humans >80%, MT-Bench separates models effectively"
+  limitations: ["position bias in pairwise judging", "self-enhancement bias", "limited math/reasoning coverage"]
+  relation_to_us: "complementary"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

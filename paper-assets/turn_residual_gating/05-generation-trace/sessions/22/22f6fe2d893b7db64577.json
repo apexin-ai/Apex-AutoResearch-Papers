@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "22f6fe2d893b7db64577",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "paper writing discussion",
+  "task_key": "worker_paper_writing_discussion_20260519T230914",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_discussion_20260519T230914_result.json",
+    "occurrence": 1,
+    "bytes": 562,
+    "sha256": "50d8f844d55428793ba04534949b70e0e97b752aebf56be0d4cb72049b7637d3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Discussion section written to `paper/sections/discussion.tex`. Four paragraphs covering: (1) why lightweight gating fails structurally under teacher-forcing + NTP pressure, (2) four evidence-derived directions (inference-time intervention, decoupled pathway, GAR-aware decoding, exposure bias mitigation), (3) convergent evidence with Dongre et al. using hedged language for the re-injection conjecture, (4) honest scope limitations including PCGrad boundaries and single-model caveat. ~410 words, no dashes, no -ing endings, no AI-style phrasing."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-discussion.md"
+}

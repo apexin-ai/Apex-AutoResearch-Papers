@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e9c389ef9443c4021dfe",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "prep analysis pipeline verify",
+  "task_key": "worker_prep_analysis_pipeline_verify_20260515T044019",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_analysis_pipeline_verify_20260515T044019_result.json",
+    "occurrence": 1,
+    "bytes": 1809,
+    "sha256": "02c3a84de8dea263744a78395e453e3361fab120d3641444ac7de70ca0948aaf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## n=500 分析 Pipeline 就绪状态简报\n\n### 1. 分析脚本 — OK (有 bug)\n`analyze_n500_unified.py` 存在，结构完整（median II + bootstrap CI, mid-phase null rate, Cohen's d_z, permutation monotonicity, Bonferroni）。但 **LaTeX 输出有 KeyError**：`latex_output()` 在处理 random masking 条件时崩溃于 `c[\"median_ii_diff_ci\"]`（见 `n500_preliminary.log` 中的 traceback）。JSON/CSV 输出不受影响。\n\n### 2. 依赖 — OK\n- Python 3.12 (miniconda3)\n- scipy ✓, numpy ✓, pandas ✓ （均在 `/root/miniconda3/lib/python3.12/site-packages/`）\n\n### 3. n500 数据完整性 — **12/16 完成，4 个 s030 缺失**\n\n| 条件 | ds_imp | ds_rand | qw_imp | qw_rand |\n|------|--------|---------|--------|---------|\n| s015 | ✅ | ✅ | ✅ | ✅ |\n| s020 | ✅ | ✅ | ✅ | ✅ |\n| s025 | ✅ (22MB, 11:19) | ✅ | ✅ | ✅ (19MB, 10:01) |\n| s030 | ❌ 空目录 | ❌ 空目录 | ❌ 空目录 | ❌ 空目录 |\n\n### 4. 实验进度\n- `completion_check.log` 有自动轮询（每 10min），最新记录 **12:39:54**：`DeepSeek 6/8, Qwen 6/8`\n- s025 最晚完成时间 11:19，之后 s030 目录已创建但无数据写入 — **s030 实验可能正在运行或卡住**\n- 已有部分分析输出：`n500_unified.json`/`.csv` (10:08，仅含 s015/s020 数据)\n\n### 5. 潜在问题\n\n1. **s030 × 4 条件数据缺失** — 全部空目录，距 s025 完成已过 ~1.5h，需确认实验是否还在跑\n2. **LaTeX 输出 bug** — `analyze_n500_unified.py:442` `latex_output()` 对 random 条件缺少 `median_ii_diff_ci` 键，需修复后才能生成完整 LaTeX 表格\n3. **无法确认进程状态** — `screen -ls` 受 ssh_read_only 限制无法执行，建议用 ssh_execute 检查 `screen -ls` 或 `ps aux | grep profil`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-analysis-pipeline-verify.md"
+}

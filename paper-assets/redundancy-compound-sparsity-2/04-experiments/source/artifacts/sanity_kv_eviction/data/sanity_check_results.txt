@@ -1,0 +1,1 @@
+ppl_full=6.0344, ppl_ema=6.3701, ppl_random=6.428, ppl_recency=6.0646, ema_vs_random=0.9%, verdict=FAIL

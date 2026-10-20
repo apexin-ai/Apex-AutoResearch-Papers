@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d43b673279f626284b27",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "infra download qwen25 7b",
+  "task_key": "worker_infra_download-qwen25-7b_20260513T222117",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_download-qwen25-7b_20260513T222117_result.json",
+    "occurrence": 1,
+    "bytes": 298,
+    "sha256": "a332f2f1ae0acca9bec16575d10cd3b1d39d9bcdd97f1fff090357f88c1d3b48"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载验证完成。\n\n**结果汇总：**\n- 下载成功\n- 模型路径：`/root/autodl-tmp/models/Qwen2.5-7B/Qwen/Qwen2___5-7B`\n- 总大小：**15.24 GB**（4 个 safetensors 分片：3.95 + 3.86 + 3.86 + 3.56 GB）\n- Tokenizer vocab：151,665\n- 下载耗时：约 14 分钟"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-download-qwen25-7b.md"
+}

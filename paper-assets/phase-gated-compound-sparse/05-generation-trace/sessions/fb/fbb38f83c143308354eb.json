@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fbb38f83c143308354eb",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "analysis acc ds dense 8k v2",
+  "task_key": "worker_analysis_acc_ds_dense_8k_v2_20260515T231852",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_acc_ds_dense_8k_v2_20260515T231852_result.json",
+    "occurrence": 1,
+    "bytes": 1642,
+    "sha256": "763b780d1f25dceedbf079d48eff37fccd60eb60266ab06844fda5faebdb73a1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 实验 1: acc_ds_dense_8k_v2\n\n```\nexp_id: acc_ds_dense_8k_v2\nstatus: success\nmetrics:\n  accuracy: 0.74\n  correct: 37\n  total: 50\n  truncated_count: 8\n  truncated_rate: 0.16\n  null_count: 10\n  extraction_failure_count: 2 (null但未截断)\n  total_time_seconds: 2882\n  delta_vs_baseline: +0.22 (vs 4096版 dense 0.52)\nnotes: 8k tokens显著提升accuracy (+22pp)。8个截断样本全部预测为null，说明4096版大量错误来自截断。仍有2个extraction failure（非截断但无法提取答案）。\n```\n\n## 实验 2: acc_qw_s025_n100_b2_fix\n\n```\nexp_id: acc_qw_s025_n100_b2_fix\nstatus: success\nmetrics:\n  accuracy: 0.34\n  correct: 17\n  total: 50\n  truncated_count: 3\n  truncated_rate: 0.06\n  null_count: 9\n  extraction_failure_count: 6 (null但未截断)\n  total_time_seconds: 1099\n  delta_vs_original_batch2: 0.00 (原batch2也是0.34)\n  combined_accuracy: 0.33 (batch1=16/50 + batch2_fix=17/50 = 33/100)\nnotes: 重跑结果与原batch2一致(0.34)。截断率很低(6%)，主要问题是extraction failure(6个)和答案错误(24个)。sparse s025对QW模型的accuracy损伤稳定在~0.33。\n```\n\n## 关键对比\n\n| 指标 | DS dense 4k | DS dense 8k | QW s025 combined |\n|------|------------|------------|-----------------|\n| accuracy | 0.52 | **0.74** | 0.33 |\n| truncated_rate | (高) | 0.16 | 0.06 |\n\n- DS dense 从 4k→8k 提升 22pp，说明 4k 版大量截断导致的低估严重\n- QW s025 重跑稳定在 0.33-0.34，与 dense baseline (DS 0.74) 相比 accuracy 损失约 41pp（不过注意这是不同模型，QW dense baseline 需另行确认）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-acc-ds-dense-8k-v2.md"
+}

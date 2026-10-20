@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5b10248a00d25775d7eb",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "analysis llama tg status and eval",
+  "task_key": "worker_analysis_llama_tg_status_and_eval_20260521T012333",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_llama_tg_status_and_eval_20260521T012333_result.json",
+    "occurrence": 1,
+    "bytes": 1020,
+    "sha256": "42cb4388d37d806d0876706844ff3485740458a6fd467b3ef2d8d12941b91b8c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Training still running.** Current status:\n\n| Metric | Value |\n|--------|-------|\n| PID | 199643 (elapsed 5h17m) |\n| GPU | RTX PRO 6000 Blackwell, 63.4/102 GB, 99% util |\n| Current step | Epoch 1, Step 7650 |\n| Optimizer step | ~1950 / 3000 (65%) |\n| Gate mean | 0.929 (converged from 0.818 at init) |\n| Gate std | 0.059 |\n| L_NTP | ~0.76–1.10 (normal range) |\n| L_GAR | ~0.0001–0.004 (near zero → GAR constraint satisfied) |\n| L_DIV | 0.0000 |\n\n**Gate profile (step 1900)** shows the expected V-shape — L25 lowest at 0.746, early/late layers near 0.97–0.99. This matches the Qwen-2.5 pattern where middle-to-late layers have lower gates.\n\n**Config recap:** Llama-3.1-8B-Instruct, ultrachat_8k, LoRA + ThreadGate, gate_lr=0.002 (10× base), grad_accum=8, total 3000 optimizer steps.\n\n**ETA:** At ~6.15 optimizer steps/min, ~1050 steps remaining → **~2h50m to completion** (roughly 12:00 UTC).\n\nNo action needed now — will check back when it should be done to start eval."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-llama-tg-status-and-eval.md"
+}

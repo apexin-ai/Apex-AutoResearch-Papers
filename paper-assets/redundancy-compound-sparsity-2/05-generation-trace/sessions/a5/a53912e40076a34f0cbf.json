@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "a53912e40076a34f0cbf",
+  "project": "redundancy-compound-sparsity-2",
+  "kind": "worker",
+  "title": "run analysis decay curve",
+  "task_key": "worker_run_analysis_decay_curve_20260512T161823",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_analysis_decay_curve_20260512T161823.log",
+    "occurrence": 1,
+    "bytes": 587474,
+    "sha256": "de7f7d0868f69fc28a58d375563ecd29e38af86af43d3ad8b5583b7e0a2173eb"
+  },
+  "statistics": {
+    "messages": 268,
+    "user_turns": 0,
+    "tool_calls": 98,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 67,
+      "tool_call": 98,
+      "tool_result": 98,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 268,
+      "chunks": [
+        {
+          "path": "a53912e40076a34f0cbf-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "a53912e40076a34f0cbf-part-0002.json",
+          "message_count": 88
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/run-analysis-decay-curve.md"
+}

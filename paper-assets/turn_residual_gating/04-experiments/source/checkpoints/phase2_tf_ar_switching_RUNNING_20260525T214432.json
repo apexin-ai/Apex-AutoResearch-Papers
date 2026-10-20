@@ -1,0 +1,35 @@
+{
+  "exp_id": "phase2_tf_ar_switching",
+  "project": "turn_residual_gating",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-25T06:15:36.221Z",
+    "updated_at": "2026-05-25T21:44:32.007Z",
+    "hypothesis": "TF→AR switching at turn k (k=1..5) on ThreadGate s42 checkpoint. If GAR drops abruptly at the switch point (matching pure-AR level within 1 turn), it confirms exposure bias as instantaneous distribution shift rather than gradual cumulative drift.",
+    "server": "westd-20861",
+    "gpu": "cuda:0",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /root/turn_residual_gating/src/eval_switching.py --checkpoint-path /root/turn_residual_gating/runs/phase2_tg_s42_v7/epoch_2 --data-path /root/turn_residual_gating/data/eval_200/eval_200.json --output-path /root/turn_residual_gating/results/switching_tg_s42_v7 --max-conversations 50 --switch-points 1 2 3 4 5 --max-new-tokens 150\"",
+      "server": "westd-20861",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "11534",
+      "log_path": "~/runs/turn_residual_gating/phase2_tf_ar_switching.log",
+      "submitted_at": "2026-05-25T21:44:30.897Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "pid": "11534",
+    "log_path": "~/runs/turn_residual_gating/phase2_tf_ar_switching.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /root/turn_residual_gating/src/eval_switching.py --checkpoint-path /root/turn_residual_gating/runs/phase2_tg_s42_v7/epoch_2 --data-path /root/turn_residual_gating/data/eval_200/eval_200.json --output-path /root/turn_residual_gating/results/switching_tg_s42_v7 --max-conversations 50 --switch-points 1 2 3 4 5 --max-new-tokens 150\""
+    }
+  },
+  "timestamp": "2026-05-25T21:44:32.561021+00:00",
+  "trigger": "update_registry"
+}

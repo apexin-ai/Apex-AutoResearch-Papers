@@ -1,0 +1,217 @@
+experiments:
+  # === Phase 0: Sanity Gate ===
+  - id: pathc_sanity_reasoning
+    phase: "0"
+    description: "EMA vs random eviction PPL on reasoning traces (MATH-500, ~30-40K tokens)"
+    claim: "EMA eviction signal is meaningful — outperforms random by ≥5% PPL gap"
+    priority: 0
+    depends_on: []
+    success_criterion: "EMA vs random PPL gap ≥ 5%"
+    estimated_hours: 3
+    registry_id: d003_reasoning_traces
+
+  - id: pathc_sanity_wikitext32k
+    phase: "0"
+    description: "EMA vs recency eviction PPL on WikiText-2 32K prefill"
+    claim: "EMA eviction outperforms recency-based eviction on long context"
+    priority: 0
+    depends_on: []
+    success_criterion: "EMA PPL < recency PPL"
+    estimated_hours: 3
+    registry_id: d003_wikitext_32k
+
+  # === Phase 0b: Analysis Paper Contingency (if Phase 0 FAIL) ===
+  - id: analysis_heatmap
+    phase: "0b"
+    description: "Per-layer heatmap visualization of spatial decoupling (uses MVP existing data)"
+    claim: "EMA captures meaningful per-layer structure"
+    priority: 2
+    depends_on:
+      - "pathc_sanity_reasoning FAIL"
+      - "pathc_sanity_wikitext32k FAIL"
+    success_criterion: "Visual evidence of per-layer EMA score distribution differences"
+    estimated_hours: 0
+    registry_id: null
+
+  - id: analysis_attn_vs_ema
+    phase: "0b"
+    description: "Attention-score vs EMA signal comparison using kvpress knorm/expected_attn"
+    claim: "EMA signal provides complementary information to attention scores — determines claim scope"
+    priority: 0
+    depends_on:
+      - "pathc_sanity_reasoning FAIL"
+      - "pathc_sanity_wikitext32k FAIL"
+    success_criterion: "Quantitative comparison showing EMA vs attention score correlation/divergence"
+    estimated_hours: 4
+    registry_id: analysis_attn_vs_ema
+
+  - id: analysis_tau_sweep
+    phase: "0b"
+    description: "Tau (EMA decay) sensitivity sweep across gamma values"
+    claim: "EMA decay rate has measurable impact on eviction quality"
+    priority: 1
+    depends_on:
+      - "pathc_sanity_reasoning FAIL"
+      - "pathc_sanity_wikitext32k FAIL"
+    success_criterion: "Clear trend in PPL vs gamma curve"
+    estimated_hours: 2
+    registry_id: analysis_gamma_sweep
+
+  - id: analysis_decay_curve
+    phase: "0b"
+    description: "Information decay curve analysis — how EMA scores evolve over sequence length"
+    claim: "EMA scores exhibit characteristic decay patterns for different token types"
+    priority: 1
+    depends_on:
+      - "pathc_sanity_reasoning FAIL"
+      - "pathc_sanity_wikitext32k FAIL"
+    success_criterion: "Distinct decay curves for reasoning vs repetitive tokens"
+    estimated_hours: 2
+    registry_id: analysis_decay_curve
+
+  - id: analysis_second_model
+    phase: "0b"
+    description: "Qwen2.5-7B validation for generalization"
+    claim: "EMA eviction behavior generalizes across model sizes"
+    priority: 2
+    depends_on:
+      - "pathc_sanity_reasoning FAIL"
+      - "pathc_sanity_wikitext32k FAIL"
+    success_criterion: "Similar EMA score distribution patterns on Qwen2.5-7B"
+    estimated_hours: 8
+    registry_id: null
+
+  # === Phase 1: PPL Budget Sweep ===
+  - id: pathc_ppl_budget30
+    phase: "1"
+    description: "PPL evaluation at 30% KV budget"
+    claim: "CARC maintains acceptable PPL at aggressive compression"
+    priority: 1
+    depends_on: ["pathc_sanity_reasoning", "pathc_sanity_wikitext32k"]
+    success_criterion: "PPL degradation ≤ 10% vs full cache"
+    estimated_hours: 3
+    registry_id: null
+
+  - id: pathc_ppl_budget50
+    phase: "1"
+    description: "PPL evaluation at 50% KV budget"
+    claim: "CARC maintains acceptable PPL at moderate compression"
+    priority: 1
+    depends_on: ["pathc_sanity_reasoning", "pathc_sanity_wikitext32k"]
+    success_criterion: "PPL degradation ≤ 5% vs full cache"
+    estimated_hours: 3
+    registry_id: null
+
+  - id: pathc_ppl_budget70
+    phase: "1"
+    description: "PPL evaluation at 70% KV budget"
+    claim: "CARC maintains acceptable PPL at light compression"
+    priority: 1
+    depends_on: ["pathc_sanity_reasoning", "pathc_sanity_wikitext32k"]
+    success_criterion: "PPL degradation ≤ 2% vs full cache"
+    estimated_hours: 3
+    registry_id: null
+
+  # === Phase 2: Baseline Comparison ===
+  - id: pathc_baseline_h2o
+    phase: "2"
+    description: "H2O baseline comparison via kvpress at matched budgets"
+    claim: "CARC outperforms H2O on reasoning-heavy sequences"
+    priority: 1
+    depends_on: ["pathc_ppl_budget50"]
+    success_criterion: "CARC PPL < H2O PPL at 50% budget"
+    estimated_hours: 4
+    registry_id: null
+
+  - id: pathc_baseline_rkv
+    phase: "2"
+    description: "R-KV baseline comparison (O(B²) vs O(1) complexity)"
+    claim: "CARC achieves comparable PPL to R-KV with O(1) complexity"
+    priority: 1
+    depends_on: ["pathc_ppl_budget50"]
+    success_criterion: "PPL within 2% of R-KV + throughput advantage"
+    estimated_hours: 6
+    registry_id: null
+
+  # === Phase 3: Ablation ===
+  - id: pathc_ablation_gamma
+    phase: "3"
+    description: "EMA gamma sensitivity (0.5, 0.7, 0.9, 0.95)"
+    claim: "Gamma selection impacts eviction quality"
+    priority: 2
+    depends_on: ["pathc_ppl_budget50"]
+    success_criterion: "Identified optimal gamma with ≥2% PPL gap vs worst"
+    estimated_hours: 4
+    registry_id: null
+
+  - id: pathc_ablation_budget
+    phase: "3"
+    description: "Budget ratio sweep (20%-80% in 10% steps)"
+    claim: "CARC degrades gracefully across budget range"
+    priority: 2
+    depends_on: ["pathc_ppl_budget50"]
+    success_criterion: "Monotonic PPL improvement with budget increase"
+    estimated_hours: 6
+    registry_id: null
+
+  - id: pathc_ablation_grace
+    phase: "3"
+    description: "Grace window size sweep (0, 50, 100, 175, 250, 500)"
+    claim: "Grace window protects recent context and improves PPL"
+    priority: 2
+    depends_on: ["pathc_ppl_budget50"]
+    success_criterion: "Grace window > 0 improves PPL vs no grace"
+    estimated_hours: 4
+    registry_id: null
+
+  - id: pathc_ablation_perhead
+    phase: "3"
+    description: "Per-head vs concatenated EMA comparison"
+    claim: "Per-head EMA captures finer-grained redundancy"
+    priority: 2
+    depends_on: ["pathc_ppl_budget50"]
+    success_criterion: "Per-head mode matches or beats concatenated"
+    estimated_hours: 3
+    registry_id: null
+
+  # === Phase 4: Reasoning Eval ===
+  - id: pathc_math500_eval
+    phase: "4"
+    description: "MATH-500 accuracy with CARC eviction at 50% budget"
+    claim: "CARC preserves reasoning capability under compression"
+    priority: 1
+    depends_on: ["pathc_ppl_budget50"]
+    success_criterion: "Accuracy ≥ 90% of full cache baseline"
+    estimated_hours: 8
+    registry_id: null
+
+  # === Phase 5: Scaling + Throughput ===
+  - id: pathc_scaling_32k
+    phase: "5"
+    description: "32K context length PPL evaluation"
+    claim: "CARC scales to long contexts"
+    priority: 2
+    depends_on: ["pathc_ppl_budget50"]
+    success_criterion: "PPL degradation ≤ 5% at 32K"
+    estimated_hours: 6
+    registry_id: null
+
+  - id: pathc_scaling_64k
+    phase: "5"
+    description: "64K context length PPL evaluation (depends on model max_pos)"
+    claim: "CARC scales to very long contexts"
+    priority: 3
+    depends_on: ["pathc_scaling_32k"]
+    success_criterion: "PPL degradation ≤ 8% at 64K"
+    estimated_hours: 10
+    registry_id: null
+
+  - id: pathc_throughput
+    phase: "5"
+    description: "Throughput benchmarking — tokens/sec with vs without eviction"
+    claim: "CARC eviction overhead is negligible"
+    priority: 2
+    depends_on: ["pathc_ppl_budget50"]
+    success_criterion: "Throughput within 5% of full cache"
+    estimated_hours: 4
+    registry_id: null

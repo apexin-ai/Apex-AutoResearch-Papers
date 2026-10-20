@@ -1,0 +1,16 @@
+{
+  "exp_id": "phase2_tg_s42_v6",
+  "project": "turn_residual_gating",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T17:53:01.911Z",
+    "updated_at": "2026-05-18T17:56:01.816Z",
+    "hypothesis": "smooth_saturation GAR loss with target=0.5 will provide stable gate regularization that avoids the collapse behavior seen in maximize mode, producing meaningful gate activation ratios while maintaining NTP performance",
+    "parent": "phase2_tg_s42_v5"
+  },
+  "timestamp": "2026-05-18T17:56:01.857696+00:00",
+  "trigger": "update_registry"
+}

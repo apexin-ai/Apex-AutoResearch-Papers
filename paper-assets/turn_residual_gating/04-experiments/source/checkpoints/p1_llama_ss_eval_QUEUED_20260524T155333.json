@@ -1,0 +1,15 @@
+{
+  "exp_id": "p1_llama_ss_eval",
+  "project": "turn_residual_gating",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T15:53:29.650Z",
+    "updated_at": "2026-05-24T15:53:32.980Z",
+    "hypothesis": "Llama SS (2-epoch) reduces the TF-AR GAR gap on Llama-3.1-8B, confirming SS as model-general mitigation (C4+C5). Eval: TF+AR N=50 β=0/3/5."
+  },
+  "timestamp": "2026-05-24T15:53:33.087915+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0115207a8a86c983cf86",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "research ss first claim verification",
+  "task_key": "worker_research_ss_first_claim_verification_20260523T213643",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_ss_first_claim_verification_20260523T213643_result.json",
+    "occurrence": 1,
+    "bytes": 5222,
+    "sha256": "09e30de2b423b64ab4550f3c536f9ea34a54b5a31cf67c26254817a56e1b8142"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## SS \"首次\" Claim 文献核实报告\n\n### 搜索覆盖\n\n| 搜索词 | 相关论文数 |\n|--------|-----------|\n| `\"scheduled sampling\" \"attention loss\" transformer` | 2 (Mihaylova 2019, Dou & Gales 2022) |\n| `\"exposure bias\" \"auxiliary attention objective\"` | 0 |\n| `\"scheduled sampling\" \"attention steering\"` | 0 |\n| `\"curriculum learning\" \"attention distribution\" transformer` | 1 (graph domain, 不相关) |\n| `\"scheduled sampling\" multi-turn dialogue attention` | 2 (TA&AT 2024, Bilevel SS 2023 — 均不涉及 attention objective) |\n| `\"teacher forcing\" \"attention\" \"scheduled sampling\" NLP` | 0 新发现 |\n| `scheduled sampling auxiliary loss attention allocation` | 0 新发现 |\n| + 5 条补充搜索 | 见下文 |\n\n### 直接先例\n\n**未找到。** 没有论文同时满足：\n- 使用经典 scheduled sampling（基于时间的课程学习，从 teacher-forcing 线性过渡到 model-generation）\n- 应用于 attention distribution 作为训练目标\n- 在 multi-turn transformer 场景\n\n### 相关工作（需评估是否引用）\n\n#### 1. Attention Forcing (Zheng et al., 2019) — **建议引用**\n- **Venue:** arXiv 1909.12289 / OpenReview (ICLR 2020 提交)\n- **做法:** 用 reference attention 引导训练，输入 generated output history + reference attention（非 teacher forcing 的 reference output）\n- **与我们的区别:** (a) 不是 scheduled sampling 机制 — 没有时间课程从 TF→AR 过渡；(b) 应用于 cross-attention（encoder-decoder），不是 self-attention；(c) 仅 TTS + 单轮 NMT\n- **判断:** 相关但不同。它用 attention 作为引导信号，但不涉及 SS 或 multi-turn\n\n#### 2. Parallel Attention Forcing + Scheduled Attention Forcing (Dou & Gales, 2022) — **强烈建议引用**\n- **Venue:** arXiv 2211.03237\n- **做法:** 引入 \"Scheduled Attention Forcing\"：基于 KL(α_t||α̂_t) 与 KL(α_t||α̌_t) 的比较，数据依赖地在两种训练模式间切换；attention KL loss 作为辅助目标\n- **与我们的关键区别:**\n  - **不是经典 SS:** 论文明确说 \"For scheduled sampling, the selection is random. For scheduled attention forcing, the selection depends on the data.\" 是数据依赖的二元选择，不是时间课程\n  - **单轮 NMT:** 不涉及 multi-turn\n  - **Cross-attention:** 作用于 encoder-decoder cross-attention，不是 self-attention\n- **判断:** 最接近的相关工作。虽然名字含 \"scheduled\"，但机制不同于经典 SS。论文中 **当前未引用** 此工作\n\n#### 3. TA&AT (2024) — 已间接覆盖\n- SS 用于 action/policy sampling（task-oriented dialogue），不涉及 attention objective\n\n#### 4. Mihaylova & Martins (2019) — 已引用 ✓\n- SS 扩展到 transformer（两遍解码），但仅用于单轮 NMT 的标准 token prediction\n\n### 结论\n\n- [x] **无直接先例** → \"first\" claim 可保留\n- [ ] 找到直接先例 → 必须修改 claim\n\n\"First transfer of scheduled sampling to multi-turn transformer attention objectives\" 这个 claim 的三个限定词（scheduled sampling / multi-turn / attention objectives）的交集中，没有找到先例。\n\n### 建议\n\n**1. 必须引用 Parallel Attention Forcing (Dou & Gales, 2022)**\n\n这是最接近的相关工作，reviewer 很可能会找到它。Related work 中应增加讨论，明确区分：\n\n> Dou & Gales (2022) introduced *scheduled attention forcing*, which uses KL-divergence on cross-attention as a data-dependent switch between training modes in single-turn NMT. Our work differs in three respects: (i) we apply classic time-scheduled sampling (linearly increasing $\\rho$), not data-dependent selection; (ii) our target is self-attention allocation in multi-turn dialogue; (iii) the scheduled component addresses auxiliary attention objectives rather than the primary translation loss.\n\n**2. 也建议引用 Attention Forcing (Zheng et al., 2019)**\n\n作为使用 attention 作为训练信号的先驱工作。\n\n**3. 建议微调措辞**\n\n当前 claim 用 \"first evidence\" 已经比 \"first\" 更审慎。可进一步加强精确度：\n\n当前：\n> first evidence that scheduled sampling transfers to multi-turn transformer attention objectives\n\n建议：\n> first evidence that *time-scheduled* sampling---linearly mixing model-generated context---transfers to *auxiliary* attention objectives in multi-turn transformers\n\n增加 \"time-scheduled\" 和 \"auxiliary\" 两个限定词，进一步与 Dou & Gales 的 data-dependent scheduled attention forcing 区分开。\n\nSources:\n- [Attention Forcing for Sequence-to-sequence Model Training](https://arxiv.org/abs/1909.12289)\n- [Parallel Attention Forcing for Machine Translation](https://arxiv.org/abs/2211.03237)\n- [Scheduled Sampling for Transformers](https://arxiv.org/abs/1906.07651)\n- [TA&AT: Enhancing Task-Oriented Dialog with Turn-Level Auxiliary Tasks and Action-Tree Based Scheduled Sampling](https://arxiv.org/abs/2401.15626)\n- [Beyond Self-learned Attention: Mitigating Attention Bias](https://arxiv.org/abs/2402.16790)\n- [LLMs Get Lost In Multi-Turn Conversation](https://arxiv.org/abs/2505.06120)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-ss-first-claim-verification.md"
+}

@@ -1,0 +1,53 @@
+{
+  "exp_id": "d003_wikitext_32k",
+  "project": "solver-verified-formalizer-rl",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-12T12:00:45.017Z",
+    "updated_at": "2026-05-12T15:50:08.505Z",
+    "spec": {
+      "command": "bash -c \"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/carc && python d003_wikitext_32k.py --gpu 0 --model /root/carc/models/DeepSeek-R1-Distill-Qwen-14B --output /root/carc/d003_wikitext32k_results.json 2>&1 | tee /root/carc/d003_exp2.log\"",
+      "server": "westd-16980",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "28380",
+      "log_path": "/root/carc/d003_exp2.log",
+      "submitted_at": "2026-05-12T14:29:13.542Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "checkpoint_path": "/root/carc/d003_wikitext32k_results.json",
+      "wall_clock_seconds": 4855.0,
+      "gpu_hours": 1.35
+    },
+    "reproduce": {
+      "finished_at": "2026-05-12T15:46:31.798Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-12T15:46:32.637844+00:00"
+        }
+      ]
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "full_ppl": 7.1822,
+      "best_ema_ppl": 7.7788,
+      "random_ppl": 7.6432,
+      "recency_ppl": 7.1758,
+      "ema_vs_random_gap_pct": -1.77,
+      "ema_beats_recency": false,
+      "pass": false
+    },
+    "completed_at": "2026-05-12T15:50:08.505Z"
+  },
+  "timestamp": "2026-05-12T15:50:08.524125+00:00",
+  "trigger": "update_registry"
+}

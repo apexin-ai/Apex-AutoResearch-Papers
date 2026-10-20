@@ -1,0 +1,27 @@
+{
+  "exp_id": "kv-bench-002",
+  "project": "redundancy-compound-sparsity",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-12T03:09:53.131Z",
+    "updated_at": "2026-05-12T03:28:34.858Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /home/sonny/redundancy-compound-sparsity && python src/kv_eviction/run_kv_benchmark.py > results/kv_eviction/kv_bench_001.log 2>&1\"",
+      "server": "seetacloud-bjb2-structtts",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "22623",
+      "log_path": "~/runs/redundancy-compound-sparsity/kv-bench-002.log",
+      "submitted_at": "2026-05-12T03:09:53.114Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-12T03:28:34.876864+00:00",
+  "trigger": "update_registry"
+}

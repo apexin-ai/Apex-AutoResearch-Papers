@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c288ca672cff1a17dddc",
+  "project": "redundancy-compound-sparsity",
+  "kind": "result",
+  "title": "diagnosis gpu status check",
+  "task_key": "worker_diagnosis_gpu-status-check_20260512T040201",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnosis_gpu-status-check_20260512T040201_result.json",
+    "occurrence": 1,
+    "bytes": 1345,
+    "sha256": "fe8abd34588a871069b102c410d849fb30b5bd42f345684c5eb5c078d425a792"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### GPU 状态\n- **利用率**: 0%, 0 MiB / 32607 MiB — 已空闲（之前确实空转了）\n\n### 各进程状态\n| 进程 | PID | 状态 |\n|------|-----|------|\n| kv-bench-002 | 22623 | **已完成** ✓ |\n| DeepSeek-R1-Distill-Llama-8B 下载 | 18706 | **已完成** ✓ (15G) |\n| Qwen2-7B-Instruct 下载 | 19552 | **已完成** ✓ (15G) |\n\n### kv-bench-002 结果摘要\n只有 30% budget 触发了 eviction (409次)，50%/70% 均未触发。\n\n| Policy | 30% budget PPL | ratio |\n|--------|---------------|-------|\n| FullCache | 7.7274 | 1.000 |\n| CARC-KV | 7.7436 | 1.002 |\n| H2O | 7.7000 | 0.997 |\n| StreamingLLM | 7.7480 | 1.003 |\n\n**关键发现**: 10条×512 token 的文本太短，50%/70% budget 从未被填满，三种 policy 退化为 FullCache（PPL 完全一致、eviction=0）。只有 30% budget 产生了微弱差异（<0.3%），区分度极低。\n\n### 已执行行动\n1. **kv-bench-002** → registry 更新为 DONE (conclusion=success)\n2. **confound-ctrl-001** → 已提交运行 (PID 24628, cuda:0, DeepSeek-R1-Distill-Llama-8B)\n3. DeepSeek 模型验证通过: LlamaForCausalLM, 32层, 8 KV heads\n\n### 下一步\n- 监控 confound-ctrl-001 运行状态\n- kv-bench 需要更长序列或更激进的 budget 才能有效区分 policy（当前实验信息量不足）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-gpu-status-check.md"
+}

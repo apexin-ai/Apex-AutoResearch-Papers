@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3a511d35a851d19de8bb",
+  "project": "redundancy-compound-sparsity",
+  "kind": "result",
+  "title": "research literature map fix",
+  "task_key": "worker_research_literature-map-fix_20260511T225754",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_literature-map-fix_20260511T225754_result.json",
+    "occurrence": 1,
+    "bytes": 840,
+    "sha256": "b5299456ec3d28a2b08bf1eb784237a566b007fdd58aeeddc698ec2f8ae2daec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。新增 11 篇论文：\n\n**第一批（MVP 必补，已详细描述 relation_to_carc）：**\n- **Token Filtering** (arXiv:2512.07090) → `redundancy-signal`，标注为 CARC EMA KV similarity 信号的直接前驱\n- **CLADA** (arXiv:2502.19078) → `activation-sparsity`，标注为 \"surprisal → MLP sparsity\" 假设的文献支撑\n\n**第二批（Research 阶段，core_method 标注 needs verification）：**\n- **R-KV**, **LazyEviction**, **LongFlow** → `kv-eviction`\n- **Polar Sparsity**, **WiSparse** → `activation-sparsity`\n- **TriAttention**, **FASA** → `cross-axis`\n- **Q-Infer** → `direct-competitor`\n- **EMA Is Not All You Need** → `redundancy-signal`\n\n所有新增条目均标注 `verified: false`，第二批论文的 authors/venue/core_method 均标注 needs verification。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-literature-map-fix.md"
+}

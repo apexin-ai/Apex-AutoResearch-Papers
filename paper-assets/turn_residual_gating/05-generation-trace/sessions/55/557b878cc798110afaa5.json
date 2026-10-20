@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "557b878cc798110afaa5",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "check ss s123 completion",
+  "task_key": "worker_check_ss_s123_completion_20260523T172618",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_ss_s123_completion_20260523T172618_result.json",
+    "occurrence": 1,
+    "bytes": 1257,
+    "sha256": "713ae88793a6d34632598814fb50a97d2ab9a8410dcb3f9ede7c3fed51eb769b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息已收集完毕。汇报如下：\n\n---\n\n## 训练结果：SS s123 — 成功 ✓\n\n**最终 metrics (Epoch 2 完成)：**\n- Avg Loss: **0.9316** (NTP: 0.9307, GAR: 0.0009, DIV: 0.0000)\n- Gate mean: **0.9505**, std=0.0508, min=0.7383, max=1.0000\n- SS 使用率: 8899/24000 (**37.1%**)，fallback=0\n- 训练时长: **38773s** (~10.8h)\n- 3 个 epoch checkpoint 齐全 (epoch_0/1/2 + gate_params.pt + lora)\n- 保存路径: `checkpoints/tg_v8b_ss_s123/` → 已链接到 `runs/d048_ss_s123/`\n\n**Gate profile (step 3000):** L5 最低 (0.738)，L27 最高 (1.000)，与其他 seed 一致。\n\n---\n\n## GPU 链状态：已自动启动 ✓\n\n- **等待脚本 PID 94251**: 已退出\n- **PID 84793 退出时间**: 01:24:19 CST\n- **gpu_chain_next.sh**: 01:24:29 自动启动，PID 108997\n- **当前运行**: Step 1/7 — SS s123 eval (TF + AR N=50)\n  - PID **109385**: `eval_phase2_gar.py --gate-type threadgate --checkpoint-dir runs/d048_ss_s123/epoch_2 --gar-variant ours --gate-profile`\n  - 进度: Conv ~116/200（AR eval 阶段，PPL ~2.55）\n  - GPU: 37.7GB / 97.9GB, 60% util\n\n---\n\n## 总结\n\n训练成功完成，GPU 链已自动接续运行 eval，无需手动干预。链共 7 步，当前在第 1 步。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-ss-s123-completion.md"
+}

@@ -1,0 +1,1 @@
+Remote path: westd-20861:/root/turn_residual_gating/runs/analysis/attention_heatmap/comparison_2x2.png (also .pdf)

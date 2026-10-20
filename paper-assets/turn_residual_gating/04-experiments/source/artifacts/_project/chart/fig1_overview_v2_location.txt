@@ -1,0 +1,4 @@
+Remote server: westd-20861
+PDF: /root/turn-residual-gating/artifacts/fig1_overview_v2.pdf (33KB)
+PNG: /root/turn-residual-gating/artifacts/fig1_overview_v2.png (145KB, 300dpi)
+Script: /root/turn-residual-gating/scripts/draw_fig1_v2.py

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6008292196596419c4b8",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "analysis gar definition robustness v2",
+  "task_key": "worker_analysis_gar_definition_robustness_v2_20260524T061033",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gar_definition_robustness_v2_20260524T061033_result.json",
+    "occurrence": 1,
+    "bytes": 1860,
+    "sha256": "068c23d0d8bcfa06d7f859cc15cf4863c6d2e917e336df6d62034817f2c4abb6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论：情况 B — raw attention 未保存，需要 GPU 重新推理\n\n### 现有数据结构\n\n所有 JSON 结果（`*_ar_n50.json`、`*_gar.json`）只保存了聚合后的 GAR 值：\n- `gar_curves`: per-conversation per-turn 的标量 GAR\n- `avg_gar_per_turn`, `mid_turns_avg_gar`, `per_conv_mid_gar`\n- **没有** per-token attention weights、`goal_positions`、`query_positions`\n\n### 现有 GAR 定义（`turn_utils.py:142-163`）\n\n| 参数 | `ours` 变体 | `dongre` 变体 |\n|------|-------------|---------------|\n| **goal** | system prompt + first user query 的全部 token | system prompt only |\n| **query** | 每个 assistant turn 的 **last token** | 每个 assistant turn 的 **all tokens** |\n\n### 替代定义鲁棒性分析需要什么\n\n4 种 GAR 定义 = 不同的 `(goal_positions, query_positions)` 组合。attention weights 在 `GARMeasurer` 中通过 hook 在 forward pass 中捕获后，可以对同一 attention matrix 调用多次 `compute_gar()` 使用不同 positions。\n\n**好消息：不需要 4x GPU 时间。** 每个 conversation 只需 1 次 forward pass，然后用 4 组不同 positions 重算 GAR。\n\n### 所需修改\n\n1. **`turn_utils.py`**: `detect_turn_boundaries` 增加返回 `assistant_first_token_positions` 和 `system_only_goal_positions`\n2. **写一个新 eval 脚本**（或修改 `eval_phase2_gar.py`）：每次 forward pass 后计算 4 种 GAR\n\n### 资源估算\n\n| 项目 | 估算 |\n|------|------|\n| 模型 | Base / TG(s42) / SS(s42) — 3 个 |\n| conversations/模型 | 50（已有 `eval_200.json` 数据集） |\n| forward pass | ~2 sec/conv × 50 = ~100 sec/model |\n| 模型加载 | ~1-2 min/model |\n| **总 GPU 时间** | **~10-15 分钟** |\n| GPU 需求 | 1× GPU（Qwen2.5-7B + eager attention） |\n\n需要我写脚本提交到服务器运行吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-gar-definition-robustness-v2.md"
+}

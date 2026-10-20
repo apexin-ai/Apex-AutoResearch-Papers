@@ -1,0 +1,26 @@
+paper_key: "chiang2024chatbot"
+title: "Chatbot Arena: An Open Platform for Evaluating LLMs by Human Preference"
+venue: "ICML 2024"
+full_text_available: false
+
+research:
+  baselines: ["GPT-4", "Claude", "LLaMA", "Vicuna", "Alpaca", "20+ models"]
+  metrics:
+    - {name: "Elo rating", direction: "higher_better"}
+    - {name: "win rate", direction: "higher_better"}
+    - {name: "human preference", direction: "higher_better"}
+  datasets:
+    - {name: "Chatbot Arena battles", size: "240K+ votes"}
+  ablation_dimensions: ["model size", "training method", "conversation category"]
+  training_recipe: "N/A (evaluation platform)"
+  method_family: "evaluation / human preference"
+
+positioning:
+  core_claim: "Crowdsourced pairwise battles with Elo ratings provide a scalable, robust evaluation of LLM chat quality"
+  key_results: "Elo rankings across 20+ models, high agreement with controlled expert evaluations"
+  limitations: ["population bias in crowdsourced users", "English-centric"]
+  relation_to_us: "complementary"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

@@ -1,0 +1,26 @@
+paper_key: "ranzato2016sequence"
+title: "Sequence Level Training with Recurrent Neural Networks"
+venue: "ICLR 2016"
+full_text_available: false
+
+research:
+  baselines: ["teacher forcing (MLE)", "REINFORCE", "beam search"]
+  metrics:
+    - {name: "BLEU", direction: "higher_better"}
+    - {name: "ROUGE", direction: "higher_better"}
+  datasets:
+    - {name: "WMT translation", size: "standard"}
+    - {name: "abstractive summarization", size: "standard"}
+  ablation_dimensions: ["training objective (MIXER vs pure RL)", "mixing ratio"]
+  training_recipe: {optimizer: "SGD", hardware: "GPU"}
+  method_family: "sequence-level training / REINFORCE"
+
+positioning:
+  core_claim: "Combining token-level MLE with sequence-level REINFORCE objectives (MIXER) bridges the train-test discrepancy in sequence generation"
+  key_results: "2-3 BLEU improvement over MLE baseline"
+  limitations: ["high variance from REINFORCE", "reward engineering needed", "computational overhead"]
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

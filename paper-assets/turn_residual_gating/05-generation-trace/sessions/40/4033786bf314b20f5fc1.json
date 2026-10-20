@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4033786bf314b20f5fc1",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "code p0 ss steering eval script",
+  "task_key": "worker_code_p0_ss_steering_eval_script_20260523T193821",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_p0_ss_steering_eval_script_20260523T193821_result.json",
+    "occurrence": 1,
+    "bytes": 940,
+    "sha256": "53717f5bc9f75a6f9b11d56da04e8eb31c5d8007c70d6ee36437c72c039b5775"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪。\n\n**创建的脚本：**\n- `/root/turn_residual_gating/scripts/p0_ss_steering_eval.sh` — SS s42 checkpoint + β=0,3,5 steering AR eval (N=50)\n- `/root/turn_residual_gating/scripts/p0_after_chain.sh` — 轮询等待 chain 进程结束后自动触发 P0\n\n**Checkpoint 验证：**\n- `runs/d048_ss_s42/epoch_2/` 完整 — `gate_params.pt` (3.3MB) + `lora/adapter_model.safetensors` (20MB) 均存在\n\n**Chain 当前状态：**\n- Step 2/7 (`d048_ss_s456_resume.sh`) 正在训练，已跑 ~1h40m\n- 后续还有 5 步（s456 eval → Qwen-1.5B diag → Qwen-1.5B train → Qwen-1.5B eval → MMLU eval）\n- Chain 脚本正在执行中，不能直接追加。`p0_after_chain.sh` 会自动等 chain 进程退出后接上\n\n**启动方式（chain 结束后自动执行）：**\n```bash\nnohup bash scripts/p0_after_chain.sh > logs/p0_after_chain.log 2>&1 &\n```\n\n需要现在就启动后台轮询吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-p0-ss-steering-eval-script.md"
+}

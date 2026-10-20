@@ -1,0 +1,2333 @@
+# analysis heldout eval results
+
+**Exposure Bias Collapses Auxiliary Attention Losses in Multi-Turn Dialogue** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 49
+- **Recorded user turns:** 0
+- **Tool calls:** 19
+- **Original source:** `logs/workers/worker_analysis_heldout_eval_results_20260519T143259.log`
+- **Structured JSON:** [`2798da8499cb0786f674.json`](../../sessions/27/2798da8499cb0786f674.json)
+
+## Before a recorded user message
+
+49 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "session_id": "631cf2a4-97ca-4232-8088-173f8a079e98",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "56d137d7-f29b-48fc-bfb4-c564b4355298",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-turn-residual-gating/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779213000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "2c79b4d5-732c-4fe6-b6a5-48df876229c8",
+  "session_id": "631cf2a4-97ca-4232-8088-173f8a079e98"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the eval results from the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "631cf2a4-97ca-4232-8088-173f8a079e98",
+  "uuid": "a86d10df-ae44-4a12-baf2-e748ef537b0e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FR1qfuk4BfxqsdA8mor3Zs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12310,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12310
+      },
+      "output_tokens": 46,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_019v2HW665yRgCVbVip5bYRy`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "631cf2a4-97ca-4232-8088-173f8a079e98",
+  "uuid": "4a2be02e-95c8-48db-a693-c7bb563cc726",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FR1qfuk4BfxqsdA8mor3Zs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12310,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12310
+      },
+      "output_tokens": 46,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-19T14:33:13.203Z_
+
+<details><summary>↩ Tool result · `toolu_019v2HW665yRgCVbVip5bYRy`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "631cf2a4-97ca-4232-8088-173f8a079e98",
+  "uuid": "d97d8910-2bf7-4353-8f11-fc7c8a6a6eec",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LazAYKwhxrFXVcSqzH2zDs`</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "cat ~/runs/turn_residual_gating/phase2_4way_eval_heldout.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "631cf2a4-97ca-4232-8088-173f8a079e98",
+  "uuid": "38758389-6d87-418e-a889-6c9b1202d143",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W6WUHdUYQAuv1762GjxkpE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 450,
+      "cache_read_input_tokens": 24151,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 450
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TVCnBX4GpmbtW2TjxTsRCK`</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "ls -la /root/turn_residual_gating/runs/phase2_4way_eval_heldout/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "631cf2a4-97ca-4232-8088-173f8a079e98",
+  "uuid": "5f742407-70b8-4d15-b157-8af0b533189a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W6WUHdUYQAuv1762GjxkpE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 450,
+      "cache_read_input_tokens": 24151,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 450
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-19T14:33:17.476Z_
+
+<details><summary>↩ Tool result · `toolu_01LazAYKwhxrFXVcSqzH2zDs`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"All checkpoint paths verified.\\n========== [1/8] Base + ours ==========\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\nDevice: cuda\\nGate type: none\\nGAR variant: ours\\nCheckpoint: None\\nLoading base model (eager attention)...\\n\\rLoading weights:   0%|          | 0/339 [00:00<?, ?it/s]\\rLoading weights:   0%|          | 1/339 [00:00<01:18,  4.31it/s]\\rLoading weights:   1%|          | 2/339 [00:00<01:14,  4.50it/s]\\rLoading weights:   3%|▎         | 10/339 [00:00<00:13, 25.17it/s]\\rLoading weights:   6%|▌         | 21/339 [00:00<00:06, 48.20it/s]\\rLoading weights:   9%|▊         | 29/339 [00:00<00:06, 44.81it/s]\\rLoading weights:  16%|█▌        | 53/339 [00:00<00:03, 89.45it/s]\\rLoading weights:  19%|█▉        | 65/339 [00:01<00:03, 76.08it/s]\\rLoading weights:  27%|██▋       | 91/339 [00:01<00:02, 116.32it/s]\\rLoading weights:  31%|███▏      | 106/339 [00:01<00:01, 122.27it/s]\\rLoading weights:  36%|███▌      | 121/339 [00:01<00:02, 101.92it/s]\\rLoading weights:  41%|████      | 138/339 [00:01<00:01, 116.88it/s]\\rLoading weights:  45%|████▍     | 152/339 [00:01<00:01, 118.10it/s]\\rLoading weights:  49%|████▉     | 166/339 [00:01<00:01, 122.50it/s]\\rLoading weights:  53%|█████▎    | 180/339 [00:02<00:01, 122.13it/s]\\rLoading weights:  57%|█████▋    | 193/339 [00:02<00:03, 43.51it/s] \\rLoading weights:  83%|████████▎ | 281/339 [00:03<00:00, 103.37it/s]\\rLoading weights:  98%|█████████▊| 332/339 [00:03<00:00, 144.96it/s]\\rLoading weights: 100%|██████████| 339/339 [00:03<00:00, 101.03it/s]\\nNo checkpoint dir specified, using pure base model\\n\\nLoading fixed conversations from /root/turn_residual_gating/data/ultrachat_eval_heldout.json\\n  Conversation 1/50: 5 assistant turns\\n  Conversation 2/50: 6 assistant turns\\n  Conversation 3/50: 5 assistant turns\\n  Conversation 4/50: 5 assistant turns\\n  Conversation 5/50: 5 assistant turns\\n  Conversation 6/50: 5 assistant turns\\n  Conversation 7/50: 5 assistant turns\\n  Conversation 8/50: 5 assistant turns\\n  Conversation 9/50: 6 assistant turns\\n  Conversation 10/50: 5 assistant turns\\n  Conversation 11/50: 5 assistant turns\\n  Conversation 12/50: 5 assistant turns\\n  Conversation 13/50: 5 assistant turns\\n  Conversation 14/50: 5 assistant turns\\n  Conversation 15/50: 7 assistant turns\\n  Conversation 16/50: 5 assistant turns\\n  Conversation 17/50: 7 assistant turns\\n  Conversation 18/50: 6 assistant turns\\n  Conversation 19/50: 6 assistant turns\\n  Conversation 20/50: 6 assistant turns\\n  Conversation 21/50: 5 assistant turns\\n  Conversation 22/50: 7 assistant turns\\n  Conversation 23/50: 5 assistant turns\\n  Conversation 24/50: 5 assistant turns\\n  Conversation 25/50: 5 assistant turns\\n  Conversation 26/50: 7 assistant turns\\n  Conversation 27/50: 5 assistant turns\\n  Conversation 28/50: 7 assistant turns\\n  Conversation 29/50: 5 assistant turns\\n  Conversation 30/50: 5 assistant turns\\n  Conversation 31/50: 7 assistant turns\\n  Conversation 32/50: 5 assistant turns\\n  Conversation 33/50: 5 assistant turns\\n  Conversation 34/50: 5 assistant turns\\n  Conversation 35/50: 6 assistant turns\\n  Conversation 36/50: 5 assistant turns\\n  Conversation 37/50: 5 assistant turns\\n  Conversation 38/50: 6 assistant turns\\n  Conversation 39/50: 5 assistant turns\\n  Conversation 40/50: 5 assistant turns\\n  Conversation 41/50: 5 assistant turns\\n  Conversation 42/50: 5 assistant turns\\n  Conversation 43/50: 5 assistant turns\\n  Conversation 44/50: 5 assistant turns\\n  Conversation 45/50: 6 assistant turns\\n  Conversation 46/50: 5 assistant turns\\n  Conversation 47/50: 5 assistant turns\\n  Conversation 48/50: 7 assistant turns\\n  Conversation 49/50: 7 assistant turns\\n  Conversation 50/50: 5 assistant turns\\nModel device: cuda:0\\nNo gates loaded (base/LoRA-only mode)\\n\\nMeasuring GAR...\\n  Conv 1 GAR:  ['0.0231', '0.0162', '0.0136', '0.0099', '0.0095']\\n  Conv 1 nGAR: ['0.2546', '0.3451', '0.4032', '0.3874', '0.4507']\\n  Conv 2 GAR:  ['0.0524', '0.0157', '0.0104', '0.0097', '0.0071', '0.0070']\\n  Conv 2 nGAR: ['0.4596', '0.3252', '0.3333', '0.4109', '0.3519', '0.4322'\\n\\n... [截断: 输出过长，省略 101084 字符] ...\\n\\n', '0.0161']\\n  Conv 42 nGAR: ['0.4219', '0.6753', '0.8845', '0.9812', '1.3401']\\n  Conv 43 GAR:  ['0.0224', '0.0155', '0.0111', '0.0092', '0.0074']\\n  Conv 43 nGAR: ['0.4462', '0.6826', '0.7435', '0.7845', '0.7845']\\n  Conv 44 GAR:  ['0.0157', '0.0123', '0.0101', '0.0088', '0.0093']\\n  Conv 44 nGAR: ['0.2864', '0.3836', '0.4361', '0.4968', '0.6647']\\n  Conv 45 GAR:  ['0.0176', '0.0131', '0.0111', '0.1097', '0.0109', '0.0116']\\n  Conv 45 nGAR: ['0.3827', '0.4698', '0.5957', '6.1975', '0.7390', '1.0527']\\n  Conv 46 GAR:  ['0.0240', '0.0122', '0.0088', '0.0087', '0.0095']\\n  Conv 46 nGAR: ['0.4678', '0.5025', '0.5326', '0.7174', '0.9723']\\n  Conv 47 GAR:  ['0.0193', '0.0091', '0.0055']\\n  Conv 47 nGAR: ['0.7157', '0.7927', '0.7040']\\n  Conv 48 GAR:  ['0.0242', '0.0140', '0.0126', '0.0106', '0.0082', '0.0095', '0.0202']\\n  Conv 48 nGAR: ['0.3687', '0.4317', '0.5939', '0.7476', '0.7705', '1.0017', '2.3100']\\n  Conv 49 GAR:  ['0.0234', '0.0451', '0.0192', '0.0166', '0.0668', '0.0773', '0.0098']\\n  Conv 49 nGAR: ['0.3948', '0.9364', '0.5687', '0.6633', '2.9251', '3.6316', '0.6061']\\n  Conv 50 GAR:  ['0.0248', '0.0212', '0.0133', '0.0105', '0.0214']\\n  Conv 50 nGAR: ['0.3426', '0.4741', '0.4186', '0.5254', '1.2826']\\n\\nMeasuring NTP Perplexity...\\n  Conv 1 PPL: 2.18 (NTP loss: 0.7794)\\n  Conv 2 PPL: 2.57 (NTP loss: 0.9445)\\n  Conv 3 PPL: 3.23 (NTP loss: 1.1722)\\n  Conv 4 PPL: 2.17 (NTP loss: 0.7758)\\n  Conv 5 PPL: 3.01 (NTP loss: 1.1035)\\n  Conv 6 PPL: 2.56 (NTP loss: 0.9386)\\n  Conv 7 PPL: 2.12 (NTP loss: 0.7523)\\n  Conv 8 PPL: 2.30 (NTP loss: 0.8309)\\n  Conv 9 PPL: 3.55 (NTP loss: 1.2658)\\n  Conv 10 PPL: 2.54 (NTP loss: 0.9318)\\n  Conv 11 PPL: 4.16 (NTP loss: 1.4243)\\n  Conv 12 PPL: 2.42 (NTP loss: 0.8849)\\n  Conv 13 PPL: 3.02 (NTP loss: 1.1053)\\n  Conv 14 PPL: 1.58 (NTP loss: 0.4559)\\n  Conv 15 PPL: 2.91 (NTP loss: 1.0674)\\n  Conv 16 PPL: 3.18 (NTP loss: 1.1571)\\n  Conv 17 PPL: 3.22 (NTP loss: 1.1702)\\n  Conv 18 PPL: 2.52 (NTP loss: 0.9244)\\n  Conv 19 PPL: 2.06 (NTP loss: 0.7251)\\n  Conv 20 PPL: 2.40 (NTP loss: 0.8769)\\n  Conv 21 PPL: 2.44 (NTP loss: 0.8931)\\n  Conv 22 PPL: 2.61 (NTP loss: 0.9604)\\n  Conv 23 PPL: 3.02 (NTP loss: 1.1049)\\n  Conv 24 PPL: 2.03 (NTP loss: 0.7084)\\n  Conv 25 PPL: 2.69 (NTP loss: 0.9911)\\n  Conv 26 PPL: 4.03 (NTP loss: 1.3949)\\n  Conv 27 PPL: 3.01 (NTP loss: 1.1012)\\n  Conv 28 PPL: 2.43 (NTP loss: 0.8885)\\n  Conv 29 PPL: 2.88 (NTP loss: 1.0564)\\n  Conv 30 PPL: 3.12 (NTP loss: 1.1379)\\n  Conv 31 PPL: 2.40 (NTP loss: 0.8749)\\n  Conv 32 PPL: 2.44 (NTP loss: 0.8920)\\n  Conv 33 PPL: 3.07 (NTP loss: 1.1204)\\n  Conv 34 PPL: 4.25 (NTP loss: 1.4469)\\n  Conv 35 PPL: 3.03 (NTP loss: 1.1077)\\n  Conv 36 PPL: 2.21 (NTP loss: 0.7941)\\n  Conv 37 PPL: 3.39 (NTP loss: 1.2199)\\n  Conv 38 PPL: 2.83 (NTP loss: 1.0410)\\n  Conv 39 PPL: 2.94 (NTP loss: 1.0771)\\n  Conv 40 PPL: 2.75 (NTP loss: 1.0129)\\n  Conv 41 PPL: 1.67 (NTP loss: 0.5127)\\n  Conv 42 PPL: 2.03 (NTP loss: 0.7080)\\n  Conv 43 PPL: 2.76 (NTP loss: 1.0158)\\n  Conv 44 PPL: 8.66 (NTP loss: 2.1589)\\n  Conv 45 PPL: 2.47 (NTP loss: 0.9047)\\n  Conv 46 PPL: 2.05 (NTP loss: 0.7178)\\n  Conv 47 PPL: 1.27 (NTP loss: 0.2357)\\n  Conv 48 PPL: 2.16 (NTP loss: 0.7697)\\n  Conv 49 PPL: 1.84 (NTP loss: 0.6073)\\n  Conv 50 PPL: 3.05 (NTP loss: 1.1148)\\n\\nAvg PPL: 2.78\\nAvg NTP Loss: 0.9771\\n\\nBaseline mid-turn GAR: 0.0122\\nTrained mid-turn GAR:  0.0132\\nGAR recovery:          +0.10pp\\n\\nResults saved to /root/turn_residual_gating/runs/phase2_4way_eval_heldout/lora_only_dongre/phase2_lora_only_s42_dongre_gar.json\\nPlot saved to /root/turn_residual_gating/runs/phase2_4way_eval_heldout/lora_only_dongre/phase2_lora_only_s42_dongre_gar_comparison.png\\n\\n==================================================\\nPhase 2 GAR Evaluation (none, GAR-dongre)\\n==================================================\\nTurn 1 avg GAR:     0.0228\\nMid-turns avg GAR:  0.0132\\nMid-turns avg nGAR: 0.7057\\nGAR recovery:       +0.10pp\\nAvg PPL:            2.78\\nAvg NTP Loss:       0.9771\\n========== All 8 evals done ==========\\nResults in: /root/turn_residual_gating/runs/phase2_4way_eval_heldout\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "631cf2a4-97ca-4232-8088-173f8a079e98",
+  "uuid": "276f1194-d92c-4820-931a-bb5f1e41c1a9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"All checkpoint paths verified.\\\\n========== [1/8] Base + ours ==========\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\nDevice: cuda\\\\nGate type: none\\\\nGAR variant: ours\\\\nCheckpoint: None\\\\nLoading base model (eager attention)...\\\\n\\\\rLoading weights:   0%|          | 0/339 [00:00<?, ?it/s]\\\\rLoading weights:   0%|          | 1/339 [00:00<01:18,  4.31it/s]\\\\rLoading weights:   1%|          | 2/339 [00:00<01:14,  4.50it/s]\\\\rLoading weights:   3%|▎         | 10/339 [00:00<00:13, 25.17it/s]\\\\rLoading weights:   6%|▌         | 21/339 [00:00<00:06, 48.20it/s]\\\\rLoading weights:   9%|▊         | 29/339 [00:00<00:06, 44.81it/s]\\\\rLoading weights:  16%|█▌        | 53/339 [00:00<00:03, 89.45it/s]\\\\rLoading weights:  19%|█▉        | 65/339 [00:01<00:03, 76.08it/s]\\\\rLoading weights:  27%|██▋       | 91/339 [00:01<00:02, 116.32it/s]\\\\rLoading weights:  31%|███▏      | 106/339 [00:01<00:01, 122.27it/s]\\\\rLoading weights:  36%|███▌      | 121/339 [00:01<00:02, 101.92it/s]\\\\rLoading weights:  41%|████      | 138/339 [00:01<00:01, 116.88it/s]\\\\rLoading weights:  45%|████▍     | 152/339 [00:01<00:01, 118.10it/s]\\\\rLoading weights:  49%|████▉     | 166/339 [00:01<00:01, 122.50it/s]\\\\rLoading weights:  53%|█████▎    | 180/339 [00:02<00:01, 122.13it/s]\\\\rLoading weights:  57%|█████▋    | 193/339 [00:02<00:03, 43.51it/s] \\\\rLoading weights:  83%|████████▎ | 281/339 [00:03<00:00, 103.37it/s]\\\\rLoading weights:  98%|█████████▊| 332/339 [00:03<00:00, 144.96it/s]\\\\rLoading weights: 100%|██████████| 339/339 [00:03<00:00, 101.03it/s]\\\\nNo checkpoint dir specified, using pure base model\\\\n\\\\nLoading fixed conversations from /root/turn_residual_gating/data/ultrachat_eval_heldout.json\\\\n  Conversation 1/50: 5 assistant turns\\\\n  Conversation 2/50: 6 assistant turns\\\\n  Conversation 3/50: 5 assistant turns\\\\n  Conversation 4/50: 5 assistant turns\\\\n  Conversation 5/50: 5 assistant turns\\\\n  Conversation 6/50: 5 assistant turns\\\\n  Conversation 7/50: 5 assistant turns\\\\n  Conversation 8/50: 5 assistant turns\\\\n  Conversation 9/50: 6 assistant turns\\\\n  Conversation 10/50: 5 assistant turns\\\\n  Conversation 11/50: 5 assistant turns\\\\n  Conversation 12/50: 5 assistant turns\\\\n  Conversation 13/50: 5 assistant turns\\\\n  Conversation 14/50: 5 assistant turns\\\\n  Conversation 15/50: 7 assistant turns\\\\n  Conversation 16/50: 5 assistant turns\\\\n  Conversation 17/50: 7 assistant turns\\\\n  Conversation 18/50: 6 assistant turns\\\\n  Conversation 19/50: 6 assistant turns\\\\n  Conversation 20/50: 6 assistant turns\\\\n  Conversation 21/50: 5 assistant turns\\\\n  Conversation 22/50: 7 assistant turns\\\\n  Conversation 23/50: 5 assistant turns\\\\n  Conversation 24/50: 5 assistant turns\\\\n  Conversation 25/50: 5 assistant turns\\\\n  Conversation 26/50: 7 assistant turns\\\\n  Conversation 27/50: 5 assistant turns\\\\n  Conversation 28/50: 7 assistant turns\\\\n  Conversation 29/50: 5 assistant turns\\\\n  Conversation 30/50: 5 assistant turns\\\\n  Conversation 31/50: 7 assistant turns\\\\n  Conversation 32/50: 5 assistant turns\\\\n  Conversation 33/50: 5 assistant turns\\\\n  Conversation 34/50: 5 assistant turns\\\\n  Conversation 35/50: 6 assistant turns\\\\n  Conversation 36/50: 5 assistant turns\\\\n  Conversation 37/50: 5 assistant turns\\\\n  Conversation 38/50: 6 assistant turns\\\\n  Conversation 39/50: 5 assistant turns\\\\n  Conversation 40/50: 5 assistant turns\\\\n  Conversation 41/50: 5 assistant turns\\\\n  Conversation 42/50: 5 assistant turns\\\\n  Conversation 43/50: 5 assistant turns\\\\n  Conversation 44/50: 5 assistant turns\\\\n  Conversation 45/50: 6 assistant turns\\\\n  Conversation 46/50: 5 assistant turns\\\\n  Conversation 47/50: 5 assistant turns\\\\n  Conversation 48/50: 7 assistant turns\\\\n  Conversation 49/50: 7 assistant turns\\\\n  Conversation 50/50: 5 assistant turns\\\\nModel device: cuda:0\\\\nNo gates loaded (base/LoRA-only mode)\\\\n\\\\nMeasuring GAR...\\\\n  Conv 1 GAR:  ['0.0231', '0.0162', '0.0136', '0.0099', '0.0095']\\\\n  Conv 1 nGAR: ['0.2546', '0.3451', '0.4032', '0.3874', '0.4507']\\\\n  Conv 2 GAR:  ['0.0524', '0.0157', '0.0104', '0.0097', '0.0071', '0.0070']\\\\n  Conv 2 nGAR: ['0.4596', '0.3252', '0.3333', '0.4109', '0.3519', '0.4322'\\\\n\\\\n... [截断: 输出过长，省略 101084 字符] ...\\\\n\\\\n', '0.0161']\\\\n  Conv 42 nGAR: ['0.4219', '0.6753', '0.8845', '0.9812', '1.3401']\\\\n  Conv 43 GAR:  ['0.0224', '0.0155', '0.0111', '0.0092', '0.0074']\\\\n  Conv 43 nGAR: ['0.4462', '0.6826', '0.7435', '0.7845', '0.7845']\\\\n  Conv 44 GAR:  ['0.0157', '0.0123', '0.0101', '0.0088', '0.0093']\\\\n  Conv 44 nGAR: ['0.2864', '0.3836', '0.4361', '0.4968', '0.6647']\\\\n  Conv 45 GAR:  ['0.0176', '0.0131', '0.0111', '0.1097', '0.0109', '0.0116']\\\\n  Conv 45 nGAR: ['0.3827', '0.4698', '0.5957', '6.1975', '0.7390', '1.0527']\\\\n  Conv 46 GAR:  ['0.0240', '0.0122', '0.0088', '0.0087', '0.0095']\\\\n  Conv 46 nGAR: ['0.4678', '0.5025', '0.5326', '0.7174', '0.9723']\\\\n  Conv 47 GAR:  ['0.0193', '0.0091', '0.0055']\\\\n  Conv 47 nGAR: ['0.7157', '0.7927', '0.7040']\\\\n  Conv 48 GAR:  ['0.0242', '0.0140', '0.0126', '0.0106', '0.0082', '0.0095', '0.0202']\\\\n  Conv 48 nGAR: ['0.3687', '0.4317', '0.5939', '0.7476', '0.7705', '1.0017', '2.3100']\\\\n  Conv 49 GAR:  ['0.0234', '0.0451', '0.0192', '0.0166', '0.0668', '0.0773', '0.0098']\\\\n  Conv 49 nGAR: ['0.3948', '0.9364', '0.5687', '0.6633', '2.9251', '3.6316', '0.6061']\\\\n  Conv 50 GAR:  ['0.0248', '0.0212', '0.0133', '0.0105', '0.0214']\\\\n  Conv 50 nGAR: ['0.3426', '0.4741', '0.4186', '0.5254', '1.2826']\\\\n\\\\nMeasuring NTP Perplexity...\\\\n  Conv 1 PPL: 2.18 (NTP loss: 0.7794)\\\\n  Conv 2 PPL: 2.57 (NTP loss: 0.9445)\\\\n  Conv 3 PPL: 3.23 (NTP loss: 1.1722)\\\\n  Conv 4 PPL: 2.17 (NTP loss: 0.7758)\\\\n  Conv 5 PPL: 3.01 (NTP loss: 1.1035)\\\\n  Conv 6 PPL: 2.56 (NTP loss: 0.9386)\\\\n  Conv 7 PPL: 2.12 (NTP loss: 0.7523)\\\\n  Conv 8 PPL: 2.30 (NTP loss: 0.8309)\\\\n  Conv 9 PPL: 3.55 (NTP loss: 1.2658)\\\\n  Conv 10 PPL: 2.54 (NTP loss: 0.9318)\\\\n  Conv 11 PPL: 4.16 (NTP loss: 1.4243)\\\\n  Conv 12 PPL: 2.42 (NTP loss: 0.8849)\\\\n  Conv 13 PPL: 3.02 (NTP loss: 1.1053)\\\\n  Conv 14 PPL: 1.58 (NTP loss: 0.4559)\\\\n  Conv 15 PPL: 2.91 (NTP loss: 1.0674)\\\\n  Conv 16 PPL: 3.18 (NTP loss: 1.1571)\\\\n  Conv 17 PPL: 3.22 (NTP loss: 1.1702)\\\\n  Conv 18 PPL: 2.52 (NTP loss: 0.9244)\\\\n  Conv 19 PPL: 2.06 (NTP loss: 0.7251)\\\\n  Conv 20 PPL: 2.40 (NTP loss: 0.8769)\\\\n  Conv 21 PPL: 2.44 (NTP loss: 0.8931)\\\\n  Conv 22 PPL: 2.61 (NTP loss: 0.9604)\\\\n  Conv 23 PPL: 3.02 (NTP loss: 1.1049)\\\\n  Conv 24 PPL: 2.03 (NTP loss: 0.7084)\\\\n  Conv 25 PPL: 2.69 (NTP loss: 0.9911)\\\\n  Conv 26 PPL: 4.03 (NTP loss: 1.3949)\\\\n  Conv 27 PPL: 3.01 (NTP loss: 1.1012)\\\\n  Conv 28 PPL: 2.43 (NTP loss: 0.8885)\\\\n  Conv 29 PPL: 2.88 (NTP loss: 1.0564)\\\\n  Conv 30 PPL: 3.12 (NTP loss: 1.1379)\\\\n  Conv 31 PPL: 2.40 (NTP loss: 0.8749)\\\\n  Conv 32 PPL: 2.44 (NTP loss: 0.8920)\\\\n  Conv 33 PPL: 3.07 (NTP loss: 1.1204)\\\\n  Conv 34 PPL: 4.25 (NTP loss: 1.4469)\\\\n  Conv 35 PPL: 3.03 (NTP loss: 1.1077)\\\\n  Conv 36 PPL: 2.21 (NTP loss: 0.7941)\\\\n  Conv 37 PPL: 3.39 (NTP loss: 1.2199)\\\\n  Conv 38 PPL: 2.83 (NTP loss: 1.0410)\\\\n  Conv 39 PPL: 2.94 (NTP loss: 1.0771)\\\\n  Conv 40 PPL: 2.75 (NTP loss: 1.0129)\\\\n  Conv 41 PPL: 1.67 (NTP loss: 0.5127)\\\\n  Conv 42 PPL: 2.03 (NTP loss: 0.7080)\\\\n  Conv 43 PPL: 2.76 (NTP loss: 1.0158)\\\\n  Conv 44 PPL: 8.66 (NTP loss: 2.1589)\\\\n  Conv 45 PPL: 2.47 (NTP loss: 0.9047)\\\\n  Conv 46 PPL: 2.05 (NTP loss: 0.7178)\\\\n  Conv 47 PPL: 1.27 (NTP loss: 0.2357)\\\\n  Conv 48 PPL: 2.16 (NTP loss: 0.7697)\\\\n  Conv 49 PPL: 1.84 (NTP loss: 0.6073)\\\\n  Conv 50 PPL: 3.05 (NTP loss: 1.1148)\\\\n\\\\nAvg PPL: 2.78\\\\nAvg NTP Loss: 0.9771\\\\n\\\\nBaseline mid-turn GAR: 0.0122\\\\nTrained mid-turn GAR:  0.0132\\\\nGAR recovery:          +0.10pp\\\\n\\\\nResults saved to /root/turn_residual_gating/runs/phase2_4way_eval_heldout/lora_only_dongre/phase2_lora_only_s42_dongre_gar.json\\\\nPlot saved to /root/turn_residual_gating/runs/phase2_4way_eval_heldout/lora_only_dongre/phase2_lora_only_s42_dongre_gar_comparison.png\\\\n\\\\n==================================================\\\\nPhase 2 GAR Evaluation (none, GAR-dongre)\\\\n==================================================\\\\nTurn 1 avg GAR:     0.0228\\\\nMid-turns avg GAR:  0.0132\\\\nMid-turns avg nGAR: 0.7057\\\\nGAR recovery:       +0.10pp\\\\nAvg PPL:            2.78\\\\nAvg NTP Loss:       0.9771\\\\n========== All 8 evals done ==========\\\\nResults in: /root/turn_residual_gating/runs/phase2_4way_eval_heldout\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"All checkpoint paths verified.\\n========== [1/8] Base + ours ==========\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\nDevice: cuda\\nGate type: none\\nGAR variant: ours\\nCheckpoint: None\\nLoading base model (eager attention)...\\n\\rLoading weights:   0%|          | 0/339 [00:00<?, ?it/s]\\rLoading weights:   0%|          | 1/339 [00:00<01:18,  4.31it/s]\\rLoading weights:   1%|          | 2/339 [00:00<01:14,  4.50it/s]\\rLoading weights:   3%|▎         | 10/339 [00:00<00:13, 25.17it/s]\\rLoading weights:   6%|▌         | 21/339 [00:00<00:06, 48.20it/s]\\rLoading weights:   9%|▊         | 29/339 [00:00<00:06, 44.81it/s]\\rLoading weights:  16%|█▌        | 53/339 [00:00<00:03, 89.45it/s]\\rLoading weights:  19%|█▉        | 65/339 [00:01<00:03, 76.08it/s]\\rLoading weights:  27%|██▋       | 91/339 [00:01<00:02, 116.32it/s]\\rLoading weights:  31%|███▏      | 106/339 [00:01<00:01, 122.27it/s]\\rLoading weights:  36%|███▌      | 121/339 [00:01<00:02, 101.92it/s]\\rLoading weights:  41%|████      | 138/339 [00:01<00:01, 116.88it/s]\\rLoading weights:  45%|████▍     | 152/339 [00:01<00:01, 118.10it/s]\\rLoading weights:  49%|████▉     | 166/339 [00:01<00:01, 122.50it/s]\\rLoading weights:  53%|█████▎    | 180/339 [00:02<00:01, 122.13it/s]\\rLoading weights:  57%|█████▋    | 193/339 [00:02<00:03, 43.51it/s] \\rLoading weights:  83%|████████▎ | 281/339 [00:03<00:00, 103.37it/s]\\rLoading weights:  98%|█████████▊| 332/339 [00:03<00:00, 144.96it/s]\\rLoading weights: 100%|██████████| 339/339 [00:03<00:00, 101.03it/s]\\nNo checkpoint dir specified, using pure base model\\n\\nLoading fixed conversations from /root/turn_residual_gating/data/ultrachat_eval_heldout.json\\n  Conversation 1/50: 5 assistant turns\\n  Conversation 2/50: 6 assistant turns\\n  Conversation 3/50: 5 assistant turns\\n  Conversation 4/50: 5 assistant turns\\n  Conversation 5/50: 5 assistant turns\\n  Conversation 6/50: 5 assistant turns\\n  Conversation 7/50: 5 assistant turns\\n  Conversation 8/50: 5 assistant turns\\n  Conversation 9/50: 6 assistant turns\\n  Conversation 10/50: 5 assistant turns\\n  Conversation 11/50: 5 assistant turns\\n  Conversation 12/50: 5 assistant turns\\n  Conversation 13/50: 5 assistant turns\\n  Conversation 14/50: 5 assistant turns\\n  Conversation 15/50: 7 assistant turns\\n  Conversation 16/50: 5 assistant turns\\n  Conversation 17/50: 7 assistant turns\\n  Conversation 18/50: 6 assistant turns\\n  Conversation 19/50: 6 assistant turns\\n  Conversation 20/50: 6 assistant turns\\n  Conversation 21/50: 5 assistant turns\\n  Conversation 22/50: 7 assistant turns\\n  Conversation 23/50: 5 assistant turns\\n  Conversation 24/50: 5 assistant turns\\n  Conversation 25/50: 5 assistant turns\\n  Conversation 26/50: 7 assistant turns\\n  Conversation 27/50: 5 assistant turns\\n  Conversation 28/50: 7 assistant turns\\n  Conversation 29/50: 5 assistant turns\\n  Conversation 30/50: 5 assistant turns\\n  Conversation 31/50: 7 assistant turns\\n  Conversation 32/50: 5 assistant turns\\n  Conversation 33/50: 5 assistant turns\\n  Conversation 34/50: 5 assistant turns\\n  Conversation 35/50: 6 assistant turns\\n  Conversation 36/50: 5 assistant turns\\n  Conversation 37/50: 5 assistant turns\\n  Conversation 38/50: 6 assistant turns\\n  Conversation 39/50: 5 assistant turns\\n  Conversation 40/50: 5 assistant turns\\n  Conversation 41/50: 5 assistant turns\\n  Conversation 42/50: 5 assistant turns\\n  Conversation 43/50: 5 assistant turns\\n  Conversation 44/50: 5 assistant turns\\n  Conversation 45/50: 6 assistant turns\\n  Conversation 46/50: 5 assistant turns\\n  Conversation 47/50: 5 assistant turns\\n  Conversation 48/50: 7 assistant turns\\n  Conversation 49/50: 7 assistant turns\\n  Conversation 50/50: 5 assistant turns\\nModel device: cuda:0\\nNo gates loaded (base/LoRA-only mode)\\n\\nMeasuring GAR...\\n  Conv 1 GAR:  ['0.0231', '0.0162', '0.0136', '0.0099', '0.0095']\\n  Conv 1 nGAR: ['0.2546', '0.3451', '0.4032', '0.3874', '0.4507']\\n  Conv 2 GAR:  ['0.0524', '0.0157', '0.0104', '0.0097', '0.0071', '0.0070']\\n  Conv 2 nGAR: ['0.4596', '0.3252', '0.3333', '0.4109', '0.3519', '0.4322'\\n\\n... [截断: 输出过长，省略 101084 字符] ...\\n\\n', '0.0161']\\n  Conv 42 nGAR: ['0.4219', '0.6753', '0.8845', '0.9812', '1.3401']\\n  Conv 43 GAR:  ['0.0224', '0.0155', '0.0111', '0.0092', '0.0074']\\n  Conv 43 nGAR: ['0.4462', '0.6826', '0.7435', '0.7845', '0.7845']\\n  Conv 44 GAR:  ['0.0157', '0.0123', '0.0101', '0.0088', '0.0093']\\n  Conv 44 nGAR: ['0.2864', '0.3836', '0.4361', '0.4968', '0.6647']\\n  Conv 45 GAR:  ['0.0176', '0.0131', '0.0111', '0.1097', '0.0109', '0.0116']\\n  Conv 45 nGAR: ['0.3827', '0.4698', '0.5957', '6.1975', '0.7390', '1.0527']\\n  Conv 46 GAR:  ['0.0240', '0.0122', '0.0088', '0.0087', '0.0095']\\n  Conv 46 nGAR: ['0.4678', '0.5025', '0.5326', '0.7174', '0.9723']\\n  Conv 47 GAR:  ['0.0193', '0.0091', '0.0055']\\n  Conv 47 nGAR: ['0.7157', '0.7927', '0.7040']\\n  Conv 48 GAR:  ['0.0242', '0.0140', '0.0126', '0.0106', '0.0082', '0.0095', '0.0202']\\n  Conv 48 nGAR: ['0.3687', '0.4317', '0.5939', '0.7476', '0.7705', '1.0017', '2.3100']\\n  Conv 49 GAR:  ['0.0234', '0.0451', '0.0192', '0.0166', '0.0668', '0.0773', '0.0098']\\n  Conv 49 nGAR: ['0.3948', '0.9364', '0.5687', '0.6633', '2.9251', '3.6316', '0.6061']\\n  Conv 50 GAR:  ['0.0248', '0.0212', '0.0133', '0.0105', '0.0214']\\n  Conv 50 nGAR: ['0.3426', '0.4741', '0.4186', '0.5254', '1.2826']\\n\\nMeasuring NTP Perplexity...\\n  Conv 1 PPL: 2.18 (NTP loss: 0.7794)\\n  Conv 2 PPL: 2.57 (NTP loss: 0.9445)\\n  Conv 3 PPL: 3.23 (NTP loss: 1.1722)\\n  Conv 4 PPL: 2.17 (NTP loss: 0.7758)\\n  Conv 5 PPL: 3.01 (NTP loss: 1.1035)\\n  Conv 6 PPL: 2.56 (NTP loss: 0.9386)\\n  Conv 7 PPL: 2.12 (NTP loss: 0.7523)\\n  Conv 8 PPL: 2.30 (NTP loss: 0.8309)\\n  Conv 9 PPL: 3.55 (NTP loss: 1.2658)\\n  Conv 10 PPL: 2.54 (NTP loss: 0.9318)\\n  Conv 11 PPL: 4.16 (NTP loss: 1.4243)\\n  Conv 12 PPL: 2.42 (NTP loss: 0.8849)\\n  Conv 13 PPL: 3.02 (NTP loss: 1.1053)\\n  Conv 14 PPL: 1.58 (NTP loss: 0.4559)\\n  Conv 15 PPL: 2.91 (NTP loss: 1.0674)\\n  Conv 16 PPL: 3.18 (NTP loss: 1.1571)\\n  Conv 17 PPL: 3.22 (NTP loss: 1.1702)\\n  Conv 18 PPL: 2.52 (NTP loss: 0.9244)\\n  Conv 19 PPL: 2.06 (NTP loss: 0.7251)\\n  Conv 20 PPL: 2.40 (NTP loss: 0.8769)\\n  Conv 21 PPL: 2.44 (NTP loss: 0.8931)\\n  Conv 22 PPL: 2.61 (NTP loss: 0.9604)\\n  Conv 23 PPL: 3.02 (NTP loss: 1.1049)\\n  Conv 24 PPL: 2.03 (NTP loss: 0.7084)\\n  Conv 25 PPL: 2.69 (NTP loss: 0.9911)\\n  Conv 26 PPL: 4.03 (NTP loss: 1.3949)\\n  Conv 27 PPL: 3.01 (NTP loss: 1.1012)\\n  Conv 28 PPL: 2.43 (NTP loss: 0.8885)\\n  Conv 29 PPL: 2.88 (NTP loss: 1.0564)\\n  Conv 30 PPL: 3.12 (NTP loss: 1.1379)\\n  Conv 31 PPL: 2.40 (NTP loss: 0.8749)\\n  Conv 32 PPL: 2.44 (NTP loss: 0.8920)\\n  Conv 33 PPL: 3.07 (NTP loss: 1.1204)\\n  Conv 34 PPL: 4.25 (NTP loss: 1.4469)\\n  Conv 35 PPL: 3.03 (NTP loss: 1.1077)\\n  Conv 36 PPL: 2.21 (NTP loss: 0.7941)\\n  Conv 37 PPL: 3.39 (NTP loss: 1.2199)\\n  Conv 38 PPL: 2.83 (NTP loss: 1.0410)\\n  Conv 39 PPL: 2.94 (NTP loss: 1.0771)\\n  Conv 40 PPL: 2.75 (NTP loss: 1.0129)\\n  Conv 41 PPL: 1.67 (NTP loss: 0.5127)\\n  Conv 42 PPL: 2.03 (NTP loss: 0.7080)\\n  Conv 43 PPL: 2.76 (NTP loss: 1.0158)\\n  Conv 44 PPL: 8.66 (NTP loss: 2.1589)\\n  Conv 45 PPL: 2.47 (NTP loss: 0.9047)\\n  Conv 46 PPL: 2.05 (NTP loss: 0.7178)\\n  Conv 47 PPL: 1.27 (NTP loss: 0.2357)\\n  Conv 48 PPL: 2.16 (NTP loss: 0.7697)\\n  Conv 49 PPL: 1.84 (NTP loss: 0.6073)\\n  Conv 50 PPL: 3.05 (NTP loss: 1.1148)\\n\\nAvg PPL: 2.78\\nAvg NTP Loss: 0.9771\\n\\nBaseline mid-turn GAR: 0.0122\\nTrained mid-turn GAR:  0.0132\\nGAR recovery:          +0.10pp\\n\\nResults saved to /root/turn_residual_gating/runs/phase2_4way_eval_heldout/lora_only_dongre/phase2_lora_only_s42_dongre_gar.json\\nPlot saved to /root/turn_residual_gating/runs/phase2_4way_eval_heldout/lora_only_dongre/phase2_lora_only_s42_dongre_gar_comparison.png\\n\\n==================================================\\nPhase 2 GAR Evaluation (none, GAR-dongre)\\n==================================================\\nTurn 1 avg GAR:     0.0228\\nMid-turns avg GAR:  0.0132\\nMid-turns avg nGAR: 0.7057\\nGAR recovery:       +0.10pp\\nAvg PPL:            2.78\\nAvg NTP Loss:       0.9771\\n========== All 8 evals done ==========\\nResults in: /root/turn_residual_gating/runs/phase2_4way_eval_heldout\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-19T14:33:18.030Z_
+
+<details><summary>↩ Tool result · `toolu_01TVCnBX4GpmbtW2TjxTsRCK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 8\\ndrwxr-xr-x 10 root root 4096 May 19 22:04 .\\ndrwxr-xr-x  8 root root 4096 May 19 22:01 ..\\ndrwxr-xr-x  2 root root   96 May 19 22:01 base_dongre\\ndrwxr-xr-x  2 root root   70 May 19 22:01 base_ours\\ndrwxr-xr-x  2 root root  116 May 19 22:04 lora_only_dongre\\ndrwxr-xr-x  2 root root  102 May 19 22:03 lora_only_ours\\ndrwxr-xr-x  2 root root  108 May 19 22:02 tg_v7_dongre\\ndrwxr-xr-x  2 root root   94 May 19 22:02 tg_v7_ours\\ndrwxr-xr-x  2 root root  102 May 19 22:03 ug_dongre\\ndrwxr-xr-x  2 root root   88 May 19 22:03 ug_ours\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "631cf2a4-97ca-4232-8088-173f8a079e98",
+  "uuid": "233470f7-087a-4c5a-b6d1-f3a7d0e2754b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 8\\\\ndrwxr-xr-x 10 root root 4096 May 19 22:04 .\\\\ndrwxr-xr-x  8 root root 4096 May 19 22:01 ..\\\\ndrwxr-xr-x  2 root root   96 May 19 22:01 base_dongre\\\\ndrwxr-xr-x  2 root root   70 May 19 22:01 base_ours\\\\ndrwxr-xr-x  2 root root  116 May 19 22:04 lora_only_dongre\\\\ndrwxr-xr-x  2 root root  102 May 19 22:03 lora_only_ours\\\\ndrwxr-xr-x  2 root root  108 May 19 22:02 tg_v7_dongre\\\\ndrwxr-xr-x  2 root root   94 May 19 22:02 tg_v7_ours\\\\ndrwxr-xr-x  2 root root  102 May 19 22:03 ug_dongre\\\\ndrwxr-xr-x  2 root root   88 May 19 22:03 ug_ours\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 8\\ndrwxr-xr-x 10 root root 4096 May 19 22:04 .\\ndrwxr-xr-x  8 root root 4096 May 19 22:01 ..\\ndrwxr-xr-x  2 root root   96 May 19 22:01 base_dongre\\ndrwxr-xr-x  2 root root   70 May 19 22:01 base_ours\\ndrwxr-xr-x  2 root root  116 May 19 22:04 lora_only_dongre\\ndrwxr-xr-x  2 root root  102 May 19 22:03 lora_only_ours\\ndrwxr-xr-x  2 root root  108 May 19 22:02 tg_v7_dongre\\ndrwxr-xr-x  2 root root   94 May 19 22:02 tg_v7_ours\\ndrwxr-xr-x  2 root root  102 May 19 22:03 ug_dongre\\ndrwxr-xr-x  2 root root   88 May 19 22:03 ug_ours\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, the log is very long but I can see the results. Let me read the JSON result files from each of the 8 subdirectories to get the summary metrics.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "631cf2a4-97ca-4232-8088-173f8a079e98",
+  "uuid": "dabf56f7-476f-4de8-ba70-060f79c88c6d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013qVz1c1fSi4aW1PFHP5jSg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4962,
+      "cache_read_input_tokens": 24601,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4962
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+日志已截断，需要从 JSON 结果文件中提取各路汇总数据。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "631cf2a4-97ca-4232-8088-173f8a079e98",
+  "uuid": "9f20ac32-fbde-4ffb-a008-fa14981be126",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013qVz1c1fSi4aW1PFHP5jSg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4962,
+      "cache_read_input_tokens": 24601,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4962
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014uVBaZ3JzuKbp53GqrgynN`</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "find /root/turn_residual_gating/runs/phase2_4way_eval_heldout/ -name \"*.json\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "631cf2a4-97ca-4232-8088-173f8a079e98",
+  "uuid": "649d1b5a-87ca-414d-b4c6-c2821819c81c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013qVz1c1fSi4aW1PFHP5jSg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4962,
+      "cache_read_input_tokens": 24601,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4962
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-19T14:33:23.993Z_
+
+<details><summary>↩ Tool result · `toolu_014uVBaZ3JzuKbp53GqrgynN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/turn_residual_gating/runs/phase2_4way_eval_heldout/base_ours/base_model_gar.json\\n/root/turn_residual_gating/runs/phase2_4way_eval_heldout/base_dongre/base_model_dongre_gar.json\\n/root/turn_residual_gating/runs/phase2_4way_eval_heldout/tg_v7_ours/phase2_tg_s42_v7_gar.json\\n/root/turn_residual_gating/runs/phase2_4way_eval_heldout/tg_v7_dongre/phase2_tg_s42_v7_dongre_gar.json\\n/root/turn_residual_gating/runs/phase2_4way_eval_heldout/ug_ours/phase2_ug_s42_gar.json\\n/root/turn_residual_gating/runs/phase2_4way_eval_heldout/ug_dongre/phase2_ug_s42_dongre_gar.json\\n/root/turn_residual_gating/runs/phase2_4way_eval_heldout/lora_only_ours/phase2_lora_only_s42_gar.json\\n/root/turn_residual_gating/runs/phase2_4way_eval_heldout/lora_only_dongre/phase2_lora_only_s42_dongre_gar.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "631cf2a4-97ca-4232-8088-173f8a079e98",
+  "uuid": "ae0efcf1-92f1-4990-8689-05f4d3ec00b2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/turn_residual_gating/runs/phase2_4way_eval_heldout/base_ours/base_model_gar.json\\\\n/root/turn_residual_gating/runs/phase2_4way_eval_heldout/base_dongre/base_model_dongre_gar.json\\\\n/root/turn_residual_gating/runs/phase2_4way_eval_heldout/tg_v7_ours/phase2_tg_s42_v7_gar.json\\\\n/root/turn_residual_gating/runs/phase2_4way_eval_heldout/tg_v7_dongre/phase2_tg_s42_v7_dongre_gar.json\\\\n/root/turn_residual_gating/runs/phase2_4way_eval_heldout/ug_ours/phase2_ug_s42_gar.json\\\\n/root/turn_residual_gating/runs/phase2_4way_eval_heldout/ug_dongre/phase2_ug_s42_dongre_gar.json\\\\n/root/turn_residual_gating/runs/phase2_4way_eval_heldout/lora_only_ours/phase2_lora_only_s42_gar.json\\\\n/root/turn_residual_gating/runs/phase2_4way_eval_heldout/lora_only_dongre/phase2_lora_only_s42_dongre_gar.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.74}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/turn_residual_gating/runs/phase2_4way_eval_heldout/base_ours/base_model_gar.json\\n/root/turn_residual_gating/runs/phase2_4way_eval_heldout/base_dongre/base_model_dongre_gar.json\\n/root/turn_residual_gating/runs/phase2_4way_eval_heldout/tg_v7_ours/phase2_tg_s42_v7_gar.json\\n/root/turn_residual_gating/runs/phase2_4way_eval_heldout/tg_v7_dongre/phase2_tg_s42_v7_dongre_gar.json\\n/root/turn_residual_gating/runs/phase2_4way_eval_heldout/ug_ours/phase2_ug_s42_gar.json\\n/root/turn_residual_gating/runs/phase2_4way_eval_heldout/ug_dongre/phase2_ug_s42_dongre_gar.json\\n/root/turn_residual_gating/runs/phase2_4way_eval_heldout/lora_only_ours/phase2_lora_only_s42_gar.json\\n/root/turn_residual_gating/runs/phase2_4way_eval_heldout/lora_only_dongre/phase2_lora_only_s42_dongre_gar.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Ws44gEfoDxJtDKYDN2Liwa`</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "cat /root/turn_residual_gating/runs/phase2_4way_eval_heldout/base_ours/base_model_gar.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "631cf2a4-97ca-4232-8088-173f8a079e98",
+  "uuid": "27cd72b3-d5ba-46d6-ab0c-31fd6d7a3a6a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q4SYWcsMh6LtkExc4P13Md",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 657,
+      "cache_read_input_tokens": 29563,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 657
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014GDsqRhQRsGnZTKB4vMp6Y`</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "cat /root/turn_residual_gating/runs/phase2_4way_eval_heldout/base_dongre/base_model_dongre_gar.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "631cf2a4-97ca-4232-8088-173f8a079e98",
+  "uuid": "5feb64b4-3f34-4a3d-b9c1-e855e09ec527",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q4SYWcsMh6LtkExc4P13Md",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 657,
+      "cache_read_input_tokens": 29563,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 657
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-19T14:33:29.568Z_
+
+<details><summary>↩ Tool result · `toolu_01Ws44gEfoDxJtDKYDN2Liwa`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"checkpoint_dir\\\": null,\\n  \\\"gate_type\\\": \\\"none\\\",\\n  \\\"gar_variant\\\": \\\"ours\\\",\\n  \\\"model\\\": \\\"/root/.cache/modelscope/Qwen/Qwen2___5-7B-Instruct\\\",\\n  \\\"num_conversations\\\": 50,\\n  \\\"num_turns\\\": 3,\\n  \\\"gar_curves\\\": [\\n    [\\n      0.023148611770254873,\\n      0.016209461753919987,\\n      0.01357038060475471,\\n      0.009852093419572236,\\n      0.009479729246725754\\n    ],\\n    [\\n      0.05242039922024288,\\n      0.015687120589635898,\\n      0.010416922788426316,\\n      0.009737137839860296,\\n      0.0070812424292675214,\\n      0.0070384966130543755\\n    ],\\n    [\\n      0.05539058403031116,\\n      0.016748814181953012,\\n      0.01131702696062468,\\n      0.012139393522710758,\\n      0.008036989389674813\\n    ],\\n    [\\n      0.04029451033975445,\\n      0.008893187625343277,\\n      0.011187305694931399,\\n      0.008451115465703653,\\n      0.003303891859627308\\n    ],\\n    [\\n      0.06038937561747204,\\n      0.021683712219699367,\\n      0.014970327335484134,\\n      0.01129589083420722,\\n      0.011339322772585711\\n    ],\\n    [\\n      0.054801676476159376,\\n      0.028379872530505085,\\n      0.01547271197691778,\\n      0.011761145867837402,\\n      0.012254090029599565\\n    ],\\n    [\\n      0.021363154919321815,\\n      0.017391893295487112,\\n      0.009430632444550158,\\n      0.005235511025957206,\\n      0.00669350956993222\\n    ],\\n    [\\n      0.046703904527008115,\\n      0.012883777036405027,\\n      0.012133473486780292,\\n      0.00846081967032338,\\n      0.009635034622139693\\n    ],\\n    [\\n      0.06578724872396517,\\n      0.01703510879494976,\\n      0.012043417659495997,\\n      0.010119803537404543,\\n      0.007492022569247693,\\n      0.0065908739296892515\\n    ],\\n    [\\n      0.08961640505376686,\\n      0.026835958950545368,\\n      0.016811031648596122,\\n      0.010698548272836107,\\n      0.010695345872249688\\n    ],\\n    [\\n      0.08003888352154309,\\n      0.037159499563795315,\\n      0.020350231341378994,\\n      0.018117752840011925,\\n      0.022180030195626647\\n    ],\\n    [\\n      0.08156807075480435,\\n      0.02230741507056321,\\n      0.01543553720642256,\\n      0.010611695115647126,\\n      0.01581245615919227\\n    ],\\n    [\\n      0.03557192647246478,\\n      0.012224059503959805,\\n      0.008724927589224352,\\n      0.007252565312766397,\\n      0.007061831577730977\\n    ],\\n    [\\n      0.03248214912389902,\\n      0.012302760128964394,\\n      0.007586419293663634,\\n      0.0042006467056855444,\\n      0.0018881748524311158\\n    ],\\n    [\\n      0.06253852803258612,\\n      0.014912564648090236,\\n      0.01263682549418285,\\n      0.005883238233370046,\\n      0.007114202619481512,\\n      0.002612404358597602\\n    ],\\n    [\\n      0.03559687400780764,\\n      0.013886464210816643,\\n      0.007904534332898623,\\n      0.007370762606323747,\\n      0.006305141985470377\\n    ],\\n    [\\n      0.04159908176062933,\\n      0.017306564649702625,\\n      0.015499645731134973,\\n      0.008671441201344087,\\n      0.007883859479536863,\\n      0.006973155979539535,\\n      0.005673111183273451\\n    ],\\n    [\\n      0.039788275914849916,\\n      0.01053909834666392,\\n      0.01197907740673637,\\n      0.01120668079124689,\\n      0.00782900725841711,\\n      0.0048964021041665315\\n    ],\\n    [\\n      0.057612528998131095,\\n      0.02325358497617099,\\n      0.013189919444644952,\\n      0.00848563217706728,\\n      0.008799872825574921,\\n      0.006135645917989289\\n    ],\\n    [\\n      0.05085682430764663,\\n      0.021184960532092317,\\n      0.01679477599506745,\\n      0.009481586168827305,\\n      0.007641090080276589,\\n      0.009424928873172941\\n    ],\\n    [\\n      0.05345461160158542,\\n      0.017364576953955803,\\n      0.00781978176726108,\\n      0.011128840038976523,\\n      0.007014680272414996\\n    ],\\n    [\\n      0.05572527919189431,\\n      0.01887283640670983,\\n      0.014144820308737042,\\n      0.009321767370037171,\\n      0.00811246948011558,\\n      0.005254976489866455,\\n      0.006906852867215758\\n    ],\\n    [\\n      0.02788817421760955,\\n      0.025191953048908526,\\n      0.014191105251310765,\\n      0.010424932881956905,\\n      0.011047221426689121\\n    ],\\n    [\\n      0.047297483518671635,\\n      0.0216597386\\n\\n... [截断: 输出过长，省略 7879 字符] ...\\n\\n.280820973414242,\\n      0.4143044398517127\\n    ],\\n    [\\n      0.29292753096197965,\\n      0.2440117999446307,\\n      0.37263571645883453\\n    ],\\n    [\\n      0.631922462930018,\\n      0.4421346072092565,\\n      0.3156059730660194\\n    ],\\n    [\\n      0.5842050565227096,\\n      0.37555342861361185,\\n      0.4169311351298891\\n    ],\\n    [\\n      0.5931931817264937,\\n      0.4757582590795089,\\n      0.3501146122328322\\n    ],\\n    [\\n      0.5428286541938275,\\n      0.37258179881302417,\\n      0.37032356244157827\\n    ],\\n    [\\n      0.27554551678269845,\\n      0.2888591107860922,\\n      0.3024930547520094\\n    ],\\n    [\\n      0.3113344728024287,\\n      0.18796572349067672,\\n      0.2428712709845941\\n    ],\\n    [\\n      0.42068520944451787,\\n      0.2649229867897381,\\n      0.21337387160784552\\n    ],\\n    [\\n      0.4660056663302823,\\n      0.31035280561962325,\\n      0.2530940831225026\\n    ],\\n    [\\n      0.5294491864359634,\\n      0.36147001249264055,\\n      0.4054832379872239\\n    ],\\n    [\\n      0.40841983279252686,\\n      0.29003774778261354,\\n      0.29620195126582644\\n    ],\\n    [\\n      0.256861044364699,\\n      0.24320498545198496,\\n      0.16834658601276117\\n    ],\\n    [\\n      0.4350294817746599,\\n      0.25730887512255163,\\n      0.1823056361640213\\n    ]\\n  ],\\n  \\\"avg_normalized_gar_per_turn\\\": [\\n    0.4328599843758053,\\n    0.28298043759752767,\\n    0.30122246874119407\\n  ],\\n  \\\"mid_turns_avg_normalized_gar\\\": 0.30122246874119407,\\n  \\\"avg_visible_tokens_per_turn\\\": [\\n    360,\\n    653,\\n    954\\n  ],\\n  \\\"conversations_source\\\": \\\"fixed\\\",\\n  \\\"avg_ppl\\\": 4.338097605705261,\\n  \\\"avg_ntp_loss\\\": 1.4044832688570024,\\n  \\\"ppl_per_conversation\\\": [\\n    3.6368343830108643,\\n    3.749924421310425,\\n    4.876887321472168,\\n    3.035308361053467,\\n    5.114375591278076,\\n    4.2138495445251465,\\n    3.064370632171631,\\n    3.5274946689605713,\\n    8.097731590270996,\\n    4.183684825897217,\\n    5.832596778869629,\\n    3.3795268535614014,\\n    4.395219326019287,\\n    2.1987454891204834,\\n    4.2491841316223145,\\n    4.2058234214782715,\\n    6.226709365844727,\\n    3.7349905967712402,\\n    3.269878387451172,\\n    3.630014181137085,\\n    3.5010886192321777,\\n    4.090672969818115,\\n    6.381584167480469,\\n    2.5659050941467285,\\n    4.175628662109375,\\n    7.036223888397217,\\n    3.569075584411621,\\n    4.280622482299805,\\n    5.03139066696167,\\n    4.114407539367676,\\n    3.546922206878662,\\n    3.5829343795776367,\\n    4.569067001342773,\\n    6.017836093902588,\\n    5.199741363525391,\\n    3.335744619369507,\\n    5.342408657073975,\\n    4.222761631011963,\\n    4.440583229064941,\\n    3.787379264831543,\\n    2.2477591037750244,\\n    3.259859800338745,\\n    3.99220609664917,\\n    13.238741874694824,\\n    4.281735420227051,\\n    2.7649571895599365,\\n    1.4554548263549805,\\n    3.1913931369781494,\\n    3.627730369567871,\\n    5.429914474487305\\n  ],\\n  \\\"ntp_loss_per_conversation\\\": [\\n    1.2911136150360107,\\n    1.3217356204986572,\\n    1.5845071077346802,\\n    1.110313057899475,\\n    1.6320552825927734,\\n    1.438376545906067,\\n    1.1198421716690063,\\n    1.2605879306793213,\\n    2.0915839672088623,\\n    1.431192398071289,\\n    1.7634623050689697,\\n    1.217735767364502,\\n    1.4805175065994263,\\n    0.7878869771957397,\\n    1.44672691822052,\\n    1.4364700317382812,\\n    1.828847885131836,\\n    1.317745327949524,\\n    1.1847528219223022,\\n    1.2892365455627441,\\n    1.2530739307403564,\\n    1.4087095260620117,\\n    1.8534163236618042,\\n    0.9423112273216248,\\n    1.4292649030685425,\\n    1.9510716199874878,\\n    1.2723066806793213,\\n    1.4540984630584717,\\n    1.6156964302062988,\\n    1.4144948720932007,\\n    1.2660802602767944,\\n    1.2761821746826172,\\n    1.5193090438842773,\\n    1.7947276830673218,\\n    1.648608922958374,\\n    1.2046959400177002,\\n    1.6756765842437744,\\n    1.4404892921447754,\\n    1.4907857179641724,\\n    1.331674337387085,\\n    0.8099337816238403,\\n    1.1816842555999756,\\n    1.3843439817428589,\\n    2.5831475257873535,\\n    1.4543583393096924,\\n    1.017025113105774,\\n    0.3753184974193573,\\n    1.1604576110839844,\\n    1.2886072397232056,\\n    1.6919233798980713\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "631cf2a4-97ca-4232-8088-173f8a079e98",
+  "uuid": "945c3bf0-326d-4576-82af-1bce931704e7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"checkpoint_dir\\\\\\\": null,\\\\n  \\\\\\\"gate_type\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n  \\\\\\\"gar_variant\\\\\\\": \\\\\\\"ours\\\\\\\",\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"/root/.cache/modelscope/Qwen/Qwen2___5-7B-Instruct\\\\\\\",\\\\n  \\\\\\\"num_conversations\\\\\\\": 50,\\\\n  \\\\\\\"num_turns\\\\\\\": 3,\\\\n  \\\\\\\"gar_curves\\\\\\\": [\\\\n    [\\\\n      0.023148611770254873,\\\\n      0.016209461753919987,\\\\n      0.01357038060475471,\\\\n      0.009852093419572236,\\\\n      0.009479729246725754\\\\n    ],\\\\n    [\\\\n      0.05242039922024288,\\\\n      0.015687120589635898,\\\\n      0.010416922788426316,\\\\n      0.009737137839860296,\\\\n      0.0070812424292675214,\\\\n      0.0070384966130543755\\\\n    ],\\\\n    [\\\\n      0.05539058403031116,\\\\n      0.016748814181953012,\\\\n      0.01131702696062468,\\\\n      0.012139393522710758,\\\\n      0.008036989389674813\\\\n    ],\\\\n    [\\\\n      0.04029451033975445,\\\\n      0.008893187625343277,\\\\n      0.011187305694931399,\\\\n      0.008451115465703653,\\\\n      0.003303891859627308\\\\n    ],\\\\n    [\\\\n      0.06038937561747204,\\\\n      0.021683712219699367,\\\\n      0.014970327335484134,\\\\n      0.01129589083420722,\\\\n      0.011339322772585711\\\\n    ],\\\\n    [\\\\n      0.054801676476159376,\\\\n      0.028379872530505085,\\\\n      0.01547271197691778,\\\\n      0.011761145867837402,\\\\n      0.012254090029599565\\\\n    ],\\\\n    [\\\\n      0.021363154919321815,\\\\n      0.017391893295487112,\\\\n      0.009430632444550158,\\\\n      0.005235511025957206,\\\\n      0.00669350956993222\\\\n    ],\\\\n    [\\\\n      0.046703904527008115,\\\\n      0.012883777036405027,\\\\n      0.012133473486780292,\\\\n      0.00846081967032338,\\\\n      0.009635034622139693\\\\n    ],\\\\n    [\\\\n      0.06578724872396517,\\\\n      0.01703510879494976,\\\\n      0.012043417659495997,\\\\n      0.010119803537404543,\\\\n      0.007492022569247693,\\\\n      0.0065908739296892515\\\\n    ],\\\\n    [\\\\n      0.08961640505376686,\\\\n      0.026835958950545368,\\\\n      0.016811031648596122,\\\\n      0.010698548272836107,\\\\n      0.010695345872249688\\\\n    ],\\\\n    [\\\\n      0.08003888352154309,\\\\n      0.037159499563795315,\\\\n      0.020350231341378994,\\\\n      0.018117752840011925,\\\\n      0.022180030195626647\\\\n    ],\\\\n    [\\\\n      0.08156807075480435,\\\\n      0.02230741507056321,\\\\n      0.01543553720642256,\\\\n      0.010611695115647126,\\\\n      0.01581245615919227\\\\n    ],\\\\n    [\\\\n      0.03557192647246478,\\\\n      0.012224059503959805,\\\\n      0.008724927589224352,\\\\n      0.007252565312766397,\\\\n      0.007061831577730977\\\\n    ],\\\\n    [\\\\n      0.03248214912389902,\\\\n      0.012302760128964394,\\\\n      0.007586419293663634,\\\\n      0.0042006467056855444,\\\\n      0.0018881748524311158\\\\n    ],\\\\n    [\\\\n      0.06253852803258612,\\\\n      0.014912564648090236,\\\\n      0.01263682549418285,\\\\n      0.005883238233370046,\\\\n      0.007114202619481512,\\\\n      0.002612404358597602\\\\n    ],\\\\n    [\\\\n      0.03559687400780764,\\\\n      0.013886464210816643,\\\\n      0.007904534332898623,\\\\n      0.007370762606323747,\\\\n      0.006305141985470377\\\\n    ],\\\\n    [\\\\n      0.04159908176062933,\\\\n      0.017306564649702625,\\\\n      0.015499645731134973,\\\\n      0.008671441201344087,\\\\n      0.007883859479536863,\\\\n      0.006973155979539535,\\\\n      0.005673111183273451\\\\n    ],\\\\n    [\\\\n      0.039788275914849916,\\\\n      0.01053909834666392,\\\\n      0.01197907740673637,\\\\n      0.01120668079124689,\\\\n      0.00782900725841711,\\\\n      0.0048964021041665315\\\\n    ],\\\\n    [\\\\n      0.057612528998131095,\\\\n      0.02325358497617099,\\\\n      0.013189919444644952,\\\\n      0.00848563217706728,\\\\n      0.008799872825574921,\\\\n      0.006135645917989289\\\\n    ],\\\\n    [\\\\n      0.05085682430764663,\\\\n      0.021184960532092317,\\\\n      0.01679477599506745,\\\\n      0.009481586168827305,\\\\n      0.007641090080276589,\\\\n      0.009424928873172941\\\\n    ],\\\\n    [\\\\n      0.05345461160158542,\\\\n      0.017364576953955803,\\\\n      0.00781978176726108,\\\\n      0.011128840038976523,\\\\n      0.007014680272414996\\\\n    ],\\\\n    [\\\\n      0.05572527919189431,\\\\n      0.01887283640670983,\\\\n      0.014144820308737042,\\\\n      0.009321767370037171,\\\\n      0.00811246948011558,\\\\n      0.005254976489866455,\\\\n      0.006906852867215758\\\\n    ],\\\\n    [\\\\n      0.02788817421760955,\\\\n      0.025191953048908526,\\\\n      0.014191105251310765,\\\\n      0.010424932881956905,\\\\n      0.011047221426689121\\\\n    ],\\\\n    [\\\\n      0.047297483518671635,\\\\n      0.0216597386\\\\n\\\\n... [截断: 输出过长，省略 7879 字符] ...\\\\n\\\\n.280820973414242,\\\\n      0.4143044398517127\\\\n    ],\\\\n    [\\\\n      0.29292753096197965,\\\\n      0.2440117999446307,\\\\n      0.37263571645883453\\\\n    ],\\\\n    [\\\\n      0.631922462930018,\\\\n      0.4421346072092565,\\\\n      0.3156059730660194\\\\n    ],\\\\n    [\\\\n      0.5842050565227096,\\\\n      0.37555342861361185,\\\\n      0.4169311351298891\\\\n    ],\\\\n    [\\\\n      0.5931931817264937,\\\\n      0.4757582590795089,\\\\n      0.3501146122328322\\\\n    ],\\\\n    [\\\\n      0.5428286541938275,\\\\n      0.37258179881302417,\\\\n      0.37032356244157827\\\\n    ],\\\\n    [\\\\n      0.27554551678269845,\\\\n      0.2888591107860922,\\\\n      0.3024930547520094\\\\n    ],\\\\n    [\\\\n      0.3113344728024287,\\\\n      0.18796572349067672,\\\\n      0.2428712709845941\\\\n    ],\\\\n    [\\\\n      0.42068520944451787,\\\\n      0.2649229867897381,\\\\n      0.21337387160784552\\\\n    ],\\\\n    [\\\\n      0.4660056663302823,\\\\n      0.31035280561962325,\\\\n      0.2530940831225026\\\\n    ],\\\\n    [\\\\n      0.5294491864359634,\\\\n      0.36147001249264055,\\\\n      0.4054832379872239\\\\n    ],\\\\n    [\\\\n      0.40841983279252686,\\\\n      0.29003774778261354,\\\\n      0.29620195126582644\\\\n    ],\\\\n    [\\\\n      0.256861044364699,\\\\n      0.24320498545198496,\\\\n      0.16834658601276117\\\\n    ],\\\\n    [\\\\n      0.4350294817746599,\\\\n      0.25730887512255163,\\\\n      0.1823056361640213\\\\n    ]\\\\n  ],\\\\n  \\\\\\\"avg_normalized_gar_per_turn\\\\\\\": [\\\\n    0.4328599843758053,\\\\n    0.28298043759752767,\\\\n    0.30122246874119407\\\\n  ],\\\\n  \\\\\\\"mid_turns_avg_normalized_gar\\\\\\\": 0.30122246874119407,\\\\n  \\\\\\\"avg_visible_tokens_per_turn\\\\\\\": [\\\\n    360,\\\\n    653,\\\\n    954\\\\n  ],\\\\n  \\\\\\\"conversations_source\\\\\\\": \\\\\\\"fixed\\\\\\\",\\\\n  \\\\\\\"avg_ppl\\\\\\\": 4.338097605705261,\\\\n  \\\\\\\"avg_ntp_loss\\\\\\\": 1.4044832688570024,\\\\n  \\\\\\\"ppl_per_conversation\\\\\\\": [\\\\n    3.6368343830108643,\\\\n    3.749924421310425,\\\\n    4.876887321472168,\\\\n    3.035308361053467,\\\\n    5.114375591278076,\\\\n    4.2138495445251465,\\\\n    3.064370632171631,\\\\n    3.5274946689605713,\\\\n    8.097731590270996,\\\\n    4.183684825897217,\\\\n    5.832596778869629,\\\\n    3.3795268535614014,\\\\n    4.395219326019287,\\\\n    2.1987454891204834,\\\\n    4.2491841316223145,\\\\n    4.2058234214782715,\\\\n    6.226709365844727,\\\\n    3.7349905967712402,\\\\n    3.269878387451172,\\\\n    3.630014181137085,\\\\n    3.5010886192321777,\\\\n    4.090672969818115,\\\\n    6.381584167480469,\\\\n    2.5659050941467285,\\\\n    4.175628662109375,\\\\n    7.036223888397217,\\\\n    3.569075584411621,\\\\n    4.280622482299805,\\\\n    5.03139066696167,\\\\n    4.114407539367676,\\\\n    3.546922206878662,\\\\n    3.5829343795776367,\\\\n    4.569067001342773,\\\\n    6.017836093902588,\\\\n    5.199741363525391,\\\\n    3.335744619369507,\\\\n    5.342408657073975,\\\\n    4.222761631011963,\\\\n    4.440583229064941,\\\\n    3.787379264831543,\\\\n    2.2477591037750244,\\\\n    3.259859800338745,\\\\n    3.99220609664917,\\\\n    13.238741874694824,\\\\n    4.281735420227051,\\\\n    2.7649571895599365,\\\\n    1.4554548263549805,\\\\n    3.1913931369781494,\\\\n    3.627730369567871,\\\\n    5.429914474487305\\\\n  ],\\\\n  \\\\\\\"ntp_loss_per_conversation\\\\\\\": [\\\\n    1.2911136150360107,\\\\n    1.3217356204986572,\\\\n    1.5845071077346802,\\\\n    1.110313057899475,\\\\n    1.6320552825927734,\\\\n    1.438376545906067,\\\\n    1.1198421716690063,\\\\n    1.2605879306793213,\\\\n    2.0915839672088623,\\\\n    1.431192398071289,\\\\n    1.7634623050689697,\\\\n    1.217735767364502,\\\\n    1.4805175065994263,\\\\n    0.7878869771957397,\\\\n    1.44672691822052,\\\\n    1.4364700317382812,\\\\n    1.828847885131836,\\\\n    1.317745327949524,\\\\n    1.1847528219223022,\\\\n    1.2892365455627441,\\\\n    1.2530739307403564,\\\\n    1.4087095260620117,\\\\n    1.8534163236618042,\\\\n    0.9423112273216248,\\\\n    1.4292649030685425,\\\\n    1.9510716199874878,\\\\n    1.2723066806793213,\\\\n    1.4540984630584717,\\\\n    1.6156964302062988,\\\\n    1.4144948720932007,\\\\n    1.2660802602767944,\\\\n    1.2761821746826172,\\\\n    1.5193090438842773,\\\\n    1.7947276830673218,\\\\n    1.648608922958374,\\\\n    1.2046959400177002,\\\\n    1.6756765842437744,\\\\n    1.4404892921447754,\\\\n    1.4907857179641724,\\\\n    1.331674337387085,\\\\n    0.8099337816238403,\\\\n    1.1816842555999756,\\\\n    1.3843439817428589,\\\\n    2.5831475257873535,\\\\n    1.4543583393096924,\\\\n    1.017025113105774,\\\\n    0.3753184974193573,\\\\n    1.1604576110839844,\\\\n    1.2886072397232056,\\\\n    1.6919233798980713\\\\n  ]\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"checkpoint_dir\\\": null,\\n  \\\"gate_type\\\": \\\"none\\\",\\n  \\\"gar_variant\\\": \\\"ours\\\",\\n  \\\"model\\\": \\\"/root/.cache/modelscope/Qwen/Qwen2___5-7B-Instruct\\\",\\n  \\\"num_conversations\\\": 50,\\n  \\\"num_turns\\\": 3,\\n  \\\"gar_curves\\\": [\\n    [\\n      0.023148611770254873,\\n      0.016209461753919987,\\n      0.01357038060475471,\\n      0.009852093419572236,\\n      0.009479729246725754\\n    ],\\n    [\\n      0.05242039922024288,\\n      0.015687120589635898,\\n      0.010416922788426316,\\n      0.009737137839860296,\\n      0.0070812424292675214,\\n      0.0070384966130543755\\n    ],\\n    [\\n      0.05539058403031116,\\n      0.016748814181953012,\\n      0.01131702696062468,\\n      0.012139393522710758,\\n      0.008036989389674813\\n    ],\\n    [\\n      0.04029451033975445,\\n      0.008893187625343277,\\n      0.011187305694931399,\\n      0.008451115465703653,\\n      0.003303891859627308\\n    ],\\n    [\\n      0.06038937561747204,\\n      0.021683712219699367,\\n      0.014970327335484134,\\n      0.01129589083420722,\\n      0.011339322772585711\\n    ],\\n    [\\n      0.054801676476159376,\\n      0.028379872530505085,\\n      0.01547271197691778,\\n      0.011761145867837402,\\n      0.012254090029599565\\n    ],\\n    [\\n      0.021363154919321815,\\n      0.017391893295487112,\\n      0.009430632444550158,\\n      0.005235511025957206,\\n      0.00669350956993222\\n    ],\\n    [\\n      0.046703904527008115,\\n      0.012883777036405027,\\n      0.012133473486780292,\\n      0.00846081967032338,\\n      0.009635034622139693\\n    ],\\n    [\\n      0.06578724872396517,\\n      0.01703510879494976,\\n      0.012043417659495997,\\n      0.010119803537404543,\\n      0.007492022569247693,\\n      0.0065908739296892515\\n    ],\\n    [\\n      0.08961640505376686,\\n      0.026835958950545368,\\n      0.016811031648596122,\\n      0.010698548272836107,\\n      0.010695345872249688\\n    ],\\n    [\\n      0.08003888352154309,\\n      0.037159499563795315,\\n      0.020350231341378994,\\n      0.018117752840011925,\\n      0.022180030195626647\\n    ],\\n    [\\n      0.08156807075480435,\\n      0.02230741507056321,\\n      0.01543553720642256,\\n      0.010611695115647126,\\n      0.01581245615919227\\n    ],\\n    [\\n      0.03557192647246478,\\n      0.012224059503959805,\\n      0.008724927589224352,\\n      0.007252565312766397,\\n      0.007061831577730977\\n    ],\\n    [\\n      0.03248214912389902,\\n      0.012302760128964394,\\n      0.007586419293663634,\\n      0.0042006467056855444,\\n      0.0018881748524311158\\n    ],\\n    [\\n      0.06253852803258612,\\n      0.014912564648090236,\\n      0.01263682549418285,\\n      0.005883238233370046,\\n      0.007114202619481512,\\n      0.002612404358597602\\n    ],\\n    [\\n      0.03559687400780764,\\n      0.013886464210816643,\\n      0.007904534332898623,\\n      0.007370762606323747,\\n      0.006305141985470377\\n    ],\\n    [\\n      0.04159908176062933,\\n      0.017306564649702625,\\n      0.015499645731134973,\\n      0.008671441201344087,\\n      0.007883859479536863,\\n      0.006973155979539535,\\n      0.005673111183273451\\n    ],\\n    [\\n      0.039788275914849916,\\n      0.01053909834666392,\\n      0.01197907740673637,\\n      0.01120668079124689,\\n      0.00782900725841711,\\n      0.0048964021041665315\\n    ],\\n    [\\n      0.057612528998131095,\\n      0.02325358497617099,\\n      0.013189919444644952,\\n      0.00848563217706728,\\n      0.008799872825574921,\\n      0.006135645917989289\\n    ],\\n    [\\n      0.05085682430764663,\\n      0.021184960532092317,\\n      0.01679477599506745,\\n      0.009481586168827305,\\n      0.007641090080276589,\\n      0.009424928873172941\\n    ],\\n    [\\n      0.05345461160158542,\\n      0.017364576953955803,\\n      0.00781978176726108,\\n      0.011128840038976523,\\n      0.007014680272414996\\n    ],\\n    [\\n      0.05572527919189431,\\n      0.01887283640670983,\\n      0.014144820308737042,\\n      0.009321767370037171,\\n      0.00811246948011558,\\n      0.005254976489866455,\\n      0.006906852867215758\\n    ],\\n    [\\n      0.02788817421760955,\\n      0.025191953048908526,\\n      0.014191105251310765,\\n      0.010424932881956905,\\n      0.011047221426689121\\n    ],\\n    [\\n      0.047297483518671635,\\n      0.0216597386\\n\\n... [截断: 输出过长，省略 7879 字符] ...\\n\\n.280820973414242,\\n      0.4143044398517127\\n    ],\\n    [\\n      0.29292753096197965,\\n      0.2440117999446307,\\n      0.37263571645883453\\n    ],\\n    [\\n      0.631922462930018,\\n      0.4421346072092565,\\n      0.3156059730660194\\n    ],\\n    [\\n      0.5842050565227096,\\n      0.37555342861361185,\\n      0.4169311351298891\\n    ],\\n    [\\n      0.5931931817264937,\\n      0.4757582590795089,\\n      0.3501146122328322\\n    ],\\n    [\\n      0.5428286541938275,\\n      0.37258179881302417,\\n      0.37032356244157827\\n    ],\\n    [\\n      0.27554551678269845,\\n      0.2888591107860922,\\n      0.3024930547520094\\n    ],\\n    [\\n      0.3113344728024287,\\n      0.18796572349067672,\\n      0.2428712709845941\\n    ],\\n    [\\n      0.42068520944451787,\\n      0.2649229867897381,\\n      0.21337387160784552\\n    ],\\n    [\\n      0.4660056663302823,\\n      0.31035280561962325,\\n      0.2530940831225026\\n    ],\\n    [\\n      0.5294491864359634,\\n      0.36147001249264055,\\n      0.4054832379872239\\n    ],\\n    [\\n      0.40841983279252686,\\n      0.29003774778261354,\\n      0.29620195126582644\\n    ],\\n    [\\n      0.256861044364699,\\n      0.24320498545198496,\\n      0.16834658601276117\\n    ],\\n    [\\n      0.4350294817746599,\\n      0.25730887512255163,\\n      0.1823056361640213\\n    ]\\n  ],\\n  \\\"avg_normalized_gar_per_turn\\\": [\\n    0.4328599843758053,\\n    0.28298043759752767,\\n    0.30122246874119407\\n  ],\\n  \\\"mid_turns_avg_normalized_gar\\\": 0.30122246874119407,\\n  \\\"avg_visible_tokens_per_turn\\\": [\\n    360,\\n    653,\\n    954\\n  ],\\n  \\\"conversations_source\\\": \\\"fixed\\\",\\n  \\\"avg_ppl\\\": 4.338097605705261,\\n  \\\"avg_ntp_loss\\\": 1.4044832688570024,\\n  \\\"ppl_per_conversation\\\": [\\n    3.6368343830108643,\\n    3.749924421310425,\\n    4.876887321472168,\\n    3.035308361053467,\\n    5.114375591278076,\\n    4.2138495445251465,\\n    3.064370632171631,\\n    3.5274946689605713,\\n    8.097731590270996,\\n    4.183684825897217,\\n    5.832596778869629,\\n    3.3795268535614014,\\n    4.395219326019287,\\n    2.1987454891204834,\\n    4.2491841316223145,\\n    4.2058234214782715,\\n    6.226709365844727,\\n    3.7349905967712402,\\n    3.269878387451172,\\n    3.630014181137085,\\n    3.5010886192321777,\\n    4.090672969818115,\\n    6.381584167480469,\\n    2.5659050941467285,\\n    4.175628662109375,\\n    7.036223888397217,\\n    3.569075584411621,\\n    4.280622482299805,\\n    5.03139066696167,\\n    4.114407539367676,\\n    3.546922206878662,\\n    3.5829343795776367,\\n    4.569067001342773,\\n    6.017836093902588,\\n    5.199741363525391,\\n    3.335744619369507,\\n    5.342408657073975,\\n    4.222761631011963,\\n    4.440583229064941,\\n    3.787379264831543,\\n    2.2477591037750244,\\n    3.259859800338745,\\n    3.99220609664917,\\n    13.238741874694824,\\n    4.281735420227051,\\n    2.7649571895599365,\\n    1.4554548263549805,\\n    3.1913931369781494,\\n    3.627730369567871,\\n    5.429914474487305\\n  ],\\n  \\\"ntp_loss_per_conversation\\\": [\\n    1.2911136150360107,\\n    1.3217356204986572,\\n    1.5845071077346802,\\n    1.110313057899475,\\n    1.6320552825927734,\\n    1.438376545906067,\\n    1.1198421716690063,\\n    1.2605879306793213,\\n    2.0915839672088623,\\n    1.431192398071289,\\n    1.7634623050689697,\\n    1.217735767364502,\\n    1.4805175065994263,\\n    0.7878869771957397,\\n    1.44672691822052,\\n    1.4364700317382812,\\n    1.828847885131836,\\n    1.317745327949524,\\n    1.1847528219223022,\\n    1.2892365455627441,\\n    1.2530739307403564,\\n    1.4087095260620117,\\n    1.8534163236618042,\\n    0.9423112273216248,\\n    1.4292649030685425,\\n    1.9510716199874878,\\n    1.2723066806793213,\\n    1.4540984630584717,\\n    1.6156964302062988,\\n    1.4144948720932007,\\n    1.2660802602767944,\\n    1.2761821746826172,\\n    1.5193090438842773,\\n    1.7947276830673218,\\n    1.648608922958374,\\n    1.2046959400177002,\\n    1.6756765842437744,\\n    1.4404892921447754,\\n    1.4907857179641724,\\n    1.331674337387085,\\n    0.8099337816238403,\\n    1.1816842555999756,\\n    1.3843439817428589,\\n    2.5831475257873535,\\n    1.4543583393096924,\\n    1.017025113105774,\\n    0.3753184974193573,\\n    1.1604576110839844,\\n    1.2886072397232056,\\n    1.6919233798980713\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TsP7RAWzDTE4d83dcc4Mxy`</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "cat /root/turn_residual_gating/runs/phase2_4way_eval_heldout/tg_v7_ours/phase2_tg_s42_v7_gar.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "631cf2a4-97ca-4232-8088-173f8a079e98",
+  "uuid": "52d25665-a2f9-4624-9d56-326bef64d99f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q4SYWcsMh6LtkExc4P13Md",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 657,
+      "cache_read_input_tokens": 29563,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 657
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-19T14:33:30.128Z_
+
+<details><summary>↩ Tool result · `toolu_014GDsqRhQRsGnZTKB4vMp6Y`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"checkpoint_dir\\\": null,\\n  \\\"gate_type\\\": \\\"none\\\",\\n  \\\"gar_variant\\\": \\\"dongre\\\",\\n  \\\"model\\\": \\\"/root/.cache/modelscope/Qwen/Qwen2___5-7B-Instruct\\\",\\n  \\\"num_conversations\\\": 50,\\n  \\\"num_turns\\\": 3,\\n  \\\"gar_curves\\\": [\\n    [\\n      0.011120262096882421,\\n      0.003939233915765153,\\n      0.0028518720467975572,\\n      0.002171177585991675,\\n      0.0018913907202992317\\n    ],\\n    [\\n      0.012298136745275896,\\n      0.0040666505163052865,\\n      0.002495710872821953,\\n      0.0020343350175042814,\\n      0.002349688182031089,\\n      0.0015202459066242637\\n    ],\\n    [\\n      0.00809464844504382,\\n      0.003473257554941328,\\n      0.002356891853448907,\\n      0.002085863414622203,\\n      0.0017493930928315106\\n    ],\\n    [\\n      0.011034131429332841,\\n      0.003904498960593326,\\n      0.0021170088880028584,\\n      0.0017059942846490209,\\n      0.0016306815623524568\\n    ],\\n    [\\n      0.009722181528719604,\\n      0.003800765998225722,\\n      0.002803920276065004,\\n      0.0022632449432725046,\\n      0.0019831240004222696\\n    ],\\n    [\\n      0.010715857791220387,\\n      0.0046175203077852495,\\n      0.0034387206976513544,\\n      0.003738440882307585,\\n      0.002433579297844919\\n    ],\\n    [\\n      0.009995414755257358,\\n      0.0038381856730644232,\\n      0.0026399139716307236,\\n      0.0021532075002244104,\\n      0.001995618504501375\\n    ],\\n    [\\n      0.010820903137641683,\\n      0.003746036647358297,\\n      0.0028941969466124737,\\n      0.0026086199345593344,\\n      0.0019769503172393584\\n    ],\\n    [\\n      0.018603377333997882,\\n      0.005490349936742364,\\n      0.0033793143354144046,\\n      0.0034305437659406393,\\n      0.00212624190900409,\\n      0.002474540820838083\\n    ],\\n    [\\n      0.016110628102451854,\\n      0.007650747889137375,\\n      0.013778963713031346,\\n      0.003808806048404756,\\n      0.004168332665602308\\n    ],\\n    [\\n      0.007421644806492977,\\n      0.0028137296312090196,\\n      0.0019675430774146476,\\n      0.0018480400088059575,\\n      0.0014718660740513966\\n    ],\\n    [\\n      0.007206502044019819,\\n      0.002849838425337204,\\n      0.002143163340548956,\\n      0.001853667205329985,\\n      0.0014855600068703011\\n    ],\\n    [\\n      0.011994798440304226,\\n      0.004327931956837782,\\n      0.0030721412705663324,\\n      0.002567485361801874,\\n      0.0021057385581145266\\n    ],\\n    [\\n      0.012715714188660049,\\n      0.004101211301241468,\\n      0.002159076640173479,\\n      0.0016061273196842562,\\n      0.0013964497225938024\\n    ],\\n    [\\n      0.008726446385775938,\\n      0.004355168313026552,\\n      0.002702809161462314,\\n      0.0020374897668988426,\\n      0.001693768483523767,\\n      0.0015101060689637928\\n    ],\\n    [\\n      0.008198514281214124,\\n      0.0030187691453772026,\\n      0.0022280540744013325,\\n      0.001893178362819763,\\n      0.0016595106077563135\\n    ],\\n    [\\n      0.013915685006278216,\\n      0.005602590027747812,\\n      0.0037033355532741364,\\n      0.00265921510236742,\\n      0.0024589909234812514,\\n      0.002109900708586702,\\n      0.0017153015894176928\\n    ],\\n    [\\n      0.009323117055793147,\\n      0.003967502230396529,\\n      0.003854845202149479,\\n      0.002831531079757829,\\n      0.0024303546668663837,\\n      0.0019941145434072918\\n    ],\\n    [\\n      0.01162713921157222,\\n      0.004277840500147637,\\n      0.0028864749624005104,\\n      0.0028425533307913503,\\n      0.0018522368951864924,\\n      0.0016553363568804246\\n    ],\\n    [\\n      0.015355024334620467,\\n      0.006789619256296474,\\n      0.004219483833960181,\\n      0.0030240344940837167,\\n      0.002324586772416933,\\n      0.0023153207460034774\\n    ],\\n    [\\n      0.012603385915988788,\\n      0.004036623097660632,\\n      0.002562130914775097,\\n      0.00215195701710871,\\n      0.001564509614236889\\n    ],\\n    [\\n      0.01151741193421573,\\n      0.004356949020652657,\\n      0.003400680055510111,\\n      0.002475324025745779,\\n      0.001983173700105105,\\n      0.0020097743157605425,\\n      0.0025109831663324314\\n    ],\\n    [\\n      0.01138407817304504,\\n      0.0050048907499189756,\\n      0.0039684866376524085,\\n      0.0036456560689241656,\\n      0.\\n\\n... [截断: 输出过长，省略 8085 字符] ...\\n\\n225092,\\n      0.14864560118365383\\n    ],\\n    [\\n      0.22957936642875162,\\n      0.14878029326083259,\\n      0.165133815118893\\n    ],\\n    [\\n      0.29891644461302436,\\n      0.1800559950728804,\\n      0.17021171211374547\\n    ],\\n    [\\n      0.2663666815266791,\\n      0.1535494389903497,\\n      0.1612222031959\\n    ],\\n    [\\n      0.284536671270249,\\n      0.19728431457522463,\\n      0.20268894251684696\\n    ],\\n    [\\n      0.22574197807629878,\\n      0.1722043716514585,\\n      0.16411008830804968\\n    ],\\n    [\\n      0.24326994890805373,\\n      0.16677693357985868,\\n      0.16388590775885084\\n    ],\\n    [\\n      0.13518297571948562,\\n      0.11123882735019217,\\n      0.13238473694972122\\n    ],\\n    [\\n      0.21006430610429858,\\n      0.15059115997065098,\\n      0.16043570592314166\\n    ],\\n    [\\n      0.22841667688188902,\\n      0.15900637674345222,\\n      0.14007212005331404\\n    ],\\n    [\\n      0.3150772533113952,\\n      0.19318990979333145,\\n      0.18114211595814425\\n    ],\\n    [\\n      0.19745565025036635,\\n      0.13753949889238334,\\n      0.1417434704592257\\n    ],\\n    [\\n      0.20979080784678317,\\n      0.18283550444441576,\\n      0.1264928840109446\\n    ],\\n    [\\n      0.18630091327563944,\\n      0.1206655465600664,\\n      0.11683853900367477\\n    ]\\n  ],\\n  \\\"avg_normalized_gar_per_turn\\\": [\\n    0.22468048328708473,\\n    0.15461591226535557,\\n    0.16265657165710087\\n  ],\\n  \\\"mid_turns_avg_normalized_gar\\\": 0.16265657165710087,\\n  \\\"avg_visible_tokens_per_turn\\\": [\\n    360,\\n    653,\\n    954\\n  ],\\n  \\\"conversations_source\\\": \\\"fixed\\\",\\n  \\\"avg_ppl\\\": 4.338097605705261,\\n  \\\"avg_ntp_loss\\\": 1.4044832688570024,\\n  \\\"ppl_per_conversation\\\": [\\n    3.6368343830108643,\\n    3.749924421310425,\\n    4.876887321472168,\\n    3.035308361053467,\\n    5.114375591278076,\\n    4.2138495445251465,\\n    3.064370632171631,\\n    3.5274946689605713,\\n    8.097731590270996,\\n    4.183684825897217,\\n    5.832596778869629,\\n    3.3795268535614014,\\n    4.395219326019287,\\n    2.1987454891204834,\\n    4.2491841316223145,\\n    4.2058234214782715,\\n    6.226709365844727,\\n    3.7349905967712402,\\n    3.269878387451172,\\n    3.630014181137085,\\n    3.5010886192321777,\\n    4.090672969818115,\\n    6.381584167480469,\\n    2.5659050941467285,\\n    4.175628662109375,\\n    7.036223888397217,\\n    3.569075584411621,\\n    4.280622482299805,\\n    5.03139066696167,\\n    4.114407539367676,\\n    3.546922206878662,\\n    3.5829343795776367,\\n    4.569067001342773,\\n    6.017836093902588,\\n    5.199741363525391,\\n    3.335744619369507,\\n    5.342408657073975,\\n    4.222761631011963,\\n    4.440583229064941,\\n    3.787379264831543,\\n    2.2477591037750244,\\n    3.259859800338745,\\n    3.99220609664917,\\n    13.238741874694824,\\n    4.281735420227051,\\n    2.7649571895599365,\\n    1.4554548263549805,\\n    3.1913931369781494,\\n    3.627730369567871,\\n    5.429914474487305\\n  ],\\n  \\\"ntp_loss_per_conversation\\\": [\\n    1.2911136150360107,\\n    1.3217356204986572,\\n    1.5845071077346802,\\n    1.110313057899475,\\n    1.6320552825927734,\\n    1.438376545906067,\\n    1.1198421716690063,\\n    1.2605879306793213,\\n    2.0915839672088623,\\n    1.431192398071289,\\n    1.7634623050689697,\\n    1.217735767364502,\\n    1.4805175065994263,\\n    0.7878869771957397,\\n    1.44672691822052,\\n    1.4364700317382812,\\n    1.828847885131836,\\n    1.317745327949524,\\n    1.1847528219223022,\\n    1.2892365455627441,\\n    1.2530739307403564,\\n    1.4087095260620117,\\n    1.8534163236618042,\\n    0.9423112273216248,\\n    1.4292649030685425,\\n    1.9510716199874878,\\n    1.2723066806793213,\\n    1.4540984630584717,\\n    1.6156964302062988,\\n    1.4144948720932007,\\n    1.2660802602767944,\\n    1.2761821746826172,\\n    1.5193090438842773,\\n    1.7947276830673218,\\n    1.648608922958374,\\n    1.2046959400177002,\\n    1.6756765842437744,\\n    1.4404892921447754,\\n    1.4907857179641724,\\n    1.331674337387085,\\n    0.8099337816238403,\\n    1.1816842555999756,\\n    1.3843439817428589,\\n    2.5831475257873535,\\n    1.4543583393096924,\\n    1.017025113105774,\\n    0.3753184974193573,\\n    1.1604576110839844,\\n    1.2886072397232056,\\n    1.6919233798980713\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.55}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "631cf2a4-97ca-4232-8088-173f8a079e98",
+  "uuid": "6b1fe4b1-d605-4374-9c04-39c632544d3a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"checkpoint_dir\\\\\\\": null,\\\\n  \\\\\\\"gate_type\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n  \\\\\\\"gar_variant\\\\\\\": \\\\\\\"dongre\\\\\\\",\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"/root/.cache/modelscope/Qwen/Qwen2___5-7B-Instruct\\\\\\\",\\\\n  \\\\\\\"num_conversations\\\\\\\": 50,\\\\n  \\\\\\\"num_turns\\\\\\\": 3,\\\\n  \\\\\\\"gar_curves\\\\\\\": [\\\\n    [\\\\n      0.011120262096882421,\\\\n      0.003939233915765153,\\\\n      0.0028518720467975572,\\\\n      0.002171177585991675,\\\\n      0.0018913907202992317\\\\n    ],\\\\n    [\\\\n      0.012298136745275896,\\\\n      0.0040666505163052865,\\\\n      0.002495710872821953,\\\\n      0.0020343350175042814,\\\\n      0.002349688182031089,\\\\n      0.0015202459066242637\\\\n    ],\\\\n    [\\\\n      0.00809464844504382,\\\\n      0.003473257554941328,\\\\n      0.002356891853448907,\\\\n      0.002085863414622203,\\\\n      0.0017493930928315106\\\\n    ],\\\\n    [\\\\n      0.011034131429332841,\\\\n      0.003904498960593326,\\\\n      0.0021170088880028584,\\\\n      0.0017059942846490209,\\\\n      0.0016306815623524568\\\\n    ],\\\\n    [\\\\n      0.009722181528719604,\\\\n      0.003800765998225722,\\\\n      0.002803920276065004,\\\\n      0.0022632449432725046,\\\\n      0.0019831240004222696\\\\n    ],\\\\n    [\\\\n      0.010715857791220387,\\\\n      0.0046175203077852495,\\\\n      0.0034387206976513544,\\\\n      0.003738440882307585,\\\\n      0.002433579297844919\\\\n    ],\\\\n    [\\\\n      0.009995414755257358,\\\\n      0.0038381856730644232,\\\\n      0.0026399139716307236,\\\\n      0.0021532075002244104,\\\\n      0.001995618504501375\\\\n    ],\\\\n    [\\\\n      0.010820903137641683,\\\\n      0.003746036647358297,\\\\n      0.0028941969466124737,\\\\n      0.0026086199345593344,\\\\n      0.0019769503172393584\\\\n    ],\\\\n    [\\\\n      0.018603377333997882,\\\\n      0.005490349936742364,\\\\n      0.0033793143354144046,\\\\n      0.0034305437659406393,\\\\n      0.00212624190900409,\\\\n      0.002474540820838083\\\\n    ],\\\\n    [\\\\n      0.016110628102451854,\\\\n      0.007650747889137375,\\\\n      0.013778963713031346,\\\\n      0.003808806048404756,\\\\n      0.004168332665602308\\\\n    ],\\\\n    [\\\\n      0.007421644806492977,\\\\n      0.0028137296312090196,\\\\n      0.0019675430774146476,\\\\n      0.0018480400088059575,\\\\n      0.0014718660740513966\\\\n    ],\\\\n    [\\\\n      0.007206502044019819,\\\\n      0.002849838425337204,\\\\n      0.002143163340548956,\\\\n      0.001853667205329985,\\\\n      0.0014855600068703011\\\\n    ],\\\\n    [\\\\n      0.011994798440304226,\\\\n      0.004327931956837782,\\\\n      0.0030721412705663324,\\\\n      0.002567485361801874,\\\\n      0.0021057385581145266\\\\n    ],\\\\n    [\\\\n      0.012715714188660049,\\\\n      0.004101211301241468,\\\\n      0.002159076640173479,\\\\n      0.0016061273196842562,\\\\n      0.0013964497225938024\\\\n    ],\\\\n    [\\\\n      0.008726446385775938,\\\\n      0.004355168313026552,\\\\n      0.002702809161462314,\\\\n      0.0020374897668988426,\\\\n      0.001693768483523767,\\\\n      0.0015101060689637928\\\\n    ],\\\\n    [\\\\n      0.008198514281214124,\\\\n      0.0030187691453772026,\\\\n      0.0022280540744013325,\\\\n      0.001893178362819763,\\\\n      0.0016595106077563135\\\\n    ],\\\\n    [\\\\n      0.013915685006278216,\\\\n      0.005602590027747812,\\\\n      0.0037033355532741364,\\\\n      0.00265921510236742,\\\\n      0.0024589909234812514,\\\\n      0.002109900708586702,\\\\n      0.0017153015894176928\\\\n    ],\\\\n    [\\\\n      0.009323117055793147,\\\\n      0.003967502230396529,\\\\n      0.003854845202149479,\\\\n      0.002831531079757829,\\\\n      0.0024303546668663837,\\\\n      0.0019941145434072918\\\\n    ],\\\\n    [\\\\n      0.01162713921157222,\\\\n      0.004277840500147637,\\\\n      0.0028864749624005104,\\\\n      0.0028425533307913503,\\\\n      0.0018522368951864924,\\\\n      0.0016553363568804246\\\\n    ],\\\\n    [\\\\n      0.015355024334620467,\\\\n      0.006789619256296474,\\\\n      0.004219483833960181,\\\\n      0.0030240344940837167,\\\\n      0.002324586772416933,\\\\n      0.0023153207460034774\\\\n    ],\\\\n    [\\\\n      0.012603385915988788,\\\\n      0.004036623097660632,\\\\n      0.002562130914775097,\\\\n      0.00215195701710871,\\\\n      0.001564509614236889\\\\n    ],\\\\n    [\\\\n      0.01151741193421573,\\\\n      0.004356949020652657,\\\\n      0.003400680055510111,\\\\n      0.002475324025745779,\\\\n      0.001983173700105105,\\\\n      0.0020097743157605425,\\\\n      0.0025109831663324314\\\\n    ],\\\\n    [\\\\n      0.01138407817304504,\\\\n      0.0050048907499189756,\\\\n      0.0039684866376524085,\\\\n      0.0036456560689241656,\\\\n      0.\\\\n\\\\n... [截断: 输出过长，省略 8085 字符] ...\\\\n\\\\n225092,\\\\n      0.14864560118365383\\\\n    ],\\\\n    [\\\\n      0.22957936642875162,\\\\n      0.14878029326083259,\\\\n      0.165133815118893\\\\n    ],\\\\n    [\\\\n      0.29891644461302436,\\\\n      0.1800559950728804,\\\\n      0.17021171211374547\\\\n    ],\\\\n    [\\\\n      0.2663666815266791,\\\\n      0.1535494389903497,\\\\n      0.1612222031959\\\\n    ],\\\\n    [\\\\n      0.284536671270249,\\\\n      0.19728431457522463,\\\\n      0.20268894251684696\\\\n    ],\\\\n    [\\\\n      0.22574197807629878,\\\\n      0.1722043716514585,\\\\n      0.16411008830804968\\\\n    ],\\\\n    [\\\\n      0.24326994890805373,\\\\n      0.16677693357985868,\\\\n      0.16388590775885084\\\\n    ],\\\\n    [\\\\n      0.13518297571948562,\\\\n      0.11123882735019217,\\\\n      0.13238473694972122\\\\n    ],\\\\n    [\\\\n      0.21006430610429858,\\\\n      0.15059115997065098,\\\\n      0.16043570592314166\\\\n    ],\\\\n    [\\\\n      0.22841667688188902,\\\\n      0.15900637674345222,\\\\n      0.14007212005331404\\\\n    ],\\\\n    [\\\\n      0.3150772533113952,\\\\n      0.19318990979333145,\\\\n      0.18114211595814425\\\\n    ],\\\\n    [\\\\n      0.19745565025036635,\\\\n      0.13753949889238334,\\\\n      0.1417434704592257\\\\n    ],\\\\n    [\\\\n      0.20979080784678317,\\\\n      0.18283550444441576,\\\\n      0.1264928840109446\\\\n    ],\\\\n    [\\\\n      0.18630091327563944,\\\\n      0.1206655465600664,\\\\n      0.11683853900367477\\\\n    ]\\\\n  ],\\\\n  \\\\\\\"avg_normalized_gar_per_turn\\\\\\\": [\\\\n    0.22468048328708473,\\\\n    0.15461591226535557,\\\\n    0.16265657165710087\\\\n  ],\\\\n  \\\\\\\"mid_turns_avg_normalized_gar\\\\\\\": 0.16265657165710087,\\\\n  \\\\\\\"avg_visible_tokens_per_turn\\\\\\\": [\\\\n    360,\\\\n    653,\\\\n    954\\\\n  ],\\\\n  \\\\\\\"conversations_source\\\\\\\": \\\\\\\"fixed\\\\\\\",\\\\n  \\\\\\\"avg_ppl\\\\\\\": 4.338097605705261,\\\\n  \\\\\\\"avg_ntp_loss\\\\\\\": 1.4044832688570024,\\\\n  \\\\\\\"ppl_per_conversation\\\\\\\": [\\\\n    3.6368343830108643,\\\\n    3.749924421310425,\\\\n    4.876887321472168,\\\\n    3.035308361053467,\\\\n    5.114375591278076,\\\\n    4.2138495445251465,\\\\n    3.064370632171631,\\\\n    3.5274946689605713,\\\\n    8.097731590270996,\\\\n    4.183684825897217,\\\\n    5.832596778869629,\\\\n    3.3795268535614014,\\\\n    4.395219326019287,\\\\n    2.1987454891204834,\\\\n    4.2491841316223145,\\\\n    4.2058234214782715,\\\\n    6.226709365844727,\\\\n    3.7349905967712402,\\\\n    3.269878387451172,\\\\n    3.630014181137085,\\\\n    3.5010886192321777,\\\\n    4.090672969818115,\\\\n    6.381584167480469,\\\\n    2.5659050941467285,\\\\n    4.175628662109375,\\\\n    7.036223888397217,\\\\n    3.569075584411621,\\\\n    4.280622482299805,\\\\n    5.03139066696167,\\\\n    4.114407539367676,\\\\n    3.546922206878662,\\\\n    3.5829343795776367,\\\\n    4.569067001342773,\\\\n    6.017836093902588,\\\\n    5.199741363525391,\\\\n    3.335744619369507,\\\\n    5.342408657073975,\\\\n    4.222761631011963,\\\\n    4.440583229064941,\\\\n    3.787379264831543,\\\\n    2.2477591037750244,\\\\n    3.259859800338745,\\\\n    3.99220609664917,\\\\n    13.238741874694824,\\\\n    4.281735420227051,\\\\n    2.7649571895599365,\\\\n    1.4554548263549805,\\\\n    3.1913931369781494,\\\\n    3.627730369567871,\\\\n    5.429914474487305\\\\n  ],\\\\n  \\\\\\\"ntp_loss_per_conversation\\\\\\\": [\\\\n    1.2911136150360107,\\\\n    1.3217356204986572,\\\\n    1.5845071077346802,\\\\n    1.110313057899475,\\\\n    1.6320552825927734,\\\\n    1.438376545906067,\\\\n    1.1198421716690063,\\\\n    1.2605879306793213,\\\\n    2.0915839672088623,\\\\n    1.431192398071289,\\\\n    1.7634623050689697,\\\\n    1.217735767364502,\\\\n    1.4805175065994263,\\\\n    0.7878869771957397,\\\\n    1.44672691822052,\\\\n    1.4364700317382812,\\\\n    1.828847885131836,\\\\n    1.317745327949524,\\\\n    1.1847528219223022,\\\\n    1.2892365455627441,\\\\n    1.2530739307403564,\\\\n    1.4087095260620117,\\\\n    1.8534163236618042,\\\\n    0.9423112273216248,\\\\n    1.4292649030685425,\\\\n    1.9510716199874878,\\\\n    1.2723066806793213,\\\\n    1.4540984630584717,\\\\n    1.6156964302062988,\\\\n    1.4144948720932007,\\\\n    1.2660802602767944,\\\\n    1.2761821746826172,\\\\n    1.5193090438842773,\\\\n    1.7947276830673218,\\\\n    1.648608922958374,\\\\n    1.2046959400177002,\\\\n    1.6756765842437744,\\\\n    1.4404892921447754,\\\\n    1.4907857179641724,\\\\n    1.331674337387085,\\\\n    0.8099337816238403,\\\\n    1.1816842555999756,\\\\n    1.3843439817428589,\\\\n    2.5831475257873535,\\\\n    1.4543583393096924,\\\\n    1.017025113105774,\\\\n    0.3753184974193573,\\\\n    1.1604576110839844,\\\\n    1.2886072397232056,\\\\n    1.6919233798980713\\\\n  ]\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.55}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"checkpoint_dir\\\": null,\\n  \\\"gate_type\\\": \\\"none\\\",\\n  \\\"gar_variant\\\": \\\"dongre\\\",\\n  \\\"model\\\": \\\"/root/.cache/modelscope/Qwen/Qwen2___5-7B-Instruct\\\",\\n  \\\"num_conversations\\\": 50,\\n  \\\"num_turns\\\": 3,\\n  \\\"gar_curves\\\": [\\n    [\\n      0.011120262096882421,\\n      0.003939233915765153,\\n      0.0028518720467975572,\\n      0.002171177585991675,\\n      0.0018913907202992317\\n    ],\\n    [\\n      0.012298136745275896,\\n      0.0040666505163052865,\\n      0.002495710872821953,\\n      0.0020343350175042814,\\n      0.002349688182031089,\\n      0.0015202459066242637\\n    ],\\n    [\\n      0.00809464844504382,\\n      0.003473257554941328,\\n      0.002356891853448907,\\n      0.002085863414622203,\\n      0.0017493930928315106\\n    ],\\n    [\\n      0.011034131429332841,\\n      0.003904498960593326,\\n      0.0021170088880028584,\\n      0.0017059942846490209,\\n      0.0016306815623524568\\n    ],\\n    [\\n      0.009722181528719604,\\n      0.003800765998225722,\\n      0.002803920276065004,\\n      0.0022632449432725046,\\n      0.0019831240004222696\\n    ],\\n    [\\n      0.010715857791220387,\\n      0.0046175203077852495,\\n      0.0034387206976513544,\\n      0.003738440882307585,\\n      0.002433579297844919\\n    ],\\n    [\\n      0.009995414755257358,\\n      0.0038381856730644232,\\n      0.0026399139716307236,\\n      0.0021532075002244104,\\n      0.001995618504501375\\n    ],\\n    [\\n      0.010820903137641683,\\n      0.003746036647358297,\\n      0.0028941969466124737,\\n      0.0026086199345593344,\\n      0.0019769503172393584\\n    ],\\n    [\\n      0.018603377333997882,\\n      0.005490349936742364,\\n      0.0033793143354144046,\\n      0.0034305437659406393,\\n      0.00212624190900409,\\n      0.002474540820838083\\n    ],\\n    [\\n      0.016110628102451854,\\n      0.007650747889137375,\\n      0.013778963713031346,\\n      0.003808806048404756,\\n      0.004168332665602308\\n    ],\\n    [\\n      0.007421644806492977,\\n      0.0028137296312090196,\\n      0.0019675430774146476,\\n      0.0018480400088059575,\\n      0.0014718660740513966\\n    ],\\n    [\\n      0.007206502044019819,\\n      0.002849838425337204,\\n      0.002143163340548956,\\n      0.001853667205329985,\\n      0.0014855600068703011\\n    ],\\n    [\\n      0.011994798440304226,\\n      0.004327931956837782,\\n      0.0030721412705663324,\\n      0.002567485361801874,\\n      0.0021057385581145266\\n    ],\\n    [\\n      0.012715714188660049,\\n      0.004101211301241468,\\n      0.002159076640173479,\\n      0.0016061273196842562,\\n      0.0013964497225938024\\n    ],\\n    [\\n      0.008726446385775938,\\n      0.004355168313026552,\\n      0.002702809161462314,\\n      0.0020374897668988426,\\n      0.001693768483523767,\\n      0.0015101060689637928\\n    ],\\n    [\\n      0.008198514281214124,\\n      0.0030187691453772026,\\n      0.0022280540744013325,\\n      0.001893178362819763,\\n      0.0016595106077563135\\n    ],\\n    [\\n      0.013915685006278216,\\n      0.005602590027747812,\\n      0.0037033355532741364,\\n      0.00265921510236742,\\n      0.0024589909234812514,\\n      0.002109900708586702,\\n      0.0017153015894176928\\n    ],\\n    [\\n      0.009323117055793147,\\n      0.003967502230396529,\\n      0.003854845202149479,\\n      0.002831531079757829,\\n      0.0024303546668663837,\\n      0.0019941145434072918\\n    ],\\n    [\\n      0.01162713921157222,\\n      0.004277840500147637,\\n      0.0028864749624005104,\\n      0.0028425533307913503,\\n      0.0018522368951864924,\\n      0.0016553363568804246\\n    ],\\n    [\\n      0.015355024334620467,\\n      0.006789619256296474,\\n      0.004219483833960181,\\n      0.0030240344940837167,\\n      0.002324586772416933,\\n      0.0023153207460034774\\n    ],\\n    [\\n      0.012603385915988788,\\n      0.004036623097660632,\\n      0.002562130914775097,\\n      0.00215195701710871,\\n      0.001564509614236889\\n    ],\\n    [\\n      0.01151741193421573,\\n      0.004356949020652657,\\n      0.003400680055510111,\\n      0.002475324025745779,\\n      0.001983173700105105,\\n      0.0020097743157605425,\\n      0.0025109831663324314\\n    ],\\n    [\\n      0.01138407817304504,\\n      0.0050048907499189756,\\n      0.0039684866376524085,\\n      0.0036456560689241656,\\n      0.\\n\\n... [截断: 输出过长，省略 8085 字符] ...\\n\\n225092,\\n      0.14864560118365383\\n    ],\\n    [\\n      0.22957936642875162,\\n      0.14878029326083259,\\n      0.165133815118893\\n    ],\\n    [\\n      0.29891644461302436,\\n      0.1800559950728804,\\n      0.17021171211374547\\n    ],\\n    [\\n      0.2663666815266791,\\n      0.1535494389903497,\\n      0.1612222031959\\n    ],\\n    [\\n      0.284536671270249,\\n      0.19728431457522463,\\n      0.20268894251684696\\n    ],\\n    [\\n      0.22574197807629878,\\n      0.1722043716514585,\\n      0.16411008830804968\\n    ],\\n    [\\n      0.24326994890805373,\\n      0.16677693357985868,\\n      0.16388590775885084\\n    ],\\n    [\\n      0.13518297571948562,\\n      0.11123882735019217,\\n      0.13238473694972122\\n    ],\\n    [\\n      0.21006430610429858,\\n      0.15059115997065098,\\n      0.16043570592314166\\n    ],\\n    [\\n      0.22841667688188902,\\n      0.15900637674345222,\\n      0.14007212005331404\\n    ],\\n    [\\n      0.3150772533113952,\\n      0.19318990979333145,\\n      0.18114211595814425\\n    ],\\n    [\\n      0.19745565025036635,\\n      0.13753949889238334,\\n      0.1417434704592257\\n    ],\\n    [\\n      0.20979080784678317,\\n      0.18283550444441576,\\n      0.1264928840109446\\n    ],\\n    [\\n      0.18630091327563944,\\n      0.1206655465600664,\\n      0.11683853900367477\\n    ]\\n  ],\\n  \\\"avg_normalized_gar_per_turn\\\": [\\n    0.22468048328708473,\\n    0.15461591226535557,\\n    0.16265657165710087\\n  ],\\n  \\\"mid_turns_avg_normalized_gar\\\": 0.16265657165710087,\\n  \\\"avg_visible_tokens_per_turn\\\": [\\n    360,\\n    653,\\n    954\\n  ],\\n  \\\"conversations_source\\\": \\\"fixed\\\",\\n  \\\"avg_ppl\\\": 4.338097605705261,\\n  \\\"avg_ntp_loss\\\": 1.4044832688570024,\\n  \\\"ppl_per_conversation\\\": [\\n    3.6368343830108643,\\n    3.749924421310425,\\n    4.876887321472168,\\n    3.035308361053467,\\n    5.114375591278076,\\n    4.2138495445251465,\\n    3.064370632171631,\\n    3.5274946689605713,\\n    8.097731590270996,\\n    4.183684825897217,\\n    5.832596778869629,\\n    3.3795268535614014,\\n    4.395219326019287,\\n    2.1987454891204834,\\n    4.2491841316223145,\\n    4.2058234214782715,\\n    6.226709365844727,\\n    3.7349905967712402,\\n    3.269878387451172,\\n    3.630014181137085,\\n    3.5010886192321777,\\n    4.090672969818115,\\n    6.381584167480469,\\n    2.5659050941467285,\\n    4.175628662109375,\\n    7.036223888397217,\\n    3.569075584411621,\\n    4.280622482299805,\\n    5.03139066696167,\\n    4.114407539367676,\\n    3.546922206878662,\\n    3.5829343795776367,\\n    4.569067001342773,\\n    6.017836093902588,\\n    5.199741363525391,\\n    3.335744619369507,\\n    5.342408657073975,\\n    4.222761631011963,\\n    4.440583229064941,\\n    3.787379264831543,\\n    2.2477591037750244,\\n    3.259859800338745,\\n    3.99220609664917,\\n    13.238741874694824,\\n    4.281735420227051,\\n    2.7649571895599365,\\n    1.4554548263549805,\\n    3.1913931369781494,\\n    3.627730369567871,\\n    5.429914474487305\\n  ],\\n  \\\"ntp_loss_per_conversation\\\": [\\n    1.2911136150360107,\\n    1.3217356204986572,\\n    1.5845071077346802,\\n    1.110313057899475,\\n    1.6320552825927734,\\n    1.438376545906067,\\n    1.1198421716690063,\\n    1.2605879306793213,\\n    2.0915839672088623,\\n    1.431192398071289,\\n    1.7634623050689697,\\n    1.217735767364502,\\n    1.4805175065994263,\\n    0.7878869771957397,\\n    1.44672691822052,\\n    1.4364700317382812,\\n    1.828847885131836,\\n    1.317745327949524,\\n    1.1847528219223022,\\n    1.2892365455627441,\\n    1.2530739307403564,\\n    1.4087095260620117,\\n    1.8534163236618042,\\n    0.9423112273216248,\\n    1.4292649030685425,\\n    1.9510716199874878,\\n    1.2723066806793213,\\n    1.4540984630584717,\\n    1.6156964302062988,\\n    1.4144948720932007,\\n    1.2660802602767944,\\n    1.2761821746826172,\\n    1.5193090438842773,\\n    1.7947276830673218,\\n    1.648608922958374,\\n    1.2046959400177002,\\n    1.6756765842437744,\\n    1.4404892921447754,\\n    1.4907857179641724,\\n    1.331674337387085,\\n    0.8099337816238403,\\n    1.1816842555999756,\\n    1.3843439817428589,\\n    2.5831475257873535,\\n    1.4543583393096924,\\n    1.017025113105774,\\n    0.3753184974193573,\\n    1.1604576110839844,\\n    1.2886072397232056,\\n    1.6919233798980713\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.55}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FUVUZT69aC8GSUNQivcHqS`</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "cat /root/turn_residual_gating/runs/phase2_4way_eval_heldout/tg_v7_dongre/phase2_tg_s42_v7_dongre_gar.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "631cf2a4-97ca-4232-8088-173f8a079e98",
+  "uuid": "6112212e-2e4a-43ed-96d4-9531a28518ac",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q4SYWcsMh6LtkExc4P13Md",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 657,
+      "cache_read_input_tokens": 29563,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 657
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-19T14:33:30.953Z_
+
+<details><summary>↩ Tool result · `toolu_01TsP7RAWzDTE4d83dcc4Mxy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"checkpoint_dir\\\": \\\"/root/turn_residual_gating/runs/phase2_tg_s42_v7\\\",\\n  \\\"gate_type\\\": \\\"threadgate\\\",\\n  \\\"gar_variant\\\": \\\"ours\\\",\\n  \\\"model\\\": \\\"/root/.cache/modelscope/Qwen/Qwen2___5-7B-Instruct\\\",\\n  \\\"num_conversations\\\": 50,\\n  \\\"num_turns\\\": 3,\\n  \\\"gar_curves\\\": [\\n    [\\n      0.5471721811936805,\\n      0.5314547079518095,\\n      0.47426419593068764,\\n      0.4952976095490914,\\n      0.5045260000314727\\n    ],\\n    [\\n      0.5405323676281529,\\n      0.5296719059545101,\\n      0.5257538579759024,\\n      0.5072605171009349,\\n      0.4657115072911907,\\n      0.5168611197780131\\n    ],\\n    [\\n      0.6138663350097316,\\n      0.5030443169396839,\\n      0.48109726977145445,\\n      0.5227694779083477,\\n      0.5527277982870252\\n    ],\\n    [\\n      0.6005031509131429,\\n      0.4652401920115673,\\n      0.5998096962377212,\\n      0.5428755087252796,\\n      0.010862032155626106\\n    ],\\n    [\\n      0.6051878869209719,\\n      0.4926638591517517,\\n      0.5061965085075645,\\n      0.47202652067648143,\\n      0.5285153313741104\\n    ],\\n    [\\n      0.5409908893640789,\\n      0.521982345386432,\\n      0.5186899790557353,\\n      0.4883483715526212,\\n      0.5277477735742072\\n    ],\\n    [\\n      0.5120651827468174,\\n      0.5679972089566375,\\n      0.4791396767440773,\\n      0.4539113872246411,\\n      0.44858408052806\\n    ],\\n    [\\n      0.5370293238264179,\\n      0.5180114317655794,\\n      0.5153846416705358,\\n      0.48451598450473377,\\n      0.4966675310219385\\n    ],\\n    [\\n      0.5419820255668085,\\n      0.5335362400729519,\\n      0.4679081671300935,\\n      0.4879594520721435,\\n      0.4677707757964611,\\n      0.44476643123803977\\n    ],\\n    [\\n      0.5413348749841818,\\n      0.5168290867250069,\\n      0.4691675745395405,\\n      0.5140390711954834,\\n      0.5054913839416193\\n    ],\\n    [\\n      0.6287472981040779,\\n      0.5233532413337083,\\n      0.48665428517812537,\\n      0.5957009131437199,\\n      0.03048646079284249\\n    ],\\n    [\\n      0.6250806670384946,\\n      0.49931153199519784,\\n      0.5026571772336349,\\n      0.4588403348632974,\\n      0.509596938199447\\n    ],\\n    [\\n      0.5577170929798747,\\n      0.5413440550187356,\\n      0.5243778500698062,\\n      0.5293659798357983,\\n      0.524410388021212\\n    ],\\n    [\\n      0.5438237621831671,\\n      0.5000411276441371,\\n      0.5779639303381049,\\n      0.5837770500370778,\\n      0.007088590318132497\\n    ],\\n    [\\n      0.5733400123785994,\\n      0.49169559338933544,\\n      0.5233735056994214,\\n      0.47202809646775823,\\n      0.5986846494747268,\\n      0.01515034027657169\\n    ],\\n    [\\n      0.6053928737478297,\\n      0.546606167135086,\\n      0.48868547965628106,\\n      0.49221900257125867,\\n      0.503000226322662\\n    ],\\n    [\\n      0.5049589287988108,\\n      0.4145304404298212,\\n      0.52249523862027,\\n      0.4944142253824128,\\n      0.4821867867441282,\\n      0.49944584987562324,\\n      0.4655089797521086\\n    ],\\n    [\\n      0.5241979218686142,\\n      0.5318722364697931,\\n      0.49615939482311827,\\n      0.5065150434756693,\\n      0.5008438313476105,\\n      0.5133852853927005\\n    ],\\n    [\\n      0.5048405260797291,\\n      0.5377110913326721,\\n      0.5011610222679692,\\n      0.4887918370027216,\\n      0.4967638080265329,\\n      0.5171626343206681\\n    ],\\n    [\\n      0.506690808908602,\\n      0.4946218249652955,\\n      0.5225492550330545,\\n      0.5233404845605268,\\n      0.4337372737758094,\\n      0.505806383618043\\n    ],\\n    [\\n      0.5478412038920925,\\n      0.5174197789686067,\\n      0.5087652467794099,\\n      0.5082533604025428,\\n      0.5579062803133252\\n    ],\\n    [\\n      0.5514197641534837,\\n      0.5048996850678203,\\n      0.5016239733161473,\\n      0.4895579050836378,\\n      0.46048674879737034,\\n      0.4549502579908986,\\n      0.47979444427327056\\n    ],\\n    [\\n      0.4931232520695831,\\n      0.4411518436096283,\\n      0.49074765316762636,\\n      0.49887525635503666,\\n      0.5060752287051954\\n    ],\\n    [\\n      0.6116436075277767,\\n      0.5926343849273622,\\n      0.5958535837267469,\\n      0.010164726231905155\\n    ],\\n    [\\n      0.4714446814951655,\\n      0.5280772537910263,\\n      0.4780319332351456,\\n    \\n\\n... [截断: 输出过长，省略 395997 字符] ...\\n\\n,\\n        \\\"L21\\\": 0.9826,\\n        \\\"L22\\\": 0.9925,\\n        \\\"L23\\\": 0.9881,\\n        \\\"L24\\\": 0.9803,\\n        \\\"L25\\\": 0.9915,\\n        \\\"L26\\\": 0.9977,\\n        \\\"L27\\\": 0.9949\\n      },\\n      \\\"turn_10\\\": {\\n        \\\"L0\\\": 0.8502,\\n        \\\"L1\\\": 0.9935,\\n        \\\"L2\\\": 0.954,\\n        \\\"L3\\\": 0.8032,\\n        \\\"L4\\\": 0.7979,\\n        \\\"L5\\\": 0.8675,\\n        \\\"L6\\\": 0.984,\\n        \\\"L7\\\": 0.9778,\\n        \\\"L8\\\": 0.9766,\\n        \\\"L9\\\": 0.9742,\\n        \\\"L10\\\": 0.9499,\\n        \\\"L11\\\": 0.9475,\\n        \\\"L12\\\": 0.9489,\\n        \\\"L13\\\": 0.9448,\\n        \\\"L14\\\": 0.9586,\\n        \\\"L15\\\": 0.9531,\\n        \\\"L16\\\": 0.9755,\\n        \\\"L17\\\": 0.9686,\\n        \\\"L18\\\": 0.9766,\\n        \\\"L19\\\": 0.9688,\\n        \\\"L20\\\": 0.9793,\\n        \\\"L21\\\": 0.9689,\\n        \\\"L22\\\": 0.9973,\\n        \\\"L23\\\": 0.9764,\\n        \\\"L24\\\": 0.9699,\\n        \\\"L25\\\": 0.9628,\\n        \\\"L26\\\": 0.9868,\\n        \\\"L27\\\": 0.9968\\n      },\\n      \\\"turn_11\\\": {\\n        \\\"L0\\\": 0.8706,\\n        \\\"L1\\\": 0.9971,\\n        \\\"L2\\\": 0.9676,\\n        \\\"L3\\\": 0.7863,\\n        \\\"L4\\\": 0.8237,\\n        \\\"L5\\\": 0.8902,\\n        \\\"L6\\\": 0.9876,\\n        \\\"L7\\\": 0.957,\\n        \\\"L8\\\": 0.963,\\n        \\\"L9\\\": 0.9673,\\n        \\\"L10\\\": 0.9666,\\n        \\\"L11\\\": 0.959,\\n        \\\"L12\\\": 0.9451,\\n        \\\"L13\\\": 0.9413,\\n        \\\"L14\\\": 0.9543,\\n        \\\"L15\\\": 0.9654,\\n        \\\"L16\\\": 0.9715,\\n        \\\"L17\\\": 0.9545,\\n        \\\"L18\\\": 0.9745,\\n        \\\"L19\\\": 0.9836,\\n        \\\"L20\\\": 0.9652,\\n        \\\"L21\\\": 0.9831,\\n        \\\"L22\\\": 0.9965,\\n        \\\"L23\\\": 0.9826,\\n        \\\"L24\\\": 0.9806,\\n        \\\"L25\\\": 0.9814,\\n        \\\"L26\\\": 0.9901,\\n        \\\"L27\\\": 0.9961\\n      }\\n    }\\n  },\\n  \\\"gate_dynamic_range\\\": {\\n    \\\"L0\\\": {\\n      \\\"turn1\\\": 0.8269,\\n      \\\"turn15\\\": 0.8669,\\n      \\\"diff\\\": -0.04\\n    },\\n    \\\"L1\\\": {\\n      \\\"turn1\\\": 0.9391,\\n      \\\"turn15\\\": 0.9966,\\n      \\\"diff\\\": -0.0575\\n    },\\n    \\\"L2\\\": {\\n      \\\"turn1\\\": 0.8965,\\n      \\\"turn15\\\": 0.9643,\\n      \\\"diff\\\": -0.0678\\n    },\\n    \\\"L3\\\": {\\n      \\\"turn1\\\": 0.7702,\\n      \\\"turn15\\\": 0.7971,\\n      \\\"diff\\\": -0.0269\\n    },\\n    \\\"L4\\\": {\\n      \\\"turn1\\\": 0.638,\\n      \\\"turn15\\\": 0.8099,\\n      \\\"diff\\\": -0.1719\\n    },\\n    \\\"L5\\\": {\\n      \\\"turn1\\\": 0.8449,\\n      \\\"turn15\\\": 0.9032,\\n      \\\"diff\\\": -0.0583\\n    },\\n    \\\"L6\\\": {\\n      \\\"turn1\\\": 0.6833,\\n      \\\"turn15\\\": 0.9862,\\n      \\\"diff\\\": -0.3029\\n    },\\n    \\\"L7\\\": {\\n      \\\"turn1\\\": 0.8206,\\n      \\\"turn15\\\": 0.9552,\\n      \\\"diff\\\": -0.1346\\n    },\\n    \\\"L8\\\": {\\n      \\\"turn1\\\": 0.7478,\\n      \\\"turn15\\\": 0.9796,\\n      \\\"diff\\\": -0.2318\\n    },\\n    \\\"L9\\\": {\\n      \\\"turn1\\\": 0.8506,\\n      \\\"turn15\\\": 0.9661,\\n      \\\"diff\\\": -0.1155\\n    },\\n    \\\"L10\\\": {\\n      \\\"turn1\\\": 0.9243,\\n      \\\"turn15\\\": 0.9789,\\n      \\\"diff\\\": -0.0546\\n    },\\n    \\\"L11\\\": {\\n      \\\"turn1\\\": 0.9817,\\n      \\\"turn15\\\": 0.9565,\\n      \\\"diff\\\": 0.0252\\n    },\\n    \\\"L12\\\": {\\n      \\\"turn1\\\": 0.6739,\\n      \\\"turn15\\\": 0.9544,\\n      \\\"diff\\\": -0.2805\\n    },\\n    \\\"L13\\\": {\\n      \\\"turn1\\\": 0.813,\\n      \\\"turn15\\\": 0.9465,\\n      \\\"diff\\\": -0.1335\\n    },\\n    \\\"L14\\\": {\\n      \\\"turn1\\\": 0.6072,\\n      \\\"turn15\\\": 0.9519,\\n      \\\"diff\\\": -0.3447\\n    },\\n    \\\"L15\\\": {\\n      \\\"turn1\\\": 0.9522,\\n      \\\"turn15\\\": 0.9691,\\n      \\\"diff\\\": -0.0169\\n    },\\n    \\\"L16\\\": {\\n      \\\"turn1\\\": 0.9393,\\n      \\\"turn15\\\": 0.9682,\\n      \\\"diff\\\": -0.0289\\n    },\\n    \\\"L17\\\": {\\n      \\\"turn1\\\": 0.9825,\\n      \\\"turn15\\\": 0.9633,\\n      \\\"diff\\\": 0.0192\\n    },\\n    \\\"L18\\\": {\\n      \\\"turn1\\\": 0.7242,\\n      \\\"turn15\\\": 0.9689,\\n      \\\"diff\\\": -0.2447\\n    },\\n    \\\"L19\\\": {\\n      \\\"turn1\\\": 0.9967,\\n      \\\"turn15\\\": 0.9788,\\n      \\\"diff\\\": 0.0179\\n    },\\n    \\\"L20\\\": {\\n      \\\"turn1\\\": 0.6093,\\n      \\\"turn15\\\": 0.9765,\\n      \\\"diff\\\": -0.3672\\n    },\\n    \\\"L21\\\": {\\n      \\\"turn1\\\": 0.8447,\\n      \\\"turn15\\\": 0.9854,\\n      \\\"diff\\\": -0.1407\\n    },\\n    \\\"L22\\\": {\\n      \\\"turn1\\\": 0.9281,\\n      \\\"turn15\\\": 0.9862,\\n      \\\"diff\\\": -0.0581\\n    },\\n    \\\"L23\\\": {\\n      \\\"turn1\\\": 0.3323,\\n      \\\"turn15\\\": 0.9882,\\n      \\\"diff\\\": -0.6559\\n    },\\n    \\\"L24\\\": {\\n      \\\"turn1\\\": 0.4139,\\n      \\\"turn15\\\": 0.9808,\\n      \\\"diff\\\": -0.5669\\n    },\\n    \\\"L25\\\": {\\n      \\\"turn1\\\": 0.8539,\\n      \\\"turn15\\\": 0.99,\\n      \\\"diff\\\": -0.1361\\n    },\\n    \\\"L26\\\": {\\n      \\\"turn1\\\": 0.7117,\\n      \\\"turn15\\\": 0.993,\\n      \\\"diff\\\": -0.2813\\n    },\\n    \\\"L27\\\": {\\n      \\\"turn1\\\": 0.9496,\\n      \\\"turn15\\\": 0.9924,\\n      \\\"diff\\\": -0.0428\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.81}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "631cf2a4-97ca-4232-8088-173f8a079e98",
+  "uuid": "0ac579dd-7cd3-4ba7-b4dc-4778b0a3f19e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"checkpoint_dir\\\\\\\": \\\\\\\"/root/turn_residual_gating/runs/phase2_tg_s42_v7\\\\\\\",\\\\n  \\\\\\\"gate_type\\\\\\\": \\\\\\\"threadgate\\\\\\\",\\\\n  \\\\\\\"gar_variant\\\\\\\": \\\\\\\"ours\\\\\\\",\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"/root/.cache/modelscope/Qwen/Qwen2___5-7B-Instruct\\\\\\\",\\\\n  \\\\\\\"num_conversations\\\\\\\": 50,\\\\n  \\\\\\\"num_turns\\\\\\\": 3,\\\\n  \\\\\\\"gar_curves\\\\\\\": [\\\\n    [\\\\n      0.5471721811936805,\\\\n      0.5314547079518095,\\\\n      0.47426419593068764,\\\\n      0.4952976095490914,\\\\n      0.5045260000314727\\\\n    ],\\\\n    [\\\\n      0.5405323676281529,\\\\n      0.5296719059545101,\\\\n      0.5257538579759024,\\\\n      0.5072605171009349,\\\\n      0.4657115072911907,\\\\n      0.5168611197780131\\\\n    ],\\\\n    [\\\\n      0.6138663350097316,\\\\n      0.5030443169396839,\\\\n      0.48109726977145445,\\\\n      0.5227694779083477,\\\\n      0.5527277982870252\\\\n    ],\\\\n    [\\\\n      0.6005031509131429,\\\\n      0.4652401920115673,\\\\n      0.5998096962377212,\\\\n      0.5428755087252796,\\\\n      0.010862032155626106\\\\n    ],\\\\n    [\\\\n      0.6051878869209719,\\\\n      0.4926638591517517,\\\\n      0.5061965085075645,\\\\n      0.47202652067648143,\\\\n      0.5285153313741104\\\\n    ],\\\\n    [\\\\n      0.5409908893640789,\\\\n      0.521982345386432,\\\\n      0.5186899790557353,\\\\n      0.4883483715526212,\\\\n      0.5277477735742072\\\\n    ],\\\\n    [\\\\n      0.5120651827468174,\\\\n      0.5679972089566375,\\\\n      0.4791396767440773,\\\\n      0.4539113872246411,\\\\n      0.44858408052806\\\\n    ],\\\\n    [\\\\n      0.5370293238264179,\\\\n      0.5180114317655794,\\\\n      0.5153846416705358,\\\\n      0.48451598450473377,\\\\n      0.4966675310219385\\\\n    ],\\\\n    [\\\\n      0.5419820255668085,\\\\n      0.5335362400729519,\\\\n      0.4679081671300935,\\\\n      0.4879594520721435,\\\\n      0.4677707757964611,\\\\n      0.44476643123803977\\\\n    ],\\\\n    [\\\\n      0.5413348749841818,\\\\n      0.5168290867250069,\\\\n      0.4691675745395405,\\\\n      0.5140390711954834,\\\\n      0.5054913839416193\\\\n    ],\\\\n    [\\\\n      0.6287472981040779,\\\\n      0.5233532413337083,\\\\n      0.48665428517812537,\\\\n      0.5957009131437199,\\\\n      0.03048646079284249\\\\n    ],\\\\n    [\\\\n      0.6250806670384946,\\\\n      0.49931153199519784,\\\\n      0.5026571772336349,\\\\n      0.4588403348632974,\\\\n      0.509596938199447\\\\n    ],\\\\n    [\\\\n      0.5577170929798747,\\\\n      0.5413440550187356,\\\\n      0.5243778500698062,\\\\n      0.5293659798357983,\\\\n      0.524410388021212\\\\n    ],\\\\n    [\\\\n      0.5438237621831671,\\\\n      0.5000411276441371,\\\\n      0.5779639303381049,\\\\n      0.5837770500370778,\\\\n      0.007088590318132497\\\\n    ],\\\\n    [\\\\n      0.5733400123785994,\\\\n      0.49169559338933544,\\\\n      0.5233735056994214,\\\\n      0.47202809646775823,\\\\n      0.5986846494747268,\\\\n      0.01515034027657169\\\\n    ],\\\\n    [\\\\n      0.6053928737478297,\\\\n      0.546606167135086,\\\\n      0.48868547965628106,\\\\n      0.49221900257125867,\\\\n      0.503000226322662\\\\n    ],\\\\n    [\\\\n      0.5049589287988108,\\\\n      0.4145304404298212,\\\\n      0.52249523862027,\\\\n      0.4944142253824128,\\\\n      0.4821867867441282,\\\\n      0.49944584987562324,\\\\n      0.4655089797521086\\\\n    ],\\\\n    [\\\\n      0.5241979218686142,\\\\n      0.5318722364697931,\\\\n      0.49615939482311827,\\\\n      0.5065150434756693,\\\\n      0.5008438313476105,\\\\n      0.5133852853927005\\\\n    ],\\\\n    [\\\\n      0.5048405260797291,\\\\n      0.5377110913326721,\\\\n      0.5011610222679692,\\\\n      0.4887918370027216,\\\\n      0.4967638080265329,\\\\n      0.5171626343206681\\\\n    ],\\\\n    [\\\\n      0.506690808908602,\\\\n      0.4946218249652955,\\\\n      0.5225492550330545,\\\\n      0.5233404845605268,\\\\n      0.4337372737758094,\\\\n      0.505806383618043\\\\n    ],\\\\n    [\\\\n      0.5478412038920925,\\\\n      0.5174197789686067,\\\\n      0.5087652467794099,\\\\n      0.5082533604025428,\\\\n      0.5579062803133252\\\\n    ],\\\\n    [\\\\n      0.5514197641534837,\\\\n      0.5048996850678203,\\\\n      0.5016239733161473,\\\\n      0.4895579050836378,\\\\n      0.46048674879737034,\\\\n      0.4549502579908986,\\\\n      0.47979444427327056\\\\n    ],\\\\n    [\\\\n      0.4931232520695831,\\\\n      0.4411518436096283,\\\\n      0.49074765316762636,\\\\n      0.49887525635503666,\\\\n      0.5060752287051954\\\\n    ],\\\\n    [\\\\n      0.6116436075277767,\\\\n      0.5926343849273622,\\\\n      0.5958535837267469,\\\\n      0.010164726231905155\\\\n    ],\\\\n    [\\\\n      0.4714446814951655,\\\\n      0.5280772537910263,\\\\n      0.4780319332351456,\\\\n    \\\\n\\\\n... [截断: 输出过长，省略 395997 字符] ...\\\\n\\\\n,\\\\n        \\\\\\\"L21\\\\\\\": 0.9826,\\\\n        \\\\\\\"L22\\\\\\\": 0.9925,\\\\n        \\\\\\\"L23\\\\\\\": 0.9881,\\\\n        \\\\\\\"L24\\\\\\\": 0.9803,\\\\n        \\\\\\\"L25\\\\\\\": 0.9915,\\\\n        \\\\\\\"L26\\\\\\\": 0.9977,\\\\n        \\\\\\\"L27\\\\\\\": 0.9949\\\\n      },\\\\n      \\\\\\\"turn_10\\\\\\\": {\\\\n        \\\\\\\"L0\\\\\\\": 0.8502,\\\\n        \\\\\\\"L1\\\\\\\": 0.9935,\\\\n        \\\\\\\"L2\\\\\\\": 0.954,\\\\n        \\\\\\\"L3\\\\\\\": 0.8032,\\\\n        \\\\\\\"L4\\\\\\\": 0.7979,\\\\n        \\\\\\\"L5\\\\\\\": 0.8675,\\\\n        \\\\\\\"L6\\\\\\\": 0.984,\\\\n        \\\\\\\"L7\\\\\\\": 0.9778,\\\\n        \\\\\\\"L8\\\\\\\": 0.9766,\\\\n        \\\\\\\"L9\\\\\\\": 0.9742,\\\\n        \\\\\\\"L10\\\\\\\": 0.9499,\\\\n        \\\\\\\"L11\\\\\\\": 0.9475,\\\\n        \\\\\\\"L12\\\\\\\": 0.9489,\\\\n        \\\\\\\"L13\\\\\\\": 0.9448,\\\\n        \\\\\\\"L14\\\\\\\": 0.9586,\\\\n        \\\\\\\"L15\\\\\\\": 0.9531,\\\\n        \\\\\\\"L16\\\\\\\": 0.9755,\\\\n        \\\\\\\"L17\\\\\\\": 0.9686,\\\\n        \\\\\\\"L18\\\\\\\": 0.9766,\\\\n        \\\\\\\"L19\\\\\\\": 0.9688,\\\\n        \\\\\\\"L20\\\\\\\": 0.9793,\\\\n        \\\\\\\"L21\\\\\\\": 0.9689,\\\\n        \\\\\\\"L22\\\\\\\": 0.9973,\\\\n        \\\\\\\"L23\\\\\\\": 0.9764,\\\\n        \\\\\\\"L24\\\\\\\": 0.9699,\\\\n        \\\\\\\"L25\\\\\\\": 0.9628,\\\\n        \\\\\\\"L26\\\\\\\": 0.9868,\\\\n        \\\\\\\"L27\\\\\\\": 0.9968\\\\n      },\\\\n      \\\\\\\"turn_11\\\\\\\": {\\\\n        \\\\\\\"L0\\\\\\\": 0.8706,\\\\n        \\\\\\\"L1\\\\\\\": 0.9971,\\\\n        \\\\\\\"L2\\\\\\\": 0.9676,\\\\n        \\\\\\\"L3\\\\\\\": 0.7863,\\\\n        \\\\\\\"L4\\\\\\\": 0.8237,\\\\n        \\\\\\\"L5\\\\\\\": 0.8902,\\\\n        \\\\\\\"L6\\\\\\\": 0.9876,\\\\n        \\\\\\\"L7\\\\\\\": 0.957,\\\\n        \\\\\\\"L8\\\\\\\": 0.963,\\\\n        \\\\\\\"L9\\\\\\\": 0.9673,\\\\n        \\\\\\\"L10\\\\\\\": 0.9666,\\\\n        \\\\\\\"L11\\\\\\\": 0.959,\\\\n        \\\\\\\"L12\\\\\\\": 0.9451,\\\\n        \\\\\\\"L13\\\\\\\": 0.9413,\\\\n        \\\\\\\"L14\\\\\\\": 0.9543,\\\\n        \\\\\\\"L15\\\\\\\": 0.9654,\\\\n        \\\\\\\"L16\\\\\\\": 0.9715,\\\\n        \\\\\\\"L17\\\\\\\": 0.9545,\\\\n        \\\\\\\"L18\\\\\\\": 0.9745,\\\\n        \\\\\\\"L19\\\\\\\": 0.9836,\\\\n        \\\\\\\"L20\\\\\\\": 0.9652,\\\\n        \\\\\\\"L21\\\\\\\": 0.9831,\\\\n        \\\\\\\"L22\\\\\\\": 0.9965,\\\\n        \\\\\\\"L23\\\\\\\": 0.9826,\\\\n        \\\\\\\"L24\\\\\\\": 0.9806,\\\\n        \\\\\\\"L25\\\\\\\": 0.9814,\\\\n        \\\\\\\"L26\\\\\\\": 0.9901,\\\\n        \\\\\\\"L27\\\\\\\": 0.9961\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"gate_dynamic_range\\\\\\\": {\\\\n    \\\\\\\"L0\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.8269,\\\\n      \\\\\\\"turn15\\\\\\\": 0.8669,\\\\n      \\\\\\\"diff\\\\\\\": -0.04\\\\n    },\\\\n    \\\\\\\"L1\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9391,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9966,\\\\n      \\\\\\\"diff\\\\\\\": -0.0575\\\\n    },\\\\n    \\\\\\\"L2\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.8965,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9643,\\\\n      \\\\\\\"diff\\\\\\\": -0.0678\\\\n    },\\\\n    \\\\\\\"L3\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.7702,\\\\n      \\\\\\\"turn15\\\\\\\": 0.7971,\\\\n      \\\\\\\"diff\\\\\\\": -0.0269\\\\n    },\\\\n    \\\\\\\"L4\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.638,\\\\n      \\\\\\\"turn15\\\\\\\": 0.8099,\\\\n      \\\\\\\"diff\\\\\\\": -0.1719\\\\n    },\\\\n    \\\\\\\"L5\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.8449,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9032,\\\\n      \\\\\\\"diff\\\\\\\": -0.0583\\\\n    },\\\\n    \\\\\\\"L6\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.6833,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9862,\\\\n      \\\\\\\"diff\\\\\\\": -0.3029\\\\n    },\\\\n    \\\\\\\"L7\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.8206,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9552,\\\\n      \\\\\\\"diff\\\\\\\": -0.1346\\\\n    },\\\\n    \\\\\\\"L8\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.7478,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9796,\\\\n      \\\\\\\"diff\\\\\\\": -0.2318\\\\n    },\\\\n    \\\\\\\"L9\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.8506,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9661,\\\\n      \\\\\\\"diff\\\\\\\": -0.1155\\\\n    },\\\\n    \\\\\\\"L10\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9243,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9789,\\\\n      \\\\\\\"diff\\\\\\\": -0.0546\\\\n    },\\\\n    \\\\\\\"L11\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9817,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9565,\\\\n      \\\\\\\"diff\\\\\\\": 0.0252\\\\n    },\\\\n    \\\\\\\"L12\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.6739,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9544,\\\\n      \\\\\\\"diff\\\\\\\": -0.2805\\\\n    },\\\\n    \\\\\\\"L13\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.813,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9465,\\\\n      \\\\\\\"diff\\\\\\\": -0.1335\\\\n    },\\\\n    \\\\\\\"L14\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.6072,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9519,\\\\n      \\\\\\\"diff\\\\\\\": -0.3447\\\\n    },\\\\n    \\\\\\\"L15\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9522,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9691,\\\\n      \\\\\\\"diff\\\\\\\": -0.0169\\\\n    },\\\\n    \\\\\\\"L16\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9393,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9682,\\\\n      \\\\\\\"diff\\\\\\\": -0.0289\\\\n    },\\\\n    \\\\\\\"L17\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9825,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9633,\\\\n      \\\\\\\"diff\\\\\\\": 0.0192\\\\n    },\\\\n    \\\\\\\"L18\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.7242,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9689,\\\\n      \\\\\\\"diff\\\\\\\": -0.2447\\\\n    },\\\\n    \\\\\\\"L19\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9967,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9788,\\\\n      \\\\\\\"diff\\\\\\\": 0.0179\\\\n    },\\\\n    \\\\\\\"L20\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.6093,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9765,\\\\n      \\\\\\\"diff\\\\\\\": -0.3672\\\\n    },\\\\n    \\\\\\\"L21\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.8447,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9854,\\\\n      \\\\\\\"diff\\\\\\\": -0.1407\\\\n    },\\\\n    \\\\\\\"L22\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9281,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9862,\\\\n      \\\\\\\"diff\\\\\\\": -0.0581\\\\n    },\\\\n    \\\\\\\"L23\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.3323,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9882,\\\\n      \\\\\\\"diff\\\\\\\": -0.6559\\\\n    },\\\\n    \\\\\\\"L24\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.4139,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9808,\\\\n      \\\\\\\"diff\\\\\\\": -0.5669\\\\n    },\\\\n    \\\\\\\"L25\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.8539,\\\\n      \\\\\\\"turn15\\\\\\\": 0.99,\\\\n      \\\\\\\"diff\\\\\\\": -0.1361\\\\n    },\\\\n    \\\\\\\"L26\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.7117,\\\\n      \\\\\\\"turn15\\\\\\\": 0.993,\\\\n      \\\\\\\"diff\\\\\\\": -0.2813\\\\n    },\\\\n    \\\\\\\"L27\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9496,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9924,\\\\n      \\\\\\\"diff\\\\\\\": -0.0428\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.81}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"checkpoint_dir\\\": \\\"/root/turn_residual_gating/runs/phase2_tg_s42_v7\\\",\\n  \\\"gate_type\\\": \\\"threadgate\\\",\\n  \\\"gar_variant\\\": \\\"ours\\\",\\n  \\\"model\\\": \\\"/root/.cache/modelscope/Qwen/Qwen2___5-7B-Instruct\\\",\\n  \\\"num_conversations\\\": 50,\\n  \\\"num_turns\\\": 3,\\n  \\\"gar_curves\\\": [\\n    [\\n      0.5471721811936805,\\n      0.5314547079518095,\\n      0.47426419593068764,\\n      0.4952976095490914,\\n      0.5045260000314727\\n    ],\\n    [\\n      0.5405323676281529,\\n      0.5296719059545101,\\n      0.5257538579759024,\\n      0.5072605171009349,\\n      0.4657115072911907,\\n      0.5168611197780131\\n    ],\\n    [\\n      0.6138663350097316,\\n      0.5030443169396839,\\n      0.48109726977145445,\\n      0.5227694779083477,\\n      0.5527277982870252\\n    ],\\n    [\\n      0.6005031509131429,\\n      0.4652401920115673,\\n      0.5998096962377212,\\n      0.5428755087252796,\\n      0.010862032155626106\\n    ],\\n    [\\n      0.6051878869209719,\\n      0.4926638591517517,\\n      0.5061965085075645,\\n      0.47202652067648143,\\n      0.5285153313741104\\n    ],\\n    [\\n      0.5409908893640789,\\n      0.521982345386432,\\n      0.5186899790557353,\\n      0.4883483715526212,\\n      0.5277477735742072\\n    ],\\n    [\\n      0.5120651827468174,\\n      0.5679972089566375,\\n      0.4791396767440773,\\n      0.4539113872246411,\\n      0.44858408052806\\n    ],\\n    [\\n      0.5370293238264179,\\n      0.5180114317655794,\\n      0.5153846416705358,\\n      0.48451598450473377,\\n      0.4966675310219385\\n    ],\\n    [\\n      0.5419820255668085,\\n      0.5335362400729519,\\n      0.4679081671300935,\\n      0.4879594520721435,\\n      0.4677707757964611,\\n      0.44476643123803977\\n    ],\\n    [\\n      0.5413348749841818,\\n      0.5168290867250069,\\n      0.4691675745395405,\\n      0.5140390711954834,\\n      0.5054913839416193\\n    ],\\n    [\\n      0.6287472981040779,\\n      0.5233532413337083,\\n      0.48665428517812537,\\n      0.5957009131437199,\\n      0.03048646079284249\\n    ],\\n    [\\n      0.6250806670384946,\\n      0.49931153199519784,\\n      0.5026571772336349,\\n      0.4588403348632974,\\n      0.509596938199447\\n    ],\\n    [\\n      0.5577170929798747,\\n      0.5413440550187356,\\n      0.5243778500698062,\\n      0.5293659798357983,\\n      0.524410388021212\\n    ],\\n    [\\n      0.5438237621831671,\\n      0.5000411276441371,\\n      0.5779639303381049,\\n      0.5837770500370778,\\n      0.007088590318132497\\n    ],\\n    [\\n      0.5733400123785994,\\n      0.49169559338933544,\\n      0.5233735056994214,\\n      0.47202809646775823,\\n      0.5986846494747268,\\n      0.01515034027657169\\n    ],\\n    [\\n      0.6053928737478297,\\n      0.546606167135086,\\n      0.48868547965628106,\\n      0.49221900257125867,\\n      0.503000226322662\\n    ],\\n    [\\n      0.5049589287988108,\\n      0.4145304404298212,\\n      0.52249523862027,\\n      0.4944142253824128,\\n      0.4821867867441282,\\n      0.49944584987562324,\\n      0.4655089797521086\\n    ],\\n    [\\n      0.5241979218686142,\\n      0.5318722364697931,\\n      0.49615939482311827,\\n      0.5065150434756693,\\n      0.5008438313476105,\\n      0.5133852853927005\\n    ],\\n    [\\n      0.5048405260797291,\\n      0.5377110913326721,\\n      0.5011610222679692,\\n      0.4887918370027216,\\n      0.4967638080265329,\\n      0.5171626343206681\\n    ],\\n    [\\n      0.506690808908602,\\n      0.4946218249652955,\\n      0.5225492550330545,\\n      0.5233404845605268,\\n      0.4337372737758094,\\n      0.505806383618043\\n    ],\\n    [\\n      0.5478412038920925,\\n      0.5174197789686067,\\n      0.5087652467794099,\\n      0.5082533604025428,\\n      0.5579062803133252\\n    ],\\n    [\\n      0.5514197641534837,\\n      0.5048996850678203,\\n      0.5016239733161473,\\n      0.4895579050836378,\\n      0.46048674879737034,\\n      0.4549502579908986,\\n      0.47979444427327056\\n    ],\\n    [\\n      0.4931232520695831,\\n      0.4411518436096283,\\n      0.49074765316762636,\\n      0.49887525635503666,\\n      0.5060752287051954\\n    ],\\n    [\\n      0.6116436075277767,\\n      0.5926343849273622,\\n      0.5958535837267469,\\n      0.010164726231905155\\n    ],\\n    [\\n      0.4714446814951655,\\n      0.5280772537910263,\\n      0.4780319332351456,\\n    \\n\\n... [截断: 输出过长，省略 395997 字符] ...\\n\\n,\\n        \\\"L21\\\": 0.9826,\\n        \\\"L22\\\": 0.9925,\\n        \\\"L23\\\": 0.9881,\\n        \\\"L24\\\": 0.9803,\\n        \\\"L25\\\": 0.9915,\\n        \\\"L26\\\": 0.9977,\\n        \\\"L27\\\": 0.9949\\n      },\\n      \\\"turn_10\\\": {\\n        \\\"L0\\\": 0.8502,\\n        \\\"L1\\\": 0.9935,\\n        \\\"L2\\\": 0.954,\\n        \\\"L3\\\": 0.8032,\\n        \\\"L4\\\": 0.7979,\\n        \\\"L5\\\": 0.8675,\\n        \\\"L6\\\": 0.984,\\n        \\\"L7\\\": 0.9778,\\n        \\\"L8\\\": 0.9766,\\n        \\\"L9\\\": 0.9742,\\n        \\\"L10\\\": 0.9499,\\n        \\\"L11\\\": 0.9475,\\n        \\\"L12\\\": 0.9489,\\n        \\\"L13\\\": 0.9448,\\n        \\\"L14\\\": 0.9586,\\n        \\\"L15\\\": 0.9531,\\n        \\\"L16\\\": 0.9755,\\n        \\\"L17\\\": 0.9686,\\n        \\\"L18\\\": 0.9766,\\n        \\\"L19\\\": 0.9688,\\n        \\\"L20\\\": 0.9793,\\n        \\\"L21\\\": 0.9689,\\n        \\\"L22\\\": 0.9973,\\n        \\\"L23\\\": 0.9764,\\n        \\\"L24\\\": 0.9699,\\n        \\\"L25\\\": 0.9628,\\n        \\\"L26\\\": 0.9868,\\n        \\\"L27\\\": 0.9968\\n      },\\n      \\\"turn_11\\\": {\\n        \\\"L0\\\": 0.8706,\\n        \\\"L1\\\": 0.9971,\\n        \\\"L2\\\": 0.9676,\\n        \\\"L3\\\": 0.7863,\\n        \\\"L4\\\": 0.8237,\\n        \\\"L5\\\": 0.8902,\\n        \\\"L6\\\": 0.9876,\\n        \\\"L7\\\": 0.957,\\n        \\\"L8\\\": 0.963,\\n        \\\"L9\\\": 0.9673,\\n        \\\"L10\\\": 0.9666,\\n        \\\"L11\\\": 0.959,\\n        \\\"L12\\\": 0.9451,\\n        \\\"L13\\\": 0.9413,\\n        \\\"L14\\\": 0.9543,\\n        \\\"L15\\\": 0.9654,\\n        \\\"L16\\\": 0.9715,\\n        \\\"L17\\\": 0.9545,\\n        \\\"L18\\\": 0.9745,\\n        \\\"L19\\\": 0.9836,\\n        \\\"L20\\\": 0.9652,\\n        \\\"L21\\\": 0.9831,\\n        \\\"L22\\\": 0.9965,\\n        \\\"L23\\\": 0.9826,\\n        \\\"L24\\\": 0.9806,\\n        \\\"L25\\\": 0.9814,\\n        \\\"L26\\\": 0.9901,\\n        \\\"L27\\\": 0.9961\\n      }\\n    }\\n  },\\n  \\\"gate_dynamic_range\\\": {\\n    \\\"L0\\\": {\\n      \\\"turn1\\\": 0.8269,\\n      \\\"turn15\\\": 0.8669,\\n      \\\"diff\\\": -0.04\\n    },\\n    \\\"L1\\\": {\\n      \\\"turn1\\\": 0.9391,\\n      \\\"turn15\\\": 0.9966,\\n      \\\"diff\\\": -0.0575\\n    },\\n    \\\"L2\\\": {\\n      \\\"turn1\\\": 0.8965,\\n      \\\"turn15\\\": 0.9643,\\n      \\\"diff\\\": -0.0678\\n    },\\n    \\\"L3\\\": {\\n      \\\"turn1\\\": 0.7702,\\n      \\\"turn15\\\": 0.7971,\\n      \\\"diff\\\": -0.0269\\n    },\\n    \\\"L4\\\": {\\n      \\\"turn1\\\": 0.638,\\n      \\\"turn15\\\": 0.8099,\\n      \\\"diff\\\": -0.1719\\n    },\\n    \\\"L5\\\": {\\n      \\\"turn1\\\": 0.8449,\\n      \\\"turn15\\\": 0.9032,\\n      \\\"diff\\\": -0.0583\\n    },\\n    \\\"L6\\\": {\\n      \\\"turn1\\\": 0.6833,\\n      \\\"turn15\\\": 0.9862,\\n      \\\"diff\\\": -0.3029\\n    },\\n    \\\"L7\\\": {\\n      \\\"turn1\\\": 0.8206,\\n      \\\"turn15\\\": 0.9552,\\n      \\\"diff\\\": -0.1346\\n    },\\n    \\\"L8\\\": {\\n      \\\"turn1\\\": 0.7478,\\n      \\\"turn15\\\": 0.9796,\\n      \\\"diff\\\": -0.2318\\n    },\\n    \\\"L9\\\": {\\n      \\\"turn1\\\": 0.8506,\\n      \\\"turn15\\\": 0.9661,\\n      \\\"diff\\\": -0.1155\\n    },\\n    \\\"L10\\\": {\\n      \\\"turn1\\\": 0.9243,\\n      \\\"turn15\\\": 0.9789,\\n      \\\"diff\\\": -0.0546\\n    },\\n    \\\"L11\\\": {\\n      \\\"turn1\\\": 0.9817,\\n      \\\"turn15\\\": 0.9565,\\n      \\\"diff\\\": 0.0252\\n    },\\n    \\\"L12\\\": {\\n      \\\"turn1\\\": 0.6739,\\n      \\\"turn15\\\": 0.9544,\\n      \\\"diff\\\": -0.2805\\n    },\\n    \\\"L13\\\": {\\n      \\\"turn1\\\": 0.813,\\n      \\\"turn15\\\": 0.9465,\\n      \\\"diff\\\": -0.1335\\n    },\\n    \\\"L14\\\": {\\n      \\\"turn1\\\": 0.6072,\\n      \\\"turn15\\\": 0.9519,\\n      \\\"diff\\\": -0.3447\\n    },\\n    \\\"L15\\\": {\\n      \\\"turn1\\\": 0.9522,\\n      \\\"turn15\\\": 0.9691,\\n      \\\"diff\\\": -0.0169\\n    },\\n    \\\"L16\\\": {\\n      \\\"turn1\\\": 0.9393,\\n      \\\"turn15\\\": 0.9682,\\n      \\\"diff\\\": -0.0289\\n    },\\n    \\\"L17\\\": {\\n      \\\"turn1\\\": 0.9825,\\n      \\\"turn15\\\": 0.9633,\\n      \\\"diff\\\": 0.0192\\n    },\\n    \\\"L18\\\": {\\n      \\\"turn1\\\": 0.7242,\\n      \\\"turn15\\\": 0.9689,\\n      \\\"diff\\\": -0.2447\\n    },\\n    \\\"L19\\\": {\\n      \\\"turn1\\\": 0.9967,\\n      \\\"turn15\\\": 0.9788,\\n      \\\"diff\\\": 0.0179\\n    },\\n    \\\"L20\\\": {\\n      \\\"turn1\\\": 0.6093,\\n      \\\"turn15\\\": 0.9765,\\n      \\\"diff\\\": -0.3672\\n    },\\n    \\\"L21\\\": {\\n      \\\"turn1\\\": 0.8447,\\n      \\\"turn15\\\": 0.9854,\\n      \\\"diff\\\": -0.1407\\n    },\\n    \\\"L22\\\": {\\n      \\\"turn1\\\": 0.9281,\\n      \\\"turn15\\\": 0.9862,\\n      \\\"diff\\\": -0.0581\\n    },\\n    \\\"L23\\\": {\\n      \\\"turn1\\\": 0.3323,\\n      \\\"turn15\\\": 0.9882,\\n      \\\"diff\\\": -0.6559\\n    },\\n    \\\"L24\\\": {\\n      \\\"turn1\\\": 0.4139,\\n      \\\"turn15\\\": 0.9808,\\n      \\\"diff\\\": -0.5669\\n    },\\n    \\\"L25\\\": {\\n      \\\"turn1\\\": 0.8539,\\n      \\\"turn15\\\": 0.99,\\n      \\\"diff\\\": -0.1361\\n    },\\n    \\\"L26\\\": {\\n      \\\"turn1\\\": 0.7117,\\n      \\\"turn15\\\": 0.993,\\n      \\\"diff\\\": -0.2813\\n    },\\n    \\\"L27\\\": {\\n      \\\"turn1\\\": 0.9496,\\n      \\\"turn15\\\": 0.9924,\\n      \\\"diff\\\": -0.0428\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.81}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-19T14:33:31.506Z_
+
+<details><summary>↩ Tool result · `toolu_01FUVUZT69aC8GSUNQivcHqS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"checkpoint_dir\\\": \\\"/root/turn_residual_gating/runs/phase2_tg_s42_v7\\\",\\n  \\\"gate_type\\\": \\\"threadgate\\\",\\n  \\\"gar_variant\\\": \\\"dongre\\\",\\n  \\\"model\\\": \\\"/root/.cache/modelscope/Qwen/Qwen2___5-7B-Instruct\\\",\\n  \\\"num_conversations\\\": 50,\\n  \\\"num_turns\\\": 3,\\n  \\\"gar_curves\\\": [\\n    [\\n      0.02426545456118246,\\n      0.018501409098813607,\\n      0.01288822069761034,\\n      0.014026526183902642,\\n      0.013677260049064176\\n    ],\\n    [\\n      0.02509941496410425,\\n      0.01421584639168785,\\n      0.010922598602510056,\\n      0.010785064290477547,\\n      0.012801288231743887,\\n      0.01012298422458189\\n    ],\\n    [\\n      0.01949293940177952,\\n      0.014313196025202196,\\n      0.010553042402352547,\\n      0.010434940939430063,\\n      0.012397269345195864\\n    ],\\n    [\\n      0.024479249067225237,\\n      0.013882487411358693,\\n      0.013016491354573872,\\n      0.01024711149065322,\\n      0.008790051579012716\\n    ],\\n    [\\n      0.023409573708340174,\\n      0.016677961558413845,\\n      0.013061862136503179,\\n      0.011616944104584238,\\n      0.016464320324987083\\n    ],\\n    [\\n      0.024924527896998727,\\n      0.019673199823156646,\\n      0.018395539254946084,\\n      0.020181921263976315,\\n      0.011538863807139463\\n    ],\\n    [\\n      0.02215763224949217,\\n      0.017759899089905398,\\n      0.013411720108185868,\\n      0.012552697661376646,\\n      0.01032094200406502\\n    ],\\n    [\\n      0.022856576146461586,\\n      0.015288339953093732,\\n      0.014631109103204542,\\n      0.012964799114054022,\\n      0.012257061763939151\\n    ],\\n    [\\n      0.04147883581212911,\\n      0.02030316771630808,\\n      0.013738625270998941,\\n      0.015434169886492844,\\n      0.013625480013295522,\\n      0.01619559541675104\\n    ],\\n    [\\n      0.0333287874698073,\\n      0.02672133532267828,\\n      0.04280978961255796,\\n      0.020632392952927493,\\n      0.025904132473860666\\n    ],\\n    [\\n      0.020200279477474527,\\n      0.012591380871291191,\\n      0.011096685820819427,\\n      0.011024338118941556,\\n      0.007522041962134018\\n    ],\\n    [\\n      0.01902637066811859,\\n      0.01508869023754095,\\n      0.014493678372484733,\\n      0.011276773326548929,\\n      0.011307479346815346\\n    ],\\n    [\\n      0.02908751332472449,\\n      0.016810743880181712,\\n      0.015752597770342325,\\n      0.015544358793245297,\\n      0.013676843387370732\\n    ],\\n    [\\n      0.02735433895867038,\\n      0.016428040856643105,\\n      0.011961572709945028,\\n      0.01159901971833917,\\n      0.00798170150569499\\n    ],\\n    [\\n      0.019707351315763025,\\n      0.015705485568524986,\\n      0.014001514360277058,\\n      0.011049531229192047,\\n      0.010627954729821918,\\n      0.007371077572626583\\n    ],\\n    [\\n      0.019076005520161508,\\n      0.014750940592325458,\\n      0.01175331783767151,\\n      0.010671074443995735,\\n      0.010117049388138039\\n    ],\\n    [\\n      0.028113620992676572,\\n      0.02340170713560683,\\n      0.02203242579339228,\\n      0.014657543054794931,\\n      0.015405967614881859,\\n      0.012777378668795152,\\n      0.0116684368330414\\n    ],\\n    [\\n      0.019721660041739045,\\n      0.014773646740684127,\\n      0.022137141846155076,\\n      0.02288463261647607,\\n      0.018523374667955127,\\n      0.010465192715224277\\n    ],\\n    [\\n      0.02403753340044311,\\n      0.014579210739166525,\\n      0.01439656874318456,\\n      0.015037862704474126,\\n      0.01103249077214806,\\n      0.0100122555481709\\n    ],\\n    [\\n      0.031155190320787614,\\n      0.0207386749161927,\\n      0.017094858401540063,\\n      0.015998941505876954,\\n      0.013279986546629088,\\n      0.012407569681531594\\n    ],\\n    [\\n      0.02529905794662416,\\n      0.01353074385319917,\\n      0.012771746789870048,\\n      0.012163151502029923,\\n      0.00972214823068184\\n    ],\\n    [\\n      0.024921056228335323,\\n      0.014784400412848201,\\n      0.014593446567720601,\\n      0.013677374651568543,\\n      0.011092834960729006,\\n      0.011725737978296307,\\n      0.01488158289786498\\n    ],\\n    [\\n      0.02766400341868274,\\n      0.020923177726414516,\\n      0.019786929545557337,\\n      0.019274530951165592,\\n      0.01990899949538507\\n    ],\\n    [\\n \\n\\n... [截断: 输出过长，省略 396524 字符] ...\\n\\n,\\n        \\\"L21\\\": 0.9826,\\n        \\\"L22\\\": 0.9925,\\n        \\\"L23\\\": 0.9881,\\n        \\\"L24\\\": 0.9803,\\n        \\\"L25\\\": 0.9915,\\n        \\\"L26\\\": 0.9977,\\n        \\\"L27\\\": 0.9949\\n      },\\n      \\\"turn_10\\\": {\\n        \\\"L0\\\": 0.8502,\\n        \\\"L1\\\": 0.9935,\\n        \\\"L2\\\": 0.954,\\n        \\\"L3\\\": 0.8032,\\n        \\\"L4\\\": 0.7979,\\n        \\\"L5\\\": 0.8675,\\n        \\\"L6\\\": 0.984,\\n        \\\"L7\\\": 0.9778,\\n        \\\"L8\\\": 0.9766,\\n        \\\"L9\\\": 0.9742,\\n        \\\"L10\\\": 0.9499,\\n        \\\"L11\\\": 0.9475,\\n        \\\"L12\\\": 0.9489,\\n        \\\"L13\\\": 0.9448,\\n        \\\"L14\\\": 0.9586,\\n        \\\"L15\\\": 0.9531,\\n        \\\"L16\\\": 0.9755,\\n        \\\"L17\\\": 0.9686,\\n        \\\"L18\\\": 0.9766,\\n        \\\"L19\\\": 0.9688,\\n        \\\"L20\\\": 0.9793,\\n        \\\"L21\\\": 0.9689,\\n        \\\"L22\\\": 0.9973,\\n        \\\"L23\\\": 0.9764,\\n        \\\"L24\\\": 0.9699,\\n        \\\"L25\\\": 0.9628,\\n        \\\"L26\\\": 0.9868,\\n        \\\"L27\\\": 0.9968\\n      },\\n      \\\"turn_11\\\": {\\n        \\\"L0\\\": 0.8706,\\n        \\\"L1\\\": 0.9971,\\n        \\\"L2\\\": 0.9676,\\n        \\\"L3\\\": 0.7863,\\n        \\\"L4\\\": 0.8237,\\n        \\\"L5\\\": 0.8902,\\n        \\\"L6\\\": 0.9876,\\n        \\\"L7\\\": 0.957,\\n        \\\"L8\\\": 0.963,\\n        \\\"L9\\\": 0.9673,\\n        \\\"L10\\\": 0.9666,\\n        \\\"L11\\\": 0.959,\\n        \\\"L12\\\": 0.9451,\\n        \\\"L13\\\": 0.9413,\\n        \\\"L14\\\": 0.9543,\\n        \\\"L15\\\": 0.9654,\\n        \\\"L16\\\": 0.9715,\\n        \\\"L17\\\": 0.9545,\\n        \\\"L18\\\": 0.9745,\\n        \\\"L19\\\": 0.9836,\\n        \\\"L20\\\": 0.9652,\\n        \\\"L21\\\": 0.9831,\\n        \\\"L22\\\": 0.9965,\\n        \\\"L23\\\": 0.9826,\\n        \\\"L24\\\": 0.9806,\\n        \\\"L25\\\": 0.9814,\\n        \\\"L26\\\": 0.9901,\\n        \\\"L27\\\": 0.9961\\n      }\\n    }\\n  },\\n  \\\"gate_dynamic_range\\\": {\\n    \\\"L0\\\": {\\n      \\\"turn1\\\": 0.8269,\\n      \\\"turn15\\\": 0.8669,\\n      \\\"diff\\\": -0.04\\n    },\\n    \\\"L1\\\": {\\n      \\\"turn1\\\": 0.9391,\\n      \\\"turn15\\\": 0.9966,\\n      \\\"diff\\\": -0.0575\\n    },\\n    \\\"L2\\\": {\\n      \\\"turn1\\\": 0.8965,\\n      \\\"turn15\\\": 0.9643,\\n      \\\"diff\\\": -0.0678\\n    },\\n    \\\"L3\\\": {\\n      \\\"turn1\\\": 0.7702,\\n      \\\"turn15\\\": 0.7971,\\n      \\\"diff\\\": -0.0269\\n    },\\n    \\\"L4\\\": {\\n      \\\"turn1\\\": 0.638,\\n      \\\"turn15\\\": 0.8099,\\n      \\\"diff\\\": -0.1719\\n    },\\n    \\\"L5\\\": {\\n      \\\"turn1\\\": 0.8449,\\n      \\\"turn15\\\": 0.9032,\\n      \\\"diff\\\": -0.0583\\n    },\\n    \\\"L6\\\": {\\n      \\\"turn1\\\": 0.6833,\\n      \\\"turn15\\\": 0.9862,\\n      \\\"diff\\\": -0.3029\\n    },\\n    \\\"L7\\\": {\\n      \\\"turn1\\\": 0.8206,\\n      \\\"turn15\\\": 0.9552,\\n      \\\"diff\\\": -0.1346\\n    },\\n    \\\"L8\\\": {\\n      \\\"turn1\\\": 0.7478,\\n      \\\"turn15\\\": 0.9796,\\n      \\\"diff\\\": -0.2318\\n    },\\n    \\\"L9\\\": {\\n      \\\"turn1\\\": 0.8506,\\n      \\\"turn15\\\": 0.9661,\\n      \\\"diff\\\": -0.1155\\n    },\\n    \\\"L10\\\": {\\n      \\\"turn1\\\": 0.9243,\\n      \\\"turn15\\\": 0.9789,\\n      \\\"diff\\\": -0.0546\\n    },\\n    \\\"L11\\\": {\\n      \\\"turn1\\\": 0.9817,\\n      \\\"turn15\\\": 0.9565,\\n      \\\"diff\\\": 0.0252\\n    },\\n    \\\"L12\\\": {\\n      \\\"turn1\\\": 0.6739,\\n      \\\"turn15\\\": 0.9544,\\n      \\\"diff\\\": -0.2805\\n    },\\n    \\\"L13\\\": {\\n      \\\"turn1\\\": 0.813,\\n      \\\"turn15\\\": 0.9465,\\n      \\\"diff\\\": -0.1335\\n    },\\n    \\\"L14\\\": {\\n      \\\"turn1\\\": 0.6072,\\n      \\\"turn15\\\": 0.9519,\\n      \\\"diff\\\": -0.3447\\n    },\\n    \\\"L15\\\": {\\n      \\\"turn1\\\": 0.9522,\\n      \\\"turn15\\\": 0.9691,\\n      \\\"diff\\\": -0.0169\\n    },\\n    \\\"L16\\\": {\\n      \\\"turn1\\\": 0.9393,\\n      \\\"turn15\\\": 0.9682,\\n      \\\"diff\\\": -0.0289\\n    },\\n    \\\"L17\\\": {\\n      \\\"turn1\\\": 0.9825,\\n      \\\"turn15\\\": 0.9633,\\n      \\\"diff\\\": 0.0192\\n    },\\n    \\\"L18\\\": {\\n      \\\"turn1\\\": 0.7242,\\n      \\\"turn15\\\": 0.9689,\\n      \\\"diff\\\": -0.2447\\n    },\\n    \\\"L19\\\": {\\n      \\\"turn1\\\": 0.9967,\\n      \\\"turn15\\\": 0.9788,\\n      \\\"diff\\\": 0.0179\\n    },\\n    \\\"L20\\\": {\\n      \\\"turn1\\\": 0.6093,\\n      \\\"turn15\\\": 0.9765,\\n      \\\"diff\\\": -0.3672\\n    },\\n    \\\"L21\\\": {\\n      \\\"turn1\\\": 0.8447,\\n      \\\"turn15\\\": 0.9854,\\n      \\\"diff\\\": -0.1407\\n    },\\n    \\\"L22\\\": {\\n      \\\"turn1\\\": 0.9281,\\n      \\\"turn15\\\": 0.9862,\\n      \\\"diff\\\": -0.0581\\n    },\\n    \\\"L23\\\": {\\n      \\\"turn1\\\": 0.3323,\\n      \\\"turn15\\\": 0.9882,\\n      \\\"diff\\\": -0.6559\\n    },\\n    \\\"L24\\\": {\\n      \\\"turn1\\\": 0.4139,\\n      \\\"turn15\\\": 0.9808,\\n      \\\"diff\\\": -0.5669\\n    },\\n    \\\"L25\\\": {\\n      \\\"turn1\\\": 0.8539,\\n      \\\"turn15\\\": 0.99,\\n      \\\"diff\\\": -0.1361\\n    },\\n    \\\"L26\\\": {\\n      \\\"turn1\\\": 0.7117,\\n      \\\"turn15\\\": 0.993,\\n      \\\"diff\\\": -0.2813\\n    },\\n    \\\"L27\\\": {\\n      \\\"turn1\\\": 0.9496,\\n      \\\"turn15\\\": 0.9924,\\n      \\\"diff\\\": -0.0428\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "631cf2a4-97ca-4232-8088-173f8a079e98",
+  "uuid": "05df41cf-1d69-4b42-80d5-3bb65570c999",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"checkpoint_dir\\\\\\\": \\\\\\\"/root/turn_residual_gating/runs/phase2_tg_s42_v7\\\\\\\",\\\\n  \\\\\\\"gate_type\\\\\\\": \\\\\\\"threadgate\\\\\\\",\\\\n  \\\\\\\"gar_variant\\\\\\\": \\\\\\\"dongre\\\\\\\",\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"/root/.cache/modelscope/Qwen/Qwen2___5-7B-Instruct\\\\\\\",\\\\n  \\\\\\\"num_conversations\\\\\\\": 50,\\\\n  \\\\\\\"num_turns\\\\\\\": 3,\\\\n  \\\\\\\"gar_curves\\\\\\\": [\\\\n    [\\\\n      0.02426545456118246,\\\\n      0.018501409098813607,\\\\n      0.01288822069761034,\\\\n      0.014026526183902642,\\\\n      0.013677260049064176\\\\n    ],\\\\n    [\\\\n      0.02509941496410425,\\\\n      0.01421584639168785,\\\\n      0.010922598602510056,\\\\n      0.010785064290477547,\\\\n      0.012801288231743887,\\\\n      0.01012298422458189\\\\n    ],\\\\n    [\\\\n      0.01949293940177952,\\\\n      0.014313196025202196,\\\\n      0.010553042402352547,\\\\n      0.010434940939430063,\\\\n      0.012397269345195864\\\\n    ],\\\\n    [\\\\n      0.024479249067225237,\\\\n      0.013882487411358693,\\\\n      0.013016491354573872,\\\\n      0.01024711149065322,\\\\n      0.008790051579012716\\\\n    ],\\\\n    [\\\\n      0.023409573708340174,\\\\n      0.016677961558413845,\\\\n      0.013061862136503179,\\\\n      0.011616944104584238,\\\\n      0.016464320324987083\\\\n    ],\\\\n    [\\\\n      0.024924527896998727,\\\\n      0.019673199823156646,\\\\n      0.018395539254946084,\\\\n      0.020181921263976315,\\\\n      0.011538863807139463\\\\n    ],\\\\n    [\\\\n      0.02215763224949217,\\\\n      0.017759899089905398,\\\\n      0.013411720108185868,\\\\n      0.012552697661376646,\\\\n      0.01032094200406502\\\\n    ],\\\\n    [\\\\n      0.022856576146461586,\\\\n      0.015288339953093732,\\\\n      0.014631109103204542,\\\\n      0.012964799114054022,\\\\n      0.012257061763939151\\\\n    ],\\\\n    [\\\\n      0.04147883581212911,\\\\n      0.02030316771630808,\\\\n      0.013738625270998941,\\\\n      0.015434169886492844,\\\\n      0.013625480013295522,\\\\n      0.01619559541675104\\\\n    ],\\\\n    [\\\\n      0.0333287874698073,\\\\n      0.02672133532267828,\\\\n      0.04280978961255796,\\\\n      0.020632392952927493,\\\\n      0.025904132473860666\\\\n    ],\\\\n    [\\\\n      0.020200279477474527,\\\\n      0.012591380871291191,\\\\n      0.011096685820819427,\\\\n      0.011024338118941556,\\\\n      0.007522041962134018\\\\n    ],\\\\n    [\\\\n      0.01902637066811859,\\\\n      0.01508869023754095,\\\\n      0.014493678372484733,\\\\n      0.011276773326548929,\\\\n      0.011307479346815346\\\\n    ],\\\\n    [\\\\n      0.02908751332472449,\\\\n      0.016810743880181712,\\\\n      0.015752597770342325,\\\\n      0.015544358793245297,\\\\n      0.013676843387370732\\\\n    ],\\\\n    [\\\\n      0.02735433895867038,\\\\n      0.016428040856643105,\\\\n      0.011961572709945028,\\\\n      0.01159901971833917,\\\\n      0.00798170150569499\\\\n    ],\\\\n    [\\\\n      0.019707351315763025,\\\\n      0.015705485568524986,\\\\n      0.014001514360277058,\\\\n      0.011049531229192047,\\\\n      0.010627954729821918,\\\\n      0.007371077572626583\\\\n    ],\\\\n    [\\\\n      0.019076005520161508,\\\\n      0.014750940592325458,\\\\n      0.01175331783767151,\\\\n      0.010671074443995735,\\\\n      0.010117049388138039\\\\n    ],\\\\n    [\\\\n      0.028113620992676572,\\\\n      0.02340170713560683,\\\\n      0.02203242579339228,\\\\n      0.014657543054794931,\\\\n      0.015405967614881859,\\\\n      0.012777378668795152,\\\\n      0.0116684368330414\\\\n    ],\\\\n    [\\\\n      0.019721660041739045,\\\\n      0.014773646740684127,\\\\n      0.022137141846155076,\\\\n      0.02288463261647607,\\\\n      0.018523374667955127,\\\\n      0.010465192715224277\\\\n    ],\\\\n    [\\\\n      0.02403753340044311,\\\\n      0.014579210739166525,\\\\n      0.01439656874318456,\\\\n      0.015037862704474126,\\\\n      0.01103249077214806,\\\\n      0.0100122555481709\\\\n    ],\\\\n    [\\\\n      0.031155190320787614,\\\\n      0.0207386749161927,\\\\n      0.017094858401540063,\\\\n      0.015998941505876954,\\\\n      0.013279986546629088,\\\\n      0.012407569681531594\\\\n    ],\\\\n    [\\\\n      0.02529905794662416,\\\\n      0.01353074385319917,\\\\n      0.012771746789870048,\\\\n      0.012163151502029923,\\\\n      0.00972214823068184\\\\n    ],\\\\n    [\\\\n      0.024921056228335323,\\\\n      0.014784400412848201,\\\\n      0.014593446567720601,\\\\n      0.013677374651568543,\\\\n      0.011092834960729006,\\\\n      0.011725737978296307,\\\\n      0.01488158289786498\\\\n    ],\\\\n    [\\\\n      0.02766400341868274,\\\\n      0.020923177726414516,\\\\n      0.019786929545557337,\\\\n      0.019274530951165592,\\\\n      0.01990899949538507\\\\n    ],\\\\n    [\\\\n \\\\n\\\\n... [截断: 输出过长，省略 396524 字符] ...\\\\n\\\\n,\\\\n        \\\\\\\"L21\\\\\\\": 0.9826,\\\\n        \\\\\\\"L22\\\\\\\": 0.9925,\\\\n        \\\\\\\"L23\\\\\\\": 0.9881,\\\\n        \\\\\\\"L24\\\\\\\": 0.9803,\\\\n        \\\\\\\"L25\\\\\\\": 0.9915,\\\\n        \\\\\\\"L26\\\\\\\": 0.9977,\\\\n        \\\\\\\"L27\\\\\\\": 0.9949\\\\n      },\\\\n      \\\\\\\"turn_10\\\\\\\": {\\\\n        \\\\\\\"L0\\\\\\\": 0.8502,\\\\n        \\\\\\\"L1\\\\\\\": 0.9935,\\\\n        \\\\\\\"L2\\\\\\\": 0.954,\\\\n        \\\\\\\"L3\\\\\\\": 0.8032,\\\\n        \\\\\\\"L4\\\\\\\": 0.7979,\\\\n        \\\\\\\"L5\\\\\\\": 0.8675,\\\\n        \\\\\\\"L6\\\\\\\": 0.984,\\\\n        \\\\\\\"L7\\\\\\\": 0.9778,\\\\n        \\\\\\\"L8\\\\\\\": 0.9766,\\\\n        \\\\\\\"L9\\\\\\\": 0.9742,\\\\n        \\\\\\\"L10\\\\\\\": 0.9499,\\\\n        \\\\\\\"L11\\\\\\\": 0.9475,\\\\n        \\\\\\\"L12\\\\\\\": 0.9489,\\\\n        \\\\\\\"L13\\\\\\\": 0.9448,\\\\n        \\\\\\\"L14\\\\\\\": 0.9586,\\\\n        \\\\\\\"L15\\\\\\\": 0.9531,\\\\n        \\\\\\\"L16\\\\\\\": 0.9755,\\\\n        \\\\\\\"L17\\\\\\\": 0.9686,\\\\n        \\\\\\\"L18\\\\\\\": 0.9766,\\\\n        \\\\\\\"L19\\\\\\\": 0.9688,\\\\n        \\\\\\\"L20\\\\\\\": 0.9793,\\\\n        \\\\\\\"L21\\\\\\\": 0.9689,\\\\n        \\\\\\\"L22\\\\\\\": 0.9973,\\\\n        \\\\\\\"L23\\\\\\\": 0.9764,\\\\n        \\\\\\\"L24\\\\\\\": 0.9699,\\\\n        \\\\\\\"L25\\\\\\\": 0.9628,\\\\n        \\\\\\\"L26\\\\\\\": 0.9868,\\\\n        \\\\\\\"L27\\\\\\\": 0.9968\\\\n      },\\\\n      \\\\\\\"turn_11\\\\\\\": {\\\\n        \\\\\\\"L0\\\\\\\": 0.8706,\\\\n        \\\\\\\"L1\\\\\\\": 0.9971,\\\\n        \\\\\\\"L2\\\\\\\": 0.9676,\\\\n        \\\\\\\"L3\\\\\\\": 0.7863,\\\\n        \\\\\\\"L4\\\\\\\": 0.8237,\\\\n        \\\\\\\"L5\\\\\\\": 0.8902,\\\\n        \\\\\\\"L6\\\\\\\": 0.9876,\\\\n        \\\\\\\"L7\\\\\\\": 0.957,\\\\n        \\\\\\\"L8\\\\\\\": 0.963,\\\\n        \\\\\\\"L9\\\\\\\": 0.9673,\\\\n        \\\\\\\"L10\\\\\\\": 0.9666,\\\\n        \\\\\\\"L11\\\\\\\": 0.959,\\\\n        \\\\\\\"L12\\\\\\\": 0.9451,\\\\n        \\\\\\\"L13\\\\\\\": 0.9413,\\\\n        \\\\\\\"L14\\\\\\\": 0.9543,\\\\n        \\\\\\\"L15\\\\\\\": 0.9654,\\\\n        \\\\\\\"L16\\\\\\\": 0.9715,\\\\n        \\\\\\\"L17\\\\\\\": 0.9545,\\\\n        \\\\\\\"L18\\\\\\\": 0.9745,\\\\n        \\\\\\\"L19\\\\\\\": 0.9836,\\\\n        \\\\\\\"L20\\\\\\\": 0.9652,\\\\n        \\\\\\\"L21\\\\\\\": 0.9831,\\\\n        \\\\\\\"L22\\\\\\\": 0.9965,\\\\n        \\\\\\\"L23\\\\\\\": 0.9826,\\\\n        \\\\\\\"L24\\\\\\\": 0.9806,\\\\n        \\\\\\\"L25\\\\\\\": 0.9814,\\\\n        \\\\\\\"L26\\\\\\\": 0.9901,\\\\n        \\\\\\\"L27\\\\\\\": 0.9961\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"gate_dynamic_range\\\\\\\": {\\\\n    \\\\\\\"L0\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.8269,\\\\n      \\\\\\\"turn15\\\\\\\": 0.8669,\\\\n      \\\\\\\"diff\\\\\\\": -0.04\\\\n    },\\\\n    \\\\\\\"L1\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9391,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9966,\\\\n      \\\\\\\"diff\\\\\\\": -0.0575\\\\n    },\\\\n    \\\\\\\"L2\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.8965,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9643,\\\\n      \\\\\\\"diff\\\\\\\": -0.0678\\\\n    },\\\\n    \\\\\\\"L3\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.7702,\\\\n      \\\\\\\"turn15\\\\\\\": 0.7971,\\\\n      \\\\\\\"diff\\\\\\\": -0.0269\\\\n    },\\\\n    \\\\\\\"L4\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.638,\\\\n      \\\\\\\"turn15\\\\\\\": 0.8099,\\\\n      \\\\\\\"diff\\\\\\\": -0.1719\\\\n    },\\\\n    \\\\\\\"L5\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.8449,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9032,\\\\n      \\\\\\\"diff\\\\\\\": -0.0583\\\\n    },\\\\n    \\\\\\\"L6\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.6833,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9862,\\\\n      \\\\\\\"diff\\\\\\\": -0.3029\\\\n    },\\\\n    \\\\\\\"L7\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.8206,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9552,\\\\n      \\\\\\\"diff\\\\\\\": -0.1346\\\\n    },\\\\n    \\\\\\\"L8\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.7478,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9796,\\\\n      \\\\\\\"diff\\\\\\\": -0.2318\\\\n    },\\\\n    \\\\\\\"L9\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.8506,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9661,\\\\n      \\\\\\\"diff\\\\\\\": -0.1155\\\\n    },\\\\n    \\\\\\\"L10\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9243,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9789,\\\\n      \\\\\\\"diff\\\\\\\": -0.0546\\\\n    },\\\\n    \\\\\\\"L11\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9817,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9565,\\\\n      \\\\\\\"diff\\\\\\\": 0.0252\\\\n    },\\\\n    \\\\\\\"L12\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.6739,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9544,\\\\n      \\\\\\\"diff\\\\\\\": -0.2805\\\\n    },\\\\n    \\\\\\\"L13\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.813,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9465,\\\\n      \\\\\\\"diff\\\\\\\": -0.1335\\\\n    },\\\\n    \\\\\\\"L14\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.6072,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9519,\\\\n      \\\\\\\"diff\\\\\\\": -0.3447\\\\n    },\\\\n    \\\\\\\"L15\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9522,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9691,\\\\n      \\\\\\\"diff\\\\\\\": -0.0169\\\\n    },\\\\n    \\\\\\\"L16\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9393,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9682,\\\\n      \\\\\\\"diff\\\\\\\": -0.0289\\\\n    },\\\\n    \\\\\\\"L17\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9825,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9633,\\\\n      \\\\\\\"diff\\\\\\\": 0.0192\\\\n    },\\\\n    \\\\\\\"L18\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.7242,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9689,\\\\n      \\\\\\\"diff\\\\\\\": -0.2447\\\\n    },\\\\n    \\\\\\\"L19\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9967,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9788,\\\\n      \\\\\\\"diff\\\\\\\": 0.0179\\\\n    },\\\\n    \\\\\\\"L20\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.6093,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9765,\\\\n      \\\\\\\"diff\\\\\\\": -0.3672\\\\n    },\\\\n    \\\\\\\"L21\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.8447,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9854,\\\\n      \\\\\\\"diff\\\\\\\": -0.1407\\\\n    },\\\\n    \\\\\\\"L22\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9281,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9862,\\\\n      \\\\\\\"diff\\\\\\\": -0.0581\\\\n    },\\\\n    \\\\\\\"L23\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.3323,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9882,\\\\n      \\\\\\\"diff\\\\\\\": -0.6559\\\\n    },\\\\n    \\\\\\\"L24\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.4139,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9808,\\\\n      \\\\\\\"diff\\\\\\\": -0.5669\\\\n    },\\\\n    \\\\\\\"L25\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.8539,\\\\n      \\\\\\\"turn15\\\\\\\": 0.99,\\\\n      \\\\\\\"diff\\\\\\\": -0.1361\\\\n    },\\\\n    \\\\\\\"L26\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.7117,\\\\n      \\\\\\\"turn15\\\\\\\": 0.993,\\\\n      \\\\\\\"diff\\\\\\\": -0.2813\\\\n    },\\\\n    \\\\\\\"L27\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9496,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9924,\\\\n      \\\\\\\"diff\\\\\\\": -0.0428\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"checkpoint_dir\\\": \\\"/root/turn_residual_gating/runs/phase2_tg_s42_v7\\\",\\n  \\\"gate_type\\\": \\\"threadgate\\\",\\n  \\\"gar_variant\\\": \\\"dongre\\\",\\n  \\\"model\\\": \\\"/root/.cache/modelscope/Qwen/Qwen2___5-7B-Instruct\\\",\\n  \\\"num_conversations\\\": 50,\\n  \\\"num_turns\\\": 3,\\n  \\\"gar_curves\\\": [\\n    [\\n      0.02426545456118246,\\n      0.018501409098813607,\\n      0.01288822069761034,\\n      0.014026526183902642,\\n      0.013677260049064176\\n    ],\\n    [\\n      0.02509941496410425,\\n      0.01421584639168785,\\n      0.010922598602510056,\\n      0.010785064290477547,\\n      0.012801288231743887,\\n      0.01012298422458189\\n    ],\\n    [\\n      0.01949293940177952,\\n      0.014313196025202196,\\n      0.010553042402352547,\\n      0.010434940939430063,\\n      0.012397269345195864\\n    ],\\n    [\\n      0.024479249067225237,\\n      0.013882487411358693,\\n      0.013016491354573872,\\n      0.01024711149065322,\\n      0.008790051579012716\\n    ],\\n    [\\n      0.023409573708340174,\\n      0.016677961558413845,\\n      0.013061862136503179,\\n      0.011616944104584238,\\n      0.016464320324987083\\n    ],\\n    [\\n      0.024924527896998727,\\n      0.019673199823156646,\\n      0.018395539254946084,\\n      0.020181921263976315,\\n      0.011538863807139463\\n    ],\\n    [\\n      0.02215763224949217,\\n      0.017759899089905398,\\n      0.013411720108185868,\\n      0.012552697661376646,\\n      0.01032094200406502\\n    ],\\n    [\\n      0.022856576146461586,\\n      0.015288339953093732,\\n      0.014631109103204542,\\n      0.012964799114054022,\\n      0.012257061763939151\\n    ],\\n    [\\n      0.04147883581212911,\\n      0.02030316771630808,\\n      0.013738625270998941,\\n      0.015434169886492844,\\n      0.013625480013295522,\\n      0.01619559541675104\\n    ],\\n    [\\n      0.0333287874698073,\\n      0.02672133532267828,\\n      0.04280978961255796,\\n      0.020632392952927493,\\n      0.025904132473860666\\n    ],\\n    [\\n      0.020200279477474527,\\n      0.012591380871291191,\\n      0.011096685820819427,\\n      0.011024338118941556,\\n      0.007522041962134018\\n    ],\\n    [\\n      0.01902637066811859,\\n      0.01508869023754095,\\n      0.014493678372484733,\\n      0.011276773326548929,\\n      0.011307479346815346\\n    ],\\n    [\\n      0.02908751332472449,\\n      0.016810743880181712,\\n      0.015752597770342325,\\n      0.015544358793245297,\\n      0.013676843387370732\\n    ],\\n    [\\n      0.02735433895867038,\\n      0.016428040856643105,\\n      0.011961572709945028,\\n      0.01159901971833917,\\n      0.00798170150569499\\n    ],\\n    [\\n      0.019707351315763025,\\n      0.015705485568524986,\\n      0.014001514360277058,\\n      0.011049531229192047,\\n      0.010627954729821918,\\n      0.007371077572626583\\n    ],\\n    [\\n      0.019076005520161508,\\n      0.014750940592325458,\\n      0.01175331783767151,\\n      0.010671074443995735,\\n      0.010117049388138039\\n    ],\\n    [\\n      0.028113620992676572,\\n      0.02340170713560683,\\n      0.02203242579339228,\\n      0.014657543054794931,\\n      0.015405967614881859,\\n      0.012777378668795152,\\n      0.0116684368330414\\n    ],\\n    [\\n      0.019721660041739045,\\n      0.014773646740684127,\\n      0.022137141846155076,\\n      0.02288463261647607,\\n      0.018523374667955127,\\n      0.010465192715224277\\n    ],\\n    [\\n      0.02403753340044311,\\n      0.014579210739166525,\\n      0.01439656874318456,\\n      0.015037862704474126,\\n      0.01103249077214806,\\n      0.0100122555481709\\n    ],\\n    [\\n      0.031155190320787614,\\n      0.0207386749161927,\\n      0.017094858401540063,\\n      0.015998941505876954,\\n      0.013279986546629088,\\n      0.012407569681531594\\n    ],\\n    [\\n      0.02529905794662416,\\n      0.01353074385319917,\\n      0.012771746789870048,\\n      0.012163151502029923,\\n      0.00972214823068184\\n    ],\\n    [\\n      0.024921056228335323,\\n      0.014784400412848201,\\n      0.014593446567720601,\\n      0.013677374651568543,\\n      0.011092834960729006,\\n      0.011725737978296307,\\n      0.01488158289786498\\n    ],\\n    [\\n      0.02766400341868274,\\n      0.020923177726414516,\\n      0.019786929545557337,\\n      0.019274530951165592,\\n      0.01990899949538507\\n    ],\\n    [\\n \\n\\n... [截断: 输出过长，省略 396524 字符] ...\\n\\n,\\n        \\\"L21\\\": 0.9826,\\n        \\\"L22\\\": 0.9925,\\n        \\\"L23\\\": 0.9881,\\n        \\\"L24\\\": 0.9803,\\n        \\\"L25\\\": 0.9915,\\n        \\\"L26\\\": 0.9977,\\n        \\\"L27\\\": 0.9949\\n      },\\n      \\\"turn_10\\\": {\\n        \\\"L0\\\": 0.8502,\\n        \\\"L1\\\": 0.9935,\\n        \\\"L2\\\": 0.954,\\n        \\\"L3\\\": 0.8032,\\n        \\\"L4\\\": 0.7979,\\n        \\\"L5\\\": 0.8675,\\n        \\\"L6\\\": 0.984,\\n        \\\"L7\\\": 0.9778,\\n        \\\"L8\\\": 0.9766,\\n        \\\"L9\\\": 0.9742,\\n        \\\"L10\\\": 0.9499,\\n        \\\"L11\\\": 0.9475,\\n        \\\"L12\\\": 0.9489,\\n        \\\"L13\\\": 0.9448,\\n        \\\"L14\\\": 0.9586,\\n        \\\"L15\\\": 0.9531,\\n        \\\"L16\\\": 0.9755,\\n        \\\"L17\\\": 0.9686,\\n        \\\"L18\\\": 0.9766,\\n        \\\"L19\\\": 0.9688,\\n        \\\"L20\\\": 0.9793,\\n        \\\"L21\\\": 0.9689,\\n        \\\"L22\\\": 0.9973,\\n        \\\"L23\\\": 0.9764,\\n        \\\"L24\\\": 0.9699,\\n        \\\"L25\\\": 0.9628,\\n        \\\"L26\\\": 0.9868,\\n        \\\"L27\\\": 0.9968\\n      },\\n      \\\"turn_11\\\": {\\n        \\\"L0\\\": 0.8706,\\n        \\\"L1\\\": 0.9971,\\n        \\\"L2\\\": 0.9676,\\n        \\\"L3\\\": 0.7863,\\n        \\\"L4\\\": 0.8237,\\n        \\\"L5\\\": 0.8902,\\n        \\\"L6\\\": 0.9876,\\n        \\\"L7\\\": 0.957,\\n        \\\"L8\\\": 0.963,\\n        \\\"L9\\\": 0.9673,\\n        \\\"L10\\\": 0.9666,\\n        \\\"L11\\\": 0.959,\\n        \\\"L12\\\": 0.9451,\\n        \\\"L13\\\": 0.9413,\\n        \\\"L14\\\": 0.9543,\\n        \\\"L15\\\": 0.9654,\\n        \\\"L16\\\": 0.9715,\\n        \\\"L17\\\": 0.9545,\\n        \\\"L18\\\": 0.9745,\\n        \\\"L19\\\": 0.9836,\\n        \\\"L20\\\": 0.9652,\\n        \\\"L21\\\": 0.9831,\\n        \\\"L22\\\": 0.9965,\\n        \\\"L23\\\": 0.9826,\\n        \\\"L24\\\": 0.9806,\\n        \\\"L25\\\": 0.9814,\\n        \\\"L26\\\": 0.9901,\\n        \\\"L27\\\": 0.9961\\n      }\\n    }\\n  },\\n  \\\"gate_dynamic_range\\\": {\\n    \\\"L0\\\": {\\n      \\\"turn1\\\": 0.8269,\\n      \\\"turn15\\\": 0.8669,\\n      \\\"diff\\\": -0.04\\n    },\\n    \\\"L1\\\": {\\n      \\\"turn1\\\": 0.9391,\\n      \\\"turn15\\\": 0.9966,\\n      \\\"diff\\\": -0.0575\\n    },\\n    \\\"L2\\\": {\\n      \\\"turn1\\\": 0.8965,\\n      \\\"turn15\\\": 0.9643,\\n      \\\"diff\\\": -0.0678\\n    },\\n    \\\"L3\\\": {\\n      \\\"turn1\\\": 0.7702,\\n      \\\"turn15\\\": 0.7971,\\n      \\\"diff\\\": -0.0269\\n    },\\n    \\\"L4\\\": {\\n      \\\"turn1\\\": 0.638,\\n      \\\"turn15\\\": 0.8099,\\n      \\\"diff\\\": -0.1719\\n    },\\n    \\\"L5\\\": {\\n      \\\"turn1\\\": 0.8449,\\n      \\\"turn15\\\": 0.9032,\\n      \\\"diff\\\": -0.0583\\n    },\\n    \\\"L6\\\": {\\n      \\\"turn1\\\": 0.6833,\\n      \\\"turn15\\\": 0.9862,\\n      \\\"diff\\\": -0.3029\\n    },\\n    \\\"L7\\\": {\\n      \\\"turn1\\\": 0.8206,\\n      \\\"turn15\\\": 0.9552,\\n      \\\"diff\\\": -0.1346\\n    },\\n    \\\"L8\\\": {\\n      \\\"turn1\\\": 0.7478,\\n      \\\"turn15\\\": 0.9796,\\n      \\\"diff\\\": -0.2318\\n    },\\n    \\\"L9\\\": {\\n      \\\"turn1\\\": 0.8506,\\n      \\\"turn15\\\": 0.9661,\\n      \\\"diff\\\": -0.1155\\n    },\\n    \\\"L10\\\": {\\n      \\\"turn1\\\": 0.9243,\\n      \\\"turn15\\\": 0.9789,\\n      \\\"diff\\\": -0.0546\\n    },\\n    \\\"L11\\\": {\\n      \\\"turn1\\\": 0.9817,\\n      \\\"turn15\\\": 0.9565,\\n      \\\"diff\\\": 0.0252\\n    },\\n    \\\"L12\\\": {\\n      \\\"turn1\\\": 0.6739,\\n      \\\"turn15\\\": 0.9544,\\n      \\\"diff\\\": -0.2805\\n    },\\n    \\\"L13\\\": {\\n      \\\"turn1\\\": 0.813,\\n      \\\"turn15\\\": 0.9465,\\n      \\\"diff\\\": -0.1335\\n    },\\n    \\\"L14\\\": {\\n      \\\"turn1\\\": 0.6072,\\n      \\\"turn15\\\": 0.9519,\\n      \\\"diff\\\": -0.3447\\n    },\\n    \\\"L15\\\": {\\n      \\\"turn1\\\": 0.9522,\\n      \\\"turn15\\\": 0.9691,\\n      \\\"diff\\\": -0.0169\\n    },\\n    \\\"L16\\\": {\\n      \\\"turn1\\\": 0.9393,\\n      \\\"turn15\\\": 0.9682,\\n      \\\"diff\\\": -0.0289\\n    },\\n    \\\"L17\\\": {\\n      \\\"turn1\\\": 0.9825,\\n      \\\"turn15\\\": 0.9633,\\n      \\\"diff\\\": 0.0192\\n    },\\n    \\\"L18\\\": {\\n      \\\"turn1\\\": 0.7242,\\n      \\\"turn15\\\": 0.9689,\\n      \\\"diff\\\": -0.2447\\n    },\\n    \\\"L19\\\": {\\n      \\\"turn1\\\": 0.9967,\\n      \\\"turn15\\\": 0.9788,\\n      \\\"diff\\\": 0.0179\\n    },\\n    \\\"L20\\\": {\\n      \\\"turn1\\\": 0.6093,\\n      \\\"turn15\\\": 0.9765,\\n      \\\"diff\\\": -0.3672\\n    },\\n    \\\"L21\\\": {\\n      \\\"turn1\\\": 0.8447,\\n      \\\"turn15\\\": 0.9854,\\n      \\\"diff\\\": -0.1407\\n    },\\n    \\\"L22\\\": {\\n      \\\"turn1\\\": 0.9281,\\n      \\\"turn15\\\": 0.9862,\\n      \\\"diff\\\": -0.0581\\n    },\\n    \\\"L23\\\": {\\n      \\\"turn1\\\": 0.3323,\\n      \\\"turn15\\\": 0.9882,\\n      \\\"diff\\\": -0.6559\\n    },\\n    \\\"L24\\\": {\\n      \\\"turn1\\\": 0.4139,\\n      \\\"turn15\\\": 0.9808,\\n      \\\"diff\\\": -0.5669\\n    },\\n    \\\"L25\\\": {\\n      \\\"turn1\\\": 0.8539,\\n      \\\"turn15\\\": 0.99,\\n      \\\"diff\\\": -0.1361\\n    },\\n    \\\"L26\\\": {\\n      \\\"turn1\\\": 0.7117,\\n      \\\"turn15\\\": 0.993,\\n      \\\"diff\\\": -0.2813\\n    },\\n    \\\"L27\\\": {\\n      \\\"turn1\\\": 0.9496,\\n      \\\"turn15\\\": 0.9924,\\n      \\\"diff\\\": -0.0428\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017mAqU1GNucgohhDdd2ExwP`</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "cat /root/turn_residual_gating/runs/phase2_4way_eval_heldout/ug_ours/phase2_ug_s42_gar.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "631cf2a4-97ca-4232-8088-173f8a079e98",
+  "uuid": "898339ea-7bc3-4da1-80f3-ed1c1fbbe1bd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q4SYWcsMh6LtkExc4P13Md",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 657,
+      "cache_read_input_tokens": 29563,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 657
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-19T14:33:32.231Z_
+
+<details><summary>↩ Tool result · `toolu_017mAqU1GNucgohhDdd2ExwP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"checkpoint_dir\\\": \\\"/root/turn_residual_gating/runs/phase2_ug_s42\\\",\\n  \\\"gate_type\\\": \\\"uniform\\\",\\n  \\\"gar_variant\\\": \\\"ours\\\",\\n  \\\"model\\\": \\\"/root/.cache/modelscope/Qwen/Qwen2___5-7B-Instruct\\\",\\n  \\\"num_conversations\\\": 50,\\n  \\\"num_turns\\\": 3,\\n  \\\"gar_curves\\\": [\\n    [\\n      0.5422710829041112,\\n      0.5330906263971003,\\n      0.45433101956830985,\\n      0.5094922200956079,\\n      0.5045728360847749\\n    ],\\n    [\\n      0.5413640217066005,\\n      0.5321069703009079,\\n      0.5256909866926752,\\n      0.5139078619337883,\\n      0.4739835926340898,\\n      0.49730346263087094\\n    ],\\n    [\\n      0.62435392321715,\\n      0.4970190677609828,\\n      0.49439962882347155,\\n      0.5305562306378735,\\n      0.5256806997235174\\n    ],\\n    [\\n      0.6059227634174013,\\n      0.46816138254846557,\\n      0.5943651804748408,\\n      0.5824218596609105,\\n      0.00967938478441154\\n    ],\\n    [\\n      0.6137919227475364,\\n      0.5056403808517768,\\n      0.5093375360562067,\\n      0.4858785215964007,\\n      0.5262340001818365\\n    ],\\n    [\\n      0.5496931206127651,\\n      0.521975463362943,\\n      0.5229523734817215,\\n      0.4963565283681915,\\n      0.5296581998726543\\n    ],\\n    [\\n      0.4751361357865778,\\n      0.5569964885970029,\\n      0.4985904521354593,\\n      0.45507385184551935,\\n      0.47220232914565835\\n    ],\\n    [\\n      0.5448851650543223,\\n      0.5214201925885357,\\n      0.5219988964767242,\\n      0.49428747502377673,\\n      0.5009550176431495\\n    ],\\n    [\\n      0.5416991810726953,\\n      0.5372285366987591,\\n      0.45482262796667344,\\n      0.48315850849908365,\\n      0.4803361218342374,\\n      0.4433769824368364\\n    ],\\n    [\\n      0.5380469895943732,\\n      0.5135896366057057,\\n      0.4680494797979998,\\n      0.5105490093603584,\\n      0.50283135166314\\n    ],\\n    [\\n      0.6367197102602938,\\n      0.5362301810624365,\\n      0.5002905858539636,\\n      0.5901022586559154,\\n      0.02875213785329441\\n    ],\\n    [\\n      0.6314850569173751,\\n      0.5105349928841695,\\n      0.49969476346130337,\\n      0.49146954558616585,\\n      0.49301609757419246\\n    ],\\n    [\\n      0.5616640221250113,\\n      0.5478668102639325,\\n      0.5320546626852033,\\n      0.5353466300442565,\\n      0.526708617153064\\n    ],\\n    [\\n      0.5596121922622959,\\n      0.5228756956403204,\\n      0.5781858265500535,\\n      0.5802629056076704,\\n      0.00410755096863057\\n    ],\\n    [\\n      0.5767429046505448,\\n      0.49778579152972036,\\n      0.5305497074123793,\\n      0.4782643699716567,\\n      0.6030032050482107,\\n      0.00548799711116434\\n    ],\\n    [\\n      0.6219601013470741,\\n      0.536246478220571,\\n      0.5023479613926111,\\n      0.4908670474864852,\\n      0.481062042501602\\n    ],\\n    [\\n      0.5097670216826643,\\n      0.4080519356175799,\\n      0.5193098477316731,\\n      0.5035980313406588,\\n      0.4921907718769975,\\n      0.506564404585173,\\n      0.4748005998036265\\n    ],\\n    [\\n      0.5396844211521027,\\n      0.5334368157712351,\\n      0.4926944837445184,\\n      0.5172673295475444,\\n      0.5089323462756973,\\n      0.5250726271292668\\n    ],\\n    [\\n      0.5191985956952282,\\n      0.5466890741612388,\\n      0.5087907333785892,\\n      0.47101925453969684,\\n      0.5015082992244752,\\n      0.5136490401415272\\n    ],\\n    [\\n      0.5103352452199188,\\n      0.48441711464321685,\\n      0.5182360074828746,\\n      0.520637416884926,\\n      0.46054978816322006,\\n      0.5134721057458954\\n    ],\\n    [\\n      0.5516263526714658,\\n      0.5149999191006502,\\n      0.49338885702601887,\\n      0.5148510333176247,\\n      0.5384021100325488\\n    ],\\n    [\\n      0.5525404315644556,\\n      0.4993007356504942,\\n      0.5066150778339317,\\n      0.492499013538697,\\n      0.4731359810670369,\\n      0.4397570353592998,\\n      0.4930482657816838\\n    ],\\n    [\\n      0.49347734020256295,\\n      0.4278958127202956,\\n      0.5018695882779737,\\n      0.4962432899267314,\\n      0.49823785617097555\\n    ],\\n    [\\n      0.6288050101682361,\\n      0.5943980400211848,\\n      0.5776656469603264,\\n      0.00888238928286914\\n    ],\\n    [\\n      0.4816867224941964,\\n      0.5211463796893856,\\n      0.4781748052896985,\\n      0.519\\n\\n... [截断: 输出过长，省略 396034 字符] ...\\n\\n  \\\"L20\\\": 0.9632,\\n        \\\"L21\\\": 0.9908,\\n        \\\"L22\\\": 0.9928,\\n        \\\"L23\\\": 0.9813,\\n        \\\"L24\\\": 0.9792,\\n        \\\"L25\\\": 0.9936,\\n        \\\"L26\\\": 0.9926,\\n        \\\"L27\\\": 0.9961\\n      },\\n      \\\"turn_10\\\": {\\n        \\\"L0\\\": 0.8713,\\n        \\\"L1\\\": 0.9993,\\n        \\\"L2\\\": 0.9946,\\n        \\\"L3\\\": 0.7558,\\n        \\\"L4\\\": 0.9871,\\n        \\\"L5\\\": 0.7787,\\n        \\\"L6\\\": 0.9747,\\n        \\\"L7\\\": 0.9793,\\n        \\\"L8\\\": 0.9839,\\n        \\\"L9\\\": 0.9699,\\n        \\\"L10\\\": 0.9828,\\n        \\\"L11\\\": 0.9404,\\n        \\\"L12\\\": 0.8976,\\n        \\\"L13\\\": 0.9458,\\n        \\\"L14\\\": 0.9018,\\n        \\\"L15\\\": 0.992,\\n        \\\"L16\\\": 0.9862,\\n        \\\"L17\\\": 0.9438,\\n        \\\"L18\\\": 0.9275,\\n        \\\"L19\\\": 0.9229,\\n        \\\"L20\\\": 0.9681,\\n        \\\"L21\\\": 0.9845,\\n        \\\"L22\\\": 0.998,\\n        \\\"L23\\\": 0.9762,\\n        \\\"L24\\\": 0.9859,\\n        \\\"L25\\\": 0.9961,\\n        \\\"L26\\\": 0.9888,\\n        \\\"L27\\\": 0.9964\\n      },\\n      \\\"turn_11\\\": {\\n        \\\"L0\\\": 0.876,\\n        \\\"L1\\\": 0.9989,\\n        \\\"L2\\\": 0.9967,\\n        \\\"L3\\\": 0.7763,\\n        \\\"L4\\\": 0.9869,\\n        \\\"L5\\\": 0.8113,\\n        \\\"L6\\\": 0.9825,\\n        \\\"L7\\\": 0.9517,\\n        \\\"L8\\\": 0.9772,\\n        \\\"L9\\\": 0.9569,\\n        \\\"L10\\\": 0.9819,\\n        \\\"L11\\\": 0.9499,\\n        \\\"L12\\\": 0.9286,\\n        \\\"L13\\\": 0.9662,\\n        \\\"L14\\\": 0.9473,\\n        \\\"L15\\\": 0.9849,\\n        \\\"L16\\\": 0.9754,\\n        \\\"L17\\\": 0.9602,\\n        \\\"L18\\\": 0.9806,\\n        \\\"L19\\\": 0.9813,\\n        \\\"L20\\\": 0.9752,\\n        \\\"L21\\\": 0.9883,\\n        \\\"L22\\\": 0.9942,\\n        \\\"L23\\\": 0.981,\\n        \\\"L24\\\": 0.9731,\\n        \\\"L25\\\": 0.995,\\n        \\\"L26\\\": 0.9928,\\n        \\\"L27\\\": 0.9969\\n      }\\n    }\\n  },\\n  \\\"gate_dynamic_range\\\": {\\n    \\\"L0\\\": {\\n      \\\"turn1\\\": 0.8538,\\n      \\\"turn15\\\": 0.8738,\\n      \\\"diff\\\": -0.02\\n    },\\n    \\\"L1\\\": {\\n      \\\"turn1\\\": 0.9284,\\n      \\\"turn15\\\": 0.9985,\\n      \\\"diff\\\": -0.0701\\n    },\\n    \\\"L2\\\": {\\n      \\\"turn1\\\": 0.898,\\n      \\\"turn15\\\": 0.9961,\\n      \\\"diff\\\": -0.0981\\n    },\\n    \\\"L3\\\": {\\n      \\\"turn1\\\": 0.7158,\\n      \\\"turn15\\\": 0.7799,\\n      \\\"diff\\\": -0.0641\\n    },\\n    \\\"L4\\\": {\\n      \\\"turn1\\\": 0.95,\\n      \\\"turn15\\\": 0.9862,\\n      \\\"diff\\\": -0.0362\\n    },\\n    \\\"L5\\\": {\\n      \\\"turn1\\\": 0.6333,\\n      \\\"turn15\\\": 0.8124,\\n      \\\"diff\\\": -0.1791\\n    },\\n    \\\"L6\\\": {\\n      \\\"turn1\\\": 0.7726,\\n      \\\"turn15\\\": 0.9825,\\n      \\\"diff\\\": -0.2099\\n    },\\n    \\\"L7\\\": {\\n      \\\"turn1\\\": 0.868,\\n      \\\"turn15\\\": 0.9652,\\n      \\\"diff\\\": -0.0972\\n    },\\n    \\\"L8\\\": {\\n      \\\"turn1\\\": 0.6894,\\n      \\\"turn15\\\": 0.9756,\\n      \\\"diff\\\": -0.2862\\n    },\\n    \\\"L9\\\": {\\n      \\\"turn1\\\": 0.7477,\\n      \\\"turn15\\\": 0.9623,\\n      \\\"diff\\\": -0.2146\\n    },\\n    \\\"L10\\\": {\\n      \\\"turn1\\\": 0.998,\\n      \\\"turn15\\\": 0.9831,\\n      \\\"diff\\\": 0.0149\\n    },\\n    \\\"L11\\\": {\\n      \\\"turn1\\\": 0.9047,\\n      \\\"turn15\\\": 0.9686,\\n      \\\"diff\\\": -0.0639\\n    },\\n    \\\"L12\\\": {\\n      \\\"turn1\\\": 0.9688,\\n      \\\"turn15\\\": 0.9611,\\n      \\\"diff\\\": 0.0077\\n    },\\n    \\\"L13\\\": {\\n      \\\"turn1\\\": 0.9893,\\n      \\\"turn15\\\": 0.9713,\\n      \\\"diff\\\": 0.018\\n    },\\n    \\\"L14\\\": {\\n      \\\"turn1\\\": 0.81,\\n      \\\"turn15\\\": 0.9434,\\n      \\\"diff\\\": -0.1334\\n    },\\n    \\\"L15\\\": {\\n      \\\"turn1\\\": 0.9819,\\n      \\\"turn15\\\": 0.975,\\n      \\\"diff\\\": 0.0069\\n    },\\n    \\\"L16\\\": {\\n      \\\"turn1\\\": 0.8245,\\n      \\\"turn15\\\": 0.969,\\n      \\\"diff\\\": -0.1445\\n    },\\n    \\\"L17\\\": {\\n      \\\"turn1\\\": 0.9796,\\n      \\\"turn15\\\": 0.9583,\\n      \\\"diff\\\": 0.0213\\n    },\\n    \\\"L18\\\": {\\n      \\\"turn1\\\": 0.975,\\n      \\\"turn15\\\": 0.9792,\\n      \\\"diff\\\": -0.0042\\n    },\\n    \\\"L19\\\": {\\n      \\\"turn1\\\": 0.8471,\\n      \\\"turn15\\\": 0.9728,\\n      \\\"diff\\\": -0.1257\\n    },\\n    \\\"L20\\\": {\\n      \\\"turn1\\\": 0.73,\\n      \\\"turn15\\\": 0.9773,\\n      \\\"diff\\\": -0.2473\\n    },\\n    \\\"L21\\\": {\\n      \\\"turn1\\\": 0.7221,\\n      \\\"turn15\\\": 0.99,\\n      \\\"diff\\\": -0.2679\\n    },\\n    \\\"L22\\\": {\\n      \\\"turn1\\\": 0.1019,\\n      \\\"turn15\\\": 0.9864,\\n      \\\"diff\\\": -0.8845\\n    },\\n    \\\"L23\\\": {\\n      \\\"turn1\\\": 0.0177,\\n      \\\"turn15\\\": 0.9931,\\n      \\\"diff\\\": -0.9754\\n    },\\n    \\\"L24\\\": {\\n      \\\"turn1\\\": 0.9068,\\n      \\\"turn15\\\": 0.9804,\\n      \\\"diff\\\": -0.0736\\n    },\\n    \\\"L25\\\": {\\n      \\\"turn1\\\": 0.9496,\\n      \\\"turn15\\\": 0.9911,\\n      \\\"diff\\\": -0.0415\\n    },\\n    \\\"L26\\\": {\\n      \\\"turn1\\\": 0.7307,\\n      \\\"turn15\\\": 0.9934,\\n      \\\"diff\\\": -0.2627\\n    },\\n    \\\"L27\\\": {\\n      \\\"turn1\\\": 0.974,\\n      \\\"turn15\\\": 0.997,\\n      \\\"diff\\\": -0.023\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "631cf2a4-97ca-4232-8088-173f8a079e98",
+  "uuid": "8c1207fc-9e14-475f-8927-ebfe63cc2e32",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"checkpoint_dir\\\\\\\": \\\\\\\"/root/turn_residual_gating/runs/phase2_ug_s42\\\\\\\",\\\\n  \\\\\\\"gate_type\\\\\\\": \\\\\\\"uniform\\\\\\\",\\\\n  \\\\\\\"gar_variant\\\\\\\": \\\\\\\"ours\\\\\\\",\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"/root/.cache/modelscope/Qwen/Qwen2___5-7B-Instruct\\\\\\\",\\\\n  \\\\\\\"num_conversations\\\\\\\": 50,\\\\n  \\\\\\\"num_turns\\\\\\\": 3,\\\\n  \\\\\\\"gar_curves\\\\\\\": [\\\\n    [\\\\n      0.5422710829041112,\\\\n      0.5330906263971003,\\\\n      0.45433101956830985,\\\\n      0.5094922200956079,\\\\n      0.5045728360847749\\\\n    ],\\\\n    [\\\\n      0.5413640217066005,\\\\n      0.5321069703009079,\\\\n      0.5256909866926752,\\\\n      0.5139078619337883,\\\\n      0.4739835926340898,\\\\n      0.49730346263087094\\\\n    ],\\\\n    [\\\\n      0.62435392321715,\\\\n      0.4970190677609828,\\\\n      0.49439962882347155,\\\\n      0.5305562306378735,\\\\n      0.5256806997235174\\\\n    ],\\\\n    [\\\\n      0.6059227634174013,\\\\n      0.46816138254846557,\\\\n      0.5943651804748408,\\\\n      0.5824218596609105,\\\\n      0.00967938478441154\\\\n    ],\\\\n    [\\\\n      0.6137919227475364,\\\\n      0.5056403808517768,\\\\n      0.5093375360562067,\\\\n      0.4858785215964007,\\\\n      0.5262340001818365\\\\n    ],\\\\n    [\\\\n      0.5496931206127651,\\\\n      0.521975463362943,\\\\n      0.5229523734817215,\\\\n      0.4963565283681915,\\\\n      0.5296581998726543\\\\n    ],\\\\n    [\\\\n      0.4751361357865778,\\\\n      0.5569964885970029,\\\\n      0.4985904521354593,\\\\n      0.45507385184551935,\\\\n      0.47220232914565835\\\\n    ],\\\\n    [\\\\n      0.5448851650543223,\\\\n      0.5214201925885357,\\\\n      0.5219988964767242,\\\\n      0.49428747502377673,\\\\n      0.5009550176431495\\\\n    ],\\\\n    [\\\\n      0.5416991810726953,\\\\n      0.5372285366987591,\\\\n      0.45482262796667344,\\\\n      0.48315850849908365,\\\\n      0.4803361218342374,\\\\n      0.4433769824368364\\\\n    ],\\\\n    [\\\\n      0.5380469895943732,\\\\n      0.5135896366057057,\\\\n      0.4680494797979998,\\\\n      0.5105490093603584,\\\\n      0.50283135166314\\\\n    ],\\\\n    [\\\\n      0.6367197102602938,\\\\n      0.5362301810624365,\\\\n      0.5002905858539636,\\\\n      0.5901022586559154,\\\\n      0.02875213785329441\\\\n    ],\\\\n    [\\\\n      0.6314850569173751,\\\\n      0.5105349928841695,\\\\n      0.49969476346130337,\\\\n      0.49146954558616585,\\\\n      0.49301609757419246\\\\n    ],\\\\n    [\\\\n      0.5616640221250113,\\\\n      0.5478668102639325,\\\\n      0.5320546626852033,\\\\n      0.5353466300442565,\\\\n      0.526708617153064\\\\n    ],\\\\n    [\\\\n      0.5596121922622959,\\\\n      0.5228756956403204,\\\\n      0.5781858265500535,\\\\n      0.5802629056076704,\\\\n      0.00410755096863057\\\\n    ],\\\\n    [\\\\n      0.5767429046505448,\\\\n      0.49778579152972036,\\\\n      0.5305497074123793,\\\\n      0.4782643699716567,\\\\n      0.6030032050482107,\\\\n      0.00548799711116434\\\\n    ],\\\\n    [\\\\n      0.6219601013470741,\\\\n      0.536246478220571,\\\\n      0.5023479613926111,\\\\n      0.4908670474864852,\\\\n      0.481062042501602\\\\n    ],\\\\n    [\\\\n      0.5097670216826643,\\\\n      0.4080519356175799,\\\\n      0.5193098477316731,\\\\n      0.5035980313406588,\\\\n      0.4921907718769975,\\\\n      0.506564404585173,\\\\n      0.4748005998036265\\\\n    ],\\\\n    [\\\\n      0.5396844211521027,\\\\n      0.5334368157712351,\\\\n      0.4926944837445184,\\\\n      0.5172673295475444,\\\\n      0.5089323462756973,\\\\n      0.5250726271292668\\\\n    ],\\\\n    [\\\\n      0.5191985956952282,\\\\n      0.5466890741612388,\\\\n      0.5087907333785892,\\\\n      0.47101925453969684,\\\\n      0.5015082992244752,\\\\n      0.5136490401415272\\\\n    ],\\\\n    [\\\\n      0.5103352452199188,\\\\n      0.48441711464321685,\\\\n      0.5182360074828746,\\\\n      0.520637416884926,\\\\n      0.46054978816322006,\\\\n      0.5134721057458954\\\\n    ],\\\\n    [\\\\n      0.5516263526714658,\\\\n      0.5149999191006502,\\\\n      0.49338885702601887,\\\\n      0.5148510333176247,\\\\n      0.5384021100325488\\\\n    ],\\\\n    [\\\\n      0.5525404315644556,\\\\n      0.4993007356504942,\\\\n      0.5066150778339317,\\\\n      0.492499013538697,\\\\n      0.4731359810670369,\\\\n      0.4397570353592998,\\\\n      0.4930482657816838\\\\n    ],\\\\n    [\\\\n      0.49347734020256295,\\\\n      0.4278958127202956,\\\\n      0.5018695882779737,\\\\n      0.4962432899267314,\\\\n      0.49823785617097555\\\\n    ],\\\\n    [\\\\n      0.6288050101682361,\\\\n      0.5943980400211848,\\\\n      0.5776656469603264,\\\\n      0.00888238928286914\\\\n    ],\\\\n    [\\\\n      0.4816867224941964,\\\\n      0.5211463796893856,\\\\n      0.4781748052896985,\\\\n      0.519\\\\n\\\\n... [截断: 输出过长，省略 396034 字符] ...\\\\n\\\\n  \\\\\\\"L20\\\\\\\": 0.9632,\\\\n        \\\\\\\"L21\\\\\\\": 0.9908,\\\\n        \\\\\\\"L22\\\\\\\": 0.9928,\\\\n        \\\\\\\"L23\\\\\\\": 0.9813,\\\\n        \\\\\\\"L24\\\\\\\": 0.9792,\\\\n        \\\\\\\"L25\\\\\\\": 0.9936,\\\\n        \\\\\\\"L26\\\\\\\": 0.9926,\\\\n        \\\\\\\"L27\\\\\\\": 0.9961\\\\n      },\\\\n      \\\\\\\"turn_10\\\\\\\": {\\\\n        \\\\\\\"L0\\\\\\\": 0.8713,\\\\n        \\\\\\\"L1\\\\\\\": 0.9993,\\\\n        \\\\\\\"L2\\\\\\\": 0.9946,\\\\n        \\\\\\\"L3\\\\\\\": 0.7558,\\\\n        \\\\\\\"L4\\\\\\\": 0.9871,\\\\n        \\\\\\\"L5\\\\\\\": 0.7787,\\\\n        \\\\\\\"L6\\\\\\\": 0.9747,\\\\n        \\\\\\\"L7\\\\\\\": 0.9793,\\\\n        \\\\\\\"L8\\\\\\\": 0.9839,\\\\n        \\\\\\\"L9\\\\\\\": 0.9699,\\\\n        \\\\\\\"L10\\\\\\\": 0.9828,\\\\n        \\\\\\\"L11\\\\\\\": 0.9404,\\\\n        \\\\\\\"L12\\\\\\\": 0.8976,\\\\n        \\\\\\\"L13\\\\\\\": 0.9458,\\\\n        \\\\\\\"L14\\\\\\\": 0.9018,\\\\n        \\\\\\\"L15\\\\\\\": 0.992,\\\\n        \\\\\\\"L16\\\\\\\": 0.9862,\\\\n        \\\\\\\"L17\\\\\\\": 0.9438,\\\\n        \\\\\\\"L18\\\\\\\": 0.9275,\\\\n        \\\\\\\"L19\\\\\\\": 0.9229,\\\\n        \\\\\\\"L20\\\\\\\": 0.9681,\\\\n        \\\\\\\"L21\\\\\\\": 0.9845,\\\\n        \\\\\\\"L22\\\\\\\": 0.998,\\\\n        \\\\\\\"L23\\\\\\\": 0.9762,\\\\n        \\\\\\\"L24\\\\\\\": 0.9859,\\\\n        \\\\\\\"L25\\\\\\\": 0.9961,\\\\n        \\\\\\\"L26\\\\\\\": 0.9888,\\\\n        \\\\\\\"L27\\\\\\\": 0.9964\\\\n      },\\\\n      \\\\\\\"turn_11\\\\\\\": {\\\\n        \\\\\\\"L0\\\\\\\": 0.876,\\\\n        \\\\\\\"L1\\\\\\\": 0.9989,\\\\n        \\\\\\\"L2\\\\\\\": 0.9967,\\\\n        \\\\\\\"L3\\\\\\\": 0.7763,\\\\n        \\\\\\\"L4\\\\\\\": 0.9869,\\\\n        \\\\\\\"L5\\\\\\\": 0.8113,\\\\n        \\\\\\\"L6\\\\\\\": 0.9825,\\\\n        \\\\\\\"L7\\\\\\\": 0.9517,\\\\n        \\\\\\\"L8\\\\\\\": 0.9772,\\\\n        \\\\\\\"L9\\\\\\\": 0.9569,\\\\n        \\\\\\\"L10\\\\\\\": 0.9819,\\\\n        \\\\\\\"L11\\\\\\\": 0.9499,\\\\n        \\\\\\\"L12\\\\\\\": 0.9286,\\\\n        \\\\\\\"L13\\\\\\\": 0.9662,\\\\n        \\\\\\\"L14\\\\\\\": 0.9473,\\\\n        \\\\\\\"L15\\\\\\\": 0.9849,\\\\n        \\\\\\\"L16\\\\\\\": 0.9754,\\\\n        \\\\\\\"L17\\\\\\\": 0.9602,\\\\n        \\\\\\\"L18\\\\\\\": 0.9806,\\\\n        \\\\\\\"L19\\\\\\\": 0.9813,\\\\n        \\\\\\\"L20\\\\\\\": 0.9752,\\\\n        \\\\\\\"L21\\\\\\\": 0.9883,\\\\n        \\\\\\\"L22\\\\\\\": 0.9942,\\\\n        \\\\\\\"L23\\\\\\\": 0.981,\\\\n        \\\\\\\"L24\\\\\\\": 0.9731,\\\\n        \\\\\\\"L25\\\\\\\": 0.995,\\\\n        \\\\\\\"L26\\\\\\\": 0.9928,\\\\n        \\\\\\\"L27\\\\\\\": 0.9969\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"gate_dynamic_range\\\\\\\": {\\\\n    \\\\\\\"L0\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.8538,\\\\n      \\\\\\\"turn15\\\\\\\": 0.8738,\\\\n      \\\\\\\"diff\\\\\\\": -0.02\\\\n    },\\\\n    \\\\\\\"L1\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9284,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9985,\\\\n      \\\\\\\"diff\\\\\\\": -0.0701\\\\n    },\\\\n    \\\\\\\"L2\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.898,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9961,\\\\n      \\\\\\\"diff\\\\\\\": -0.0981\\\\n    },\\\\n    \\\\\\\"L3\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.7158,\\\\n      \\\\\\\"turn15\\\\\\\": 0.7799,\\\\n      \\\\\\\"diff\\\\\\\": -0.0641\\\\n    },\\\\n    \\\\\\\"L4\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.95,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9862,\\\\n      \\\\\\\"diff\\\\\\\": -0.0362\\\\n    },\\\\n    \\\\\\\"L5\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.6333,\\\\n      \\\\\\\"turn15\\\\\\\": 0.8124,\\\\n      \\\\\\\"diff\\\\\\\": -0.1791\\\\n    },\\\\n    \\\\\\\"L6\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.7726,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9825,\\\\n      \\\\\\\"diff\\\\\\\": -0.2099\\\\n    },\\\\n    \\\\\\\"L7\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.868,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9652,\\\\n      \\\\\\\"diff\\\\\\\": -0.0972\\\\n    },\\\\n    \\\\\\\"L8\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.6894,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9756,\\\\n      \\\\\\\"diff\\\\\\\": -0.2862\\\\n    },\\\\n    \\\\\\\"L9\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.7477,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9623,\\\\n      \\\\\\\"diff\\\\\\\": -0.2146\\\\n    },\\\\n    \\\\\\\"L10\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.998,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9831,\\\\n      \\\\\\\"diff\\\\\\\": 0.0149\\\\n    },\\\\n    \\\\\\\"L11\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9047,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9686,\\\\n      \\\\\\\"diff\\\\\\\": -0.0639\\\\n    },\\\\n    \\\\\\\"L12\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9688,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9611,\\\\n      \\\\\\\"diff\\\\\\\": 0.0077\\\\n    },\\\\n    \\\\\\\"L13\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9893,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9713,\\\\n      \\\\\\\"diff\\\\\\\": 0.018\\\\n    },\\\\n    \\\\\\\"L14\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.81,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9434,\\\\n      \\\\\\\"diff\\\\\\\": -0.1334\\\\n    },\\\\n    \\\\\\\"L15\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9819,\\\\n      \\\\\\\"turn15\\\\\\\": 0.975,\\\\n      \\\\\\\"diff\\\\\\\": 0.0069\\\\n    },\\\\n    \\\\\\\"L16\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.8245,\\\\n      \\\\\\\"turn15\\\\\\\": 0.969,\\\\n      \\\\\\\"diff\\\\\\\": -0.1445\\\\n    },\\\\n    \\\\\\\"L17\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9796,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9583,\\\\n      \\\\\\\"diff\\\\\\\": 0.0213\\\\n    },\\\\n    \\\\\\\"L18\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.975,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9792,\\\\n      \\\\\\\"diff\\\\\\\": -0.0042\\\\n    },\\\\n    \\\\\\\"L19\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.8471,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9728,\\\\n      \\\\\\\"diff\\\\\\\": -0.1257\\\\n    },\\\\n    \\\\\\\"L20\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.73,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9773,\\\\n      \\\\\\\"diff\\\\\\\": -0.2473\\\\n    },\\\\n    \\\\\\\"L21\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.7221,\\\\n      \\\\\\\"turn15\\\\\\\": 0.99,\\\\n      \\\\\\\"diff\\\\\\\": -0.2679\\\\n    },\\\\n    \\\\\\\"L22\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.1019,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9864,\\\\n      \\\\\\\"diff\\\\\\\": -0.8845\\\\n    },\\\\n    \\\\\\\"L23\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.0177,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9931,\\\\n      \\\\\\\"diff\\\\\\\": -0.9754\\\\n    },\\\\n    \\\\\\\"L24\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9068,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9804,\\\\n      \\\\\\\"diff\\\\\\\": -0.0736\\\\n    },\\\\n    \\\\\\\"L25\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9496,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9911,\\\\n      \\\\\\\"diff\\\\\\\": -0.0415\\\\n    },\\\\n    \\\\\\\"L26\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.7307,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9934,\\\\n      \\\\\\\"diff\\\\\\\": -0.2627\\\\n    },\\\\n    \\\\\\\"L27\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.974,\\\\n      \\\\\\\"turn15\\\\\\\": 0.997,\\\\n      \\\\\\\"diff\\\\\\\": -0.023\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"checkpoint_dir\\\": \\\"/root/turn_residual_gating/runs/phase2_ug_s42\\\",\\n  \\\"gate_type\\\": \\\"uniform\\\",\\n  \\\"gar_variant\\\": \\\"ours\\\",\\n  \\\"model\\\": \\\"/root/.cache/modelscope/Qwen/Qwen2___5-7B-Instruct\\\",\\n  \\\"num_conversations\\\": 50,\\n  \\\"num_turns\\\": 3,\\n  \\\"gar_curves\\\": [\\n    [\\n      0.5422710829041112,\\n      0.5330906263971003,\\n      0.45433101956830985,\\n      0.5094922200956079,\\n      0.5045728360847749\\n    ],\\n    [\\n      0.5413640217066005,\\n      0.5321069703009079,\\n      0.5256909866926752,\\n      0.5139078619337883,\\n      0.4739835926340898,\\n      0.49730346263087094\\n    ],\\n    [\\n      0.62435392321715,\\n      0.4970190677609828,\\n      0.49439962882347155,\\n      0.5305562306378735,\\n      0.5256806997235174\\n    ],\\n    [\\n      0.6059227634174013,\\n      0.46816138254846557,\\n      0.5943651804748408,\\n      0.5824218596609105,\\n      0.00967938478441154\\n    ],\\n    [\\n      0.6137919227475364,\\n      0.5056403808517768,\\n      0.5093375360562067,\\n      0.4858785215964007,\\n      0.5262340001818365\\n    ],\\n    [\\n      0.5496931206127651,\\n      0.521975463362943,\\n      0.5229523734817215,\\n      0.4963565283681915,\\n      0.5296581998726543\\n    ],\\n    [\\n      0.4751361357865778,\\n      0.5569964885970029,\\n      0.4985904521354593,\\n      0.45507385184551935,\\n      0.47220232914565835\\n    ],\\n    [\\n      0.5448851650543223,\\n      0.5214201925885357,\\n      0.5219988964767242,\\n      0.49428747502377673,\\n      0.5009550176431495\\n    ],\\n    [\\n      0.5416991810726953,\\n      0.5372285366987591,\\n      0.45482262796667344,\\n      0.48315850849908365,\\n      0.4803361218342374,\\n      0.4433769824368364\\n    ],\\n    [\\n      0.5380469895943732,\\n      0.5135896366057057,\\n      0.4680494797979998,\\n      0.5105490093603584,\\n      0.50283135166314\\n    ],\\n    [\\n      0.6367197102602938,\\n      0.5362301810624365,\\n      0.5002905858539636,\\n      0.5901022586559154,\\n      0.02875213785329441\\n    ],\\n    [\\n      0.6314850569173751,\\n      0.5105349928841695,\\n      0.49969476346130337,\\n      0.49146954558616585,\\n      0.49301609757419246\\n    ],\\n    [\\n      0.5616640221250113,\\n      0.5478668102639325,\\n      0.5320546626852033,\\n      0.5353466300442565,\\n      0.526708617153064\\n    ],\\n    [\\n      0.5596121922622959,\\n      0.5228756956403204,\\n      0.5781858265500535,\\n      0.5802629056076704,\\n      0.00410755096863057\\n    ],\\n    [\\n      0.5767429046505448,\\n      0.49778579152972036,\\n      0.5305497074123793,\\n      0.4782643699716567,\\n      0.6030032050482107,\\n      0.00548799711116434\\n    ],\\n    [\\n      0.6219601013470741,\\n      0.536246478220571,\\n      0.5023479613926111,\\n      0.4908670474864852,\\n      0.481062042501602\\n    ],\\n    [\\n      0.5097670216826643,\\n      0.4080519356175799,\\n      0.5193098477316731,\\n      0.5035980313406588,\\n      0.4921907718769975,\\n      0.506564404585173,\\n      0.4748005998036265\\n    ],\\n    [\\n      0.5396844211521027,\\n      0.5334368157712351,\\n      0.4926944837445184,\\n      0.5172673295475444,\\n      0.5089323462756973,\\n      0.5250726271292668\\n    ],\\n    [\\n      0.5191985956952282,\\n      0.5466890741612388,\\n      0.5087907333785892,\\n      0.47101925453969684,\\n      0.5015082992244752,\\n      0.5136490401415272\\n    ],\\n    [\\n      0.5103352452199188,\\n      0.48441711464321685,\\n      0.5182360074828746,\\n      0.520637416884926,\\n      0.46054978816322006,\\n      0.5134721057458954\\n    ],\\n    [\\n      0.5516263526714658,\\n      0.5149999191006502,\\n      0.49338885702601887,\\n      0.5148510333176247,\\n      0.5384021100325488\\n    ],\\n    [\\n      0.5525404315644556,\\n      0.4993007356504942,\\n      0.5066150778339317,\\n      0.492499013538697,\\n      0.4731359810670369,\\n      0.4397570353592998,\\n      0.4930482657816838\\n    ],\\n    [\\n      0.49347734020256295,\\n      0.4278958127202956,\\n      0.5018695882779737,\\n      0.4962432899267314,\\n      0.49823785617097555\\n    ],\\n    [\\n      0.6288050101682361,\\n      0.5943980400211848,\\n      0.5776656469603264,\\n      0.00888238928286914\\n    ],\\n    [\\n      0.4816867224941964,\\n      0.5211463796893856,\\n      0.4781748052896985,\\n      0.519\\n\\n... [截断: 输出过长，省略 396034 字符] ...\\n\\n  \\\"L20\\\": 0.9632,\\n        \\\"L21\\\": 0.9908,\\n        \\\"L22\\\": 0.9928,\\n        \\\"L23\\\": 0.9813,\\n        \\\"L24\\\": 0.9792,\\n        \\\"L25\\\": 0.9936,\\n        \\\"L26\\\": 0.9926,\\n        \\\"L27\\\": 0.9961\\n      },\\n      \\\"turn_10\\\": {\\n        \\\"L0\\\": 0.8713,\\n        \\\"L1\\\": 0.9993,\\n        \\\"L2\\\": 0.9946,\\n        \\\"L3\\\": 0.7558,\\n        \\\"L4\\\": 0.9871,\\n        \\\"L5\\\": 0.7787,\\n        \\\"L6\\\": 0.9747,\\n        \\\"L7\\\": 0.9793,\\n        \\\"L8\\\": 0.9839,\\n        \\\"L9\\\": 0.9699,\\n        \\\"L10\\\": 0.9828,\\n        \\\"L11\\\": 0.9404,\\n        \\\"L12\\\": 0.8976,\\n        \\\"L13\\\": 0.9458,\\n        \\\"L14\\\": 0.9018,\\n        \\\"L15\\\": 0.992,\\n        \\\"L16\\\": 0.9862,\\n        \\\"L17\\\": 0.9438,\\n        \\\"L18\\\": 0.9275,\\n        \\\"L19\\\": 0.9229,\\n        \\\"L20\\\": 0.9681,\\n        \\\"L21\\\": 0.9845,\\n        \\\"L22\\\": 0.998,\\n        \\\"L23\\\": 0.9762,\\n        \\\"L24\\\": 0.9859,\\n        \\\"L25\\\": 0.9961,\\n        \\\"L26\\\": 0.9888,\\n        \\\"L27\\\": 0.9964\\n      },\\n      \\\"turn_11\\\": {\\n        \\\"L0\\\": 0.876,\\n        \\\"L1\\\": 0.9989,\\n        \\\"L2\\\": 0.9967,\\n        \\\"L3\\\": 0.7763,\\n        \\\"L4\\\": 0.9869,\\n        \\\"L5\\\": 0.8113,\\n        \\\"L6\\\": 0.9825,\\n        \\\"L7\\\": 0.9517,\\n        \\\"L8\\\": 0.9772,\\n        \\\"L9\\\": 0.9569,\\n        \\\"L10\\\": 0.9819,\\n        \\\"L11\\\": 0.9499,\\n        \\\"L12\\\": 0.9286,\\n        \\\"L13\\\": 0.9662,\\n        \\\"L14\\\": 0.9473,\\n        \\\"L15\\\": 0.9849,\\n        \\\"L16\\\": 0.9754,\\n        \\\"L17\\\": 0.9602,\\n        \\\"L18\\\": 0.9806,\\n        \\\"L19\\\": 0.9813,\\n        \\\"L20\\\": 0.9752,\\n        \\\"L21\\\": 0.9883,\\n        \\\"L22\\\": 0.9942,\\n        \\\"L23\\\": 0.981,\\n        \\\"L24\\\": 0.9731,\\n        \\\"L25\\\": 0.995,\\n        \\\"L26\\\": 0.9928,\\n        \\\"L27\\\": 0.9969\\n      }\\n    }\\n  },\\n  \\\"gate_dynamic_range\\\": {\\n    \\\"L0\\\": {\\n      \\\"turn1\\\": 0.8538,\\n      \\\"turn15\\\": 0.8738,\\n      \\\"diff\\\": -0.02\\n    },\\n    \\\"L1\\\": {\\n      \\\"turn1\\\": 0.9284,\\n      \\\"turn15\\\": 0.9985,\\n      \\\"diff\\\": -0.0701\\n    },\\n    \\\"L2\\\": {\\n      \\\"turn1\\\": 0.898,\\n      \\\"turn15\\\": 0.9961,\\n      \\\"diff\\\": -0.0981\\n    },\\n    \\\"L3\\\": {\\n      \\\"turn1\\\": 0.7158,\\n      \\\"turn15\\\": 0.7799,\\n      \\\"diff\\\": -0.0641\\n    },\\n    \\\"L4\\\": {\\n      \\\"turn1\\\": 0.95,\\n      \\\"turn15\\\": 0.9862,\\n      \\\"diff\\\": -0.0362\\n    },\\n    \\\"L5\\\": {\\n      \\\"turn1\\\": 0.6333,\\n      \\\"turn15\\\": 0.8124,\\n      \\\"diff\\\": -0.1791\\n    },\\n    \\\"L6\\\": {\\n      \\\"turn1\\\": 0.7726,\\n      \\\"turn15\\\": 0.9825,\\n      \\\"diff\\\": -0.2099\\n    },\\n    \\\"L7\\\": {\\n      \\\"turn1\\\": 0.868,\\n      \\\"turn15\\\": 0.9652,\\n      \\\"diff\\\": -0.0972\\n    },\\n    \\\"L8\\\": {\\n      \\\"turn1\\\": 0.6894,\\n      \\\"turn15\\\": 0.9756,\\n      \\\"diff\\\": -0.2862\\n    },\\n    \\\"L9\\\": {\\n      \\\"turn1\\\": 0.7477,\\n      \\\"turn15\\\": 0.9623,\\n      \\\"diff\\\": -0.2146\\n    },\\n    \\\"L10\\\": {\\n      \\\"turn1\\\": 0.998,\\n      \\\"turn15\\\": 0.9831,\\n      \\\"diff\\\": 0.0149\\n    },\\n    \\\"L11\\\": {\\n      \\\"turn1\\\": 0.9047,\\n      \\\"turn15\\\": 0.9686,\\n      \\\"diff\\\": -0.0639\\n    },\\n    \\\"L12\\\": {\\n      \\\"turn1\\\": 0.9688,\\n      \\\"turn15\\\": 0.9611,\\n      \\\"diff\\\": 0.0077\\n    },\\n    \\\"L13\\\": {\\n      \\\"turn1\\\": 0.9893,\\n      \\\"turn15\\\": 0.9713,\\n      \\\"diff\\\": 0.018\\n    },\\n    \\\"L14\\\": {\\n      \\\"turn1\\\": 0.81,\\n      \\\"turn15\\\": 0.9434,\\n      \\\"diff\\\": -0.1334\\n    },\\n    \\\"L15\\\": {\\n      \\\"turn1\\\": 0.9819,\\n      \\\"turn15\\\": 0.975,\\n      \\\"diff\\\": 0.0069\\n    },\\n    \\\"L16\\\": {\\n      \\\"turn1\\\": 0.8245,\\n      \\\"turn15\\\": 0.969,\\n      \\\"diff\\\": -0.1445\\n    },\\n    \\\"L17\\\": {\\n      \\\"turn1\\\": 0.9796,\\n      \\\"turn15\\\": 0.9583,\\n      \\\"diff\\\": 0.0213\\n    },\\n    \\\"L18\\\": {\\n      \\\"turn1\\\": 0.975,\\n      \\\"turn15\\\": 0.9792,\\n      \\\"diff\\\": -0.0042\\n    },\\n    \\\"L19\\\": {\\n      \\\"turn1\\\": 0.8471,\\n      \\\"turn15\\\": 0.9728,\\n      \\\"diff\\\": -0.1257\\n    },\\n    \\\"L20\\\": {\\n      \\\"turn1\\\": 0.73,\\n      \\\"turn15\\\": 0.9773,\\n      \\\"diff\\\": -0.2473\\n    },\\n    \\\"L21\\\": {\\n      \\\"turn1\\\": 0.7221,\\n      \\\"turn15\\\": 0.99,\\n      \\\"diff\\\": -0.2679\\n    },\\n    \\\"L22\\\": {\\n      \\\"turn1\\\": 0.1019,\\n      \\\"turn15\\\": 0.9864,\\n      \\\"diff\\\": -0.8845\\n    },\\n    \\\"L23\\\": {\\n      \\\"turn1\\\": 0.0177,\\n      \\\"turn15\\\": 0.9931,\\n      \\\"diff\\\": -0.9754\\n    },\\n    \\\"L24\\\": {\\n      \\\"turn1\\\": 0.9068,\\n      \\\"turn15\\\": 0.9804,\\n      \\\"diff\\\": -0.0736\\n    },\\n    \\\"L25\\\": {\\n      \\\"turn1\\\": 0.9496,\\n      \\\"turn15\\\": 0.9911,\\n      \\\"diff\\\": -0.0415\\n    },\\n    \\\"L26\\\": {\\n      \\\"turn1\\\": 0.7307,\\n      \\\"turn15\\\": 0.9934,\\n      \\\"diff\\\": -0.2627\\n    },\\n    \\\"L27\\\": {\\n      \\\"turn1\\\": 0.974,\\n      \\\"turn15\\\": 0.997,\\n      \\\"diff\\\": -0.023\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Df3JyXzAunZSw7TUj1KCVN`</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "cat /root/turn_residual_gating/runs/phase2_4way_eval_heldout/ug_dongre/phase2_ug_s42_dongre_gar.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "631cf2a4-97ca-4232-8088-173f8a079e98",
+  "uuid": "f5ceb692-57ed-44d6-aa09-c5000d401d17",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q4SYWcsMh6LtkExc4P13Md",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 657,
+      "cache_read_input_tokens": 29563,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 657
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KLAyfKAcYHWDKX7gTh819N`</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "cat /root/turn_residual_gating/runs/phase2_4way_eval_heldout/lora_only_ours/phase2_lora_only_s42_gar.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "631cf2a4-97ca-4232-8088-173f8a079e98",
+  "uuid": "cacc6109-0b04-4a92-a130-93ecd74dd1f1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q4SYWcsMh6LtkExc4P13Md",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 657,
+      "cache_read_input_tokens": 29563,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 657
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-19T14:33:33.109Z_
+
+<details><summary>↩ Tool result · `toolu_01Df3JyXzAunZSw7TUj1KCVN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"checkpoint_dir\\\": \\\"/root/turn_residual_gating/runs/phase2_ug_s42\\\",\\n  \\\"gate_type\\\": \\\"uniform\\\",\\n  \\\"gar_variant\\\": \\\"dongre\\\",\\n  \\\"model\\\": \\\"/root/.cache/modelscope/Qwen/Qwen2___5-7B-Instruct\\\",\\n  \\\"num_conversations\\\": 50,\\n  \\\"num_turns\\\": 3,\\n  \\\"gar_curves\\\": [\\n    [\\n      0.02069727140131096,\\n      0.014952988391110547,\\n      0.010246067733515366,\\n      0.010985902978900567,\\n      0.01105942275884183\\n    ],\\n    [\\n      0.020901045715130923,\\n      0.011106378382379082,\\n      0.008311465713467438,\\n      0.008382032444258542,\\n      0.010501581011301752,\\n      0.007632311665796617\\n    ],\\n    [\\n      0.01634385392029434,\\n      0.011616656161659994,\\n      0.007783827798033821,\\n      0.008041986038778998,\\n      0.010262040021430021\\n    ],\\n    [\\n      0.022077037784403543,\\n      0.01075144223246135,\\n      0.010140599305813881,\\n      0.00811466554634336,\\n      0.006326982507905781\\n    ],\\n    [\\n      0.019309861766967088,\\n      0.013323247769624643,\\n      0.010033573491559422,\\n      0.008946523497017684,\\n      0.013103072158263158\\n    ],\\n    [\\n      0.021598622827019073,\\n      0.016721349965838177,\\n      0.015786582067148173,\\n      0.018117468534189073,\\n      0.009136419191197577\\n    ],\\n    [\\n      0.018417661932569645,\\n      0.014849696130201574,\\n      0.010627325148983338,\\n      0.009871849791007963,\\n      0.008114867068792136\\n    ],\\n    [\\n      0.019110244283778853,\\n      0.012290226324884903,\\n      0.011788644553649722,\\n      0.010629063758411906,\\n      0.009679185571468994\\n    ],\\n    [\\n      0.037691304040582914,\\n      0.017762028169084274,\\n      0.010566971214465187,\\n      0.012353272823472365,\\n      0.011462150149025721,\\n      0.013210079569943182\\n    ],\\n    [\\n      0.02875909658946105,\\n      0.022755197712745062,\\n      0.04452172169834502,\\n      0.018041608355132938,\\n      0.024384847595904702\\n    ],\\n    [\\n      0.01584654820991999,\\n      0.009405427188635775,\\n      0.00846058646983397,\\n      0.007954794857960901,\\n      0.004919251229687396\\n    ],\\n    [\\n      0.015369073277142686,\\n      0.011753773702217552,\\n      0.011420173250794363,\\n      0.00810073251996063,\\n      0.008622542675590691\\n    ],\\n    [\\n      0.025993864039429215,\\n      0.01354070954735663,\\n      0.013293435025314838,\\n      0.01256858309958978,\\n      0.010987219423199853\\n    ],\\n    [\\n      0.02358160763333632,\\n      0.013079616091668998,\\n      0.008283216062820694,\\n      0.009080824214437429,\\n      0.005338705373054631\\n    ],\\n    [\\n      0.0159957866197303,\\n      0.012747467352783998,\\n      0.011140431926944418,\\n      0.00854147513256579,\\n      0.00805018511687086,\\n      0.005034475139279473\\n    ],\\n    [\\n      0.015531009802521775,\\n      0.011754467990324416,\\n      0.009640072023494798,\\n      0.008365470785016666,\\n      0.007822908675289906\\n    ],\\n    [\\n      0.023777974237046907,\\n      0.019900810843668324,\\n      0.018747240262120997,\\n      0.01142654120477598,\\n      0.011438302574557973,\\n      0.009948052848092963,\\n      0.00912687324240324\\n    ],\\n    [\\n      0.016775257162337076,\\n      0.01214114255553986,\\n      0.019535180358891693,\\n      0.02122204432206849,\\n      0.017868792006335264,\\n      0.008222602041208976\\n    ],\\n    [\\n      0.02018703344408369,\\n      0.01190627794475956,\\n      0.011855164712809634,\\n      0.012071147003312471,\\n      0.008734983011022006,\\n      0.00798448938226142\\n    ],\\n    [\\n      0.027547731571458636,\\n      0.017474475170261163,\\n      0.014419623392345732,\\n      0.013238200092498818,\\n      0.010615891934809723,\\n      0.010149586858660147\\n    ],\\n    [\\n      0.02173592836318611,\\n      0.010833619182756183,\\n      0.009444644532014507,\\n      0.009732702733729379,\\n      0.007855370216812025\\n    ],\\n    [\\n      0.021300918173324017,\\n      0.01146518363203149,\\n      0.011781750394839368,\\n      0.01095039849731336,\\n      0.008364993158872321,\\n      0.00887338112960274,\\n      0.010852675830836114\\n    ],\\n    [\\n      0.024149308821875493,\\n      0.017391459982621326,\\n      0.017227562475730564,\\n      0.017166538626875647,\\n      0.01682875097164583\\n    ],\\n \\n\\n... [截断: 输出过长，省略 396617 字符] ...\\n\\n  \\\"L20\\\": 0.9632,\\n        \\\"L21\\\": 0.9908,\\n        \\\"L22\\\": 0.9928,\\n        \\\"L23\\\": 0.9813,\\n        \\\"L24\\\": 0.9792,\\n        \\\"L25\\\": 0.9936,\\n        \\\"L26\\\": 0.9926,\\n        \\\"L27\\\": 0.9961\\n      },\\n      \\\"turn_10\\\": {\\n        \\\"L0\\\": 0.8713,\\n        \\\"L1\\\": 0.9993,\\n        \\\"L2\\\": 0.9946,\\n        \\\"L3\\\": 0.7558,\\n        \\\"L4\\\": 0.9871,\\n        \\\"L5\\\": 0.7787,\\n        \\\"L6\\\": 0.9747,\\n        \\\"L7\\\": 0.9793,\\n        \\\"L8\\\": 0.9839,\\n        \\\"L9\\\": 0.9699,\\n        \\\"L10\\\": 0.9828,\\n        \\\"L11\\\": 0.9404,\\n        \\\"L12\\\": 0.8976,\\n        \\\"L13\\\": 0.9458,\\n        \\\"L14\\\": 0.9018,\\n        \\\"L15\\\": 0.992,\\n        \\\"L16\\\": 0.9862,\\n        \\\"L17\\\": 0.9438,\\n        \\\"L18\\\": 0.9275,\\n        \\\"L19\\\": 0.9229,\\n        \\\"L20\\\": 0.9681,\\n        \\\"L21\\\": 0.9845,\\n        \\\"L22\\\": 0.998,\\n        \\\"L23\\\": 0.9762,\\n        \\\"L24\\\": 0.9859,\\n        \\\"L25\\\": 0.9961,\\n        \\\"L26\\\": 0.9888,\\n        \\\"L27\\\": 0.9964\\n      },\\n      \\\"turn_11\\\": {\\n        \\\"L0\\\": 0.876,\\n        \\\"L1\\\": 0.9989,\\n        \\\"L2\\\": 0.9967,\\n        \\\"L3\\\": 0.7763,\\n        \\\"L4\\\": 0.9869,\\n        \\\"L5\\\": 0.8113,\\n        \\\"L6\\\": 0.9825,\\n        \\\"L7\\\": 0.9517,\\n        \\\"L8\\\": 0.9772,\\n        \\\"L9\\\": 0.9569,\\n        \\\"L10\\\": 0.9819,\\n        \\\"L11\\\": 0.9499,\\n        \\\"L12\\\": 0.9286,\\n        \\\"L13\\\": 0.9662,\\n        \\\"L14\\\": 0.9473,\\n        \\\"L15\\\": 0.9849,\\n        \\\"L16\\\": 0.9754,\\n        \\\"L17\\\": 0.9602,\\n        \\\"L18\\\": 0.9806,\\n        \\\"L19\\\": 0.9813,\\n        \\\"L20\\\": 0.9752,\\n        \\\"L21\\\": 0.9883,\\n        \\\"L22\\\": 0.9942,\\n        \\\"L23\\\": 0.981,\\n        \\\"L24\\\": 0.9731,\\n        \\\"L25\\\": 0.995,\\n        \\\"L26\\\": 0.9928,\\n        \\\"L27\\\": 0.9969\\n      }\\n    }\\n  },\\n  \\\"gate_dynamic_range\\\": {\\n    \\\"L0\\\": {\\n      \\\"turn1\\\": 0.8538,\\n      \\\"turn15\\\": 0.8738,\\n      \\\"diff\\\": -0.02\\n    },\\n    \\\"L1\\\": {\\n      \\\"turn1\\\": 0.9284,\\n      \\\"turn15\\\": 0.9985,\\n      \\\"diff\\\": -0.0701\\n    },\\n    \\\"L2\\\": {\\n      \\\"turn1\\\": 0.898,\\n      \\\"turn15\\\": 0.9961,\\n      \\\"diff\\\": -0.0981\\n    },\\n    \\\"L3\\\": {\\n      \\\"turn1\\\": 0.7158,\\n      \\\"turn15\\\": 0.7799,\\n      \\\"diff\\\": -0.0641\\n    },\\n    \\\"L4\\\": {\\n      \\\"turn1\\\": 0.95,\\n      \\\"turn15\\\": 0.9862,\\n      \\\"diff\\\": -0.0362\\n    },\\n    \\\"L5\\\": {\\n      \\\"turn1\\\": 0.6333,\\n      \\\"turn15\\\": 0.8124,\\n      \\\"diff\\\": -0.1791\\n    },\\n    \\\"L6\\\": {\\n      \\\"turn1\\\": 0.7726,\\n      \\\"turn15\\\": 0.9825,\\n      \\\"diff\\\": -0.2099\\n    },\\n    \\\"L7\\\": {\\n      \\\"turn1\\\": 0.868,\\n      \\\"turn15\\\": 0.9652,\\n      \\\"diff\\\": -0.0972\\n    },\\n    \\\"L8\\\": {\\n      \\\"turn1\\\": 0.6894,\\n      \\\"turn15\\\": 0.9756,\\n      \\\"diff\\\": -0.2862\\n    },\\n    \\\"L9\\\": {\\n      \\\"turn1\\\": 0.7477,\\n      \\\"turn15\\\": 0.9623,\\n      \\\"diff\\\": -0.2146\\n    },\\n    \\\"L10\\\": {\\n      \\\"turn1\\\": 0.998,\\n      \\\"turn15\\\": 0.9831,\\n      \\\"diff\\\": 0.0149\\n    },\\n    \\\"L11\\\": {\\n      \\\"turn1\\\": 0.9047,\\n      \\\"turn15\\\": 0.9686,\\n      \\\"diff\\\": -0.0639\\n    },\\n    \\\"L12\\\": {\\n      \\\"turn1\\\": 0.9688,\\n      \\\"turn15\\\": 0.9611,\\n      \\\"diff\\\": 0.0077\\n    },\\n    \\\"L13\\\": {\\n      \\\"turn1\\\": 0.9893,\\n      \\\"turn15\\\": 0.9713,\\n      \\\"diff\\\": 0.018\\n    },\\n    \\\"L14\\\": {\\n      \\\"turn1\\\": 0.81,\\n      \\\"turn15\\\": 0.9434,\\n      \\\"diff\\\": -0.1334\\n    },\\n    \\\"L15\\\": {\\n      \\\"turn1\\\": 0.9819,\\n      \\\"turn15\\\": 0.975,\\n      \\\"diff\\\": 0.0069\\n    },\\n    \\\"L16\\\": {\\n      \\\"turn1\\\": 0.8245,\\n      \\\"turn15\\\": 0.969,\\n      \\\"diff\\\": -0.1445\\n    },\\n    \\\"L17\\\": {\\n      \\\"turn1\\\": 0.9796,\\n      \\\"turn15\\\": 0.9583,\\n      \\\"diff\\\": 0.0213\\n    },\\n    \\\"L18\\\": {\\n      \\\"turn1\\\": 0.975,\\n      \\\"turn15\\\": 0.9792,\\n      \\\"diff\\\": -0.0042\\n    },\\n    \\\"L19\\\": {\\n      \\\"turn1\\\": 0.8471,\\n      \\\"turn15\\\": 0.9728,\\n      \\\"diff\\\": -0.1257\\n    },\\n    \\\"L20\\\": {\\n      \\\"turn1\\\": 0.73,\\n      \\\"turn15\\\": 0.9773,\\n      \\\"diff\\\": -0.2473\\n    },\\n    \\\"L21\\\": {\\n      \\\"turn1\\\": 0.7221,\\n      \\\"turn15\\\": 0.99,\\n      \\\"diff\\\": -0.2679\\n    },\\n    \\\"L22\\\": {\\n      \\\"turn1\\\": 0.1019,\\n      \\\"turn15\\\": 0.9864,\\n      \\\"diff\\\": -0.8845\\n    },\\n    \\\"L23\\\": {\\n      \\\"turn1\\\": 0.0177,\\n      \\\"turn15\\\": 0.9931,\\n      \\\"diff\\\": -0.9754\\n    },\\n    \\\"L24\\\": {\\n      \\\"turn1\\\": 0.9068,\\n      \\\"turn15\\\": 0.9804,\\n      \\\"diff\\\": -0.0736\\n    },\\n    \\\"L25\\\": {\\n      \\\"turn1\\\": 0.9496,\\n      \\\"turn15\\\": 0.9911,\\n      \\\"diff\\\": -0.0415\\n    },\\n    \\\"L26\\\": {\\n      \\\"turn1\\\": 0.7307,\\n      \\\"turn15\\\": 0.9934,\\n      \\\"diff\\\": -0.2627\\n    },\\n    \\\"L27\\\": {\\n      \\\"turn1\\\": 0.974,\\n      \\\"turn15\\\": 0.997,\\n      \\\"diff\\\": -0.023\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "631cf2a4-97ca-4232-8088-173f8a079e98",
+  "uuid": "5535fd09-f1f6-4325-aa9d-885c3c9cd8c5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"checkpoint_dir\\\\\\\": \\\\\\\"/root/turn_residual_gating/runs/phase2_ug_s42\\\\\\\",\\\\n  \\\\\\\"gate_type\\\\\\\": \\\\\\\"uniform\\\\\\\",\\\\n  \\\\\\\"gar_variant\\\\\\\": \\\\\\\"dongre\\\\\\\",\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"/root/.cache/modelscope/Qwen/Qwen2___5-7B-Instruct\\\\\\\",\\\\n  \\\\\\\"num_conversations\\\\\\\": 50,\\\\n  \\\\\\\"num_turns\\\\\\\": 3,\\\\n  \\\\\\\"gar_curves\\\\\\\": [\\\\n    [\\\\n      0.02069727140131096,\\\\n      0.014952988391110547,\\\\n      0.010246067733515366,\\\\n      0.010985902978900567,\\\\n      0.01105942275884183\\\\n    ],\\\\n    [\\\\n      0.020901045715130923,\\\\n      0.011106378382379082,\\\\n      0.008311465713467438,\\\\n      0.008382032444258542,\\\\n      0.010501581011301752,\\\\n      0.007632311665796617\\\\n    ],\\\\n    [\\\\n      0.01634385392029434,\\\\n      0.011616656161659994,\\\\n      0.007783827798033821,\\\\n      0.008041986038778998,\\\\n      0.010262040021430021\\\\n    ],\\\\n    [\\\\n      0.022077037784403543,\\\\n      0.01075144223246135,\\\\n      0.010140599305813881,\\\\n      0.00811466554634336,\\\\n      0.006326982507905781\\\\n    ],\\\\n    [\\\\n      0.019309861766967088,\\\\n      0.013323247769624643,\\\\n      0.010033573491559422,\\\\n      0.008946523497017684,\\\\n      0.013103072158263158\\\\n    ],\\\\n    [\\\\n      0.021598622827019073,\\\\n      0.016721349965838177,\\\\n      0.015786582067148173,\\\\n      0.018117468534189073,\\\\n      0.009136419191197577\\\\n    ],\\\\n    [\\\\n      0.018417661932569645,\\\\n      0.014849696130201574,\\\\n      0.010627325148983338,\\\\n      0.009871849791007963,\\\\n      0.008114867068792136\\\\n    ],\\\\n    [\\\\n      0.019110244283778853,\\\\n      0.012290226324884903,\\\\n      0.011788644553649722,\\\\n      0.010629063758411906,\\\\n      0.009679185571468994\\\\n    ],\\\\n    [\\\\n      0.037691304040582914,\\\\n      0.017762028169084274,\\\\n      0.010566971214465187,\\\\n      0.012353272823472365,\\\\n      0.011462150149025721,\\\\n      0.013210079569943182\\\\n    ],\\\\n    [\\\\n      0.02875909658946105,\\\\n      0.022755197712745062,\\\\n      0.04452172169834502,\\\\n      0.018041608355132938,\\\\n      0.024384847595904702\\\\n    ],\\\\n    [\\\\n      0.01584654820991999,\\\\n      0.009405427188635775,\\\\n      0.00846058646983397,\\\\n      0.007954794857960901,\\\\n      0.004919251229687396\\\\n    ],\\\\n    [\\\\n      0.015369073277142686,\\\\n      0.011753773702217552,\\\\n      0.011420173250794363,\\\\n      0.00810073251996063,\\\\n      0.008622542675590691\\\\n    ],\\\\n    [\\\\n      0.025993864039429215,\\\\n      0.01354070954735663,\\\\n      0.013293435025314838,\\\\n      0.01256858309958978,\\\\n      0.010987219423199853\\\\n    ],\\\\n    [\\\\n      0.02358160763333632,\\\\n      0.013079616091668998,\\\\n      0.008283216062820694,\\\\n      0.009080824214437429,\\\\n      0.005338705373054631\\\\n    ],\\\\n    [\\\\n      0.0159957866197303,\\\\n      0.012747467352783998,\\\\n      0.011140431926944418,\\\\n      0.00854147513256579,\\\\n      0.00805018511687086,\\\\n      0.005034475139279473\\\\n    ],\\\\n    [\\\\n      0.015531009802521775,\\\\n      0.011754467990324416,\\\\n      0.009640072023494798,\\\\n      0.008365470785016666,\\\\n      0.007822908675289906\\\\n    ],\\\\n    [\\\\n      0.023777974237046907,\\\\n      0.019900810843668324,\\\\n      0.018747240262120997,\\\\n      0.01142654120477598,\\\\n      0.011438302574557973,\\\\n      0.009948052848092963,\\\\n      0.00912687324240324\\\\n    ],\\\\n    [\\\\n      0.016775257162337076,\\\\n      0.01214114255553986,\\\\n      0.019535180358891693,\\\\n      0.02122204432206849,\\\\n      0.017868792006335264,\\\\n      0.008222602041208976\\\\n    ],\\\\n    [\\\\n      0.02018703344408369,\\\\n      0.01190627794475956,\\\\n      0.011855164712809634,\\\\n      0.012071147003312471,\\\\n      0.008734983011022006,\\\\n      0.00798448938226142\\\\n    ],\\\\n    [\\\\n      0.027547731571458636,\\\\n      0.017474475170261163,\\\\n      0.014419623392345732,\\\\n      0.013238200092498818,\\\\n      0.010615891934809723,\\\\n      0.010149586858660147\\\\n    ],\\\\n    [\\\\n      0.02173592836318611,\\\\n      0.010833619182756183,\\\\n      0.009444644532014507,\\\\n      0.009732702733729379,\\\\n      0.007855370216812025\\\\n    ],\\\\n    [\\\\n      0.021300918173324017,\\\\n      0.01146518363203149,\\\\n      0.011781750394839368,\\\\n      0.01095039849731336,\\\\n      0.008364993158872321,\\\\n      0.00887338112960274,\\\\n      0.010852675830836114\\\\n    ],\\\\n    [\\\\n      0.024149308821875493,\\\\n      0.017391459982621326,\\\\n      0.017227562475730564,\\\\n      0.017166538626875647,\\\\n      0.01682875097164583\\\\n    ],\\\\n \\\\n\\\\n... [截断: 输出过长，省略 396617 字符] ...\\\\n\\\\n  \\\\\\\"L20\\\\\\\": 0.9632,\\\\n        \\\\\\\"L21\\\\\\\": 0.9908,\\\\n        \\\\\\\"L22\\\\\\\": 0.9928,\\\\n        \\\\\\\"L23\\\\\\\": 0.9813,\\\\n        \\\\\\\"L24\\\\\\\": 0.9792,\\\\n        \\\\\\\"L25\\\\\\\": 0.9936,\\\\n        \\\\\\\"L26\\\\\\\": 0.9926,\\\\n        \\\\\\\"L27\\\\\\\": 0.9961\\\\n      },\\\\n      \\\\\\\"turn_10\\\\\\\": {\\\\n        \\\\\\\"L0\\\\\\\": 0.8713,\\\\n        \\\\\\\"L1\\\\\\\": 0.9993,\\\\n        \\\\\\\"L2\\\\\\\": 0.9946,\\\\n        \\\\\\\"L3\\\\\\\": 0.7558,\\\\n        \\\\\\\"L4\\\\\\\": 0.9871,\\\\n        \\\\\\\"L5\\\\\\\": 0.7787,\\\\n        \\\\\\\"L6\\\\\\\": 0.9747,\\\\n        \\\\\\\"L7\\\\\\\": 0.9793,\\\\n        \\\\\\\"L8\\\\\\\": 0.9839,\\\\n        \\\\\\\"L9\\\\\\\": 0.9699,\\\\n        \\\\\\\"L10\\\\\\\": 0.9828,\\\\n        \\\\\\\"L11\\\\\\\": 0.9404,\\\\n        \\\\\\\"L12\\\\\\\": 0.8976,\\\\n        \\\\\\\"L13\\\\\\\": 0.9458,\\\\n        \\\\\\\"L14\\\\\\\": 0.9018,\\\\n        \\\\\\\"L15\\\\\\\": 0.992,\\\\n        \\\\\\\"L16\\\\\\\": 0.9862,\\\\n        \\\\\\\"L17\\\\\\\": 0.9438,\\\\n        \\\\\\\"L18\\\\\\\": 0.9275,\\\\n        \\\\\\\"L19\\\\\\\": 0.9229,\\\\n        \\\\\\\"L20\\\\\\\": 0.9681,\\\\n        \\\\\\\"L21\\\\\\\": 0.9845,\\\\n        \\\\\\\"L22\\\\\\\": 0.998,\\\\n        \\\\\\\"L23\\\\\\\": 0.9762,\\\\n        \\\\\\\"L24\\\\\\\": 0.9859,\\\\n        \\\\\\\"L25\\\\\\\": 0.9961,\\\\n        \\\\\\\"L26\\\\\\\": 0.9888,\\\\n        \\\\\\\"L27\\\\\\\": 0.9964\\\\n      },\\\\n      \\\\\\\"turn_11\\\\\\\": {\\\\n        \\\\\\\"L0\\\\\\\": 0.876,\\\\n        \\\\\\\"L1\\\\\\\": 0.9989,\\\\n        \\\\\\\"L2\\\\\\\": 0.9967,\\\\n        \\\\\\\"L3\\\\\\\": 0.7763,\\\\n        \\\\\\\"L4\\\\\\\": 0.9869,\\\\n        \\\\\\\"L5\\\\\\\": 0.8113,\\\\n        \\\\\\\"L6\\\\\\\": 0.9825,\\\\n        \\\\\\\"L7\\\\\\\": 0.9517,\\\\n        \\\\\\\"L8\\\\\\\": 0.9772,\\\\n        \\\\\\\"L9\\\\\\\": 0.9569,\\\\n        \\\\\\\"L10\\\\\\\": 0.9819,\\\\n        \\\\\\\"L11\\\\\\\": 0.9499,\\\\n        \\\\\\\"L12\\\\\\\": 0.9286,\\\\n        \\\\\\\"L13\\\\\\\": 0.9662,\\\\n        \\\\\\\"L14\\\\\\\": 0.9473,\\\\n        \\\\\\\"L15\\\\\\\": 0.9849,\\\\n        \\\\\\\"L16\\\\\\\": 0.9754,\\\\n        \\\\\\\"L17\\\\\\\": 0.9602,\\\\n        \\\\\\\"L18\\\\\\\": 0.9806,\\\\n        \\\\\\\"L19\\\\\\\": 0.9813,\\\\n        \\\\\\\"L20\\\\\\\": 0.9752,\\\\n        \\\\\\\"L21\\\\\\\": 0.9883,\\\\n        \\\\\\\"L22\\\\\\\": 0.9942,\\\\n        \\\\\\\"L23\\\\\\\": 0.981,\\\\n        \\\\\\\"L24\\\\\\\": 0.9731,\\\\n        \\\\\\\"L25\\\\\\\": 0.995,\\\\n        \\\\\\\"L26\\\\\\\": 0.9928,\\\\n        \\\\\\\"L27\\\\\\\": 0.9969\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"gate_dynamic_range\\\\\\\": {\\\\n    \\\\\\\"L0\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.8538,\\\\n      \\\\\\\"turn15\\\\\\\": 0.8738,\\\\n      \\\\\\\"diff\\\\\\\": -0.02\\\\n    },\\\\n    \\\\\\\"L1\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9284,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9985,\\\\n      \\\\\\\"diff\\\\\\\": -0.0701\\\\n    },\\\\n    \\\\\\\"L2\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.898,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9961,\\\\n      \\\\\\\"diff\\\\\\\": -0.0981\\\\n    },\\\\n    \\\\\\\"L3\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.7158,\\\\n      \\\\\\\"turn15\\\\\\\": 0.7799,\\\\n      \\\\\\\"diff\\\\\\\": -0.0641\\\\n    },\\\\n    \\\\\\\"L4\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.95,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9862,\\\\n      \\\\\\\"diff\\\\\\\": -0.0362\\\\n    },\\\\n    \\\\\\\"L5\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.6333,\\\\n      \\\\\\\"turn15\\\\\\\": 0.8124,\\\\n      \\\\\\\"diff\\\\\\\": -0.1791\\\\n    },\\\\n    \\\\\\\"L6\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.7726,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9825,\\\\n      \\\\\\\"diff\\\\\\\": -0.2099\\\\n    },\\\\n    \\\\\\\"L7\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.868,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9652,\\\\n      \\\\\\\"diff\\\\\\\": -0.0972\\\\n    },\\\\n    \\\\\\\"L8\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.6894,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9756,\\\\n      \\\\\\\"diff\\\\\\\": -0.2862\\\\n    },\\\\n    \\\\\\\"L9\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.7477,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9623,\\\\n      \\\\\\\"diff\\\\\\\": -0.2146\\\\n    },\\\\n    \\\\\\\"L10\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.998,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9831,\\\\n      \\\\\\\"diff\\\\\\\": 0.0149\\\\n    },\\\\n    \\\\\\\"L11\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9047,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9686,\\\\n      \\\\\\\"diff\\\\\\\": -0.0639\\\\n    },\\\\n    \\\\\\\"L12\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9688,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9611,\\\\n      \\\\\\\"diff\\\\\\\": 0.0077\\\\n    },\\\\n    \\\\\\\"L13\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9893,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9713,\\\\n      \\\\\\\"diff\\\\\\\": 0.018\\\\n    },\\\\n    \\\\\\\"L14\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.81,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9434,\\\\n      \\\\\\\"diff\\\\\\\": -0.1334\\\\n    },\\\\n    \\\\\\\"L15\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9819,\\\\n      \\\\\\\"turn15\\\\\\\": 0.975,\\\\n      \\\\\\\"diff\\\\\\\": 0.0069\\\\n    },\\\\n    \\\\\\\"L16\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.8245,\\\\n      \\\\\\\"turn15\\\\\\\": 0.969,\\\\n      \\\\\\\"diff\\\\\\\": -0.1445\\\\n    },\\\\n    \\\\\\\"L17\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9796,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9583,\\\\n      \\\\\\\"diff\\\\\\\": 0.0213\\\\n    },\\\\n    \\\\\\\"L18\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.975,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9792,\\\\n      \\\\\\\"diff\\\\\\\": -0.0042\\\\n    },\\\\n    \\\\\\\"L19\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.8471,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9728,\\\\n      \\\\\\\"diff\\\\\\\": -0.1257\\\\n    },\\\\n    \\\\\\\"L20\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.73,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9773,\\\\n      \\\\\\\"diff\\\\\\\": -0.2473\\\\n    },\\\\n    \\\\\\\"L21\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.7221,\\\\n      \\\\\\\"turn15\\\\\\\": 0.99,\\\\n      \\\\\\\"diff\\\\\\\": -0.2679\\\\n    },\\\\n    \\\\\\\"L22\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.1019,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9864,\\\\n      \\\\\\\"diff\\\\\\\": -0.8845\\\\n    },\\\\n    \\\\\\\"L23\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.0177,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9931,\\\\n      \\\\\\\"diff\\\\\\\": -0.9754\\\\n    },\\\\n    \\\\\\\"L24\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9068,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9804,\\\\n      \\\\\\\"diff\\\\\\\": -0.0736\\\\n    },\\\\n    \\\\\\\"L25\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9496,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9911,\\\\n      \\\\\\\"diff\\\\\\\": -0.0415\\\\n    },\\\\n    \\\\\\\"L26\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.7307,\\\\n      \\\\\\\"turn15\\\\\\\": 0.9934,\\\\n      \\\\\\\"diff\\\\\\\": -0.2627\\\\n    },\\\\n    \\\\\\\"L27\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.974,\\\\n      \\\\\\\"turn15\\\\\\\": 0.997,\\\\n      \\\\\\\"diff\\\\\\\": -0.023\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"checkpoint_dir\\\": \\\"/root/turn_residual_gating/runs/phase2_ug_s42\\\",\\n  \\\"gate_type\\\": \\\"uniform\\\",\\n  \\\"gar_variant\\\": \\\"dongre\\\",\\n  \\\"model\\\": \\\"/root/.cache/modelscope/Qwen/Qwen2___5-7B-Instruct\\\",\\n  \\\"num_conversations\\\": 50,\\n  \\\"num_turns\\\": 3,\\n  \\\"gar_curves\\\": [\\n    [\\n      0.02069727140131096,\\n      0.014952988391110547,\\n      0.010246067733515366,\\n      0.010985902978900567,\\n      0.01105942275884183\\n    ],\\n    [\\n      0.020901045715130923,\\n      0.011106378382379082,\\n      0.008311465713467438,\\n      0.008382032444258542,\\n      0.010501581011301752,\\n      0.007632311665796617\\n    ],\\n    [\\n      0.01634385392029434,\\n      0.011616656161659994,\\n      0.007783827798033821,\\n      0.008041986038778998,\\n      0.010262040021430021\\n    ],\\n    [\\n      0.022077037784403543,\\n      0.01075144223246135,\\n      0.010140599305813881,\\n      0.00811466554634336,\\n      0.006326982507905781\\n    ],\\n    [\\n      0.019309861766967088,\\n      0.013323247769624643,\\n      0.010033573491559422,\\n      0.008946523497017684,\\n      0.013103072158263158\\n    ],\\n    [\\n      0.021598622827019073,\\n      0.016721349965838177,\\n      0.015786582067148173,\\n      0.018117468534189073,\\n      0.009136419191197577\\n    ],\\n    [\\n      0.018417661932569645,\\n      0.014849696130201574,\\n      0.010627325148983338,\\n      0.009871849791007963,\\n      0.008114867068792136\\n    ],\\n    [\\n      0.019110244283778853,\\n      0.012290226324884903,\\n      0.011788644553649722,\\n      0.010629063758411906,\\n      0.009679185571468994\\n    ],\\n    [\\n      0.037691304040582914,\\n      0.017762028169084274,\\n      0.010566971214465187,\\n      0.012353272823472365,\\n      0.011462150149025721,\\n      0.013210079569943182\\n    ],\\n    [\\n      0.02875909658946105,\\n      0.022755197712745062,\\n      0.04452172169834502,\\n      0.018041608355132938,\\n      0.024384847595904702\\n    ],\\n    [\\n      0.01584654820991999,\\n      0.009405427188635775,\\n      0.00846058646983397,\\n      0.007954794857960901,\\n      0.004919251229687396\\n    ],\\n    [\\n      0.015369073277142686,\\n      0.011753773702217552,\\n      0.011420173250794363,\\n      0.00810073251996063,\\n      0.008622542675590691\\n    ],\\n    [\\n      0.025993864039429215,\\n      0.01354070954735663,\\n      0.013293435025314838,\\n      0.01256858309958978,\\n      0.010987219423199853\\n    ],\\n    [\\n      0.02358160763333632,\\n      0.013079616091668998,\\n      0.008283216062820694,\\n      0.009080824214437429,\\n      0.005338705373054631\\n    ],\\n    [\\n      0.0159957866197303,\\n      0.012747467352783998,\\n      0.011140431926944418,\\n      0.00854147513256579,\\n      0.00805018511687086,\\n      0.005034475139279473\\n    ],\\n    [\\n      0.015531009802521775,\\n      0.011754467990324416,\\n      0.009640072023494798,\\n      0.008365470785016666,\\n      0.007822908675289906\\n    ],\\n    [\\n      0.023777974237046907,\\n      0.019900810843668324,\\n      0.018747240262120997,\\n      0.01142654120477598,\\n      0.011438302574557973,\\n      0.009948052848092963,\\n      0.00912687324240324\\n    ],\\n    [\\n      0.016775257162337076,\\n      0.01214114255553986,\\n      0.019535180358891693,\\n      0.02122204432206849,\\n      0.017868792006335264,\\n      0.008222602041208976\\n    ],\\n    [\\n      0.02018703344408369,\\n      0.01190627794475956,\\n      0.011855164712809634,\\n      0.012071147003312471,\\n      0.008734983011022006,\\n      0.00798448938226142\\n    ],\\n    [\\n      0.027547731571458636,\\n      0.017474475170261163,\\n      0.014419623392345732,\\n      0.013238200092498818,\\n      0.010615891934809723,\\n      0.010149586858660147\\n    ],\\n    [\\n      0.02173592836318611,\\n      0.010833619182756183,\\n      0.009444644532014507,\\n      0.009732702733729379,\\n      0.007855370216812025\\n    ],\\n    [\\n      0.021300918173324017,\\n      0.01146518363203149,\\n      0.011781750394839368,\\n      0.01095039849731336,\\n      0.008364993158872321,\\n      0.00887338112960274,\\n      0.010852675830836114\\n    ],\\n    [\\n      0.024149308821875493,\\n      0.017391459982621326,\\n      0.017227562475730564,\\n      0.017166538626875647,\\n      0.01682875097164583\\n    ],\\n \\n\\n... [截断: 输出过长，省略 396617 字符] ...\\n\\n  \\\"L20\\\": 0.9632,\\n        \\\"L21\\\": 0.9908,\\n        \\\"L22\\\": 0.9928,\\n        \\\"L23\\\": 0.9813,\\n        \\\"L24\\\": 0.9792,\\n        \\\"L25\\\": 0.9936,\\n        \\\"L26\\\": 0.9926,\\n        \\\"L27\\\": 0.9961\\n      },\\n      \\\"turn_10\\\": {\\n        \\\"L0\\\": 0.8713,\\n        \\\"L1\\\": 0.9993,\\n        \\\"L2\\\": 0.9946,\\n        \\\"L3\\\": 0.7558,\\n        \\\"L4\\\": 0.9871,\\n        \\\"L5\\\": 0.7787,\\n        \\\"L6\\\": 0.9747,\\n        \\\"L7\\\": 0.9793,\\n        \\\"L8\\\": 0.9839,\\n        \\\"L9\\\": 0.9699,\\n        \\\"L10\\\": 0.9828,\\n        \\\"L11\\\": 0.9404,\\n        \\\"L12\\\": 0.8976,\\n        \\\"L13\\\": 0.9458,\\n        \\\"L14\\\": 0.9018,\\n        \\\"L15\\\": 0.992,\\n        \\\"L16\\\": 0.9862,\\n        \\\"L17\\\": 0.9438,\\n        \\\"L18\\\": 0.9275,\\n        \\\"L19\\\": 0.9229,\\n        \\\"L20\\\": 0.9681,\\n        \\\"L21\\\": 0.9845,\\n        \\\"L22\\\": 0.998,\\n        \\\"L23\\\": 0.9762,\\n        \\\"L24\\\": 0.9859,\\n        \\\"L25\\\": 0.9961,\\n        \\\"L26\\\": 0.9888,\\n        \\\"L27\\\": 0.9964\\n      },\\n      \\\"turn_11\\\": {\\n        \\\"L0\\\": 0.876,\\n        \\\"L1\\\": 0.9989,\\n        \\\"L2\\\": 0.9967,\\n        \\\"L3\\\": 0.7763,\\n        \\\"L4\\\": 0.9869,\\n        \\\"L5\\\": 0.8113,\\n        \\\"L6\\\": 0.9825,\\n        \\\"L7\\\": 0.9517,\\n        \\\"L8\\\": 0.9772,\\n        \\\"L9\\\": 0.9569,\\n        \\\"L10\\\": 0.9819,\\n        \\\"L11\\\": 0.9499,\\n        \\\"L12\\\": 0.9286,\\n        \\\"L13\\\": 0.9662,\\n        \\\"L14\\\": 0.9473,\\n        \\\"L15\\\": 0.9849,\\n        \\\"L16\\\": 0.9754,\\n        \\\"L17\\\": 0.9602,\\n        \\\"L18\\\": 0.9806,\\n        \\\"L19\\\": 0.9813,\\n        \\\"L20\\\": 0.9752,\\n        \\\"L21\\\": 0.9883,\\n        \\\"L22\\\": 0.9942,\\n        \\\"L23\\\": 0.981,\\n        \\\"L24\\\": 0.9731,\\n        \\\"L25\\\": 0.995,\\n        \\\"L26\\\": 0.9928,\\n        \\\"L27\\\": 0.9969\\n      }\\n    }\\n  },\\n  \\\"gate_dynamic_range\\\": {\\n    \\\"L0\\\": {\\n      \\\"turn1\\\": 0.8538,\\n      \\\"turn15\\\": 0.8738,\\n      \\\"diff\\\": -0.02\\n    },\\n    \\\"L1\\\": {\\n      \\\"turn1\\\": 0.9284,\\n      \\\"turn15\\\": 0.9985,\\n      \\\"diff\\\": -0.0701\\n    },\\n    \\\"L2\\\": {\\n      \\\"turn1\\\": 0.898,\\n      \\\"turn15\\\": 0.9961,\\n      \\\"diff\\\": -0.0981\\n    },\\n    \\\"L3\\\": {\\n      \\\"turn1\\\": 0.7158,\\n      \\\"turn15\\\": 0.7799,\\n      \\\"diff\\\": -0.0641\\n    },\\n    \\\"L4\\\": {\\n      \\\"turn1\\\": 0.95,\\n      \\\"turn15\\\": 0.9862,\\n      \\\"diff\\\": -0.0362\\n    },\\n    \\\"L5\\\": {\\n      \\\"turn1\\\": 0.6333,\\n      \\\"turn15\\\": 0.8124,\\n      \\\"diff\\\": -0.1791\\n    },\\n    \\\"L6\\\": {\\n      \\\"turn1\\\": 0.7726,\\n      \\\"turn15\\\": 0.9825,\\n      \\\"diff\\\": -0.2099\\n    },\\n    \\\"L7\\\": {\\n      \\\"turn1\\\": 0.868,\\n      \\\"turn15\\\": 0.9652,\\n      \\\"diff\\\": -0.0972\\n    },\\n    \\\"L8\\\": {\\n      \\\"turn1\\\": 0.6894,\\n      \\\"turn15\\\": 0.9756,\\n      \\\"diff\\\": -0.2862\\n    },\\n    \\\"L9\\\": {\\n      \\\"turn1\\\": 0.7477,\\n      \\\"turn15\\\": 0.9623,\\n      \\\"diff\\\": -0.2146\\n    },\\n    \\\"L10\\\": {\\n      \\\"turn1\\\": 0.998,\\n      \\\"turn15\\\": 0.9831,\\n      \\\"diff\\\": 0.0149\\n    },\\n    \\\"L11\\\": {\\n      \\\"turn1\\\": 0.9047,\\n      \\\"turn15\\\": 0.9686,\\n      \\\"diff\\\": -0.0639\\n    },\\n    \\\"L12\\\": {\\n      \\\"turn1\\\": 0.9688,\\n      \\\"turn15\\\": 0.9611,\\n      \\\"diff\\\": 0.0077\\n    },\\n    \\\"L13\\\": {\\n      \\\"turn1\\\": 0.9893,\\n      \\\"turn15\\\": 0.9713,\\n      \\\"diff\\\": 0.018\\n    },\\n    \\\"L14\\\": {\\n      \\\"turn1\\\": 0.81,\\n      \\\"turn15\\\": 0.9434,\\n      \\\"diff\\\": -0.1334\\n    },\\n    \\\"L15\\\": {\\n      \\\"turn1\\\": 0.9819,\\n      \\\"turn15\\\": 0.975,\\n      \\\"diff\\\": 0.0069\\n    },\\n    \\\"L16\\\": {\\n      \\\"turn1\\\": 0.8245,\\n      \\\"turn15\\\": 0.969,\\n      \\\"diff\\\": -0.1445\\n    },\\n    \\\"L17\\\": {\\n      \\\"turn1\\\": 0.9796,\\n      \\\"turn15\\\": 0.9583,\\n      \\\"diff\\\": 0.0213\\n    },\\n    \\\"L18\\\": {\\n      \\\"turn1\\\": 0.975,\\n      \\\"turn15\\\": 0.9792,\\n      \\\"diff\\\": -0.0042\\n    },\\n    \\\"L19\\\": {\\n      \\\"turn1\\\": 0.8471,\\n      \\\"turn15\\\": 0.9728,\\n      \\\"diff\\\": -0.1257\\n    },\\n    \\\"L20\\\": {\\n      \\\"turn1\\\": 0.73,\\n      \\\"turn15\\\": 0.9773,\\n      \\\"diff\\\": -0.2473\\n    },\\n    \\\"L21\\\": {\\n      \\\"turn1\\\": 0.7221,\\n      \\\"turn15\\\": 0.99,\\n      \\\"diff\\\": -0.2679\\n    },\\n    \\\"L22\\\": {\\n      \\\"turn1\\\": 0.1019,\\n      \\\"turn15\\\": 0.9864,\\n      \\\"diff\\\": -0.8845\\n    },\\n    \\\"L23\\\": {\\n      \\\"turn1\\\": 0.0177,\\n      \\\"turn15\\\": 0.9931,\\n      \\\"diff\\\": -0.9754\\n    },\\n    \\\"L24\\\": {\\n      \\\"turn1\\\": 0.9068,\\n      \\\"turn15\\\": 0.9804,\\n      \\\"diff\\\": -0.0736\\n    },\\n    \\\"L25\\\": {\\n      \\\"turn1\\\": 0.9496,\\n      \\\"turn15\\\": 0.9911,\\n      \\\"diff\\\": -0.0415\\n    },\\n    \\\"L26\\\": {\\n      \\\"turn1\\\": 0.7307,\\n      \\\"turn15\\\": 0.9934,\\n      \\\"diff\\\": -0.2627\\n    },\\n    \\\"L27\\\": {\\n      \\\"turn1\\\": 0.974,\\n      \\\"turn15\\\": 0.997,\\n      \\\"diff\\\": -0.023\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-19T14:33:33.591Z_
+
+<details><summary>↩ Tool result · `toolu_01KLAyfKAcYHWDKX7gTh819N`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"checkpoint_dir\\\": \\\"/root/turn_residual_gating/runs/phase2_lora_only_s42\\\",\\n  \\\"gate_type\\\": \\\"none\\\",\\n  \\\"gar_variant\\\": \\\"ours\\\",\\n  \\\"model\\\": \\\"/root/.cache/modelscope/Qwen/Qwen2___5-7B-Instruct\\\",\\n  \\\"num_conversations\\\": 50,\\n  \\\"num_turns\\\": 3,\\n  \\\"gar_curves\\\": [\\n    [\\n      0.5416310150870716,\\n      0.5263458172167553,\\n      0.4554061378094217,\\n      0.49818170091139147,\\n      0.4957135492074973\\n    ],\\n    [\\n      0.5491873602416434,\\n      0.5314211395975691,\\n      0.5129847891765622,\\n      0.5011930581458135,\\n      0.45741806947685504,\\n      0.4854011757169003\\n    ],\\n    [\\n      0.6442935312059312,\\n      0.5112142494883803,\\n      0.4871701885978909,\\n      0.5241108808773248,\\n      0.5357400812637353\\n    ],\\n    [\\n      0.6191494821177271,\\n      0.45138049875723196,\\n      0.6096552674838358,\\n      0.5530694734234801,\\n      0.008604476805210743\\n    ],\\n    [\\n      0.6234215137819362,\\n      0.5096272428046911,\\n      0.4829668228431809,\\n      0.4771084609843615,\\n      0.5186216466295527\\n    ],\\n    [\\n      0.5312974343731939,\\n      0.5298276366692002,\\n      0.521498309190142,\\n      0.4670848919787781,\\n      0.5306528058454374\\n    ],\\n    [\\n      0.4822604335525601,\\n      0.5604305224771466,\\n      0.488892584717816,\\n      0.45127736776529753,\\n      0.4599431026410964\\n    ],\\n    [\\n      0.551217067563783,\\n      0.5188554985021205,\\n      0.5157955892206775,\\n      0.4915092644525834,\\n      0.497515646766338\\n    ],\\n    [\\n      0.5538780905693791,\\n      0.5026538160433885,\\n      0.4508029268671125,\\n      0.5015889686459177,\\n      0.4679339579450533,\\n      0.43993567548163853\\n    ],\\n    [\\n      0.5229133830598106,\\n      0.5154261619567962,\\n      0.4611538731647548,\\n      0.5229847351550873,\\n      0.520296937115814\\n    ],\\n    [\\n      0.6534084555669192,\\n      0.5290467035163439,\\n      0.49989052541946505,\\n      0.6015929001173478,\\n      0.029979489467137577\\n    ],\\n    [\\n      0.6568403993120283,\\n      0.49947362371422244,\\n      0.5024911744696022,\\n      0.4653793973032683,\\n      0.5100101987708713\\n    ],\\n    [\\n      0.5637104365290954,\\n      0.560112461383787,\\n      0.5374702696806058,\\n      0.5453488689533657,\\n      0.5208791247242399\\n    ],\\n    [\\n      0.5355628819304582,\\n      0.4992446871086327,\\n      0.5891553424444362,\\n      0.6012174217656978,\\n      0.003771203149950171\\n    ],\\n    [\\n      0.5850102471162736,\\n      0.4817742401412553,\\n      0.5253452376171021,\\n      0.4503364479505335,\\n      0.6189679074863232,\\n      0.006155992266498296\\n    ],\\n    [\\n      0.6351196208035359,\\n      0.5349365780667352,\\n      0.46811574627978814,\\n      0.46286262258465466,\\n      0.48971186163486174\\n    ],\\n    [\\n      0.5193963447199959,\\n      0.4249451398295961,\\n      0.5208151599367291,\\n      0.4929237688693358,\\n      0.4830411824655615,\\n      0.47608018197325835,\\n      0.4468373303437971\\n    ],\\n    [\\n      0.5206732285292561,\\n      0.534573339015791,\\n      0.5096325364252591,\\n      0.5166696477757969,\\n      0.5088350461298747,\\n      0.5003315194744412\\n    ],\\n    [\\n      0.4950461032412431,\\n      0.548712458575074,\\n      0.5130245698587361,\\n      0.48549317380221507,\\n      0.4998779720397973,\\n      0.5157816927296051\\n    ],\\n    [\\n      0.4938282690578308,\\n      0.4887810113569792,\\n      0.5111013620217432,\\n      0.5212474868927501,\\n      0.4413735349713689,\\n      0.510577843033974\\n    ],\\n    [\\n      0.5657989832718484,\\n      0.5064648290855743,\\n      0.5083186710312039,\\n      0.5035134311895408,\\n      0.5596402151683216\\n    ],\\n    [\\n      0.5703977555511014,\\n      0.4963570943177955,\\n      0.5166241989314002,\\n      0.5049038020426517,\\n      0.449404286029308,\\n      0.446736210841968,\\n      0.4644427583914471\\n    ],\\n    [\\n      0.4862568953341794,\\n      0.42612896852548804,\\n      0.504145737093089,\\n      0.5068290858405068,\\n      0.5129026063674879\\n    ],\\n    [\\n      0.6450311764652618,\\n      0.5996269211835491,\\n      0.5643184029246132,\\n      0.008641456221636328\\n    ],\\n    [\\n      0.5003639869040839,\\n      0.5360597465834972,\\n      0.4855623521778436,\\n      0.5\\n\\n... [截断: 输出过长，省略 7306 字符] ...\\n\\n [\\n      6.260917268186027,\\n      10.961362153374731,\\n      19.51111356753931\\n    ],\\n    [\\n      5.618896404630006,\\n      10.73427254984861,\\n      14.193908710877077\\n    ],\\n    [\\n      9.972759648432907,\\n      16.376325364842415,\\n      20.356837906368842\\n    ],\\n    [\\n      10.079750069331258,\\n      16.83243966308233,\\n      26.31378785099119\\n    ],\\n    [\\n      12.036488614811176,\\n      24.732178308500675,\\n      28.31415544994034\\n    ],\\n    [\\n      6.378190934987771,\\n      10.13987354775722,\\n      14.632147219875549\\n    ],\\n    [\\n      5.069233404688078,\\n      13.976677579957215,\\n      19.214989168593686\\n    ],\\n    [\\n      1.0734877938493235,\\n      2.0598828997942076,\\n      2.1524331348623944\\n    ],\\n    [\\n      5.3054315493037905,\\n      8.35486437467236,\\n      11.697836399579339\\n    ],\\n    [\\n      5.283250089638922,\\n      9.872612288089417,\\n      12.859221465893071\\n    ],\\n    [\\n      11.7144141915116,\\n      27.94090449036024,\\n      0.4586041587526563\\n    ],\\n    [\\n      3.962964975926474,\\n      7.489495241756894,\\n      11.6081041950297\\n    ],\\n    [\\n      4.238774111485462,\\n      4.911391060565388,\\n      6.746345144612175\\n    ],\\n    [\\n      4.306540783105728,\\n      7.05460980885786,\\n      8.031256831568657\\n    ]\\n  ],\\n  \\\"avg_normalized_gar_per_turn\\\": [\\n    5.66784199431312,\\n    9.670740461070862,\\n    13.258648389220362\\n  ],\\n  \\\"mid_turns_avg_normalized_gar\\\": 13.258648389220362,\\n  \\\"avg_visible_tokens_per_turn\\\": [\\n    360,\\n    653,\\n    954\\n  ],\\n  \\\"conversations_source\\\": \\\"fixed\\\",\\n  \\\"avg_ppl\\\": 2.7845529675483705,\\n  \\\"avg_ntp_loss\\\": 0.9771083498001099,\\n  \\\"ppl_per_conversation\\\": [\\n    2.1801528930664062,\\n    2.5715315341949463,\\n    3.229127883911133,\\n    2.172274112701416,\\n    3.0146853923797607,\\n    2.5563113689422607,\\n    2.1218340396881104,\\n    2.2953832149505615,\\n    3.5460236072540283,\\n    2.539034605026245,\\n    4.155107021331787,\\n    2.422701835632324,\\n    3.020122766494751,\\n    1.577639102935791,\\n    2.907740354537964,\\n    3.1806862354278564,\\n    3.22253680229187,\\n    2.5202603340148926,\\n    2.064897060394287,\\n    2.4035146236419678,\\n    2.442765951156616,\\n    2.6128571033477783,\\n    3.018921136856079,\\n    2.030667543411255,\\n    2.694138765335083,\\n    4.034549236297607,\\n    3.007805347442627,\\n    2.431417465209961,\\n    2.8759374618530273,\\n    3.1203126907348633,\\n    2.3987441062927246,\\n    2.439906597137451,\\n    3.0660922527313232,\\n    4.250121116638184,\\n    3.0274085998535156,\\n    2.2125210762023926,\\n    3.3867368698120117,\\n    2.8321053981781006,\\n    2.936145544052124,\\n    2.753619909286499,\\n    1.6697583198547363,\\n    2.0299723148345947,\\n    2.761564254760742,\\n    8.661516189575195,\\n    2.4711222648620605,\\n    2.0500118732452393,\\n    1.265789270401001,\\n    2.1591341495513916,\\n    1.835450530052185,\\n    3.048990249633789\\n  ],\\n  \\\"ntp_loss_per_conversation\\\": [\\n    0.7793951034545898,\\n    0.9445015788078308,\\n    1.1722121238708496,\\n    0.7757745981216431,\\n    1.103495478630066,\\n    0.9385653138160706,\\n    0.7522807717323303,\\n    0.8308998346328735,\\n    1.265826940536499,\\n    0.93178391456604,\\n    1.4243381023406982,\\n    0.8848834037780762,\\n    1.1052974462509155,\\n    0.4559295177459717,\\n    1.0673762559890747,\\n    1.1570969820022583,\\n    1.1701688766479492,\\n    0.9243622422218323,\\n    0.7250803709030151,\\n    0.8769320845603943,\\n    0.8931309580802917,\\n    0.9604443311691284,\\n    1.104899525642395,\\n    0.7083646059036255,\\n    0.9910786151885986,\\n    1.3948944807052612,\\n    1.1012107133865356,\\n    0.8884743452072144,\\n    1.056378722190857,\\n    1.1379332542419434,\\n    0.874945342540741,\\n    0.8919597268104553,\\n    1.1204038858413696,\\n    1.446947455406189,\\n    1.1077070236206055,\\n    0.7941325902938843,\\n    1.2198668718338013,\\n    1.041020393371582,\\n    1.0770976543426514,\\n    1.0129163265228271,\\n    0.5126789212226868,\\n    0.7080222368240356,\\n    1.0157972574234009,\\n    2.1588897705078125,\\n    0.9046724438667297,\\n    0.7178455591201782,\\n    0.23569583892822266,\\n    0.7697072625160217,\\n    0.6072899699211121,\\n    1.1148104667663574\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "631cf2a4-97ca-4232-8088-173f8a079e98",
+  "uuid": "7ff0efe1-9fd3-43a9-965a-508230db18f9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"checkpoint_dir\\\\\\\": \\\\\\\"/root/turn_residual_gating/runs/phase2_lora_only_s42\\\\\\\",\\\\n  \\\\\\\"gate_type\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n  \\\\\\\"gar_variant\\\\\\\": \\\\\\\"ours\\\\\\\",\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"/root/.cache/modelscope/Qwen/Qwen2___5-7B-Instruct\\\\\\\",\\\\n  \\\\\\\"num_conversations\\\\\\\": 50,\\\\n  \\\\\\\"num_turns\\\\\\\": 3,\\\\n  \\\\\\\"gar_curves\\\\\\\": [\\\\n    [\\\\n      0.5416310150870716,\\\\n      0.5263458172167553,\\\\n      0.4554061378094217,\\\\n      0.49818170091139147,\\\\n      0.4957135492074973\\\\n    ],\\\\n    [\\\\n      0.5491873602416434,\\\\n      0.5314211395975691,\\\\n      0.5129847891765622,\\\\n      0.5011930581458135,\\\\n      0.45741806947685504,\\\\n      0.4854011757169003\\\\n    ],\\\\n    [\\\\n      0.6442935312059312,\\\\n      0.5112142494883803,\\\\n      0.4871701885978909,\\\\n      0.5241108808773248,\\\\n      0.5357400812637353\\\\n    ],\\\\n    [\\\\n      0.6191494821177271,\\\\n      0.45138049875723196,\\\\n      0.6096552674838358,\\\\n      0.5530694734234801,\\\\n      0.008604476805210743\\\\n    ],\\\\n    [\\\\n      0.6234215137819362,\\\\n      0.5096272428046911,\\\\n      0.4829668228431809,\\\\n      0.4771084609843615,\\\\n      0.5186216466295527\\\\n    ],\\\\n    [\\\\n      0.5312974343731939,\\\\n      0.5298276366692002,\\\\n      0.521498309190142,\\\\n      0.4670848919787781,\\\\n      0.5306528058454374\\\\n    ],\\\\n    [\\\\n      0.4822604335525601,\\\\n      0.5604305224771466,\\\\n      0.488892584717816,\\\\n      0.45127736776529753,\\\\n      0.4599431026410964\\\\n    ],\\\\n    [\\\\n      0.551217067563783,\\\\n      0.5188554985021205,\\\\n      0.5157955892206775,\\\\n      0.4915092644525834,\\\\n      0.497515646766338\\\\n    ],\\\\n    [\\\\n      0.5538780905693791,\\\\n      0.5026538160433885,\\\\n      0.4508029268671125,\\\\n      0.5015889686459177,\\\\n      0.4679339579450533,\\\\n      0.43993567548163853\\\\n    ],\\\\n    [\\\\n      0.5229133830598106,\\\\n      0.5154261619567962,\\\\n      0.4611538731647548,\\\\n      0.5229847351550873,\\\\n      0.520296937115814\\\\n    ],\\\\n    [\\\\n      0.6534084555669192,\\\\n      0.5290467035163439,\\\\n      0.49989052541946505,\\\\n      0.6015929001173478,\\\\n      0.029979489467137577\\\\n    ],\\\\n    [\\\\n      0.6568403993120283,\\\\n      0.49947362371422244,\\\\n      0.5024911744696022,\\\\n      0.4653793973032683,\\\\n      0.5100101987708713\\\\n    ],\\\\n    [\\\\n      0.5637104365290954,\\\\n      0.560112461383787,\\\\n      0.5374702696806058,\\\\n      0.5453488689533657,\\\\n      0.5208791247242399\\\\n    ],\\\\n    [\\\\n      0.5355628819304582,\\\\n      0.4992446871086327,\\\\n      0.5891553424444362,\\\\n      0.6012174217656978,\\\\n      0.003771203149950171\\\\n    ],\\\\n    [\\\\n      0.5850102471162736,\\\\n      0.4817742401412553,\\\\n      0.5253452376171021,\\\\n      0.4503364479505335,\\\\n      0.6189679074863232,\\\\n      0.006155992266498296\\\\n    ],\\\\n    [\\\\n      0.6351196208035359,\\\\n      0.5349365780667352,\\\\n      0.46811574627978814,\\\\n      0.46286262258465466,\\\\n      0.48971186163486174\\\\n    ],\\\\n    [\\\\n      0.5193963447199959,\\\\n      0.4249451398295961,\\\\n      0.5208151599367291,\\\\n      0.4929237688693358,\\\\n      0.4830411824655615,\\\\n      0.47608018197325835,\\\\n      0.4468373303437971\\\\n    ],\\\\n    [\\\\n      0.5206732285292561,\\\\n      0.534573339015791,\\\\n      0.5096325364252591,\\\\n      0.5166696477757969,\\\\n      0.5088350461298747,\\\\n      0.5003315194744412\\\\n    ],\\\\n    [\\\\n      0.4950461032412431,\\\\n      0.548712458575074,\\\\n      0.5130245698587361,\\\\n      0.48549317380221507,\\\\n      0.4998779720397973,\\\\n      0.5157816927296051\\\\n    ],\\\\n    [\\\\n      0.4938282690578308,\\\\n      0.4887810113569792,\\\\n      0.5111013620217432,\\\\n      0.5212474868927501,\\\\n      0.4413735349713689,\\\\n      0.510577843033974\\\\n    ],\\\\n    [\\\\n      0.5657989832718484,\\\\n      0.5064648290855743,\\\\n      0.5083186710312039,\\\\n      0.5035134311895408,\\\\n      0.5596402151683216\\\\n    ],\\\\n    [\\\\n      0.5703977555511014,\\\\n      0.4963570943177955,\\\\n      0.5166241989314002,\\\\n      0.5049038020426517,\\\\n      0.449404286029308,\\\\n      0.446736210841968,\\\\n      0.4644427583914471\\\\n    ],\\\\n    [\\\\n      0.4862568953341794,\\\\n      0.42612896852548804,\\\\n      0.504145737093089,\\\\n      0.5068290858405068,\\\\n      0.5129026063674879\\\\n    ],\\\\n    [\\\\n      0.6450311764652618,\\\\n      0.5996269211835491,\\\\n      0.5643184029246132,\\\\n      0.008641456221636328\\\\n    ],\\\\n    [\\\\n      0.5003639869040839,\\\\n      0.5360597465834972,\\\\n      0.4855623521778436,\\\\n      0.5\\\\n\\\\n... [截断: 输出过长，省略 7306 字符] ...\\\\n\\\\n [\\\\n      6.260917268186027,\\\\n      10.961362153374731,\\\\n      19.51111356753931\\\\n    ],\\\\n    [\\\\n      5.618896404630006,\\\\n      10.73427254984861,\\\\n      14.193908710877077\\\\n    ],\\\\n    [\\\\n      9.972759648432907,\\\\n      16.376325364842415,\\\\n      20.356837906368842\\\\n    ],\\\\n    [\\\\n      10.079750069331258,\\\\n      16.83243966308233,\\\\n      26.31378785099119\\\\n    ],\\\\n    [\\\\n      12.036488614811176,\\\\n      24.732178308500675,\\\\n      28.31415544994034\\\\n    ],\\\\n    [\\\\n      6.378190934987771,\\\\n      10.13987354775722,\\\\n      14.632147219875549\\\\n    ],\\\\n    [\\\\n      5.069233404688078,\\\\n      13.976677579957215,\\\\n      19.214989168593686\\\\n    ],\\\\n    [\\\\n      1.0734877938493235,\\\\n      2.0598828997942076,\\\\n      2.1524331348623944\\\\n    ],\\\\n    [\\\\n      5.3054315493037905,\\\\n      8.35486437467236,\\\\n      11.697836399579339\\\\n    ],\\\\n    [\\\\n      5.283250089638922,\\\\n      9.872612288089417,\\\\n      12.859221465893071\\\\n    ],\\\\n    [\\\\n      11.7144141915116,\\\\n      27.94090449036024,\\\\n      0.4586041587526563\\\\n    ],\\\\n    [\\\\n      3.962964975926474,\\\\n      7.489495241756894,\\\\n      11.6081041950297\\\\n    ],\\\\n    [\\\\n      4.238774111485462,\\\\n      4.911391060565388,\\\\n      6.746345144612175\\\\n    ],\\\\n    [\\\\n      4.306540783105728,\\\\n      7.05460980885786,\\\\n      8.031256831568657\\\\n    ]\\\\n  ],\\\\n  \\\\\\\"avg_normalized_gar_per_turn\\\\\\\": [\\\\n    5.66784199431312,\\\\n    9.670740461070862,\\\\n    13.258648389220362\\\\n  ],\\\\n  \\\\\\\"mid_turns_avg_normalized_gar\\\\\\\": 13.258648389220362,\\\\n  \\\\\\\"avg_visible_tokens_per_turn\\\\\\\": [\\\\n    360,\\\\n    653,\\\\n    954\\\\n  ],\\\\n  \\\\\\\"conversations_source\\\\\\\": \\\\\\\"fixed\\\\\\\",\\\\n  \\\\\\\"avg_ppl\\\\\\\": 2.7845529675483705,\\\\n  \\\\\\\"avg_ntp_loss\\\\\\\": 0.9771083498001099,\\\\n  \\\\\\\"ppl_per_conversation\\\\\\\": [\\\\n    2.1801528930664062,\\\\n    2.5715315341949463,\\\\n    3.229127883911133,\\\\n    2.172274112701416,\\\\n    3.0146853923797607,\\\\n    2.5563113689422607,\\\\n    2.1218340396881104,\\\\n    2.2953832149505615,\\\\n    3.5460236072540283,\\\\n    2.539034605026245,\\\\n    4.155107021331787,\\\\n    2.422701835632324,\\\\n    3.020122766494751,\\\\n    1.577639102935791,\\\\n    2.907740354537964,\\\\n    3.1806862354278564,\\\\n    3.22253680229187,\\\\n    2.5202603340148926,\\\\n    2.064897060394287,\\\\n    2.4035146236419678,\\\\n    2.442765951156616,\\\\n    2.6128571033477783,\\\\n    3.018921136856079,\\\\n    2.030667543411255,\\\\n    2.694138765335083,\\\\n    4.034549236297607,\\\\n    3.007805347442627,\\\\n    2.431417465209961,\\\\n    2.8759374618530273,\\\\n    3.1203126907348633,\\\\n    2.3987441062927246,\\\\n    2.439906597137451,\\\\n    3.0660922527313232,\\\\n    4.250121116638184,\\\\n    3.0274085998535156,\\\\n    2.2125210762023926,\\\\n    3.3867368698120117,\\\\n    2.8321053981781006,\\\\n    2.936145544052124,\\\\n    2.753619909286499,\\\\n    1.6697583198547363,\\\\n    2.0299723148345947,\\\\n    2.761564254760742,\\\\n    8.661516189575195,\\\\n    2.4711222648620605,\\\\n    2.0500118732452393,\\\\n    1.265789270401001,\\\\n    2.1591341495513916,\\\\n    1.835450530052185,\\\\n    3.048990249633789\\\\n  ],\\\\n  \\\\\\\"ntp_loss_per_conversation\\\\\\\": [\\\\n    0.7793951034545898,\\\\n    0.9445015788078308,\\\\n    1.1722121238708496,\\\\n    0.7757745981216431,\\\\n    1.103495478630066,\\\\n    0.9385653138160706,\\\\n    0.7522807717323303,\\\\n    0.8308998346328735,\\\\n    1.265826940536499,\\\\n    0.93178391456604,\\\\n    1.4243381023406982,\\\\n    0.8848834037780762,\\\\n    1.1052974462509155,\\\\n    0.4559295177459717,\\\\n    1.0673762559890747,\\\\n    1.1570969820022583,\\\\n    1.1701688766479492,\\\\n    0.9243622422218323,\\\\n    0.7250803709030151,\\\\n    0.8769320845603943,\\\\n    0.8931309580802917,\\\\n    0.9604443311691284,\\\\n    1.104899525642395,\\\\n    0.7083646059036255,\\\\n    0.9910786151885986,\\\\n    1.3948944807052612,\\\\n    1.1012107133865356,\\\\n    0.8884743452072144,\\\\n    1.056378722190857,\\\\n    1.1379332542419434,\\\\n    0.874945342540741,\\\\n    0.8919597268104553,\\\\n    1.1204038858413696,\\\\n    1.446947455406189,\\\\n    1.1077070236206055,\\\\n    0.7941325902938843,\\\\n    1.2198668718338013,\\\\n    1.041020393371582,\\\\n    1.0770976543426514,\\\\n    1.0129163265228271,\\\\n    0.5126789212226868,\\\\n    0.7080222368240356,\\\\n    1.0157972574234009,\\\\n    2.1588897705078125,\\\\n    0.9046724438667297,\\\\n    0.7178455591201782,\\\\n    0.23569583892822266,\\\\n    0.7697072625160217,\\\\n    0.6072899699211121,\\\\n    1.1148104667663574\\\\n  ]\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"checkpoint_dir\\\": \\\"/root/turn_residual_gating/runs/phase2_lora_only_s42\\\",\\n  \\\"gate_type\\\": \\\"none\\\",\\n  \\\"gar_variant\\\": \\\"ours\\\",\\n  \\\"model\\\": \\\"/root/.cache/modelscope/Qwen/Qwen2___5-7B-Instruct\\\",\\n  \\\"num_conversations\\\": 50,\\n  \\\"num_turns\\\": 3,\\n  \\\"gar_curves\\\": [\\n    [\\n      0.5416310150870716,\\n      0.5263458172167553,\\n      0.4554061378094217,\\n      0.49818170091139147,\\n      0.4957135492074973\\n    ],\\n    [\\n      0.5491873602416434,\\n      0.5314211395975691,\\n      0.5129847891765622,\\n      0.5011930581458135,\\n      0.45741806947685504,\\n      0.4854011757169003\\n    ],\\n    [\\n      0.6442935312059312,\\n      0.5112142494883803,\\n      0.4871701885978909,\\n      0.5241108808773248,\\n      0.5357400812637353\\n    ],\\n    [\\n      0.6191494821177271,\\n      0.45138049875723196,\\n      0.6096552674838358,\\n      0.5530694734234801,\\n      0.008604476805210743\\n    ],\\n    [\\n      0.6234215137819362,\\n      0.5096272428046911,\\n      0.4829668228431809,\\n      0.4771084609843615,\\n      0.5186216466295527\\n    ],\\n    [\\n      0.5312974343731939,\\n      0.5298276366692002,\\n      0.521498309190142,\\n      0.4670848919787781,\\n      0.5306528058454374\\n    ],\\n    [\\n      0.4822604335525601,\\n      0.5604305224771466,\\n      0.488892584717816,\\n      0.45127736776529753,\\n      0.4599431026410964\\n    ],\\n    [\\n      0.551217067563783,\\n      0.5188554985021205,\\n      0.5157955892206775,\\n      0.4915092644525834,\\n      0.497515646766338\\n    ],\\n    [\\n      0.5538780905693791,\\n      0.5026538160433885,\\n      0.4508029268671125,\\n      0.5015889686459177,\\n      0.4679339579450533,\\n      0.43993567548163853\\n    ],\\n    [\\n      0.5229133830598106,\\n      0.5154261619567962,\\n      0.4611538731647548,\\n      0.5229847351550873,\\n      0.520296937115814\\n    ],\\n    [\\n      0.6534084555669192,\\n      0.5290467035163439,\\n      0.49989052541946505,\\n      0.6015929001173478,\\n      0.029979489467137577\\n    ],\\n    [\\n      0.6568403993120283,\\n      0.49947362371422244,\\n      0.5024911744696022,\\n      0.4653793973032683,\\n      0.5100101987708713\\n    ],\\n    [\\n      0.5637104365290954,\\n      0.560112461383787,\\n      0.5374702696806058,\\n      0.5453488689533657,\\n      0.5208791247242399\\n    ],\\n    [\\n      0.5355628819304582,\\n      0.4992446871086327,\\n      0.5891553424444362,\\n      0.6012174217656978,\\n      0.003771203149950171\\n    ],\\n    [\\n      0.5850102471162736,\\n      0.4817742401412553,\\n      0.5253452376171021,\\n      0.4503364479505335,\\n      0.6189679074863232,\\n      0.006155992266498296\\n    ],\\n    [\\n      0.6351196208035359,\\n      0.5349365780667352,\\n      0.46811574627978814,\\n      0.46286262258465466,\\n      0.48971186163486174\\n    ],\\n    [\\n      0.5193963447199959,\\n      0.4249451398295961,\\n      0.5208151599367291,\\n      0.4929237688693358,\\n      0.4830411824655615,\\n      0.47608018197325835,\\n      0.4468373303437971\\n    ],\\n    [\\n      0.5206732285292561,\\n      0.534573339015791,\\n      0.5096325364252591,\\n      0.5166696477757969,\\n      0.5088350461298747,\\n      0.5003315194744412\\n    ],\\n    [\\n      0.4950461032412431,\\n      0.548712458575074,\\n      0.5130245698587361,\\n      0.48549317380221507,\\n      0.4998779720397973,\\n      0.5157816927296051\\n    ],\\n    [\\n      0.4938282690578308,\\n      0.4887810113569792,\\n      0.5111013620217432,\\n      0.5212474868927501,\\n      0.4413735349713689,\\n      0.510577843033974\\n    ],\\n    [\\n      0.5657989832718484,\\n      0.5064648290855743,\\n      0.5083186710312039,\\n      0.5035134311895408,\\n      0.5596402151683216\\n    ],\\n    [\\n      0.5703977555511014,\\n      0.4963570943177955,\\n      0.5166241989314002,\\n      0.5049038020426517,\\n      0.449404286029308,\\n      0.446736210841968,\\n      0.4644427583914471\\n    ],\\n    [\\n      0.4862568953341794,\\n      0.42612896852548804,\\n      0.504145737093089,\\n      0.5068290858405068,\\n      0.5129026063674879\\n    ],\\n    [\\n      0.6450311764652618,\\n      0.5996269211835491,\\n      0.5643184029246132,\\n      0.008641456221636328\\n    ],\\n    [\\n      0.5003639869040839,\\n      0.5360597465834972,\\n      0.4855623521778436,\\n      0.5\\n\\n... [截断: 输出过长，省略 7306 字符] ...\\n\\n [\\n      6.260917268186027,\\n      10.961362153374731,\\n      19.51111356753931\\n    ],\\n    [\\n      5.618896404630006,\\n      10.73427254984861,\\n      14.193908710877077\\n    ],\\n    [\\n      9.972759648432907,\\n      16.376325364842415,\\n      20.356837906368842\\n    ],\\n    [\\n      10.079750069331258,\\n      16.83243966308233,\\n      26.31378785099119\\n    ],\\n    [\\n      12.036488614811176,\\n      24.732178308500675,\\n      28.31415544994034\\n    ],\\n    [\\n      6.378190934987771,\\n      10.13987354775722,\\n      14.632147219875549\\n    ],\\n    [\\n      5.069233404688078,\\n      13.976677579957215,\\n      19.214989168593686\\n    ],\\n    [\\n      1.0734877938493235,\\n      2.0598828997942076,\\n      2.1524331348623944\\n    ],\\n    [\\n      5.3054315493037905,\\n      8.35486437467236,\\n      11.697836399579339\\n    ],\\n    [\\n      5.283250089638922,\\n      9.872612288089417,\\n      12.859221465893071\\n    ],\\n    [\\n      11.7144141915116,\\n      27.94090449036024,\\n      0.4586041587526563\\n    ],\\n    [\\n      3.962964975926474,\\n      7.489495241756894,\\n      11.6081041950297\\n    ],\\n    [\\n      4.238774111485462,\\n      4.911391060565388,\\n      6.746345144612175\\n    ],\\n    [\\n      4.306540783105728,\\n      7.05460980885786,\\n      8.031256831568657\\n    ]\\n  ],\\n  \\\"avg_normalized_gar_per_turn\\\": [\\n    5.66784199431312,\\n    9.670740461070862,\\n    13.258648389220362\\n  ],\\n  \\\"mid_turns_avg_normalized_gar\\\": 13.258648389220362,\\n  \\\"avg_visible_tokens_per_turn\\\": [\\n    360,\\n    653,\\n    954\\n  ],\\n  \\\"conversations_source\\\": \\\"fixed\\\",\\n  \\\"avg_ppl\\\": 2.7845529675483705,\\n  \\\"avg_ntp_loss\\\": 0.9771083498001099,\\n  \\\"ppl_per_conversation\\\": [\\n    2.1801528930664062,\\n    2.5715315341949463,\\n    3.229127883911133,\\n    2.172274112701416,\\n    3.0146853923797607,\\n    2.5563113689422607,\\n    2.1218340396881104,\\n    2.2953832149505615,\\n    3.5460236072540283,\\n    2.539034605026245,\\n    4.155107021331787,\\n    2.422701835632324,\\n    3.020122766494751,\\n    1.577639102935791,\\n    2.907740354537964,\\n    3.1806862354278564,\\n    3.22253680229187,\\n    2.5202603340148926,\\n    2.064897060394287,\\n    2.4035146236419678,\\n    2.442765951156616,\\n    2.6128571033477783,\\n    3.018921136856079,\\n    2.030667543411255,\\n    2.694138765335083,\\n    4.034549236297607,\\n    3.007805347442627,\\n    2.431417465209961,\\n    2.8759374618530273,\\n    3.1203126907348633,\\n    2.3987441062927246,\\n    2.439906597137451,\\n    3.0660922527313232,\\n    4.250121116638184,\\n    3.0274085998535156,\\n    2.2125210762023926,\\n    3.3867368698120117,\\n    2.8321053981781006,\\n    2.936145544052124,\\n    2.753619909286499,\\n    1.6697583198547363,\\n    2.0299723148345947,\\n    2.761564254760742,\\n    8.661516189575195,\\n    2.4711222648620605,\\n    2.0500118732452393,\\n    1.265789270401001,\\n    2.1591341495513916,\\n    1.835450530052185,\\n    3.048990249633789\\n  ],\\n  \\\"ntp_loss_per_conversation\\\": [\\n    0.7793951034545898,\\n    0.9445015788078308,\\n    1.1722121238708496,\\n    0.7757745981216431,\\n    1.103495478630066,\\n    0.9385653138160706,\\n    0.7522807717323303,\\n    0.8308998346328735,\\n    1.265826940536499,\\n    0.93178391456604,\\n    1.4243381023406982,\\n    0.8848834037780762,\\n    1.1052974462509155,\\n    0.4559295177459717,\\n    1.0673762559890747,\\n    1.1570969820022583,\\n    1.1701688766479492,\\n    0.9243622422218323,\\n    0.7250803709030151,\\n    0.8769320845603943,\\n    0.8931309580802917,\\n    0.9604443311691284,\\n    1.104899525642395,\\n    0.7083646059036255,\\n    0.9910786151885986,\\n    1.3948944807052612,\\n    1.1012107133865356,\\n    0.8884743452072144,\\n    1.056378722190857,\\n    1.1379332542419434,\\n    0.874945342540741,\\n    0.8919597268104553,\\n    1.1204038858413696,\\n    1.446947455406189,\\n    1.1077070236206055,\\n    0.7941325902938843,\\n    1.2198668718338013,\\n    1.041020393371582,\\n    1.0770976543426514,\\n    1.0129163265228271,\\n    0.5126789212226868,\\n    0.7080222368240356,\\n    1.0157972574234009,\\n    2.1588897705078125,\\n    0.9046724438667297,\\n    0.7178455591201782,\\n    0.23569583892822266,\\n    0.7697072625160217,\\n    0.6072899699211121,\\n    1.1148104667663574\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MyWzrTWbKKneupCvMVPWPw`</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "cat /root/turn_residual_gating/runs/phase2_4way_eval_heldout/lora_only_dongre/phase2_lora_only_s42_dongre_gar.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "631cf2a4-97ca-4232-8088-173f8a079e98",
+  "uuid": "b35fd9eb-4622-4884-9684-7d3b70c7346e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q4SYWcsMh6LtkExc4P13Md",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 657,
+      "cache_read_input_tokens": 29563,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 657
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-19T14:33:34.207Z_
+
+<details><summary>↩ Tool result · `toolu_01MyWzrTWbKKneupCvMVPWPw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"checkpoint_dir\\\": \\\"/root/turn_residual_gating/runs/phase2_lora_only_s42\\\",\\n  \\\"gate_type\\\": \\\"none\\\",\\n  \\\"gar_variant\\\": \\\"dongre\\\",\\n  \\\"model\\\": \\\"/root/.cache/modelscope/Qwen/Qwen2___5-7B-Instruct\\\",\\n  \\\"num_conversations\\\": 50,\\n  \\\"num_turns\\\": 3,\\n  \\\"gar_curves\\\": [\\n    [\\n      0.021567150233875565,\\n      0.01608011475624444,\\n      0.010575859823200163,\\n      0.011240091627785744,\\n      0.012071825622888615\\n    ],\\n    [\\n      0.022597261463598955,\\n      0.01188584735021706,\\n      0.008641488203580605,\\n      0.008682834728028829,\\n      0.01120146815996423,\\n      0.00787657859352265\\n    ],\\n    [\\n      0.017572781807850338,\\n      0.01232477984529491,\\n      0.008066585339631708,\\n      0.008408282277924064,\\n      0.010538178705466335\\n    ],\\n    [\\n      0.023356851108046226,\\n      0.011080706731902455,\\n      0.010892326406199939,\\n      0.00793382800659176,\\n      0.006452006165535547\\n    ],\\n    [\\n      0.02167707018868095,\\n      0.014173801245262338,\\n      0.010820715951722938,\\n      0.009559692270866569,\\n      0.013584412113041884\\n    ],\\n    [\\n      0.02166993838491943,\\n      0.01707180756495669,\\n      0.015773548057430052,\\n      0.018103231971310144,\\n      0.00942770514065742\\n    ],\\n    [\\n      0.019623537080178312,\\n      0.0162949742334421,\\n      0.010976101568448138,\\n      0.010198961826254734,\\n      0.00861335396402261\\n    ],\\n    [\\n      0.020409265234997833,\\n      0.012727187521776488,\\n      0.012080833785900164,\\n      0.010746872545786323,\\n      0.009966215579451291\\n    ],\\n    [\\n      0.041764359992528116,\\n      0.018584803601421007,\\n      0.011605354571283297,\\n      0.014116355766827602,\\n      0.011992185895953435,\\n      0.014367848023757518\\n    ],\\n    [\\n      0.031366742837879096,\\n      0.025189050954173623,\\n      0.053985148577882544,\\n      0.018528532085961186,\\n      0.025290942909236294\\n    ],\\n    [\\n      0.01787950079505463,\\n      0.010259807071661063,\\n      0.009028643886279256,\\n      0.008720212813410429,\\n      0.005365502234012202\\n    ],\\n    [\\n      0.01616894347847715,\\n      0.01261229909181473,\\n      0.011915126270187043,\\n      0.008265583587020117,\\n      0.009264036677472252\\n    ],\\n    [\\n      0.027485614631330906,\\n      0.014335477036273445,\\n      0.013665792709848176,\\n      0.012928400754225093,\\n      0.011055461584614842\\n    ],\\n    [\\n      0.02512898457937866,\\n      0.013653583281555803,\\n      0.008610724120533313,\\n      0.00939512812990013,\\n      0.005592200749138744\\n    ],\\n    [\\n      0.017066005848075334,\\n      0.013587972334976587,\\n      0.011438789035845682,\\n      0.00857532469950399,\\n      0.008388952447696532,\\n      0.005300149677553373\\n    ],\\n    [\\n      0.016406926706743,\\n      0.012408913708229188,\\n      0.009221543467649924,\\n      0.00841801180723378,\\n      0.008079967299390532\\n    ],\\n    [\\n      0.02551848898313806,\\n      0.021282954811296828,\\n      0.019491041968218024,\\n      0.012132342218361812,\\n      0.01153438610006566,\\n      0.010132399821275544,\\n      0.00957120354964686\\n    ],\\n    [\\n      0.018224859802200885,\\n      0.013261575122959673,\\n      0.02139662808341003,\\n      0.02145717755573536,\\n      0.017343520997943077,\\n      0.008763260359809785\\n    ],\\n    [\\n      0.02116568499781397,\\n      0.012446116957470641,\\n      0.013094547091968282,\\n      0.012942532008305101,\\n      0.008978822341584326,\\n      0.008285989295457053\\n    ],\\n    [\\n      0.028747397849432085,\\n      0.018556399101778455,\\n      0.015873952596915236,\\n      0.013809818007203998,\\n      0.010348163191807886,\\n      0.010789071009506433\\n    ],\\n    [\\n      0.023315975986519515,\\n      0.011229526926787265,\\n      0.010294715727068377,\\n      0.009915988152351818,\\n      0.007461035464976165\\n    ],\\n    [\\n      0.02297271979048018,\\n      0.012111839128743064,\\n      0.012547554907963825,\\n      0.011214268889582105,\\n      0.008230754648437434,\\n      0.009093005425354485,\\n      0.011739487662816817\\n    ],\\n    [\\n      0.026108027059129065,\\n      0.01842116546939256,\\n      0.018071518228277295,\\n      0.017935374701990477,\\n      0.01860344472029884\\n    ],\\n\\n\\n... [截断: 输出过长，省略 7887 字符] ...\\n\\n     0.4371087662684164,\\n      0.7497844592446815\\n    ],\\n    [\\n      0.47145474884277594,\\n      0.48675175261829096,\\n      0.561800893798471\\n    ],\\n    [\\n      0.5983593247521928,\\n      0.5726553841890838,\\n      0.7850407068056151\\n    ],\\n    [\\n      0.5480720726526793,\\n      0.627059715690952,\\n      0.847609073871228\\n    ],\\n    [\\n      0.6727804929794616,\\n      1.0545934091235813,\\n      1.0149830697672453\\n    ],\\n    [\\n      0.4218546494698463,\\n      0.6752879725253843,\\n      0.8845102618601683\\n    ],\\n    [\\n      0.4461615436362468,\\n      0.682570367467883,\\n      0.7434643178723923\\n    ],\\n    [\\n      0.2863682288801543,\\n      0.38355728159349683,\\n      0.4360595239492434\\n    ],\\n    [\\n      0.38265358345719275,\\n      0.4698165317596,\\n      0.5956580574168625\\n    ],\\n    [\\n      0.46779697147865573,\\n      0.5024660028657937,\\n      0.5325900287931974\\n    ],\\n    [\\n      0.7157153044904622,\\n      0.7927349843407224,\\n      0.7039725632700361\\n    ],\\n    [\\n      0.3687187719966326,\\n      0.43169680909929603,\\n      0.5939236150691358\\n    ],\\n    [\\n      0.39483871080591276,\\n      0.9364013065911918,\\n      0.5686730504547605\\n    ],\\n    [\\n      0.3426009655019974,\\n      0.4740815352397126,\\n      0.4186177363710316\\n    ]\\n  ],\\n  \\\"avg_normalized_gar_per_turn\\\": [\\n    0.4640838655386274,\\n    0.5574390961572779,\\n    0.705656378963226\\n  ],\\n  \\\"mid_turns_avg_normalized_gar\\\": 0.705656378963226,\\n  \\\"avg_visible_tokens_per_turn\\\": [\\n    360,\\n    653,\\n    954\\n  ],\\n  \\\"conversations_source\\\": \\\"fixed\\\",\\n  \\\"avg_ppl\\\": 2.7845529675483705,\\n  \\\"avg_ntp_loss\\\": 0.9771083498001099,\\n  \\\"ppl_per_conversation\\\": [\\n    2.1801528930664062,\\n    2.5715315341949463,\\n    3.229127883911133,\\n    2.172274112701416,\\n    3.0146853923797607,\\n    2.5563113689422607,\\n    2.1218340396881104,\\n    2.2953832149505615,\\n    3.5460236072540283,\\n    2.539034605026245,\\n    4.155107021331787,\\n    2.422701835632324,\\n    3.020122766494751,\\n    1.577639102935791,\\n    2.907740354537964,\\n    3.1806862354278564,\\n    3.22253680229187,\\n    2.5202603340148926,\\n    2.064897060394287,\\n    2.4035146236419678,\\n    2.442765951156616,\\n    2.6128571033477783,\\n    3.018921136856079,\\n    2.030667543411255,\\n    2.694138765335083,\\n    4.034549236297607,\\n    3.007805347442627,\\n    2.431417465209961,\\n    2.8759374618530273,\\n    3.1203126907348633,\\n    2.3987441062927246,\\n    2.439906597137451,\\n    3.0660922527313232,\\n    4.250121116638184,\\n    3.0274085998535156,\\n    2.2125210762023926,\\n    3.3867368698120117,\\n    2.8321053981781006,\\n    2.936145544052124,\\n    2.753619909286499,\\n    1.6697583198547363,\\n    2.0299723148345947,\\n    2.761564254760742,\\n    8.661516189575195,\\n    2.4711222648620605,\\n    2.0500118732452393,\\n    1.265789270401001,\\n    2.1591341495513916,\\n    1.835450530052185,\\n    3.048990249633789\\n  ],\\n  \\\"ntp_loss_per_conversation\\\": [\\n    0.7793951034545898,\\n    0.9445015788078308,\\n    1.1722121238708496,\\n    0.7757745981216431,\\n    1.103495478630066,\\n    0.9385653138160706,\\n    0.7522807717323303,\\n    0.8308998346328735,\\n    1.265826940536499,\\n    0.93178391456604,\\n    1.4243381023406982,\\n    0.8848834037780762,\\n    1.1052974462509155,\\n    0.4559295177459717,\\n    1.0673762559890747,\\n    1.1570969820022583,\\n    1.1701688766479492,\\n    0.9243622422218323,\\n    0.7250803709030151,\\n    0.8769320845603943,\\n    0.8931309580802917,\\n    0.9604443311691284,\\n    1.104899525642395,\\n    0.7083646059036255,\\n    0.9910786151885986,\\n    1.3948944807052612,\\n    1.1012107133865356,\\n    0.8884743452072144,\\n    1.056378722190857,\\n    1.1379332542419434,\\n    0.874945342540741,\\n    0.8919597268104553,\\n    1.1204038858413696,\\n    1.446947455406189,\\n    1.1077070236206055,\\n    0.7941325902938843,\\n    1.2198668718338013,\\n    1.041020393371582,\\n    1.0770976543426514,\\n    1.0129163265228271,\\n    0.5126789212226868,\\n    0.7080222368240356,\\n    1.0157972574234009,\\n    2.1588897705078125,\\n    0.9046724438667297,\\n    0.7178455591201782,\\n    0.23569583892822266,\\n    0.7697072625160217,\\n    0.6072899699211121,\\n    1.1148104667663574\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "631cf2a4-97ca-4232-8088-173f8a079e98",
+  "uuid": "aaa407a2-1e31-4f83-ac36-374b4625217b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"checkpoint_dir\\\\\\\": \\\\\\\"/root/turn_residual_gating/runs/phase2_lora_only_s42\\\\\\\",\\\\n  \\\\\\\"gate_type\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n  \\\\\\\"gar_variant\\\\\\\": \\\\\\\"dongre\\\\\\\",\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"/root/.cache/modelscope/Qwen/Qwen2___5-7B-Instruct\\\\\\\",\\\\n  \\\\\\\"num_conversations\\\\\\\": 50,\\\\n  \\\\\\\"num_turns\\\\\\\": 3,\\\\n  \\\\\\\"gar_curves\\\\\\\": [\\\\n    [\\\\n      0.021567150233875565,\\\\n      0.01608011475624444,\\\\n      0.010575859823200163,\\\\n      0.011240091627785744,\\\\n      0.012071825622888615\\\\n    ],\\\\n    [\\\\n      0.022597261463598955,\\\\n      0.01188584735021706,\\\\n      0.008641488203580605,\\\\n      0.008682834728028829,\\\\n      0.01120146815996423,\\\\n      0.00787657859352265\\\\n    ],\\\\n    [\\\\n      0.017572781807850338,\\\\n      0.01232477984529491,\\\\n      0.008066585339631708,\\\\n      0.008408282277924064,\\\\n      0.010538178705466335\\\\n    ],\\\\n    [\\\\n      0.023356851108046226,\\\\n      0.011080706731902455,\\\\n      0.010892326406199939,\\\\n      0.00793382800659176,\\\\n      0.006452006165535547\\\\n    ],\\\\n    [\\\\n      0.02167707018868095,\\\\n      0.014173801245262338,\\\\n      0.010820715951722938,\\\\n      0.009559692270866569,\\\\n      0.013584412113041884\\\\n    ],\\\\n    [\\\\n      0.02166993838491943,\\\\n      0.01707180756495669,\\\\n      0.015773548057430052,\\\\n      0.018103231971310144,\\\\n      0.00942770514065742\\\\n    ],\\\\n    [\\\\n      0.019623537080178312,\\\\n      0.0162949742334421,\\\\n      0.010976101568448138,\\\\n      0.010198961826254734,\\\\n      0.00861335396402261\\\\n    ],\\\\n    [\\\\n      0.020409265234997833,\\\\n      0.012727187521776488,\\\\n      0.012080833785900164,\\\\n      0.010746872545786323,\\\\n      0.009966215579451291\\\\n    ],\\\\n    [\\\\n      0.041764359992528116,\\\\n      0.018584803601421007,\\\\n      0.011605354571283297,\\\\n      0.014116355766827602,\\\\n      0.011992185895953435,\\\\n      0.014367848023757518\\\\n    ],\\\\n    [\\\\n      0.031366742837879096,\\\\n      0.025189050954173623,\\\\n      0.053985148577882544,\\\\n      0.018528532085961186,\\\\n      0.025290942909236294\\\\n    ],\\\\n    [\\\\n      0.01787950079505463,\\\\n      0.010259807071661063,\\\\n      0.009028643886279256,\\\\n      0.008720212813410429,\\\\n      0.005365502234012202\\\\n    ],\\\\n    [\\\\n      0.01616894347847715,\\\\n      0.01261229909181473,\\\\n      0.011915126270187043,\\\\n      0.008265583587020117,\\\\n      0.009264036677472252\\\\n    ],\\\\n    [\\\\n      0.027485614631330906,\\\\n      0.014335477036273445,\\\\n      0.013665792709848176,\\\\n      0.012928400754225093,\\\\n      0.011055461584614842\\\\n    ],\\\\n    [\\\\n      0.02512898457937866,\\\\n      0.013653583281555803,\\\\n      0.008610724120533313,\\\\n      0.00939512812990013,\\\\n      0.005592200749138744\\\\n    ],\\\\n    [\\\\n      0.017066005848075334,\\\\n      0.013587972334976587,\\\\n      0.011438789035845682,\\\\n      0.00857532469950399,\\\\n      0.008388952447696532,\\\\n      0.005300149677553373\\\\n    ],\\\\n    [\\\\n      0.016406926706743,\\\\n      0.012408913708229188,\\\\n      0.009221543467649924,\\\\n      0.00841801180723378,\\\\n      0.008079967299390532\\\\n    ],\\\\n    [\\\\n      0.02551848898313806,\\\\n      0.021282954811296828,\\\\n      0.019491041968218024,\\\\n      0.012132342218361812,\\\\n      0.01153438610006566,\\\\n      0.010132399821275544,\\\\n      0.00957120354964686\\\\n    ],\\\\n    [\\\\n      0.018224859802200885,\\\\n      0.013261575122959673,\\\\n      0.02139662808341003,\\\\n      0.02145717755573536,\\\\n      0.017343520997943077,\\\\n      0.008763260359809785\\\\n    ],\\\\n    [\\\\n      0.02116568499781397,\\\\n      0.012446116957470641,\\\\n      0.013094547091968282,\\\\n      0.012942532008305101,\\\\n      0.008978822341584326,\\\\n      0.008285989295457053\\\\n    ],\\\\n    [\\\\n      0.028747397849432085,\\\\n      0.018556399101778455,\\\\n      0.015873952596915236,\\\\n      0.013809818007203998,\\\\n      0.010348163191807886,\\\\n      0.010789071009506433\\\\n    ],\\\\n    [\\\\n      0.023315975986519515,\\\\n      0.011229526926787265,\\\\n      0.010294715727068377,\\\\n      0.009915988152351818,\\\\n      0.007461035464976165\\\\n    ],\\\\n    [\\\\n      0.02297271979048018,\\\\n      0.012111839128743064,\\\\n      0.012547554907963825,\\\\n      0.011214268889582105,\\\\n      0.008230754648437434,\\\\n      0.009093005425354485,\\\\n      0.011739487662816817\\\\n    ],\\\\n    [\\\\n      0.026108027059129065,\\\\n      0.01842116546939256,\\\\n      0.018071518228277295,\\\\n      0.017935374701990477,\\\\n      0.01860344472029884\\\\n    ],\\\\n\\\\n\\\\n... [截断: 输出过长，省略 7887 字符] ...\\\\n\\\\n     0.4371087662684164,\\\\n      0.7497844592446815\\\\n    ],\\\\n    [\\\\n      0.47145474884277594,\\\\n      0.48675175261829096,\\\\n      0.561800893798471\\\\n    ],\\\\n    [\\\\n      0.5983593247521928,\\\\n      0.5726553841890838,\\\\n      0.7850407068056151\\\\n    ],\\\\n    [\\\\n      0.5480720726526793,\\\\n      0.627059715690952,\\\\n      0.847609073871228\\\\n    ],\\\\n    [\\\\n      0.6727804929794616,\\\\n      1.0545934091235813,\\\\n      1.0149830697672453\\\\n    ],\\\\n    [\\\\n      0.4218546494698463,\\\\n      0.6752879725253843,\\\\n      0.8845102618601683\\\\n    ],\\\\n    [\\\\n      0.4461615436362468,\\\\n      0.682570367467883,\\\\n      0.7434643178723923\\\\n    ],\\\\n    [\\\\n      0.2863682288801543,\\\\n      0.38355728159349683,\\\\n      0.4360595239492434\\\\n    ],\\\\n    [\\\\n      0.38265358345719275,\\\\n      0.4698165317596,\\\\n      0.5956580574168625\\\\n    ],\\\\n    [\\\\n      0.46779697147865573,\\\\n      0.5024660028657937,\\\\n      0.5325900287931974\\\\n    ],\\\\n    [\\\\n      0.7157153044904622,\\\\n      0.7927349843407224,\\\\n      0.7039725632700361\\\\n    ],\\\\n    [\\\\n      0.3687187719966326,\\\\n      0.43169680909929603,\\\\n      0.5939236150691358\\\\n    ],\\\\n    [\\\\n      0.39483871080591276,\\\\n      0.9364013065911918,\\\\n      0.5686730504547605\\\\n    ],\\\\n    [\\\\n      0.3426009655019974,\\\\n      0.4740815352397126,\\\\n      0.4186177363710316\\\\n    ]\\\\n  ],\\\\n  \\\\\\\"avg_normalized_gar_per_turn\\\\\\\": [\\\\n    0.4640838655386274,\\\\n    0.5574390961572779,\\\\n    0.705656378963226\\\\n  ],\\\\n  \\\\\\\"mid_turns_avg_normalized_gar\\\\\\\": 0.705656378963226,\\\\n  \\\\\\\"avg_visible_tokens_per_turn\\\\\\\": [\\\\n    360,\\\\n    653,\\\\n    954\\\\n  ],\\\\n  \\\\\\\"conversations_source\\\\\\\": \\\\\\\"fixed\\\\\\\",\\\\n  \\\\\\\"avg_ppl\\\\\\\": 2.7845529675483705,\\\\n  \\\\\\\"avg_ntp_loss\\\\\\\": 0.9771083498001099,\\\\n  \\\\\\\"ppl_per_conversation\\\\\\\": [\\\\n    2.1801528930664062,\\\\n    2.5715315341949463,\\\\n    3.229127883911133,\\\\n    2.172274112701416,\\\\n    3.0146853923797607,\\\\n    2.5563113689422607,\\\\n    2.1218340396881104,\\\\n    2.2953832149505615,\\\\n    3.5460236072540283,\\\\n    2.539034605026245,\\\\n    4.155107021331787,\\\\n    2.422701835632324,\\\\n    3.020122766494751,\\\\n    1.577639102935791,\\\\n    2.907740354537964,\\\\n    3.1806862354278564,\\\\n    3.22253680229187,\\\\n    2.5202603340148926,\\\\n    2.064897060394287,\\\\n    2.4035146236419678,\\\\n    2.442765951156616,\\\\n    2.6128571033477783,\\\\n    3.018921136856079,\\\\n    2.030667543411255,\\\\n    2.694138765335083,\\\\n    4.034549236297607,\\\\n    3.007805347442627,\\\\n    2.431417465209961,\\\\n    2.8759374618530273,\\\\n    3.1203126907348633,\\\\n    2.3987441062927246,\\\\n    2.439906597137451,\\\\n    3.0660922527313232,\\\\n    4.250121116638184,\\\\n    3.0274085998535156,\\\\n    2.2125210762023926,\\\\n    3.3867368698120117,\\\\n    2.8321053981781006,\\\\n    2.936145544052124,\\\\n    2.753619909286499,\\\\n    1.6697583198547363,\\\\n    2.0299723148345947,\\\\n    2.761564254760742,\\\\n    8.661516189575195,\\\\n    2.4711222648620605,\\\\n    2.0500118732452393,\\\\n    1.265789270401001,\\\\n    2.1591341495513916,\\\\n    1.835450530052185,\\\\n    3.048990249633789\\\\n  ],\\\\n  \\\\\\\"ntp_loss_per_conversation\\\\\\\": [\\\\n    0.7793951034545898,\\\\n    0.9445015788078308,\\\\n    1.1722121238708496,\\\\n    0.7757745981216431,\\\\n    1.103495478630066,\\\\n    0.9385653138160706,\\\\n    0.7522807717323303,\\\\n    0.8308998346328735,\\\\n    1.265826940536499,\\\\n    0.93178391456604,\\\\n    1.4243381023406982,\\\\n    0.8848834037780762,\\\\n    1.1052974462509155,\\\\n    0.4559295177459717,\\\\n    1.0673762559890747,\\\\n    1.1570969820022583,\\\\n    1.1701688766479492,\\\\n    0.9243622422218323,\\\\n    0.7250803709030151,\\\\n    0.8769320845603943,\\\\n    0.8931309580802917,\\\\n    0.9604443311691284,\\\\n    1.104899525642395,\\\\n    0.7083646059036255,\\\\n    0.9910786151885986,\\\\n    1.3948944807052612,\\\\n    1.1012107133865356,\\\\n    0.8884743452072144,\\\\n    1.056378722190857,\\\\n    1.1379332542419434,\\\\n    0.874945342540741,\\\\n    0.8919597268104553,\\\\n    1.1204038858413696,\\\\n    1.446947455406189,\\\\n    1.1077070236206055,\\\\n    0.7941325902938843,\\\\n    1.2198668718338013,\\\\n    1.041020393371582,\\\\n    1.0770976543426514,\\\\n    1.0129163265228271,\\\\n    0.5126789212226868,\\\\n    0.7080222368240356,\\\\n    1.0157972574234009,\\\\n    2.1588897705078125,\\\\n    0.9046724438667297,\\\\n    0.7178455591201782,\\\\n    0.23569583892822266,\\\\n    0.7697072625160217,\\\\n    0.6072899699211121,\\\\n    1.1148104667663574\\\\n  ]\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"checkpoint_dir\\\": \\\"/root/turn_residual_gating/runs/phase2_lora_only_s42\\\",\\n  \\\"gate_type\\\": \\\"none\\\",\\n  \\\"gar_variant\\\": \\\"dongre\\\",\\n  \\\"model\\\": \\\"/root/.cache/modelscope/Qwen/Qwen2___5-7B-Instruct\\\",\\n  \\\"num_conversations\\\": 50,\\n  \\\"num_turns\\\": 3,\\n  \\\"gar_curves\\\": [\\n    [\\n      0.021567150233875565,\\n      0.01608011475624444,\\n      0.010575859823200163,\\n      0.011240091627785744,\\n      0.012071825622888615\\n    ],\\n    [\\n      0.022597261463598955,\\n      0.01188584735021706,\\n      0.008641488203580605,\\n      0.008682834728028829,\\n      0.01120146815996423,\\n      0.00787657859352265\\n    ],\\n    [\\n      0.017572781807850338,\\n      0.01232477984529491,\\n      0.008066585339631708,\\n      0.008408282277924064,\\n      0.010538178705466335\\n    ],\\n    [\\n      0.023356851108046226,\\n      0.011080706731902455,\\n      0.010892326406199939,\\n      0.00793382800659176,\\n      0.006452006165535547\\n    ],\\n    [\\n      0.02167707018868095,\\n      0.014173801245262338,\\n      0.010820715951722938,\\n      0.009559692270866569,\\n      0.013584412113041884\\n    ],\\n    [\\n      0.02166993838491943,\\n      0.01707180756495669,\\n      0.015773548057430052,\\n      0.018103231971310144,\\n      0.00942770514065742\\n    ],\\n    [\\n      0.019623537080178312,\\n      0.0162949742334421,\\n      0.010976101568448138,\\n      0.010198961826254734,\\n      0.00861335396402261\\n    ],\\n    [\\n      0.020409265234997833,\\n      0.012727187521776488,\\n      0.012080833785900164,\\n      0.010746872545786323,\\n      0.009966215579451291\\n    ],\\n    [\\n      0.041764359992528116,\\n      0.018584803601421007,\\n      0.011605354571283297,\\n      0.014116355766827602,\\n      0.011992185895953435,\\n      0.014367848023757518\\n    ],\\n    [\\n      0.031366742837879096,\\n      0.025189050954173623,\\n      0.053985148577882544,\\n      0.018528532085961186,\\n      0.025290942909236294\\n    ],\\n    [\\n      0.01787950079505463,\\n      0.010259807071661063,\\n      0.009028643886279256,\\n      0.008720212813410429,\\n      0.005365502234012202\\n    ],\\n    [\\n      0.01616894347847715,\\n      0.01261229909181473,\\n      0.011915126270187043,\\n      0.008265583587020117,\\n      0.009264036677472252\\n    ],\\n    [\\n      0.027485614631330906,\\n      0.014335477036273445,\\n      0.013665792709848176,\\n      0.012928400754225093,\\n      0.011055461584614842\\n    ],\\n    [\\n      0.02512898457937866,\\n      0.013653583281555803,\\n      0.008610724120533313,\\n      0.00939512812990013,\\n      0.005592200749138744\\n    ],\\n    [\\n      0.017066005848075334,\\n      0.013587972334976587,\\n      0.011438789035845682,\\n      0.00857532469950399,\\n      0.008388952447696532,\\n      0.005300149677553373\\n    ],\\n    [\\n      0.016406926706743,\\n      0.012408913708229188,\\n      0.009221543467649924,\\n      0.00841801180723378,\\n      0.008079967299390532\\n    ],\\n    [\\n      0.02551848898313806,\\n      0.021282954811296828,\\n      0.019491041968218024,\\n      0.012132342218361812,\\n      0.01153438610006566,\\n      0.010132399821275544,\\n      0.00957120354964686\\n    ],\\n    [\\n      0.018224859802200885,\\n      0.013261575122959673,\\n      0.02139662808341003,\\n      0.02145717755573536,\\n      0.017343520997943077,\\n      0.008763260359809785\\n    ],\\n    [\\n      0.02116568499781397,\\n      0.012446116957470641,\\n      0.013094547091968282,\\n      0.012942532008305101,\\n      0.008978822341584326,\\n      0.008285989295457053\\n    ],\\n    [\\n      0.028747397849432085,\\n      0.018556399101778455,\\n      0.015873952596915236,\\n      0.013809818007203998,\\n      0.010348163191807886,\\n      0.010789071009506433\\n    ],\\n    [\\n      0.023315975986519515,\\n      0.011229526926787265,\\n      0.010294715727068377,\\n      0.009915988152351818,\\n      0.007461035464976165\\n    ],\\n    [\\n      0.02297271979048018,\\n      0.012111839128743064,\\n      0.012547554907963825,\\n      0.011214268889582105,\\n      0.008230754648437434,\\n      0.009093005425354485,\\n      0.011739487662816817\\n    ],\\n    [\\n      0.026108027059129065,\\n      0.01842116546939256,\\n      0.018071518228277295,\\n      0.017935374701990477,\\n      0.01860344472029884\\n    ],\\n\\n\\n... [截断: 输出过长，省略 7887 字符] ...\\n\\n     0.4371087662684164,\\n      0.7497844592446815\\n    ],\\n    [\\n      0.47145474884277594,\\n      0.48675175261829096,\\n      0.561800893798471\\n    ],\\n    [\\n      0.5983593247521928,\\n      0.5726553841890838,\\n      0.7850407068056151\\n    ],\\n    [\\n      0.5480720726526793,\\n      0.627059715690952,\\n      0.847609073871228\\n    ],\\n    [\\n      0.6727804929794616,\\n      1.0545934091235813,\\n      1.0149830697672453\\n    ],\\n    [\\n      0.4218546494698463,\\n      0.6752879725253843,\\n      0.8845102618601683\\n    ],\\n    [\\n      0.4461615436362468,\\n      0.682570367467883,\\n      0.7434643178723923\\n    ],\\n    [\\n      0.2863682288801543,\\n      0.38355728159349683,\\n      0.4360595239492434\\n    ],\\n    [\\n      0.38265358345719275,\\n      0.4698165317596,\\n      0.5956580574168625\\n    ],\\n    [\\n      0.46779697147865573,\\n      0.5024660028657937,\\n      0.5325900287931974\\n    ],\\n    [\\n      0.7157153044904622,\\n      0.7927349843407224,\\n      0.7039725632700361\\n    ],\\n    [\\n      0.3687187719966326,\\n      0.43169680909929603,\\n      0.5939236150691358\\n    ],\\n    [\\n      0.39483871080591276,\\n      0.9364013065911918,\\n      0.5686730504547605\\n    ],\\n    [\\n      0.3426009655019974,\\n      0.4740815352397126,\\n      0.4186177363710316\\n    ]\\n  ],\\n  \\\"avg_normalized_gar_per_turn\\\": [\\n    0.4640838655386274,\\n    0.5574390961572779,\\n    0.705656378963226\\n  ],\\n  \\\"mid_turns_avg_normalized_gar\\\": 0.705656378963226,\\n  \\\"avg_visible_tokens_per_turn\\\": [\\n    360,\\n    653,\\n    954\\n  ],\\n  \\\"conversations_source\\\": \\\"fixed\\\",\\n  \\\"avg_ppl\\\": 2.7845529675483705,\\n  \\\"avg_ntp_loss\\\": 0.9771083498001099,\\n  \\\"ppl_per_conversation\\\": [\\n    2.1801528930664062,\\n    2.5715315341949463,\\n    3.229127883911133,\\n    2.172274112701416,\\n    3.0146853923797607,\\n    2.5563113689422607,\\n    2.1218340396881104,\\n    2.2953832149505615,\\n    3.5460236072540283,\\n    2.539034605026245,\\n    4.155107021331787,\\n    2.422701835632324,\\n    3.020122766494751,\\n    1.577639102935791,\\n    2.907740354537964,\\n    3.1806862354278564,\\n    3.22253680229187,\\n    2.5202603340148926,\\n    2.064897060394287,\\n    2.4035146236419678,\\n    2.442765951156616,\\n    2.6128571033477783,\\n    3.018921136856079,\\n    2.030667543411255,\\n    2.694138765335083,\\n    4.034549236297607,\\n    3.007805347442627,\\n    2.431417465209961,\\n    2.8759374618530273,\\n    3.1203126907348633,\\n    2.3987441062927246,\\n    2.439906597137451,\\n    3.0660922527313232,\\n    4.250121116638184,\\n    3.0274085998535156,\\n    2.2125210762023926,\\n    3.3867368698120117,\\n    2.8321053981781006,\\n    2.936145544052124,\\n    2.753619909286499,\\n    1.6697583198547363,\\n    2.0299723148345947,\\n    2.761564254760742,\\n    8.661516189575195,\\n    2.4711222648620605,\\n    2.0500118732452393,\\n    1.265789270401001,\\n    2.1591341495513916,\\n    1.835450530052185,\\n    3.048990249633789\\n  ],\\n  \\\"ntp_loss_per_conversation\\\": [\\n    0.7793951034545898,\\n    0.9445015788078308,\\n    1.1722121238708496,\\n    0.7757745981216431,\\n    1.103495478630066,\\n    0.9385653138160706,\\n    0.7522807717323303,\\n    0.8308998346328735,\\n    1.265826940536499,\\n    0.93178391456604,\\n    1.4243381023406982,\\n    0.8848834037780762,\\n    1.1052974462509155,\\n    0.4559295177459717,\\n    1.0673762559890747,\\n    1.1570969820022583,\\n    1.1701688766479492,\\n    0.9243622422218323,\\n    0.7250803709030151,\\n    0.8769320845603943,\\n    0.8931309580802917,\\n    0.9604443311691284,\\n    1.104899525642395,\\n    0.7083646059036255,\\n    0.9910786151885986,\\n    1.3948944807052612,\\n    1.1012107133865356,\\n    0.8884743452072144,\\n    1.056378722190857,\\n    1.1379332542419434,\\n    0.874945342540741,\\n    0.8919597268104553,\\n    1.1204038858413696,\\n    1.446947455406189,\\n    1.1077070236206055,\\n    0.7941325902938843,\\n    1.2198668718338013,\\n    1.041020393371582,\\n    1.0770976543426514,\\n    1.0129163265228271,\\n    0.5126789212226868,\\n    0.7080222368240356,\\n    1.0157972574234009,\\n    2.1588897705078125,\\n    0.9046724438667297,\\n    0.7178455591201782,\\n    0.23569583892822266,\\n    0.7697072625160217,\\n    0.6072899699211121,\\n    1.1148104667663574\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now extract the key summary metrics from each JSON. I need to also get the TG and UG summary lines from the log. Let me look at what was truncated. Actually, I have all the key fields from the JSON files. Let me extract the summary metrics:
+
+From the JSON files:
+
+**Base (ours):**
+- mid_turns_avg_gar: need to calculate from gar_curves (the JSON was truncated but I can see avg_ppl and other fields)
+- avg_ppl: 4.338
+- avg_ntp_loss: 1.404
+
+
+- mid_turns_avg_normalized_gar: 0.3012
+
+I need to check the log for the summary lines from each evaluation run. The JSON files have most of what I need, but I'm looking for the raw mid_turns_avg_gar value since I can see the normalized version is 0.301.
+
+Let me extract the summary metrics from the log tail instead. I can see the LoRA-only + dongre results showing mid-turns avg GAR of 0.0132, GAR recovery of +0.10pp, avg PPL of 2.78, and avg NTP loss of 0.9771. I'll grep through the log to pull out all the summary sections for comparison.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "631cf2a4-97ca-4232-8088-173f8a079e98",
+  "uuid": "4f8f79be-fe96-4e23-ab9e-2dc405734737",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018vXuRM94zLtk5Q4P15TUV5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 36647,
+      "cache_read_input_tokens": 30220,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 36647
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32_
+
+输出太长被截断了。让我直接 grep 日志中的汇总行。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "631cf2a4-97ca-4232-8088-173f8a079e98",
+  "uuid": "5591b463-01e5-4249-beba-0274f03e247c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018vXuRM94zLtk5Q4P15TUV5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 36647,
+      "cache_read_input_tokens": 30220,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 36647
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Pgp9iaYiKkfEfQp4NTgTzA`</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "grep -E \"(Mid-turns avg GAR|GAR recovery|Avg PPL|Avg NTP|=====.*=====)\" ~/runs/turn_residual_gating/phase2_4way_eval_heldout.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "631cf2a4-97ca-4232-8088-173f8a079e98",
+  "uuid": "6c199455-5bf5-4518-98b4-e2fe92baebc2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018vXuRM94zLtk5Q4P15TUV5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 36647,
+      "cache_read_input_tokens": 30220,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 36647
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-19T14:33:48.986Z_
+
+<details><summary>↩ Tool result · `toolu_01Pgp9iaYiKkfEfQp4NTgTzA`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "631cf2a4-97ca-4232-8088-173f8a079e98",
+  "uuid": "7dd1403c-e306-4626-8f4f-71a869dda627",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Tmkgrhdcn6Pjgd14Q3uTup`</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "grep -E \"Mid-turns avg GAR|GAR recovery|Avg PPL|Avg NTP|=====.*=====\" ~/runs/turn_residual_gating/phase2_4way_eval_heldout.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "631cf2a4-97ca-4232-8088-173f8a079e98",
+  "uuid": "a2829517-fd51-4568-93e7-7d0f779a2147",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R1HKQoMoq5C5BFwfY2AL5z",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 734,
+      "cache_read_input_tokens": 66867,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 734
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-19T14:33:52.216Z_
+
+<details><summary>↩ Tool result · `toolu_01Tmkgrhdcn6Pjgd14Q3uTup`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "631cf2a4-97ca-4232-8088-173f8a079e98",
+  "uuid": "cb65d64d-14c5-40bd-90d4-16d8f5c19e67",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Q63bZdyi8gWRduRSom8y5x`</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "grep -E \"Mid-turns|GAR recovery|Avg PPL|Avg NTP\" ~/runs/turn_residual_gating/phase2_4way_eval_heldout.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "631cf2a4-97ca-4232-8088-173f8a079e98",
+  "uuid": "3f963a97-a6de-4aef-8463-2115b5e79d15",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BVfDuUxuP2HBqx69X5pTKF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 231,
+      "cache_read_input_tokens": 67601,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 231
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-19T14:33:58.512Z_
+
+<details><summary>↩ Tool result · `toolu_01Q63bZdyi8gWRduRSom8y5x`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "631cf2a4-97ca-4232-8088-173f8a079e98",
+  "uuid": "77c1952b-6bb6-4745-a2be-b2dd84d97e78",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UPzt9EUWmudYZ69gRBCMWG`</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "grep \"Mid-turns\" ~/runs/turn_residual_gating/phase2_4way_eval_heldout.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "631cf2a4-97ca-4232-8088-173f8a079e98",
+  "uuid": "dffed6d8-0c66-4d11-a4ad-b9eb7a3bdc6a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A7cxSXcq48yDBqRQEeHPRj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 223,
+      "cache_read_input_tokens": 67832,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 223
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-19T14:34:02.463Z_
+
+<details><summary>↩ Tool result · `toolu_01UPzt9EUWmudYZ69gRBCMWG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Mid-turns avg GAR:  0.0128\\nMid-turns avg nGAR: 0.3012\\nMid-turns avg GAR:  0.0031\\nMid-turns avg nGAR: 0.1627\\nMid-turns avg GAR:  0.5035\\nMid-turns avg nGAR: 13.4003\\nMid-turns avg GAR:  0.0152\\nMid-turns avg nGAR: 0.8396\\nMid-turns avg GAR:  0.5053\\nMid-turns avg nGAR: 13.4437\\nMid-turns avg GAR:  0.0124\\nMid-turns avg nGAR: 0.6716\\nMid-turns avg GAR:  0.4978\\nMid-turns avg nGAR: 13.2586\\nMid-turns avg GAR:  0.0132\\nMid-turns avg nGAR: 0.7057\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "631cf2a4-97ca-4232-8088-173f8a079e98",
+  "uuid": "5590e7e3-5235-42b2-a269-e80933b607fc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Mid-turns avg GAR:  0.0128\\\\nMid-turns avg nGAR: 0.3012\\\\nMid-turns avg GAR:  0.0031\\\\nMid-turns avg nGAR: 0.1627\\\\nMid-turns avg GAR:  0.5035\\\\nMid-turns avg nGAR: 13.4003\\\\nMid-turns avg GAR:  0.0152\\\\nMid-turns avg nGAR: 0.8396\\\\nMid-turns avg GAR:  0.5053\\\\nMid-turns avg nGAR: 13.4437\\\\nMid-turns avg GAR:  0.0124\\\\nMid-turns avg nGAR: 0.6716\\\\nMid-turns avg GAR:  0.4978\\\\nMid-turns avg nGAR: 13.2586\\\\nMid-turns avg GAR:  0.0132\\\\nMid-turns avg nGAR: 0.7057\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Mid-turns avg GAR:  0.0128\\nMid-turns avg nGAR: 0.3012\\nMid-turns avg GAR:  0.0031\\nMid-turns avg nGAR: 0.1627\\nMid-turns avg GAR:  0.5035\\nMid-turns avg nGAR: 13.4003\\nMid-turns avg GAR:  0.0152\\nMid-turns avg nGAR: 0.8396\\nMid-turns avg GAR:  0.5053\\nMid-turns avg nGAR: 13.4437\\nMid-turns avg GAR:  0.0124\\nMid-turns avg nGAR: 0.6716\\nMid-turns avg GAR:  0.4978\\nMid-turns avg nGAR: 13.2586\\nMid-turns avg GAR:  0.0132\\nMid-turns avg nGAR: 0.7057\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MrX2a8Vr6kmaLLMwp844XT`</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "grep \"GAR recovery\" ~/runs/turn_residual_gating/phase2_4way_eval_heldout.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "631cf2a4-97ca-4232-8088-173f8a079e98",
+  "uuid": "029deb78-65dd-4bcf-a030-47a88ed8763a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A7cxSXcq48yDBqRQEeHPRj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 223,
+      "cache_read_input_tokens": 67832,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 223
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-19T14:34:03.274Z_
+
+<details><summary>↩ Tool result · `toolu_01MrX2a8Vr6kmaLLMwp844XT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"GAR recovery:          +0.06pp\\nGAR recovery:       +0.06pp\\nGAR recovery:          -0.91pp\\nGAR recovery:       -0.91pp\\nGAR recovery:          +49.13pp\\nGAR recovery:       +49.13pp\\nGAR recovery:          +0.30pp\\nGAR recovery:       +0.30pp\\nGAR recovery:          +49.31pp\\nGAR recovery:       +49.31pp\\nGAR recovery:          +0.02pp\\nGAR recovery:       +0.02pp\\nGAR recovery:          +48.56pp\\nGAR recovery:       +48.56pp\\nGAR recovery:          +0.10pp\\nGAR recovery:       +0.10pp\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "631cf2a4-97ca-4232-8088-173f8a079e98",
+  "uuid": "77d5b663-d354-49f7-aa96-353e756deb8e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"GAR recovery:          +0.06pp\\\\nGAR recovery:       +0.06pp\\\\nGAR recovery:          -0.91pp\\\\nGAR recovery:       -0.91pp\\\\nGAR recovery:          +49.13pp\\\\nGAR recovery:       +49.13pp\\\\nGAR recovery:          +0.30pp\\\\nGAR recovery:       +0.30pp\\\\nGAR recovery:          +49.31pp\\\\nGAR recovery:       +49.31pp\\\\nGAR recovery:          +0.02pp\\\\nGAR recovery:       +0.02pp\\\\nGAR recovery:          +48.56pp\\\\nGAR recovery:       +48.56pp\\\\nGAR recovery:          +0.10pp\\\\nGAR recovery:       +0.10pp\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"GAR recovery:          +0.06pp\\nGAR recovery:       +0.06pp\\nGAR recovery:          -0.91pp\\nGAR recovery:       -0.91pp\\nGAR recovery:          +49.13pp\\nGAR recovery:       +49.13pp\\nGAR recovery:          +0.30pp\\nGAR recovery:       +0.30pp\\nGAR recovery:          +49.31pp\\nGAR recovery:       +49.31pp\\nGAR recovery:          +0.02pp\\nGAR recovery:       +0.02pp\\nGAR recovery:          +48.56pp\\nGAR recovery:       +48.56pp\\nGAR recovery:          +0.10pp\\nGAR recovery:       +0.10pp\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014SruyvSYPPN4bRGCsMLtTu`</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "grep \"Avg PPL\" ~/runs/turn_residual_gating/phase2_4way_eval_heldout.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "631cf2a4-97ca-4232-8088-173f8a079e98",
+  "uuid": "b5090140-59b6-4b4c-9170-f53aaee24a1f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A7cxSXcq48yDBqRQEeHPRj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 223,
+      "cache_read_input_tokens": 67832,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 223
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-19T14:34:03.819Z_
+
+<details><summary>↩ Tool result · `toolu_014SruyvSYPPN4bRGCsMLtTu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Avg PPL: 4.34\\nAvg PPL:            4.34\\nAvg PPL: 4.34\\nAvg PPL:            4.34\\nAvg PPL: 2.78\\nAvg PPL:            2.78\\nAvg PPL: 2.78\\nAvg PPL:            2.78\\nAvg PPL: 2.78\\nAvg PPL:            2.78\\nAvg PPL: 2.78\\nAvg PPL:            2.78\\nAvg PPL: 2.78\\nAvg PPL:            2.78\\nAvg PPL: 2.78\\nAvg PPL:            2.78\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "631cf2a4-97ca-4232-8088-173f8a079e98",
+  "uuid": "c5344be3-bf87-4fb4-8c1c-c5aeb5a78ace",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Avg PPL: 4.34\\\\nAvg PPL:            4.34\\\\nAvg PPL: 4.34\\\\nAvg PPL:            4.34\\\\nAvg PPL: 2.78\\\\nAvg PPL:            2.78\\\\nAvg PPL: 2.78\\\\nAvg PPL:            2.78\\\\nAvg PPL: 2.78\\\\nAvg PPL:            2.78\\\\nAvg PPL: 2.78\\\\nAvg PPL:            2.78\\\\nAvg PPL: 2.78\\\\nAvg PPL:            2.78\\\\nAvg PPL: 2.78\\\\nAvg PPL:            2.78\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Avg PPL: 4.34\\nAvg PPL:            4.34\\nAvg PPL: 4.34\\nAvg PPL:            4.34\\nAvg PPL: 2.78\\nAvg PPL:            2.78\\nAvg PPL: 2.78\\nAvg PPL:            2.78\\nAvg PPL: 2.78\\nAvg PPL:            2.78\\nAvg PPL: 2.78\\nAvg PPL:            2.78\\nAvg PPL: 2.78\\nAvg PPL:            2.78\\nAvg PPL: 2.78\\nAvg PPL:            2.78\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Kv3VXH8hvvKFmYvmYjvkzZ`</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "grep \"Avg NTP\" ~/runs/turn_residual_gating/phase2_4way_eval_heldout.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "631cf2a4-97ca-4232-8088-173f8a079e98",
+  "uuid": "078efb26-4e51-46a3-9fab-70c745485cd4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A7cxSXcq48yDBqRQEeHPRj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 223,
+      "cache_read_input_tokens": 67832,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 223
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-19T14:34:04.437Z_
+
+<details><summary>↩ Tool result · `toolu_01Kv3VXH8hvvKFmYvmYjvkzZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Avg NTP Loss: 1.4045\\nAvg NTP Loss:       1.4045\\nAvg NTP Loss: 1.4045\\nAvg NTP Loss:       1.4045\\nAvg NTP Loss: 0.9771\\nAvg NTP Loss:       0.9771\\nAvg NTP Loss: 0.9771\\nAvg NTP Loss:       0.9771\\nAvg NTP Loss: 0.9752\\nAvg NTP Loss:       0.9752\\nAvg NTP Loss: 0.9752\\nAvg NTP Loss:       0.9752\\nAvg NTP Loss: 0.9771\\nAvg NTP Loss:       0.9771\\nAvg NTP Loss: 0.9771\\nAvg NTP Loss:       0.9771\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "631cf2a4-97ca-4232-8088-173f8a079e98",
+  "uuid": "447a9fe0-b25d-4072-b20d-c68361e8830e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Avg NTP Loss: 1.4045\\\\nAvg NTP Loss:       1.4045\\\\nAvg NTP Loss: 1.4045\\\\nAvg NTP Loss:       1.4045\\\\nAvg NTP Loss: 0.9771\\\\nAvg NTP Loss:       0.9771\\\\nAvg NTP Loss: 0.9771\\\\nAvg NTP Loss:       0.9771\\\\nAvg NTP Loss: 0.9752\\\\nAvg NTP Loss:       0.9752\\\\nAvg NTP Loss: 0.9752\\\\nAvg NTP Loss:       0.9752\\\\nAvg NTP Loss: 0.9771\\\\nAvg NTP Loss:       0.9771\\\\nAvg NTP Loss: 0.9771\\\\nAvg NTP Loss:       0.9771\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Avg NTP Loss: 1.4045\\nAvg NTP Loss:       1.4045\\nAvg NTP Loss: 1.4045\\nAvg NTP Loss:       1.4045\\nAvg NTP Loss: 0.9771\\nAvg NTP Loss:       0.9771\\nAvg NTP Loss: 0.9771\\nAvg NTP Loss:       0.9771\\nAvg NTP Loss: 0.9752\\nAvg NTP Loss:       0.9752\\nAvg NTP Loss: 0.9752\\nAvg NTP Loss:       0.9752\\nAvg NTP Loss: 0.9771\\nAvg NTP Loss:       0.9771\\nAvg NTP Loss: 0.9771\\nAvg NTP Loss:       0.9771\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me reconstruct the results. The grep output gives pairs for each eval (first line is from the raw measurement, second is from the summary block). The order in the log is:
+
+1. Base + ours
+2. Base + dongre
+3. TG v7 + ours
+4. TG v7 + dongre
+5. UG + ours
+6. UG + dongre
+7. LoRA-only + ours
+8. LoRA-only + dongre
+
+Let me map each metric to the right eval:
+
+**Mid-turns avg GAR (8 evals, each appears twice - raw + summary):**
+
+
+Base+ours shows 0.0128, Base+dongre is 0.0031, TG+ours jumps to 0.5035 while TG+dongre drops to 0.0152, UG+ours is 0.5053 versus UG+dongre at 0.0124, and LoRA-only+ours is 0.4978 with LoRA-only+dongre at 0.0132. **Mid-turns avg nGAR:** The pattern continues with Base+ours at 0.3012, Base+dongre at 0.1627, then TG+ours shoots up to 13.4003 compared to TG+dongre's 0.8396, UG+ours at 13.4437, and the data cuts off at UG+dongre.
+
+Looking at the GAR recovery percentages, I'm seeing Base+ours at +0.06pp and Base+dongre at -0.91pp, though that negative value seems suspicious. Let me verify these numbers - the recovery lines show Base+ours consistently at +0.06pp, Base+dongre at -0.91pp, TG+ours at +49.13pp, TG+dongre at +0.30pp, UG+ours at +49.31pp, and the rest appears to be cut off. I'm parsing through the recovery values more carefully now—each measurement appears twice in the output, so I need to extract the unique values for each model-method pair. Looking at the results, the base model shows essentially zero recovery with both approaches, which makes sense since there's no meaningful difference between the baseline and trained states for an untrained model.
+
+Now examining the perplexity and NTP loss metrics across the different configurations. The PPL values are all converging to 2.78 for the trained models, but the NTP losses show some variation—TG and LO both hit 0.9771 while UG is slightly lower at 0.9752. This is interesting because TG and LO appear to have identical performance despite different training approaches, while UG is marginally better. Looking at the NTP loss values, there's an interesting pattern emerging—the base model sits at 1.4045, while TG, UG, and LO all cluster around 0.977, with UG showing a marginally lower loss at 0.9752. So despite the PPL being identical across these three variants on held-out data, the training losses reveal subtle differences in how they're converging. Generating markdown table... Now I'm comparing the held-out results against the previous overlap data, and I'm seeing that the three approaches—TG, UG, and LoRA-only—are converging very tightly on both the GAR metric and perplexity across the held-out set, all clustering around 0.50 for GAR-ours and 2.78 for PPL.
+
+The absolute values shift slightly higher on held-out data compared to overlap, which makes sense since the model hasn't seen this data before, but the relative patterns hold—the Dongre variant of GAR still isn't picking up the signal as effectively as the main metric, staying consistently low across all trained configurations.
+
+The key finding is that the three-way convergence between TG, UG, and LO replicates cleanly on held-out data with no unexpected deviations, confirming the results are robust.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "631cf2a4-97ca-4232-8088-173f8a079e98",
+  "uuid": "350b437e-b5e0-4257-8f0f-ddf84775ec0a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Rb2MA36CzTpNS7KmFh6hn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1654,
+      "cache_read_input_tokens": 68055,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1654
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48_
+
+所有 8 个 eval 数据已收集。汇总如下：
+
+## Held-out 四路 Eval 结果
+
+| Model | GAR-ours (mid) | recovery (pp) | GAR-Dongre (mid) | recovery (pp) | PPL | NTP Loss |
+|-------|:-:|:-:|:-:|:-:|:-:|:-:|
+| **Base** | 0.0128 | +0.06 | 0.0031 | -0.91 | 4.34 | 1.4045 |
+| **TG v7** | 0.5035 | +49.13 | 0.0152 | +0.30 | 2.78 | 0.9771 |
+| **UG** | 0.5053 | +49.31 | 0.0124 | +0.02 | 2.78 | 0.9752 |
+| **LoRA-only** | 0.4978 | +48.56 | 0.0132 | +0.10 | 2.78 | 0.9771 |
+
+## 与 Overlap 数据对比
+
+| Model | GAR-ours: overlap→held-out | PPL: overlap→held-out |
+|-------|:-:|:-:|
+| Base | 0.0107 → 0.0128 (+0.2pp) | 4.23 → 4.34 (+0.11) |
+| TG v7 | 0.4866 → 0.5035 (+1.7pp) | 2.63 → 2.78 (+0.15) |
+| UG | 0.4923 → 0.5053 (+1.3pp) | 2.62 → 2.78 (+0.16) |
+| LoRA-only | 0.4860 → 0.4978 (+1.2pp) | 2.63 → 2.78 (+0.15) |
+
+## 分析
+
+1. **三路趋同在 held-out 数据上完全复现**：TG/UG/LO 的 GAR-ours 分别为 0.5035/0.5053/0.4978，spread 仅 0.75pp；PPL 三者均为 2.78。
+
+2. **绝对值略有上升但趋势一致**：GAR-ours 各路在 held-out 上比 overlap 高 ~1-2pp，PPL 高 ~0.15，属于 held-out 数据的正常泛化偏移。
+
+3. **GAR-Dongre 仍然低且无区分力**（TG 0.015, UG 0.012, LO 0.013），与 overlap 一致。
+
+4. **无意外发现**。
+
+## Conclusion: **SUCCESS**
+
+三路趋同（TG≈UG≈LO）在 held-out 数据上鲁棒复现，进一步确认 gating mechanism 未提供超越 LoRA-only baseline 的独立贡献。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "631cf2a4-97ca-4232-8088-173f8a079e98",
+  "uuid": "f9863b6e-1a52-4c9f-b5cd-1d9148ce90cb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Rb2MA36CzTpNS7KmFh6hn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1654,
+      "cache_read_input_tokens": 68055,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1654
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 49_
+
+所有 8 个 eval 数据已收集。汇总如下：
+
+## Held-out 四路 Eval 结果
+
+| Model | GAR-ours (mid) | recovery (pp) | GAR-Dongre (mid) | recovery (pp) | PPL | NTP Loss |
+|-------|:-:|:-:|:-:|:-:|:-:|:-:|
+| **Base** | 0.0128 | +0.06 | 0.0031 | -0.91 | 4.34 | 1.4045 |
+| **TG v7** | 0.5035 | +49.13 | 0.0152 | +0.30 | 2.78 | 0.9771 |
+| **UG** | 0.5053 | +49.31 | 0.0124 | +0.02 | 2.78 | 0.9752 |
+| **LoRA-only** | 0.4978 | +48.56 | 0.0132 | +0.10 | 2.78 | 0.9771 |
+
+## 与 Overlap 数据对比
+
+| Model | GAR-ours: overlap→held-out | PPL: overlap→held-out |
+|-------|:-:|:-:|
+| Base | 0.0107 → 0.0128 (+0.2pp) | 4.23 → 4.34 (+0.11) |
+| TG v7 | 0.4866 → 0.5035 (+1.7pp) | 2.63 → 2.78 (+0.15) |
+| UG | 0.4923 → 0.5053 (+1.3pp) | 2.62 → 2.78 (+0.16) |
+| LoRA-only | 0.4860 → 0.4978 (+1.2pp) | 2.63 → 2.78 (+0.15) |
+
+## 分析
+
+1. **三路趋同在 held-out 数据上完全复现**：TG/UG/LO 的 GAR-ours 分别为 0.5035/0.5053/0.4978，spread 仅 0.75pp；PPL 三者均为 2.78。
+
+2. **绝对值略有上升但趋势一致**：GAR-ours 各路在 held-out 上比 overlap 高 ~1-2pp，PPL 高 ~0.15，属于 held-out 数据的正常泛化偏移。
+
+3. **GAR-Dongre 仍然低且无区分力**（TG 0.015, UG 0.012, LO 0.013），与 overlap 一致。
+
+4. **无意外发现**。
+
+## Conclusion: **SUCCESS**
+
+三路趋同（TG≈UG≈LO）在 held-out 数据上鲁棒复现，进一步确认 gating mechanism 未提供超越 LoRA-only baseline 的独立贡献。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 105933,
+  "duration_api_ms": 104025,
+  "num_turns": 20,
+  "stop_reason": "end_turn",
+  "session_id": "631cf2a4-97ca-4232-8088-173f8a079e98",
+  "total_cost_usd": 0.7185985,
+  "usage": {
+    "input_tokens": 12,
+    "cache_creation_input_tokens": 57868,
+    "cache_read_input_tokens": 390731,
+    "output_tokens": 6390,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 57868,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 3624,
+        "cache_read_input_tokens": 68055,
+        "cache_creation_input_tokens": 1654,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1654
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1658,
+      "outputTokens": 18,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001748,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 12,
+      "outputTokens": 6390,
+      "cacheReadInputTokens": 390731,
+      "cacheCreationInputTokens": 57868,
+      "webSearchRequests": 0,
+      "costUSD": 0.7168505000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "7eba035f-e8a6-467b-976c-e22d830aef02"
+}
+```
+
+</details>
+
+---

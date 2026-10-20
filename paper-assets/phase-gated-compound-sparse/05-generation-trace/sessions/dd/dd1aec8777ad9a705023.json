@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dd1aec8777ad9a705023",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "analysis bf16 qw rand s015",
+  "task_key": "worker_analysis_bf16_qw_rand_s015_20260514T081651",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bf16_qw_rand_s015_20260514T081651_result.json",
+    "occurrence": 1,
+    "bytes": 563,
+    "sha256": "6b39acf51d5e580a0dc77bc492315aca8ea3d5f2e02eb2ea244087c09e05c475"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。Registry 已全部更新。\n\n**bf16_qw_rand_s015 结果总结：**\n\n| Phase | Median II | Median CI | PPL(both) |\n|-------|-----------|-----------|-----------|\n| high  | 0.138     | [0.10, 0.21] | 4.21 |\n| mid   | 0.219     | [-0.00, 0.66] | 4.61 |\n| low   | 0.188     | [0.10, 0.31] | 5.48 |\n\n- **Verdict: FAIL** — median CIs 完全重叠，无结构化 phase gradient\n- **Conclusion: success** — 确认假设：random masking 不产生 phase-dependent compound interaction\n- 50 problems, 52888 tokens, 0.5 GPU-hours"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-bf16-qw-rand-s015.md"
+}

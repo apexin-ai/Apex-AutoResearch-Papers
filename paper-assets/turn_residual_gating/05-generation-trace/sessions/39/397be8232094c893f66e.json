@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "397be8232094c893f66e",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "ops check queue progress",
+  "task_key": "worker_ops_check_queue_progress_20260523T000638",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_queue_progress_20260523T000638_result.json",
+    "occurrence": 1,
+    "bytes": 839,
+    "sha256": "36789ab877e4081fd015d4bd79d99c7532c04550d512c95705be7474aeb83dcd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Queue Runner 状态\n\n**当前位置：[2/8] AR N=50 existing s42 checkpoints — 子任务 [3/4] LO (LoRA-only)**\n\n| 子任务 | 状态 | 完成时间 |\n|--------|------|----------|\n| [1/4] TG s42 | 完成 | 07:24 |\n| [2/4] UG s42 | 完成 | 07:58 |\n| [3/4] LO s42 | **进行中** — 模型已加载完毕，正在生成 | — |\n| [4/4] ? | 待执行 | — |\n\n结果文件 `lo_s42_ar_n50.json` 已存在（08:06 更新），说明 LO 生成可能接近完成或已完成，日志尾部还没刷新到最终结果。\n\n**GPU：** 43% 利用率，22.3 GB / 97.9 GB 显存（有活跃任务）\n\n**tmux：** ssh_read_only 不允许执行 tmux ls，但 GPU 有负载，runner 在跑。\n\n**整体进度：** 8 个 queue item 中完成了 1 个，第 2 个正在执行中（4 个子任务已完成 2-3 个）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-queue-progress.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "37dcd38544fe23a86246",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "ops scp fig1",
+  "task_key": "worker_ops_scp_fig1_20260523T022936",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_scp_fig1_20260523T022936_result.json",
+    "occurrence": 1,
+    "bytes": 113,
+    "sha256": "39f0091454822d59a1bc2212e870986146c4abe9dca5e425db8f32443c2eac83"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件已下载到本地，大小与远程一致（PDF 33,221 bytes, PNG 144,551 bytes）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-scp-fig1.md"
+}

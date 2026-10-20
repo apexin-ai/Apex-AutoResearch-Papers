@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e8ba5d2be9aefeb0194e",
+  "project": "turn-hier-kv-compress",
+  "kind": "result",
+  "title": "experiment mvp v2 check",
+  "task_key": "worker_experiment_mvp_v2_check_20260513T115322",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_mvp_v2_check_20260513T115322_result.json",
+    "occurrence": 1,
+    "bytes": 1813,
+    "sha256": "6c011b4572a27410ff9a8a1c510dfffdadfdef0ad33a332498a5cc90b57f7b94"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## MVP v2 实验状态：两组均已完成，Verdict 均为 KILL\n\nGPU 空闲（0% utilization），进程已结束，80/80 traces 全部评估完成。\n\n---\n\n### CR70（压缩率 0.7）\n\n| | full | uniform_ea | turnkv | diff (turnkv − uniform_ea) |\n|---|---|---|---|---|\n| **Standard KIRR** | 0.1676 | 0.0471 | 0.0784 | **+3.1 pp** |\n| **Standard PPL** | 11.80 | 20.37 | 41.40 | **ppl_ratio = 2.03x** |\n| **Adversarial KIRR** | 0.1085 | 0.0039 | 0.0 | **−0.4 pp** |\n| **Adversarial PPL** | 14.05 | 25.38 | 35.21 | ppl_ratio = 1.39x |\n| **Overall KIRR** | 0.144 | 0.0299 | 0.047 | **+1.7 pp** |\n| **Overall PPL** | 12.70 | 22.38 | 38.92 | **ppl_ratio = 1.74x** |\n\nMVP: KIRR pass = **false**, PPL pass = **false** → **KILL**\n\n---\n\n### CR85（压缩率 0.85）\n\n| | full | uniform_ea | turnkv | diff (turnkv − uniform_ea) |\n|---|---|---|---|---|\n| **Standard KIRR** | 0.1676 | 0.0344 | 0.0358 | **+0.1 pp** |\n| **Standard PPL** | 11.80 | 23.17 | 59.46 | **ppl_ratio = 2.57x** |\n| **Adversarial KIRR** | 0.1085 | 0.0 | 0.0 | **0.0 pp** |\n| **Adversarial PPL** | 14.05 | 27.65 | 58.11 | ppl_ratio = 2.10x |\n| **Overall KIRR** | 0.144 | 0.0206 | 0.0215 | **+0.1 pp** |\n| **Overall PPL** | 12.70 | 24.96 | 58.92 | **ppl_ratio = 2.36x** |\n\nMVP: KIRR pass = **false**, PPL pass = **false** → **KILL**\n\n---\n\n### 关键发现\n\n- **TurnKV 的 KIRR 优势微弱**：CR70 overall 仅 +1.7pp，CR85 几乎为零（+0.1pp）\n- **TurnKV 的 PPL 代价巨大**：CR70 下 turnkv PPL 是 uniform_ea 的 1.74x，CR85 下是 2.36x——PPL 劣化严重\n- **Adversarial 场景全面失败**：CR70 adversarial turnkv KIRR = 0（比 uniform_ea 的 0.0039 还低），CR85 两者都为 0\n- 两个压缩率下 MVP verdict 均为 **KILL**，KIRR 和 PPL 两项都未通过"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-mvp-v2-check.md"
+}

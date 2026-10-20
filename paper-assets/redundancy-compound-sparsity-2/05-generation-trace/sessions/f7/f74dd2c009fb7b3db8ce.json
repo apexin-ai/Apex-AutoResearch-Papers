@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f74dd2c009fb7b3db8ce",
+  "project": "redundancy-compound-sparsity-2",
+  "kind": "history",
+  "title": "agent / loop_2_1778611803.md",
+  "task_key": "loop_2_1778611803",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1778611803.md",
+    "occurrence": 1,
+    "bytes": 3676,
+    "sha256": "d6b4698eb8cce757793de3d7f80ecd8de0e4878d01cc0e979d32cdbb255b8ce5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: idle_timeout\nupdated: '2026-05-12T17:40:17+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 **westd-16980** 的 **cuda:0, cuda:1**（gpu_ids 白名单）\n- **inverted_ema_reasoning_v2** 已被 Director 明确指令 kill，不得重跑（D007 决策：wikitext +15% gap 已结论性 FAIL）\n- **gamma_sweep 是 FINAL GATE**（D008）：结果出来前禁止动 paper、禁止启动 Phase 1-5 实验\n- gamma_sweep gate 标准：任一 gamma beat random ≥5% → continue；全部 fail → **archive 项目**\n- DDL: EMNLP 2026 ARR **2026-05-25**，但 10/10 negative + gate 大概率 fail，archive 概率极高\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**westd-16980**，工作目录 `/root/carc`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- 模型：`/root/carc/models/DeepSeek-R1-Distill-Qwen-14B`\n- 数据：WikiText-2（parquet cache）+ MATH-500（embedded 60 problems）\n- HF cache：未明确设置（服务器默认）\n- 活跃进程：**analysis_gamma_sweep** PID=40063, tmux session, cuda:0, cron 监控中\n- GPU 1：空闲（待调度 analysis_heatmap，但 gate 未决定前意义不大）\n\n### 3. 📊 当前状态\n**10/10 实验全部 negative**，EMA centroid similarity 作为 eviction signal 在所有条件下未通过 sanity gate。\n\n- **RUNNING**: `analysis_gamma_sweep`（GPU 0, PID 40063）— 测试 8 个 gamma 值，已完成 gamma=0.1（PPL 8.17, 比 random 差 7%）。预计 ~2.5-3h 完成。cron 在监控。\n- **PREPARING（可忽略）**: `analysis_heatmap`（未启动）、`inverted_ema_reasoning_v2`（已 kill 应转 CANCELLED）、`carc_generate_rope_test`（旧实验残留）\n- **无 running Worker**，无待处理 Worker 回调\n- 等待：gamma_sweep cron 完成回调 → 决定 continue/archive\n\n### 4. 📋 待办（条件触发式）\n- gamma_sweep cron 回调到达 → 检查所有 8 个 gamma 的 PPL：\n  - 任一 gamma beat random ≥5% → 更新 registry conclusion=success，汇报 Director，启动 Phase 1\n  - 全部 fail → registry conclusion=negative，产出 Framing 调整提案（red-section），汇报 Director 建议 **archive**\n- Director 批准 archive → 写最终 report.md，备份到 S3，释放 GPU\n- `inverted_ema_reasoning_v2` registry 应从 PREPARING 转 CANCELLED（kill_reason 已记录但 status 未更新）\n- GPU 1 空闲 → 如果 gamma_sweep 还需数小时，可派 Worker 跑 analysis_heatmap（纯可视化，不影响 gate 决策）\n\n### 5. 🎯 战略上下文\n**核心结论链**：D001(MVP定义) → D002(MVP FAIL, pivot到O(1) KV eviction) → D003(sanity FAIL) → D004(最后一次尝试) → D005(EMA≈noisy recency) → D006(inverted EMA pivot) → D007(inverted双向证伪) → D008(gamma_sweep是final gate)\n\n**关键认知**：\n- EMA smoothing 导致 centroid 收敛到全局均值，丧失区分度 → 等效 random。文献 DefensiveKV 已报告 mean aggregation 在 importance 突变时灾难性失败\n- KeyDiff 用 exact per-step mean（非 EMA）成功，证明 centroid 思路可行但 EMA 近似是根因\n- **Recency 是极强 baseline**：PPL 7.1758 vs full 7.1822（仅差 0.09%），任何 signal-based 方法天花板极低\n- D003 数据预示 gamma_sweep 高 gamma 也不乐观（ema_0.9 vs random 仅差 1.77%，方向还是错的）\n\n**易错点**：\n- 不要把 `inverted_ema_reasoning_v2` 当活跃实验处理——它已被 Director kill\n- gamma_sweep 日志可能混入其他进程的 OOM traceback（共享终端），需检查 PID 归属\n- archive 后如果有人提 pivot：exact per-step mean 替代 EMA 可行但复杂度升到 O(B)，超出 DDL 且需与 KeyDiff 差异化\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1778611803.md"
+}

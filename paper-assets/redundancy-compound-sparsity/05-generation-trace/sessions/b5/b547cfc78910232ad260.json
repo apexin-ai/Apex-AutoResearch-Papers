@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b547cfc78910232ad260",
+  "project": "redundancy-compound-sparsity",
+  "kind": "result",
+  "title": "diagnosis kv bench 001 check",
+  "task_key": "worker_diagnosis_kv-bench-001-check_20260512T022421",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnosis_kv-bench-001-check_20260512T022421_result.json",
+    "occurrence": 1,
+    "bytes": 712,
+    "sha256": "4eb1f3db49317726f14ac807d46a031517692c2b66988c1bff5ce4e939885e7c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## kv-bench-001 实验结果：**失败**\n\n**现象**：\n- 进程静默退出，tmux session 已消失，无残留进程\n- 日志仅4行，无 error/traceback，无完成标记\n- 结果 JSON 未生成\n\n**日志内容**（完整）：\n| # | tokens | PPL | evictions |\n|---|--------|-----|-----------|\n| 1 | 99 | 3.06 | 0 (baseline) |\n| 2 | 99 | 3.17 | 49 |\n| 3 | 99 | 3.12 | 49 |\n| 4 | 99 | 3.14 | 49 |\n\n只跑了4条记录就停了，远未覆盖全部 policy × budget 组合。\n\n**已完成**：\n- Registry 更新：conclusion=failed, status=DONE, notes 记录失败原因\n- Cron `kv-bench-001` 已删除\n\n需要排查 `run_kv_benchmark.py` 的静默退出原因后重跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-kv-bench-001-check.md"
+}

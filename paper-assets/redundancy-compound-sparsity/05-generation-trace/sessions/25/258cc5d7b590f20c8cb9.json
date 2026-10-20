@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "258cc5d7b590f20c8cb9",
+  "project": "redundancy-compound-sparsity",
+  "kind": "result",
+  "title": "analysis neg layer analysis",
+  "task_key": "worker_analysis_neg-layer-analysis_20260512T002120",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_neg-layer-analysis_20260512T002120_result.json",
+    "occurrence": 1,
+    "bytes": 1606,
+    "sha256": "9f70ff923f860ed38f36859895da9398a71f0fe85f1c43a8d24055438f52134b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。输出文件在 `/home/sonny/redundancy-compound-sparsity/results/mvp/analysis/`：\n\n**图表** (PDF+PNG):\n- `per_layer_r.pdf` — 28 层 Pearson r 折线图（v2 easy / v3 hard 双线，region shading）\n- `per_layer_dpert.pdf` — 28 层 Δpert% 折线图（含 0% 线和 -10% 阈值）\n- `per_layer_ks.pdf` — 28 层 K-S statistic 折线图\n\n**分析文档**: `analysis_summary.md`\n\n**核心发现**:\n\n| Region | Layers | Mean r (v2) | Mean r (v3) |\n|--------|--------|------------|------------|\n| Early | 0-3 | +0.019 | +0.075 |\n| Mid-Early | 4-11 | **+0.199** | **+0.211** |\n| Mid-Late | 12-20 | +0.024 | +0.033 |\n| Late | 21-27 | **+0.174** | **+0.167** |\n\n1. **r 呈双峰分布**: Mid-Early (L4-11, r≈0.20-0.29) 和 Late (L21-26, r≈0.17-0.22) 两个高峰，中间 L12-20 几乎为零。Layer 4 在两组实验中都是峰值 (r≈0.289)。\n2. **Δpert 方向不一致**: Early layers (v2) 的 Δpert 为 -10%~-12%（符合假设方向），但 Layer 27 的 Δpert 为 +21.9%/+19.6%（反向），说明 cross-axis coupling 在不同层间信号矛盾。\n3. **KS 单调递减**: 从 L0 的 0.29 降到 L27 的 0.09，早期层 MLP 分布差异最大但不对应可剪枝性。\n4. **v2/v3 profile 高度一致** (profile 相关 r=0.950)，说明模式是模型内在的，非任务依赖。\n\n**对 negative evidence 的结论**: Anchor similarity 确实捕捉到弱冗余信号（某些层 r 达 0.29），但这个信号**不映射到 MLP 激活稀疏性**——Δpert 在多数层接近零且方向不一致，cross-axis 假设不成立。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-neg-layer-analysis.md"
+}

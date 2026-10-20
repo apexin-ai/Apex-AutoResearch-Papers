@@ -1,0 +1,16 @@
+{
+  "exp_id": "analysis_attention_heatmap",
+  "project": "turn_residual_gating",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T15:03:16.154Z",
+    "updated_at": "2026-05-19T15:21:46.893Z",
+    "hypothesis": "四模型（Base/TG/UG/LoRA-only）的 goal attention 衰减模式是否一致？如果 TG 的 attention decay 与 LoRA-only 无差异，则 gating 机制对 attention 分布零增量。",
+    "parent": "phase2_tg_s42_v7"
+  },
+  "timestamp": "2026-05-19T15:21:46.933042+00:00",
+  "trigger": "update_registry"
+}

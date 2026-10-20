@@ -1,0 +1,130 @@
+_next_id: 7
+decisions:
+- id: D001
+  date: 2026-05-11 20:44 UTC
+  summary: MVP 用 DeepSeek-R1-Distill-Qwen-7B 在 RTX 5090 上验证跨轴假设
+  rationale: 14B 模型 BF16 (28GB) + KV cache 超出 5090 32GB 显存；7B (14GB) 留足余量。跨轴假设是关于
+    KV similarity 与 MLP sparsity tolerance 的基础关系，7B 足以验证存在性。MVP 通过后再用 H100 跑 14B/32B
+    做 scale validation。
+  related_experiments: []
+  depends_on: []
+- id: D002
+  date: 2026-05-11 21:33 UTC
+  summary: 服务器切换：home-1x5090 → seetacloud-bjb2-structtts（唯一允许使用的服务器）
+  rationale: 用户明确指出 home-1x5090 不属于本项目，禁止使用。Manager 已分配 seetacloud-bjb2-structtts
+    (RTX 5090 32GB) 给本项目。
+  related_experiments: []
+  depends_on: []
+- id: D003
+  date: 2026-05-11 23:50 UTC
+  summary: 'MVP FAIL — 跨轴假设不成立，选择 Option B: 负面证据 + O(1) KV eviction 独立贡献'
+  rationale: 'mvp-001b 结果：r(anchor_sim, -surprisal)=0.147 (远低于0.4), Δpert=-2.2% (方向反转，redundant
+    tokens 反而更敏感)。跨轴假设链断裂：KV similarity 不能预测 MLP sparsity tolerance。
+
+
+    方案评估：
+
+    - Option A (纯 KV eviction): 贡献太窄，与 Token Filtering 差异不够，EMNLP 不够
+
+    - Option B (Negative evidence + KV eviction): 负面结果有学术价值（首次系统性验证 cross-axis sharing
+    假设），加 O(1) KV eviction 实用贡献，双轴论文
+
+    - Option C (全新方向): 仅剩 ~13 天，风险太高
+
+
+    选 B 但需先排除数据质量 confound：fallback 题目偏简单，需在更难的题上确认 negative 再全面 pivot。'
+  related_experiments:
+  - exp_id: mvp-001
+    role: adjacent-sim baseline
+    result: r=-0.186, Δpert=-1.5%, FAIL (wrong EMA impl)
+  - exp_id: mvp-001b
+    role: correct anchor EMA
+    result: r=0.147, Δpert=-2.2%, FAIL
+  depends_on: []
+- id: D004
+  date: 2026-05-12 02:18 UTC
+  summary: 'Narrative 升级为 Option A: Architecture-Dependent Cross-Axis Signal (GQA
+    成立, MLA 失败)'
+  rationale: neg-cross-model-001 发现 Llama-3.1-8B (GQA, 8 KV heads) 上 r=0.471, Δpert=+6.6%，与
+    DeepSeek-R1-7B (MLA, 4 KV heads) 的 r=0.147, Δpert=-2.2% 形成鲜明对比。跨轴假设不是普遍失败，而是架构依赖——MLA
+    的 latent compression 破坏了 KV-space 的 semantic 保真度。Option A 比 Option B (negative)
+    和 Option C (revive) 更有深度、更有审稿吸引力。
+  related_experiments:
+  - exp_id: mvp-001b
+    role: MLA negative
+    result: r=0.147, Δpert=-2.2%
+  - exp_id: mvp-001c
+    role: MLA negative (hard problems)
+    result: r=0.159, Δpert=-1.2%
+  - exp_id: neg-cross-model-001
+    role: GQA positive
+    result: r=0.471, Δpert=+6.6%
+  depends_on:
+  - D003
+- id: D005
+  date: 2026-05-12 02:26 UTC
+  summary: D004 架构误判修正：DeepSeek-R1-Distill-Qwen-7B 是 GQA 不是 MLA，核心 confound 是推理模型
+    vs 指令模型，需对照实验
+  rationale: 'Reviewer 验证 DeepSeek-R1-Distill-Qwen-7B config.json: architectures=Qwen2ForCausalLM,
+    num_key_value_heads=4, 标准 GQA (7:1)。MLA 只在原始 DeepSeek-V2/V3/R1-671B 上。D004 的 "GQA
+    vs MLA" narrative 基于架构误判。真正未控制的变量是训练目标（推理蒸馏 vs 指令 SFT）和生成模式（长 CoT 1353-3588 tokens
+    vs 短回答 623 tokens）。需跑 DeepSeek-R1-Distill-Llama-8B（同 Llama 架构 + 推理训练）作完美对照，一个实验即可分离架构
+    vs 推理训练效应。'
+  related_experiments:
+  - exp_id: mvp-001b
+    role: evidence
+    result: r=0.147, Δpert=-2.2% on DeepSeek-R1-Distill-Qwen-7B (GQA, NOT MLA)
+  - exp_id: neg-cross-model-001
+    role: evidence
+    result: r=0.471, Δpert=+6.6% on Llama-3.1-8B (GQA)
+  - exp_id: confound-ctrl-001
+    role: planned
+    result: DeepSeek-R1-Distill-Llama-8B control experiment
+  depends_on:
+  - D004
+- id: D006
+  date: 2026-05-12 04:07 UTC
+  summary: EMNLP 2026 投稿不可行 — 0 个有效正面 claim，建议用户放弃本轮 DDL，转为扎实研究后投下一轮
+  rationale: 'Reviewer 战略评估确认多个致命问题：
+
+    1. Δpert=+6.6% 在 50%-70% sparsity 范围恒定 → cross-axis signal 无差异化预测力，不能用于调控 sparsity
+    level
+
+    2. kv-bench-002 基准设计失败（文本仅 194 tokens，50%/70% budget 下 eviction=0）→ Claim 4 零支撑
+
+    3. paper_framing.md 的 GQA vs MLA narrative 已被 D005 推翻；"generation regime dependence"
+    novelty 不足（trivially expected，2×2 design 仅 4 数据点）
+
+    4. 项目呈 rationalization 模式：D003→D004→D005 连续 pivot，每次负面结果被重包装为新 narrative
+
+    5. 13 天内从 0 个有效 claim + 空 experiment_plan + suspended framing 写出可投论文，概率极低
+
+
+    科学上正确的做法：继续 confound-ctrl 实验（理解现象本身有价值），修复 kv-bench 设计，不再为凑 DDL 而 pivot narrative。向用户如实汇报并建议放弃
+    EMNLP 2026 May ARR。'
+  related_experiments:
+  - exp_id: mvp-001
+    role: negative
+    result: r=-0.186, FAIL
+  - exp_id: mvp-001b
+    role: negative
+    result: r=0.147, Δpert=-2.2%, FAIL
+  - exp_id: mvp-001c
+    role: negative
+    result: r=0.159, Δpert=-1.2%, FAIL
+  - exp_id: neg-cross-model-001
+    role: negative (Δpert constant)
+    result: r=0.471, Δpert=+6.6% but constant across sparsity
+  - exp_id: llama-sparsity-sweep
+    role: negative
+    result: Δpert恒定，无差异化
+  - exp_id: kv-bench-002
+    role: invalid
+    result: 文本太短，eviction未触发
+  - exp_id: confound-ctrl-001
+    role: running
+    result: pending
+  depends_on:
+  - D003
+  - D004
+  - D005

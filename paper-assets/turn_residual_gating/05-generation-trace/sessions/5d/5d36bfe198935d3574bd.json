@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5d36bfe198935d3574bd",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "check d048 eval dryrun",
+  "task_key": "worker_check_d048_eval_dryrun_20260522T133136",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_d048_eval_dryrun_20260522T133136_result.json",
+    "occurrence": 1,
+    "bytes": 2301,
+    "sha256": "c2c46d3a7e74e148865b7279b02038d670ea28ae796613765eb99c1911b4019b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证完成。以下是报告：\n\n---\n\n## Eval 脚本 Dry-Run 验证报告\n\n### 1. 参数正确性\n\n| 脚本 | 使用的参数 | --help 匹配 | 状态 |\n|------|-----------|-------------|------|\n| `eval_phase2_gar.py` | `--gate-type`, `--checkpoint-dir`, `--conversations-path`, `--output-dir`, `--gar-variant`, `--gate-profile` | 全部匹配 | ✅ |\n| `eval_attention_steering.py` | `--checkpoint`, `--gate-type`, `--mode`, `--max-convs`, `--beta`, `--gar-variant`, `--output-dir`, `--output-name` | 全部匹配 | ✅ |\n\n### 2. Checkpoint 路径\n\n| Checkpoint | 路径 | lora/ | gate_params.pt | 状态 |\n|-----------|------|-------|----------------|------|\n| TG s42 | `runs/phase2_tg_s42_v7/epoch_2` | ✅ | ✅ | ✅ |\n| UG s42 | `runs/phase2_ug_s42/epoch_2` | ✅ | ✅ | ✅ |\n| LO s42 | `runs/phase2_lora_only_s42/epoch_2` | ✅ | 无（正常） | ✅ |\n| PCGrad s42 | `checkpoints/tg_v9_pcgrad_s42/epoch_2` | ✅ | ✅ | ✅ |\n| SS s42 | `runs/d048_ss_s42/epoch_0` | ✅ | ✅ | ⚠️ 见下 |\n| Base model | `/root/.cache/modelscope/Qwen/Qwen2___5-7B-Instruct/` | — | — | ✅ |\n\n### 3. 数据文件\n- `data/ultrachat_eval_heldout.json` — ✅ 存在 (453KB)\n\n### 4. 磁盘空间\n- 根分区：30G 总量，14G 可用 (46% 空闲)\n- 单个 checkpoint ≈ 91MB（3 epochs），全部 runs/ = 613MB\n- 14 个新 checkpoint × ~30MB/epoch ≈ 1.3GB 新增（远小于可用空间）\n- **磁盘充足** ✅\n\n### 5. CPU Dry-Run\n`eval_attention_steering.py` 在 `CUDA_VISIBLE_DEVICES=\"\"` 下成功加载模型权重到 CPU（无报错），参数解析和模型加载均通过。被 timeout 15s 截断，说明进入了推理阶段。 ✅\n\n### 6. 需要修复的问题\n\n**⚠️ `d048_eval_ss_s42.sh` 的 epoch 查找逻辑有 bug：**\n\n```bash\nfor ep in 2 1; do   # 只查 epoch_2 和 epoch_1\n```\n\nSS s42 目前仍在训练，当前只有 `epoch_0`。如果训练未完成到 epoch_1，此脚本会报错退出（\"No complete checkpoint found\"）。\n\n对比 `d048_queue_runner.sh` 的 `run_and_eval()` 函数查找 `2 1 0`，包含了 epoch_0 fallback。\n\n**建议**：将 `d048_eval_ss_s42.sh` 的循环改为 `for ep in 2 1 0; do`，与 queue_runner 保持一致。或者等 SS 训练跑完 epoch_2 后再执行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-d048-eval-dryrun.md"
+}

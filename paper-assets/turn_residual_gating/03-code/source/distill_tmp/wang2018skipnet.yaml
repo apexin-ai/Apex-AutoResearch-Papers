@@ -1,0 +1,28 @@
+paper_key: "wang2018skipnet"
+title: "SkipNet: Learning Dynamic Routing in Convolutional Networks"
+venue: "ECCV 2018"
+full_text_available: false
+
+research:
+  baselines: ["ResNet", "stochastic depth", "static pruning"]
+  metrics:
+    - {name: "top-1 accuracy", direction: "higher_better"}
+    - {name: "FLOPs reduction", direction: "higher_better"}
+    - {name: "inference speedup", direction: "higher_better"}
+  datasets:
+    - {name: "CIFAR-10", size: "60K"}
+    - {name: "CIFAR-100", size: "60K"}
+    - {name: "ImageNet", size: "1.2M"}
+  ablation_dimensions: ["gating design", "skip ratio", "network depth"]
+  training_recipe: {optimizer: "SGD", hardware: "GPU"}
+  method_family: "dynamic routing / conditional computation"
+
+positioning:
+  core_claim: "Input-dependent layer skipping via learned gating achieves comparable accuracy with significant FLOPs savings by routing easy inputs through fewer layers"
+  key_results: "30-40% FLOPs reduction with <0.5% accuracy drop on ImageNet"
+  limitations: ["CNN-specific", "gating overhead", "training instability with RL"]
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

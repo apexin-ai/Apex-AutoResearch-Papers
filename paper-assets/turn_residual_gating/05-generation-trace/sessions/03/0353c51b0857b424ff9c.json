@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0353c51b0857b424ff9c",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "analysis mmlu 15b data summary",
+  "task_key": "worker_analysis_mmlu_15b_data_summary_20260524T070611",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_mmlu_15b_data_summary_20260524T070611_result.json",
+    "occurrence": 1,
+    "bytes": 2528,
+    "sha256": "1dffc3a7c39a7658810fb4a14c5f5fe887b00615f7e06538c247885314c93840"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the formatted output for Paper Agent:\n\n---\n\n## Table 1: MMLU 5-shot Accuracy (Qwen2.5-7B-Instruct, seed 42)\n\n| Model | MMLU 5-shot Acc | Δ vs Base |\n|-------|----------------|-----------|\n| Base (Qwen2.5-7B) | 0.7423 | — |\n| TG+PCGrad (v9) | 0.7386 | −0.0038 |\n| Soft-Switch (v8b) | 0.7375 | −0.0048 |\n| LoRA-Only | 0.7357 | −0.0066 |\n| Turn-Gate (v7) | 0.7347 | −0.0077 |\n| Uniform-Gate | 0.7346 | −0.0078 |\n\nAll variants within ~0.8pp of base — no meaningful general knowledge degradation. Sample size: 14,042 per model.\n\n---\n\n## Table 2: Qwen2.5-1.5B Cross-Model Eval (AR, n=50 conversations)\n\n| Model | β | AR GAR (mid_turns_avg) | PPL (median) | PPL (mean) |\n|-------|---|------------------------|--------------|------------|\n| Base  | 0 | 0.01672 | 1.909 | 1.882 |\n| TG    | 0 | 0.02333 | 1.897 | 1.871 |\n| Base  | 3 | 0.12015 | 2.216 | 5,707,633\\* |\n| TG    | 3 | 0.11426 | 1.975 | 1.992 |\n| Base  | 5 | 0.65712 | 2.804 | 2.848 |\n| TG    | 5 | 0.71501 | 2.624 | 2.688 |\n\n\\*Base β=3 mean PPL inflated by one catastrophic outlier (conv #11: PPL=279,673,896). Median is the correct summary statistic here.\n\n**Wilcoxon signed-rank tests (from summary_ci_wilcoxon.json):**\n\n| β | W | p-value | effect size r | N |\n|---|---|---------|---------------|---|\n| 0 | 190 | 0.0045 | 0.447 | 39 |\n| 3 | 300 | 0.8146 | 0.042 | 35 |\n| 5 | 55  | <0.001 | 0.749 | 39 |\n\nβ=0: TG significantly higher GAR (p<0.01, medium effect).\nβ=3: No significant difference.\nβ=5: TG significantly higher GAR (p<0.001, large effect).\n\n---\n\n## Table 3: 1.5B Phase 1 GAR Diagnostic (TF mode, base model only)\n\nPer-turn GAR decay across 5 topics:\n\n| Turn | Avg GAR |\n|------|---------|\n| 1 | 0.03358 |\n| 2 | 0.01158 |\n| 3 | 0.01236 |\n| 4 | 0.00761 |\n| 5 | 0.00802 |\n| 6 | 0.00286 |\n| 7 | 0.00493 |\n| 8 | 0.00500 |\n| 9 | 0.00395 |\n| 10 | 0.00354 |\n\n**mid_turns_avg_gar:** 0.006797\n**relative_drop (turn1→mid):** 79.8%\n**pass:** true (>50% decay confirms GAR diagnostic pattern holds at 1.5B scale)\n\nPer-topic breakdown:\n\n| Topic | Turn 1 GAR | Turn 10 GAR |\n|-------|-----------|-------------|\n| knowledge_qa | 0.05357 | 0.00774 |\n| coding_help | 0.02432 | 0.00256 |\n| creative_writing | 0.02384 | 0.00208 |\n| math_reasoning | 0.01076 | 0.00223 |\n| debate | 0.05541 | 0.00310 |\n\n---\n\n**Note:** No TF GAR evaluation exists for the TG-finetuned 1.5B model — the phase 1 diagnostic only covers the base checkpoint."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-mmlu-15b-data-summary.md"
+}

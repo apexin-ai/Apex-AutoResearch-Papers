@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fed9890cc769881b6a31",
+  "project": "phase-gated-compound-sparse",
+  "kind": "history",
+  "title": "agent / loop_14_1778904783.md",
+  "task_key": "loop_14_1778904783",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_14_1778904783.md",
+    "occurrence": 1,
+    "bytes": 5050,
+    "sha256": "1ccccfd3bc00e53c48284e5409086ba0697f66be63ccabadf8fd37083c92d74d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 14\nreason: idle_timeout\nupdated: '2026-05-16T03:50:32+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 **只有** westd-22162 cuda:0/1/2/3，绝不在白名单外启动实验\n- **D094 事故教训**：c10 越权使用 c8 的 GPU 导致 c8 数据全丢，级联失败。两个实验 GPU 分配不能重叠，c5 QW 跑完后 cuda:1 才释放给 c10\n- c10_lang_s020_s025 当前在 cuda:1（c5 QW 已完成释放了 cuda:1），**不得侵入 cuda:0**（c5 DS 仍在跑）\n- submit_training_job 命令必须自带 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不能假设 .venv\n- 论文数值必须追溯到 registry，DS n=50 引用值 (0.32→1.15→3.97→9.94) 与 PPI_low_median 有 ≤0.03 差异（P2 待确认）\n- EMNLP 2026 ARR 截稿 **2026-05-25**（距今 9 天），Findings track\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-22162，工作目录 `/root/autodl-tmp/pacs`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- **GPU**: RTX 6000 Pro ×4 (cuda:0~3)\n  - cuda:0 → c5_per_phase_gini DS (pid=307021, 16/30)\n  - cuda:1 → c10_lang_s020_s025 (pid=313206, PREPARING)\n  - cuda:2,3 → c8_llama_n250_fixed (pid=310712, RUNNING)\n- **活跃 Cron**: c5_per_phase_gini, c8_llama_n250_fixed（自动监控进程存活 + 完成回调）\n- **活跃 Worker**: \n  - `worker_code_c10_s020_s025_gpu1` — 准备 c10 s020/s025 gen_snippet 代码\n  - `worker_paper_bib-audit-mustafar` — MUSTAFAR 假引用删除 + bib 全量审计\n- **W&B**: 未配置（本项目用 registry + log 分析，非 W&B 追踪）\n- **HF cache**: 模型在服务器本地，DeepSeek-R1-Distill-Qwen-7B / Qwen2.5-7B-Instruct / DeepSeek-R1-Distill-Llama-8B\n\n### 3. 📊 当前状态\n**刚完成**: Session 15 启动初始化，reconcile crons 确认两个 RUNNING 实验仍在跑。收到 WRITE HANDOFF 指令。\n\n**Registry RUNNING/PREPARING**:\n- **c5_per_phase_gini** (RUNNING, cuda:0): QW 30/30 ✅，DS 16/30 进行中。QW 结果已入 registry：low phase Gini delta 单调递增 (−0.017→−0.035)，直接支撑 discrimination collapse。等 DS 完成。\n- **c8_llama_n250_fixed** (RUNNING, cuda:2,3): LLaMA n=250 cross-arch validation，8 conditions (imp/rand × 4 sparsity)。原 c8_llama_n250 因 D094 事故数据全丢，这是从头重跑。\n- **c10_lang_s020_s025** (PREPARING, cuda:1): 填补 language switching s020/s025 缺口。Worker 正在写 gen_snippet 代码。\n\n**等待中**:\n- 2 个 cron 回调（c5、c8 完成时触发）\n- 2 个 Worker 回调（c10 代码 + paper bib audit）\n- 无 Director 决策阻塞\n\n### 4. 📋 待办（条件触发式）\n- **c5_per_phase_gini cron 回调** → spawn Worker 分析 DS 结果，更新 registry metrics，与 QW 结果合并写入 memory.md，汇报 Director（含 imp vs rand per-phase 对比）\n- **c8_llama_n250_fixed cron 回调** → spawn Worker 分析 8 conditions 结果，与原 c3_llama n=49 对比。若 imp_vs_rand 交互在 n=250 下 ≥2 conditions Bonferroni 显著 → C8 升为 \"confirmed\"；若仍仅 s030 显著 → 维持 \"partially\"，论文用 \"suggests\" 措辞\n- **c10 code Worker done** → 检查代码，submit_training_job 提交到 cuda:1\n- **bib audit Worker done** → 检查 MUSTAFAR 是否已删、bib 全量审计结果，更新 paper 文件\n- **c5 + c8 都完成后** → 所有 P1 实验数据就绪，spawn Paper Agent 做 Abstract/Intro rewrite (Findings framing) + §4-7 corrections + Appendix fixes → 然后提交 Round 11 审稿\n- **任何实验 negative** → 按 red-section skill 产 Framing 调整提案，不默默跑下一个\n\n### 5. 🎯 战略上下文\n**项目核心结论**: Importance-based pruning 的 compound interaction severity 随 sparsity 单调递增，且集中在 low reasoning phase（discrimination collapse）。Random pruning 无此 phase gradient。跨模型 (DS/QW) 方向一致，跨 benchmark (MATH-500/GSM8K) 复现。\n\n**决策链要点**:\n- D091: Round 10 weak reject 2.25/5，接受 Findings track，不再冲 main conference\n- D094: GPU 冲突事故 → c8 数据全丢 → c8_llama_n250_fixed 重跑\n- D093: <think> phase validation 通过 (κ=0.8804)，C1 数据就绪\n- D089: DS accuracy 降为定性观察（截断驱动），QW 作为 accuracy dose-response 主证据\n\n**易踩的坑**:\n1. **不要把 c3_llama (n=49) 数据当最终 LLaMA 结论**——n=49 underpowered 是 R10-C3 审稿意见，必须等 c8_llama_n250_fixed 结果\n2. **QW random GSM8K s030 gradient (2.89) > importance (2.09)**——这是已知反转，paper_framing 已处理为 \"反转仅在原始 II_low 值上\"，不要被这个数字吓到重新 framing\n3. **DS n=50 引用值精确性 (P2)** 和 **G× 数据源 (P3)** 尚未确认——Round 11 提交前必须 resolve\n4. **Batch1 v2 rescore (P1)** 仍进行中——如 QW accuracy 变化 >±0.05 需更新论文\n5. 距截稿 9 天，c5/c8 完成后优先级是 Paper Agent 全面修订 → Round 11 审稿，不要再开新实验线\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-14-1778904783.md"
+}

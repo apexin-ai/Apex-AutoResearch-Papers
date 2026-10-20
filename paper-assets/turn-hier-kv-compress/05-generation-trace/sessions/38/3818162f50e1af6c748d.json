@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3818162f50e1af6c748d",
+  "project": "turn-hier-kv-compress",
+  "kind": "result",
+  "title": "debug kirr diagnosis",
+  "task_key": "worker_debug_kirr_diagnosis_20260513T105706",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_debug_kirr_diagnosis_20260513T105706_result.json",
+    "occurrence": 1,
+    "bytes": 4208,
+    "sha256": "be0d7b423d8e0633da6964786d9d2d9a8531595bc43efd4e7d004f9c7cd89a19"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have the full diagnostic output. Here's my analysis:\n\n---\n\n## Diagnosis: TurnKV KIRR < Uniform EA — Root Cause\n\n### Not a Bug — It's a Methodological Problem\n\nThe code correctly implements the design. The issue is in the **multiplicative modulation mechanism itself**.\n\n### Primary Root Cause: Multiplicative Budget Suppression\n\nThe formula `modulated_score = ea_score × B_final` systematically starves non-SYSTEM_PROMPT segments. The data across all 3 traces shows a consistent pattern:\n\n**Budget vs Token Share (layer 16):**\n\n| Trace | SYSTEM_PROMPT Tokens | SYSTEM_PROMPT Budget Share | Effective Multiplier |\n|-------|---------------------|---------------------------|---------------------|\n| 001   | 31.1%               | 44.2%                     | 0.94               |\n| 002   | 38.8%               | 52.7%                     | 0.98               |\n| 003   | 33.1%               | 51.3%                     | 1.00               |\n\nSYSTEM_PROMPT takes 44-53% of the retention budget despite being only 31-39% of tokens.\n\n**Modulation ratios show the damage to non-system segments:**\n\n| Segment Type         | mod/ea ratio (typical) | Effect                        |\n|---------------------|------------------------|-------------------------------|\n| SYSTEM_PROMPT       | 0.94 – 1.00           | Scores barely touched         |\n| USER_MESSAGE        | 0.65 – 0.88           | Mild suppression              |\n| TOOL_RESULT (old)   | **0.40 – 0.57**       | **40-60% of score destroyed** |\n| ASSISTANT_MESSAGE   | **0.37 – 0.61**       | **40-63% of score destroyed** |\n| THINKING_TRACE      | **0.30 – 0.37**       | **63-70% of score destroyed** |\n\n### How This Kills KIRR\n\n**Retention shift (all-layers avg, Trace 001):**\n- SYSTEM_PROMPT: EA 26.5% → TKV 40.7% **(+14.2pp)**\n- TOOL_RESULT t=0 (169 tokens): EA 11.8% → TKV 4.7% **(-7.1pp)**\n- TOOL_RESULT t=1 (73 tokens): EA 21.9% → TKV 2.7% **(-19.2pp)**\n\n**Planted info that TurnKV kills:**\n- `$1,091.58` in TOOL_RESULT: EA retains 17% of tokens → TKV retains **0%** (Δ=−17%)\n- `$351.46` in TOOL_RESULT: both 0% (even EA fails here)\n- TOOL_RESULT planted info in Trace 003 (`0.9474`, `3.96`): both EA and TKV at 0%\n\nTurnKV helps SYSTEM_PROMPT planted info (+0 to +22%) but **destroys TOOL_RESULT planted info**. Since 40-60% of planted info lives outside SYSTEM_PROMPT, the net KIRR drops.\n\n### EASS Modulation Amplifies the Problem\n\nThe z-scored EASS reinforces the structural bias instead of correcting it:\n- SYSTEM_PROMPT tends to have higher mean EA scores → positive z → B_final ≥ B_prior\n- TOOL_RESULT/ASSISTANT tend to have lower mean EA scores → negative z → **B_final ≪ B_prior**\n\nExample from Trace 001: TOOL_RESULT t=0 has B_prior=0.80 but B_final=**0.3965** (EASS pulled it down 50%).\n\n### Trace 002 Edge Case: max_turn=0\n\nAll segments at turn 0 → no recency differentiation. THINKING_TRACE gets Bp=0.40, Bf=0.30 → retention crashes from EA 32.4% to TKV **5.4%** (−27pp).\n\n### Structural Issues Summary\n\n1. **Multiplicative modulation is zero-sum in the wrong direction**: B_prior < 1.0 suppresses scores; SYSTEM_PROMPT (B_prior=1.0) is the only segment that doesn't lose. All other segments compete at a 20-60% disadvantage.\n\n2. **\"Budget\" doesn't mean \"budget\"**: B_final=0.4 doesn't mean \"keep 40% of this segment.\" It means \"multiply all scores by 0.4,\" making them lose in the global top-k competition against segments with higher budgets.\n\n3. **No minimum retention guarantee**: A segment can be nearly fully evicted if its B_final is low enough relative to others.\n\n4. **Z-scoring with N=10-15 segments is unstable**: One outlier segment shifts all z-scores.\n\n### Recommendations\n\n1. **Normalize budgets to mean 1.0** — `B_final / mean(B_final)` redistributes instead of suppresses\n2. **Or use additive modulation** — `ea_score + offset(budget)` preserves cross-segment ranking\n3. **Raise TOOL_RESULT B_prior** — 0.8 is too low under multiplicative modulation; should be 0.95+\n4. **Add per-segment minimum retention floor** — guarantee each segment keeps at least k% of tokens"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/debug-kirr-diagnosis.md"
+}

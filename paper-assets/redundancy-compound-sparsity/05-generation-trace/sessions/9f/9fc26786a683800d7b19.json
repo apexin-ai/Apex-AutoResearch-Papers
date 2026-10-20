@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9fc26786a683800d7b19",
+  "project": "redundancy-compound-sparsity",
+  "kind": "result",
+  "title": "submit neg cross model 001",
+  "task_key": "worker_submit_neg-cross-model-001_20260512T015908",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_neg-cross-model-001_20260512T015908_result.json",
+    "occurrence": 1,
+    "bytes": 340,
+    "sha256": "14596504d62251ea36de13f2ae9090a0e0c00e3a9910992c4abede8ef965d1b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已提交并运行中。\n\n- **实验**: neg-cross-model-001\n- **PID**: 16434 (`python neg_cross_model_llama.py`)\n- **tmux session**: `neg-cross-model`\n- **日志**: `/home/sonny/redundancy-compound-sparsity/results/neg_cross_model/neg_cross_model.log`\n- **GPU**: RTX 5090, 进程 CPU 121% 表明正在加载模型"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-neg-cross-model-001.md"
+}

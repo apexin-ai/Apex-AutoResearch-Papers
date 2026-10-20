@@ -1,0 +1,112 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{dongre2026}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\citation{liu2024lost}
+\citation{dongre2026}
+\citation{fan2020layerdrop}
+\citation{schuster2022confident}
+\citation{raposo2024mixture}
+\citation{liu2016attention}
+\citation{vig2020investigating}
+\citation{li2024inference}
+\citation{ranzato2016sequence}
+\citation{bengio2015scheduled}
+\citation{bengio2015scheduled}
+\citation{ranzato2016sequence}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Multi-turn dialogue degradation.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Residual gating and adaptive computation.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Attention steering and intervention.}{2}{section*.3}\protected@file@percent }
+\citation{dongre2026}
+\citation{hu2022lora}
+\@writefile{toc}{\contentsline {paragraph}{Exposure bias and teacher-forcing mismatch.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Background}{3}{section.3}\protected@file@percent }
+\newlabel{sec:background}{{3}{3}{Background}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Goal Attention Ratio}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Residual Stream Persistence}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Method}{3}{section.4}\protected@file@percent }
+\newlabel{sec:method}{{4}{3}{Method}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}ThreadGate Architecture}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Training Objective}{4}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Training Setup}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Ablation Models}{4}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Experiments}{4}{section.5}\protected@file@percent }
+\newlabel{sec:experiments}{{5}{4}{Experiments}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Training Dynamics}{4}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Main Results: Four-Way Evaluation (Qwen-2.5-7B)}{5}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:main-results}{{5.2}{5}{Main Results: Four-Way Evaluation (Qwen-2.5-7B)}{subsection.5.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Held-out evaluation on 50 unseen UltraChat conversations (Qwen-2.5-7B). Mid-turn \textsc  {GAR}{} averages over turns 4--10.}}{5}{table.1}\protected@file@percent }
+\newlabel{tab:heldout-eval}{{1}{5}{Held-out evaluation on 50 unseen UltraChat conversations (Qwen-2.5-7B). Mid-turn \gar {} averages over turns 4--10}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Robustness: Held-Out vs.\ Standard Evaluation}{5}{subsection.5.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Consistency between standard (5 convs) and held-out (50 convs) evaluation.}}{5}{table.2}\protected@file@percent }
+\newlabel{tab:heldout-consistency}{{2}{5}{Consistency between standard (5 convs) and held-out (50 convs) evaluation}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Cross-Model Validation: Llama-3.1-8B}{5}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:cross-model}{{5.4}{5}{Cross-Model Validation: Llama-3.1-8B}{subsection.5.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Phase 1: Baseline \textsc  {GAR}{} degradation.}{5}{section*.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Per-turn \textsc  {GAR}{}-Dongre comparison between base models. Both exhibit severe monotonic degradation.}}{6}{table.3}\protected@file@percent }
+\newlabel{tab:phase1-crossmodel}{{3}{6}{Per-turn \gar {}-Dongre comparison between base models. Both exhibit severe monotonic degradation}{table.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{ThreadGate training on Llama-3.1-8B.}{6}{section*.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces \textsc  {ThreadGate}{} v7 training comparison across architectures. Both achieve training convergence but fail at inference.}}{6}{table.4}\protected@file@percent }
+\newlabel{tab:llama-training}{{4}{6}{\tg {} v7 training comparison across architectures. Both achieve training convergence but fail at inference}{table.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Gate profile reversal on Llama.}{6}{section*.7}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Llama-3.1-8B: top-5 reversed gate layers. Correct behavior would show Turn1 gate $>$ Turn21 gate.}}{7}{table.5}\protected@file@percent }
+\newlabel{tab:llama-gate-reversal}{{5}{7}{Llama-3.1-8B: top-5 reversed gate layers. Correct behavior would show Turn1 gate $>$ Turn21 gate}{table.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{LoRA-only baseline on Llama.}{7}{section*.8}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces LoRA-only training comparison. Both models converge to similar NTP loss levels.}}{7}{table.6}\protected@file@percent }
+\newlabel{tab:lora-crossmodel}{{6}{7}{LoRA-only training comparison. Both models converge to similar NTP loss levels}{table.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Three-way evaluation on Llama.}{7}{section*.9}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Llama-3.1-8B three-way evaluation. Gating provides zero incremental benefit.}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:llama-eval}{{7}{7}{Llama-3.1-8B three-way evaluation. Gating provides zero incremental benefit}{table.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cross-model summary.}{7}{section*.10}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Cross-model gating contribution summary. Neither architecture benefits from gating.}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:crossmodel-summary}{{8}{7}{Cross-model gating contribution summary. Neither architecture benefits from gating}{table.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Downstream Task Validation}{8}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:downstream}{{5.5}{8}{Downstream Task Validation}{subsection.5.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Instruction compliance rate by turn (Qwen-2.5-7B). All models show similar degradation; \textsc  {ThreadGate}{} provides no benefit.}}{8}{table.9}\protected@file@percent }
+\newlabel{tab:compliance}{{9}{8}{Instruction compliance rate by turn (Qwen-2.5-7B). All models show similar degradation; \tg {} provides no benefit}{table.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Pearson correlation between \textsc  {GAR}{} and instruction compliance across turns.}}{8}{table.10}\protected@file@percent }
+\newlabel{tab:compliance-corr}{{10}{8}{Pearson correlation between \gar {} and instruction compliance across turns}{table.10}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Analysis}{8}{section.6}\protected@file@percent }
+\newlabel{sec:analysis}{{6}{8}{Analysis}{section.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}NTP--\textsc  {GAR}{} Gradient Conflict}{8}{subsection.6.1}\protected@file@percent }
+\newlabel{sec:gradient-conflict}{{6.1}{8}{NTP--\gar {} Gradient Conflict}{subsection.6.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Per-epoch gradient conflict statistics (Qwen-2.5-7B). Negative cosine similarity indicates opposing gradient directions.}}{9}{table.11}\protected@file@percent }
+\newlabel{tab:gradient-epoch}{{11}{9}{Per-epoch gradient conflict statistics (Qwen-2.5-7B). Negative cosine similarity indicates opposing gradient directions}{table.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Per-layer gradient conflict at Epoch 2 (Qwen-2.5-7B). Layers with lowest gate values (most deviation from identity) show strongest conflict.}}{9}{table.12}\protected@file@percent }
+\newlabel{tab:gradient-layer}{{12}{9}{Per-layer gradient conflict at Epoch 2 (Qwen-2.5-7B). Layers with lowest gate values (most deviation from identity) show strongest conflict}{table.12}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cross-model gradient conflict.}{9}{section*.11}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Cross-model gradient conflict comparison (Epoch 2). Both architectures show opposing NTP--\textsc  {GAR}{} gradients.}}{9}{table.13}\protected@file@percent }
+\newlabel{tab:gradient-crossmodel}{{13}{9}{Cross-model gradient conflict comparison (Epoch 2). Both architectures show opposing NTP--\gar {} gradients}{table.13}{}}
+\citation{dongre2026}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Attention Pattern Analysis}{10}{subsection.6.2}\protected@file@percent }
+\newlabel{sec:attention-analysis}{{6.2}{10}{Attention Pattern Analysis}{subsection.6.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Goal attention statistics across models (Qwen-2.5-7B). Differences between models are within noise.}}{10}{table.14}\protected@file@percent }
+\newlabel{tab:attention}{{14}{10}{Goal attention statistics across models (Qwen-2.5-7B). Differences between models are within noise}{table.14}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Discussion}{10}{section.7}\protected@file@percent }
+\newlabel{sec:discussion}{{7}{10}{Discussion}{section.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}The Distribution Shift Barrier}{10}{subsection.7.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Why Gradient Competition Prevents Correct Gate Learning}{10}{subsection.7.2}\protected@file@percent }
+\citation{li2024inference}
+\citation{bengio2015scheduled}
+\citation{ranzato2016sequence}
+\bibcite{dongre2026}{1}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3}Implications for Attention Steering Methods}{11}{subsection.7.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.4}Limitations}{11}{subsection.7.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{11}{section.8}\protected@file@percent }
+\newlabel{sec:conclusion}{{8}{11}{Conclusion}{section.8}{}}
+\bibcite{liu2024lost}{2}
+\bibcite{fan2020layerdrop}{3}
+\bibcite{schuster2022confident}{4}
+\bibcite{raposo2024mixture}{5}
+\bibcite{liu2016attention}{6}
+\bibcite{vig2020investigating}{7}
+\bibcite{li2024inference}{8}
+\bibcite{hu2022lora}{9}
+\bibcite{ranzato2016sequence}{10}
+\bibcite{bengio2015scheduled}{11}
+\gdef \@abspage@last{12}

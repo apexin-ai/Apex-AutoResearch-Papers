@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0b98465d6da19fc72302",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "code d048 fix eval and bootstrap",
+  "task_key": "worker_code_d048_fix_eval_and_bootstrap_20260522T135225",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d048_fix_eval_and_bootstrap_20260522T135225_result.json",
+    "occurrence": 1,
+    "bytes": 365,
+    "sha256": "9934ff853e4a87fc7f2fc240e6ea0200713d61e5f26f0fc1f7046c9c9fd2e88c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成：\n\n1. **epoch fallback 已修复** — `for ep in 2 1 0; do`（第17行）\n2. **`scripts/compute_bootstrap_ci.py` 已创建** — 支持 3 种 JSON 格式，mock 数据验证通过\n3. **`scripts/d048_number_mapping.md` 已创建** — JSON→论文数字映射表\n4. **语法验证通过** — bash -n OK, ast.parse OK, chmod +x OK"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d048-fix-eval-and-bootstrap.md"
+}

@@ -1,0 +1,26 @@
+{
+  "exp_id": "analysis_gamma_sweep",
+  "project": "solver-verified-formalizer-rl",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-12T16:24:33.793Z",
+    "updated_at": "2026-05-12T16:24:37.182Z",
+    "spec": {
+      "command": "python analysis_gamma_sweep.py --model /root/carc/models/DeepSeek-R1-Distill-Qwen-14B --gpu 0",
+      "server": "westd-16980",
+      "data_path": "wikitext-2-raw-v1 (test split, 32K tokens)",
+      "data_count": 32768,
+      "model_name": "DeepSeek-R1-Distill-Qwen-14B",
+      "seed": 42,
+      "description": "Phase 0b: EMA gamma sensitivity sweep",
+      "pid": 37837,
+      "log_path": "/root/carc/analysis_gamma_sweep.log",
+      "checkpoint_path": "/root/carc/analysis_gamma_sweep_results.json"
+    }
+  },
+  "timestamp": "2026-05-12T16:24:37.204665+00:00",
+  "trigger": "update_registry"
+}

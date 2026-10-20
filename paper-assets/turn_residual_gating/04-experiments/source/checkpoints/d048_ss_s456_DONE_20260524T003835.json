@@ -1,0 +1,32 @@
+{
+  "exp_id": "d048_ss_s456",
+  "project": "turn_residual_gating",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T03:46:14.558Z",
+    "updated_at": "2026-05-24T00:38:35.393Z",
+    "hypothesis": "Scheduled sampling (ratio=0.3) with ThreadGate multi-seed (s456) to establish 3-seed mean±std for C2 reviewer requirement of at least 3 seeds",
+    "parent": "d048_ss_s42",
+    "spec": {
+      "command": "python train_phase2_v8b.py --seed 456 --resume runs/d048_ss_s456/epoch_0 --gate-type threadgate --lr 2e-4 --epochs 3 --batch-size 1 --grad-accum 8 --ss-ratio 0.3",
+      "server": "westd-20861",
+      "pid": "112418",
+      "data_path": "/root/turn-residual-gating/data/phase2_train.jsonl",
+      "data_count": 2000,
+      "model_name": "Qwen/Qwen2.5-7B-Instruct",
+      "seed": 456,
+      "gpu": 0,
+      "checkpoint_source": "Qwen/Qwen2.5-7B-Instruct (resume from epoch_0)",
+      "eval_data": "N/A - training experiment",
+      "checkpoint_path": "/root/turn-residual-gating/runs/d048_ss_s456/epoch_2",
+      "log_path": "/root/turn-residual-gating/runs/d048_ss_s456/train.log"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-24T00:38:35.393Z"
+  },
+  "timestamp": "2026-05-24T00:38:35.504876+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,1174 @@
+# code prep d048 ss s123
+
+**Exposure Bias Collapses Auxiliary Attention Losses in Multi-Turn Dialogue** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 24
+- **Recorded user turns:** 0
+- **Tool calls:** 7
+- **Original source:** `logs/workers/worker_code_prep_d048_ss_s123_20260522T235449.log`
+- **Structured JSON:** [`0a1af41480bb7bacb947.json`](../../sessions/0a/0a1af41480bb7bacb947.json)
+
+## Before a recorded user message
+
+24 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "session_id": "154adb6a-27d1-45b7-a6ba-8678dd8eeb03",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "0f9e8b3f-7ce2-432d-a5a3-b4b7b7ab1989",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-turn-residual-gating/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779499200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "c55d32c4-e586-415a-9c4e-fff51ba2e42a",
+  "session_id": "154adb6a-27d1-45b7-a6ba-8678dd8eeb03"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+Looking at the agent context, I already have the training command reference. Let me read the eval script from the server to base the new eval script on it.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "154adb6a-27d1-45b7-a6ba-8678dd8eeb03",
+  "uuid": "d3e4556c-3326-4e8f-a213-8efa82b0cf4e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X5w8ZL73A71PT2ADvxU3QV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13942,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13942
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01HQ3orrg89ykbj5ExYVcMDG`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "154adb6a-27d1-45b7-a6ba-8678dd8eeb03",
+  "uuid": "dd2e3a09-ac9e-4080-a777-82ab113593b8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X5w8ZL73A71PT2ADvxU3QV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13942,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13942
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-22T23:54:59.603Z_
+
+<details><summary>↩ Tool result · `toolu_01HQ3orrg89ykbj5ExYVcMDG`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "154adb6a-27d1-45b7-a6ba-8678dd8eeb03",
+  "uuid": "3b2310de-9e23-40c0-bcd5-4fba1d090efb",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the existing eval script for d048_ss_s42 to base the new eval script on it.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "154adb6a-27d1-45b7-a6ba-8678dd8eeb03",
+  "uuid": "dd7b124e-1deb-4917-a4bf-777908fbea49",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016W6bMJnYihxL79EaFWDNvp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 704,
+      "cache_read_input_tokens": 25389,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 704
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Qhug3by6ioQBkL67tgLYu8`</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "cat /root/turn_residual_gating/scripts/d048_eval_ss_s42.sh"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "154adb6a-27d1-45b7-a6ba-8678dd8eeb03",
+  "uuid": "c4ed0a49-a144-4981-96ea-97f3b3dd9b35",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016W6bMJnYihxL79EaFWDNvp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 704,
+      "cache_read_input_tokens": 25389,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 704
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-22T23:55:04.000Z_
+
+<details><summary>↩ Tool result · `toolu_01Qhug3by6ioQBkL67tgLYu8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\n# D048 SS s42 full eval: TF + AR N=50 + Bootstrap CI\\nset -euo pipefail\\n\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\ncd /root/turn_residual_gating\\n\\nPYTHON=/root/miniconda3/bin/python3.12\\nCKPT_DIR=runs/d048_ss_s42\\nCONV_PATH=data/ultrachat_eval_heldout.json\\nOUT_ROOT=results/d048_ss_s42\\n\\nmkdir -p \\\"$OUT_ROOT\\\"\\n\\n# ── Checkpoint verification ────────────────────────────────\\nBEST_EPOCH=\\\"\\\"\\nfor ep in 2 1 0; do\\n    ep_dir=\\\"${CKPT_DIR}/epoch_${ep}\\\"\\n    if [ -d \\\"$ep_dir/lora\\\" ] && [ -f \\\"$ep_dir/gate_params.pt\\\" ]; then\\n        BEST_EPOCH=\\\"$ep_dir\\\"\\n        break\\n    fi\\ndone\\nif [ -z \\\"$BEST_EPOCH\\\" ]; then\\n    echo \\\"ERROR: No complete checkpoint found in $CKPT_DIR\\\"\\n    exit 1\\nfi\\necho \\\"SS s42 checkpoint: $BEST_EPOCH\\\"\\n\\n# ════════════════════════════════════════════════════════════\\n# Phase 1: TF Eval (Base + SS, GAR-ours + GAR-Dongre)\\n# ════════════════════════════════════════════════════════════\\n\\necho \\\"========== [TF 1/4] Base + GAR-ours ==========\\\"\\n$PYTHON src/eval_phase2_gar.py \\\\\\n  --gate-type none \\\\\\n  --conversations-path \\\"$CONV_PATH\\\" \\\\\\n  --output-dir \\\"$OUT_ROOT/tf_base_ours\\\" \\\\\\n  --gar-variant ours \\\\\\n  --gate-profile\\n\\necho \\\"========== [TF 2/4] Base + GAR-Dongre ==========\\\"\\n$PYTHON src/eval_phase2_gar.py \\\\\\n  --gate-type none \\\\\\n  --conversations-path \\\"$CONV_PATH\\\" \\\\\\n  --output-dir \\\"$OUT_ROOT/tf_base_dongre\\\" \\\\\\n  --gar-variant dongre \\\\\\n  --gate-profile\\n\\necho \\\"========== [TF 3/4] SS s42 + GAR-ours ==========\\\"\\n$PYTHON src/eval_phase2_gar.py \\\\\\n  --gate-type threadgate \\\\\\n  --checkpoint-dir \\\"$BEST_EPOCH\\\" \\\\\\n  --conversations-path \\\"$CONV_PATH\\\" \\\\\\n  --output-dir \\\"$OUT_ROOT/tf_ss_ours\\\" \\\\\\n  --gar-variant ours \\\\\\n  --gate-profile\\n\\necho \\\"========== [TF 4/4] SS s42 + GAR-Dongre ==========\\\"\\n$PYTHON src/eval_phase2_gar.py \\\\\\n  --gate-type threadgate \\\\\\n  --checkpoint-dir \\\"$BEST_EPOCH\\\" \\\\\\n  --conversations-path \\\"$CONV_PATH\\\" \\\\\\n  --output-dir \\\"$OUT_ROOT/tf_ss_dongre\\\" \\\\\\n  --gar-variant dongre \\\\\\n  --gate-profile\\n\\n# ════════════════════════════════════════════════════════════\\n# Phase 2: AR N=50 Generation (eval_attention_steering.py)\\n# ════════════════════════════════════════════════════════════\\n\\necho \\\"========== [AR 1/2] SS s42 beta=0,3,5 ==========\\\"\\n$PYTHON src/eval_attention_steering.py \\\\\\n  --checkpoint \\\"$BEST_EPOCH\\\" \\\\\\n  --gate-type threadgate \\\\\\n  --mode gen \\\\\\n  --max-convs 50 \\\\\\n  --beta 0 3 5 \\\\\\n  --gar-variant ours \\\\\\n  --output-dir \\\"$OUT_ROOT\\\" \\\\\\n  --output-name \\\"ss_s42_ar_n50\\\"\\n\\necho \\\"========== [AR 2/2] Base beta=0 ==========\\\"\\n$PYTHON src/eval_attention_steering.py \\\\\\n  --gate-type none \\\\\\n  --mode gen \\\\\\n  --max-convs 50 \\\\\\n  --beta 0 \\\\\\n  --gar-variant ours \\\\\\n  --output-dir \\\"$OUT_ROOT\\\" \\\\\\n  --output-name \\\"base_ar_n50\\\"\\n\\n# ════════════════════════════════════════════════════════════\\n# Phase 3: Bootstrap 95% CI\\n# ════════════════════════════════════════════════════════════\\n\\necho \\\"========== Bootstrap 95% CI ==========\\\"\\n$PYTHON -c \\\"\\nimport json, numpy as np, os, glob\\n\\ndef bootstrap_ci(values, n_boot=10000, ci=0.95):\\n    arr = np.array(values)\\n    n = len(arr)\\n    boot_means = np.array([np.mean(np.random.choice(arr, size=n, replace=True)) for _ in range(n_boot)])\\n    lo = np.percentile(boot_means, (1-ci)/2*100)\\n    hi = np.percentile(boot_means, (1+ci)/2*100)\\n    return float(np.mean(arr)), float(lo), float(hi)\\n\\nout_root = '$OUT_ROOT'\\nnp.random.seed(42)\\n\\n# AR results\\nfor fname in sorted(glob.glob(os.path.join(out_root, '*.json'))):\\n    data = json.load(open(fname))\\n    if 'results' not in data:\\n        continue\\n    basename = os.path.basename(fname)\\n    print(f'\\\\n=== {basename} ===')\\n    for beta_key, beta_data in sorted(data['results'].items()):\\n        beta = beta_data['beta']\\n        curves = beta_data.get('gar_curves', [])\\n        if not curves:\\n            continue\\n        # Per-conversation mean GAR (excluding turn 0)\\n        conv_gars = []\\n        for curve in curves:\\n            if len(curve) > 2:\\n                conv_gars.append(np.mean(curve[2:]))\\n            elif len(curve) == 1:\\n                conv_gars.append(curve[0])\\n        if conv_gars:\\n            mean, lo, hi = bootstrap_ci(conv_gars)\\n            print(f'  beta={beta:.1f}: GAR={mean:.4f} 95%CI=[{lo:.4f}, {hi:.4f}] (n={len(conv_gars)})')\\n        ppl = beta_data.get('avg_ppl', None)\\n        if ppl is not None:\\n            print(f'           PPL={ppl:.4f}')\\n\\n# TF results\\nprint('\\\\n=== TF Summary ===')\\nfor subdir in ['tf_base_ours', 'tf_base_dongre', 'tf_ss_ours', 'tf_ss_dongre']:\\n    d = os.path.join(out_root, subdir)\\n    for f in sorted(glob.glob(os.path.join(d, '*gar*.json'))):\\n        data = json.load(open(f))\\n        ppl = data.get('avg_ppl', data.get('ppl', 'N/A'))\\n        gar = data.get('avg_gar', data.get('mid_turns_avg_gar', 'N/A'))\\n        print(f'  {subdir}: ppl={ppl}, gar={gar}')\\n        break\\n\\\"\\n\\necho \\\"\\\"\\necho \\\"================================================================\\\"\\necho \\\"D048 SS s42 eval complete\\\"\\necho \\\"================================================================\\\"\\necho \\\"Checkpoint: $BEST_EPOCH\\\"\\necho \\\"Results in: $OUT_ROOT/\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.18}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "154adb6a-27d1-45b7-a6ba-8678dd8eeb03",
+  "uuid": "38865671-c8fd-401b-8a60-6f421206a334",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\n# D048 SS s42 full eval: TF + AR N=50 + Bootstrap CI\\\\nset -euo pipefail\\\\n\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\\\ncd /root/turn_residual_gating\\\\n\\\\nPYTHON=/root/miniconda3/bin/python3.12\\\\nCKPT_DIR=runs/d048_ss_s42\\\\nCONV_PATH=data/ultrachat_eval_heldout.json\\\\nOUT_ROOT=results/d048_ss_s42\\\\n\\\\nmkdir -p \\\\\\\"$OUT_ROOT\\\\\\\"\\\\n\\\\n# ── Checkpoint verification ────────────────────────────────\\\\nBEST_EPOCH=\\\\\\\"\\\\\\\"\\\\nfor ep in 2 1 0; do\\\\n    ep_dir=\\\\\\\"${CKPT_DIR}/epoch_${ep}\\\\\\\"\\\\n    if [ -d \\\\\\\"$ep_dir/lora\\\\\\\" ] && [ -f \\\\\\\"$ep_dir/gate_params.pt\\\\\\\" ]; then\\\\n        BEST_EPOCH=\\\\\\\"$ep_dir\\\\\\\"\\\\n        break\\\\n    fi\\\\ndone\\\\nif [ -z \\\\\\\"$BEST_EPOCH\\\\\\\" ]; then\\\\n    echo \\\\\\\"ERROR: No complete checkpoint found in $CKPT_DIR\\\\\\\"\\\\n    exit 1\\\\nfi\\\\necho \\\\\\\"SS s42 checkpoint: $BEST_EPOCH\\\\\\\"\\\\n\\\\n# ════════════════════════════════════════════════════════════\\\\n# Phase 1: TF Eval (Base + SS, GAR-ours + GAR-Dongre)\\\\n# ════════════════════════════════════════════════════════════\\\\n\\\\necho \\\\\\\"========== [TF 1/4] Base + GAR-ours ==========\\\\\\\"\\\\n$PYTHON src/eval_phase2_gar.py \\\\\\\\\\\\n  --gate-type none \\\\\\\\\\\\n  --conversations-path \\\\\\\"$CONV_PATH\\\\\\\" \\\\\\\\\\\\n  --output-dir \\\\\\\"$OUT_ROOT/tf_base_ours\\\\\\\" \\\\\\\\\\\\n  --gar-variant ours \\\\\\\\\\\\n  --gate-profile\\\\n\\\\necho \\\\\\\"========== [TF 2/4] Base + GAR-Dongre ==========\\\\\\\"\\\\n$PYTHON src/eval_phase2_gar.py \\\\\\\\\\\\n  --gate-type none \\\\\\\\\\\\n  --conversations-path \\\\\\\"$CONV_PATH\\\\\\\" \\\\\\\\\\\\n  --output-dir \\\\\\\"$OUT_ROOT/tf_base_dongre\\\\\\\" \\\\\\\\\\\\n  --gar-variant dongre \\\\\\\\\\\\n  --gate-profile\\\\n\\\\necho \\\\\\\"========== [TF 3/4] SS s42 + GAR-ours ==========\\\\\\\"\\\\n$PYTHON src/eval_phase2_gar.py \\\\\\\\\\\\n  --gate-type threadgate \\\\\\\\\\\\n  --checkpoint-dir \\\\\\\"$BEST_EPOCH\\\\\\\" \\\\\\\\\\\\n  --conversations-path \\\\\\\"$CONV_PATH\\\\\\\" \\\\\\\\\\\\n  --output-dir \\\\\\\"$OUT_ROOT/tf_ss_ours\\\\\\\" \\\\\\\\\\\\n  --gar-variant ours \\\\\\\\\\\\n  --gate-profile\\\\n\\\\necho \\\\\\\"========== [TF 4/4] SS s42 + GAR-Dongre ==========\\\\\\\"\\\\n$PYTHON src/eval_phase2_gar.py \\\\\\\\\\\\n  --gate-type threadgate \\\\\\\\\\\\n  --checkpoint-dir \\\\\\\"$BEST_EPOCH\\\\\\\" \\\\\\\\\\\\n  --conversations-path \\\\\\\"$CONV_PATH\\\\\\\" \\\\\\\\\\\\n  --output-dir \\\\\\\"$OUT_ROOT/tf_ss_dongre\\\\\\\" \\\\\\\\\\\\n  --gar-variant dongre \\\\\\\\\\\\n  --gate-profile\\\\n\\\\n# ════════════════════════════════════════════════════════════\\\\n# Phase 2: AR N=50 Generation (eval_attention_steering.py)\\\\n# ════════════════════════════════════════════════════════════\\\\n\\\\necho \\\\\\\"========== [AR 1/2] SS s42 beta=0,3,5 ==========\\\\\\\"\\\\n$PYTHON src/eval_attention_steering.py \\\\\\\\\\\\n  --checkpoint \\\\\\\"$BEST_EPOCH\\\\\\\" \\\\\\\\\\\\n  --gate-type threadgate \\\\\\\\\\\\n  --mode gen \\\\\\\\\\\\n  --max-convs 50 \\\\\\\\\\\\n  --beta 0 3 5 \\\\\\\\\\\\n  --gar-variant ours \\\\\\\\\\\\n  --output-dir \\\\\\\"$OUT_ROOT\\\\\\\" \\\\\\\\\\\\n  --output-name \\\\\\\"ss_s42_ar_n50\\\\\\\"\\\\n\\\\necho \\\\\\\"========== [AR 2/2] Base beta=0 ==========\\\\\\\"\\\\n$PYTHON src/eval_attention_steering.py \\\\\\\\\\\\n  --gate-type none \\\\\\\\\\\\n  --mode gen \\\\\\\\\\\\n  --max-convs 50 \\\\\\\\\\\\n  --beta 0 \\\\\\\\\\\\n  --gar-variant ours \\\\\\\\\\\\n  --output-dir \\\\\\\"$OUT_ROOT\\\\\\\" \\\\\\\\\\\\n  --output-name \\\\\\\"base_ar_n50\\\\\\\"\\\\n\\\\n# ════════════════════════════════════════════════════════════\\\\n# Phase 3: Bootstrap 95% CI\\\\n# ════════════════════════════════════════════════════════════\\\\n\\\\necho \\\\\\\"========== Bootstrap 95% CI ==========\\\\\\\"\\\\n$PYTHON -c \\\\\\\"\\\\nimport json, numpy as np, os, glob\\\\n\\\\ndef bootstrap_ci(values, n_boot=10000, ci=0.95):\\\\n    arr = np.array(values)\\\\n    n = len(arr)\\\\n    boot_means = np.array([np.mean(np.random.choice(arr, size=n, replace=True)) for _ in range(n_boot)])\\\\n    lo = np.percentile(boot_means, (1-ci)/2*100)\\\\n    hi = np.percentile(boot_means, (1+ci)/2*100)\\\\n    return float(np.mean(arr)), float(lo), float(hi)\\\\n\\\\nout_root = '$OUT_ROOT'\\\\nnp.random.seed(42)\\\\n\\\\n# AR results\\\\nfor fname in sorted(glob.glob(os.path.join(out_root, '*.json'))):\\\\n    data = json.load(open(fname))\\\\n    if 'results' not in data:\\\\n        continue\\\\n    basename = os.path.basename(fname)\\\\n    print(f'\\\\\\\\n=== {basename} ===')\\\\n    for beta_key, beta_data in sorted(data['results'].items()):\\\\n        beta = beta_data['beta']\\\\n        curves = beta_data.get('gar_curves', [])\\\\n        if not curves:\\\\n            continue\\\\n        # Per-conversation mean GAR (excluding turn 0)\\\\n        conv_gars = []\\\\n        for curve in curves:\\\\n            if len(curve) > 2:\\\\n                conv_gars.append(np.mean(curve[2:]))\\\\n            elif len(curve) == 1:\\\\n                conv_gars.append(curve[0])\\\\n        if conv_gars:\\\\n            mean, lo, hi = bootstrap_ci(conv_gars)\\\\n            print(f'  beta={beta:.1f}: GAR={mean:.4f} 95%CI=[{lo:.4f}, {hi:.4f}] (n={len(conv_gars)})')\\\\n        ppl = beta_data.get('avg_ppl', None)\\\\n        if ppl is not None:\\\\n            print(f'           PPL={ppl:.4f}')\\\\n\\\\n# TF results\\\\nprint('\\\\\\\\n=== TF Summary ===')\\\\nfor subdir in ['tf_base_ours', 'tf_base_dongre', 'tf_ss_ours', 'tf_ss_dongre']:\\\\n    d = os.path.join(out_root, subdir)\\\\n    for f in sorted(glob.glob(os.path.join(d, '*gar*.json'))):\\\\n        data = json.load(open(f))\\\\n        ppl = data.get('avg_ppl', data.get('ppl', 'N/A'))\\\\n        gar = data.get('avg_gar', data.get('mid_turns_avg_gar', 'N/A'))\\\\n        print(f'  {subdir}: ppl={ppl}, gar={gar}')\\\\n        break\\\\n\\\\\\\"\\\\n\\\\necho \\\\\\\"\\\\\\\"\\\\necho \\\\\\\"================================================================\\\\\\\"\\\\necho \\\\\\\"D048 SS s42 eval complete\\\\\\\"\\\\necho \\\\\\\"================================================================\\\\\\\"\\\\necho \\\\\\\"Checkpoint: $BEST_EPOCH\\\\\\\"\\\\necho \\\\\\\"Results in: $OUT_ROOT/\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.18}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\n# D048 SS s42 full eval: TF + AR N=50 + Bootstrap CI\\nset -euo pipefail\\n\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\ncd /root/turn_residual_gating\\n\\nPYTHON=/root/miniconda3/bin/python3.12\\nCKPT_DIR=runs/d048_ss_s42\\nCONV_PATH=data/ultrachat_eval_heldout.json\\nOUT_ROOT=results/d048_ss_s42\\n\\nmkdir -p \\\"$OUT_ROOT\\\"\\n\\n# ── Checkpoint verification ────────────────────────────────\\nBEST_EPOCH=\\\"\\\"\\nfor ep in 2 1 0; do\\n    ep_dir=\\\"${CKPT_DIR}/epoch_${ep}\\\"\\n    if [ -d \\\"$ep_dir/lora\\\" ] && [ -f \\\"$ep_dir/gate_params.pt\\\" ]; then\\n        BEST_EPOCH=\\\"$ep_dir\\\"\\n        break\\n    fi\\ndone\\nif [ -z \\\"$BEST_EPOCH\\\" ]; then\\n    echo \\\"ERROR: No complete checkpoint found in $CKPT_DIR\\\"\\n    exit 1\\nfi\\necho \\\"SS s42 checkpoint: $BEST_EPOCH\\\"\\n\\n# ════════════════════════════════════════════════════════════\\n# Phase 1: TF Eval (Base + SS, GAR-ours + GAR-Dongre)\\n# ════════════════════════════════════════════════════════════\\n\\necho \\\"========== [TF 1/4] Base + GAR-ours ==========\\\"\\n$PYTHON src/eval_phase2_gar.py \\\\\\n  --gate-type none \\\\\\n  --conversations-path \\\"$CONV_PATH\\\" \\\\\\n  --output-dir \\\"$OUT_ROOT/tf_base_ours\\\" \\\\\\n  --gar-variant ours \\\\\\n  --gate-profile\\n\\necho \\\"========== [TF 2/4] Base + GAR-Dongre ==========\\\"\\n$PYTHON src/eval_phase2_gar.py \\\\\\n  --gate-type none \\\\\\n  --conversations-path \\\"$CONV_PATH\\\" \\\\\\n  --output-dir \\\"$OUT_ROOT/tf_base_dongre\\\" \\\\\\n  --gar-variant dongre \\\\\\n  --gate-profile\\n\\necho \\\"========== [TF 3/4] SS s42 + GAR-ours ==========\\\"\\n$PYTHON src/eval_phase2_gar.py \\\\\\n  --gate-type threadgate \\\\\\n  --checkpoint-dir \\\"$BEST_EPOCH\\\" \\\\\\n  --conversations-path \\\"$CONV_PATH\\\" \\\\\\n  --output-dir \\\"$OUT_ROOT/tf_ss_ours\\\" \\\\\\n  --gar-variant ours \\\\\\n  --gate-profile\\n\\necho \\\"========== [TF 4/4] SS s42 + GAR-Dongre ==========\\\"\\n$PYTHON src/eval_phase2_gar.py \\\\\\n  --gate-type threadgate \\\\\\n  --checkpoint-dir \\\"$BEST_EPOCH\\\" \\\\\\n  --conversations-path \\\"$CONV_PATH\\\" \\\\\\n  --output-dir \\\"$OUT_ROOT/tf_ss_dongre\\\" \\\\\\n  --gar-variant dongre \\\\\\n  --gate-profile\\n\\n# ════════════════════════════════════════════════════════════\\n# Phase 2: AR N=50 Generation (eval_attention_steering.py)\\n# ════════════════════════════════════════════════════════════\\n\\necho \\\"========== [AR 1/2] SS s42 beta=0,3,5 ==========\\\"\\n$PYTHON src/eval_attention_steering.py \\\\\\n  --checkpoint \\\"$BEST_EPOCH\\\" \\\\\\n  --gate-type threadgate \\\\\\n  --mode gen \\\\\\n  --max-convs 50 \\\\\\n  --beta 0 3 5 \\\\\\n  --gar-variant ours \\\\\\n  --output-dir \\\"$OUT_ROOT\\\" \\\\\\n  --output-name \\\"ss_s42_ar_n50\\\"\\n\\necho \\\"========== [AR 2/2] Base beta=0 ==========\\\"\\n$PYTHON src/eval_attention_steering.py \\\\\\n  --gate-type none \\\\\\n  --mode gen \\\\\\n  --max-convs 50 \\\\\\n  --beta 0 \\\\\\n  --gar-variant ours \\\\\\n  --output-dir \\\"$OUT_ROOT\\\" \\\\\\n  --output-name \\\"base_ar_n50\\\"\\n\\n# ════════════════════════════════════════════════════════════\\n# Phase 3: Bootstrap 95% CI\\n# ════════════════════════════════════════════════════════════\\n\\necho \\\"========== Bootstrap 95% CI ==========\\\"\\n$PYTHON -c \\\"\\nimport json, numpy as np, os, glob\\n\\ndef bootstrap_ci(values, n_boot=10000, ci=0.95):\\n    arr = np.array(values)\\n    n = len(arr)\\n    boot_means = np.array([np.mean(np.random.choice(arr, size=n, replace=True)) for _ in range(n_boot)])\\n    lo = np.percentile(boot_means, (1-ci)/2*100)\\n    hi = np.percentile(boot_means, (1+ci)/2*100)\\n    return float(np.mean(arr)), float(lo), float(hi)\\n\\nout_root = '$OUT_ROOT'\\nnp.random.seed(42)\\n\\n# AR results\\nfor fname in sorted(glob.glob(os.path.join(out_root, '*.json'))):\\n    data = json.load(open(fname))\\n    if 'results' not in data:\\n        continue\\n    basename = os.path.basename(fname)\\n    print(f'\\\\n=== {basename} ===')\\n    for beta_key, beta_data in sorted(data['results'].items()):\\n        beta = beta_data['beta']\\n        curves = beta_data.get('gar_curves', [])\\n        if not curves:\\n            continue\\n        # Per-conversation mean GAR (excluding turn 0)\\n        conv_gars = []\\n        for curve in curves:\\n            if len(curve) > 2:\\n                conv_gars.append(np.mean(curve[2:]))\\n            elif len(curve) == 1:\\n                conv_gars.append(curve[0])\\n        if conv_gars:\\n            mean, lo, hi = bootstrap_ci(conv_gars)\\n            print(f'  beta={beta:.1f}: GAR={mean:.4f} 95%CI=[{lo:.4f}, {hi:.4f}] (n={len(conv_gars)})')\\n        ppl = beta_data.get('avg_ppl', None)\\n        if ppl is not None:\\n            print(f'           PPL={ppl:.4f}')\\n\\n# TF results\\nprint('\\\\n=== TF Summary ===')\\nfor subdir in ['tf_base_ours', 'tf_base_dongre', 'tf_ss_ours', 'tf_ss_dongre']:\\n    d = os.path.join(out_root, subdir)\\n    for f in sorted(glob.glob(os.path.join(d, '*gar*.json'))):\\n        data = json.load(open(f))\\n        ppl = data.get('avg_ppl', data.get('ppl', 'N/A'))\\n        gar = data.get('avg_gar', data.get('mid_turns_avg_gar', 'N/A'))\\n        print(f'  {subdir}: ppl={ppl}, gar={gar}')\\n        break\\n\\\"\\n\\necho \\\"\\\"\\necho \\\"================================================================\\\"\\necho \\\"D048 SS s42 eval complete\\\"\\necho \\\"================================================================\\\"\\necho \\\"Checkpoint: $BEST_EPOCH\\\"\\necho \\\"Results in: $OUT_ROOT/\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.18}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the eval script. Let me create both scripts on the server. Let me prepare the training script and eval script.
+
+Training script - based on the command in agent_context:
+- Change --seed 42 to --seed 123
+- Change output-dir from runs/d048_ss_s42 to runs/d048_ss_s123
+
+Eval script - based on the eval script I just read:
+- Change CKPT_DIR to runs/d048_ss_s123
+- Change OUT_ROOT to results/d048_ss_s123
+- Change all "s42" references to "s123" in echo statements and output names
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "154adb6a-27d1-45b7-a6ba-8678dd8eeb03",
+  "uuid": "f1a150a8-d0d9-449d-944e-11bb0a91d752",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QZgDNnoq79mTmE9moKpa8r",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2527,
+      "cache_read_input_tokens": 26093,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2527
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+Got the eval script. Now I'll create both scripts on the server.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "154adb6a-27d1-45b7-a6ba-8678dd8eeb03",
+  "uuid": "9e2c7fac-bfa7-4fd7-9f35-b3683e56ee20",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QZgDNnoq79mTmE9moKpa8r",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2527,
+      "cache_read_input_tokens": 26093,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2527
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01GzoaMGjrqQ13ZW6ApK4XYL`</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "cat > /root/turn_residual_gating/scripts/d048_ss_s123.sh << 'SCRIPT_EOF'\n#!/bin/bash\n# D048 SS s123 training (multi-seed run, same config as s42)\nset -euo pipefail\n\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\ncd /root/turn_residual_gating\n\nPYTHONUNBUFFERED=1 python src/train_phase2_v8b.py \\\n  --model /root/.cache/modelscope/Qwen/Qwen2___5-7B-Instruct \\\n  --gate-type threadgate \\\n  --gar-loss-mode mse_target \\\n  --gar-target 0.5 \\\n  --lambda-gar 1.0 \\\n  --lambda-gate-div 1.0 \\\n  --min-gate-std 0.05 \\\n  --init-bias 1.5 \\\n  --gate-lr-multiplier 10 \\\n  --lr 2e-4 \\\n  --batch-size 1 \\\n  --grad-accum 8 \\\n  --max-seq-len 2048 \\\n  --scheduled-sampling \\\n  --ss-max-ratio 0.3 \\\n  --seed 123 \\\n  --epochs 3 \\\n  --output-dir runs/d048_ss_s123 \\\n  --data-dir data/ultrachat_8k\nSCRIPT_EOF\nchmod +x /root/turn_residual_gating/scripts/d048_ss_s123.sh"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "154adb6a-27d1-45b7-a6ba-8678dd8eeb03",
+  "uuid": "0bc3f8e3-bda5-43ec-9edf-f912c6d9d029",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QZgDNnoq79mTmE9moKpa8r",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2527,
+      "cache_read_input_tokens": 26093,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2527
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-22T23:55:19.827Z_
+
+<details><summary>↩ Tool result · `toolu_01GzoaMGjrqQ13ZW6ApK4XYL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "154adb6a-27d1-45b7-a6ba-8678dd8eeb03",
+  "uuid": "640c1f66-3db1-4ddd-a323-71537bf8696b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01YC3MGwB4UwKWx8ByRL4NFF`</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "cat > /root/turn_residual_gating/scripts/d048_eval_ss_s123.sh << 'SCRIPT_EOF'\n#!/bin/bash\n# D048 SS s123 full eval: TF + AR N=50 + Bootstrap CI\nset -euo pipefail\n\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\ncd /root/turn_residual_gating\n\nPYTHON=/root/miniconda3/bin/python3.12\nCKPT_DIR=runs/d048_ss_s123\nCONV_PATH=data/ultrachat_eval_heldout.json\nOUT_ROOT=results/d048_ss_s123\n\nmkdir -p \"$OUT_ROOT\"\n\n# ── Checkpoint verification ────────────────────────────────\nBEST_EPOCH=\"\"\nfor ep in 2 1 0; do\n    ep_dir=\"${CKPT_DIR}/epoch_${ep}\"\n    if [ -d \"$ep_dir/lora\" ] && [ -f \"$ep_dir/gate_params.pt\" ]; then\n        BEST_EPOCH=\"$ep_dir\"\n        break\n    fi\ndone\nif [ -z \"$BEST_EPOCH\" ]; then\n    echo \"ERROR: No complete checkpoint found in $CKPT_DIR\"\n    exit 1\nfi\necho \"SS s123 checkpoint: $BEST_EPOCH\"\n\n# ════════════════════════════════════════════════════════════\n# Phase 1: TF Eval (Base + SS, GAR-ours + GAR-Dongre)\n# ════════════════════════════════════════════════════════════\n\necho \"========== [TF 1/4] Base + GAR-ours ==========\"\n$PYTHON src/eval_phase2_gar.py \\\n  --gate-type none \\\n  --conversations-path \"$CONV_PATH\" \\\n  --output-dir \"$OUT_ROOT/tf_base_ours\" \\\n  --gar-variant ours \\\n  --gate-profile\n\necho \"========== [TF 2/4] Base + GAR-Dongre ==========\"\n$PYTHON src/eval_phase2_gar.py \\\n  --gate-type none \\\n  --conversations-path \"$CONV_PATH\" \\\n  --output-dir \"$OUT_ROOT/tf_base_dongre\" \\\n  --gar-variant dongre \\\n  --gate-profile\n\necho \"========== [TF 3/4] SS s123 + GAR-ours ==========\"\n$PYTHON src/eval_phase2_gar.py \\\n  --gate-type threadgate \\\n  --checkpoint-dir \"$BEST_EPOCH\" \\\n  --conversations-path \"$CONV_PATH\" \\\n  --output-dir \"$OUT_ROOT/tf_ss_ours\" \\\n  --gar-variant ours \\\n  --gate-profile\n\necho \"========== [TF 4/4] SS s123 + GAR-Dongre ==========\"\n$PYTHON src/eval_phase2_gar.py \\\n  --gate-type threadgate \\\n  --checkpoint-dir \"$BEST_EPOCH\" \\\n  --conversations-path \"$CONV_PATH\" \\\n  --output-dir \"$OUT_ROOT/tf_ss_dongre\" \\\n  --gar-variant dongre \\\n  --gate-profile\n\n# ════════════════════════════════════════════════════════════\n# Phase 2: AR N=50 Generation (eval_attention_steering.py)\n# ════════════════════════════════════════════════════════════\n\necho \"========== [AR 1/2] SS s123 beta=0,3,5 ==========\"\n$PYTHON src/eval_attention_steering.py \\\n  --checkpoint \"$BEST_EPOCH\" \\\n  --gate-type threadgate \\\n  --mode gen \\\n  --max-convs 50 \\\n  --beta 0 3 5 \\\n  --gar-variant ours \\\n  --output-dir \"$OUT_ROOT\" \\\n  --output-name \"ss_s123_ar_n50\"\n\necho \"========== [AR 2/2] Base beta=0 ==========\"\n$PYTHON src/eval_attention_steering.py \\\n  --gate-type none \\\n  --mode gen \\\n  --max-convs 50 \\\n  --beta 0 \\\n  --gar-variant ours \\\n  --output-dir \"$OUT_ROOT\" \\\n  --output-name \"base_ar_n50\"\n\n# ════════════════════════════════════════════════════════════\n# Phase 3: Bootstrap 95% CI\n# ════════════════════════════════════════════════════════════\n\necho \"========== Bootstrap 95% CI ==========\"\n$PYTHON -c \"\nimport json, numpy as np, os, glob\n\ndef bootstrap_ci(values, n_boot=10000, ci=0.95):\n    arr = np.array(values)\n    n = len(arr)\n    boot_means = np.array([np.mean(np.random.choice(arr, size=n, replace=True)) for _ in range(n_boot)])\n    lo = np.percentile(boot_means, (1-ci)/2*100)\n    hi = np.percentile(boot_means, (1+ci)/2*100)\n    return float(np.mean(arr)), float(lo), float(hi)\n\nout_root = '$OUT_ROOT'\nnp.random.seed(42)\n\n# AR results\nfor fname in sorted(glob.glob(os.path.join(out_root, '*.json'))):\n    data = json.load(open(fname))\n    if 'results' not in data:\n        continue\n    basename = os.path.basename(fname)\n    print(f'\\n=== {basename} ===')\n    for beta_key, beta_data in sorted(data['results'].items()):\n        beta = beta_data['beta']\n        curves = beta_data.get('gar_curves', [])\n        if not curves:\n            continue\n        # Per-conversation mean GAR (excluding turn 0)\n        conv_gars = []\n        for curve in curves:\n            if len(curve) > 2:\n                conv_gars.append(np.mean(curve[2:]))\n            elif len(curve) == 1:\n                conv_gars.append(curve[0])\n        if conv_gars:\n            mean, lo, hi = bootstrap_ci(conv_gars)\n            print(f'  beta={beta:.1f}: GAR={mean:.4f} 95%CI=[{lo:.4f}, {hi:.4f}] (n={len(conv_gars)})')\n        ppl = beta_data.get('avg_ppl', None)\n        if ppl is not None:\n            print(f'           PPL={ppl:.4f}')\n\n# TF results\nprint('\\n=== TF Summary ===')\nfor subdir in ['tf_base_ours', 'tf_base_dongre', 'tf_ss_ours', 'tf_ss_dongre']:\n    d = os.path.join(out_root, subdir)\n    for f in sorted(glob.glob(os.path.join(d, '*gar*.json'))):\n        data = json.load(open(f))\n        ppl = data.get('avg_ppl', data.get('ppl', 'N/A'))\n        gar = data.get('avg_gar', data.get('mid_turns_avg_gar', 'N/A'))\n        print(f'  {subdir}: ppl={ppl}, gar={gar}')\n        break\n\"\n\necho \"\"\necho \"================================================================\"\necho \"D048 SS s123 eval complete\"\necho \"================================================================\"\necho \"Checkpoint: $BEST_EPOCH\"\necho \"Results in: $OUT_ROOT/\"\nSCRIPT_EOF\nchmod +x /root/turn_residual_gating/scripts/d048_eval_ss_s123.sh"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "154adb6a-27d1-45b7-a6ba-8678dd8eeb03",
+  "uuid": "59ee25af-27e6-441e-9536-03a01bf03abe",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QZgDNnoq79mTmE9moKpa8r",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2527,
+      "cache_read_input_tokens": 26093,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2527
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-22T23:55:41.502Z_
+
+<details><summary>↩ Tool result · `toolu_01YC3MGwB4UwKWx8ByRL4NFF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "154adb6a-27d1-45b7-a6ba-8678dd8eeb03",
+  "uuid": "c6f387ff-5791-4ee8-8778-b593985c1340",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+Both scripts created. Now dry-run validation.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "154adb6a-27d1-45b7-a6ba-8678dd8eeb03",
+  "uuid": "7b69c5a0-45fe-4792-abac-e3dbba15b73f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VAPVKh9YWpMkFqRSPgVncZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2913,
+      "cache_read_input_tokens": 28620,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2913
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01T6zXHJzSKLwc9z45baM9B3`</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "bash -n /root/turn_residual_gating/scripts/d048_ss_s123.sh"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "154adb6a-27d1-45b7-a6ba-8678dd8eeb03",
+  "uuid": "0d0edc58-2272-4a47-8a70-f82e6a7a14d3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VAPVKh9YWpMkFqRSPgVncZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2913,
+      "cache_read_input_tokens": 28620,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2913
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-22T23:55:45.988Z_
+
+<details><summary>↩ Tool result · `toolu_01T6zXHJzSKLwc9z45baM9B3`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'bash' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "154adb6a-27d1-45b7-a6ba-8678dd8eeb03",
+  "uuid": "a7a38d39-7add-4865-ade3-9e3a59a87d88",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'bash' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'bash' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UTCnYwgiZmJMbPXKJGxgEZ`</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "bash -n /root/turn_residual_gating/scripts/d048_eval_ss_s123.sh"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "154adb6a-27d1-45b7-a6ba-8678dd8eeb03",
+  "uuid": "b819bda1-e1ce-4297-9000-34b925a0e7bf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VAPVKh9YWpMkFqRSPgVncZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2913,
+      "cache_read_input_tokens": 28620,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2913
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-22T23:55:46.086Z_
+
+<details><summary>↩ Tool result · `toolu_01UTCnYwgiZmJMbPXKJGxgEZ`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'bash' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "154adb6a-27d1-45b7-a6ba-8678dd8eeb03",
+  "uuid": "4e1c2806-77c2-4312-a9ed-d0b5814bd583",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'bash' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'bash' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_016XVd17W2BU2HJhjfgKr93S`</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "bash -n /root/turn_residual_gating/scripts/d048_ss_s123.sh && echo \"TRAIN_OK\" && bash -n /root/turn_residual_gating/scripts/d048_eval_ss_s123.sh && echo \"EVAL_OK\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "154adb6a-27d1-45b7-a6ba-8678dd8eeb03",
+  "uuid": "7a6f132a-9d1f-4e7f-b3d5-6c9415fefc48",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y62ftuqUiMeKxL1fkRuioq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 457,
+      "cache_read_input_tokens": 31533,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 457
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-22T23:55:49.274Z_
+
+<details><summary>↩ Tool result · `toolu_016XVd17W2BU2HJhjfgKr93S`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"TRAIN_OK\\nEVAL_OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "154adb6a-27d1-45b7-a6ba-8678dd8eeb03",
+  "uuid": "679dd51f-1def-4777-953b-555665cc0920",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"TRAIN_OK\\\\nEVAL_OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"TRAIN_OK\\nEVAL_OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+两个脚本均通过 `bash -n` 语法检查。
+
+**产出汇总：**
+
+| 脚本 | 路径 |
+|------|------|
+| 训练 | `/root/turn_residual_gating/scripts/d048_ss_s123.sh` |
+| Eval | `/root/turn_residual_gating/scripts/d048_eval_ss_s123.sh` |
+
+**与 s42 的差异：**
+- `--seed 123`（原 42）
+- `--output-dir runs/d048_ss_s123`（原 d048_ss_s42）
+- eval 脚本中 `CKPT_DIR`、`OUT_ROOT`、`output-name` 均改为 s123
+- 其他参数完全一致（`--scheduled-sampling --ss-max-ratio 0.3 --lambda-gar 1.0 --epochs 3` 等）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "154adb6a-27d1-45b7-a6ba-8678dd8eeb03",
+  "uuid": "0629bc53-2b6c-4e9f-9719-8f574eeccc8b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AqNkwVfE981nGMWrcNw88j",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 341,
+      "cache_read_input_tokens": 31990,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 341
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 24_
+
+两个脚本均通过 `bash -n` 语法检查。
+
+**产出汇总：**
+
+| 脚本 | 路径 |
+|------|------|
+| 训练 | `/root/turn_residual_gating/scripts/d048_ss_s123.sh` |
+| Eval | `/root/turn_residual_gating/scripts/d048_eval_ss_s123.sh` |
+
+**与 s42 的差异：**
+- `--seed 123`（原 42）
+- `--output-dir runs/d048_ss_s123`（原 d048_ss_s42）
+- eval 脚本中 `CKPT_DIR`、`OUT_ROOT`、`output-name` 均改为 s123
+- 其他参数完全一致（`--scheduled-sampling --ss-max-ratio 0.3 --lambda-gar 1.0 --epochs 3` 等）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 60080,
+  "duration_api_ms": 58977,
+  "num_turns": 8,
+  "stop_reason": "end_turn",
+  "session_id": "154adb6a-27d1-45b7-a6ba-8678dd8eeb03",
+  "total_cost_usd": 0.29988400000000004,
+  "usage": {
+    "input_tokens": 10,
+    "cache_creation_input_tokens": 20884,
+    "cache_read_input_tokens": 155072,
+    "output_tokens": 3607,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 20884,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 248,
+        "cache_read_input_tokens": 31990,
+        "cache_creation_input_tokens": 341,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 341
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1503,
+      "outputTokens": 19,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001598,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 10,
+      "outputTokens": 3607,
+      "cacheReadInputTokens": 155072,
+      "cacheCreationInputTokens": 20884,
+      "webSearchRequests": 0,
+      "costUSD": 0.29828600000000005,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "aa76adc1-9735-48f5-a99f-38da7e256593"
+}
+```
+
+</details>
+
+---

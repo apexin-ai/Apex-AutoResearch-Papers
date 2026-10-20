@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3a01e066056fc90cb564",
+  "project": "turn-hier-kv-compress",
+  "kind": "result",
+  "title": "code turnkv press",
+  "task_key": "worker_code_turnkv_press_20260513T090754",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_turnkv_press_20260513T090754_result.json",
+    "occurrence": 1,
+    "bytes": 966,
+    "sha256": "d51945ce87b765c73c340904e9a52d74859d6cfc06557853727afdca5c31a160"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 17 个测试通过。\n\n创建的文件：\n\n| 文件 | 用途 |\n|------|------|\n| `src/turnkv/__init__.py` | 包初始化，导出 `TurnKVPress`, `Segment`, EASS 函数 |\n| `src/turnkv/press.py` | `TurnKVPress` 主类，包装 `ExpectedAttentionPress`，在 `score()` 中执行 segment-aware 分数调制 |\n| `src/turnkv/eass.py` | EASS 核心逻辑：`compute_eass`（per-token→per-segment 聚合）、`compute_budget`（structural prior + recency decay + z-scored EASS 调制）、`map_budget_to_scores`（segment budget 乘回 per-token scores）；同时定义 `Segment` dataclass |\n| `tests/torch_shim.py` | numpy-backed minimal torch API，支持无 torch 环境测试 |\n| `tests/test_press.py` | 17 个单元测试覆盖 EASS 聚合、budget 计算（角色先验/recency decay/clipping/beta 灵敏度）、score mapping（保序性/budget=1 恒等性）、TurnKVPress 集成（有/无 segments、compression_ratio 继承） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-turnkv-press.md"
+}

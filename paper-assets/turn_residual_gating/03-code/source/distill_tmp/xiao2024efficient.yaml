@@ -1,0 +1,138 @@
+paper_key: "xiao2024efficient"
+title: "Efficient Streaming Language Models with Attention Sinks"
+venue: "ICLR 2024"
+full_text_available: true
+
+research:
+  baselines:
+    - "Dense Attention (full O(T^2) KV cache)"
+    - "Window Attention (fixed sliding window, evicts initial tokens)"
+    - "Sliding Window with Re-computation (oracle baseline, rebuilds KV states each step)"
+  metrics:
+    - {name: "Perplexity (PPL)", direction: "lower_better"}
+    - {name: "Exact Match Accuracy", direction: "higher_better"}
+    - {name: "Per-token Decoding Latency (ms)", direction: "lower_better"}
+    - {name: "Memory Footprint (GB)", direction: "lower_better"}
+    - {name: "Zero-shot Accuracy (ARC, HellaSwag, LAMBADA, etc.)", direction: "higher_better"}
+  datasets:
+    - {name: "PG-19", size: "100 books in test set, evaluated up to 4M tokens"}
+    - {name: "ARC-Easy", size: "standard split"}
+    - {name: "ARC-Challenge", size: "standard split"}
+    - {name: "StreamEval", size: "custom benchmark, queries every 10 lines, up to 120K tokens"}
+    - {name: "LongBench", size: "bilingual multitask (NarrativeQA, Qasper, HotpotQA, 2WikiMQA, GovReport, MultiNews)"}
+    - {name: "The Pile (deduplicated)", size: "used for 160M pre-training experiments"}
+    - {name: "HellaSwag", size: "standard zero-shot"}
+    - {name: "LAMBADA", size: "standard zero-shot"}
+    - {name: "OpenbookQA", size: "standard zero-shot"}
+    - {name: "PIQA", size: "standard zero-shot"}
+    - {name: "Winogrande", size: "standard zero-shot"}
+  ablation_dimensions:
+    - "Number of initial tokens kept as attention sinks (0, 1, 2, 4, 8)"
+    - "Rolling cache size (252, 508, 1020, 2044)"
+    - "Pre-training sink strategy (vanilla vs zero sink vs learnable sink)"
+    - "Number of sink tokens during pre-training (1 vs 2)"
+    - "Query-answer distance in streaming QA"
+    - "Model family (Llama-2, MPT, Falcon, Pythia)"
+    - "Model scale (2.8B to 70B)"
+  training_recipe:
+    pre_training_experiments: "160M parameter models trained on The Pile"
+    optimizer: "not specified for pre-training (likely AdamW based on standard practice)"
+    lr: "not specified"
+    hardware: "A100 GPUs (inferred from latency benchmarks)"
+    sink_token_training: "prepend learnable placeholder token to all training samples"
+    zero_sink_training: "use SoftMax_1 (Equation 2) that does not require attention scores to sum to 1"
+  method_family: "attention sink / streaming inference / KV cache optimization"
+
+positioning:
+  core_claim: "Initial tokens in autoregressive transformers act as 'attention sinks' due to softmax normalization constraints, and preserving just 4 of these tokens alongside a rolling KV cache enables stable infinite-length streaming inference without fine-tuning."
+  key_results: "PPL 5.40 (StreamingLLM) vs 5158.07 (Window Attention) on Llama-2-13B; up to 22.2x speedup vs sliding window recomputation; stable perplexity across 4M+ tokens on Llama-2/MPT/Falcon/Pythia families; streaming QA accuracy matching one-shot baseline (71.34% vs 71.25% on Llama-2-7B-Chat ARC-E)"
+  limitations:
+    - "Does not extend context window or enhance long-term memory — confined to cache contents"
+    - "Not suitable for tasks requiring long-range dependencies (document summarization, multi-hop reasoning over distant context)"
+    - "Models may not fully utilize the entire context they receive (non-monotonic PPL with larger caches)"
+    - "Recency bias — poor performance on information beyond cache boundaries"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "化繁为简型"
+  hook: "Opens with the practical challenge of deploying LLMs for streaming applications (infinite text generation) — two concrete failure modes: unbounded memory growth and length generalization failure. Immediately establishes practical urgency."
+  tension: "Window attention seems like the obvious solution but fails catastrophically (PPL spikes from 5.40 to 5158) once initial tokens are evicted. This surprising failure demands explanation — why do initial tokens matter so much when they carry no special semantic content?"
+  key_insight: "The attention sink phenomenon — softmax forces attention weights to sum to 1, so tokens with no strong key-query match dump 'excess' attention onto initial tokens. These tokens act as learned sinks, not information carriers. Revealed through attention visualization (Figure 2) and the linebreak replacement experiment (Table 1): replacing initial tokens with meaningless linebreaks preserves performance."
+  argument_chain: "streaming deployment problem → window attention fails → why? → attention sinks discovered → mechanistic explanation (softmax constraint) → StreamingLLM solution (keep sinks + rolling cache) → validation across 4 model families × multiple scales → pre-training enhancement (learnable sink token) → efficiency gains (22.2x speedup)"
+  contribution_framing: "Four contributions framed as discovery-to-solution pipeline: (1) identify attention sink phenomenon, (2) propose StreamingLLM framework, (3) recommend pre-training with sink token, (4) extensive empirical validation. Industry adoption cited as impact evidence (TensorRT-LLM, HuggingFace, etc.)"
+  intro_structure: "~6 paragraphs: P1 streaming deployment challenge, P2 existing approaches and their limits, P3 attention sink discovery, P4 StreamingLLM solution, P5 pre-training recommendation, P6 contributions list"
+  notable_technique: "The linebreak replacement experiment (Table 1) is a masterful 'surgical' ablation — by replacing semantically meaningful initial tokens with meaningless linebreak characters and showing performance is preserved, it definitively proves the sink effect is positional, not semantic. This single experiment carries enormous persuasive weight."
+
+figures:
+  figure_count: 15
+  figure1:
+    type: "method_overview"
+    description: "Four-panel comparison of Dense Attention, Window Attention, Sliding Window w/ Recomputation, and StreamingLLM. Each panel shows a triangular attention matrix heatmap (blue/red cells) with arrows indicating token flow, plus complexity notation and PPL numbers below."
+    narrative_role: "Serves as both problem illustration and solution overview in one figure. The first three panels establish the problem space (dense fails on length, window fails on quality, recomputation fails on speed), and the fourth panel presents StreamingLLM as the Goldilocks solution matching recomputation quality with window efficiency."
+    design_elements:
+      - "Four-panel horizontal layout for direct comparison"
+      - "Attention matrices as colored heatmaps (blue=cached, red=current, yellow=attention sink)"
+      - "Complexity and PPL metrics below each panel (red X for failures, green checkmarks for successes)"
+      - "Arrows showing token eviction/caching flow"
+      - "Bold '(ours)' label on rightmost panel"
+    visual_style: "Clean schematic style. Color-coded attention matrices (blue cached tokens, red current token, yellow attention sinks). Black arrows for data flow. Red/green indicators for pass/fail metrics. Compact layout fitting 4 methods side-by-side."
+  result_figures:
+    - figure_id: "Figure 5"
+      viz_type: "line_plot"
+      what_compared: "Perplexity stability across 4M tokens for Llama-2 (4 scales), Pythia (3 scales), Falcon (2 scales), MPT (2 scales) — 4 separate panels by model family"
+      how_gain_highlighted: "Flat, stable lines across entire 4M token range demonstrate the method works consistently. Each model variant shown as a different colored line within its family panel."
+      design_note: "Four-panel layout grouped by model family. Y-axis is perplexity (log scale implied by narrow range). The visual message is stability — flat lines = success. No comparison with failing baselines shown (that's already established in earlier figures)."
+    - figure_id: "Figure 9"
+      viz_type: "line_plot"
+      what_compared: "StreamEval accuracy across increasing token distances for LongChat-7b and Llama-2-7B-32K-Instruct"
+      how_gain_highlighted: "StreamingLLM maintains accuracy within cache boundary while window attention drops to near-zero"
+      design_note: "Demonstrates real-world streaming QA viability"
+    - figure_id: "Figure 10"
+      viz_type: "grouped_bar_chart"
+      what_compared: "Per-token decoding latency and memory for StreamingLLM vs Sliding Window w/ Recomputation across cache sizes (256-4096) for Llama-2-7B and Llama-2-13B"
+      how_gain_highlighted: "Dramatic latency gap grows with cache size (StreamingLLM stays flat while recomputation grows quadratically). Exact numbers annotated on each bar. Memory shown as nearly identical, proving speed gain is free."
+      design_note: "Four subplots: latency+memory for each model size. Gray bars (baseline) vs dark red bars (ours). Annotated exact values on bars. The latency gap visually widens with cache size, emphasizing the quadratic vs linear complexity difference."
+  ablation_figures:
+    - figure_id: "Figure 2"
+      viz_type: "heatmap"
+      dimensions_varied: ["layer depth (Layer 0, 1, 2)", "attention head (Head 0)"]
+      design_note: "Attention logit heatmaps showing the sink phenomenon visually. Layer 0 shows local attention; deeper layers show massive concentration on initial tokens (bright red column on left edge). Uses diverging red-blue colormap. The visual pattern is immediately striking — the first column 'lights up' in deeper layers."
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      dimensions_varied: ["sequence length beyond cache size", "model family"]
+      design_note: "Shows PPL explosion when window attention evicts initial tokens. Sharp spike at cache boundary makes the failure mode visually dramatic."
+  figure_narrative_role: "Figure 1 (overview) → Figure 2 (phenomenon evidence) → Figure 3 (failure mode) → Figure 4 (solution mechanism) → Figure 5 (main results across models) → Figure 6 (pre-training convergence) → Figure 7 (sink token attention maps) → Figure 8-9 (streaming QA) → Figure 10 (efficiency). Follows discovery → explanation → solution → validation → extensions arc."
+
+tables:
+  table_count: 10
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "cache configurations (0+1024, 4+1020, 4linebreak+1020)"
+    col_axis: "models (Llama-2-7B, Llama-2-13B, Llama-2-70B)"
+    row_organization: "by_configuration"
+    col_organization: "grouped_by_model"
+    highlight_strategy: "no explicit bold/underline — the dramatic numerical contrast (5158 vs 5.40) speaks for itself"
+    statistical_reporting: "single-run perplexity values"
+    num_baselines: 2
+    design_note: "Small but devastating table. The 3-order-of-magnitude PPL gap between window-only and window+sinks makes the point without needing highlighting. The linebreak replacement row is the key ablation proving positional (not semantic) importance."
+  ablation_tables:
+    - table_id: "Table 2"
+      what_varied: ["number of initial tokens (0, 1, 2, 4, 8)"]
+      variation_style: "full_numbers"
+      design_note: "Shows diminishing returns — 1 token recovers most performance, 4 is sufficient, 8 is marginal. Clean single-variable sweep."
+    - table_id: "Table 3"
+      what_varied: ["pre-training strategy (vanilla, zero sink, learnable sink)", "cache configuration"]
+      variation_style: "full_numbers"
+      design_note: "Cross-product of training strategy × cache config. Learnable sink achieves stable PPL with just 1 sink token. Zero sink still needs 2+ tokens."
+    - table_id: "Table 4"
+      what_varied: ["vanilla vs sink token pre-training"]
+      variation_style: "full_numbers"
+      design_note: "7 zero-shot benchmarks showing sink token doesn't hurt standard performance. Row-per-method, column-per-benchmark layout."
+    - table_id: "Table 6"
+      what_varied: ["cache size (256, 512, 1024, 2048)"]
+      variation_style: "full_numbers"
+      design_note: "Reveals surprising non-monotonic PPL-cache relationship. Larger cache doesn't always help — suggests models underutilize context."
+  supplementary_tables:
+    in_appendix: true
+    content: "Tables 7-10: StreamEval accuracy vs query-answer distance (T7), LongBench results (T8), zero-shot with multiple sink tokens (T9), streaming PPL with multiple sink tokens (T10), plus extensive attention visualizations (Figures 11-15)"
+    reason: "Core argument is fully supported by main-text tables; appendix provides exhaustive model-scale and task-specific breakdowns plus visual evidence (attention maps at various layers/heads/models)"

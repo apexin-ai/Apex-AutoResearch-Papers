@@ -1,0 +1,91 @@
+{
+  "schema_version": "1.0",
+  "session_id": "f069a434cb4d26858e2a",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 164,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All fixes verified. Final summary:\n\n---\n\n## Audit Results\n\n### Issues found and fixed:\n\n| # | File | Issue | Fix |\n|---|------|-------|-----|\n| 1 | `analyze_n500.py:39` | `B_BOOTSTRAP = 1000` | Changed to `10000` |\n| 2 | `analyze_n500.py` | No per-phase null rate (W5 missing) | Added `midphase_null_rate()` function + integrated into `analyze_condition()` |\n| 3 | `analyze_n500.py:424` | d_z computed for both imp AND rand (D059 violation) | Loop now only runs for `\"imp\"` masking |\n| 4 | `analyze_n500_unified.py:131` | `midphase_null_rate` only computed rate for mid phase | Added `null_high_rate`, `null_low_rate`, `effective_n_*` for all 3 phases |\n| 5 | `analysis/cross_model_analysis.py` | Hardcoded n=50 paths, won't work for n=500 | Added `--n500` flag, compute d_z on the fly instead of loading pre-computed files |\n\n### No issues found (PASS):\n\n| Requirement | Status | Details |\n|---|---|---|\n| D054 (Median-only) | **PASS** | `analyze_n500_unified.py` and `analyze_n500.py` use median + bootstrap CI as primary. `analyze_c2_n500.py` includes mean as reference only. |\n| B=10,000 (W4) | **PASS** (after fix #1) | All scripts now use B=10,000. n=500 × 8 conditions × B=10,000 ≈ 10s — acceptable. |\n| Per-phase effective n (W5) | **PASS** (after fix #2,#4) | All phases report `effective_n_*` and `null_*_rate` |\n| D059 (d_z within-imp only) | **PASS** (after fix #3) | `analyze_n500_unified.py` was already compliant. `analyze_n500.py` fixed. |\n| Aggregation script | **PASS** | `analyze_n500_unified.py` is the main one-click script, outputs all required data. `cross_model_analysis.py --n500` handles cross-model. |\n\n### Pipeline readiness: **PASS**"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 434215,
+            "duration_api_ms": 413153,
+            "num_turns": 65,
+            "stop_reason": "end_turn",
+            "session_id": "04376f91-ff33-4ca7-ace3-21bc8ba42429",
+            "total_cost_usd": 1.9964647499999995,
+            "usage": {
+              "input_tokens": 29,
+              "cache_creation_input_tokens": 90255,
+              "cache_read_input_tokens": 1703418,
+              "output_tokens": 23158,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 90255,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 604,
+                  "cache_read_input_tokens": 101859,
+                  "cache_creation_input_tokens": 720,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 720
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1472,
+                "outputTokens": 19,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001567,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 29,
+                "outputTokens": 23158,
+                "cacheReadInputTokens": 1703418,
+                "cacheCreationInputTokens": 90255,
+                "webSearchRequests": 0,
+                "costUSD": 1.9948977499999994,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "c6206a8c-6214-4380-8372-e18eaea4b693"
+          },
+          "id": "event-000164"
+        }
+      ]
+    }
+  ]
+}

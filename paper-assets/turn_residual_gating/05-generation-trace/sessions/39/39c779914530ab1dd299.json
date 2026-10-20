@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "39c779914530ab1dd299",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "paper figure fig1 overview fix",
+  "task_key": "worker_paper_figure_fig1_overview_fix_20260519T200811",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig1_overview_fix_20260519T200811_result.json",
+    "occurrence": 1,
+    "bytes": 698,
+    "sha256": "caa61a00b1903eadfab1438a7d1b80dc0c41b4a1fadc41fd83ded13500042604"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PDF 和 PNG 均已生成。\n\n修改总结：\n\n1. **字号 ≥ 7pt** — 所有 `fs=` 参数已从 4/4.5/4.8/5/5.5/6/6.5 提升至 ≥7pt；图高从 `6/16` 改为 `8/16` 以容纳更大文字；部分文字适当简化（\"IID evaluation\" → \"IID eval\"，\"Gate should recover goal attention\" 等）\n2. **术语修正** — \"Same-dist eval\" → \"IID eval\"\n3. **数据来源标注** — GAR 0.02→0.48 和 GAR=0.49 加 \"(§5, Table 1)\"；GAR=0.016 加 \"(Table 1)\"；↓ 70.8% 加 \"(§3)\"；AUC=0.98 加 \"(Dongre et al.)\"\n4. **PCGrad 引用** — 改为 \"① Gradient conflict → PCGrad / ablation (§6.3) → not causal\"（分两行显示，带删除线）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig1-overview-fix.md"
+}

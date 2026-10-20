@@ -1,0 +1,16 @@
+{
+  "exp_id": "d048_eval_ss_s456",
+  "project": "turn_residual_gating",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T00:38:41.913Z",
+    "updated_at": "2026-05-24T00:38:47.500Z",
+    "hypothesis": "SS s456 eval: TF + AR N=50 + bootstrap CI to complete 3-seed SS metrics. Together with s42 and s123, establishes mean±std for C2 reviewer requirement.",
+    "parent": "d048_ss_s456"
+  },
+  "timestamp": "2026-05-24T00:38:47.614135+00:00",
+  "trigger": "update_registry"
+}

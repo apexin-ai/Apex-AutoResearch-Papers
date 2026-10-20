@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3f311bf03e9c0cf7faf3",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "code threadgate module",
+  "task_key": "worker_code_threadgate_module_20260518T044742",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_threadgate_module_20260518T044742_result.json",
+    "occurrence": 1,
+    "bytes": 906,
+    "sha256": "5c2b19896f5208dbfe71b3b8cb140caef7267a86ad21641781deb1297458f793"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Import 验证通过。\n\n实现概要：\n\n- **TurnEmbedding**: 将 `turn_distance` 和 `turn_index` 各自 embed 为 `TURN_EMBED_DIM//2` 维，拼接输出 `(batch, seq_len, 16)`\n- **GateNetwork**: `down_proj(hidden_dim→16)` + `TurnEmbedding(16)` → 拼接 32 维 → MLP(32→64→1) → sigmoid；`fc2.bias` 初始化为 `init_bias`\n- **UniformGateNetwork**: 同架构但去掉 turn embedding 输入，`down_proj(hidden_dim→16)` → MLP(16→64→1) → sigmoid，作为消融 baseline\n- **ThreadGatedModel**: 冻结 base model，每层 decoder layer 注册 forward hook，在 hook 中计算 `g * layer_input + (1-g) * layer_output`；gate network 参数跟随对应 layer 设备和 bfloat16 dtype\n- **create_model**: 工厂函数，返回 `(model, tokenizer)`\n\n参数量估算：每层 gate ~59K params × 28 layers ≈ 1.67M（约 0.02% of 7.6B），远低于 22M 上限。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-threadgate-module.md"
+}

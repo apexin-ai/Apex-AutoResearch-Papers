@@ -1,0 +1,1 @@
+ds_kappa_adaptive=0.8804, ds_thinking_in_low=0.8161, ds_answer_in_high=0.6552, ds_effective_n=48, math500_temporal_ordering=0.5755, math500_pct_positive=100%, qw_has_think_tags=false, qw_temporal_ordering=0.4786, success_criteria_all_met=true

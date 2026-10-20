@@ -1,0 +1,15 @@
+{
+  "exp_id": "d048_ss_s42",
+  "project": "turn_residual_gating",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T09:14:13.365Z",
+    "updated_at": "2026-05-22T09:55:23.855Z",
+    "hypothesis": "Scheduled sampling (ratio=0.3) with ThreadGate reduces the ~30× TF-AR GAR gap by exposing the model to its own generated text during training. Multi-seed run (s42) under D048 unified protocol to establish mean±std for statistical testing. SS is the strongest mitigation candidate (prior single-seed showed gap 31×→1.57×)."
+  },
+  "timestamp": "2026-05-22T09:55:23.962525+00:00",
+  "trigger": "update_registry"
+}

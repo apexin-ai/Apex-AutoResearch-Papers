@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "72516e2ace7fdc2d92b9",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "code phase2 train script",
+  "task_key": "worker_code_phase2_train_script_20260518T060527",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_phase2_train_script_20260518T060527_result.json",
+    "occurrence": 1,
+    "bytes": 1522,
+    "sha256": "759deea0eb9e32a2e98fac2ef84ca8df1d89d35a5b1a1406c68043cfc7e5705a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n### 产出\n\n**1. 训练数据**\n- 路径: `/root/turn_residual_gating/data/ultrachat_8k`\n- 总样本 207,865 → 过滤 ≥5 assistant turns → 17,302 → 采样 8,000\n- 平均 assistant turns: 5.6, 范围: 5-7\n\n**2. threadgate.py 更新**\n- `forward()` 添加 `**kwargs` 传递 `output_attentions` 等参数\n- `forward()` 中 device 获取改为 `next(self.gates[0].parameters()).device`（兼容 PEFT 包装）\n- `__init__` 中 `turn_embedding` 设备获取同步修复\n- 移除 forward 末尾的 `_current_turn_features = None`（兼容 gradient checkpointing recompute）\n\n**3. train_phase2.py 已创建**\n- 支持 `--gate-type threadgate/uniform`, `--dry-run`, `--lambda-gar`, `--max-seq-len` 等参数\n- 模型初始化: ThreadGatedModel → LoRA (q_proj, v_proj, r=16) → gradient checkpointing → GARMeasurer\n- 训练: batch_size=1, grad_accum=8, AdamW + cosine schedule\n- 每 epoch 保存 checkpoint\n\n**4. Dry-run 验证通过**\n| Step | L_NTP | L_GAR | Gate | Mem |\n|------|-------|-------|------|-----|\n| 0 | 1.5063 | 0.0099 | 0.9916 | 18.5GB |\n| 1 | 1.6008 | 0.0086 | 0.9920 | 18.6GB |\n| 2 | 1.6765 | 0.0000 | 0.9915 | 18.6GB |\n| 3 | 1.6987 | 0.0000 | 0.9920 | 18.6GB |\n| 4 | 1.8995 | 0.0000 | 0.9923 | 18.6GB |\n\nGate 梯度确认有更新。无 OOM/NaN/Inf。\n\n**5. 本地副本已同步**\n- `artifacts/src/threadgate.py` ✓\n- `artifacts/src/train_phase2.py` ✓\n- `artifacts/src/config.py` (MODEL_NAME 更新为本地路径) ✓"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-phase2-train-script.md"
+}

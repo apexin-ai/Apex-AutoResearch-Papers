@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "481d6f88364b126e4dc8",
+  "project": "redundancy-compound-sparsity-2",
+  "kind": "worker",
+  "title": "run analysis tau sweep",
+  "task_key": "worker_run_analysis_tau_sweep_20260512T161805",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_analysis_tau_sweep_20260512T161805.log",
+    "occurrence": 1,
+    "bytes": 888589,
+    "sha256": "137c820c7b90754a47c2cb867dc4c9429d31f05aad9763e01d81fceb019ad28f"
+  },
+  "statistics": {
+    "messages": 468,
+    "user_turns": 0,
+    "tool_calls": 188,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 4,
+      "assistant": 85,
+      "tool_call": 188,
+      "tool_result": 188,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 468,
+      "chunks": [
+        {
+          "path": "481d6f88364b126e4dc8-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "481d6f88364b126e4dc8-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "481d6f88364b126e4dc8-part-0003.json",
+          "message_count": 108
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/run-analysis-tau-sweep.md"
+}

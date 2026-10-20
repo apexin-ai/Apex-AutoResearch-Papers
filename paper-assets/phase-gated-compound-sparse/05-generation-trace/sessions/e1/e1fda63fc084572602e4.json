@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e1fda63fc084572602e4",
+  "project": "phase-gated-compound-sparse",
+  "kind": "result",
+  "title": "diagnose v5 all status",
+  "task_key": "worker_diagnose_v5-all-status_20260514T014456",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_v5-all-status_20260514T014456_result.json",
+    "occurrence": 1,
+    "bytes": 1195,
+    "sha256": "147f0de3ff719c181334e5a00f2ca65cd6f4ddc4177b43a874857f50457ee7c1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 4 个 v5 实验状态汇总\n\n全部 4 个实验**仍在运行中**，无错误，进度稳定。\n\n| 实验 | GPU | PID | 进度 | 最新日志时间 | 备注 |\n|------|-----|-----|------|-------------|------|\n| mvp_v5_fixed_s020 | cuda:0 | 46574 | **28/50** | 09:45:11 | 正常，无 NaN 警告 |\n| mvp_v5_fixed_s030 | cuda:1 | 46940 | **29/50** | 09:45:34 | 正常，无 NaN 警告 |\n| mvp_v5_fixed_s015 | cuda:2 | 48262 | **22/50** | 09:45:22 | 每个 problem 都有 layer 27 NaN 警告 |\n| mvp_v5_fixed_s025 | cuda:3 | 48403 | **22/50** | 09:45:22 | 每个 problem 都有 layer 27 NaN 警告 |\n\n**GPU 利用率**: 全部 4 卡活跃（77-93%），每卡占用 ~33.5GB / 97.9GB。\n\n**关键观察**:\n- s020 和 s030 早启动约 6 分钟，进度领先\n- s015 和 s025 每个 problem 都出现 `Skipped 1 NaN attention layers: [27]` 警告（layer 27 在低/中 sparsity 下产生 NaN attention），但被正常跳过处理，不影响运行\n- s020 和 s030 无此 NaN 问题\n- 每个 problem 约 1-1.5 分钟，预计 s020/s030 约 20 分钟后完成，s015/s025 约 40 分钟后完成\n\n**不更新 registry**，因为所有实验仍在正常运行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-v5-all-status.md"
+}

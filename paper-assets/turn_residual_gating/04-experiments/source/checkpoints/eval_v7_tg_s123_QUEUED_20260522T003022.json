@@ -1,0 +1,29 @@
+{
+  "exp_id": "eval_v7_tg_s123",
+  "project": "turn_residual_gating",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T22:53:18.163Z",
+    "updated_at": "2026-05-22T00:30:22.497Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/turn_residual_gating && bash scripts/eval_v7_tg_s123.sh\"",
+      "server": "westd-20861",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "264869",
+      "log_path": "~/runs/turn_residual_gating/eval_v7_tg_s123.log",
+      "submitted_at": "2026-05-21T22:53:18.065Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "v7 TG s123 eval: 验证 s123 seed 的 TF-AR GAR gap 与 s42 一致（~32×），确认 multi-seed robustness",
+    "parent": "v7_tg_s123"
+  },
+  "timestamp": "2026-05-22T00:30:22.607105+00:00",
+  "trigger": "update_registry"
+}

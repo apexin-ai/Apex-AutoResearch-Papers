@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ebb0107a4824ca253ab4",
+  "project": "turn-hier-kv-compress",
+  "kind": "result",
+  "title": "code v3 additive bias",
+  "task_key": "worker_code_v3_additive_bias_20260513T154442",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_v3_additive_bias_20260513T154442_result.json",
+    "occurrence": 1,
+    "bytes": 1716,
+    "sha256": "5470030a7729229371b7180b2564ebf5fcb323eda1837c65bb03d4603c03a56c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 实施报告\n\n### 修改文件\n\n| 文件 | 变更 |\n|------|------|\n| `src/turnkv/eass.py` | 追加 `compute_structural_offset()` 和 `apply_additive_bias()` |\n| `src/turnkv/press.py` | 重写：新增 `alpha`, `mode` 参数，三模式分发 |\n| `src/turnkv/__init__.py` | 导出新函数 |\n| `eval/evaluate.py` | 新增 `--alpha`, `--methods` 参数，支持三方对比 |\n| `eval/config.py` | 新增 `alpha: float = 0.3` |\n| `eval/metrics.py` | summary 增加 `pure_structural` 方法和 `structural_vs_ea` 对比 |\n\n原文件均已备份为 `*_v2_backup.py`。\n\n### 加法偏置实现细节\n\n**公式**: `final_score = ea_score + α × normalized_offset`\n\n**structural_offset 计算**:\n1. 每个 segment 用 `_B_PRIOR` 表查 raw importance（SYSTEM_PROMPT=1.0, USER/ASSISTANT=0.6, THINKING_TRACE_older=0.15 等）\n2. Token-weighted 零均值化 → offset 范围约 [-0.05, +0.35]（取决于 segment 分布）\n3. Std-match 归一化：offset 的 std 对齐到 EA scores 的 std，使 α 成为直接的相对影响力控制\n\n**α 含义**: α=0 纯 EA, α=0.3（默认）structural 贡献约 EA 的 30%, α=1.0 等权\n\n### 三种评估模式调用\n\n```bash\n# 三方全对比（默认）\npython eval/evaluate.py --alpha 0.3\n\n# 只跑 uniform_ea 和 turnkv\npython eval/evaluate.py --methods uniform_ea turnkv --alpha 0.3\n\n# 扫描 α\npython eval/evaluate.py --alpha 0.1\npython eval/evaluate.py --alpha 0.3\npython eval/evaluate.py --alpha 0.5\n\n# 只跑 pure_structural 看结构信息单独效果\npython eval/evaluate.py --methods pure_structural\n```\n\n### α 建议范围\n\n从 0.1 开始扫到 0.5，步长 0.1。默认 0.3 是保守起点。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-v3-additive-bias.md"
+}

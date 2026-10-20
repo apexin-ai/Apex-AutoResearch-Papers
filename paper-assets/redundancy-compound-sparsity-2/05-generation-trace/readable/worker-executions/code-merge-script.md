@@ -1,0 +1,1996 @@
+# code merge script
+
+**redundancy compound sparsity 2** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 43
+- **Recorded user turns:** 0
+- **Tool calls:** 16
+- **Original source:** `logs/workers/worker_code_merge_script_20260512T105712.log`
+- **Structured JSON:** [`0d9f6782b61c84ea70c3.json`](../../sessions/0d/0d9f6782b61c84ea70c3.json)
+
+## Before a recorded user message
+
+43 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl",
+  "session_id": "b98b2539-5f8b-4369-a4d9-b2e22e329108",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "734e4607-e5d7-4783-8d40-86d719dc7ae8",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-solver-verified-formalizer-rl/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778590200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "9714775d-7ff7-4778-8bfb-0eb1e9e756ba",
+  "session_id": "b98b2539-5f8b-4369-a4d9-b2e22e329108"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to create a merge script on a remote server. Let me first load the necessary MCP tools, then create the script.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b98b2539-5f8b-4369-a4d9-b2e22e329108",
+  "uuid": "8281cf51-6552-4b02-991c-53cfe9d5856c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CagD7w3ezbgHFdZ48ywQr1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11907,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11907
+      },
+      "output_tokens": 28,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_019bND67T56JYDwJWy1nRgAr`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b98b2539-5f8b-4369-a4d9-b2e22e329108",
+  "uuid": "ebb1f521-ab8c-407f-a0be-94047b9443b1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CagD7w3ezbgHFdZ48ywQr1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11907,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11907
+      },
+      "output_tokens": 28,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-12T10:57:25.125Z_
+
+<details><summary>↩ Tool result · `toolu_019bND67T56JYDwJWy1nRgAr`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b98b2539-5f8b-4369-a4d9-b2e22e329108",
+  "uuid": "d7144414-8c5e-4760-9456-3fec156bbe24",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+先看一下现有的 `carc_mvp.py` 中 summary 输出格式，确保合并脚本一致。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b98b2539-5f8b-4369-a4d9-b2e22e329108",
+  "uuid": "1cb26b09-c4af-4c81-b8c8-820344b39647",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Pgs9SsfpLPerjati3dQTo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 714,
+      "cache_read_input_tokens": 23748,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 714
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QnF4XyD3jQZXsc8R8adLKB`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "grep -n \"summary\\|print.*=\\|print.*r=\\|print.*ppl\\|print.*diff\\|print.*lag\\|print.*layer\\|print.*verdict\\|print.*─\\|print.*━\\|def summary\\|def print_summary\" /root/carc/carc_mvp.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b98b2539-5f8b-4369-a4d9-b2e22e329108",
+  "uuid": "fa80aad6-cab0-4608-8a46-71856ff55427",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Pgs9SsfpLPerjati3dQTo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 714,
+      "cache_read_input_tokens": 23748,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 714
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-12T10:57:30.048Z_
+
+<details><summary>↩ Tool result · `toolu_01QnF4XyD3jQZXsc8R8adLKB`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b98b2539-5f8b-4369-a4d9-b2e22e329108",
+  "uuid": "a6796be1-c949-4fc0-a26a-3602906b1050",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TNxMmMpzKUxczuPki4PrHQ`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "grep -n \"summary\\|print.*r=\\|print.*ppl\\|print.*diff\\|print.*lag\\|print.*layer\\|print.*verdict\\|def summary\\|━\\|─\" /root/carc/carc_mvp.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b98b2539-5f8b-4369-a4d9-b2e22e329108",
+  "uuid": "38933582-579a-4e69-bc4e-a97ab0a36da3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JwBNMoTqiUmGG4dY4wKgAD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 294,
+      "cache_read_input_tokens": 24462,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 294
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-12T10:57:33.618Z_
+
+<details><summary>↩ Tool result · `toolu_01TNxMmMpzKUxczuPki4PrHQ`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b98b2539-5f8b-4369-a4d9-b2e22e329108",
+  "uuid": "d90dd238-c03b-4be4-87e6-8084931309ca",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Mxo8pd9UvDgVnjAbw3djcQ`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "grep -n \"print\" /root/carc/carc_mvp.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b98b2539-5f8b-4369-a4d9-b2e22e329108",
+  "uuid": "7eccfef5-4cea-4972-93f8-dc8411878ae6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ShFJkfVJxLc2Roqyo7b4XS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 238,
+      "cache_read_input_tokens": 24756,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 238
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-12T10:57:37.797Z_
+
+<details><summary>↩ Tool result · `toolu_01Mxo8pd9UvDgVnjAbw3djcQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"235:        print(\\\"[DRY RUN] 2 samples, 2 layers\\\")\\n238:    print(f\\\"Loaded thresholds for {len(thresholds)} layers\\\")\\n240:    print(f\\\"Loading model: {args.model}\\\")\\n255:    print(f\\\"EMA mode: {'per-head' if per_head else 'concatenated'}\\\"\\n262:        print(f\\\"Loading {args.num_samples} MATH problems for reasoning trace generation...\\\")\\n265:        print(f\\\"Generating reasoning chains (max_new_tokens={args.max_new_tokens})...\\\")\\n279:        print(f\\\"Generated {len(samples)} chains, lengths: \\\"\\n293:    print(f\\\"Analyzing {len(samples)} samples, evaluating {max_layers} layers\\\")\\n477:        print(\\\"ERROR: too few records to compute statistics\\\")\\n649:    print(f\\\"\\\\n{'=' * W}\\\")\\n650:    print(\\\"CARC MVP Results -- 5 Measurements\\\")\\n651:    print(f\\\"{'=' * W}\\\")\\n653:    print(f\\\"\\\\n(a) MLP Activation Magnitudes (near-zero fraction)\\\")\\n654:    print(f\\\"    Redundant near-zero: {avg_redun_nz:.4f}\\\")\\n655:    print(f\\\"    Novel near-zero:     {avg_novel_nz:.4f}\\\")\\n658:        print(f\\\"    Ratio (redundant/novel): {ratio:.2f}x\\\")\\n660:    print(f\\\"\\\\n(b) Perturbation@55% (redundant vs novel)\\\")\\n661:    print(f\\\"    Pearson  r(EMA, perturbation) = {pearson_r:+.4f}  (p={pearson_p:.2e})\\\")\\n662:    print(f\\\"    Spearman r(EMA, perturbation) = {spearman_r:+.4f}  (p={spearman_p:.2e})\\\")\\n663:    print(f\\\"    Mean perturbation: redundant@55% = {mean_r55:.6f}\\\")\\n664:    print(f\\\"                       novel@55%     = {mean_n55:.6f}\\\")\\n665:    print(f\\\"    Perturbation diff = {diff:.4f} ({diff * 100:.1f}%)\\\")\\n666:    print(f\\\"    Tokens: {len(redun_vals)} redundant, {len(novel_vals)} novel  (tau={args.tau})\\\")\\n668:    print(f\\\"\\\\n(c) EMA <-> Surprisal Correlation\\\")\\n669:    print(f\\\"    Pearson r(EMA, -surprisal) = {r_ema_surp:+.4f}  (p={p_ema_surp:.2e})\\\")\\n671:    print(f\\\"\\\\n(d) Perplexity: Two-tier vs Uniform\\\")\\n672:    print(f\\\"    PPL two-tier (55%/40%): {ppl_twotier:.2f}\\\")\\n673:    print(f\\\"    PPL uniform 40%:        {ppl_uniform40:.2f}\\\")\\n675:    print(f\\\"    Delta PPL: {ppl_delta:+.2f} ({'two-tier better' if ppl_delta < 0 else 'uniform better'})\\\")\\n677:    print(f\\\"\\\\n(e) Position-residualized Correlations\\\")\\n678:    print(f\\\"    Partial r(EMA, perturbation | pos) = {resid_r_ema_pert:+.4f}\\\")\\n679:    print(f\\\"    Partial r(EMA, -surprisal | pos)   = {resid_r_ema_surp:+.4f}\\\")\\n681:    print(f\\\"\\\\nMulti-chain Statistics ({len(samples)} chains)\\\")\\n682:    print(f\\\"    Chain-level r(EMA, perturbation): {chain_r_ema_pert:+.4f}\\\")\\n683:    print(f\\\"    Chain-level r(EMA, -surprisal):   {chain_r_ema_surp:+.4f}\\\")\\n684:    print(f\\\"    Median lag-1 autocorr (EMA):       {median_lag1_ema:.4f}\\\")\\n685:    print(f\\\"    Median lag-1 autocorr (surprisal): {median_lag1_surp:.4f}\\\")\\n687:    print(f\\\"\\\\n{'=' * W}\\\")\\n688:    print(f\\\"Verdict: {verdict}\\\")\\n689:    print(f\\\"  |r| >= 0.4 ? {'YES' if abs(pearson_r) >= 0.4 else 'NO'} ({abs(pearson_r):.4f})\\\")\\n690:    print(f\\\"  diff >= 10%? {'YES' if diff >= 0.10 else 'NO'} ({diff * 100:.1f}%)\\\")\\n692:        print(f\\\"  (Strong requires |r|>0.5 AND diff>=20%)\\\")\\n693:    print(f\\\"{'=' * W}\\\")\\n694:    print(f\\\"Results saved to {args.output}\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.33}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b98b2539-5f8b-4369-a4d9-b2e22e329108",
+  "uuid": "2b5dfeea-0e98-4bba-a7c7-cbdeac17f5cf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"235:        print(\\\\\\\"[DRY RUN] 2 samples, 2 layers\\\\\\\")\\\\n238:    print(f\\\\\\\"Loaded thresholds for {len(thresholds)} layers\\\\\\\")\\\\n240:    print(f\\\\\\\"Loading model: {args.model}\\\\\\\")\\\\n255:    print(f\\\\\\\"EMA mode: {'per-head' if per_head else 'concatenated'}\\\\\\\"\\\\n262:        print(f\\\\\\\"Loading {args.num_samples} MATH problems for reasoning trace generation...\\\\\\\")\\\\n265:        print(f\\\\\\\"Generating reasoning chains (max_new_tokens={args.max_new_tokens})...\\\\\\\")\\\\n279:        print(f\\\\\\\"Generated {len(samples)} chains, lengths: \\\\\\\"\\\\n293:    print(f\\\\\\\"Analyzing {len(samples)} samples, evaluating {max_layers} layers\\\\\\\")\\\\n477:        print(\\\\\\\"ERROR: too few records to compute statistics\\\\\\\")\\\\n649:    print(f\\\\\\\"\\\\\\\\n{'=' * W}\\\\\\\")\\\\n650:    print(\\\\\\\"CARC MVP Results -- 5 Measurements\\\\\\\")\\\\n651:    print(f\\\\\\\"{'=' * W}\\\\\\\")\\\\n653:    print(f\\\\\\\"\\\\\\\\n(a) MLP Activation Magnitudes (near-zero fraction)\\\\\\\")\\\\n654:    print(f\\\\\\\"    Redundant near-zero: {avg_redun_nz:.4f}\\\\\\\")\\\\n655:    print(f\\\\\\\"    Novel near-zero:     {avg_novel_nz:.4f}\\\\\\\")\\\\n658:        print(f\\\\\\\"    Ratio (redundant/novel): {ratio:.2f}x\\\\\\\")\\\\n660:    print(f\\\\\\\"\\\\\\\\n(b) Perturbation@55% (redundant vs novel)\\\\\\\")\\\\n661:    print(f\\\\\\\"    Pearson  r(EMA, perturbation) = {pearson_r:+.4f}  (p={pearson_p:.2e})\\\\\\\")\\\\n662:    print(f\\\\\\\"    Spearman r(EMA, perturbation) = {spearman_r:+.4f}  (p={spearman_p:.2e})\\\\\\\")\\\\n663:    print(f\\\\\\\"    Mean perturbation: redundant@55% = {mean_r55:.6f}\\\\\\\")\\\\n664:    print(f\\\\\\\"                       novel@55%     = {mean_n55:.6f}\\\\\\\")\\\\n665:    print(f\\\\\\\"    Perturbation diff = {diff:.4f} ({diff * 100:.1f}%)\\\\\\\")\\\\n666:    print(f\\\\\\\"    Tokens: {len(redun_vals)} redundant, {len(novel_vals)} novel  (tau={args.tau})\\\\\\\")\\\\n668:    print(f\\\\\\\"\\\\\\\\n(c) EMA <-> Surprisal Correlation\\\\\\\")\\\\n669:    print(f\\\\\\\"    Pearson r(EMA, -surprisal) = {r_ema_surp:+.4f}  (p={p_ema_surp:.2e})\\\\\\\")\\\\n671:    print(f\\\\\\\"\\\\\\\\n(d) Perplexity: Two-tier vs Uniform\\\\\\\")\\\\n672:    print(f\\\\\\\"    PPL two-tier (55%/40%): {ppl_twotier:.2f}\\\\\\\")\\\\n673:    print(f\\\\\\\"    PPL uniform 40%:        {ppl_uniform40:.2f}\\\\\\\")\\\\n675:    print(f\\\\\\\"    Delta PPL: {ppl_delta:+.2f} ({'two-tier better' if ppl_delta < 0 else 'uniform better'})\\\\\\\")\\\\n677:    print(f\\\\\\\"\\\\\\\\n(e) Position-residualized Correlations\\\\\\\")\\\\n678:    print(f\\\\\\\"    Partial r(EMA, perturbation | pos) = {resid_r_ema_pert:+.4f}\\\\\\\")\\\\n679:    print(f\\\\\\\"    Partial r(EMA, -surprisal | pos)   = {resid_r_ema_surp:+.4f}\\\\\\\")\\\\n681:    print(f\\\\\\\"\\\\\\\\nMulti-chain Statistics ({len(samples)} chains)\\\\\\\")\\\\n682:    print(f\\\\\\\"    Chain-level r(EMA, perturbation): {chain_r_ema_pert:+.4f}\\\\\\\")\\\\n683:    print(f\\\\\\\"    Chain-level r(EMA, -surprisal):   {chain_r_ema_surp:+.4f}\\\\\\\")\\\\n684:    print(f\\\\\\\"    Median lag-1 autocorr (EMA):       {median_lag1_ema:.4f}\\\\\\\")\\\\n685:    print(f\\\\\\\"    Median lag-1 autocorr (surprisal): {median_lag1_surp:.4f}\\\\\\\")\\\\n687:    print(f\\\\\\\"\\\\\\\\n{'=' * W}\\\\\\\")\\\\n688:    print(f\\\\\\\"Verdict: {verdict}\\\\\\\")\\\\n689:    print(f\\\\\\\"  |r| >= 0.4 ? {'YES' if abs(pearson_r) >= 0.4 else 'NO'} ({abs(pearson_r):.4f})\\\\\\\")\\\\n690:    print(f\\\\\\\"  diff >= 10%? {'YES' if diff >= 0.10 else 'NO'} ({diff * 100:.1f}%)\\\\\\\")\\\\n692:        print(f\\\\\\\"  (Strong requires |r|>0.5 AND diff>=20%)\\\\\\\")\\\\n693:    print(f\\\\\\\"{'=' * W}\\\\\\\")\\\\n694:    print(f\\\\\\\"Results saved to {args.output}\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.33}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"235:        print(\\\"[DRY RUN] 2 samples, 2 layers\\\")\\n238:    print(f\\\"Loaded thresholds for {len(thresholds)} layers\\\")\\n240:    print(f\\\"Loading model: {args.model}\\\")\\n255:    print(f\\\"EMA mode: {'per-head' if per_head else 'concatenated'}\\\"\\n262:        print(f\\\"Loading {args.num_samples} MATH problems for reasoning trace generation...\\\")\\n265:        print(f\\\"Generating reasoning chains (max_new_tokens={args.max_new_tokens})...\\\")\\n279:        print(f\\\"Generated {len(samples)} chains, lengths: \\\"\\n293:    print(f\\\"Analyzing {len(samples)} samples, evaluating {max_layers} layers\\\")\\n477:        print(\\\"ERROR: too few records to compute statistics\\\")\\n649:    print(f\\\"\\\\n{'=' * W}\\\")\\n650:    print(\\\"CARC MVP Results -- 5 Measurements\\\")\\n651:    print(f\\\"{'=' * W}\\\")\\n653:    print(f\\\"\\\\n(a) MLP Activation Magnitudes (near-zero fraction)\\\")\\n654:    print(f\\\"    Redundant near-zero: {avg_redun_nz:.4f}\\\")\\n655:    print(f\\\"    Novel near-zero:     {avg_novel_nz:.4f}\\\")\\n658:        print(f\\\"    Ratio (redundant/novel): {ratio:.2f}x\\\")\\n660:    print(f\\\"\\\\n(b) Perturbation@55% (redundant vs novel)\\\")\\n661:    print(f\\\"    Pearson  r(EMA, perturbation) = {pearson_r:+.4f}  (p={pearson_p:.2e})\\\")\\n662:    print(f\\\"    Spearman r(EMA, perturbation) = {spearman_r:+.4f}  (p={spearman_p:.2e})\\\")\\n663:    print(f\\\"    Mean perturbation: redundant@55% = {mean_r55:.6f}\\\")\\n664:    print(f\\\"                       novel@55%     = {mean_n55:.6f}\\\")\\n665:    print(f\\\"    Perturbation diff = {diff:.4f} ({diff * 100:.1f}%)\\\")\\n666:    print(f\\\"    Tokens: {len(redun_vals)} redundant, {len(novel_vals)} novel  (tau={args.tau})\\\")\\n668:    print(f\\\"\\\\n(c) EMA <-> Surprisal Correlation\\\")\\n669:    print(f\\\"    Pearson r(EMA, -surprisal) = {r_ema_surp:+.4f}  (p={p_ema_surp:.2e})\\\")\\n671:    print(f\\\"\\\\n(d) Perplexity: Two-tier vs Uniform\\\")\\n672:    print(f\\\"    PPL two-tier (55%/40%): {ppl_twotier:.2f}\\\")\\n673:    print(f\\\"    PPL uniform 40%:        {ppl_uniform40:.2f}\\\")\\n675:    print(f\\\"    Delta PPL: {ppl_delta:+.2f} ({'two-tier better' if ppl_delta < 0 else 'uniform better'})\\\")\\n677:    print(f\\\"\\\\n(e) Position-residualized Correlations\\\")\\n678:    print(f\\\"    Partial r(EMA, perturbation | pos) = {resid_r_ema_pert:+.4f}\\\")\\n679:    print(f\\\"    Partial r(EMA, -surprisal | pos)   = {resid_r_ema_surp:+.4f}\\\")\\n681:    print(f\\\"\\\\nMulti-chain Statistics ({len(samples)} chains)\\\")\\n682:    print(f\\\"    Chain-level r(EMA, perturbation): {chain_r_ema_pert:+.4f}\\\")\\n683:    print(f\\\"    Chain-level r(EMA, -surprisal):   {chain_r_ema_surp:+.4f}\\\")\\n684:    print(f\\\"    Median lag-1 autocorr (EMA):       {median_lag1_ema:.4f}\\\")\\n685:    print(f\\\"    Median lag-1 autocorr (surprisal): {median_lag1_surp:.4f}\\\")\\n687:    print(f\\\"\\\\n{'=' * W}\\\")\\n688:    print(f\\\"Verdict: {verdict}\\\")\\n689:    print(f\\\"  |r| >= 0.4 ? {'YES' if abs(pearson_r) >= 0.4 else 'NO'} ({abs(pearson_r):.4f})\\\")\\n690:    print(f\\\"  diff >= 10%? {'YES' if diff >= 0.10 else 'NO'} ({diff * 100:.1f}%)\\\")\\n692:        print(f\\\"  (Strong requires |r|>0.5 AND diff>=20%)\\\")\\n693:    print(f\\\"{'=' * W}\\\")\\n694:    print(f\\\"Results saved to {args.output}\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.33}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01A8Rkhd5NqqvBYrDAEPQKwU`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "tail -n 100 /root/carc/carc_mvp.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b98b2539-5f8b-4369-a4d9-b2e22e329108",
+  "uuid": "92086f63-6048-4685-a74a-df3b96aacaf3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PmD2zKSyU3jAskWpu9j1L9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1628,
+      "cache_read_input_tokens": 24994,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1628
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-12T10:57:40.899Z_
+
+<details><summary>↩ Tool result · `toolu_01A8Rkhd5NqqvBYrDAEPQKwU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"            \\\"pearson_p_ema_perturbation\\\": float(pearson_p),\\n            \\\"spearman_r_ema_perturbation\\\": round(float(spearman_r), 4),\\n            \\\"spearman_p_ema_perturbation\\\": float(spearman_p),\\n            \\\"pearson_r_ema_surprisal\\\": round(float(r_ema_surp), 4),\\n            \\\"pearson_p_ema_surprisal\\\": float(p_ema_surp),\\n            \\\"position_residualized_r_ema_perturbation\\\": round(float(resid_r_ema_pert), 4),\\n            \\\"position_residualized_r_ema_surprisal\\\": round(float(resid_r_ema_surp), 4),\\n            \\\"chain_level_r_ema_perturbation\\\": round(float(chain_r_ema_pert), 4),\\n            \\\"chain_level_r_ema_surprisal\\\": round(float(chain_r_ema_surp), 4),\\n            \\\"mean_perturbation_redundant_55\\\": round(mean_r55, 6),\\n            \\\"mean_perturbation_novel_55\\\": round(mean_n55, 6),\\n            \\\"perturbation_diff\\\": round(diff, 6),\\n            \\\"perturbation_diff_pct\\\": round(diff * 100, 2),\\n            \\\"ppl_twotier\\\": round(ppl_twotier, 2),\\n            \\\"ppl_uniform40\\\": round(ppl_uniform40, 2),\\n            \\\"avg_redundant_near_zero_frac\\\": round(avg_redun_nz, 4),\\n            \\\"avg_novel_near_zero_frac\\\": round(avg_novel_nz, 4),\\n            \\\"median_lag1_autocorr_ema\\\": round(median_lag1_ema, 4),\\n            \\\"median_lag1_autocorr_surprisal\\\": round(median_lag1_surp, 4),\\n            \\\"n_redundant\\\": len(redun_vals),\\n            \\\"n_novel\\\": len(novel_vals),\\n            \\\"total_records\\\": len(records),\\n        },\\n        \\\"per_layer\\\": per_layer,\\n        \\\"verdict\\\": verdict,\\n    }\\n\\n    Path(args.output).write_text(json.dumps(results, indent=2))\\n\\n    # Save raw records if requested\\n    if args.save_records:\\n        np.savez(\\n            Path(args.output).with_suffix('.npz'),\\n            ema_scores=np.array(all_token_avg_ema),\\n            surprisal=np.array(all_token_surprisal),\\n            positions=np.array(all_token_positions),\\n            rec_ema=all_s, rec_p55=all_p55, rec_p40=np.array([r[2] for r in records]),\\n            rec_layer=np.array([r[3] for r in records]),\\n            rec_pos=all_rec_pos,\\n            chain_mean_ema=np.array(chain_mean_ema),\\n            chain_mean_perturb=np.array(chain_mean_perturb),\\n            chain_mean_surprisal=np.array(chain_mean_surprisal),\\n            ce_uniform40=np.array(all_ce_uniform40),\\n            ce_twotier=np.array(all_ce_twotier),\\n        )\\n\\n    # ------------------------------------------------------------------\\n    # Summary\\n    # ------------------------------------------------------------------\\n    W = 62\\n    print(f\\\"\\\\n{'=' * W}\\\")\\n    print(\\\"CARC MVP Results -- 5 Measurements\\\")\\n    print(f\\\"{'=' * W}\\\")\\n\\n    print(f\\\"\\\\n(a) MLP Activation Magnitudes (near-zero fraction)\\\")\\n    print(f\\\"    Redundant near-zero: {avg_redun_nz:.4f}\\\")\\n    print(f\\\"    Novel near-zero:     {avg_novel_nz:.4f}\\\")\\n    if avg_novel_nz > 0:\\n        ratio = avg_redun_nz / max(avg_novel_nz, 1e-8)\\n        print(f\\\"    Ratio (redundant/novel): {ratio:.2f}x\\\")\\n\\n    print(f\\\"\\\\n(b) Perturbation@55% (redundant vs novel)\\\")\\n    print(f\\\"    Pearson  r(EMA, perturbation) = {pearson_r:+.4f}  (p={pearson_p:.2e})\\\")\\n    print(f\\\"    Spearman r(EMA, perturbation) = {spearman_r:+.4f}  (p={spearman_p:.2e})\\\")\\n    print(f\\\"    Mean perturbation: redundant@55% = {mean_r55:.6f}\\\")\\n    print(f\\\"                       novel@55%     = {mean_n55:.6f}\\\")\\n    print(f\\\"    Perturbation diff = {diff:.4f} ({diff * 100:.1f}%)\\\")\\n    print(f\\\"    Tokens: {len(redun_vals)} redundant, {len(novel_vals)} novel  (tau={args.tau})\\\")\\n\\n    print(f\\\"\\\\n(c) EMA <-> Surprisal Correlation\\\")\\n    print(f\\\"    Pearson r(EMA, -surprisal) = {r_ema_surp:+.4f}  (p={p_ema_surp:.2e})\\\")\\n\\n    print(f\\\"\\\\n(d) Perplexity: Two-tier vs Uniform\\\")\\n    print(f\\\"    PPL two-tier (55%/40%): {ppl_twotier:.2f}\\\")\\n    print(f\\\"    PPL uniform 40%:        {ppl_uniform40:.2f}\\\")\\n    ppl_delta = ppl_twotier - ppl_uniform40\\n    print(f\\\"    Delta PPL: {ppl_delta:+.2f} ({'two-tier better' if ppl_delta < 0 else 'uniform better'})\\\")\\n\\n    print(f\\\"\\\\n(e) Position-residualized Correlations\\\")\\n    print(f\\\"    Partial r(EMA, perturbation | pos) = {resid_r_ema_pert:+.4f}\\\")\\n    print(f\\\"    Partial r(EMA, -surprisal | pos)   = {resid_r_ema_surp:+.4f}\\\")\\n\\n    print(f\\\"\\\\nMulti-chain Statistics ({len(samples)} chains)\\\")\\n    print(f\\\"    Chain-level r(EMA, perturbation): {chain_r_ema_pert:+.4f}\\\")\\n    print(f\\\"    Chain-level r(EMA, -surprisal):   {chain_r_ema_surp:+.4f}\\\")\\n    print(f\\\"    Median lag-1 autocorr (EMA):       {median_lag1_ema:.4f}\\\")\\n    print(f\\\"    Median lag-1 autocorr (surprisal): {median_lag1_surp:.4f}\\\")\\n\\n    print(f\\\"\\\\n{'=' * W}\\\")\\n    print(f\\\"Verdict: {verdict}\\\")\\n    print(f\\\"  |r| >= 0.4 ? {'YES' if abs(pearson_r) >= 0.4 else 'NO'} ({abs(pearson_r):.4f})\\\")\\n    print(f\\\"  diff >= 10%? {'YES' if diff >= 0.10 else 'NO'} ({diff * 100:.1f}%)\\\")\\n    if verdict.startswith(\\\"PASS\\\"):\\n        print(f\\\"  (Strong requires |r|>0.5 AND diff>=20%)\\\")\\n    print(f\\\"{'=' * W}\\\")\\n    print(f\\\"Results saved to {args.output}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b98b2539-5f8b-4369-a4d9-b2e22e329108",
+  "uuid": "833d6fae-f9cb-40d6-81e1-1a5e4585b725",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"            \\\\\\\"pearson_p_ema_perturbation\\\\\\\": float(pearson_p),\\\\n            \\\\\\\"spearman_r_ema_perturbation\\\\\\\": round(float(spearman_r), 4),\\\\n            \\\\\\\"spearman_p_ema_perturbation\\\\\\\": float(spearman_p),\\\\n            \\\\\\\"pearson_r_ema_surprisal\\\\\\\": round(float(r_ema_surp), 4),\\\\n            \\\\\\\"pearson_p_ema_surprisal\\\\\\\": float(p_ema_surp),\\\\n            \\\\\\\"position_residualized_r_ema_perturbation\\\\\\\": round(float(resid_r_ema_pert), 4),\\\\n            \\\\\\\"position_residualized_r_ema_surprisal\\\\\\\": round(float(resid_r_ema_surp), 4),\\\\n            \\\\\\\"chain_level_r_ema_perturbation\\\\\\\": round(float(chain_r_ema_pert), 4),\\\\n            \\\\\\\"chain_level_r_ema_surprisal\\\\\\\": round(float(chain_r_ema_surp), 4),\\\\n            \\\\\\\"mean_perturbation_redundant_55\\\\\\\": round(mean_r55, 6),\\\\n            \\\\\\\"mean_perturbation_novel_55\\\\\\\": round(mean_n55, 6),\\\\n            \\\\\\\"perturbation_diff\\\\\\\": round(diff, 6),\\\\n            \\\\\\\"perturbation_diff_pct\\\\\\\": round(diff * 100, 2),\\\\n            \\\\\\\"ppl_twotier\\\\\\\": round(ppl_twotier, 2),\\\\n            \\\\\\\"ppl_uniform40\\\\\\\": round(ppl_uniform40, 2),\\\\n            \\\\\\\"avg_redundant_near_zero_frac\\\\\\\": round(avg_redun_nz, 4),\\\\n            \\\\\\\"avg_novel_near_zero_frac\\\\\\\": round(avg_novel_nz, 4),\\\\n            \\\\\\\"median_lag1_autocorr_ema\\\\\\\": round(median_lag1_ema, 4),\\\\n            \\\\\\\"median_lag1_autocorr_surprisal\\\\\\\": round(median_lag1_surp, 4),\\\\n            \\\\\\\"n_redundant\\\\\\\": len(redun_vals),\\\\n            \\\\\\\"n_novel\\\\\\\": len(novel_vals),\\\\n            \\\\\\\"total_records\\\\\\\": len(records),\\\\n        },\\\\n        \\\\\\\"per_layer\\\\\\\": per_layer,\\\\n        \\\\\\\"verdict\\\\\\\": verdict,\\\\n    }\\\\n\\\\n    Path(args.output).write_text(json.dumps(results, indent=2))\\\\n\\\\n    # Save raw records if requested\\\\n    if args.save_records:\\\\n        np.savez(\\\\n            Path(args.output).with_suffix('.npz'),\\\\n            ema_scores=np.array(all_token_avg_ema),\\\\n            surprisal=np.array(all_token_surprisal),\\\\n            positions=np.array(all_token_positions),\\\\n            rec_ema=all_s, rec_p55=all_p55, rec_p40=np.array([r[2] for r in records]),\\\\n            rec_layer=np.array([r[3] for r in records]),\\\\n            rec_pos=all_rec_pos,\\\\n            chain_mean_ema=np.array(chain_mean_ema),\\\\n            chain_mean_perturb=np.array(chain_mean_perturb),\\\\n            chain_mean_surprisal=np.array(chain_mean_surprisal),\\\\n            ce_uniform40=np.array(all_ce_uniform40),\\\\n            ce_twotier=np.array(all_ce_twotier),\\\\n        )\\\\n\\\\n    # ------------------------------------------------------------------\\\\n    # Summary\\\\n    # ------------------------------------------------------------------\\\\n    W = 62\\\\n    print(f\\\\\\\"\\\\\\\\n{'=' * W}\\\\\\\")\\\\n    print(\\\\\\\"CARC MVP Results -- 5 Measurements\\\\\\\")\\\\n    print(f\\\\\\\"{'=' * W}\\\\\\\")\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n(a) MLP Activation Magnitudes (near-zero fraction)\\\\\\\")\\\\n    print(f\\\\\\\"    Redundant near-zero: {avg_redun_nz:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"    Novel near-zero:     {avg_novel_nz:.4f}\\\\\\\")\\\\n    if avg_novel_nz > 0:\\\\n        ratio = avg_redun_nz / max(avg_novel_nz, 1e-8)\\\\n        print(f\\\\\\\"    Ratio (redundant/novel): {ratio:.2f}x\\\\\\\")\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n(b) Perturbation@55% (redundant vs novel)\\\\\\\")\\\\n    print(f\\\\\\\"    Pearson  r(EMA, perturbation) = {pearson_r:+.4f}  (p={pearson_p:.2e})\\\\\\\")\\\\n    print(f\\\\\\\"    Spearman r(EMA, perturbation) = {spearman_r:+.4f}  (p={spearman_p:.2e})\\\\\\\")\\\\n    print(f\\\\\\\"    Mean perturbation: redundant@55% = {mean_r55:.6f}\\\\\\\")\\\\n    print(f\\\\\\\"                       novel@55%     = {mean_n55:.6f}\\\\\\\")\\\\n    print(f\\\\\\\"    Perturbation diff = {diff:.4f} ({diff * 100:.1f}%)\\\\\\\")\\\\n    print(f\\\\\\\"    Tokens: {len(redun_vals)} redundant, {len(novel_vals)} novel  (tau={args.tau})\\\\\\\")\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n(c) EMA <-> Surprisal Correlation\\\\\\\")\\\\n    print(f\\\\\\\"    Pearson r(EMA, -surprisal) = {r_ema_surp:+.4f}  (p={p_ema_surp:.2e})\\\\\\\")\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n(d) Perplexity: Two-tier vs Uniform\\\\\\\")\\\\n    print(f\\\\\\\"    PPL two-tier (55%/40%): {ppl_twotier:.2f}\\\\\\\")\\\\n    print(f\\\\\\\"    PPL uniform 40%:        {ppl_uniform40:.2f}\\\\\\\")\\\\n    ppl_delta = ppl_twotier - ppl_uniform40\\\\n    print(f\\\\\\\"    Delta PPL: {ppl_delta:+.2f} ({'two-tier better' if ppl_delta < 0 else 'uniform better'})\\\\\\\")\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n(e) Position-residualized Correlations\\\\\\\")\\\\n    print(f\\\\\\\"    Partial r(EMA, perturbation | pos) = {resid_r_ema_pert:+.4f}\\\\\\\")\\\\n    print(f\\\\\\\"    Partial r(EMA, -surprisal | pos)   = {resid_r_ema_surp:+.4f}\\\\\\\")\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nMulti-chain Statistics ({len(samples)} chains)\\\\\\\")\\\\n    print(f\\\\\\\"    Chain-level r(EMA, perturbation): {chain_r_ema_pert:+.4f}\\\\\\\")\\\\n    print(f\\\\\\\"    Chain-level r(EMA, -surprisal):   {chain_r_ema_surp:+.4f}\\\\\\\")\\\\n    print(f\\\\\\\"    Median lag-1 autocorr (EMA):       {median_lag1_ema:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"    Median lag-1 autocorr (surprisal): {median_lag1_surp:.4f}\\\\\\\")\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n{'=' * W}\\\\\\\")\\\\n    print(f\\\\\\\"Verdict: {verdict}\\\\\\\")\\\\n    print(f\\\\\\\"  |r| >= 0.4 ? {'YES' if abs(pearson_r) >= 0.4 else 'NO'} ({abs(pearson_r):.4f})\\\\\\\")\\\\n    print(f\\\\\\\"  diff >= 10%? {'YES' if diff >= 0.10 else 'NO'} ({diff * 100:.1f}%)\\\\\\\")\\\\n    if verdict.startswith(\\\\\\\"PASS\\\\\\\"):\\\\n        print(f\\\\\\\"  (Strong requires |r|>0.5 AND diff>=20%)\\\\\\\")\\\\n    print(f\\\\\\\"{'=' * W}\\\\\\\")\\\\n    print(f\\\\\\\"Results saved to {args.output}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"            \\\"pearson_p_ema_perturbation\\\": float(pearson_p),\\n            \\\"spearman_r_ema_perturbation\\\": round(float(spearman_r), 4),\\n            \\\"spearman_p_ema_perturbation\\\": float(spearman_p),\\n            \\\"pearson_r_ema_surprisal\\\": round(float(r_ema_surp), 4),\\n            \\\"pearson_p_ema_surprisal\\\": float(p_ema_surp),\\n            \\\"position_residualized_r_ema_perturbation\\\": round(float(resid_r_ema_pert), 4),\\n            \\\"position_residualized_r_ema_surprisal\\\": round(float(resid_r_ema_surp), 4),\\n            \\\"chain_level_r_ema_perturbation\\\": round(float(chain_r_ema_pert), 4),\\n            \\\"chain_level_r_ema_surprisal\\\": round(float(chain_r_ema_surp), 4),\\n            \\\"mean_perturbation_redundant_55\\\": round(mean_r55, 6),\\n            \\\"mean_perturbation_novel_55\\\": round(mean_n55, 6),\\n            \\\"perturbation_diff\\\": round(diff, 6),\\n            \\\"perturbation_diff_pct\\\": round(diff * 100, 2),\\n            \\\"ppl_twotier\\\": round(ppl_twotier, 2),\\n            \\\"ppl_uniform40\\\": round(ppl_uniform40, 2),\\n            \\\"avg_redundant_near_zero_frac\\\": round(avg_redun_nz, 4),\\n            \\\"avg_novel_near_zero_frac\\\": round(avg_novel_nz, 4),\\n            \\\"median_lag1_autocorr_ema\\\": round(median_lag1_ema, 4),\\n            \\\"median_lag1_autocorr_surprisal\\\": round(median_lag1_surp, 4),\\n            \\\"n_redundant\\\": len(redun_vals),\\n            \\\"n_novel\\\": len(novel_vals),\\n            \\\"total_records\\\": len(records),\\n        },\\n        \\\"per_layer\\\": per_layer,\\n        \\\"verdict\\\": verdict,\\n    }\\n\\n    Path(args.output).write_text(json.dumps(results, indent=2))\\n\\n    # Save raw records if requested\\n    if args.save_records:\\n        np.savez(\\n            Path(args.output).with_suffix('.npz'),\\n            ema_scores=np.array(all_token_avg_ema),\\n            surprisal=np.array(all_token_surprisal),\\n            positions=np.array(all_token_positions),\\n            rec_ema=all_s, rec_p55=all_p55, rec_p40=np.array([r[2] for r in records]),\\n            rec_layer=np.array([r[3] for r in records]),\\n            rec_pos=all_rec_pos,\\n            chain_mean_ema=np.array(chain_mean_ema),\\n            chain_mean_perturb=np.array(chain_mean_perturb),\\n            chain_mean_surprisal=np.array(chain_mean_surprisal),\\n            ce_uniform40=np.array(all_ce_uniform40),\\n            ce_twotier=np.array(all_ce_twotier),\\n        )\\n\\n    # ------------------------------------------------------------------\\n    # Summary\\n    # ------------------------------------------------------------------\\n    W = 62\\n    print(f\\\"\\\\n{'=' * W}\\\")\\n    print(\\\"CARC MVP Results -- 5 Measurements\\\")\\n    print(f\\\"{'=' * W}\\\")\\n\\n    print(f\\\"\\\\n(a) MLP Activation Magnitudes (near-zero fraction)\\\")\\n    print(f\\\"    Redundant near-zero: {avg_redun_nz:.4f}\\\")\\n    print(f\\\"    Novel near-zero:     {avg_novel_nz:.4f}\\\")\\n    if avg_novel_nz > 0:\\n        ratio = avg_redun_nz / max(avg_novel_nz, 1e-8)\\n        print(f\\\"    Ratio (redundant/novel): {ratio:.2f}x\\\")\\n\\n    print(f\\\"\\\\n(b) Perturbation@55% (redundant vs novel)\\\")\\n    print(f\\\"    Pearson  r(EMA, perturbation) = {pearson_r:+.4f}  (p={pearson_p:.2e})\\\")\\n    print(f\\\"    Spearman r(EMA, perturbation) = {spearman_r:+.4f}  (p={spearman_p:.2e})\\\")\\n    print(f\\\"    Mean perturbation: redundant@55% = {mean_r55:.6f}\\\")\\n    print(f\\\"                       novel@55%     = {mean_n55:.6f}\\\")\\n    print(f\\\"    Perturbation diff = {diff:.4f} ({diff * 100:.1f}%)\\\")\\n    print(f\\\"    Tokens: {len(redun_vals)} redundant, {len(novel_vals)} novel  (tau={args.tau})\\\")\\n\\n    print(f\\\"\\\\n(c) EMA <-> Surprisal Correlation\\\")\\n    print(f\\\"    Pearson r(EMA, -surprisal) = {r_ema_surp:+.4f}  (p={p_ema_surp:.2e})\\\")\\n\\n    print(f\\\"\\\\n(d) Perplexity: Two-tier vs Uniform\\\")\\n    print(f\\\"    PPL two-tier (55%/40%): {ppl_twotier:.2f}\\\")\\n    print(f\\\"    PPL uniform 40%:        {ppl_uniform40:.2f}\\\")\\n    ppl_delta = ppl_twotier - ppl_uniform40\\n    print(f\\\"    Delta PPL: {ppl_delta:+.2f} ({'two-tier better' if ppl_delta < 0 else 'uniform better'})\\\")\\n\\n    print(f\\\"\\\\n(e) Position-residualized Correlations\\\")\\n    print(f\\\"    Partial r(EMA, perturbation | pos) = {resid_r_ema_pert:+.4f}\\\")\\n    print(f\\\"    Partial r(EMA, -surprisal | pos)   = {resid_r_ema_surp:+.4f}\\\")\\n\\n    print(f\\\"\\\\nMulti-chain Statistics ({len(samples)} chains)\\\")\\n    print(f\\\"    Chain-level r(EMA, perturbation): {chain_r_ema_pert:+.4f}\\\")\\n    print(f\\\"    Chain-level r(EMA, -surprisal):   {chain_r_ema_surp:+.4f}\\\")\\n    print(f\\\"    Median lag-1 autocorr (EMA):       {median_lag1_ema:.4f}\\\")\\n    print(f\\\"    Median lag-1 autocorr (surprisal): {median_lag1_surp:.4f}\\\")\\n\\n    print(f\\\"\\\\n{'=' * W}\\\")\\n    print(f\\\"Verdict: {verdict}\\\")\\n    print(f\\\"  |r| >= 0.4 ? {'YES' if abs(pearson_r) >= 0.4 else 'NO'} ({abs(pearson_r):.4f})\\\")\\n    print(f\\\"  diff >= 10%? {'YES' if diff >= 0.10 else 'NO'} ({diff * 100:.1f}%)\\\")\\n    if verdict.startswith(\\\"PASS\\\"):\\n        print(f\\\"  (Strong requires |r|>0.5 AND diff>=20%)\\\")\\n    print(f\\\"{'=' * W}\\\")\\n    print(f\\\"Results saved to {args.output}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me also check what fields are in the JSON output, and how per_layer is structured, so I can merge that too.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b98b2539-5f8b-4369-a4d9-b2e22e329108",
+  "uuid": "6866106d-f211-4d86-847e-ace94537795e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BvRpAjFrcHWtMCgtoUE6jU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2457,
+      "cache_read_input_tokens": 26622,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2457
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+Let me also check how per_layer and the JSON results are structured, and how near-zero fractions are computed.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b98b2539-5f8b-4369-a4d9-b2e22e329108",
+  "uuid": "04c64f5e-67f8-4fb2-9b74-21340bf981c1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BvRpAjFrcHWtMCgtoUE6jU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2457,
+      "cache_read_input_tokens": 26622,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2457
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Q26wCQBtopMntEYug8TSRX`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "grep -n \"per_layer\\|near_zero\\|avg_redun_nz\\|avg_novel_nz\\|lag1\\|median_lag1\\|autocorr\" /root/carc/carc_mvp.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b98b2539-5f8b-4369-a4d9-b2e22e329108",
+  "uuid": "372a257e-18ea-401d-a40a-4eb20daffd10",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BvRpAjFrcHWtMCgtoUE6jU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2457,
+      "cache_read_input_tokens": 26622,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2457
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-12T10:57:45.930Z_
+
+<details><summary>↩ Tool result · `toolu_01Q26wCQBtopMntEYug8TSRX`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b98b2539-5f8b-4369-a4d9-b2e22e329108",
+  "uuid": "01ee3fde-1961-435c-abb5-22f597c86ce4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AXPpUf9Ckk9o2NNY8akdRp`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "grep -n \"per_layer\" /root/carc/carc_mvp.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b98b2539-5f8b-4369-a4d9-b2e22e329108",
+  "uuid": "51da38e8-93f4-4288-b4c5-a03b9fe3f522",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015onWadiKLu5JZcpginUyMb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 304,
+      "cache_read_input_tokens": 29079,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 304
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-12T10:57:49.419Z_
+
+<details><summary>↩ Tool result · `toolu_01AXPpUf9Ckk9o2NNY8akdRp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"548:    per_layer: Dict[str, dict] = {}\\n576:        per_layer[str(li)] = entry\\n622:        \\\"per_layer\\\": per_layer,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b98b2539-5f8b-4369-a4d9-b2e22e329108",
+  "uuid": "fc7941b5-c711-43b1-bc9c-cf65b7e05dd4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"548:    per_layer: Dict[str, dict] = {}\\\\n576:        per_layer[str(li)] = entry\\\\n622:        \\\\\\\"per_layer\\\\\\\": per_layer,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"548:    per_layer: Dict[str, dict] = {}\\n576:        per_layer[str(li)] = entry\\n622:        \\\"per_layer\\\": per_layer,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BQBjcfxXj74SzAia9SaMA2`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "grep -n \"near_zero\\|avg_redun_nz\\|avg_novel_nz\" /root/carc/carc_mvp.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b98b2539-5f8b-4369-a4d9-b2e22e329108",
+  "uuid": "aa6ac125-d009-47fc-b07e-01be63616ffb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015onWadiKLu5JZcpginUyMb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 304,
+      "cache_read_input_tokens": 29079,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 304
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-12T10:57:49.966Z_
+
+<details><summary>↩ Tool result · `toolu_01BQBjcfxXj74SzAia9SaMA2`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b98b2539-5f8b-4369-a4d9-b2e22e329108",
+  "uuid": "e072c7ec-abae-419b-875b-e581484ff0ac",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015DidyGpUAT6oQGa7jYsfex`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "grep -n \"lag1\\|median_lag1\\|autocorr\" /root/carc/carc_mvp.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b98b2539-5f8b-4369-a4d9-b2e22e329108",
+  "uuid": "c60a9668-2c85-4302-9dc5-f277497d12b7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015onWadiKLu5JZcpginUyMb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 304,
+      "cache_read_input_tokens": 29079,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 304
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-12T10:57:50.404Z_
+
+<details><summary>↩ Tool result · `toolu_015DidyGpUAT6oQGa7jYsfex`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b98b2539-5f8b-4369-a4d9-b2e22e329108",
+  "uuid": "12cb7838-5077-46b0-af28-39c917d37135",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01YT8V9JkrkQjFsuBhRe8T1j`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "sed -n '540,580p' /root/carc/carc_mvp.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b98b2539-5f8b-4369-a4d9-b2e22e329108",
+  "uuid": "f4e9b776-13d7-42f8-8d7c-352f668fc832",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MmwUuCDBh6kDUe5w4ynNGo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 806,
+      "cache_read_input_tokens": 29383,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 806
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-12T10:57:53.164Z_
+
+<details><summary>↩ Tool result · `toolu_01YT8V9JkrkQjFsuBhRe8T1j`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b98b2539-5f8b-4369-a4d9-b2e22e329108",
+  "uuid": "37318167-3e19-4ef2-a6f4-9586d82d2225",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PqL2Q6Wi6436E23G41B3cd`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "grep -n \"near_zero\" /root/carc/carc_mvp.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b98b2539-5f8b-4369-a4d9-b2e22e329108",
+  "uuid": "ef15c4a9-c669-4c58-8273-3fe7c2b40f46",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MmwUuCDBh6kDUe5w4ynNGo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 806,
+      "cache_read_input_tokens": 29383,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 806
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016AHjNLvvp2WBqXbhZRieKw`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "grep -n \"lag1\" /root/carc/carc_mvp.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b98b2539-5f8b-4369-a4d9-b2e22e329108",
+  "uuid": "7ba6ca58-8c6a-47fd-a163-401bb28c290b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MmwUuCDBh6kDUe5w4ynNGo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 806,
+      "cache_read_input_tokens": 29383,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 806
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-12T10:57:54.539Z_
+
+<details><summary>↩ Tool result · `toolu_01PqL2Q6Wi6436E23G41B3cd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"97:        self.gate_near_zero: Dict[int, torch.Tensor] = {}\\n126:                        near_zero = (x.abs() < t40).float().mean(dim=-1)\\n127:                        self.gate_near_zero[layer_idx] = near_zero.cpu()\\n157:        self.gate_near_zero.clear()\\n354:        gate_nz = {i: mlp_cap.gate_near_zero[i] for i in mlp_cap.gate_near_zero}\\n573:            entry[\\\"redundant_near_zero_frac\\\"] = round(float(np.mean(rnz)), 4)\\n574:            entry[\\\"novel_near_zero_frac\\\"] = round(float(np.mean(nnz)), 4)\\n614:            \\\"avg_redundant_near_zero_frac\\\": round(avg_redun_nz, 4),\\n615:            \\\"avg_novel_near_zero_frac\\\": round(avg_novel_nz, 4),\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b98b2539-5f8b-4369-a4d9-b2e22e329108",
+  "uuid": "7faad746-5f7a-4b3c-8043-71cadfffbf51",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"97:        self.gate_near_zero: Dict[int, torch.Tensor] = {}\\\\n126:                        near_zero = (x.abs() < t40).float().mean(dim=-1)\\\\n127:                        self.gate_near_zero[layer_idx] = near_zero.cpu()\\\\n157:        self.gate_near_zero.clear()\\\\n354:        gate_nz = {i: mlp_cap.gate_near_zero[i] for i in mlp_cap.gate_near_zero}\\\\n573:            entry[\\\\\\\"redundant_near_zero_frac\\\\\\\"] = round(float(np.mean(rnz)), 4)\\\\n574:            entry[\\\\\\\"novel_near_zero_frac\\\\\\\"] = round(float(np.mean(nnz)), 4)\\\\n614:            \\\\\\\"avg_redundant_near_zero_frac\\\\\\\": round(avg_redun_nz, 4),\\\\n615:            \\\\\\\"avg_novel_near_zero_frac\\\\\\\": round(avg_novel_nz, 4),\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"97:        self.gate_near_zero: Dict[int, torch.Tensor] = {}\\n126:                        near_zero = (x.abs() < t40).float().mean(dim=-1)\\n127:                        self.gate_near_zero[layer_idx] = near_zero.cpu()\\n157:        self.gate_near_zero.clear()\\n354:        gate_nz = {i: mlp_cap.gate_near_zero[i] for i in mlp_cap.gate_near_zero}\\n573:            entry[\\\"redundant_near_zero_frac\\\"] = round(float(np.mean(rnz)), 4)\\n574:            entry[\\\"novel_near_zero_frac\\\"] = round(float(np.mean(nnz)), 4)\\n614:            \\\"avg_redundant_near_zero_frac\\\": round(avg_redun_nz, 4),\\n615:            \\\"avg_novel_near_zero_frac\\\": round(avg_novel_nz, 4),\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-12T10:57:55.066Z_
+
+<details><summary>↩ Tool result · `toolu_016AHjNLvvp2WBqXbhZRieKw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"319:    chain_lag1_ema: List[float] = []\\n320:    chain_lag1_surprisal: List[float] = []\\n463:            chain_lag1_ema.append(float(np.corrcoef(ema_aligned[:-1], ema_aligned[1:])[0, 1]))\\n465:            chain_lag1_surprisal.append(float(np.corrcoef(surprisal_np[:-1], surprisal_np[1:])[0, 1]))\\n542:    median_lag1_ema = float(np.median(chain_lag1_ema)) if chain_lag1_ema else 0.0\\n543:    median_lag1_surp = float(np.median(chain_lag1_surprisal)) if chain_lag1_surprisal else 0.0\\n616:            \\\"median_lag1_autocorr_ema\\\": round(median_lag1_ema, 4),\\n617:            \\\"median_lag1_autocorr_surprisal\\\": round(median_lag1_surp, 4),\\n684:    print(f\\\"    Median lag-1 autocorr (EMA):       {median_lag1_ema:.4f}\\\")\\n685:    print(f\\\"    Median lag-1 autocorr (surprisal): {median_lag1_surp:.4f}\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b98b2539-5f8b-4369-a4d9-b2e22e329108",
+  "uuid": "6b8e2a6d-c8ec-4513-b215-93e42a5b4b35",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"319:    chain_lag1_ema: List[float] = []\\\\n320:    chain_lag1_surprisal: List[float] = []\\\\n463:            chain_lag1_ema.append(float(np.corrcoef(ema_aligned[:-1], ema_aligned[1:])[0, 1]))\\\\n465:            chain_lag1_surprisal.append(float(np.corrcoef(surprisal_np[:-1], surprisal_np[1:])[0, 1]))\\\\n542:    median_lag1_ema = float(np.median(chain_lag1_ema)) if chain_lag1_ema else 0.0\\\\n543:    median_lag1_surp = float(np.median(chain_lag1_surprisal)) if chain_lag1_surprisal else 0.0\\\\n616:            \\\\\\\"median_lag1_autocorr_ema\\\\\\\": round(median_lag1_ema, 4),\\\\n617:            \\\\\\\"median_lag1_autocorr_surprisal\\\\\\\": round(median_lag1_surp, 4),\\\\n684:    print(f\\\\\\\"    Median lag-1 autocorr (EMA):       {median_lag1_ema:.4f}\\\\\\\")\\\\n685:    print(f\\\\\\\"    Median lag-1 autocorr (surprisal): {median_lag1_surp:.4f}\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"319:    chain_lag1_ema: List[float] = []\\n320:    chain_lag1_surprisal: List[float] = []\\n463:            chain_lag1_ema.append(float(np.corrcoef(ema_aligned[:-1], ema_aligned[1:])[0, 1]))\\n465:            chain_lag1_surprisal.append(float(np.corrcoef(surprisal_np[:-1], surprisal_np[1:])[0, 1]))\\n542:    median_lag1_ema = float(np.median(chain_lag1_ema)) if chain_lag1_ema else 0.0\\n543:    median_lag1_surp = float(np.median(chain_lag1_surprisal)) if chain_lag1_surprisal else 0.0\\n616:            \\\"median_lag1_autocorr_ema\\\": round(median_lag1_ema, 4),\\n617:            \\\"median_lag1_autocorr_surprisal\\\": round(median_lag1_surp, 4),\\n684:    print(f\\\"    Median lag-1 autocorr (EMA):       {median_lag1_ema:.4f}\\\")\\n685:    print(f\\\"    Median lag-1 autocorr (surprisal): {median_lag1_surp:.4f}\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RMBuVdBedszL6h2W3gQsqg`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "head -n 550 /root/carc/carc_mvp.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b98b2539-5f8b-4369-a4d9-b2e22e329108",
+  "uuid": "508ed707-521a-45ad-a675-051aae19816d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Pzx5Pcke5xdGVxC4BEvzvo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1237,
+      "cache_read_input_tokens": 30189,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1237
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-12T10:57:58.592Z_
+
+<details><summary>↩ Tool result · `toolu_01RMBuVdBedszL6h2W3gQsqg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nCARC MVP validation: five measurements for EMA-guided sparsity routing on\\nreasoning traces.\\n\\nMeasurements:\\n  (a) MLP activation magnitude: redundant vs novel near-zero fraction\\n  (b) Perturbation@55%: redundant vs novel mean perturbation + r(EMA, pert)\\n  (c) EMA <-> surprisal correlation (Contribution A bridge)\\n  (d) Perplexity: two-tier (55%/40% by EMA) vs uniform 40%\\n  (e) Position-residualized correlations for (b) and (c)\\n\\nInput:  DeepSeek-R1-Distill-Qwen-14B + calibrated thresholds JSON\\nOutput: JSON results + verdict\\n\\nPer chain, runs 4 forward passes:\\n  1) Baseline  -- MLP outputs, KV->EMA, logits->surprisal, gate magnitudes\\n  2) Sparse@55 -- MLP outputs\\n  3) Sparse@40 -- MLP outputs + logits for PPL\\n  4) Two-tier  -- logits for PPL (redundant@55%, novel@40% by EMA score)\\n\\nUsage:\\n    python carc_mvp.py --thresholds thresholds.json --output results.json\\n    python carc_mvp.py --thresholds thresholds.json --dataset c4 --seq-len 2048\\n    python carc_mvp.py --thresholds thresholds.json --dry-run\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport math\\nfrom pathlib import Path\\nfrom typing import Dict, List, Optional\\n\\nimport numpy as np\\nimport torch\\nimport torch.nn.functional as F\\nfrom scipy import stats\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\nfrom tqdm import tqdm\\n\\nfrom carc_utils import (\\n    EMAAnchorManager,\\n    compute_perturbation,\\n    load_eval_data,\\n    load_math_data,\\n    residualize,\\n    sparsify,\\n)\\n\\nMODEL_ID = \\\"deepseek-ai/DeepSeek-R1-Distill-Qwen-14B\\\"\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(\\n        description=\\\"CARC MVP: validate EMA-guided sparsity routing with 5 measurements.\\\"\\n    )\\n    p.add_argument(\\\"--model\\\", default=MODEL_ID, help=\\\"HF model name or local path\\\")\\n    p.add_argument(\\\"--thresholds\\\", required=True, help=\\\"Calibrated thresholds JSON from carc_calibrate.py\\\")\\n    p.add_argument(\\\"--output\\\", default=\\\"carc_results.json\\\", help=\\\"Output JSON path\\\")\\n    p.add_argument(\\\"--num-samples\\\", type=int, default=60, help=\\\"Number of chains/samples\\\")\\n    p.add_argument(\\\"--max-new-tokens\\\", type=int, default=2048, help=\\\"Max new tokens for reasoning generation\\\")\\n    p.add_argument(\\\"--seq-len\\\", type=int, default=2048, help=\\\"Sequence length (for non-math datasets)\\\")\\n    p.add_argument(\\\"--dataset\\\", default=\\\"math\\\", choices=[\\\"math\\\", \\\"c4\\\", \\\"wikitext\\\", \\\"alpaca\\\"])\\n    p.add_argument(\\\"--tau\\\", type=float, default=0.7, help=\\\"EMA score threshold for redundant/novel split\\\")\\n    p.add_argument(\\\"--per-head\\\", dest=\\\"per_head\\\", action=\\\"store_true\\\", default=True,\\n                   help=\\\"Per-head EMA cosine (default)\\\")\\n    p.add_argument(\\\"--no-per-head\\\", dest=\\\"per_head\\\", action=\\\"store_false\\\",\\n                   help=\\\"Disable per-head EMA, use concatenated\\\")\\n    p.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\", help=\\\"2 samples, 2 layers only\\\")\\n    p.add_argument(\\\"--dtype\\\", default=\\\"bf16\\\", choices=[\\\"fp16\\\", \\\"bf16\\\"])\\n    p.add_argument(\\\"--data-seed\\\", type=int, default=42, help=\\\"Seed for MATH problem selection\\\")\\n    p.add_argument(\\\"--save-records\\\", action=\\\"store_true\\\", help=\\\"Save raw records as .npz\\\")\\n    return p.parse_args()\\n\\n\\n# ---------------------------------------------------------------------------\\n# Hook managers\\n# ---------------------------------------------------------------------------\\n\\nclass MLPCapture:\\n    \\\"\\\"\\\"\\n    Captures MLP outputs and optionally sparsifies MLP projection inputs.\\n\\n    Modes:\\n        \\\"baseline\\\"       -- record outputs + gate_proj near-zero fractions\\n        \\\"sparse_55\\\"      -- sparsify at 55% threshold\\n        \\\"sparse_40\\\"      -- sparsify at 40% threshold\\n        \\\"sparse_twotier\\\" -- per-token routing: redundant@55%, novel@40%\\n    \\\"\\\"\\\"\\n\\n    def __init__(self, model, thresholds: dict, max_layers: int, tau: float = 0.7):\\n        self.thresholds = thresholds\\n        self.max_layers = max_layers\\n        self.tau = tau\\n        self._hooks: list = []\\n        self.mode = \\\"baseline\\\"\\n        self.outputs: Dict[int, torch.Tensor] = {}\\n        self.gate_near_zero: Dict[int, torch.Tensor] = {}\\n        sel\\n\\n... [截断: 输出过长，省略 13991 字符] ...\\n\\nlevel stats ----\\n        chain_mean_ema.append(float(np.mean(avg_ema_np)))\\n        chain_mean_surprisal.append(float(np.mean(surprisal_np)))\\n        if chain_perturb_accum:\\n            chain_mean_perturb.append(float(np.mean(chain_perturb_accum)))\\n        else:\\n            chain_mean_perturb.append(0.0)\\n\\n        # Lag-1 autocorrelation\\n        ema_aligned = avg_ema_np[1:]  # align with surprisal range\\n        if len(ema_aligned) > 2:\\n            chain_lag1_ema.append(float(np.corrcoef(ema_aligned[:-1], ema_aligned[1:])[0, 1]))\\n        if len(surprisal_np) > 2:\\n            chain_lag1_surprisal.append(float(np.corrcoef(surprisal_np[:-1], surprisal_np[1:])[0, 1]))\\n\\n        del base_out, s55_out, s40_out, gate_nz, token_targets\\n        torch.cuda.empty_cache()\\n\\n    mlp_cap.remove()\\n    kv_cap.remove()\\n\\n    # ------------------------------------------------------------------\\n    # Aggregate statistics\\n    # ------------------------------------------------------------------\\n    if len(records) < 3:\\n        print(\\\"ERROR: too few records to compute statistics\\\")\\n        return\\n\\n    all_s = np.array([r[0] for r in records])\\n    all_p55 = np.array([r[1] for r in records])\\n    all_rec_pos = np.array([r[4] for r in records], dtype=np.float64)\\n\\n    # (b) r(EMA, perturbation)\\n    pearson_r, pearson_p = stats.pearsonr(all_s, all_p55)\\n    spearman_r, spearman_p = stats.spearmanr(all_s, all_p55)\\n\\n    redun_vals = [r[1] for r in records if r[0] > args.tau]\\n    novel_vals = [r[1] for r in records if r[0] <= args.tau]\\n    mean_r55 = float(np.mean(redun_vals)) if redun_vals else 0.0\\n    mean_n55 = float(np.mean(novel_vals)) if novel_vals else 0.0\\n    diff = mean_n55 - mean_r55\\n\\n    # (c) r(EMA, -surprisal)\\n    arr_ema = np.array(all_token_avg_ema)\\n    arr_surp = np.array(all_token_surprisal)\\n    arr_pos = np.array(all_token_positions, dtype=np.float64)\\n    if len(arr_ema) > 2:\\n        r_ema_surp, p_ema_surp = stats.pearsonr(arr_ema, -arr_surp)\\n    else:\\n        r_ema_surp, p_ema_surp = 0.0, 1.0\\n\\n    # (d) PPL\\n    ppl_uniform40 = math.exp(np.mean(all_ce_uniform40)) if all_ce_uniform40 else float(\\\"inf\\\")\\n    ppl_twotier = math.exp(np.mean(all_ce_twotier)) if all_ce_twotier else float(\\\"inf\\\")\\n\\n    # (e) Position-residualized correlations\\n    if len(all_rec_pos) > 10:\\n        ema_resid = residualize(all_s, all_rec_pos)\\n        p55_resid = residualize(all_p55, all_rec_pos)\\n        resid_r_ema_pert, _ = stats.pearsonr(ema_resid, p55_resid)\\n    else:\\n        resid_r_ema_pert = 0.0\\n\\n    if len(arr_pos) > 10:\\n        ema_avg_resid = residualize(arr_ema, arr_pos)\\n        surp_neg_resid = residualize(-arr_surp, arr_pos)\\n        resid_r_ema_surp, _ = stats.pearsonr(ema_avg_resid, surp_neg_resid)\\n    else:\\n        resid_r_ema_surp = 0.0\\n\\n    # (a) Global near-zero fractions\\n    all_redun_nz = []\\n    all_novel_nz = []\\n    for li in range(max_layers):\\n        all_redun_nz.extend(layer_redun_nz[li])\\n        all_novel_nz.extend(layer_novel_nz[li])\\n    avg_redun_nz = float(np.mean(all_redun_nz)) if all_redun_nz else 0.0\\n    avg_novel_nz = float(np.mean(all_novel_nz)) if all_novel_nz else 0.0\\n\\n    # Multi-chain: chain-level correlations\\n    chain_ema_arr = np.array(chain_mean_ema)\\n    chain_pert_arr = np.array(chain_mean_perturb)\\n    chain_surp_arr = np.array(chain_mean_surprisal)\\n\\n    if len(chain_ema_arr) > 2:\\n        chain_r_ema_pert, _ = stats.pearsonr(chain_ema_arr, chain_pert_arr)\\n        chain_r_ema_surp, _ = stats.pearsonr(chain_ema_arr, -chain_surp_arr)\\n    else:\\n        chain_r_ema_pert, chain_r_ema_surp = 0.0, 0.0\\n\\n    median_lag1_ema = float(np.median(chain_lag1_ema)) if chain_lag1_ema else 0.0\\n    median_lag1_surp = float(np.median(chain_lag1_surprisal)) if chain_lag1_surprisal else 0.0\\n\\n    # ------------------------------------------------------------------\\n    # Per-layer breakdown\\n    # ------------------------------------------------------------------\\n    per_layer: Dict[str, dict] = {}\\n    for li in range(max_layers):\\n        rv = layer_redun_55[li]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b98b2539-5f8b-4369-a4d9-b2e22e329108",
+  "uuid": "588b9d1a-1631-424a-a589-2824230f233e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nCARC MVP validation: five measurements for EMA-guided sparsity routing on\\\\nreasoning traces.\\\\n\\\\nMeasurements:\\\\n  (a) MLP activation magnitude: redundant vs novel near-zero fraction\\\\n  (b) Perturbation@55%: redundant vs novel mean perturbation + r(EMA, pert)\\\\n  (c) EMA <-> surprisal correlation (Contribution A bridge)\\\\n  (d) Perplexity: two-tier (55%/40% by EMA) vs uniform 40%\\\\n  (e) Position-residualized correlations for (b) and (c)\\\\n\\\\nInput:  DeepSeek-R1-Distill-Qwen-14B + calibrated thresholds JSON\\\\nOutput: JSON results + verdict\\\\n\\\\nPer chain, runs 4 forward passes:\\\\n  1) Baseline  -- MLP outputs, KV->EMA, logits->surprisal, gate magnitudes\\\\n  2) Sparse@55 -- MLP outputs\\\\n  3) Sparse@40 -- MLP outputs + logits for PPL\\\\n  4) Two-tier  -- logits for PPL (redundant@55%, novel@40% by EMA score)\\\\n\\\\nUsage:\\\\n    python carc_mvp.py --thresholds thresholds.json --output results.json\\\\n    python carc_mvp.py --thresholds thresholds.json --dataset c4 --seq-len 2048\\\\n    python carc_mvp.py --thresholds thresholds.json --dry-run\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport math\\\\nfrom pathlib import Path\\\\nfrom typing import Dict, List, Optional\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nimport torch.nn.functional as F\\\\nfrom scipy import stats\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\nfrom tqdm import tqdm\\\\n\\\\nfrom carc_utils import (\\\\n    EMAAnchorManager,\\\\n    compute_perturbation,\\\\n    load_eval_data,\\\\n    load_math_data,\\\\n    residualize,\\\\n    sparsify,\\\\n)\\\\n\\\\nMODEL_ID = \\\\\\\"deepseek-ai/DeepSeek-R1-Distill-Qwen-14B\\\\\\\"\\\\n\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser(\\\\n        description=\\\\\\\"CARC MVP: validate EMA-guided sparsity routing with 5 measurements.\\\\\\\"\\\\n    )\\\\n    p.add_argument(\\\\\\\"--model\\\\\\\", default=MODEL_ID, help=\\\\\\\"HF model name or local path\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--thresholds\\\\\\\", required=True, help=\\\\\\\"Calibrated thresholds JSON from carc_calibrate.py\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--output\\\\\\\", default=\\\\\\\"carc_results.json\\\\\\\", help=\\\\\\\"Output JSON path\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--num-samples\\\\\\\", type=int, default=60, help=\\\\\\\"Number of chains/samples\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--max-new-tokens\\\\\\\", type=int, default=2048, help=\\\\\\\"Max new tokens for reasoning generation\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--seq-len\\\\\\\", type=int, default=2048, help=\\\\\\\"Sequence length (for non-math datasets)\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--dataset\\\\\\\", default=\\\\\\\"math\\\\\\\", choices=[\\\\\\\"math\\\\\\\", \\\\\\\"c4\\\\\\\", \\\\\\\"wikitext\\\\\\\", \\\\\\\"alpaca\\\\\\\"])\\\\n    p.add_argument(\\\\\\\"--tau\\\\\\\", type=float, default=0.7, help=\\\\\\\"EMA score threshold for redundant/novel split\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--per-head\\\\\\\", dest=\\\\\\\"per_head\\\\\\\", action=\\\\\\\"store_true\\\\\\\", default=True,\\\\n                   help=\\\\\\\"Per-head EMA cosine (default)\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--no-per-head\\\\\\\", dest=\\\\\\\"per_head\\\\\\\", action=\\\\\\\"store_false\\\\\\\",\\\\n                   help=\\\\\\\"Disable per-head EMA, use concatenated\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--dry-run\\\\\\\", action=\\\\\\\"store_true\\\\\\\", help=\\\\\\\"2 samples, 2 layers only\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--dtype\\\\\\\", default=\\\\\\\"bf16\\\\\\\", choices=[\\\\\\\"fp16\\\\\\\", \\\\\\\"bf16\\\\\\\"])\\\\n    p.add_argument(\\\\\\\"--data-seed\\\\\\\", type=int, default=42, help=\\\\\\\"Seed for MATH problem selection\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--save-records\\\\\\\", action=\\\\\\\"store_true\\\\\\\", help=\\\\\\\"Save raw records as .npz\\\\\\\")\\\\n    return p.parse_args()\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Hook managers\\\\n# ---------------------------------------------------------------------------\\\\n\\\\nclass MLPCapture:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    Captures MLP outputs and optionally sparsifies MLP projection inputs.\\\\n\\\\n    Modes:\\\\n        \\\\\\\"baseline\\\\\\\"       -- record outputs + gate_proj near-zero fractions\\\\n        \\\\\\\"sparse_55\\\\\\\"      -- sparsify at 55% threshold\\\\n        \\\\\\\"sparse_40\\\\\\\"      -- sparsify at 40% threshold\\\\n        \\\\\\\"sparse_twotier\\\\\\\" -- per-token routing: redundant@55%, novel@40%\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(self, model, thresholds: dict, max_layers: int, tau: float = 0.7):\\\\n        self.thresholds = thresholds\\\\n        self.max_layers = max_layers\\\\n        self.tau = tau\\\\n        self._hooks: list = []\\\\n        self.mode = \\\\\\\"baseline\\\\\\\"\\\\n        self.outputs: Dict[int, torch.Tensor] = {}\\\\n        self.gate_near_zero: Dict[int, torch.Tensor] = {}\\\\n        sel\\\\n\\\\n... [截断: 输出过长，省略 13991 字符] ...\\\\n\\\\nlevel stats ----\\\\n        chain_mean_ema.append(float(np.mean(avg_ema_np)))\\\\n        chain_mean_surprisal.append(float(np.mean(surprisal_np)))\\\\n        if chain_perturb_accum:\\\\n            chain_mean_perturb.append(float(np.mean(chain_perturb_accum)))\\\\n        else:\\\\n            chain_mean_perturb.append(0.0)\\\\n\\\\n        # Lag-1 autocorrelation\\\\n        ema_aligned = avg_ema_np[1:]  # align with surprisal range\\\\n        if len(ema_aligned) > 2:\\\\n            chain_lag1_ema.append(float(np.corrcoef(ema_aligned[:-1], ema_aligned[1:])[0, 1]))\\\\n        if len(surprisal_np) > 2:\\\\n            chain_lag1_surprisal.append(float(np.corrcoef(surprisal_np[:-1], surprisal_np[1:])[0, 1]))\\\\n\\\\n        del base_out, s55_out, s40_out, gate_nz, token_targets\\\\n        torch.cuda.empty_cache()\\\\n\\\\n    mlp_cap.remove()\\\\n    kv_cap.remove()\\\\n\\\\n    # ------------------------------------------------------------------\\\\n    # Aggregate statistics\\\\n    # ------------------------------------------------------------------\\\\n    if len(records) < 3:\\\\n        print(\\\\\\\"ERROR: too few records to compute statistics\\\\\\\")\\\\n        return\\\\n\\\\n    all_s = np.array([r[0] for r in records])\\\\n    all_p55 = np.array([r[1] for r in records])\\\\n    all_rec_pos = np.array([r[4] for r in records], dtype=np.float64)\\\\n\\\\n    # (b) r(EMA, perturbation)\\\\n    pearson_r, pearson_p = stats.pearsonr(all_s, all_p55)\\\\n    spearman_r, spearman_p = stats.spearmanr(all_s, all_p55)\\\\n\\\\n    redun_vals = [r[1] for r in records if r[0] > args.tau]\\\\n    novel_vals = [r[1] for r in records if r[0] <= args.tau]\\\\n    mean_r55 = float(np.mean(redun_vals)) if redun_vals else 0.0\\\\n    mean_n55 = float(np.mean(novel_vals)) if novel_vals else 0.0\\\\n    diff = mean_n55 - mean_r55\\\\n\\\\n    # (c) r(EMA, -surprisal)\\\\n    arr_ema = np.array(all_token_avg_ema)\\\\n    arr_surp = np.array(all_token_surprisal)\\\\n    arr_pos = np.array(all_token_positions, dtype=np.float64)\\\\n    if len(arr_ema) > 2:\\\\n        r_ema_surp, p_ema_surp = stats.pearsonr(arr_ema, -arr_surp)\\\\n    else:\\\\n        r_ema_surp, p_ema_surp = 0.0, 1.0\\\\n\\\\n    # (d) PPL\\\\n    ppl_uniform40 = math.exp(np.mean(all_ce_uniform40)) if all_ce_uniform40 else float(\\\\\\\"inf\\\\\\\")\\\\n    ppl_twotier = math.exp(np.mean(all_ce_twotier)) if all_ce_twotier else float(\\\\\\\"inf\\\\\\\")\\\\n\\\\n    # (e) Position-residualized correlations\\\\n    if len(all_rec_pos) > 10:\\\\n        ema_resid = residualize(all_s, all_rec_pos)\\\\n        p55_resid = residualize(all_p55, all_rec_pos)\\\\n        resid_r_ema_pert, _ = stats.pearsonr(ema_resid, p55_resid)\\\\n    else:\\\\n        resid_r_ema_pert = 0.0\\\\n\\\\n    if len(arr_pos) > 10:\\\\n        ema_avg_resid = residualize(arr_ema, arr_pos)\\\\n        surp_neg_resid = residualize(-arr_surp, arr_pos)\\\\n        resid_r_ema_surp, _ = stats.pearsonr(ema_avg_resid, surp_neg_resid)\\\\n    else:\\\\n        resid_r_ema_surp = 0.0\\\\n\\\\n    # (a) Global near-zero fractions\\\\n    all_redun_nz = []\\\\n    all_novel_nz = []\\\\n    for li in range(max_layers):\\\\n        all_redun_nz.extend(layer_redun_nz[li])\\\\n        all_novel_nz.extend(layer_novel_nz[li])\\\\n    avg_redun_nz = float(np.mean(all_redun_nz)) if all_redun_nz else 0.0\\\\n    avg_novel_nz = float(np.mean(all_novel_nz)) if all_novel_nz else 0.0\\\\n\\\\n    # Multi-chain: chain-level correlations\\\\n    chain_ema_arr = np.array(chain_mean_ema)\\\\n    chain_pert_arr = np.array(chain_mean_perturb)\\\\n    chain_surp_arr = np.array(chain_mean_surprisal)\\\\n\\\\n    if len(chain_ema_arr) > 2:\\\\n        chain_r_ema_pert, _ = stats.pearsonr(chain_ema_arr, chain_pert_arr)\\\\n        chain_r_ema_surp, _ = stats.pearsonr(chain_ema_arr, -chain_surp_arr)\\\\n    else:\\\\n        chain_r_ema_pert, chain_r_ema_surp = 0.0, 0.0\\\\n\\\\n    median_lag1_ema = float(np.median(chain_lag1_ema)) if chain_lag1_ema else 0.0\\\\n    median_lag1_surp = float(np.median(chain_lag1_surprisal)) if chain_lag1_surprisal else 0.0\\\\n\\\\n    # ------------------------------------------------------------------\\\\n    # Per-layer breakdown\\\\n    # ------------------------------------------------------------------\\\\n    per_layer: Dict[str, dict] = {}\\\\n    for li in range(max_layers):\\\\n        rv = layer_redun_55[li]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nCARC MVP validation: five measurements for EMA-guided sparsity routing on\\nreasoning traces.\\n\\nMeasurements:\\n  (a) MLP activation magnitude: redundant vs novel near-zero fraction\\n  (b) Perturbation@55%: redundant vs novel mean perturbation + r(EMA, pert)\\n  (c) EMA <-> surprisal correlation (Contribution A bridge)\\n  (d) Perplexity: two-tier (55%/40% by EMA) vs uniform 40%\\n  (e) Position-residualized correlations for (b) and (c)\\n\\nInput:  DeepSeek-R1-Distill-Qwen-14B + calibrated thresholds JSON\\nOutput: JSON results + verdict\\n\\nPer chain, runs 4 forward passes:\\n  1) Baseline  -- MLP outputs, KV->EMA, logits->surprisal, gate magnitudes\\n  2) Sparse@55 -- MLP outputs\\n  3) Sparse@40 -- MLP outputs + logits for PPL\\n  4) Two-tier  -- logits for PPL (redundant@55%, novel@40% by EMA score)\\n\\nUsage:\\n    python carc_mvp.py --thresholds thresholds.json --output results.json\\n    python carc_mvp.py --thresholds thresholds.json --dataset c4 --seq-len 2048\\n    python carc_mvp.py --thresholds thresholds.json --dry-run\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport math\\nfrom pathlib import Path\\nfrom typing import Dict, List, Optional\\n\\nimport numpy as np\\nimport torch\\nimport torch.nn.functional as F\\nfrom scipy import stats\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\nfrom tqdm import tqdm\\n\\nfrom carc_utils import (\\n    EMAAnchorManager,\\n    compute_perturbation,\\n    load_eval_data,\\n    load_math_data,\\n    residualize,\\n    sparsify,\\n)\\n\\nMODEL_ID = \\\"deepseek-ai/DeepSeek-R1-Distill-Qwen-14B\\\"\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(\\n        description=\\\"CARC MVP: validate EMA-guided sparsity routing with 5 measurements.\\\"\\n    )\\n    p.add_argument(\\\"--model\\\", default=MODEL_ID, help=\\\"HF model name or local path\\\")\\n    p.add_argument(\\\"--thresholds\\\", required=True, help=\\\"Calibrated thresholds JSON from carc_calibrate.py\\\")\\n    p.add_argument(\\\"--output\\\", default=\\\"carc_results.json\\\", help=\\\"Output JSON path\\\")\\n    p.add_argument(\\\"--num-samples\\\", type=int, default=60, help=\\\"Number of chains/samples\\\")\\n    p.add_argument(\\\"--max-new-tokens\\\", type=int, default=2048, help=\\\"Max new tokens for reasoning generation\\\")\\n    p.add_argument(\\\"--seq-len\\\", type=int, default=2048, help=\\\"Sequence length (for non-math datasets)\\\")\\n    p.add_argument(\\\"--dataset\\\", default=\\\"math\\\", choices=[\\\"math\\\", \\\"c4\\\", \\\"wikitext\\\", \\\"alpaca\\\"])\\n    p.add_argument(\\\"--tau\\\", type=float, default=0.7, help=\\\"EMA score threshold for redundant/novel split\\\")\\n    p.add_argument(\\\"--per-head\\\", dest=\\\"per_head\\\", action=\\\"store_true\\\", default=True,\\n                   help=\\\"Per-head EMA cosine (default)\\\")\\n    p.add_argument(\\\"--no-per-head\\\", dest=\\\"per_head\\\", action=\\\"store_false\\\",\\n                   help=\\\"Disable per-head EMA, use concatenated\\\")\\n    p.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\", help=\\\"2 samples, 2 layers only\\\")\\n    p.add_argument(\\\"--dtype\\\", default=\\\"bf16\\\", choices=[\\\"fp16\\\", \\\"bf16\\\"])\\n    p.add_argument(\\\"--data-seed\\\", type=int, default=42, help=\\\"Seed for MATH problem selection\\\")\\n    p.add_argument(\\\"--save-records\\\", action=\\\"store_true\\\", help=\\\"Save raw records as .npz\\\")\\n    return p.parse_args()\\n\\n\\n# ---------------------------------------------------------------------------\\n# Hook managers\\n# ---------------------------------------------------------------------------\\n\\nclass MLPCapture:\\n    \\\"\\\"\\\"\\n    Captures MLP outputs and optionally sparsifies MLP projection inputs.\\n\\n    Modes:\\n        \\\"baseline\\\"       -- record outputs + gate_proj near-zero fractions\\n        \\\"sparse_55\\\"      -- sparsify at 55% threshold\\n        \\\"sparse_40\\\"      -- sparsify at 40% threshold\\n        \\\"sparse_twotier\\\" -- per-token routing: redundant@55%, novel@40%\\n    \\\"\\\"\\\"\\n\\n    def __init__(self, model, thresholds: dict, max_layers: int, tau: float = 0.7):\\n        self.thresholds = thresholds\\n        self.max_layers = max_layers\\n        self.tau = tau\\n        self._hooks: list = []\\n        self.mode = \\\"baseline\\\"\\n        self.outputs: Dict[int, torch.Tensor] = {}\\n        self.gate_near_zero: Dict[int, torch.Tensor] = {}\\n        sel\\n\\n... [截断: 输出过长，省略 13991 字符] ...\\n\\nlevel stats ----\\n        chain_mean_ema.append(float(np.mean(avg_ema_np)))\\n        chain_mean_surprisal.append(float(np.mean(surprisal_np)))\\n        if chain_perturb_accum:\\n            chain_mean_perturb.append(float(np.mean(chain_perturb_accum)))\\n        else:\\n            chain_mean_perturb.append(0.0)\\n\\n        # Lag-1 autocorrelation\\n        ema_aligned = avg_ema_np[1:]  # align with surprisal range\\n        if len(ema_aligned) > 2:\\n            chain_lag1_ema.append(float(np.corrcoef(ema_aligned[:-1], ema_aligned[1:])[0, 1]))\\n        if len(surprisal_np) > 2:\\n            chain_lag1_surprisal.append(float(np.corrcoef(surprisal_np[:-1], surprisal_np[1:])[0, 1]))\\n\\n        del base_out, s55_out, s40_out, gate_nz, token_targets\\n        torch.cuda.empty_cache()\\n\\n    mlp_cap.remove()\\n    kv_cap.remove()\\n\\n    # ------------------------------------------------------------------\\n    # Aggregate statistics\\n    # ------------------------------------------------------------------\\n    if len(records) < 3:\\n        print(\\\"ERROR: too few records to compute statistics\\\")\\n        return\\n\\n    all_s = np.array([r[0] for r in records])\\n    all_p55 = np.array([r[1] for r in records])\\n    all_rec_pos = np.array([r[4] for r in records], dtype=np.float64)\\n\\n    # (b) r(EMA, perturbation)\\n    pearson_r, pearson_p = stats.pearsonr(all_s, all_p55)\\n    spearman_r, spearman_p = stats.spearmanr(all_s, all_p55)\\n\\n    redun_vals = [r[1] for r in records if r[0] > args.tau]\\n    novel_vals = [r[1] for r in records if r[0] <= args.tau]\\n    mean_r55 = float(np.mean(redun_vals)) if redun_vals else 0.0\\n    mean_n55 = float(np.mean(novel_vals)) if novel_vals else 0.0\\n    diff = mean_n55 - mean_r55\\n\\n    # (c) r(EMA, -surprisal)\\n    arr_ema = np.array(all_token_avg_ema)\\n    arr_surp = np.array(all_token_surprisal)\\n    arr_pos = np.array(all_token_positions, dtype=np.float64)\\n    if len(arr_ema) > 2:\\n        r_ema_surp, p_ema_surp = stats.pearsonr(arr_ema, -arr_surp)\\n    else:\\n        r_ema_surp, p_ema_surp = 0.0, 1.0\\n\\n    # (d) PPL\\n    ppl_uniform40 = math.exp(np.mean(all_ce_uniform40)) if all_ce_uniform40 else float(\\\"inf\\\")\\n    ppl_twotier = math.exp(np.mean(all_ce_twotier)) if all_ce_twotier else float(\\\"inf\\\")\\n\\n    # (e) Position-residualized correlations\\n    if len(all_rec_pos) > 10:\\n        ema_resid = residualize(all_s, all_rec_pos)\\n        p55_resid = residualize(all_p55, all_rec_pos)\\n        resid_r_ema_pert, _ = stats.pearsonr(ema_resid, p55_resid)\\n    else:\\n        resid_r_ema_pert = 0.0\\n\\n    if len(arr_pos) > 10:\\n        ema_avg_resid = residualize(arr_ema, arr_pos)\\n        surp_neg_resid = residualize(-arr_surp, arr_pos)\\n        resid_r_ema_surp, _ = stats.pearsonr(ema_avg_resid, surp_neg_resid)\\n    else:\\n        resid_r_ema_surp = 0.0\\n\\n    # (a) Global near-zero fractions\\n    all_redun_nz = []\\n    all_novel_nz = []\\n    for li in range(max_layers):\\n        all_redun_nz.extend(layer_redun_nz[li])\\n        all_novel_nz.extend(layer_novel_nz[li])\\n    avg_redun_nz = float(np.mean(all_redun_nz)) if all_redun_nz else 0.0\\n    avg_novel_nz = float(np.mean(all_novel_nz)) if all_novel_nz else 0.0\\n\\n    # Multi-chain: chain-level correlations\\n    chain_ema_arr = np.array(chain_mean_ema)\\n    chain_pert_arr = np.array(chain_mean_perturb)\\n    chain_surp_arr = np.array(chain_mean_surprisal)\\n\\n    if len(chain_ema_arr) > 2:\\n        chain_r_ema_pert, _ = stats.pearsonr(chain_ema_arr, chain_pert_arr)\\n        chain_r_ema_surp, _ = stats.pearsonr(chain_ema_arr, -chain_surp_arr)\\n    else:\\n        chain_r_ema_pert, chain_r_ema_surp = 0.0, 0.0\\n\\n    median_lag1_ema = float(np.median(chain_lag1_ema)) if chain_lag1_ema else 0.0\\n    median_lag1_surp = float(np.median(chain_lag1_surprisal)) if chain_lag1_surprisal else 0.0\\n\\n    # ------------------------------------------------------------------\\n    # Per-layer breakdown\\n    # ------------------------------------------------------------------\\n    per_layer: Dict[str, dict] = {}\\n    for li in range(max_layers):\\n        rv = layer_redun_55[li]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MyES5bdJK67WdMH3bA5bY8`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "head -n 630 /root/carc/carc_mvp.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b98b2539-5f8b-4369-a4d9-b2e22e329108",
+  "uuid": "74855d54-c28e-493a-8605-3e8dfab62a6e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B8juqGQPcMk3DPUJfwTUdX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3503,
+      "cache_read_input_tokens": 31426,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3503
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-12T10:58:02.368Z_
+
+<details><summary>↩ Tool result · `toolu_01MyES5bdJK67WdMH3bA5bY8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nCARC MVP validation: five measurements for EMA-guided sparsity routing on\\nreasoning traces.\\n\\nMeasurements:\\n  (a) MLP activation magnitude: redundant vs novel near-zero fraction\\n  (b) Perturbation@55%: redundant vs novel mean perturbation + r(EMA, pert)\\n  (c) EMA <-> surprisal correlation (Contribution A bridge)\\n  (d) Perplexity: two-tier (55%/40% by EMA) vs uniform 40%\\n  (e) Position-residualized correlations for (b) and (c)\\n\\nInput:  DeepSeek-R1-Distill-Qwen-14B + calibrated thresholds JSON\\nOutput: JSON results + verdict\\n\\nPer chain, runs 4 forward passes:\\n  1) Baseline  -- MLP outputs, KV->EMA, logits->surprisal, gate magnitudes\\n  2) Sparse@55 -- MLP outputs\\n  3) Sparse@40 -- MLP outputs + logits for PPL\\n  4) Two-tier  -- logits for PPL (redundant@55%, novel@40% by EMA score)\\n\\nUsage:\\n    python carc_mvp.py --thresholds thresholds.json --output results.json\\n    python carc_mvp.py --thresholds thresholds.json --dataset c4 --seq-len 2048\\n    python carc_mvp.py --thresholds thresholds.json --dry-run\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport math\\nfrom pathlib import Path\\nfrom typing import Dict, List, Optional\\n\\nimport numpy as np\\nimport torch\\nimport torch.nn.functional as F\\nfrom scipy import stats\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\nfrom tqdm import tqdm\\n\\nfrom carc_utils import (\\n    EMAAnchorManager,\\n    compute_perturbation,\\n    load_eval_data,\\n    load_math_data,\\n    residualize,\\n    sparsify,\\n)\\n\\nMODEL_ID = \\\"deepseek-ai/DeepSeek-R1-Distill-Qwen-14B\\\"\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(\\n        description=\\\"CARC MVP: validate EMA-guided sparsity routing with 5 measurements.\\\"\\n    )\\n    p.add_argument(\\\"--model\\\", default=MODEL_ID, help=\\\"HF model name or local path\\\")\\n    p.add_argument(\\\"--thresholds\\\", required=True, help=\\\"Calibrated thresholds JSON from carc_calibrate.py\\\")\\n    p.add_argument(\\\"--output\\\", default=\\\"carc_results.json\\\", help=\\\"Output JSON path\\\")\\n    p.add_argument(\\\"--num-samples\\\", type=int, default=60, help=\\\"Number of chains/samples\\\")\\n    p.add_argument(\\\"--max-new-tokens\\\", type=int, default=2048, help=\\\"Max new tokens for reasoning generation\\\")\\n    p.add_argument(\\\"--seq-len\\\", type=int, default=2048, help=\\\"Sequence length (for non-math datasets)\\\")\\n    p.add_argument(\\\"--dataset\\\", default=\\\"math\\\", choices=[\\\"math\\\", \\\"c4\\\", \\\"wikitext\\\", \\\"alpaca\\\"])\\n    p.add_argument(\\\"--tau\\\", type=float, default=0.7, help=\\\"EMA score threshold for redundant/novel split\\\")\\n    p.add_argument(\\\"--per-head\\\", dest=\\\"per_head\\\", action=\\\"store_true\\\", default=True,\\n                   help=\\\"Per-head EMA cosine (default)\\\")\\n    p.add_argument(\\\"--no-per-head\\\", dest=\\\"per_head\\\", action=\\\"store_false\\\",\\n                   help=\\\"Disable per-head EMA, use concatenated\\\")\\n    p.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\", help=\\\"2 samples, 2 layers only\\\")\\n    p.add_argument(\\\"--dtype\\\", default=\\\"bf16\\\", choices=[\\\"fp16\\\", \\\"bf16\\\"])\\n    p.add_argument(\\\"--data-seed\\\", type=int, default=42, help=\\\"Seed for MATH problem selection\\\")\\n    p.add_argument(\\\"--save-records\\\", action=\\\"store_true\\\", help=\\\"Save raw records as .npz\\\")\\n    return p.parse_args()\\n\\n\\n# ---------------------------------------------------------------------------\\n# Hook managers\\n# ---------------------------------------------------------------------------\\n\\nclass MLPCapture:\\n    \\\"\\\"\\\"\\n    Captures MLP outputs and optionally sparsifies MLP projection inputs.\\n\\n    Modes:\\n        \\\"baseline\\\"       -- record outputs + gate_proj near-zero fractions\\n        \\\"sparse_55\\\"      -- sparsify at 55% threshold\\n        \\\"sparse_40\\\"      -- sparsify at 40% threshold\\n        \\\"sparse_twotier\\\" -- per-token routing: redundant@55%, novel@40%\\n    \\\"\\\"\\\"\\n\\n    def __init__(self, model, thresholds: dict, max_layers: int, tau: float = 0.7):\\n        self.thresholds = thresholds\\n        self.max_layers = max_layers\\n        self.tau = tau\\n        self._hooks: list = []\\n        self.mode = \\\"baseline\\\"\\n        self.outputs: Dict[int, torch.Tensor] = {}\\n        self.gate_near_zero: Dict[int, torch.Tensor] = {}\\n        sel\\n\\n... [截断: 输出过长，省略 17385 字符] ...\\n\\nin_pert_arr)\\n        chain_r_ema_surp, _ = stats.pearsonr(chain_ema_arr, -chain_surp_arr)\\n    else:\\n        chain_r_ema_pert, chain_r_ema_surp = 0.0, 0.0\\n\\n    median_lag1_ema = float(np.median(chain_lag1_ema)) if chain_lag1_ema else 0.0\\n    median_lag1_surp = float(np.median(chain_lag1_surprisal)) if chain_lag1_surprisal else 0.0\\n\\n    # ------------------------------------------------------------------\\n    # Per-layer breakdown\\n    # ------------------------------------------------------------------\\n    per_layer: Dict[str, dict] = {}\\n    for li in range(max_layers):\\n        rv = layer_redun_55[li]\\n        nv = layer_novel_55[li]\\n        if not rv or not nv:\\n            continue\\n        lrec = [(r[0], r[1]) for r in records if r[3] == li]\\n        if len(lrec) < 10:\\n            continue\\n        ls, lp = zip(*lrec)\\n        lr, _ = stats.pearsonr(ls, lp)\\n\\n        entry = {\\n            \\\"pearson_r\\\": round(float(lr), 4),\\n            \\\"mean_redundant_55\\\": round(float(np.mean(rv)), 6),\\n            \\\"mean_novel_55\\\": round(float(np.mean(nv)), 6),\\n            \\\"diff\\\": round(float(np.mean(nv) - np.mean(rv)), 6),\\n            \\\"n_redundant\\\": len(rv),\\n            \\\"n_novel\\\": len(nv),\\n        }\\n\\n        # (a) near-zero fractions\\n        rnz = layer_redun_nz[li]\\n        nnz = layer_novel_nz[li]\\n        if rnz and nnz:\\n            entry[\\\"redundant_near_zero_frac\\\"] = round(float(np.mean(rnz)), 4)\\n            entry[\\\"novel_near_zero_frac\\\"] = round(float(np.mean(nnz)), 4)\\n\\n        per_layer[str(li)] = entry\\n\\n    # ------------------------------------------------------------------\\n    # Verdict\\n    # ------------------------------------------------------------------\\n    verdict = judge(pearson_r, diff)\\n\\n    # ------------------------------------------------------------------\\n    # Results\\n    # ------------------------------------------------------------------\\n    results = {\\n        \\\"config\\\": {\\n            \\\"model\\\": args.model,\\n            \\\"dataset\\\": args.dataset,\\n            \\\"num_chains\\\": len(samples),\\n            \\\"max_new_tokens\\\": args.max_new_tokens if args.dataset == \\\"math\\\" else None,\\n            \\\"seq_len\\\": args.seq_len if args.dataset != \\\"math\\\" else None,\\n            \\\"tau\\\": args.tau,\\n            \\\"layers_evaluated\\\": max_layers,\\n            \\\"per_head\\\": per_head,\\n        },\\n        \\\"global\\\": {\\n            \\\"pearson_r_ema_perturbation\\\": round(float(pearson_r), 4),\\n            \\\"pearson_p_ema_perturbation\\\": float(pearson_p),\\n            \\\"spearman_r_ema_perturbation\\\": round(float(spearman_r), 4),\\n            \\\"spearman_p_ema_perturbation\\\": float(spearman_p),\\n            \\\"pearson_r_ema_surprisal\\\": round(float(r_ema_surp), 4),\\n            \\\"pearson_p_ema_surprisal\\\": float(p_ema_surp),\\n            \\\"position_residualized_r_ema_perturbation\\\": round(float(resid_r_ema_pert), 4),\\n            \\\"position_residualized_r_ema_surprisal\\\": round(float(resid_r_ema_surp), 4),\\n            \\\"chain_level_r_ema_perturbation\\\": round(float(chain_r_ema_pert), 4),\\n            \\\"chain_level_r_ema_surprisal\\\": round(float(chain_r_ema_surp), 4),\\n            \\\"mean_perturbation_redundant_55\\\": round(mean_r55, 6),\\n            \\\"mean_perturbation_novel_55\\\": round(mean_n55, 6),\\n            \\\"perturbation_diff\\\": round(diff, 6),\\n            \\\"perturbation_diff_pct\\\": round(diff * 100, 2),\\n            \\\"ppl_twotier\\\": round(ppl_twotier, 2),\\n            \\\"ppl_uniform40\\\": round(ppl_uniform40, 2),\\n            \\\"avg_redundant_near_zero_frac\\\": round(avg_redun_nz, 4),\\n            \\\"avg_novel_near_zero_frac\\\": round(avg_novel_nz, 4),\\n            \\\"median_lag1_autocorr_ema\\\": round(median_lag1_ema, 4),\\n            \\\"median_lag1_autocorr_surprisal\\\": round(median_lag1_surp, 4),\\n            \\\"n_redundant\\\": len(redun_vals),\\n            \\\"n_novel\\\": len(novel_vals),\\n            \\\"total_records\\\": len(records),\\n        },\\n        \\\"per_layer\\\": per_layer,\\n        \\\"verdict\\\": verdict,\\n    }\\n\\n    Path(args.output).write_text(json.dumps(results, indent=2))\\n\\n    # Save raw records if requested\\n    if args.save_records:\\n        np.savez(\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b98b2539-5f8b-4369-a4d9-b2e22e329108",
+  "uuid": "36f42d8c-d3be-4885-bbcd-0c30a94ecb99",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nCARC MVP validation: five measurements for EMA-guided sparsity routing on\\\\nreasoning traces.\\\\n\\\\nMeasurements:\\\\n  (a) MLP activation magnitude: redundant vs novel near-zero fraction\\\\n  (b) Perturbation@55%: redundant vs novel mean perturbation + r(EMA, pert)\\\\n  (c) EMA <-> surprisal correlation (Contribution A bridge)\\\\n  (d) Perplexity: two-tier (55%/40% by EMA) vs uniform 40%\\\\n  (e) Position-residualized correlations for (b) and (c)\\\\n\\\\nInput:  DeepSeek-R1-Distill-Qwen-14B + calibrated thresholds JSON\\\\nOutput: JSON results + verdict\\\\n\\\\nPer chain, runs 4 forward passes:\\\\n  1) Baseline  -- MLP outputs, KV->EMA, logits->surprisal, gate magnitudes\\\\n  2) Sparse@55 -- MLP outputs\\\\n  3) Sparse@40 -- MLP outputs + logits for PPL\\\\n  4) Two-tier  -- logits for PPL (redundant@55%, novel@40% by EMA score)\\\\n\\\\nUsage:\\\\n    python carc_mvp.py --thresholds thresholds.json --output results.json\\\\n    python carc_mvp.py --thresholds thresholds.json --dataset c4 --seq-len 2048\\\\n    python carc_mvp.py --thresholds thresholds.json --dry-run\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport math\\\\nfrom pathlib import Path\\\\nfrom typing import Dict, List, Optional\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nimport torch.nn.functional as F\\\\nfrom scipy import stats\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\nfrom tqdm import tqdm\\\\n\\\\nfrom carc_utils import (\\\\n    EMAAnchorManager,\\\\n    compute_perturbation,\\\\n    load_eval_data,\\\\n    load_math_data,\\\\n    residualize,\\\\n    sparsify,\\\\n)\\\\n\\\\nMODEL_ID = \\\\\\\"deepseek-ai/DeepSeek-R1-Distill-Qwen-14B\\\\\\\"\\\\n\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser(\\\\n        description=\\\\\\\"CARC MVP: validate EMA-guided sparsity routing with 5 measurements.\\\\\\\"\\\\n    )\\\\n    p.add_argument(\\\\\\\"--model\\\\\\\", default=MODEL_ID, help=\\\\\\\"HF model name or local path\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--thresholds\\\\\\\", required=True, help=\\\\\\\"Calibrated thresholds JSON from carc_calibrate.py\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--output\\\\\\\", default=\\\\\\\"carc_results.json\\\\\\\", help=\\\\\\\"Output JSON path\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--num-samples\\\\\\\", type=int, default=60, help=\\\\\\\"Number of chains/samples\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--max-new-tokens\\\\\\\", type=int, default=2048, help=\\\\\\\"Max new tokens for reasoning generation\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--seq-len\\\\\\\", type=int, default=2048, help=\\\\\\\"Sequence length (for non-math datasets)\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--dataset\\\\\\\", default=\\\\\\\"math\\\\\\\", choices=[\\\\\\\"math\\\\\\\", \\\\\\\"c4\\\\\\\", \\\\\\\"wikitext\\\\\\\", \\\\\\\"alpaca\\\\\\\"])\\\\n    p.add_argument(\\\\\\\"--tau\\\\\\\", type=float, default=0.7, help=\\\\\\\"EMA score threshold for redundant/novel split\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--per-head\\\\\\\", dest=\\\\\\\"per_head\\\\\\\", action=\\\\\\\"store_true\\\\\\\", default=True,\\\\n                   help=\\\\\\\"Per-head EMA cosine (default)\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--no-per-head\\\\\\\", dest=\\\\\\\"per_head\\\\\\\", action=\\\\\\\"store_false\\\\\\\",\\\\n                   help=\\\\\\\"Disable per-head EMA, use concatenated\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--dry-run\\\\\\\", action=\\\\\\\"store_true\\\\\\\", help=\\\\\\\"2 samples, 2 layers only\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--dtype\\\\\\\", default=\\\\\\\"bf16\\\\\\\", choices=[\\\\\\\"fp16\\\\\\\", \\\\\\\"bf16\\\\\\\"])\\\\n    p.add_argument(\\\\\\\"--data-seed\\\\\\\", type=int, default=42, help=\\\\\\\"Seed for MATH problem selection\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--save-records\\\\\\\", action=\\\\\\\"store_true\\\\\\\", help=\\\\\\\"Save raw records as .npz\\\\\\\")\\\\n    return p.parse_args()\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Hook managers\\\\n# ---------------------------------------------------------------------------\\\\n\\\\nclass MLPCapture:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    Captures MLP outputs and optionally sparsifies MLP projection inputs.\\\\n\\\\n    Modes:\\\\n        \\\\\\\"baseline\\\\\\\"       -- record outputs + gate_proj near-zero fractions\\\\n        \\\\\\\"sparse_55\\\\\\\"      -- sparsify at 55% threshold\\\\n        \\\\\\\"sparse_40\\\\\\\"      -- sparsify at 40% threshold\\\\n        \\\\\\\"sparse_twotier\\\\\\\" -- per-token routing: redundant@55%, novel@40%\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(self, model, thresholds: dict, max_layers: int, tau: float = 0.7):\\\\n        self.thresholds = thresholds\\\\n        self.max_layers = max_layers\\\\n        self.tau = tau\\\\n        self._hooks: list = []\\\\n        self.mode = \\\\\\\"baseline\\\\\\\"\\\\n        self.outputs: Dict[int, torch.Tensor] = {}\\\\n        self.gate_near_zero: Dict[int, torch.Tensor] = {}\\\\n        sel\\\\n\\\\n... [截断: 输出过长，省略 17385 字符] ...\\\\n\\\\nin_pert_arr)\\\\n        chain_r_ema_surp, _ = stats.pearsonr(chain_ema_arr, -chain_surp_arr)\\\\n    else:\\\\n        chain_r_ema_pert, chain_r_ema_surp = 0.0, 0.0\\\\n\\\\n    median_lag1_ema = float(np.median(chain_lag1_ema)) if chain_lag1_ema else 0.0\\\\n    median_lag1_surp = float(np.median(chain_lag1_surprisal)) if chain_lag1_surprisal else 0.0\\\\n\\\\n    # ------------------------------------------------------------------\\\\n    # Per-layer breakdown\\\\n    # ------------------------------------------------------------------\\\\n    per_layer: Dict[str, dict] = {}\\\\n    for li in range(max_layers):\\\\n        rv = layer_redun_55[li]\\\\n        nv = layer_novel_55[li]\\\\n        if not rv or not nv:\\\\n            continue\\\\n        lrec = [(r[0], r[1]) for r in records if r[3] == li]\\\\n        if len(lrec) < 10:\\\\n            continue\\\\n        ls, lp = zip(*lrec)\\\\n        lr, _ = stats.pearsonr(ls, lp)\\\\n\\\\n        entry = {\\\\n            \\\\\\\"pearson_r\\\\\\\": round(float(lr), 4),\\\\n            \\\\\\\"mean_redundant_55\\\\\\\": round(float(np.mean(rv)), 6),\\\\n            \\\\\\\"mean_novel_55\\\\\\\": round(float(np.mean(nv)), 6),\\\\n            \\\\\\\"diff\\\\\\\": round(float(np.mean(nv) - np.mean(rv)), 6),\\\\n            \\\\\\\"n_redundant\\\\\\\": len(rv),\\\\n            \\\\\\\"n_novel\\\\\\\": len(nv),\\\\n        }\\\\n\\\\n        # (a) near-zero fractions\\\\n        rnz = layer_redun_nz[li]\\\\n        nnz = layer_novel_nz[li]\\\\n        if rnz and nnz:\\\\n            entry[\\\\\\\"redundant_near_zero_frac\\\\\\\"] = round(float(np.mean(rnz)), 4)\\\\n            entry[\\\\\\\"novel_near_zero_frac\\\\\\\"] = round(float(np.mean(nnz)), 4)\\\\n\\\\n        per_layer[str(li)] = entry\\\\n\\\\n    # ------------------------------------------------------------------\\\\n    # Verdict\\\\n    # ------------------------------------------------------------------\\\\n    verdict = judge(pearson_r, diff)\\\\n\\\\n    # ------------------------------------------------------------------\\\\n    # Results\\\\n    # ------------------------------------------------------------------\\\\n    results = {\\\\n        \\\\\\\"config\\\\\\\": {\\\\n            \\\\\\\"model\\\\\\\": args.model,\\\\n            \\\\\\\"dataset\\\\\\\": args.dataset,\\\\n            \\\\\\\"num_chains\\\\\\\": len(samples),\\\\n            \\\\\\\"max_new_tokens\\\\\\\": args.max_new_tokens if args.dataset == \\\\\\\"math\\\\\\\" else None,\\\\n            \\\\\\\"seq_len\\\\\\\": args.seq_len if args.dataset != \\\\\\\"math\\\\\\\" else None,\\\\n            \\\\\\\"tau\\\\\\\": args.tau,\\\\n            \\\\\\\"layers_evaluated\\\\\\\": max_layers,\\\\n            \\\\\\\"per_head\\\\\\\": per_head,\\\\n        },\\\\n        \\\\\\\"global\\\\\\\": {\\\\n            \\\\\\\"pearson_r_ema_perturbation\\\\\\\": round(float(pearson_r), 4),\\\\n            \\\\\\\"pearson_p_ema_perturbation\\\\\\\": float(pearson_p),\\\\n            \\\\\\\"spearman_r_ema_perturbation\\\\\\\": round(float(spearman_r), 4),\\\\n            \\\\\\\"spearman_p_ema_perturbation\\\\\\\": float(spearman_p),\\\\n            \\\\\\\"pearson_r_ema_surprisal\\\\\\\": round(float(r_ema_surp), 4),\\\\n            \\\\\\\"pearson_p_ema_surprisal\\\\\\\": float(p_ema_surp),\\\\n            \\\\\\\"position_residualized_r_ema_perturbation\\\\\\\": round(float(resid_r_ema_pert), 4),\\\\n            \\\\\\\"position_residualized_r_ema_surprisal\\\\\\\": round(float(resid_r_ema_surp), 4),\\\\n            \\\\\\\"chain_level_r_ema_perturbation\\\\\\\": round(float(chain_r_ema_pert), 4),\\\\n            \\\\\\\"chain_level_r_ema_surprisal\\\\\\\": round(float(chain_r_ema_surp), 4),\\\\n            \\\\\\\"mean_perturbation_redundant_55\\\\\\\": round(mean_r55, 6),\\\\n            \\\\\\\"mean_perturbation_novel_55\\\\\\\": round(mean_n55, 6),\\\\n            \\\\\\\"perturbation_diff\\\\\\\": round(diff, 6),\\\\n            \\\\\\\"perturbation_diff_pct\\\\\\\": round(diff * 100, 2),\\\\n            \\\\\\\"ppl_twotier\\\\\\\": round(ppl_twotier, 2),\\\\n            \\\\\\\"ppl_uniform40\\\\\\\": round(ppl_uniform40, 2),\\\\n            \\\\\\\"avg_redundant_near_zero_frac\\\\\\\": round(avg_redun_nz, 4),\\\\n            \\\\\\\"avg_novel_near_zero_frac\\\\\\\": round(avg_novel_nz, 4),\\\\n            \\\\\\\"median_lag1_autocorr_ema\\\\\\\": round(median_lag1_ema, 4),\\\\n            \\\\\\\"median_lag1_autocorr_surprisal\\\\\\\": round(median_lag1_surp, 4),\\\\n            \\\\\\\"n_redundant\\\\\\\": len(redun_vals),\\\\n            \\\\\\\"n_novel\\\\\\\": len(novel_vals),\\\\n            \\\\\\\"total_records\\\\\\\": len(records),\\\\n        },\\\\n        \\\\\\\"per_layer\\\\\\\": per_layer,\\\\n        \\\\\\\"verdict\\\\\\\": verdict,\\\\n    }\\\\n\\\\n    Path(args.output).write_text(json.dumps(results, indent=2))\\\\n\\\\n    # Save raw records if requested\\\\n    if args.save_records:\\\\n        np.savez(\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nCARC MVP validation: five measurements for EMA-guided sparsity routing on\\nreasoning traces.\\n\\nMeasurements:\\n  (a) MLP activation magnitude: redundant vs novel near-zero fraction\\n  (b) Perturbation@55%: redundant vs novel mean perturbation + r(EMA, pert)\\n  (c) EMA <-> surprisal correlation (Contribution A bridge)\\n  (d) Perplexity: two-tier (55%/40% by EMA) vs uniform 40%\\n  (e) Position-residualized correlations for (b) and (c)\\n\\nInput:  DeepSeek-R1-Distill-Qwen-14B + calibrated thresholds JSON\\nOutput: JSON results + verdict\\n\\nPer chain, runs 4 forward passes:\\n  1) Baseline  -- MLP outputs, KV->EMA, logits->surprisal, gate magnitudes\\n  2) Sparse@55 -- MLP outputs\\n  3) Sparse@40 -- MLP outputs + logits for PPL\\n  4) Two-tier  -- logits for PPL (redundant@55%, novel@40% by EMA score)\\n\\nUsage:\\n    python carc_mvp.py --thresholds thresholds.json --output results.json\\n    python carc_mvp.py --thresholds thresholds.json --dataset c4 --seq-len 2048\\n    python carc_mvp.py --thresholds thresholds.json --dry-run\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport math\\nfrom pathlib import Path\\nfrom typing import Dict, List, Optional\\n\\nimport numpy as np\\nimport torch\\nimport torch.nn.functional as F\\nfrom scipy import stats\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\nfrom tqdm import tqdm\\n\\nfrom carc_utils import (\\n    EMAAnchorManager,\\n    compute_perturbation,\\n    load_eval_data,\\n    load_math_data,\\n    residualize,\\n    sparsify,\\n)\\n\\nMODEL_ID = \\\"deepseek-ai/DeepSeek-R1-Distill-Qwen-14B\\\"\\n\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(\\n        description=\\\"CARC MVP: validate EMA-guided sparsity routing with 5 measurements.\\\"\\n    )\\n    p.add_argument(\\\"--model\\\", default=MODEL_ID, help=\\\"HF model name or local path\\\")\\n    p.add_argument(\\\"--thresholds\\\", required=True, help=\\\"Calibrated thresholds JSON from carc_calibrate.py\\\")\\n    p.add_argument(\\\"--output\\\", default=\\\"carc_results.json\\\", help=\\\"Output JSON path\\\")\\n    p.add_argument(\\\"--num-samples\\\", type=int, default=60, help=\\\"Number of chains/samples\\\")\\n    p.add_argument(\\\"--max-new-tokens\\\", type=int, default=2048, help=\\\"Max new tokens for reasoning generation\\\")\\n    p.add_argument(\\\"--seq-len\\\", type=int, default=2048, help=\\\"Sequence length (for non-math datasets)\\\")\\n    p.add_argument(\\\"--dataset\\\", default=\\\"math\\\", choices=[\\\"math\\\", \\\"c4\\\", \\\"wikitext\\\", \\\"alpaca\\\"])\\n    p.add_argument(\\\"--tau\\\", type=float, default=0.7, help=\\\"EMA score threshold for redundant/novel split\\\")\\n    p.add_argument(\\\"--per-head\\\", dest=\\\"per_head\\\", action=\\\"store_true\\\", default=True,\\n                   help=\\\"Per-head EMA cosine (default)\\\")\\n    p.add_argument(\\\"--no-per-head\\\", dest=\\\"per_head\\\", action=\\\"store_false\\\",\\n                   help=\\\"Disable per-head EMA, use concatenated\\\")\\n    p.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\", help=\\\"2 samples, 2 layers only\\\")\\n    p.add_argument(\\\"--dtype\\\", default=\\\"bf16\\\", choices=[\\\"fp16\\\", \\\"bf16\\\"])\\n    p.add_argument(\\\"--data-seed\\\", type=int, default=42, help=\\\"Seed for MATH problem selection\\\")\\n    p.add_argument(\\\"--save-records\\\", action=\\\"store_true\\\", help=\\\"Save raw records as .npz\\\")\\n    return p.parse_args()\\n\\n\\n# ---------------------------------------------------------------------------\\n# Hook managers\\n# ---------------------------------------------------------------------------\\n\\nclass MLPCapture:\\n    \\\"\\\"\\\"\\n    Captures MLP outputs and optionally sparsifies MLP projection inputs.\\n\\n    Modes:\\n        \\\"baseline\\\"       -- record outputs + gate_proj near-zero fractions\\n        \\\"sparse_55\\\"      -- sparsify at 55% threshold\\n        \\\"sparse_40\\\"      -- sparsify at 40% threshold\\n        \\\"sparse_twotier\\\" -- per-token routing: redundant@55%, novel@40%\\n    \\\"\\\"\\\"\\n\\n    def __init__(self, model, thresholds: dict, max_layers: int, tau: float = 0.7):\\n        self.thresholds = thresholds\\n        self.max_layers = max_layers\\n        self.tau = tau\\n        self._hooks: list = []\\n        self.mode = \\\"baseline\\\"\\n        self.outputs: Dict[int, torch.Tensor] = {}\\n        self.gate_near_zero: Dict[int, torch.Tensor] = {}\\n        sel\\n\\n... [截断: 输出过长，省略 17385 字符] ...\\n\\nin_pert_arr)\\n        chain_r_ema_surp, _ = stats.pearsonr(chain_ema_arr, -chain_surp_arr)\\n    else:\\n        chain_r_ema_pert, chain_r_ema_surp = 0.0, 0.0\\n\\n    median_lag1_ema = float(np.median(chain_lag1_ema)) if chain_lag1_ema else 0.0\\n    median_lag1_surp = float(np.median(chain_lag1_surprisal)) if chain_lag1_surprisal else 0.0\\n\\n    # ------------------------------------------------------------------\\n    # Per-layer breakdown\\n    # ------------------------------------------------------------------\\n    per_layer: Dict[str, dict] = {}\\n    for li in range(max_layers):\\n        rv = layer_redun_55[li]\\n        nv = layer_novel_55[li]\\n        if not rv or not nv:\\n            continue\\n        lrec = [(r[0], r[1]) for r in records if r[3] == li]\\n        if len(lrec) < 10:\\n            continue\\n        ls, lp = zip(*lrec)\\n        lr, _ = stats.pearsonr(ls, lp)\\n\\n        entry = {\\n            \\\"pearson_r\\\": round(float(lr), 4),\\n            \\\"mean_redundant_55\\\": round(float(np.mean(rv)), 6),\\n            \\\"mean_novel_55\\\": round(float(np.mean(nv)), 6),\\n            \\\"diff\\\": round(float(np.mean(nv) - np.mean(rv)), 6),\\n            \\\"n_redundant\\\": len(rv),\\n            \\\"n_novel\\\": len(nv),\\n        }\\n\\n        # (a) near-zero fractions\\n        rnz = layer_redun_nz[li]\\n        nnz = layer_novel_nz[li]\\n        if rnz and nnz:\\n            entry[\\\"redundant_near_zero_frac\\\"] = round(float(np.mean(rnz)), 4)\\n            entry[\\\"novel_near_zero_frac\\\"] = round(float(np.mean(nnz)), 4)\\n\\n        per_layer[str(li)] = entry\\n\\n    # ------------------------------------------------------------------\\n    # Verdict\\n    # ------------------------------------------------------------------\\n    verdict = judge(pearson_r, diff)\\n\\n    # ------------------------------------------------------------------\\n    # Results\\n    # ------------------------------------------------------------------\\n    results = {\\n        \\\"config\\\": {\\n            \\\"model\\\": args.model,\\n            \\\"dataset\\\": args.dataset,\\n            \\\"num_chains\\\": len(samples),\\n            \\\"max_new_tokens\\\": args.max_new_tokens if args.dataset == \\\"math\\\" else None,\\n            \\\"seq_len\\\": args.seq_len if args.dataset != \\\"math\\\" else None,\\n            \\\"tau\\\": args.tau,\\n            \\\"layers_evaluated\\\": max_layers,\\n            \\\"per_head\\\": per_head,\\n        },\\n        \\\"global\\\": {\\n            \\\"pearson_r_ema_perturbation\\\": round(float(pearson_r), 4),\\n            \\\"pearson_p_ema_perturbation\\\": float(pearson_p),\\n            \\\"spearman_r_ema_perturbation\\\": round(float(spearman_r), 4),\\n            \\\"spearman_p_ema_perturbation\\\": float(spearman_p),\\n            \\\"pearson_r_ema_surprisal\\\": round(float(r_ema_surp), 4),\\n            \\\"pearson_p_ema_surprisal\\\": float(p_ema_surp),\\n            \\\"position_residualized_r_ema_perturbation\\\": round(float(resid_r_ema_pert), 4),\\n            \\\"position_residualized_r_ema_surprisal\\\": round(float(resid_r_ema_surp), 4),\\n            \\\"chain_level_r_ema_perturbation\\\": round(float(chain_r_ema_pert), 4),\\n            \\\"chain_level_r_ema_surprisal\\\": round(float(chain_r_ema_surp), 4),\\n            \\\"mean_perturbation_redundant_55\\\": round(mean_r55, 6),\\n            \\\"mean_perturbation_novel_55\\\": round(mean_n55, 6),\\n            \\\"perturbation_diff\\\": round(diff, 6),\\n            \\\"perturbation_diff_pct\\\": round(diff * 100, 2),\\n            \\\"ppl_twotier\\\": round(ppl_twotier, 2),\\n            \\\"ppl_uniform40\\\": round(ppl_uniform40, 2),\\n            \\\"avg_redundant_near_zero_frac\\\": round(avg_redun_nz, 4),\\n            \\\"avg_novel_near_zero_frac\\\": round(avg_novel_nz, 4),\\n            \\\"median_lag1_autocorr_ema\\\": round(median_lag1_ema, 4),\\n            \\\"median_lag1_autocorr_surprisal\\\": round(median_lag1_surp, 4),\\n            \\\"n_redundant\\\": len(redun_vals),\\n            \\\"n_novel\\\": len(novel_vals),\\n            \\\"total_records\\\": len(records),\\n        },\\n        \\\"per_layer\\\": per_layer,\\n        \\\"verdict\\\": verdict,\\n    }\\n\\n    Path(args.output).write_text(json.dumps(results, indent=2))\\n\\n    # Save raw records if requested\\n    if args.save_records:\\n        np.savez(\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a complete picture of the carc_mvp.py code structure. Let me create the merge script. Key things to note:
+
+1. NPZ arrays: ema_scores, surprisal, positions, rec_ema, rec_p55, rec_p40, rec_layer, rec_pos, chain_mean_ema, chain_mean_perturb, chain_mean_surprisal, ce_uniform40, ce_twotier
+2. JSON has: config, global, per_layer, verdict
+
+
+3. The per-layer breakdown requires rec_ema, rec_p55, and rec_layer data from the NPZ
+4. Near-zero fractions aren't stored in the NPZ since they're computed during the forward pass from gate activations, so I'll need to pull those from the JSON per_layer data instead
+5. Lag-1 autocorrelation values are only available as chain means in the NPZ, so I'll average them from both JSON files as instructed
+
+Now I'll write the merge script.
+
+Each record contains an EMA score, perturbation values at different thresholds, layer index, and position. I need to extract these arrays from the NPZ, then handle the per-layer breakdown by filtering records by layer and computing correlations. The near-zero fractions come from the JSON since they're not in the NPZ, and I'll either weight them by record counts or just average the two JSON values.
+
+Writing the merge script... Setting up the argument parser and loading NPZ files from multiple input prefixes, then concatenating arrays like EMA scores, surprisal values, and various reconstruction metrics into a merged dictionary.
+
+Now I'm creating shorthand references to the key arrays I'll be working with—pulling out the EMA reconstructions, p55 values, position data, and the chain-based metrics for easier access in the analysis that follows.
+
+Computing correlation metrics between EMA and perturbation scores using both Pearson and Spearman methods, then splitting the data into redundant and novel categories based on a threshold to compare their mean perturbation values and calculate the difference.
+
+Now I'm computing the correlation between EMA and negative surprisal, handling the edge case where there aren't enough data points, then calculating perplexity values from cross-entropy metrics for both uniform and two-tier models, and setting up for position-residualized correlations. Computing chain-level correlations between EMA and perturbation/surprise arrays, then extracting lag-1 autocorrelation values from the JSON data to calculate their medians. Now I'm iterating through each layer to compute per-layer statistics—calculating Pearson correlations between surprise and p55 values, then separating redundant versus novel predictions to compare their mean p55 scores. Calculating weighted averages for near-zero fractions across layers, then compiling the final results dictionary with merged configuration from all the individual runs. Building the metrics dictionary... Printing the summary output with formatted headers and the merged analysis results, including the activation magnitude metrics and redundancy ratios across the different measurement categories.
+
+Now I'm displaying the perturbation analysis at the 55% threshold, showing the correlation statistics between EMA and perturbation effects for both redundant and novel activations, along with the mean differences and token counts. Printing diagnostic output... Finishing the output statements...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b98b2539-5f8b-4369-a4d9-b2e22e329108",
+  "uuid": "7dcb46ad-a252-4a9b-80fe-5e3ce73394a8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TeAJ5mcNK9PdnG3iDNYeAx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3445,
+      "cache_read_input_tokens": 34929,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3445
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37_
+
+已掌握完整的 JSON 结构和 summary 格式。现在创建合并脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b98b2539-5f8b-4369-a4d9-b2e22e329108",
+  "uuid": "cca75545-79db-40b3-9224-62863ee27f58",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TeAJ5mcNK9PdnG3iDNYeAx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3445,
+      "cache_read_input_tokens": 34929,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3445
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01NbpiKcJxMpJ9MwmVgH7acJ`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "cat > /root/carc/merge_results.py << 'SCRIPT_EOF'\n#!/usr/bin/env python3\n\"\"\"Merge multiple CARC MVP result sets (.json + .npz) and recompute all statistics.\"\"\"\n\nimport argparse\nimport json\nimport math\nfrom pathlib import Path\n\nimport numpy as np\nfrom scipy import stats\n\n\ndef judge(r, diff):\n    has_r = abs(r) >= 0.4\n    has_d = diff >= 0.10\n    if has_r and has_d:\n        if abs(r) > 0.5 and diff >= 0.20:\n            return \"PASS-Strong\"\n        return \"PASS-Suggestive\"\n    if has_r:\n        return \"DISCORDANT-B\"\n    if has_d:\n        return \"DISCORDANT-A\"\n    return \"FAIL\"\n\n\ndef residualize(x, z):\n    z_aug = np.column_stack([z, np.ones(len(z))])\n    beta = np.linalg.lstsq(z_aug, x, rcond=None)[0]\n    return x - z_aug @ beta\n\n\ndef main():\n    p = argparse.ArgumentParser(\n        description=\"Merge CARC MVP results from multiple runs and recompute statistics.\"\n    )\n    p.add_argument(\"--input\", nargs=\"+\", required=True,\n                   help=\"Input prefixes without .json/.npz extension\")\n    p.add_argument(\"--tau\", type=float, default=0.7,\n                   help=\"EMA threshold for redundant/novel split\")\n    p.add_argument(\"--output\", default=\"results_merged.json\",\n                   help=\"Output JSON path\")\n    args = p.parse_args()\n\n    # ------------------------------------------------------------------\n    # Load and concatenate\n    # ------------------------------------------------------------------\n    npz_keys = [\n        \"ema_scores\", \"surprisal\", \"positions\",\n        \"rec_ema\", \"rec_p55\", \"rec_p40\", \"rec_layer\", \"rec_pos\",\n        \"chain_mean_ema\", \"chain_mean_perturb\", \"chain_mean_surprisal\",\n        \"ce_uniform40\", \"ce_twotier\",\n    ]\n    merged = {k: [] for k in npz_keys}\n    jsons = []\n\n    for prefix in args.input:\n        npz = np.load(f\"{prefix}.npz\")\n        for k in npz_keys:\n            merged[k].append(npz[k])\n        with open(f\"{prefix}.json\") as f:\n            jsons.append(json.load(f))\n\n    for k in npz_keys:\n        merged[k] = np.concatenate(merged[k])\n\n    all_s = merged[\"rec_ema\"]\n    all_p55 = merged[\"rec_p55\"]\n    all_rec_pos = merged[\"rec_pos\"].astype(np.float64)\n    arr_ema = merged[\"ema_scores\"]\n    arr_surp = merged[\"surprisal\"]\n    arr_pos = merged[\"positions\"].astype(np.float64)\n    chain_ema_arr = merged[\"chain_mean_ema\"]\n    chain_pert_arr = merged[\"chain_mean_perturb\"]\n    chain_surp_arr = merged[\"chain_mean_surprisal\"]\n\n    # ------------------------------------------------------------------\n    # (b) r(EMA, perturbation)\n    # ------------------------------------------------------------------\n    pearson_r, pearson_p = stats.pearsonr(all_s, all_p55)\n    spearman_r, spearman_p = stats.spearmanr(all_s, all_p55)\n\n    redun_mask = all_s > args.tau\n    novel_mask = all_s <= args.tau\n    redun_vals = all_p55[redun_mask]\n    novel_vals = all_p55[novel_mask]\n    mean_r55 = float(np.mean(redun_vals)) if len(redun_vals) > 0 else 0.0\n    mean_n55 = float(np.mean(novel_vals)) if len(novel_vals) > 0 else 0.0\n    diff = mean_n55 - mean_r55\n\n    # ------------------------------------------------------------------\n    # (c) r(EMA, -surprisal)\n    # ------------------------------------------------------------------\n    if len(arr_ema) > 2:\n        r_ema_surp, p_ema_surp = stats.pearsonr(arr_ema, -arr_surp)\n    else:\n        r_ema_surp, p_ema_surp = 0.0, 1.0\n\n    # ------------------------------------------------------------------\n    # (d) PPL\n    # ------------------------------------------------------------------\n    ppl_uniform40 = math.exp(np.mean(merged[\"ce_uniform40\"])) if len(merged[\"ce_uniform40\"]) > 0 else float(\"inf\")\n    ppl_twotier = math.exp(np.mean(merged[\"ce_twotier\"])) if len(merged[\"ce_twotier\"]) > 0 else float(\"inf\")\n\n    # ------------------------------------------------------------------\n    # (e) Position-residualized correlations\n    # ------------------------------------------------------------------\n    if len(all_rec_pos) > 10:\n        ema_resid = residualize(all_s, all_rec_pos)\n        p55_resid = residualize(all_p55, all_rec_pos)\n        resid_r_ema_pert, _ = stats.pearsonr(ema_resid, p55_resid)\n    else:\n        resid_r_ema_pert = 0.0\n\n    if len(arr_pos) > 10:\n        ema_avg_resid = residualize(arr_ema, arr_pos)\n        surp_neg_resid = residualize(-arr_surp, arr_pos)\n        resid_r_ema_surp, _ = stats.pearsonr(ema_avg_resid, surp_neg_resid)\n    else:\n        resid_r_ema_surp = 0.0\n\n    # ------------------------------------------------------------------\n    # Chain-level correlations\n    # ------------------------------------------------------------------\n    if len(chain_ema_arr) > 2:\n        chain_r_ema_pert, _ = stats.pearsonr(chain_ema_arr, chain_pert_arr)\n        chain_r_ema_surp, _ = stats.pearsonr(chain_ema_arr, -chain_surp_arr)\n    else:\n        chain_r_ema_pert, chain_r_ema_surp = 0.0, 0.0\n\n    # ------------------------------------------------------------------\n    # Lag-1 autocorrelation: average from individual JSONs\n    # ------------------------------------------------------------------\n    lag1_ema_vals = [j[\"global\"][\"median_lag1_autocorr_ema\"] for j in jsons]\n    lag1_surp_vals = [j[\"global\"][\"median_lag1_autocorr_surprisal\"] for j in jsons]\n    median_lag1_ema = float(np.mean(lag1_ema_vals))\n    median_lag1_surp = float(np.mean(lag1_surp_vals))\n\n    # ------------------------------------------------------------------\n    # Near-zero fractions: weighted average from JSONs by total_records\n    # ------------------------------------------------------------------\n    total_records_per_run = [j[\"global\"][\"total_records\"] for j in jsons]\n    total_all = sum(total_records_per_run)\n    avg_redun_nz = sum(\n        j[\"global\"][\"avg_redundant_near_zero_frac\"] * j[\"global\"][\"total_records\"]\n        for j in jsons\n    ) / total_all if total_all > 0 else 0.0\n    avg_novel_nz = sum(\n        j[\"global\"][\"avg_novel_near_zero_frac\"] * j[\"global\"][\"total_records\"]\n        for j in jsons\n    ) / total_all if total_all > 0 else 0.0\n\n    # ------------------------------------------------------------------\n    # Per-layer breakdown\n    # ------------------------------------------------------------------\n    rec_layer = merged[\"rec_layer\"]\n    all_layers = sorted(set(int(x) for x in rec_layer))\n    per_layer = {}\n    for li in all_layers:\n        mask = rec_layer == li\n        ls = all_s[mask]\n        lp = all_p55[mask]\n        if len(ls) < 10:\n            continue\n        l_redun = lp[ls > args.tau]\n        l_novel = lp[ls <= args.tau]\n        if len(l_redun) == 0 or len(l_novel) == 0:\n            continue\n        lr, _ = stats.pearsonr(ls, lp)\n        entry = {\n            \"pearson_r\": round(float(lr), 4),\n            \"mean_redundant_55\": round(float(np.mean(l_redun)), 6),\n            \"mean_novel_55\": round(float(np.mean(l_novel)), 6),\n            \"diff\": round(float(np.mean(l_novel) - np.mean(l_redun)), 6),\n            \"n_redundant\": int(np.sum(ls > args.tau)),\n            \"n_novel\": int(np.sum(ls <= args.tau)),\n        }\n        # Near-zero from JSONs (weighted average per layer)\n        nz_redun, nz_novel, nz_weight = 0.0, 0.0, 0\n        for j in jsons:\n            pl = j.get(\"per_layer\", {}).get(str(li), {})\n            if \"redundant_near_zero_frac\" in pl:\n                w = pl.get(\"n_redundant\", 0) + pl.get(\"n_novel\", 0)\n                nz_redun += pl[\"redundant_near_zero_frac\"] * w\n                nz_novel += pl[\"novel_near_zero_frac\"] * w\n                nz_weight += w\n        if nz_weight > 0:\n            entry[\"redundant_near_zero_frac\"] = round(nz_redun / nz_weight, 4)\n            entry[\"novel_near_zero_frac\"] = round(nz_novel / nz_weight, 4)\n        per_layer[str(li)] = entry\n\n    # ------------------------------------------------------------------\n    # Verdict\n    # ------------------------------------------------------------------\n    verdict = judge(pearson_r, diff)\n\n    # ------------------------------------------------------------------\n    # Results JSON\n    # ------------------------------------------------------------------\n    num_chains = sum(j[\"config\"][\"num_chains\"] for j in jsons)\n    results = {\n        \"config\": {\n            \"model\": jsons[0][\"config\"][\"model\"],\n            \"dataset\": jsons[0][\"config\"][\"dataset\"],\n            \"num_chains\": num_chains,\n            \"merged_from\": [Path(pfx).name for pfx in args.input],\n            \"tau\": args.tau,\n            \"layers_evaluated\": jsons[0][\"config\"][\"layers_evaluated\"],\n            \"per_head\": jsons[0][\"config\"][\"per_head\"],\n        },\n        \"global\": {\n            \"pearson_r_ema_perturbation\": round(float(pearson_r), 4),\n            \"pearson_p_ema_perturbation\": float(pearson_p),\n            \"spearman_r_ema_perturbation\": round(float(spearman_r), 4),\n            \"spearman_p_ema_perturbation\": float(spearman_p),\n            \"pearson_r_ema_surprisal\": round(float(r_ema_surp), 4),\n            \"pearson_p_ema_surprisal\": float(p_ema_surp),\n            \"position_residualized_r_ema_perturbation\": round(float(resid_r_ema_pert), 4),\n            \"position_residualized_r_ema_surprisal\": round(float(resid_r_ema_surp), 4),\n            \"chain_level_r_ema_perturbation\": round(float(chain_r_ema_pert), 4),\n            \"chain_level_r_ema_surprisal\": round(float(chain_r_ema_surp), 4),\n            \"mean_perturbation_redundant_55\": round(mean_r55, 6),\n            \"mean_perturbation_novel_55\": round(mean_n55, 6),\n            \"perturbation_diff\": round(diff, 6),\n            \"perturbation_diff_pct\": round(diff * 100, 2),\n            \"ppl_twotier\": round(ppl_twotier, 2),\n            \"ppl_uniform40\": round(ppl_uniform40, 2),\n            \"avg_redundant_near_zero_frac\": round(avg_redun_nz, 4),\n            \"avg_novel_near_zero_frac\": round(avg_novel_nz, 4),\n            \"median_lag1_autocorr_ema\": round(median_lag1_ema, 4),\n            \"median_lag1_autocorr_surprisal\": round(median_lag1_surp, 4),\n            \"n_redundant\": int(len(redun_vals)),\n            \"n_novel\": int(len(novel_vals)),\n            \"total_records\": int(len(all_s)),\n        },\n        \"per_layer\": per_layer,\n        \"verdict\": verdict,\n    }\n\n    Path(args.output).write_text(json.dumps(results, indent=2))\n\n    # ------------------------------------------------------------------\n    # Summary (matches carc_mvp.py format)\n    # ------------------------------------------------------------------\n    W = 62\n    print(f\"\\n{'=' * W}\")\n    print(\"CARC MVP Results -- 5 Measurements (MERGED)\")\n    print(f\"{'=' * W}\")\n    print(f\"  Merged from: {', '.join(args.input)}\")\n    print(f\"  Total chains: {num_chains}, Total records: {len(all_s)}\")\n\n    print(f\"\\n(a) MLP Activation Magnitudes (near-zero fraction)\")\n    print(f\"    Redundant near-zero: {avg_redun_nz:.4f}\")\n    print(f\"    Novel near-zero:     {avg_novel_nz:.4f}\")\n    if avg_novel_nz > 0:\n        ratio = avg_redun_nz / max(avg_novel_nz, 1e-8)\n        print(f\"    Ratio (redundant/novel): {ratio:.2f}x\")\n\n    print(f\"\\n(b) Perturbation@55% (redundant vs novel)\")\n    print(f\"    Pearson  r(EMA, perturbation) = {pearson_r:+.4f}  (p={pearson_p:.2e})\")\n    print(f\"    Spearman r(EMA, perturbation) = {spearman_r:+.4f}  (p={spearman_p:.2e})\")\n    print(f\"    Mean perturbation: redundant@55% = {mean_r55:.6f}\")\n    print(f\"                       novel@55%     = {mean_n55:.6f}\")\n    print(f\"    Perturbation diff = {diff:.4f} ({diff * 100:.1f}%)\")\n    print(f\"    Tokens: {len(redun_vals)} redundant, {len(novel_vals)} novel  (tau={args.tau})\")\n\n    print(f\"\\n(c) EMA <-> Surprisal Correlation\")\n    print(f\"    Pearson r(EMA, -surprisal) = {r_ema_surp:+.4f}  (p={p_ema_surp:.2e})\")\n\n    print(f\"\\n(d) Perplexity: Two-tier vs Uniform\")\n    print(f\"    PPL two-tier (55%/40%): {ppl_twotier:.2f}\")\n    print(f\"    PPL uniform 40%:        {ppl_uniform40:.2f}\")\n    ppl_delta = ppl_twotier - ppl_uniform40\n    print(f\"    Delta PPL: {ppl_delta:+.2f} ({'two-tier better' if ppl_delta < 0 else 'uniform better'})\")\n\n    print(f\"\\n(e) Position-residualized Correlations\")\n    print(f\"    Partial r(EMA, perturbation | pos) = {resid_r_ema_pert:+.4f}\")\n    print(f\"    Partial r(EMA, -surprisal | pos)   = {resid_r_ema_surp:+.4f}\")\n\n    print(f\"\\nMulti-chain Statistics ({num_chains} chains)\")\n    print(f\"    Chain-level r(EMA, perturbation): {chain_r_ema_pert:+.4f}\")\n    print(f\"    Chain-level r(EMA, -surprisal):   {chain_r_ema_surp:+.4f}\")\n    print(f\"    Median lag-1 autocorr (EMA):       {median_lag1_ema:.4f}\")\n    print(f\"    Median lag-1 autocorr (surprisal): {median_lag1_surp:.4f}\")\n\n    print(f\"\\n{'=' * W}\")\n    print(f\"Verdict: {verdict}\")\n    print(f\"  |r| >= 0.4 ? {'YES' if abs(pearson_r) >= 0.4 else 'NO'} ({abs(pearson_r):.4f})\")\n    print(f\"  diff >= 10%? {'YES' if diff >= 0.10 else 'NO'} ({diff * 100:.1f}%)\")\n    if verdict.startswith(\"PASS\"):\n        print(f\"  (Strong requires |r|>0.5 AND diff>=20%)\")\n    print(f\"{'=' * W}\")\n    print(f\"Results saved to {args.output}\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF\necho \"EXIT_CODE=$?\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b98b2539-5f8b-4369-a4d9-b2e22e329108",
+  "uuid": "b4c793b1-66d4-4a85-818b-8532be2da64d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TeAJ5mcNK9PdnG3iDNYeAx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3445,
+      "cache_read_input_tokens": 34929,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3445
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-12T10:59:48.663Z_
+
+<details><summary>↩ Tool result · `toolu_01NbpiKcJxMpJ9MwmVgH7acJ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"EXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b98b2539-5f8b-4369-a4d9-b2e22e329108",
+  "uuid": "5803cc3f-85e0-44cc-a401-69d626858552",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"EXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"EXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01LVc2WUdZgnFZiASUJJbWdc`</summary>
+
+```json
+{
+  "server": "westd-16980",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/carc && python3 merge_results.py --help"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b98b2539-5f8b-4369-a4d9-b2e22e329108",
+  "uuid": "ddbde0ac-bd94-40ef-9f92-a22a23fb97d5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ATFuhat8WpCLsR4kuYVBKf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9760,
+      "cache_read_input_tokens": 38374,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9760
+      },
+      "output_tokens": 50,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-12T10:59:54.038Z_
+
+<details><summary>↩ Tool result · `toolu_01LVc2WUdZgnFZiASUJJbWdc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"usage: merge_results.py [-h] --input INPUT [INPUT ...] [--tau TAU]\\n                        [--output OUTPUT]\\n\\nMerge CARC MVP results from multiple runs and recompute statistics.\\n\\noptions:\\n  -h, --help            show this help message and exit\\n  --input INPUT [INPUT ...]\\n                        Input prefixes without .json/.npz extension\\n  --tau TAU             EMA threshold for redundant/novel split\\n  --output OUTPUT       Output JSON path\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.13}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b98b2539-5f8b-4369-a4d9-b2e22e329108",
+  "uuid": "18ba8994-232e-486e-b11c-e16331d9be78",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"usage: merge_results.py [-h] --input INPUT [INPUT ...] [--tau TAU]\\\\n                        [--output OUTPUT]\\\\n\\\\nMerge CARC MVP results from multiple runs and recompute statistics.\\\\n\\\\noptions:\\\\n  -h, --help            show this help message and exit\\\\n  --input INPUT [INPUT ...]\\\\n                        Input prefixes without .json/.npz extension\\\\n  --tau TAU             EMA threshold for redundant/novel split\\\\n  --output OUTPUT       Output JSON path\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.13}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"usage: merge_results.py [-h] --input INPUT [INPUT ...] [--tau TAU]\\n                        [--output OUTPUT]\\n\\nMerge CARC MVP results from multiple runs and recompute statistics.\\n\\noptions:\\n  -h, --help            show this help message and exit\\n  --input INPUT [INPUT ...]\\n                        Input prefixes without .json/.npz extension\\n  --tau TAU             EMA threshold for redundant/novel split\\n  --output OUTPUT       Output JSON path\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.13}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42_
+
+脚本已创建并验证可用。`/root/carc/merge_results.py` 功能：
+
+- 加载多个 npz 文件，concatenate 所有 raw arrays
+- 从合并数据重新计算 (b)(c)(d)(e) 所有统计量和 per-layer breakdown
+- Near-zero fractions 和 lag-1 autocorrelation 从 JSON 加权平均/取均值
+- 调用 `judge()` 得出 verdict
+- 输出 `results_merged.json` + 与 `carc_mvp.py` 一致的 summary
+
+运行命令：
+```bash
+cd /root/carc && python3 merge_results.py \
+    --input results_seed42 results_seed1337 \
+    --tau 0.7 \
+    --output results_merged.json
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b98b2539-5f8b-4369-a4d9-b2e22e329108",
+  "uuid": "209040fb-a62e-4973-af3d-bd5b2371faa1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CMpN2WxCuaThYibmJ4384E",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 321,
+      "cache_read_input_tokens": 48134,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 321
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 43_
+
+脚本已创建并验证可用。`/root/carc/merge_results.py` 功能：
+
+- 加载多个 npz 文件，concatenate 所有 raw arrays
+- 从合并数据重新计算 (b)(c)(d)(e) 所有统计量和 per-layer breakdown
+- Near-zero fractions 和 lag-1 autocorrelation 从 JSON 加权平均/取均值
+- 调用 `judge()` 得出 verdict
+- 输出 `results_merged.json` + 与 `carc_mvp.py` 一致的 summary
+
+运行命令：
+```bash
+cd /root/carc && python3 merge_results.py \
+    --input results_seed42 results_seed1337 \
+    --tau 0.7 \
+    --output results_merged.json
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 163956,
+  "duration_api_ms": 160168,
+  "num_turns": 17,
+  "stop_reason": "end_turn",
+  "session_id": "b98b2539-5f8b-4369-a4d9-b2e22e329108",
+  "total_cost_usd": 0.713285,
+  "usage": {
+    "input_tokens": 16,
+    "cache_creation_input_tokens": 36614,
+    "cache_read_input_tokens": 377937,
+    "output_tokens": 11744,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 36614,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 229,
+        "cache_read_input_tokens": 48134,
+        "cache_creation_input_tokens": 321,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 321
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1734,
+      "outputTokens": 13,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001799,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 16,
+      "outputTokens": 11744,
+      "cacheReadInputTokens": 377937,
+      "cacheCreationInputTokens": 36614,
+      "webSearchRequests": 0,
+      "costUSD": 0.711486,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "d37d25b1-b5fb-4da1-a132-676420ba7b0b"
+}
+```
+
+</details>
+
+---

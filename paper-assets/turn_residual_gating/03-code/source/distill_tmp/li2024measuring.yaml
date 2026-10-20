@@ -1,0 +1,97 @@
+paper_key: "li2024measuring"
+title: "Measuring and Controlling Instruction (In)Stability in Language Model Dialogs"
+venue: "COLM 2024"
+full_text_available: true
+
+research:
+  baselines:
+    - "System Prompt Repetition (SPR)"
+    - "Classifier-Free Guidance (CFG)"
+  metrics:
+    - {name: "instruction_stability", direction: "higher_better"}
+    - {name: "MMLU_performance_drop", direction: "lower_better"}
+  datasets:
+    - {name: "llm-system-prompts-benchmark (HuggingFace)", size: "100 system prompts across 5 categories"}
+  ablation_dimensions:
+    - "mitigation method (SPR vs CFG vs Split-Softmax)"
+    - "hyperparameter strength (k for SS, p for SPR, alpha for CFG)"
+    - "conversation round (1-8, extended to 16)"
+    - "system prompt category (multi-choice, character, format, fact, language)"
+  training_recipe:
+    optimizer: "N/A (inference-time method, no training)"
+    lr: "N/A"
+    hardware: "not specified explicitly; LLaMA2-70B inference"
+    key_hyperparams:
+      split_softmax_k: "[0, 1], smaller k = stronger intervention"
+      spr_probability_p: "[0, 1]"
+      cfg_alpha: "scalar guidance weight"
+  method_family: "instruction stability / multi-turn attention reweighting"
+
+positioning:
+  core_claim: "System prompt adherence decays predictably across multi-turn conversations due to attention decay, and split-softmax -- a training-free attention reweighting method -- provides better stability-performance trade-offs than prompt repetition or classifier-free guidance."
+  key_results: "Instruction stability drops from ~0.85 (round 1) to ~0.55 (round 8) on LLaMA2-chat-70B; split-softmax matches or exceeds SPR/CFG stability at equivalent MMLU performance drops (~0.5 MMLU drop); agent LM paradoxically begins adopting user LM's instructions over turns."
+  limitations:
+    - "Theoretical model simplifies transformer architecture (omits MLPs, layer norms)"
+    - "Cone-based theory doesn't track within-cone token distribution dynamics"
+    - "Stability-performance trade-off appears necessary but unclear if fundamental"
+    - "Experiments primarily on LLaMA2-70B-chat with limited cross-architecture evaluation (only GPT-3.5 in appendix)"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "Opens with the practical reality that system prompts are the primary control mechanism for deployed chatbots, then immediately shows a concrete GPT-3.5 failure example (Figure 1) where the same question answered correctly early in conversation is answered wrong later -- visceral demonstration of the problem."
+  tension: "Despite system prompts being critical for safety and reliability of deployed LLMs, there is no quantitative way to measure how well models follow them over extended conversations. Anecdotal evidence suggests drift, but no rigorous benchmark or mechanistic explanation exists."
+  key_insight: "Attention decay is the mechanistic cause: transformer attention heads allocate decreasing weight to initial system prompt tokens as conversation lengthens, with sharp drops between dialogue turns but plateaus within turns (Figure 4). This geometric phenomenon can be characterized theoretically via convex cone expansion (Theorem 5.1)."
+  argument_chain: "problem (instruction drift in deployed chatbots) -> benchmark (reproducible quantitative measurement without human annotation) -> empirical observation (attention decay across turns) -> theoretical explanation (convex cone geometry) -> mitigation (split-softmax reweighting) -> evaluation (better stability-performance Pareto front than baselines)"
+  contribution_framing: "Explicitly enumerated as four contributions: (1) benchmark, (2) attention decay analysis + theory, (3) split-softmax technique, (4) empirical comparison. Classic NLP paper structure with numbered contributions."
+  intro_structure: "4 paragraphs: P1 = system prompts as control mechanism + anecdotal drift; P2 = problem statement + safety implications; P3 = this paper's four contributions (benchmark, analysis, method, evaluation); P4 = overview of findings and methods tested"
+  notable_technique: "The GPT-3.5 failure example in Figure 1 is extremely effective -- shows the exact same question asked early vs late in conversation, making instruction drift viscerally tangible. Also, the dual-LM evaluation protocol (two chatbots conversing) elegantly avoids human annotation while creating naturalistic multi-turn dynamics."
+
+figures:
+  figure_count: 6
+  figure1:
+    type: "motivation"
+    description: "A concrete example of instruction drift on GPT-3.5-turbo-16k: the chatbot initially follows a system prompt correctly, but fails when the same question is asked again after an extended conversation."
+    narrative_role: "Immediate visceral proof that the problem is real and consequential -- placed in intro to hook the reader before any formal analysis."
+    design_elements: ["before/after comparison", "real model output", "same question repeated", "highlighted failure"]
+    visual_style: "Screenshot-style panel showing actual chatbot outputs with system prompt visible, conversation excerpt, and the failing response highlighted. Clean two-panel before/after layout."
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      what_compared: "Instruction stability of agent LM (blue) and adoption of user LM instructions (orange) across 8 conversation rounds"
+      how_gain_highlighted: "Two-panel layout: (A) shows drift phenomenon with both lines crossing, (B) isolates agent stability when user has empty system prompt"
+      design_note: "The crossing of blue (own instruction adherence declining) and orange (other's instruction adoption rising) creates a powerful visual X-pattern that captures the essence of instruction drift."
+    - figure_id: "Figure 5"
+      viz_type: "scatter"
+      what_compared: "Trade-off between instruction stability (y-axis) and MMLU performance drop (x-axis) for SPR, CFG, and split-softmax with hyperparameter sweeps"
+      how_gain_highlighted: "Split-softmax curve sits at or above the other methods' Pareto fronts, showing better stability at equivalent performance cost"
+      design_note: "Pareto front visualization is ideal for showing method dominance in multi-objective optimization; each point is a different hyperparameter setting, making the comparison fair across the full operating range."
+    - figure_id: "Figure 6"
+      viz_type: "line_plot"
+      what_compared: "Instruction stability across turns (1-8) for three methods at comparable MMLU performance drop (~0.5)"
+      how_gain_highlighted: "Split-softmax excels in early turns while SPR dominates later turns; whisker plots show standard deviation"
+      design_note: "Turn-by-turn comparison reveals temporal dynamics that aggregate metrics would miss; error bars (whiskers) add statistical rigor."
+  ablation_figures:
+    - figure_id: "Figure 4"
+      viz_type: "line_plot"
+      dimensions_varied: ["attention head selection (11th head, 24th layer)", "conversation round progression"]
+      design_note: "Shows raw attention weights to system prompt tokens across generation steps, revealing sharp drops between dialogue turns but plateaus within turns -- the mechanistic smoking gun for the attention decay hypothesis."
+  figure_narrative_role: "Figure 1 (motivation: concrete failure) -> Figure 2 (method: evaluation pipeline) -> Figure 3 (empirical finding: instruction drift quantified) -> Figure 4 (analysis: attention decay mechanism) -> Figure 5 (results: method comparison trade-offs) -> Figure 6 (results: temporal dynamics). Classic problem -> method -> evidence -> solution -> evaluation flow."
+
+tables:
+  table_count: 1
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "example entries"
+    col_axis: "benchmark components (system prompts sA/sB, conversation starter, probe questions, stability measure functions)"
+    row_organization: "flat"
+    col_organization: "grouped_by_component"
+    highlight_strategy: "N/A (illustrative examples, not performance comparison)"
+    statistical_reporting: "N/A"
+    num_baselines: 0
+    design_note: "Unusually, the only table is not a results table but a benchmark illustration table showing example system prompts, probe questions, and Python stability measurement functions. This is a deliberate choice -- the paper conveys all results through figures (line plots, scatter plots), which better capture the temporal and trade-off dynamics that are central to the paper's message."
+  ablation_tables: []
+  supplementary_tables:
+    in_appendix: true
+    content: "Appendix D contains GPT-3.5-turbo-16k results; appendices also contain theoretical proofs (Theorem 5.1, Proposition A.2), additional benchmark examples, and implementation details"
+    reason: "Main paper focuses on LLaMA2-70B results with clean figure-based presentation; GPT-3.5 results and proofs relegated to appendix to maintain narrative focus"

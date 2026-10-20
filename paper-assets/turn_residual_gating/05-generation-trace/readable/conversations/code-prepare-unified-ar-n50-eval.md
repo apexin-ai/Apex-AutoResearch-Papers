@@ -1,0 +1,1981 @@
+# code prepare unified ar n50 eval
+
+**Exposure Bias Collapses Auxiliary Attention Losses in Multi-Turn Dialogue** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 69
+- **Recorded user turns:** 0
+- **Tool calls:** 34
+- **Original source:** `logs/chats/worker_code_prepare_unified_ar_n50_eval_20260522T235014.jsonl`
+- **Structured JSON:** [`910c04ca86322c0fb5c2.json`](../../sessions/91/910c04ca86322c0fb5c2.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+69 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-22T23:55:55.095931+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-22T23:55:55.096265+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-22T23:55:55.096500+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "ls -d /root/turn_residual_gating/runs/phase2_tg_s42_v7/epoch_2/ /root/turn_residual_gating/checkpoints/ug_s42/epoch_2/ /root/turn_residual_gating/checkpoints/lora_only_s42/epoch_2/ /root/turn_residual_gating/runs/d048_ss_s42/epoch_2/ 2>&1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-20861",
+    "command": "ls -d /root/turn_residual_gating/runs/phase2_tg_s42_v7/epoch_2/ /root/turn_residual_gating/checkpoints/ug_s42/epoch_2/ /root/turn_residual_gating/checkpoints/lora_only_s42/epoch_2/ /root/turn_residual_gating/runs/d048_ss_s42/epoch_2/ 2>&1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-22T23:55:55.096682+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-22T23:55:55.096818+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "find /root/turn_residual_gating/runs /root/turn_residual_gating/checkpoints -maxdepth 2 -type d -iname \"*pcgrad*\" -o -iname \"*v9*\" 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-20861",
+    "command": "find /root/turn_residual_gating/runs /root/turn_residual_gating/checkpoints -maxdepth 2 -type d -iname \"*pcgrad*\" -o -iname \"*v9*\" 2>/dev/null"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-22T23:55:55.096948+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-22T23:55:55.097069+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "ls /root/turn_residual_gating/scripts/eval_*.sh /root/turn_residual_gating/scripts/d048_eval_*.sh 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-20861",
+    "command": "ls /root/turn_residual_gating/scripts/eval_*.sh /root/turn_residual_gating/scripts/d048_eval_*.sh 2>/dev/null"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-22T23:55:55.097189+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-22T23:55:55.097330+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "ls -d /root/turn_residual_gating/runs/phase2_tg_s42_v7/epoch_2/ /root/turn_residual_gating/checkpoints/ug_s42/epoch_2/ /root/turn_residual_gating/checkpoints/lora_only_s42/epoch_2/ /root/turn_residual_gating/runs/d048_ss_s42/epoch_2/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-20861",
+    "command": "ls -d /root/turn_residual_gating/runs/phase2_tg_s42_v7/epoch_2/ /root/turn_residual_gating/checkpoints/ug_s42/epoch_2/ /root/turn_residual_gating/checkpoints/lora_only_s42/epoch_2/ /root/turn_residual_gating/runs/d048_ss_s42/epoch_2/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-22T23:55:55.097493+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "find /root/turn_residual_gating/runs /root/turn_residual_gating/checkpoints -maxdepth 2 -type d -iname \"*pcgrad*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-20861",
+    "command": "find /root/turn_residual_gating/runs /root/turn_residual_gating/checkpoints -maxdepth 2 -type d -iname \"*pcgrad*\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-22T23:55:55.097636+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "ls /root/turn_residual_gating/scripts/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-20861",
+    "command": "ls /root/turn_residual_gating/scripts/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-22T23:55:55.097763+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"/root/turn_residual_gating/runs/d048_ss_s42/epoch_2/\\n/root/turn_residual_gating/runs/phase2_tg_s42_v7/epoch_2/\\n\", \"stderr\": \"ls: cannot access '/root/turn_residual_gating/checkpoints/ug_s42/epoch_2/': No such file or directory\\nls: cannot access '/root/turn_residual_gating/checkpoints/lora_only_s42/epoch_2/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 1.16}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-22T23:55:55.097891+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/turn_residual_gating/runs/analysis/gradient_conflict_pcgrad\\n/root/turn_residual_gating/runs/eval_v9_pcgrad_heldout\\n/root/turn_residual_gating/runs/eval_v9_pcgrad_modelgen\\n/root/turn_residual_gating/checkpoints/tg_v9_pcgrad_s42\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-22T23:55:55.098026+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"compute_bootstrap_ci.py\\nd048_base_s123.sh\\nd048_base_s42.sh\\nd048_base_s456.sh\\nd048_eval_existing_s42_ar_n50.sh\\nd048_eval_ss_s42.sh\\nd048_eval_template.sh\\nd048_final_ar_eval.sh\\nd048_gradnorm_s42.sh\\nd048_llama_eval_all.sh\\nd048_llama_pcgrad.sh\\nd048_llama_ug.sh\\nd048_lo_s123.sh\\nd048_lo_s456.sh\\nd048_number_mapping.md\\nd048_pcgrad_s123.sh\\nd048_pcgrad_s456.sh\\nd048_queue_runner.sh\\nd048_ss_s123.sh\\nd048_ss_s42.sh\\nd048_ss_s42_resume.sh\\nd048_ss_s456.sh\\nd048_tg_s123.sh\\nd048_tg_s456.sh\\nd048_ug_s123.sh\\nd048_ug_s456.sh\\neval_llama_ar_matched.sh\\neval_llama_ar_n20.sh\\neval_llama_lora_only_s42.sh\\neval_llama_tg_s42.sh\\neval_v7_tg_s123.sh\\neval_v8b_ss_s123.sh\\ngate_stat_test.py\\ngate_wilcoxon_test.py\\ngenerate_ir_prompts.py\\nlaunch_attention_steering.sh\\nlaunch_llama_eval.sh\\nlaunch_llama_lora.sh\\nlaunch_llama_lora_only_s42.sh\\nlaunch_llama_phase1_gar_diag.sh\\nlaunch_llama_tg.sh\\nlaunch_lora_s123.sh\\nlaunch_tg_s123.sh\\nlaunch_trc_baseline.sh\\nlaunch_v7_tg_s123.sh\\nlaunch_v8b_ss_s123.sh\\npaired_bootstrap_ci.py\\nrecalc_steering_mid_gar.py\\nrun_4way_eval.sh\\nrun_4way_eval_heldout.sh\\nrun_v8_schedsampling.sh\\nrun_v8b.sh\\nrun_v9_pcgrad.sh\\nvalidate_ir_prompts.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-22T23:55:55.098189+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "ls /root/turn_residual_gating/checkpoints/tg_v9_pcgrad_s42/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-20861",
+    "command": "ls /root/turn_residual_gating/checkpoints/tg_v9_pcgrad_s42/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-22T23:55:55.098316+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"epoch_0\\nepoch_1\\nepoch_2\\ngate_params.pt\\nlora\\ntrain_config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-22T23:55:55.098472+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "find /root/turn_residual_gating/checkpoints /root/turn_residual_gating/runs -maxdepth 2 -type d -iname \"*ug*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-20861",
+    "command": "find /root/turn_residual_gating/checkpoints /root/turn_residual_gating/runs -maxdepth 2 -type d -iname \"*ug*\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-22T23:55:55.098612+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "find /root/turn_residual_gating/checkpoints /root/turn_residual_gating/runs -maxdepth 2 -type d -iname \"*lora*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-20861",
+    "command": "find /root/turn_residual_gating/checkpoints /root/turn_residual_gating/runs -maxdepth 2 -type d -iname \"*lora*\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-22T23:55:55.098740+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/turn_residual_gating/runs/phase2_ug_s42\\n/root/turn_residual_gating/runs/4way_eval/ug_ours\\n/root/turn_residual_gating/runs/4way_eval/ug_dongre\\n/root/turn_residual_gating/runs/phase2_4way_eval_heldout/ug_ours\\n/root/turn_residual_gating/runs/phase2_4way_eval_heldout/ug_dongre\\n/root/turn_residual_gating/runs/eval_ug_modelgen\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-22T23:55:55.098902+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/turn_residual_gating/checkpoints/tg_v9_pcgrad_s42/lora\\n/root/turn_residual_gating/checkpoints/tg_v8b_ss_fixed_s42_dryrun/lora\\n/root/turn_residual_gating/checkpoints/tg_v8b_ss_fixed_s42/lora\\n/root/turn_residual_gating/checkpoints/tg_v8b_ss_s123/lora\\n/root/turn_residual_gating/runs/phase2_tg_s42_v7/lora\\n/root/turn_residual_gating/runs/phase2_ug_s42/lora\\n/root/turn_residual_gating/runs/phase2_lora_only_s42\\n/root/turn_residual_gating/runs/phase2_lora_only_s42/lora\\n/root/turn_residual_gating/runs/4way_eval/lora_only_ours\\n/root/turn_residual_gating/runs/4way_eval/lora_only_dongre\\n/root/turn_residual_gating/runs/phase2_4way_eval_heldout/lora_only_ours\\n/root/turn_residual_gating/runs/phase2_4way_eval_heldout/lora_only_dongre\\n/root/turn_residual_gating/runs/eval_lora_only_modelgen\\n/root/turn_residual_gating/runs/phase2_llama_tg_s42/lora\\n/root/turn_residual_gating/runs/phase2_tg_s123_v7/lora\\n/root/turn_residual_gating/runs/phase2_llama_lora_only_s42\\n/root/turn_residual_gating/runs/phase2_llama_lora_only_s42/lora\\n/root/turn_residual_gating/runs/eval_llama_lora_only_s42\\n/root/turn_residual_gating/runs/d048_ss_s42/lora\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-22T23:55:55.099155+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "ls /root/turn_residual_gating/runs/phase2_ug_s42/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-20861",
+    "command": "ls /root/turn_residual_gating/runs/phase2_ug_s42/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-22T23:55:55.099356+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"epoch_0\\nepoch_1\\nepoch_2\\ngate_params.pt\\nlora\\ntrain_config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-22T23:55:55.099711+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "ls /root/turn_residual_gating/runs/phase2_lora_only_s42/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-20861",
+    "command": "ls /root/turn_residual_gating/runs/phase2_lora_only_s42/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-22T23:55:55.099863+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"epoch_0\\nepoch_1\\nepoch_2\\nlora\\ntrain_config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-22T23:55:55.099989+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "cat /root/turn_residual_gating/scripts/d048_eval_ss_s42.sh"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-20861",
+    "command": "cat /root/turn_residual_gating/scripts/d048_eval_ss_s42.sh"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-22T23:55:55.100207+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\n# D048 SS s42 full eval: TF + AR N=50 + Bootstrap CI\\nset -euo pipefail\\n\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\ncd /root/turn_residual_gating\\n\\nPYTHON=/root/miniconda3/bin/python3.12\\nCKPT_DIR=runs/d048_ss_s42\\nCONV_PATH=data/ultrachat_eval_heldout.json\\nOUT_ROOT=results/d048_ss_s42\\n\\nmkdir -p \\\"$OUT_ROOT\\\"\\n\\n# ── Checkpoint verification ────────────────────────────────\\nBEST_EPOCH=\\\"\\\"\\nfor ep in 2 1 0; do\\n    ep_dir=\\\"${CKPT_DIR}/epoch_${ep}\\\"\\n    if [ -d \\\"$ep_dir/lora\\\" ] && [ -f \\\"$ep_dir/gate_params.pt\\\" ]; then\\n        BEST_EPOCH=\\\"$ep_dir\\\"\\n        break\\n    fi\\ndone\\nif [ -z \\\"$BEST_EPOCH\\\" ]; then\\n    echo \\\"ERROR: No complete checkpoint found in $CKPT_DIR\\\"\\n    exit 1\\nfi\\necho \\\"SS s42 checkpoint: $BEST_EPOCH\\\"\\n\\n# ════════════════════════════════════════════════════════════\\n# Phase 1: TF Eval (Base + SS, GAR-ours + GAR-Dongre)\\n# ════════════════════════════════════════════════════════════\\n\\necho \\\"========== [TF 1/4] Base + GAR-ours ==========\\\"\\n$PYTHON src/eval_phase2_gar.py \\\\\\n  --gate-type none \\\\\\n  --conversations-path \\\"$CONV_PATH\\\" \\\\\\n  --output-dir \\\"$OUT_ROOT/tf_base_ours\\\" \\\\\\n  --gar-variant ours \\\\\\n  --gate-profile\\n\\necho \\\"========== [TF 2/4] Base + GAR-Dongre ==========\\\"\\n$PYTHON src/eval_phase2_gar.py \\\\\\n  --gate-type none \\\\\\n  --conversations-path \\\"$CONV_PATH\\\" \\\\\\n  --output-dir \\\"$OUT_ROOT/tf_base_dongre\\\" \\\\\\n  --gar-variant dongre \\\\\\n  --gate-profile\\n\\necho \\\"========== [TF 3/4] SS s42 + GAR-ours ==========\\\"\\n$PYTHON src/eval_phase2_gar.py \\\\\\n  --gate-type threadgate \\\\\\n  --checkpoint-dir \\\"$BEST_EPOCH\\\" \\\\\\n  --conversations-path \\\"$CONV_PATH\\\" \\\\\\n  --output-dir \\\"$OUT_ROOT/tf_ss_ours\\\" \\\\\\n  --gar-variant ours \\\\\\n  --gate-profile\\n\\necho 
+…[truncated 3807 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-22T23:55:55.100371+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "cat /root/turn_residual_gating/scripts/d048_eval_existing_s42_ar_n50.sh"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-20861",
+    "command": "cat /root/turn_residual_gating/scripts/d048_eval_existing_s42_ar_n50.sh"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-22T23:55:55.100633+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\n# D048 AR N=50 eval for all existing s42 checkpoints (no retraining needed)\\n# Covers: TG, UG, PCGrad, LO\\nset -euo pipefail\\n\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\ncd /root/turn_residual_gating\\n\\nPYTHON=/root/miniconda3/bin/python3.12\\nOUT_ROOT=results/d048_ar_n50_existing\\nmkdir -p \\\"$OUT_ROOT\\\"\\n\\n# ── Checkpoint paths ──────────────────────────────────────\\n# TG s42:     runs/phase2_tg_s42_v7/epoch_2\\n# UG s42:     runs/phase2_ug_s42/epoch_2\\n# LO s42:     runs/phase2_lora_only_s42/epoch_2\\n# PCGrad s42: checkpoints/tg_v9_pcgrad_s42/epoch_2\\n\\nverify_checkpoint() {\\n    local cp=$1\\n    local label=$2\\n    if [ ! -d \\\"$cp/lora\\\" ]; then\\n        echo \\\"WARNING: LoRA dir not found at $cp/lora — skipping $label\\\"\\n        return 1\\n    fi\\n    return 0\\n}\\n\\n# ═══════════════════════════════════════════��════════════════\\n# 1. TG s42\\n# ════════════════════════════════════════════════════════════\\nTG_CP=runs/phase2_tg_s42_v7/epoch_2\\nif verify_checkpoint \\\"$TG_CP\\\" \\\"TG s42\\\"; then\\n    echo \\\"$(date '+%Y-%m-%d %H:%M:%S') [1/4] TG s42 AR N=50\\\"\\n    $PYTHON src/eval_attention_steering.py \\\\\\n      --checkpoint \\\"$TG_CP\\\" \\\\\\n      --gate-type threadgate \\\\\\n      --mode gen \\\\\\n      --max-convs 50 \\\\\\n      --beta 0 3 5 \\\\\\n      --gar-variant ours \\\\\\n      --output-dir \\\"$OUT_ROOT\\\" \\\\\\n      --output-name \\\"tg_s42_ar_n50\\\"\\nfi\\n\\n# ════════════════════════════════════════════════════════════\\n# 2. UG s42\\n# ════════════════════════════════════════════════════════════\\nUG_CP=runs/phase2_ug_s42/epoch_2\\nif verify_checkpoint \\\"$UG_CP\\\" \\\"UG s42\\\"; then\\n    echo \\\"$(date '+%Y-%m-%d %H:%M:%S') [2/4] UG s42 AR N=50\\\"\\n    $PYTHON src/eval_attention_steering.py \\\\\\n      --checkpoint \\\"$UG_CP\\\" \\\\\\n      --gate-type uniform \\\\\\n      --mo
+…[truncated 3551 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-22T23:55:55.100844+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "head -80 /root/turn_residual_gating/src/eval_attention_steering.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-20861",
+    "command": "head -80 /root/turn_residual_gating/src/eval_attention_steering.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-22T23:55:55.101049+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Evaluate inference-time attention steering on GAR recovery.\\n\\nInjects pre-softmax bias beta at goal-token positions and measures whether\\nGAR recovers from its inference-time collapse (~0.015 -> >0.1).\\n\\nModes:\\n  tf:  Teacher-forcing on pre-generated conversations. Same text, vary beta.\\n  gen: Generate conversations with beta active, then teacher-force to measure GAR.\\n\\nInput:  model checkpoint + conversation data + beta values\\nOutput: JSON with beta vs GAR vs PPL table\\n\\nUsage:\\n  python src/eval_attention_steering.py \\\\\\n      --model /root/.cache/modelscope/Qwen/Qwen2___5-7B-Instruct \\\\\\n      --checkpoint /root/turn_residual_gating/runs/phase2_tg_s42_v7 \\\\\\n      --beta 0 0.5 1.0 2.0 5.0 10.0 \\\\\\n      --output-dir /root/turn_residual_gating/runs/attention_steering/\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport sys\\n\\nimport torch\\nimport numpy as np\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom config import MODEL_NAME\\nfrom gar import GARMeasurer\\nfrom turn_utils import detect_turn_boundaries, build_turn_features\\nfrom attention_steering import AttentionSteering, _find_hf_model\\nfrom model_loader import load_gates, GateContext, TurnFeaturesTracker\\n\\n\\nCONVERSATIONS_PATH = \\\"/root/turn_residual_gating/data/standard_conversations.json\\\"\\n\\nSYSTEM_PROMPTS = [\\n    \\\"You are a knowledgeable science tutor. Always explain concepts step by step. Use analogies when possible. Never give direct answers without explanation. If the student makes an error, gently correct them and guide them to the right answer.\\\",\\n    \\\"You are a professional code reviewer. Focus on code quality, security, and performance. Point out potential bugs and suggest improvements. Always explain why a change is needed, not just what to change. Be constructive and specific.\\\",\\n    \\\"You are a creative writing coach.
+…[truncated 3480 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-22T23:55:55.101204+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "grep -n \"gate.type\\|gate_type\\|add_argument.*gate\" /root/turn_residual_gating/src/eval_attention_steering.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-20861",
+    "command": "grep -n \"gate.type\\|gate_type\\|add_argument.*gate\" /root/turn_residual_gating/src/eval_attention_steering.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-22T23:55:55.101331+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-22T23:55:55.101675+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "ls /root/turn_residual_gating/runs/phase2_ug_s42/epoch_2/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-20861",
+    "command": "ls /root/turn_residual_gating/runs/phase2_ug_s42/epoch_2/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-22T23:55:55.101879+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "ls /root/turn_residual_gating/runs/phase2_lora_only_s42/epoch_2/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-20861",
+    "command": "ls /root/turn_residual_gating/runs/phase2_lora_only_s42/epoch_2/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-22T23:55:55.102068+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"gate_params.pt\\nlora\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-22T23:55:55.102256+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"lora\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-22T23:55:55.102482+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "grep -n \"gate\" /root/turn_residual_gating/src/eval_attention_steering.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-20861",
+    "command": "grep -n \"gate\" /root/turn_residual_gating/src/eval_attention_steering.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-22T23:55:55.102738+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"34:from model_loader import load_gates, GateContext, TurnFeaturesTracker\\n66:def load_model_eager(model_name, checkpoint_dir, gate_type):\\n67:    \\\"\\\"\\\"Load model with eager attention, LoRA adapter, and gate hooks.\\n95:    if gate_type in (\\\"none\\\", \\\"baseline\\\") or not checkpoint_dir:\\n96:        return model, tokenizer, GateContext([], gate_type)\\n102:    gate_path = os.path.join(checkpoint_dir, \\\"gate_params.pt\\\")\\n103:    if not os.path.exists(gate_path):\\n104:        print(f\\\"  WARNING: gate_params.pt not found, running without gates\\\")\\n105:        return model, tokenizer, GateContext([], gate_type)\\n107:    gates, turn_embedding = load_gates(checkpoint_dir, gate_type, hidden_dim, num_layers)\\n111:    gate_values = {}\\n115:        gates[i].to(device=model_device, dtype=torch.bfloat16)\\n116:    if gate_type == \\\"threadgate\\\" and turn_embedding is not None:\\n119:    tracker = TurnFeaturesTracker(num_layers) if gate_type == \\\"threadgate\\\" else None\\n121:    if gate_type == \\\"threadgate\\\":\\n129:                g = gates[layer_idx](layer_input, tf)\\n131:                gated = layer_input + g * f_x\\n132:                gate_values[layer_idx] = g.detach()\\n134:                    return (gated,) + output[1:]\\n135:                return gated\\n142:                g = gates[layer_idx](layer_input)\\n144:                gated = layer_input + g * f_x\\n145:                gate_values[layer_idx] = g.detach()\\n147:                    return (gated,) + output[1:]\\n148:                return gated\\n154:    print(f\\\"  Loaded {gate_type} gates from {gate_path}\\\")\\n157:        hooks, gate_type, tracker=tracker, gate_values=gate_values,\\n195:def measure_gar_and_ppl(model, tokenizer, hf_model, measurer, gate_ctx,\\n216:    # Prepare gate turn features for teacher-forcing (max_new_tokens=0)\\n217:    if gate_ctx.tracker is not None:\\n218:        gate_ctx.tracker
+…[truncated 1252 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-22T23:55:55.102954+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "grep -n \"gar-variant\\|gar_variant\\|add_argument\" /root/turn_residual_gating/src/eval_attention_steering.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-20861",
+    "command": "grep -n \"gar-variant\\|gar_variant\\|add_argument\" /root/turn_residual_gating/src/eval_attention_steering.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-22T23:55:55.103135+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-22T23:55:55.103364+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "cat /root/turn_residual_gating/runs/phase2_ug_s42/train_config.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-20861",
+    "command": "cat /root/turn_residual_gating/runs/phase2_ug_s42/train_config.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-22T23:55:55.103589+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "grep -n \"add_argument\" /root/turn_residual_gating/src/eval_attention_steering.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-20861",
+    "command": "grep -n \"add_argument\" /root/turn_residual_gating/src/eval_attention_steering.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-22T23:55:55.103793+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"gate_type\\\": \\\"uniform\\\",\\n  \\\"seed\\\": 42,\\n  \\\"epochs\\\": 3,\\n  \\\"lr\\\": 0.0002,\\n  \\\"lambda_gar\\\": 1.0,\\n  \\\"max_seq_len\\\": 2048,\\n  \\\"grad_accum\\\": 8,\\n  \\\"gate_lr_multiplier\\\": 10.0,\\n  \\\"init_bias\\\": 1.5,\\n  \\\"gar_loss_mode\\\": \\\"mse_target\\\",\\n  \\\"gar_target\\\": 0.5,\\n  \\\"lambda_gate_div\\\": 1.0,\\n  \\\"min_gate_std\\\": 0.05,\\n  \\\"total_steps\\\": 3000,\\n  \\\"elapsed_seconds\\\": 21994.4601790905\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-22T23:55:55.103964+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"308:    parser.add_argument(\\\"--model\\\", default=MODEL_NAME)\\n309:    parser.add_argument(\\\"--checkpoint\\\", default=None,\\n311:    parser.add_argument(\\\"--gate-type\\\", default=\\\"threadgate\\\",\\n313:    parser.add_argument(\\\"--mode\\\", default=\\\"tf\\\", choices=[\\\"tf\\\", \\\"gen\\\"],\\n315:    parser.add_argument(\\\"--conversations\\\", default=CONVERSATIONS_PATH,\\n317:    parser.add_argument(\\\"--data-dir\\\", default=None,\\n319:    parser.add_argument(\\\"--data-file\\\", default=None,\\n321:    parser.add_argument(\\\"--max-convs\\\", type=int, default=None,\\n323:    parser.add_argument(\\\"--conversations-source\\\", default=\\\"dataset\\\",\\n326:    parser.add_argument(\\\"--beta\\\", nargs=\\\"+\\\", type=float,\\n328:    parser.add_argument(\\\"--gar-variant\\\", default=\\\"ours\\\", choices=[\\\"ours\\\", \\\"dongre\\\"])\\n329:    parser.add_argument(\\\"--layer-range\\\", nargs=2, type=int, default=None,\\n332:    parser.add_argument(\\\"--n-convs\\\", type=int, default=5)\\n333:    parser.add_argument(\\\"--output-dir\\\",\\n335:    parser.add_argument(\\\"--seed\\\", type=int, default=42)\\n336:    parser.add_argument(\\\"--output-name\\\", default=None, help=\\\"Custom output filename (without .json)\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-22T23:55:55.104141+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "find /root/turn_residual_gating/results -name \"*ar_n50*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-20861",
+    "command": "find /root/turn_residual_gating/results -name \"*ar_n50*\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-22T23:55:55.104273+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/turn_residual_gating/results/d048_ss_s42/ss_s42_ar_n50.json\\n/root/turn_residual_gating/results/d048_ss_s42/base_ar_n50.json\\n/root/turn_residual_gating/results/d048_ar_n50_existing/tg_s42_ar_n50.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-22T23:55:55.104396+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "cat /root/turn_residual_gating/scripts/d048_final_ar_eval.sh"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-20861",
+    "command": "cat /root/turn_residual_gating/scripts/d048_final_ar_eval.sh"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-22T23:55:55.104723+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\n# D048 Final Unified AR Eval Batch\\n# Purpose: Re-run AR eval for all 6 s42 conditions with unified data source (eval_200.json N=50)\\n#          to ensure cross-condition comparability for paper tables.\\n# Input:   data/eval_200/eval_200.json, --max-convs 50\\n# Output:  results/d048_final_ar/{condition}_s42_ar_n50.json  (6 files)\\n#          + bootstrap CI and paired Wilcoxon tests printed to stdout\\n# Depends: src/eval_attention_steering.py, scipy, numpy\\n\\nset +e\\n\\ncd /root/turn_residual_gating\\nsource /root/miniconda3/etc/profile.d/conda.sh\\nconda activate base\\n\\nDATA_FILE=\\\"data/eval_200/eval_200.json\\\"\\nMAX_CONVS=50\\nBETAS=\\\"0 3 5\\\"\\nOUTPUT_DIR=\\\"results/d048_final_ar\\\"\\nmkdir -p \\\"$OUTPUT_DIR\\\"\\n\\necho \\\"==========================================\\\"\\necho \\\"D048 Final AR Eval — $(date)\\\"\\necho \\\"Data: $DATA_FILE  N=$MAX_CONVS  Betas: $BETAS\\\"\\necho \\\"==========================================\\\"\\n\\n# ---------- [1/6] Base s42 (no checkpoint, no gates) ----------\\necho \\\"\\\"\\necho \\\"=== [1/6] Base s42 ===\\\"\\nCUDA_VISIBLE_DEVICES=0 python src/eval_attention_steering.py \\\\\\n  --mode gen \\\\\\n  --gate-type none \\\\\\n  --data-file \\\"$DATA_FILE\\\" \\\\\\n  --max-convs $MAX_CONVS \\\\\\n  --beta $BETAS \\\\\\n  --output-dir \\\"$OUTPUT_DIR\\\" \\\\\\n  --output-name base_s42_ar_n50\\necho \\\"  exit code: $?\\\"\\n\\n# ---------- [2/6] TG s42 (ThreadGate v7) ----------\\necho \\\"\\\"\\necho \\\"=== [2/6] TG s42 ===\\\"\\nCUDA_VISIBLE_DEVICES=0 python src/eval_attention_steering.py \\\\\\n  --checkpoint runs/phase2_tg_s42_v7 \\\\\\n  --mode gen \\\\\\n  --gate-type threadgate \\\\\\n  --data-file \\\"$DATA_FILE\\\" \\\\\\n  --max-convs $MAX_CONVS \\\\\\n  --beta $BETAS \\\\\\n  --output-dir \\\"$OUTPUT_DIR\\\" \\\\\\n  --output-name tg_s42_ar_n50\\necho \\\"  exit code: $?\\\"\\n\\n# ---------- [3/6] UG s42 (Uniform Gate) 
+…[truncated 6848 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-22T23:55:55.104924+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "ls /root/turn_residual_gating/data/eval_200/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-20861",
+    "command": "ls /root/turn_residual_gating/data/eval_200/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-22T23:55:55.105057+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "ls /root/turn_residual_gating/runs/phase2_tg_s42_v7/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-20861",
+    "command": "ls /root/turn_residual_gating/runs/phase2_tg_s42_v7/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-22T23:55:55.105181+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"eval_200.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-22T23:55:55.105297+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "ls /root/turn_residual_gating/results/d048_final_ar/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-20861",
+    "command": "ls /root/turn_residual_gating/results/d048_final_ar/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-22T23:55:55.105440+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"epoch_0\\nepoch_1\\nepoch_2\\ngate_params.pt\\nlora\\ntrain_config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-22T23:55:55.105576+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/turn_residual_gating/results/d048_final_ar/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-22T23:55:55.105714+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "tail -60 /root/turn_residual_gating/src/eval_attention_steering.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-20861",
+    "command": "tail -60 /root/turn_residual_gating/src/eval_attention_steering.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-22T23:55:55.105828+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "head -5 /root/turn_residual_gating/results/d048_ar_n50_existing/tg_s42_ar_n50.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-20861",
+    "command": "head -5 /root/turn_residual_gating/results/d048_ar_n50_existing/tg_s42_ar_n50.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-22T23:55:55.105993+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n        print(f\\\"\\\\n  Avg GAR (padded): {[f'{g:.4f}' for g in avg_gar[:10]]}\\\")\\n        print(f\\\"  Mid-GAR (per-conv): {mid_gar:.4f} ± {mid_gar_std:.4f}  (n={n_valid}/{len(beta_gar_curves)})\\\")\\n        if avg_ppl:\\n            print(f\\\"  Avg PPL: {avg_ppl:.2f}\\\")\\n\\n        all_results[f\\\"beta_{beta}\\\"] = {\\n            \\\"beta\\\": beta,\\n            \\\"avg_gar_per_turn\\\": avg_gar,\\n            \\\"mid_turns_avg_gar\\\": mid_gar,\\n            \\\"mid_gar_std\\\": mid_gar_std,\\n            \\\"n_valid_convs\\\": n_valid,\\n            \\\"per_conv_mid_gar\\\": per_conv_mid_gar,\\n            \\\"avg_ppl\\\": avg_ppl,\\n            \\\"gar_curves\\\": beta_gar_curves,\\n            \\\"ppl_per_conversation\\\": beta_ppl,\\n        }\\n\\n    # Cleanup gate hooks\\n    gate_ctx.cleanup()\\n\\n    # Summary table\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(f\\\"  ATTENTION STEERING RESULTS ({args.gate_type}, GAR-{args.gar_variant})\\\")\\n    print(f\\\"{'='*60}\\\")\\n    print(f\\\"{'Beta':>8} | {'Mid-GAR':>10} | {'PPL':>8}\\\")\\n    print(f\\\"{'-'*40}\\\")\\n    for key in sorted(all_results.keys(), key=lambda k: all_results[k][\\\"beta\\\"]):\\n        r = all_results[key]\\n        ppl_str = f\\\"{r['avg_ppl']:.2f}\\\" if r[\\\"avg_ppl\\\"] else \\\"N/A\\\"\\n        print(f\\\"{r['beta']:8.1f} | {r['mid_turns_avg_gar']:10.4f} | {ppl_str:>8}\\\")\\n\\n    # Save results\\n    ckpt_name = os.path.basename(args.checkpoint.rstrip(\\\"/\\\")) if args.checkpoint else \\\"base_model\\\"\\n    output = {\\n        \\\"checkpoint\\\": args.checkpoint,\\n        \\\"gate_type\\\": args.gate_type,\\n        \\\"mode\\\": args.mode,\\n        \\\"gar_variant\\\": args.gar_variant,\\n        \\\"model\\\": args.model,\\n        \\\"layer_range\\\": args.layer_range,\\n        \\\"betas\\\": args.beta,\\n        \\\"conversations_source\\\": args.data_file if (args.mode == \\\"ge
+…[truncated 832 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-22T23:55:55.106151+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"checkpoint\\\": \\\"runs/phase2_tg_s42_v7/epoch_2\\\",\\n  \\\"gate_type\\\": \\\"threadgate\\\",\\n  \\\"mode\\\": \\\"gen\\\",\\n  \\\"gar_variant\\\": \\\"ours\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-22T23:55:55.106333+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "head -30 /root/turn_residual_gating/data/eval_200/eval_200.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-20861",
+    "command": "head -30 /root/turn_residual_gating/data/eval_200/eval_200.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-22T23:55:55.106521+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"conversation_id\\\": 0,\\n    \\\"source\\\": \\\"ultrachat_200k_train_sft\\\",\\n    \\\"dataset_idx\\\": 0,\\n    \\\"prompt_id\\\": \\\"f0e37e9f7800261167ce91143f98f511f768847236f133f2d0aed60b444ebe57\\\",\\n    \\\"num_turns\\\": 8,\\n    \\\"messages\\\": [\\n      {\\n        \\\"content\\\": \\\"These instructions apply to section-based themes (Responsive 6.0+, Retina 4.0+, Parallax 3.0+ Turbo 2.0+, Mobilia 5.0+). What theme version am I using?\\\\nOn your Collections pages & Featured Collections sections, you can easily show the secondary image of a product on hover by enabling one of the theme's built-in settings!\\\\nYour Collection pages & Featured Collections sections will now display the secondary product image just by hovering over that product image thumbnail.\\\\nDoes this feature apply to all sections of the theme or just specific ones as listed in the text material?\\\",\\n        \\\"role\\\": \\\"user\\\"\\n      },\\n      {\\n        \\\"content\\\": \\\"This feature only applies to Collection pages and Featured Collections sections of the section-based themes listed in the text material.\\\",\\n        \\\"role\\\": \\\"assistant\\\"\\n      },\\n      {\\n        \\\"content\\\": \\\"Can you guide me through the process of enabling the secondary image hover feature on my Collection pages and Featured Collections sections?\\\",\\n        \\\"role\\\": \\\"user\\\"\\n      },\\n      {\\n        \\\"content\\\": \\\"Sure, here are the steps to enable the secondary image hover feature on your Collection pages and Featured Collections sections:\\\\n\\\\n1. Log in to your Shopify account and go to your Online Store.\\\\n2. Click on Customize theme for the section-based theme you are using.\\\\n3. Navigate to the Collection pages or Featured Collections section where you want to enable the secondary image hover feature.\\\\n4. With the section open, click on the section's set
+…[truncated 1227 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-22T23:55:55.106676+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "python3 -c \"import json; d=json.load(open('/root/turn_residual_gating/data/eval_200/eval_200.json')); print(f'n_convs={len(d)}'); c=d[0]; print(f'keys={list(c.keys())}'); msgs=[m for m in c.get('messages',c.get('conversations',[]))]; print(f'n_msgs={len(msgs)}'); print(msgs[0] if msgs else 'no msgs')\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-20861",
+    "command": "python3 -c \"import json; d=json.load(open('/root/turn_residual_gating/data/eval_200/eval_200.json')); print(f'n_convs={len(d)}'); c=d[0]; print(f'keys={list(c.keys())}'); msgs=[m for m in c.get('messages',c.get('conversations',[]))]; print(f'n_msgs={len(msgs)}'); print(msgs[0] if msgs else 'no msgs')\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-22T23:55:55.106800+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-22T23:55:55.107013+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "cat > /root/turn_residual_gating/scripts/unified_ar_n50_eval.sh << 'SCRIPT_EOF'\n#!/bin/bash\n# Unified AR N=50 eval for 5 Qwen2.5-7B conditions (s42)\n# Conditions: TG v7, UG, PCGrad, LoRA-only, SS v8b\n# Each condition runs both GAR variants (ours + dongre)\n# Output: results/unified_ar_n50/{condition}/{variant}.json\n# + Bootstrap 95% CI + Paired Wilcoxon summary\nset +e\n\ncd /root/turn_residual_gating\nsource /root/miniconda3/etc/profile.d/conda.sh\nconda activate base\n\nPYTHON=/root/miniconda3/bin/python3.12\nDATA_FILE=\"data/eval_200/eval_200.json\"\nMAX_CONVS=50\nBETAS_GATED=\"0 3 5\"\nBETAS_NOGATED=\"0\"\nOUT_ROOT=\"results/unified_ar_n50\"\n\n# ── Checkpoint paths (all epoch_2) ──────────────────────────\ndeclare -A CKPT_PATHS=(\n  [tg_v7]=\"runs/phase2_tg_s42_v7/epoch_2\"\n  [ug]=\"runs/phase2_ug_s42/epoch_2\"\n  [pcgrad]=\"checkpoints/tg_v9_pcgrad_s42/epoch_2\"\n  [lora_only]=\"runs/phase2_lora_only_s42/epoch_2\"\n  [ss_v8b]=\"runs/d048_ss_s42/epoch_2\"\n)\n\ndeclare -A GATE_TYPES=(\n  [tg_v7]=\"threadgate\"\n  [ug]=\"uniform\"\n  [pcgrad]=\"threadgate\"\n  [lora_only]=\"none\"\n  [ss_v8b]=\"threadgate\"\n)\n\nCONDITIONS=(tg_v7 ug pcgrad lora_only ss_v8b)\nGAR_VARIANTS=(ours dongre)\n\n# ── Checkpoint verification ─────────────────────────────────\necho \"==========================================\"\necho \"Unified AR N=50 Eval — $(date)\"\necho \"Data: $DATA_FILE  N=$MAX_CONVS\"\necho \"==========================================\"\n\nALL_OK=true\nfor cond in \"${CONDITIONS[@]}\"; do\n    cp=\"${CKPT_PATHS[$cond]}\"\n    gt=\"${GATE_TYPES[$cond]}\"\n    if [ \"$gt\" = \"none\" ]; then\n        if [ ! -d \"$cp/lora\" ]; then\n            echo \"ERROR: LoRA dir missing at $cp/lora ($cond)\"\n            ALL_OK=false\n        else\n            echo \"  $cond: $cp (gate=$gt) ✓\"\n        fi\n    else\n        if [ ! -d \"$cp/lora\" ] || [ ! -f \"$cp/gate_params.pt\" ]; then\n            echo \"ERROR: Checkpoint incomplete at $cp ($cond)\"\n            ALL_OK=false\n        else\n            echo \"  $cond: $cp (gate=$gt) ✓\"\n        fi\n    fi\ndone\n\nif [ \"$ALL_OK\" = false ]; then\n    echo \"Aborting: one or more checkpoints missing.\"\n    exit 1\nfi\necho \"\"\n\n# ── AR Eval Runs ────────────────────────────────────────────\nRUN_IDX=0\nTOTAL_RUNS=$(( ${#CONDITIONS[@]} * ${#GAR_VARIANTS[@]} ))\n\nfor cond in \"${CONDITIONS[@]}\"; do\n    cp=\"${CKPT_PATHS[$cond]}\"\n    gt=\"${GATE_TYPES[$cond]}\"\n    out_dir=\"${OUT_ROOT}/${cond}\"\n    mkdir -p \"$out_dir\"\n\n    if [ \"$gt\" = \"none\" ]; then\n        BETAS=\"$BETAS_NOGATED\"\n    else\n        BETAS=\"$BETAS_GATED\"\n    fi\n\n    for variant in \"${GAR_VARIANTS[@]}\"; do\n        RUN_IDX=$((RUN_IDX + 1))\n        echo \"$(date '+%Y-%m-%d %H:%M:%S') [$RUN_IDX/$TOTAL_RUNS] $cond / $variant (gate=$gt, betas=$BETAS)\"\n\n        if [ \"$gt\" = \"none\" ]; then\n            CUDA_VISIBLE_DEVICES=0 $PYTHON src/eval_attention_steering.py \\\n              --checkpoint \"$cp\" \\\n              --gate-type \"$gt\" \\\n              --mode gen \\\n              --data-file \"$DATA_FILE\" \\\n              --max-convs $MAX_CONVS \\\n              --beta $BETAS \\\n              --gar-variant \"$variant\" \\\n              --output-dir \"$out_dir\" \\\n              --output-name \"${cond}_${variant}\"\n        else\n            CUDA_VISIBLE_DEVICES=0 $PYTHON src/eval_attention_steering.py \\\n              --checkpoint \"$cp\" \\\n              --gate-type \"$gt\" \\\n              --mode gen \\\n              --data-file \"$DATA_FILE\" \\\n              --max-convs $MAX_CONVS \\\n              --beta $BETAS \\\n              --gar-variant \"$variant\" \\\n              --output-dir \"$out_dir\" \\\n              --output-name \"${cond}_${variant}\"\n        fi\n        echo \"  exit code: $?\"\n        echo \"\"\n    done\ndone\n\n# ── Bootstrap 95% CI + Summary ──────────────────────────────\necho \"\"\necho \"========== Bootstrap 95% CI ==========\"\n$PYTHON << 'PYEOF'\nimport json, os, sys, glob\nimport numpy as np\n\nOUT_ROOT = \"results/unified_ar_n50\"\nCONDITIONS = [\"tg_v7\", \"ug\", \"pcgrad\", \"lora_only\", \"ss_v8b\"]\nGAR_VARIANTS = [\"ours\", \"dongre\"]\nB = 10000\nnp.random.seed(42)\n\ndef bootstrap_ci(values, n_boot=B, ci=0.95):\n    arr = np.array(values)\n    n = len(arr)\n    boot_means = np.array([\n        np.mean(np.random.choice(arr, n, replace=True)) for _ in range(n_boot)\n    ])\n    alpha = (1 - ci) / 2\n    lo = float(np.percentile(boot_means, 100 * alpha))\n    hi = float(np.percentile(boot_means, 100 * (1 - alpha)))\n    return float(np.mean(arr)), float(np.std(arr, ddof=1)), lo, hi\n\ndef load_mid_gar(cond, variant, beta):\n    fpath = os.path.join(OUT_ROOT, cond, f\"{cond}_{variant}.json\")\n    if not os.path.exists(fpath):\n        return None\n    with open(fpath) as f:\n        data = json.load(f)\n    key = f\"beta_{beta}\"\n    if key not in data.get(\"results\", {}):\n        return None\n    curves = data[\"results\"][key].get(\"gar_curves\", [])\n    mid_gars = [float(np.mean(c[2:])) for c in curves if len(c) > 2]\n    return np.array(mid_gars) if mid_gars else None\n\n# Collect all data\nall_data = {}\nprint(\"=\" * 70)\nprint(\"BOOTSTRAP 95% CI  (mid-turns = curve[2:], B=10000)\")\nprint(\"=\" * 70)\n\nfor variant in GAR_VARIANTS:\n    print(f\"\\n{'='*30} GAR-{variant} {'='*30}\")\n    betas_seen = set()\n    for cond in CONDITIONS:\n        for beta in [0.0, 3.0, 5.0]:\n            vals = load_mid_gar(cond, variant, beta)\n            if vals is not None:\n                betas_seen.add(beta)\n                all_data[(cond, variant, beta)] = vals\n\n    for beta in sorted(betas_seen):\n        print(f\"\\n--- beta = {beta} ---\")\n        for cond in CONDITIONS:\n            vals = all_data.get((cond, variant, beta))\n            if vals is not None:\n                mean, std, lo, hi = bootstrap_ci(vals)\n                print(f\"  {cond:12s}: mean={mean:.4f}  std={std:.4f}  95%CI=[{lo:.4f}, {hi:.4f}]  (n={len(vals)})\")\n            else:\n                print(f\"  {cond:12s}: ---\")\n\n# Paired Wilcoxon tests (TG as reference)\ntry:\n    from scipy.stats import wilcoxon\n\n    print(\"\\n\" + \"=\" * 70)\n    print(\"PAIRED WILCOXON SIGNED-RANK TESTS (vs TG)\")\n    print(\"=\" * 70)\n\n    PAIRS = [\n        (\"TG vs LO\",      \"tg_v7\",   \"lora_only\"),\n        (\"TG vs UG\",      \"tg_v7\",   \"ug\"),\n        (\"SS vs TG\",      \"ss_v8b\",  \"tg_v7\"),\n        (\"PCGrad vs TG\",  \"pcgrad\",  \"tg_v7\"),\n    ]\n\n    for variant in GAR_VARIANTS:\n        print(f\"\\n--- GAR-{variant} ---\")\n        for beta in [0.0, 3.0, 5.0]:\n            any_pair = False\n            for label, a, b in PAIRS:\n                da = all_data.get((a, variant, beta))\n                db = all_data.get((b, variant, beta))\n                if da is not None and db is not None:\n                    if not any_pair:\n                        print(f\"\\n  beta={beta}:\")\n                        any_pair = True\n                    n = min(len(da), len(db))\n                    diff = da[:n] - db[:n]\n                    if np.all(diff == 0):\n                        print(f\"    {label}: all zero diffs, skipped\")\n                        continue\n                    stat, p = wilcoxon(diff)\n                    z = (stat - n*(n+1)/4) / np.sqrt(n*(n+1)*(2*n+1)/24)\n                    r = abs(z) / np.sqrt(n)\n                    print(f\"    {label}: W={stat:.1f}, p={p:.6f}, r={r:.3f} (N={n})\")\nexcept ImportError:\n    print(\"\\nscipy not available — skipping Wilcoxon tests\")\n\n# Save summary JSON\nsummary = {\"conditions\": CONDITIONS, \"gar_variants\": GAR_VARIANTS}\nfor variant in GAR_VARIANTS:\n    summary[variant] = {}\n    for beta in [0.0, 3.0, 5.0]:\n        bkey = f\"beta_{beta}\"\n        summary[variant][bkey] = {}\n        for cond in CONDITIONS:\n            vals = all_data.get((cond, variant, beta))\n            if vals is not None:\n                mean, std, lo, hi = bootstrap_ci(vals)\n                ppl = None\n                fpath = os.path.join(OUT_ROOT, cond, f\"{cond}_{variant}.json\")\n                if os.path.exists(fpath):\n                    with open(fpath) as f:\n                        d = json.load(f)\n                    ppl = d[\"results\"].get(f\"beta_{beta}\", {}).get(\"avg_ppl\")\n                summary[variant][bkey][cond] = {\n                    \"gar_mid_mean\": round(mean, 5),\n                    \"gar_mid_std\": round(std, 5),\n                    \"ci95_lower\": round(lo, 5),\n                    \"ci95_upper\": round(hi, 5),\n                    \"n\": len(vals),\n                    \"avg_ppl\": round(ppl, 4) if ppl else None,\n                }\n\nout_path = os.path.join(OUT_ROOT, \"unified_summary_ci.json\")\nos.makedirs(os.path.dirname(out_path), exist_ok=True)\nwith open(out_path, \"w\") as f:\n    json.dump(summary, f, indent=2)\nprint(f\"\\nSummary saved to {out_path}\")\nprint(\"\\n=== DONE ===\")\nPYEOF\n\necho \"\"\necho \"================================================================\"\necho \"Unified AR N=50 eval complete — $(date)\"\necho \"================================================================\"\necho \"Results in: $OUT_ROOT/\"\nls -la \"$OUT_ROOT\"/*/\nSCRIPT_EOF\nchmod +x /root/turn_residual_gating/scripts/unified_ar_n50_eval.sh"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-20861",
+    "command": "cat > /root/turn_residual_gating/scripts/unified_ar_n50_eval.sh << 'SCRIPT_EOF'\n#!/bin/bash\n# Unified AR N=50 eval for 5 Qwen2.5-7B conditions (s42)\n# Conditions: TG v7, UG, PCGrad, LoRA-only, SS v8b\n# Each condition runs both GAR variants (ours + dongre)\n# Output: results/unified_ar_n50/{condition}/{variant}.json\n# + Bootstrap 95% CI + Paired Wilcoxon summary\nset +e\n\ncd /root/turn_residual_gating\nsource /root/miniconda3/etc/profile.d/conda.sh\nconda activate base\n\nPYTHON=/root/miniconda3/bin/python3.12\nDATA_FILE=\"data/eval_200/eval_200.json\"\nMAX_CONVS=50\nBETAS_GATED=\"0 3 5\"\nBETAS_NOGATED=\"0\"\nOUT_ROOT=\"results/unified_ar_n50\"\n\n# ── Checkpoint paths (all epoch_2) ──────────────────────────\ndeclare -A CKPT_PATHS=(\n  [tg_v7]=\"runs/phase2_tg_s42_v7/epoch_2\"\n  [ug]=\"runs/phase2_ug_s42/epoch_2\"\n  [pcgrad]=\"checkpoints/tg_v9_pcgrad_s42/epoch_2\"\n  [lora_only]=\"runs/phase2_lora_only_s42/epoch_2\"\n  [ss_v8b]=\"runs/d048_ss_s42/epoch_2\"\n)\n\ndeclare -A GATE_TYPES=(\n  [tg_v7]=\"threadgate\"\n  [ug]=\"uniform\"\n  [pcgrad]=\"threadgate\"\n  [lora_only]=\"none\"\n  [ss_v8b]=\"threadgate\"\n)\n\nCONDITIONS=(tg_v7 ug pcgrad lora_only ss_v8b)\nGAR_VARIANTS=(ours dongre)\n\n# ── Checkpoint verification ─────────────────────────────────\necho \"==========================================\"\necho \"Unified AR N=50 Eval — $(date)\"\necho \"Data: $DATA_FILE  N=$MAX_CONVS\"\necho \"==========================================\"\n\nALL_OK=true\nfor cond in \"${CONDITIONS[@]}\"; do\n    cp=\"${CKPT_PATHS[$cond]}\"\n    gt=\"${GATE_TYPES[$cond]}\"\n    if [ \"$gt\" = \"none\" ]; then\n        if [ ! -d \"$cp/lora\" ]; then\n            echo \"ERROR: LoRA dir missing at $cp/lora ($cond)\"\n            ALL_OK=false\n        else\n            echo \"  $cond: $cp (gate=$gt) ✓\"\n        fi\n    else\n        if [ ! -d \"$cp/lora\" ] || [ ! -f \"$cp/gate_params.pt\" ]; then\n            echo \"ERROR: Checkpoint incomplete at $cp ($cond)\"\n            ALL_OK=false\n        else\n            echo \"  $cond: $cp (gate=$gt) ✓\"\n        fi\n    fi\ndone\n\nif [ \"$ALL_OK\" = false ]; then\n    echo \"Aborting: one or more checkpoints missing.\"\n    exit 1\nfi\necho \"\"\n\n# ── AR Eval Runs ────────────────────────────────────────────\nRUN_IDX=0\nTOTAL_RUNS=$(( ${#CONDITIONS[@]} * ${#GAR_VARIANTS[@]} ))\n\nfor cond in \"${CONDITIONS[@]}\"; do\n    cp=\"${CKPT_PATHS[$cond]}\"\n    gt=\"${GATE_TYPES[$cond]}\"\n    out_dir=\"${OUT_ROOT}/${cond}\"\n    mkdir -p \"$out_dir\"\n\n    if [ \"$gt\" = \"none\" ]; then\n        BETAS=\"$BETAS_NOGATED\"\n    else\n        BETAS=\"$BETAS_GATED\"\n    fi\n\n    for variant in \"${GAR_VARIANTS[@]}\"; do\n        RUN_IDX=$((RUN_IDX + 1))\n        echo \"$(date '+%Y-%m-%d %H:%M:%S') [$RUN_IDX/$TOTAL_RUNS] $cond / $variant (gate=$gt, betas=$BETAS)\"\n\n        if [ \"$gt\" = \"none\" ]; then\n            CUDA_VISIBLE_DEVICES=0 $PYTHON src/eval_attention_steering.py \\\n              --checkpoint \"$cp\" \\\n              --gate-type \"$gt\" \\\n              --mode gen \\\n              --data-file \"$DATA_FILE\" \\\n              --max-convs $MAX_CONVS \\\n              --beta $BETAS \\\n              --gar-variant \"$variant\" \\\n              --output-dir \"$out_dir\" \\\n              --output-name \"${cond}_${variant}\"\n        else\n            CUDA_VISIBLE_DEVICES=0 $PYTHON src/eval_attention_steering.py \\\n              --checkpoint \"$cp\" \\\n              --gate-type \"$gt\" \\\n              --mode gen \\\n              --data-file \"$DATA_FILE\" \\\n              --max-convs $MAX_CONVS \\\n              --beta $BETAS \\\n              --gar-variant \"$variant\" \\\n              --output-dir \"$out_dir\" \\\n              --output-name \"${cond}_${variant}\"\n        fi\n        echo \"  exit code: $?\"\n        echo \"\"\n    done\ndone\n\n# ── Bootstrap 95% CI + Summary ──────────────────────────────\necho \"\"\necho \"========== Bootstrap 95% CI ==========\"\n$PYTHON << 'PYEOF'\nimport json, os, sys, glob\nimport numpy as np\n\nOUT_ROOT = \"results/unified_ar_n50\"\nCONDITIONS = [\"tg_v7\", \"ug\", \"pcgrad\", \"lora_only\", \"ss_v8b\"]\nGAR_VARIANTS = [\"ours\", \"dongre\"]\nB = 10000\nnp.random.seed(42)\n\ndef bootstrap_ci(values, n_boot=B, ci=0.95):\n    arr = np.array(values)\n    n = len(arr)\n    boot_means = np.array([\n        np.mean(np.random.choice(arr, n, replace=True)) for _ in range(n_boot)\n    ])\n    alpha = (1 - ci) / 2\n    lo = float(np.percentile(boot_means, 100 * alpha))\n    hi = float(np.percentile(boot_means, 100 * (1 - alpha)))\n    return float(np.mean(arr)), float(np.std(arr, ddof=1)), lo, hi\n\ndef load_mid_gar(cond, variant, beta):\n    fpath = os.path.join(OUT_ROOT, cond, f\"{cond}_{variant}.json\")\n    if not os.path.exists(fpath):\n        return None\n    with open(fpath) as f:\n        data = json.load(f)\n    key = f\"beta_{beta}\"\n    if key not in data.get(\"results\", {}):\n        return None\n    curves = data[\"results\"][key].get(\"gar_curves\", [])\n    mid_gars = [float(np.mean(c[2:])) for c in curves if len(c) > 2]\n    return np.array(mid_gars) if mid_gars else None\n\n# Collect all data\nall_data = {}\nprint(\"=\" * 70)\nprint(\"BOOTSTRAP 95% CI  (mid-turns = curve[2:], B=10000)\")\nprint(\"=\" * 70)\n\nfor variant in GAR_VARIANTS:\n    print(f\"\\n{'='*30} GAR-{variant} {'='*30}\")\n    betas_seen = set()\n    for cond in CONDITIONS:\n        for beta in [0.0, 3.0, 5.0]:\n            vals = load_mid_gar(cond, variant, beta)\n            if vals is not None:\n                betas_seen.add(beta)\n                all_data[(cond, variant, beta)] = vals\n\n    for beta in sorted(betas_seen):\n        print(f\"\\n--- beta = {beta} ---\")\n        for cond in CONDITIONS:\n            vals = all_data.get((cond, variant, beta))\n            if vals is not None:\n                mean, std, lo, hi = bootstrap_ci(vals)\n                print(f\"  {cond:12s}: mean={mean:.4f}  std={std:.4f}  95%CI=[{lo:.4f}, {hi:.4f}]  (n={len(vals)})\")\n            else:\n                print(f\"  {cond:12s}: ---\")\n\n# Paired Wilcoxon tests (TG as reference)\ntry:\n    from scipy.stats import wilcoxon\n\n    print(\"\\n\" + \"=\" * 70)\n    print(\"PAIRED WILCOXON SIGNED-RANK TESTS (vs TG)\")\n    print(\"=\" * 70)\n\n    PAIRS = [\n        (\"TG vs LO\",      \"tg_v7\",   \"lora_only\"),\n        (\"TG vs UG\",      \"tg_v7\",   \"ug\"),\n        (\"SS vs TG\",      \"ss_v8b\",  \"tg_v7\"),\n        (\"PCGrad vs TG\",  \"pcgrad\",  \"tg_v7\"),\n    ]\n\n    for variant in GAR_VARIANTS:\n        print(f\"\\n--- GAR-{variant} ---\")\n        for beta in [0.0, 3.0, 5.0]:\n            any_pair = False\n            for label, a, b in PAIRS:\n                da = all_data.get((a, variant, beta))\n                db = all_data.get((b, variant, beta))\n                if da is not None and db is not None:\n                    if not any_pair:\n                        print(f\"\\n  beta={beta}:\")\n                        any_pair = True\n                    n = min(len(da), len(db))\n                    diff = da[:n] - db[:n]\n                    if np.all(diff == 0):\n                        print(f\"    {label}: all zero diffs, skipped\")\n                        continue\n                    stat, p = wilcoxon(diff)\n                    z = (stat - n*(n+1)/4) / np.sqrt(n*(n+1)*(2*n+1)/24)\n                    r = abs(z) / np.sqrt(n)\n                    print(f\"    {label}: W={stat:.1f}, p={p:.6f}, r={r:.3f} (N={n})\")\nexcept ImportError:\n    print(\"\\nscipy not available — skipping Wilcoxon tests\")\n\n# Save summary JSON\nsummary = {\"conditions\": CONDITIONS, \"gar_variants\": GAR_VARIANTS}\nfor variant in GAR_VARIANTS:\n    summary[variant] = {}\n    for beta in [0.0, 3.0, 5.0]:\n        bkey = f\"beta_{beta}\"\n        summary[variant][bkey] = {}\n        for cond in CONDITIONS:\n            vals = all_data.get((cond, variant, beta))\n            if vals is not None:\n                mean, std, lo, hi = bootstrap_ci(vals)\n                ppl = None\n                fpath = os.path.join(OUT_ROOT, cond, f\"{cond}_{variant}.json\")\n                if os.path.exists(fpath):\n                    with open(fpath) as f:\n                        d = json.load(f)\n                    ppl = d[\"results\"].get(f\"beta_{beta}\", {}).get(\"avg_ppl\")\n                summary[variant][bkey][cond] = {\n                    \"gar_mid_mean\": round(mean, 5),\n                    \"gar_mid_std\": round(std, 5),\n                    \"ci95_lower\": round(lo, 5),\n                    \"ci95_upper\": round(hi, 5),\n                    \"n\": len(vals),\n                    \"avg_ppl\": round(ppl, 4) if ppl else None,\n                }\n\nout_path = os.path.join(OUT_ROOT, \"unified_summary_ci.json\")\nos.makedirs(os.path.dirname(out_path), exist_ok=True)\nwith open(out_path, \"w\") as f:\n    json.dump(summary, f, indent=2)\nprint(f\"\\nSummary saved to {out_path}\")\nprint(\"\\n=== DONE ===\")\nPYEOF\n\necho \"\"\necho \"================================================================\"\necho \"Unified AR N=50 eval complete — $(date)\"\necho \"================================================================\"\necho \"Results in: $OUT_ROOT/\"\nls -la \"$OUT_ROOT\"/*/\nSCRIPT_EOF\nchmod +x /root/turn_residual_gating/scripts/unified_ar_n50_eval.sh"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-22T23:55:55.107253+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-22T23:55:55.107427+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "bash -n /root/turn_residual_gating/scripts/unified_ar_n50_eval.sh && echo \"SYNTAX_OK\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-20861",
+    "command": "bash -n /root/turn_residual_gating/scripts/unified_ar_n50_eval.sh && echo \"SYNTAX_OK\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-22T23:55:55.107568+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"SYNTAX_OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-22T23:55:55.107686+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "wc -l /root/turn_residual_gating/scripts/unified_ar_n50_eval.sh"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-20861",
+    "command": "wc -l /root/turn_residual_gating/scripts/unified_ar_n50_eval.sh"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-22T23:55:55.107803+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"261 /root/turn_residual_gating/scripts/unified_ar_n50_eval.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 69 · 2026-05-22T23:55:55.107958+00:00_
+
+`bash -n` 通过。脚本已创建。
+
+---
+
+## 报告
+
+### Checkpoint 确认
+
+| 条件 | 路径 | gate_params.pt | lora/ | --gate-type |
+|------|------|:-:|:-:|-------------|
+| TG v7 s42 | `runs/phase2_tg_s42_v7/epoch_2` | ✓ | ✓ | `threadgate` |
+| UG s42 | `runs/phase2_ug_s42/epoch_2` | ✓ | ✓ | `uniform` |
+| PCGrad s42 | `checkpoints/tg_v9_pcgrad_s42/epoch_2` | ✓ | ✓ | `threadgate` |
+| LoRA-only s42 | `runs/phase2_lora_only_s42/epoch_2` | — | ✓ | `none` |
+| SS v8b s42 | `runs/d048_ss_s42/epoch_2` | ✓ | ✓ | `threadgate` |
+
+**路径修正**：任务给的 UG/LO 路径（`checkpoints/ug_s42/`、`checkpoints/lora_only_s42/`）不存在，实际在 `runs/phase2_ug_s42/` 和 `runs/phase2_lora_only_s42/`。
+
+**gate-type 修正**：任务说 UG 用 `threadgate`，但 UG 的 `train_config.json` 明确是 `gate_type: uniform`，已有脚本 `d048_eval_existing_s42_ar_n50.sh` 和 `d048_final_ar_eval.sh` 也用 `uniform`。脚本中已按 `uniform` 设置。
+
+### 脚本结构 (`scripts/unified_ar_n50_eval.sh`)
+
+1. **Checkpoint 验证** — 启动前检查 5 个 checkpoint 完整性
+2. **10 轮 AR eval** — 5 条件 × 2 GAR variants（ours + dongre），共 10 次 `eval_attention_steering.py --mode gen`
+   - 有 gate 的条件（TG/UG/PCGrad/SS）：`--beta 0 3 5`
+   - 无 gate 的条件（LO）：`--beta 0`
+3. **Bootstrap 95% CI** — curve[2:] 计算 mid-turn GAR，B=10000
+4. **Paired Wilcoxon** — TG vs LO / TG vs UG / SS vs TG / PCGrad vs TG
+5. **输出** — 每条件的 JSON 在 `results/unified_ar_n50/{condition}/`，汇总在 `unified_summary_ci.json`
+
+数据源：`data/eval_200/eval_200.json`，`--max-convs 50`，与 `d048_final_ar_eval.sh` 一致。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_prepare_unified_ar_n50_eval_20260522T235014"
+}
+```
+
+</details>
+
+---

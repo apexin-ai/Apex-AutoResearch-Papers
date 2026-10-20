@@ -1,0 +1,21 @@
+\section{Background}\label{sec:background}
+
+\paragraph{Goal Attention Ratio.}
+Multi-turn instruction-following models receive a system prompt that specifies the task objective. We denote the token subsequence corresponding to the task specification within this system prompt as the \emph{goal tokens} $\mathcal{G}$, excluding formatting markers and role tags. \citet{dongre2026attention} introduced the Goal Attention Ratio (GAR) to quantify how much attention a model allocates to these goal tokens during response generation. Given a model with $L$ layers and $H$ attention heads, GAR at conversation turn $\tau$ is
+\begin{equation}\label{eq:gar}
+  \text{GAR}(\tau) = \frac{1}{L \cdot H \cdot |\mathcal{R}_\tau|} \sum_{\ell=1}^{L} \sum_{h=1}^{H} \sum_{i \in \mathcal{R}_\tau} \sum_{j \in \mathcal{G}} A_{i,j}^{(\ell,h)},
+\end{equation}
+where $\mathcal{R}_\tau$ is the set of response tokens at turn $\tau$ and $A_{i,j}^{(\ell,h)}$ is the attention weight from token $i$ to token $j$ at layer $\ell$, head $h$. This definition averages attention to goal tokens over all response positions, all layers, and all heads.
+
+\paragraph{Two GAR variants.}
+We distinguish two measurement variants throughout this paper. \textbf{GAR-Dongre} refers to the original definition in Equation~\ref{eq:gar}, which averages over the full response token set $\mathcal{R}_\tau$. \textbf{GAR-ours} restricts the measurement to the \emph{last token} of each assistant turn:
+\begin{equation}\label{eq:gar-ours}
+  \text{GAR\text{-}ours}(\tau) = \frac{1}{L \cdot H} \sum_{\ell=1}^{L} \sum_{h=1}^{H} \sum_{j \in \mathcal{G}} A_{t_\tau,\, j}^{(\ell,h)},
+\end{equation}
+where $t_\tau$ is the index of the last token in the assistant response at turn $\tau$. The last token is the position at which the model conditions its next generation step, so attention patterns at this position most directly reflect the information the model draws upon for continuation. We use GAR-ours as the optimization target for the auxiliary loss $\mathcal{L}_\text{GAR}$ (\S\ref{sec:loss}), while GAR-Dongre provides a complementary aggregate measure for comparison.
+
+\paragraph{Residual stream persistence.}
+\citet{dongre2026attention} showed that goal-relevant information persists in the residual stream across conversation turns: linear discriminant analysis probes achieve AUC\,=\,0.98 for detecting goal content even at late turns where GAR has declined substantially. The information remains present in the hidden states, but the attention mechanism ceases to route it toward the output computation. This dissociation between information availability and information utilization motivates an intervention that targets the residual pathway directly.
+
+\paragraph{Problem statement.}
+GAR decays across conversation turns while goal information persists in the residual stream. We ask whether learnable residual gates can recover goal attention without degrading language modeling quality.

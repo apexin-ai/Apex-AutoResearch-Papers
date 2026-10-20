@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "39944adcf607560c9b56",
+  "project": "turn_residual_gating",
+  "kind": "result",
+  "title": "viz fig1 overview v2",
+  "task_key": "worker_viz_fig1_overview_v2_20260523T022522",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_fig1_overview_v2_20260523T022522_result.json",
+    "occurrence": 1,
+    "bytes": 700,
+    "sha256": "0bdfe06a5f40780d68318622d229bdc5a132f05a758788c3d5d01ece428c5dbd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 1 已完成。\n\n**产出文件**（westd-20861 服务器）：\n- `/root/turn-residual-gating/artifacts/fig1_overview_v2.pdf` (33 KB)\n- `/root/turn-residual-gating/artifacts/fig1_overview_v2.png` (145 KB, 300dpi)\n- 绘图脚本：`/root/turn-residual-gating/scripts/draw_fig1_v2.py`\n\n**三个 panel 内容**：\n- **(a) The Phenomenon** — 5 条件 TF vs AR GAR grouped bar chart，标注 ~31× gap\n- **(b) Diagnostic Chain** — 4 步排除流程（Gate Analysis ✓ → PCGrad ✗ → TRC ✗ → Exposure bias ✓），用圆角框+箭头连接\n- **(c) Constructive Evidence** — β-steering 恢复曲线（β=0→5），标注 11× recovery，曲线下浅蓝填充"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-fig1-overview-v2.md"
+}

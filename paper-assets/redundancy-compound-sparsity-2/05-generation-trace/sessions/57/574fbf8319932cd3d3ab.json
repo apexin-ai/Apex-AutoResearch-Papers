@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "574fbf8319932cd3d3ab",
+  "project": "redundancy-compound-sparsity-2",
+  "kind": "result",
+  "title": "code windowed reset",
+  "task_key": "worker_code_windowed_reset_20260512T093300",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_windowed_reset_20260512T093300_result.json",
+    "occurrence": 1,
+    "bytes": 928,
+    "sha256": "4fc18de3fdf871f7ab2135dc6952864543050dc9f035ed3706725a5d9d041e4d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实现完成。修改摘要：\n\n**新增构造参数**：`enable_reset=False`, `window_size=16`, `tau_reset=0.3`, `n_reset=5`\n\n**核心逻辑**（concat 和 per-head 两种模式均实现）：\n- 每个 token 处理后写入 circular buffer（模运算 `ptr = (ptr+1) % W`）\n- 跟踪 `low_score_streak`：score 均值 < `tau_reset` 时递增，否则归零\n- 当 streak >= `n_reset` 且 buffer 已满时：用 buffer 均值重置 anchor_k/anchor_v，同时重置 Welford variance 统计\n- `reset()` 通过 `state.clear()` 自动清理所有新增 state\n\n**Buffer shapes**：\n- concat: `(W, batch, dim)`\n- per-head: `(W, batch, H, head_dim)`\n\n**向后兼容**：`enable_reset=False` 时无任何额外开销，行为与原实现完全一致。\n\n两处文件（`_project/intermediate/` 和 `artifacts/`）已同步。本地无 PyTorch 无法跑运行时测试，语法和静态结构验证通过。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-windowed-reset.md"
+}

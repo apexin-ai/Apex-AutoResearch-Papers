@@ -1,0 +1,999 @@
+# Review Issues Tracker — turn_residual_gating
+# Round 1 (2026-05-19, dream_20260519T145320)
+# Round 2 (2026-05-22, fresh re-review of revised paper)
+# Round 3 (2026-05-22, fresh re-review)
+# Round 4 (2026-05-25, fresh re-review)
+# Round 5 (2026-05-25, fresh re-review)
+# Round 6 (2026-05-25, fresh re-review — current round)
+# Cross-response phase completed: R1↔R2 convergence reached
+
+# ============================================================
+# Issues from Round 1 — status updates through Round 6
+# ============================================================
+
+- id: "R1-N1"
+  summary: "所有引用渲染为 '?'——bibliography 编译失败"
+  category: format
+  severity: info
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  mentions:
+    - round: 1
+      reviewers: [1, 2]
+      note: "Dream paper artifact。"
+    - round: 2
+      reviewers: []
+      note: "视觉审查确认无 [?] 未解析引用。已修复。"
+  action_items:
+    - round: 1
+      action: "Paper Agent 确保 bibtex 编译正确"
+      assigned_to: paper_agent
+      status: done
+  resolution: "Round 2 视觉审查确认已修复。"
+  resolution_round: 2
+
+- id: "R1-N2"
+  summary: "单种子支撑结论——统计功效不足 + AR 评估 N=5 过小"
+  category: experiment
+  severity: warning
+  status: in_progress
+  first_raised_round: 1
+  last_seen_round: 6
+  mentions:
+    - round: 1
+      reviewers: [1, 2]
+      note: "Bootstrap CI 仅覆盖 eval variance，不覆盖 training variance。"
+    - round: 2
+      reviewers: [1, 2]
+      note: "ThreadGate 已补 seed=123，但其余 4/5 条件仍为单 seed。"
+    - round: 3
+      reviewers: [1, 2]
+      note: "AR 评估仅 N=5，核心 claim 缺统计检验。"
+    - round: 4
+      reviewers: [1, 2]
+      note: "两位 Reviewer 独立列为 Critical Must-Fix。"
+    - round: 5
+      reviewers: [1, 2]
+      note: "Director 裁定降为 Should-Fix（效应量 8-17× 远超种子方差）。Phase 1A multi-seed 训练中。"
+    - round: 6
+      reviewers: [1, 2]
+      note: "R6 未作为独立 Must-Fix 提出，但 R1-C3 指出 Llama 单种子问题。维持 Should-Fix。"
+  action_items:
+    - round: 1
+      action: "plan_019: seed=123 extra training"
+      assigned_to: agent
+      status: done
+    - round: 4
+      action: "AR 评估 N≥50 + 至少 3 seeds 覆盖全部 5 条件"
+      assigned_to: agent
+      status: in_progress
+    - round: 5
+      action: "Phase 1A multi-seed 训练进行中（5 条件 × 3 seeds）"
+      assigned_to: agent
+      status: in_progress
+
+- id: "R1-N3"
+  summary: "评估样本量过小"
+  category: experiment
+  severity: info
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  mentions:
+    - round: 1
+      reviewers: [1]
+      note: "Cohen's d≈0.22 在 n=50 下 power 不足。"
+  action_items: []
+  resolution: "N=50 评估已在论文中体现。"
+  resolution_round: 2
+
+- id: "R1-N4"
+  summary: "损失函数超参数和 v1-v6 配置定义缺失"
+  category: method
+  severity: info
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  mentions:
+    - round: 1
+      reviewers: [1, 2]
+      note: "v1-v7 配置仅报告 v7。"
+  action_items: []
+  resolution: "§3.3 + Appendix B Table 2 已提供完整信息。"
+  resolution_round: 2
+
+- id: "R1-W1"
+  summary: "Llama 跨模型消融不完整（缺 PCGrad + Uniform Gate）"
+  category: experiment
+  severity: warning
+  status: in_progress
+  first_raised_round: 1
+  last_seen_round: 6
+  mentions:
+    - round: 1
+      reviewers: [1, 2]
+      note: "边际信息量不值 6h GPU。"
+    - round: 2
+      reviewers: [1, 2]
+      note: "仍仅 3/5 条件，N=20，用 median。"
+    - round: 3
+      reviewers: [1, 2]
+      note: "额外问题：mean/median 未双报。"
+    - round: 4
+      reviewers: [1, 2]
+      note: "R1 列 Should-Fix。R2 建议标题改为 Cross-Model Replication。"
+    - round: 5
+      reviewers: [1, 2]
+      note: "仅 3/5 条件削弱 cross-model generality。Phase 1B Llama PCGrad+UG 排队。"
+    - round: 6
+      reviewers: [1, 2]
+      note: "R1-C3 指出 Llama 仅 3/5 条件、N=20、单种子、median 与 Qwen mean 不可比。R2 交叉同意。"
+  action_items:
+    - round: 2
+      action: "补充 Llama PCGrad+UG 训练+评估"
+      assigned_to: agent
+      status: in_progress
+    - round: 4
+      action: "写作降级：§5.5 标题→Cross-Model Replication + mean/median 双报"
+      assigned_to: paper_agent
+      status: in_progress
+
+- id: "R1-W2"
+  summary: "无 λ_GAR 敏感性消融"
+  category: experiment
+  severity: warning
+  status: in_progress
+  first_raised_round: 1
+  last_seen_round: 6
+  mentions:
+    - round: 1
+      reviewers: [1]
+      note: "梯度冲突取决于 λ_GAR。"
+    - round: 6
+      reviewers: [1]
+      note: "R1-C1 明确要求 λ_GAR rescaling 实验——NTP 幅值压倒 GAR 7.5-14.7×，未测试 rescaling 使排除链不完整。"
+  action_items:
+    - round: 1
+      action: "plan_022: λ_GAR=10 敏感性测试"
+      assigned_to: agent
+      status: in_progress
+    - round: 6
+      action: "λ_GAR rescaling 实验：7B λ=10 + 1.5B λ∈{1,8,15}，测试 magnitude parity 下 TF-AR gap 变化"
+      assigned_to: agent
+      status: in_progress
+
+- id: "R1-W3"
+  summary: "训练数据量混淆变量"
+  category: experiment
+  severity: info
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  mentions:
+    - round: 1
+      reviewers: [1]
+      note: "1,000 convs 偏少。"
+  action_items: []
+  resolution: "训练数据量增加至 8K。"
+  resolution_round: 2
+
+- id: "R1-W4"
+  summary: "全文零 figure"
+  category: format
+  severity: info
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  mentions:
+    - round: 1
+      reviewers: [1, 2]
+      note: "Dream paper artifact."
+  action_items: []
+  resolution: "Figure 1-6 + Table 1-2 已就位。"
+  resolution_round: 2
+
+- id: "R1-W5"
+  summary: "Scheduled sampling 统计支撑不足"
+  category: experiment
+  severity: critical
+  status: in_progress
+  first_raised_round: 1
+  last_seen_round: 6
+  mentions:
+    - round: 1
+      reviewers: [1, 2]
+      note: "单 seed，单 ratio，PPL 未报告。"
+    - round: 2
+      reviewers: [1, 2]
+      note: "PPL 已报告，但仍单 seed。"
+    - round: 4
+      reviewers: [1, 2]
+      note: "SS AR GAR ≈ 0.401 vs TG AR GAR ≈ 0.047。"
+    - round: 5
+      reviewers: [1, 2]
+      note: "SS 贡献 ~8.5× 提升。ThreadGate 贡献边际。"
+    - round: 6
+      reviewers: [1, 2]
+      note: "SS Llama 残留 2.9× gap 说明 exposure bias 可能非唯一因素。Abstract 'substantially' 模糊。"
+  action_items:
+    - round: 4
+      action: "3 seeds (s42/s123/s456) + mean±std"
+      assigned_to: agent
+      status: in_progress
+
+- id: "R1-W6"
+  summary: "Reverse turn conditioning 证据间接"
+  category: experiment
+  severity: info
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  mentions:
+    - round: 1
+      reviewers: [1]
+      note: "差异可能是噪声。"
+  resolution: "Wilcoxon p=3.73e-8, r=0.975。"
+  resolution_round: 2
+
+# ============================================================
+# Issues from Round 2 — status updates through Round 6
+# ============================================================
+
+- id: "R2-N1"
+  summary: "Novelty/causal 声称过高——contribution 措辞需调整"
+  category: framing
+  severity: critical
+  status: in_progress
+  first_raised_round: 1
+  last_seen_round: 6
+  mentions:
+    - round: 1
+      reviewers: [1, 2]
+      note: "'first quantitative measurement' overclaim。"
+    - round: 2
+      reviewers: [1, 2]
+      note: "'systematic causal diagnostic framework' 实际是消融。"
+    - round: 4
+      reviewers: [2]
+      note: "'to our knowledge, the first' 仍被质疑。"
+    - round: 5
+      reviewers: [1, 2]
+      note: "因果排除链不完整（KV cache drift + NTP magnitude imbalance 未排除）。强共识 Must-Fix。"
+    - round: 6
+      reviewers: [1, 2]
+      note: "[复发 ×6 轮] 'causal exclusion' 措辞强共识必须修改。术语替换已完成（全文零残留）。排除链完整性待 λ_GAR + switching 实验补强。"
+  action_items:
+    - round: 1
+      action: "'first quantitative measurement' 降级"
+      assigned_to: director
+      status: done
+    - round: 4
+      action: "GAR 重新定位为 diagnostic probe"
+      assigned_to: paper_agent
+      status: done
+    - round: 5
+      action: "Phase 2 switching 实验 + exposure bias 降级为 'a proximal cause'"
+      assigned_to: agent
+      status: in_progress
+    - round: 6
+      action: "全文 'causal exclusion'→'diagnostic exclusion chain' 术语替换"
+      assigned_to: paper_agent
+      status: done
+
+- id: "R2-N2"
+  summary: "标题过度声称"
+  category: framing
+  severity: warning
+  status: in_progress
+  first_raised_round: 1
+  last_seen_round: 6
+  mentions:
+    - round: 1
+      reviewers: [1, 2]
+      note: "'Cannot Fix' → 'Fails to Fix'。"
+    - round: 2
+      reviewers: [1, 2]
+      note: "'Lightweight Gating' 过宽。"
+    - round: 5
+      reviewers: [1, 2]
+      note: "'Destroys' 与 r²=0.04 不匹配。需降调。"
+    - round: 6
+      reviewers: [1, 2]
+      note: "维持 Should-Fix。标题需降调以匹配 evidence 强度。"
+  action_items:
+    - round: 5
+      action: "标题 'Destroys' → 'Collapses'（描述 attention 行为而非下游灾难）"
+      assigned_to: paper_agent
+      status: in_progress
+
+- id: "R2-N3"
+  summary: "Dongre et al. GAR 全称引用错误"
+  category: format
+  severity: critical
+  status: in_progress
+  first_raised_round: 1
+  last_seen_round: 3
+  mentions:
+    - round: 1
+      reviewers: [1, 2]
+      note: "论文动机链依赖此引用。"
+    - round: 3
+      reviewers: [1, 2]
+      note: "arXiv 原文验证确认。Critical Must-Fix。"
+    - round: 6
+      reviewers: []
+      note: "本轮未提及。待确认修复状态。"
+  action_items:
+    - round: 3
+      action: "全文替换 'Goal Attention Ratio' → 'Goal Accessibility Ratio'"
+      assigned_to: agent
+      status: in_progress
+
+- id: "R2-N4"
+  summary: "Related Work 缺失 gradient conflict 文献 + PCGrad baseline"
+  category: framing
+  severity: info
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  mentions:
+    - round: 1
+      reviewers: [1, 2]
+      note: "如果 PCGrad 能解决梯度竞争，论文核心结论悬空。"
+  action_items: []
+  resolution: "PCGrad 已纳入五路对比 + Related Work 已覆盖。"
+  resolution_round: 2
+
+- id: "R2-C3"
+  summary: "Exposure bias 归因——替代假说讨论不足"
+  category: method
+  severity: critical
+  status: in_progress
+  first_raised_round: 2
+  last_seen_round: 6
+  mentions:
+    - round: 2
+      reviewers: [1, 2]
+      note: "β-steering 循环论证；KV cache 差异未排除。"
+    - round: 3
+      reviewers: [1, 2]
+      note: "R1 列 Critical，R2 降 Should-Fix。"
+    - round: 4
+      reviewers: [1, 2]
+      note: "PCGrad 失败可能反映投影副作用。"
+    - round: 5
+      reviewers: [1, 2]
+      note: "[复发 ×4 轮] 强共识 Must-Fix。KV cache drift + Appendix L 非独立验证。"
+    - round: 6
+      reviewers: [1, 2]
+      note: "[复发 ×5 轮] R1 交叉回应明确：λ_GAR rescaling 缺失使 exposure bias 归因无法与梯度幅值淹没假说区分。SS Llama 2.9× 残留进一步说明可能有其他因素。"
+  action_items:
+    - round: 2
+      action: "'the proximal cause' → 'a proximal cause consistent with evidence'"
+      assigned_to: paper_agent
+      status: done
+    - round: 4
+      action: "§6 扩展 exposure bias 讨论"
+      assigned_to: paper_agent
+      status: done
+    - round: 5
+      action: "Phase 2 switching 实验区分 exposure bias vs KV cache drift"
+      assigned_to: agent
+      status: in_progress
+    - round: 6
+      action: "λ_GAR rescaling (7B λ=10 + 1.5B λ∈{1,8,15}) + TF→AR switching eval + Discussion 段落"
+      assigned_to: agent
+      status: in_progress
+
+- id: "R2-W3"
+  summary: "GAR 单指标——instruction retention 不显著但占页过多"
+  category: method
+  severity: critical
+  status: in_progress
+  first_raised_round: 1
+  last_seen_round: 6
+  mentions:
+    - round: 1
+      reviewers: [1, 2]
+      note: "r=0.82 sanity check 不足。"
+    - round: 2
+      reviewers: [1, 2]
+      note: "McNemar p=0.077 不显著。"
+    - round: 4
+      reviewers: [1, 2]
+      note: "r=0.200 的 95% CI ≈ [0.05, 0.35] 过宽。"
+    - round: 5
+      reviewers: [1, 2]
+      note: "[复发 ×5 轮] 升级为 Must-Fix。r²=0.04 仅解释 4% 下游方差。"
+    - round: 6
+      reviewers: [1, 2]
+      note: "[复发 ×6 轮] R2 补充：per-category 高度分化——仅 content constraints +23.8pp 显著，format/count/position 无变化。R1 交叉强烈同意。写作修复已完成（§6 GAR diagnostic probe 段落 + per-category 分化讨论）。"
+  action_items:
+    - round: 4
+      action: "重新定位 GAR 为 diagnostic probe"
+      assigned_to: paper_agent
+      status: done
+    - round: 5
+      action: "标题 Destroys→Collapses + 叙事重构"
+      assigned_to: paper_agent
+      status: in_progress
+    - round: 6
+      action: "§6 新段落：GAR as diagnostic probe 独立价值论证 + proxy 局限讨论（r²=0.04 + per-category 分化）"
+      assigned_to: paper_agent
+      status: done
+
+- id: "R2-W5"
+  summary: "liu2016attention 引用可能错配"
+  category: format
+  severity: warning
+  status: in_progress
+  first_raised_round: 1
+  last_seen_round: 1
+  mentions:
+    - round: 1
+      reviewers: [2]
+      note: "语音识别 vs 注意力引导。"
+  action_items:
+    - round: 2
+      action: "Paper Agent 确认引用准确性"
+      assigned_to: paper_agent
+      status: in_progress
+
+- id: "R2-W6"
+  summary: "Bib 格式不一致"
+  category: format
+  severity: info
+  status: in_progress
+  first_raised_round: 1
+  last_seen_round: 6
+  mentions:
+    - round: 5
+      reviewers: [2]
+      note: "Raposo et al. 缺 ICML 2024 venue；Gromov et al. 年份问题。"
+    - round: 6
+      reviewers: []
+      note: "本轮未独立提出。"
+  action_items:
+    - round: 4
+      action: "统一 bib 格式"
+      assigned_to: paper_agent
+      status: in_progress
+
+- id: "R1-MISC"
+  summary: "无代码/数据发布"
+  category: format
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 5
+  mentions:
+    - round: 5
+      reviewers: [1, 2]
+      note: "论文 p.1 Abstract 已有 anonymous.4open.science 链接。"
+  action_items:
+    - round: 2
+      action: "投稿前准备匿名 GitHub repo"
+      assigned_to: agent
+      status: done
+  resolution: "论文 p.1 已有匿名代码链接。"
+  resolution_round: 5
+
+- id: "R2-W1-new"
+  summary: "Table 1 AR 列需扩容"
+  category: writing
+  severity: warning
+  status: in_progress
+  first_raised_round: 2
+  last_seen_round: 5
+  mentions:
+    - round: 5
+      reviewers: [1]
+      note: "与 R1-N2 联动，AR 列需 N≥50 + CI。"
+    - round: 6
+      reviewers: []
+      note: "本轮未独立提出。"
+  action_items:
+    - round: 4
+      action: "AR 列更新为 N≥50 数据 + CI + GAR-D + PPL"
+      assigned_to: agent
+      status: in_progress
+
+- id: "R2-W4-new"
+  summary: "写作冗余——关键数字重复 8+ 次"
+  category: writing
+  severity: warning
+  status: in_progress
+  first_raised_round: 2
+  last_seen_round: 6
+  mentions:
+    - round: 5
+      reviewers: [2]
+      note: "仍存在。"
+    - round: 6
+      reviewers: [1]
+      note: "R1 交叉回应 rebut——认为核心 effect size 在 Abstract/Intro/Results 重复是正常科学写作。"
+  action_items:
+    - round: 5
+      action: "Abstract/§4.2 保留完整数字，其余改用回指"
+      assigned_to: paper_agent
+      status: in_progress
+
+- id: "R2-W6-new"
+  summary: "Contribution (1) 泛化声称"
+  category: framing
+  severity: warning
+  status: in_progress
+  first_raised_round: 2
+  last_seen_round: 5
+  mentions:
+    - round: 5
+      reviewers: [2]
+      note: "'to our knowledge, the first' 仍被质疑。合并至 R2-N1 追踪。"
+  action_items:
+    - round: 4
+      action: "删除泛化声称，合并至 R2-N1"
+      assigned_to: paper_agent
+      status: in_progress
+
+- id: "R2-W7-new"
+  summary: "Li et al. split-softmax 缺实验对比"
+  category: experiment
+  severity: warning
+  status: in_progress
+  first_raised_round: 2
+  last_seen_round: 5
+  mentions:
+    - round: 5
+      reviewers: [1, 2]
+      note: "Discussion 定性讨论即可，不做实验对比。"
+  action_items:
+    - round: 5
+      action: "Discussion 中加强 split-softmax/Rhea 概念对比"
+      assigned_to: paper_agent
+      status: in_progress
+
+# ============================================================
+# Supplementary items from Round 2
+# ============================================================
+
+- id: "R2-SUPP-1"
+  summary: "Figure/Table caption overclaim + 重复句"
+  category: writing
+  severity: warning
+  status: in_progress
+  first_raised_round: 2
+  last_seen_round: 3
+  mentions:
+    - round: 6
+      reviewers: []
+      note: "本轮未独立提出。"
+  action_items:
+    - round: 3
+      action: "修正 Fig 3b/Table 1/Fig 4 caption"
+      assigned_to: paper_agent
+      status: in_progress
+
+- id: "R2-SUPP-2"
+  summary: "Multi-seed 完成后数字更新"
+  category: writing
+  severity: warning
+  status: open
+  first_raised_round: 2
+  last_seen_round: 2
+  mentions:
+    - round: 6
+      reviewers: []
+      note: "仍待 multi-seed 实验完成。"
+  action_items:
+    - round: 2
+      action: "Multi-seed 完成后统一更新"
+      assigned_to: paper_agent
+      status: open
+
+- id: "R2-SUPP-3"
+  summary: "SS variance 风险应急计划"
+  category: experiment
+  severity: info
+  status: open
+  first_raised_round: 2
+  last_seen_round: 5
+  mentions:
+    - round: 6
+      reviewers: []
+      note: "SS 统计支撑仍为核心问题。"
+  action_items:
+    - round: 2
+      action: "SS multi-seed 结果出来后评估 variance"
+      assigned_to: director
+      status: open
+
+# ============================================================
+# Issues from Round 3 — status updates through Round 6
+# ============================================================
+
+- id: "R3-MF2"
+  summary: "正文超过 EMNLP 8 页限制"
+  category: format
+  severity: critical
+  status: resolved
+  first_raised_round: 3
+  last_seen_round: 4
+  resolution: "Round 4 确认页数合规。"
+  resolution_round: 4
+
+- id: "R3-SF4"
+  summary: "PCGrad scope 过度概括"
+  category: method
+  severity: warning
+  status: in_progress
+  first_raised_round: 3
+  last_seen_round: 6
+  mentions:
+    - round: 5
+      reviewers: [1, 2]
+      note: "NTP magnitude imbalance 7.5-14.7× 是 PCGrad 失败的替代解释。"
+    - round: 6
+      reviewers: [1, 2]
+      note: "R1 交叉回应：即便改 'causal exclusion' 措辞，λ_GAR rescaling 缺失仍是实质问题。"
+  action_items:
+    - round: 3
+      action: "'gradient conflict' → 'gradient direction conflict'"
+      assigned_to: paper_agent
+      status: in_progress
+    - round: 5
+      action: "补充 1 句：PCGrad 不处理 magnitude imbalance"
+      assigned_to: paper_agent
+      status: in_progress
+
+- id: "R3-SF6"
+  summary: "缺少 Rhea (arXiv:2512.06869) 引用"
+  category: framing
+  severity: warning
+  status: in_progress
+  first_raised_round: 3
+  last_seen_round: 5
+  mentions:
+    - round: 5
+      reviewers: [2]
+      note: "与 split-softmax 一并作为缺失对比方案。合并至 R2-W7-new。"
+  action_items:
+    - round: 5
+      action: "Discussion 概念对比中一并覆盖 Rhea"
+      assigned_to: paper_agent
+      status: in_progress
+
+- id: "R3-MINOR-1"
+  summary: "LoRA capacity saturation 未讨论"
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 3
+  last_seen_round: 6
+  mentions:
+    - round: 5
+      reviewers: [1, 2]
+      note: "R2 同意 R1 (Q4)。"
+    - round: 6
+      reviewers: [1, 2]
+      note: "R2-W3 新增：LoRA 限制模型重组 attention patterns capacity，可能 confound capacity 排除步骤。R1 交叉同意。"
+  action_items:
+    - round: 5
+      action: "§7 Limitations 加 1 句 acknowledge LoRA rank 16 可能影响 gate 效用上界"
+      assigned_to: paper_agent
+      status: done
+    - round: 6
+      action: "Limitations 扩展：LoRA-only 实验限制了 capacity 排除步骤的推断力度"
+      assigned_to: paper_agent
+      status: done
+  resolution: "Limitations 已充分讨论 LoRA capacity confound。Reviewer 确认 PASS。"
+  resolution_round: 6
+
+- id: "R3-MINOR-2"
+  summary: "GPU 型号名称准确性"
+  category: format
+  severity: info
+  status: open
+  first_raised_round: 3
+  last_seen_round: 3
+  action_items:
+    - round: 3
+      action: "确认准确性"
+      assigned_to: agent
+      status: open
+
+- id: "R3-NEW-1"
+  summary: "UG 描述不清——未说明仍为可学习 MLP"
+  category: method
+  severity: info
+  status: in_progress
+  first_raised_round: 3
+  last_seen_round: 3
+  action_items:
+    - round: 3
+      action: "§4.1 或 §3 加一句说明"
+      assigned_to: paper_agent
+      status: in_progress
+
+- id: "R3-NEW-2"
+  summary: "Contribution (4) 混淆开发迭代与系统消融"
+  category: framing
+  severity: info
+  status: in_progress
+  first_raised_round: 3
+  last_seen_round: 3
+  action_items:
+    - round: 3
+      action: "拆分为 loss design iterations + systematic conditions comparison"
+      assigned_to: paper_agent
+      status: in_progress
+
+# ============================================================
+# Issues from Round 4 — status updates through Round 6
+# ============================================================
+
+- id: "R4-N1"
+  summary: "GAR 指标与下游任务性能之间缺乏因果验证"
+  category: method
+  severity: critical
+  status: in_progress
+  first_raised_round: 4
+  last_seen_round: 6
+  mentions:
+    - round: 4
+      reviewers: [1, 2]
+      note: "r=0.200, r²=0.04。"
+    - round: 5
+      reviewers: [1, 2]
+      note: "Director 裁定 Must-Fix。与 R2-W3 合并追踪。"
+    - round: 6
+      reviewers: [1, 2]
+      note: "R2 补充 per-category 分化证据。R1 交叉强烈同意。维持 Must-Fix。§6 GAR diagnostic probe 段落已写入。"
+  action_items:
+    - round: 5
+      action: "标题 Destroys→Collapses + GAR 叙事重构"
+      assigned_to: paper_agent
+      status: in_progress
+    - round: 6
+      action: "§6 GAR as diagnostic probe 独立价值论证 + per-category 分化讨论"
+      assigned_to: paper_agent
+      status: done
+
+- id: "R4-N2"
+  summary: "SS+LoRA-only 消融缺失——ThreadGate 独立贡献不清"
+  category: experiment
+  severity: warning
+  status: in_progress
+  first_raised_round: 4
+  last_seen_round: 5
+  mentions:
+    - round: 5
+      reviewers: [1, 2]
+      note: "关键缺失消融。"
+  action_items:
+    - round: 5
+      action: "SS+LoRA-only 实验"
+      assigned_to: agent
+      status: in_progress
+
+- id: "R4-W1"
+  summary: "GAR-D 全条件接近零——干预仅在 last token 成功"
+  category: method
+  severity: warning
+  status: in_progress
+  first_raised_round: 4
+  last_seen_round: 5
+  action_items:
+    - round: 5
+      action: "§3.1 补充 GAR-ours vs GAR-D 选择理由"
+      assigned_to: paper_agent
+      status: in_progress
+
+- id: "R4-W2"
+  summary: "Table 1 四舍五入与正文数字精度不一致"
+  category: writing
+  severity: info
+  status: open
+  first_raised_round: 4
+  last_seen_round: 4
+  action_items:
+    - round: 4
+      action: "Table 1 增加一位小数"
+      assigned_to: paper_agent
+      status: open
+
+- id: "R4-W3"
+  summary: "r_min 数值正文未报告"
+  category: method
+  severity: info
+  status: open
+  first_raised_round: 4
+  last_seen_round: 4
+  action_items:
+    - round: 4
+      action: "在 §3 或 Appendix A 中报告 r_min 数值"
+      assigned_to: paper_agent
+      status: open
+
+- id: "R4-MR1"
+  summary: "缺少 Zhang et al. 2024 'Tell Your Model Where to Attend' 引用"
+  category: framing
+  severity: info
+  status: in_progress
+  first_raised_round: 4
+  last_seen_round: 6
+  mentions:
+    - round: 6
+      reviewers: [1, 2]
+      note: "Missing References 中明确列出。"
+  action_items:
+    - round: 5
+      action: "合并至 R2-W7-new Discussion 概念对比"
+      assigned_to: paper_agent
+      status: in_progress
+
+- id: "R4-W4"
+  summary: "Appendix C instruction retention 多重比较未校正"
+  category: experiment
+  severity: warning
+  status: in_progress
+  first_raised_round: 4
+  last_seen_round: 6
+  mentions:
+    - round: 5
+      reviewers: [1, 2]
+      note: "18-category McNemar's test 缺 FDR/Bonferroni 校正。"
+    - round: 6
+      reviewers: [1, 2]
+      note: "m3 再次提出。per-category 分化进一步削弱未校正结果可信度。"
+  action_items:
+    - round: 4
+      action: "Appendix C per-category 分析补充 Holm-Bonferroni 或 FDR 校正"
+      assigned_to: agent
+      status: in_progress
+
+# ============================================================
+# Round 5 — status updates through Round 6
+# ============================================================
+
+- id: "R5-SF1"
+  summary: "β-steering 部分循环论证——GAR 恢复 vs 下游效果未解耦"
+  category: method
+  severity: warning
+  status: in_progress
+  first_raised_round: 2
+  last_seen_round: 6
+  mentions:
+    - round: 2
+      reviewers: [1, 2]
+      note: "β-steering 循环论证首次提出。"
+    - round: 5
+      reviewers: [1, 2]
+      note: "boost attention → attention metric recovers 是同义反复。"
+    - round: 6
+      reviewers: [1]
+      note: "R1-S1 维持循环论证判断。Agent 确认现有 §5.4 拆分已充分（'by construction' + counterfactual evidence）。"
+  action_items:
+    - round: 5
+      action: "§5.4 拆为两段：GAR 恢复标注 'by construction' + 下游效果单独报告"
+      assigned_to: paper_agent
+      status: in_progress
+
+# ============================================================
+# Round 6 新增
+# ============================================================
+
+- id: "R6-SF1"
+  summary: "单一数据集（仅 UltraChat）限制 generalizability claim"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 6
+  last_seen_round: 6
+  mentions:
+    - round: 6
+      reviewers: [1, 2]
+      note: "R2 列 Must-Fix，R1 rebut 降为 Should-Fix。Director 裁定 Should-Fix。"
+  action_items:
+    - round: 6
+      action: "Limitations 明确讨论单数据集对 generalizability 的限制 + future work 承诺跨数据集验证"
+      assigned_to: paper_agent
+      status: done
+  resolution: "Limitations 已添加 cross-dataset validation discussion。Reviewer 确认。"
+  resolution_round: 6
+
+- id: "R6-SF2"
+  summary: "SS Llama 残留 2.9× gap——Abstract 'substantially' 措辞模糊"
+  category: writing
+  severity: warning
+  status: open
+  first_raised_round: 6
+  last_seen_round: 6
+  mentions:
+    - round: 6
+      reviewers: [1, 2]
+      note: "强共识。Qwen 1.3× vs Llama 2.9× 差异显著。Abstract 应报告具体数字。可能暗示 Llama 上有 exposure bias 以外的因素。"
+  action_items:
+    - round: 6
+      action: "Abstract 改为具体数字 + §6 讨论 Llama 残留 gap 根因"
+      assigned_to: paper_agent
+      status: open
+
+- id: "R6-SF3"
+  summary: "仅 LoRA fine-tuning，未验证 full fine-tuning"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 6
+  last_seen_round: 6
+  mentions:
+    - round: 6
+      reviewers: [1, 2]
+      note: "R2 提出，R1 交叉同意。合并至 R3-MINOR-1。"
+  action_items:
+    - round: 6
+      action: "Limitations 讨论 LoRA-only 限制（合并至 R3-MINOR-1 执行）"
+      assigned_to: paper_agent
+      status: done
+  resolution: "Limitations 已添加 LoRA-only + capacity confound 讨论。Reviewer 确认。"
+  resolution_round: 6
+
+- id: "R6-SF4"
+  summary: "Dou et al. attention forcing 区分讨论不够深入"
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 6
+  last_seen_round: 6
+  mentions:
+    - round: 6
+      reviewers: [1, 2]
+      note: "R2 提出 3 点缺失讨论（AR 退化、retrospective 解释、方法论互补），R1 交叉同意。"
+    - round: 6
+      reviewers: []
+      note: "Reviewer 确认 Discussion 新增段落覆盖全部 3 点（AR 退化/回溯解释/方法互补），措辞准确不过度声称。"
+  action_items:
+    - round: 6
+      action: "补 Dou et al. bib entry + Discussion 增加 2-3 句 deeper connection"
+      assigned_to: agent
+      status: done
+  resolution: "Discussion 已添加 Dou et al. convergent evidence 段落，覆盖 3 点要求。Reviewer 确认 PASS。"
+  resolution_round: 6
+
+- id: "R6-SF5"
+  summary: "Loss formulation 搜索（v1-v9）的过拟合风险"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 6
+  last_seen_round: 6
+  mentions:
+    - round: 6
+      reviewers: [1]
+      note: "9 次迭代选 loss formulation 可能对 UltraChat 数据集过拟合。"
+  action_items:
+    - round: 6
+      action: "Appendix B 加 1 段 loss search overfitting caveat + TF-AR gap 在所有 variants 中均出现的反驳"
+      assigned_to: paper_agent
+      status: done
+  resolution: "Appendix 已添加 Overfitting caveat 段落。Reviewer 确认。"
+  resolution_round: 6
+
+- id: "R6-SF6"
+  summary: "SS 替代解释（curriculum effect）未排除"
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 6
+  last_seen_round: 6
+  mentions:
+    - round: 6
+      reviewers: [1]
+      note: "SS 改变训练动态不仅仅修复 exposure bias。"
+  action_items:
+    - round: 6
+      action: "§6 Discussion 加 1 段 SS curriculum effect 替代机制讨论"
+      assigned_to: paper_agent
+      status: done
+  resolution: "§6 已添加 SS curriculum effect 替代解释段落。Agent 确认写入。"
+  resolution_round: 6

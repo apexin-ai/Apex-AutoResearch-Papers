@@ -1,0 +1,41 @@
+{
+  "exp_id": "phase2_tg_s42_v7",
+  "project": "turn_residual_gating",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T18:17:45.739Z",
+    "updated_at": "2026-05-18T18:45:02.564Z",
+    "hypothesis": "MSE 双向 loss (mean_GAR - target)² + gate diversity 正则 F.relu(min_std - gate_std) 从结构上解决恒等退化：MSE 在 GAR > target 时反向惩罚（不再单调推高），gate_div 直接强制层间分化。预期：gate_std 稳定 >0.05 + GAR 收敛到 target=0.5 附近 + NTP 正常收敛。",
+    "parent": "phase2_tg_s42_v6",
+    "metrics": {
+      "dryrun_step0_L_NTP": 2.0275,
+      "dryrun_step0_L_GAR": 0.2342,
+      "dryrun_step0_L_DIV": 0.0153,
+      "dryrun_step0_total_loss": 2.277,
+      "dryrun_step4_L_NTP": 1.6477,
+      "dryrun_step4_L_GAR": 0.2355,
+      "dryrun_step4_L_DIV": 0,
+      "dryrun_step4_total_loss": 1.8832,
+      "dryrun_gate_grad": true,
+      "dryrun_gate_mean_init": 0.81,
+      "dryrun_gate_std_init": 0.034,
+      "dryrun_gate_std_step5": 0.088
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/turn_residual_gating && PYTHONUNBUFFERED=1 python src/train_phase2.py --gate-type threadgate --gar-loss-mode mse_target --gar-target 0.5 --lambda-gar 1.0 --lambda-gate-div 1.0 --min-gate-std 0.05 --init-bias 1.5 --gate-lr-multiplier 10 --max-seq-len 2048 --seed 42 --output-dir /root/turn_residual_gating/runs/phase2_tg_s42_v7 --data-dir /root/turn_residual_gating/data/ultrachat_8k --epochs 3\"",
+      "server": "westd-20861",
+      "gpu": "cuda:0",
+      "data_path": "/root/turn_residual_gating/data/ultrachat_8k",
+      "data_count": 8000,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42,
+      "checkpoint_path": "/root/turn_residual_gating/runs/phase2_tg_s42_v7",
+      "log_path": "/root/turn_residual_gating/runs/phase2_tg_s42_v7.log"
+    }
+  },
+  "timestamp": "2026-05-18T18:45:02.590205+00:00",
+  "trigger": "update_registry"
+}

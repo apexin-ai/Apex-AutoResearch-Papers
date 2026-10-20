@@ -1,0 +1,51 @@
+{
+  "exp_id": "phase2_tg_s42_v5",
+  "project": "turn_residual_gating",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T17:10:23.229Z",
+    "updated_at": "2026-05-18T17:50:03.124Z",
+    "hypothesis": "重新平衡超参（λ=1.0 降 GAR 贡献至 ~50%，init_bias=1.5 使 sigmoid≈0.82 接近正常模型行为，gate_lr_multiplier=10 保持）能在 3-epoch 全量训练中产生有意义的 gate 分化（gate_std>0.05），同时 GAR 稳态在 0.1-0.5（非病态饱和），NTP loss 正常收敛，总 loss 保持正值",
+    "parent": "phase2_tg_s42_v4",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/turn_residual_gating && PYTHONUNBUFFERED=1 python src/train_phase2.py --gate-type threadgate --gar-loss-mode maximize --lambda-gar 1.0 --init-bias 1.5 --gate-lr-multiplier 10 --max-seq-len 2048 --seed 42 --output-dir /root/turn_residual_gating/runs/phase2_tg_s42_v5 --data-dir /root/turn_residual_gating/data/ultrachat_8k --epochs 3\"",
+      "server": "westd-20861",
+      "gpu": "cuda:0",
+      "pid": "3639",
+      "log_path": "~/runs/turn_residual_gating/phase2_tg_s42_v5.log",
+      "submitted_at": "2026-05-18T17:10:30.573Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/turn_residual_gating/data/ultrachat_8k",
+      "data_count": 8000,
+      "model_name": "Qwen/Qwen2.5-7B-Instruct",
+      "seed": 42,
+      "checkpoint_path": "/root/turn_residual_gating/runs/phase2_tg_s42_v5",
+      "checkpoint_source": "from_scratch",
+      "eval_data": "N/A"
+    },
+    "metrics": {
+      "step2000_gate_std": 0.0225,
+      "step2000_gate_mean": 0.9586,
+      "step2000_gate_min": 0.9062,
+      "step2000_gate_max": 0.9961,
+      "step2000_L_GAR": -0.8977,
+      "step2000_L_NTP": 0.7611,
+      "step2000_total_loss": -0.1365,
+      "step2400_gate_std": 0.0219,
+      "step2400_gate_mean": 0.9651,
+      "step2400_gate_min": 0.918,
+      "step2400_gate_max": 0.9961,
+      "step2400_profile": "L0=0.918 L12=0.918 L13=0.926 L1=0.996 L26=0.996",
+      "L_GAR_saturated_at": -0.91,
+      "gate_range_compression": "0.918-0.996"
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-18T17:50:03.185035+00:00",
+  "trigger": "update_registry"
+}

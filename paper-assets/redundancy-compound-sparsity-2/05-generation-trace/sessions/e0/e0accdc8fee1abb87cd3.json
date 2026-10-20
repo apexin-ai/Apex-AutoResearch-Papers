@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e0accdc8fee1abb87cd3",
+  "project": "redundancy-compound-sparsity-2",
+  "kind": "result",
+  "title": "check gamma sweep status",
+  "task_key": "worker_check_gamma_sweep_status_20260512T173128",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_gamma_sweep_status_20260512T173128_result.json",
+    "occurrence": 1,
+    "bytes": 1343,
+    "sha256": "fe7fa4517222184abb8614a8d0e2d5ef7077d43b33f08a9f967fcfb0381f9d3a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## gamma_sweep 状态\n\n**仍在运行** — PID 40063，已运行 58 分钟，当前正在处理 **gamma=0.3**（prefill 阶段 85%，44/52 batches）。\n\n### 已完成的结果（JSON 增量写入中）\n\n| Strategy | Gamma | PPL | vs Random | vs Full |\n|----------|-------|-----|-----------|---------|\n| **full** (无淘汰) | - | **7.1822** | - | baseline |\n| **random** | - | **7.6353** | baseline | +6.31% |\n| **recency** | - | **7.1758** | +6.02% better | -0.09% (比 full 还好) |\n| **ema_0.1** | 0.1 | **8.1707** | **-7.01% (比 random 差)** | +13.76% |\n\n目前只完成了 1/8 个 gamma 值。gamma=0.1 表现比 random 还差，当前 JSON 结论标记为 `\"ema_method_flawed\"`。\n\n### 进度估算\n\n每个 gamma 约 22 分钟（gamma=0.1 耗时 1304s）。gamma=0.3 prefill 还剩 ~2 min + eval ~8 min，之后还有 6 个 gamma。预计还需 **~2.5 小时**完成全部 8 个 gamma。\n\n### GPU 状态\n\n| GPU | Utilization | Memory |\n|-----|------------|--------|\n| GPU 0 | 27% | 32.4 / 97.9 GB |\n| GPU 1 | 0% (idle) | 28.7 / 97.9 GB |\n\n### 值得注意\n\nrecency baseline PPL (7.1758) 竟然略优于 full KV cache (7.1822)，这可能意味着淘汰旧 token 反而有微弱正则化效果。但 EMA gamma=0.1 严重劣于 random，需要等更高 gamma 值的结果才能下结论。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-gamma-sweep-status.md"
+}

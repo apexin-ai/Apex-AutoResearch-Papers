@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "b77fc14f84445aa334fc",
+  "project": "redundancy-compound-sparsity-2",
+  "kind": "worker",
+  "title": "code eval framework",
+  "task_key": "worker_code_eval_framework_20260512T112354",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_eval_framework_20260512T112354.log",
+    "occurrence": 1,
+    "bytes": 578876,
+    "sha256": "1335bda2ce647bd9427d4ea2aa17700a5c09411d712d52f0429565b1579f668d"
+  },
+  "statistics": {
+    "messages": 187,
+    "user_turns": 1,
+    "tool_calls": 57,
+    "roles": {
+      "log": 1,
+      "system": 26,
+      "record": 1,
+      "assistant": 43,
+      "tool_call": 57,
+      "tool_result": 57,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 143,
+      "chunks": [
+        {
+          "path": "b77fc14f84445aa334fc-part-0001.json",
+          "message_count": 143
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 44,
+      "chunks": [
+        {
+          "path": "b77fc14f84445aa334fc-part-0001.json",
+          "message_count": 37
+        },
+        {
+          "path": "b77fc14f84445aa334fc-part-0002.json",
+          "message_count": 7
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-eval-framework.md"
+}
